@@ -1,5 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.familyarcade.platform" android:versionCode="20260829" android:versionName="2.1.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.familyarcade.platform" android:versionCode="2026082901" android:versionName="2.2.0">
     <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="35" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />

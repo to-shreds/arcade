@@ -25,6 +25,7 @@ import android.webkit.PermissionRequest;
 import android.webkit.RenderProcessGoneDetail;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
@@ -52,6 +53,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class MainActivity extends BaseActivity {
     public static final String HOST = "arcade.local";
     public static final String BASE = "https://" + HOST + "/";
+    public static final String REMOTE_HOST = "to-shreds.github.io";
+    public static final String REMOTE_BASE = "https://" + REMOTE_HOST + "/arcade/";
     private static final int PICK_TREE = 40;
     private static final int PICK_WEB_FILE = 41;
     private static final int RECORD_AUDIO_REQUEST = 42;
@@ -72,6 +75,8 @@ public final class MainActivity extends BaseActivity {
     private int rendererCrashCount;
     private volatile TextToSpeech textToSpeech;
     private volatile boolean ttsReady;
+    private volatile boolean remoteMode = true;
+    private final AtomicBoolean remoteRecoveryScheduled = new AtomicBoolean();
     private String pendingSpeech;
     private float pendingSpeechRate = 1f;
     private float pendingSpeechPitch = 1f;
@@ -87,8 +92,17 @@ public final class MainActivity extends BaseActivity {
         if (getIntent().getBooleanExtra("changeFolder", false)) {
             chooseFolder();
         } else {
-            startRememberedFolder(getIntent());
+            startOnlineArcade(getIntent());
         }
+    }
+
+    private void startOnlineArcade(Intent intent) {
+        remoteMode = true;
+        if (!showWebView()) {
+            showRemoteRecoveryScreen("The online Arcade viewer could not start.");
+            return;
+        }
+        openIntentPath(intent);
     }
 
     private void initializeSpeech() {
@@ -119,6 +133,7 @@ public final class MainActivity extends BaseActivity {
     }
 
     private void startRememberedFolder(Intent intent) {
+        remoteMode = false;
         if (storage == null) {
             ArcadeStorage.clearRememberedTree(this);
             showFolderScreen(null);
@@ -165,7 +180,8 @@ public final class MainActivity extends BaseActivity {
         super.onNewIntent(intent);
         setIntent(intent);
         if (intent.getBooleanExtra("changeFolder", false)) chooseFolder();
-        else if (webView == null) startRememberedFolder(intent);
+        else if (intent.getBooleanExtra("useLocalFolder", false)) startRememberedFolder(intent);
+        else if (webView == null) startOnlineArcade(intent);
         else openIntentPath(intent);
     }
 
@@ -191,9 +207,15 @@ public final class MainActivity extends BaseActivity {
         Button choose = Ui.button(this, "Choose Arcade Folder");
         choose.setTextSize(17);
         choose.setOnClickListener(v -> chooseFolder());
+        Button online = Ui.button(this, "Use Online Arcade");
+        online.setTextSize(17);
+        online.setOnClickListener(v -> startOnlineArcade(getIntent()));
         panel.addView(title);
         panel.addView(copy, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         panel.addView(choose, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, Ui.dp(this, 54)));
+        LinearLayout.LayoutParams onlineParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, Ui.dp(this, 54));
+        onlineParams.topMargin = Ui.dp(this, 10);
+        panel.addView(online, onlineParams);
         root.addView(panel, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
@@ -223,6 +245,44 @@ public final class MainActivity extends BaseActivity {
         panel.addView(copy, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         panel.addView(actions, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, Ui.dp(this, 58)));
         root.addView(panel, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    }
+
+    private void showRemoteRecoveryScreen(String warning) {
+        destroyWebView();
+        root.removeAllViews();
+        LinearLayout panel = new LinearLayout(this);
+        panel.setOrientation(LinearLayout.VERTICAL);
+        panel.setGravity(Gravity.CENTER);
+        panel.setPadding(Ui.dp(this, 28), Ui.dp(this, 24), Ui.dp(this, 28), Ui.dp(this, 24));
+        panel.setBackgroundColor(Ui.BG);
+        TextView title = Ui.text(this, "Arcade", 38, Ui.GOLD, true);
+        title.setGravity(Gravity.CENTER);
+        TextView copy = Ui.text(this, warning + "\nTry again when connected, or use a local Arcade folder. Previously opened online games remain available when Android's web cache is intact.", 17, Ui.MUTED, false);
+        copy.setGravity(Gravity.CENTER);
+        copy.setPadding(0, Ui.dp(this, 12), 0, Ui.dp(this, 22));
+        LinearLayout actions = Ui.row(this);
+        actions.setGravity(Gravity.CENTER);
+        Button retry = Ui.button(this, "Try Online Again");
+        retry.setOnClickListener(v -> startOnlineArcade(getIntent()));
+        Button local = Ui.button(this, "Use Local Folder");
+        local.setOnClickListener(v -> useLocalFolder());
+        actions.addView(retry);
+        actions.addView(Ui.text(this, " ", 8, Color.TRANSPARENT, false));
+        actions.addView(local);
+        panel.addView(title);
+        panel.addView(copy, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        panel.addView(actions, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, Ui.dp(this, 58)));
+        root.addView(panel, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    }
+
+    private void useLocalFolder() {
+        ArcadeStorage active = storage;
+        if (active == null || !active.hasPersistedAccess() || !active.available()) {
+            chooseFolder();
+            return;
+        }
+        destroyWebView();
+        startRememberedFolder(getIntent());
     }
 
     private void retryViewer() {
@@ -303,6 +363,7 @@ public final class MainActivity extends BaseActivity {
             }
             destroyWebView();
             storage = candidate;
+            remoteMode = false;
             invalidateCatalog(false);
             if (!showWebView()) {
                 showViewerRecoveryScreen("The folder is valid, but the Arcade viewer could not start.");
@@ -356,21 +417,22 @@ public final class MainActivity extends BaseActivity {
             settings.setAllowFileAccessFromFileURLs(false);
             settings.setAllowUniversalAccessFromFileURLs(false);
             settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
-            settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+            settings.setCacheMode(WebSettings.LOAD_DEFAULT);
             settings.setMediaPlaybackRequiresUserGesture(true);
             settings.setSupportZoom(false);
             settings.setBuiltInZoomControls(false);
             settings.setDisplayZoomControls(false);
             settings.setUseWideViewPort(true);
             settings.setLoadWithOverviewMode(false);
-            settings.setUserAgentString(settings.getUserAgentString() + " ArcadePlatform/2.1.0");
+            settings.setUserAgentString(settings.getUserAgentString() + " ArcadePlatform/2.2.0");
             WebView.setWebContentsDebuggingEnabled(false);
             created.addJavascriptInterface(new ArcadeBridge(), "ArcadeNative");
             WebView boundView = created;
             ArcadeStorage boundStorage = storage;
+            boolean boundRemote = remoteMode;
             LocalClient client = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
-                ? new LocalClientApi26(boundView, boundStorage)
-                : new LocalClient(boundView, boundStorage);
+                ? new LocalClientApi26(boundView, boundStorage, boundRemote)
+                : new LocalClient(boundView, boundStorage, boundRemote);
             created.setWebViewClient(client);
             created.setWebChromeClient(new ArcadeChrome());
             ProgressBar spinner = new ProgressBar(this);
@@ -427,10 +489,26 @@ public final class MainActivity extends BaseActivity {
         if (webView == null) return;
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         if (progress != null) progress.setVisibility(View.VISIBLE);
-        webView.loadUrl(BASE + "index.html?t=" + System.currentTimeMillis());
+        if (remoteMode) webView.loadUrl(REMOTE_BASE);
+        else webView.loadUrl(BASE + "index.html?t=" + System.currentTimeMillis());
     }
 
     private void openGame(String path) {
+        openGame(path, null);
+    }
+
+    private void openGame(String path, String orientation) {
+        if (remoteMode) {
+            if (webView == null) return;
+            if (!safeRemotePath(path)) {
+                message("That item is unavailable.");
+                return;
+            }
+            applyOrientation(orientation);
+            if (progress != null) progress.setVisibility(View.VISIBLE);
+            webView.loadUrl(REMOTE_BASE + Uri.encode(path, "/"));
+            return;
+        }
         ArcadeStorage active = storage;
         if (webView == null || active == null) return;
         try {
@@ -447,6 +525,11 @@ public final class MainActivity extends BaseActivity {
             requestStorageRecovery(activeClient, webView, active, error, false);
             message("Arcade could not open that item. Try Reload.");
         }
+    }
+
+    private static boolean safeRemotePath(String path) {
+        if (path == null || path.isEmpty() || path.startsWith("/") || path.contains("..") || path.contains(":") || path.contains("\\")) return false;
+        return path.matches("[A-Za-z0-9._/-]+") && path.endsWith(".html");
     }
 
     private CatalogScanner catalogFor(ArcadeStorage active) {
@@ -482,7 +565,9 @@ public final class MainActivity extends BaseActivity {
         if (webView == null || webView.getUrl() == null) return true;
         Uri uri = Uri.parse(webView.getUrl());
         String path = uri.getPath();
-        return path == null || path.equals("/") || path.equals("/index.html");
+        if (path == null) return true;
+        if (remoteMode) return path.equals("/arcade/") || path.equals("/arcade/index.html");
+        return path.equals("/") || path.equals("/index.html");
     }
 
     @Override
@@ -569,8 +654,25 @@ public final class MainActivity extends BaseActivity {
         }
 
         @JavascriptInterface
+        public void openGameWithOrientation(String path, String orientation) {
+            runOnUiThread(() -> MainActivity.this.openGame(path, orientation));
+        }
+
+        @JavascriptInterface
         public void openManager() {
             runOnUiThread(() -> {
+                if (remoteMode) {
+                    new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Online Arcade")
+                        .setMessage("Games update automatically from GitHub Pages and are cached as you use them. The local-folder tools are still available for offline editing or a manual backup copy.")
+                        .setPositiveButton("Refresh Online", (dialog, which) -> {
+                            if (webView != null) webView.reload();
+                        })
+                        .setNeutralButton("Use Local Folder", (dialog, which) -> useLocalFolder())
+                        .setNegativeButton("Cancel", null)
+                        .show();
+                    return;
+                }
                 ArcadeStorage active = storage;
                 if (active == null || !active.hasPersistedAccess()) {
                     forgetFolder("Arcade folder access was lost.");
@@ -587,6 +689,10 @@ public final class MainActivity extends BaseActivity {
         @JavascriptInterface
         public void reloadArcade() {
             runOnUiThread(() -> {
+                if (remoteMode) {
+                    if (webView != null) webView.reload();
+                    return;
+                }
                 invalidateCatalog(true);
                 if (webView != null) webView.clearCache(false);
                 loadHome();
@@ -659,15 +765,43 @@ public final class MainActivity extends BaseActivity {
         });
     }
 
+    private static boolean isRemoteArcadeUri(Uri uri) {
+        if (uri == null || !"https".equalsIgnoreCase(uri.getScheme()) || !REMOTE_HOST.equalsIgnoreCase(uri.getHost())) return false;
+        String path = uri.getPath();
+        return path != null && (path.equals("/arcade") || path.startsWith("/arcade/"));
+    }
+
+    private void requestRemoteRecovery(LocalClient client, WebView failedView) {
+        if (destroyed || client == null || client != activeClient || failedView == null || failedView != webView || !remoteMode) return;
+        if (!remoteRecoveryScheduled.compareAndSet(false, true)) return;
+        runOnUiThread(() -> {
+            try {
+                if (destroyed || isFinishing() || client != activeClient || failedView != webView || !remoteMode) return;
+                ArcadeStorage local = storage;
+                if (local != null && local.hasPersistedAccess() && local.available()) {
+                    destroyWebView();
+                    startRememberedFolder(getIntent());
+                    message("Local offline copy loaded. Reopen the app when connected to return online.");
+                } else {
+                    showRemoteRecoveryScreen("The online arcade is unavailable and no local fallback folder is ready.");
+                }
+            } finally {
+                remoteRecoveryScheduled.set(false);
+            }
+        });
+    }
+
     private class LocalClient extends WebViewClient {
         private final WebView boundView;
         private final ArcadeStorage boundStorage;
+        private final boolean boundRemote;
         private final AtomicBoolean storageRecoveryScheduled = new AtomicBoolean();
         private final AtomicBoolean mainFrameRecoveryRequested = new AtomicBoolean();
 
-        LocalClient(WebView boundView, ArcadeStorage boundStorage) {
+        LocalClient(WebView boundView, ArcadeStorage boundStorage, boolean boundRemote) {
             this.boundView = boundView;
             this.boundStorage = boundStorage;
+            this.boundRemote = boundRemote;
         }
 
         void cancelRecovery() {
@@ -677,6 +811,7 @@ public final class MainActivity extends BaseActivity {
 
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+            if (boundRemote) return null;
             ArcadeStorage active = boundStorage;
             try {
                 Uri uri = request.getUrl();
@@ -764,12 +899,23 @@ public final class MainActivity extends BaseActivity {
         }
 
         private boolean shouldBlockUrl(Uri uri) {
+            if (boundRemote) return !isRemoteArcadeUri(uri);
             return uri == null || !("https".equalsIgnoreCase(uri.getScheme()) && HOST.equalsIgnoreCase(uri.getHost()));
         }
 
         @Override
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            if (boundRemote && request.isForMainFrame() && isRemoteArcadeUri(request.getUrl())) requestRemoteRecovery(this, view);
+        }
+
+        @Override
+        public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+            if (boundRemote && request.isForMainFrame() && isRemoteArcadeUri(request.getUrl()) && errorResponse.getStatusCode() >= 500) requestRemoteRecovery(this, view);
+        }
+
+        @Override
         public void onPageFinished(WebView view, String url) {
-            if (view != boundView || view != webView || boundStorage != storage) return;
+            if (view != boundView || view != webView || boundRemote != remoteMode || (!boundRemote && boundStorage != storage)) return;
             if (progress != null) progress.setVisibility(View.GONE);
             try { view.requestFocus(View.FOCUS_DOWN); } catch (RuntimeException ignored) {}
         }
@@ -777,8 +923,8 @@ public final class MainActivity extends BaseActivity {
 
     @TargetApi(Build.VERSION_CODES.O)
     private final class LocalClientApi26 extends LocalClient {
-        LocalClientApi26(WebView boundView, ArcadeStorage boundStorage) {
-            super(boundView, boundStorage);
+        LocalClientApi26(WebView boundView, ArcadeStorage boundStorage, boolean boundRemote) {
+            super(boundView, boundStorage, boundRemote);
         }
 
         @Override
@@ -802,11 +948,13 @@ public final class MainActivity extends BaseActivity {
         rendererCrashCount++;
         if (view == webView) {
             ArcadeStorage active = storage;
+            boolean wasRemote = remoteMode;
             boolean retry = rendererCrashCount == 1;
             destroyRendererWebView(view);
             root.post(() -> {
-                if (destroyed || webView != null || storage != active) return;
-                if (retry && active != null && active.hasPersistedAccess() && active.available() && showWebView()) loadHome();
+                if (destroyed || webView != null || storage != active || remoteMode != wasRemote) return;
+                if (retry && (wasRemote || (active != null && active.hasPersistedAccess() && active.available())) && showWebView()) loadHome();
+                else if (wasRemote) showRemoteRecoveryScreen("The online Arcade viewer stopped unexpectedly.");
                 else showViewerRecoveryScreen("The Arcade viewer stopped unexpectedly.");
             });
         } else {
@@ -843,7 +991,7 @@ public final class MainActivity extends BaseActivity {
         public void onPermissionRequest(PermissionRequest request) {
             runOnUiThread(() -> {
                 Uri origin = request.getOrigin();
-                boolean local = origin != null && "https".equalsIgnoreCase(origin.getScheme()) && HOST.equalsIgnoreCase(origin.getHost());
+                boolean local = origin != null && "https".equalsIgnoreCase(origin.getScheme()) && (HOST.equalsIgnoreCase(origin.getHost()) || REMOTE_HOST.equalsIgnoreCase(origin.getHost()));
                 boolean audio = false;
                 for (String resource : request.getResources()) if (PermissionRequest.RESOURCE_AUDIO_CAPTURE.equals(resource)) audio = true;
                 if (!local || !audio) {

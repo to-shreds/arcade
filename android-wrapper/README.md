@@ -2,6 +2,8 @@
 
 This project builds the content-agnostic Android Arcade player and manager. Individual games are not bundled into the APK.
 
+Version 2.2.0 opens `https://to-shreds.github.io/arcade/` by default, so a normal GitHub Pages update reaches the app without rebuilding or reinstalling the APK. The site service worker precaches the menu, every game, icons, metadata, and shared code; larger Music Maker audio files are cached as they are used. If the network is unavailable, Android uses that cache. A previously selected external Arcade folder remains available as an additional offline fallback and for local editing.
+
 The application ID is `com.familyarcade.platform`, so this platform can be installed alongside the legacy `com.familyarcade.app` wrapper while it is being verified.
 
 Open the project in Android Studio and build the `release` variant, or run `build-local.sh` with JDK 17 or newer, Android SDK platform 35, and Android build-tools 35.0.0 installed.
@@ -10,6 +12,6 @@ Private signing keys and passwords are intentionally excluded from this public r
 
 Normal game, metadata, icon, audio, HTML, CSS, and JavaScript changes belong in the external `Arcade` folder and never require this project to be rebuilt.
 
-Version 2.1.0 adds a native, offline text-to-speech bridge for arcade games while preserving the external-folder recovery and WebView hardening introduced in version 2.0.1. A deleted, recreated, revoked, or temporarily unavailable Arcade folder returns to a native recovery screen instead of crashing. WebView renderer loss is recovered without clearing web storage, stale WebViews are fully torn down, and catalog reads are cached for each load to avoid repeated Storage Access Framework queries.
+Version 2.1.0 added a native, offline text-to-speech bridge for arcade games while preserving the external-folder recovery and WebView hardening introduced in version 2.0.1. A deleted, recreated, revoked, or temporarily unavailable Arcade folder returns to a native recovery screen instead of crashing. WebView renderer loss is recovered without clearing web storage, stale WebViews are fully torn down, and catalog reads are cached for each load to avoid repeated Storage Access Framework queries.
 
-For routine content updates, overwrite the contents of the selected external `Arcade` folder while keeping that folder itself in place. If a file manager replaces the folder object, the app will ask you to select the new `Arcade` folder once. Neither workflow requires uninstalling the APK.
+For routine online content updates, update the repository and GitHub Pages; the app refreshes from that source automatically. For a deliberately local installation, overwrite the contents of the selected external `Arcade` folder while keeping that folder itself in place. If a file manager replaces the folder object, the app will ask you to select the new `Arcade` folder once. Neither workflow requires uninstalling the APK.

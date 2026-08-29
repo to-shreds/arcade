@@ -2,7 +2,7 @@
 
 Play the arcade at:
 
-https://jonathanjablon-stack.github.io/arcade/
+https://to-shreds.github.io/arcade/
 
 The playable web arcade lives at the repository root so GitHub Pages can serve it directly. Each game has its own folder with an `index.html`, icon, and metadata, while `catalog.json` powers the centralized game menu.
 
@@ -15,4 +15,4 @@ The playable web arcade lives at the repository root so GitHub Pages can serve i
 - `licenses/`: project and third-party notices
 - `archive/legacy-2026-03-09/`: the previous arcade version preserved exactly as it existed before this update
 
-Open the Pages link above to play. No installation is required.
+Open the Pages link above to play. No installation is required. The Android wrapper uses the same Pages build by default and keeps a web cache for offline recovery.

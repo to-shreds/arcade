@@ -83,6 +83,7 @@ if(cat&&!(item.categories||[]).includes(cat))return false;
 return true;
 }
 function launch(item){
+if(window.ArcadeNative&&typeof ArcadeNative.openGameWithOrientation==='function'){ArcadeNative.openGameWithOrientation(item.launchPath,item.orientation||'any');return;}
 if(window.ArcadeNative&&ArcadeNative.openGame){ArcadeNative.openGame(item.launchPath);return;}
 location.href=item.launchPath;
 }
@@ -105,7 +106,7 @@ async function load(){
 grid.className='grid loading';grid.textContent='Loading…';
 let data;
 try{
-const source=window.ArcadeNative?'/__catalog.json':'catalog.json';
+const source=location.hostname==='arcade.local'?'/__catalog.json':'catalog.json';
 const r=await fetch(source+'?t='+Date.now(),{cache:'no-store'});
 if(!r.ok)throw new Error();
 data=await r.json();
@@ -133,6 +134,9 @@ document.getElementById('reload').addEventListener('click',()=>{if(window.Arcade
 document.getElementById('manage').addEventListener('click',()=>{if(window.ArcadeNative&&ArcadeNative.openManager)ArcadeNative.openManager()});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){saves=readSaves();render();}});
 load();
+if('serviceWorker' in navigator&&location.protocol==='https:'&&location.hostname.endsWith('github.io')){
+navigator.serviceWorker.register('sw.js',{scope:'./'}).then(async reg=>{await reg.update();const ready=await navigator.serviceWorker.ready;if(ready.active)ready.active.postMessage({type:'REFRESH_CORE'});}).catch(()=>{});
+}
 })();
 </script>
 </body>
