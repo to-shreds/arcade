@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Arcade - Minesweeper</title>
+  <style>
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+      background: #111; color: #fff;
+      touch-action: none;
+    }
+    :root{
+      --ui-bg: rgba(255,255,255,0.07);
+      --ui-bg2: rgba(0,0,0,0.32);
+      --ui-border: rgba(255,255,255,0.16);
+      --ui-border-strong: rgba(255,255,255,0.30);
+      --ui-accent: #00e5ff;
+      --ui-radius: 14px;
+    }
+
+    .ui-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: var(--ui-radius);
+      border: 1px solid var(--ui-border);
+      background: var(--ui-bg);
+      color: #fff;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
+    .ui-btn:active{ transform: scale(0.98); border-color: var(--ui-border-strong); }
+
+    
+    .back-btn{
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 10px);
+      left: calc(env(safe-area-inset-left, 0px) + 10px);
+      z-index: 1300;
+      touch-action: none;
+      cursor: grab;
+    }
+    .back-btn.dragging{ cursor: grabbing; }
+
+    .ms-savebar{
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 10px);
+      right: calc(env(safe-area-inset-right, 0px) + 10px);
+      z-index: 1300;
+      display:flex;
+      gap:6px;
+    }
+    .ms-savebar .ui-btn{ padding: 9px 11px; background: rgba(0,0,0,0.55); }
+
+    
+    #app{
+      position: absolute; inset: 0;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at 30% 20%, #222 0%, #000 70%);
+    }
+
+    
+    .topbar{
+      flex: 0 0 auto;
+      height: 64px;
+      display: grid;
+      grid-template-columns: 110px 1fr 110px;
+      align-items: center;
+      gap: 10px;
+      padding: 0 12px;
+      box-sizing: border-box;
+      background: rgba(0,0,0,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      padding-left: 90px; 
+    }
+
+    .counter{
+      justify-self: start;
+      width: 96px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.55);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: 2px;
+      color: #ff3b3b;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+      user-select:none;
+    }
+
+    .face{
+      justify-self: center;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.08);
+      display:flex; align-items:center; justify-content:center;
+      font-size: 30px;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+    }
+    .face:active{ transform: translateY(1px) scale(0.99); }
+
+    .timer{
+      justify-self: end;
+      width: 96px;
+      height: 44px;
+      display:flex; align-items:center; justify-content:center;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.55);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: 2px;
+      color: #ffd700;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+      user-select:none;
+    }
+
+    
+    .board-wrap{
+      flex: 1 1 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px;
+      box-sizing:border-box;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grid{
+      display:grid;
+      gap: 1px;
+      background: rgba(255,255,255,0.20);
+      padding: 4px;
+      border-radius: 12px;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.55);
+      touch-action: none;
+    }
+
+    .cell{
+      width: var(--cell);
+      height: var(--cell);
+      border-radius: 8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 1000;
+      line-height: 1;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      overflow: hidden;
+      position: relative;
+
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(135deg, #aaa, #888);
+      box-shadow:
+        inset 2px 2px 0 rgba(255,255,255,0.35),
+        inset -2px -2px 0 rgba(0,0,0,0.22);
+      cursor: pointer;
+      font-size: clamp(14px, calc(var(--cell) * 0.48), 26px);
+    }
+    .cell.revealed{
+      background: rgba(255,255,255,0.70);
+      box-shadow: none;
+      border-color: rgba(0,0,0,0.12);
+      cursor: default;
+    }
+    .cell.mine.revealed{
+      background: #ff4d4d;
+      border-color: rgba(0,0,0,0.22);
+    }
+    .cell.flagged::after{
+      content: "🚩";
+      position:absolute;
+      font-size: clamp(16px, calc(var(--cell) * 0.55), 28px);
+      filter: drop-shadow(0 2px 2px rgba(0,0,0,0.35));
+    }
+
+    
+    .n1{ color:#0b55ff; }
+    .n2{ color:#148a2e; }
+    .n3{ color:#d11f1f; }
+    .n4{ color:#0b1a74; }
+    .n5{ color:#7a0b0b; }
+    .n6{ color:#0b7a7a; }
+    .n7{ color:#111; }
+    .n8{ color:#555; }
+
+    
+    .overlay{
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.86);
+      backdrop-filter: blur(6px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index: 1200;
+      padding: 18px;
+      box-sizing: border-box;
+    }
+    .overlay.show{ display:flex; }
+
+    .panel{
+      width: min(560px, calc(100vw - 28px));
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(20,20,20,0.92);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.55);
+      padding: 16px;
+      text-align:center;
+    }
+    .panel h1{
+      margin: 6px 0 4px;
+      font-size: clamp(28px, 6vw, 44px);
+      letter-spacing: 2px;
+      color: #ffd700;
+      text-shadow: 0 0 12px rgba(255,215,0,0.22);
+      font-weight: 1000;
+    }
+    .panel .sub{
+      margin: 0 0 14px;
+      color: rgba(255,255,255,0.76);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .choices{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .big-btn{
+      width: 100%;
+      padding: 16px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color:#fff;
+      font-weight: 1000;
+      letter-spacing: 0.6px;
+      font-size: 18px;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .big-btn:active{ transform: scale(0.99); border-color: rgba(255,255,255,0.32); }
+    .big-btn .mini{
+      display:block;
+      font-size: 12px;
+      color: rgba(255,255,255,0.70);
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      margin-top: 4px;
+    }
+    .row{
+      display:flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .small{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.25);
+      color: rgba(255,255,255,0.88);
+      font-weight: 900;
+      cursor:pointer;
+    }
+
+    
+    #feedback-overlay{
+      display:none;
+      position:absolute;
+      inset: 0;
+      z-index: 2000;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,0.70);
+      pointer-events:none;
+    }
+    #feedback-content{
+      font-size: 15vw;
+      font-weight: 1000;
+      text-shadow: 0 0 30px rgba(255,255,255,0.8);
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      width:100%;
+      text-align:center;
+      letter-spacing: 2px;
+    }
+    .fb-win{ color:#2ecc71; }
+    .fb-loss{ color:#e74c3c; animation: shake 0.5s ease-in-out !important; }
+    @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 80% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+    @keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-16px) rotate(-3deg);} 75% {transform: translateX(16px) rotate(3deg);} }
+
+    @media (max-height: 620px){
+      .topbar{ height: 58px; }
+      .counter, .timer{ height: 40px; font-size: 22px; }
+      .face{ width: 48px; height: 48px; font-size: 28px; }
+    }
+  
+
+        .splash-title{ color:#ffd700 !important; text-shadow:0 0 16px rgba(255,215,0,0.25) !important; }
+        [id$="-menu"].overlay, #menuOverlay, #startOverlay, #cat-menu, #g-balloons .b-start-overlay{ background: rgba(0,0,0,0.95) !important; }
+        #cat-menu .menu-title, #startOverlay .panel h1, #g-balloons .b-start-overlay h1{ color:#ffd700 !important; text-shadow:0 0 18px rgba(255,215,0,0.35) !important; }
+        #startOverlay .big-btn, #startOverlay .small, #cat-menu .cat-btn, #g-balloons .b-start-overlay .btn-large-opt{ background:#333 !important; border:2px solid #555 !important; border-radius:15px !important; color:#fff !important; font-weight:900 !important; box-shadow:none !important; }
+        #g-balloons .b-start-overlay .btn-large-opt{ font-size: 1.9rem !important; padding: 20px 28px !important; max-width: 320px; width: 80%; }
+    </style>
+<style id="arcade-fit-fix">
+*,*::before,*::after{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body>*{min-width:0;max-width:100%}
+.app,.main,.game-view,#game-view,.wrap,.game-area,.overlay{min-width:0;max-width:100%}
+.main{grid-template-columns:minmax(0,1fr)!important}
+.topbar,.footer,.status,.scorebar,.controls,.sumbar,.table,[class*="top"],[class*="bar"],[class*="controls"],[class*="savebar"]{max-width:100%;min-width:0}
+.topbar>*,.status>*,.row>*,[class*="top"]>*,[class*="bar"]>*{min-width:0}
+.row.nowrap{flex-wrap:wrap!important}
+button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.actionBtn,.btn-large-opt{max-width:100%;min-width:0;touch-action:manipulation;font-size:clamp(11px,3.2vw,15px);line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel,.frontCard,.pm-menu-wrap,.modalBody,.settings-panel,#cat-menu .cat-grid,#cat-menu,.overlay>.panel{max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 16px)!important;overflow:hidden!important;box-sizing:border-box!important}
+.cat-btn,.btn-large-opt,.panel button,.frontCard button,.pm-menu-wrap button,.modalBody button{white-space:normal!important}
+.hud-bar,.question-box,.answers-grid{box-sizing:border-box!important;max-width:calc(100vw - 16px)!important}
+@media (max-width:520px),(max-height:720px){
+  .arcade-home-link,.back-btn,#menuBtn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;border-radius:999px!important;max-width:104px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;left:calc(env(safe-area-inset-left,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .settings-btn,.gear-btn,#settingsBtn,#global-settings-btn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .bj-savebar{display:flex!important;gap:4px!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important;max-width:calc(100vw - 118px)!important;flex-wrap:wrap!important;justify-content:flex-end!important}
+  .bj-savebar .ui-btn{padding:7px 8px!important;font-size:12px!important;line-height:1!important}
+  .topbar,.ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{height:auto!important;min-height:44px!important;padding-top:6px!important;padding-bottom:6px!important;gap:6px!important;flex-wrap:wrap!important;align-content:center!important}
+  .topbar{padding-left:max(8px,env(safe-area-inset-left,0px))!important;padding-right:max(8px,env(safe-area-inset-right,0px))!important}
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:76px!important;padding-right:8px!important}
+  .ck-top>div,.ttt-top>div,.mz-top>div,.mg-top>div,.si-top>div,.ms-top>div{display:flex!important;flex-wrap:wrap!important;gap:4px!important;min-width:0!important;max-width:100%!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{padding:6px 8px!important;font-size:12px!important;gap:5px!important;white-space:nowrap!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{padding:7px 8px!important;font-size:12px!important;min-height:0!important}
+  #modePvp,#modeCpu{white-space:normal!important;line-height:1!important}
+  #g-dots .top{padding-left:72px!important;gap:5px!important}
+  #g-dots .row{gap:5px!important;flex-wrap:wrap!important;justify-content:center!important}
+  #g-dots .pill{padding:5px 7px!important;font-size:12px!important;white-space:nowrap!important}
+  #g-dots .status-pill{flex:1 1 100%!important;margin-left:0!important;max-width:100%!important}
+  #g-dots canvas{max-width:calc(100vw - 20px)!important;max-height:calc(100svh - 154px)!important}
+  #g-hangman .top-bar{min-height:42px!important;padding:4px 8px!important;gap:4px!important}
+  #g-hangman .hm-left-slot{flex-basis:68px!important;width:68px!important}
+  #g-hangman .cat-pill{font-size:11px!important;padding:5px 8px!important}
+  #g-hangman .hm-status{gap:5px!important;max-width:50vw!important}
+  #g-hangman canvas{max-height:18vh!important}
+  #g-hangman #word-display{font-size:clamp(24px,8vw,34px)!important;min-height:34px!important;margin:2px 0!important}
+  #g-hangman #hint-box{font-size:12px!important;min-height:18px!important;padding:4px 8px!important}
+  #g-hangman .controls{gap:4px!important;padding:0 6px 2px!important;flex-wrap:nowrap!important}
+  #g-hangman .btn-hint,#g-hangman .btn-risk{padding:6px 6px!important;font-size:11px!important;gap:2px!important;box-shadow:none!important;flex:1 1 0!important;justify-content:center!important}
+  #g-hangman .keyboard{gap:3px!important;padding:3px!important;width:calc(100vw - 12px)!important;margin-bottom:2px!important}
+  #g-hangman .key{height:clamp(30px,6.6vh,42px)!important;font-size:clamp(15px,5vw,20px)!important;border-bottom-width:2px!important;border-radius:6px!important}
+  #g-orbslicer .orb-ui{left:6px!important;right:6px!important;top:42px!important;gap:4px!important}
+  #g-orbslicer .orb-pill{padding:5px 7px!important;font-size:12px!important;letter-spacing:0!important}
+  #g-orbslicer .orb-lives{font-size:13px!important;letter-spacing:0!important}
+  #g-minigolf #mg-menu{gap:8px!important;padding:12px 10px!important;justify-content:flex-start!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(30px,10vw,48px)!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:9px 10px!important;font-size:12px!important;min-height:0!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:8px!important}
+  .math-box{width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;left:auto!important;right:auto!important}
+  .hud-bar{padding:8px 10px!important;width:calc(100vw - 16px)!important;gap:4px!important}
+  .question-box{width:calc(100vw - 16px)!important;padding:14px!important;min-height:130px!important}
+  .cat-grid{gap:8px!important}
+  .cat-btn{padding:12px 8px!important;font-size:clamp(13px,4vw,18px)!important}
+  .menu-title{font-size:clamp(32px,11vw,48px)!important;margin:0!important}
+}
+@media (max-width:360px){
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:66px!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{font-size:11px!important;padding:5px 7px!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{font-size:11px!important;padding:6px 7px!important}
+  #g-dots .top{padding-left:64px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .wrap{gap:6px!important}
+  .titlebar{padding:6px 8px!important;gap:6px!important}
+  .layout{gap:6px!important}
+  .side{min-height:0!important;overflow:hidden!important}
+  .side .panel{max-height:calc(100svh - 410px)!important;overflow:hidden!important}
+  .panel .phead{padding:6px 8px!important}
+  .panel .pbody{padding:6px 8px!important}
+  #g-dots #menuOverlay .dots-mode-row,#g-dots #menuOverlay .dots-ai-row,#g-dots #menuOverlay .grid-options{width:100%!important;max-width:100%!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn{padding:6px 5px!important;font-size:11px!important;min-width:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  #g-dots .dots-menu-card{padding:6px!important;gap:5px!important;max-height:calc(100svh - 12px)!important}
+  #g-dots .dots-section-card{padding:5px!important;gap:4px!important}
+  #g-dots .dots-swatch-btn{padding:5px!important;font-size:10px!important;gap:3px!important}
+  #g-dots .dots-swatch-chip{width:16px!important;height:16px!important}
+  #g-dots .dots-swatch-hex{font-size:9px!important;letter-spacing:0!important}
+  .btn-large-opt{min-height:32px!important;line-height:1.15!important}
+  .ttt-piece-btn{white-space:normal!important;font-size:11px!important;line-height:1.05!important;padding:7px 8px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .modalPanel{max-height:calc(100svh - 14px)!important;overflow:hidden!important;padding:8px!important}
+  .modalHead{margin-bottom:5px!important}
+  .optRow{padding:6px!important;margin:5px 0!important;gap:6px!important}
+  .optRow .label .desc{font-size:10px!important;line-height:1.15!important}
+  .seg button{font-size:10px!important;padding:6px 7px!important;line-height:1.05!important;white-space:normal!important}
+}
+</style>
+<link rel="icon" href="data:,">
+<style id="arcade-v6-size-fix">
+@media (max-width:520px),(max-height:720px){
+  html,body{height:100%;overflow:hidden!important}
+  .panel,.frontCard,.pm-menu-wrap,.modal,.modalBody,.settings-panel,.overlay>.panel{overflow:hidden!important;max-height:calc(100svh - 8px)!important}
+  .small-note,.menu-sub,.sub{line-height:1.12!important}
+  .panel h1,.splash-title,.menu-title{line-height:1!important}
+  .panel button,.frontCard button,.pm-menu-wrap button,.modalBody button,.btn-large,.btn-large-opt{min-height:0!important}
+  .overlay,.modalBack,.front{padding:6px!important}
+  .app,.wrap{height:100svh!important;min-height:0!important;max-height:100svh!important;overflow:hidden!important}
+  .main,.game-area,.game-view,#game-view,.layout,.boardShell,.board-wrap,.side,.stage,#stage{min-height:0!important;overflow:hidden!important}
+  .rules{margin:6px 0!important;gap:5px!important}
+  .rulecard{padding:7px!important;font-size:10px!important;line-height:1.15!important;border-radius:10px!important}
+  .rulecard strong{margin-bottom:2px!important}
+  .panel>p{display:none!important}
+  .settingcard{padding:8px!important;margin:6px 0!important;border-radius:12px!important}
+  .settingcard p{display:none!important}
+  .optionrow{gap:5px!important;margin-bottom:7px!important}
+  .names{gap:5px!important;margin-bottom:7px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #g-dots #menuOverlay{padding:4px!important;gap:4px!important}
+  #g-dots .dots-menu-card{padding:5px!important;gap:4px!important;width:100%!important;max-height:calc(100svh - 8px)!important;overflow:hidden!important}
+  #g-dots .splash-title{font-size:20px!important;margin:0!important}
+  #g-dots .menu-sub,#g-dots .dots-subtle,#g-dots .dots-color-hint,#g-dots #dotsAiWrap div[style*="font-size:10px"]{display:none!important}
+  #g-dots .dots-menu-head{gap:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important}
+  #g-dots .dots-mode,#g-dots #dotsPlayerCountWrap,#g-dots #dotsAiWrap,#g-dots .dots-section-card.dots-colors,#g-dots .dots-section-card.dots-grid-card{grid-column:auto!important}
+  #g-dots .dots-section-card{padding:4px!important;gap:3px!important;border-radius:9px!important}
+  #g-dots .dots-sec-title{font-size:8px!important;margin:0!important;line-height:1!important}
+  #g-dots .dots-mode-row,#g-dots .dots-player-row,#g-dots .dots-ai-row,#g-dots .dots-toggles-row{gap:3px!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{padding:5px 3px!important;font-size:9px!important;line-height:1.05!important;border-radius:7px!important}
+  #g-dots .dots-name-grid,#g-dots .dots-team-grid,#g-dots .dots-team-name-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-mini-label{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-name-field,#g-dots .dots-team-field,#g-dots .dots-team-name-field{gap:2px!important}
+  #g-dots .dots-name-input,#g-dots .dots-team-select{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #g-dots .dots-toggle-pill{padding:4px 5px!important;font-size:8px!important;gap:3px!important;line-height:1.05!important}
+  #g-dots .dots-toggle-pill input{width:12px!important;height:12px!important}
+  #g-dots .dots-color-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-color-item{gap:1px!important}
+  #g-dots .dots-color-name{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-swatch-btn{padding:3px!important;gap:2px!important;border-radius:7px!important;border-width:1px!important}
+  #g-dots .dots-swatch-chip{width:18px!important;height:14px!important;border-radius:5px!important}
+  #g-dots .dots-swatch-hex{font-size:7px!important;letter-spacing:0!important}
+  #g-dots .grid-options{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important;width:100%!important}
+  .front{align-items:center!important}
+  .frontCard{padding:8px!important;border-radius:18px!important}
+  .frontHeader{padding:4px!important;margin-bottom:6px!important}
+  .frontTitle{font-size:18px!important;line-height:1!important}
+  .frontHeader .mini,.modeDesc,.modeExamples{display:none!important}
+  .modeGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+  .modeCard{padding:12px 7px!important;border-radius:14px!important;text-align:center!important}
+  .modeTitle{font-size:16px!important;line-height:1.05!important}
+  #startOverlay .panel h1{font-size:20px!important;margin:0 0 4px!important}
+  #startOverlay .panel .sub,#startOverlay .small-note{display:none!important}
+  #startOverlay .panel{padding:8px!important;border-radius:14px!important}
+  #startOverlay .row{gap:5px!important}
+  #startOverlay .opt{padding:6px!important;min-width:0!important;border-radius:10px!important}
+  #startOverlay .opt label{font-size:10px!important;margin-bottom:3px!important}
+  #startOverlay select,#startOverlay input[type="range"]{padding:6px 8px!important;font-size:12px!important}
+  #startOverlay .toggle-row{padding:6px 8px!important;margin-top:5px!important;border-radius:10px!important}
+  #startOverlay .t-desc{display:none!important}
+  #startOverlay .hr{margin:5px 0!important}
+  #startOverlay .btn-large{padding:8px 9px!important;font-size:13px!important;border-radius:11px!important}
+  #startBackBtn,#loadStartBtn{margin-top:5px!important}
+  #startOverlay .pm-menu-wrap{gap:6px!important;padding:0!important}
+  #startOverlay .pm-card{padding:8px!important;border-radius:12px!important}
+  #startOverlay .pm-pill-row{gap:4px!important}
+  #startOverlay .pm-pill{padding:7px 8px!important;font-size:12px!important}
+  #startOverlay .btn-large-opt{padding:9px 10px!important;font-size:13px!important;border-radius:11px!important}
+  #startOverlay.splash-title,.splash-title{font-size:clamp(26px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu{gap:5px!important;padding:8px!important;justify-content:center!important;overflow:hidden!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(24px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu>div[style*="max-width:520px"],#g-minigolf #mg-diff-wrap>div:last-child{display:none!important}
+  #g-minigolf #mg-best-line{font-size:11px!important;margin-top:0!important;padding:0!important}
+  #g-minigolf #mg-diff-wrap{margin-top:2px!important;gap:4px!important}
+  #g-minigolf #mg-diff-wrap>div:first-child{font-size:10px!important;line-height:1!important}
+  #g-minigolf #mg-diff-wrap .ui-btn{padding:6px 8px!important;font-size:11px!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:5px!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:7px 9px!important;font-size:12px!important;max-width:240px!important}
+  .pm-menu-wrap .small-note,.pm-menu-wrap+.small-note{display:none!important}
+  .modalBack{align-items:center!important}
+  .modal{max-height:calc(100svh - 8px)!important;overflow:hidden!important;border-radius:16px!important}
+  .modalHeader{position:static!important;padding:7px 9px!important}
+  .modalTitle{font-size:14px!important}
+  .modalBody{padding:8px!important;gap:6px!important;overflow:hidden!important}
+  .grid2,.namesGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  label{gap:3px!important;font-size:9px!important;line-height:1!important}
+  input[type="text"],input[type="number"],select{padding:5px 7px!important;font-size:11px!important;border-radius:8px!important}
+  .nameRow{gap:3px!important}
+  .nameLabel{font-size:9px!important;gap:4px!important;line-height:1!important}
+  .helper{display:none!important}
+  .footerActions{gap:5px!important;justify-content:center!important}
+  .footerActions button{padding:7px 10px!important;font-size:12px!important}
+  #startOverlay .panel-head{padding-right:88px!important}
+  #startOverlay .panel-top-back{padding:5px 7px!important;font-size:10px!important;max-width:82px!important}
+  #startOverlay .choice-grid{gap:3px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{padding:5px 3px!important;font-size:9px!important;border-radius:8px!important}
+  #startOverlay .more-players-row{margin-top:3px!important;gap:3px!important}
+  #startOverlay .theme-grid,#startOverlay .size-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #startOverlay .names-wrap,#startOverlay .team-wrap{margin-top:3px!important}
+  #startOverlay .names-label{font-size:8px!important;margin:2px 0!important}
+  #startOverlay .name-input{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #startOverlay .team-choice-grid{width:88px!important;flex-basis:88px!important;gap:2px!important}
+  #startOverlay .team-grid,#startOverlay .team-names-grid{gap:3px!important}
+  #startOverlay .panel-footer{position:static!important;padding-top:2px!important;margin-top:2px!important;background:none!important}
+  #startOverlay .row{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  body.memory-game #game{gap:6px!important;padding:calc(env(safe-area-inset-top,0px) + 8px) 8px max(8px,calc(env(safe-area-inset-bottom,0px) + 6px))!important}
+  body.memory-game #board{flex:0 0 auto!important;max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 64px)!important;overflow:hidden!important;align-content:start!important}
+  body.memory-game .card-front .face{font-size:clamp(25px,8vmin,48px)!important}
+}
+@media (max-width:360px){
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{font-size:8px!important;padding:4px 2px!important}
+  .modeTitle{font-size:14px!important}
+  .modalBody{gap:4px!important}
+  input[type="text"],input[type="number"],select{padding:4px 6px!important;font-size:10px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{font-size:8px!important;padding:4px 2px!important}
+}
+</style>
+
+<style id="arcade-v6-late-fix">
+@media (max-width:520px),(max-height:720px){
+  body.make10-game .app{gap:4px!important;padding:5px 8px!important}
+  body.make10-game .main{gap:4px!important;grid-template-rows:auto auto auto auto minmax(0,1fr)!important}
+  body.make10-game .topbar{padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .title{font-size:14px!important;line-height:1!important}
+  body.make10-game .subtitle,body.make10-game .status .small,body.make10-game .comboNote{display:none!important}
+  body.make10-game .turnpill{padding:5px 8px!important;font-size:11px!important}
+  body.make10-game .scorebar{gap:4px!important;padding:4px!important}
+  body.make10-game .scorechip{padding:4px!important;border-radius:10px!important}
+  body.make10-game .scorechip .name{font-size:10px!important}
+  body.make10-game .scorechip .score{font-size:14px!important}
+  body.make10-game .controls{gap:4px!important;padding:4px!important}
+  body.make10-game .controls button{min-height:30px!important;padding:6px 7px!important;font-size:11px!important}
+  body.make10-game .status{min-height:34px!important;padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .status .message{font-size:12px!important;line-height:1.05!important}
+  body.make10-game .sumbar{padding:5px!important;border-radius:12px!important}
+  body.make10-game .sumfocus{gap:4px!important}
+  body.make10-game .sumlabel{font-size:10px!important}
+  body.make10-game .sumcore{gap:6px!important}
+  body.make10-game .sumactions{gap:4px!important;width:88px!important}
+  body.make10-game .sumactions button{min-height:30px!important;padding:5px!important;font-size:11px!important}
+  body.make10-game .totalbox{width:140px!important;min-height:45px!important;border-radius:14px!important}
+  body.make10-game .total{font-size:34px!important}
+  body.make10-game .table{gap:4px!important}
+  body.make10-game .card{min-height:48px!important;border-radius:11px!important;padding:4px!important;border-width:1px!important}
+  body.make10-game .centerValue{font-size:28px!important}
+  body.make10-game .corner{font-size:9px!important;left:5px!important;top:4px!important}
+  body.make10-game .corner.bottom{right:5px!important;bottom:4px!important}
+  body.make10-game .footer{padding:5px 7px!important;font-size:10px!important;border-radius:12px!important}
+  #g-clock{justify-content:center!important;gap:6px!important;padding-top:34px!important;padding-bottom:6px!important;box-sizing:border-box!important;overflow:hidden!important}
+  #g-clock .clock-face{width:206px!important;height:206px!important;border-width:6px!important;margin:0 0 6px!important;box-sizing:border-box!important}
+  #g-clock .clock-ui{gap:5px!important;max-height:310px!important;overflow:hidden!important}
+  #g-clock .display-box{font-size:22px!important;padding:5px 10px!important;min-width:98px!important;border-radius:8px!important}
+  #g-clock .keypad{gap:5px!important;margin-top:4px!important;max-width:190px!important}
+  #g-clock .kp-btn{padding:8px!important;font-size:16px!important;border-radius:7px!important;line-height:1!important}
+  #g-clock .mc-grid{gap:5px!important;width:94%!important}
+  #g-clock .mc-btn{padding:8px!important;font-size:16px!important}
+}
+@media (max-width:360px){
+  #g-clock .clock-face{width:190px!important;height:190px!important}
+  #g-clock .keypad{max-width:180px!important}
+  #g-clock .kp-btn{padding:7px!important;font-size:15px!important}
+}
+</style>
+
+<style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+</head>
+<body>
+  <button class="ui-btn back-btn" id="menuBtn">← MENU</button>
+  <div class="ms-savebar">
+    <button class="ui-btn" id="saveGameBtn" type="button">Save</button>
+    <button class="ui-btn" id="loadGameBtn" type="button">Load</button>
+  </div>
+
+  <div id="app">
+    <div class="topbar">
+      <div class="counter" id="mineCounter">010</div>
+      <div class="face" id="faceBtn" title="New game">🙂</div>
+      <div class="timer" id="timeCounter">000</div>
+    </div>
+
+    <div class="board-wrap">
+      <div class="grid" id="grid"></div>
+
+      
+      <div class="overlay show" id="startOverlay">
+        <div class="panel">
+          <h1>MINESWEEPER</h1>
+          <div class="sub">
+            Tap to reveal. <b>Long-press</b> to place a flag.<br/>
+            Pick a board:
+          </div>
+
+          <div class="choices">
+            <button class="big-btn" data-diff="easy">
+              EASY
+              <span class="mini">9 × 9 • 10 mines</span>
+            </button>
+            <button class="big-btn" data-diff="medium">
+              MEDIUM
+              <span class="mini">12 × 12 • 20 mines</span>
+            </button>
+            <button class="big-btn" data-diff="hard">
+              HARD
+              <span class="mini">16 × 16 • 40 mines</span>
+            </button>
+          </div>
+
+          <div class="row">
+            <button class="small" id="howBtn">How to play</button>
+            <button class="small" id="overlayLoadBtn" type="button">Load Saved Game</button>
+            <button class="small" id="resumeBtn" style="display:none;">Resume</button>
+          </div>
+
+          <div class="sub" id="howText" style="display:none; margin-top:12px;">
+            Reveal all safe squares to win. If you reveal a mine - boom.
+            The mine counter shows <b>mines minus flags</b>. On a win, any remaining mines auto-flag.
+          </div>
+        </div>
+      </div>
+
+      
+      <div id="feedback-overlay">
+        <div id="feedback-content" class="fb-win">AWESOME!</div>
+        <canvas id="feedback-confetti" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    
+    function goToMenu(){
+      const leave = () => { window.location.href = '../index.html'; };
+      try{
+        if(window.ArcadeSave && typeof ArcadeSave.saveNow === 'function'){
+          ArcadeSave.saveNow().then(leave, leave);
+          return;
+        }
+      }catch(e){}
+      leave();
+    }
+    document.getElementById('menuBtn').addEventListener('click', goToMenu);
+
+    
+    (function(){
+      const el = document.getElementById('menuBtn');
+      if(!el) return;
+
+      const storeKey = 'arcade_minesweeper_btnpos_menu';
+      const clamp = (v,min,max)=> Math.max(min, Math.min(max, v));
+      let dragging = false, moved = false;
+      let sx=0, sy=0, startL=0, startT=0;
+
+      
+      try{
+        const raw = localStorage.getItem(storeKey);
+        if(raw){
+          const p = JSON.parse(raw);
+          if(p && Number.isFinite(p.left) && Number.isFinite(p.top)){
+            el.style.left = p.left + 'px';
+            el.style.top  = p.top  + 'px';
+            el.style.right = 'auto';
+            el.style.bottom = 'auto';
+          }
+        }
+      }catch(e){}
+
+      el.addEventListener('pointerdown', (e)=>{
+        if(e.button != null && e.button !== 0) return;
+        dragging = true; moved = false;
+        el.setPointerCapture?.(e.pointerId);
+        const r = el.getBoundingClientRect();
+        sx = e.clientX; sy = e.clientY;
+        startL = r.left; startT = r.top;
+        el.classList.add('dragging');
+      });
+
+      window.addEventListener('pointermove', (e)=>{
+        if(!dragging) return;
+        const dx = e.clientX - sx;
+        const dy = e.clientY - sy;
+        if(!moved && (Math.abs(dx)+Math.abs(dy)) > 8) moved = true;
+        if(!moved) return;
+
+        e.preventDefault();
+        const w = el.offsetWidth, h = el.offsetHeight;
+        const maxL = window.innerWidth  - w - 6;
+        const maxT = window.innerHeight - h - 6;
+        const L = clamp(startL + dx, 6, maxL);
+        const T = clamp(startT + dy, 6, maxT);
+        el.style.left = L + 'px';
+        el.style.top  = T + 'px';
+        el.style.right = 'auto';
+        el.style.bottom = 'auto';
+      }, {passive:false});
+
+      window.addEventListener('pointerup', ()=>{
+        if(!dragging) return;
+        dragging = false;
+        el.classList.remove('dragging');
+        if(moved){
+          try{
+            const r = el.getBoundingClientRect();
+            localStorage.setItem(storeKey, JSON.stringify({left: r.left, top: r.top}));
+          }catch(e){}
+          
+          const swallow = (ev)=>{ ev.preventDefault(); ev.stopPropagation(); };
+          el.addEventListener('click', swallow, {once:true, capture:true});
+        }
+      });
+    })();
+
+    
+    const Feedback = (function(){
+      const overlay = document.getElementById('feedback-overlay');
+      const text = document.getElementById('feedback-content');
+      const canvas = document.getElementById('feedback-confetti');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let animId = null;
+      let tHandle = null;
+
+      function resize(){
+        canvas.width  = overlay.clientWidth;
+        canvas.height = overlay.clientHeight;
+      }
+
+      function spawnConfetti(){
+        particles = [];
+        const colors = ['#f00','#0f0','#00f','#ff0','#0ff','#f0f','#ffd700','#00e5ff'];
+        for(let i=0;i<110;i++){
+          particles.push({
+            x: canvas.width/2,
+            y: canvas.height/2,
+            vx: (Math.random()-0.5)*22,
+            vy: (Math.random()-0.7)*22,
+            g: 0.55 + Math.random()*0.25,
+            s: 4 + Math.random()*8,
+            c: colors[(Math.random()*colors.length)|0],
+            r: Math.random()*Math.PI*2,
+            vr: (Math.random()-0.5)*0.25
+          });
+        }
+      }
+
+      function loop(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        for(const p of particles){
+          p.vy += p.g;
+          p.x  += p.vx;
+          p.y  += p.vy;
+          p.r  += p.vr;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.r);
+          ctx.fillStyle = p.c;
+          ctx.fillRect(-p.s/2, -p.s/2, p.s, p.s);
+          ctx.restore();
+        }
+        animId = requestAnimationFrame(loop);
+      }
+
+      function show(win){
+        if(tHandle){ clearTimeout(tHandle); tHandle = null; }
+        if(animId){ cancelAnimationFrame(animId); animId = null; }
+        overlay.style.display = 'flex';
+
+        text.className = win ? 'fb-win' : 'fb-loss';
+        text.textContent = win ? 'AWESOME!' : 'BOOM!';
+        resize();
+
+        if(win){
+          spawnConfetti();
+          loop();
+        }else{
+          ctx.clearRect(0,0,canvas.width,canvas.height);
+        }
+
+        tHandle = setTimeout(()=>{
+          overlay.style.display = 'none';
+          if(animId){ cancelAnimationFrame(animId); animId = null; }
+          tHandle = null;
+        }, 1200);
+      }
+
+      window.addEventListener('resize', ()=>{ if(overlay.style.display==='flex') resize(); });
+      return { show };
+    })();
+
+    
+    const gridEl = document.getElementById('grid');
+    const mineCounterEl = document.getElementById('mineCounter');
+    const timeCounterEl = document.getElementById('timeCounter');
+    const faceBtn = document.getElementById('faceBtn');
+
+    const startOverlay = document.getElementById('startOverlay');
+    const howBtn = document.getElementById('howBtn');
+    const howText = document.getElementById('howText');
+    const resumeBtn = document.getElementById('resumeBtn');
+    const saveGameBtn = document.getElementById('saveGameBtn');
+    const loadGameBtn = document.getElementById('loadGameBtn');
+    const overlayLoadBtn = document.getElementById('overlayLoadBtn');
+
+    const DIFFS = {
+      easy:   { rows: 9,  cols: 9,  mines: 10 },
+      medium: { rows: 12, cols: 12, mines: 20 },
+      hard:   { rows: 16, cols: 16, mines: 40 }
+    };
+    const SAVE_KEY = 'arcade_minesweeper_save_v1';
+
+    let rows=9, cols=9, mines=10;
+    let cellPx = 28;
+    let grid = [];
+    let gameOver = false;
+    let won = false;
+    let started = false;
+    let minesPlaced = false;
+
+    let startTime = 0;
+    let timerId = null;
+    let outcomeTimer = null;
+    let gameGeneration = 0;
+    let restoredOnce = false;
+
+    function cancelOutcome(){
+      gameGeneration++;
+      if(outcomeTimer){ clearTimeout(outcomeTimer); outcomeTimer = null; }
+      const feedback = document.getElementById('feedback-overlay');
+      if(feedback) feedback.style.display = 'none';
+    }
+
+    function scheduleOutcomeMenu(){
+      const generation = gameGeneration;
+      if(outcomeTimer) clearTimeout(outcomeTimer);
+      outcomeTimer = setTimeout(()=>{
+        outcomeTimer = null;
+        if(generation === gameGeneration) showOverlay(true, false);
+      }, 650);
+    }
+
+    function clearCompletedSave(){
+      try{ if(window.ArcadeSave) ArcadeSave.saveNow(); }catch(e){}
+    }
+
+    function pad3(n){
+      n = Math.max(0, Math.min(999, n|0));
+      return String(n).padStart(3,'0');
+    }
+
+    function setFace(state){
+      
+      if(state === 'win') faceBtn.textContent = '😎';
+      else if(state === 'dead') faceBtn.textContent = '😵';
+      else if(state === 'oops') faceBtn.textContent = '😮';
+      else faceBtn.textContent = '🙂';
+    }
+
+    function stopTimer(){
+      if(timerId){ clearInterval(timerId); timerId = null; }
+    }
+    function startTimer(){
+      startTimerFrom(0);
+    }
+    function startTimerFrom(elapsedMs){
+      stopTimer();
+      startTime = Date.now() - (Number(elapsedMs) || 0);
+      timeCounterEl.textContent = pad3(Math.floor((Number(elapsedMs) || 0)/1000));
+      timerId = setInterval(()=>{
+        const t = Math.floor((Date.now() - startTime)/1000);
+        timeCounterEl.textContent = pad3(t);
+      }, 250);
+    }
+    function elapsedMs(){
+      if(started && !gameOver && startTime) return Date.now() - startTime;
+      return (parseInt(timeCounterEl.textContent, 10) || 0) * 1000;
+    }
+
+    function showOverlay(show, allowResume=false){
+      startOverlay.classList.toggle('show', !!show);
+      resumeBtn.style.display = (show && allowResume) ? 'inline-flex' : 'none';
+    }
+
+    howBtn.addEventListener('click', ()=>{
+      howText.style.display = (howText.style.display === 'none') ? 'block' : 'none';
+    });
+    resumeBtn.addEventListener('click', ()=>{
+      showOverlay(false);
+    });
+
+    
+    startOverlay.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.big-btn');
+      if(!btn) return;
+      const diff = btn.getAttribute('data-diff');
+      try{ localStorage.removeItem(SAVE_KEY); }catch(err){}
+      newGame(diff);
+      showOverlay(false);
+    });
+
+    faceBtn.addEventListener('click', ()=>{
+      
+      showOverlay(true, started && !gameOver);
+    });
+
+    function newGame(diffKey){
+      cancelOutcome();
+      const d = DIFFS[diffKey] || DIFFS.easy;
+      rows = d.rows; cols = d.cols; mines = d.mines;
+
+      
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const usableW = vw - 24;
+      const usableH = vh - 64 - 24 - 8; 
+      const pxW = Math.floor((usableW - 10) / cols);
+      const pxH = Math.floor((usableH - 10) / rows);
+      cellPx = Math.max(18, Math.min(34, Math.min(pxW, pxH)));
+      gridEl.style.setProperty('--cell', cellPx + 'px');
+      gridEl.style.gridTemplateColumns = `repeat(${cols}, var(--cell))`;
+      gridEl.style.gridTemplateRows = `repeat(${rows}, var(--cell))`;
+
+      gameOver = false;
+      won = false;
+      started = false;
+      minesPlaced = false;
+
+      stopTimer();
+      timeCounterEl.textContent = '000';
+      setFace('ready');
+
+      buildEmptyGrid();
+      renderAll();
+
+      
+      mineCounterEl.textContent = pad3(mines); 
+    }
+
+    function buildEmptyGrid(){
+      grid = [];
+      gridEl.innerHTML = '';
+
+      for(let r=0;r<rows;r++){
+        const row = [];
+        for(let c=0;c<cols;c++){
+          const el = document.createElement('div');
+          el.className = 'cell';
+          el.setAttribute('role','button');
+          el.setAttribute('aria-label','cell');
+          gridEl.appendChild(el);
+
+          const cell = {
+            r, c, el,
+            mine: false,
+            revealed: false,
+            flagged: false,
+            adj: 0,
+            _lastFlagAt: 0
+          };
+          row.push(cell);
+
+          attachCellHandlers(cell);
+        }
+        grid.push(row);
+      }
+    }
+
+    function neighbors(r,c){
+      const out = [];
+      for(let dr=-1; dr<=1; dr++){
+        for(let dc=-1; dc<=1; dc++){
+          if(!dr && !dc) continue;
+          const rr = r+dr, cc = c+dc;
+          if(rr>=0 && rr<rows && cc>=0 && cc<cols) out.push(grid[rr][cc]);
+        }
+      }
+      return out;
+    }
+    function chordReveal(r,c){
+      const cell = grid[r][c];
+      if(gameOver) return;
+      if(!cell.revealed) return;
+      if(cell.mine) return;
+      if(cell.adj <= 0) return;
+
+      const neigh = neighbors(r,c);
+      let flagged = 0;
+      for(const n of neigh) if(n.flagged) flagged++;
+
+      if(flagged !== cell.adj) return;
+
+      for(const n of neigh){
+        if(gameOver) return;
+        if(n.flagged || n.revealed) continue;
+        reveal(n.r, n.c);
+      }
+    }
+
+
+    function placeMinesAvoiding(firstR, firstC){
+      
+      const forbidden = new Set();
+      forbidden.add(firstR + ',' + firstC);
+      for(const n of neighbors(firstR, firstC)){
+        forbidden.add(n.r + ',' + n.c);
+      }
+
+      
+      const candidates = [];
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          if(!forbidden.has(r+','+c)) candidates.push(grid[r][c]);
+        }
+      }
+
+      
+      for(let i=candidates.length-1;i>0;i--){
+        const j = (Math.random()*(i+1))|0;
+        [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+      }
+
+      
+      for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){
+        grid[r][c].mine = false;
+        grid[r][c].adj = 0;
+      }
+
+      
+      for(let i=0;i<mines;i++){
+        candidates[i].mine = true;
+      }
+
+      
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          const cell = grid[r][c];
+          if(cell.mine) continue;
+          let count = 0;
+          for(const n of neighbors(r,c)) if(n.mine) count++;
+          cell.adj = count;
+        }
+      }
+
+      minesPlaced = true;
+    }
+
+    function countFlags(){
+      let f=0;
+      for(let r=0;r<rows;r++) for(let c=0;c<cols;c++) if(grid[r][c].flagged) f++;
+      return f;
+    }
+
+    function updateMineCounter(){
+      const flags = countFlags();
+      const left = mines - flags;
+      mineCounterEl.textContent = pad3(left);
+    }
+
+    function reveal(r,c){
+      const cell = grid[r][c];
+      if(gameOver) return;
+      if(cell.revealed) return;
+      if(cell.flagged) return;
+
+      
+      if(!started){
+        started = true;
+        startTimer();
+      }
+      if(!minesPlaced){
+        placeMinesAvoiding(r,c);
+      }
+
+      cell.revealed = true;
+
+      if(cell.mine){
+        
+        gameOver = true;
+        won = false;
+        stopTimer();
+        setFace('dead');
+        revealAllMines(cell);
+        renderAll();
+        Feedback.show(false);
+        clearCompletedSave();
+        
+        scheduleOutcomeMenu();
+        return;
+      }
+
+      
+      if(cell.adj === 0){
+        const stack = [cell];
+        while(stack.length){
+          const cur = stack.pop();
+          for(const n of neighbors(cur.r, cur.c)){
+            if(n.revealed || n.flagged) continue;
+            if(n.mine) continue;
+            n.revealed = true;
+            if(n.adj === 0) stack.push(n);
+          }
+        }
+      }
+
+      renderAll();
+      checkWin();
+    }
+
+    function revealAllMines(triggerCell){
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          const cell = grid[r][c];
+          if(cell.mine){
+            cell.revealed = true;
+          }
+        }
+      }
+      
+      if(triggerCell){
+        triggerCell.el.style.outline = '3px solid rgba(255,255,255,0.8)';
+        triggerCell.el.style.outlineOffset = '-2px';
+      }
+    }
+
+    function autoFlagRemainingMines(){
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          const cell = grid[r][c];
+          if(cell.mine && !cell.flagged){
+            cell.flagged = true;
+          }
+        }
+      }
+      updateMineCounter(); 
+    }
+
+    function checkWin(){
+      if(gameOver) return;
+
+      
+      let revealedSafe = 0;
+      const totalSafe = rows*cols - mines;
+
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          const cell = grid[r][c];
+          if(!cell.mine && cell.revealed) revealedSafe++;
+        }
+      }
+
+      if(revealedSafe >= totalSafe){
+        gameOver = true;
+        won = true;
+        stopTimer();
+        setFace('win');
+
+        
+        autoFlagRemainingMines();
+        renderAll();
+        mineCounterEl.textContent = '000';
+
+        Feedback.show(true);
+        clearCompletedSave();
+        scheduleOutcomeMenu();
+      }
+    }
+
+    function toggleFlag(r,c){
+      const cell = grid[r][c];
+      if(gameOver) return;
+      if(cell.revealed) return;
+
+      
+      const now = performance.now();
+      if(now - (cell._lastFlagAt || 0) < 320) return;
+      cell._lastFlagAt = now;
+
+      cell.flagged = !cell.flagged;
+      updateMineCounter();
+      renderCell(cell);
+      
+      checkWinByFlags();
+    }
+
+    function checkWinByFlags(){
+      if(gameOver) return;
+      const flags = countFlags();
+      if(flags !== mines) return;
+
+      
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          const cell = grid[r][c];
+          if(cell.mine && !cell.flagged) return;
+          if(!cell.mine && cell.flagged) return;
+        }
+      }
+
+      gameOver = true;
+      won = true;
+      stopTimer();
+      setFace('win');
+      mineCounterEl.textContent = '000';
+      renderAll();
+      Feedback.show(true);
+      clearCompletedSave();
+      scheduleOutcomeMenu();
+    }
+
+    function renderCell(cell){
+      const el = cell.el;
+
+      
+      el.className = 'cell';
+      if(cell.revealed) el.classList.add('revealed');
+      if(cell.revealed && cell.mine) el.classList.add('mine');
+      if(cell.flagged && !cell.revealed) el.classList.add('flagged');
+
+      
+      el.textContent = '';
+
+      if(cell.revealed){
+        if(cell.mine){
+          el.textContent = '💣';
+          return;
+        }
+        if(cell.adj > 0){
+          el.textContent = String(cell.adj);
+          el.classList.add('n'+cell.adj);
+        }
+      }
+    }
+
+    function renderAll(){
+      for(let r=0;r<rows;r++) for(let c=0;c<cols;c++) renderCell(grid[r][c]);
+      updateMineCounter();
+    }
+
+    function applyBoardSize(){
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const usableW = vw - 24;
+      const usableH = vh - 64 - 24 - 8;
+      const pxW = Math.floor((usableW - 10) / cols);
+      const pxH = Math.floor((usableH - 10) / rows);
+      cellPx = Math.max(18, Math.min(34, Math.min(pxW, pxH)));
+      gridEl.style.setProperty('--cell', cellPx + 'px');
+      gridEl.style.gridTemplateColumns = `repeat(${cols}, var(--cell))`;
+      gridEl.style.gridTemplateRows = `repeat(${rows}, var(--cell))`;
+    }
+
+    function captureState(){
+      if(!grid || !grid.length) return undefined;
+      return {
+        rows, cols, mines, gameOver, won, started, minesPlaced, elapsed: elapsedMs(),
+        grid: grid.map(row => row.map(cell => ({
+          mine: !!cell.mine,
+          revealed: !!cell.revealed,
+          flagged: !!cell.flagged,
+          adj: Number(cell.adj) || 0
+        })))
+      };
+    }
+
+    function meaningful(){
+      if(gameOver || !grid || !grid.length) return false;
+      return grid.some(row => row.some(cell => cell.revealed || cell.flagged));
+    }
+
+    function summary(){
+      const revealed = grid.reduce((sum, row) => sum + row.filter(cell => cell.revealed && !cell.mine).length, 0);
+      return `${rows} × ${cols} • ${revealed} safe square${revealed === 1 ? '' : 's'} revealed`;
+    }
+
+    function restoreState(saved){
+      if(!saved || !Array.isArray(saved.grid) || !saved.grid.length) throw new Error('bad save');
+      cancelOutcome();
+      restoredOnce = true;
+      const nextRows = Math.max(2, Math.min(30, Number(saved.rows) || saved.grid.length || 9));
+      const firstRow = Array.isArray(saved.grid[0]) ? saved.grid[0] : [];
+      const nextCols = Math.max(2, Math.min(30, Number(saved.cols) || firstRow.length || 9));
+      if(saved.grid.length < nextRows || saved.grid.some(row => !Array.isArray(row) || row.length < nextCols)) throw new Error('bad grid');
+      rows = nextRows;
+      cols = nextCols;
+      mines = Math.max(1, Math.min(rows * cols - 1, Number(saved.mines) || 10));
+      gameOver = !!saved.gameOver;
+      won = !!saved.won;
+      started = !!saved.started;
+      minesPlaced = !!saved.minesPlaced;
+      stopTimer();
+      applyBoardSize();
+      buildEmptyGrid();
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          const src = saved.grid[r][c] || {};
+          const cell = grid[r][c];
+          cell.mine = !!src.mine;
+          cell.revealed = !!src.revealed;
+          cell.flagged = !!src.flagged;
+          cell.adj = Math.max(0, Math.min(8, Number(src.adj) || 0));
+        }
+      }
+      const elapsed = Math.max(0, Number(saved.elapsed) || 0);
+      if(started && !gameOver) startTimerFrom(elapsed);
+      else timeCounterEl.textContent = pad3(Math.floor(elapsed/1000));
+      renderAll();
+      showOverlay(false);
+      setFace(won ? 'win' : (gameOver ? 'dead' : 'ready'));
+      return true;
+    }
+
+    function saveGame(){
+      if(!meaningful()){ setFace('oops'); return; }
+      if(window.ArcadeSave && typeof ArcadeSave.saveNow === 'function'){
+        ArcadeSave.saveNow().catch(() => setFace('oops'));
+        return;
+      }
+      try{ localStorage.setItem(SAVE_KEY, JSON.stringify(captureState())); }
+      catch(e){ setFace('oops'); }
+    }
+
+    function loadLegacyGame(){
+      const raw = localStorage.getItem(SAVE_KEY);
+      if(!raw) return false;
+      restoreState(JSON.parse(raw));
+      if(window.ArcadeSave && typeof ArcadeSave.saveNow === 'function'){
+        ArcadeSave.saveNow().then(() => {
+          try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+        });
+      }
+      return true;
+    }
+
+    function loadGame(){
+      try{
+        if(window.ArcadeSave && ArcadeSave.hasSave && ArcadeSave.hasSave()){
+          ArcadeSave.load();
+          return;
+        }
+        if(!loadLegacyGame()) setFace('oops');
+      }catch(e){ setFace('oops'); }
+    }
+
+    if(saveGameBtn) saveGameBtn.addEventListener('click', saveGame);
+    if(loadGameBtn) loadGameBtn.addEventListener('click', loadGame);
+    if(overlayLoadBtn) overlayLoadBtn.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); loadGame(); });
+
+    function attachCellHandlers(cell){
+      let pressTimer = null;
+      let isLong = false;
+      let sx=0, sy=0;
+
+      const CANCEL_DIST2 = 14*14;
+      const LONG_MS = 460;
+
+      function clearTimer(){
+        if(pressTimer){ clearTimeout(pressTimer); pressTimer = null; }
+      }
+
+      cell.el.addEventListener('contextmenu', (e)=>{ e.preventDefault(); }, {passive:false});
+
+      cell.el.addEventListener('pointerdown', (e)=>{
+        if(gameOver) return;
+        e.preventDefault();
+
+        
+        try{ cell.el.setPointerCapture(e.pointerId); }catch(_){}
+
+        isLong = false;
+        sx = e.clientX; sy = e.clientY;
+
+        clearTimer();
+        pressTimer = setTimeout(()=>{
+          isLong = true;
+          toggleFlag(cell.r, cell.c);
+        }, LONG_MS);
+
+        setFace('oops'); 
+      }, {passive:false});
+
+      cell.el.addEventListener('pointermove', (e)=>{
+        if(!pressTimer) return;
+        const dx = e.clientX - sx;
+        const dy = e.clientY - sy;
+        if((dx*dx + dy*dy) > CANCEL_DIST2){
+          clearTimer();
+        }
+      }, {passive:true});
+
+      cell.el.addEventListener('pointerup', (e)=>{
+        setFace(gameOver ? (won?'win':'dead') : 'ready');
+        if(pressTimer){ clearTimer(); }
+        if(gameOver) return;
+        if(!isLong){
+          if(cell.revealed){
+            chordReveal(cell.r, cell.c);
+          }else{
+            reveal(cell.r, cell.c);
+          }
+        }
+      });
+
+      cell.el.addEventListener('pointercancel', ()=>{
+        setFace(gameOver ? (won?'win':'dead') : 'ready');
+        clearTimer();
+      });
+    }
+
+    
+    window.MinesweeperAutosave = {
+      capture: captureState,
+      restore: restoreState,
+      meaningful,
+      summary,
+      startFresh: () => {
+        try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+        newGame('easy');
+        showOverlay(true, false);
+      }
+    };
+
+    window.addEventListener('load', ()=>{
+      if(restoredOnce) return;
+      newGame('easy');
+      showOverlay(true, false);
+    });
+
+    window.addEventListener('resize', ()=>{
+      applyBoardSize();
+      renderAll();
+    });
+  </script>
+<script src="../arcade-save.js"></script>
+<script>
+if(window.ArcadeSave && window.MinesweeperAutosave){
+  ArcadeSave.register({
+    id: 'minesweeper',
+    title: 'Minesweeper',
+    version: 2,
+    capture: MinesweeperAutosave.capture,
+    restore: MinesweeperAutosave.restore,
+    meaningful: MinesweeperAutosave.meaningful,
+    summary: MinesweeperAutosave.summary,
+    startFresh: MinesweeperAutosave.startFresh
+  });
+}
+</script>
+
+</body>
+</html>

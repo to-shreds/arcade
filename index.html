@@ -1,150 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arcade! Hooray! — Menu</title>
-  <style>
-
-    html, body{ background:#000; height:100%; }
-    body{
-      margin: 0;
-      font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
-      background: radial-gradient(circle at 25% 20%, #222 0%, #000 70%);
-      color: #fff;
-      overflow: hidden; overscroll-behavior: none;
-    }
-
-    .wrap{
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 12px 10px 20px;
-  box-sizing: border-box;
-  min-height: 100dvh;
-  height: 100%;
-  display:flex;
-  flex-direction:column;
-}
-
-    .title{
-      text-align: center;
-      font-weight: 1000;
-      letter-spacing: 2px;
-      color: #ffd700;
-      text-shadow: 0 0 12px rgba(255,215,0,0.22);
-      margin: 8px 0 4px;
-      font-size: clamp(28px, 5vw, 44px);
-      line-height: 1.05;
-    }
-    .subtitle{ text-align:center; color: rgba(255,255,255,0.75); margin: 0 0 8px; font-size: 12px; }
-
-    .grid{
-      display:grid;
-      flex: 1 1 auto;
-      align-content: stretch;
-      grid-auto-rows: 1fr;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 8px;
-      padding: 6px;
-      box-sizing: border-box;
-    }
-@media (max-height: 720px){
-      .hint, .tag{ display:none; }
-    }
-
-    
-    @media (max-width: 420px){
-      .grid{ gap: 6px; padding: 4px; grid-template-columns: repeat(auto-fit, minmax(98px, 1fr)); }
-      .card{ border-radius: 14px; }
-      .name{ font-size: 13px; }
-    }
-    @media (max-height: 640px){
-      .subtitle{ display:none; }
-      .wrap{ padding-top: 8px; padding-bottom: 10px; }
-      .grid{ gap: 6px; padding: 4px; }
-      .emoji{ font-size: 20px; }
-      .name{ font-size: 13px; }
-    }
-.card{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      height: 100%;
-      border-radius: 16px;
-      border: 2px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.07);
-      text-decoration: none;
-      color: #fff;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
-    }
-    .card:active{ transform: scale(0.985); }
-    @media (hover:hover){
-      .card:hover{ transform: translateY(-4px); border-color: rgba(255,255,255,0.38); background: rgba(255,255,255,0.10); }
-    }
-
-    .emoji{ font-weight: 1000; font-size: 22px; line-height: 1; }
-    .name{ font-weight: 900; letter-spacing: 0.2px; font-size: 14px; text-align:center; }
-
-    .hint{
-      margin: 10px auto 0;
-      text-align: center;
-      font-size: 13px;
-      color: rgba(255,255,255,0.70);
-      max-width: 720px;
-    }
-
-    .tag{
-      display:inline-block;
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.25);
-      font-size: 12px;
-      color: rgba(255,255,255,0.80);
-      margin-top: 10px;
-    }
-  
-
-        .splash-title{ color:#ffd700 !important; text-shadow:0 0 16px rgba(255,215,0,0.25) !important; }
-        [id$="-menu"].overlay, #menuOverlay, #startOverlay, #cat-menu, #g-balloons .b-start-overlay{ background: rgba(0,0,0,0.95) !important; }
-        #cat-menu .menu-title, #startOverlay .panel h1, #g-balloons .b-start-overlay h1{ color:#ffd700 !important; text-shadow:0 0 18px rgba(255,215,0,0.35) !important; }
-        #startOverlay .big-btn, #startOverlay .small, #cat-menu .cat-btn, #g-balloons .b-start-overlay .btn-large-opt{ background:#333 !important; border:2px solid #555 !important; border-radius:15px !important; color:#fff !important; font-weight:900 !important; box-shadow:none !important; }
-        #g-balloons .b-start-overlay .btn-large-opt{ font-size: 1.9rem !important; padding: 20px 28px !important; max-width: 320px; width: 80%; }
-    
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#090d1e">
+<link rel="icon" href="arcade.png">
+<title>Arcade</title>
+<style>
+:root{color-scheme:dark;--bg:#090d1e;--panel:#141a33;--text:#fff;--muted:#aab5d9;--line:rgba(255,255,255,.14);--gold:#ffce3a;--cyan:#21dcff;--pink:#ff5ac8}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);touch-action:manipulation}
+body{background:radial-gradient(circle at 14% 12%,rgba(33,220,255,.13),transparent 32%),radial-gradient(circle at 86% 88%,rgba(255,90,200,.12),transparent 32%),var(--bg)}
+.app{height:100%;display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:8px;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+header{display:flex;align-items:center;gap:8px;min-width:0}
+h1{margin:0;font-size:clamp(25px,5.4vmin,44px);line-height:1;font-weight:1000;letter-spacing:-1.2px;color:var(--gold);text-shadow:0 0 22px rgba(255,206,58,.25)}
+.count{color:var(--muted);font-weight:800;font-size:12px;white-space:nowrap}
+.head-actions{margin-left:auto;display:flex;gap:6px}
+button,select{min-height:38px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.08);color:#fff;font:inherit;font-weight:900;padding:7px 10px;-webkit-tap-highlight-color:transparent}
+button:active{transform:scale(.97);background:rgba(255,255,255,.16)}
+.icon-btn{width:42px;padding:0;font-size:20px}
+.filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(92px,1.28fr) minmax(105px,1.5fr);gap:6px;padding-bottom:1px}
+.filter{white-space:nowrap;font-size:12px;min-height:35px;padding:6px 10px}
+.filter.active{background:linear-gradient(135deg,var(--cyan),#4277ff);border-color:transparent;color:#071126}
+#category{font-size:12px;width:100%;min-width:0;padding-left:7px;padding-right:4px}
+#category.active{border-color:var(--pink);background:rgba(255,90,200,.16)}
+.grid{min-height:0;overflow-y:auto;overscroll-behavior:contain;display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));grid-auto-rows:minmax(104px,1fr);gap:8px;padding:1px;align-content:start}
+.card{position:relative;min-width:0;border:1px solid var(--line);border-radius:19px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:9px;box-shadow:0 8px 20px rgba(0,0,0,.22);overflow:hidden}
+.card:before{content:"";position:absolute;width:78px;height:78px;right:-28px;bottom:-33px;border-radius:50%;background:var(--accent,var(--cyan));opacity:.18;filter:blur(1px)}
+.card img{width:60px;height:60px;object-fit:contain;filter:drop-shadow(0 4px 5px rgba(0,0,0,.22))}
+.name{font-size:14px;line-height:1.05;text-align:center;font-weight:1000;max-width:100%;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.players{position:absolute;right:7px;top:7px;border-radius:999px;background:rgba(0,0,0,.5);font-size:10px;padding:3px 6px;color:#dfe7ff;font-weight:900}
+.saved{position:absolute;left:7px;top:7px;border-radius:999px;background:linear-gradient(135deg,#21dcff,#597aff);font-size:10px;padding:3px 7px;color:#071126;font-weight:1000;box-shadow:0 3px 10px rgba(33,220,255,.24)}
+.empty{grid-column:1/-1;align-self:center;text-align:center;color:var(--muted);font-weight:900;padding:30px}
+.loading{display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:900}
+@media(orientation:landscape){.app{gap:6px}.grid{grid-template-columns:repeat(auto-fill,minmax(108px,1fr));grid-auto-rows:minmax(88px,1fr);gap:6px}.card{border-radius:16px;gap:4px;padding:6px}.card img{width:50px;height:50px}.name{font-size:12px}.filters{min-height:35px}}
+@media(max-height:520px){h1{font-size:25px}.count{display:none}.filter,#category{min-height:31px;padding:4px 8px;font-size:11px}.icon-btn{min-height:34px;height:34px}.grid{grid-auto-rows:minmax(78px,1fr)}.card img{width:40px;height:40px}.name{font-size:11px}}
+@media(max-width:480px){.filters{gap:4px;grid-template-columns:repeat(3,minmax(0,.85fr)) minmax(82px,1.2fr) minmax(92px,1.32fr)}.filter,#category{font-size:10px;padding:5px 3px}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(auto-fill,minmax(135px,1fr));grid-auto-rows:minmax(116px,1fr)}}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="title">Arcade! Hooray!</div>
-    <div class="subtitle">Pick a game!</div>
-
-    <div class="grid">
-      <a class="card" href="blackjack.html"><div class="emoji" style="color:#ffd700">21</div><div class="name">Blackjack Pro</div></a>
-      <a class="card" href="hangman.html"><div class="emoji" style="color:#007bff">A _ _ _ E</div><div class="name">Riddle Hangman</div></a>
-      <a class="card" href="trivia.html"><div class="emoji" style="color:#2ecc71">💡</div><div class="name">Trivia Time</div></a>
-      <a class="card" href="dots.html"><div class="emoji" style="color:#ff3333">● ● ●</div><div class="name">Dots Strategy</div></a>
-      <a class="card" href="qix.html"><div class="emoji" style="color:#00e5ff">⬚ ⬚</div><div class="name">Bounce Boxes</div></a>
-      <a class="card" href="minesweeper.html"><div class="emoji" style="color:#888">💣</div><div class="name">Minesweeper</div></a>
-      <a class="card" href="clock.html"><div class="emoji" style="color:#00e5ff">🕓</div><div class="name">Time Master</div></a>
-      <a class="card" href="math.html"><div class="emoji" style="color:#a569bd">1 + 2</div><div class="name">Math Whiz</div></a>
-      <a class="card" href="balloons.html"><div class="emoji" style="color:#E040FB">🦄</div><div class="name">Unicorn Party</div></a>
-      <a class="card" href="tictactoe.html"><div class="emoji" style="color:#ff5252">X O</div><div class="name">Tic Tac Toe</div></a>
-      <a class="card" href="maze.html"><div class="emoji" style="color:#ffd700">ꡙ‍ ꡌ‍ ꡚ</div><div class="name">Maze</div></a>
-      <a class="card" href="checkers.html"><div class="emoji" style="color:#ff3333">⛀</div><div class="name">Checkers</div></a>
-      <a class="card" href="chess.html"><div class="emoji" style="color:#ffd700">♟️</div><div class="name">Chess</div></a>
-      <a class="card" href="simon.html"><div class="emoji" style="color:#00e5ff">◼︎◼︎</div><div class="name">Simon Says</div></a>
-      <a class="card" href="minigolf.html"><div class="emoji" style="color:#7CFF6B">⛳</div><div class="name">Mini Golf</div></a>
-      <a class="card" href="trail.html"><div class="emoji" style="color:#7cff6b">〰️</div><div class="name">Coloring Fun</div></a>
-      <a class="card" href="orbslicer.html"><div class="emoji" style="color:#00e5ff">🔮</div><div class="name">Orb Slicer</div></a>
-      <a class="card" href="insultinator.html"><div class="emoji" style="color:#00e5ff">🖕</div><div class="name">Insultinator</div></a>
-      <a class="card" href="jigsaw.html"><div class="emoji" style="color:#00e5ff">🧩</div><div class="name">Jigsaw</div></a>
-      <a class="card" href="patterns.html"><div class="emoji" style="color:#00e5ff">🍌🍌🟤</div><div class="name">Patterns</div></a>
-    </div>
-  </div>
+<main class="app">
+<header><h1>Arcade</h1><span class="count" id="count"></span><div class="head-actions"><button class="icon-btn" id="reload" aria-label="Reload arcade">↻</button><button class="icon-btn" id="manage" aria-label="Manage games">⚙</button></div></header>
+<nav class="filters" aria-label="Filters">
+<button class="filter active" data-filter="all">All</button>
+<button class="filter" data-filter="game">Games</button>
+<button class="filter" data-filter="activity">Activities</button>
+<button class="filter" id="playerFilter" type="button">Players: Any</button>
+<select id="category" aria-label="Category"><option value="">Categories</option></select>
+</nav>
+<section class="grid loading" id="grid">Loading…</section>
+</main>
+<script>
+(()=>{
+const grid=document.getElementById('grid');
+const count=document.getElementById('count');
+const category=document.getElementById('category');
+const filters=[...document.querySelectorAll('.filter')];
+const playerFilter=document.getElementById('playerFilter');
+let items=[];
+let mode='all';
+let playerMode='any';
+let cat='';
+let saves={};
+const accents=['#ffce3a','#21dcff','#ff5ac8','#72ef80','#ff6b6b','#9b7cff'];
+function readSaves(){
+try{const parsed=JSON.parse(localStorage.getItem('arcade.autosave.registry.v1')||'{}');return parsed&&typeof parsed==='object'&&!Array.isArray(parsed)?parsed:{};}catch(_){return {};}
+}
+const label=s=>s.replace(/(^|[-_ ])([a-z])/g,(_,a,b)=>a+b.toUpperCase());
+function playerLabel(item){
+if(item.playersMin===item.playersMax)return item.playersMax===1?'1P':item.playersMax+'P';
+return item.playersMin+'-'+item.playersMax+'P';
+}
+function visible(item){
+if(!item.enabled||item.warning)return false;
+if(mode==='game'&&item.type!=='game')return false;
+if(mode==='activity'&&item.type!=='activity')return false;
+if(playerMode==='single'&&!(item.playersMin<=1&&item.playersMax>=1))return false;
+if(playerMode==='two'&&item.playersMax<2)return false;
+if(cat&&!(item.categories||[]).includes(cat))return false;
+return true;
+}
+function launch(item){
+if(window.ArcadeNative&&ArcadeNative.openGame){ArcadeNative.openGame(item.launchPath);return;}
+location.href=item.launchPath;
+}
+function render(){
+const shown=items.filter(visible);
+count.textContent=shown.length+' available';
+grid.className='grid';
+grid.replaceChildren();
+if(!shown.length){const e=document.createElement('div');e.className='empty';e.textContent='No matches';grid.append(e);return;}
+shown.forEach((item,i)=>{
+const b=document.createElement('button');b.className='card';b.style.setProperty('--accent',accents[i%accents.length]);b.addEventListener('click',()=>launch(item));
+const p=document.createElement('span');p.className='players';p.textContent=playerLabel(item);
+if(saves[item.folder]){const s=document.createElement('span');s.className='saved';s.textContent='↺ SAVED';b.append(s);}
+const img=document.createElement('img');img.src=item.folder+'/'+item.icon;img.alt='';img.addEventListener('error',()=>{img.style.display='none'});
+const n=document.createElement('span');n.className='name';n.textContent=item.title;
+b.append(p,img,n);grid.append(b);
+});
+}
+async function load(){
+grid.className='grid loading';grid.textContent='Loading…';
+let data;
+try{
+const source=window.ArcadeNative?'/__catalog.json':'catalog.json';
+const r=await fetch(source+'?t='+Date.now(),{cache:'no-store'});
+if(!r.ok)throw new Error();
+data=await r.json();
+}catch(_){grid.textContent='Arcade catalog unavailable';return;}
+items=(data.items||[]).slice().sort((a,b)=>(a.order-b.order)||a.title.localeCompare(b.title));
+saves=readSaves();
+const cats=[...new Set(items.flatMap(x=>x.categories||[]))].sort();
+category.replaceChildren(new Option('Categories',''),...cats.map(x=>new Option(label(x),x)));
+render();
+}
+function updateFilterUI(){
+filters.filter(b=>b.dataset.filter).forEach(b=>b.classList.toggle('active',b.dataset.filter===mode));
+playerFilter.classList.toggle('active',playerMode!=='any');
+playerFilter.textContent=playerMode==='single'?'Players: 1':playerMode==='two'?'Players: 2':'Players: Any';
+category.classList.toggle('active',!!cat);
+}
+filters.filter(b=>b.dataset.filter).forEach(b=>b.addEventListener('click',()=>{
+mode=b.dataset.filter;
+if(mode==='all'){cat='';category.value='';playerMode='any';}
+updateFilterUI();render();
+}));
+playerFilter.addEventListener('click',()=>{playerMode=playerMode==='any'?'single':playerMode==='single'?'two':'any';updateFilterUI();render()});
+category.addEventListener('change',()=>{cat=category.value;updateFilterUI();render()});
+document.getElementById('reload').addEventListener('click',()=>{if(window.ArcadeNative&&ArcadeNative.reloadArcade)ArcadeNative.reloadArcade();else load()});
+const manageButton=document.getElementById('manage');
+if(window.ArcadeNative&&ArcadeNative.openManager){manageButton.addEventListener('click',()=>ArcadeNative.openManager());}
+else{manageButton.hidden=true;}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){saves=readSaves();render();}});
+load();
+})();
+</script>
 </body>
 </html>

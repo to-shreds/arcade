@@ -1,0 +1,5 @@
+<resources>
+    <color name="arcade_background">#090D1E</color>
+    <color name="arcade_system">#050815</color>
+    <color name="arcade_accent">#21DCFF</color>
+</resources>

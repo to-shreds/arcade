@@ -1,0 +1,1274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <title>Arcade - Insultinator</title>
+  <style>
+    :root{
+      --bg:#0b0f18;
+      --text:#e9f1ff;
+      --muted:#a9b6d1;
+      --line:rgba(255,255,255,.12);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --r:18px;
+      --accentA:#7cf7ff;
+      --accentB:#b48cff;
+      --accentC:#78ffb6;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(124,247,255,.12), transparent 60%),
+        radial-gradient(900px 600px at 85% 15%, rgba(180,140,255,.12), transparent 55%),
+        linear-gradient(180deg, #070b12 0%, var(--bg) 60%, #070b12 100%);
+      overflow:hidden;
+    }
+    .wrap{max-width:1080px;margin:0 auto;padding:8px 10px 10px;min-height:100dvh;height:100dvh;display:flex;flex-direction:column;gap:8px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:8px;padding:8px 10px;border:1px solid var(--line);
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow:var(--shadow);
+      position:static;z-index:10;
+      backdrop-filter:blur(10px);
+    }
+    .brand{display:flex;align-items:center;gap:8px;min-width:auto}
+    .logo{
+      width:24px;height:24px;border-radius:8px;
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(124,247,255,.95), rgba(124,247,255,.25)),
+        radial-gradient(18px 18px at 70% 70%, rgba(180,140,255,.95), rgba(180,140,255,.25)),
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 10px 35px rgba(0,0,0,.35);
+    }
+    h1{font-size:13px;margin:0;letter-spacing:.2px}
+    .mini{font-size:12px;color:var(--muted);line-height:1.25}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+    .btn{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.16);
+      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      box-shadow:0 10px 30px rgba(0,0,0,.30);
+      user-select:none;
+      transition:transform .05s ease,border-color .15s ease,background .15s ease,filter .15s ease;
+      font-weight:950;
+      letter-spacing:.2px;
+    }
+    .btn:hover{border-color:rgba(124,247,255,.40)}
+    .btn:active{transform:translateY(1px) scale(.99)}
+    .btn.warn{
+      border-color:rgba(255,255,255,.14);
+      background:rgba(255,255,255,.03);
+      box-shadow:none;
+    }
+    .btn.good{
+      border-color:rgba(180,140,255,.45);
+      background:linear-gradient(180deg, rgba(180,140,255,.18), rgba(180,140,255,.06));
+    }
+    .btn.generate{
+      padding:13px 18px;
+      border-color:rgba(124,247,255,.60);
+      background:
+        radial-gradient(180px 90px at 25% 30%, rgba(124,247,255,.35), transparent 60%),
+        radial-gradient(180px 90px at 75% 70%, rgba(180,140,255,.30), transparent 60%),
+        linear-gradient(180deg, rgba(124,247,255,.22), rgba(124,247,255,.07));
+      box-shadow:
+        0 16px 44px rgba(0,0,0,.45),
+        0 0 0 1px rgba(124,247,255,.15) inset,
+        0 0 24px rgba(124,247,255,.10);
+      position:relative;
+      font-size:15px;
+    }
+    .btn.generate:before{
+      content:"";
+      position:absolute;inset:-2px;border-radius:16px;
+      background:linear-gradient(135deg, rgba(124,247,255,.35), rgba(180,140,255,.28), rgba(120,255,182,.20));
+      filter:blur(12px);opacity:.55;z-index:-1;
+    }
+    .pill{
+      display:inline-flex;gap:8px;align-items:center;
+      padding:8px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.16);
+      color:var(--muted);font-size:12px;
+    }
+    .main{margin-top:16px;display:grid;grid-template-columns:1fr;gap:14px}
+    .card{
+      border-radius:var(--r);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding:14px 14px 10px;
+      border-bottom:1px solid var(--line);
+      display:flex;justify-content:space-between;align-items:flex-end;
+      gap:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    .card .hd .t{font-weight:950;letter-spacing:.2px}
+    .card .hd .d{font-size:12px;color:var(--muted);margin-top:3px}
+    .card .bd{padding:14px}
+    label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
+    input[type="range"]{width:100%}
+
+    .bigbox{
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.16);
+      background:
+        radial-gradient(800px 240px at 20% 0%, rgba(124,247,255,.10), transparent 55%),
+        radial-gradient(800px 240px at 80% 0%, rgba(180,140,255,.10), transparent 55%),
+        rgba(0,0,0,.16);
+      padding:18px;
+      box-shadow:0 12px 40px rgba(0,0,0,.35);
+    }
+    .insult{
+      font-size:31px;
+      line-height:1.12;
+      letter-spacing:.2px;
+      font-weight:950;
+      margin:0;
+      text-shadow:0 10px 40px rgba(0,0,0,.55);
+      word-break:break-word;
+      min-height:72px;
+    }
+    .split{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .split .btn{flex:1 1 auto}
+    .hr{height:1px;background:var(--line);margin:14px 0}
+    .topbar .btn{padding:7px 10px;font-size:12px;border-radius:12px}
+    .topbar .row{gap:8px}
+    .topbar .pill{display:none}
+    .brand .mini{display:none}
+    .main{margin-top:0;display:grid;grid-template-columns:1fr;gap:0;flex:1;min-height:0}
+    .card{flex:1;display:flex;flex-direction:column;min-height:0}
+    .card .hd{padding:10px;gap:8px}
+    .card .hd .d{display:none}
+    .card .bd{padding:10px;display:flex;flex-direction:column;gap:10px;flex:1;min-height:0}
+    .bigbox{padding:14px;flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
+    .insult{font-size:clamp(24px, 6vw, 31px);min-height:0}
+    .split{margin-top:10px}
+    .split .btn{padding:9px 10px}
+    .hr{margin:0;height:1px;background:var(--line)}
+    .compactControls{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .compactControls > div{min-width:0}
+    @media (max-width:620px){
+      .logo{display:none}
+      .brand{display:none}
+      .topbar{justify-content:flex-end}
+      .card .hd > div:first-child{display:none}
+      .card .hd{padding:8px}
+      .btn.generate{padding:11px 14px;font-size:14px}
+      .compactControls{gap:10px}
+      .card .bd{padding:8px}
+      .bigbox{padding:12px}
+    }
+
+
+    .toast{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:18px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(0,0,0,.78);
+      border:1px solid rgba(255,255,255,.18);
+      color:var(--text);
+      box-shadow:0 10px 40px rgba(0,0,0,.45);
+      font-size:13px;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
+      z-index:95;
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(-2px)}
+
+    .backdrop{
+      position:fixed;inset:0;
+      background:rgba(0,0,0,.84);
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      z-index:80;
+    }
+    .backdrop.show{display:flex}
+    .sheet{
+      width:min(840px,100%);
+      border-radius:22px 22px 0 0;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(10,14,24,.98);
+      box-shadow:0 24px 80px rgba(0,0,0,.68);
+      padding:14px 14px 18px;
+      backdrop-filter:blur(10px);
+    }
+    .sheetTop{
+      display:flex;justify-content:space-between;align-items:center;
+      gap:10px;padding:6px 2px 12px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .sheetTitle{font-weight:950}
+    .chipGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+    @media (max-width: 620px){
+      .chipGrid{grid-template-columns:1fr}
+      .topbar{position:static}
+    }
+    .chip{
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.06);
+      border-radius:18px;
+      padding:12px;
+      cursor:pointer;
+      user-select:none;
+      transition:transform .05s ease,border-color .15s ease,background .15s ease;
+    }
+    .chip:active{transform:translateY(1px)}
+    .chip:hover{border-color:rgba(124,247,255,.40)}
+    .chip .big{font-weight:950}
+    .chip .small{font-size:12px;color:var(--muted);margin-top:4px}
+    .nameRow{
+      display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .nameRow input{
+      flex:1 1 220px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.30);
+      color:var(--text);
+      padding:10px 12px;
+      outline:none;
+      font-size:15px;
+    }
+    .hint{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.25}
+
+    .list{
+      display:flex;flex-direction:column;gap:10px;
+      max-height:60vh;overflow:auto;padding-right:4px;margin-top:12px;
+    }
+    .item{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:10px 10px 10px 12px;
+      display:flex;justify-content:space-between;gap:10px;align-items:flex-start;
+    }
+    .item .txt{font-weight:950;line-height:1.2}
+    .item .subtxt{font-size:12px;color:var(--muted);margin-top:3px}
+    .item .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .tinybtn{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.22);
+      color:var(--text);
+      padding:7px 9px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:950;
+      font-size:12px;
+    }
+
+    .front{
+      position:fixed;inset:0;
+      display:none;
+      align-items:center;justify-content:center;
+      background:rgba(0,0,0,.86);
+      z-index:100;
+      padding:18px;
+    }
+    .front.show{display:flex}
+    .frontCard{
+      width:min(920px,100%);
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(10,14,24,.985);
+      box-shadow:0 28px 90px rgba(0,0,0,.72);
+      padding:18px;
+    }
+    .frontHeader{
+      text-align:center;
+      padding:8px 8px 14px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+      margin-bottom:14px;
+    }
+    .frontTitle{font-size:28px;font-weight:1000;letter-spacing:.3px}
+    .modeGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 760px){ .modeGrid{grid-template-columns:1fr} }
+    .modeCard{
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:24px;
+      background:rgba(255,255,255,.05);
+      padding:18px;
+      cursor:pointer;
+      transition:transform .08s ease,border-color .15s ease,background .15s ease;
+      box-shadow:0 14px 40px rgba(0,0,0,.30);
+    }
+    .modeCard:hover{border-color:rgba(124,247,255,.42)}
+    .modeCard:active{transform:translateY(1px) scale(.995)}
+    .modeCard.nice{
+      background:
+        radial-gradient(240px 120px at 20% 20%, rgba(120,255,182,.18), transparent 60%),
+        radial-gradient(240px 120px at 80% 80%, rgba(124,247,255,.14), transparent 60%),
+        rgba(255,255,255,.05);
+    }
+    .modeCard.mean{
+      background:
+        radial-gradient(240px 120px at 20% 20%, rgba(180,140,255,.18), transparent 60%),
+        radial-gradient(240px 120px at 80% 80%, rgba(124,247,255,.14), transparent 60%),
+        rgba(255,255,255,.05);
+    }
+    .modeTitle{font-size:24px;font-weight:1000}
+    .modeDesc{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.35}
+    .modeExamples{margin-top:12px;font-size:14px;line-height:1.45}
+    .modeExamples div + div{margin-top:8px}
+  </style>
+
+<style id="arcadeHomeLinkStyle">
+.arcade-home-link{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:10px;z-index:9999;display:inline-flex;align-items:center;justify-content:center;padding:8px 11px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.55);color:#fff;text-decoration:none;font:900 12px/1 system-ui,-apple-system,Segoe UI,Arial,sans-serif;letter-spacing:.3px;box-shadow:0 8px 22px rgba(0,0,0,.35);backdrop-filter:blur(8px);-webkit-tap-highlight-color:transparent}
+.arcade-home-link:active{transform:scale(.98);background:rgba(255,255,255,.12)}
+</style>
+<style id="arcade-fit-fix">
+*,*::before,*::after{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body>*{min-width:0;max-width:100%}
+.app,.main,.game-view,#game-view,.wrap,.game-area,.overlay{min-width:0;max-width:100%}
+.main{grid-template-columns:minmax(0,1fr)!important}
+.topbar,.footer,.status,.scorebar,.controls,.sumbar,.table,[class*="top"],[class*="bar"],[class*="controls"],[class*="savebar"]{max-width:100%;min-width:0}
+.topbar>*,.status>*,.row>*,[class*="top"]>*,[class*="bar"]>*{min-width:0}
+.row.nowrap{flex-wrap:wrap!important}
+button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.actionBtn,.btn-large-opt{max-width:100%;min-width:0;touch-action:manipulation;font-size:clamp(11px,3.2vw,15px);line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel,.frontCard,.pm-menu-wrap,.modalBody,.settings-panel,#cat-menu .cat-grid,#cat-menu,.overlay>.panel{max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 16px)!important;overflow:hidden!important;box-sizing:border-box!important}
+.cat-btn,.btn-large-opt,.panel button,.frontCard button,.pm-menu-wrap button,.modalBody button{white-space:normal!important}
+.hud-bar,.question-box,.answers-grid{box-sizing:border-box!important;max-width:calc(100vw - 16px)!important}
+@media (max-width:520px),(max-height:720px){
+  .arcade-home-link,.back-btn,#menuBtn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;border-radius:999px!important;max-width:104px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;left:calc(env(safe-area-inset-left,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .settings-btn,.gear-btn,#settingsBtn,#global-settings-btn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .bj-savebar{display:flex!important;gap:4px!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important;max-width:calc(100vw - 118px)!important;flex-wrap:wrap!important;justify-content:flex-end!important}
+  .bj-savebar .ui-btn{padding:7px 8px!important;font-size:12px!important;line-height:1!important}
+  .topbar,.ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{height:auto!important;min-height:44px!important;padding-top:6px!important;padding-bottom:6px!important;gap:6px!important;flex-wrap:wrap!important;align-content:center!important}
+  .topbar{padding-left:max(8px,env(safe-area-inset-left,0px))!important;padding-right:max(8px,env(safe-area-inset-right,0px))!important}
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:76px!important;padding-right:8px!important}
+  .ck-top>div,.ttt-top>div,.mz-top>div,.mg-top>div,.si-top>div,.ms-top>div{display:flex!important;flex-wrap:wrap!important;gap:4px!important;min-width:0!important;max-width:100%!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{padding:6px 8px!important;font-size:12px!important;gap:5px!important;white-space:nowrap!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{padding:7px 8px!important;font-size:12px!important;min-height:0!important}
+  #modePvp,#modeCpu{white-space:normal!important;line-height:1!important}
+  #g-dots .top{padding-left:72px!important;gap:5px!important}
+  #g-dots .row{gap:5px!important;flex-wrap:wrap!important;justify-content:center!important}
+  #g-dots .pill{padding:5px 7px!important;font-size:12px!important;white-space:nowrap!important}
+  #g-dots .status-pill{flex:1 1 100%!important;margin-left:0!important;max-width:100%!important}
+  #g-dots canvas{max-width:calc(100vw - 20px)!important;max-height:calc(100svh - 154px)!important}
+  #g-hangman .top-bar{min-height:42px!important;padding:4px 8px!important;gap:4px!important}
+  #g-hangman .hm-left-slot{flex-basis:68px!important;width:68px!important}
+  #g-hangman .cat-pill{font-size:11px!important;padding:5px 8px!important}
+  #g-hangman .hm-status{gap:5px!important;max-width:50vw!important}
+  #g-hangman canvas{max-height:18vh!important}
+  #g-hangman #word-display{font-size:clamp(24px,8vw,34px)!important;min-height:34px!important;margin:2px 0!important}
+  #g-hangman #hint-box{font-size:12px!important;min-height:18px!important;padding:4px 8px!important}
+  #g-hangman .controls{gap:4px!important;padding:0 6px 2px!important;flex-wrap:nowrap!important}
+  #g-hangman .btn-hint,#g-hangman .btn-risk{padding:6px 6px!important;font-size:11px!important;gap:2px!important;box-shadow:none!important;flex:1 1 0!important;justify-content:center!important}
+  #g-hangman .keyboard{gap:3px!important;padding:3px!important;width:calc(100vw - 12px)!important;margin-bottom:2px!important}
+  #g-hangman .key{height:clamp(30px,6.6vh,42px)!important;font-size:clamp(15px,5vw,20px)!important;border-bottom-width:2px!important;border-radius:6px!important}
+  #g-orbslicer .orb-ui{left:6px!important;right:6px!important;top:42px!important;gap:4px!important}
+  #g-orbslicer .orb-pill{padding:5px 7px!important;font-size:12px!important;letter-spacing:0!important}
+  #g-orbslicer .orb-lives{font-size:13px!important;letter-spacing:0!important}
+  #g-minigolf #mg-menu{gap:8px!important;padding:12px 10px!important;justify-content:flex-start!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(30px,10vw,48px)!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:9px 10px!important;font-size:12px!important;min-height:0!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:8px!important}
+  .math-box{width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;left:auto!important;right:auto!important}
+  .hud-bar{padding:8px 10px!important;width:calc(100vw - 16px)!important;gap:4px!important}
+  .question-box{width:calc(100vw - 16px)!important;padding:14px!important;min-height:130px!important}
+  .cat-grid{gap:8px!important}
+  .cat-btn{padding:12px 8px!important;font-size:clamp(13px,4vw,18px)!important}
+  .menu-title{font-size:clamp(32px,11vw,48px)!important;margin:0!important}
+}
+@media (max-width:360px){
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:66px!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{font-size:11px!important;padding:5px 7px!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{font-size:11px!important;padding:6px 7px!important}
+  #g-dots .top{padding-left:64px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .wrap{gap:6px!important}
+  .titlebar{padding:6px 8px!important;gap:6px!important}
+  .layout{gap:6px!important}
+  .side{min-height:0!important;overflow:hidden!important}
+  .side .panel{max-height:calc(100svh - 410px)!important;overflow:hidden!important}
+  .panel .phead{padding:6px 8px!important}
+  .panel .pbody{padding:6px 8px!important}
+  #g-dots #menuOverlay .dots-mode-row,#g-dots #menuOverlay .dots-ai-row,#g-dots #menuOverlay .grid-options{width:100%!important;max-width:100%!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn{padding:6px 5px!important;font-size:11px!important;min-width:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  #g-dots .dots-menu-card{padding:6px!important;gap:5px!important;max-height:calc(100svh - 12px)!important}
+  #g-dots .dots-section-card{padding:5px!important;gap:4px!important}
+  #g-dots .dots-swatch-btn{padding:5px!important;font-size:10px!important;gap:3px!important}
+  #g-dots .dots-swatch-chip{width:16px!important;height:16px!important}
+  #g-dots .dots-swatch-hex{font-size:9px!important;letter-spacing:0!important}
+  .btn-large-opt{min-height:32px!important;line-height:1.15!important}
+  .ttt-piece-btn{white-space:normal!important;font-size:11px!important;line-height:1.05!important;padding:7px 8px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .modalPanel{max-height:calc(100svh - 14px)!important;overflow:hidden!important;padding:8px!important}
+  .modalHead{margin-bottom:5px!important}
+  .optRow{padding:6px!important;margin:5px 0!important;gap:6px!important}
+  .optRow .label .desc{font-size:10px!important;line-height:1.15!important}
+  .seg button{font-size:10px!important;padding:6px 7px!important;line-height:1.05!important;white-space:normal!important}
+}
+</style>
+<link rel="icon" href="data:,">
+<style id="arcade-v6-size-fix">
+@media (max-width:520px),(max-height:720px){
+  html,body{height:100%;overflow:hidden!important}
+  .panel,.frontCard,.pm-menu-wrap,.modal,.modalBody,.settings-panel,.overlay>.panel{overflow:hidden!important;max-height:calc(100svh - 8px)!important}
+  .small-note,.menu-sub,.sub{line-height:1.12!important}
+  .panel h1,.splash-title,.menu-title{line-height:1!important}
+  .panel button,.frontCard button,.pm-menu-wrap button,.modalBody button,.btn-large,.btn-large-opt{min-height:0!important}
+  .overlay,.modalBack,.front{padding:6px!important}
+  .app,.wrap{height:100svh!important;min-height:0!important;max-height:100svh!important;overflow:hidden!important}
+  .main,.game-area,.game-view,#game-view,.layout,.boardShell,.board-wrap,.side,.stage,#stage{min-height:0!important;overflow:hidden!important}
+  .rules{margin:6px 0!important;gap:5px!important}
+  .rulecard{padding:7px!important;font-size:10px!important;line-height:1.15!important;border-radius:10px!important}
+  .rulecard strong{margin-bottom:2px!important}
+  .panel>p{display:none!important}
+  .settingcard{padding:8px!important;margin:6px 0!important;border-radius:12px!important}
+  .settingcard p{display:none!important}
+  .optionrow{gap:5px!important;margin-bottom:7px!important}
+  .names{gap:5px!important;margin-bottom:7px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #g-dots #menuOverlay{padding:4px!important;gap:4px!important}
+  #g-dots .dots-menu-card{padding:5px!important;gap:4px!important;width:100%!important;max-height:calc(100svh - 8px)!important;overflow:hidden!important}
+  #g-dots .splash-title{font-size:20px!important;margin:0!important}
+  #g-dots .menu-sub,#g-dots .dots-subtle,#g-dots .dots-color-hint,#g-dots #dotsAiWrap div[style*="font-size:10px"]{display:none!important}
+  #g-dots .dots-menu-head{gap:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important}
+  #g-dots .dots-mode,#g-dots #dotsPlayerCountWrap,#g-dots #dotsAiWrap,#g-dots .dots-section-card.dots-colors,#g-dots .dots-section-card.dots-grid-card{grid-column:auto!important}
+  #g-dots .dots-section-card{padding:4px!important;gap:3px!important;border-radius:9px!important}
+  #g-dots .dots-sec-title{font-size:8px!important;margin:0!important;line-height:1!important}
+  #g-dots .dots-mode-row,#g-dots .dots-player-row,#g-dots .dots-ai-row,#g-dots .dots-toggles-row{gap:3px!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{padding:5px 3px!important;font-size:9px!important;line-height:1.05!important;border-radius:7px!important}
+  #g-dots .dots-name-grid,#g-dots .dots-team-grid,#g-dots .dots-team-name-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-mini-label{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-name-field,#g-dots .dots-team-field,#g-dots .dots-team-name-field{gap:2px!important}
+  #g-dots .dots-name-input,#g-dots .dots-team-select{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #g-dots .dots-toggle-pill{padding:4px 5px!important;font-size:8px!important;gap:3px!important;line-height:1.05!important}
+  #g-dots .dots-toggle-pill input{width:12px!important;height:12px!important}
+  #g-dots .dots-color-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-color-item{gap:1px!important}
+  #g-dots .dots-color-name{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-swatch-btn{padding:3px!important;gap:2px!important;border-radius:7px!important;border-width:1px!important}
+  #g-dots .dots-swatch-chip{width:18px!important;height:14px!important;border-radius:5px!important}
+  #g-dots .dots-swatch-hex{font-size:7px!important;letter-spacing:0!important}
+  #g-dots .grid-options{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important;width:100%!important}
+  .front{align-items:center!important}
+  .frontCard{padding:8px!important;border-radius:18px!important}
+  .frontHeader{padding:4px!important;margin-bottom:6px!important}
+  .frontTitle{font-size:18px!important;line-height:1!important}
+  .frontHeader .mini,.modeDesc,.modeExamples{display:none!important}
+  .modeGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+  .modeCard{padding:12px 7px!important;border-radius:14px!important;text-align:center!important}
+  .modeTitle{font-size:16px!important;line-height:1.05!important}
+  #startOverlay .panel h1{font-size:20px!important;margin:0 0 4px!important}
+  #startOverlay .panel .sub,#startOverlay .small-note{display:none!important}
+  #startOverlay .panel{padding:8px!important;border-radius:14px!important}
+  #startOverlay .row{gap:5px!important}
+  #startOverlay .opt{padding:6px!important;min-width:0!important;border-radius:10px!important}
+  #startOverlay .opt label{font-size:10px!important;margin-bottom:3px!important}
+  #startOverlay select,#startOverlay input[type="range"]{padding:6px 8px!important;font-size:12px!important}
+  #startOverlay .toggle-row{padding:6px 8px!important;margin-top:5px!important;border-radius:10px!important}
+  #startOverlay .t-desc{display:none!important}
+  #startOverlay .hr{margin:5px 0!important}
+  #startOverlay .btn-large{padding:8px 9px!important;font-size:13px!important;border-radius:11px!important}
+  #startBackBtn,#loadStartBtn{margin-top:5px!important}
+  #startOverlay .pm-menu-wrap{gap:6px!important;padding:0!important}
+  #startOverlay .pm-card{padding:8px!important;border-radius:12px!important}
+  #startOverlay .pm-pill-row{gap:4px!important}
+  #startOverlay .pm-pill{padding:7px 8px!important;font-size:12px!important}
+  #startOverlay .btn-large-opt{padding:9px 10px!important;font-size:13px!important;border-radius:11px!important}
+  #startOverlay.splash-title,.splash-title{font-size:clamp(26px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu{gap:5px!important;padding:8px!important;justify-content:center!important;overflow:hidden!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(24px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu>div[style*="max-width:520px"],#g-minigolf #mg-diff-wrap>div:last-child{display:none!important}
+  #g-minigolf #mg-best-line{font-size:11px!important;margin-top:0!important;padding:0!important}
+  #g-minigolf #mg-diff-wrap{margin-top:2px!important;gap:4px!important}
+  #g-minigolf #mg-diff-wrap>div:first-child{font-size:10px!important;line-height:1!important}
+  #g-minigolf #mg-diff-wrap .ui-btn{padding:6px 8px!important;font-size:11px!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:5px!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:7px 9px!important;font-size:12px!important;max-width:240px!important}
+  .pm-menu-wrap .small-note,.pm-menu-wrap+.small-note{display:none!important}
+  .modalBack{align-items:center!important}
+  .modal{max-height:calc(100svh - 8px)!important;overflow:hidden!important;border-radius:16px!important}
+  .modalHeader{position:static!important;padding:7px 9px!important}
+  .modalTitle{font-size:14px!important}
+  .modalBody{padding:8px!important;gap:6px!important;overflow:hidden!important}
+  .grid2,.namesGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  label{gap:3px!important;font-size:9px!important;line-height:1!important}
+  input[type="text"],input[type="number"],select{padding:5px 7px!important;font-size:11px!important;border-radius:8px!important}
+  .nameRow{gap:3px!important}
+  .nameLabel{font-size:9px!important;gap:4px!important;line-height:1!important}
+  .helper{display:none!important}
+  .footerActions{gap:5px!important;justify-content:center!important}
+  .footerActions button{padding:7px 10px!important;font-size:12px!important}
+  #startOverlay .panel-head{padding-right:88px!important}
+  #startOverlay .panel-top-back{padding:5px 7px!important;font-size:10px!important;max-width:82px!important}
+  #startOverlay .choice-grid{gap:3px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{padding:5px 3px!important;font-size:9px!important;border-radius:8px!important}
+  #startOverlay .more-players-row{margin-top:3px!important;gap:3px!important}
+  #startOverlay .theme-grid,#startOverlay .size-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #startOverlay .names-wrap,#startOverlay .team-wrap{margin-top:3px!important}
+  #startOverlay .names-label{font-size:8px!important;margin:2px 0!important}
+  #startOverlay .name-input{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #startOverlay .team-choice-grid{width:88px!important;flex-basis:88px!important;gap:2px!important}
+  #startOverlay .team-grid,#startOverlay .team-names-grid{gap:3px!important}
+  #startOverlay .panel-footer{position:static!important;padding-top:2px!important;margin-top:2px!important;background:none!important}
+  #startOverlay .row{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  body.memory-game #game{gap:6px!important;padding:calc(env(safe-area-inset-top,0px) + 8px) 8px max(8px,calc(env(safe-area-inset-bottom,0px) + 6px))!important}
+  body.memory-game #board{flex:0 0 auto!important;max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 64px)!important;overflow:hidden!important;align-content:start!important}
+  body.memory-game .card-front .face{font-size:clamp(25px,8vmin,48px)!important}
+}
+@media (max-width:360px){
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{font-size:8px!important;padding:4px 2px!important}
+  .modeTitle{font-size:14px!important}
+  .modalBody{gap:4px!important}
+  input[type="text"],input[type="number"],select{padding:4px 6px!important;font-size:10px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{font-size:8px!important;padding:4px 2px!important}
+}
+</style>
+
+<style id="arcade-v6-late-fix">
+@media (max-width:520px),(max-height:720px){
+  body.make10-game .app{gap:4px!important;padding:5px 8px!important}
+  body.make10-game .main{gap:4px!important;grid-template-rows:auto auto auto auto minmax(0,1fr)!important}
+  body.make10-game .topbar{padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .title{font-size:14px!important;line-height:1!important}
+  body.make10-game .subtitle,body.make10-game .status .small,body.make10-game .comboNote{display:none!important}
+  body.make10-game .turnpill{padding:5px 8px!important;font-size:11px!important}
+  body.make10-game .scorebar{gap:4px!important;padding:4px!important}
+  body.make10-game .scorechip{padding:4px!important;border-radius:10px!important}
+  body.make10-game .scorechip .name{font-size:10px!important}
+  body.make10-game .scorechip .score{font-size:14px!important}
+  body.make10-game .controls{gap:4px!important;padding:4px!important}
+  body.make10-game .controls button{min-height:30px!important;padding:6px 7px!important;font-size:11px!important}
+  body.make10-game .status{min-height:34px!important;padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .status .message{font-size:12px!important;line-height:1.05!important}
+  body.make10-game .sumbar{padding:5px!important;border-radius:12px!important}
+  body.make10-game .sumfocus{gap:4px!important}
+  body.make10-game .sumlabel{font-size:10px!important}
+  body.make10-game .sumcore{gap:6px!important}
+  body.make10-game .sumactions{gap:4px!important;width:88px!important}
+  body.make10-game .sumactions button{min-height:30px!important;padding:5px!important;font-size:11px!important}
+  body.make10-game .totalbox{width:140px!important;min-height:45px!important;border-radius:14px!important}
+  body.make10-game .total{font-size:34px!important}
+  body.make10-game .table{gap:4px!important}
+  body.make10-game .card{min-height:48px!important;border-radius:11px!important;padding:4px!important;border-width:1px!important}
+  body.make10-game .centerValue{font-size:28px!important}
+  body.make10-game .corner{font-size:9px!important;left:5px!important;top:4px!important}
+  body.make10-game .corner.bottom{right:5px!important;bottom:4px!important}
+  body.make10-game .footer{padding:5px 7px!important;font-size:10px!important;border-radius:12px!important}
+  #g-clock{justify-content:center!important;gap:6px!important;padding-top:34px!important;padding-bottom:6px!important;box-sizing:border-box!important;overflow:hidden!important}
+  #g-clock .clock-face{width:206px!important;height:206px!important;border-width:6px!important;margin:0 0 6px!important;box-sizing:border-box!important}
+  #g-clock .clock-ui{gap:5px!important;max-height:310px!important;overflow:hidden!important}
+  #g-clock .display-box{font-size:22px!important;padding:5px 10px!important;min-width:98px!important;border-radius:8px!important}
+  #g-clock .keypad{gap:5px!important;margin-top:4px!important;max-width:190px!important}
+  #g-clock .kp-btn{padding:8px!important;font-size:16px!important;border-radius:7px!important;line-height:1!important}
+  #g-clock .mc-grid{gap:5px!important;width:94%!important}
+  #g-clock .mc-btn{padding:8px!important;font-size:16px!important}
+}
+@media (max-width:360px){
+  #g-clock .clock-face{width:190px!important;height:190px!important}
+  #g-clock .keypad{max-width:180px!important}
+  #g-clock .kp-btn{padding:7px!important;font-size:15px!important}
+}
+</style>
+
+<style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+</head>
+<body>
+<a class="arcade-home-link" href="../index.html">← ARCADE</a>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Arcade - Insultinator</h1>
+          <div class="mini">Kid Edition</div>
+        </div>
+      </div>
+
+      <div class="row" style="justify-content:flex-end; flex:1">
+        <span class="pill">mode: <span id="modeLabel">choose</span></span>
+        <span class="pill">🔈 speech: <span id="speechOk">checking…</span></span>
+        <button class="btn warn" id="btnMode">Mode</button>
+        <button class="btn warn" id="btnHistory">History</button>
+        <button class="btn warn" id="btnClear">Clear</button>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="card">
+        <div class="hd">
+          <div>
+            <div class="t">Insultinator</div>
+            <div class="d">Play</div>
+          </div>
+          <div class="row">
+            <button class="btn warn" id="btnTarget">Target: <span id="targetLabel">You</span></button>
+            <button class="btn generate" id="btnGenerate">✨ Generate</button>
+            <button class="btn good" id="btnSpeak">Speak</button>
+          </div>
+        </div>
+        <div class="bd">
+          <div class="bigbox">
+            <p class="insult" id="insultText">Tap Generate.</p>
+            <div class="split">
+              <button class="btn" id="btnCopy">Copy</button>
+              <button class="btn" id="btnStar">Star</button>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="compactControls">
+            <div style="flex:1 1 220px">
+              <label for="rate">Speed</label>
+              <input id="rate" type="range" min="0.7" max="1.4" step="0.05" value="1.05" />
+              <div class="mini"><span style="float:left">slow</span><span style="float:right">fast</span></div>
+            </div>
+            <div style="flex:1 1 220px">
+              <label for="pitch">Pitch</label>
+              <input id="pitch" type="range" min="0.6" max="1.6" step="0.05" value="1.1" />
+              <div class="mini"><span style="float:left">low</span><span style="float:right">high</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Copied.</div>
+
+  <div class="front" id="front">
+    <div class="frontCard">
+      <div class="frontHeader">
+        <div class="frontTitle">Choose a Mode</div>
+        <div class="mini" style="margin-top:6px">Nice mode is ridiculously sweet. Mean mode is kid-safe silly mean.</div>
+      </div>
+      <div class="modeGrid">
+        <div class="modeCard nice" id="pickNice">
+          <div class="modeTitle">Nice Mode</div>
+          <div class="modeDesc">Ridiculously sweet, wholesome, sparkly, and funny.</div>
+          <div class="modeExamples">
+            <div>“Logan is basically a marshmallow parade.”</div>
+            <div>“You are basically a cupcake comet.”</div>
+          </div>
+        </div>
+        <div class="modeCard mean" id="pickMean">
+          <div class="modeTitle">Mean Mode</div>
+          <div class="modeDesc">Still kid-safe - more goofy and ridiculous than harsh.</div>
+          <div class="modeExamples">
+            <div>“Logan is a wobbly pancake with opinions.”</div>
+            <div>“Why are you acting like a confused banana?”</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="backdrop" id="targetBackdrop" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Set target">
+      <div class="sheetTop">
+        <div>
+          <div class="sheetTitle">Set Target</div>
+          <div class="mini">Pick what kind of target it is.</div>
+        </div>
+        <button class="btn warn" id="btnCloseTarget">Done</button>
+      </div>
+
+      <div class="chipGrid" id="chipGrid"></div>
+
+      <div class="nameRow" id="nameRow" style="display:none">
+        <input id="nameInput" type="text" maxlength="40" placeholder="Type a name…" />
+        <button class="btn generate" id="btnSaveTarget">✨ Save</button>
+      </div>
+
+      <div class="hint" id="targetHint">If you pick “You”, you don’t need a name.</div>
+    </div>
+  </div>
+
+  <div class="backdrop" id="historyBackdrop" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="History">
+      <div class="sheetTop">
+        <div>
+          <div class="sheetTitle">History</div>
+          <div class="mini">Tap Speak or Copy. Star keeps it.</div>
+        </div>
+        <button class="btn warn" id="btnCloseHistory">Done</button>
+      </div>
+      <div class="list" id="historyList"></div>
+    </div>
+  </div>
+
+  <script>
+  (() => {
+    "use strict";
+
+    const $ = (sel) => document.querySelector(sel);
+    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const now = () => Date.now();
+    const uid = () => Math.random().toString(16).slice(2) + "-" + now().toString(16);
+    const norm = (s) => (s || "").trim().replace(/\s+/g, " ");
+    const cap = (s) => s ? (s[0].toUpperCase() + s.slice(1)) : s;
+
+    const STORAGE_KEY = "arcade_insultinator_kid_v4";
+    const loadState = () => { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); } catch(e) { return {}; } };
+    const saveState = (st) => { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(st)); } catch(e) {} };
+
+    let state = loadState();
+    if (!state.history) state.history = [];
+    if (!state.stars) state.stars = {};
+    if (!state.settings) state.settings = {};
+    if (!state.settings.mode) state.settings.mode = "";
+    if (!state.target) state.target = { kind:"you", name:"" };
+
+    const TARGET_KINDS = [
+      { id:"you", label:"You", desc:"(default)", needsName:false, number:"singular", person:"second" },
+      { id:"person", label:"Single person", desc:"One kid / one grownup", needsName:true, number:"singular", person:"third" },
+      { id:"animal", label:"Animal", desc:"One pet / one creature", needsName:true, number:"singular", person:"third" },
+      { id:"thing", label:"Thing", desc:"One object", needsName:true, number:"singular", person:"third" },
+      { id:"group", label:"Group of people", desc:"A team / a bunch", needsName:true, number:"plural", person:"third" }
+    ];
+
+    const BANKS = {
+      mean: {
+        interj: ["Hey","Whoa","Wow","Uh-oh","Listen","Okay","Yikes","Beep-boop","Good grief","Seriously"],
+        adj: ["goofy","silly","weird","wobbly","noisy","messy","wild","wonky","bouncy","sloppy","confusing","extra","sleepy","grumpy","squishy","tiny","gigantic","crooked","ding-dong","jumpy","bonky","fuzzy","chaotic","floppy","puzzled","oddball"],
+        noun: ["banana","sock","robot","hamster","pickle","toaster","cupcake","penguin","turtle","pancake","bubble","pillow","spoon","pirate","snowman","taco","kite","jellyfish","marshmallow","noodle","meatball","rubber duck","goofball","muffin","peanut","dinosaur"],
+        verb: ["dance","wiggle","shuffle","bounce","stumble","spin","sneeze","zoom","bonk","trip","mumble","giggle","panic","hop","flip","clap","waddle","blink","tumble","boing","fumble","wobble","flop"],
+        adv: ["slowly","loudly","quietly","backwards","sideways","super fast","for no reason","like a cartoon","like a baby penguin","like a tornado","like a sleepy crab","like jelly","like it is your job","with zero warning","like a confused squirrel"],
+        closers: ["Wow.","That was a choice.","Nice going, chaos captain.","Nobody was ready for that.","Incredible nonsense.","That explains a lot.","That was really something.","I have so many questions."],
+        vibes: ["style","drama","goofiness","nonsense","chaos","wobble","mess","trouble"],
+        rooms: ["room","playground","kitchen","planet","whole universe","lunch table"],
+        things: ["sandwich","goldfish","backpack","remote","doorbell","roller skate","popsicle","chair","blanket","helmet","trampoline","cookie"]
+      },
+      nice: {
+        interj: ["Aww","Wow","Yay","Goodness","Oh wow","Look out","Whoa","Okay","Amazing","Hooray"],
+        adj: ["sweet","sparkly","sunny","cozy","magical","shiny","happy","bouncy","glowy","kind","snuggly","cheery","rainbow","giggle-filled","marshmallow","cupcake","adorable","friendly","wonderful","gold-star","cloud-soft","super-duper","confetti","twinkly","peachy","jolly"],
+        noun: ["cupcake","rainbow","marshmallow","unicorn","puppy","kitten","sunbeam","cookie","blanket","star","heart","bubble","milkshake","snow cone","parade","comet","jellybean","crown","hug machine","cloud","treasure chest","sprinkle storm","party balloon","pancake","moonbeam","glitter rocket"],
+        verb: ["dance","twirl","sparkle","giggle","bounce","float","skip","wave","smile","shine","glow","hop","zoom","sing","cheer","hug","beam","flutter","swish","party","glitter","wobble","boop"],
+        adv: ["happily","brightly","sweetly","like a rainbow","like a happy puppy","like confetti","with extra sparkle","like a gold star","like a parade","like sunshine","like a big warm cookie","like a marshmallow comet","for the good of the planet","like a cuddle tornado","like a song"],
+        closers: ["And that is a compliment.","Gold star stuff.","That is extremely adorable.","Really amazing.","That made everything better.","Please never stop.","Ten out of ten sweetness.","That rules."],
+        vibes: ["kindness","sparkle","sunshine","joy","good ideas","sweetness","glitter","cheer"],
+        rooms: ["room","playground","kitchen","planet","whole universe","lunch table"],
+        things: ["cookie","blanket","crown","party hat","book","cloud","sticker","sunflower","gold star","balloon","tea cup","treasure map"]
+      }
+    };
+
+    function targetLabel(t){
+      const k = TARGET_KINDS.find(x => x.id === t.kind) || TARGET_KINDS[0];
+      if (k.id === "you") return "You";
+      const name = norm(t.name);
+      return name ? name : k.label;
+    }
+
+    function updateModeLabel(){
+      $("#modeLabel").textContent = state.settings.mode ? state.settings.mode : "choose";
+    }
+
+    function getTargetGrammar(){
+      const kind = state.target?.kind || "you";
+      const name = norm(state.target?.name || "");
+      const k = TARGET_KINDS.find(x => x.id === kind) || TARGET_KINDS[0];
+      const subj = (k.id === "you") ? "you" : (name || "they");
+      const be = (k.id === "you") ? "are" : (k.number === "plural" ? "are" : "is");
+      const have = (k.id === "you") ? "have" : (k.number === "plural" ? "have" : "has");
+      const doWord = (k.id === "you") ? "do" : (k.number === "plural" ? "do" : "does");
+      return { kind:k.id, subj, be, have, doWord, number:k.number, person:k.person };
+    }
+
+    function articleFor(phrase){
+      const s = norm(phrase).toLowerCase();
+      if (!s) return "a";
+      return "aeiou".includes(s[0]) ? "an" : "a";
+    }
+
+    function pluralize(noun){
+      const n = noun.toLowerCase();
+      if (/(s|x|z|ch|sh)$/.test(n)) return n + "es";
+      if (/[^aeiou]y$/.test(n)) return n.slice(0, -1) + "ies";
+      return n + "s";
+    }
+
+    function conjThirdSingular(base){
+      const v = base.toLowerCase();
+      if (/(s|x|z|ch|sh)$/.test(v)) return v + "es";
+      if (/[^aeiou]y$/.test(v)) return v.slice(0, -1) + "ies";
+      return v + "s";
+    }
+
+    function conjugateVerb(base, g){
+      if (g.person === "second" || g.number === "plural") return base;
+      return conjThirdSingular(base);
+    }
+
+    function adjectivePhrase(bank, intensity){
+      const adj = pick(bank.adj);
+      if (intensity > 0.86 && Math.random() < 0.55) return "mega " + adj;
+      if (intensity > 0.70 && Math.random() < 0.72) return "super " + adj;
+      return adj;
+    }
+
+    function predicatePhrase(bank, g, adj, noun){
+      if (g.number === "plural") return `${adj} ${pluralize(noun)}`;
+      return `${articleFor(adj)} ${adj} ${noun}`;
+    }
+
+    function singularPhrase(bank, adj, noun){
+      return `${articleFor(adj)} ${adj} ${noun}`;
+    }
+
+    function maybeCloser(bank, length){
+      if (length < 0.45 && Math.random() < 0.55) return "";
+      return " " + pick(bank.closers);
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+    }
+
+    function buildSentence(mode){
+      const label = targetLabel(state.target);
+      const lead = label === "You" ? "You" : `${label}, you`;
+      const mean = [
+        `${lead} absolute waffle.`,
+        `${lead} smell like a haunted lunchbox.`,
+        `${lead} have the aim of a sneezing llama.`,
+        `${lead} are one sock short of a pair.`,
+        `${lead} dance like a fridge falling downstairs.`,
+        `${lead} bring raccoon-in-a-cereal-box energy.`,
+        `${lead} couldn't scare a nervous noodle.`,
+        `${lead} look like a potato tried to do your hair.`,
+        `${lead} are the mayor of Stinky Pants Town.`,
+        `${lead} have confused the furniture again.`,
+        `${lead} fight like a soggy breadstick.`,
+        `${lead} have a brain that just went on snack break.`,
+        `${lead} are pure goblin sprinkles.`,
+        `${lead} run like your shoelaces are arguing.`,
+        `${lead} couldn't outsmart a sleepy turnip.`,
+        `${lead} make even your shadow need a break.`,
+        `Nice try, Captain Underpants.`,
+        `Pipe down, Professor Booger.`,
+        `A confused pigeon has a better plan than you.`,
+        `Your ideas need training wheels.`,
+        `Your hair lost a fight with a leaf blower.`,
+        `Your socks are plotting against you.`,
+        `Your cool meter just made a fart noise.`,
+        `Even a jellybean would say, “too wobbly.”`
+      ];
+      const nice = [
+        `${lead} are cooler than a penguin in sunglasses.`,
+        `${lead} sparkle like a disco doughnut.`,
+        `${lead} have championship-level silliness.`,
+        `${lead} are a high-five with shoes on.`,
+        `${lead} make boring run away screaming.`,
+        `${lead} are the captain of Team Awesome.`,
+        `${lead} have gold-star goblin energy.`,
+        `${lead} are braver than a hamster on a skateboard.`,
+        `${lead} make the whole room more fun.`,
+        `${lead} are a walking confetti cannon.`,
+        `Alert! ${label} is ridiculously brilliant.`,
+        `Ten out of ten. Extra sprinkles.`,
+        `Your laugh could wake a grumpy moon.`,
+        `Your ideas deserve their own parade.`,
+        `You rule harder than a dinosaur drummer.`,
+        `Certified legend. No notes.`
+      ];
+      return pick(mode === "nice" ? nice : mean);
+    }
+
+    function addHistory(text, mode){
+      const id = uid();
+      state.history.unshift({ id, t: now(), text, mode });
+      const starred = state.history.filter(it => state.stars[it.id]);
+      const non = state.history.filter(it => !state.stars[it.id]).slice(0, 80);
+      state.history = [...starred, ...non].sort((a,b) => b.t - a.t);
+      saveState(state);
+      renderHistory();
+    }
+
+    function renderHistory(){
+      const box = $("#historyList");
+      box.innerHTML = "";
+      if (!state.history.length){
+        box.innerHTML = `<div class="mini" style="opacity:.85">No history yet.</div>`;
+        return;
+      }
+      for (const it of state.history){
+        const isStar = !!state.stars[it.id];
+        const el = document.createElement("div");
+        el.className = "item";
+        el.innerHTML = `
+          <div style="flex:1 1 auto; min-width:180px">
+            <div class="txt">${escapeHtml(it.text)}</div>
+            <div class="subtxt">${escapeHtml(it.mode || "mode")} • ${new Date(it.t).toLocaleString()}</div>
+          </div>
+          <div class="actions">
+            <button class="tinybtn" data-act="say" data-id="${it.id}">Speak</button>
+            <button class="tinybtn" data-act="copy" data-id="${it.id}">Copy</button>
+            <button class="tinybtn" data-act="star" data-id="${it.id}">${isStar ? "★" : "☆"}</button>
+          </div>
+        `;
+        box.appendChild(el);
+      }
+    }
+
+    let toastTimer = null;
+    function toast(msg){
+      const t = $("#toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove("show"), 950);
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        toast("Copied.");
+      }catch(e){
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try{ document.execCommand("copy"); toast("Copied."); } catch(_) { toast("Copy failed."); }
+        document.body.removeChild(ta);
+      }
+    }
+
+    function speechOk(){
+      let nativeReady = false;
+      try{
+        nativeReady = !!(window.ArcadeNative && typeof ArcadeNative.speak === "function" &&
+          (typeof ArcadeNative.hasSpeech !== "function" || ArcadeNative.hasSpeech()));
+      }catch(e){}
+      return nativeReady || (!!window.speechSynthesis && typeof SpeechSynthesisUtterance !== "undefined");
+    }
+
+    function updateSpeechBadge(){
+      $("#speechOk").textContent = speechOk() ? "ready" : "off";
+    }
+
+    function speak(text){
+      if (!speechOk()){
+        toast("Speech not available.");
+        return;
+      }
+      const rate = +$("#rate").value;
+      const pitch = +$("#pitch").value;
+      let nativeReady = false;
+      try{ nativeReady = !!(window.ArcadeNative && typeof ArcadeNative.speak === "function" &&
+        (typeof ArcadeNative.hasSpeech !== "function" || ArcadeNative.hasSpeech())); }catch(e){}
+      if (nativeReady){
+        try{
+          ArcadeNative.speak(String(text || ""), rate, pitch);
+          toast("Speaking!");
+          return;
+        }catch(e){}
+      }
+      if (window.speechSynthesis.speaking || window.speechSynthesis.pending){
+        try { window.speechSynthesis.cancel(); } catch(e) {}
+        toast("Stopped.");
+        return;
+      }
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = rate;
+      u.pitch = pitch;
+      const voices = window.speechSynthesis.getVoices ? window.speechSynthesis.getVoices() : [];
+      u.voice = voices.find(v => /^en(-|_)/i.test(v.lang) && v.localService) || voices.find(v => /^en(-|_)/i.test(v.lang)) || null;
+      u.onerror = () => toast("Speech could not start.");
+      try{
+        window.speechSynthesis.cancel();
+        setTimeout(() => window.speechSynthesis.speak(u), 80);
+      }catch(e){
+        toast("Speech blocked.");
+      }
+    }
+
+    function openSheet(sel){
+      const el = $(sel);
+      el.classList.add("show");
+      el.setAttribute("aria-hidden", "false");
+    }
+
+    function closeSheet(sel){
+      const el = $(sel);
+      el.classList.remove("show");
+      el.setAttribute("aria-hidden", "true");
+    }
+
+    function showFront(){
+      $("#front").classList.add("show");
+    }
+
+    function hideFront(){
+      $("#front").classList.remove("show");
+    }
+
+    function updateTargetLabel(){
+      $("#targetLabel").textContent = targetLabel(state.target);
+    }
+
+    function renderChips(){
+      const grid = $("#chipGrid");
+      grid.innerHTML = "";
+      for (const k of TARGET_KINDS){
+        const el = document.createElement("div");
+        el.className = "chip";
+        el.setAttribute("data-kind", k.id);
+        const selected = state.target.kind === k.id;
+        el.style.borderColor = selected ? "rgba(124,247,255,.55)" : "rgba(255,255,255,.16)";
+        el.style.background = selected ? "rgba(124,247,255,.10)" : "rgba(255,255,255,.06)";
+        el.innerHTML = `
+          <div class="big">${k.label}</div>
+          <div class="small">${k.desc}</div>
+        `;
+        grid.appendChild(el);
+      }
+    }
+
+    function refreshNameUI(){
+      const k = TARGET_KINDS.find(x => x.id === state.target.kind) || TARGET_KINDS[0];
+      const needs = !!k.needsName;
+      $("#nameRow").style.display = needs ? "flex" : "none";
+      $("#targetHint").textContent = needs ? "Type a name, then tap Save." : "Done - it will say “you”.";
+      $("#nameInput").value = norm(state.target.name || "");
+    }
+
+    function generate(){
+      if (!state.settings.mode){
+        showFront();
+        return "";
+      }
+      const text = buildSentence(state.settings.mode);
+      $("#insultText").textContent = text;
+      addHistory(text, state.settings.mode);
+      return text;
+    }
+
+    $("#pickNice").addEventListener("click", () => {
+      state.settings.mode = "nice";
+      saveState(state);
+      updateModeLabel();
+      hideFront();
+      $("#insultText").textContent = "Nice mode ready. Tap Generate.";
+    });
+
+    $("#pickMean").addEventListener("click", () => {
+      state.settings.mode = "mean";
+      saveState(state);
+      updateModeLabel();
+      hideFront();
+      $("#insultText").textContent = "Mean mode ready. Tap Generate.";
+    });
+
+    $("#btnMode").addEventListener("click", showFront);
+    $("#btnGenerate").addEventListener("click", () => { generate(); });
+
+    $("#btnSpeak").addEventListener("click", () => {
+      const text = $("#insultText").textContent;
+      if (!text || text === "Tap Generate." || text.includes("mode ready")) {
+        const made = generate();
+        if (made) speak(made);
+      } else {
+        speak(text);
+      }
+    });
+
+    $("#btnCopy").addEventListener("click", () => copyText($("#insultText").textContent));
+
+    $("#btnStar").addEventListener("click", () => {
+      const cur = $("#insultText").textContent;
+      const it = state.history.find(x => x.text === cur);
+      if (!it){ toast("Generate first."); return; }
+      state.stars[it.id] = true;
+      saveState(state);
+      renderHistory();
+      toast("Starred ★");
+    });
+
+    $("#btnClear").addEventListener("click", () => {
+      const starIds = new Set(Object.keys(state.stars || {}));
+      state.history = (state.history || []).filter(it => starIds.has(it.id));
+      saveState(state);
+      renderHistory();
+      toast("Cleared.");
+    });
+
+    $("#btnHistory").addEventListener("click", () => {
+      renderHistory();
+      openSheet("#historyBackdrop");
+    });
+
+    $("#btnCloseHistory").addEventListener("click", () => closeSheet("#historyBackdrop"));
+    $("#historyBackdrop").addEventListener("click", (e) => {
+      if (e.target === $("#historyBackdrop")) closeSheet("#historyBackdrop");
+    });
+
+    $("#historyList").addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      const id = btn.getAttribute("data-id");
+      const act = btn.getAttribute("data-act");
+      const it = state.history.find(x => x.id === id);
+      if (!it) return;
+      if (act === "say"){
+        $("#insultText").textContent = it.text;
+        speak(it.text);
+      } else if (act === "copy"){
+        copyText(it.text);
+      } else if (act === "star"){
+        if (state.stars[id]) delete state.stars[id];
+        else state.stars[id] = true;
+        saveState(state);
+        renderHistory();
+      }
+    });
+
+    $("#btnTarget").addEventListener("click", () => {
+      renderChips();
+      refreshNameUI();
+      openSheet("#targetBackdrop");
+      setTimeout(() => {
+        const k = TARGET_KINDS.find(x => x.id === state.target.kind);
+        if (k && k.needsName) $("#nameInput").focus();
+      }, 60);
+    });
+
+    $("#btnCloseTarget").addEventListener("click", () => {
+      closeSheet("#targetBackdrop");
+      updateTargetLabel();
+      saveState(state);
+    });
+
+    $("#targetBackdrop").addEventListener("click", (e) => {
+      if (e.target === $("#targetBackdrop")) {
+        closeSheet("#targetBackdrop");
+        updateTargetLabel();
+        saveState(state);
+      }
+    });
+
+    $("#chipGrid").addEventListener("click", (e) => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      state.target.kind = chip.getAttribute("data-kind") || "you";
+      if (state.target.kind === "you") state.target.name = "";
+      renderChips();
+      refreshNameUI();
+    });
+
+    $("#btnSaveTarget").addEventListener("click", () => {
+      const name = norm($("#nameInput").value).replace(/[<>]/g, "").slice(0, 40);
+      state.target.name = name;
+      saveState(state);
+      renderChips();
+      refreshNameUI();
+      toast("Saved.");
+    });
+
+    function saveSettings(){
+      state.settings.rate = +$("#rate").value;
+      state.settings.pitch = +$("#pitch").value;
+      saveState(state);
+    }
+
+    function restoreSettings(){
+      const s = state.settings || {};
+      if (typeof s.rate === "number") $("#rate").value = s.rate;
+      if (typeof s.pitch === "number") $("#pitch").value = s.pitch;
+    }
+
+    window.InsultinatorAutosave = {
+      id: "insultinator",
+      title: "Insultinator",
+      version: 1,
+      capture: function(){
+        return {
+          state: JSON.parse(JSON.stringify(state)),
+          currentText: $("#insultText").textContent || ""
+        };
+      },
+      restore: function(saved){
+        if(!saved || !saved.state || typeof saved.state !== "object") throw new Error("Invalid Insultinator save");
+        const incoming = saved.state;
+        state = {
+          history: Array.isArray(incoming.history) ? incoming.history.slice(0,120) : [],
+          stars: incoming.stars && typeof incoming.stars === "object" ? incoming.stars : {},
+          settings: incoming.settings && typeof incoming.settings === "object" ? incoming.settings : {},
+          target: incoming.target && typeof incoming.target === "object" ? incoming.target : {kind:"you",name:""}
+        };
+        if(!["mean","nice"].includes(state.settings.mode)) state.settings.mode="";
+        if(!TARGET_KINDS.some(k=>k.id===state.target.kind)) state.target={kind:"you",name:""};
+        state.target.name=norm(state.target.name).replace(/[<>]/g,"").slice(0,40);
+        saveState(state);
+        closeSheet("#historyBackdrop"); closeSheet("#targetBackdrop");
+        restoreSettings(); updateTargetLabel(); updateModeLabel(); renderHistory();
+        const text=norm(saved.currentText || "");
+        $("#insultText").textContent=text || "Tap Generate.";
+        if(state.settings.mode) hideFront(); else showFront();
+      },
+      meaningful: function(){
+        return state.history.length>0 || !!state.settings.mode || state.target.kind!=="you" || !!norm(state.target.name);
+      },
+      summary: function(){
+        const count=state.history.length;
+        return count ? count+(count===1?" saved creation":" saved creations") : (state.settings.mode?cap(state.settings.mode)+" mode":"Saved settings");
+      },
+      startFresh: function(){
+        state={history:[],stars:{},settings:{mode:""},target:{kind:"you",name:""}};
+        try{localStorage.removeItem(STORAGE_KEY);}catch(_){}
+        $("#rate").value="1"; $("#pitch").value="1"; $("#insultText").textContent="Tap Generate.";
+        closeSheet("#historyBackdrop"); closeSheet("#targetBackdrop");
+        updateTargetLabel(); updateModeLabel(); renderHistory(); showFront();
+      }
+    };
+
+    $("#rate").addEventListener("input", saveSettings);
+    $("#pitch").addEventListener("input", saveSettings);
+
+    restoreSettings();
+    updateSpeechBadge();
+    setTimeout(updateSpeechBadge, 250);
+    updateTargetLabel();
+    updateModeLabel();
+    renderHistory();
+    showFront();
+  })();
+  </script>
+
+  <script src="../arcade-save.js"></script>
+  <script>ArcadeSave.register(window.InsultinatorAutosave);</script>
+
+
+</body>
+</html>

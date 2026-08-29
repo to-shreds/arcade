@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>Arcade - Memory Match</title>
+<style>
+
+        html, body { margin:0; padding:0; height:100%; background:#000; overflow:hidden; font-family:'Segoe UI', system-ui, -apple-system, Arial, sans-serif; color:#fff; }
+        body{ background: radial-gradient(circle at 25% 20%, #222 0%, #000 70%); touch-action: manipulation; overscroll-behavior:none; }
+        :root{
+            --ui-bg: rgba(255,255,255,0.07);
+            --ui-bg2: rgba(0,0,0,0.32);
+            --ui-border: rgba(255,255,255,0.16);
+            --ui-border-strong: rgba(255,255,255,0.28);
+            --ui-accent: #00e5ff;
+            --ui-gold: #ffd700;
+            --ui-radius: 14px;
+            --danger:#ff5252;
+            --ok:#7CFF6B;
+            --purple:#E040FB;
+        }
+        .ui-btn{
+            display:inline-flex; align-items:center; justify-content:center; gap:8px;
+            padding: 8px 12px; border-radius: var(--ui-radius);
+            border: 1px solid var(--ui-border); background: var(--ui-bg); color:#fff;
+            font-weight: 900; letter-spacing: 0.2px; user-select:none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ui-btn:active{ transform: scale(0.98); border-color: var(--ui-border-strong); background: rgba(255,255,255,0.10); }
+        .topbar{
+  position:relative;
+  width:min(980px, 100%);
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:8px;
+  pointer-events:none;
+  z-index:20;
+  flex:0 0 auto;
+}
+        .topbar .left, .topbar .right{ display:flex; gap:6px; align-items:flex-start; pointer-events:auto; min-width:0; }
+        .topbar .left{ flex:1 1 auto; overflow:hidden; }
+        .topbar .right{ flex:0 0 auto; }
+        .status-stack{ flex-direction:column; gap:4px !important; }
+        .menu-btn-small{ padding: 5px 8px; min-width: 34px; font-size: 12px; }
+        .pill{
+            display:inline-flex; align-items:center; gap:8px;
+            padding: 7px 12px; border-radius: 999px;
+            border: 1px solid var(--ui-border); background: var(--ui-bg2);
+            font-weight: 1000; letter-spacing:0.1px; font-size:18px;
+            user-select:none;
+            line-height:1;
+            white-space:nowrap;
+            flex:0 0 auto;
+            max-width:100%;
+            overflow:hidden; text-overflow:ellipsis;
+        }
+        .overlay{
+            position:absolute; inset:0; z-index:50;
+            background: rgba(0,0,0,0.95);
+            display:flex; align-items:center; justify-content:center;
+            padding: 10px;
+        }
+        .panel{
+            width:min(600px, 96vw);
+            max-height: min(94vh, 760px);
+            overflow:auto;
+            border: 1px solid var(--ui-border);
+            background: rgba(255,255,255,0.06);
+            border-radius: 18px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+            padding: 10px 10px 8px;
+        }
+        .panel h1{
+            margin: 0 0 4px;
+            font-size: 21px;
+            color: var(--ui-gold);
+            text-shadow: 0 0 18px rgba(255,215,0,0.35);
+            letter-spacing: 0.8px;
+            text-align:center;
+            line-height:1.05;
+        }
+        .panel .sub{ display:none; }
+        .row{ display:grid; gap:6px; grid-template-columns: repeat(3, minmax(0,1fr)); align-items:start; }
+        .opt{
+            min-width: 0;
+            border: 1px solid var(--ui-border);
+            background: rgba(0,0,0,0.20);
+            border-radius: 14px;
+            padding: 7px;
+        }
+        .opt label{ display:block; font-weight: 900; margin-bottom: 4px; font-size:11px; line-height:1; }
+        select, input[type="range"]{
+            width:100%;
+            border-radius: 12px;
+            border: 1px solid var(--ui-border);
+            background: rgba(255,255,255,0.08);
+            color:#fff;
+            padding: 8px 10px;
+            font-weight: 900;
+            font-size: 13px;
+            outline:none;
+        }
+        select option{ background:#111; color:#fff; }
+
+        .native-select{ display:none !important; }
+        .choice-grid{
+            display:grid;
+            gap:6px;
+            grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+        }
+        .choice-grid.cols-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+        .choice-grid.cols-3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+        .choice-grid.cols-4{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+        .choice-btn{
+            border-radius: 11px;
+            border: 1px solid var(--ui-border);
+            background: rgba(255,255,255,0.06);
+            color:#fff;
+            padding: 8px 8px;
+            font-weight: 900;
+            font-size: 12px;
+            line-height:1.1;
+            text-align:center;
+            user-select:none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .choice-btn:active{ transform: scale(0.98); }
+        .choice-btn.active{
+            border-color: rgba(255,215,0,0.85);
+            background: rgba(255,215,0,0.14);
+            box-shadow: inset 0 0 0 1px rgba(255,215,0,0.25);
+            color:#fff3b0;
+        }
+        .theme-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+        .more-players-row{ margin-top:6px; display:flex; gap:6px; }
+        .more-players-row .choice-btn{ width:100%; }
+        .player-extra{ display:none; }
+        .player-extra.show-extra-players{ display:grid; }
+        .dot.p5{ background: rgba(124,255,107,0.95); }
+        .dot.p6{ background: rgba(255,152,0,0.95); }
+        .dot.p7{ background: rgba(3,169,244,0.95); }
+        .dot.p8{ background: rgba(255,64,129,0.95); }
+
+        .size-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+        @media (max-width: 520px){
+            .size-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+        }
+        .btn-large{
+            display:block; width:100%;
+            border-radius: 16px;
+            border: 2px solid #555;
+            background:#333;
+            color:#fff;
+            padding: 12px 14px;
+            font-size: 17px;
+            font-weight: 1000;
+            letter-spacing: 0.4px;
+            text-align:center;
+            user-select:none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-large:active{ transform: scale(0.985); background:#3d3d3d; }
+        .panel-head{ position:relative; padding-right:116px; }
+        .panel-top-back{ position:absolute; top:0; right:0; padding:7px 10px; border-radius:12px; font-size:12px; line-height:1; }
+        .small-note{ color: rgba(255,255,255,0.70); font-size: 12px; text-align:center; margin-top:8px; }
+        .hr{ height:1px; background: rgba(255,255,255,0.10); margin: 10px 0; }
+        .hidden{ display:none !important; }
+
+#scoreBar{ display:flex; gap:5px; align-items:center; justify-content:flex-start; flex-wrap:nowrap; min-width:0; max-width:100%; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+#scoreBar::-webkit-scrollbar{ display:none; }
+
+#game {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:flex-start;
+  gap: 8px;
+  padding: calc(env(safe-area-inset-top, 0px) + 8px) 10px max(12px, calc(env(safe-area-inset-bottom, 0px) + 8px));
+  box-sizing:border-box;
+}
+.topbar.compact .pill{ font-size:13px; padding:5px 8px; }
+.topbar.compact .chip{ font-size:11px; padding:4px 7px; }
+.topbar.compact .menu-btn-small{ padding:4px 7px; min-width:30px; }
+.topbar.regular .pill{ font-size:15px; padding:6px 10px; }
+#board {
+  flex: 1 1 auto;
+  width:min(860px, 96vw);
+  max-height: 100%;
+  display:grid;
+  gap: 10px;
+  align-content:center;
+  justify-content:center;
+}
+.card {
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  border: 2px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  display:flex; align-items:center; justify-content:center;
+  user-select:none;
+  -webkit-tap-highlight-color: transparent;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  padding: 0;
+  perspective: 900px;
+}
+.card:active{ transform: scale(0.985); }
+.card-inner{
+  position:absolute; inset:0;
+  transform-style: preserve-3d;
+  transition: transform 220ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.card.revealed .card-inner, .card.matched .card-inner{ transform: rotateY(180deg); }
+.card-face{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  backface-visibility: hidden;
+}
+.card-back{
+  background: rgba(0,0,0,0.15);
+}
+.card-back .back-mark{
+  font-weight: 1000;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.75);
+  font-size: clamp(14px, 2.5vmin, 22px);
+}
+.card-front{
+  transform: rotateY(180deg);
+}
+.card-front .face{
+  font-size: clamp(40px, 7.5vmin, 112px);
+  line-height:1;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+}
+.card.matched {
+  border-color: rgba(124,255,107,0.55);
+  background: rgba(124,255,107,0.10);
+}
+
+
+.card.matched.owner-1{ border-color: rgba(0,229,255,0.75); background: rgba(0,229,255,0.12); box-shadow: 0 0 0 3px rgba(0,229,255,0.18) inset, 0 10px 24px rgba(0,0,0,0.35); }
+.card.matched.owner-2{ border-color: rgba(224,64,251,0.75); background: rgba(224,64,251,0.12); box-shadow: 0 0 0 3px rgba(224,64,251,0.18) inset, 0 10px 24px rgba(0,0,0,0.35); }
+.card.matched.owner-3{ border-color: rgba(255,215,0,0.75); background: rgba(255,215,0,0.12); box-shadow: 0 0 0 3px rgba(255,215,0,0.18) inset, 0 10px 24px rgba(0,0,0,0.35); }
+.card.matched.owner-4{ border-color: rgba(255,82,82,0.78); background: rgba(255,82,82,0.12); box-shadow: 0 0 0 3px rgba(255,82,82,0.18) inset, 0 10px 24px rgba(0,0,0,0.35); }
+.card.matched.owner-5{ border-color: rgba(124,255,107,0.75); background: rgba(124,255,107,0.12); box-shadow: 0 0 0 3px rgba(124,255,107,0.18) inset, 0 10px 24px rgba(0,0,0,0.35); }
+.card.matched.owner-6{ border-color: rgba(255,152,0,0.75); background: rgba(255,152,0,0.12); box-shadow: 0 0 0 3px rgba(255,152,0,0.18) inset, 0 10px 24px rgba(0,0,0,0.35); }
+.card.matched.owner-7{ border-color: rgba(3,169,244,0.75); background: rgba(3,169,244,0.12); box-shadow: 0 0 0 3px rgba(3,169,244,0.18) inset, 0 10px 24px rgba(0,0,0,0.35); }
+.card.matched.owner-8{ border-color: rgba(255,64,129,0.75); background: rgba(255,64,129,0.12); box-shadow: 0 0 0 3px rgba(255,64,129,0.18) inset, 0 10px 24px rgba(0,0,0,0.35); }
+
+
+.card.wrong-flash{
+  border-color: rgba(255,255,255,0.98) !important;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.92) inset, 0 0 18px rgba(255,255,255,0.60), 0 10px 24px rgba(0,0,0,0.35);
+  animation: wrongFlash 240ms ease-in-out 4;
+}
+@keyframes wrongFlash{
+  0%, 100%{
+    border-color: rgba(255,255,255,0.55);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.28) inset, 0 10px 24px rgba(0,0,0,0.35);
+  }
+  50%{
+    border-color: rgba(255,255,255,1);
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.96) inset, 0 0 18px rgba(255,255,255,0.66), 0 10px 24px rgba(0,0,0,0.35);
+  }
+}
+
+.card.free{ cursor: default; border-style: dashed; opacity: 0.85; }
+.card.free .card-inner{ transform: rotateY(180deg) !important; }
+.card.free .card-front .face{ filter: none; opacity: 0.95; }
+
+
+.chip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--ui-border);
+  background: rgba(0,0,0,0.38);
+  font-weight: 1000;
+  letter-spacing: 0.1px;
+  font-size: 15px;
+  line-height:1;
+  flex:0 1 auto;
+  min-width:0;
+  max-width:100%;
+  justify-content:center;
+  overflow:visible;
+  white-space:nowrap;
+}
+.dot{
+  width: 11px; height: 11px; border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+.p1{ background: rgba(0,229,255,0.95); }
+.p2{ background: rgba(224,64,251,0.95); }
+.p3{ background: rgba(255,215,0,0.95); }
+.p4{ background: rgba(255,82,82,0.95); }
+.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--ui-gold); }
+.badge {
+  position:absolute; bottom:8px; right:8px;
+  font-size: 12px; font-weight: 1000;
+  padding: 4px 8px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.25);
+  color: rgba(255,255,255,0.8);
+  pointer-events:none;
+}
+@media (max-height: 700px){
+  #board{ gap: 8px; }
+}
+@media (max-width: 700px){
+  .ui-btn{ padding: 5px 8px; font-size: 11px; }
+  .topbar{ gap:6px; }
+  .topbar .right{ gap:4px; }
+  .pill{ font-size: 17px; padding: 6px 10px; }
+  .chip{ font-size: 14px; padding: 5px 8px; }
+}
+@media (max-width: 520px){
+  .pill{ max-width: 100%; }
+  .chip{ font-size: 13px; padding: 5px 7px; }
+}
+
+.turn-panel{ width:min(460px, 94vw); text-align:center; }
+.turn-name{ font-size: clamp(34px, 6vw, 52px); color: var(--ui-gold); font-weight: 1000; letter-spacing: 1px; margin: 2px 0; text-shadow: 0 0 18px rgba(255,215,0,0.25); }
+.turn-sub{ color: rgba(255,255,255,0.82); font-size: 15px; margin-bottom: 14px; }
+.final-scores{ display:flex; flex-direction:column; gap:10px; margin-top: 12px; }
+.awards-actions{ display:flex; flex-direction:column; gap:10px; margin-top: 16px; align-items:stretch; }
+.awards-primary{ display:block; width:100%; padding: 26px 18px; font-size: clamp(30px, 5.6vw, 42px); font-weight: 1000; border-radius: 22px; border: 4px solid #ffe66d; background: linear-gradient(180deg, #ffe66d 0%, #ffd700 40%, #ffb300 100%); color:#111; box-shadow: 0 16px 34px rgba(255,215,0,0.38), 0 0 26px rgba(255,215,0,0.24); letter-spacing: 1.4px; text-transform: uppercase; min-height: 92px; }
+.awards-primary:active{ transform: scale(0.985); }
+.awards-secondary{ align-self:center; padding: 6px 12px; font-size: 12px; min-width: 0; width: auto; opacity: 0.82; border-color: rgba(255,255,255,0.14); background: rgba(255,255,255,0.04); }
+.final-score-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding: 12px 14px; border-radius: 16px; border:1px solid var(--ui-border); background: rgba(255,255,255,0.06); font-weight: 900; }
+.final-score-name{ display:flex; align-items:center; gap:10px; min-width:0; }
+.final-score-dot{ width:14px; height:14px; border-radius:50%; box-shadow:0 0 10px rgba(255,255,255,0.18); flex:0 0 14px; }
+.final-score-points{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--ui-gold); font-size: 20px; }
+.names-wrap{ margin-top:5px; }
+.names-label{ display:block; font-size:10px; font-weight:900; margin: 3px 0; line-height:1; }
+.name-input{ width:100%; border-radius: 10px; border: 1px solid var(--ui-border); background: rgba(255,255,255,0.08); color:#fff; padding: 6px 8px; font-weight: 900; font-size: 12px; outline:none; box-sizing:border-box; }
+.team-wrap{ margin-top: 6px; }
+.team-grid{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:5px; }
+.team-field{ display:flex; align-items:center; gap:5px; }
+.team-field input{ flex:1 1 auto; min-width:0; }
+.team-select{ display:none !important; }
+.team-choice-grid{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:4px; width:124px; flex:0 0 124px; }
+.team-choice-btn{ border-radius: 9px; border: 1px solid var(--ui-border); background: rgba(255,255,255,0.06); color:#fff; padding: 6px 0; font-weight:900; font-size:11px; line-height:1; text-align:center; -webkit-tap-highlight-color: transparent; }
+.team-choice-btn:active{ transform: scale(0.98); }
+.team-choice-btn.active{ background: rgba(255,215,0,0.16); border-color: rgba(255,215,0,0.7); color:#ffd700; box-shadow: 0 0 0 1px rgba(255,215,0,0.22) inset; }
+.team-badge{ display:inline-flex; align-items:center; justify-content:center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; border:1px solid var(--ui-border); background: rgba(255,255,255,0.08); color: #fff; font-size: 9px; font-weight: 1000; letter-spacing: 0.3px; }
+.team-summary{ color: rgba(255,255,255,0.78); font-size: 10px; text-align:center; margin-top: 3px; line-height:1; }
+.team-names-grid{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:5px; margin-top: 5px; }
+.team-name-field input{ width:100%; }
+.panel-footer{ position: sticky; bottom: -8px; background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.45) 24%, rgba(0,0,0,0.45)); padding-top: 5px; margin-top: 6px; }
+@media (max-width: 760px){ .row{ grid-template-columns: 1fr; } }
+@media (max-width: 520px){ .team-grid{ grid-template-columns: 1fr; } .team-names-grid{ grid-template-columns: 1fr; } .panel{ width:min(520px, 96vw); padding: 8px 8px 6px; } .panel h1{ font-size:18px; } .btn-large{ padding: 11px 12px; font-size:16px; } .awards-primary{ padding: 22px 14px; font-size: clamp(26px, 7vw, 34px); min-height: 84px; } }
+@media (max-height: 720px){ .overlay{ padding: 6px; } .panel{ max-height: 96vh; } .panel h1{ font-size:18px; margin-bottom: 2px; } .opt{ padding: 6px; } select{ padding: 7px 8px; font-size:12px; } .name-input{ padding: 5px 7px; font-size:11px; } .team-choice-grid{ width:116px; flex-basis:116px; } .team-choice-btn{ padding:5px 0; font-size:10px; } .panel-footer{ margin-top: 4px; } }
+
+
+.awards-list{ display:flex; flex-direction:column; gap:10px; margin-top: 10px; }
+.award-card{
+  display:flex; gap:12px; align-items:flex-start;
+  padding: 10px 10px;
+  border-radius: 16px;
+  border: 1px solid var(--ui-border);
+  background: rgba(255,255,255,0.06);
+}
+.award-icon{ font-size: 30px; line-height: 1; width: 44px; text-align:center; flex: 0 0 44px; }
+.award-text{ flex:1; min-width: 0; }
+.award-line{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+.award-title{ font-weight: 1000; letter-spacing: 0.4px; color: var(--ui-gold); }
+.award-player{ font-weight: 1000; color:#fff; opacity: 0.95; }
+.award-desc{ margin-top: 4px; color: rgba(255,255,255,0.74); font-size: 13px; line-height: 1.25; }
+.awards-panel .row{ flex-wrap: wrap; }
+.awards-panel .btn-large{ width:100%; }
+.awards-panel .awards-primary{ width:100%; }
+
+</style>
+<style id="arcade-fit-fix">
+*,*::before,*::after{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body>*{min-width:0;max-width:100%}
+.app,.main,.game-view,#game-view,.wrap,.game-area,.overlay{min-width:0;max-width:100%}
+.main{grid-template-columns:minmax(0,1fr)!important}
+.topbar,.footer,.status,.scorebar,.controls,.sumbar,.table,[class*="top"],[class*="bar"],[class*="controls"],[class*="savebar"]{max-width:100%;min-width:0}
+.topbar>*,.status>*,.row>*,[class*="top"]>*,[class*="bar"]>*{min-width:0}
+.row.nowrap{flex-wrap:wrap!important}
+button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.actionBtn,.btn-large-opt{max-width:100%;min-width:0;touch-action:manipulation;font-size:clamp(11px,3.2vw,15px);line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel,.frontCard,.pm-menu-wrap,.modalBody,.settings-panel,#cat-menu .cat-grid,#cat-menu,.overlay>.panel{max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 16px)!important;overflow:hidden!important;box-sizing:border-box!important}
+.cat-btn,.btn-large-opt,.panel button,.frontCard button,.pm-menu-wrap button,.modalBody button{white-space:normal!important}
+.hud-bar,.question-box,.answers-grid{box-sizing:border-box!important;max-width:calc(100vw - 16px)!important}
+@media (max-width:520px),(max-height:720px){
+  .arcade-home-link,.back-btn,#menuBtn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;border-radius:999px!important;max-width:104px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;left:calc(env(safe-area-inset-left,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .settings-btn,.gear-btn,#settingsBtn,#global-settings-btn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .bj-savebar{display:flex!important;gap:4px!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important;max-width:calc(100vw - 118px)!important;flex-wrap:wrap!important;justify-content:flex-end!important}
+  .bj-savebar .ui-btn{padding:7px 8px!important;font-size:12px!important;line-height:1!important}
+  .topbar,.ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{height:auto!important;min-height:44px!important;padding-top:6px!important;padding-bottom:6px!important;gap:6px!important;flex-wrap:wrap!important;align-content:center!important}
+  .topbar{padding-left:max(8px,env(safe-area-inset-left,0px))!important;padding-right:max(8px,env(safe-area-inset-right,0px))!important}
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:76px!important;padding-right:8px!important}
+  .ck-top>div,.ttt-top>div,.mz-top>div,.mg-top>div,.si-top>div,.ms-top>div{display:flex!important;flex-wrap:wrap!important;gap:4px!important;min-width:0!important;max-width:100%!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{padding:6px 8px!important;font-size:12px!important;gap:5px!important;white-space:nowrap!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{padding:7px 8px!important;font-size:12px!important;min-height:0!important}
+  #modePvp,#modeCpu{white-space:normal!important;line-height:1!important}
+  #g-dots .top{padding-left:72px!important;gap:5px!important}
+  #g-dots .row{gap:5px!important;flex-wrap:wrap!important;justify-content:center!important}
+  #g-dots .pill{padding:5px 7px!important;font-size:12px!important;white-space:nowrap!important}
+  #g-dots .status-pill{flex:1 1 100%!important;margin-left:0!important;max-width:100%!important}
+  #g-dots canvas{max-width:calc(100vw - 20px)!important;max-height:calc(100svh - 154px)!important}
+  #g-hangman .top-bar{min-height:42px!important;padding:4px 8px!important;gap:4px!important}
+  #g-hangman .hm-left-slot{flex-basis:68px!important;width:68px!important}
+  #g-hangman .cat-pill{font-size:11px!important;padding:5px 8px!important}
+  #g-hangman .hm-status{gap:5px!important;max-width:50vw!important}
+  #g-hangman canvas{max-height:18vh!important}
+  #g-hangman #word-display{font-size:clamp(24px,8vw,34px)!important;min-height:34px!important;margin:2px 0!important}
+  #g-hangman #hint-box{font-size:12px!important;min-height:18px!important;padding:4px 8px!important}
+  #g-hangman .controls{gap:4px!important;padding:0 6px 2px!important;flex-wrap:nowrap!important}
+  #g-hangman .btn-hint,#g-hangman .btn-risk{padding:6px 6px!important;font-size:11px!important;gap:2px!important;box-shadow:none!important;flex:1 1 0!important;justify-content:center!important}
+  #g-hangman .keyboard{gap:3px!important;padding:3px!important;width:calc(100vw - 12px)!important;margin-bottom:2px!important}
+  #g-hangman .key{height:clamp(30px,6.6vh,42px)!important;font-size:clamp(15px,5vw,20px)!important;border-bottom-width:2px!important;border-radius:6px!important}
+  #g-orbslicer .orb-ui{left:6px!important;right:6px!important;top:42px!important;gap:4px!important}
+  #g-orbslicer .orb-pill{padding:5px 7px!important;font-size:12px!important;letter-spacing:0!important}
+  #g-orbslicer .orb-lives{font-size:13px!important;letter-spacing:0!important}
+  #g-minigolf #mg-menu{gap:8px!important;padding:12px 10px!important;justify-content:flex-start!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(30px,10vw,48px)!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:9px 10px!important;font-size:12px!important;min-height:0!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:8px!important}
+  .math-box{width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;left:auto!important;right:auto!important}
+  .hud-bar{padding:8px 10px!important;width:calc(100vw - 16px)!important;gap:4px!important}
+  .question-box{width:calc(100vw - 16px)!important;padding:14px!important;min-height:130px!important}
+  .cat-grid{gap:8px!important}
+  .cat-btn{padding:12px 8px!important;font-size:clamp(13px,4vw,18px)!important}
+  .menu-title{font-size:clamp(32px,11vw,48px)!important;margin:0!important}
+}
+@media (max-width:360px){
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:66px!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{font-size:11px!important;padding:5px 7px!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{font-size:11px!important;padding:6px 7px!important}
+  #g-dots .top{padding-left:64px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .wrap{gap:6px!important}
+  .titlebar{padding:6px 8px!important;gap:6px!important}
+  .layout{gap:6px!important}
+  .side{min-height:0!important;overflow:hidden!important}
+  .side .panel{max-height:calc(100svh - 410px)!important;overflow:hidden!important}
+  .panel .phead{padding:6px 8px!important}
+  .panel .pbody{padding:6px 8px!important}
+  #g-dots #menuOverlay .dots-mode-row,#g-dots #menuOverlay .dots-ai-row,#g-dots #menuOverlay .grid-options{width:100%!important;max-width:100%!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn{padding:6px 5px!important;font-size:11px!important;min-width:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  #g-dots .dots-menu-card{padding:6px!important;gap:5px!important;max-height:calc(100svh - 12px)!important}
+  #g-dots .dots-section-card{padding:5px!important;gap:4px!important}
+  #g-dots .dots-swatch-btn{padding:5px!important;font-size:10px!important;gap:3px!important}
+  #g-dots .dots-swatch-chip{width:16px!important;height:16px!important}
+  #g-dots .dots-swatch-hex{font-size:9px!important;letter-spacing:0!important}
+  .btn-large-opt{min-height:32px!important;line-height:1.15!important}
+  .ttt-piece-btn{white-space:normal!important;font-size:11px!important;line-height:1.05!important;padding:7px 8px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .modalPanel{max-height:calc(100svh - 14px)!important;overflow:hidden!important;padding:8px!important}
+  .modalHead{margin-bottom:5px!important}
+  .optRow{padding:6px!important;margin:5px 0!important;gap:6px!important}
+  .optRow .label .desc{font-size:10px!important;line-height:1.15!important}
+  .seg button{font-size:10px!important;padding:6px 7px!important;line-height:1.05!important;white-space:normal!important}
+}
+</style>
+<link rel="icon" href="data:,">
+<style id="arcade-v6-size-fix">
+@media (max-width:520px),(max-height:720px){
+  html,body{height:100%;overflow:hidden!important}
+  .panel,.frontCard,.pm-menu-wrap,.modal,.modalBody,.settings-panel,.overlay>.panel{overflow:hidden!important;max-height:calc(100svh - 8px)!important}
+  .small-note,.menu-sub,.sub{line-height:1.12!important}
+  .panel h1,.splash-title,.menu-title{line-height:1!important}
+  .panel button,.frontCard button,.pm-menu-wrap button,.modalBody button,.btn-large,.btn-large-opt{min-height:0!important}
+  .overlay,.modalBack,.front{padding:6px!important}
+  .app,.wrap{height:100svh!important;min-height:0!important;max-height:100svh!important;overflow:hidden!important}
+  .main,.game-area,.game-view,#game-view,.layout,.boardShell,.board-wrap,.side,.stage,#stage{min-height:0!important;overflow:hidden!important}
+  .rules{margin:6px 0!important;gap:5px!important}
+  .rulecard{padding:7px!important;font-size:10px!important;line-height:1.15!important;border-radius:10px!important}
+  .rulecard strong{margin-bottom:2px!important}
+  .panel>p{display:none!important}
+  .settingcard{padding:8px!important;margin:6px 0!important;border-radius:12px!important}
+  .settingcard p{display:none!important}
+  .optionrow{gap:5px!important;margin-bottom:7px!important}
+  .names{gap:5px!important;margin-bottom:7px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #g-dots #menuOverlay{padding:4px!important;gap:4px!important}
+  #g-dots .dots-menu-card{padding:5px!important;gap:4px!important;width:100%!important;max-height:calc(100svh - 8px)!important;overflow:hidden!important}
+  #g-dots .splash-title{font-size:20px!important;margin:0!important}
+  #g-dots .menu-sub,#g-dots .dots-subtle,#g-dots .dots-color-hint,#g-dots #dotsAiWrap div[style*="font-size:10px"]{display:none!important}
+  #g-dots .dots-menu-head{gap:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important}
+  #g-dots .dots-mode,#g-dots #dotsPlayerCountWrap,#g-dots #dotsAiWrap,#g-dots .dots-section-card.dots-colors,#g-dots .dots-section-card.dots-grid-card{grid-column:auto!important}
+  #g-dots .dots-section-card{padding:4px!important;gap:3px!important;border-radius:9px!important}
+  #g-dots .dots-sec-title{font-size:8px!important;margin:0!important;line-height:1!important}
+  #g-dots .dots-mode-row,#g-dots .dots-player-row,#g-dots .dots-ai-row,#g-dots .dots-toggles-row{gap:3px!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{padding:5px 3px!important;font-size:9px!important;line-height:1.05!important;border-radius:7px!important}
+  #g-dots .dots-name-grid,#g-dots .dots-team-grid,#g-dots .dots-team-name-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-mini-label{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-name-field,#g-dots .dots-team-field,#g-dots .dots-team-name-field{gap:2px!important}
+  #g-dots .dots-name-input,#g-dots .dots-team-select{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #g-dots .dots-toggle-pill{padding:4px 5px!important;font-size:8px!important;gap:3px!important;line-height:1.05!important}
+  #g-dots .dots-toggle-pill input{width:12px!important;height:12px!important}
+  #g-dots .dots-color-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-color-item{gap:1px!important}
+  #g-dots .dots-color-name{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-swatch-btn{padding:3px!important;gap:2px!important;border-radius:7px!important;border-width:1px!important}
+  #g-dots .dots-swatch-chip{width:18px!important;height:14px!important;border-radius:5px!important}
+  #g-dots .dots-swatch-hex{font-size:7px!important;letter-spacing:0!important}
+  #g-dots .grid-options{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important;width:100%!important}
+  .front{align-items:center!important}
+  .frontCard{padding:8px!important;border-radius:18px!important}
+  .frontHeader{padding:4px!important;margin-bottom:6px!important}
+  .frontTitle{font-size:18px!important;line-height:1!important}
+  .frontHeader .mini,.modeDesc,.modeExamples{display:none!important}
+  .modeGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+  .modeCard{padding:12px 7px!important;border-radius:14px!important;text-align:center!important}
+  .modeTitle{font-size:16px!important;line-height:1.05!important}
+  #startOverlay .panel h1{font-size:20px!important;margin:0 0 4px!important}
+  #startOverlay .panel .sub,#startOverlay .small-note{display:none!important}
+  #startOverlay .panel{padding:8px!important;border-radius:14px!important}
+  #startOverlay .row{gap:5px!important}
+  #startOverlay .opt{padding:6px!important;min-width:0!important;border-radius:10px!important}
+  #startOverlay .opt label{font-size:10px!important;margin-bottom:3px!important}
+  #startOverlay select,#startOverlay input[type="range"]{padding:6px 8px!important;font-size:12px!important}
+  #startOverlay .toggle-row{padding:6px 8px!important;margin-top:5px!important;border-radius:10px!important}
+  #startOverlay .t-desc{display:none!important}
+  #startOverlay .hr{margin:5px 0!important}
+  #startOverlay .btn-large{padding:8px 9px!important;font-size:13px!important;border-radius:11px!important}
+  #startBackBtn,#loadStartBtn{margin-top:5px!important}
+  #startOverlay .pm-menu-wrap{gap:6px!important;padding:0!important}
+  #startOverlay .pm-card{padding:8px!important;border-radius:12px!important}
+  #startOverlay .pm-pill-row{gap:4px!important}
+  #startOverlay .pm-pill{padding:7px 8px!important;font-size:12px!important}
+  #startOverlay .btn-large-opt{padding:9px 10px!important;font-size:13px!important;border-radius:11px!important}
+  #startOverlay.splash-title,.splash-title{font-size:clamp(26px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu{gap:5px!important;padding:8px!important;justify-content:center!important;overflow:hidden!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(24px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu>div[style*="max-width:520px"],#g-minigolf #mg-diff-wrap>div:last-child{display:none!important}
+  #g-minigolf #mg-best-line{font-size:11px!important;margin-top:0!important;padding:0!important}
+  #g-minigolf #mg-diff-wrap{margin-top:2px!important;gap:4px!important}
+  #g-minigolf #mg-diff-wrap>div:first-child{font-size:10px!important;line-height:1!important}
+  #g-minigolf #mg-diff-wrap .ui-btn{padding:6px 8px!important;font-size:11px!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:5px!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:7px 9px!important;font-size:12px!important;max-width:240px!important}
+  .pm-menu-wrap .small-note,.pm-menu-wrap+.small-note{display:none!important}
+  .modalBack{align-items:center!important}
+  .modal{max-height:calc(100svh - 8px)!important;overflow:hidden!important;border-radius:16px!important}
+  .modalHeader{position:static!important;padding:7px 9px!important}
+  .modalTitle{font-size:14px!important}
+  .modalBody{padding:8px!important;gap:6px!important;overflow:hidden!important}
+  .grid2,.namesGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  label{gap:3px!important;font-size:9px!important;line-height:1!important}
+  input[type="text"],input[type="number"],select{padding:5px 7px!important;font-size:11px!important;border-radius:8px!important}
+  .nameRow{gap:3px!important}
+  .nameLabel{font-size:9px!important;gap:4px!important;line-height:1!important}
+  .helper{display:none!important}
+  .footerActions{gap:5px!important;justify-content:center!important}
+  .footerActions button{padding:7px 10px!important;font-size:12px!important}
+  #startOverlay .panel-head{padding-right:88px!important}
+  #startOverlay .panel-top-back{padding:5px 7px!important;font-size:10px!important;max-width:82px!important}
+  #startOverlay .choice-grid{gap:3px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{padding:5px 3px!important;font-size:9px!important;border-radius:8px!important}
+  #startOverlay .more-players-row{margin-top:3px!important;gap:3px!important}
+  #startOverlay .theme-grid,#startOverlay .size-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #startOverlay .names-wrap,#startOverlay .team-wrap{margin-top:3px!important}
+  #startOverlay .names-label{font-size:8px!important;margin:2px 0!important}
+  #startOverlay .name-input{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #startOverlay .team-choice-grid{width:88px!important;flex-basis:88px!important;gap:2px!important}
+  #startOverlay .team-grid,#startOverlay .team-names-grid{gap:3px!important}
+  #startOverlay .panel-footer{position:static!important;padding-top:2px!important;margin-top:2px!important;background:none!important}
+  #startOverlay .row{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  body.memory-game #game{gap:6px!important;padding:calc(env(safe-area-inset-top,0px) + 8px) 8px max(8px,calc(env(safe-area-inset-bottom,0px) + 6px))!important}
+  body.memory-game #board{flex:0 0 auto!important;max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 64px)!important;overflow:hidden!important;align-content:start!important}
+  body.memory-game .card-front .face{font-size:clamp(25px,8vmin,48px)!important}
+}
+@media (max-width:360px){
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{font-size:8px!important;padding:4px 2px!important}
+  .modeTitle{font-size:14px!important}
+  .modalBody{gap:4px!important}
+  input[type="text"],input[type="number"],select{padding:4px 6px!important;font-size:10px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{font-size:8px!important;padding:4px 2px!important}
+}
+</style>
+
+<style id="arcade-v6-late-fix">
+@media (max-width:520px),(max-height:720px){
+  body.make10-game .app{gap:4px!important;padding:5px 8px!important}
+  body.make10-game .main{gap:4px!important;grid-template-rows:auto auto auto auto minmax(0,1fr)!important}
+  body.make10-game .topbar{padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .title{font-size:14px!important;line-height:1!important}
+  body.make10-game .subtitle,body.make10-game .status .small,body.make10-game .comboNote{display:none!important}
+  body.make10-game .turnpill{padding:5px 8px!important;font-size:11px!important}
+  body.make10-game .scorebar{gap:4px!important;padding:4px!important}
+  body.make10-game .scorechip{padding:4px!important;border-radius:10px!important}
+  body.make10-game .scorechip .name{font-size:10px!important}
+  body.make10-game .scorechip .score{font-size:14px!important}
+  body.make10-game .controls{gap:4px!important;padding:4px!important}
+  body.make10-game .controls button{min-height:30px!important;padding:6px 7px!important;font-size:11px!important}
+  body.make10-game .status{min-height:34px!important;padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .status .message{font-size:12px!important;line-height:1.05!important}
+  body.make10-game .sumbar{padding:5px!important;border-radius:12px!important}
+  body.make10-game .sumfocus{gap:4px!important}
+  body.make10-game .sumlabel{font-size:10px!important}
+  body.make10-game .sumcore{gap:6px!important}
+  body.make10-game .sumactions{gap:4px!important;width:88px!important}
+  body.make10-game .sumactions button{min-height:30px!important;padding:5px!important;font-size:11px!important}
+  body.make10-game .totalbox{width:140px!important;min-height:45px!important;border-radius:14px!important}
+  body.make10-game .total{font-size:34px!important}
+  body.make10-game .table{gap:4px!important}
+  body.make10-game .card{min-height:48px!important;border-radius:11px!important;padding:4px!important;border-width:1px!important}
+  body.make10-game .centerValue{font-size:28px!important}
+  body.make10-game .corner{font-size:9px!important;left:5px!important;top:4px!important}
+  body.make10-game .corner.bottom{right:5px!important;bottom:4px!important}
+  body.make10-game .footer{padding:5px 7px!important;font-size:10px!important;border-radius:12px!important}
+  #g-clock{justify-content:center!important;gap:6px!important;padding-top:34px!important;padding-bottom:6px!important;box-sizing:border-box!important;overflow:hidden!important}
+  #g-clock .clock-face{width:206px!important;height:206px!important;border-width:6px!important;margin:0 0 6px!important;box-sizing:border-box!important}
+  #g-clock .clock-ui{gap:5px!important;max-height:310px!important;overflow:hidden!important}
+  #g-clock .display-box{font-size:22px!important;padding:5px 10px!important;min-width:98px!important;border-radius:8px!important}
+  #g-clock .keypad{gap:5px!important;margin-top:4px!important;max-width:190px!important}
+  #g-clock .kp-btn{padding:8px!important;font-size:16px!important;border-radius:7px!important;line-height:1!important}
+  #g-clock .mc-grid{gap:5px!important;width:94%!important}
+  #g-clock .mc-btn{padding:8px!important;font-size:16px!important}
+}
+@media (max-width:360px){
+  #g-clock .clock-face{width:190px!important;height:190px!important}
+  #g-clock .keypad{max-width:180px!important}
+  #g-clock .kp-btn{padding:7px!important;font-size:15px!important}
+}
+</style>
+
+
+<style id="memory-v7-fix">
+@media (max-width:520px),(max-height:720px){
+  body.memory-game #startOverlay{align-items:center!important;justify-content:center!important;padding:5px!important;overflow:hidden!important}
+  body.memory-game #startOverlay .panel{width:calc(100vw - 10px)!important;max-width:calc(100vw - 10px)!important;max-height:calc(100svh - 10px)!important;overflow:hidden!important;padding:7px!important;border-radius:14px!important}
+  body.memory-game #startOverlay .panel-head{padding-right:80px!important;min-height:22px!important}
+  body.memory-game #startOverlay .panel h1{font-size:19px!important;line-height:1!important;margin:0 0 4px!important;text-align:center!important}
+  body.memory-game #startOverlay .panel-top-back{padding:5px 6px!important;font-size:10px!important;line-height:1!important;max-width:76px!important;white-space:normal!important}
+  body.memory-game #startOverlay .row{display:grid!important;grid-template-columns:minmax(112px,1.08fr) minmax(80px,.78fr) minmax(88px,.88fr)!important;gap:5px!important;align-items:start!important}
+  body.memory-game #startOverlay .opt{padding:6px!important;border-radius:11px!important;min-width:0!important;overflow:hidden!important}
+  body.memory-game #startOverlay .opt label{font-size:10px!important;line-height:1!important;margin-bottom:4px!important}
+  body.memory-game #startOverlay .choice-grid{gap:3px!important}
+  body.memory-game #startOverlay .choice-btn{min-height:24px!important;padding:4px 2px!important;font-size:9px!important;line-height:1!important;border-radius:8px!important}
+  body.memory-game #startOverlay .more-players-row{margin-top:3px!important}
+  body.memory-game #startOverlay .names-wrap,body.memory-game #startOverlay .team-wrap{margin-top:3px!important}
+  body.memory-game #startOverlay .names-label{font-size:9px!important;line-height:1!important;margin:2px 0!important}
+  body.memory-game #startOverlay .team-grid{display:grid!important;grid-template-columns:1fr!important;gap:3px!important}
+  body.memory-game #startOverlay .team-field{flex-direction:column!important;align-items:stretch!important;gap:2px!important;min-width:0!important}
+  body.memory-game #startOverlay .team-field input{width:100%!important;min-width:0!important;flex:0 0 auto!important}
+  body.memory-game #startOverlay .team-choice-grid{width:100%!important;flex-basis:auto!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:2px!important}
+  body.memory-game #startOverlay .team-choice-btn{min-height:18px!important;padding:3px 0!important;font-size:8px!important;line-height:1!important;border-radius:7px!important}
+  body.memory-game #startOverlay .name-input{min-height:22px!important;padding:3px 5px!important;font-size:10px!important;border-radius:7px!important;line-height:1!important}
+  body.memory-game #startOverlay .team-summary{display:none!important}
+  body.memory-game #startOverlay .team-names-grid{display:grid!important;grid-template-columns:1fr!important;gap:3px!important;margin-top:3px!important}
+  body.memory-game #startOverlay .size-grid,body.memory-game #startOverlay .theme-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  body.memory-game #startOverlay .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body.memory-game #startOverlay .panel-footer{position:static!important;margin-top:4px!important;padding-top:0!important;background:none!important}
+  body.memory-game #startOverlay .hr{margin:5px 0!important}
+  body.memory-game #startOverlay .btn-large{min-height:35px!important;padding:8px 9px!important;font-size:13px!important;line-height:1!important;border-radius:11px!important}
+  body.memory-game #loadStartBtn{margin-top:5px!important}
+  body.memory-game.arcade-keyboard-open #startOverlay .panel-footer{display:none!important}
+  body.memory-game.arcade-keyboard-open #startOverlay .panel{transform:translateY(-6px)!important}
+}
+@media (max-width:340px){
+  body.memory-game #startOverlay .row{grid-template-columns:minmax(102px,1fr) minmax(74px,.72fr) minmax(80px,.8fr)!important;gap:4px!important}
+  body.memory-game #startOverlay .choice-btn{font-size:8px!important;padding:3px 1px!important;min-height:22px!important}
+  body.memory-game #startOverlay .team-choice-btn{font-size:7px!important;min-height:17px!important}
+  body.memory-game #startOverlay .name-input{font-size:9px!important;min-height:20px!important;padding:3px 4px!important}
+  body.memory-game #startOverlay .opt{padding:5px!important}
+}
+</style>
+<style id="memory-stable-topbar-v8">
+  body.memory-game #topbar{
+    flex-wrap:nowrap!important;
+    align-content:normal!important;
+    align-items:flex-start!important;
+    padding:0!important;
+    transition:none!important;
+  }
+  body.memory-game #topbar.memory-solo{height:28px!important;min-height:28px!important;max-height:28px!important}
+  body.memory-game #topbar.memory-multiplayer{height:56px!important;min-height:56px!important;max-height:56px!important}
+  body.memory-game #topbar .left{
+    flex:1 1 0!important;
+    width:0!important;
+    height:100%!important;
+    min-width:0!important;
+    overflow:hidden!important;
+    gap:4px!important;
+  }
+  body.memory-game #topbar .right{flex:0 0 auto!important;align-items:flex-start!important}
+  body.memory-game #statusPill{
+    width:100%!important;
+    height:26px!important;
+    min-height:26px!important;
+    max-height:26px!important;
+    padding:0 10px!important;
+    box-sizing:border-box!important;
+    flex:0 0 26px!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  body.memory-game #scoreBar{
+    width:100%!important;
+    height:26px!important;
+    min-height:26px!important;
+    max-height:26px!important;
+    flex:0 0 26px!important;
+    align-items:center!important;
+  }
+  body.memory-game #scoreBar .chip{
+    height:24px!important;
+    min-height:24px!important;
+    max-height:24px!important;
+    padding:0 7px!important;
+    box-sizing:border-box!important;
+    flex:0 0 auto!important;
+    overflow:hidden!important;
+  }
+  body.memory-game #scoreBar .chip>div:not(.dot):not(.team-badge){max-width:128px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  body.memory-game #menuBtn{height:28px!important;min-height:28px!important;min-width:36px!important;padding:0 9px!important}
+  body.memory-game #menuOverlay .panel{width:min(460px,94vw)}
+  body.memory-game #menuOverlay .memory-menu-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  body.memory-game #menuOverlay .memory-menu-grid .btn-large{height:40px!important;min-height:40px!important;max-height:40px!important;padding:7px 8px!important;font-size:13px!important;line-height:1.05!important;border-radius:13px!important}
+  body.memory-game #menuOverlay #resumeBtn,body.memory-game #menuOverlay #backBtn{grid-column:1/-1}
+  body.memory-game #menuOverlay .small-note{min-height:16px;margin-top:8px}
+</style>
+<style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+</head>
+<body class="memory-game">
+  <div id="game" aria-label="Memory Match game">
+    <div class="topbar regular memory-solo" id="topbar">
+    <div class="left status-stack">
+      <div class="pill" id="statusPill">Ready</div>
+      <div id="scoreBar" class="hidden" aria-label="Scores"></div>
+    </div>
+    <div class="right">
+      <button type="button" class="ui-btn menu-btn-small" id="undoBtnSmall" aria-label="Undo last attempt" title="Undo last attempt" disabled>↶</button>
+      <button type="button" class="ui-btn menu-btn-small" id="menuBtn" aria-label="Open game menu" title="Game menu">☰</button>
+    </div>
+  </div>
+    <div id="board" aria-label="Card grid"></div>
+  </div>
+
+  
+  <div class="overlay" id="startOverlay">
+    <div class="panel">
+      <div class="panel-head">
+        <button type="button" class="ui-btn panel-top-back" id="startBackBtn">Back to Arcade</button>
+        <h1>Memory Match</h1>
+      </div>
+      
+
+      <div class="row">
+        <div class="opt">
+          <label>Players</label>
+          <select id="playersSel" class="native-select">
+            <option value="1" selected>1 Player</option>
+            <option value="2">2 Players</option>
+            <option value="3">3 Players</option>
+            <option value="4">4 Players</option>
+            <option value="5">5 Players</option>
+            <option value="6">6 Players</option>
+            <option value="7">7 Players</option>
+            <option value="8">8 Players</option>
+          </select>
+          <div class="choice-grid cols-4" id="playersChoices" aria-label="Players">
+            <button type="button" class="choice-btn" data-value="1">1P</button>
+            <button type="button" class="choice-btn" data-value="2">2P</button>
+            <button type="button" class="choice-btn" data-value="3">3P</button>
+            <button type="button" class="choice-btn" data-value="4">4P</button>
+          </div>
+          <div class="more-players-row"><button type="button" class="choice-btn" id="morePlayersBtn">More Players</button></div>
+          <div class="choice-grid cols-4 player-extra" id="extraPlayersChoices" aria-label="More players">
+            <button type="button" class="choice-btn" data-value="5">5P</button>
+            <button type="button" class="choice-btn" data-value="6">6P</button>
+            <button type="button" class="choice-btn" data-value="7">7P</button>
+            <button type="button" class="choice-btn" data-value="8">8P</button>
+          </div>
+          <div class="names-wrap hidden" id="namesWrap">
+            <label class="names-label">Names</label>
+            <div class="names-grid team-grid" id="namesGrid">
+              <div class="team-field" id="playerField1"><input id="name1" class="name-input" maxlength="14" placeholder="Player 1" /><select id="team1" class="team-select native-select" aria-label="Player 1 team"><option value="1" selected>T1</option><option value="2">T2</option><option value="3">T3</option><option value="4">T4</option></select><div class="team-choice-grid" id="teamChoices1" aria-label="Player 1 team"><button type="button" class="team-choice-btn" data-value="1">T1</button><button type="button" class="team-choice-btn" data-value="2">T2</button><button type="button" class="team-choice-btn" data-value="3">T3</button><button type="button" class="team-choice-btn" data-value="4">T4</button></div></div>
+              <div class="team-field" id="playerField2"><input id="name2" class="name-input" maxlength="14" placeholder="Player 2" /><select id="team2" class="team-select native-select" aria-label="Player 2 team"><option value="1">T1</option><option value="2" selected>T2</option><option value="3">T3</option><option value="4">T4</option></select><div class="team-choice-grid" id="teamChoices2" aria-label="Player 2 team"><button type="button" class="team-choice-btn" data-value="1">T1</button><button type="button" class="team-choice-btn" data-value="2">T2</button><button type="button" class="team-choice-btn" data-value="3">T3</button><button type="button" class="team-choice-btn" data-value="4">T4</button></div></div>
+              <div class="team-field" id="playerField3"><input id="name3" class="name-input" maxlength="14" placeholder="Player 3" /><select id="team3" class="team-select native-select" aria-label="Player 3 team"><option value="1">T1</option><option value="2">T2</option><option value="3" selected>T3</option><option value="4">T4</option></select><div class="team-choice-grid" id="teamChoices3" aria-label="Player 3 team"><button type="button" class="team-choice-btn" data-value="1">T1</button><button type="button" class="team-choice-btn" data-value="2">T2</button><button type="button" class="team-choice-btn" data-value="3">T3</button><button type="button" class="team-choice-btn" data-value="4">T4</button></div></div>
+              <div class="team-field" id="playerField4"><input id="name4" class="name-input" maxlength="14" placeholder="Player 4" /><select id="team4" class="team-select native-select" aria-label="Player 4 team"><option value="1">T1</option><option value="2">T2</option><option value="3">T3</option><option value="4" selected>T4</option></select><div class="team-choice-grid" id="teamChoices4" aria-label="Player 4 team"><button type="button" class="team-choice-btn" data-value="1">T1</button><button type="button" class="team-choice-btn" data-value="2">T2</button><button type="button" class="team-choice-btn" data-value="3">T3</button><button type="button" class="team-choice-btn" data-value="4">T4</button></div></div>
+              <div class="team-field" id="playerField5"><input id="name5" class="name-input" maxlength="14" placeholder="Player 5" /><select id="team5" class="team-select native-select" aria-label="Player 5 team"><option value="1" selected>T1</option><option value="2">T2</option><option value="3">T3</option><option value="4">T4</option></select><div class="team-choice-grid" id="teamChoices5" aria-label="Player 5 team"><button type="button" class="team-choice-btn" data-value="1">T1</button><button type="button" class="team-choice-btn" data-value="2">T2</button><button type="button" class="team-choice-btn" data-value="3">T3</button><button type="button" class="team-choice-btn" data-value="4">T4</button></div></div>
+              <div class="team-field" id="playerField6"><input id="name6" class="name-input" maxlength="14" placeholder="Player 6" /><select id="team6" class="team-select native-select" aria-label="Player 6 team"><option value="1">T1</option><option value="2" selected>T2</option><option value="3">T3</option><option value="4">T4</option></select><div class="team-choice-grid" id="teamChoices6" aria-label="Player 6 team"><button type="button" class="team-choice-btn" data-value="1">T1</button><button type="button" class="team-choice-btn" data-value="2">T2</button><button type="button" class="team-choice-btn" data-value="3">T3</button><button type="button" class="team-choice-btn" data-value="4">T4</button></div></div>
+              <div class="team-field" id="playerField7"><input id="name7" class="name-input" maxlength="14" placeholder="Player 7" /><select id="team7" class="team-select native-select" aria-label="Player 7 team"><option value="1">T1</option><option value="2">T2</option><option value="3" selected>T3</option><option value="4">T4</option></select><div class="team-choice-grid" id="teamChoices7" aria-label="Player 7 team"><button type="button" class="team-choice-btn" data-value="1">T1</button><button type="button" class="team-choice-btn" data-value="2">T2</button><button type="button" class="team-choice-btn" data-value="3">T3</button><button type="button" class="team-choice-btn" data-value="4">T4</button></div></div>
+              <div class="team-field" id="playerField8"><input id="name8" class="name-input" maxlength="14" placeholder="Player 8" /><select id="team8" class="team-select native-select" aria-label="Player 8 team"><option value="1">T1</option><option value="2">T2</option><option value="3">T3</option><option value="4" selected>T4</option></select><div class="team-choice-grid" id="teamChoices8" aria-label="Player 8 team"><button type="button" class="team-choice-btn" data-value="1">T1</button><button type="button" class="team-choice-btn" data-value="2">T2</button><button type="button" class="team-choice-btn" data-value="3">T3</button><button type="button" class="team-choice-btn" data-value="4">T4</button></div></div>
+            </div>
+            <div class="team-wrap hidden" id="teamWrap">
+              <label class="names-label">Teams</label>
+              <div class="team-summary">Team names</div>
+              <div class="team-names-grid" id="teamNamesGrid">
+                <div class="team-name-field" id="teamNameField1"><input id="teamName1" class="name-input" maxlength="18" placeholder="Team 1" /></div>
+                <div class="team-name-field" id="teamNameField2"><input id="teamName2" class="name-input" maxlength="18" placeholder="Team 2" /></div>
+                <div class="team-name-field" id="teamNameField3"><input id="teamName3" class="name-input" maxlength="18" placeholder="Team 3" /></div>
+                <div class="team-name-field" id="teamNameField4"><input id="teamName4" class="name-input" maxlength="18" placeholder="Team 4" /></div>
+              </div>
+            </div>
+          </div>
+</div>
+
+        <div class="opt">
+          <label>Board Size</label>
+          <select id="sizeSel" class="native-select">
+            <option value="3x3">3 × 3 (8 cards)</option>
+            <option value="3x4">3 × 4 (12 cards)</option>
+            <option value="4x4" selected>4 × 4 (16 cards)</option>
+            <option value="4x5">4 × 5 (20 cards)</option>
+            <option value="4x6">4 × 6 (24 cards)</option>
+            <option value="5x5">5 × 5 (24 cards)</option>
+            <option value="5x6">5 × 6 (30 cards)</option>
+            <option value="5x7">5 × 7 (34 cards)</option>
+            <option value="5x8">5 × 8 (40 cards)</option>
+            <option value="5x9">5 × 9 (44 cards)</option>
+          </select>
+          <div class="choice-grid size-grid" id="sizeChoices" aria-label="Board size">
+            <button type="button" class="choice-btn" data-value="3x3">3×3</button>
+            <button type="button" class="choice-btn" data-value="3x4">3×4</button>
+            <button type="button" class="choice-btn" data-value="4x4">4×4</button>
+            <button type="button" class="choice-btn" data-value="4x5">4×5</button>
+            <button type="button" class="choice-btn" data-value="4x6">4×6</button>
+            <button type="button" class="choice-btn" data-value="5x5">5×5</button>
+            <button type="button" class="choice-btn" data-value="5x6">5×6</button>
+            <button type="button" class="choice-btn" data-value="5x7">5×7</button>
+            <button type="button" class="choice-btn" data-value="5x8">5×8</button>
+            <button type="button" class="choice-btn" data-value="5x9">5×9</button>
+          </div></div>
+
+        <div class="opt">
+          <label>Mode</label>
+          <select id="matchSel" class="native-select">
+            <option value="2" selected>Normal</option>
+            <option value="3">Hard</option>
+          </select>
+          <div class="choice-grid cols-2" id="matchChoices" aria-label="Match mode">
+            <button type="button" class="choice-btn" data-value="2">Normal</button>
+            <button type="button" class="choice-btn" data-value="3">Hard</button>
+          </div></div>
+      </div>
+
+      <div class="panel-footer"><div class="hr"></div>
+      <button class="btn-large" id="startBtn">START</button>
+      <button class="btn-large" id="loadStartBtn" style="margin-top:8px;">LOAD SAVED GAME</button></div></div>
+  </div>
+
+  
+  <div class="overlay hidden" id="menuOverlay">
+    <div class="panel">
+      <h1>Menu</h1>
+      <div class="sub">Pause time - choose an option.</div>
+      <div class="memory-menu-grid">
+        <button type="button" class="btn-large" id="resumeBtn">RESUME</button>
+        <button type="button" class="btn-large" id="menuUndoBtn">UNDO LAST ATTEMPT</button>
+        <button type="button" class="btn-large" id="restartBtn">RESTART GAME</button>
+        <button type="button" class="btn-large" id="newGameBtn">NEW GAME</button>
+        <button type="button" class="btn-large" id="saveBtn">SAVE GAME</button>
+        <button type="button" class="btn-large" id="loadBtn">LOAD GAME</button>
+        <button type="button" class="btn-large" id="backBtn">BACK TO ARCADE</button>
+      </div>
+      <div class="small-note" id="menuNote" aria-live="polite">The game is paused while this menu is open.</div>
+    </div>
+  </div>
+
+
+  <div class="overlay hidden" id="turnOverlay">
+    <div class="panel turn-panel">
+      <div class="turn-name" id="turnOverlayName">Next turn: Player 1</div>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="awardsOverlay">
+    <div class="panel awards-panel">
+      <h1>Round Over!</h1>
+      <div class="sub" id="awardsSub">Winner goes here.</div>
+      <div class="final-scores" id="finalScores"></div>
+      <div class="hr"></div>
+      <div class="awards-actions">
+        <button class="btn-large" id="awardsUndo">UNDO LAST ATTEMPT</button>
+        <button class="btn-large awards-primary" id="awardsAgain">PLAY AGAIN</button>
+        <button type="button" class="ui-btn awards-secondary" id="awardsSettings">NEW GAME</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+
+  const board = $("board");
+  const startOverlay = $("startOverlay");
+  const menuOverlay = $("menuOverlay");
+  const awardsOverlay = $("awardsOverlay");
+  const awardsSub = $("awardsSub");
+  const finalScores = $("finalScores");
+  const awardsAgain = $("awardsAgain");
+  const awardsSettings = $("awardsSettings");
+  const turnOverlay = $("turnOverlay");
+  const turnOverlayName = $("turnOverlayName");
+  const statusPill = $("statusPill");
+
+  const playersSel = $("playersSel");
+  const namesWrap = $("namesWrap");
+  const name1 = $("name1");
+  const name2 = $("name2");
+  const name3 = $("name3");
+  const name4 = $("name4");
+  const name5 = $("name5");
+  const name6 = $("name6");
+  const name7 = $("name7");
+  const name8 = $("name8");
+  const team1 = $("team1");
+  const team2 = $("team2");
+  const team3 = $("team3");
+  const team4 = $("team4");
+  const team5 = $("team5");
+  const team6 = $("team6");
+  const team7 = $("team7");
+  const team8 = $("team8");
+  const teamWrap = $("teamWrap");
+  const teamName1 = $("teamName1");
+  const teamName2 = $("teamName2");
+  const teamName3 = $("teamName3");
+  const teamName4 = $("teamName4");
+  const sizeSel = $("sizeSel");
+  const matchSel = $("matchSel");
+  const playersChoices = $("playersChoices");
+  const extraPlayersChoices = $("extraPlayersChoices");
+  const morePlayersBtn = $("morePlayersBtn");
+  const sizeChoices = $("sizeChoices");
+  const matchChoices = $("matchChoices");
+  const teamChoices1 = $("teamChoices1");
+  const teamChoices2 = $("teamChoices2");
+  const teamChoices3 = $("teamChoices3");
+  const teamChoices4 = $("teamChoices4");
+  const teamChoices5 = $("teamChoices5");
+  const teamChoices6 = $("teamChoices6");
+  const teamChoices7 = $("teamChoices7");
+  const teamChoices8 = $("teamChoices8");
+
+  const scoreBar = $("scoreBar");
+  const topbar = $("topbar");
+  const teamNameField1 = $("teamNameField1");
+  const teamNameField2 = $("teamNameField2");
+  const teamNameField3 = $("teamNameField3");
+  const teamNameField4 = $("teamNameField4");
+
+  const startBtn = $("startBtn");
+  const startBackBtn = $("startBackBtn");
+  const menuBtn = $("menuBtn");
+  const undoBtnSmall = $("undoBtnSmall");
+  const menuUndoBtn = $("menuUndoBtn");
+  const saveBtn = $("saveBtn");
+  const loadBtn = $("loadBtn");
+  const loadStartBtn = $("loadStartBtn");
+  const resumeBtn = $("resumeBtn");
+  const restartBtn = $("restartBtn");
+  const newGameBtn = $("newGameBtn");
+  const backBtn = $("backBtn");
+  const menuNote = $("menuNote");
+  const awardsUndo = $("awardsUndo");
+
+
+  function bindPress(el, handler){
+    let touched = false;
+    el.addEventListener("click", (e) => {
+      if(touched){ touched = false; return; }
+      handler(e);
+    });
+    el.addEventListener("touchend", (e) => {
+      touched = true;
+      e.preventDefault();
+      handler(e);
+    }, {passive:false});
+  }
+
+  function setupChoiceGroup(selectEl, wrapEl, onChange){
+    if(!selectEl || !wrapEl) return;
+    const buttons = () => wrapEl.querySelectorAll(".choice-btn, .team-choice-btn, [data-value]");
+    const sync = () => {
+      buttons().forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.value === selectEl.value);
+      });
+    };
+    buttons().forEach((btn) => {
+      bindPress(btn, () => {
+        const val = btn.dataset.value;
+        if(selectEl.value !== val){
+          selectEl.value = val;
+          selectEl.dispatchEvent(new Event("change", { bubbles:true }));
+        } else {
+          sync();
+          if(onChange) onChange();
+        }
+      });
+    });
+    selectEl.addEventListener("change", () => {
+      sync();
+      if(onChange) onChange();
+    });
+    sync();
+  }
+
+  const THEMES = {
+    classic: ["🐶","🐱","🍕","⚽","🚗","🌈","🎈","🧸","🦄","🚀","🎲","⭐","🍉","🐸","🏰","🧩","🍩","🪁","🐼","🎯","🎧","🛝","🦊","🍟","🐙","🦁","🐰","🐯","🐮","🐵"],
+    animals: ["🐶","🐱","🦊","🐼","🐸","🐵","🦁","🐰","🐯","🐮","🐷","🐔","🦆","🦉","🦋","🐢","🐙","🦀","🦈","🐳","🐴","🦄","🦒","🦘","🦝","🦥","🦭","🦔","🦩","🐞"],
+    faces: ["😀","😎","🤩","🥳","😴","🤯","😇","🤠","🤖","👻","😺","🙈","😡","🥶","🥵","🤢","🤡","👽","💀","🫠","🫡","🫣","🫨","🤗","🤔","😬","😵","😌","😂","😍"],
+    food: ["🍕","🍔","🍟","🌮","🍿","🍎","🍉","🍓","🍇","🍌","🍪","🍩","🍦","🍫","🥨","🧀","🥞","🍣","🍜","🍙","🥑","🥕","🌽","🍄","🧁","🍰","🍭","🥤","🧃","🥪"],
+    science: ["🔭","🔬","🧪","🧬","🧲","⚗️","🌡️","🔋","💡","⚡","☀️","🌙","🪐","🌎","🌋","🦖","🦕","🦴","🧠","❤️","🫁","🪨","❄️","🌪️","🌈","☁️","🌧️","🌊","🔥","⭐"],
+    ocean: ["🐙","🦀","🦞","🦐","🦑","🐠","🐟","🐡","🦈","🐬","🐳","🐋","🪼","🐚","🌊","⛵","⚓","🏖️","🪸","🦭","🦆","🐢","🫧","🌴","🛟","🚤","🩴","☀️","🏝️","🍍"],
+    weather: ["☀️","🌤️","⛅","☁️","🌧️","⛈️","🌩️","🌨️","❄️","☔","🌈","🌪️","🌫️","💨","🔥","🌊","🌙","⭐","🌡️","🧊","🌀","🌥️","🌦️","🌬️","🌞","🌛","⚡","☃️","🫧","🌁"],
+    sports: ["⚽","🏀","🏈","⚾","🥎","🎾","🏐","🏉","🥏","🎳","⛳","🏓","🏸","🥊","🥋","🏒","🏑","🥅","🏆","🥇","🎯","🛹","⛸️","🤿","🏊","🚴","🏃","🤸","🧗","🎽"],
+    vehicles: ["🚗","🚕","🚙","🚌","🚎","🏎️","🚓","🚑","🚒","🚜","🛻","🚚","🚲","🛴","🏍️","🚂","🚆","✈️","🚁","🚀","🛸","⛵","🚤","🛶","🚢","🛺","🚦","🛞","⛽","🗺️"],
+    weird: ["💩","🚽","🤡","👻","👽","🤖","🧌","🪱","🪰","🦠","🪲","🧯","🧜‍♀️","🧀","🤰","🐌","🦷","🧠","🦴","🦥","🍌","🧻","🪠","🧦","🩲","🛁","🧼","🪥","🦑","🪦","🗿","🦄","🤮"]
+  };
+
+  let state = null;
+  const SAVE_KEY = "arcade_memory_save_v1";
+
+  function beep(freq=520, dur=0.06, vol=0.02){
+    if(!state || !state.sound) return;
+    try {
+      const ctx = state.audio || (state.audio = new (window.AudioContext || window.webkitAudioContext)());
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.frequency.value = freq;
+      o.type = "sine";
+      g.gain.value = vol;
+      o.connect(g); g.connect(ctx.destination);
+      o.start();
+      o.stop(ctx.currentTime + dur);
+    } catch(e){}
+  }
+
+  function parseSize(val){
+    const [c,r] = val.split("x").map(n=>parseInt(n,10));
+    return { cols:c, rows:r };
+  }
+
+  function pickEmojis(themeKey, pairs){
+    const pool = THEMES[themeKey] || THEMES.classic;
+    const arr = pool.slice();
+    for(let i=arr.length-1;i>0;i--) {
+      const j = (Math.random()*(i+1))|0;
+      [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+    return arr.slice(0, pairs);
+  }
+
+  function makeDeck(themeKey, groups, matchSize=2, freeCount=0){
+    const picks = pickEmojis(themeKey, groups);
+    const deck = [];
+    picks.forEach((e, idx)=> {
+      for(let copy=0; copy<matchSize; copy++){
+        deck.push({ id: `${idx}-${copy}`, key: e, emoji: e });
+      }
+    });
+    for(let freeIndex=0; freeIndex<freeCount; freeIndex++){
+      deck.push({ id: `free-${freeIndex}`, key: `__free__${freeIndex}`, emoji: "🟪", free: true });
+    }
+    for(let i=deck.length-1;i>0;i--) {
+      const j = (Math.random()*(i+1))|0;
+      [deck[i],deck[j]]=[deck[j],deck[i]];
+    }
+    return deck;
+  }
+
+  function setStatus(text){
+    statusPill.textContent = text;
+    statusPill.title = text;
+  }
+
+  function activeTeamNumbers(playersCount){
+    const vals = [team1?.value, team2?.value, team3?.value, team4?.value, team5?.value, team6?.value, team7?.value, team8?.value].map((v, i) => Math.max(1, Math.min(4, parseInt(v, 10) || ((i % 4) + 1))));
+    return Array.from(new Set(vals.slice(0, playersCount))).sort((a,b)=>a-b);
+  }
+
+  function refreshPlayerTeamUI(){
+    const n = Math.max(1, Math.min(8, parseInt(playersSel.value, 10) || 1));
+    if(namesWrap) namesWrap.classList.toggle("hidden", n <= 1);
+    if(teamWrap) teamWrap.classList.toggle("hidden", n <= 2);
+    if(extraPlayersChoices) extraPlayersChoices.classList.toggle("show-extra-players", n > 4);
+    if(morePlayersBtn) morePlayersBtn.textContent = (n > 4 ? "Hide Extra Players" : "More Players");
+    const fields = [name1,name2,name3,name4,name5,name6,name7,name8];
+    const teamFields = [team1,team2,team3,team4,team5,team6,team7,team8];
+    fields.forEach((el, idx) => {
+      if(!el) return;
+      const wrap = el.parentElement;
+      if(wrap) wrap.style.display = (idx < n ? "flex" : "none");
+      if(teamFields[idx]) teamFields[idx].style.display = (n > 2 && idx < n ? "block" : "none");
+      const choiceWrap = [teamChoices1,teamChoices2,teamChoices3,teamChoices4,teamChoices5,teamChoices6,teamChoices7,teamChoices8][idx];
+      if(choiceWrap) choiceWrap.style.display = (n > 2 && idx < n ? "grid" : "none");
+    });
+    const activeTeams = activeTeamNumbers(n);
+    [[teamNameField1,1],[teamNameField2,2],[teamNameField3,3],[teamNameField4,4]].forEach(([el,no]) => {
+      if(!el) return;
+      el.style.display = (n > 2 && activeTeams.includes(no)) ? "block" : "none";
+    });
+  }
+
+  function updateTopbarMode(){
+    if(!topbar || !state) return;
+    const compact = (state.rows >= 5 || state.cols >= 7 || (state.teamMode && state.uniqueTeams.length >= 3));
+    topbar.classList.toggle("compact", compact);
+    topbar.classList.toggle("regular", !compact);
+    topbar.classList.toggle("memory-multiplayer", state.players > 1);
+    topbar.classList.toggle("memory-solo", state.players <= 1);
+  }
+
+  function showOverlay(el, show){
+    el.classList.toggle("hidden", !show);
+  }
+
+  function setSelectValue(el, value){
+    if(!el) return;
+    el.value = String(value);
+    el.dispatchEvent(new Event("change", { bubbles:true }));
+  }
+
+  function syncSetupFromState(){
+    if(!state) return;
+    setSelectValue(playersSel, state.players);
+    setSelectValue(sizeSel, `${state.cols}x${state.rows}`);
+    setSelectValue(matchSel, state.matchSize);
+    const nameFields = [name1,name2,name3,name4,name5,name6,name7,name8];
+    const teamFields = [team1,team2,team3,team4,team5,team6,team7,team8];
+    nameFields.forEach((el, i) => { if(el && state.names && state.names[i] != null) el.value = state.names[i]; });
+    teamFields.forEach((el, i) => { if(el && state.teams && state.teams[i] != null) setSelectValue(el, state.teams[i]); });
+    [teamName1,teamName2,teamName3,teamName4].forEach((el, i) => { if(el && state.teamNames && state.teamNames[i] != null) el.value = state.teamNames[i]; });
+    refreshPlayerTeamUI();
+  }
+
+  function returnToSetup(){
+    if(state) syncSetupFromState();
+    clearTimeout(turnSplashTimer);
+    clearTimeout(matchResolveTimer);
+    matchResolveTimer = 0;
+    matchResolveDue = 0;
+    if(state && state.timer) clearInterval(state.timer);
+    state = null;undoStack = [];syncUndoButtons();
+    showOverlay(menuOverlay, false);
+    showOverlay(turnOverlay, false);
+    showOverlay(awardsOverlay, false);
+    showOverlay(startOverlay, true);
+    board.innerHTML = "";
+    scoreBar.innerHTML = "";
+    scoreBar.classList.add("hidden");
+    topbar.classList.remove("compact", "memory-multiplayer");
+    topbar.classList.add("regular", "memory-solo");
+    resumeBtn.textContent = "RESUME";
+    if(menuNote) menuNote.textContent = "The game is paused while this menu is open.";
+    setStatus("Ready");
+  }
+
+  function restartCurrentGame(){
+    if(!state){ returnToSetup(); return; }
+    syncSetupFromState();
+    startNewGame();
+  }
+
+  function startNewGame(){
+    clearTimeout(turnSplashTimer);
+    clearTimeout(matchResolveTimer);undoStack = [];syncUndoButtons();
+    matchResolveTimer = 0;
+    matchResolveDue = 0;
+    try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+    if(state && state.timer) clearInterval(state.timer);
+    const players = Math.max(1, Math.min(8, parseInt(playersSel.value, 10) || 1));
+    const rawNames = [name1?.value, name2?.value, name3?.value, name4?.value, name5?.value, name6?.value, name7?.value, name8?.value].map(v => (v||"").trim());
+    const names = rawNames.map((v, i) => v ? v : `Player ${i+1}`);
+    const rawTeams = [team1?.value, team2?.value, team3?.value, team4?.value, team5?.value, team6?.value, team7?.value, team8?.value].map((v, i) => Math.max(1, Math.min(4, parseInt(v, 10) || ((i % 4) + 1))));
+    const teams = rawTeams.slice(0, players);
+    const uniqueTeams = Array.from(new Set(teams));
+    const teamMode = players > 2 && uniqueTeams.length >= 2 && uniqueTeams.length < players;
+    const rawTeamNames = [teamName1?.value, teamName2?.value, teamName3?.value, teamName4?.value].map((v, i) => {
+      const clean = (v || "").trim();
+      return clean ? clean : `Team ${i+1}`;
+    });
+    const {cols, rows} = parseSize(sizeSel.value);
+    const total = cols*rows;
+    const matchSize = Math.max(2, Math.min(3, parseInt(matchSel?.value, 10) || 2));
+    const trimmedCount = total % matchSize;
+    const playableTotal = total - trimmedCount;
+    const freeCount = 0;
+    const totalMatches = Math.floor(playableTotal / matchSize);
+
+    state = {
+      players,
+      names,
+      teams,
+      uniqueTeams,
+      teamMode,
+      teamNames: rawTeamNames,
+
+      cols, rows,
+      matchSize,
+      freeCount,
+      totalMatches,
+      deck: makeDeck("weird", totalMatches, matchSize, 0),
+      revealed: [],
+      matchedKeys: new Set(),
+      owners: Array.from({length: total}, () => 0),
+      lock: false,
+      moves: 0,
+      startTime: performance.now(),
+      timer: null,
+      tElapsed: 0,
+      scores: Array.from({length: players}, () => 0),
+      turn: 1,
+      firstFlipAt: 0,
+      stats: Array.from({length: players}, () => newStats()),
+      sound: true,
+      audio: null,
+      awaitingTurn: players > 1
+    };
+
+    showOverlay(startOverlay, false);
+    showOverlay(menuOverlay, false);
+    showOverlay(turnOverlay, false);
+    showOverlay(awardsOverlay, false);
+
+    updateTopbarMode();
+    renderScoreBar();
+    tick(true);
+    buildBoardFromState();
+    scheduleBoardLayout();
+
+    state.timer = setInterval(tick, 100);
+
+    if(state.players > 1) showTurnSplash();
+  }
+
+  function buildBoardFromState(){
+    if(!state) return;
+    const cols = state.cols;
+    const rows = state.rows;
+    board.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
+    board.style.gridTemplateRows = `repeat(${rows}, minmax(0, 1fr))`;
+    board.innerHTML = "";
+    state.deck.forEach((card, index)=> {
+      const div = document.createElement("button");
+      div.className = "card";
+      div.type = "button";
+      div.setAttribute("aria-label","card");
+      div.dataset.index = String(index);
+      const inner = document.createElement("div");
+      inner.className = "card-inner";
+      const back = document.createElement("div");
+      back.className = "card-face card-back";
+      const backMark = document.createElement("div");
+      backMark.className = "back-mark";
+      backMark.textContent = "★";
+      back.appendChild(backMark);
+      const front = document.createElement("div");
+      front.className = "card-face card-front";
+      const face = document.createElement("div");
+      face.className = "face";
+      face.textContent = card.emoji;
+      front.appendChild(face);
+      inner.appendChild(back);
+      inner.appendChild(front);
+      div.appendChild(inner);
+      if(card.free){
+        const badge = document.createElement("div");
+        badge.className = "badge";
+        badge.textContent = "free";
+        div.appendChild(badge);
+        div.classList.add("free");
+        div.setAttribute("aria-label","free space");
+        div.disabled = true;
+      }
+      bindPress(div, () => onCardTap(index));
+      board.appendChild(div);
+    });
+    layoutBoardSquares();
+    state.deck.forEach((card, index) => {
+      if(card.free) return;
+      if(state.matchedKeys && state.matchedKeys.has(card.key)){
+        markMatched(index);
+        const owner = state.owners ? state.owners[index] : 0;
+        if(owner) setOwner(index, owner);
+      }
+    });
+  }
+
+  function layoutBoardSquares(){
+    if(!state) return;
+    const cols = state.cols, rows = state.rows;
+    const gameEl = $("game");
+    const gameStyle = getComputedStyle(gameEl);
+    const padL = parseFloat(gameStyle.paddingLeft) || 0;
+    const padR = parseFloat(gameStyle.paddingRight) || 0;
+    const padB = parseFloat(gameStyle.paddingBottom) || 0;
+    const flowGap = parseFloat(gameStyle.gap || "8") || 8;
+    const topRect = topbar ? topbar.getBoundingClientRect() : {bottom:0};
+    const vw = window.innerWidth || document.documentElement.clientWidth || 320;
+    const vh = window.innerHeight || document.documentElement.clientHeight || 568;
+    const maxW = Math.max(120, Math.min(860, vw - padL - padR));
+    const maxH = Math.max(120, vh - topRect.bottom - flowGap - padB);
+    const gap = Math.max(3, Math.min(10, Math.floor(Math.min(vw, vh) / 78)));
+    const cellW = (maxW - gap * (cols - 1)) / cols;
+    const cellH = (maxH - gap * (rows - 1)) / rows;
+    const cell = Math.max(18, Math.floor(Math.min(cellW, cellH)));
+    const totalW = cols * cell + gap * (cols - 1);
+    const totalH = rows * cell + gap * (rows - 1);
+    board.style.gap = gap + "px";
+    board.style.width = totalW + "px";
+    board.style.height = totalH + "px";
+    board.style.gridTemplateColumns = `repeat(${cols}, ${cell}px)`;
+    board.style.gridTemplateRows = `repeat(${rows}, ${cell}px)`;
+  }
+
+  let boardLayoutRAF = 0;
+  function scheduleBoardLayout(){
+    if(!state) return;
+    cancelAnimationFrame(boardLayoutRAF);
+    boardLayoutRAF = requestAnimationFrame(() => {
+      layoutBoardSquares();
+      boardLayoutRAF = requestAnimationFrame(layoutBoardSquares);
+    });
+  }
+
+
+  function bindPress(el, handler){
+    if(!el) return;
+    let lastPressAt = 0;
+    el.addEventListener("click", (e) => {
+      const now = Date.now();
+      if(now - lastPressAt < 120) return;
+      lastPressAt = now;
+      handler(e);
+    });
+  }
+
+  let turnSplashTimer = 0;
+  let matchResolveTimer = 0;
+  let undoStack = [];
+  let matchResolveDue = 0;
+  function showTurnSplash(){
+    if(!state || state.players <= 1) return;
+    state.awaitingTurn = true;
+    const name = state.names[state.turn-1] || `Player ${state.turn}`;
+    const individualMatches = state.scores[state.turn-1] || 0;
+    const matchText = `${individualMatches} ${individualMatches === 1 ? "match" : "matches"}`;
+    if(turnOverlayName) turnOverlayName.textContent = `Next turn: ${name} · ${matchText}`;
+    showOverlay(turnOverlay, true);
+    tick(true);
+    clearTimeout(turnSplashTimer);
+    turnSplashTimer = setTimeout(() => {
+      if(!state) return;
+      state.awaitingTurn = false;
+      showOverlay(turnOverlay, false);
+      tick(true);
+    }, 1000);
+  }
+
+  function hideTurnSplash(){
+    if(!state) return;
+    clearTimeout(turnSplashTimer);
+    state.awaitingTurn = false;
+    showOverlay(turnOverlay, false);
+    tick(true);
+  }
+
+  function getTeamTotals(){
+    const totals = {};
+    if(!state) return totals;
+    for(let i=0; i<state.players; i++){
+      const team = state.teams[i];
+      if(!totals[team]) totals[team] = { score: 0, members: [], name: (state.teamNames && state.teamNames[team-1]) ? state.teamNames[team-1] : `Team ${team}` };
+      totals[team].score += state.scores[i] || 0;
+      totals[team].members.push(state.names[i] || `Player ${i+1}`);
+    }
+    return totals;
+  }
+
+  function renderFinalScores(){
+    if(!finalScores || !state) return;
+    finalScores.innerHTML = "";
+    if(state.teamMode){
+      const teamTotals = getTeamTotals();
+      Object.keys(teamTotals).sort((a,b)=>Number(a)-Number(b)).forEach((teamNo) => {
+        const row = document.createElement("div");
+        row.className = "final-score-row";
+        const members = teamTotals[teamNo].members.join(", ");
+        const teamName = teamTotals[teamNo].name || `Team ${teamNo}`;
+        row.innerHTML = `<div class="final-score-name"><div class="team-badge">T${teamNo}</div><div><div>${teamName}</div><div style="font-size:12px;color:rgba(255,255,255,0.7);font-weight:700;">${members}</div></div></div><div class="final-score-points">${teamTotals[teamNo].score}</div>`;
+        finalScores.appendChild(row);
+      });
+      return;
+    }
+    for(let p=1; p<=state.players; p++){
+      const row = document.createElement("div");
+      row.className = "final-score-row";
+      const name = state.names[p-1] || `Player ${p}`;
+      const teamLabel = (state.players > 2 ? `<div class="team-badge">T${state.teams[p-1]}</div>` : '');
+      row.innerHTML = `<div class="final-score-name"><div class="final-score-dot p${p}"></div>${teamLabel}<div>${name}</div></div><div class="final-score-points">${state.scores[p-1]}</div>`;
+      finalScores.appendChild(row);
+    }
+  }
+
+  function tick(force=false){
+    if(!state) return;
+    if((menuOverlay && !menuOverlay.classList.contains("hidden")) || (turnOverlay && !turnOverlay.classList.contains("hidden")) || (awardsOverlay && !awardsOverlay.classList.contains("hidden"))) return;
+
+    const now = performance.now();
+    state.tElapsed = Math.max(0, now - state.startTime);
+    if(state.players === 1) {
+      const seconds = Math.floor(state.tElapsed/1000);
+      const mm = String(Math.floor(seconds/60)).padStart(2,"0");
+      const ss = String(seconds%60).padStart(2,"0");
+      const remaining = Math.max(0, (state.totalMatches || 0) - state.matchedKeys.size);
+      setStatus(`Solo · ${remaining} left · ${mm}:${ss}`);
+    } else {
+      const currentName = state.names ? state.names[state.turn-1] : ('P'+state.turn);
+      const individualMatches = state.scores[state.turn-1] || 0;
+      const matchText = `${individualMatches} ${individualMatches === 1 ? "match" : "matches"}`;
+      const remaining = Math.max(0, (state.totalMatches || 0) - state.matchedKeys.size);
+      setStatus(`Turn: ${currentName} · ${matchText} · ${remaining} left`);
+    }
+  }
+
+  
+  function newStats(){
+    return {
+      matches: 0,
+      attempts: 0,
+      misses: 0,
+      flips: 0,
+      curStreak: 0,
+      longestStreak: 0,
+      totalDecision: 0,
+      decisionCount: 0,
+      mismatchPairCounts: Object.create(null),
+      bestRepeat: 0
+    };
+  }
+
+  function awardCandidates(){
+    return [
+      {
+        key: "mostMatches",
+        icon: "🏆",
+        title: "Most Matches",
+        score: (s) => s.matches,
+        blurb: (name, s) => `${name} collected ${s.matches} match${s.matches===1?"":"es"}.`
+      },
+      {
+        key: "longestStreak",
+        icon: "🔥",
+        title: "Longest Streak",
+        score: (s) => s.longestStreak,
+        blurb: (name, s) => `${name} hit a streak of ${s.longestStreak}.`
+      },
+      {
+        key: "sharpShooter",
+        icon: "🎯",
+        title: "Best Accuracy",
+        score: (s) => (s.attempts ? (s.matches / s.attempts) : 0),
+        blurb: (name, s) => `${name} nailed ${(s.attempts ? Math.round((s.matches/s.attempts)*100) : 0)}% of attempts.`
+      },
+      {
+        key: "oopsRepeater",
+        icon: "🔁",
+        title: "Most Repeat Mistake",
+        score: (s) => s.bestRepeat,
+        require: (s) => s.bestRepeat >= 2,
+        blurb: (name, s) => `${name} repeated the same wrong set ${s.bestRepeat} times.`
+      },
+      {
+        key: "worstMemory",
+        icon: "🧠‍💨",
+        title: "Worst Memory",
+        score: (s) => (s.attempts ? -(s.matches / s.attempts) : 0),
+        blurb: (name, s) => `${name} is… still learning. Accuracy: ${(s.attempts ? Math.round((s.matches/s.attempts)*100) : 0)}%.`
+      },
+      {
+        key: "speedDemon",
+        icon: "⚡",
+        title: "Speed Demon",
+        score: (s) => (s.decisionCount ? -(s.totalDecision / s.decisionCount) : 0),
+        require: (s) => s.decisionCount >= 2,
+        blurb: (name, s) => `${name} averaged ${Math.round((s.decisionCount ? (s.totalDecision/s.decisionCount) : 0))}ms per pick.`
+      },
+      {
+        key: "carefulThinker",
+        icon: "🕵️",
+        title: "Most Careful",
+        score: (s) => (s.decisionCount ? (s.totalDecision / s.decisionCount) : 0),
+        require: (s) => s.decisionCount >= 2,
+        blurb: (name, s) => `${name} took their time (avg ${Math.round((s.decisionCount ? (s.totalDecision/s.decisionCount) : 0))}ms).`
+      },
+      {
+        key: "clicky",
+        icon: "👆",
+        title: "Most Flips",
+        score: (s) => s.flips,
+        blurb: (name, s) => `${name} flipped ${s.flips} cards.`
+      },
+      {
+        key: "doesntGetIt",
+        icon: "🤷",
+        title: "Doesn’t Seem To Understand The Game",
+        score: (s) => {
+          const acc = s.attempts ? (s.matches / s.attempts) : 0;
+          const avg = s.decisionCount ? (s.totalDecision / s.decisionCount) : 9999;
+          const rush = avg < 650 ? 1 : 0;
+          const lowAcc = acc < 0.25 ? 1 : 0;
+          return (s.misses * 2) + (s.bestRepeat * 3) + (rush * 6) + (lowAcc * 6);
+        },
+        require: (s) => (s.attempts >= 4),
+        blurb: (name, s) => `${name} may have been guessing… a lot.`
+      }
+    ];
+  }
+
+  function computeAwards(){
+    const n = state.players;
+    const stats = state.stats.slice(0, n);
+
+    const assignedPlayer = new Set();
+    const usedAwardKeys = new Set();
+    const out = [];
+
+    const candidates = awardCandidates();
+
+    const priority = ["mostMatches","longestStreak","sharpShooter","oopsRepeater","doesntGetIt","speedDemon","carefulThinker","clicky","worstMemory"];
+
+    const pickBest = (award) => {
+      let bestIdx = -1;
+      let bestScore = -Infinity;
+      for(let i=0;i<n;i++){
+        if(assignedPlayer.has(i)) continue;
+        const s = stats[i];
+        if(award.require && !award.require(s)) continue;
+        const sc = award.score(s);
+        if(sc > bestScore){
+          bestScore = sc;
+          bestIdx = i;
+        }
+      }
+      return bestIdx;
+    };
+
+    for(const key of priority){
+      if(out.length >= n) break;
+      const award = candidates.find(a=>a.key===key);
+      if(!award || usedAwardKeys.has(award.key)) continue;
+      const idx = pickBest(award);
+      if(idx === -1) continue;
+      usedAwardKeys.add(award.key);
+      assignedPlayer.add(idx);
+      const name = state.names[idx] || `Player ${idx+1}`;
+      out.push({
+        playerIndex: idx,
+        playerName: name,
+        icon: award.icon,
+        title: award.title,
+        desc: award.blurb(name, stats[idx]),
+        key: award.key
+      });
+    }
+
+    const fillerPool = [
+      {icon:"🌟", title:"Most Improved (Probably)", desc:(name)=>`${name} showed unstoppable determination.`},
+      {icon:"🛡️", title:"Defense Winner", desc:(name)=>`${name} refused to be rattled.`},
+      {icon:"🎉", title:"Energy Award", desc:(name)=>`${name} brought the vibes.`},
+      {icon:"🧩", title:"Puzzle Spirit", desc:(name)=>`${name} kept at it until the end.`},
+      {icon:"😈", title:"Chaos Gremlin", desc:(name)=>`${name} made it exciting for everyone.`},
+    ];
+
+    let fillerIdx = 0;
+    for(let i=0;i<n && out.length < n;i++){
+      if(assignedPlayer.has(i)) continue;
+      const name = state.names[i] || `Player ${i+1}`;
+      const f = fillerPool[fillerIdx % fillerPool.length];
+      fillerIdx++;
+      out.push({playerIndex:i, playerName:name, icon:f.icon, title:f.title, desc:f.desc(name), key:"filler_"+fillerIdx});
+      assignedPlayer.add(i);
+    }
+
+    out.sort((a,b)=>a.playerIndex-b.playerIndex);
+    return out;
+  }
+
+  function niceList(arr){
+    if(!arr || arr.length === 0) return "";
+    if(arr.length === 1) return arr[0];
+    if(arr.length === 2) return `${arr[0]} & ${arr[1]}`;
+    return `${arr.slice(0,-1).join(", ")} & ${arr[arr.length-1]}`;
+  }
+
+  function buildWinnerLine(){
+    if(state.teamMode){
+      const teamTotals = getTeamTotals();
+      const teams = Object.keys(teamTotals).map(Number);
+      const best = Math.max(...teams.map(t => teamTotals[t].score));
+      const winners = teams.filter(t => teamTotals[t].score === best);
+      const loserTeams = teams.filter(t => teamTotals[t].score !== best);
+      const winNames = winners.map(t => (teamTotals[t]?.name || `Team ${t}`));
+      const loseNames = loserTeams.map(t => (teamTotals[t]?.name || `Team ${t}`));
+      if(winners.length === teams.length) return "It’s a tie - all teams win!";
+      if(winners.length === 1) return `${winNames[0]} wins!`;
+      if(winners.length === teams.length - 1 && loserTeams.length === 1) return `Winners: ${niceList(winNames)} - and ${loseNames[0]} loses!`;
+      return `Winners: ${niceList(winNames)}!`;
+    }
+    const pairs = state.scores.slice(0, state.players);
+    const best = Math.max(...pairs);
+    const winners = [];
+    const losers = [];
+    for(let i=0;i<state.players;i++){
+      if(pairs[i] === best) winners.push(i);
+      else losers.push(i);
+    }
+    const winnerNames = winners.map(i => state.names[i] || `Player ${i+1}`);
+    const loserNames  = losers.map(i => state.names[i] || `Player ${i+1}`);
+
+    if(winners.length === state.players){
+      return "It’s a tie - everyone wins!";
+    }
+    if(winners.length === 1){
+      return `${winnerNames[0]} wins!`;
+    }
+    if(winners.length === state.players - 1 && losers.length === 1){
+      return `Winners: ${niceList(winnerNames)} - and ${loserNames[0]} is the loser!`;
+    }
+    return `Winners: ${niceList(winnerNames)}!`;
+  }
+
+
+function renderScoreBar(){
+    if(!state) return;
+    if(state.players <= 1){
+      scoreBar.classList.add("hidden");
+      scoreBar.innerHTML = "";
+      return;
+    }
+    scoreBar.classList.remove("hidden");
+    scoreBar.innerHTML = "";
+    if(state.teamMode){
+      const teamTotals = getTeamTotals();
+      Object.keys(teamTotals).map(Number).sort((a,b)=>a-b).forEach((teamNo) => {
+        const chip = document.createElement("div");
+        chip.className = "chip";
+        if(state.teams[state.turn-1] === teamNo){
+          chip.style.boxShadow = "0 0 0 2px rgba(255,255,255,0.16) inset";
+        }
+        const badge = document.createElement("div");
+        badge.className = "team-badge";
+        badge.textContent = `T${teamNo}`;
+        const label = document.createElement("div");
+        label.style.minWidth = "0";
+        label.style.whiteSpace = "nowrap";
+        label.textContent = teamTotals[teamNo].name || `Team ${teamNo}`;
+        const score = document.createElement("div");
+        score.className = "mono";
+        score.textContent = String(teamTotals[teamNo].score);
+        chip.appendChild(badge);
+        chip.appendChild(label);
+        chip.appendChild(score);
+        scoreBar.appendChild(chip);
+      });
+      return;
+    }
+    for(let p=1; p<=state.players; p++){
+      const chip = document.createElement("div");
+      chip.className = "chip";
+      const dot = document.createElement("div");
+      dot.className = `dot p${p}`;
+      const label = document.createElement("div");
+      const baseName = (state.names && state.names[p-1]) ? state.names[p-1] : `P${p}`;
+      label.textContent = baseName;
+      const score = document.createElement("div");
+      score.className = "mono";
+      score.textContent = String(state.scores[p-1]);
+      chip.appendChild(dot);
+      chip.appendChild(label);
+      chip.appendChild(score);
+      if(p === state.turn){
+        chip.style.boxShadow = "0 0 0 2px rgba(255,255,255,0.16) inset";
+      }
+      scoreBar.appendChild(chip);
+    }
+  }
+
+  function cardEl(i){
+    return board.querySelector(`.card[data-index="${i}"]`);
+  }
+
+  function reveal(i){
+    const el = cardEl(i);
+    if(!el) return;
+    el.classList.remove("wrong-flash");
+    el.classList.add("revealed");
+  }
+  function hide(i){
+    const el = cardEl(i);
+    if(!el) return;
+    el.classList.remove("wrong-flash");
+    el.classList.remove("revealed");
+  }
+  function flashWrong(i){
+    const el = cardEl(i);
+    if(!el) return;
+    el.classList.remove("wrong-flash");
+    void el.offsetWidth;
+    el.classList.add("wrong-flash");
+  }
+  function clearWrongFlash(i){
+    const el = cardEl(i);
+    if(!el) return;
+    el.classList.remove("wrong-flash");
+  }
+  function markMatched(i){
+    const el = cardEl(i);
+    if(!el) return;
+    el.classList.remove("wrong-flash");
+    el.classList.add("matched");
+    el.classList.remove("revealed");
+  }
+
+  function playerColor(p){
+    const colors = ["0,229,255","224,64,251","255,215,0","255,82,82","124,255,107","255,152,0","3,169,244","255,64,129"];
+    return colors[(p-1) % colors.length] || colors[0];
+  }
+
+  function setOwner(i, owner){
+    const el = cardEl(i);
+    if(!el) return;
+    for(let p=1;p<=8;p++) el.classList.remove(`owner-${p}`);
+    if(owner >= 1 && owner <= 8) el.classList.add(`owner-${owner}`);
+    const c = playerColor(owner);
+    el.style.borderColor = `rgba(${c},0.75)`;
+    el.style.background = `rgba(${c},0.12)`;
+    el.style.boxShadow = `0 0 0 3px rgba(${c},0.18) inset, 0 10px 24px rgba(0,0,0,0.35)`;
+  }
+
+  function resolvePicked(picked, pIdx2, isMatch){
+    matchResolveTimer = 0;
+    matchResolveDue = 0;
+    if(!state) return;
+    const pickedCards = picked.map((idx) => state.deck[idx]).filter(Boolean);
+    if(pickedCards.length !== picked.length){
+      state.revealed = [];
+      state.lock = false;
+      return;
+    }
+    if(isMatch) {
+      picked.forEach((idx) => {
+        markMatched(idx);
+        if(state.players > 1){
+          setOwner(idx, state.turn);
+          if(state.owners) state.owners[idx] = state.turn;
+        }
+      });
+      state.matchedKeys.add(pickedCards[0].key);
+      beep(820, 0.08, 0.02);
+      state.stats[pIdx2].matches += 1;
+      state.stats[pIdx2].curStreak += 1;
+      if(state.stats[pIdx2].curStreak > state.stats[pIdx2].longestStreak) state.stats[pIdx2].longestStreak = state.stats[pIdx2].curStreak;
+      if(state.players > 1) state.scores[state.turn-1] += 1;
+    } else {
+      picked.forEach(hide);
+      state.stats[pIdx2].misses += 1;
+      state.stats[pIdx2].curStreak = 0;
+      const mk = pickedCards.map((card) => card.key).sort().join("|");
+      const mpc = state.stats[pIdx2].mismatchPairCounts;
+      mpc[mk] = (mpc[mk] || 0) + 1;
+      if(mpc[mk] > state.stats[pIdx2].bestRepeat) state.stats[pIdx2].bestRepeat = mpc[mk];
+      beep(220, 0.08, 0.02);
+      if(state.players > 1){
+        state.turn = (state.turn % state.players) + 1;
+        showTurnSplash();
+      }
+    }
+
+    state.revealed = [];
+    state.lock = false;
+    renderScoreBar();
+    tick(true);
+    if(state.matchedKeys.size === state.totalMatches) onWin();
+    try{ if(window.ArcadeSave) ArcadeSave.touch(0); }catch(e){}
+  }
+
+  function scheduleResolve(picked, pIdx2, isMatch, delay){
+    clearTimeout(matchResolveTimer);
+    const wait = Math.max(0, Number(delay) || 0);
+    matchResolveDue = Date.now() + wait;
+    matchResolveTimer = setTimeout(() => resolvePicked(picked, pIdx2, isMatch), wait);
+  }
+
+  function onCardTap(i){
+    if(!state || state.lock || state.awaitingTurn) return;
+
+    const el = cardEl(i);
+    if(!el) return;
+    if(el.classList.contains("matched") || el.classList.contains("revealed")) return;
+
+    if(state.deck[i]?.free) return;
+
+    if(state.revealed.length === 0){const snapshot=captureState();if(snapshot){undoStack.push(JSON.parse(JSON.stringify(snapshot)));if(undoStack.length>50)undoStack.shift();syncUndoButtons();}}
+    const pIdx = (state.players > 1 ? (state.turn-1) : 0);
+    state.stats[pIdx].flips += 1;
+    if(state.revealed.length === 0) state.firstFlipAt = performance.now();
+
+    reveal(i);
+    beep(620, 0.05, 0.015);
+
+    state.revealed.push(i);
+
+    if(state.revealed.length === state.matchSize) {
+      state.lock = true;
+      state.moves += 1;
+      const pIdx2 = (state.players > 1 ? (state.turn-1) : 0);
+      const dt = Math.max(0, performance.now() - (state.firstFlipAt || performance.now()));
+      state.stats[pIdx2].attempts += 1;
+      state.stats[pIdx2].totalDecision += dt;
+      state.stats[pIdx2].decisionCount += 1;
+      const picked = state.revealed.slice();
+      const pickedCards = picked.map((idx) => state.deck[idx]);
+      const isMatch = pickedCards.every((card) => card.key === pickedCards[0].key);
+      if(!isMatch){
+        picked.forEach(flashWrong);
+      }
+      scheduleResolve(picked, pIdx2, isMatch, isMatch ? 260 : 1520);
+    }
+  }
+
+  function onWin(){
+    if(!state) return;
+    if(state.timer) clearInterval(state.timer);
+    try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+    try{ if(window.ArcadeSave) ArcadeSave.saveNow(); }catch(e){}
+
+    setStatus("Finished!");
+
+    if(state.players >= 2){
+      if(awardsSub){
+        awardsSub.textContent = buildWinnerLine();
+      }
+      renderFinalScores();
+      showOverlay(awardsOverlay, true);
+      showOverlay(menuOverlay, false);
+      showOverlay(turnOverlay, false);
+      return;
+    }
+
+    const seconds = Math.floor(state.tElapsed/1000);
+    const msg = `You did it!  Moves: ${state.moves}  Time: ${seconds}s`;
+
+    showOverlay(menuOverlay, true);
+    menuOverlay.querySelector("h1").textContent = "Nice!";
+    menuOverlay.querySelector(".sub").textContent = msg;
+    if(menuNote) menuNote.textContent = msg;
+    resumeBtn.textContent = "PLAY AGAIN";
+  }
+
+  function elapsedForSave(){
+    if(!state) return 0;
+    const paused = (menuOverlay && !menuOverlay.classList.contains("hidden")) || (turnOverlay && !turnOverlay.classList.contains("hidden")) || (awardsOverlay && !awardsOverlay.classList.contains("hidden"));
+    if(paused) return state.tElapsed || 0;
+    return Math.max(0, performance.now() - (state.startTime || performance.now()));
+  }
+
+  function cleanStats(stats){
+    return (Array.isArray(stats) ? stats : []).map((item) => ({
+      matches: item.matches || 0,
+      attempts: item.attempts || 0,
+      misses: item.misses || 0,
+      flips: item.flips || 0,
+      curStreak: item.curStreak || 0,
+      longestStreak: item.longestStreak || 0,
+      totalDecision: item.totalDecision || 0,
+      decisionCount: item.decisionCount || 0,
+      mismatchPairCounts: Object.assign({}, item.mismatchPairCounts || {}),
+      bestRepeat: item.bestRepeat || 0
+    }));
+  }
+
+  function restoreStats(stats, players){
+    const out = Array.from({length: players}, () => newStats());
+    (Array.isArray(stats) ? stats : []).forEach((item, index) => {
+      if(!out[index]) return;
+      Object.assign(out[index], item || {});
+      out[index].mismatchPairCounts = Object.assign(Object.create(null), item?.mismatchPairCounts || {});
+    });
+    return out;
+  }
+
+  function meaningful(){
+    return !!(state && state.deck && state.deck.length && state.matchedKeys.size < state.totalMatches);
+  }
+
+  function captureState(){
+    if(!meaningful()) return undefined;
+    const elapsed = elapsedForSave();
+    return {
+      players: state.players,
+      names: state.names,
+      teams: state.teams,
+      uniqueTeams: state.uniqueTeams,
+      teamMode: state.teamMode,
+      teamNames: state.teamNames,
+      cols: state.cols,
+      rows: state.rows,
+      matchSize: state.matchSize,
+      freeCount: state.freeCount,
+      totalMatches: state.totalMatches,
+      deck: state.deck,
+      revealed: state.revealed.slice(),
+      lock: !!state.lock,
+      awaitingTurn: !!state.awaitingTurn,
+      resolveRemaining: state.lock && matchResolveDue ? Math.max(0, matchResolveDue - Date.now()) : 0,
+      firstFlipAge: state.firstFlipAt ? Math.max(0, performance.now() - state.firstFlipAt) : 0,
+      matchedKeys: Array.from(state.matchedKeys || []),
+      owners: state.owners || [],
+      moves: state.moves || 0,
+      tElapsed: elapsed,
+      scores: state.scores || [],
+      turn: state.turn || 1,
+      stats: cleanStats(state.stats),
+      sound: state.sound !== false
+    };
+  }
+
+  function syncUndoButtons(){
+    const disabled=undoStack.length===0;[undoBtnSmall,menuUndoBtn,awardsUndo].forEach(button=>{if(button)button.disabled=disabled;});
+  }
+
+  function undoAttempt(){
+    if(!undoStack.length)return false;
+    clearTimeout(turnSplashTimer);clearTimeout(matchResolveTimer);matchResolveTimer=0;matchResolveDue=0;
+    const saved=undoStack.pop();restoreState(saved);showOverlay(menuOverlay,false);showOverlay(awardsOverlay,false);resumeBtn.textContent='RESUME';
+    setStatus('Last attempt undone. Pick again.');syncUndoButtons();return true;
+  }
+
+  function saveGame(){
+    const saved = captureState();
+    if(!saved){ setStatus("Start a game first."); return false; }
+    try{
+      localStorage.setItem(SAVE_KEY, JSON.stringify(saved));
+      state.tElapsed = saved.tElapsed;
+      setStatus("Game saved.");
+      return true;
+    }catch(e){
+      setStatus("Save failed.");
+      return false;
+    }
+  }
+
+  function restoreState(saved){
+    if(!saved || !Array.isArray(saved.deck)) throw new Error("bad save");
+    const savedOwners = Array.isArray(saved.owners) ? saved.owners : [];
+    const filteredDeck = [];
+    const filteredOwners = [];
+    saved.deck.forEach((card, index) => {
+      if(card && (card.free || String(card.key || "").indexOf("__free__") === 0)) return;
+      filteredDeck.push(card);
+      filteredOwners.push(savedOwners[index] || 0);
+    });
+    saved.deck = filteredDeck;
+    saved.owners = filteredOwners;
+    saved.freeCount = 0;
+    saved.totalMatches = Math.floor(saved.deck.length / Math.max(2, Math.min(3, parseInt(saved.matchSize, 10) || 2)));
+    const savedMatchedKeys = Array.isArray(saved.matchedKeys) ? saved.matchedKeys : [];
+    if(!saved.deck.length || savedMatchedKeys.length >= saved.totalMatches) throw new Error("finished save");
+    clearTimeout(turnSplashTimer);
+    clearTimeout(matchResolveTimer);
+    matchResolveTimer = 0;
+    matchResolveDue = 0;
+    if(state && state.timer) clearInterval(state.timer);
+    const players = Math.max(1, Math.min(8, parseInt(saved.players, 10) || 1));
+    const elapsed = Math.max(0, Number(saved.tElapsed) || 0);
+    state = {
+      players,
+      names: Array.isArray(saved.names) ? saved.names.slice(0, players) : Array.from({length: players}, (_,i)=>`Player ${i+1}`),
+      teams: Array.isArray(saved.teams) ? saved.teams.slice(0, players) : Array.from({length: players}, (_,i)=>(i % 4) + 1),
+      uniqueTeams: Array.isArray(saved.uniqueTeams) ? saved.uniqueTeams : [],
+      teamMode: !!saved.teamMode,
+      teamNames: Array.isArray(saved.teamNames) ? saved.teamNames : ["Team 1","Team 2","Team 3","Team 4"],
+      cols: Math.max(2, parseInt(saved.cols, 10) || 4),
+      rows: Math.max(2, parseInt(saved.rows, 10) || 4),
+      matchSize: Math.max(2, Math.min(3, parseInt(saved.matchSize, 10) || 2)),
+      freeCount: Math.max(0, parseInt(saved.freeCount, 10) || 0),
+      totalMatches: Math.max(1, parseInt(saved.totalMatches, 10) || 1),
+      deck: saved.deck,
+      revealed: Array.isArray(saved.revealed) ? saved.revealed.map(Number).filter((i) => Number.isInteger(i) && i >= 0 && i < saved.deck.length) : [],
+      matchedKeys: new Set(savedMatchedKeys),
+      owners: Array.isArray(saved.owners) ? saved.owners.slice(0, saved.deck.length) : Array.from({length: saved.deck.length}, () => 0),
+      lock: !!saved.lock,
+      moves: Math.max(0, parseInt(saved.moves, 10) || 0),
+      startTime: performance.now() - elapsed,
+      timer: null,
+      tElapsed: elapsed,
+      scores: Array.isArray(saved.scores) ? saved.scores.slice(0, players) : Array.from({length: players}, () => 0),
+      turn: Math.max(1, Math.min(players, parseInt(saved.turn, 10) || 1)),
+      firstFlipAt: saved.firstFlipAge ? performance.now() - Math.max(0, Number(saved.firstFlipAge) || 0) : 0,
+      stats: restoreStats(saved.stats, players),
+      sound: saved.sound !== false,
+      audio: null,
+      awaitingTurn: !!saved.awaitingTurn
+    };
+    if(!state.uniqueTeams.length) state.uniqueTeams = Array.from(new Set(state.teams));
+    showOverlay(startOverlay, false);
+    showOverlay(menuOverlay, false);
+    showOverlay(turnOverlay, false);
+    showOverlay(awardsOverlay, false);
+    updateTopbarMode();
+    renderScoreBar();
+    buildBoardFromState();
+    state.revealed.forEach(reveal);
+    scheduleBoardLayout();
+    if(state.timer) clearInterval(state.timer);
+    state.timer = setInterval(tick, 100);
+    tick(true);
+    if(state.lock && state.revealed.length === state.matchSize){
+      const picked = state.revealed.slice();
+      const pickedCards = picked.map((idx) => state.deck[idx]);
+      const isMatch = pickedCards.length === state.matchSize && pickedCards.every((card) => card && card.key === pickedCards[0].key);
+      if(!isMatch) picked.forEach(flashWrong);
+      scheduleResolve(picked, state.players > 1 ? state.turn - 1 : 0, isMatch, Math.max(80, Math.min(1520, Number(saved.resolveRemaining) || 260)));
+    }else{
+      state.lock = false;
+    }
+    if(state.awaitingTurn && !state.lock) showTurnSplash();
+    setStatus("Game loaded.");syncUndoButtons();
+    return true;
+  }
+
+  function loadGame(){
+    undoStack=[];syncUndoButtons();
+    if(window.ArcadeSave && ArcadeSave.hasSave()) return ArcadeSave.load();
+    let saved;
+    try { saved = JSON.parse(localStorage.getItem(SAVE_KEY) || "null"); } catch(e){ saved = null; }
+    if(!saved){ setStatus("No saved game."); return false; }
+    try{
+      restoreState(saved);
+      if(window.ArcadeSave) ArcadeSave.touch(0);
+      return true;
+    }catch(e){
+      try{ localStorage.removeItem(SAVE_KEY); }catch(_e){}
+      setStatus("Saved game could not be loaded.");
+      return false;
+    }
+  }
+
+  function startFresh(){
+    try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+    returnToSetup();
+  }
+
+  function saveSummary(){
+    if(!state) return "";
+    const left = Math.max(0, state.totalMatches - state.matchedKeys.size);
+    const who = state.players > 1 ? (state.names[state.turn-1] || `Player ${state.turn}`) : "Solo";
+    return `${who} · ${left} ${left === 1 ? "match" : "matches"} left`;
+  }
+
+  function leaveArcade(){
+    const leave = () => { window.location.href = "../index.html"; };
+    if(window.ArcadeSave && meaningful()) ArcadeSave.saveNow().then(leave, leave);
+    else leave();
+  }
+
+  function openMenu(){
+    if(!state) return;
+    showOverlay(turnOverlay, false);
+    showOverlay(menuOverlay, true);
+    menuOverlay.querySelector("h1").textContent = "Menu";
+    menuOverlay.querySelector(".sub").textContent = "Pause time - choose an option.";
+    resumeBtn.textContent = "RESUME";
+    if(menuNote) menuNote.textContent = "The game is paused while this menu is open.";
+    tick(true);
+  }
+
+  function closeMenu(){
+    showOverlay(menuOverlay, false);
+    if(state && state.players > 1 && state.awaitingTurn) showTurnSplash();
+    tick(true);
+  }
+
+  setupChoiceGroup(playersSel, playersChoices, refreshPlayerTeamUI);
+  setupChoiceGroup(playersSel, extraPlayersChoices, refreshPlayerTeamUI);
+  setupChoiceGroup(sizeSel, sizeChoices);
+  setupChoiceGroup(matchSel, matchChoices);
+  setupChoiceGroup(team1, teamChoices1, refreshPlayerTeamUI);
+  setupChoiceGroup(team2, teamChoices2, refreshPlayerTeamUI);
+  setupChoiceGroup(team3, teamChoices3, refreshPlayerTeamUI);
+  setupChoiceGroup(team4, teamChoices4, refreshPlayerTeamUI);
+  setupChoiceGroup(team5, teamChoices5, refreshPlayerTeamUI);
+  setupChoiceGroup(team6, teamChoices6, refreshPlayerTeamUI);
+  setupChoiceGroup(team7, teamChoices7, refreshPlayerTeamUI);
+  setupChoiceGroup(team8, teamChoices8, refreshPlayerTeamUI);
+  [team1, team2, team3, team4, team5, team6, team7, team8].forEach((el) => { if(el) el.addEventListener("change", refreshPlayerTeamUI); });
+  refreshPlayerTeamUI();
+  bindPress(morePlayersBtn, () => {
+    if(!extraPlayersChoices) return;
+    const showing = extraPlayersChoices.classList.contains("show-extra-players");
+    extraPlayersChoices.classList.toggle("show-extra-players", !showing);
+    if(morePlayersBtn) morePlayersBtn.textContent = showing ? "More Players" : "Hide Extra Players";
+  });
+
+  bindPress(startBtn, startNewGame);
+  bindPress(saveBtn, () => {
+    const saved = saveGame();
+    if(menuNote) menuNote.textContent = saved ? "Game saved." : "Start a game first.";
+  });
+  bindPress(loadBtn, () => {
+    const loaded = loadGame();
+    if(!loaded && menuNote) menuNote.textContent = "No saved game found.";
+  });
+  bindPress(loadStartBtn, loadGame);
+  bindPress(startBackBtn, () => {
+    leaveArcade();
+  });
+  bindPress(menuBtn, () => {
+    if(startOverlay && !startOverlay.classList.contains("hidden")) return;
+    openMenu();
+  });
+  bindPress(undoBtnSmall, undoAttempt);
+  bindPress(menuUndoBtn, undoAttempt);
+  bindPress(awardsUndo, undoAttempt);
+  bindPress(resumeBtn, () => {
+    if(resumeBtn.textContent === "PLAY AGAIN") restartCurrentGame();
+    else closeMenu();
+  });
+  bindPress(restartBtn, restartCurrentGame);
+  bindPress(newGameBtn, returnToSetup);
+  bindPress(backBtn, () => {
+    leaveArcade();
+  });
+
+  bindPress(awardsAgain, () => {
+    showOverlay(awardsOverlay, false);
+    startNewGame();
+  });
+  bindPress(awardsSettings, returnToSetup);
+
+  window.addEventListener("resize", () => {
+    if(!state) return;
+    try { scheduleBoardLayout(); } catch(e){}
+  });
+  if(window.visualViewport){
+    window.visualViewport.addEventListener("resize", () => {
+      if(!state) return;
+      try { scheduleBoardLayout(); } catch(e){}
+    });
+  }
+
+  setStatus("Ready");
+  window.MemoryGame = {
+    saveGame, loadGame, restartGame: restartCurrentGame,
+    autosave: {
+      id: "memory", title: "Memory Match", version: 1,
+      capture: captureState, restore: saved => { undoStack=[];syncUndoButtons();return restoreState(saved); }, meaningful, summary: saveSummary, startFresh
+    }
+  };
+
+
+})();
+</script>
+
+<script src="../arcade-save.js"></script>
+<script>
+  ArcadeSave.register(MemoryGame.autosave);
+</script>
+
+</body>
+</html>

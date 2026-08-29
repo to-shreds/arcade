@@ -1,0 +1,20 @@
+{
+  "title": "Mad Libs",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 270,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "word",
+    "creative",
+    "educational"
+  ],
+  "tags": [
+    "keyboard"
+  ],
+  "orientation": "any"
+}

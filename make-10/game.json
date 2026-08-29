@@ -1,0 +1,20 @@
+{
+  "title": "Make 10",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 10,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 4,
+  "categories": [
+    "math",
+    "puzzle"
+  ],
+  "tags": [
+    "touch",
+    "turn-based"
+  ],
+  "orientation": "any"
+}

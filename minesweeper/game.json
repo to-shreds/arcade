@@ -1,0 +1,19 @@
+{
+  "title": "Minesweeper",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 140,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "puzzle",
+    "strategy"
+  ],
+  "tags": [
+    "touch"
+  ],
+  "orientation": "any"
+}

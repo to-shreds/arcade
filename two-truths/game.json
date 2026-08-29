@@ -1,0 +1,14 @@
+{
+  "title": "Two Truths & a Lie",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 165,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["trivia", "educational"],
+  "tags": ["facts", "choices", "quick"],
+  "orientation": "any"
+}

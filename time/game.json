@@ -1,0 +1,19 @@
+{
+  "title": "Time",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 60,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "educational"
+  ],
+  "tags": [
+    "touch",
+    "calm"
+  ],
+  "orientation": "any"
+}

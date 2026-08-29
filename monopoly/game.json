@@ -1,0 +1,22 @@
+{
+  "title": "Monopoly",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 350,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 2,
+  "playersMax": 6,
+  "categories": [
+    "strategy",
+    "board"
+  ],
+  "tags": [
+    "touch",
+    "turn-based",
+    "same-device",
+    "saveable"
+  ],
+  "orientation": "landscape"
+}

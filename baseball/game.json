@@ -1,0 +1,14 @@
+{
+  "title": "Backyard Baseball",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 25,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["sports", "arcade"],
+  "tags": ["timing", "touch", "quick"],
+  "orientation": "any"
+}

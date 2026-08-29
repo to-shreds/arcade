@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcade! Hooray! — Menu</title>
+  <style>
+
+    html, body{ background:#000; height:100%; }
+    body{
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+      background: radial-gradient(circle at 25% 20%, #222 0%, #000 70%);
+      color: #fff;
+      overflow: hidden; overscroll-behavior: none;
+    }
+
+    .wrap{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 12px 10px 20px;
+  box-sizing: border-box;
+  min-height: 100dvh;
+  height: 100%;
+  display:flex;
+  flex-direction:column;
+}
+
+    .title{
+      text-align: center;
+      font-weight: 1000;
+      letter-spacing: 2px;
+      color: #ffd700;
+      text-shadow: 0 0 12px rgba(255,215,0,0.22);
+      margin: 8px 0 4px;
+      font-size: clamp(28px, 5vw, 44px);
+      line-height: 1.05;
+    }
+    .subtitle{ text-align:center; color: rgba(255,255,255,0.75); margin: 0 0 8px; font-size: 12px; }
+
+    .grid{
+      display:grid;
+      flex: 1 1 auto;
+      align-content: stretch;
+      grid-auto-rows: 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 8px;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+@media (max-height: 720px){
+      .hint, .tag{ display:none; }
+    }
+
+    
+    @media (max-width: 420px){
+      .grid{ gap: 6px; padding: 4px; grid-template-columns: repeat(auto-fit, minmax(98px, 1fr)); }
+      .card{ border-radius: 14px; }
+      .name{ font-size: 13px; }
+    }
+    @media (max-height: 640px){
+      .subtitle{ display:none; }
+      .wrap{ padding-top: 8px; padding-bottom: 10px; }
+      .grid{ gap: 6px; padding: 4px; }
+      .emoji{ font-size: 20px; }
+      .name{ font-size: 13px; }
+    }
+.card{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 100%;
+      border-radius: 16px;
+      border: 2px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.07);
+      text-decoration: none;
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+    }
+    .card:active{ transform: scale(0.985); }
+    @media (hover:hover){
+      .card:hover{ transform: translateY(-4px); border-color: rgba(255,255,255,0.38); background: rgba(255,255,255,0.10); }
+    }
+
+    .emoji{ font-weight: 1000; font-size: 22px; line-height: 1; }
+    .name{ font-weight: 900; letter-spacing: 0.2px; font-size: 14px; text-align:center; }
+
+    .hint{
+      margin: 10px auto 0;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.70);
+      max-width: 720px;
+    }
+
+    .tag{
+      display:inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.25);
+      font-size: 12px;
+      color: rgba(255,255,255,0.80);
+      margin-top: 10px;
+    }
+  
+
+        .splash-title{ color:#ffd700 !important; text-shadow:0 0 16px rgba(255,215,0,0.25) !important; }
+        [id$="-menu"].overlay, #menuOverlay, #startOverlay, #cat-menu, #g-balloons .b-start-overlay{ background: rgba(0,0,0,0.95) !important; }
+        #cat-menu .menu-title, #startOverlay .panel h1, #g-balloons .b-start-overlay h1{ color:#ffd700 !important; text-shadow:0 0 18px rgba(255,215,0,0.35) !important; }
+        #startOverlay .big-btn, #startOverlay .small, #cat-menu .cat-btn, #g-balloons .b-start-overlay .btn-large-opt{ background:#333 !important; border:2px solid #555 !important; border-radius:15px !important; color:#fff !important; font-weight:900 !important; box-shadow:none !important; }
+        #g-balloons .b-start-overlay .btn-large-opt{ font-size: 1.9rem !important; padding: 20px 28px !important; max-width: 320px; width: 80%; }
+    
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">Arcade! Hooray!</div>
+    <div class="subtitle">Pick a game!</div>
+
+    <div class="grid">
+      <a class="card" href="blackjack.html"><div class="emoji" style="color:#ffd700">21</div><div class="name">Blackjack Pro</div></a>
+      <a class="card" href="hangman.html"><div class="emoji" style="color:#007bff">A _ _ _ E</div><div class="name">Riddle Hangman</div></a>
+      <a class="card" href="trivia.html"><div class="emoji" style="color:#2ecc71">💡</div><div class="name">Trivia Time</div></a>
+      <a class="card" href="dots.html"><div class="emoji" style="color:#ff3333">● ● ●</div><div class="name">Dots Strategy</div></a>
+      <a class="card" href="qix.html"><div class="emoji" style="color:#00e5ff">⬚ ⬚</div><div class="name">Bounce Boxes</div></a>
+      <a class="card" href="minesweeper.html"><div class="emoji" style="color:#888">💣</div><div class="name">Minesweeper</div></a>
+      <a class="card" href="clock.html"><div class="emoji" style="color:#00e5ff">🕓</div><div class="name">Time Master</div></a>
+      <a class="card" href="math.html"><div class="emoji" style="color:#a569bd">1 + 2</div><div class="name">Math Whiz</div></a>
+      <a class="card" href="balloons.html"><div class="emoji" style="color:#E040FB">🦄</div><div class="name">Unicorn Party</div></a>
+      <a class="card" href="tictactoe.html"><div class="emoji" style="color:#ff5252">X O</div><div class="name">Tic Tac Toe</div></a>
+      <a class="card" href="maze.html"><div class="emoji" style="color:#ffd700">ꡙ‍ ꡌ‍ ꡚ</div><div class="name">Maze</div></a>
+      <a class="card" href="checkers.html"><div class="emoji" style="color:#ff3333">⛀</div><div class="name">Checkers</div></a>
+      <a class="card" href="chess.html"><div class="emoji" style="color:#ffd700">♟️</div><div class="name">Chess</div></a>
+      <a class="card" href="simon.html"><div class="emoji" style="color:#00e5ff">◼︎◼︎</div><div class="name">Simon Says</div></a>
+      <a class="card" href="minigolf.html"><div class="emoji" style="color:#7CFF6B">⛳</div><div class="name">Mini Golf</div></a>
+      <a class="card" href="trail.html"><div class="emoji" style="color:#7cff6b">〰️</div><div class="name">Coloring Fun</div></a>
+      <a class="card" href="orbslicer.html"><div class="emoji" style="color:#00e5ff">🔮</div><div class="name">Orb Slicer</div></a>
+      <a class="card" href="insultinator.html"><div class="emoji" style="color:#00e5ff">🖕</div><div class="name">Insultinator</div></a>
+      <a class="card" href="jigsaw.html"><div class="emoji" style="color:#00e5ff">🧩</div><div class="name">Jigsaw</div></a>
+      <a class="card" href="patterns.html"><div class="emoji" style="color:#00e5ff">🍌🍌🟤</div><div class="name">Patterns</div></a>
+    </div>
+  </div>
+</body>
+</html>

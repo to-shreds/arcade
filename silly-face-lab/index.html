@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="screen-orientation" content="portrait">
+    <title>Scarlett's Silly Face Lab</title>
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --primary-dark: #5543d8;
+            --accent: #00B894;
+            --accent-dark: #009b7c;
+            --danger: #ff7675;
+            --bg: #dfe6e9;
+            --panel: #ffffff;
+            --text: #2d3436;
+            --sun: #fdcb6e;
+            --ink-soft: rgba(45, 52, 54, 0.16);
+        }
+
+        * { box-sizing: border-box; }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        button,
+        input { font: inherit; }
+
+        button:focus-visible,
+        input:focus-visible {
+            outline: 4px solid rgba(253, 203, 110, 0.9);
+            outline-offset: 2px;
+        }
+
+        
+        .controls-wrapper {
+            background: var(--panel);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 auto;
+            max-height: 46vh;
+        }
+
+        
+        .tabs-container {
+            background: linear-gradient(135deg, var(--primary), #8e7cff);
+            width: 100%;
+            overflow: hidden;
+            padding: 7px 10px 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .app-title {
+            color: #fff;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 0.3px;
+            line-height: 1;
+            font-size: clamp(0.95rem, 2.2vw, 1.35rem);
+            text-shadow: 0 2px 0 rgba(0,0,0,0.12);
+        }
+
+        .tabs-inner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+            gap: 5px;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .tab-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.18);
+            padding: 5px 7px;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: clamp(0.58rem, 1.18vw, 0.86rem);
+            cursor: pointer;
+            transition: transform 0.12s, background 0.12s, color 0.12s;
+            text-transform: uppercase;
+            min-height: 30px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .tab-btn:hover { background: rgba(255,255,255,0.32); transform: translateY(-1px); }
+        .tab-btn.active {
+            background: #fff;
+            color: var(--primary);
+            transform: scale(1.03);
+            box-shadow: 0 3px 7px rgba(0,0,0,0.18);
+        }
+
+        
+        .options-strip {
+            height: clamp(94px, 16vh, 132px);
+            border-bottom: 1px solid #eee;
+            position: relative;
+            background: #fff;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .section-view {
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            overflow: hidden;
+            padding: 6px 10px;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+        
+        .horizontal-list {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 7px;
+            padding: 0;
+            min-width: 0;
+            max-width: 100%;
+            max-height: 100%;
+            overflow: hidden;
+        }
+
+        
+        .option-card {
+            width: clamp(44px, 6.4vw, 68px);
+            height: clamp(44px, 6.4vw, 68px);
+            flex: 0 0 auto;
+            border: 3px solid #f0f0f0;
+            border-radius: 13px;
+            cursor: pointer;
+            position: relative;
+            background: white;
+            transition: transform 0.1s, border-color 0.1s, background 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+        .option-card canvas { width: 100%; height: 100%; display: block; }
+        .option-card:hover { transform: translateY(-2px); border-color: #ccc; }
+        .option-card.selected { border-color: var(--primary); background: #f0f0ff; transform: scale(1.05); }
+        .option-card.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            font-size: 12px;
+            line-height: 18px;
+            text-align: center;
+            font-weight: 900;
+        }
+
+        .stickers-list { gap: 4px; }
+        .sticker-card {
+            width: clamp(30px, 4.8vw, 48px);
+            height: clamp(30px, 4.8vw, 48px);
+            border-width: 2px;
+            border-radius: 11px;
+            font-size: clamp(1.15rem, 3vw, 1.8rem);
+            line-height: 1;
+            background: linear-gradient(180deg, #ffffff, #fff8dc);
+        }
+        .sticker-card:active { transform: scale(0.96); }
+
+        .preset-label {
+            font-size: clamp(0.45rem, 0.8vw, 0.68rem);
+            text-align: center;
+            font-weight: 900;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.9);
+            pointer-events: none;
+            line-height: 1.05;
+            padding: 2px 1px;
+            color: #2d3436;
+        }
+
+        
+        .color-circle {
+            width: clamp(30px, 4.6vw, 45px);
+            height: clamp(30px, 4.6vw, 45px);
+            flex: 0 0 auto;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.24);
+            cursor: pointer;
+            transition: transform 0.14s, border-color 0.14s;
+        }
+        .color-circle:hover { transform: translateY(-2px); }
+        .color-circle.active { border-color: #2d3436; transform: scale(1.16); }
+
+        .combo-group-title { display: none; }
+
+        
+        .bottom-toolbar {
+            height: clamp(54px, 9vh, 76px);
+            padding: 4px 12px;
+            background: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(12px, 3vw, 30px);
+            overflow: hidden;
+        }
+
+        
+        .tool-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 0;
+        }
+        .tool-label { font-weight: 900; color: #555; font-size: clamp(0.62rem, 1.2vw, 0.8rem); text-transform: uppercase; }
+        input[type=range] { width: clamp(115px, 20vw, 165px); accent-color: var(--primary); cursor: pointer; }
+        input[type=range]:disabled { opacity: 0.35; cursor: default; }
+
+        
+        .nudge-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(3px, 0.8vw, 7px);
+            flex-wrap: nowrap;
+        }
+        .move-btn {
+            width: clamp(34px, 5.8vw, 50px);
+            height: clamp(36px, 6.2vw, 50px);
+            background: #e8e6ff;
+            border: 2px solid rgba(108,92,231,0.16);
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.05rem, 2.6vw, 1.42rem);
+            line-height: 1;
+            color: var(--primary);
+            font-weight: 900;
+            box-shadow: 0 3px 0 rgba(108,92,231,0.18);
+            transition: transform 0.1s, background 0.12s, color 0.12s, opacity 0.12s;
+        }
+        .move-btn:hover:not(:disabled) { background: var(--primary); color: white; }
+        .move-btn:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 rgba(108,92,231,0.18); }
+        .move-btn:disabled { cursor: default; opacity: 0.28; box-shadow: none; }
+        .move-center { background: #fff3cf; color: #8a5a00; border-color: rgba(253,203,110,0.45); }
+
+        
+        .canvas-area {
+            flex: 1 1 auto;
+            min-height: 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: var(--bg);
+            transition: background 0.3s;
+        }
+        .canvas-area > canvas {
+            max-height: calc(100% - 18px);
+            max-width: min(96%, 720px);
+            width: auto;
+            height: auto;
+            filter: drop-shadow(0 15px 35px rgba(0,0,0,0.22));
+            touch-action: none;
+            cursor: grab;
+        }
+        .canvas-area > canvas:active { cursor: grabbing; }
+
+        .portrait-name{
+            position:absolute;
+            left:50%;
+            top:10px;
+            transform:translateX(-50%);
+            background: rgba(255,255,255,0.94);
+            border: 2px solid rgba(0,0,0,0.08);
+            border-radius: 999px;
+            padding: 7px 14px;
+            font-weight: 900;
+            letter-spacing: 0.3px;
+            color: var(--text);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            z-index: 6;
+            min-width: 175px;
+            text-align:center;
+            pointer-events: none;
+            font-size: clamp(0.78rem, 1.6vw, 1rem);
+        }
+
+        
+        .utility-bar {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            gap: 8px;
+            z-index: 50;
+        }
+        .util-btn {
+            width: clamp(39px, 6vw, 50px); height: clamp(39px, 6vw, 50px);
+            border-radius: 13px; border: none;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 4px 11px rgba(0,0,0,0.13);
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.1s, background 0.12s;
+        }
+        .util-btn:hover { transform: scale(1.05); }
+        .util-btn:active { transform: scale(0.95); }
+        .util-btn svg { width: 24px; height: 24px; fill: #555; }
+        .btn-clear:hover svg { fill: var(--danger); }
+        .btn-undo:hover svg { fill: var(--primary); }
+
+        
+        .fab-container { position: absolute; bottom: 17px; right: 17px; display: flex; flex-direction: column; gap: 12px; z-index: 45; }
+        .fab {
+            width: clamp(48px, 7.6vw, 60px); height: clamp(48px, 7.6vw, 60px); border-radius: 50%; border: none; color: white; cursor: pointer;
+            box-shadow: 0 4px 11px rgba(0,0,0,0.32); transition: transform 0.1s; display: flex; align-items: center; justify-content: center;
+        }
+        .fab:hover { transform: scale(1.08); }
+        .fab:active { transform: scale(0.95); }
+        .fab svg { width: 31px; height: 31px; fill: white; }
+        .fab-random { background: var(--accent); }
+        .fab-save { background: var(--primary); }
+        .fab-name { background: #0984e3; }
+
+        .name-panel {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 8px 10px;
+            box-sizing: border-box;
+        }
+        .name-title { font-weight: 900; color: var(--primary); font-size: clamp(0.95rem, 1.8vw, 1.12rem); }
+        .name-sub { font-size: clamp(0.72rem, 1.4vw, 0.86rem); color: #555; text-align: center; max-width: 430px; }
+        .name-btn {
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 900;
+            padding: 8px 18px;
+            border-radius: 22px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.12);
+        }
+        .name-btn:hover { background: var(--primary-dark); }
+        .name-btn:active { transform: translateY(2px); box-shadow: 0 3px 0 rgba(0,0,0,0.12); }
+        .name-display {
+            display: none;
+            font-weight: 900;
+            font-size: clamp(0.9rem, 2vw, 1.15rem);
+            letter-spacing: 0.5px;
+            color: #222;
+            padding: 4px 12px;
+            border-radius: 14px;
+            background: rgba(108, 92, 231, 0.08);
+            border: 2px dashed rgba(108,92,231,0.35);
+            min-width: 120px;
+            text-align: center;
+        }
+
+        @media (max-height: 620px) {
+            .app-title { display: none; }
+            .tabs-container { padding: 5px 8px; }
+            .tabs-inner { grid-template-columns: repeat(auto-fit, minmax(62px, 1fr)); gap: 4px; }
+            .tab-btn { min-height: 24px; padding: 3px 5px; border-radius: 12px; }
+            .options-strip { height: 82px; }
+            .bottom-toolbar { height: 52px; }
+            .move-btn { width: 38px; height: 38px; border-radius: 12px; font-size: 1.16rem; }
+            .option-card { width: 42px; height: 42px; border-width: 2px; }
+            .sticker-card { width: 30px; height: 30px; font-size: 1.06rem; border-radius: 9px; }
+            .color-circle { width: 28px; height: 28px; border-width: 2px; }
+            .portrait-name { top: 6px; padding: 5px 11px; min-width: 145px; }
+            .utility-bar { top: 7px; right: 7px; }
+            .fab-container { bottom: 10px; right: 10px; gap: 9px; }
+            .name-sub { display: none; }
+            .name-panel { gap: 5px; }
+        }
+
+        @media (max-width: 520px) {
+            .tabs-inner { grid-template-columns: repeat(auto-fit, minmax(44px, 1fr)); gap: 4px; }
+            .bottom-toolbar { justify-content: space-around; gap: 5px; padding-left: 6px; padding-right: 6px; }
+            input[type=range] { width: 104px; }
+            .nudge-controls { gap: 3px; }
+            .move-btn { width: 40px; height: 40px; font-size: 1.18rem; border-radius: 12px; }
+            .option-card { width: 40px; height: 40px; border-width: 2px; }
+            .sticker-card { width: 30px; height: 30px; font-size: 1.06rem; border-radius: 9px; }
+            .color-circle { width: 28px; height: 28px; border-width: 2px; }
+            .horizontal-list { gap: 7px; }
+            .preset-label { font-size: 0.42rem; }
+            .portrait-name { max-width: 52vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        }
+
+
+        @media (max-width: 360px) {
+            .tabs-inner { grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); gap: 3px; }
+            .tab-btn { font-size: 0.5rem; padding: 2px 3px; }
+            input[type=range] { width: 92px; }
+            .move-btn { width: 36px; height: 36px; font-size: 1.08rem; border-radius: 11px; }
+            .option-card { width: 32px; height: 32px; border-width: 2px; border-radius: 9px; }
+            .sticker-card { width: 28px; height: 28px; font-size: 0.98rem; border-radius: 8px; }
+            .color-circle { width: 24px; height: 24px; }
+            .horizontal-list { gap: 4px; }
+            .option-card.selected::after { width: 14px; height: 14px; line-height: 14px; font-size: 10px; }
+            .preset-label { display: none; }
+        }
+
+</style>
+<style id="arcade-home-nav-style">#arcade-home-nav{position:fixed;z-index:2147483000;left:max(7px,env(safe-area-inset-left));top:max(7px,env(safe-area-inset-top));width:42px;height:42px;border:1px solid rgba(255,255,255,.28);border-radius:13px;background:rgba(7,10,22,.82);color:#fff;font:900 20px/1 system-ui;box-shadow:0 5px 16px rgba(0,0,0,.32);backdrop-filter:blur(7px);-webkit-tap-highlight-color:transparent}#arcade-home-nav:active{transform:scale(.96)}.tabs-container{padding-left:max(58px,calc(env(safe-area-inset-left) + 56px))!important;padding-right:max(8px,env(safe-area-inset-right))!important;padding-top:max(7px,env(safe-area-inset-top))!important}.bottom-toolbar{padding-bottom:max(6px,env(safe-area-inset-bottom))!important;height:auto!important;min-height:64px}.portrait-name{pointer-events:auto!important;border:2px solid rgba(9,132,227,.3)!important;cursor:pointer;font-family:inherit}.portrait-name:active{transform:translateX(-50%) scale(.97)}.portrait-lock{display:none;position:fixed;inset:0;z-index:2147483500;background:#090d1e;color:#fff;place-items:center;text-align:center;padding:24px;font:900 22px/1.3 system-ui}.portrait-lock span{display:block;font-size:60px;margin-bottom:12px}@media(orientation:landscape) and (max-height:620px){.controls-wrapper,.canvas-area,#arcade-home-nav{visibility:hidden}.portrait-lock{display:grid}}</style></head>
+<body>
+
+<div class="portrait-lock"><div><span>📱</span>Face Lab stays in portrait.<br>Turn the screen upright to keep the whole face visible.</div></div>
+
+<div class="controls-wrapper">
+    <div class="tabs-container">
+        <div class="app-title" aria-label="Scarlett's Silly Face Lab">Scarlett's Silly Face Lab</div>
+        <div class="tabs-inner" id="tabsInner"></div>
+    </div>
+    <div class="options-strip" id="optionsContainer"></div>
+    
+    <div class="bottom-toolbar" id="bottomToolbar">
+        <div class="tool-group">
+            <span class="tool-label" id="sliderLabel">Size</span>
+            <input type="range" id="sizeSlider" min="0.5" max="2.5" step="0.1" value="1">
+        </div>
+        <div class="tool-group">
+            <span class="tool-label" id="moveLabel">Move</span>
+            <div class="nudge-controls" id="moveControls">
+                <button class="move-btn move-left" onclick="move(-16, 0)" title="Move left" aria-label="Move left">◀</button>
+                <button class="move-btn move-up" onclick="move(0, -16)" title="Move up" aria-label="Move up">▲</button>
+                <button class="move-btn move-down" onclick="move(0, 16)" title="Move down" aria-label="Move down">▼</button>
+                <button class="move-btn move-right" onclick="move(16, 0)" title="Move right" aria-label="Move right">▶</button>
+                <button class="move-btn move-center" id="moveCenterBtn" onclick="resetPos()" title="Center this part" aria-label="Center this part">↺</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="canvas-area" id="bgArea">
+    <div class="utility-bar">
+        <button class="util-btn btn-undo" onclick="undo()" title="Undo" aria-label="Undo last change">
+            <svg viewBox="0 0 24 24"><path d="M12.5,8c-2.65,0-5.05,1-6.9,2.6L2,7v9h9l-3.62-3.62c1.39-1.16,3.16-1.88,5.12-1.88c3.54,0,6.55,2.31,7.6,5.5 l2.37-0.78C21.08,11.03,17.15,8,12.5,8z"/></svg>
+        </button>
+        <button class="util-btn btn-clear" onclick="clearFace()" title="Clear All" aria-label="Clear the face">
+            <svg viewBox="0 0 24 24"><path d="M6,19c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V7H6V19z M19,4h-3.5l-1-1h-5l-1,1H5v2h14V4z"/></svg>
+        </button>
+    </div>
+
+    <canvas id="mainCanvas" width="800" height="800"></canvas>
+
+    <button id="portraitName" class="portrait-name" type="button" onclick="generateName(true)" aria-label="Generate a silly name">Tap Name → Generate</button>
+    <div class="fab-container">
+        <button class="fab fab-random" onclick="randomize()" title="Surprise Face" aria-label="Make a surprise face">
+            <svg viewBox="0 0 24 24"><path d="M17,1H7A5,5,0,0,0,2,6V18a5,5,0,0,0,5,5H17a5,5,0,0,0,5-5V6A5,5,0,0,0,17,1ZM7,11a2,2,0,1,1,2-2A2,2,0,0,1,7,11Zm5,3a2,2,0,1,1,2-2A2,2,0,0,1,12,14Zm5,5a2,2,0,1,1,2-2A2,2,0,0,1,17,19Z"/></svg>
+        </button>
+        <button class="fab fab-save" onclick="downloadImage()" title="Save Image" aria-label="Save face as image">
+            <svg viewBox="0 0 24 24"><path d="M20,6H16.83l-1.42-2.52A1.94,1.94,0,0,0,13.68,2H10.32a1.94,1.94,0,0,0-1.73,1.48L7.17,6H4A3,3,0,0,0,1,9V19a3,3,0,0,0,3,3H20a3,3,0,0,0,3-3V9A3,3,0,0,0,20,6ZM12,18a5,5,0,1,1,5-5A5,5,0,0,1,12,18Zm0-8a3,3,0,1,0,3,3A3,3,0,0,0,12,10Z"/></svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    
+    const canvas = document.getElementById('mainCanvas');
+    const ctx = canvas.getContext('2d');
+    const bgArea = document.getElementById('bgArea');
+
+    
+    if (!CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+            r = Math.max(0, Math.min(r || 0, Math.min(w, h) / 2));
+            this.beginPath();
+            this.moveTo(x + r, y);
+            this.arcTo(x + w, y, x + w, y + h, r);
+            this.arcTo(x + w, y + h, x, y + h, r);
+            this.arcTo(x, y + h, x, y, r);
+            this.arcTo(x, y, x + w, y, r);
+            this.closePath();
+            return this;
+        };
+    }
+    const sizeSlider = document.getElementById('sizeSlider');
+    const sliderLabel = document.getElementById('sliderLabel');
+
+    let currentTab = null;
+    let historyStack = [];
+
+    
+    const DEFAULTS = {
+        bgColor: '#dfe6e9',
+        skinColor: '#81C784',
+        
+        faceShape: 'oval', faceSize: 1.0, faceX: 0, faceY: 0,
+        hairStyle: 'none', hairColor: '#4a3b2a', hairSize: 1.0, hairX: 0, hairY: 0,
+        facialHairColor: '#4a3b2a',
+        beardStyle: 'none', beardSize: 1.0, beardX: 0, beardY: 0,
+        mustacheStyle: 'none', mustacheSize: 1.0, mustacheX: 0, mustacheY: 0,
+        eyeStyle: 'round', eyeSize: 1.0, eyeX: 0, eyeY: 0,
+        browStyle: 'neutral', browColor: '#4a3b2a', browSize: 1.0, browX: 0, browY: 0,
+        noseStyle: 'button', noseSize: 1.0, noseX: 0, noseY: 0,
+        mouthStyle: 'smile', mouthSize: 1.0, mouthX: 0, mouthY: 0,
+        glassesStyle: 'none', glassesColor: '#333333', glassesSize: 1.0, glassesX: 0, glassesY: 0,
+        hatStyle: 'none', hatColor: '#D32F2F', hatSize: 1.0, hatX: 0, hatY: 0,
+        hairSeed: 1337,
+        faceName: '',
+        stickers: [],
+        activeStickerId: null
+    };
+
+    
+    let state = JSON.parse(JSON.stringify(DEFAULTS));
+
+    
+    function circle(ctx, x, y, r, c) { ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fillStyle = c; ctx.fill(); }
+    function oval(ctx, x, y, w, h, c) { ctx.beginPath(); ctx.ellipse(x, y, w, h, 0, 0, Math.PI*2); ctx.fillStyle = c; ctx.fill(); }
+
+    const FACE_ORIGIN_Y = 60;
+    const STICKER_BASE_SIZE = 58;
+    const STICKER_EMOJIS = ['🤪','🥸','👽','👾','🤖','👻','💩','🦄','🐸','🐙','🦖','🦷','👁️','🍄','🌈','⭐','💥','🌀'];
+    const STICKER_START_POINTS = [
+        {x: -82, y: -78}, {x: 84, y: -72}, {x: -96, y: 34}, {x: 92, y: 42},
+        {x: -42, y: 122}, {x: 48, y: 126}, {x: 0, y: -142}, {x: 0, y: 8}
+    ];
+    let selectedStickerEmoji = STICKER_EMOJIS[0];
+    let pointerDrag = null;
+
+    function ensureStickerState(st = state) {
+        if(!st) return;
+        if(!Array.isArray(st.stickers)) st.stickers = [];
+        if(typeof st.activeStickerId === 'undefined') st.activeStickerId = null;
+        if(st.activeStickerId && !st.stickers.some(s => s.id === st.activeStickerId)) {
+            st.activeStickerId = st.stickers.length ? st.stickers[st.stickers.length - 1].id : null;
+        }
+    }
+
+    function getActiveSticker(st = state) {
+        ensureStickerState(st);
+        if(!st || !st.activeStickerId) return null;
+        return st.stickers.find(s => s.id === st.activeStickerId) || null;
+    }
+
+    function makeSticker(emoji, x, y, sizeRatio = 1) {
+        return {
+            id: 'st_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7),
+            emoji,
+            x,
+            y,
+            size: Math.round(STICKER_BASE_SIZE * sizeRatio),
+            rotation: (Math.random() * 0.34) - 0.17
+        };
+    }
+
+    function drawStickerLayer(ctx2, st, showSelection) {
+        ensureStickerState(st);
+        if(!st || !st.stickers.length) return;
+        ctx2.save();
+        ctx2.textAlign = 'center';
+        ctx2.textBaseline = 'middle';
+        ctx2.lineJoin = 'round';
+        st.stickers.forEach(sticker => {
+            if(!sticker || !sticker.emoji) return;
+            const size = Math.max(22, Math.min(170, sticker.size || STICKER_BASE_SIZE));
+            ctx2.save();
+            ctx2.translate(sticker.x || 0, sticker.y || 0);
+            ctx2.rotate(sticker.rotation || 0);
+            ctx2.globalAlpha = 0.94;
+            ctx2.font = `${size}px Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif`;
+            ctx2.fillText(sticker.emoji, 0, 0);
+            if(showSelection && sticker.id === st.activeStickerId) {
+                const r = size * 0.58;
+                ctx2.globalAlpha = 1;
+                ctx2.setLineDash([8, 6]);
+                ctx2.lineWidth = Math.max(3, size * 0.055);
+                ctx2.strokeStyle = 'rgba(108,92,231,0.95)';
+                ctx2.beginPath();
+                ctx2.roundRect(-r, -r, r * 2, r * 2, Math.max(12, r * 0.34));
+                ctx2.stroke();
+                ctx2.setLineDash([]);
+            }
+            ctx2.restore();
+        });
+        ctx2.restore();
+    }
+
+    const ASSETS = {
+        faces: {
+            oval: (ctx, s, c) => oval(ctx, 0, 0, 140*s, 180*s, c),
+            round: (ctx, s, c) => circle(ctx, 0, 0, 160*s, c),
+            square: (ctx, s, c) => { ctx.fillStyle = c; ctx.beginPath(); ctx.roundRect(-140*s, -160*s, 280*s, 320*s, 40); ctx.fill(); },
+            pear: (ctx, s, c) => { ctx.fillStyle = c; ctx.beginPath(); ctx.ellipse(0, 50*s, 150*s, 120*s, 0, 0, Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.ellipse(0, -60*s, 110*s, 110*s, 0, 0, Math.PI*2); ctx.fill(); },
+            alien: (ctx, s, c) => { ctx.fillStyle = c; ctx.beginPath(); ctx.moveTo(-130*s, -150*s); ctx.quadraticCurveTo(0, 260*s, 130*s, -150*s); ctx.quadraticCurveTo(0, -220*s, -130*s, -150*s); ctx.fill(); },
+            block: (ctx, s, c) => { ctx.fillStyle = c; ctx.beginPath(); ctx.rect(-130*s, -160*s, 260*s, 320*s); ctx.fill(); },
+            heart: (ctx, s, c) => { ctx.fillStyle = c; ctx.beginPath(); ctx.moveTo(0, 180*s); ctx.bezierCurveTo(-160*s, 50*s, -180*s, -150*s, 0, -100*s); ctx.bezierCurveTo(180*s, -150*s, 160*s, 50*s, 0, 180*s); ctx.fill(); },
+            skull: (ctx, s, c) => { ctx.fillStyle = c; circle(ctx, 0, -50*s, 140*s, c); ctx.beginPath(); ctx.roundRect(-80*s, 40*s, 160*s, 120*s, 20); ctx.fill(); },
+            none: () => {} 
+        },
+        eyes: {
+            none: () => {},
+            round: (ctx) => { circle(ctx, -50, 0, 35, 'white'); circle(ctx, 50, 0, 35, 'white'); circle(ctx, -50, 0, 15, 'black'); circle(ctx, 50, 0, 15, 'black'); circle(ctx, -40, -10, 8, 'white'); circle(ctx, 60, -10, 8, 'white'); },
+            sleepy: (ctx) => { ctx.fillStyle='white'; ctx.beginPath(); ctx.arc(-50,0,35,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.arc(50,0,35,0,Math.PI*2); ctx.fill(); ctx.fillStyle=state.skinColor; ctx.beginPath(); ctx.arc(-50,0,36,Math.PI,0); ctx.fill(); ctx.beginPath(); ctx.arc(50,0,36,Math.PI,0); ctx.fill(); ctx.strokeStyle='#000'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(-85,0); ctx.lineTo(-15,0); ctx.stroke(); ctx.beginPath(); ctx.moveTo(15,0); ctx.lineTo(85,0); ctx.stroke(); },
+            star: (ctx) => { ctx.fillStyle = '#FFD700'; ctx.strokeStyle='black'; ctx.lineWidth=2; function ds(cx, cy) { let rot=Math.PI/2*3; let x=cx; let y=cy; let step=Math.PI/5; ctx.beginPath(); ctx.moveTo(cx,cy-35); for(let i=0;i<5;i++){ x=cx+Math.cos(rot)*35; y=cy+Math.sin(rot)*35; ctx.lineTo(x,y); rot+=step; x=cx+Math.cos(rot)*15; y=cy+Math.sin(rot)*15; ctx.lineTo(x,y); rot+=step; } ctx.lineTo(cx,cy-35); ctx.fill(); ctx.stroke(); } ds(-50, 0); ds(50, 0); },
+            cyclops: (ctx) => { circle(ctx, 0, -20, 70, 'white'); circle(ctx, 0, -20, 25, 'black'); circle(ctx, 15, -35, 10, 'white'); },
+            angry: (ctx) => { circle(ctx, -50, 0, 35, 'white'); circle(ctx, 50, 0, 35, 'white'); circle(ctx, -50, 0, 10, 'black'); circle(ctx, 50, 0, 10, 'black'); ctx.fillStyle = state.skinColor; ctx.beginPath(); ctx.moveTo(-90,-40); ctx.lineTo(0,10); ctx.lineTo(-90,10); ctx.fill(); ctx.beginPath(); ctx.moveTo(90,-40); ctx.lineTo(0,10); ctx.lineTo(90,10); ctx.fill(); },
+            x_eyes: (ctx) => { ctx.strokeStyle='#333'; ctx.lineWidth=8; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(-70,-20); ctx.lineTo(-30,20); ctx.stroke(); ctx.beginPath(); ctx.moveTo(-30,-20); ctx.lineTo(-70,20); ctx.stroke(); ctx.beginPath(); ctx.moveTo(30,-20); ctx.lineTo(70,20); ctx.stroke(); ctx.beginPath(); ctx.moveTo(70,-20); ctx.lineTo(30,20); ctx.stroke(); },
+            spiral: (ctx) => { ctx.strokeStyle='#333'; ctx.lineWidth=3; for(let i=0;i<2;i++){ let cx=i===0?-50:50; let cy=0; ctx.beginPath(); for(let j=0;j<=40;j++){ let angle=0.45*j; let r=1.2*j; let x=cx+Math.cos(angle)*r; let y=cy+Math.sin(angle)*r; if(j===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); } ctx.stroke(); } },
+            zombie: (ctx) => { circle(ctx, -50, 0, 40, '#fff'); circle(ctx, 50, 0, 25, '#fff'); circle(ctx, -50, 0, 5, '#000'); circle(ctx, 50, 0, 5, '#000'); ctx.fillStyle='rgba(0,0,0,0.2)'; circle(ctx,-50,0,50,'rgba(0,0,0,0.2)'); circle(ctx,50,0,35,'rgba(0,0,0,0.2)'); },
+            lashes: (ctx) => { ctx.fillStyle='white'; circle(ctx,-50,0,35,'white'); circle(ctx,50,0,35,'white'); circle(ctx,-50,0,15,'black'); circle(ctx,50,0,15,'black'); ctx.strokeStyle='#000'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(-75,-20); ctx.lineTo(-85,-35); ctx.stroke(); ctx.beginPath(); ctx.moveTo(-50,-35); ctx.lineTo(-50,-50); ctx.stroke(); ctx.beginPath(); ctx.moveTo(75,-20); ctx.lineTo(85,-35); ctx.stroke(); ctx.beginPath(); ctx.moveTo(50,-35); ctx.lineTo(50,-50); ctx.stroke(); }
+        },
+        brows: {
+            none: () => {},
+            neutral: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=8; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(-80,-40); ctx.quadraticCurveTo(-40,-55,-10,-40); ctx.stroke(); ctx.beginPath(); ctx.moveTo(80,-40); ctx.quadraticCurveTo(40,-55,10,-40); ctx.stroke(); },
+            angry: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=10; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(-80,-60); ctx.lineTo(-10,-30); ctx.stroke(); ctx.beginPath(); ctx.moveTo(80,-60); ctx.lineTo(10,-30); ctx.stroke(); },
+            flat: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=8; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(-80,-45); ctx.lineTo(-10,-45); ctx.stroke(); ctx.beginPath(); ctx.moveTo(80,-45); ctx.lineTo(10,-45); ctx.stroke(); },
+            unibrow: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=12; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(-70,-45); ctx.quadraticCurveTo(0,-35,70,-45); ctx.stroke(); },
+            sad: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=8; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(-80,-30); ctx.lineTo(-20,-50); ctx.stroke(); ctx.beginPath(); ctx.moveTo(80,-30); ctx.lineTo(20,-50); ctx.stroke(); },
+            arched: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=8; ctx.lineCap='round'; ctx.beginPath(); ctx.arc(-50, -30, 30, Math.PI, 0); ctx.stroke(); ctx.beginPath(); ctx.arc(50, -30, 30, Math.PI, 0); ctx.stroke(); },
+            pierre: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=8; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(-80,-50); ctx.lineTo(-20,-30); ctx.stroke(); ctx.beginPath(); ctx.moveTo(80,-30); ctx.lineTo(20,-50); ctx.stroke(); },
+            tiny: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=6; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(-60,-40); ctx.lineTo(-40,-40); ctx.stroke(); ctx.beginPath(); ctx.moveTo(60,-40); ctx.lineTo(40,-40); ctx.stroke(); }
+        },
+        noses: {
+            none: () => {},
+            button: (ctx) => circle(ctx, 0, 0, 15, 'rgba(0,0,0,0.15)'),
+            pig: (ctx) => { oval(ctx, 0, 0, 35, 25, '#ffaec9'); circle(ctx, -12, 0, 6, '#d16b88'); circle(ctx, 12, 0, 6, '#d16b88'); },
+            clown: (ctx) => { circle(ctx, 0, 5, 30, '#ff0000'); circle(ctx, -10, -5, 8, 'white'); },
+            cat: (ctx) => { ctx.fillStyle='#333'; ctx.beginPath(); ctx.moveTo(-15,-10); ctx.lineTo(15,-10); ctx.lineTo(0,10); ctx.fill(); ctx.beginPath(); ctx.moveTo(0,10); ctx.lineTo(0,30); ctx.strokeStyle='#333'; ctx.lineWidth=2; ctx.stroke(); },
+            skeleton: (ctx) => { ctx.fillStyle='#222'; ctx.beginPath(); ctx.moveTo(-5,-10); ctx.lineTo(-10,10); ctx.lineTo(-2,10); ctx.fill(); ctx.beginPath(); ctx.moveTo(5,-10); ctx.lineTo(10,10); ctx.lineTo(2,10); ctx.fill(); },
+            witch: (ctx) => { ctx.fillStyle='rgba(0,0,0,0.15)'; ctx.beginPath(); ctx.moveTo(0,-20); ctx.bezierCurveTo(40,0, 30,40, 0,30); ctx.fill(); circle(ctx, 15, 10, 4, '#333'); },
+            triangle: (ctx) => { ctx.fillStyle='rgba(0,0,0,0.15)'; ctx.beginPath(); ctx.moveTo(0,-25); ctx.lineTo(20,20); ctx.lineTo(-20,20); ctx.fill(); },
+            long: (ctx) => { ctx.fillStyle='rgba(0,0,0,0.1)'; ctx.beginPath(); ctx.roundRect(-15,-30,30,70, 15); ctx.fill(); },
+        },
+        mouths: {
+            none: () => {},
+            smile: (ctx) => { ctx.lineWidth=6; ctx.lineCap='round'; ctx.strokeStyle='#333'; ctx.beginPath(); ctx.arc(0,0,40,0.2,Math.PI-0.2); ctx.stroke(); },
+            frown: (ctx) => { ctx.lineWidth=6; ctx.lineCap='round'; ctx.strokeStyle='#333'; ctx.beginPath(); ctx.arc(0,60,40,Math.PI+0.2,-0.2); ctx.stroke(); },
+            tongue: (ctx) => { ctx.fillStyle='#400'; ctx.beginPath(); ctx.arc(0,10,30,0,Math.PI); ctx.fill(); ctx.fillStyle='#ff4757'; ctx.beginPath(); ctx.arc(15,30,15,0,Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.moveTo(15,30); ctx.lineTo(15,10); ctx.strokeStyle='#a00'; ctx.stroke(); },
+            vampire: (ctx) => { ctx.fillStyle='#2c0000'; ctx.beginPath(); ctx.arc(0,10,30,0,Math.PI); ctx.fill(); ctx.fillStyle='white'; ctx.beginPath(); ctx.moveTo(-25,10); ctx.lineTo(-15,35); ctx.lineTo(-5,10); ctx.fill(); ctx.beginPath(); ctx.moveTo(25,10); ctx.lineTo(15,35); ctx.lineTo(5,10); ctx.fill(); },
+            stitched: (ctx) => { ctx.strokeStyle='#333'; ctx.lineWidth=4; ctx.beginPath(); ctx.moveTo(-40,10); ctx.lineTo(40,10); ctx.stroke(); for(let i=-35;i<=35;i+=15){ ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,20); ctx.stroke(); } },
+            buck: (ctx) => { ctx.lineWidth=5; ctx.strokeStyle='#333'; ctx.beginPath(); ctx.arc(0,0,40,0.2,Math.PI-0.2); ctx.stroke(); ctx.fillStyle='white'; ctx.strokeStyle='black'; ctx.lineWidth=2; ctx.fillRect(-10,30,10,15); ctx.strokeRect(-10,30,10,15); ctx.fillRect(0,30,10,15); ctx.strokeRect(0,30,10,15); },
+            open: (ctx) => { ctx.fillStyle='#333'; circle(ctx, 0, 15, 25, '#333'); },
+            neutral: (ctx) => { ctx.strokeStyle='#333'; ctx.lineWidth=6; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(-30,20); ctx.lineTo(30,20); ctx.stroke(); },
+        },
+        hairBack: {
+            none: ()=>{},
+            long: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.ellipse(0, 40, 170, 200, 0, 0, Math.PI*2); ctx.fill(); },
+            afro: (ctx, c) => { circle(ctx, 0, -20, 210, c); },
+            pigtails: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.ellipse(-170, 50, 50, 120, 0.2, 0, Math.PI*2); ctx.fill(); circle(ctx, -150, -80, 60, c); ctx.beginPath(); ctx.ellipse(170, 50, 50, 120, -0.2, 0, Math.PI*2); ctx.fill(); circle(ctx, 150, -80, 60, c); },
+            spiky: (ctx, c) => { ctx.fillStyle=c; const seed = (state && typeof state.hairSeed==='number') ? state.hairSeed : 1337; function mulberry32(a){ return function(){ let t=a+=0x6D2B79F5; t=Math.imul(t^(t>>>15),t|1); t^=t+Math.imul(t^(t>>>7),t|61); return ((t^(t>>>14))>>>0)/4294967296; }; } const rnd = mulberry32(seed); for(let i=0;i<12;i++){ let a=(i/12)*Math.PI + Math.PI; let len = 200 + rnd()*40; ctx.beginPath(); ctx.moveTo(Math.cos(a)*140, Math.sin(a)*140); ctx.lineTo(Math.cos(a)*len, Math.sin(a)*len); ctx.lineTo(Math.cos(a+0.2)*140, Math.sin(a+0.2)*140); ctx.fill(); } },
+            bob: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.roundRect(-160, -150, 320, 300, 40); ctx.fill(); },
+            braids: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=40; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(-140,0); ctx.lineTo(-160,200); ctx.stroke(); ctx.beginPath(); ctx.moveTo(140,0); ctx.lineTo(160,200); ctx.stroke(); },
+            buns: (ctx, c) => { ctx.fillStyle=c; circle(ctx, -160, -120, 60, c); circle(ctx, 160, -120, 60, c); },
+        },
+        hairFront: {
+            none: ()=>{},
+            messy: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.moveTo(-140,-100); ctx.lineTo(-40,-60); ctx.lineTo(40,-160); ctx.lineTo(140,-100); ctx.quadraticCurveTo(0,-240, -140,-100); ctx.fill(); },
+            bangs: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.roundRect(-145, -180, 290, 100, 20); ctx.fill(); },
+            mohawk: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.moveTo(-30,-150); ctx.lineTo(0,-280); ctx.lineTo(30,-150); ctx.fill(); },
+            clown: (ctx, c) => { ctx.fillStyle='#ff4757'; circle(ctx, -160, -50, 50, '#ff4757'); circle(ctx, 160, -50, 50, '#ff4757'); },
+            balding: (ctx, c) => { circle(ctx, -155, -60, 25, c); circle(ctx, 155, -60, 25, c); },
+            widow: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.moveTo(-140,-100); ctx.quadraticCurveTo(-70,-60, 0, -30); ctx.quadraticCurveTo(70,-60, 140, -100); ctx.quadraticCurveTo(0,-250, -140,-100); ctx.fill(); },
+            ninja: (ctx, c) => { ctx.fillStyle='#333'; ctx.beginPath(); ctx.roundRect(-145, -160, 290, 60, 10); ctx.fill(); circle(ctx, 0, -130, 20, '#d63031'); },
+            parted: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.moveTo(0,-160); ctx.quadraticCurveTo(70,-100, 140,-60); ctx.lineTo(140,-180); ctx.lineTo(0,-180); ctx.fill(); ctx.beginPath(); ctx.moveTo(0,-160); ctx.quadraticCurveTo(-70,-100, -140,-60); ctx.lineTo(-140,-180); ctx.lineTo(0,-180); ctx.fill(); }
+        },
+        beards: {
+            none: ()=>{},
+            stubble: (ctx, c) => { ctx.fillStyle=c; ctx.globalAlpha=0.3; ctx.beginPath(); ctx.arc(0,10,140,0,Math.PI); ctx.fill(); ctx.globalAlpha=1.0; },
+            goatee: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.moveTo(-30,160); ctx.lineTo(30,160); ctx.lineTo(0,230); ctx.fill(); },
+            full: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.moveTo(-140, -20); ctx.quadraticCurveTo(-140, 180, 0, 180); ctx.quadraticCurveTo(140, 180, 140, -20); ctx.lineTo(140, 20); ctx.quadraticCurveTo(140, 220, 0, 220); ctx.quadraticCurveTo(-140, 220, -140, 20); ctx.fill(); ctx.beginPath(); ctx.arc(0, 50, 100, 0, Math.PI); ctx.fill(); },
+            lumberjack: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.roundRect(-145, 20, 290, 180, 60); ctx.fill(); },
+            braided: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=30; ctx.beginPath(); ctx.moveTo(0,140); ctx.lineTo(0,250); ctx.stroke(); circle(ctx, 0, 250, 20, '#d4af37'); },
+            santa: (ctx, c) => { ctx.fillStyle='#fff'; ctx.beginPath(); ctx.moveTo(-140,50); ctx.quadraticCurveTo(0, 300, 140, 50); ctx.fill(); }
+        },
+        mustaches: {
+            none: ()=>{},
+            classic: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.ellipse(-30, 20, 35, 12, -0.2, 0, Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.ellipse(30, 20, 35, 12, 0.2, 0, Math.PI*2); ctx.fill(); },
+            handlebar: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=6; ctx.beginPath(); ctx.moveTo(-5,15); ctx.quadraticCurveTo(-40,0,-90,20); ctx.stroke(); ctx.moveTo(5,15); ctx.quadraticCurveTo(40,0,90,20); ctx.stroke(); },
+            walrus: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.roundRect(-60, 15, 120, 40, 20); ctx.fill(); },
+            pencil: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(-40,20); ctx.lineTo(-5,15); ctx.stroke(); ctx.beginPath(); ctx.moveTo(40,20); ctx.lineTo(5,15); ctx.stroke(); },
+            dali: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=4; ctx.beginPath(); ctx.moveTo(0,20); ctx.quadraticCurveTo(-30,20, -60,-10); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0,20); ctx.quadraticCurveTo(30,20, 60,-10); ctx.stroke(); }
+        },
+        glasses: {
+            none: ()=>{},
+            nerd: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=8; circle(ctx, -50, -5, 40, 'transparent'); ctx.stroke(); circle(ctx, 50, -5, 40, 'transparent'); ctx.stroke(); ctx.beginPath(); ctx.moveTo(-10,-5); ctx.lineTo(10,-5); ctx.stroke(); },
+            pixel: (ctx, c) => { ctx.fillStyle='#111'; ctx.fillRect(-90,-20, 180, 10); ctx.fillRect(-80, -20, 40, 30); ctx.fillRect(40, -20, 40, 30); },
+            round: (ctx, c) => { ctx.strokeStyle='#d4af37'; ctx.lineWidth=5; circle(ctx, -50, 0, 35, 'transparent'); ctx.stroke(); circle(ctx, 50, 0, 35, 'transparent'); ctx.stroke(); ctx.beginPath(); ctx.moveTo(-15,0); ctx.lineTo(15,0); ctx.stroke(); },
+            aviator: (ctx, c) => { ctx.strokeStyle='#333'; ctx.lineWidth=4; ctx.fillStyle='rgba(0,0,0,0.5)'; function lens(x){ ctx.beginPath(); ctx.moveTo(x, -10); ctx.quadraticCurveTo(x+40, -10, x+40, 20); ctx.quadraticCurveTo(x+20, 40, x, 20); ctx.quadraticCurveTo(x-20, 40, x-40, 20); ctx.quadraticCurveTo(x-40, -10, x, -10); ctx.fill(); ctx.stroke(); } lens(-50); lens(50); ctx.beginPath(); ctx.moveTo(-10,-10); ctx.lineTo(10,-10); ctx.stroke(); },
+            shutter: (ctx, c) => { ctx.strokeStyle=c; ctx.lineWidth=4; ctx.strokeRect(-90,-20, 180, 50); for(let i=-20; i<=30; i+=10){ ctx.beginPath(); ctx.moveTo(-90, i); ctx.lineTo(90, i); ctx.stroke(); } }
+        },
+        hats: {
+            none: ()=>{},
+            cap: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.arc(0,-80,165,Math.PI, 0); ctx.fill(); ctx.fillStyle='#222'; ctx.beginPath(); ctx.ellipse(0,-80,180,30,0,0,Math.PI*2); ctx.fill(); },
+            beanie: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.arc(0,-100,160,Math.PI,0); ctx.fill(); ctx.strokeStyle='#fff'; ctx.lineWidth=30; ctx.beginPath(); ctx.moveTo(-160,-100); ctx.lineTo(160,-100); ctx.stroke(); circle(ctx, 0, -260, 35, c); },
+            tophat: (ctx, c) => { ctx.fillStyle='#111'; ctx.beginPath(); ctx.rect(-140,-120,280,30); ctx.fill(); ctx.fillStyle=c; ctx.beginPath(); ctx.rect(-100,-300,200,180); ctx.fill(); ctx.fillStyle='#cc0000'; ctx.fillRect(-100,-150,200,30); },
+            mouse: (ctx, c) => { ctx.fillStyle='#111'; circle(ctx, -140, -140, 80, '#111'); circle(ctx, 140, -140, 80, '#111'); ctx.beginPath(); ctx.arc(0,-80,160,Math.PI, 0); ctx.fill(); },
+            crown: (ctx, c) => { ctx.fillStyle='#f1c40f'; ctx.beginPath(); ctx.moveTo(-140,-80); ctx.lineTo(-140,-250); ctx.lineTo(-70,-150); ctx.lineTo(0,-280); ctx.lineTo(70,-150); ctx.lineTo(140,-250); ctx.lineTo(140,-80); ctx.fill(); },
+            pirate: (ctx, c) => { ctx.fillStyle=c; ctx.beginPath(); ctx.arc(0,-100,155,Math.PI,0); ctx.fill(); ctx.fillStyle='#111'; ctx.beginPath(); ctx.moveTo(180,-80); ctx.lineTo(20,-80); ctx.lineTo(160,-150); ctx.fill(); circle(ctx, 150, -100, 10, 'white'); },
+            witch: (ctx, c) => { ctx.fillStyle='#222'; ctx.beginPath(); ctx.ellipse(0, -100, 200, 30, 0, 0, Math.PI*2); ctx.fill(); ctx.beginPath(); ctx.moveTo(-100,-100); ctx.lineTo(100,-100); ctx.lineTo(0,-350); ctx.fill(); }
+        }
+    };
+
+    const PRESETS = {
+        'Green Cyclops': { faceShape: 'round', skinColor: '#81C784', eyeStyle: 'cyclops', noseStyle: 'none', mouthStyle: 'smile', hairStyle: 'none', faceSize: 1.2, eyeSize: 1.5, mouthY: 50 },
+        'Vampire': { faceShape: 'oval', skinColor: '#ecf0f1', eyeStyle: 'angry', mouthStyle: 'vampire', hairStyle: 'widow', hairColor: '#2C2C2C', hatStyle: 'none', mustacheStyle: 'none', beardStyle: 'none' },
+        'Ice Queen': { faceShape: 'oval', skinColor: '#F0D5BE', eyeStyle: 'lashes', mouthStyle: 'smile', hairStyle: 'braids', hairColor: '#ECF0F1', hatStyle: 'crown', noseStyle: 'button' },
+        'Pirate': { faceShape: 'square', skinColor: '#B57B57', eyeStyle: 'x_eyes', mouthStyle: 'stitched', hairStyle: 'long', hairColor: '#2C2C2C', beardStyle: 'braided', facialHairColor: '#2C2C2C', hatStyle: 'pirate', noseStyle: 'triangle' },
+        'Zombie': { faceShape: 'skull', skinColor: '#95A5A6', eyeStyle: 'zombie', noseStyle: 'skeleton', mouthStyle: 'stitched', hairStyle: 'messy', hairColor: '#95A5A6', faceSize: 1.1 },
+        'Mouse': { faceShape: 'round', skinColor: '#FFDFC4', hatStyle: 'mouse', eyeStyle: 'round', noseStyle: 'button', mouthStyle: 'smile', hairStyle: 'none' },
+        'Clown': { faceShape: 'round', skinColor: '#FFDFC4', eyeStyle: 'star', browStyle: 'arched', noseStyle: 'clown', mouthStyle: 'tongue', hairStyle: 'clown', hairColor: '#ff4757', hatStyle: 'none' },
+        'Ninja': { faceShape: 'oval', skinColor: '#F0D5BE', eyeStyle: 'angry', browStyle: 'angry', noseStyle: 'none', mouthStyle: 'neutral', hairStyle: 'ninja', hairColor: '#111111', hatStyle: 'none' },
+        'Santa': { faceShape: 'round', skinColor: '#F0D5BE', eyeStyle: 'round', browStyle: 'arched', noseStyle: 'button', mouthStyle: 'smile', hairStyle: 'balding', hairColor: '#ECF0F1', beardStyle: 'santa', facialHairColor: '#ECF0F1', hatStyle: 'beanie', hatColor: '#D32F2F' },
+        'Nerd': { faceShape: 'oval', skinColor: '#FFDFC4', eyeStyle: 'round', browStyle: 'neutral', noseStyle: 'button', mouthStyle: 'neutral', hairStyle: 'parted', hairColor: '#6D4C41', glassesStyle: 'nerd', glassesColor: '#111111' },
+        'Witch': { faceShape: 'oval', skinColor: '#C8E6C9', eyeStyle: 'lashes', browStyle: 'arched', noseStyle: 'witch', mouthStyle: 'smile', hairStyle: 'messy', hairColor: '#2C2C2C', hatStyle: 'witch', hatColor: '#111111' }
+    };
+
+    
+    function draw() {
+        if (!state) return;
+        try {
+            bgArea.style.backgroundColor = state.bgColor;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.save();
+            ctx.translate(canvas.width/2, canvas.height/2 + FACE_ORIGIN_Y);
+
+            const fs = state.faceSize;
+
+            
+            if(ASSETS.hairBack[state.hairStyle]) { 
+                ctx.save(); 
+                ctx.translate(state.hairX, state.hairY);
+                let s = fs * state.hairSize; ctx.scale(s, s);
+                ASSETS.hairBack[state.hairStyle](ctx, state.hairColor); 
+                ctx.restore(); 
+            }
+            
+            
+            ctx.save(); 
+            ctx.translate(state.faceX, state.faceY);
+            ASSETS.faces[state.faceShape](ctx, fs, state.skinColor); 
+            ctx.restore();
+
+            
+            ctx.save(); ctx.translate(0, -30); ctx.translate(state.eyeX, state.eyeY); ctx.scale(state.eyeSize, state.eyeSize); ASSETS.eyes[state.eyeStyle](ctx); ctx.restore();
+            ctx.save(); ctx.translate(0, -85); ctx.translate(state.browX, state.browY); ctx.scale(state.browSize, state.browSize); ASSETS.brows[state.browStyle](ctx, state.browColor); ctx.restore();
+            ctx.save(); ctx.translate(0, 30); ctx.translate(state.noseX, state.noseY); ctx.scale(state.noseSize, state.noseSize); ASSETS.noses[state.noseStyle](ctx); ctx.restore();
+            ctx.save(); ctx.translate(0, 50); ctx.translate(state.beardX, state.beardY); ctx.scale(state.beardSize, state.beardSize); ASSETS.beards[state.beardStyle](ctx, state.facialHairColor); ctx.restore();
+            ctx.save(); ctx.translate(0, 85); ctx.translate(state.mouthX, state.mouthY); ctx.scale(state.mouthSize, state.mouthSize); ASSETS.mouths[state.mouthStyle](ctx); ctx.restore();
+            ctx.save(); ctx.translate(0, 75); ctx.translate(state.mustacheX, state.mustacheY); ctx.scale(state.mustacheSize, state.mustacheSize); ASSETS.mustaches[state.mustacheStyle](ctx, state.facialHairColor); ctx.restore();
+
+            
+            ctx.save(); ctx.translate(0, -30 * fs); ctx.translate(state.hairX, state.hairY); let sF = fs * state.hairSize; ctx.scale(sF, sF); if(ASSETS.hairFront[state.hairStyle]) ASSETS.hairFront[state.hairStyle](ctx, state.hairColor); ctx.restore();
+            ctx.save(); ctx.translate(0, -30); ctx.translate(state.glassesX, state.glassesY); ctx.scale(state.glassesSize, state.glassesSize); ASSETS.glasses[state.glassesStyle](ctx, state.glassesColor); ctx.restore();
+            ctx.save(); ctx.translate(0, -70 * fs); ctx.translate(state.hatX, state.hatY); let sH = fs * state.hatSize; ctx.scale(sH, sH); ASSETS.hats[state.hatStyle](ctx, state.hatColor); ctx.restore();
+
+            
+            drawStickerLayer(ctx, state, currentTab && currentTab.id === 'stickers');
+
+            ctx.restore();
+        } catch(e) { console.log(e); }
+    }
+
+    
+    
+    function drawNameBadge(ctx2, name, w) {
+        if(!ctx2 || !name) return;
+        const safeName = String(name).trim().slice(0, 26);
+        if(!safeName) return;
+        ctx2.save();
+        ctx2.font = '900 42px Segoe UI, Tahoma, sans-serif';
+        ctx2.textAlign = 'center';
+        ctx2.textBaseline = 'middle';
+        const badgeW = Math.min(w - 80, Math.max(260, ctx2.measureText(safeName).width + 78));
+        const badgeH = 72;
+        const x = (w - badgeW) / 2;
+        const y = 34;
+        ctx2.fillStyle = 'rgba(255,255,255,0.94)';
+        ctx2.strokeStyle = 'rgba(45,52,54,0.16)';
+        ctx2.lineWidth = 4;
+        ctx2.beginPath();
+        ctx2.roundRect(x, y, badgeW, badgeH, 34);
+        ctx2.fill();
+        ctx2.stroke();
+        ctx2.fillStyle = '#2d3436';
+        ctx2.fillText(safeName, w / 2, y + badgeH / 2 + 1);
+        ctx2.restore();
+    }
+    
+    function renderFaceToCtx(ctx2, st, w, h, yOff, includeBackground) {
+        if (!ctx2 || !st) return;
+        if (yOff === undefined) yOff = 20;
+        try {
+            ctx2.clearRect(0, 0, w, h);
+            if(includeBackground) {
+                ctx2.fillStyle = st.bgColor || DEFAULTS.bgColor;
+                ctx2.fillRect(0, 0, w, h);
+            }
+            
+            ctx2.save();
+            ctx2.translate(w/2, h/2 + yOff);
+
+            const fs = st.faceSize;
+
+            
+            if(ASSETS.hairBack[st.hairStyle]) { 
+                ctx2.save(); 
+                ctx2.translate(st.hairX, st.hairY);
+                let s = fs * st.hairSize; ctx2.scale(s, s);
+                ASSETS.hairBack[st.hairStyle](ctx2, st.hairColor); 
+                ctx2.restore(); 
+            }
+            
+            
+            ctx2.save(); 
+            ctx2.translate(st.faceX, st.faceY);
+            ASSETS.faces[st.faceShape](ctx2, fs, st.skinColor); 
+            ctx2.restore();
+
+            
+            ctx2.save(); ctx2.translate(0, -30); ctx2.translate(st.eyeX, st.eyeY); ctx2.scale(st.eyeSize, st.eyeSize); ASSETS.eyes[st.eyeStyle](ctx2); ctx2.restore();
+            ctx2.save(); ctx2.translate(0, -85); ctx2.translate(st.browX, st.browY); ctx2.scale(st.browSize, st.browSize); ASSETS.brows[st.browStyle](ctx2, st.browColor); ctx2.restore();
+            ctx2.save(); ctx2.translate(0, 30); ctx2.translate(st.noseX, st.noseY); ctx2.scale(st.noseSize, st.noseSize); ASSETS.noses[st.noseStyle](ctx2); ctx2.restore();
+            ctx2.save(); ctx2.translate(0, 50); ctx2.translate(st.beardX, st.beardY); ctx2.scale(st.beardSize, st.beardSize); ASSETS.beards[st.beardStyle](ctx2, st.facialHairColor); ctx2.restore();
+            ctx2.save(); ctx2.translate(0, 85); ctx2.translate(st.mouthX, st.mouthY); ctx2.scale(st.mouthSize, st.mouthSize); ASSETS.mouths[st.mouthStyle](ctx2); ctx2.restore();
+            ctx2.save(); ctx2.translate(0, 75); ctx2.translate(st.mustacheX, st.mustacheY); ctx2.scale(st.mustacheSize, st.mustacheSize); ASSETS.mustaches[st.mustacheStyle](ctx2, st.facialHairColor); ctx2.restore();
+
+            
+            ctx2.save(); ctx2.translate(0, -30 * fs); ctx2.translate(st.hairX, st.hairY); let sF = fs * st.hairSize; ctx2.scale(sF, sF); if(ASSETS.hairFront[st.hairStyle]) ASSETS.hairFront[st.hairStyle](ctx2, st.hairColor); ctx2.restore();
+            ctx2.save(); ctx2.translate(0, -30); ctx2.translate(st.glassesX, st.glassesY); ctx2.scale(st.glassesSize, st.glassesSize); ASSETS.glasses[st.glassesStyle](ctx2, st.glassesColor); ctx2.restore();
+            ctx2.save(); ctx2.translate(0, -70 * fs); ctx2.translate(st.hatX, st.hatY); let sH = fs * st.hatSize; ctx2.scale(sH, sH); ASSETS.hats[st.hatStyle](ctx2, st.hatColor); ctx2.restore();
+
+            drawStickerLayer(ctx2, st, false);
+
+            ctx2.restore();
+            if(includeBackground) drawNameBadge(ctx2, st.faceName, w);
+        } catch(e) {}
+    }
+
+    function addSticker(emoji, x, y, saveHistory = true) {
+        ensureStickerState();
+        if(saveHistory) pushHistory();
+        const place = STICKER_START_POINTS[state.stickers.length % STICKER_START_POINTS.length];
+        const sticker = makeSticker(emoji || selectedStickerEmoji, x ?? place.x, y ?? place.y);
+        state.stickers.push(sticker);
+        state.activeStickerId = sticker.id;
+        selectedStickerEmoji = sticker.emoji;
+        draw();
+        refreshUI();
+        return sticker;
+    }
+
+    function removeActiveSticker() {
+        ensureStickerState();
+        const active = getActiveSticker();
+        if(!active) return;
+        pushHistory();
+        state.stickers = state.stickers.filter(s => s.id !== active.id);
+        state.activeStickerId = state.stickers.length ? state.stickers[state.stickers.length - 1].id : null;
+        draw();
+        refreshUI();
+    }
+
+    function getCurrentSizeValue() {
+        if(currentTab && currentTab.id === 'stickers') {
+            const active = getActiveSticker();
+            return active ? ((active.size || STICKER_BASE_SIZE) / STICKER_BASE_SIZE) : 1;
+        }
+        if(currentTab && currentTab.sizeTarget) return state[currentTab.sizeTarget];
+        return 1;
+    }
+
+    function setCurrentSizeValue(value) {
+        const v = parseFloat(value);
+        if(!Number.isFinite(v)) return;
+        if(currentTab && currentTab.id === 'stickers') {
+            const active = getActiveSticker();
+            if(active) {
+                active.size = Math.round(STICKER_BASE_SIZE * v);
+                draw();
+            }
+            return;
+        }
+        if(currentTab && currentTab.sizeTarget) {
+            state[currentTab.sizeTarget] = v;
+            draw();
+        }
+    }
+
+    function canMoveCurrentThing() {
+        return !!(currentTab && (currentTab.posTarget || (currentTab.id === 'stickers' && getActiveSticker())));
+    }
+
+    function canSizeCurrentThing() {
+        return !!(currentTab && (currentTab.sizeTarget || (currentTab.id === 'stickers' && getActiveSticker())));
+    }
+
+    function pushHistory() {
+        ensureStickerState();
+        if(historyStack.length >= 20) historyStack.shift();
+        historyStack.push(JSON.parse(JSON.stringify(state)));
+    }
+
+    function syncNameUI() {
+        const name = (state && state.faceName) ? String(state.faceName) : '';
+        const disp = document.getElementById('nameDisplay');
+        const portrait = document.getElementById('portraitName');
+        if(disp) {
+            disp.textContent = name;
+            disp.style.display = name ? 'block' : 'none';
+        }
+        if(portrait) {
+            portrait.textContent = name || 'Tap Name → Generate';
+        }
+    }
+
+    function refreshUI() {
+        updateToolbar(currentTab || UI_MAP[0]);
+        updateSelectionVisuals();
+        updateColorVisuals();
+        syncNameUI();
+    }
+
+    function undo() {
+        if(historyStack.length > 0) {
+            state = historyStack.pop();
+            draw();
+            refreshUI();
+        }
+    }
+
+    function clearFace() {
+        pushHistory();
+        state = JSON.parse(JSON.stringify(DEFAULTS));
+        draw();
+        refreshUI();
+    }
+
+    
+    const SKIN_TONES = ['#81C784', '#64B5F6', '#BA68C8', '#FF80AB', '#FFD54F', '#FF8A65', '#00E5FF', '#76FF03', '#FFEA00', '#FF5252', '#B388FF', '#90A4AE', '#FFFFFF', '#2d3436'];
+    const HAIR_COLORS = ['#090909', '#2C2C2C', '#3B2820', '#4A3B2A', '#5D4037', '#8D5524', '#B57B57', '#C68642', '#E6CEA8', '#A52A2A', '#800000', '#95A5A6', '#ECF0F1', '#FF6B6B', '#4834d4', '#6ab04c'];
+
+    const UI_MAP = [
+        { id: 'presets', label: 'Templates', type: 'presets', data: PRESETS },
+        { id: 'name', label: 'Name', type: 'name' },
+        { id: 'stickers', label: 'Stickers', type: 'stickers' },
+        { id: 'shape', label: 'Face', type: 'grid', data: ASSETS.faces, target: 'faceShape', sizeTarget: 'faceSize', posTarget: 'face' },
+        { id: 'skin', label: 'Skin', type: 'color', target: 'skinColor', colors: SKIN_TONES },
+
+        { id: 'hair', label: 'Hair', type: 'grid', data: {...ASSETS.hairFront, ...ASSETS.hairBack}, target: 'hairStyle', sizeTarget: 'hairSize', posTarget: 'hair' },
+        { id: 'haircolor', label: 'Hair Color', type: 'color', target: 'hairColor', colors: HAIR_COLORS },
+
+        { id: 'eyes', label: 'Eyes', type: 'grid', data: ASSETS.eyes, target: 'eyeStyle', sizeTarget: 'eyeSize', posTarget: 'eye' },
+        { id: 'brows', label: 'Brows', type: 'grid', data: ASSETS.brows, target: 'browStyle', sizeTarget: 'browSize', posTarget: 'brow' },
+        { id: 'nose', label: 'Nose', type: 'grid', data: ASSETS.noses, target: 'noseStyle', sizeTarget: 'noseSize', posTarget: 'nose' },
+        { id: 'mouth', label: 'Mouth', type: 'grid', data: ASSETS.mouths, target: 'mouthStyle', sizeTarget: 'mouthSize', posTarget: 'mouth' },
+
+        { id: 'beard', label: 'Beard', type: 'grid', data: ASSETS.beards, target: 'beardStyle', sizeTarget: 'beardSize', posTarget: 'beard' },
+        { id: 'mustache', label: 'Stache', type: 'grid', data: ASSETS.mustaches, target: 'mustacheStyle', sizeTarget: 'mustacheSize', posTarget: 'mustache' },
+        { id: 'facialhaircolor', label: 'Beard Color', type: 'color', target: 'facialHairColor', colors: HAIR_COLORS },
+
+        { id: 'glasses', label: 'Glasses', type: 'grid', data: ASSETS.glasses, target: 'glassesStyle', sizeTarget: 'glassesSize', posTarget: 'glasses' },
+        { id: 'glassescolor', label: 'Specs Color', type: 'color', target: 'glassesColor', colors: ['#111111', '#333333', '#d4af37', '#0984e3', '#e84393', '#ffffff'] },
+        { id: 'hats', label: 'Hats', type: 'grid', data: ASSETS.hats, target: 'hatStyle', sizeTarget: 'hatSize', posTarget: 'hat' },
+        { id: 'hatcolor', label: 'Hat Color', type: 'color', target: 'hatColor', colors: ['#D32F2F', '#111111', '#0984e3', '#00B894', '#fdcb6e', '#e84393', '#6C5CE7', '#f1c40f'] },
+        { id: 'bg', label: 'Backdrop', type: 'color', target: 'bgColor', colors: ['#dfe6e9', '#74b9ff', '#ff7675', '#55efc4', '#a29bfe', '#fdcb6e', '#2d3436'] }
+    ];
+
+    function initUI() {
+        const tabs = document.getElementById('tabsInner');
+        const options = document.getElementById('optionsContainer');
+
+        UI_MAP.forEach((cat, idx) => {
+            const btn = document.createElement('button');
+            btn.className = `tab-btn ${idx===0?'active':''}`;
+            btn.innerText = cat.label;
+            btn.onclick = () => switchTab(cat, btn);
+            tabs.appendChild(btn);
+
+            const section = document.createElement('div');
+            section.className = 'section-view';
+            section.id = `sec-${cat.id}`;
+            section.style.display = idx===0?'flex':'none';
+
+            const list = document.createElement('div');
+            list.className = 'horizontal-list';
+
+            if(cat.type === 'presets') {
+                Object.keys(cat.data).forEach(key => {
+                    const card = document.createElement('div');
+                    card.className = 'option-card';
+                    card.innerHTML = `<div class="preset-label">${key}</div>`;
+                    
+                    const mc = document.createElement('canvas');
+                    mc.width = 100; mc.height = 100;
+                    card.appendChild(mc);
+                    
+                    const mx = mc.getContext('2d');
+                    const tmp = JSON.parse(JSON.stringify(DEFAULTS)); Object.assign(tmp, PRESETS[key]); renderFaceToCtx(mx, tmp, mc.width, mc.height, 32);
+
+                    card.onclick = () => {
+                        pushHistory(); 
+                        
+                        
+                        state = JSON.parse(JSON.stringify(DEFAULTS));
+                        Object.assign(state, PRESETS[key]);
+                        
+                        draw();
+                        refreshUI();
+                    };
+                    list.appendChild(card);
+                });
+            } else if(cat.type === 'name') {
+                const panel = document.createElement('div');
+                panel.className = 'name-panel';
+                panel.innerHTML = `
+                    <div class="name-title">Give the face a silly name</div>
+                    <div class="name-sub">Tap Generate for a goofy creature name Scarlett can read aloud.</div>
+                    <button class="name-btn" id="nameGenBtn" type="button">Generate Name</button>
+                    <div class="name-display" id="nameDisplay" aria-live="polite"></div>
+                `;
+                section.appendChild(panel);
+
+            } else if(cat.type === 'stickers') {
+                list.classList.add('stickers-list');
+                STICKER_EMOJIS.forEach(emoji => {
+                    const card = document.createElement('div');
+                    card.className = `option-card sticker-card ${selectedStickerEmoji===emoji?'selected':''}`;
+                    card.dataset.emoji = emoji;
+                    card.setAttribute('role', 'button');
+                    card.setAttribute('aria-label', `Add sticker ${emoji}`);
+                    card.textContent = emoji;
+                    card.onclick = () => addSticker(emoji);
+                    list.appendChild(card);
+                });
+
+            } else if(cat.type === 'combo') {
+                
+                const group1 = document.createElement('div');
+                group1.className = 'combo-group-title';
+                group1.textContent = 'Style';
+                section.appendChild(group1);
+
+                const gridList = document.createElement('div');
+                gridList.className = 'horizontal-list';
+                Object.keys(cat.grid.data).forEach(key => {
+                    const card = document.createElement('div');
+                    card.className = `option-card ${state[cat.grid.target]===key?'selected':''}`;
+                    card.dataset.val = key;
+                    card.onclick = () => {
+                        pushHistory();
+                        state[cat.grid.target] = key;
+                        draw();
+                        gridList.querySelectorAll('.option-card').forEach(c=>c.classList.remove('selected'));
+                        card.classList.add('selected');
+                    };
+
+                    const mc = document.createElement('canvas');
+                    mc.width = 100; mc.height = 100;
+                    const mx = mc.getContext('2d');
+                    mx.translate(50, 50); mx.scale(0.25, 0.25);
+
+                    if(cat.id==='hair') {
+                        ASSETS.faces.oval(mx,1,'#eee');
+                        if(ASSETS.hairBack[key]) ASSETS.hairBack[key](mx, '#555');
+                        if(ASSETS.hairFront[key]) ASSETS.hairFront[key](mx, '#555');
+                    } else if(cat.id==='beard') {
+                        ASSETS.faces.oval(mx,1,'#eee');
+                        mx.translate(0,50);
+                        ASSETS.beards[key](mx, '#333');
+                    } else if(cat.id==='mustache') {
+                        ASSETS.faces.oval(mx,1,'#eee');
+                        mx.translate(0,45);
+                        ASSETS.mustaches[key](mx, '#333');
+                    } else {
+                        
+                        try { cat.grid.data[key](mx); } catch(e) {}
+                    }
+
+                    card.appendChild(mc);
+                    gridList.appendChild(card);
+                });
+                section.appendChild(gridList);
+
+                const group2 = document.createElement('div');
+                group2.className = 'combo-group-title';
+                group2.textContent = 'Color';
+                section.appendChild(group2);
+
+                const colorList = document.createElement('div');
+                colorList.className = 'horizontal-list';
+                cat.color.colors.forEach(c => {
+                    const circle = document.createElement('div');
+                    circle.className = 'color-circle';
+                    circle.style.backgroundColor = c;
+                    circle.dataset.color = c;
+                    if(String(state[cat.color.target]).toLowerCase() === c.toLowerCase()) circle.classList.add('active');
+                    circle.onclick = () => {
+                        pushHistory();
+                        state[cat.color.target] = c;
+                        draw();
+                        colorList.querySelectorAll('.color-circle').forEach(el=>el.classList.remove('active'));
+                        circle.classList.add('active');
+                    };
+                    colorList.appendChild(circle);
+                });
+                section.appendChild(colorList);
+                
+
+            } else if(cat.type === 'grid') {
+                Object.keys(cat.data).forEach(key => {
+                    if(cat.id === 'shape' && key === 'none') return;
+                    const card = document.createElement('div');
+                    card.className = `option-card ${state[cat.target]===key?'selected':''}`;
+                    card.dataset.val = key;
+                    card.onclick = () => {
+                        pushHistory();
+                        state[cat.target] = key;
+                        draw();
+                        list.querySelectorAll('.option-card').forEach(c=>c.classList.remove('selected'));
+                        card.classList.add('selected');
+                    }
+                    const mc = document.createElement('canvas');
+                    mc.width = 100; mc.height = 100;
+                    const mx = mc.getContext('2d');
+                    mx.translate(50, 50); mx.scale(0.25, 0.25);
+                    if(cat.id==='shape') ASSETS.faces[key](mx, 1, '#ddd');
+                    else if(cat.id==='hair') { ASSETS.faces.oval(mx,1,'#eee'); if(ASSETS.hairBack[key]) ASSETS.hairBack[key](mx, '#555'); if(ASSETS.hairFront[key]) ASSETS.hairFront[key](mx, '#555'); }
+                    else if(cat.id==='hats') { ASSETS.faces.oval(mx,1,'#eee'); mx.translate(0,-50); ASSETS.hats[key](mx, state.hatColor); }
+                    else if(cat.id==='brows') { ASSETS.brows[key](mx, '#333'); }
+                    else if(cat.id==='nose') { ASSETS.noses[key](mx); }
+                    else if(cat.id==='beard') { ASSETS.faces.oval(mx,1,'#eee'); mx.translate(0,50); ASSETS.beards[key](mx, '#333'); }
+                    else if(cat.id==='mustache') { ASSETS.faces.oval(mx,1,'#eee'); mx.translate(0,45); ASSETS.mustaches[key](mx, '#333'); }
+                    else if(cat.id==='eyes') { ASSETS.eyes[key](mx); }
+                    else if(cat.id==='mouth') { ASSETS.mouths[key](mx); }
+                    else if(cat.id==='glasses') { ASSETS.faces.oval(mx,1,'#eee'); mx.translate(0,-20); ASSETS.glasses[key](mx, '#333'); }
+                    card.appendChild(mc);
+                    list.appendChild(card);
+                });
+            } else {
+                cat.colors.forEach(c => {
+                    const circle = document.createElement('div');
+                    circle.className = 'color-circle';
+                    circle.style.backgroundColor = c;
+                    circle.dataset.color = c;
+                    if(String(state[cat.target]).toLowerCase() === c.toLowerCase()) circle.classList.add('active');
+                    circle.onclick = (e) => {
+                        pushHistory();
+                        state[cat.target] = c;
+                        draw();
+                        list.querySelectorAll('.color-circle').forEach(el=>el.classList.remove('active'));
+                        circle.classList.add('active');
+                    }
+                    list.appendChild(circle);
+                });
+            }
+            if(cat.type !== 'name' && cat.type !== 'combo') section.appendChild(list);
+            options.appendChild(section);
+        });
+
+        updateToolbar(UI_MAP[0]);
+        updateSelectionVisuals();
+        updateColorVisuals();
+    }
+
+    function switchTab(cat, btn) {
+        document.querySelectorAll('.section-view').forEach(s => s.style.display='none');
+        document.getElementById(`sec-${cat.id}`).style.display='flex';
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updateToolbar(cat);
+        updateColorVisuals();
+        updateSelectionVisuals();
+    }
+
+    function updateToolbar(cat) {
+        currentTab = cat;
+        const hasSize = canSizeCurrentThing();
+        sizeSlider.disabled = !hasSize;
+        sizeSlider.value = getCurrentSizeValue();
+        sliderLabel.innerText = cat && cat.id === 'stickers' ? 'Sticker' : (hasSize ? 'Size' : '---');
+
+        const btns = document.querySelectorAll('.move-btn');
+        const canMove = canMoveCurrentThing();
+        btns.forEach(b => { b.disabled = !canMove; });
+
+        const center = document.getElementById('moveCenterBtn');
+        const moveLabel = document.getElementById('moveLabel');
+        if(center) {
+            if(cat && cat.id === 'stickers') {
+                center.textContent = '✕';
+                center.title = getActiveSticker() ? 'Remove this sticker' : 'Add a sticker first';
+                center.setAttribute('aria-label', center.title);
+            } else {
+                center.textContent = '↺';
+                center.title = 'Center this part';
+                center.setAttribute('aria-label', 'Center this part');
+            }
+        }
+        if(moveLabel) moveLabel.textContent = cat && cat.id === 'stickers' ? 'Sticker' : 'Move';
+    }
+
+    function updateSelectionVisuals() {
+        UI_MAP.forEach(cat => {
+            if(cat.type === 'grid') {
+                const section = document.getElementById(`sec-${cat.id}`);
+                const cards = section.querySelectorAll('.option-card');
+                cards.forEach(c => {
+                    c.classList.remove('selected');
+                    if(c.dataset.val === state[cat.target]) c.classList.add('selected');
+                });
+            }
+            if(cat.type === 'stickers') {
+                const section = document.getElementById(`sec-${cat.id}`);
+                if(!section) return;
+                const cards = section.querySelectorAll('.sticker-card');
+                cards.forEach(c => {
+                    c.classList.toggle('selected', c.dataset.emoji === selectedStickerEmoji);
+                });
+            }
+            if(cat.type === 'combo') {
+                const section = document.getElementById(`sec-${cat.id}`);
+                if(!section) return;
+                const cards = section.querySelectorAll('.option-card');
+                cards.forEach(c => {
+                    c.classList.remove('selected');
+                    if(c.dataset.val === state[cat.grid.target]) c.classList.add('selected');
+                });
+            }
+        });
+    }
+
+    function updateColorVisuals() {
+        UI_MAP.forEach(cat => {
+            if(cat.type !== 'color' && cat.type !== 'combo') return;
+            const section = document.getElementById(`sec-${cat.id}`);
+            if(!section) return;
+            const circles = section.querySelectorAll('.color-circle');
+            const t = (cat.type==='combo') ? cat.color.target : cat.target;
+            circles.forEach(el => {
+                const val = el.dataset && el.dataset.color ? el.dataset.color : '';
+                if(val.toLowerCase() === String(state[t]).toLowerCase()) el.classList.add('active');
+                else el.classList.remove('active');
+            });
+        });
+    }
+
+
+    
+    let sliderEditing = false;
+    function beginSliderEdit() {
+        if(!sliderEditing && canSizeCurrentThing() && !sizeSlider.disabled) {
+            pushHistory();
+            sliderEditing = true;
+        }
+    }
+    function endSliderEdit() { sliderEditing = false; }
+    sizeSlider.addEventListener('pointerdown', beginSliderEdit);
+    sizeSlider.addEventListener('keydown', beginSliderEdit);
+    sizeSlider.addEventListener('pointerup', endSliderEdit);
+    sizeSlider.addEventListener('change', endSliderEdit);
+    sizeSlider.oninput = (e) => setCurrentSizeValue(e.target.value);
+
+    function move(x, y) {
+        if(currentTab && currentTab.id === 'stickers') {
+            const active = getActiveSticker();
+            if(active) {
+                pushHistory();
+                active.x += x;
+                active.y += y;
+                draw();
+            }
+            return;
+        }
+        if(currentTab && currentTab.posTarget) {
+            pushHistory();
+            state[currentTab.posTarget + 'X'] += x;
+            state[currentTab.posTarget + 'Y'] += y;
+            draw();
+        }
+    }
+
+    function resetPos() {
+        if(currentTab && currentTab.id === 'stickers') {
+            removeActiveSticker();
+            return;
+        }
+        if(currentTab && currentTab.posTarget) {
+            pushHistory();
+            state[currentTab.posTarget + 'X'] = 0;
+            state[currentTab.posTarget + 'Y'] = 0;
+            draw();
+        }
+    }
+
+    function getCanvasPoint(evt) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: (evt.clientX - rect.left) * (canvas.width / rect.width),
+            y: (evt.clientY - rect.top) * (canvas.height / rect.height)
+        };
+    }
+
+    function canvasPointToFacePoint(p) {
+        return { x: p.x - canvas.width / 2, y: p.y - (canvas.height / 2 + FACE_ORIGIN_Y) };
+    }
+
+    function findStickerAt(facePoint) {
+        ensureStickerState();
+        for(let i = state.stickers.length - 1; i >= 0; i--) {
+            const s = state.stickers[i];
+            const size = Math.max(22, Math.min(170, s.size || STICKER_BASE_SIZE));
+            const hit = Math.max(34, size * 0.72);
+            if(Math.abs(facePoint.x - (s.x || 0)) <= hit && Math.abs(facePoint.y - (s.y || 0)) <= hit) return s;
+        }
+        return null;
+    }
+
+    // Two-finger resizing works on the currently selected facial feature or
+    // sticker. Capture-phase listeners take over only when a real pinch begins,
+    // so ordinary one-finger dragging keeps its existing behavior.
+    const pinchPointers = new Map();
+    let pinchGesture = null;
+    function pinchDistance() {
+        const pts = Array.from(pinchPointers.values());
+        return pts.length < 2 ? 0 : Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+    }
+    canvas.addEventListener('pointerdown', (evt) => {
+        pinchPointers.set(evt.pointerId, {x:evt.clientX, y:evt.clientY});
+        if(pinchPointers.size !== 2 || !canSizeCurrentThing()) return;
+        const distance = pinchDistance();
+        if(distance < 8) return;
+        pushHistory();
+        pointerDrag = null;
+        pinchGesture = { startDistance:distance, startSize:Number(getCurrentSizeValue()) || 1 };
+        try { canvas.setPointerCapture?.(evt.pointerId); } catch(e) {}
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+    }, true);
+    canvas.addEventListener('pointermove', (evt) => {
+        if(!pinchPointers.has(evt.pointerId)) return;
+        pinchPointers.set(evt.pointerId, {x:evt.clientX, y:evt.clientY});
+        if(!pinchGesture || pinchPointers.size < 2) return;
+        const ratio = pinchDistance() / pinchGesture.startDistance;
+        const next = Math.max(0.5, Math.min(2.5, pinchGesture.startSize * ratio));
+        setCurrentSizeValue(next);
+        sizeSlider.value = String(next);
+        evt.preventDefault();
+        evt.stopImmediatePropagation();
+    }, true);
+    function endPinchPointer(evt) {
+        const wasPinching = !!pinchGesture;
+        pinchPointers.delete(evt.pointerId);
+        if(pinchPointers.size < 2) pinchGesture = null;
+        if(wasPinching) {
+            refreshUI();
+            evt.preventDefault();
+            evt.stopImmediatePropagation();
+        }
+    }
+    canvas.addEventListener('pointerup', endPinchPointer, true);
+    canvas.addEventListener('pointercancel', endPinchPointer, true);
+
+    canvas.addEventListener('pointerdown', (evt) => {
+        if(evt.button !== undefined && evt.button !== 0) return;
+        const canvasPoint = getCanvasPoint(evt);
+        const facePoint = canvasPointToFacePoint(canvasPoint);
+        const hitSticker = findStickerAt(facePoint);
+
+        if(hitSticker) {
+            state.activeStickerId = hitSticker.id;
+            selectedStickerEmoji = hitSticker.emoji;
+            pointerDrag = { mode: 'sticker', id: hitSticker.id, last: facePoint, changed: false };
+            try { canvas.setPointerCapture?.(evt.pointerId); } catch(e) {}
+            evt.preventDefault();
+            refreshUI();
+            draw();
+            return;
+        }
+
+        if(currentTab && currentTab.id === 'stickers') {
+            addSticker(selectedStickerEmoji, facePoint.x, facePoint.y, true);
+            const active = getActiveSticker();
+            if(active) {
+                pointerDrag = { mode: 'sticker', id: active.id, last: facePoint, changed: true };
+                try { canvas.setPointerCapture?.(evt.pointerId); } catch(e) {}
+            }
+            evt.preventDefault();
+            return;
+        }
+
+        if(currentTab && currentTab.posTarget) {
+            pointerDrag = { mode: 'part', posTarget: currentTab.posTarget, last: facePoint, changed: false };
+            try { canvas.setPointerCapture?.(evt.pointerId); } catch(e) {}
+            evt.preventDefault();
+        }
+    });
+
+    canvas.addEventListener('pointermove', (evt) => {
+        if(!pointerDrag) return;
+        const canvasPoint = getCanvasPoint(evt);
+        const facePoint = canvasPointToFacePoint(canvasPoint);
+        const dx = facePoint.x - pointerDrag.last.x;
+        const dy = facePoint.y - pointerDrag.last.y;
+        if(Math.abs(dx) < 0.25 && Math.abs(dy) < 0.25) return;
+
+        if(!pointerDrag.changed) {
+            pushHistory();
+            pointerDrag.changed = true;
+        }
+
+        if(pointerDrag.mode === 'sticker') {
+            const active = state.stickers.find(s => s.id === pointerDrag.id);
+            if(active) {
+                active.x += dx;
+                active.y += dy;
+            }
+        } else if(pointerDrag.mode === 'part') {
+            state[pointerDrag.posTarget + 'X'] += dx;
+            state[pointerDrag.posTarget + 'Y'] += dy;
+        }
+        pointerDrag.last = facePoint;
+        draw();
+        evt.preventDefault();
+    });
+
+    function endPointerDrag(evt) {
+        if(pointerDrag) {
+            pointerDrag = null;
+            refreshUI();
+            if(evt) evt.preventDefault();
+        }
+    }
+    canvas.addEventListener('pointerup', endPointerDrag);
+    canvas.addEventListener('pointercancel', endPointerDrag);
+    canvas.addEventListener('lostpointercapture', endPointerDrag);
+
+    function randomize() {
+        pushHistory();
+        const r = (obj, allowNone=false) => {
+            const k = Object.keys(obj).filter(key => allowNone || key !== 'none');
+            return k[Math.floor(Math.random()*k.length)];
+        };
+        const rc = (arr) => arr[Math.floor(Math.random()*arr.length)];
+        const hairOptions = {...ASSETS.hairFront, ...ASSETS.hairBack};
+        
+        state.faceShape = r(ASSETS.faces);
+        state.skinColor = rc(SKIN_TONES.slice(0, 12)); 
+        state.hairStyle = Math.random() > 0.18 ? r(hairOptions, true) : 'none';
+        state.hairColor = rc(HAIR_COLORS);
+        state.eyeStyle = r(ASSETS.eyes);
+        state.noseStyle = Math.random() > 0.08 ? r(ASSETS.noses) : 'none';
+        state.mouthStyle = r(ASSETS.mouths);
+        state.browStyle = Math.random() > 0.18 ? r(ASSETS.brows) : 'none';
+        state.beardStyle = Math.random()>0.72 ? r(ASSETS.beards) : 'none';
+        state.mustacheStyle = Math.random()>0.78 ? r(ASSETS.mustaches) : 'none';
+        state.glassesStyle = Math.random()>0.78 ? r(ASSETS.glasses) : 'none';
+        state.hatStyle = Math.random()>0.78 ? r(ASSETS.hats) : 'none';
+        state.hatColor = rc(['#D32F2F', '#111111', '#0984e3', '#00B894', '#fdcb6e', '#e84393', '#6C5CE7', '#f1c40f']);
+        state.glassesColor = rc(['#111111', '#333333', '#d4af37', '#0984e3', '#e84393', '#ffffff']);
+        state.bgColor = rc(['#dfe6e9', '#74b9ff', '#ff7675', '#55efc4', '#a29bfe', '#fdcb6e']);
+        state.hairSeed = Math.floor(Math.random()*1e9);
+        state.faceName = makeName();
+        state.stickers = [];
+        state.activeStickerId = null;
+        if(Math.random() > 0.35) {
+            const count = 1 + Math.floor(Math.random() * 3);
+            for(let i = 0; i < count; i++) {
+                const place = STICKER_START_POINTS[(i + Math.floor(Math.random() * STICKER_START_POINTS.length)) % STICKER_START_POINTS.length];
+                const sticker = makeSticker(rc(STICKER_EMOJIS), place.x + Math.floor(Math.random()*31 - 15), place.y + Math.floor(Math.random()*31 - 15), 0.86 + Math.random() * 0.5);
+                state.stickers.push(sticker);
+                state.activeStickerId = sticker.id;
+                selectedStickerEmoji = sticker.emoji;
+            }
+        }
+        
+        ['face','hair','eye','brow','nose','mouth','beard','mustache','glasses','hat'].forEach(p => {
+            state[p+'X'] = 0; state[p+'Y'] = 0;
+        });
+
+        state.faceSize = 0.85 + Math.random()*0.35;
+        state.hairSize = 0.9 + Math.random()*0.2;
+        state.eyeSize = 0.9 + Math.random()*0.25;
+        state.browSize = 0.9 + Math.random()*0.2;
+        state.noseSize = 0.9 + Math.random()*0.25;
+        state.mouthSize = 0.9 + Math.random()*0.25;
+        state.beardSize = 0.8 + Math.random()*0.4;
+        state.mustacheSize = 0.8 + Math.random()*0.4;
+        state.hatSize = 0.9 + Math.random()*0.2;
+        state.glassesSize = 0.9 + Math.random()*0.2;
+
+        draw();
+        refreshUI();
+    }
+
+    function downloadImage() {
+        const getTimestamp = () => {
+            const now = new Date();
+            return now.toISOString().replace(/[:.]/g, '-');
+        };
+        const fileSafeName = (state.faceName || 'silly-face').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'silly-face';
+        const exportCanvas = document.createElement('canvas');
+        exportCanvas.width = 800;
+        exportCanvas.height = 900;
+        const exportCtx = exportCanvas.getContext('2d');
+        renderFaceToCtx(exportCtx, state, exportCanvas.width, exportCanvas.height, 72, true);
+        try {
+            const dataUrl = exportCanvas.toDataURL("image/png");
+            const link = document.createElement('a');
+            link.download = `${fileSafeName}-${getTimestamp()}.png`;
+            link.href = dataUrl;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } catch (e) {
+            const dataUrl = exportCanvas.toDataURL("image/png");
+            const win = window.open();
+            if(win && win.document) win.document.write('<img src="' + dataUrl + '" style="width:100%" alt="Saved silly face"/>');
+        }
+    }
+
+    initUI();
+    syncNameUI();
+    draw();
+    window.addEventListener('resize', draw);
+
+    
+    const NAME_FIRST = ['ai','ea','oi','a','','','','e','','','i','','o','','','u','','','','','','','','','',''];
+    const NAME_SECOND = ['b','c','d','f','g','h','j','k','l','m','n','p','qu','r','s','t','v','w','x','y','z','br','bl','cr','cl','ch','dr','fr','fl','gr','gl','gh','kl','kr','kn','ll',"l'","pr","pl","ph","rh","st","sl","sh","sh'","sc","sk","sw","tr","th","tw","wr","x-","zh",'','','','','','','','','','',''];
+    const NAME_THIRD = ['a','aa','ae','au','ai','e','ea','ei','eu','i','iu','o','oe','oi','oa','ou','u','ui','ue'];
+    const NAME_FOURTH = ['b','c','d','f','g','h','k','l','m','n','p','r','s','t','v','w','x','y','z','ch','gh','mp','mt','nd','nt','pt','rt','rm','rk','st','sk','sh','th','ts','','','','','','','','','','','','','',''];
+    const NAME_FIFTH = ['a','aa','ae','au','ai','e','ea','ei','eu','i','iu','o','oe','oi','oa','ou','u','ui','ue','','','','','','','','','','',''];
+
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)] ?? ''; }
+
+    function compactName(s){
+        
+        return (s || '').replace(/\s+/g,'').replace(/\-\-/g,'-');
+    }
+
+    function titleCase(s){
+        if(!s) return s;
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
+    function makeName(){
+        const longname = compactName(pick(NAME_FIRST)+pick(NAME_SECOND)+pick(NAME_THIRD)+pick(NAME_FOURTH)+pick(NAME_FIFTH));
+        const shortname = compactName(pick(NAME_SECOND)+pick(NAME_THIRD)+pick(NAME_FOURTH));
+        const rand = 1 + Math.floor(Math.random()*4); 
+        const nm = (rand === 1) ? longname : (rand > 2 ? shortname : longname);
+        return titleCase(nm);
+    }
+
+
+    function generateName(saveHistory = true){
+        let name = '';
+        let tries = 0;
+        do {
+            name = makeName();
+            tries++;
+        } while(tries < 25 && (!name || name.length < 3));
+
+        if(saveHistory) pushHistory();
+        state.faceName = name || 'Unnamed';
+        syncNameUI();
+        draw();
+        return state.faceName;
+    }
+
+    document.addEventListener('click', (e) => {
+        const t = e.target;
+        if(t && t.id === 'nameGenBtn'){
+            generateName(true);
+        }
+    });
+
+
+    
+    window.generateName = generateName;
+
+    window.SillyFaceAutosave = {
+        id: 'silly-face-lab',
+        title: 'Silly Face Lab',
+        version: 1,
+        capture: function(){
+            return {
+                state: JSON.parse(JSON.stringify(state)),
+                history: historyStack.slice(-20).map(item=>JSON.parse(JSON.stringify(item))),
+                tab: currentTab ? currentTab.id : UI_MAP[0].id
+            };
+        },
+        restore: function(saved){
+            if(!saved || !saved.state || typeof saved.state!=='object') throw new Error('Invalid Silly Face save');
+            state=Object.assign(JSON.parse(JSON.stringify(DEFAULTS)),JSON.parse(JSON.stringify(saved.state)));
+            ensureStickerState();
+            state.stickers=state.stickers.slice(0,30).filter(s=>s&&STICKER_EMOJIS.includes(s.emoji)).map(s=>({
+                id:String(s.id||('st_'+Date.now().toString(36)+Math.random().toString(36).slice(2,7))),
+                emoji:s.emoji,
+                x:Math.max(-260,Math.min(260,Number(s.x)||0)),
+                y:Math.max(-300,Math.min(300,Number(s.y)||0)),
+                size:Math.max(22,Math.min(170,Number(s.size)||STICKER_BASE_SIZE)),
+                rotation:Math.max(-Math.PI,Math.min(Math.PI,Number(s.rotation)||0))
+            }));
+            ensureStickerState();
+            historyStack=Array.isArray(saved.history)?saved.history.slice(-20).filter(item=>item&&typeof item==='object'):[];
+            pointerDrag=null;
+            const tabIndex=Math.max(0,UI_MAP.findIndex(cat=>cat.id===saved.tab));
+            const buttons=document.querySelectorAll('.tab-btn');
+            if(buttons[tabIndex])switchTab(UI_MAP[tabIndex],buttons[tabIndex]);
+            draw();refreshUI();
+        },
+        meaningful: function(){ return JSON.stringify(state)!==JSON.stringify(DEFAULTS); },
+        summary: function(){ return state.faceName ? String(state.faceName).slice(0,40) : 'Custom face'; },
+        startFresh: function(){
+            state=JSON.parse(JSON.stringify(DEFAULTS));historyStack=[];pointerDrag=null;draw();refreshUI();
+        }
+    };
+
+</script>
+<script src="../arcade-save.js"></script>
+<script>ArcadeSave.register(window.SillyFaceAutosave);</script>
+<button id="arcade-home-nav" type="button" aria-label="Back to Arcade">⌂</button><script>document.getElementById('arcade-home-nav').addEventListener('click',()=>{ArcadeSave.saveNow().finally(()=>{location.href='../index.html'});});</script></body>
+</html>

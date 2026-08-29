@@ -1,0 +1,7 @@
+THIRD-PARTY NOTICES
+
+No third-party JavaScript frameworks, web fonts, audio libraries, sample packs, backing tracks, images, analytics, advertising components, or network services are bundled or required by this release.
+
+No runtime CDN or remote asset references are present. SVG namespace identifiers such as http://www.w3.org/2000/svg identify XML vocabulary and do not make network requests.
+
+Android system WebView, system fonts, system emoji, media codecs, and operating-system services are provided by the Android device and are not redistributed inside this package.

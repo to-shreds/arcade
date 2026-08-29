@@ -1,0 +1,20 @@
+{
+  "title": "Bounce Boxes",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 190,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "arcade",
+    "strategy"
+  ],
+  "tags": [
+    "touch",
+    "quick"
+  ],
+  "orientation": "any"
+}

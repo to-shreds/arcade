@@ -1,0 +1,45 @@
+plugins {
+    id "com.android.application"
+}
+
+def releaseKeystorePath = System.getenv("ARCADE_KEYSTORE_PATH")
+def releaseKeystorePassword = System.getenv("ARCADE_KEYSTORE_PASSWORD")
+def releaseKeyAlias = System.getenv("ARCADE_KEY_ALIAS") ?: "arcade"
+def releaseKeyPassword = System.getenv("ARCADE_KEY_PASSWORD") ?: releaseKeystorePassword
+def hasReleaseSigning = releaseKeystorePath && releaseKeystorePassword && releaseKeyPassword
+
+android {
+    namespace "com.familyarcade.platform"
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.familyarcade.platform"
+        minSdk 23
+        targetSdk 35
+        versionCode 20260829
+        versionName "2.1.0"
+    }
+
+    signingConfigs {
+        release {
+            if (hasReleaseSigning) {
+                storeFile file(releaseKeystorePath)
+                storePassword releaseKeystorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (hasReleaseSigning) signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}

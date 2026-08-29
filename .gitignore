@@ -1,0 +1,12 @@
+# Never publish Android signing credentials.
+*.jks
+*.keystore
+
+# Android and Gradle build output.
+.gradle/
+**/build/
+local.properties
+
+# Editor and operating-system files.
+.DS_Store
+Thumbs.db

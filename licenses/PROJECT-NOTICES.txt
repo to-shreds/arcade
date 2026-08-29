@@ -1,0 +1,11 @@
+ARCADE PROJECT NOTICES
+
+Prepared August 26, 2026.
+
+The original arcade HTML content and original arcade icon were supplied by the project owner. Their ownership and any pre-existing rights are unchanged.
+
+The Android wrapper, dynamic arcade menu, metadata files, pictographic catalog icons, Neon Bowling game, Music Maker code, Music Maker samples, and Music Maker backing loops were created specifically for this project. They are provided to the project owner for use, modification, rebuilding, and redistribution as part of this arcade.
+
+Music Maker audio was synthesized locally for this project. Its WAV files do not contain sampled commercial recordings, downloaded songs, or third-party sound libraries.
+
+The wrapper compiles against the Android platform API but does not bundle Android SDK libraries. It uses only Android operating-system APIs and app-owned resources.

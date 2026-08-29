@@ -1,0 +1,20 @@
+{
+  "title": "Orb Slicer",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 160,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "arcade",
+    "reaction"
+  ],
+  "tags": [
+    "touch",
+    "quick"
+  ],
+  "orientation": "any"
+}

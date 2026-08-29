@@ -1,0 +1,911 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "title": "Make 10",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 10,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 4,
+      "categories": [
+        "math",
+        "puzzle"
+      ],
+      "tags": [
+        "touch",
+        "turn-based"
+      ],
+      "orientation": "any",
+      "folder": "make-10",
+      "launchPath": "make-10/index.html"
+    },
+    {
+      "title": "Balloons",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 20,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "arcade",
+        "reaction"
+      ],
+      "tags": [
+        "touch",
+        "quick"
+      ],
+      "orientation": "any",
+      "folder": "balloons",
+      "launchPath": "balloons/index.html"
+    },
+    {
+      "title": "Backyard Baseball",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 25,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "sports",
+        "arcade"
+      ],
+      "tags": [
+        "timing",
+        "touch",
+        "quick"
+      ],
+      "orientation": "any",
+      "folder": "baseball",
+      "launchPath": "baseball/index.html"
+    },
+    {
+      "title": "Blackjack",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 30,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 3,
+      "categories": [
+        "strategy",
+        "board"
+      ],
+      "tags": [
+        "touch",
+        "turn-based"
+      ],
+      "orientation": "landscape",
+      "folder": "blackjack",
+      "launchPath": "blackjack/index.html"
+    },
+    {
+      "title": "Checkers",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 40,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "strategy",
+        "board"
+      ],
+      "tags": [
+        "touch",
+        "turn-based",
+        "same-device"
+      ],
+      "orientation": "any",
+      "folder": "checkers",
+      "launchPath": "checkers/index.html"
+    },
+    {
+      "title": "Chess",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 50,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "strategy",
+        "board"
+      ],
+      "tags": [
+        "touch",
+        "turn-based",
+        "same-device"
+      ],
+      "orientation": "any",
+      "folder": "chess",
+      "launchPath": "chess/index.html"
+    },
+    {
+      "title": "Time",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 60,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "educational"
+      ],
+      "tags": [
+        "touch",
+        "calm"
+      ],
+      "orientation": "any",
+      "folder": "time",
+      "launchPath": "time/index.html"
+    },
+    {
+      "title": "Dots",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 70,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 2,
+      "playersMax": 4,
+      "categories": [
+        "strategy",
+        "board"
+      ],
+      "tags": [
+        "touch",
+        "turn-based",
+        "same-device"
+      ],
+      "orientation": "any",
+      "folder": "dots",
+      "launchPath": "dots/index.html"
+    },
+    {
+      "title": "Hangman",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 80,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "word",
+        "puzzle"
+      ],
+      "tags": [
+        "keyboard",
+        "turn-based"
+      ],
+      "orientation": "any",
+      "folder": "hangman",
+      "launchPath": "hangman/index.html"
+    },
+    {
+      "title": "Insultinator",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 90,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "word",
+        "creative"
+      ],
+      "tags": [
+        "keyboard",
+        "speech"
+      ],
+      "orientation": "any",
+      "folder": "insultinator",
+      "launchPath": "insultinator/index.html"
+    },
+    {
+      "title": "Build My Joke",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 95,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "creative",
+        "word"
+      ],
+      "tags": [
+        "silly",
+        "speech",
+        "same-device"
+      ],
+      "orientation": "any",
+      "folder": "build-my-joke",
+      "launchPath": "build-my-joke/index.html"
+    },
+    {
+      "title": "Emoji Jigsaw",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 100,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "puzzle"
+      ],
+      "tags": [
+        "touch",
+        "calm"
+      ],
+      "orientation": "any",
+      "folder": "jigsaw",
+      "launchPath": "jigsaw/index.html"
+    },
+    {
+      "title": "Robot Codebreaker",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 105,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "puzzle",
+        "strategy"
+      ],
+      "tags": [
+        "logic",
+        "symbols",
+        "touch"
+      ],
+      "orientation": "any",
+      "folder": "codebreaking",
+      "launchPath": "codebreaking/index.html"
+    },
+    {
+      "title": "Math",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 110,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "math",
+        "educational"
+      ],
+      "tags": [
+        "touch",
+        "quick"
+      ],
+      "orientation": "any",
+      "folder": "math",
+      "launchPath": "math/index.html"
+    },
+    {
+      "title": "Picture Spelling",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 115,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "word",
+        "educational"
+      ],
+      "tags": [
+        "keyboard",
+        "picture",
+        "calm"
+      ],
+      "orientation": "any",
+      "folder": "spelling",
+      "launchPath": "spelling/index.html"
+    },
+    {
+      "title": "Maze",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 120,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "puzzle"
+      ],
+      "tags": [
+        "touch"
+      ],
+      "orientation": "any",
+      "folder": "maze",
+      "launchPath": "maze/index.html"
+    },
+    {
+      "title": "Memory",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 130,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 8,
+      "categories": [
+        "memory",
+        "puzzle"
+      ],
+      "tags": [
+        "touch",
+        "turn-based",
+        "same-device"
+      ],
+      "orientation": "any",
+      "folder": "memory",
+      "launchPath": "memory/index.html"
+    },
+    {
+      "title": "Minesweeper",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 140,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "puzzle",
+        "strategy"
+      ],
+      "tags": [
+        "touch"
+      ],
+      "orientation": "any",
+      "folder": "minesweeper",
+      "launchPath": "minesweeper/index.html"
+    },
+    {
+      "title": "Mini Golf",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 150,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "sports",
+        "puzzle"
+      ],
+      "tags": [
+        "touch"
+      ],
+      "orientation": "any",
+      "folder": "mini-golf",
+      "launchPath": "mini-golf/index.html"
+    },
+    {
+      "title": "Orb Slicer",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 160,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "arcade",
+        "reaction"
+      ],
+      "tags": [
+        "touch",
+        "quick"
+      ],
+      "orientation": "any",
+      "folder": "orb-slicer",
+      "launchPath": "orb-slicer/index.html"
+    },
+    {
+      "title": "Two Truths & a Lie",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 165,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "trivia",
+        "educational"
+      ],
+      "tags": [
+        "facts",
+        "choices",
+        "quick"
+      ],
+      "orientation": "any",
+      "folder": "two-truths",
+      "launchPath": "two-truths/index.html"
+    },
+    {
+      "title": "Paint Lab",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 170,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "touch",
+        "calm"
+      ],
+      "orientation": "any",
+      "folder": "paint-lab",
+      "launchPath": "paint-lab/index.html"
+    },
+    {
+      "title": "Patterns",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 180,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "puzzle",
+        "educational"
+      ],
+      "tags": [
+        "touch",
+        "calm"
+      ],
+      "orientation": "any",
+      "folder": "patterns",
+      "launchPath": "patterns/index.html"
+    },
+    {
+      "title": "Bounce Boxes",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 190,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "arcade",
+        "strategy"
+      ],
+      "tags": [
+        "touch",
+        "quick"
+      ],
+      "orientation": "any",
+      "folder": "bounce-boxes",
+      "launchPath": "bounce-boxes/index.html"
+    },
+    {
+      "title": "Shuffleboard",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 200,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 4,
+      "categories": [
+        "sports",
+        "strategy"
+      ],
+      "tags": [
+        "touch",
+        "turn-based",
+        "same-device"
+      ],
+      "orientation": "landscape",
+      "folder": "shuffleboard",
+      "launchPath": "shuffleboard/index.html"
+    },
+    {
+      "title": "Simon Says",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 210,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "memory",
+        "reaction"
+      ],
+      "tags": [
+        "touch",
+        "quick"
+      ],
+      "orientation": "any",
+      "folder": "simon",
+      "launchPath": "simon/index.html"
+    },
+    {
+      "title": "Tic Tac Toe",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 220,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "strategy",
+        "board"
+      ],
+      "tags": [
+        "touch",
+        "turn-based",
+        "same-device"
+      ],
+      "orientation": "any",
+      "folder": "tic-tac-toe",
+      "launchPath": "tic-tac-toe/index.html"
+    },
+    {
+      "title": "Trail",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 230,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "touch",
+        "calm"
+      ],
+      "orientation": "any",
+      "folder": "trail",
+      "launchPath": "trail/index.html"
+    },
+    {
+      "title": "Trivia",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 240,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 4,
+      "categories": [
+        "educational",
+        "word"
+      ],
+      "tags": [
+        "touch",
+        "turn-based"
+      ],
+      "orientation": "any",
+      "folder": "trivia",
+      "launchPath": "trivia/index.html"
+    },
+    {
+      "title": "Typing",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 250,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "educational"
+      ],
+      "tags": [
+        "keyboard",
+        "calm"
+      ],
+      "orientation": "any",
+      "folder": "typing",
+      "launchPath": "typing/index.html"
+    },
+    {
+      "title": "Contraption Maker",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 260,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "creative",
+        "educational"
+      ],
+      "tags": [
+        "touch",
+        "calm"
+      ],
+      "orientation": "landscape",
+      "folder": "contraption-maker",
+      "launchPath": "contraption-maker/index.html"
+    },
+    {
+      "title": "Mad Libs",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 270,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "word",
+        "creative",
+        "educational"
+      ],
+      "tags": [
+        "keyboard"
+      ],
+      "orientation": "any",
+      "folder": "mad-libs",
+      "launchPath": "mad-libs/index.html"
+    },
+    {
+      "title": "Silly Face Lab",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 280,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "touch",
+        "calm"
+      ],
+      "orientation": "portrait",
+      "folder": "silly-face-lab",
+      "launchPath": "silly-face-lab/index.html"
+    },
+    {
+      "title": "Sorry! Fire & Ice",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 290,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 2,
+      "playersMax": 4,
+      "categories": [
+        "strategy",
+        "board"
+      ],
+      "tags": [
+        "touch",
+        "turn-based",
+        "same-device"
+      ],
+      "orientation": "landscape",
+      "folder": "sorry",
+      "launchPath": "sorry/index.html"
+    },
+    {
+      "title": "Bug Squish",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 300,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "arcade",
+        "reaction"
+      ],
+      "tags": [
+        "touch",
+        "quick",
+        "cooperative",
+        "same-device"
+      ],
+      "orientation": "landscape",
+      "folder": "bug-squish",
+      "launchPath": "bug-squish/index.html"
+    },
+    {
+      "title": "Firefighter Frenzy",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 310,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "arcade",
+        "reaction"
+      ],
+      "tags": [
+        "touch",
+        "cooperative",
+        "same-device"
+      ],
+      "orientation": "landscape",
+      "folder": "firefighter-frenzy",
+      "launchPath": "firefighter-frenzy/index.html"
+    },
+    {
+      "title": "Monster Dentist",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 320,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "creative",
+        "reaction"
+      ],
+      "tags": [
+        "touch",
+        "cooperative",
+        "same-device"
+      ],
+      "orientation": "landscape",
+      "folder": "monster-dentist",
+      "launchPath": "monster-dentist/index.html"
+    },
+    {
+      "title": "Music Maker",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 330,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "music",
+        "creative"
+      ],
+      "tags": [
+        "touch",
+        "multitouch",
+        "voice",
+        "same-device"
+      ],
+      "orientation": "landscape",
+      "folder": "music-maker",
+      "launchPath": "music-maker/index.html"
+    },
+    {
+      "title": "Neon Bowling",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 340,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 4,
+      "categories": [
+        "sports",
+        "arcade"
+      ],
+      "tags": [
+        "touch",
+        "turn-based",
+        "same-device"
+      ],
+      "orientation": "any",
+      "folder": "bowling",
+      "launchPath": "bowling/index.html"
+    },
+    {
+      "title": "Monopoly",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 350,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 2,
+      "playersMax": 6,
+      "categories": [
+        "strategy",
+        "board"
+      ],
+      "tags": [
+        "touch",
+        "turn-based",
+        "same-device",
+        "saveable"
+      ],
+      "orientation": "landscape",
+      "folder": "monopoly",
+      "launchPath": "monopoly/index.html"
+    }
+  ],
+  "categories": [
+    "arcade",
+    "board",
+    "creative",
+    "educational",
+    "math",
+    "memory",
+    "music",
+    "puzzle",
+    "reaction",
+    "sports",
+    "strategy",
+    "trivia",
+    "word"
+  ]
+}

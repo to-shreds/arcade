@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Paint Lab</title>
+<style>
+:root{
+  --bg:#0f172a;
+  --line:rgba(255,255,255,.12);
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+  --accent:#38bdf8;
+  --shadow:0 10px 28px rgba(0,0,0,.34);
+  --radius:22px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;height:100%;overflow:hidden;background:radial-gradient(circle at top,#1e293b 0%,#0f172a 55%,#020617 100%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;overscroll-behavior:none;}
+body{display:flex;justify-content:center;align-items:stretch;}
+button,input{font:inherit;}
+button{outline:none;}
+#app{width:min(100vw,780px);height:100dvh;display:grid;grid-template-rows:1fr auto;gap:8px;padding:8px;overflow:hidden;}
+.stage{position:relative;min-height:0;display:flex;}
+.paperShell{position:relative;flex:1;border-radius:26px;padding:8px;background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;}
+.paperFrame{position:absolute;inset:8px;border-radius:20px;background:#e5dcc9;box-shadow:inset 0 0 0 1px rgba(92,74,40,.16), inset 0 12px 24px rgba(255,255,255,.22), inset 0 -10px 18px rgba(160,133,77,.08);overflow:hidden;}
+canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block;}
+.bottomStack{display:grid;gap:8px;min-height:0;}
+.toolbar,.paletteWrap{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(10px);}
+.toolbar{padding:10px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:8px;align-items:end;}
+.control{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:8px 10px;display:grid;gap:5px;min-width:0;}
+.control label{font-size:.8rem;color:var(--muted);font-weight:700;display:flex;justify-content:space-between;gap:8px;white-space:nowrap;}
+.subValue{font-size:.76rem;color:var(--muted);min-height:1em;}
+input[type="range"]{width:100%;appearance:none;background:transparent;margin:0;}
+input[type="range"]::-webkit-slider-runnable-track{height:10px;border-radius:999px;background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.28));}
+input[type="range"]::-moz-range-track{height:10px;border-radius:999px;background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.28));}
+input[type="range"]::-webkit-slider-thumb{appearance:none;width:22px;height:22px;border-radius:50%;background:white;border:none;margin-top:-6px;box-shadow:0 4px 12px rgba(0,0,0,.28);}
+input[type="range"]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:white;border:none;box-shadow:0 4px 12px rgba(0,0,0,.28);}
+.actionRow{display:grid;grid-template-columns:1fr;gap:8px;align-self:stretch;}
+button.actionBtn{appearance:none;border:none;background:linear-gradient(180deg,#38bdf8,#0284c7);color:white;font-weight:800;border-radius:18px;padding:11px 12px;font-size:.9rem;box-shadow:0 10px 20px rgba(2,132,199,.24);white-space:nowrap;}
+button.actionBtn.secondary{background:linear-gradient(180deg,#475569,#334155);box-shadow:none;}
+button.actionBtn:active{transform:translateY(1px) scale(.995);}
+.paletteWrap{padding:10px;}
+.palette{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;}
+.swatchBtn{position:relative;border:none;border-radius:18px;padding:0;height:54px;background:transparent;box-shadow:none;}
+.swatchFill{position:absolute;inset:0;border-radius:18px;border:2px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 8px 16px rgba(0,0,0,.18);overflow:hidden;}
+.swatchFill::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.38),transparent 34%),radial-gradient(circle at 66% 74%,rgba(255,255,255,.14),transparent 40%);mix-blend-mode:screen;pointer-events:none;}
+.swatchBtn.selected .swatchFill{border-color:white;box-shadow:0 0 0 3px rgba(56,189,248,.42), inset 0 1px 0 rgba(255,255,255,.28), 0 8px 16px rgba(0,0,0,.2);}
+.swatchBtn:focus-visible .swatchFill{border-color:white;box-shadow:0 0 0 3px rgba(56,189,248,.42), inset 0 1px 0 rgba(255,255,255,.28), 0 8px 16px rgba(0,0,0,.2);}
+@media (max-width:560px){
+  #app{padding:8px;gap:8px;}
+  .toolbar{grid-template-columns:1fr 1fr;}
+  .actionRow{grid-column:1 / -1;grid-template-columns:1fr 1fr;}
+  .swatchBtn{height:50px;}
+}
+</style>
+
+<style id="arcadeHomeLinkStyle">
+.arcade-home-link{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:10px;z-index:9999;display:inline-flex;align-items:center;justify-content:center;padding:8px 11px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.55);color:#fff;text-decoration:none;font:900 12px/1 system-ui,-apple-system,Segoe UI,Arial,sans-serif;letter-spacing:.3px;box-shadow:0 8px 22px rgba(0,0,0,.35);backdrop-filter:blur(8px);-webkit-tap-highlight-color:transparent}
+.arcade-home-link:active{transform:scale(.98);background:rgba(255,255,255,.12)}
+</style>
+<style id="arcade-fit-fix">
+*,*::before,*::after{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body>*{min-width:0;max-width:100%}
+.app,.main,.game-view,#game-view,.wrap,.game-area,.overlay{min-width:0;max-width:100%}
+.main{grid-template-columns:minmax(0,1fr)!important}
+.topbar,.footer,.status,.scorebar,.controls,.sumbar,.table,[class*="top"],[class*="bar"],[class*="controls"],[class*="savebar"]{max-width:100%;min-width:0}
+.topbar>*,.status>*,.row>*,[class*="top"]>*,[class*="bar"]>*{min-width:0}
+.row.nowrap{flex-wrap:wrap!important}
+button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.actionBtn,.btn-large-opt{max-width:100%;min-width:0;touch-action:manipulation;font-size:clamp(11px,3.2vw,15px);line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel,.frontCard,.pm-menu-wrap,.modalBody,.settings-panel,#cat-menu .cat-grid,#cat-menu,.overlay>.panel{max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 16px)!important;overflow:hidden!important;box-sizing:border-box!important}
+.cat-btn,.btn-large-opt,.panel button,.frontCard button,.pm-menu-wrap button,.modalBody button{white-space:normal!important}
+.hud-bar,.question-box,.answers-grid{box-sizing:border-box!important;max-width:calc(100vw - 16px)!important}
+@media (max-width:520px),(max-height:720px){
+  .arcade-home-link,.back-btn,#menuBtn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;border-radius:999px!important;max-width:104px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;left:calc(env(safe-area-inset-left,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .settings-btn,.gear-btn,#settingsBtn,#global-settings-btn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .bj-savebar{display:flex!important;gap:4px!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important;max-width:calc(100vw - 118px)!important;flex-wrap:wrap!important;justify-content:flex-end!important}
+  .bj-savebar .ui-btn{padding:7px 8px!important;font-size:12px!important;line-height:1!important}
+  .topbar,.ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{height:auto!important;min-height:44px!important;padding-top:6px!important;padding-bottom:6px!important;gap:6px!important;flex-wrap:wrap!important;align-content:center!important}
+  .topbar{padding-left:max(8px,env(safe-area-inset-left,0px))!important;padding-right:max(8px,env(safe-area-inset-right,0px))!important}
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:76px!important;padding-right:8px!important}
+  .ck-top>div,.ttt-top>div,.mz-top>div,.mg-top>div,.si-top>div,.ms-top>div{display:flex!important;flex-wrap:wrap!important;gap:4px!important;min-width:0!important;max-width:100%!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{padding:6px 8px!important;font-size:12px!important;gap:5px!important;white-space:nowrap!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{padding:7px 8px!important;font-size:12px!important;min-height:0!important}
+  #modePvp,#modeCpu{white-space:normal!important;line-height:1!important}
+  #g-dots .top{padding-left:72px!important;gap:5px!important}
+  #g-dots .row{gap:5px!important;flex-wrap:wrap!important;justify-content:center!important}
+  #g-dots .pill{padding:5px 7px!important;font-size:12px!important;white-space:nowrap!important}
+  #g-dots .status-pill{flex:1 1 100%!important;margin-left:0!important;max-width:100%!important}
+  #g-dots canvas{max-width:calc(100vw - 20px)!important;max-height:calc(100svh - 154px)!important}
+  #g-hangman .top-bar{min-height:42px!important;padding:4px 8px!important;gap:4px!important}
+  #g-hangman .hm-left-slot{flex-basis:68px!important;width:68px!important}
+  #g-hangman .cat-pill{font-size:11px!important;padding:5px 8px!important}
+  #g-hangman .hm-status{gap:5px!important;max-width:50vw!important}
+  #g-hangman canvas{max-height:18vh!important}
+  #g-hangman #word-display{font-size:clamp(24px,8vw,34px)!important;min-height:34px!important;margin:2px 0!important}
+  #g-hangman #hint-box{font-size:12px!important;min-height:18px!important;padding:4px 8px!important}
+  #g-hangman .controls{gap:4px!important;padding:0 6px 2px!important;flex-wrap:nowrap!important}
+  #g-hangman .btn-hint,#g-hangman .btn-risk{padding:6px 6px!important;font-size:11px!important;gap:2px!important;box-shadow:none!important;flex:1 1 0!important;justify-content:center!important}
+  #g-hangman .keyboard{gap:3px!important;padding:3px!important;width:calc(100vw - 12px)!important;margin-bottom:2px!important}
+  #g-hangman .key{height:clamp(30px,6.6vh,42px)!important;font-size:clamp(15px,5vw,20px)!important;border-bottom-width:2px!important;border-radius:6px!important}
+  #g-orbslicer .orb-ui{left:6px!important;right:6px!important;top:42px!important;gap:4px!important}
+  #g-orbslicer .orb-pill{padding:5px 7px!important;font-size:12px!important;letter-spacing:0!important}
+  #g-orbslicer .orb-lives{font-size:13px!important;letter-spacing:0!important}
+  #g-minigolf #mg-menu{gap:8px!important;padding:12px 10px!important;justify-content:flex-start!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(30px,10vw,48px)!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:9px 10px!important;font-size:12px!important;min-height:0!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:8px!important}
+  .math-box{width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;left:auto!important;right:auto!important}
+  .hud-bar{padding:8px 10px!important;width:calc(100vw - 16px)!important;gap:4px!important}
+  .question-box{width:calc(100vw - 16px)!important;padding:14px!important;min-height:130px!important}
+  .cat-grid{gap:8px!important}
+  .cat-btn{padding:12px 8px!important;font-size:clamp(13px,4vw,18px)!important}
+  .menu-title{font-size:clamp(32px,11vw,48px)!important;margin:0!important}
+}
+@media (max-width:360px){
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:66px!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{font-size:11px!important;padding:5px 7px!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{font-size:11px!important;padding:6px 7px!important}
+  #g-dots .top{padding-left:64px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .wrap{gap:6px!important}
+  .titlebar{padding:6px 8px!important;gap:6px!important}
+  .layout{gap:6px!important}
+  .side{min-height:0!important;overflow:hidden!important}
+  .side .panel{max-height:calc(100svh - 410px)!important;overflow:hidden!important}
+  .panel .phead{padding:6px 8px!important}
+  .panel .pbody{padding:6px 8px!important}
+  #g-dots #menuOverlay .dots-mode-row,#g-dots #menuOverlay .dots-ai-row,#g-dots #menuOverlay .grid-options{width:100%!important;max-width:100%!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn{padding:6px 5px!important;font-size:11px!important;min-width:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  #g-dots .dots-menu-card{padding:6px!important;gap:5px!important;max-height:calc(100svh - 12px)!important}
+  #g-dots .dots-section-card{padding:5px!important;gap:4px!important}
+  #g-dots .dots-swatch-btn{padding:5px!important;font-size:10px!important;gap:3px!important}
+  #g-dots .dots-swatch-chip{width:16px!important;height:16px!important}
+  #g-dots .dots-swatch-hex{font-size:9px!important;letter-spacing:0!important}
+  .btn-large-opt{min-height:32px!important;line-height:1.15!important}
+  .ttt-piece-btn{white-space:normal!important;font-size:11px!important;line-height:1.05!important;padding:7px 8px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .modalPanel{max-height:calc(100svh - 14px)!important;overflow:hidden!important;padding:8px!important}
+  .modalHead{margin-bottom:5px!important}
+  .optRow{padding:6px!important;margin:5px 0!important;gap:6px!important}
+  .optRow .label .desc{font-size:10px!important;line-height:1.15!important}
+  .seg button{font-size:10px!important;padding:6px 7px!important;line-height:1.05!important;white-space:normal!important}
+}
+</style>
+<link rel="icon" href="data:,">
+<style id="arcade-v6-size-fix">
+@media (max-width:520px),(max-height:720px){
+  html,body{height:100%;overflow:hidden!important}
+  .panel,.frontCard,.pm-menu-wrap,.modal,.modalBody,.settings-panel,.overlay>.panel{overflow:hidden!important;max-height:calc(100svh - 8px)!important}
+  .small-note,.menu-sub,.sub{line-height:1.12!important}
+  .panel h1,.splash-title,.menu-title{line-height:1!important}
+  .panel button,.frontCard button,.pm-menu-wrap button,.modalBody button,.btn-large,.btn-large-opt{min-height:0!important}
+  .overlay,.modalBack,.front{padding:6px!important}
+  .app,.wrap{height:100svh!important;min-height:0!important;max-height:100svh!important;overflow:hidden!important}
+  .main,.game-area,.game-view,#game-view,.layout,.boardShell,.board-wrap,.side,.stage,#stage{min-height:0!important;overflow:hidden!important}
+  .rules{margin:6px 0!important;gap:5px!important}
+  .rulecard{padding:7px!important;font-size:10px!important;line-height:1.15!important;border-radius:10px!important}
+  .rulecard strong{margin-bottom:2px!important}
+  .panel>p{display:none!important}
+  .settingcard{padding:8px!important;margin:6px 0!important;border-radius:12px!important}
+  .settingcard p{display:none!important}
+  .optionrow{gap:5px!important;margin-bottom:7px!important}
+  .names{gap:5px!important;margin-bottom:7px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #g-dots #menuOverlay{padding:4px!important;gap:4px!important}
+  #g-dots .dots-menu-card{padding:5px!important;gap:4px!important;width:100%!important;max-height:calc(100svh - 8px)!important;overflow:hidden!important}
+  #g-dots .splash-title{font-size:20px!important;margin:0!important}
+  #g-dots .menu-sub,#g-dots .dots-subtle,#g-dots .dots-color-hint,#g-dots #dotsAiWrap div[style*="font-size:10px"]{display:none!important}
+  #g-dots .dots-menu-head{gap:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important}
+  #g-dots .dots-mode,#g-dots #dotsPlayerCountWrap,#g-dots #dotsAiWrap,#g-dots .dots-section-card.dots-colors,#g-dots .dots-section-card.dots-grid-card{grid-column:auto!important}
+  #g-dots .dots-section-card{padding:4px!important;gap:3px!important;border-radius:9px!important}
+  #g-dots .dots-sec-title{font-size:8px!important;margin:0!important;line-height:1!important}
+  #g-dots .dots-mode-row,#g-dots .dots-player-row,#g-dots .dots-ai-row,#g-dots .dots-toggles-row{gap:3px!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{padding:5px 3px!important;font-size:9px!important;line-height:1.05!important;border-radius:7px!important}
+  #g-dots .dots-name-grid,#g-dots .dots-team-grid,#g-dots .dots-team-name-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-mini-label{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-name-field,#g-dots .dots-team-field,#g-dots .dots-team-name-field{gap:2px!important}
+  #g-dots .dots-name-input,#g-dots .dots-team-select{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #g-dots .dots-toggle-pill{padding:4px 5px!important;font-size:8px!important;gap:3px!important;line-height:1.05!important}
+  #g-dots .dots-toggle-pill input{width:12px!important;height:12px!important}
+  #g-dots .dots-color-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-color-item{gap:1px!important}
+  #g-dots .dots-color-name{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-swatch-btn{padding:3px!important;gap:2px!important;border-radius:7px!important;border-width:1px!important}
+  #g-dots .dots-swatch-chip{width:18px!important;height:14px!important;border-radius:5px!important}
+  #g-dots .dots-swatch-hex{font-size:7px!important;letter-spacing:0!important}
+  #g-dots .grid-options{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important;width:100%!important}
+  .front{align-items:center!important}
+  .frontCard{padding:8px!important;border-radius:18px!important}
+  .frontHeader{padding:4px!important;margin-bottom:6px!important}
+  .frontTitle{font-size:18px!important;line-height:1!important}
+  .frontHeader .mini,.modeDesc,.modeExamples{display:none!important}
+  .modeGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+  .modeCard{padding:12px 7px!important;border-radius:14px!important;text-align:center!important}
+  .modeTitle{font-size:16px!important;line-height:1.05!important}
+  #startOverlay .panel h1{font-size:20px!important;margin:0 0 4px!important}
+  #startOverlay .panel .sub,#startOverlay .small-note{display:none!important}
+  #startOverlay .panel{padding:8px!important;border-radius:14px!important}
+  #startOverlay .row{gap:5px!important}
+  #startOverlay .opt{padding:6px!important;min-width:0!important;border-radius:10px!important}
+  #startOverlay .opt label{font-size:10px!important;margin-bottom:3px!important}
+  #startOverlay select,#startOverlay input[type="range"]{padding:6px 8px!important;font-size:12px!important}
+  #startOverlay .toggle-row{padding:6px 8px!important;margin-top:5px!important;border-radius:10px!important}
+  #startOverlay .t-desc{display:none!important}
+  #startOverlay .hr{margin:5px 0!important}
+  #startOverlay .btn-large{padding:8px 9px!important;font-size:13px!important;border-radius:11px!important}
+  #startBackBtn,#loadStartBtn{margin-top:5px!important}
+  #startOverlay .pm-menu-wrap{gap:6px!important;padding:0!important}
+  #startOverlay .pm-card{padding:8px!important;border-radius:12px!important}
+  #startOverlay .pm-pill-row{gap:4px!important}
+  #startOverlay .pm-pill{padding:7px 8px!important;font-size:12px!important}
+  #startOverlay .btn-large-opt{padding:9px 10px!important;font-size:13px!important;border-radius:11px!important}
+  #startOverlay.splash-title,.splash-title{font-size:clamp(26px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu{gap:5px!important;padding:8px!important;justify-content:center!important;overflow:hidden!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(24px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu>div[style*="max-width:520px"],#g-minigolf #mg-diff-wrap>div:last-child{display:none!important}
+  #g-minigolf #mg-best-line{font-size:11px!important;margin-top:0!important;padding:0!important}
+  #g-minigolf #mg-diff-wrap{margin-top:2px!important;gap:4px!important}
+  #g-minigolf #mg-diff-wrap>div:first-child{font-size:10px!important;line-height:1!important}
+  #g-minigolf #mg-diff-wrap .ui-btn{padding:6px 8px!important;font-size:11px!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:5px!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:7px 9px!important;font-size:12px!important;max-width:240px!important}
+  .pm-menu-wrap .small-note,.pm-menu-wrap+.small-note{display:none!important}
+  .modalBack{align-items:center!important}
+  .modal{max-height:calc(100svh - 8px)!important;overflow:hidden!important;border-radius:16px!important}
+  .modalHeader{position:static!important;padding:7px 9px!important}
+  .modalTitle{font-size:14px!important}
+  .modalBody{padding:8px!important;gap:6px!important;overflow:hidden!important}
+  .grid2,.namesGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  label{gap:3px!important;font-size:9px!important;line-height:1!important}
+  input[type="text"],input[type="number"],select{padding:5px 7px!important;font-size:11px!important;border-radius:8px!important}
+  .nameRow{gap:3px!important}
+  .nameLabel{font-size:9px!important;gap:4px!important;line-height:1!important}
+  .helper{display:none!important}
+  .footerActions{gap:5px!important;justify-content:center!important}
+  .footerActions button{padding:7px 10px!important;font-size:12px!important}
+  #startOverlay .panel-head{padding-right:88px!important}
+  #startOverlay .panel-top-back{padding:5px 7px!important;font-size:10px!important;max-width:82px!important}
+  #startOverlay .choice-grid{gap:3px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{padding:5px 3px!important;font-size:9px!important;border-radius:8px!important}
+  #startOverlay .more-players-row{margin-top:3px!important;gap:3px!important}
+  #startOverlay .theme-grid,#startOverlay .size-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #startOverlay .names-wrap,#startOverlay .team-wrap{margin-top:3px!important}
+  #startOverlay .names-label{font-size:8px!important;margin:2px 0!important}
+  #startOverlay .name-input{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #startOverlay .team-choice-grid{width:88px!important;flex-basis:88px!important;gap:2px!important}
+  #startOverlay .team-grid,#startOverlay .team-names-grid{gap:3px!important}
+  #startOverlay .panel-footer{position:static!important;padding-top:2px!important;margin-top:2px!important;background:none!important}
+  #startOverlay .row{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  body.memory-game #game{gap:6px!important;padding:calc(env(safe-area-inset-top,0px) + 8px) 8px max(8px,calc(env(safe-area-inset-bottom,0px) + 6px))!important}
+  body.memory-game #board{flex:0 0 auto!important;max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 64px)!important;overflow:hidden!important;align-content:start!important}
+  body.memory-game .card-front .face{font-size:clamp(25px,8vmin,48px)!important}
+}
+@media (max-width:360px){
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{font-size:8px!important;padding:4px 2px!important}
+  .modeTitle{font-size:14px!important}
+  .modalBody{gap:4px!important}
+  input[type="text"],input[type="number"],select{padding:4px 6px!important;font-size:10px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{font-size:8px!important;padding:4px 2px!important}
+}
+</style>
+
+<style id="arcade-v6-late-fix">
+@media (max-width:520px),(max-height:720px){
+  body.make10-game .app{gap:4px!important;padding:5px 8px!important}
+  body.make10-game .main{gap:4px!important;grid-template-rows:auto auto auto auto minmax(0,1fr)!important}
+  body.make10-game .topbar{padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .title{font-size:14px!important;line-height:1!important}
+  body.make10-game .subtitle,body.make10-game .status .small,body.make10-game .comboNote{display:none!important}
+  body.make10-game .turnpill{padding:5px 8px!important;font-size:11px!important}
+  body.make10-game .scorebar{gap:4px!important;padding:4px!important}
+  body.make10-game .scorechip{padding:4px!important;border-radius:10px!important}
+  body.make10-game .scorechip .name{font-size:10px!important}
+  body.make10-game .scorechip .score{font-size:14px!important}
+  body.make10-game .controls{gap:4px!important;padding:4px!important}
+  body.make10-game .controls button{min-height:30px!important;padding:6px 7px!important;font-size:11px!important}
+  body.make10-game .status{min-height:34px!important;padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .status .message{font-size:12px!important;line-height:1.05!important}
+  body.make10-game .sumbar{padding:5px!important;border-radius:12px!important}
+  body.make10-game .sumfocus{gap:4px!important}
+  body.make10-game .sumlabel{font-size:10px!important}
+  body.make10-game .sumcore{gap:6px!important}
+  body.make10-game .sumactions{gap:4px!important;width:88px!important}
+  body.make10-game .sumactions button{min-height:30px!important;padding:5px!important;font-size:11px!important}
+  body.make10-game .totalbox{width:140px!important;min-height:45px!important;border-radius:14px!important}
+  body.make10-game .total{font-size:34px!important}
+  body.make10-game .table{gap:4px!important}
+  body.make10-game .card{min-height:48px!important;border-radius:11px!important;padding:4px!important;border-width:1px!important}
+  body.make10-game .centerValue{font-size:28px!important}
+  body.make10-game .corner{font-size:9px!important;left:5px!important;top:4px!important}
+  body.make10-game .corner.bottom{right:5px!important;bottom:4px!important}
+  body.make10-game .footer{padding:5px 7px!important;font-size:10px!important;border-radius:12px!important}
+  #g-clock{justify-content:center!important;gap:6px!important;padding-top:34px!important;padding-bottom:6px!important;box-sizing:border-box!important;overflow:hidden!important}
+  #g-clock .clock-face{width:206px!important;height:206px!important;border-width:6px!important;margin:0 0 6px!important;box-sizing:border-box!important}
+  #g-clock .clock-ui{gap:5px!important;max-height:310px!important;overflow:hidden!important}
+  #g-clock .display-box{font-size:22px!important;padding:5px 10px!important;min-width:98px!important;border-radius:8px!important}
+  #g-clock .keypad{gap:5px!important;margin-top:4px!important;max-width:190px!important}
+  #g-clock .kp-btn{padding:8px!important;font-size:16px!important;border-radius:7px!important;line-height:1!important}
+  #g-clock .mc-grid{gap:5px!important;width:94%!important}
+  #g-clock .mc-btn{padding:8px!important;font-size:16px!important}
+}
+@media (max-width:360px){
+  #g-clock .clock-face{width:190px!important;height:190px!important}
+  #g-clock .keypad{max-width:180px!important}
+  #g-clock .kp-btn{padding:7px!important;font-size:15px!important}
+}
+</style>
+
+<style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+</head>
+<body>
+<a class="arcade-home-link" href="../index.html">← ARCADE</a>
+<div id="app">
+  <div class="stage">
+    <div class="paperShell">
+      <div class="paperFrame">
+        <canvas id="paintCanvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottomStack">
+    <div class="toolbar">
+      <div class="control">
+        <label>Brush size <span id="sizeValue">18</span></label>
+        <input id="sizeSlider" type="range" min="6" max="44" step="1" value="18">
+      </div>
+      <div class="control">
+        <label>Wetness <span id="wetValue">62%</span></label>
+        <input id="wetSlider" type="range" min="10" max="100" step="1" value="62">
+        <div class="subValue">Current brush: <span id="currentWetValue">62%</span></div>
+      </div>
+      <div class="actionRow">
+        <button id="rinseBtn" class="actionBtn secondary" type="button">Rinse Brush</button>
+        <button id="saveBtn" class="actionBtn secondary" type="button">Save</button>
+        <button id="loadBtn" class="actionBtn secondary" type="button">Load</button>
+        <button id="clearBtn" class="actionBtn" type="button">Fresh Paper</button>
+      </div>
+    </div>
+
+    <div class="paletteWrap">
+      <div id="palette" class="palette"></div>
+    </div>
+  </div>
+</div>
+<script>
+(() => {
+  const canvas = document.getElementById('paintCanvas');
+  const ctx = canvas.getContext('2d', { alpha: false });
+  const paletteEl = document.getElementById('palette');
+  const sizeSlider = document.getElementById('sizeSlider');
+  const wetSlider = document.getElementById('wetSlider');
+  const sizeValue = document.getElementById('sizeValue');
+  const wetValue = document.getElementById('wetValue');
+  const currentWetValue = document.getElementById('currentWetValue');
+  const clearBtn = document.getElementById('clearBtn');
+  const rinseBtn = document.getElementById('rinseBtn');
+  const saveBtn = document.getElementById('saveBtn');
+  const loadBtn = document.getElementById('loadBtn');
+
+  const paperRGB = [231, 222, 202];
+  const pigments = [
+    { name:'Lemon', swatch:'#f3d332', absorb:[0.02,0.16,2.25], opacity:1.10 },
+    { name:'Cadmium', swatch:'#f26a2a', absorb:[0.04,0.72,2.20], opacity:1.25 },
+    { name:'Crimson', swatch:'#ca2457', absorb:[0.10,2.00,0.86], opacity:1.20 },
+    { name:'Cyan', swatch:'#21b7d7', absorb:[1.85,0.18,0.12], opacity:1.12 },
+    { name:'Ultramarine', swatch:'#344bc7', absorb:[1.55,0.92,0.12], opacity:1.24 }
+  ];
+
+  let selected = 4;
+  let carried = new Float32Array(pigments.length);
+  let targetWetness = Number(wetSlider.value) / 100;
+  let currentBrushWetness = targetWetness;
+  let brushSize = Number(sizeSlider.value);
+  let simW = 160;
+  let simH = 220;
+  let paintLayers = [];
+  let wet = new Float32Array(simW * simH);
+  let totalPaint = new Float32Array(simW * simH);
+  let renderCanvas = document.createElement('canvas');
+  let renderCtx = renderCanvas.getContext('2d', { alpha:false });
+  let imageData = renderCtx.createImageData(simW, simH);
+  let frame = 0;
+  let drawing = false;
+  let lastPoint = null;
+  let pointerId = null;
+  const deltaLayers = pigments.map(() => new Float32Array(simW * simH));
+  const deltaWet = new Float32Array(simW * simH);
+  const SAVE_KEY = 'arcade_paintlab_save_v1';
+
+  function initGrid() {
+    paintLayers = pigments.map(() => new Float32Array(simW * simH));
+    wet = new Float32Array(simW * simH);
+    totalPaint = new Float32Array(simW * simH);
+    renderCanvas.width = simW;
+    renderCanvas.height = simH;
+    imageData = renderCtx.createImageData(simW, simH);
+  }
+
+  function resizeCanvas() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+    draw();
+  }
+
+  function clamp(v, lo, hi) {
+    return v < lo ? lo : v > hi ? hi : v;
+  }
+
+  function updateWetnessUI() {
+    wetValue.textContent = Math.round(targetWetness * 100) + '%';
+    currentWetValue.textContent = Math.round(currentBrushWetness * 100) + '%';
+  }
+
+  function rinseBrush() {
+    carried.fill(0);
+    currentBrushWetness = targetWetness;
+    updateWetnessUI();
+  }
+
+  function setSelected(i) {
+    selected = i;
+    rinseBrush();
+    [...paletteEl.children].forEach((el, idx) => el.classList.toggle('selected', idx === i));
+  }
+
+  function buildPalette() {
+    paletteEl.innerHTML = '';
+    pigments.forEach((p, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'swatchBtn';
+      btn.setAttribute('aria-label', p.name);
+      btn.title = p.name;
+      btn.innerHTML = `<span class="swatchFill" style="background:${p.swatch}"></span>`;
+      btn.addEventListener('click', () => setSelected(i));
+      paletteEl.appendChild(btn);
+    });
+    setSelected(selected);
+  }
+
+  function pointerToSim(e) {
+    const rect = canvas.getBoundingClientRect();
+    const x = clamp((e.clientX - rect.left) / rect.width, 0, 0.999999) * simW;
+    const y = clamp((e.clientY - rect.top) / rect.height, 0, 0.999999) * simH;
+    return { x, y };
+  }
+
+  function mixToRGB(index) {
+    const t = totalPaint[index];
+    if (t < 0.0001) return paperRGB;
+    let ar = 0, ag = 0, ab = 0;
+    for (let p = 0; p < pigments.length; p++) {
+      const amt = paintLayers[p][index];
+      if (amt <= 0) continue;
+      const w = amt / t;
+      ar += pigments[p].absorb[0] * w * pigments[p].opacity;
+      ag += pigments[p].absorb[1] * w * pigments[p].opacity;
+      ab += pigments[p].absorb[2] * w * pigments[p].opacity;
+    }
+    const thickness = Math.min(2.1, t * 1.7);
+    const cover = 1 - Math.exp(-t * 1.55);
+    const rr = Math.exp(-ar * thickness);
+    const gg = Math.exp(-ag * thickness);
+    const bb = Math.exp(-ab * thickness);
+    const pr = clamp(paperRGB[0] * rr, 0, 255);
+    const pg = clamp(paperRGB[1] * gg, 0, 255);
+    const pb = clamp(paperRGB[2] * bb, 0, 255);
+    return [
+      Math.round(paperRGB[0] * (1 - cover) + pr * cover),
+      Math.round(paperRGB[1] * (1 - cover) + pg * cover),
+      Math.round(paperRGB[2] * (1 - cover) + pb * cover)
+    ];
+  }
+
+  function updateTotalsInArea(minX, minY, maxX, maxY) {
+    for (let y = minY; y <= maxY; y++) {
+      for (let x = minX; x <= maxX; x++) {
+        const idx = y * simW + x;
+        let sum = 0;
+        for (let p = 0; p < pigments.length; p++) sum += paintLayers[p][idx];
+        totalPaint[idx] = sum;
+      }
+    }
+  }
+
+  function consumeWetness(stepDistance, speed) {
+    const dist = Math.max(0.28, stepDistance);
+    const speedFactor = 0.88 + Math.min(2.2, speed) * 0.14;
+    const sizeFactor = 0.78 + brushSize * 0.022;
+    const dryness = 1 - currentBrushWetness;
+    const drainScale = 0.46 + Math.pow(dryness, 2.7) * 5.2;
+    const drain = dist * 0.00042 * sizeFactor * speedFactor * drainScale;
+    currentBrushWetness = clamp(currentBrushWetness - drain, 0.01, 1);
+    updateWetnessUI();
+  }
+
+  function stamp(x, y, dx, dy) {
+    const activeWetness = currentBrushWetness;
+    const moisture = clamp((activeWetness - 0.04) / 0.96, 0, 1);
+    const fluidity = Math.pow(moisture, 0.58);
+    const paintStrength = Math.pow(moisture, 2.25);
+    const r = brushSize * 0.5 * (simW / 160);
+    const minX = clamp(Math.floor(x - r - 2), 0, simW - 1);
+    const maxX = clamp(Math.ceil(x + r + 2), 0, simW - 1);
+    const minY = clamp(Math.floor(y - r - 2), 0, simH - 1);
+    const maxY = clamp(Math.ceil(y + r + 2), 0, simH - 1);
+    const speed = Math.min(2.5, Math.hypot(dx, dy));
+    const sx = speed > 0.01 ? dx / speed : 0;
+    const sy = speed > 0.01 ? dy / speed : 0;
+    const smear = 0.012 + fluidity * 0.05;
+    for (let yy = minY; yy <= maxY; yy++) {
+      for (let xx = minX; xx <= maxX; xx++) {
+        const ox = xx + 0.5 - x;
+        const oy = yy + 0.5 - y;
+        const d = Math.hypot(ox, oy) / r;
+        if (d > 1) continue;
+        const falloff = 1 - d * d;
+        const idx = yy * simW + xx;
+        const pickup = Math.min(0.055, (0.006 + fluidity * 0.026) * falloff * (0.35 + wet[idx] * 0.9));
+        if (pickup > 0.0002 && totalPaint[idx] > 0.0001) {
+          for (let p = 0; p < pigments.length; p++) {
+            const here = paintLayers[p][idx];
+            if (here <= 0.00001) continue;
+            const take = Math.min(here, here * pickup);
+            paintLayers[p][idx] -= take;
+            carried[p] += take;
+          }
+        }
+        let carryTotal = 0;
+        for (let p = 0; p < pigments.length; p++) carryTotal += carried[p];
+        const deposit = (0.006 + paintStrength * 0.115) * falloff;
+        paintLayers[selected][idx] += deposit * (0.74 + fluidity * 0.18);
+        if (carryTotal > 0.00001) {
+          const carryDeposit = deposit * (0.18 + fluidity * 0.28);
+          for (let p = 0; p < pigments.length; p++) {
+            if (carried[p] <= 0.00001) continue;
+            const portion = carryDeposit * (carried[p] / carryTotal);
+            paintLayers[p][idx] += portion;
+            carried[p] = Math.max(0, carried[p] - portion * 0.85);
+          }
+        }
+        wet[idx] = Math.min(1, wet[idx] + (0.06 + fluidity * 0.82) * falloff);
+        if (speed > 0.08) {
+          const tx = clamp(Math.round(xx + sx), 0, simW - 1);
+          const ty = clamp(Math.round(yy + sy), 0, simH - 1);
+          const tidx = ty * simW + tx;
+          const move = smear * falloff * wet[idx];
+          for (let p = 0; p < pigments.length; p++) {
+            const here = paintLayers[p][idx];
+            if (here <= 0.00001) continue;
+            const amount = Math.min(here, here * move);
+            paintLayers[p][idx] -= amount;
+            paintLayers[p][tidx] += amount;
+          }
+          const waterShift = wet[idx] * (0.035 + fluidity * 0.12) * falloff;
+          wet[idx] = Math.max(0, wet[idx] - waterShift * 0.45);
+          wet[tidx] = Math.min(1, wet[tidx] + waterShift);
+        }
+      }
+    }
+    updateTotalsInArea(minX, minY, maxX, maxY);
+    consumeWetness(Math.max(0.35, Math.hypot(dx, dy)), speed);
+  }
+
+  function strokeLine(a, b) {
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    const dist = Math.max(1, Math.hypot(dx, dy));
+    const step = Math.max(0.45, brushSize * 0.11);
+    const steps = Math.max(1, Math.ceil(dist / step));
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = a.x + dx * t;
+      const y = a.y + dy * t;
+      stamp(x, y, dx / steps, dy / steps);
+    }
+  }
+
+  function beginPaint(e) {
+    if (pointerId !== null) return;
+    pointerId = e.pointerId;
+    drawing = true;
+    carried.fill(0);
+    const pt = pointerToSim(e);
+    lastPoint = pt;
+    stamp(pt.x, pt.y, 0, 0);
+    draw();
+  }
+
+  function movePaint(e) {
+    if (!drawing || e.pointerId !== pointerId) return;
+    const pt = pointerToSim(e);
+    strokeLine(lastPoint, pt);
+    lastPoint = pt;
+    draw();
+  }
+
+  function endPaint(e) {
+    if (e.pointerId !== pointerId) return;
+    drawing = false;
+    pointerId = null;
+    lastPoint = null;
+  }
+
+  function diffuseOnce() {
+    for (let i = 0; i < deltaWet.length; i++) deltaWet[i] = 0;
+    for (let p = 0; p < pigments.length; p++) deltaLayers[p].fill(0);
+    for (let y = 1; y < simH - 1; y++) {
+      for (let x = 1; x < simW - 1; x++) {
+        const idx = y * simW + x;
+        const w = wet[idx];
+        if (w < 0.02 || totalPaint[idx] < 0.0001) continue;
+        const baseShare = 0.010 + w * 0.018;
+        const neighbors = [idx - 1, idx + 1, idx - simW, idx + simW];
+        for (let n = 0; n < 4; n++) {
+          const ni = neighbors[n];
+          const dw = Math.max(0, w - wet[ni] * 0.65);
+          if (dw <= 0) continue;
+          const share = Math.min(0.06, baseShare * dw);
+          if (share <= 0.0002) continue;
+          for (let p = 0; p < pigments.length; p++) {
+            const amt = paintLayers[p][idx];
+            if (amt <= 0.00001) continue;
+            const move = Math.min(amt, amt * share);
+            deltaLayers[p][idx] -= move;
+            deltaLayers[p][ni] += move;
+          }
+          const waterMove = Math.min(w, share * 1.6);
+          deltaWet[idx] -= waterMove;
+          deltaWet[ni] += waterMove;
+        }
+      }
+    }
+    for (let i = 0; i < wet.length; i++) {
+      wet[i] = clamp(wet[i] + deltaWet[i], 0, 1) * 0.9915;
+    }
+    for (let p = 0; p < pigments.length; p++) {
+      const layer = paintLayers[p];
+      const delta = deltaLayers[p];
+      for (let i = 0; i < layer.length; i++) layer[i] = Math.max(0, layer[i] + delta[i]);
+    }
+    for (let i = 0; i < totalPaint.length; i++) {
+      let sum = 0;
+      for (let p = 0; p < pigments.length; p++) sum += paintLayers[p][i];
+      totalPaint[i] = sum * 0.9993;
+      for (let p = 0; p < pigments.length; p++) paintLayers[p][i] *= 0.9993;
+    }
+  }
+
+  function draw() {
+    const data = imageData.data;
+    for (let i = 0, px = 0; i < totalPaint.length; i++, px += 4) {
+      const rgb = mixToRGB(i);
+      data[px] = rgb[0];
+      data[px + 1] = rgb[1];
+      data[px + 2] = rgb[2];
+      data[px + 3] = 255;
+    }
+    renderCtx.putImageData(imageData, 0, 0);
+    ctx.imageSmoothingEnabled = true;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(renderCanvas, 0, 0, canvas.width, canvas.height);
+  }
+
+  function animate() {
+    frame++;
+    if ((frame & 1) === 0) diffuseOnce();
+    draw();
+    requestAnimationFrame(animate);
+  }
+
+  function recomputeTotals(){
+    for (let i = 0; i < totalPaint.length; i++) {
+      let sum = 0;
+      for (let p = 0; p < pigments.length; p++) sum += paintLayers[p][i];
+      totalPaint[i] = sum;
+    }
+  }
+
+  function packedArray(arr){
+    return Array.from(arr, v => Math.round(v * 100000) / 100000);
+  }
+
+  function floatArrayToBase64(arr){
+    const bytes=new Uint8Array(arr.buffer,arr.byteOffset,arr.byteLength);
+    let binary='';
+    for(let offset=0;offset<bytes.length;offset+=32768){
+      binary+=String.fromCharCode.apply(null,bytes.subarray(offset,Math.min(bytes.length,offset+32768)));
+    }
+    return btoa(binary);
+  }
+
+  function base64ToFloatArray(value,expectedLength){
+    if(typeof value!=='string') throw new Error('Invalid Paint Lab layer');
+    const binary=atob(value);
+    if(binary.length!==expectedLength*4) throw new Error('Invalid Paint Lab layer size');
+    const bytes=new Uint8Array(binary.length);
+    for(let i=0;i<binary.length;i++) bytes[i]=binary.charCodeAt(i);
+    return new Float32Array(bytes.buffer);
+  }
+
+  function savePainting(){
+    const saved = capturePainting();
+    try{
+      localStorage.setItem(SAVE_KEY, JSON.stringify(saved));
+      saveBtn.textContent = 'Saved';
+      setTimeout(() => { saveBtn.textContent = 'Save'; }, 900);
+    }catch(e){
+      saveBtn.textContent = 'Save failed';
+      setTimeout(() => { saveBtn.textContent = 'Save'; }, 1200);
+    }
+  }
+
+  function capturePainting(){
+    return {
+      simW,
+      simH,
+      selected,
+      brushSize,
+      targetWetness,
+      currentBrushWetness,
+      carried: packedArray(carried),
+      wet: packedArray(wet),
+      paintLayers: paintLayers.map(packedArray)
+    };
+  }
+
+  function capturePaintingCompact(){
+    return {
+      format:'float32-base64-v1',simW,simH,selected,brushSize,targetWetness,currentBrushWetness,
+      carried:floatArrayToBase64(carried),wet:floatArrayToBase64(wet),
+      paintLayers:paintLayers.map(floatArrayToBase64)
+    };
+  }
+
+  function loadPainting(){
+    let saved = null;
+    try{ saved = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); }catch(e){ saved = null; }
+    if(!saved || saved.simW !== simW || saved.simH !== simH || !Array.isArray(saved.paintLayers)){
+      loadBtn.textContent = 'No save';
+      setTimeout(() => { loadBtn.textContent = 'Load'; }, 900);
+      return;
+    }
+    selected = clamp(parseInt(saved.selected, 10) || 0, 0, pigments.length - 1);
+    brushSize = clamp(Number(saved.brushSize) || brushSize, 6, 44);
+    targetWetness = clamp(Number(saved.targetWetness) || targetWetness, 0.1, 1);
+    currentBrushWetness = clamp(Number(saved.currentBrushWetness) || targetWetness, 0.01, 1);
+    carried = new Float32Array(Array.isArray(saved.carried) ? saved.carried : pigments.map(() => 0));
+    wet = new Float32Array(Array.isArray(saved.wet) ? saved.wet : simW * simH);
+    paintLayers = pigments.map((_, i) => new Float32Array(Array.isArray(saved.paintLayers[i]) ? saved.paintLayers[i] : simW * simH));
+    totalPaint = new Float32Array(simW * simH);
+    recomputeTotals();
+    sizeSlider.value = String(Math.round(brushSize));
+    wetSlider.value = String(Math.round(targetWetness * 100));
+    sizeValue.textContent = String(Math.round(brushSize));
+    setSelected(selected);
+    currentBrushWetness = clamp(Number(saved.currentBrushWetness) || targetWetness, 0.01, 1);
+    updateWetnessUI();
+    draw();
+    loadBtn.textContent = 'Loaded';
+    setTimeout(() => { loadBtn.textContent = 'Load'; }, 900);
+  }
+
+  function clearPaper() {
+    for (let p = 0; p < pigments.length; p++) paintLayers[p].fill(0);
+    wet.fill(0);
+    totalPaint.fill(0);
+    rinseBrush();
+    draw();
+  }
+
+  canvas.addEventListener('pointerdown', e => {
+    try{ canvas.setPointerCapture(e.pointerId); }catch(_e){}
+    beginPaint(e);
+  });
+  canvas.addEventListener('pointermove', movePaint);
+  canvas.addEventListener('pointerup', endPaint);
+  canvas.addEventListener('pointercancel', endPaint);
+  canvas.addEventListener('pointerleave', e => {
+    if (drawing && e.pointerId === pointerId) movePaint(e);
+  });
+
+  sizeSlider.addEventListener('input', () => {
+    brushSize = Number(sizeSlider.value);
+    sizeValue.textContent = String(brushSize);
+  });
+
+  wetSlider.addEventListener('input', () => {
+    targetWetness = Number(wetSlider.value) / 100;
+    currentBrushWetness = targetWetness;
+    updateWetnessUI();
+  });
+
+  clearBtn.addEventListener('click', clearPaper);
+  rinseBtn.addEventListener('click', rinseBrush);
+  saveBtn.addEventListener('click', savePainting);
+  loadBtn.addEventListener('click', loadPainting);
+  window.addEventListener('resize', resizeCanvas, { passive:true });
+
+  initGrid();
+  buildPalette();
+  sizeValue.textContent = String(brushSize);
+  updateWetnessUI();
+  resizeCanvas();
+  clearPaper();
+  animate();
+
+  window.PaintLabAutosave = {
+    id: 'paint-lab',
+    title: 'Paint Lab',
+    version: 1,
+    capture: capturePaintingCompact,
+    restore: function(saved){
+      if(!saved || saved.simW !== simW || saved.simH !== simH || !Array.isArray(saved.paintLayers) || saved.paintLayers.length !== pigments.length){
+        throw new Error('Invalid Paint Lab save');
+      }
+      const expected=simW*simH;
+      const compact=saved.format==='float32-base64-v1';
+      if(!compact&&(!Array.isArray(saved.wet)||saved.wet.length!==expected||saved.paintLayers.some(layer=>!Array.isArray(layer)||layer.length!==expected))) throw new Error('Invalid Paint Lab layer data');
+      selected=clamp(parseInt(saved.selected,10)||0,0,pigments.length-1);
+      brushSize=clamp(Number(saved.brushSize)||brushSize,6,44);
+      targetWetness=clamp(Number(saved.targetWetness)||targetWetness,0.1,1);
+      currentBrushWetness=clamp(Number(saved.currentBrushWetness)||targetWetness,0.01,1);
+      carried=compact?base64ToFloatArray(saved.carried,pigments.length):new Float32Array(Array.isArray(saved.carried)?saved.carried:pigments.map(()=>0));
+      wet=compact?base64ToFloatArray(saved.wet,expected):new Float32Array(saved.wet);
+      paintLayers=compact?saved.paintLayers.map(layer=>base64ToFloatArray(layer,expected)):pigments.map((_,i)=>new Float32Array(saved.paintLayers[i]));
+      totalPaint=new Float32Array(expected);recomputeTotals();
+      drawing=false;pointerId=null;lastPoint=null;
+      sizeSlider.value=String(Math.round(brushSize));wetSlider.value=String(Math.round(targetWetness*100));sizeValue.textContent=String(Math.round(brushSize));
+      setSelected(selected);updateWetnessUI();draw();
+    },
+    meaningful: function(){ return totalPaint.some(value=>value>0.0001); },
+    summary: function(){ return 'Painting in progress'; },
+    startFresh: clearPaper
+  };
+})();
+</script>
+
+<script type="application/x-arcade-legacy-disabled">
+(function(){
+  var busy = false;
+  var dirty = false;
+  function textOf(el){ return ((el.id || '') + ' ' + (el.className || '') + ' ' + (el.getAttribute && (el.getAttribute('onclick') || '')) + ' ' + (el.textContent || '')).toLowerCase(); }
+  function ignoreTarget(target){
+    if(!target || !target.closest) return false;
+    var link = target.closest('a[href]');
+    if(link) return true;
+    var form = target.closest('input,select,textarea');
+    if(form) return true;
+    var button = target.closest('button');
+    if(button && /(save|load|menu|back|setting|quit|close)/.test(textOf(button))) return true;
+    return false;
+  }
+  function markDirty(e){ if(!ignoreTarget(e.target)) dirty = true; }
+  function call(fn){ if(typeof fn === 'function'){ fn(); return true; } return false; }
+  function press(id){ var b = document.getElementById(id); if(b && !b.disabled){ b.click(); return true; } return false; }
+  function pressMatch(selector){ var b = document.querySelector(selector); if(b && !b.disabled){ b.click(); return true; } return false; }
+  function autoSave(){
+    if(busy || !dirty) return;
+    busy = true;
+    try{
+      if(press('saveBtn')) return;
+      if(press('saveGameBtn')) return;
+      if(pressMatch('button[onclick*="saveGame"],button[onclick*="Game.save"]')) return;
+      if(call(window.BJGame && window.BJGame.saveGame)) return;
+      if(call(window.CheckersGame && window.CheckersGame.saveGame)) return;
+      if(call(window.HangmanGame && window.HangmanGame.saveGame)) return;
+      if(call(window.MazeGame && window.MazeGame.saveGame)) return;
+      if(call(window.MiniGolf && window.MiniGolf.saveGame)) return;
+      if(call(window.TicTacToe && window.TicTacToe.saveGame)) return;
+      if(call(window.Game && window.Game.save)) return;
+    }catch(e){}
+    finally{ dirty = false; setTimeout(function(){ busy = false; }, 300); }
+  }
+  document.addEventListener('pointerdown', markDirty, true);
+  document.addEventListener('click', markDirty, true);
+  window.addEventListener('pagehide', autoSave);
+  window.addEventListener('beforeunload', autoSave);
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'hidden') autoSave(); });
+})();
+</script>
+
+
+<script id="arcade-resume-loader" type="application/x-arcade-legacy-disabled">
+(function(){
+  function wantsLoad(){
+    try{ var p = new URLSearchParams(location.search); return p.get('load') === '1' || p.get('resume') === '1'; }
+    catch(e){ return /[?&](load|resume)=1(?:&|$)/.test(location.search); }
+  }
+  if(!wantsLoad()) return;
+  var finished = false;
+  function call(obj, name){
+    try{ if(obj && typeof obj[name] === 'function'){ obj[name](); return true; } }catch(e){}
+    return false;
+  }
+  function clickId(id){
+    var el = document.getElementById(id);
+    if(el && !el.disabled){ try{ el.click(); return true; }catch(e){} }
+    return false;
+  }
+  function clickText(){
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('button'));
+    for(var i=0;i<buttons.length;i++){
+      var b = buttons[i];
+      var txt = (b.textContent || '').toLowerCase();
+      var attr = ((b.id || '') + ' ' + (b.getAttribute('onclick') || '')).toLowerCase();
+      if(!b.disabled && (txt.indexOf('load') !== -1 || attr.indexOf('load') !== -1)){ try{ b.click(); return true; }catch(e){} }
+    }
+    return false;
+  }
+  function run(){
+    if(finished) return true;
+    var ok = false;
+    ok = call(window.BJGame,'loadGame') || ok;
+    ok = call(window.CheckersGame,'loadGame') || ok;
+    ok = call(window.DotsGame,'loadGame') || ok;
+    ok = call(window.HangmanGame,'loadGame') || ok;
+    ok = call(window.MazeGame,'loadGame') || ok;
+    ok = call(window.MiniGolf,'loadGame') || ok;
+    ok = call(window.TicTacToe,'loadGame') || ok;
+    ok = call(window.Game,'load') || ok;
+    ok = clickId('loadGameBtn') || ok;
+    ok = clickId('loadBtn') || ok;
+    ok = clickId('overlayLoadBtn') || ok;
+    ok = clickText() || ok;
+    if(ok){ finished = true; try{ history.replaceState(null, document.title, location.pathname); }catch(e){} }
+    return ok;
+  }
+  function start(){
+    var tries = 0;
+    run();
+    var timer = setInterval(function(){ tries++; if(run() || tries > 30) clearInterval(timer); }, 90);
+  }
+  if(document.readyState === 'complete') start();
+  else window.addEventListener('load', start, {once:true});
+})();
+</script>
+
+<script src="../arcade-save.js"></script>
+<script>ArcadeSave.register(window.PaintLabAutosave);</script>
+
+</body>
+</html>

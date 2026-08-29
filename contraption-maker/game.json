@@ -1,0 +1,20 @@
+{
+  "title": "Contraption Maker",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 260,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "creative",
+    "educational"
+  ],
+  "tags": [
+    "touch",
+    "calm"
+  ],
+  "orientation": "landscape"
+}

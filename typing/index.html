@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#090d1e">
+<title>Scarlett's Typing</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../arcade-ui.css">
+<style>
+body{touch-action:manipulation}
+.typing-app{gap:7px}
+.editor{flex:1 1 auto;min-height:88px;position:relative;overflow:auto;padding:clamp(15px,3.6vw,30px);color:#fff;font:800 clamp(27px,6.4vmin,58px)/1.32 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.02em;white-space:pre-wrap;overflow-wrap:anywhere;user-select:none;touch-action:pan-y}
+.editor.empty:before{content:"Start typing!";color:rgba(255,255,255,.25)}
+.caret{display:inline-block;width:3px;height:.95em;margin:0 1px -2px;background:var(--arcade-gold);border-radius:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.keyboard{flex:0 0 auto;padding:7px;display:flex;flex-direction:column;gap:5px;min-height:0}
+.key-row{display:flex;justify-content:center;gap:4px}
+.key{flex:1 1 0;min-width:0;max-width:72px;height:clamp(39px,7.2vh,55px);padding:0;border:1px solid rgba(255,255,255,.17);border-radius:11px;background:linear-gradient(180deg,#354267,#222b49);box-shadow:0 3px 0 rgba(0,0,0,.4);color:#fff;font:1000 clamp(15px,4.2vw,22px)/1 system-ui,-apple-system,"Segoe UI",sans-serif;touch-action:manipulation}
+.key:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.4);background:#44537d}
+.key.wide{max-width:none;flex:1.45;font-size:15px}.key.space{max-width:none;flex:4;font-size:14px}.key.active{background:linear-gradient(180deg,#8b65ee,#6241c6)}
+.emoji-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:5px;max-height:min(210px,31vh);overflow:auto;padding:3px}
+.emoji-grid[hidden],.letter-board[hidden]{display:none!important}
+.emoji-key{min-height:45px;border:1px solid var(--arcade-line);border-radius:11px;background:rgba(255,255,255,.08);font-size:25px}.counter{font-size:12px;color:var(--arcade-muted);font-weight:900;text-align:center;white-space:nowrap}
+@media(max-width:480px){.editor{padding:14px;font-size:clamp(25px,7.4vw,42px)}.keyboard{padding:5px;gap:4px}.key-row{gap:3px}.key{border-radius:9px}.emoji-grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
+@media(max-height:540px){.typing-app{gap:4px}.editor{min-height:56px;padding:10px;font-size:clamp(24px,7.5vh,38px)}.keyboard{padding:4px;gap:3px}.key{height:33px;font-size:15px;border-radius:8px}.key-row{gap:3px}.emoji-grid{max-height:112px;grid-template-columns:repeat(10,minmax(0,1fr))}.emoji-key{min-height:34px;font-size:19px}}
+</style>
+</head>
+<body class="arcade-shell">
+<main class="arcade-app typing-app">
+  <header class="arcade-top"><button class="arcade-btn arcade-home" id="home" type="button" aria-label="Back to Arcade">⌂ <span class="label">Arcade</span></button><h1 class="arcade-title">Scarlett's Typing</h1><div class="arcade-actions"><span class="counter" id="counter">0</span><button class="arcade-btn" id="clear" type="button">Clear</button></div></header>
+  <section class="editor arcade-panel empty" id="editor" role="textbox" aria-label="Typing area" aria-readonly="true"></section>
+  <section class="keyboard arcade-panel" aria-label="Arcade keyboard"><div class="letter-board" id="letterBoard"></div><div class="emoji-grid" id="emojiGrid" hidden></div></section>
+</main>
+<script>
+(() => {
+  'use strict';
+  const LETTERS=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l'],['z','x','c','v','b','n','m']];
+  const SYMBOLS=[['1','2','3','4','5','6','7','8','9','0'],['!','?','.',',',"'",'"','-','(',')'],['@','#','$','%','&','+','=','/']];
+  const EMOJIS=['😀','😂','😍','🤪','🥳','😎','🤖','👻','💩','🦄','🐶','🐱','🐸','🦖','🐙','🦋','🍕','🍩','🧁','🌈','⭐','🔥','❤️','👍','🎉','⚾','🚀','👽','🤮','🩲','🚽','🧻','🪠','🧀','🍌'];
+  const editor=document.getElementById('editor'),board=document.getElementById('letterBoard'),emojiGrid=document.getElementById('emojiGrid'),counter=document.getElementById('counter');
+  let text='',cursor=0,caps=true,symbols=false,emojiOpen=false,clearArmed=0;
+  const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  function graphemeStops(value){const out=[0];if(window.Intl&&Intl.Segmenter){const seg=new Intl.Segmenter(undefined,{granularity:'grapheme'});for(const part of seg.segment(value))out.push(part.index+part.segment.length)}else{let n=0;for(const ch of Array.from(value)){n+=ch.length;out.push(n)}}return[...new Set(out)].sort((a,b)=>a-b)}
+  function moveCursor(dir){const stops=graphemeStops(text);if(dir<0){for(let i=stops.length-1;i>=0;i--)if(stops[i]<cursor)return stops[i];return 0}for(const stop of stops)if(stop>cursor)return stop;return text.length}
+  function renderText(){cursor=Math.max(0,Math.min(text.length,cursor));editor.innerHTML=esc(text.slice(0,cursor))+'<span class="caret" aria-hidden="true"></span>'+esc(text.slice(cursor));editor.classList.toggle('empty',!text);const count=graphemeStops(text).length-1;counter.textContent=count+(count===1?' character':' characters');editor.scrollTop=editor.scrollHeight}
+  function key(label,value,cls=''){const b=document.createElement('button');b.type='button';b.className='key '+cls;b.textContent=label;b.dataset.key=value;return b}
+  function renderKeyboard(){board.replaceChildren();const rows=symbols?SYMBOLS:LETTERS;rows.forEach(chars=>{const row=document.createElement('div');row.className='key-row';chars.forEach(ch=>row.appendChild(key(!symbols&&caps?ch.toUpperCase():ch,ch)));board.appendChild(row)});const tools=document.createElement('div');tools.className='key-row';if(!symbols)tools.appendChild(key('⇧','caps','wide'+(caps?' active':'')));tools.appendChild(key(symbols?'ABC':'123','symbols','wide'));tools.appendChild(key('😀','emoji','wide'+(emojiOpen?' active':'')));tools.appendChild(key('◀','left','wide'));tools.appendChild(key('space','space','space'));tools.appendChild(key('▶','right','wide'));tools.appendChild(key('↵','enter','wide'));tools.appendChild(key('⌫','backspace','wide'));board.appendChild(tools);board.hidden=emojiOpen;emojiGrid.hidden=!emojiOpen}
+  function touch(){if(window.ArcadeSave)ArcadeSave.touch(250)}
+  function insert(value){text=text.slice(0,cursor)+value+text.slice(cursor);cursor+=value.length;if(caps&&!symbols&&/\S/.test(value))caps=false;renderText();renderKeyboard();touch()}
+  function press(value){if(value==='caps'){caps=!caps;renderKeyboard();return}if(value==='symbols'){symbols=!symbols;caps=!symbols;emojiOpen=false;renderKeyboard();return}if(value==='emoji'){emojiOpen=!emojiOpen;renderKeyboard();return}if(value==='left'){cursor=moveCursor(-1);renderText();return}if(value==='right'){cursor=moveCursor(1);renderText();return}if(value==='space'){insert(' ');return}if(value==='enter'){insert('\n');caps=true;return}if(value==='backspace'){if(cursor>0){const before=moveCursor(-1);text=text.slice(0,before)+text.slice(cursor);cursor=before;renderText();touch()}return}insert(!symbols&&caps?value.toUpperCase():value)}
+  board.addEventListener('click',e=>{const b=e.target.closest('.key');if(b)press(b.dataset.key)});
+  EMOJIS.forEach(e=>{const b=document.createElement('button');b.type='button';b.className='emoji-key';b.textContent=e;b.addEventListener('click',()=>{insert(e);emojiOpen=false;renderKeyboard()});emojiGrid.appendChild(b)});
+  editor.addEventListener('click',()=>{cursor=text.length;renderText()});
+  document.getElementById('clear').addEventListener('click',e=>{const now=Date.now();if(text&&now>clearArmed){clearArmed=now+1600;e.currentTarget.textContent='Tap again';setTimeout(()=>{if(Date.now()>clearArmed)e.currentTarget.textContent='Clear'},1650);return}text='';cursor=0;caps=true;clearArmed=0;e.currentTarget.textContent='Clear';renderText();renderKeyboard();touch()});
+  document.getElementById('home').addEventListener('click',()=>{const leave=()=>location.href='../index.html';window.ArcadeSave?ArcadeSave.saveNow().finally(leave):leave()});
+  window.TypingAutosave={id:'typing',title:"Scarlett's Typing",version:2,capture:()=>({text,cursor,caps,symbols}),restore:s=>{if(!s||typeof s.text!=='string')throw new Error('Invalid typing save');text=s.text.slice(0,100000);cursor=Math.max(0,Math.min(text.length,Number(s.cursor)||text.length));caps=s.caps!==false;symbols=!!s.symbols;emojiOpen=false;renderText();renderKeyboard();return true},meaningful:()=>text.length>0,summary:()=>text.length+(text.length===1?' character':' characters'),migrate:s=>({text:String(s&&s.text||'').slice(0,100000),cursor:Number(s&&s.selectionEnd)||String(s&&s.text||'').length,caps:true,symbols:false}),startFresh:()=>{text='';cursor=0;caps=true;symbols=false;emojiOpen=false;renderText();renderKeyboard()}};
+  renderText();renderKeyboard();
+})();
+</script>
+<script src="../arcade-save.js"></script><script>ArcadeSave.register(window.TypingAutosave);</script>
+</body>
+</html>

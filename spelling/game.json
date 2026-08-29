@@ -1,0 +1,14 @@
+{
+  "title": "Picture Spelling",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 115,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["word", "educational"],
+  "tags": ["keyboard", "picture", "calm"],
+  "orientation": "any"
+}

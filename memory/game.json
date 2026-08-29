@@ -1,0 +1,21 @@
+{
+  "title": "Memory",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 130,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 8,
+  "categories": [
+    "memory",
+    "puzzle"
+  ],
+  "tags": [
+    "touch",
+    "turn-based",
+    "same-device"
+  ],
+  "orientation": "any"
+}

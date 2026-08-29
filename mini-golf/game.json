@@ -1,0 +1,19 @@
+{
+  "title": "Mini Golf",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 150,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "sports",
+    "puzzle"
+  ],
+  "tags": [
+    "touch"
+  ],
+  "orientation": "any"
+}

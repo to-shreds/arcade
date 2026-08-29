@@ -1,0 +1,20 @@
+{
+  "title": "Simon Says",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 210,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "memory",
+    "reaction"
+  ],
+  "tags": [
+    "touch",
+    "quick"
+  ],
+  "orientation": "any"
+}

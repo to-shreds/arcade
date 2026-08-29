@@ -1,0 +1,21 @@
+{
+  "title": "Shuffleboard",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 200,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 4,
+  "categories": [
+    "sports",
+    "strategy"
+  ],
+  "tags": [
+    "touch",
+    "turn-based",
+    "same-device"
+  ],
+  "orientation": "landscape"
+}

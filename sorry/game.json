@@ -1,0 +1,21 @@
+{
+  "title": "Sorry! Fire & Ice",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 290,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 2,
+  "playersMax": 4,
+  "categories": [
+    "strategy",
+    "board"
+  ],
+  "tags": [
+    "touch",
+    "turn-based",
+    "same-device"
+  ],
+  "orientation": "landscape"
+}

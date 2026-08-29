@@ -1,0 +1,20 @@
+{
+  "title": "Patterns",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 180,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "puzzle",
+    "educational"
+  ],
+  "tags": [
+    "touch",
+    "calm"
+  ],
+  "orientation": "any"
+}

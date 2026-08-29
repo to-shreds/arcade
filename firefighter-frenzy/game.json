@@ -1,0 +1,21 @@
+{
+  "title": "Firefighter Frenzy",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 310,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 2,
+  "categories": [
+    "arcade",
+    "reaction"
+  ],
+  "tags": [
+    "touch",
+    "cooperative",
+    "same-device"
+  ],
+  "orientation": "landscape"
+}

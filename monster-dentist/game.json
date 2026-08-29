@@ -1,0 +1,21 @@
+{
+  "title": "Monster Dentist",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 320,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 2,
+  "categories": [
+    "creative",
+    "reaction"
+  ],
+  "tags": [
+    "touch",
+    "cooperative",
+    "same-device"
+  ],
+  "orientation": "landscape"
+}

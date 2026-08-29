@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Arcade - Sorry! Fire & Ice</title>
+<style>
+:root{
+  --bg:#050609;
+  --panel:rgba(255,255,255,.075);
+  --panel2:rgba(0,0,0,.38);
+  --border:rgba(255,255,255,.18);
+  --border2:rgba(255,255,255,.34);
+  --gold:#ffd700;
+  --cyan:#00e5ff;
+  --green:#72ff7b;
+  --red:#ff4057;
+  --blue:#30a7ff;
+  --yellow:#ffd43b;
+  --player-green:#35d26f;
+  --shadow:0 12px 32px rgba(0,0,0,.5);
+  --topbar-h:44px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;color:#fff;font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;touch-action:manipulation;overscroll-behavior:none}
+body{background:radial-gradient(circle at 24% 15%,#252834 0,#090a0e 42%,#000 78%);user-select:none;-webkit-user-select:none}
+button,input{font:inherit}
+button{border:0;color:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:active{transform:scale(.975)}
+button:disabled{opacity:.35;transform:none;cursor:default}
+.hidden{display:none!important}
+#app{position:fixed;inset:0;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 5px) max(6px,env(safe-area-inset-right,0px)) max(6px,env(safe-area-inset-bottom,0px)) max(6px,env(safe-area-inset-left,0px));gap:5px}
+#topbar{height:var(--topbar-h);flex:0 0 var(--topbar-h);display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0;z-index:30}
+.turn-pill{height:38px;min-width:0;flex:1 1 auto;display:flex;align-items:center;gap:8px;padding:5px 10px;border:1px solid var(--border);border-radius:999px;background:rgba(0,0,0,.48);box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);overflow:hidden}
+.turn-dot{width:16px;height:16px;border-radius:50%;flex:0 0 16px;border:2px solid rgba(255,255,255,.78);box-shadow:0 0 12px currentColor}
+.turn-text{min-width:0;display:flex;flex-direction:column;line-height:1.05}
+#turnName{font-size:14px;font-weight:1000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#turnSub{font-size:10px;color:rgba(255,255,255,.68);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-actions{display:flex;align-items:center;gap:4px;flex:0 0 auto}
+.ui-btn{height:36px;min-width:36px;padding:0 9px;border:1px solid var(--border);border-radius:12px;background:var(--panel);font-weight:900;font-size:12px;line-height:1;display:inline-flex;align-items:center;justify-content:center}
+.ui-btn:active{background:rgba(255,255,255,.14);border-color:var(--border2)}
+#playArea{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:5px}
+#boardWrap{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#board{position:relative;aspect-ratio:1/1;width:min(98vw,calc(100svh - 190px),760px);max-width:100%;max-height:100%;--turn-color:#fff;border-radius:18px;background:conic-gradient(from 270deg at 50% 50%,rgba(255,64,87,.28) 0 25%,rgba(48,167,255,.28) 0 50%,rgba(255,212,59,.27) 0 75%,rgba(53,210,111,.27) 0);border:2px solid rgba(255,255,255,.33);box-shadow:0 14px 36px rgba(0,0,0,.56),inset 0 0 0 2px rgba(0,0,0,.45);overflow:hidden;isolation:isolate;transition:border-color .2s ease,box-shadow .2s ease}
+#board.turn-active{border-color:color-mix(in srgb,var(--turn-color) 72%,#fff);box-shadow:0 14px 36px rgba(0,0,0,.56),0 0 22px color-mix(in srgb,var(--turn-color) 38%,transparent),inset 0 0 0 2px rgba(0,0,0,.45)}
+#board:after{content:"";position:absolute;inset:6.25%;border:1px solid rgba(255,255,255,.09);pointer-events:none;z-index:1}
+.track-cell,.safety-cell{position:absolute;width:6.25%;height:6.25%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,.5);background:linear-gradient(145deg,#f6f6f7,#cfd2d7);color:#111;font-size:clamp(7px,1.8vmin,13px);font-weight:1000;z-index:5;overflow:hidden}
+.track-cell:nth-child(odd){background:linear-gradient(145deg,#fff,#d9dce2)}
+.track-cell.entry{box-shadow:inset 0 0 0 3px var(--cell-color),0 0 10px color-mix(in srgb,var(--cell-color) 55%,transparent)}
+.track-cell.entry:before{content:"";width:38%;height:38%;border:2px solid var(--cell-color);border-radius:3px;transform:rotate(45deg);background:rgba(255,255,255,.58)}
+.track-cell.start-exit:after{content:"";width:48%;height:48%;border-radius:50%;background:var(--cell-color);border:2px solid rgba(255,255,255,.9);box-shadow:0 0 7px var(--cell-color)}
+.track-cell.fire-space{background:radial-gradient(circle,#fff4be 0 24%,#ffb312 26% 52%,#e73d18 54% 74%,#75100c 76%);color:#fff;text-shadow:0 1px 2px #000;border-color:#ffce62}
+.track-cell.fire-space:after{content:"🔥";font-size:clamp(10px,2.7vmin,20px);filter:drop-shadow(0 0 4px #ff6400)}
+.track-cell.fire-space.start-exit:after{content:"🔥";width:auto;height:auto;border:0;background:none;box-shadow:none}
+.track-cell.slide-path{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--slide-a) 27%,#f7f7f8) 0 12%,color-mix(in srgb,var(--slide-b) 27%,#f7f7f8) 12% 24%,color-mix(in srgb,var(--slide-c) 27%,#f7f7f8) 24% 36%)}
+.track-cell.slide-end:after{content:"";width:44%;height:44%;border:2px solid #111;border-radius:50%;background:rgba(255,255,255,.72);box-shadow:0 0 0 2px rgba(255,255,255,.7)}
+.safety-cell{border-radius:7px;background:color-mix(in srgb,var(--cell-color) 58%,#101218);border-color:color-mix(in srgb,var(--cell-color) 78%,#fff);box-shadow:inset 0 0 0 1px rgba(255,255,255,.15);color:#fff;z-index:6}
+.safety-cell:after{content:attr(data-step);position:absolute;right:2px;top:1px;font-size:clamp(5px,1.15vmin,8px);opacity:.62;line-height:1}
+.safety-cell.safety-entry{box-shadow:inset 0 0 0 2px rgba(255,255,255,.58),0 0 10px color-mix(in srgb,var(--cell-color) 58%,transparent)}
+.board-paths{position:absolute;inset:0;width:100%;height:100%;z-index:7;pointer-events:none;overflow:visible}
+.board-paths .arrow-shadow{stroke:#08090c;stroke-linecap:round;stroke-linejoin:round;opacity:.94}
+.board-paths .arrow-core{stroke-linecap:round;stroke-linejoin:round}
+.board-paths .arrow-head-shadow{fill:#08090c;opacity:.96}
+.board-paths .arrow-head-core{stroke:rgba(255,255,255,.72);stroke-width:.05;stroke-linejoin:round}
+.board-paths .slide-accent{stroke:#fff;opacity:.95}
+.zone{position:absolute;z-index:8;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;border:2px solid color-mix(in srgb,var(--zone-color) 78%,#fff);background:radial-gradient(circle at 35% 28%,color-mix(in srgb,var(--zone-color) 80%,#fff),var(--zone-color) 45%,color-mix(in srgb,var(--zone-color) 62%,#000) 100%);box-shadow:0 8px 18px rgba(0,0,0,.42),inset 0 0 0 2px rgba(255,255,255,.12);transition:filter .2s ease,box-shadow .2s ease,transform .2s ease}
+.zone.start-zone{width:18.75%;height:18.75%;transform:translate(-50%,-50%)}
+.zone.home-zone{width:15.625%;height:15.625%;transform:translate(-50%,-50%)}
+.zone.active-turn{filter:brightness(1.18);box-shadow:0 0 0 3px rgba(255,255,255,.72),0 0 18px var(--zone-color),inset 0 0 0 2px rgba(255,255,255,.18)}
+.zone-label{font-size:clamp(7px,1.9vmin,14px);font-weight:1000;letter-spacing:.5px;text-shadow:0 1px 3px rgba(0,0,0,.75);pointer-events:none}
+.zone-count{font-size:clamp(7px,1.45vmin,11px);font-weight:900;opacity:.78;pointer-events:none}
+.center-well{position:absolute;left:35%;top:35%;width:30%;height:30%;z-index:3;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none;opacity:.26}
+.center-logo{font-size:clamp(17px,5.2vmin,39px);font-weight:1000;letter-spacing:-1.2px;transform:rotate(-26deg);text-shadow:0 0 12px rgba(255,255,255,.28)}
+.center-logo span{color:var(--gold)}
+.power-center{position:absolute;bottom:5%;display:flex;gap:3px;font-size:clamp(10px,2.5vmin,19px)}
+#boardCard{position:absolute;left:50%;top:50%;width:18.5%;aspect-ratio:.69;transform:translate(-50%,-50%) rotate(-4deg);z-index:16;border-radius:9%;border:2px solid rgba(255,255,255,.86);background:repeating-linear-gradient(135deg,#171923 0 8%,#272b38 8% 16%);color:#fff;box-shadow:0 8px 18px rgba(0,0,0,.58),inset 0 0 0 2px rgba(0,0,0,.22);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;overflow:hidden}
+#boardCard:before,#boardCard:after{content:"";position:absolute;inset:5%;border:1px solid rgba(255,255,255,.28);border-radius:7%;pointer-events:none}
+#boardCard:after{inset:11%;border-color:rgba(255,215,0,.34)}
+#boardCard.revealed{background:linear-gradient(145deg,#fff,#d5d7dc);color:#111;border-color:#fff}
+#boardCard.sorry-card{background:linear-gradient(145deg,#fff,#efefef)}
+#boardCardValue{position:relative;z-index:1;font-size:clamp(18px,5.4vmin,42px);font-weight:1000;line-height:.88;letter-spacing:-1px;text-shadow:0 1px 0 rgba(255,255,255,.35)}
+#boardCard:not(.revealed) #boardCardValue{font-size:clamp(7px,2.3vmin,17px);letter-spacing:-.7px;transform:rotate(-8deg);color:#fff}
+#boardCard.sorry-card #boardCardValue{font-size:clamp(8px,2.4vmin,18px);transform:rotate(-8deg)}
+#boardCardText{position:relative;z-index:1;margin-top:8%;padding:0 8%;font-size:clamp(5px,1.15vmin,9px);font-weight:1000;line-height:1.05;max-width:100%}
+#boardCard.dealt{animation:dealCard .34s cubic-bezier(.2,.82,.25,1.25)}
+@keyframes dealCard{0%{transform:translate(-50%,-50%) rotate(-16deg) scale(.45);opacity:.1}100%{transform:translate(-50%,-50%) rotate(-4deg) scale(1);opacity:1}}
+#endpointLayer{position:absolute;inset:0;z-index:28;pointer-events:none}
+.endpoint-marker{position:absolute;min-width:34px;height:28px;padding:0 7px;transform:translate(-50%,-50%);border-radius:999px;border:2px solid #fff;background:linear-gradient(180deg,#00e5ff,#0876a8);color:#00151b;font-size:9px;font-weight:1000;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(0,229,255,.27),0 0 19px rgba(0,229,255,.92),0 4px 9px rgba(0,0,0,.7);pointer-events:auto;z-index:28;animation:endpointPulse .7s ease-in-out infinite alternate}
+.endpoint-marker.backward{background:linear-gradient(180deg,#ffe46b,#ff9d18);color:#321600;box-shadow:0 0 0 4px rgba(255,215,0,.28),0 0 19px rgba(255,190,20,.92),0 4px 9px rgba(0,0,0,.7)}
+.endpoint-marker:after{content:"";position:absolute;inset:-8px;border:2px dashed rgba(255,255,255,.9);border-radius:999px}
+@keyframes endpointPulse{from{transform:translate(-50%,-50%) scale(.94)}to{transform:translate(-50%,-50%) scale(1.1)}}
+#pawnLayer{position:absolute;inset:0;z-index:20;pointer-events:none}
+.pawn{position:absolute;width:4.8%;height:4.8%;min-width:12px;min-height:12px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 34% 28%,#fff 0 8%,var(--pawn-color) 12% 48%,color-mix(in srgb,var(--pawn-color) 56%,#000) 78%);border:1.5px solid rgba(255,255,255,.86);box-shadow:0 3px 7px rgba(0,0,0,.7),0 0 7px color-mix(in srgb,var(--pawn-color) 48%,transparent);display:flex;align-items:center;justify-content:center;font-size:clamp(6px,1.4vmin,10px);font-weight:1000;color:#fff;text-shadow:0 1px 2px #000;pointer-events:auto;transition:transform .16s ease,filter .16s ease,opacity .16s ease;z-index:22;opacity:.7}
+.pawn:before{content:"";position:absolute;width:48%;height:48%;border-radius:50%;top:-19%;left:26%;background:radial-gradient(circle at 35% 25%,#fff 0 10%,var(--pawn-color) 15% 56%,color-mix(in srgb,var(--pawn-color) 55%,#000) 82%);border:1px solid rgba(255,255,255,.72);box-shadow:0 2px 4px rgba(0,0,0,.45)}
+.pawn.current-turn{opacity:1;filter:saturate(1.18) brightness(1.08);box-shadow:0 0 0 2px rgba(255,255,255,.9),0 0 0 4px color-mix(in srgb,var(--pawn-color) 72%,transparent),0 0 14px var(--pawn-color),0 4px 8px rgba(0,0,0,.72);z-index:24}
+.pawn.waiting{filter:saturate(.68) brightness(.78)}
+.pawn.selectable{opacity:1;animation:pulsePawn .7s ease-in-out infinite alternate;filter:saturate(1.25) brightness(1.2);cursor:pointer;z-index:29}
+.pawn.targetable{animation:targetPawn .66s ease-in-out infinite alternate;box-shadow:0 0 0 3px rgba(0,229,255,.9),0 0 18px rgba(0,229,255,.78)}
+.pawn.selected{animation:none;transform:translate(-50%,-50%) scale(1.3);box-shadow:0 0 0 3px rgba(255,255,255,.95),0 0 0 6px rgba(255,215,0,.92),0 0 22px rgba(255,215,0,.88);z-index:31}
+.pawn.cpu-pawn{cursor:default}
+.move-badge{position:absolute;left:50%;bottom:-68%;transform:translateX(-50%);min-width:18px;height:13px;padding:0 3px;border-radius:999px;background:rgba(0,0,0,.92);border:1px solid rgba(255,255,255,.88);display:flex;align-items:center;justify-content:center;font-size:clamp(5px,1.25vmin,9px);line-height:1;font-weight:1000;color:#fff;white-space:nowrap;box-shadow:0 2px 5px rgba(0,0,0,.72);z-index:5}
+.pawn.has-fire{box-shadow:0 0 0 3px #fff,0 0 0 7px #ff7217,0 0 25px #ff3b00,0 4px 8px rgba(0,0,0,.75)!important}
+.pawn.has-ice{box-shadow:0 0 0 3px #fff,0 0 0 7px #39cfff,0 0 25px #00a9ff,0 4px 8px rgba(0,0,0,.75)!important}
+.pawn.has-fire.has-ice{box-shadow:-7px 0 0 4px #ff7217,7px 0 0 4px #39cfff,0 0 0 3px #fff,0 0 27px #fff!important}
+.power-badge{position:absolute;right:-61%;top:-69%;min-width:21px;height:21px;padding:0 3px;border-radius:999px;background:#5b1700;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;box-shadow:0 0 12px #ff5a00,0 3px 6px rgba(0,0,0,.8);z-index:7}
+.power-badge.ice{left:-61%;right:auto;background:#064b75;box-shadow:0 0 12px #00c8ff,0 3px 6px rgba(0,0,0,.8)}
+@keyframes pulsePawn{from{transform:translate(-50%,-50%) scale(1.04)}to{transform:translate(-50%,-50%) scale(1.24);box-shadow:0 0 0 3px rgba(255,255,255,.92),0 0 0 6px rgba(255,215,0,.82),0 0 20px rgba(255,215,0,.72)}}
+@keyframes targetPawn{from{transform:translate(-50%,-50%) scale(1.02)}to{transform:translate(-50%,-50%) scale(1.2);box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 0 6px rgba(0,229,255,.82),0 0 20px rgba(0,229,255,.75)}}
+#controlPanel{flex:0 0 140px;min-height:0;width:min(760px,100%);align-self:center;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(0,0,0,.34));border-radius:16px;padding:7px;display:grid;grid-template-columns:86px minmax(0,1fr);grid-template-rows:36px minmax(0,1fr);gap:6px;box-shadow:var(--shadow);overflow:hidden}
+#cardDisplay{grid-column:1;grid-row:1/3;border-radius:11px;border:2px solid rgba(255,255,255,.5);background:linear-gradient(145deg,#f9f9fa,#cfd1d6);color:#13141a;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 5px 12px rgba(0,0,0,.35);overflow:hidden;min-width:0}
+#cardValue{font-size:34px;line-height:.95;font-weight:1000;letter-spacing:-1px;text-align:center}
+#cardMini{font-size:10px;font-weight:1000;text-align:center;line-height:1.08;padding:4px 5px;max-width:100%}
+#cardDisplay.sorry-card{background:linear-gradient(145deg,#fff,#ececec);color:#111}
+#cardDisplay.sorry-card #cardValue{font-size:13px;letter-spacing:-.6px;transform:rotate(-8deg)}
+#message{grid-column:2;grid-row:1;min-width:0;border-radius:10px;background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;padding:5px 9px;font-weight:1000;font-size:13px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#choices{grid-column:2;grid-row:2;min-width:0;display:flex;align-content:center;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap;overflow:hidden}
+.action-btn{min-height:38px;max-height:48px;min-width:82px;flex:1 1 98px;padding:6px 9px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.09);font-weight:1000;font-size:12px;line-height:1.05;display:flex;align-items:center;justify-content:center;text-align:center}
+.action-btn.draw-action{min-height:52px;max-height:58px;font-size:17px;letter-spacing:.6px;background:linear-gradient(180deg,#ffe968,#efad00);border-color:#fff2a0;color:#271900;box-shadow:0 6px 15px rgba(255,190,0,.24)}
+.action-btn.primary{background:linear-gradient(180deg,rgba(255,215,0,.34),rgba(255,215,0,.12));border-color:rgba(255,215,0,.64);color:#fff9c5}
+.action-btn.cyan{background:linear-gradient(180deg,rgba(0,229,255,.28),rgba(0,229,255,.1));border-color:rgba(0,229,255,.52)}
+.action-btn.danger{background:linear-gradient(180deg,rgba(255,64,87,.28),rgba(255,64,87,.1));border-color:rgba(255,64,87,.52)}
+.hand-row{width:100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.hand-card{height:47px;border-radius:9px;border:1px solid rgba(255,255,255,.48);background:linear-gradient(145deg,#fafafa,#cfd2d8);color:#111;font-size:17px;font-weight:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;line-height:1}
+.hand-card span{font-size:7px;margin-top:2px}
+.hand-card.sorry{font-size:8px;transform:none}
+.overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.94);display:flex;align-items:center;justify-content:center;padding:max(8px,env(safe-area-inset-top,0px)) max(8px,env(safe-area-inset-right,0px)) max(8px,env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.panel{width:min(620px,96vw);max-height:96svh;border:1px solid var(--border2);border-radius:19px;background:linear-gradient(160deg,rgba(35,38,48,.97),rgba(8,9,13,.98));box-shadow:0 20px 55px rgba(0,0,0,.72);padding:11px;overflow:hidden}
+.panel-title{font-size:clamp(25px,6.7vw,42px);line-height:.92;color:#fff;font-weight:1000;text-align:center;letter-spacing:-2px;text-shadow:0 0 18px rgba(255,255,255,.2)}
+.panel-title span{color:var(--gold)}
+.panel-sub{text-align:center;font-size:11px;color:rgba(255,255,255,.68);font-weight:800;margin-top:4px}
+.setup-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:9px}
+.setup-box{border:1px solid var(--border);background:rgba(0,0,0,.24);border-radius:13px;padding:7px;min-width:0}
+.setup-label{font-size:10px;font-weight:1000;color:rgba(255,255,255,.78);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.choice-row{display:grid;grid-template-columns:repeat(var(--count),minmax(0,1fr));gap:4px}
+.choice{height:32px;padding:0 4px;border-radius:9px;border:1px solid var(--border);background:rgba(255,255,255,.07);font-size:10px;font-weight:1000;line-height:1}
+.choice.active{background:rgba(255,215,0,.18);border-color:rgba(255,215,0,.74);color:#fff4a6;box-shadow:inset 0 0 0 1px rgba(255,215,0,.18)}
+.player-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:8px}
+.player-row{height:44px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.055);display:grid;grid-template-columns:50px minmax(0,1fr) 63px;gap:5px;align-items:center;padding:5px 6px;min-width:0}
+.player-color{width:48px;height:30px;border-radius:9px;background:var(--row-color);border:2px solid rgba(255,255,255,.82);box-shadow:0 0 9px var(--row-color);color:#111;font-size:8px;font-weight:1000;text-shadow:0 1px rgba(255,255,255,.45)}
+.name-input{width:100%;height:30px;min-width:0;border-radius:8px;border:1px solid rgba(255,255,255,.19);background:rgba(0,0,0,.35);color:#fff;padding:0 7px;font-weight:900;font-size:12px;outline:none;caret-color:transparent;user-select:none;-webkit-user-select:none}
+.name-input.active-input{border-color:rgba(255,215,0,.9);box-shadow:0 0 0 2px rgba(255,215,0,.16)}
+.type-toggle{height:30px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.075);font-size:9px;font-weight:1000;padding:0 4px}.type-toggle.active{background:rgba(0,229,255,.17);border-color:rgba(0,229,255,.55);color:#c7fbff}
+.setup-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}
+.big-btn{height:44px;border-radius:13px;border:1px solid var(--border2);background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.07));font-weight:1000;font-size:13px;letter-spacing:.2px}
+.big-btn.primary{grid-column:1/3;background:linear-gradient(180deg,rgba(255,215,0,.36),rgba(255,215,0,.13));border-color:rgba(255,215,0,.68);color:#fff8bd}
+.big-btn.load{background:linear-gradient(180deg,rgba(0,229,255,.25),rgba(0,229,255,.09));border-color:rgba(0,229,255,.48)}
+.big-btn.back{background:rgba(255,255,255,.055)}
+.menu-panel{width:min(360px,94vw);display:flex;flex-direction:column;gap:7px}
+.menu-title{font-size:26px;font-weight:1000;color:var(--gold);text-align:center;margin-bottom:3px}
+.menu-btn{height:45px;border-radius:13px;border:1px solid var(--border);background:rgba(255,255,255,.075);font-weight:1000;font-size:13px}
+.menu-btn.danger{border-color:rgba(255,64,87,.48);background:rgba(255,64,87,.11)}
+.rules-panel{width:min(620px,96vw);height:min(500px,92svh);display:flex;flex-direction:column}
+.rules-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rules-title{font-size:21px;color:var(--gold);font-weight:1000}
+.rules-page{flex:1 1 auto;min-height:0;margin-top:7px;border:1px solid var(--border);background:rgba(0,0,0,.27);border-radius:13px;padding:10px;display:flex;flex-direction:column;justify-content:center;gap:7px;overflow:hidden}
+.rules-page h3{font-size:15px;margin:0;color:#fff3a5}
+.rules-page p{font-size:12px;line-height:1.28;margin:0;color:rgba(255,255,255,.88)}
+.rules-page .rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.rule-card{border:1px solid rgba(255,255,255,.12);border-radius:9px;background:rgba(255,255,255,.05);padding:6px;font-size:11px;line-height:1.2}
+.rules-nav{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center;margin-top:7px}
+.rules-nav .page-count{text-align:center;font-size:11px;font-weight:900;color:rgba(255,255,255,.68)}
+.rules-nav button{height:38px;border-radius:11px;border:1px solid var(--border);background:rgba(255,255,255,.08);font-size:12px;font-weight:1000}
+#toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 54px);transform:translateX(-50%) translateY(-8px);z-index:5000;max-width:88vw;padding:8px 12px;border-radius:999px;background:rgba(0,0,0,.88);border:1px solid var(--border2);font-size:12px;font-weight:900;opacity:0;pointer-events:none;transition:.18s ease;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 8px 20px rgba(0,0,0,.5)}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#winOverlay .panel{width:min(430px,94vw);text-align:center}
+.win-title{font-size:42px;color:var(--gold);font-weight:1000;line-height:1;text-shadow:0 0 24px rgba(255,215,0,.42)}
+.win-name{font-size:22px;font-weight:1000;margin:8px 0 12px}
+.confetti{position:fixed;inset:0;z-index:999;pointer-events:none;overflow:hidden}
+.confetti i{position:absolute;top:-8%;width:8px;height:16px;border-radius:2px;background:hsl(var(--h),90%,60%);animation:fall var(--d) linear forwards;transform:rotate(var(--r))}
+@keyframes fall{to{transform:translate(var(--x),112vh) rotate(780deg)}}
+#htmlKeyboard{position:fixed;left:max(5px,env(safe-area-inset-left,0px));right:max(5px,env(safe-area-inset-right,0px));bottom:max(5px,env(safe-area-inset-bottom,0px));z-index:4000;display:none;padding:5px;border:1px solid rgba(255,255,255,.23);border-radius:14px;background:rgba(12,14,22,.985);box-shadow:0 -10px 28px rgba(0,0,0,.58);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-height:42svh;overflow:hidden}
+#htmlKeyboard.open{display:block}
+.k-row{display:flex;gap:3px;margin:3px auto;max-width:760px;width:100%}
+.k-key{height:28px;min-width:0;flex:1 1 0;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.08));font-size:12px;font-weight:1000;padding:0 2px;white-space:nowrap;overflow:hidden}
+.k-key.name{font-size:10px;background:linear-gradient(180deg,rgba(0,229,255,.28),rgba(0,229,255,.11));border-color:rgba(0,229,255,.38)}
+.k-key.action{background:linear-gradient(180deg,rgba(255,215,0,.28),rgba(255,215,0,.11));border-color:rgba(255,215,0,.42)}
+.k-key.wide{flex:2 1 0}
+.k-display{height:28px;flex:1 1 auto;min-width:0;border-radius:9px;border:1px solid rgba(255,215,0,.45);background:rgba(0,0,0,.38);display:flex;align-items:center;padding:0 8px;color:#fff4b0;font-size:12px;font-weight:1000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.k-letters{display:none}
+#htmlKeyboard.expanded .k-letters{display:flex}
+body.keyboard-open #setupOverlay{align-items:flex-start;padding-top:max(4px,env(safe-area-inset-top,0px))}
+body.keyboard-open #setupOverlay .panel{max-height:calc(100svh - 155px);padding-top:6px}
+body.keyboard-open .panel-title{font-size:24px}
+body.keyboard-open .panel-sub{display:none}
+body.keyboard-open .setup-grid{margin-top:5px}
+body.keyboard-open .setup-actions{margin-top:5px}
+@media (max-width:420px){
+  :root{--topbar-h:40px}
+  #app{gap:4px;padding-left:4px;padding-right:4px}
+  #topbar{gap:4px}
+  .turn-pill{height:35px;padding:4px 7px;gap:6px}
+  .turn-dot{width:13px;height:13px;flex-basis:13px}
+  #turnName{font-size:12px}
+  #turnSub{font-size:9px}
+  .ui-btn{height:34px;min-width:32px;padding:0 7px;font-size:10px;border-radius:10px}
+  #board{width:min(99vw,calc(100svh - 188px),760px);border-radius:14px}
+  #controlPanel{flex-basis:135px;border-radius:13px;padding:5px;grid-template-columns:72px minmax(0,1fr);grid-template-rows:32px minmax(0,1fr);gap:4px}
+  #cardValue{font-size:23px}
+  #cardMini{font-size:7px}
+  #message{font-size:10.5px;padding:3px 6px}
+  #choices{gap:4px}
+  .action-btn{min-height:34px;max-height:41px;min-width:64px;flex-basis:76px;font-size:10px;padding:4px 5px;border-radius:9px}
+  .action-btn.draw-action{min-height:48px;max-height:52px;font-size:14px}
+  .hand-card{height:43px;font-size:15px}
+  .panel{padding:8px}
+  .setup-grid{gap:5px;margin-top:6px}
+  .setup-box{padding:5px}
+  .setup-label{font-size:8px;margin-bottom:4px}
+  .choice{height:29px;font-size:8px}
+  .player-list{gap:4px;margin-top:6px}
+  .player-row{height:40px;grid-template-columns:42px minmax(0,1fr) 55px;padding:4px;gap:4px}
+  .player-color{width:40px;height:28px;font-size:7px}
+  .name-input{height:28px;font-size:10.5px;padding:0 5px}
+  .type-toggle{height:28px;font-size:8px}
+  .setup-actions{gap:5px;margin-top:6px}
+  .big-btn{height:39px;font-size:11px}
+  .rules-page{padding:7px;gap:5px}
+  .rules-page h3{font-size:13px}
+  .rules-page p{font-size:10.5px}
+  .rule-card{font-size:9.5px;padding:5px}
+  .k-key{height:25px;font-size:10.5px}
+  .k-key.name{font-size:9px}
+  .k-display{height:25px;font-size:10.5px}
+}
+@media (max-height:640px) and (orientation:portrait){
+  #board{width:min(98vw,calc(100svh - 182px),760px)}
+  #controlPanel{flex-basis:130px}
+  .panel-title{font-size:27px}
+  .setup-grid{margin-top:5px}
+  .player-list{margin-top:5px}
+  .big-btn{height:38px}
+}
+@media (orientation:landscape) and (max-height:640px){
+  :root{--topbar-h:38px}
+  #app{gap:4px}
+  #playArea{flex-direction:row;gap:6px}
+  #boardWrap{height:100%;flex:1 1 auto}
+  #board{width:min(calc(100svh - 52px),62vw,760px)}
+  #controlPanel{align-self:stretch;flex:0 0 min(39vw,320px);width:auto;height:auto;grid-template-columns:72px minmax(0,1fr);grid-template-rows:32px minmax(0,1fr);padding:5px}
+  .panel{width:min(650px,94vw);max-height:94svh}
+  .panel-title{font-size:26px}
+  .setup-grid{margin-top:5px}
+  .player-list{margin-top:5px}
+  .player-row{height:36px}
+  .big-btn{height:36px}
+  .rules-panel{height:92svh}
+}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="turn-pill">
+      <div class="turn-dot" id="turnDot"></div>
+      <div class="turn-text"><div id="turnName">Ready</div><div id="turnSub">Start or load a game</div></div>
+    </div>
+    <div class="top-actions">
+      <button class="ui-btn" id="undoBtn" type="button" aria-label="Undo" title="Undo">↶</button>
+      <button class="ui-btn" id="autoBtn" type="button" aria-label="Play the smartest move" title="Play the smartest move">AUTO</button>
+      <button class="ui-btn" id="saveBtn" type="button">Save</button>
+      <button class="ui-btn" id="loadBtn" type="button">Load</button>
+      <button class="ui-btn" id="menuBtn" type="button" aria-label="Menu">☰</button>
+    </div>
+  </header>
+  <main id="playArea">
+    <div id="boardWrap"><div id="board"><div id="trackLayer"></div><svg id="pathLayer" class="board-paths" viewBox="0 0 16 16" aria-hidden="true"></svg><div id="safetyLayer"></div><div id="zoneLayer"></div><div class="center-well"><div class="center-logo">SORRY<span>!</span></div><div class="power-center" id="powerCenter">🔥 ❄️</div></div><div id="boardCard"><div id="boardCardValue">SORRY!</div><div id="boardCardText">DRAW</div></div><div id="endpointLayer"></div><div id="pawnLayer"></div></div></div>
+    <section id="controlPanel">
+      <div id="cardDisplay"><div id="cardValue">?</div><div id="cardMini">DRAW</div></div>
+      <div id="message">Set up a new game.</div>
+      <div id="choices"><button class="action-btn primary" id="openSetupBtn" type="button">New Game</button><button class="action-btn cyan" id="quickLoadBtn" type="button">Load Saved</button></div>
+    </section>
+  </main>
+</div>
+<div class="overlay" id="setupOverlay">
+  <div class="panel">
+    <div class="panel-title">SORRY<span>!</span></div>
+    <div class="panel-sub">Fire & Ice Power-Ups</div>
+    <div class="setup-grid">
+      <div class="setup-box"><div class="setup-label">Players</div><div class="choice-row" style="--count:3" id="playerCountChoices"><button class="choice active" data-value="2" type="button">2</button><button class="choice" data-value="3" type="button">3</button><button class="choice" data-value="4" type="button">4</button></div></div>
+      <div class="setup-box"><div class="setup-label">Rules</div><div class="choice-row" style="--count:3" id="modeChoices"><button class="choice active" data-value="fireIce" type="button">F&amp;I</button><button class="choice" data-value="classic" type="button">Classic</button><button class="choice" data-value="strategic" type="button">5 Card</button></div></div>
+      <div class="setup-box"><div class="setup-label">CPU Skill</div><div class="choice-row" style="--count:3" id="skillChoices"><button class="choice" data-value="1" type="button">1</button><button class="choice active" data-value="2" type="button">2</button><button class="choice" data-value="3" type="button">3</button></div></div>
+      <div class="setup-box"><div class="setup-label">Endpoints</div><div class="choice-row" style="--count:2" id="endpointChoices"><button class="choice active" data-value="on" type="button">ON</button><button class="choice" data-value="off" type="button">OFF</button></div></div>
+    </div>
+    <div class="player-list" id="playerList">
+      <div class="player-row" data-player="0" style="--row-color:var(--red)"><button class="player-color" data-player="0" type="button" aria-label="Change player color">RED</button><input class="name-input" id="name0" value="Scarlett" maxlength="14" inputmode="none" readonly><button class="type-toggle" data-player="0" type="button">Human</button></div>
+      <div class="player-row" data-player="1" style="--row-color:var(--blue)"><button class="player-color" data-player="1" type="button" aria-label="Change player color">BLUE</button><input class="name-input" id="name1" value="Logan" maxlength="14" inputmode="none" readonly><button class="type-toggle" data-player="1" type="button">Human</button></div>
+      <div class="player-row hidden" data-player="2" style="--row-color:var(--yellow)"><button class="player-color" data-player="2" type="button" aria-label="Change player color">YELLOW</button><input class="name-input" id="name2" value="Mom" maxlength="14" inputmode="none" readonly><button class="type-toggle" data-player="2" type="button">Human</button></div>
+      <div class="player-row hidden" data-player="3" style="--row-color:var(--player-green)"><button class="player-color" data-player="3" type="button" aria-label="Change player color">GREEN</button><input class="name-input" id="name3" value="Dad" maxlength="14" inputmode="none" readonly><button class="type-toggle" data-player="3" type="button">Human</button></div>
+    </div>
+    <div class="setup-actions"><button class="big-btn primary" id="startBtn" type="button">START GAME</button><button class="big-btn load" id="setupLoadBtn" type="button">LOAD SAVED GAME</button><button class="big-btn back" id="setupBackBtn" type="button">BACK TO ARCADE</button></div>
+  </div>
+</div>
+<div class="overlay hidden" id="menuOverlay">
+  <div class="panel menu-panel">
+    <div class="menu-title">Game Menu</div>
+    <button class="menu-btn" id="resumeBtn" type="button">Resume</button>
+    <button class="menu-btn" id="menuUndoBtn" type="button">Undo Last Choice</button>
+    <button class="menu-btn" id="menuSaveBtn" type="button">Save Game</button>
+    <button class="menu-btn" id="rulesBtn" type="button">Rules</button>
+    <button class="menu-btn" id="newGameBtn" type="button">New Game</button>
+    <button class="menu-btn danger" id="arcadeBtn" type="button">Back to Arcade</button>
+  </div>
+</div>
+<div class="overlay hidden" id="rulesOverlay">
+  <div class="panel rules-panel">
+    <div class="rules-head"><div class="rules-title">How to Play</div><button class="ui-btn" id="rulesCloseBtn" type="button">Close</button></div>
+    <div class="rules-page" id="rulesPage"></div>
+    <div class="rules-nav"><button id="rulesPrevBtn" type="button">Previous</button><div class="page-count" id="rulesCount"></div><button id="rulesNextBtn" type="button">Next</button></div>
+  </div>
+</div>
+<div class="overlay hidden" id="winOverlay">
+  <div class="panel"><div class="win-title">SORRY!</div><div class="win-name" id="winName"></div><button class="big-btn primary" id="playAgainBtn" type="button">PLAY AGAIN</button><button class="big-btn back" id="winArcadeBtn" type="button" style="width:100%;margin-top:7px">BACK TO ARCADE</button></div>
+</div>
+<div id="toast"></div>
+<div id="htmlKeyboard" aria-hidden="true">
+  <div class="k-row"><div class="k-display" id="keyboardDisplay"></div><button class="k-key action" data-k-action="done" type="button">Done</button></div>
+  <div class="k-row"><button class="k-key name" data-k-name="Scarlett" type="button">Scarlett</button><button class="k-key name" data-k-name="Logan" type="button">Logan</button><button class="k-key name" data-k-name="Mom" type="button">Mom</button><button class="k-key name" data-k-name="Dad" type="button">Dad</button></div>
+  <div class="k-row"><button class="k-key" data-k-action="letters" type="button">ABC</button><button class="k-key wide" data-k-action="space" type="button">Space</button><button class="k-key" data-k-action="back" type="button">⌫</button><button class="k-key action" data-k-action="clear" type="button">Clear</button></div>
+  <div class="k-row k-letters"><button class="k-key" data-k-char="Q" type="button">Q</button><button class="k-key" data-k-char="W" type="button">W</button><button class="k-key" data-k-char="E" type="button">E</button><button class="k-key" data-k-char="R" type="button">R</button><button class="k-key" data-k-char="T" type="button">T</button><button class="k-key" data-k-char="Y" type="button">Y</button><button class="k-key" data-k-char="U" type="button">U</button><button class="k-key" data-k-char="I" type="button">I</button><button class="k-key" data-k-char="O" type="button">O</button><button class="k-key" data-k-char="P" type="button">P</button></div>
+  <div class="k-row k-letters"><button class="k-key" data-k-char="A" type="button">A</button><button class="k-key" data-k-char="S" type="button">S</button><button class="k-key" data-k-char="D" type="button">D</button><button class="k-key" data-k-char="F" type="button">F</button><button class="k-key" data-k-char="G" type="button">G</button><button class="k-key" data-k-char="H" type="button">H</button><button class="k-key" data-k-char="J" type="button">J</button><button class="k-key" data-k-char="K" type="button">K</button><button class="k-key" data-k-char="L" type="button">L</button></div>
+  <div class="k-row k-letters"><button class="k-key" data-k-char="Z" type="button">Z</button><button class="k-key" data-k-char="X" type="button">X</button><button class="k-key" data-k-char="C" type="button">C</button><button class="k-key" data-k-char="V" type="button">V</button><button class="k-key" data-k-char="B" type="button">B</button><button class="k-key" data-k-char="N" type="button">N</button><button class="k-key" data-k-char="M" type="button">M</button></div>
+</div>
+<script src="../arcade-save.js"></script>
+<script>
+(function(){
+"use strict";
+const SAVE_KEY="arcade_sorry_save_v1";
+const VERSION=5;
+const OLD_STARTS={
+  1:[53,8,23,38],
+  2:[36,51,6,21],
+  3:[4,19,34,49]
+};
+const COLORS=[
+  {key:"red",name:"Red",hex:"#ff4057",start:4,entry:2,startCenter:{r:2,c:4},home:{r:7,c:2},safety:[{r:1,c:2},{r:2,c:2},{r:3,c:2},{r:4,c:2},{r:5,c:2}]},
+  {key:"blue",name:"Blue",hex:"#30a7ff",start:19,entry:17,startCenter:{r:4,c:13},home:{r:2,c:8},safety:[{r:2,c:14},{r:2,c:13},{r:2,c:12},{r:2,c:11},{r:2,c:10}]},
+  {key:"yellow",name:"Yellow",hex:"#ffd43b",start:34,entry:32,startCenter:{r:13,c:11},home:{r:8,c:13},safety:[{r:14,c:13},{r:13,c:13},{r:12,c:13},{r:11,c:13},{r:10,c:13}]},
+  {key:"green",name:"Green",hex:"#35d26f",start:49,entry:47,startCenter:{r:11,c:2},home:{r:13,c:7},safety:[{r:13,c:1},{r:13,c:2},{r:13,c:3},{r:13,c:4},{r:13,c:5}]}
+];
+const SLIDES=[
+  {start:1,end:4,owner:"red",path:[1,2,3,4]},
+  {start:9,end:13,owner:"blue",path:[9,10,11,12,13]},
+  {start:16,end:19,owner:"blue",path:[16,17,18,19]},
+  {start:24,end:28,owner:"yellow",path:[24,25,26,27,28]},
+  {start:31,end:34,owner:"yellow",path:[31,32,33,34]},
+  {start:39,end:43,owner:"green",path:[39,40,41,42,43]},
+  {start:46,end:49,owner:"green",path:[46,47,48,49]},
+  {start:54,end:58,owner:"red",path:[54,55,56,57,58]}
+];
+const FIRE_SPACES=[0,15,30,45];
+const CARD_TEXT={
+  "1":"Move Ice, then move forward 1 or leave Start.",
+  "2":"Move Fire, then move forward 2 or leave Start.",
+  "3":"Move forward 3 or leave Start.",
+  "4":"Move backward 4 or leave Start.",
+  "5":"Move forward 5 or leave Start.",
+  "7":"Move forward 7, split 7, or leave Start.",
+  "8":"Move forward 8 or leave Start.",
+  "10":"Move forward 10, back 1, or leave Start.",
+  "11":"Move forward 11, switch, or leave Start.",
+  "12":"Move forward 12 or leave Start.",
+  "S":"Move a Start pawn onto an opponent, or move forward 4."
+};
+const RULE_PAGES=[
+  {title:"Goal and Turn",html:"<p>Be the first player to move all three pawns from Start to Home. Draw a card and complete a legal move. If a move is available, you must make one.</p><p>Any positive number card may move a pawn from Start. The colored START circle counts as space 1, and the pawn continues clockwise for the rest of the card value. A backward 4 cannot leave Start.</p><p>Pawns move clockwise. You may jump over pawns, but two pawns of the same color cannot share a track or Safety Zone space.</p>"},
+  {title:"Cards 1 through 7",html:"<div class='rule-grid'><div class='rule-card'><b>1</b><br>Move Ice, then forward 1.</div><div class='rule-card'><b>2</b><br>Move Fire, then forward 2.</div><div class='rule-card'><b>3</b><br>Forward 3.</div><div class='rule-card'><b>4</b><br>Backward 4.</div><div class='rule-card'><b>5</b><br>Forward 5.</div><div class='rule-card'><b>7</b><br>Forward 7 or split all 7 between two pawns.</div></div><p>A split 7 must use two pawns and all seven spaces. Split portions cannot move a pawn out of Start.</p>"},
+  {title:"Cards 8 through SORRY!",html:"<div class='rule-grid'><div class='rule-card'><b>8</b><br>Forward 8.</div><div class='rule-card'><b>10</b><br>Forward 10 or back 1.</div><div class='rule-card'><b>11</b><br>Forward 11 or switch open-track pawns.</div><div class='rule-card'><b>12</b><br>Forward 12.</div></div><p><b>SORRY!</b> Move a pawn from Start onto an opponent's open-track pawn, sending it back to Start. You may instead move one pawn forward 4.</p><p>An 11 cannot switch pawns in Start, Safety, or Home. Iced pawns cannot be switched.</p>"},
+  {title:"Board Rules",html:"<p>Landing on an opponent sends that pawn to Start. You cannot land on your own pawn or an Iced pawn.</p><p>Land exactly on the triangle at the beginning of a slide that includes your color to follow the arrow to its end. Every movable pawn in the slide path, including your own, returns to Start.</p><p>Only your pawns may enter your Safety Zone. Backward moves may leave it. Home requires an exact count.</p>"},
+  {title:"Fire and Ice",html:"<p><b>Ice:</b> After drawing 1, move Ice to a different opponent's open-track pawn. That pawn cannot move, be bumped, be switched, be targeted by SORRY!, be landed on, or be pulled Home. If there is no different target, Ice comes off the board.</p><p><b>Fire:</b> After drawing 2, move Fire to a different unfinished, non-Iced pawn of yours. If there is no different target, Fire comes off the board. Before drawing on a later turn, a Fire pawn may jump to the next fire space if the move is legal.</p><p>When a Fire pawn moves into Home, it may bring one other non-Iced pawn directly Home.</p>"},
+  {title:"Game Modes",html:"<p><b>Fire & Ice:</b> Uses both power-up tokens and the standard draw pile.</p><p><b>Classic:</b> Uses the same three-pawn 2013 board and card rules, but ignores Fire and Ice.</p><p><b>Strategic:</b> Uses Fire and Ice. Each player receives five cards, chooses one to play, then draws a replacement.</p>"}
+];
+const $=function(id){return document.getElementById(id);};
+const el={
+  board:$("board"),trackLayer:$("trackLayer"),pathLayer:$("pathLayer"),safetyLayer:$("safetyLayer"),zoneLayer:$("zoneLayer"),endpointLayer:$("endpointLayer"),pawnLayer:$("pawnLayer"),powerCenter:$("powerCenter"),boardCard:$("boardCard"),boardCardValue:$("boardCardValue"),boardCardText:$("boardCardText"),turnDot:$("turnDot"),turnName:$("turnName"),turnSub:$("turnSub"),cardDisplay:$("cardDisplay"),cardValue:$("cardValue"),cardMini:$("cardMini"),message:$("message"),choices:$("choices"),setupOverlay:$("setupOverlay"),menuOverlay:$("menuOverlay"),rulesOverlay:$("rulesOverlay"),rulesPage:$("rulesPage"),rulesCount:$("rulesCount"),rulesPrevBtn:$("rulesPrevBtn"),rulesNextBtn:$("rulesNextBtn"),winOverlay:$("winOverlay"),winName:$("winName"),toast:$("toast"),keyboard:$("htmlKeyboard"),keyboardDisplay:$("keyboardDisplay")
+};
+let state=null;
+let heldSave=null;
+let setup={count:2,mode:"fireIce",skill:2,showEndpoints:true,cpu:[false,false,false,false],colors:[0,1,2,3]};
+let undoStack=[];
+let autoPlayerId=null;
+let selectedPawnId=null;
+let selectedAmount=null;
+let selectedMode=null;
+let ruleIndex=0;
+let toastTimer=0;
+let cpuTimer=0;
+let activeInput=null;
+let audioCtx=null;
+let animationTimer=0;
+let lastBoardCard=null;
+function trackCoord(index){
+  if(index<=15)return{r:0,c:index};
+  if(index<=29)return{r:index-15,c:15};
+  if(index<=45)return{r:15,c:45-index};
+  return{r:60-index,c:0};
+}
+function pct(n){return(n*6.25+3.125)+"%";}
+function setPos(node,r,c){node.style.left=pct(c);node.style.top=pct(r);}
+function svgPoint(p){return{x:p.c+.5,y:p.r+.5};}
+function svgNode(name,attrs){
+  const node=document.createElementNS("http://www.w3.org/2000/svg",name);
+  Object.keys(attrs).forEach(function(key){node.setAttribute(key,String(attrs[key]));});
+  return node;
+}
+function slidePaint(slide,index,a,b){
+  const id="slideGradient"+index;
+  const gradient=svgNode("linearGradient",{id:id,gradientUnits:"userSpaceOnUse",x1:a.x,y1:a.y,x2:b.x,y2:b.y});
+  const included=COLORS.filter(function(color){return color.key!==slide.owner;});
+  included.forEach(function(color,i){
+    const from=i*100/included.length;const to=(i+1)*100/included.length;
+    gradient.appendChild(svgNode("stop",{offset:from+"%","stop-color":color.hex}));
+    gradient.appendChild(svgNode("stop",{offset:to+"%","stop-color":color.hex}));
+  });
+  el.pathLayer.querySelector("defs").appendChild(gradient);
+  return"url(#"+id+")";
+}
+function drawBoardArrow(x1,y1,x2,y2,paint,kind,width){
+  const dx=x2-x1;const dy=y2-y1;const length=Math.hypot(dx,dy)||1;const ux=dx/length;const uy=dy/length;const px=-uy;const py=ux;
+  const headLength=kind==="slide"?.82:.72;const headWidth=kind==="slide"?.5:.43;const shaftEndX=x2-ux*headLength*.52;const shaftEndY=y2-uy*headLength*.52;
+  const shadow=svgNode("line",{x1:x1,y1:y1,x2:shaftEndX,y2:shaftEndY,"stroke-width":width+.25,class:"arrow-shadow","data-kind":kind});
+  const border=kind==="slide"?svgNode("line",{x1:x1,y1:y1,x2:shaftEndX,y2:shaftEndY,stroke:"#fff","stroke-width":width+.12,class:"arrow-core","data-kind":kind}):null;
+  const core=svgNode("line",{x1:x1,y1:y1,x2:shaftEndX,y2:shaftEndY,stroke:paint,"stroke-width":width,class:"arrow-core","data-kind":kind});
+  const shadowHead=svgNode("polygon",{points:[x2+","+y2,(x2-ux*headLength+px*headWidth)+","+(y2-uy*headLength+py*headWidth),(x2-ux*headLength-px*headWidth)+","+(y2-uy*headLength-py*headWidth)].join(" "),class:"arrow-head-shadow","data-kind":kind});
+  const inset=.12;const coreHead=svgNode("polygon",{points:[(x2-ux*inset)+","+(y2-uy*inset),(x2-ux*(headLength-.12)+px*(headWidth-.1))+","+(y2-uy*(headLength-.12)+py*(headWidth-.1)),(x2-ux*(headLength-.12)-px*(headWidth-.1))+","+(y2-uy*(headLength-.12)-py*(headWidth-.1))].join(" "),fill:paint,class:"arrow-head-core","data-kind":kind});
+  el.pathLayer.appendChild(shadow);if(border)el.pathLayer.appendChild(border);el.pathLayer.appendChild(core);el.pathLayer.appendChild(shadowHead);el.pathLayer.appendChild(coreHead);
+  if(kind==="slide")el.pathLayer.appendChild(svgNode("line",{x1:x1,y1:y1,x2:shaftEndX,y2:shaftEndY,"stroke-width":Math.max(.06,width*.19),class:"arrow-core slide-accent","data-kind":"slide-accent"}));
+}
+function buildBoard(){
+  el.trackLayer.innerHTML="";el.safetyLayer.innerHTML="";el.zoneLayer.innerHTML="";el.pathLayer.innerHTML="";
+  el.pathLayer.appendChild(svgNode("defs",{}));
+  const slideByIndex={};
+  SLIDES.forEach(function(slide){slide.path.forEach(function(i){slideByIndex[i]=slide;});});
+  for(let i=0;i<60;i++){
+    const cell=document.createElement("div");
+    const p=trackCoord(i);
+    cell.className="track-cell";
+    cell.style.left=(p.c*6.25)+"%";
+    cell.style.top=(p.r*6.25)+"%";
+    cell.dataset.index=String(i);
+    if(FIRE_SPACES.indexOf(i)>=0)cell.classList.add("fire-space");
+    const slide=slideByIndex[i];
+    if(slide){
+      const included=COLORS.filter(function(color){return color.key!==slide.owner;});
+      cell.classList.add("slide-path");
+      cell.style.setProperty("--slide-a",included[0].hex);cell.style.setProperty("--slide-b",included[1].hex);cell.style.setProperty("--slide-c",included[2].hex);
+      if(i===slide.start)cell.classList.add("slide-start");
+      if(i===slide.end)cell.classList.add("slide-end");
+    }
+    COLORS.forEach(function(color){
+      if(i===color.entry){cell.classList.add("entry");cell.style.setProperty("--cell-color",color.hex);cell.dataset.entry=color.key;}
+      if(i===color.start){cell.classList.add("start-exit");cell.style.setProperty("--cell-color",color.hex);cell.dataset.start=color.key;}
+    });
+    el.trackLayer.appendChild(cell);
+  }
+  SLIDES.forEach(function(slide,index){
+    const a=svgPoint(trackCoord(slide.start));const b=svgPoint(trackCoord(slide.end));
+    drawBoardArrow(a.x,a.y,b.x,b.y,slidePaint(slide,index,a,b),"slide",.34);
+  });
+  COLORS.forEach(function(color,index){
+    color.safety.forEach(function(p,step){
+      const cell=document.createElement("div");
+      cell.className="safety-cell"+(step===0?" safety-entry":"");
+      cell.style.left=(p.c*6.25)+"%";
+      cell.style.top=(p.r*6.25)+"%";
+      cell.style.setProperty("--cell-color",color.hex);
+      cell.dataset.step=String(step+1);
+      cell.dataset.color=String(index);
+      el.safetyLayer.appendChild(cell);
+    });
+    const start=document.createElement("div");
+    start.className="zone start-zone";
+    start.dataset.color=String(index);
+    start.style.setProperty("--zone-color",color.hex);
+    setPos(start,color.startCenter.r,color.startCenter.c);
+    start.innerHTML="<div class='zone-label'>START</div><div class='zone-count' id='startCount"+index+"'></div>";
+    el.zoneLayer.appendChild(start);
+    const home=document.createElement("div");
+    home.className="zone home-zone";
+    home.dataset.color=String(index);
+    home.style.setProperty("--zone-color",color.hex);
+    setPos(home,color.home.r,color.home.c);
+    home.innerHTML="<div class='zone-label'>HOME</div><div class='zone-count' id='homeCount"+index+"'></div>";
+    el.zoneLayer.appendChild(home);
+    const startPoint=svgPoint(color.startCenter);const startTrack=svgPoint(trackCoord(color.start));
+    const safetyTrack=svgPoint(trackCoord(color.entry));const safetyEnd=svgPoint(color.safety[color.safety.length-1]);
+    drawBoardArrow(startPoint.x,startPoint.y,startTrack.x,startTrack.y,color.hex,"start",.38);
+    drawBoardArrow(safetyTrack.x,safetyTrack.y,safetyEnd.x,safetyEnd.y,color.hex,"safety",.28);
+  });
+}
+function makeDeck(){
+  const deck=[];
+  for(let i=0;i<5;i++)deck.push("1");
+  ["2","3","4","5","7","8","10","11","12","S"].forEach(function(card){for(let i=0;i<4;i++)deck.push(card);});
+  return shuffle(deck);
+}
+function shuffle(array){
+  const a=array.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}
+  return a;
+}
+function createGame(){
+  holdCurrentSave();
+  clearTimeout(animationTimer);clearTimeout(cpuTimer);
+  const names=[0,1,2,3].map(function(i){return($("name"+i).value||COLORS[i].name).trim().slice(0,14)||COLORS[i].name;});
+  const players=[];
+  const pawns=[];
+  for(let i=0;i<setup.count;i++){
+    const colorIndex=setup.colors[i];
+    players.push({id:i,name:names[i],colorIndex:colorIndex,color:COLORS[colorIndex].key,cpu:setup.cpu[i]});
+    for(let p=0;p<3;p++)pawns.push({id:i*3+p,player:i,slot:p,zone:"start",pos:0});
+  }
+  const deck=makeDeck();
+  const hands=Array.from({length:setup.count},function(){return[];});
+  if(setup.mode==="strategic"){
+    for(let r=0;r<5;r++)for(let p=0;p<setup.count;p++)hands[p].push(deck.pop());
+  }
+  state={version:VERSION,started:true,mode:setup.mode,skill:setup.skill,showEndpoints:setup.showEndpoints,players:players,pawns:pawns,turn:0,deck:deck,discard:[],hands:hands,firePawnId:null,icePawnId:null,currentCard:null,phase:"preFire",selectedCardIndex:null,flow:{},winner:null,moveNo:0,savedAt:Date.now()};
+  undoStack=[];autoPlayerId=null;
+  selectedPawnId=null;selectedAmount=null;selectedMode=null;
+  hideKeyboard();
+  el.setupOverlay.classList.add("hidden");
+  el.menuOverlay.classList.add("hidden");
+  el.winOverlay.classList.add("hidden");
+  announce("Game started. "+currentPlayer().name+" goes first.");
+  startTurn();
+  saveGame(false);
+}
+function currentPlayer(){return state.players[state.turn];}
+function getColorByPlayer(playerIndex,s){
+  const source=s||state;const player=source&&source.players?source.players[playerIndex]:null;
+  if(player&&Number.isInteger(player.colorIndex)&&COLORS[player.colorIndex])return COLORS[player.colorIndex];
+  if(player&&player.color){const match=COLORS.find(function(c){return c.key===player.color;});if(match)return match;}
+  return COLORS[playerIndex]||COLORS[0];
+}
+function pawnById(id,s){return(s||state).pawns.find(function(p){return p.id===id;});}
+function cloneGame(s){return JSON.parse(JSON.stringify(s));}
+function pushUndo(){
+  if(!state||!state.started)return;
+  undoStack.push(cloneGame(state));
+  if(undoStack.length>50)undoStack.shift();
+}
+function undoMove(){
+  if(!undoStack.length)return;
+  clearTimeout(cpuTimer);clearTimeout(animationTimer);autoPlayerId=null;heldSave=null;
+  state=undoStack.pop();selectedPawnId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
+  el.winOverlay.classList.add("hidden");el.menuOverlay.classList.add("hidden");
+  render();autoSave();showToast("Last choice undone.");maybeCpu();
+}
+function slideAt(index,playerIndex){
+  const color=getColorByPlayer(playerIndex).key;
+  return SLIDES.find(function(slide){return slide.start===index&&slide.owner!==color;})||null;
+}
+function pawnAtTrack(s,index,excludeId){return s.pawns.find(function(p){return p.id!==excludeId&&p.zone==="track"&&p.pos===index;})||null;}
+function pawnAtSafety(s,playerIndex,pos,excludeId){return s.pawns.find(function(p){return p.id!==excludeId&&p.player===playerIndex&&p.zone==="safety"&&p.pos===pos;})||null;}
+function isIced(s,pawnId){return s.icePawnId===pawnId;}
+function positionProgress(s,pawn){
+  if(pawn.zone==="home")return 100;
+  if(pawn.zone==="safety")return 90+pawn.pos;
+  if(pawn.zone==="start")return 0;
+  const color=getColorByPlayer(pawn.player);
+  const d=(pawn.pos-color.start+60)%60;
+  return Math.min(88,d*1.45);
+}
+function destinationFor(s,pawn,direction,amount){
+  const color=getColorByPlayer(pawn.player);
+  if(pawn.zone==="home"||pawn.zone==="start")return null;
+  if(direction==="backward"){
+    if(pawn.zone==="track")return{zone:"track",pos:(pawn.pos-amount+600)%60};
+    if(amount<=pawn.pos)return{zone:"safety",pos:pawn.pos-amount};
+    const remain=amount-(pawn.pos+1);
+    return{zone:"track",pos:(color.entry-remain+600)%60};
+  }
+  if(pawn.zone==="safety"){
+    const target=pawn.pos+amount;
+    if(target<5)return{zone:"safety",pos:target};
+    if(target===5)return{zone:"home",pos:0};
+    return null;
+  }
+  const dist=(color.entry-pawn.pos+60)%60;
+  if(amount<=dist)return{zone:"track",pos:(pawn.pos+amount)%60};
+  const rem=amount-dist-1;
+  if(rem<5)return{zone:"safety",pos:rem};
+  if(rem===5)return{zone:"home",pos:0};
+  return null;
+}
+function validateTrackLanding(s,pawn,destIndex){
+  const occupant=pawnAtTrack(s,destIndex,pawn.id);
+  if(occupant){
+    if(occupant.player===pawn.player)return null;
+    if(isIced(s,occupant.id))return null;
+  }
+  const slide=slideAt(destIndex,pawn.player);
+  if(!slide)return{dest:{zone:"track",pos:destIndex},bumps:occupant?[occupant.id]:[],slide:null};
+  const endOccupant=pawnAtTrack(s,slide.end,pawn.id);
+  if(endOccupant&&isIced(s,endOccupant.id))return null;
+  const bumps=[];
+  slide.path.forEach(function(index){
+    const hit=pawnAtTrack(s,index,pawn.id);
+    if(hit&&!isIced(s,hit.id)&&bumps.indexOf(hit.id)<0)bumps.push(hit.id);
+  });
+  return{dest:{zone:"track",pos:slide.end},bumps:bumps,slide:slide};
+}
+function planMove(s,pawnId,kind,amount){
+  const pawn=pawnById(pawnId,s);
+  if(!pawn||pawn.zone==="home"||isIced(s,pawn.id))return null;
+  let dest;
+  if(kind==="start"){
+    if(pawn.zone!=="start"||!Number.isInteger(amount)||amount<1)return null;
+    const color=getColorByPlayer(pawn.player);
+    const entered={id:pawn.id,player:pawn.player,slot:pawn.slot,zone:"track",pos:color.start};
+    dest=amount===1?{zone:"track",pos:color.start}:destinationFor(s,entered,"forward",amount-1);
+    if(!dest)return null;
+  }else{
+    if(pawn.zone==="start")return null;
+    dest=destinationFor(s,pawn,kind,amount);
+    if(!dest)return null;
+  }
+  let bumps=[];
+  let slide=null;
+  if(dest.zone==="track"){
+    const landing=validateTrackLanding(s,pawn,dest.pos);
+    if(!landing)return null;
+    dest=landing.dest;bumps=landing.bumps;slide=landing.slide;
+  }else if(dest.zone==="safety"){
+    if(pawnAtSafety(s,pawn.player,dest.pos,pawn.id))return null;
+  }
+  return{type:"move",pawnId:pawnId,kind:kind,amount:amount||0,dest:dest,bumps:bumps,slide:slide,enteredHome:dest.zone==="home",label:kind==="start"?"From Start "+amount:kind==="backward"?"Back "+amount:"Forward "+amount};
+}
+function applyMove(s,plan){
+  const pawn=pawnById(plan.pawnId,s);
+  plan.bumps.forEach(function(id){const hit=pawnById(id,s);if(hit){hit.zone="start";hit.pos=0;}});
+  pawn.zone=plan.dest.zone;pawn.pos=plan.dest.pos;
+  if(plan.enteredHome&&s.firePawnId===pawn.id)s.pendingFirePull=true;
+}
+function planSwitch(s,ownId,targetId){
+  const own=pawnById(ownId,s);const target=pawnById(targetId,s);
+  if(!own||!target||own.player===target.player||own.zone!=="track"||target.zone!=="track"||isIced(s,own.id)||isIced(s,target.id))return null;
+  const copy=cloneGame(s);
+  const a=pawnById(ownId,copy);const b=pawnById(targetId,copy);
+  const old=a.pos;a.pos=b.pos;b.pos=old;
+  const slide=slideAt(a.pos,a.player);
+  const bumps=[];
+  let dest={zone:"track",pos:a.pos};
+  if(slide){
+    const endOcc=pawnAtTrack(copy,slide.end,a.id);
+    if(endOcc&&isIced(copy,endOcc.id))return null;
+    slide.path.forEach(function(index){const hit=pawnAtTrack(copy,index,a.id);if(hit&&!isIced(copy,hit.id)&&bumps.indexOf(hit.id)<0)bumps.push(hit.id);});
+    dest={zone:"track",pos:slide.end};
+  }
+  return{type:"switch",ownId:ownId,targetId:targetId,ownDest:dest,targetDest:{zone:"track",pos:old},bumps:bumps,slide:slide||null,label:"Switch"};
+}
+function applySwitch(s,plan){
+  const own=pawnById(plan.ownId,s);const target=pawnById(plan.targetId,s);
+  const old=own.pos;own.pos=target.pos;target.pos=old;
+  plan.bumps.forEach(function(id){const hit=pawnById(id,s);if(hit){hit.zone="start";hit.pos=0;}});
+  own.zone=plan.ownDest.zone;own.pos=plan.ownDest.pos;
+}
+function planSorry(s,startId,targetId){
+  const own=pawnById(startId,s);const target=pawnById(targetId,s);
+  if(!own||!target||own.zone!=="start"||target.zone!=="track"||own.player===target.player||isIced(s,own.id)||isIced(s,target.id))return null;
+  const copy=cloneGame(s);
+  const copiedTarget=pawnById(targetId,copy);copiedTarget.zone="start";copiedTarget.pos=0;
+  const landing=validateTrackLanding(copy,pawnById(startId,copy),target.pos);
+  if(!landing)return null;
+  const bumps=[targetId].concat(landing.bumps.filter(function(id){return id!==targetId;}));
+  return{type:"sorry",pawnId:startId,targetId:targetId,dest:landing.dest,bumps:bumps,slide:landing.slide,label:"SORRY!"};
+}
+function applySorry(s,plan){
+  plan.bumps.forEach(function(id){const hit=pawnById(id,s);if(hit){hit.zone="start";hit.pos=0;}});
+  const own=pawnById(plan.pawnId,s);own.zone=plan.dest.zone;own.pos=plan.dest.pos;
+}
+function getSplitActions(s,playerIndex){
+  const actions=[];
+  for(let firstAmount=1;firstAmount<=6;firstAmount++){
+    const secondAmount=7-firstAmount;
+    s.pawns.filter(function(p){return p.player===playerIndex&&p.zone!=="start"&&p.zone!=="home"&&!isIced(s,p.id);}).forEach(function(firstPawn){
+      const firstPlan=planMove(s,firstPawn.id,"forward",firstAmount);
+      if(!firstPlan)return;
+      const copy=cloneGame(s);applyMove(copy,firstPlan);
+      copy.pawns.filter(function(p){return p.player===playerIndex&&p.id!==firstPawn.id&&p.zone!=="start"&&p.zone!=="home"&&!isIced(copy,p.id);}).forEach(function(secondPawn){
+        const secondPlan=planMove(copy,secondPawn.id,"forward",secondAmount);
+        if(secondPlan)actions.push({type:"split",first:{pawnId:firstPawn.id,amount:firstAmount},second:{pawnId:secondPawn.id,amount:secondAmount},label:firstAmount+" + "+secondAmount});
+      });
+    });
+  }
+  return actions;
+}
+function legalActionsForCard(s,card,playerIndex){
+  const actions=[];
+  const own=s.pawns.filter(function(p){return p.player===playerIndex;});
+  const startAmount={"1":1,"2":2,"3":3,"5":5,"7":7,"8":8,"10":10,"11":11,"12":12}[card]||0;
+  if(startAmount)own.forEach(function(p){const plan=planMove(s,p.id,"start",startAmount);if(plan)actions.push(plan);});
+  function addMoves(kind,amount){own.forEach(function(p){const plan=planMove(s,p.id,kind,amount);if(plan)actions.push(plan);});}
+  if(card==="1")addMoves("forward",1);
+  if(card==="2")addMoves("forward",2);
+  if(card==="3")addMoves("forward",3);
+  if(card==="4")addMoves("backward",4);
+  if(card==="5")addMoves("forward",5);
+  if(card==="7"){addMoves("forward",7);getSplitActions(s,playerIndex).forEach(function(a){actions.push(a);});}
+  if(card==="8")addMoves("forward",8);
+  if(card==="10"){addMoves("forward",10);addMoves("backward",1);}
+  if(card==="11"){
+    addMoves("forward",11);
+    const ownTrack=own.filter(function(p){return p.zone==="track"&&!isIced(s,p.id);});
+    const targets=s.pawns.filter(function(p){return p.player!==playerIndex&&p.zone==="track"&&!isIced(s,p.id);});
+    ownTrack.forEach(function(a){targets.forEach(function(b){const plan=planSwitch(s,a.id,b.id);if(plan)actions.push(plan);});});
+  }
+  if(card==="12")addMoves("forward",12);
+  if(card==="S"){
+    own.forEach(function(p){if(p.zone==="start"&&!isIced(s,p.id))s.pawns.filter(function(t){return t.player!==playerIndex&&t.zone==="track"&&!isIced(s,t.id);}).forEach(function(t){const plan=planSorry(s,p.id,t.id);if(plan)actions.push(plan);});});
+    own.forEach(function(p){const plan=planMove(s,p.id,"forward",4);if(plan)actions.push(plan);});
+  }
+  return actions;
+}
+function planFireJump(s,pawnId){
+  const pawn=pawnById(pawnId,s);
+  if(!pawn||pawn.zone!=="track"||isIced(s,pawn.id))return null;
+  let target=null;let dist=0;
+  for(let d=1;d<=60;d++){const pos=(pawn.pos+d)%60;if(FIRE_SPACES.indexOf(pos)>=0){target=pos;dist=d;break;}}
+  if(target===null)return null;
+  const entryDist=(getColorByPlayer(pawn.player).entry-pawn.pos+60)%60;
+  if(entryDist<dist)return null;
+  const landing=validateTrackLanding(s,pawn,target);
+  if(!landing)return null;
+  return{type:"fireJump",pawnId:pawnId,dest:landing.dest,bumps:landing.bumps,slide:landing.slide,label:"Fire jump"};
+}
+function applyFireJump(s,plan){
+  plan.bumps.forEach(function(id){const hit=pawnById(id,s);if(hit){hit.zone="start";hit.pos=0;}});
+  const pawn=pawnById(plan.pawnId,s);pawn.zone=plan.dest.zone;pawn.pos=plan.dest.pos;
+}
+function drawFromDeck(){
+  if(!state.deck.length){state.deck=shuffle(state.discard);state.discard=[];}
+  return state.deck.pop()||null;
+}
+function startTurn(){
+  clearTimeout(animationTimer);
+  if(!state||state.winner!==null)return;
+  state.currentCard=null;state.selectedCardIndex=null;state.flow={};state.pendingFirePull=false;
+  selectedPawnId=null;selectedAmount=null;selectedMode=null;
+  const fire=state.firePawnId!==null?pawnById(state.firePawnId):null;
+  const jump=fire&&fire.player===state.turn?planFireJump(state,fire.id):null;
+  state.phase=jump?"preFire":state.mode==="strategic"?"chooseCard":"draw";
+  render();
+  autoSave();
+  maybeCpu();
+}
+function drawCard(){
+  if(!state||state.phase!=="draw")return;
+  pushUndo();
+  heldSave=null;
+  const card=drawFromDeck();
+  if(!card){announce("No cards available.");return;}
+  state.currentCard=card;
+  prepareCard();
+}
+function chooseHandCard(index){
+  if(!state||state.phase!=="chooseCard")return;
+  const hand=state.hands[state.turn];
+  if(index<0||index>=hand.length)return;
+  pushUndo();
+  heldSave=null;
+  state.currentCard=hand[index];state.selectedCardIndex=index;
+  prepareCard();
+}
+function prepareCard(){
+  selectedPawnId=null;selectedAmount=null;selectedMode=null;state.flow={};
+  if(state.mode!=="classic"&&state.currentCard==="1"){
+    state.flow.previousIcePawnId=state.icePawnId;state.icePawnId=null;
+    const targets=iceTokenTargets();
+    if(!targets.length){announce("No different pawn can take Ice, so Ice leaves the board.");beginAction();return;}
+    state.phase="ice";
+  }else if(state.mode!=="classic"&&state.currentCard==="2"){
+    state.flow.previousFirePawnId=state.firePawnId;state.firePawnId=null;
+    const targets=fireTokenTargets();
+    if(!targets.length){announce("No different pawn can take Fire, so Fire leaves the board.");beginAction();return;}
+    state.phase="fireToken";
+  }
+  else beginAction();
+  render();autoSave();maybeCpu();
+}
+function iceTokenTargets(){
+  const previous=state.flow&&state.flow.previousIcePawnId;
+  return state.pawns.filter(function(p){return p.id!==previous&&p.player!==state.turn&&p.zone==="track";});
+}
+function fireTokenTargets(){
+  const previous=state.flow&&state.flow.previousFirePawnId;
+  return state.pawns.filter(function(p){return p.id!==previous&&p.player===state.turn&&p.zone!=="home"&&!isIced(state,p.id);});
+}
+function beginAction(){
+  selectedPawnId=null;selectedAmount=null;selectedMode=null;
+  const actions=legalActionsForCard(state,state.currentCard,state.turn);
+  if(!actions.length){
+    state.phase="noMove";
+    render();
+    announce("No legal move. Turn forfeited.");
+    animationTimer=setTimeout(function(){if(state&&state.phase==="noMove")finishCard();},700);
+    return;
+  }
+  state.phase="action";
+  if(actions.length===1&&!currentPlayer().cpu&&autoPlayerId===null){performAction(actions[0]);return;}
+  render();autoSave();maybeCpu();
+}
+function moveIceTo(pawnId){
+  if(state.phase!=="ice")return;
+  const pawn=pawnById(pawnId);
+  if(!pawn||iceTokenTargets().every(function(p){return p.id!==pawnId;}))return;
+  pushUndo();
+  state.icePawnId=pawnId;
+  announce(pawnName(pawn)+" is frozen.");
+  beginAction();
+}
+function moveFireTo(pawnId){
+  if(state.phase!=="fireToken")return;
+  const pawn=pawnById(pawnId);
+  if(!pawn||fireTokenTargets().every(function(p){return p.id!==pawnId;}))return;
+  pushUndo();
+  state.firePawnId=pawnId;
+  announce(pawnName(pawn)+" has Fire.");
+  beginAction();
+}
+function logicalStep(pawn,direction){
+  const next={id:pawn.id,player:pawn.player,slot:pawn.slot,zone:pawn.zone,pos:pawn.pos};
+  const color=getColorByPlayer(next.player);
+  if(direction==="backward"){
+    if(next.zone==="safety"){
+      if(next.pos>0)next.pos--;
+      else{next.zone="track";next.pos=color.entry;}
+    }else if(next.zone==="track")next.pos=(next.pos+59)%60;
+    return next;
+  }
+  if(next.zone==="track"){
+    if(next.pos===color.entry){next.zone="safety";next.pos=0;}
+    else next.pos=(next.pos+1)%60;
+  }else if(next.zone==="safety"){
+    if(next.pos<4)next.pos++;
+    else{next.zone="home";next.pos=0;}
+  }
+  return next;
+}
+function moveFrames(beforePawn,plan){
+  const frames=[pawnScreenPosition(beforePawn)];
+  if(plan.kind==="start"){
+    let cursor={id:beforePawn.id,player:beforePawn.player,slot:beforePawn.slot,zone:"track",pos:getColorByPlayer(beforePawn.player).start};
+    frames.push(pawnScreenPosition(cursor));
+    for(let i=1;i<plan.amount;i++){cursor=logicalStep(cursor,"forward");frames.push(pawnScreenPosition(cursor));}
+  }else{
+    let cursor={id:beforePawn.id,player:beforePawn.player,slot:beforePawn.slot,zone:beforePawn.zone,pos:beforePawn.pos};
+    for(let i=0;i<plan.amount;i++){cursor=logicalStep(cursor,plan.kind);frames.push(pawnScreenPosition(cursor));}
+  }
+  if(plan.slide){
+    plan.slide.path.slice(1).forEach(function(pos){frames.push(pawnScreenPosition({id:beforePawn.id,player:beforePawn.player,slot:beforePawn.slot,zone:"track",pos:pos}));});
+  }
+  return frames;
+}
+function animatePawnFrames(pawnId,frames,delay){
+  const node=el.pawnLayer.querySelector('.pawn[data-id="'+pawnId+'"]');
+  if(!node||frames.length<2||typeof node.animate!=="function")return 0;
+  const steps=frames.length-1;const duration=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches?40:Math.min(1320,210+steps*76);
+  const keyframes=frames.map(function(pos,index){return{left:pos.left,top:pos.top,offset:index/(frames.length-1)};});
+  node.animate(keyframes,{duration:duration,delay:delay||0,easing:"linear"});
+  return duration+(delay||0);
+}
+function animateResolvedAction(motion,before){
+  let longest=0;
+  motion.moves.forEach(function(item){longest=Math.max(longest,animatePawnFrames(item.pawnId,moveFrames(item.beforePawn,item.plan),item.delay||0));});
+  motion.direct.forEach(function(item){longest=Math.max(longest,animatePawnFrames(item.pawnId,item.frames,item.delay||0));});
+  motion.bumpIds.forEach(function(id){
+    if(motion.moves.some(function(item){return item.pawnId===id;})||motion.direct.some(function(item){return item.pawnId===id;}))return;
+    const oldPawn=pawnById(id,before);const newPawn=pawnById(id,state);
+    if(oldPawn&&newPawn)longest=Math.max(longest,animatePawnFrames(id,[pawnScreenPosition(oldPawn),pawnScreenPosition(newPawn)],Math.max(80,longest*.28)));
+  });
+  return Math.max(240,longest+70);
+}
+function completeResolvedAction(){
+  if(!state||state.phase!=="resolving")return;
+  if(state.pendingFirePull){
+    const candidates=firePullCandidates();
+    if(candidates.length){state.phase="firePull";state.flow={};render();autoSave();maybeCpu();return;}
+  }
+  finishCard();
+}
+function performAction(action){
+  if(!state||state.phase!=="action")return;
+  clearTimeout(animationTimer);
+  pushUndo();
+  const before=cloneGame(state);const motion={moves:[],direct:[],bumpIds:[]};
+  state.pendingFirePull=false;
+  const player=currentPlayer();
+  if(action.type==="move"){
+    motion.moves.push({pawnId:action.pawnId,beforePawn:pawnById(action.pawnId,before),plan:action});
+    motion.bumpIds=action.bumps.slice();
+    applyMove(state,action);
+  }
+  if(action.type==="switch"){
+    const ownBefore=pawnById(action.ownId,before);const targetBefore=pawnById(action.targetId,before);
+    const ownFrames=[pawnScreenPosition(ownBefore),pawnScreenPosition({id:ownBefore.id,player:ownBefore.player,slot:ownBefore.slot,zone:"track",pos:targetBefore.pos})];
+    if(action.slide)action.slide.path.slice(1).forEach(function(pos){ownFrames.push(pawnScreenPosition({id:ownBefore.id,player:ownBefore.player,slot:ownBefore.slot,zone:"track",pos:pos}));});
+    motion.direct.push({pawnId:action.ownId,frames:ownFrames});
+    motion.direct.push({pawnId:action.targetId,frames:[pawnScreenPosition(targetBefore),pawnScreenPosition({id:targetBefore.id,player:targetBefore.player,slot:targetBefore.slot,zone:"track",pos:ownBefore.pos})]});
+    motion.bumpIds=action.bumps.slice();
+    applySwitch(state,action);
+  }
+  if(action.type==="sorry"){
+    const ownBefore=pawnById(action.pawnId,before);const targetBefore=pawnById(action.targetId,before);
+    const ownFrames=[pawnScreenPosition(ownBefore),pawnScreenPosition({id:ownBefore.id,player:ownBefore.player,slot:ownBefore.slot,zone:"track",pos:targetBefore.pos})];
+    if(action.slide)action.slide.path.slice(1).forEach(function(pos){ownFrames.push(pawnScreenPosition({id:ownBefore.id,player:ownBefore.player,slot:ownBefore.slot,zone:"track",pos:pos}));});
+    motion.direct.push({pawnId:action.pawnId,frames:ownFrames});
+    motion.direct.push({pawnId:action.targetId,frames:[pawnScreenPosition(targetBefore),pawnScreenPosition({id:targetBefore.id,player:targetBefore.player,slot:targetBefore.slot,zone:"start",pos:0})]});
+    motion.bumpIds=action.bumps.slice();
+    applySorry(state,action);
+  }
+  if(action.type==="split"){
+    const first=planMove(state,action.first.pawnId,"forward",action.first.amount);
+    if(!first)return;
+    motion.moves.push({pawnId:first.pawnId,beforePawn:pawnById(first.pawnId,before),plan:first});
+    first.bumps.forEach(function(id){if(motion.bumpIds.indexOf(id)<0)motion.bumpIds.push(id);});
+    applyMove(state,first);
+    const second=planMove(state,action.second.pawnId,"forward",action.second.amount);
+    if(!second)return;
+    motion.moves.push({pawnId:second.pawnId,beforePawn:pawnById(second.pawnId,before),plan:second,delay:100});
+    second.bumps.forEach(function(id){if(motion.bumpIds.indexOf(id)<0)motion.bumpIds.push(id);});
+    applyMove(state,second);
+  }
+  state.moveNo++;
+  const summary=actionSummary(action,player);
+  selectedPawnId=null;selectedAmount=null;selectedMode=null;
+  state.phase="resolving";state.flow={animationText:summary};
+  render();announce(summary);autoSave();
+  animationTimer=setTimeout(completeResolvedAction,animateResolvedAction(motion,before));
+}
+function actionSummary(action,player){
+  if(action.type==="sorry")return player.name+" says SORRY!";
+  if(action.type==="switch")return player.name+" switched pawns.";
+  if(action.type==="split")return player.name+" split 7: "+action.first.amount+" and "+action.second.amount+".";
+  if(action.kind==="start")return player.name+" moved "+action.amount+" spaces from Start.";
+  return player.name+" moved "+action.label.toLowerCase()+".";
+}
+function firePullCandidates(){
+  const fire=state.firePawnId!==null?pawnById(state.firePawnId):null;
+  if(!fire||fire.zone!=="home")return[];
+  return state.pawns.filter(function(p){return p.player===fire.player&&p.id!==fire.id&&p.zone!=="home"&&!isIced(state,p.id);});
+}
+function pullPawnHome(pawnId){
+  if(state.phase!=="firePull")return;
+  pushUndo();
+  if(pawnId!==null){
+    const pawn=pawnById(pawnId);
+    if(!pawn||firePullCandidates().every(function(p){return p.id!==pawnId;}))return;
+    pawn.zone="home";pawn.pos=0;
+    announce(pawnName(pawn)+" was pulled Home by Fire.");
+  }else announce("Fire pull skipped.");
+  state.pendingFirePull=false;
+  finishCard();
+}
+function finishCard(){
+  if(!state||state.winner!==null)return;
+  const winner=state.players.find(function(player){return state.pawns.filter(function(p){return p.player===player.id&&p.zone==="home";}).length===3;});
+  if(winner){endGame(winner.id);return;}
+  if(state.currentCard){
+    if(state.mode==="strategic"){
+      const hand=state.hands[state.turn];
+      const index=state.selectedCardIndex;
+      if(index!==null&&index>=0&&index<hand.length)hand.splice(index,1);
+      state.discard.push(state.currentCard);
+      const replacement=drawFromDeck();
+      if(replacement)hand.push(replacement);
+    }else state.discard.push(state.currentCard);
+  }
+  state.currentCard=null;state.selectedCardIndex=null;state.turn=(state.turn+1)%state.players.length;
+  if(autoPlayerId!==null&&state.turn!==autoPlayerId)autoPlayerId=null;
+  startTurn();
+}
+function endGame(playerIndex){
+  state.winner=playerIndex;state.phase="gameOver";
+  try{localStorage.removeItem(SAVE_KEY);}catch(e){}
+  el.winName.textContent=state.players[playerIndex].name+" wins!";
+  el.winOverlay.classList.remove("hidden");
+  confetti();
+  render();
+  sound(740,.12);setTimeout(function(){sound(990,.18);},130);
+}
+function useFireJump(use){
+  if(state.phase!=="preFire")return;
+  pushUndo();
+  const fire=pawnById(state.firePawnId);
+  const plan=fire?planFireJump(state,fire.id):null;
+  if(use&&plan){applyFireJump(state,plan);announce(pawnName(fire)+" jumped to the next fire space.");}
+  state.phase=state.mode==="strategic"?"chooseCard":"draw";
+  render();autoSave();maybeCpu();
+}
+function chooseActionMode(mode){selectedMode=mode;selectedPawnId=null;selectedAmount=null;render();}
+function handlePawnTap(id){
+  if(!state||currentPlayer().cpu)return;
+  if(state.phase==="ice"){moveIceTo(id);return;}
+  if(state.phase==="fireToken"){moveFireTo(id);return;}
+  if(state.phase==="firePull"){pullPawnHome(id);return;}
+  if(state.phase!=="action")return;
+  const actions=legalActionsForCard(state,state.currentCard,state.turn);
+  const card=state.currentCard;
+  if(card==="S"){
+    if(selectedMode==="sorry"){
+      if(selectedPawnId===null){if(actions.some(function(a){return a.type==="sorry"&&a.pawnId===id;})){selectedPawnId=id;render();}return;}
+      const action=actions.find(function(a){return a.type==="sorry"&&a.pawnId===selectedPawnId&&a.targetId===id;});
+      if(action)performAction(action);
+      return;
+    }
+    if(selectedMode==="forward4"){
+      const action=actions.find(function(a){return a.type==="move"&&a.kind==="forward"&&a.amount===4&&a.pawnId===id;});
+      if(action)performAction(action);
+      return;
+    }
+  }
+  if(card==="11"&&selectedMode==="switch"){
+    if(selectedPawnId===null){if(actions.some(function(a){return a.type==="switch"&&a.ownId===id;})){selectedPawnId=id;render();}return;}
+    const action=actions.find(function(a){return a.type==="switch"&&a.ownId===selectedPawnId&&a.targetId===id;});
+    if(action)performAction(action);
+    return;
+  }
+  if(card==="7"&&selectedMode==="split"){
+    const splitActions=actions.filter(function(a){return a.type==="split";});
+    if(selectedPawnId===null){if(splitActions.some(function(a){return a.first.pawnId===id;})){selectedPawnId=id;render();}return;}
+    if(selectedAmount===null)return;
+    const action=splitActions.find(function(a){return a.first.pawnId===selectedPawnId&&a.first.amount===selectedAmount&&a.second.pawnId===id;});
+    if(action)performAction(action);
+    return;
+  }
+  const filtered=actions.filter(function(a){
+    if(a.type!=="move"||a.pawnId!==id)return false;
+    if(selectedMode==="start")return a.kind==="start";
+    if(selectedMode==="forward")return a.kind==="forward";
+    if(selectedMode==="backward")return a.kind==="backward";
+    if(selectedMode==="forward7")return a.kind==="forward"&&a.amount===7;
+    if(selectedMode==="forward10")return a.kind==="forward"&&a.amount===10;
+    if(selectedMode==="back1")return a.kind==="backward"&&a.amount===1;
+    if(selectedMode==="forward11")return a.kind==="forward"&&a.amount===11;
+    return true;
+  });
+  if(filtered.length===1)performAction(filtered[0]);
+  else if(filtered.length>1){selectedPawnId=id;selectedAmount=null;render();}
+}
+function setSplitAmount(amount){selectedAmount=amount;render();}
+function skipEleven(){
+  if(!state||state.phase!=="action"||state.currentCard!=="11")return;
+  const actions=legalActionsForCard(state,"11",state.turn);
+  const canForward=actions.some(function(a){return a.type==="move"&&(a.kind==="forward"||a.kind==="start");});
+  if(canForward)return;
+  pushUndo();
+  announce(currentPlayer().name+" passed on the switch.");
+  finishCard();
+}
+function pawnName(pawn){return state.players[pawn.player].name+" pawn "+(pawn.slot+1);}
+function render(){
+  renderHeader();renderBoard();renderCard();renderControls();
+}
+function renderHeader(){
+  $("undoBtn").disabled=!undoStack.length;$("menuUndoBtn").disabled=!undoStack.length;
+  $("autoBtn").disabled=!state||!state.started||state.winner!==null||currentPlayer().cpu||state.phase==="resolving"||state.phase==="noMove";
+  if(!state||!state.started){
+    el.turnName.textContent="Ready";el.turnSub.textContent="Start or load a game";el.turnDot.style.background="#777";el.turnDot.style.color="#777";el.board.classList.remove("turn-active");el.board.style.removeProperty("--turn-color");return;
+  }
+  const p=currentPlayer();const color=getColorByPlayer(p.id);
+  el.turnName.textContent=p.name+(p.cpu?" • CPU":"");
+  const home=state.pawns.filter(function(x){return x.player===p.id&&x.zone==="home";}).length;
+  el.turnSub.textContent=color.name+" • "+home+" of 3 Home";
+  el.turnDot.style.background=color.hex;el.turnDot.style.color=color.hex;el.board.style.setProperty("--turn-color",color.hex);el.board.classList.add("turn-active");
+}
+function pawnBadgeText(pawn,isSelectable){
+  if(!isSelectable||!state)return"";
+  if(pawn.player!==state.turn){
+    if(state.phase==="ice")return"ICE";
+    if(state.currentCard==="11")return"SWAP";
+    return"TARGET";
+  }
+  if(state.phase==="fireToken")return"FIRE";
+  if(state.phase==="firePull")return"HOME";
+  const card=state.currentCard;
+  if(pawn.zone==="start")return card==="S"?"SORRY":card?"+"+card:"OUT";
+  if(card==="4")return"-4";
+  if(card==="10"&&selectedMode==="back1")return"-1";
+  if(card==="11"&&selectedMode==="switch")return"SWAP";
+  if(card==="7"&&selectedMode==="split"){
+    if(selectedAmount!==null)return pawn.id===selectedPawnId?"+"+selectedAmount:"+"+(7-selectedAmount);
+    return"SPLIT";
+  }
+  if(card==="S")return selectedMode==="forward4"?"+4":"SORRY";
+  return card?"+"+card:"";
+}
+function renderBoard(){
+  el.pawnLayer.innerHTML="";el.endpointLayer.innerHTML="";
+  const activeColor=state?getColorByPlayer(state.turn):null;
+  const activeColorIndex=activeColor?COLORS.indexOf(activeColor):-1;
+  Array.from(el.zoneLayer.querySelectorAll(".zone")).forEach(function(zone){zone.classList.toggle("active-turn",Number(zone.dataset.color)===activeColorIndex);});
+  COLORS.forEach(function(color,i){
+    const assigned=state?state.players.find(function(player){return getColorByPlayer(player.id)===color;}):null;
+    const startCount=assigned?state.pawns.filter(function(p){return p.player===assigned.id&&p.zone==="start";}).length:0;
+    const homeCount=assigned?state.pawns.filter(function(p){return p.player===assigned.id&&p.zone==="home";}).length:0;
+    const startNode=$("startCount"+i);const homeNode=$("homeCount"+i);if(startNode)startNode.textContent=startCount?startCount+" pawns":"";if(homeNode)homeNode.textContent=homeCount?homeCount+" home":"";
+  });
+  if(!state){el.powerCenter.textContent="🔥 ❄️";return;}
+  const selectable=getSelectablePawnIds();
+  state.pawns.forEach(function(pawn){
+    const node=document.createElement("button");
+    const isSelectable=selectable.indexOf(pawn.id)>=0;
+    node.type="button";node.className="pawn";node.dataset.id=String(pawn.id);node.style.setProperty("--pawn-color",getColorByPlayer(pawn.player).hex);node.textContent=String(pawn.slot+1);node.setAttribute("aria-label",pawnName(pawn));
+    const pos=pawnScreenPosition(pawn);node.style.left=pos.left;node.style.top=pos.top;
+    if(pawn.player===state.turn)node.classList.add("current-turn");else node.classList.add("waiting");
+    if(isSelectable)node.classList.add("selectable");
+    if(isSelectable&&pawn.player!==state.turn)node.classList.add("targetable");
+    if(selectedPawnId===pawn.id)node.classList.add("selected");
+    if(state.players[pawn.player].cpu)node.classList.add("cpu-pawn");
+    const badgeText=pawnBadgeText(pawn,isSelectable);if(badgeText){const badge=document.createElement("span");badge.className="move-badge";badge.textContent=badgeText;node.appendChild(badge);}
+    if(state.firePawnId===pawn.id){node.classList.add("has-fire");const badge=document.createElement("span");badge.className="power-badge";badge.textContent="🔥";node.appendChild(badge);}
+    if(state.icePawnId===pawn.id){node.classList.add("has-ice");const badge=document.createElement("span");badge.className="power-badge ice";badge.textContent="❄️";node.appendChild(badge);}
+    node.addEventListener("click",function(){handlePawnTap(pawn.id);});
+    el.pawnLayer.appendChild(node);
+  });
+  renderEndpoints();
+  el.powerCenter.textContent=(state.firePawnId===null?"🔥":"")+(state.firePawnId===null&&state.icePawnId===null?" ":"")+(state.icePawnId===null?"❄️":"");
+}
+function actionMatchesChoice(action){
+  if(action.type!=="move")return false;
+  if(selectedPawnId!==null&&action.pawnId!==selectedPawnId)return false;
+  if(selectedMode==="start")return action.kind==="start";
+  if(selectedMode==="forward")return action.kind==="forward";
+  if(selectedMode==="backward")return action.kind==="backward";
+  if(selectedMode==="forward7")return action.kind==="forward"&&action.amount===7;
+  if(selectedMode==="forward10")return action.kind==="forward"&&action.amount===10;
+  if(selectedMode==="back1")return action.kind==="backward"&&action.amount===1;
+  if(selectedMode==="forward11")return action.kind==="forward"&&action.amount===11;
+  if(selectedMode==="forward4")return action.kind==="forward"&&action.amount===4;
+  return selectedMode===null;
+}
+function renderEndpoints(){
+  if(!state||state.phase!=="action"||currentPlayer().cpu)return;
+  const alwaysForChoice=selectedPawnId!==null&&state.currentCard==="10";
+  if(!state.showEndpoints&&!alwaysForChoice)return;
+  const seen={};
+  legalActionsForCard(state,state.currentCard,state.turn).filter(actionMatchesChoice).forEach(function(action){
+    const pawn=pawnById(action.pawnId);if(!pawn||!action.dest)return;
+    const key=action.dest.zone+":"+action.dest.pos+":"+action.pawnId+":"+action.kind+":"+action.amount;
+    if(seen[key])return;seen[key]=true;
+    const marker=document.createElement("button");marker.type="button";marker.className="endpoint-marker"+(action.kind==="backward"?" backward":"");
+    marker.textContent=action.kind==="backward"?"−"+action.amount:action.kind==="start"?"OUT +"+action.amount:"+"+action.amount;
+    marker.setAttribute("aria-label","Move "+action.label+" to this space");
+    const pos=pawnScreenPosition({id:pawn.id,player:pawn.player,slot:pawn.slot,zone:action.dest.zone,pos:action.dest.pos});marker.style.left=pos.left;marker.style.top=pos.top;
+    marker.addEventListener("click",function(e){e.stopPropagation();performAction(action);});el.endpointLayer.appendChild(marker);
+  });
+}
+function pawnScreenPosition(pawn){
+  const color=getColorByPlayer(pawn.player);
+  if(pawn.zone==="track"){
+    const p=trackCoord(pawn.pos);return{left:pct(p.c),top:pct(p.r)};
+  }
+  if(pawn.zone==="safety"){
+    const p=color.safety[pawn.pos];return{left:pct(p.c),top:pct(p.r)};
+  }
+  const center=pawn.zone==="home"?color.home:color.startCenter;
+  const offsets=[[-.52,-.38],[.52,-.38],[0,.53]];const offset=offsets[pawn.slot];
+  return{left:((center.c+offset[0])*6.25+3.125)+"%",top:((center.r+offset[1])*6.25+3.125)+"%"};
+}
+function renderCard(){
+  const card=state&&state.currentCard?state.currentCard:null;
+  el.cardDisplay.classList.toggle("sorry-card",card==="S");
+  el.cardValue.textContent=card?card==="S"?"SORRY!":card:"?";
+  el.cardMini.textContent=card?shortCardText(card):state&&state.mode==="strategic"?"HAND":"DRAW";
+  el.boardCard.classList.toggle("revealed",!!card);el.boardCard.classList.toggle("sorry-card",card==="S");
+  el.boardCardValue.textContent=card?card==="S"?"SORRY!":card:"SORRY!";
+  el.boardCardText.textContent=card?shortCardText(card):state&&state.mode==="strategic"?"CHOOSE A CARD":"DRAW";
+  const key=card||"deck";
+  if(key!==lastBoardCard){lastBoardCard=key;el.boardCard.classList.remove("dealt");void el.boardCard.offsetWidth;if(card)el.boardCard.classList.add("dealt");}
+}
+function shortCardText(card){
+  if(card==="S")return"BUMP OR +4";
+  if(card==="1")return state&&state.mode!=="classic"?"ICE • +1":"FORWARD 1";
+  if(card==="2")return state&&state.mode!=="classic"?"FIRE • +2":"FORWARD 2";
+  if(card==="4")return"BACK 4";
+  if(card==="7")return"MOVE OR SPLIT";
+  if(card==="10")return"+10 OR -1";
+  if(card==="11")return"+11 OR SWITCH";
+  return"FORWARD "+card;
+}
+function renderControls(){
+  el.choices.innerHTML="";
+  if(!state||!state.started){el.message.textContent="Set up a new game.";addButton("New Game","primary",function(){el.setupOverlay.classList.remove("hidden");});addButton("Load Saved","cyan",function(){loadGame(true);});return;}
+  const p=currentPlayer();
+  if(state.phase==="gameOver"){el.message.textContent=state.players[state.winner].name+" won the game.";return;}
+  if(state.phase==="preFire"){
+    el.message.textContent=p.name+": use the Fire jump before drawing?";
+    addButton("Use Fire Jump","primary",function(){useFireJump(true);});addButton("Skip","",function(){useFireJump(false);});return;
+  }
+  if(state.phase==="draw"){
+    el.message.textContent=p.name+": draw a card.";
+    addButton("DRAW CARD","primary",drawCard).classList.add("draw-action");addButton("Rules","",openRules);return;
+  }
+  if(state.phase==="chooseCard"){
+    el.message.textContent=p.name+": choose a card from your hand.";
+    const row=document.createElement("div");row.className="hand-row";
+    state.hands[state.turn].forEach(function(card,index){const b=document.createElement("button");b.type="button";b.className="hand-card"+(card==="S"?" sorry":"");b.innerHTML=card==="S"?"SORRY!<span>BUMP / +4</span>":card+"<span>"+shortCardText(card)+"</span>";b.addEventListener("click",function(){chooseHandCard(index);});row.appendChild(b);});
+    el.choices.appendChild(row);return;
+  }
+  if(state.phase==="ice"){
+    el.message.textContent="Move Ice to a different opponent pawn.";return;
+  }
+  if(state.phase==="fireToken"){
+    el.message.textContent="Move Fire to a different one of your pawns.";return;
+  }
+  if(state.phase==="firePull"){
+    el.message.textContent="Fire may pull one other pawn Home.";
+    addButton("Skip Pull","",function(){pullPawnHome(null);});return;
+  }
+  if(state.phase==="noMove"){el.message.textContent="No legal move. Turn forfeited.";return;}
+  if(state.phase==="resolving"){el.message.textContent=state.flow&&state.flow.animationText?state.flow.animationText:"Moving...";return;}
+  if(state.phase!=="action")return;
+  const actions=legalActionsForCard(state,state.currentCard,state.turn);
+  el.message.textContent=actionPrompt(actions);
+  renderActionButtons(actions);
+}
+function addButton(text,kind,fn){const b=document.createElement("button");b.type="button";b.className="action-btn"+(kind?" "+kind:"");b.textContent=text;b.addEventListener("click",fn);el.choices.appendChild(b);return b;}
+function actionPrompt(actions){
+  const card=state.currentCard;
+  if(card==="S"&&selectedMode==="sorry")return selectedPawnId===null?"Choose your Start pawn.":"Choose an opponent to send back.";
+  if(card==="S"&&selectedMode==="forward4")return"Choose a pawn to move forward 4.";
+  if(card==="11"&&selectedMode==="switch")return selectedPawnId===null?"Choose your open-track pawn.":"Choose an opponent to switch with.";
+  if(card==="7"&&selectedMode==="split"){
+    if(selectedPawnId===null)return"Choose the first pawn for the split.";
+    if(selectedAmount===null)return"Choose the first part of the split.";
+    return"Choose a second pawn to move "+(7-selectedAmount)+".";
+  }
+  if(selectedMode==="start")return"Choose a Start pawn to move "+state.currentCard+" spaces.";
+  if(selectedPawnId!==null&&state.currentCard==="10")return"Choose one of the two glowing destinations.";
+  if(selectedMode)return"Choose a highlighted pawn.";
+  const modes=availableModes(actions);
+  if(modes.length>1)return CARD_TEXT[card];
+  return"Choose a highlighted pawn.";
+}
+function availableModes(actions){
+  const set=[];
+  function add(v){if(set.indexOf(v)<0)set.push(v);}
+  actions.forEach(function(a){
+    if(a.type==="split")add("split");
+    else if(a.type==="switch")add("switch");
+    else if(a.type==="sorry")add("sorry");
+    else if(a.kind==="start")add("start");
+    else if(a.kind==="forward")add("forward"+a.amount);
+    else if(a.kind==="backward")add("back"+a.amount);
+  });
+  return set;
+}
+function renderActionButtons(actions){
+  const card=state.currentCard;
+  const modes=availableModes(actions);
+  if(card==="10"&&selectedPawnId!==null&&selectedMode===null){
+    actions.filter(function(a){return a.type==="move"&&a.pawnId===selectedPawnId;}).forEach(function(a){addButton(a.kind==="backward"?"Go Back 1":"Go Forward 10",a.kind==="backward"?"":"primary",function(){performAction(a);});});
+    addButton("Choose Another Pawn","",function(){selectedPawnId=null;render();});return;
+  }
+  if(card==="7"&&selectedMode==="split"&&selectedPawnId!==null&&selectedAmount===null){
+    const amounts=[];actions.filter(function(a){return a.type==="split"&&a.first.pawnId===selectedPawnId;}).forEach(function(a){if(amounts.indexOf(a.first.amount)<0)amounts.push(a.first.amount);});
+    amounts.sort(function(a,b){return a-b;}).forEach(function(n){addButton(n+" + "+(7-n),"primary",function(){setSplitAmount(n);});});
+    addButton("Back","",function(){selectedPawnId=null;render();});return;
+  }
+  if(selectedMode){
+    addButton("Back","",function(){selectedMode=null;selectedPawnId=null;selectedAmount=null;render();});
+    return;
+  }
+  if(modes.some(function(m){return m==="start";}))addButton("From Start "+card,"cyan",function(){chooseActionMode("start");});
+  if(card==="7"){
+    if(modes.indexOf("forward7")>=0)addButton("Forward 7","primary",function(){chooseActionMode("forward7");});
+    if(modes.indexOf("split")>=0)addButton("Split 7","primary",function(){chooseActionMode("split");});
+  }else if(card==="10"){
+    if(modes.indexOf("forward10")>=0)addButton("Forward 10","primary",function(){chooseActionMode("forward10");});
+    if(modes.indexOf("back1")>=0)addButton("Back 1","",function(){chooseActionMode("back1");});
+  }else if(card==="11"){
+    if(modes.indexOf("forward11")>=0)addButton("Forward 11","primary",function(){chooseActionMode("forward11");});
+    if(modes.indexOf("switch")>=0)addButton("Switch","danger",function(){chooseActionMode("switch");});
+    const canForward=actions.some(function(a){return a.type==="move"&&(a.kind==="forward"||a.kind==="start");});
+    if(!canForward&&modes.indexOf("switch")>=0)addButton("Pass","",skipEleven);
+  }else if(card==="S"){
+    if(modes.indexOf("sorry")>=0)addButton("SORRY!","danger",function(){chooseActionMode("sorry");});
+    if(modes.indexOf("forward4")>=0)addButton("Forward 4","primary",function(){chooseActionMode("forward4");});
+  }else{
+    const movement=modes.find(function(m){return m!=="start";});
+    const labels={"1":"Forward 1","2":"Forward 2","3":"Forward 3","4":"Back 4","5":"Forward 5","8":"Forward 8","12":"Forward 12"};
+    if(movement)addButton(labels[card]||"Move","primary",function(){chooseActionMode(modeToSelection(movement,card));});
+  }
+}
+function modeToSelection(mode,card){
+  if(mode==="start")return"start";
+  if(mode==="split")return"split";
+  if(mode==="switch")return"switch";
+  if(mode==="sorry")return"sorry";
+  if(card==="S"&&mode==="forward4")return"forward4";
+  if(mode==="forward7")return"forward7";
+  if(mode==="forward10")return"forward10";
+  if(mode==="forward11")return"forward11";
+  if(mode==="back1")return"back1";
+  if(mode.indexOf("back")===0)return"backward";
+  return"forward";
+}
+function getSelectablePawnIds(){
+  if(!state||currentPlayer().cpu)return[];
+  if(state.phase==="ice")return iceTokenTargets().map(function(p){return p.id;});
+  if(state.phase==="fireToken")return fireTokenTargets().map(function(p){return p.id;});
+  if(state.phase==="firePull")return firePullCandidates().map(function(p){return p.id;});
+  if(state.phase!=="action")return[];
+  const actions=legalActionsForCard(state,state.currentCard,state.turn);
+  const ids=[];function add(id){if(ids.indexOf(id)<0)ids.push(id);}
+  if(state.currentCard==="S"&&selectedMode==="sorry"){
+    if(selectedPawnId===null)actions.filter(function(a){return a.type==="sorry";}).forEach(function(a){add(a.pawnId);});
+    else actions.filter(function(a){return a.type==="sorry"&&a.pawnId===selectedPawnId;}).forEach(function(a){add(a.targetId);});
+    return ids;
+  }
+  if(state.currentCard==="11"&&selectedMode==="switch"){
+    if(selectedPawnId===null)actions.filter(function(a){return a.type==="switch";}).forEach(function(a){add(a.ownId);});
+    else actions.filter(function(a){return a.type==="switch"&&a.ownId===selectedPawnId;}).forEach(function(a){add(a.targetId);});
+    return ids;
+  }
+  if(state.currentCard==="7"&&selectedMode==="split"){
+    if(selectedPawnId===null)actions.filter(function(a){return a.type==="split";}).forEach(function(a){add(a.first.pawnId);});
+    else if(selectedAmount!==null)actions.filter(function(a){return a.type==="split"&&a.first.pawnId===selectedPawnId&&a.first.amount===selectedAmount;}).forEach(function(a){add(a.second.pawnId);});
+    return ids;
+  }
+  actions.filter(function(a){
+    if(a.type!=="move")return false;
+    if(selectedMode==="start")return a.kind==="start";
+    if(selectedMode==="forward")return a.kind==="forward";
+    if(selectedMode==="backward")return a.kind==="backward";
+    if(selectedMode==="forward7")return a.kind==="forward"&&a.amount===7;
+    if(selectedMode==="forward10")return a.kind==="forward"&&a.amount===10;
+    if(selectedMode==="back1")return a.kind==="backward"&&a.amount===1;
+    if(selectedMode==="forward11")return a.kind==="forward"&&a.amount===11;
+    if(selectedMode==="forward4")return a.kind==="forward"&&a.amount===4;
+    return true;
+  }).forEach(function(a){add(a.pawnId);});
+  return ids;
+}
+function scoreState(s,playerIndex){
+  let score=0;
+  s.pawns.forEach(function(p){const v=positionProgress(s,p);score+=p.player===playerIndex?v*4:-v*1.2;});
+  if(s.firePawnId!==null){const f=pawnById(s.firePawnId,s);if(f)score+=f.player===playerIndex?18:-5;}
+  if(s.icePawnId!==null){const i=pawnById(s.icePawnId,s);if(i)score+=i.player===playerIndex?-18:12;}
+  return score;
+}
+function scoreAction(action){
+  const copy=cloneGame(state);const before=scoreState(copy,state.turn);
+  copy.pendingFirePull=false;
+  if(action.type==="move")applyMove(copy,action);
+  if(action.type==="switch")applySwitch(copy,action);
+  if(action.type==="sorry")applySorry(copy,action);
+  if(action.type==="split"){
+    const a=planMove(copy,action.first.pawnId,"forward",action.first.amount);if(!a)return-9999;applyMove(copy,a);
+    const b=planMove(copy,action.second.pawnId,"forward",action.second.amount);if(!b)return-9999;applyMove(copy,b);
+  }
+  let value=scoreState(copy,state.turn)-before;
+  if(copy.pendingFirePull)value+=140;
+  const homes=copy.pawns.filter(function(p){return p.player===state.turn&&p.zone==="home";}).length;
+  if(homes===3)value+=10000;
+  return value;
+}
+function chooseCpuAction(actions,forceSmart){
+  if(!actions.length)return null;
+  if(forceSmart)return actions.map(function(a){return{a:a,s:scoreAction(a)};}).sort(function(x,y){return y.s-x.s;})[0].a;
+  if(state.skill===1)return actions[Math.floor(Math.random()*actions.length)];
+  const ranked=actions.map(function(a){return{a:a,s:scoreAction(a)+Math.random()*(state.skill===2?25:2)};}).sort(function(x,y){return y.s-x.s;});
+  if(state.skill===2)return ranked[Math.floor(Math.random()*Math.min(3,ranked.length))].a;
+  return ranked[0].a;
+}
+function maybeCpu(){
+  clearTimeout(cpuTimer);
+  if(!state||state.winner!==null||state.phase==="resolving"||(!currentPlayer().cpu&&autoPlayerId!==state.turn))return;
+  cpuTimer=setTimeout(cpuStep,520);
+}
+function autoPlayTurn(){
+  if(!state||state.winner!==null||currentPlayer().cpu||state.phase==="resolving"||state.phase==="noMove")return;
+  autoPlayerId=state.turn;showToast("Auto is choosing the smartest move.");cpuStep();
+}
+function cpuStep(){
+  if(!state||state.winner!==null||(!currentPlayer().cpu&&autoPlayerId!==state.turn))return;
+  const forceSmart=!currentPlayer().cpu&&autoPlayerId===state.turn;
+  if(state.phase==="preFire"){
+    const plan=planFireJump(state,state.firePawnId);
+    if(plan){
+      const copy=cloneGame(state);const before=scoreState(copy,state.turn);applyFireJump(copy,plan);const gain=scoreState(copy,state.turn)-before;
+      useFireJump(!forceSmart&&state.skill===1?Math.random()>.45:gain>=0);
+    }else useFireJump(false);
+    return;
+  }
+  if(state.phase==="draw"){drawCard();return;}
+  if(state.phase==="chooseCard"){
+    const hand=state.hands[state.turn];
+    const options=hand.map(function(card,index){const actions=legalActionsForCard(state,card,state.turn);const best=actions.length?Math.max.apply(null,actions.map(scoreAction)):-30;const tokenBonus=card==="1"||card==="2"?12:0;return{index:index,score:best+tokenBonus+(forceSmart?0:Math.random()*(state.skill===1?90:state.skill===2?22:2))};}).sort(function(a,b){return b.score-a.score;});
+    chooseHandCard(options[0].index);return;
+  }
+  if(state.phase==="ice"){
+    const targets=iceTokenTargets();
+    if(!targets.length){state.icePawnId=null;beginAction();return;}
+    targets.sort(function(a,b){const af=(state.firePawnId===a.id?30:0)+positionProgress(state,a);const bf=(state.firePawnId===b.id?30:0)+positionProgress(state,b);return bf-af;});
+    moveIceTo(!forceSmart&&state.skill===1?targets[Math.floor(Math.random()*targets.length)].id:targets[0].id);return;
+  }
+  if(state.phase==="fireToken"){
+    const own=fireTokenTargets();
+    if(!own.length){beginAction();return;}
+    own.sort(function(a,b){return positionProgress(state,b)-positionProgress(state,a);});
+    moveFireTo(!forceSmart&&state.skill===1?own[Math.floor(Math.random()*own.length)].id:own[0].id);return;
+  }
+  if(state.phase==="firePull"){
+    const candidates=firePullCandidates();
+    candidates.sort(function(a,b){return positionProgress(state,a)-positionProgress(state,b);});
+    pullPawnHome(candidates.length?candidates[0].id:null);return;
+  }
+  if(state.phase==="action"){
+    const actions=legalActionsForCard(state,state.currentCard,state.turn);
+    const action=chooseCpuAction(actions,forceSmart);
+    if(action)performAction(action);else finishCard();
+  }
+}
+function announce(text){el.message.textContent=text;showToast(text);sound(430,.045);}
+function showToast(text){clearTimeout(toastTimer);el.toast.textContent=text;el.toast.classList.add("show");toastTimer=setTimeout(function(){el.toast.classList.remove("show");},1500);}
+function sound(freq,duration){
+  try{
+    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    const o=audioCtx.createOscillator();const g=audioCtx.createGain();o.frequency.value=freq;o.type="sine";g.gain.setValueAtTime(.035,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+duration);
+  }catch(e){}
+  try{if(navigator.vibrate)navigator.vibrate(18);}catch(e){}
+}
+function saveGame(show){
+  const saved=heldSave||state;
+  if(!saved||!saved.started||saved.winner!==null){if(show)showToast("No active game to save.");return false;}
+  try{const snapshot=cloneGame(saved);snapshot.savedAt=Date.now();if(!heldSave)state.savedAt=snapshot.savedAt;localStorage.setItem(SAVE_KEY,JSON.stringify({version:VERSION,savedAt:snapshot.savedAt,state:snapshot}));if(show&&window.ArcadeSave)ArcadeSave.saveNow();if(show)showToast("Game saved.");return true;}catch(e){if(show)showToast("Save failed.");return false;}
+}
+function autoSave(){saveGame(false);}
+function migrateSave(saved){
+  if(!saved||!saved.started)return null;
+  if(saved.version===VERSION)return saved;
+  const starts=OLD_STARTS[saved.version];
+  if(!starts)return null;
+  const migrated=cloneGame(saved);
+  migrated.pawns.forEach(function(pawn){
+    if(pawn.zone!=="track")return;
+    const progress=(pawn.pos-starts[pawn.player]+60)%60;
+    pawn.pos=(COLORS[pawn.player].start+progress)%60;
+  });
+  migrated.version=VERSION;
+  return migrated;
+}
+function applyLoadedGame(saved,show){
+  clearTimeout(cpuTimer);clearTimeout(animationTimer);
+  const loaded=migrateSave(saved);
+  if(!validSave(loaded))return false;
+  heldSave=null;state=loaded;undoStack=[];autoPlayerId=null;
+  if(typeof state.pendingFirePull!=="boolean")state.pendingFirePull=false;
+  if(!state.flow||typeof state.flow!=="object")state.flow={};
+  selectedPawnId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
+  el.setupOverlay.classList.add("hidden");el.menuOverlay.classList.add("hidden");el.rulesOverlay.classList.add("hidden");el.winOverlay.classList.add("hidden");hideKeyboard();
+  render();if(show)showToast("Saved game loaded.");
+  if(state.phase==="noMove")animationTimer=setTimeout(function(){if(state&&state.phase==="noMove")finishCard();},500);
+  else if(state.phase==="resolving")animationTimer=setTimeout(completeResolvedAction,300);
+  else maybeCpu();
+  return true;
+}
+function loadGame(show){
+  if(show&&window.ArcadeSave&&ArcadeSave.hasSave()){ArcadeSave.load();return true;}
+  let data=null;
+  try{data=JSON.parse(localStorage.getItem(SAVE_KEY)||"null");}catch(e){}
+  if(!applyLoadedGame(data&&data.state?data.state:data,show)){if(show)showToast("No saved game found.");return false;}
+  if(data&&data.state&&data.state.version!==VERSION)saveGame(false);
+  return true;
+}
+function validSave(s){return!!(s&&s.version===VERSION&&s.started&&Array.isArray(s.players)&&s.players.length>=2&&s.players.length<=4&&Array.isArray(s.pawns)&&s.pawns.length===s.players.length*3&&s.winner===null);}
+function currentStateMeaningful(){return!!(state&&state.started&&state.winner===null);}
+function holdCurrentSave(){if(!heldSave&&currentStateMeaningful())heldSave=cloneGame(state);}
+function effectiveState(){return cloneGame(heldSave||state);}
+function freshSetup(){
+  clearTimeout(cpuTimer);clearTimeout(animationTimer);
+  heldSave=null;state=null;undoStack=[];autoPlayerId=null;selectedPawnId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
+  try{localStorage.removeItem(SAVE_KEY);}catch(e){}
+  hideKeyboard();el.menuOverlay.classList.add("hidden");el.rulesOverlay.classList.add("hidden");el.winOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");
+  render();
+}
+function registerArcadeSave(){
+  if(!window.ArcadeSave)return;
+  window.ArcadeSave.register({
+    id:"sorry",
+    title:"Sorry!",
+    version:VERSION,
+    capture:effectiveState,
+    restore:function(saved){if(!applyLoadedGame(saved,false))throw new Error("Invalid Sorry save");return true;},
+    meaningful:function(){return!!heldSave||currentStateMeaningful();},
+    summary:function(){
+      const data=heldSave||state;if(!data||data.winner!==null)return"";
+      const p=data.players[data.turn];const home=data.pawns.filter(function(x){return x.player===p.id&&x.zone==="home";}).length;
+      return p.name+"'s turn · "+home+" of 3 pawns Home";
+    },
+    startFresh:freshSetup
+  });
+}
+function openRules(){clearTimeout(toastTimer);el.toast.classList.remove("show");ruleIndex=0;renderRules();el.rulesOverlay.classList.remove("hidden");}
+function renderRules(){const page=RULE_PAGES[ruleIndex];el.rulesPage.innerHTML="<h3>"+page.title+"</h3>"+page.html;el.rulesCount.textContent=(ruleIndex+1)+" of "+RULE_PAGES.length;el.rulesPrevBtn.disabled=ruleIndex===0;el.rulesNextBtn.disabled=ruleIndex===RULE_PAGES.length-1;}
+function confetti(){
+  const wrap=document.createElement("div");wrap.className="confetti";
+  for(let i=0;i<55;i++){const p=document.createElement("i");p.style.left=Math.random()*100+"%";p.style.setProperty("--h",String(Math.floor(Math.random()*360)));p.style.setProperty("--d",(1.8+Math.random()*2.2)+"s");p.style.setProperty("--r",Math.floor(Math.random()*180)+"deg");p.style.setProperty("--x",(Math.random()*160-80)+"px");p.style.animationDelay=Math.random()*.7+"s";wrap.appendChild(p);}
+  document.body.appendChild(wrap);setTimeout(function(){wrap.remove();},4800);
+}
+function selectChoice(container,value){Array.from(container.querySelectorAll(".choice")).forEach(function(b){b.classList.toggle("active",b.dataset.value===String(value));});}
+function updateSetupRows(){
+  Array.from(document.querySelectorAll(".player-row")).forEach(function(row){row.classList.toggle("hidden",Number(row.dataset.player)>=setup.count);});
+  updateSetupColors();
+}
+function updateSetupColors(){
+  Array.from(document.querySelectorAll(".player-row")).forEach(function(row){
+    const i=Number(row.dataset.player);const color=COLORS[setup.colors[i]];row.style.setProperty("--row-color",color.hex);
+    const button=row.querySelector(".player-color");if(button){button.textContent=color.name.toUpperCase();button.setAttribute("aria-label","Change "+color.name+" player color");}
+  });
+}
+function cyclePlayerColor(playerIndex){
+  const oldColor=setup.colors[playerIndex];const nextColor=(oldColor+1)%COLORS.length;const owner=setup.colors.indexOf(nextColor);
+  setup.colors[playerIndex]=nextColor;if(owner>=0&&owner!==playerIndex)setup.colors[owner]=oldColor;updateSetupColors();
+}
+function openKeyboard(input){
+  activeInput=input;Array.from(document.querySelectorAll(".name-input")).forEach(function(x){x.classList.toggle("active-input",x===input);});el.keyboardDisplay.textContent=input.value||" ";el.keyboard.classList.add("open");el.keyboard.classList.remove("expanded");el.keyboard.setAttribute("aria-hidden","false");document.body.classList.add("keyboard-open");
+}
+function hideKeyboard(){if(activeInput)activeInput.classList.remove("active-input");activeInput=null;el.keyboard.classList.remove("open","expanded");el.keyboard.setAttribute("aria-hidden","true");document.body.classList.remove("keyboard-open");}
+function keyboardInput(value,replace){
+  if(!activeInput)return;
+  if(replace)activeInput.value=value.slice(0,14);else activeInput.value=(activeInput.value+value).slice(0,14);
+  el.keyboardDisplay.textContent=activeInput.value||" ";
+  activeInput.dispatchEvent(new Event("input",{bubbles:true}));
+}
+function bind(){
+  $("playerCountChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.count=Number(b.dataset.value);selectChoice(this,setup.count);updateSetupRows();});
+  $("modeChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.mode=b.dataset.value;selectChoice(this,setup.mode);});
+  $("skillChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.skill=Number(b.dataset.value);selectChoice(this,setup.skill);});
+  $("endpointChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.showEndpoints=b.dataset.value==="on";selectChoice(this,b.dataset.value);});
+  Array.from(document.querySelectorAll(".player-color")).forEach(function(b){b.addEventListener("click",function(){cyclePlayerColor(Number(this.dataset.player));});});
+  Array.from(document.querySelectorAll(".type-toggle")).forEach(function(b){b.addEventListener("click",function(){const i=Number(this.dataset.player);setup.cpu[i]=!setup.cpu[i];this.textContent=setup.cpu[i]?"CPU":"Human";this.classList.toggle("active",setup.cpu[i]);});});
+  Array.from(document.querySelectorAll(".name-input")).forEach(function(input){input.addEventListener("click",function(){openKeyboard(this);});input.addEventListener("pointerdown",function(e){e.preventDefault();openKeyboard(this);});});
+  el.keyboard.addEventListener("click",function(e){const b=e.target.closest("button");if(!b)return;const name=b.dataset.kName;const char=b.dataset.kChar;const action=b.dataset.kAction;if(name)keyboardInput(name,true);else if(char)keyboardInput(char,false);else if(action==="space")keyboardInput(" ",false);else if(action==="back"&&activeInput){activeInput.value=activeInput.value.slice(0,-1);el.keyboardDisplay.textContent=activeInput.value||" ";}else if(action==="clear")keyboardInput("",true);else if(action==="letters")el.keyboard.classList.toggle("expanded");else if(action==="done")hideKeyboard();});
+  $("startBtn").addEventListener("click",createGame);
+  $("setupLoadBtn").addEventListener("click",function(){loadGame(true);});
+  $("setupBackBtn").addEventListener("click",goToArcade);
+  $("saveBtn").addEventListener("click",function(){saveGame(true);});
+  $("loadBtn").addEventListener("click",function(){loadGame(true);});
+  $("undoBtn").addEventListener("click",undoMove);
+  $("autoBtn").addEventListener("click",autoPlayTurn);
+  $("menuBtn").addEventListener("click",function(){el.menuOverlay.classList.remove("hidden");});
+  $("resumeBtn").addEventListener("click",function(){el.menuOverlay.classList.add("hidden");});
+  $("menuUndoBtn").addEventListener("click",undoMove);
+  $("menuSaveBtn").addEventListener("click",function(){saveGame(true);el.menuOverlay.classList.add("hidden");});
+  $("rulesBtn").addEventListener("click",function(){el.menuOverlay.classList.add("hidden");openRules();});
+  $("newGameBtn").addEventListener("click",function(){el.menuOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");});
+  $("arcadeBtn").addEventListener("click",goToArcade);
+  $("openSetupBtn").addEventListener("click",function(){el.setupOverlay.classList.remove("hidden");});
+  $("quickLoadBtn").addEventListener("click",function(){loadGame(true);});
+  $("rulesCloseBtn").addEventListener("click",function(){el.rulesOverlay.classList.add("hidden");});
+  el.rulesPrevBtn.addEventListener("click",function(){if(ruleIndex>0){ruleIndex--;renderRules();}});
+  el.rulesNextBtn.addEventListener("click",function(){if(ruleIndex<RULE_PAGES.length-1){ruleIndex++;renderRules();}});
+  $("playAgainBtn").addEventListener("click",function(){el.winOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");});
+  $("winArcadeBtn").addEventListener("click",goToArcade);
+  window.addEventListener("beforeunload",function(){saveGame(false);});
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")saveGame(false);});
+  window.addEventListener("pageshow",function(){render();});
+}
+function goToArcade(){
+  clearTimeout(cpuTimer);clearTimeout(animationTimer);saveGame(false);
+  const leave=function(){location.href="../index.html";};
+  try{
+    if(window.ArcadeSave&&typeof ArcadeSave.saveNow==="function"){
+      Promise.resolve(ArcadeSave.saveNow()).then(leave,leave);
+      return;
+    }
+  }catch(e){}
+  leave();
+}
+function init(){
+  buildBoard();bind();updateSetupRows();render();
+  let wantsLoad=false;try{const q=new URLSearchParams(location.search);wantsLoad=q.get("load")==="1"||q.get("resume")==="1";}catch(e){}
+  if(wantsLoad&&!loadGame(false))el.setupOverlay.classList.remove("hidden");
+}
+window.SorryGame={saveGame:function(){return saveGame(true);},loadGame:function(){return loadGame(true);},newGame:createGame,getState:function(){return state;}};
+init();
+registerArcadeSave();
+})();
+</script>
+</body>
+</html>

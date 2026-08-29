@@ -1,0 +1,22 @@
+{
+  "title": "Music Maker",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 330,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 2,
+  "categories": [
+    "music",
+    "creative"
+  ],
+  "tags": [
+    "touch",
+    "multitouch",
+    "voice",
+    "same-device"
+  ],
+  "orientation": "landscape"
+}

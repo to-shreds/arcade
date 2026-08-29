@@ -1,0 +1,21 @@
+{
+  "title": "Checkers",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 40,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 2,
+  "categories": [
+    "strategy",
+    "board"
+  ],
+  "tags": [
+    "touch",
+    "turn-based",
+    "same-device"
+  ],
+  "orientation": "any"
+}

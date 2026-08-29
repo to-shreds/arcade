@@ -1,0 +1,20 @@
+{
+  "title": "Insultinator",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 90,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "word",
+    "creative"
+  ],
+  "tags": [
+    "keyboard",
+    "speech"
+  ],
+  "orientation": "any"
+}

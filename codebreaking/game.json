@@ -1,0 +1,14 @@
+{
+  "title": "Robot Codebreaker",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 105,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["puzzle", "strategy"],
+  "tags": ["logic", "symbols", "touch"],
+  "orientation": "any"
+}

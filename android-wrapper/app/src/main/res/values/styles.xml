@@ -1,0 +1,11 @@
+<resources>
+    <style name="ArcadeTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">@color/arcade_background</item>
+        <item name="android:colorAccent">@color/arcade_accent</item>
+        <item name="android:navigationBarColor">@color/arcade_system</item>
+        <item name="android:statusBarColor">@color/arcade_system</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

@@ -1,0 +1,14 @@
+{
+  "title": "Build My Joke",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 95,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 2,
+  "categories": ["creative", "word"],
+  "tags": ["silly", "speech", "same-device"],
+  "orientation": "any"
+}

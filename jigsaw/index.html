@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>Arcade - Emoji Jigsaw</title>
+<style>
+  html, body { margin:0; padding:0; height:100%; background:#000; overflow:hidden; font-family:'Segoe UI', system-ui, -apple-system, Arial, sans-serif; color:#fff; }
+  body{ background: radial-gradient(circle at 25% 20%, #222 0%, #000 70%); touch-action: none; overscroll-behavior:none; }
+  :root{
+    --ui-bg: rgba(255,255,255,0.07);
+    --ui-bg2: rgba(0,0,0,0.32);
+    --ui-border: rgba(255,255,255,0.16);
+    --ui-border-strong: rgba(255,255,255,0.28);
+    --ui-accent: #00e5ff;
+    --ui-gold: #ffd700;
+    --ui-radius: 14px;
+    --danger:#ff5252;
+    --ok:#7CFF6B;
+    --purple:#E040FB;
+  }
+  .ui-btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding: 8px 12px; border-radius: var(--ui-radius);
+    border: 1px solid var(--ui-border); background: var(--ui-bg); color:#fff;
+    font-weight: 900; letter-spacing: 0.2px; user-select:none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ui-btn:active{ transform: scale(0.98); border-color: var(--ui-border-strong); background: rgba(255,255,255,0.10); }
+
+  .topbar{
+    position:absolute; top:10px; left:10px; right:10px; z-index:20;
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    pointer-events:none;
+  }
+  .topbar .left, .topbar .right{ display:flex; gap:8px; align-items:center; pointer-events:auto; }
+  .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 7px 10px; border-radius: 999px;
+    border: 1px solid var(--ui-border); background: var(--ui-bg2);
+    font-weight: 900; letter-spacing:0.2px;
+    user-select:none;
+  }
+  .overlay{
+    position:absolute; inset:0; z-index:50;
+    background: rgba(0,0,0,0.95);
+    display:flex; align-items:center; justify-content:center;
+    padding: 16px;
+  }
+  .panel{
+    width:min(560px, 96vw);
+    border: 1px solid var(--ui-border);
+    background: rgba(255,255,255,0.06);
+    border-radius: 18px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    padding: 18px 16px 16px;
+  }
+  .panel h1{
+    margin: 4px 0 6px;
+    font-size: 30px;
+    color: var(--ui-gold);
+    text-shadow: 0 0 18px rgba(255,215,0,0.35);
+    letter-spacing: 1px;
+    text-align:center;
+  }
+  .panel .sub{ text-align:center; color: rgba(255,255,255,0.75); font-size: 13px; margin-bottom: 12px; }
+  .row{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+  .opt{
+    flex: 1 1 220px;
+    border: 1px solid var(--ui-border);
+    background: rgba(0,0,0,0.20);
+    border-radius: 14px;
+    padding: 10px 10px 12px;
+    min-width: 210px;
+  }
+  .opt label{ display:block; font-weight: 900; margin-bottom: 6px; }
+  select, input[type="range"]{
+    width:100%;
+    border-radius: 12px;
+    border: 1px solid var(--ui-border);
+    background: rgba(255,255,255,0.08);
+    color:#fff;
+    padding: 10px 12px;
+    font-weight: 900;
+    outline:none;
+  }
+  select option{ background:#111; color:#fff; }
+  .btn-large{
+    display:block; width:100%;
+    border-radius: 16px;
+    border: 2px solid #555;
+    background:#333;
+    color:#fff;
+    padding: 18px 16px;
+    font-size: 20px;
+    font-weight: 1000;
+    letter-spacing: 0.4px;
+    text-align:center;
+    user-select:none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-large:active{ transform: scale(0.985); background:#3d3d3d; }
+  .small-note{ color: rgba(255,255,255,0.70); font-size: 12px; text-align:center; margin-top:8px; }
+  .hr{ height:1px; background: rgba(255,255,255,0.10); margin: 10px 0; }
+  .hidden{ display:none !important; }
+
+  .toggle-row{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding: 10px 12px;
+    border: 1px solid var(--ui-border);
+    border-radius: 14px;
+    background: rgba(0,0,0,0.20);
+    margin-top: 10px;
+  }
+  .toggle-row .t-left{ display:flex; flex-direction:column; gap:2px; }
+  .toggle-row .t-name{ font-weight: 900; }
+  .toggle-row .t-desc{ font-size: 12px; color: rgba(255,255,255,0.68); }
+  .toggle-row input[type="checkbox"]{ width: 20px; height: 20px; accent-color: var(--ui-accent); }
+  .mode-picker{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+  .mode-btn{min-height:66px;border:2px solid var(--ui-border);border-radius:15px;background:rgba(0,0,0,.24);color:#fff;padding:9px;font:900 14px/1.2 system-ui;touch-action:manipulation}
+  .mode-btn small{display:block;margin-top:4px;color:rgba(255,255,255,.66);font-size:11px;font-weight:750}
+  .mode-btn.active{border-color:var(--ui-accent);background:rgba(0,229,255,.11);box-shadow:0 0 0 2px rgba(0,229,255,.14) inset}
+  #menuOverlay.completion{background:rgba(4,7,20,.82)!important;backdrop-filter:blur(10px)}
+  #menuOverlay.completion .panel{background:linear-gradient(145deg,#1c2852,#101733)!important;border:2px solid rgba(255,215,0,.52);box-shadow:0 20px 60px rgba(0,0,0,.68)}
+  #menuOverlay.completion .btn-large{background:#29345c!important;border-color:rgba(255,255,255,.24)!important;color:#fff!important;text-shadow:none!important}
+
+  #stage {
+    position:absolute; inset:0;
+    padding: 58px 10px 14px;
+    box-sizing:border-box;
+    display:flex; align-items:center; justify-content:center;
+  }
+  
+  
+  #wrap {
+    width:min(980px, 96vw);
+    height:min(860px, calc(100vh - 92px));
+    display:grid;
+    grid-template-rows: 1fr auto;
+    gap: 12px;
+  }
+  #tray{
+    border-radius: 18px;
+    border: 1px solid var(--ui-border);
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  #trayHead{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.10);
+    background: rgba(0,0,0,0.06);
+  }
+  #trayTitle{ font-weight: 1000; letter-spacing: 0.6px; font-size: 13px; color: rgba(0,0,0,0.78); }
+  #trayTip{ font-size: 12px; color: rgba(0,0,0,0.58); }
+  #trayInner{
+    position:relative;
+    display:flex;
+    gap: 10px;
+    padding: 10px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    overscroll-behavior-x: contain;
+  }
+  #trayInner::-webkit-scrollbar{ display:none; }
+  .tray-slot{
+    position:relative;
+    flex: 0 0 auto;
+    width: 92px;
+    height: 92px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: rgba(255,255,255,0.70);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+    scroll-snap-align: start;
+  }
+  .tray-slot::after{
+    content:"";
+    position:absolute; inset: 10px;
+    border-radius: 14px;
+    border: 1px dashed rgba(0,0,0,0.18);
+    opacity: 0.45;
+    pointer-events:none;
+  }
+  .piece.in-tray{
+    position:absolute !important;
+    left:50% !important;
+    top:50% !important;
+    transform: translate(-50%,-50%) scale(var(--trayScale, 0.46)) rotate(var(--rot, 0deg)) !important;
+    box-shadow: none;
+  }
+  .piece.in-tray:active{
+    transform: translate(-50%,-50%) scale(calc(var(--trayScale, 0.46) * 1.03)) rotate(var(--rot, 0deg)) !important;
+  }
+  .piece.in-tray canvas{ pointer-events:none; }
+
+
+  #board {
+    position:relative;
+    border-radius: 18px;
+    border: 1px solid var(--ui-border);
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    overflow:hidden;
+  }
+  #boardInner { position:absolute; inset:0; }
+  #target {
+    position:absolute;
+    border-radius: 18px;
+    border: 2px dashed rgba(255,255,255,0.22);
+    background: rgba(0,0,0,0.22);
+  }
+
+  .piece {
+    position:absolute;
+    border: none;
+    background: transparent;
+    border-radius: 0px;
+    touch-action: none;
+    user-select:none;
+    -webkit-tap-highlight-color: transparent;
+    will-change: transform, left, top;
+    box-shadow: none; 
+  }
+  .piece:active { transform: scale(1.02) rotate(var(--rot, 0deg)); }
+  .piece.locked{
+    
+    filter: drop-shadow(0 0 10px rgba(124,255,107,0.25)) drop-shadow(0 0 2px rgba(124,255,107,0.20));
+  }
+  .piece.glow{
+    filter: drop-shadow(0 0 12px rgba(0,229,255,0.30)) drop-shadow(0 0 2px rgba(0,229,255,0.25));
+  }
+  .piece canvas { width:100%; height:100%; display:block;
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,0.35)) drop-shadow(0 0 1px rgba(255,255,255,0.30));
+}
+
+  #hint { text-align:center; color: rgba(255,255,255,0.75); font-size: 12px; }
+
+  
+  #confettiCanvas{
+    position:fixed; inset:0;
+    width:100%; height:100%;
+    pointer-events:none;
+    z-index: 9999;
+  }
+</style>
+<style id="arcade-fit-fix">
+*,*::before,*::after{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body>*{min-width:0;max-width:100%}
+.app,.main,.game-view,#game-view,.wrap,.game-area,.overlay{min-width:0;max-width:100%}
+.main{grid-template-columns:minmax(0,1fr)!important}
+.topbar,.footer,.status,.scorebar,.controls,.sumbar,.table,[class*="top"],[class*="bar"],[class*="controls"],[class*="savebar"]{max-width:100%;min-width:0}
+.topbar>*,.status>*,.row>*,[class*="top"]>*,[class*="bar"]>*{min-width:0}
+.row.nowrap{flex-wrap:wrap!important}
+button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.actionBtn,.btn-large-opt{max-width:100%;min-width:0;touch-action:manipulation;font-size:clamp(11px,3.2vw,15px);line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel,.frontCard,.pm-menu-wrap,.modalBody,.settings-panel,#cat-menu .cat-grid,#cat-menu,.overlay>.panel{max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 16px)!important;overflow:hidden!important;box-sizing:border-box!important}
+.cat-btn,.btn-large-opt,.panel button,.frontCard button,.pm-menu-wrap button,.modalBody button{white-space:normal!important}
+.hud-bar,.question-box,.answers-grid{box-sizing:border-box!important;max-width:calc(100vw - 16px)!important}
+@media (max-width:520px),(max-height:720px){
+  .arcade-home-link,.back-btn,#menuBtn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;border-radius:999px!important;max-width:104px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;left:calc(env(safe-area-inset-left,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .settings-btn,.gear-btn,#settingsBtn,#global-settings-btn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .bj-savebar{display:flex!important;gap:4px!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important;max-width:calc(100vw - 118px)!important;flex-wrap:wrap!important;justify-content:flex-end!important}
+  .bj-savebar .ui-btn{padding:7px 8px!important;font-size:12px!important;line-height:1!important}
+  .topbar,.ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{height:auto!important;min-height:44px!important;padding-top:6px!important;padding-bottom:6px!important;gap:6px!important;flex-wrap:wrap!important;align-content:center!important}
+  .topbar{padding-left:max(8px,env(safe-area-inset-left,0px))!important;padding-right:max(8px,env(safe-area-inset-right,0px))!important}
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:76px!important;padding-right:8px!important}
+  .ck-top>div,.ttt-top>div,.mz-top>div,.mg-top>div,.si-top>div,.ms-top>div{display:flex!important;flex-wrap:wrap!important;gap:4px!important;min-width:0!important;max-width:100%!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{padding:6px 8px!important;font-size:12px!important;gap:5px!important;white-space:nowrap!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{padding:7px 8px!important;font-size:12px!important;min-height:0!important}
+  #modePvp,#modeCpu{white-space:normal!important;line-height:1!important}
+  #g-dots .top{padding-left:72px!important;gap:5px!important}
+  #g-dots .row{gap:5px!important;flex-wrap:wrap!important;justify-content:center!important}
+  #g-dots .pill{padding:5px 7px!important;font-size:12px!important;white-space:nowrap!important}
+  #g-dots .status-pill{flex:1 1 100%!important;margin-left:0!important;max-width:100%!important}
+  #g-dots canvas{max-width:calc(100vw - 20px)!important;max-height:calc(100svh - 154px)!important}
+  #g-hangman .top-bar{min-height:42px!important;padding:4px 8px!important;gap:4px!important}
+  #g-hangman .hm-left-slot{flex-basis:68px!important;width:68px!important}
+  #g-hangman .cat-pill{font-size:11px!important;padding:5px 8px!important}
+  #g-hangman .hm-status{gap:5px!important;max-width:50vw!important}
+  #g-hangman canvas{max-height:18vh!important}
+  #g-hangman #word-display{font-size:clamp(24px,8vw,34px)!important;min-height:34px!important;margin:2px 0!important}
+  #g-hangman #hint-box{font-size:12px!important;min-height:18px!important;padding:4px 8px!important}
+  #g-hangman .controls{gap:4px!important;padding:0 6px 2px!important;flex-wrap:nowrap!important}
+  #g-hangman .btn-hint,#g-hangman .btn-risk{padding:6px 6px!important;font-size:11px!important;gap:2px!important;box-shadow:none!important;flex:1 1 0!important;justify-content:center!important}
+  #g-hangman .keyboard{gap:3px!important;padding:3px!important;width:calc(100vw - 12px)!important;margin-bottom:2px!important}
+  #g-hangman .key{height:clamp(30px,6.6vh,42px)!important;font-size:clamp(15px,5vw,20px)!important;border-bottom-width:2px!important;border-radius:6px!important}
+  #g-orbslicer .orb-ui{left:6px!important;right:6px!important;top:42px!important;gap:4px!important}
+  #g-orbslicer .orb-pill{padding:5px 7px!important;font-size:12px!important;letter-spacing:0!important}
+  #g-orbslicer .orb-lives{font-size:13px!important;letter-spacing:0!important}
+  #g-minigolf #mg-menu{gap:8px!important;padding:12px 10px!important;justify-content:flex-start!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(30px,10vw,48px)!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:9px 10px!important;font-size:12px!important;min-height:0!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:8px!important}
+  .math-box{width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;left:auto!important;right:auto!important}
+  .hud-bar{padding:8px 10px!important;width:calc(100vw - 16px)!important;gap:4px!important}
+  .question-box{width:calc(100vw - 16px)!important;padding:14px!important;min-height:130px!important}
+  .cat-grid{gap:8px!important}
+  .cat-btn{padding:12px 8px!important;font-size:clamp(13px,4vw,18px)!important}
+  .menu-title{font-size:clamp(32px,11vw,48px)!important;margin:0!important}
+}
+@media (max-width:360px){
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:66px!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{font-size:11px!important;padding:5px 7px!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{font-size:11px!important;padding:6px 7px!important}
+  #g-dots .top{padding-left:64px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .wrap{gap:6px!important}
+  .titlebar{padding:6px 8px!important;gap:6px!important}
+  .layout{gap:6px!important}
+  .side{min-height:0!important;overflow:hidden!important}
+  .side .panel{max-height:calc(100svh - 410px)!important;overflow:hidden!important}
+  .panel .phead{padding:6px 8px!important}
+  .panel .pbody{padding:6px 8px!important}
+  #g-dots #menuOverlay .dots-mode-row,#g-dots #menuOverlay .dots-ai-row,#g-dots #menuOverlay .grid-options{width:100%!important;max-width:100%!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn{padding:6px 5px!important;font-size:11px!important;min-width:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  #g-dots .dots-menu-card{padding:6px!important;gap:5px!important;max-height:calc(100svh - 12px)!important}
+  #g-dots .dots-section-card{padding:5px!important;gap:4px!important}
+  #g-dots .dots-swatch-btn{padding:5px!important;font-size:10px!important;gap:3px!important}
+  #g-dots .dots-swatch-chip{width:16px!important;height:16px!important}
+  #g-dots .dots-swatch-hex{font-size:9px!important;letter-spacing:0!important}
+  .btn-large-opt{min-height:32px!important;line-height:1.15!important}
+  .ttt-piece-btn{white-space:normal!important;font-size:11px!important;line-height:1.05!important;padding:7px 8px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .modalPanel{max-height:calc(100svh - 14px)!important;overflow:hidden!important;padding:8px!important}
+  .modalHead{margin-bottom:5px!important}
+  .optRow{padding:6px!important;margin:5px 0!important;gap:6px!important}
+  .optRow .label .desc{font-size:10px!important;line-height:1.15!important}
+  .seg button{font-size:10px!important;padding:6px 7px!important;line-height:1.05!important;white-space:normal!important}
+}
+</style>
+<link rel="icon" href="data:,">
+<style id="arcade-v6-size-fix">
+@media (max-width:520px),(max-height:720px){
+  html,body{height:100%;overflow:hidden!important}
+  .panel,.frontCard,.pm-menu-wrap,.modal,.modalBody,.settings-panel,.overlay>.panel{overflow:hidden!important;max-height:calc(100svh - 8px)!important}
+  .small-note,.menu-sub,.sub{line-height:1.12!important}
+  .panel h1,.splash-title,.menu-title{line-height:1!important}
+  .panel button,.frontCard button,.pm-menu-wrap button,.modalBody button,.btn-large,.btn-large-opt{min-height:0!important}
+  .overlay,.modalBack,.front{padding:6px!important}
+  .app,.wrap{height:100svh!important;min-height:0!important;max-height:100svh!important;overflow:hidden!important}
+  .main,.game-area,.game-view,#game-view,.layout,.boardShell,.board-wrap,.side,.stage,#stage{min-height:0!important;overflow:hidden!important}
+  .rules{margin:6px 0!important;gap:5px!important}
+  .rulecard{padding:7px!important;font-size:10px!important;line-height:1.15!important;border-radius:10px!important}
+  .rulecard strong{margin-bottom:2px!important}
+  .panel>p{display:none!important}
+  .settingcard{padding:8px!important;margin:6px 0!important;border-radius:12px!important}
+  .settingcard p{display:none!important}
+  .optionrow{gap:5px!important;margin-bottom:7px!important}
+  .names{gap:5px!important;margin-bottom:7px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #g-dots #menuOverlay{padding:4px!important;gap:4px!important}
+  #g-dots .dots-menu-card{padding:5px!important;gap:4px!important;width:100%!important;max-height:calc(100svh - 8px)!important;overflow:hidden!important}
+  #g-dots .splash-title{font-size:20px!important;margin:0!important}
+  #g-dots .menu-sub,#g-dots .dots-subtle,#g-dots .dots-color-hint,#g-dots #dotsAiWrap div[style*="font-size:10px"]{display:none!important}
+  #g-dots .dots-menu-head{gap:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important}
+  #g-dots .dots-mode,#g-dots #dotsPlayerCountWrap,#g-dots #dotsAiWrap,#g-dots .dots-section-card.dots-colors,#g-dots .dots-section-card.dots-grid-card{grid-column:auto!important}
+  #g-dots .dots-section-card{padding:4px!important;gap:3px!important;border-radius:9px!important}
+  #g-dots .dots-sec-title{font-size:8px!important;margin:0!important;line-height:1!important}
+  #g-dots .dots-mode-row,#g-dots .dots-player-row,#g-dots .dots-ai-row,#g-dots .dots-toggles-row{gap:3px!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{padding:5px 3px!important;font-size:9px!important;line-height:1.05!important;border-radius:7px!important}
+  #g-dots .dots-name-grid,#g-dots .dots-team-grid,#g-dots .dots-team-name-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-mini-label{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-name-field,#g-dots .dots-team-field,#g-dots .dots-team-name-field{gap:2px!important}
+  #g-dots .dots-name-input,#g-dots .dots-team-select{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #g-dots .dots-toggle-pill{padding:4px 5px!important;font-size:8px!important;gap:3px!important;line-height:1.05!important}
+  #g-dots .dots-toggle-pill input{width:12px!important;height:12px!important}
+  #g-dots .dots-color-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-color-item{gap:1px!important}
+  #g-dots .dots-color-name{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-swatch-btn{padding:3px!important;gap:2px!important;border-radius:7px!important;border-width:1px!important}
+  #g-dots .dots-swatch-chip{width:18px!important;height:14px!important;border-radius:5px!important}
+  #g-dots .dots-swatch-hex{font-size:7px!important;letter-spacing:0!important}
+  #g-dots .grid-options{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important;width:100%!important}
+  .front{align-items:center!important}
+  .frontCard{padding:8px!important;border-radius:18px!important}
+  .frontHeader{padding:4px!important;margin-bottom:6px!important}
+  .frontTitle{font-size:18px!important;line-height:1!important}
+  .frontHeader .mini,.modeDesc,.modeExamples{display:none!important}
+  .modeGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+  .modeCard{padding:12px 7px!important;border-radius:14px!important;text-align:center!important}
+  .modeTitle{font-size:16px!important;line-height:1.05!important}
+  #startOverlay .panel h1{font-size:20px!important;margin:0 0 4px!important}
+  #startOverlay .panel .sub,#startOverlay .small-note{display:none!important}
+  #startOverlay .panel{padding:8px!important;border-radius:14px!important}
+  #startOverlay .row{gap:5px!important}
+  #startOverlay .opt{padding:6px!important;min-width:0!important;border-radius:10px!important}
+  #startOverlay .opt label{font-size:10px!important;margin-bottom:3px!important}
+  #startOverlay select,#startOverlay input[type="range"]{padding:6px 8px!important;font-size:12px!important}
+  #startOverlay .toggle-row{padding:6px 8px!important;margin-top:5px!important;border-radius:10px!important}
+  #startOverlay .t-desc{display:none!important}
+  #startOverlay .hr{margin:5px 0!important}
+  #startOverlay .btn-large{padding:8px 9px!important;font-size:13px!important;border-radius:11px!important}
+  #startBackBtn,#loadStartBtn{margin-top:5px!important}
+  #startOverlay .pm-menu-wrap{gap:6px!important;padding:0!important}
+  #startOverlay .pm-card{padding:8px!important;border-radius:12px!important}
+  #startOverlay .pm-pill-row{gap:4px!important}
+  #startOverlay .pm-pill{padding:7px 8px!important;font-size:12px!important}
+  #startOverlay .btn-large-opt{padding:9px 10px!important;font-size:13px!important;border-radius:11px!important}
+  #startOverlay.splash-title,.splash-title{font-size:clamp(26px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu{gap:5px!important;padding:8px!important;justify-content:center!important;overflow:hidden!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(24px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu>div[style*="max-width:520px"],#g-minigolf #mg-diff-wrap>div:last-child{display:none!important}
+  #g-minigolf #mg-best-line{font-size:11px!important;margin-top:0!important;padding:0!important}
+  #g-minigolf #mg-diff-wrap{margin-top:2px!important;gap:4px!important}
+  #g-minigolf #mg-diff-wrap>div:first-child{font-size:10px!important;line-height:1!important}
+  #g-minigolf #mg-diff-wrap .ui-btn{padding:6px 8px!important;font-size:11px!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:5px!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:7px 9px!important;font-size:12px!important;max-width:240px!important}
+  .pm-menu-wrap .small-note,.pm-menu-wrap+.small-note{display:none!important}
+  .modalBack{align-items:center!important}
+  .modal{max-height:calc(100svh - 8px)!important;overflow:hidden!important;border-radius:16px!important}
+  .modalHeader{position:static!important;padding:7px 9px!important}
+  .modalTitle{font-size:14px!important}
+  .modalBody{padding:8px!important;gap:6px!important;overflow:hidden!important}
+  .grid2,.namesGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  label{gap:3px!important;font-size:9px!important;line-height:1!important}
+  input[type="text"],input[type="number"],select{padding:5px 7px!important;font-size:11px!important;border-radius:8px!important}
+  .nameRow{gap:3px!important}
+  .nameLabel{font-size:9px!important;gap:4px!important;line-height:1!important}
+  .helper{display:none!important}
+  .footerActions{gap:5px!important;justify-content:center!important}
+  .footerActions button{padding:7px 10px!important;font-size:12px!important}
+  #startOverlay .panel-head{padding-right:88px!important}
+  #startOverlay .panel-top-back{padding:5px 7px!important;font-size:10px!important;max-width:82px!important}
+  #startOverlay .choice-grid{gap:3px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{padding:5px 3px!important;font-size:9px!important;border-radius:8px!important}
+  #startOverlay .more-players-row{margin-top:3px!important;gap:3px!important}
+  #startOverlay .theme-grid,#startOverlay .size-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #startOverlay .names-wrap,#startOverlay .team-wrap{margin-top:3px!important}
+  #startOverlay .names-label{font-size:8px!important;margin:2px 0!important}
+  #startOverlay .name-input{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #startOverlay .team-choice-grid{width:88px!important;flex-basis:88px!important;gap:2px!important}
+  #startOverlay .team-grid,#startOverlay .team-names-grid{gap:3px!important}
+  #startOverlay .panel-footer{position:static!important;padding-top:2px!important;margin-top:2px!important;background:none!important}
+  #startOverlay .row{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  body.memory-game #game{gap:6px!important;padding:calc(env(safe-area-inset-top,0px) + 8px) 8px max(8px,calc(env(safe-area-inset-bottom,0px) + 6px))!important}
+  body.memory-game #board{flex:0 0 auto!important;max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 64px)!important;overflow:hidden!important;align-content:start!important}
+  body.memory-game .card-front .face{font-size:clamp(25px,8vmin,48px)!important}
+}
+@media (max-width:360px){
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{font-size:8px!important;padding:4px 2px!important}
+  .modeTitle{font-size:14px!important}
+  .modalBody{gap:4px!important}
+  input[type="text"],input[type="number"],select{padding:4px 6px!important;font-size:10px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{font-size:8px!important;padding:4px 2px!important}
+}
+</style>
+
+<style id="arcade-v6-late-fix">
+@media (max-width:520px),(max-height:720px){
+  body.make10-game .app{gap:4px!important;padding:5px 8px!important}
+  body.make10-game .main{gap:4px!important;grid-template-rows:auto auto auto auto minmax(0,1fr)!important}
+  body.make10-game .topbar{padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .title{font-size:14px!important;line-height:1!important}
+  body.make10-game .subtitle,body.make10-game .status .small,body.make10-game .comboNote{display:none!important}
+  body.make10-game .turnpill{padding:5px 8px!important;font-size:11px!important}
+  body.make10-game .scorebar{gap:4px!important;padding:4px!important}
+  body.make10-game .scorechip{padding:4px!important;border-radius:10px!important}
+  body.make10-game .scorechip .name{font-size:10px!important}
+  body.make10-game .scorechip .score{font-size:14px!important}
+  body.make10-game .controls{gap:4px!important;padding:4px!important}
+  body.make10-game .controls button{min-height:30px!important;padding:6px 7px!important;font-size:11px!important}
+  body.make10-game .status{min-height:34px!important;padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .status .message{font-size:12px!important;line-height:1.05!important}
+  body.make10-game .sumbar{padding:5px!important;border-radius:12px!important}
+  body.make10-game .sumfocus{gap:4px!important}
+  body.make10-game .sumlabel{font-size:10px!important}
+  body.make10-game .sumcore{gap:6px!important}
+  body.make10-game .sumactions{gap:4px!important;width:88px!important}
+  body.make10-game .sumactions button{min-height:30px!important;padding:5px!important;font-size:11px!important}
+  body.make10-game .totalbox{width:140px!important;min-height:45px!important;border-radius:14px!important}
+  body.make10-game .total{font-size:34px!important}
+  body.make10-game .table{gap:4px!important}
+  body.make10-game .card{min-height:48px!important;border-radius:11px!important;padding:4px!important;border-width:1px!important}
+  body.make10-game .centerValue{font-size:28px!important}
+  body.make10-game .corner{font-size:9px!important;left:5px!important;top:4px!important}
+  body.make10-game .corner.bottom{right:5px!important;bottom:4px!important}
+  body.make10-game .footer{padding:5px 7px!important;font-size:10px!important;border-radius:12px!important}
+  #g-clock{justify-content:center!important;gap:6px!important;padding-top:34px!important;padding-bottom:6px!important;box-sizing:border-box!important;overflow:hidden!important}
+  #g-clock .clock-face{width:206px!important;height:206px!important;border-width:6px!important;margin:0 0 6px!important;box-sizing:border-box!important}
+  #g-clock .clock-ui{gap:5px!important;max-height:310px!important;overflow:hidden!important}
+  #g-clock .display-box{font-size:22px!important;padding:5px 10px!important;min-width:98px!important;border-radius:8px!important}
+  #g-clock .keypad{gap:5px!important;margin-top:4px!important;max-width:190px!important}
+  #g-clock .kp-btn{padding:8px!important;font-size:16px!important;border-radius:7px!important;line-height:1!important}
+  #g-clock .mc-grid{gap:5px!important;width:94%!important}
+  #g-clock .mc-btn{padding:8px!important;font-size:16px!important}
+}
+@media (max-width:360px){
+  #g-clock .clock-face{width:190px!important;height:190px!important}
+  #g-clock .keypad{max-width:180px!important}
+  #g-clock .kp-btn{padding:7px!important;font-size:15px!important}
+}
+</style>
+
+<style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+</head>
+<body>
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="topbar">
+    <div class="left">
+      <div class="pill" id="statusPill">Ready</div>
+    </div>
+    <div class="right">
+      <button class="ui-btn" id="shuffleBtn">Shuffle</button>
+      <button class="ui-btn" id="saveBtn">Save</button>
+      <button class="ui-btn" id="loadBtn">Load</button>
+      <button class="ui-btn" id="menuBtn">MENU</button>
+    </div>
+  </div>
+
+  <div id="stage">
+    <div id="wrap">
+      <div id="board">
+        <div id="boardInner"></div>
+        <div id="target" aria-label="Puzzle area"></div>
+      </div>
+
+      <div id="tray" aria-label="Piece drawer">
+        <div id="trayHead">
+          <div id="trayTitle">PIECE DRAWER</div>
+          <div id="trayTip">Tap/drag a piece up</div>
+        </div>
+        <div id="trayInner"></div>
+      </div>
+
+      <div id="hint">Grab a piece from the drawer, then drag it into the dashed box. Pieces snap when close.</div>
+    </div>
+  </div>
+
+  <div class="overlay" id="startOverlay">
+    <div class="panel">
+      <h1>Emoji Jigsaw</h1>
+      <div class="sub">One emoji, chopped into jigsaw pieces. Put it back together.</div>
+
+      <div class="row">
+        <div class="opt">
+          <label>Difficulty (1-5)</label>
+          <select id="diffSel">
+            <option value="1" selected>1 (2 × 2)</option>
+            <option value="2">2 (3 × 3)</option>
+            <option value="3">3 (4 × 4)</option>
+            <option value="4">4 (5 × 5)</option>
+            <option value="5">5 (6 × 6)</option>
+          </select>
+          <div class="small-note">More pieces = harder.</div>
+        </div>
+        <div class="opt">
+          <label>Emoji</label>
+          <select id="emojiSel"></select>
+          <div class="small-note">Each puzzle is a single emoji.</div>
+        </div>
+      </div>
+
+      <div class="mode-picker" id="modePicker" aria-label="Puzzle mode">
+        <button class="mode-btn active" type="button" data-mode="easy">Easy<small>Pieces stay upright and snap from farther away.</small></button>
+        <button class="mode-btn" type="button" data-mode="regular">Regular<small>Tap to rotate 90°. Get closer to snap.</small></button>
+      </div>
+
+      <div class="toggle-row">
+        <div class="t-left">
+          <div class="t-name">Glow hints</div>
+          <div class="t-desc">Pieces glow when they’re close to the right spot.</div>
+        </div>
+        <input type="checkbox" id="glowChk" />
+      </div>
+
+      <div class="hr"></div>
+      <button class="btn-large" id="startBtn">START</button>
+      <button class="btn-large" id="loadStartBtn" style="margin-top:8px;">LOAD SAVED GAME</button>
+      <button class="btn-large" id="startBackBtn" style="margin-top:8px;">BACK TO ARCADE</button>
+      <div class="small-note">Grab a piece and keep dragging - it should follow your finger.</div>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="menuOverlay">
+    <div class="panel">
+      <h1>Menu</h1>
+      <div class="sub">Pause - choose an option.</div>
+      <div class="row">
+        <button class="btn-large" id="resumeBtn">RESUME</button>
+        <button class="btn-large" id="restartBtn">RESTART</button>
+        <button class="btn-large" id="menuSaveBtn">SAVE</button>
+        <button class="btn-large" id="menuLoadBtn">LOAD</button>
+        <button class="btn-large" id="backBtn">BACK TO ARCADE</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+
+  const board = $("board");
+  const boardInner = $("boardInner");
+  const target = $("target");
+
+  const trayInner = $("trayInner");
+  const statusPill = $("statusPill");
+
+  const startOverlay = $("startOverlay");
+  const menuOverlay = $("menuOverlay");
+
+  const diffSel = $("diffSel");
+  const emojiSel = $("emojiSel");
+  const glowChk = $("glowChk");
+  const modeButtons = Array.from(document.querySelectorAll('#modePicker .mode-btn'));
+
+  const startBtn = $("startBtn");
+  const loadStartBtn = $("loadStartBtn");
+  const startBackBtn = $("startBackBtn");
+  const shuffleBtn = $("shuffleBtn");
+  const saveBtn = $("saveBtn");
+  const loadBtn = $("loadBtn");
+  const menuSaveBtn = $("menuSaveBtn");
+  const menuLoadBtn = $("menuLoadBtn");
+  const menuBtn = $("menuBtn");
+  const resumeBtn = $("resumeBtn");
+  const restartBtn = $("restartBtn");
+  const backBtn = $("backBtn");
+
+  const confettiCanvas = $("confettiCanvas");
+  const cctx = confettiCanvas.getContext("2d");
+
+  const EMOJIS = [
+    "🦄","🐶","🐱","🦊","🐼","🐸","🐵","🦁","🐰","🐯",
+    "🦋","🐙","🦉","🐢","🐳","🚀","🛸","🪐","🌙","⭐",
+    "🎈","🎉","🍕","🍩","🧁","🍉","🍓","🍦","🎮","🏰",
+    "🌈","💫","🤖","👽","🧸","🪁","🎧","🎸","🎯","🎲"
+  ];
+
+  
+  EMOJIS.forEach(e => {
+    const opt = document.createElement("option");
+    opt.value = e;
+    opt.textContent = e;
+    emojiSel.appendChild(opt);
+  });
+  emojiSel.value = "🦄";
+
+  let state = null;
+  let selectedMode = "easy";
+  const SAVE_KEY = "arcade_jigsaw_save_v1";
+
+  function setStatus(t){ statusPill.textContent = t; }
+  function showOverlay(el, show){ el.classList.toggle("hidden", !show); }
+  function setMode(mode){
+    selectedMode = mode === "regular" ? "regular" : "easy";
+    modeButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.mode === selectedMode));
+  }
+
+  function randInt(a,b){ return a + ((Math.random()*(b-a+1))|0); }
+  function shuffle(arr){
+    for(let i=arr.length-1;i>0;i--) {
+      const j = (Math.random()*(i+1))|0;
+      [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+    return arr;
+  }
+
+  function fitConfettiCanvas(){
+    const dpr = Math.max(1, window.devicePixelRatio || 1);
+    confettiCanvas.width = Math.floor(window.innerWidth * dpr);
+    confettiCanvas.height = Math.floor(window.innerHeight * dpr);
+    confettiCanvas.style.width = window.innerWidth + "px";
+    confettiCanvas.style.height = window.innerHeight + "px";
+    cctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  fitConfettiCanvas();
+
+  function layoutSizes(){
+    const rect = board.getBoundingClientRect();
+    const size = Math.min(rect.width, rect.height) * 0.78;
+    const left = (rect.width - size)/2;
+    const top = (rect.height - size)/2;
+    target.style.width = size + "px";
+    target.style.height = size + "px";
+    target.style.left = (left) + "px";
+    target.style.top = (top) + "px";
+    target.style.transform = "none";
+    return { boardW: rect.width, boardH: rect.height, targetX:left, targetY:top, targetSize:size };
+  }
+
+  function makeEmojiCanvas(size, emoji){
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0,0,size,size);
+
+    
+    const g = ctx.createRadialGradient(size*0.35, size*0.25, size*0.1, size*0.5, size*0.55, size*0.95);
+    g.addColorStop(0, "rgba(255,255,255,0.08)");
+    g.addColorStop(1, "rgba(255,255,255,0.00)");
+    ctx.fillStyle = "rgba(0,0,0,0.40)";
+    ctx.fillRect(0,0,size,size);
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,size,size);
+
+    
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = `${Math.floor(size*0.72)}px system-ui, 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji'`;
+    ctx.globalAlpha = 0.98;
+    ctx.fillText(emoji, size/2, size/2);
+
+    
+    ctx.globalAlpha = 0.16;
+    ctx.fillStyle = "#fff";
+    ctx.beginPath();
+    ctx.ellipse(size*0.35, size*0.25, size*0.58, size*0.36, -0.4, 0, Math.PI*2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+
+    return canvas;
+  }
+
+  
+  function generateEdges(n){
+    const H = Array.from({length:n}, () => Array(n-1).fill(null));
+    const V = Array.from({length:n-1}, () => Array(n).fill(null));
+
+    function profile(){
+      return {
+        dir: (Math.random() < 0.5 ? 1 : -1),
+        amp: 0.78 + Math.random()*0.55,
+        fat: 0.85 + Math.random()*0.45,
+        skew: (Math.random()*2 - 1) * 0.18,
+        bite: 0.88 + Math.random()*0.40
+      };
+    }
+
+    for(let r=0;r<n;r++){
+      for(let c=0;c<n-1;c++){
+        H[r][c] = profile();
+      }
+    }
+    for(let r=0;r<n-1;r++){
+      for(let c=0;c<n;c++){
+        V[r][c] = profile();
+      }
+    }
+    return {H,V};
+  }
+
+  function flipProfile(p){
+    return { dir: -p.dir, amp: p.amp, fat: p.fat, skew: p.skew, bite: p.bite };
+  }
+
+function jigsawPath(ctx, w, h, tab, edges){
+    
+    
+    const t = tab;
+
+    function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+    function ampPx(p){ return tab * 0.90 * (p.amp || 1); }
+    function fat(p){ return (p.fat || 1); }
+    function skew(p){ return (p.skew || 0); }
+    function bite(p){ return (p.bite || 1); }
+
+    function edgeShape(p, L){
+      const s = skew(p), f = fat(p), b = bite(p);
+      const center = L*0.5 + s*L*0.10;
+      const bulbW  = clamp(L * 0.22 * f, L*0.16, L*0.28);
+      const neck   = clamp(L * 0.11 * b, L*0.07, L*0.14);
+
+      const a = clamp(center - bulbW, L*0.10, L*0.62);
+      const b1 = clamp(center - neck,  a + L*0.04, center - L*0.02);
+      const c = center;
+      const d1 = clamp(center + neck,  center + L*0.02, L - L*0.10);
+      const e = clamp(center + bulbW,  L*0.38, L*0.90);
+      const d = clamp(d1, c + L*0.02, e - L*0.04);
+
+      return {a,b1,c,d,e};
+    }
+
+    
+    function drawEdgeX(p, L, outward){
+      if(p === 0){
+        ctx.lineTo(ctx.__x + L, ctx.__y);
+        ctx.__x += L;
+        return;
+      }
+      const a = outward; 
+      const sh = edgeShape(p, L);
+
+      ctx.lineTo(ctx.__x + sh.a, ctx.__y);
+      ctx.bezierCurveTo(
+        ctx.__x + sh.b1, ctx.__y,
+        ctx.__x + sh.b1, ctx.__y + a*0.92,
+        ctx.__x + sh.c,  ctx.__y + a
+      );
+      ctx.bezierCurveTo(
+        ctx.__x + sh.d,  ctx.__y + a*0.92,
+        ctx.__x + sh.d,  ctx.__y,
+        ctx.__x + sh.e,  ctx.__y
+      );
+      ctx.lineTo(ctx.__x + L, ctx.__y);
+      ctx.__x += L;
+    }
+
+    
+    function drawEdgeY(p, L, outward){
+      if(p === 0){
+        ctx.lineTo(ctx.__x, ctx.__y + L);
+        ctx.__y += L;
+        return;
+      }
+      const a = outward;
+      const sh = edgeShape(p, L);
+
+      ctx.lineTo(ctx.__x, ctx.__y + sh.a);
+      ctx.bezierCurveTo(
+        ctx.__x,        ctx.__y + sh.b1,
+        ctx.__x + a*0.92, ctx.__y + sh.b1,
+        ctx.__x + a,      ctx.__y + sh.c
+      );
+      ctx.bezierCurveTo(
+        ctx.__x + a*0.92, ctx.__y + sh.d,
+        ctx.__x,         ctx.__y + sh.d,
+        ctx.__x,         ctx.__y + sh.e
+      );
+      ctx.lineTo(ctx.__x, ctx.__y + L);
+      ctx.__y += L;
+    }
+
+    ctx.beginPath();
+    ctx.__x = t; ctx.__y = t;
+    ctx.moveTo(ctx.__x, ctx.__y);
+
+    
+    drawEdgeX(edges.top, w, edges.top === 0 ? 0 : (-edges.top.dir) * ampPx(edges.top));
+
+    
+    drawEdgeY(edges.right, h, edges.right === 0 ? 0 : (edges.right.dir) * ampPx(edges.right));
+
+    
+    if(edges.bottom === 0){
+      ctx.lineTo(t, t + h);
+      ctx.__x = t;
+    } else {
+      
+      const p = edges.bottom;
+      const L = w;
+      const a = (p.dir) * ampPx(p); 
+      const sh = edgeShape(p, L);
+
+      
+      const y = t + h;
+      const x0 = t + w;
+
+      ctx.lineTo(x0 - sh.a, y);
+      ctx.bezierCurveTo(
+        x0 - sh.b1, y,
+        x0 - sh.b1, y + a*0.92,
+        x0 - sh.c,  y + a
+      );
+      ctx.bezierCurveTo(
+        x0 - sh.d,  y + a*0.92,
+        x0 - sh.d,  y,
+        x0 - sh.e,  y
+      );
+      ctx.lineTo(t, y);
+      ctx.__x = t;
+      ctx.__y = y;
+    }
+
+    
+    if(edges.left === 0){
+      ctx.closePath();
+    } else {
+      const p = edges.left;
+      const L = h;
+      const a = (-p.dir) * ampPx(p); 
+      const sh = edgeShape(p, L);
+
+      const x = t;
+      const y0 = t + h;
+
+      ctx.lineTo(x, y0 - sh.a);
+      ctx.bezierCurveTo(
+        x, y0 - sh.b1,
+        x + a*0.92, y0 - sh.b1,
+        x + a,      y0 - sh.c
+      );
+      ctx.bezierCurveTo(
+        x + a*0.92, y0 - sh.d,
+        x,          y0 - sh.d,
+        x,          y0 - sh.e
+      );
+      ctx.closePath();
+    }
+
+    delete ctx.__x; delete ctx.__y;
+  }
+
+function sliceIntoPiecesJigsaw(srcCanvas, n, targetSize){
+    const pieces = [];
+    const pw = targetSize / n;
+    const ph = targetSize / n;
+
+    const tab = Math.min(pw, ph) * 0.22; 
+    const edges = generateEdges(n);
+
+    for(let r=0;r<n;r++) {
+      for(let c=0;c<n;c++) {
+        const top    = (r === 0)   ? 0 : flipProfile(edges.V[r-1][c]);
+        const bottom = (r === n-1) ? 0 : edges.V[r][c];
+        const left   = (c === 0)   ? 0 : flipProfile(edges.H[r][c-1]);
+        const right  = (c === n-1) ? 0 : edges.H[r][c];
+
+        const pieceCanvas = document.createElement("canvas");
+        pieceCanvas.width  = Math.round(pw + tab*2);
+        pieceCanvas.height = Math.round(ph + tab*2);
+
+        const pctx = pieceCanvas.getContext("2d");
+        pctx.imageSmoothingEnabled = true;
+
+        
+        jigsawPath(pctx, pw, ph, tab, {top,right,bottom,left});
+        pctx.save();
+        pctx.clip();
+
+        
+        const sx = (c * srcCanvas.width / n) - (tab * srcCanvas.width / targetSize);
+        const sy = (r * srcCanvas.height / n) - (tab * srcCanvas.height / targetSize);
+        const sw = (srcCanvas.width / n) + (tab*2 * srcCanvas.width / targetSize);
+        const sh = (srcCanvas.height / n) + (tab*2 * srcCanvas.height / targetSize);
+
+        pctx.drawImage(
+          srcCanvas,
+          sx, sy, sw, sh,
+          0, 0,
+          pieceCanvas.width,
+          pieceCanvas.height
+        );
+
+        pctx.restore();
+
+        pieces.push({
+          r, c,
+          w: pieceCanvas.width, h: pieceCanvas.height,
+          tab,
+          canvas: pieceCanvas
+        });
+      }
+    }
+    return pieces;
+  }
+
+  function createPieceEl(piece, i){
+    const el = document.createElement("div");
+    el.className = "piece";
+    el.style.width = piece.w + "px";
+    el.style.height = piece.h + "px";
+    const trayScale = Math.min(0.46, 78 / Math.max(piece.w, piece.h));
+    el.style.setProperty("--trayScale", String(trayScale));
+    el.dataset.index = String(i);
+
+    const rot = state && state.mode === "regular" ? randInt(0, 3) * 90 : 0;
+    el.style.setProperty("--rot", rot + "deg");
+    el.dataset.rot = String(rot);
+    el.style.transform = `rotate(${rot}deg)`;
+
+    el.appendChild(piece.canvas);
+
+    el.addEventListener("pointerdown", (e) => {
+      if(!state || piece.locked) return;
+      e.preventDefault();
+      try{ el.setPointerCapture(e.pointerId); }catch(_e){}
+      bringToFront(el);
+
+      const rect = el.getBoundingClientRect();
+      const parentRect = boardInner.getBoundingClientRect();
+
+      piece.drag = {
+        pointerId: e.pointerId,
+        offsetX: e.clientX - rect.left,
+        offsetY: e.clientY - rect.top,
+        parentLeft: parentRect.left,
+        parentTop: parentRect.top,
+        startX: e.clientX,
+        startY: e.clientY,
+        moved: false,
+        startedInTray: !!piece.inTray
+      };
+    }, {passive:false});
+
+    el.addEventListener("pointermove", (e) => {
+      if(!state || piece.locked || !piece.drag || piece.drag.pointerId !== e.pointerId) return;
+      e.preventDefault();
+
+      if(!piece.drag.moved){
+        const travel = Math.hypot(e.clientX - piece.drag.startX, e.clientY - piece.drag.startY);
+        if(travel < 7) return;
+        piece.drag.moved = true;
+        if(piece.inTray){
+          liftToBoard(piece, el);
+          const parentRect = boardInner.getBoundingClientRect();
+          piece.drag.parentLeft = parentRect.left;
+          piece.drag.parentTop = parentRect.top;
+          piece.drag.offsetX = piece.w * 0.5;
+          piece.drag.offsetY = piece.h * 0.5;
+        }
+      }
+
+      const x = (e.clientX - piece.drag.parentLeft) - piece.drag.offsetX;
+      const y = (e.clientY - piece.drag.parentTop) - piece.drag.offsetY;
+      piece.x = x;
+      piece.y = y;
+      el.style.left = x + "px";
+      el.style.top  = y + "px";
+
+      
+      updateGlow(piece, el);
+    }, {passive:false});
+
+    const endDrag = (e) => {
+      if(!state || !piece.drag || piece.drag.pointerId !== e.pointerId) return;
+      e.preventDefault();
+      try { el.releasePointerCapture(e.pointerId); } catch(_e){}
+      const drag = piece.drag;
+      piece.drag = null;
+
+      if(!drag.moved){
+        if(state.mode === "regular"){
+          const next = ((parseInt(el.dataset.rot, 10) || 0) + 90) % 360;
+          el.dataset.rot = String(next);
+          el.style.setProperty("--rot", next + "deg");
+          el.style.transform = piece.inTray
+            ? `translate(-50%,-50%) scale(var(--trayScale, 0.46)) rotate(${next}deg)`
+            : `rotate(${next}deg)`;
+          setStatus(`Rotated ${next}° • ${countRemaining()} left`);
+          try { if(window.ArcadeSave) ArcadeSave.touch(150); } catch(_e) {}
+        }
+        return;
+      }
+
+      const wasLocked = piece.locked;
+      trySnap(piece, el);
+      updateGlow(piece, el);
+
+      
+      if(state && !piece.locked && !wasLocked){
+        const trayRect = trayInner.getBoundingClientRect();
+        if(e.clientY >= trayRect.top - 8){
+          sendToTray(piece, el);
+          setStatus(`Pieces left: ${countRemaining()}`);
+        }
+      }
+      try { if(window.ArcadeSave) ArcadeSave.touch(250); } catch(_e) {}
+    };
+
+    el.addEventListener("pointerup", endDrag, {passive:false});
+    el.addEventListener("pointercancel", endDrag, {passive:false});
+
+    return el;
+  }
+
+  function bringToFront(el){
+    state.z += 1;
+    el.style.zIndex = String(state.z);
+  }
+
+  function countRemaining(){
+    return state.pieces.filter(p => !p.locked).length;
+  }
+
+  function scatterPieces(){
+    const unlocked = state.pieces.filter(p => !p.locked);
+
+    trayInner.innerHTML = "";
+
+    unlocked.forEach((p) => {
+      p.el.classList.remove("locked");
+      p.el.classList.remove("glow");
+      p.el.style.transform = `translate(-50%,-50%) scale(var(--trayScale, 0.46)) rotate(${p.el.dataset.rot}deg)`;
+
+      if(!p.inTray){
+        try { boardInner.removeChild(p.el); } catch(_e){}
+        p.inTray = true;
+        p.el.classList.add("in-tray");
+      } else if(p.slot){
+        try { p.slot.removeChild(p.el); } catch(_e){}
+      }
+
+      const slot = makeSlot();
+      p.slot = slot;
+      trayInner.appendChild(slot);
+      slot.appendChild(p.el);
+      p.el.style.left = "50%";
+      p.el.style.top  = "50%";
+    });
+
+    const slots = Array.from(trayInner.children);
+    shuffle(slots);
+    trayInner.innerHTML = "";
+    slots.forEach(s => trayInner.appendChild(s));
+
+    setStatus(`Pieces left: ${countRemaining()}`);
+    try { if(window.ArcadeSave) ArcadeSave.touch(250); } catch(_e) {}
+  }
+
+function snapThreshold(){
+    return Math.max(state.mode === "easy" ? 20 : 10, state.targetSize * (state.mode === "easy" ? 0.085 : 0.032));
+  }
+
+  function rotationCorrect(piece){
+    return state.mode === "easy" || ((parseInt(piece.el && piece.el.dataset.rot, 10) || 0) % 360 === 0);
+  }
+
+  function updateGlow(piece, el){
+    if(piece.locked || piece.inTray){ el.classList.remove("glow"); return; }
+    if(!state || !state.glowHints) { el.classList.remove("glow"); return; }
+    const snap = snapThreshold();
+    const dx = piece.x - piece.homeX;
+    const dy = piece.y - piece.homeY;
+    if(Math.abs(dx) <= snap && Math.abs(dy) <= snap && rotationCorrect(piece)){
+      el.classList.add("glow");
+    } else {
+      el.classList.remove("glow");
+    }
+  }
+
+
+  function makeSlot(){
+    const slot = document.createElement("div");
+    slot.className = "tray-slot";
+    return slot;
+  }
+
+  function liftToBoard(piece, el){
+    if(!piece.inTray) return;
+
+    const slot = piece.slot;
+    const slotRect = slot.getBoundingClientRect();
+    const boardRect = boardInner.getBoundingClientRect();
+
+    try { slot.removeChild(el); } catch(_e){}
+    try { trayInner.removeChild(slot); } catch(_e){}
+    piece.slot = null;
+
+    boardInner.appendChild(el);
+    el.classList.remove("in-tray");
+    piece.inTray = false;
+
+    const x = (slotRect.left - boardRect.left) + (slotRect.width - piece.w) * 0.5;
+    const y = (slotRect.top  - boardRect.top)  + (slotRect.height - piece.h) * 0.5;
+
+    piece.x = x; piece.y = y;
+    el.style.left = x + "px";
+    el.style.top  = y + "px";
+    el.style.transform = `rotate(${el.dataset.rot}deg)`;
+  }
+
+  function sendToTray(piece, el){
+    if(piece.locked) return;
+    if(piece.inTray) return;
+
+    const slot = makeSlot();
+    piece.slot = slot;
+    trayInner.appendChild(slot);
+
+    try { boardInner.removeChild(el); } catch(_e){}
+    slot.appendChild(el);
+
+    piece.inTray = true;
+    el.classList.add("in-tray");
+    el.classList.remove("glow");
+
+    piece.x = 0; piece.y = 0;
+    el.style.left = "50%";
+    el.style.top = "50%";
+  }
+
+function trySnap(piece, el){
+    if(piece.locked) return;
+
+    if(piece.inTray){
+      liftToBoard(piece, el);
+    }
+
+    const snap = snapThreshold();
+    const dx = piece.x - piece.homeX;
+    const dy = piece.y - piece.homeY;
+
+    if(Math.abs(dx) <= snap && Math.abs(dy) <= snap && rotationCorrect(piece)) {
+      piece.x = piece.homeX;
+      piece.y = piece.homeY;
+      el.style.left = piece.homeX + "px";
+      el.style.top  = piece.homeY + "px";
+      piece.locked = true;
+      el.classList.add("locked");
+      if(piece.slot){ try { trayInner.removeChild(piece.slot); } catch(_e){} piece.slot = null; }
+      piece.inTray = false;
+      el.classList.remove("glow");
+      el.style.transform = "rotate(0deg)";
+
+      setStatus(`Pieces left: ${countRemaining()}`);
+
+      if(countRemaining() === 0) {
+        try { localStorage.removeItem(SAVE_KEY); } catch(_e) {}
+        try { if(window.ArcadeSave) ArcadeSave.saveNow(); } catch(_e) {}
+        setStatus("Finished!");
+        startConfetti();
+
+        showOverlay(menuOverlay, true);
+        menuOverlay.classList.add('completion');
+        menuOverlay.querySelector("h1").textContent = "Nice!";
+        menuOverlay.querySelector(".sub").textContent = "Puzzle complete!";
+        $("resumeBtn").textContent = "PLAY AGAIN";
+      }
+    } else {
+      setStatus(`Pieces left: ${countRemaining()}`);
+    }
+  }
+
+  
+  let confettiRunning = false;
+  function startConfetti(){
+    if(confettiRunning) return;
+    confettiRunning = true;
+    fitConfettiCanvas();
+
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+
+    const colors = ["#ffd700","#00e5ff","#ff5252","#7CFF6B","#E040FB","#ffffff"];
+    const N = 180;
+    const parts = [];
+    for(let i=0;i<N;i++){
+      parts.push({
+        x: Math.random()*W,
+        y: -20 - Math.random()*H*0.35,
+        vx: (Math.random()*2-1) * 2.3,
+        vy: 2.5 + Math.random()*4.5,
+        r: 2 + Math.random()*4,
+        rot: Math.random()*Math.PI*2,
+        vr: (Math.random()*2-1)*0.2,
+        w: 6 + Math.random()*10,
+        h: 4 + Math.random()*8,
+        c: colors[(Math.random()*colors.length)|0],
+        life: 180 + (Math.random()*60)|0
+      });
+    }
+
+    let frame = 0;
+    function tick(){
+      frame++;
+      cctx.clearRect(0,0,W,H);
+      cctx.globalAlpha = 0.98;
+
+      for(const p of parts){
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.03; 
+        p.rot += p.vr;
+        p.life--;
+
+        
+        if(p.x < -30) p.x = W + 30;
+        if(p.x > W + 30) p.x = -30;
+
+        cctx.save();
+        cctx.translate(p.x, p.y);
+        cctx.rotate(p.rot);
+        cctx.fillStyle = p.c;
+        cctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        cctx.restore();
+      }
+
+      const alive = parts.some(p => p.life > 0 && p.y < H + 60);
+      if(frame < 260 && alive){
+        requestAnimationFrame(tick);
+      } else {
+        cctx.clearRect(0,0,W,H);
+        confettiRunning = false;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function pieceToSave(piece){
+    return {
+      r: piece.r,
+      c: piece.c,
+      w: piece.w,
+      h: piece.h,
+      tab: piece.tab,
+      homeX: piece.homeX,
+      homeY: piece.homeY,
+      x: piece.x,
+      y: piece.y,
+      locked: !!piece.locked,
+      inTray: !!piece.inTray,
+      trayOrder: piece.inTray && piece.slot ? Array.from(trayInner.children).indexOf(piece.slot) : -1,
+      rot: piece.el ? piece.el.dataset.rot : "0",
+      zIndex: piece.el ? parseInt(piece.el.style.zIndex, 10) || 0 : 0,
+      image: piece.savedImage || (piece.savedImage = piece.canvas.toDataURL("image/png"))
+    };
+  }
+
+  function meaningful(){
+    return !!(state && Array.isArray(state.pieces) && state.pieces.length && countRemaining() > 0);
+  }
+
+  function captureState(){
+    if(!meaningful()) return undefined;
+    return {
+      n: state.n,
+      lvl: state.lvl,
+      emoji: state.emoji,
+      glowHints: state.glowHints,
+      mode: state.mode,
+      targetSize: state.targetSize,
+      targetX: state.targetX,
+      targetY: state.targetY,
+      z: state.z,
+      pieces: state.pieces.map(pieceToSave)
+    };
+  }
+
+  function saveGame(){
+    const saved = captureState();
+    if(!saved){ setStatus("Start a puzzle first."); return; }
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify(saved));
+      setStatus("Puzzle saved.");
+    } catch(e){
+      setStatus("Save is too large for this browser.");
+    }
+  }
+
+  function imageToCanvas(dataUrl, w, h){
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.round(w));
+        canvas.height = Math.max(1, Math.round(h));
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas);
+      };
+      img.onerror = reject;
+      img.src = dataUrl;
+    });
+  }
+
+  function applyTargetFromState(){
+    target.style.width = state.targetSize + "px";
+    target.style.height = state.targetSize + "px";
+    target.style.left = state.targetX + "px";
+    target.style.top = state.targetY + "px";
+    target.style.transform = "none";
+  }
+
+  async function restoreState(saved){
+    if(!saved || !Array.isArray(saved.pieces) || !saved.pieces.length) throw new Error("bad save");
+    if(saved.pieces.every(item => item && item.locked)) throw new Error("finished save");
+    boardInner.innerHTML = "";
+    trayInner.innerHTML = "";
+    const savedTargetSize = Math.max(1, Number(saved.targetSize) || 300);
+    const savedTargetX = Number(saved.targetX) || 0;
+    const savedTargetY = Number(saved.targetY) || 0;
+    const layout = layoutSizes();
+    const scale = layout.targetSize / savedTargetSize;
+    state = {
+      n: Math.max(2, parseInt(saved.n, 10) || 2),
+      lvl: Math.max(1, Math.min(5, parseInt(saved.lvl, 10) || 1)),
+      emoji: saved.emoji || "🦄",
+      glowHints: !!saved.glowHints,
+      mode: saved.mode === "regular" ? "regular" : "easy",
+      targetSize: layout.targetSize,
+      targetX: layout.targetX,
+      targetY: layout.targetY,
+      pieces: [],
+      z: Math.max(10, parseInt(saved.z, 10) || 10)
+    };
+    applyTargetFromState();
+    for(let idx=0; idx<saved.pieces.length; idx++){
+      const item = saved.pieces[idx];
+      if(!item || typeof item.image !== "string") throw new Error("bad piece");
+      const itemW = Math.max(1, (Number(item.w) || 1) * scale);
+      const itemH = Math.max(1, (Number(item.h) || 1) * scale);
+      const canvas = await imageToCanvas(item.image, itemW, itemH);
+      const piece = {
+        r: item.r,
+        c: item.c,
+        w: itemW,
+        h: itemH,
+        tab: (Number(item.tab) || 0) * scale,
+        canvas,
+        savedImage: item.image,
+        homeX: layout.targetX + ((Number(item.homeX) || 0) - savedTargetX) * scale,
+        homeY: layout.targetY + ((Number(item.homeY) || 0) - savedTargetY) * scale,
+        x: layout.targetX + ((Number(item.x) || 0) - savedTargetX) * scale,
+        y: layout.targetY + ((Number(item.y) || 0) - savedTargetY) * scale,
+        locked: !!item.locked,
+        drag: null,
+        el: null,
+        inTray: !!item.inTray,
+        slot: null
+      };
+      const el = createPieceEl(piece, idx);
+      piece.el = el;
+      const rot = state.mode === "easy" ? "0" : String((((parseInt(item.rot,10)||0)%360)+360)%360);
+      el.dataset.rot = rot;
+      el.style.setProperty("--rot", rot + "deg");
+      el.style.zIndex = String(item.zIndex || (state.z + idx));
+      if(piece.locked){
+        boardInner.appendChild(el);
+        el.classList.add("locked");
+        el.style.left = piece.homeX + "px";
+        el.style.top = piece.homeY + "px";
+        el.style.transform = "rotate(0deg)";
+        piece.inTray = false;
+      } else if(piece.inTray){
+        const slot = makeSlot();
+        piece.slot = slot;
+        slot.dataset.saveOrder = String(Number.isFinite(Number(item.trayOrder)) ? Number(item.trayOrder) : idx);
+        trayInner.appendChild(slot);
+        slot.appendChild(el);
+        el.classList.add("in-tray");
+        el.style.left = "50%";
+        el.style.top = "50%";
+        el.style.transform = `translate(-50%,-50%) scale(var(--trayScale, 0.46)) rotate(${rot}deg)`;
+      } else {
+        boardInner.appendChild(el);
+        el.style.left = piece.x + "px";
+        el.style.top = piece.y + "px";
+        el.style.transform = `rotate(${rot}deg)`;
+      }
+      state.pieces.push(piece);
+    }
+    state.z = Math.max(state.z, ...state.pieces.map(piece => parseInt(piece.el && piece.el.style.zIndex, 10) || 0));
+    const orderedSlots = Array.from(trayInner.children).sort((a,b) => Number(a.dataset.saveOrder) - Number(b.dataset.saveOrder));
+    orderedSlots.forEach(slot => trayInner.appendChild(slot));
+    showOverlay(startOverlay, false);
+    showOverlay(menuOverlay, false);
+    menuOverlay.classList.remove('completion');
+    setMode(state.mode);
+    $("trayTip").textContent = state.mode === "regular" ? "Tap to rotate • drag to place" : "Drag a piece up";
+    $("hint").textContent = state.mode === "regular" ? "Tap a piece to rotate it. Drag it into place when it is upright." : "Drag a piece into the dashed box. Easy pieces snap from farther away.";
+    setStatus(`Pieces left: ${countRemaining()}`);
+    return true;
+  }
+
+  async function loadGame(){
+    if(window.ArcadeSave && ArcadeSave.hasSave()) return ArcadeSave.load();
+    let saved;
+    try { saved = JSON.parse(localStorage.getItem(SAVE_KEY) || "null"); } catch(e){ saved = null; }
+    if(!saved){ setStatus("No saved puzzle."); return false; }
+    try{
+      await restoreState(saved);
+      if(window.ArcadeSave) ArcadeSave.touch(0);
+      return true;
+    }catch(e){
+      try{ localStorage.removeItem(SAVE_KEY); }catch(_e){}
+      setStatus("Saved puzzle could not be loaded.");
+      return false;
+    }
+  }
+
+  function startFresh(){
+    try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+    state = null;
+    boardInner.innerHTML = "";
+    trayInner.innerHTML = "";
+    showOverlay(menuOverlay, false);
+    showOverlay(startOverlay, true);
+    setStatus("Ready");
+  }
+
+  function saveSummary(){
+    if(!state) return "";
+    const left = countRemaining();
+    return `${state.emoji || "Puzzle"} · ${left} ${left === 1 ? "piece" : "pieces"} left`;
+  }
+
+  function leaveArcade(){
+    const leave = () => { window.location.href = "../index.html"; };
+    if(window.ArcadeSave && meaningful()) ArcadeSave.saveNow().then(leave, leave);
+    else leave();
+  }
+
+  function build(){
+    try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
+    
+    const lvl = parseInt(diffSel.value,10);
+    const map = {1:2, 2:3, 3:4, 4:5, 5:6};
+    const n = map[lvl] || 4;
+
+    const emoji = emojiSel.value || "🦄";
+    const glowHints = !!glowChk.checked;
+    const mode = selectedMode;
+
+    boardInner.innerHTML = "";
+    trayInner.innerHTML = "";
+    const {targetSize, targetX, targetY} = layoutSizes();
+
+    const src = makeEmojiCanvas(720, emoji);
+    const rawPieces = sliceIntoPiecesJigsaw(src, n, targetSize);
+
+    state = {
+      n,
+      lvl,
+      emoji,
+      glowHints,
+      mode,
+      targetSize,
+      targetX, targetY,
+      pieces: [],
+      z: 10
+    };
+
+    rawPieces.forEach((rp, idx) => {
+      
+      const tab = rp.tab;
+      const homeX = targetX + rp.c * (targetSize/n) - tab;
+      const homeY = targetY + rp.r * (targetSize/n) - tab;
+
+      const piece = {
+        ...rp,
+        homeX, homeY,
+        x: 0, y: 0,
+        locked: false,
+        drag: null,
+        el: null
+      };
+
+      const el = createPieceEl(piece, idx);
+      piece.el = el;
+
+      el.style.left = "0px";
+      el.style.top = "0px";
+      el.style.zIndex = String(state.z + idx);
+
+      
+      const slot = makeSlot();
+      trayInner.appendChild(slot);
+      piece.slot = slot;
+      slot.appendChild(el);
+      piece.inTray = true;
+      el.classList.add("in-tray");
+      el.style.left = "50%";
+      el.style.top  = "50%";
+
+      state.pieces.push(piece);
+    });
+
+    state.z = Math.max(state.z, ...state.pieces.map(piece => parseInt(piece.el && piece.el.style.zIndex, 10) || 0));
+
+    scatterPieces();
+    $("trayTip").textContent = mode === "regular" ? "Tap to rotate • drag to place" : "Drag a piece up";
+    $("hint").textContent = mode === "regular" ? "Tap a piece to rotate it. Drag it into place when it is upright." : "Drag a piece into the dashed box. Easy pieces snap from farther away.";
+  }
+
+  
+  startBtn.addEventListener("click", () => {
+    showOverlay(startOverlay, false);
+    showOverlay(menuOverlay, false);
+    build();
+  });
+  modeButtons.forEach(btn => btn.addEventListener('click', () => setMode(btn.dataset.mode)));
+
+  startBackBtn.addEventListener("click", leaveArcade);
+  saveBtn.addEventListener("click", saveGame);
+  loadBtn.addEventListener("click", loadGame);
+  loadStartBtn.addEventListener("click", loadGame);
+  menuSaveBtn.addEventListener("click", saveGame);
+  menuLoadBtn.addEventListener("click", loadGame);
+
+  shuffleBtn.addEventListener("click", () => {
+    if(!state) return;
+    scatterPieces();
+  });
+
+  menuBtn.addEventListener("click", () => {
+    if(startOverlay && !startOverlay.classList.contains("hidden")) return;
+    showOverlay(menuOverlay, true);
+    menuOverlay.classList.remove('completion');
+    menuOverlay.querySelector("h1").textContent = "Menu";
+    menuOverlay.querySelector(".sub").textContent = "Pause - choose an option.";
+    $("resumeBtn").textContent = "RESUME";
+  });
+
+  resumeBtn.addEventListener("click", () => {
+    if(resumeBtn.textContent === "PLAY AGAIN") {
+      showOverlay(menuOverlay, false);
+      menuOverlay.classList.remove('completion');
+      showOverlay(startOverlay, true);
+      state = null;
+      setStatus("Ready");
+      boardInner.innerHTML = "";
+    trayInner.innerHTML = "";
+    } else {
+      showOverlay(menuOverlay, false);
+    }
+  });
+
+  restartBtn.addEventListener("click", () => {
+    showOverlay(menuOverlay, false);
+    showOverlay(startOverlay, true);
+    state = null;
+    setStatus("Ready");
+    boardInner.innerHTML = "";
+    trayInner.innerHTML = "";
+  });
+
+  backBtn.addEventListener("click", leaveArcade);
+
+  window.addEventListener("resize", () => {
+    fitConfettiCanvas();
+    if(!state) return;
+    applyTargetFromState();
+  });
+
+  setStatus("Ready");
+  window.JigsawAutosave = {
+    id: "jigsaw", title: "Emoji Jigsaw", version: 2,
+    capture: captureState, restore: restoreState, meaningful, summary: saveSummary,
+    migrate: function(saved){ if(saved && !saved.mode) saved.mode = "easy"; return saved; },
+    startFresh
+  };
+  setMode("easy");
+})();
+</script>
+
+<script src="../arcade-save.js"></script>
+<script>
+  ArcadeSave.register(window.JigsawAutosave);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+:root{color-scheme:dark;--bg:#090d1e;--panel:#151c38;--line:rgba(255,255,255,.17);--cyan:#21dcff;--gold:#ffce3a;--pink:#ff5ac8}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#fff;touch-action:none;overscroll-behavior:none;user-select:none;-webkit-user-select:none}
+button,select{font:inherit;font-weight:900;color:#fff;border:1px solid var(--line);background:rgba(255,255,255,.1);border-radius:11px;min-height:36px;padding:5px 9px;-webkit-tap-highlight-color:transparent}
+button:active{transform:scale(.96);background:rgba(255,255,255,.18)}
+button.active{color:#071126;background:linear-gradient(135deg,var(--cyan),#7388ff);border-color:transparent}
+button:disabled{opacity:.38}
+.music-maker{position:fixed;inset:0;display:grid;grid-template-rows:minmax(0,1fr) 20px minmax(0,1fr);background:radial-gradient(circle at 15% 15%,rgba(33,220,255,.13),transparent 30%),radial-gradient(circle at 85% 85%,rgba(255,90,200,.13),transparent 30%),var(--bg)}
+.player{position:relative;min-height:0;overflow:hidden}
+.player-two{--side:#ff5ac8}
+.player-one{--side:#21dcff}
+.player-inner{position:absolute;inset:0;display:grid;grid-template-rows:auto minmax(0,1fr);gap:5px;padding:5px max(6px,env(safe-area-inset-right)) 5px max(6px,env(safe-area-inset-left))}
+.player-two .player-inner{transform:rotate(180deg)}
+.player-bar{display:flex;align-items:center;gap:5px;min-width:0}
+.home,.beat-toggle{flex:0 0 40px;width:40px;padding:0;font-size:18px}
+.instrument{flex:0 1 145px;min-width:92px;border-color:var(--side);background:linear-gradient(135deg,#202a52,rgba(255,255,255,.07));box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.pitch{display:flex;gap:3px;min-width:0}
+.pitch button{min-height:34px;padding:4px 8px;font-size:12px}
+.backing{margin-left:auto;flex:0 1 120px;min-width:82px}
+.pads{min-height:0;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px}
+.pad{position:relative;min-width:0;min-height:0;border:1px solid rgba(255,255,255,.28);border-radius:15px;background:linear-gradient(165deg,var(--pad-top),var(--pad-bottom));box-shadow:inset 0 -8px 0 rgba(0,0,0,.14),0 5px 12px rgba(0,0,0,.25);font-size:clamp(16px,3.6vmin,31px);padding:3px;color:#081021;text-shadow:0 1px 0 rgba(255,255,255,.35)}
+.pad:after{content:attr(data-small);position:absolute;left:0;right:0;bottom:8px;font-size:clamp(8px,1.5vmin,12px);letter-spacing:.2px;color:rgba(4,10,25,.72)}
+.pad.pressed{transform:translateY(4px);box-shadow:inset 0 -3px 0 rgba(0,0,0,.14),0 2px 6px rgba(0,0,0,.2);filter:brightness(1.17)}
+.voice-panel{min-height:0;display:grid;grid-template-columns:minmax(92px,1.15fr) repeat(4,minmax(82px,1fr));grid-template-rows:minmax(40px,1fr) auto;gap:5px;align-items:stretch}
+.voice-panel[hidden]{display:none}
+.voice-panel>*{min-width:0}
+.voice-panel button,.voice-panel select{font-size:clamp(11px,1.7vmin,15px)}
+.voice-status{grid-column:1/-1;text-align:center;color:rgba(255,255,255,.72);font-size:11px;font-weight:800;line-height:1.1}
+.center-line{display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(90deg,var(--cyan),#7b65ff,var(--pink));box-shadow:0 0 18px rgba(80,160,255,.5);z-index:3}
+.center-line span{font-size:10px;line-height:1;font-weight:1000;letter-spacing:1.5px;color:#071126;text-transform:uppercase}
+.rotate-message{display:none;position:fixed;inset:0;z-index:20;background:#090d1e;align-items:center;justify-content:center;text-align:center;font-size:24px;font-weight:1000;color:var(--gold)}
+@media(max-height:500px){.music-maker{grid-template-rows:minmax(0,1fr) 14px minmax(0,1fr)}.player-inner{gap:3px;padding-top:3px;padding-bottom:3px}.player-bar{gap:3px}.home,.beat-toggle{flex-basis:34px;width:34px;min-height:30px;font-size:15px}.player-bar select{min-height:30px;padding:2px 5px;font-size:11px}.pitch button{min-height:30px;padding:2px 5px;font-size:10px}.pads{gap:3px}.pad{border-radius:10px}.pad:after{bottom:4px}.voice-panel{gap:3px;grid-template-rows:minmax(32px,1fr) auto}.voice-panel button,.voice-panel select{min-height:30px;padding:2px 5px}.voice-status{font-size:9px}}
+@media(max-width:720px){.instrument{flex-basis:102px}.backing{flex-basis:88px}.pitch button{padding-left:5px;padding-right:5px}.voice-panel{grid-template-columns:repeat(3,minmax(70px,1fr));grid-template-rows:repeat(2,minmax(32px,1fr));}.voice-status{grid-column:3;grid-row:2;align-self:center}.delete-loop{grid-column:2}}
+@media(orientation:portrait){.rotate-message{display:flex}}

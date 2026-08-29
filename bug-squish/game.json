@@ -1,0 +1,22 @@
+{
+  "title": "Bug Squish",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 300,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 2,
+  "categories": [
+    "arcade",
+    "reaction"
+  ],
+  "tags": [
+    "touch",
+    "quick",
+    "cooperative",
+    "same-device"
+  ],
+  "orientation": "landscape"
+}

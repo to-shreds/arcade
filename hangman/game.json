@@ -1,0 +1,20 @@
+{
+  "title": "Hangman",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 80,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 2,
+  "categories": [
+    "word",
+    "puzzle"
+  ],
+  "tags": [
+    "keyboard",
+    "turn-based"
+  ],
+  "orientation": "any"
+}

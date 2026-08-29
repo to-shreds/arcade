@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Make 10</title>
+<style>
+:root {
+  --bg1: #0f172a;
+  --bg2: #1e1b4b;
+  --panel: rgba(15, 23, 42, 0.9);
+  --line: rgba(255,255,255,0.12);
+  --text: #eef2ff;
+  --muted: #c7d2fe;
+  --accent: #7c3aed;
+  --accent2: #22c55e;
+  --gold: #facc15;
+  --shadow: 0 16px 42px rgba(0,0,0,0.32);
+  --radius: 18px;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top, #312e81 0%, #1e1b4b 28%, #0f172a 68%, #020617 100%);
+}
+body { display: flex; justify-content: center; }
+button, input { font: inherit; }
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 14px;
+  color: var(--text);
+  background: linear-gradient(180deg, rgba(124,58,237,0.95), rgba(91,33,182,0.95));
+  box-shadow: 0 10px 22px rgba(91,33,182,0.24);
+  cursor: pointer;
+}
+button.secondary {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+button.good {
+  background: linear-gradient(180deg, rgba(34,197,94,0.95), rgba(21,128,61,0.95));
+  box-shadow: 0 10px 22px rgba(21,128,61,0.24);
+}
+button:disabled { opacity: 0.45; cursor: default; }
+input[type="text"] {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+}
+.app {
+  width: 100%;
+  max-width: 980px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: max(8px, env(safe-area-inset-top)) 8px max(8px, env(safe-area-inset-bottom));
+}
+.topbar, .footer, .status, .scorebar, .controls, .sumbar {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+}
+.titleblock { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.title { font-size: 1.12rem; font-weight: 800; }
+.subtitle { font-size: 0.82rem; color: var(--muted); line-height: 1.2; }
+.turnpill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--line);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.main {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto auto auto auto minmax(0,1fr);
+  gap: 8px;
+  flex: 1;
+}
+.scorebar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  padding: 6px;
+}
+.scorechip {
+  min-width: 0;
+  border-radius: 14px;
+  padding: 7px 8px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.scorechip.active { outline: 2px solid rgba(250, 204, 21, 0.75); }
+.scorechip .name {
+  width: 100%;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.scorechip .score { font-size: 1.12rem; font-weight: 800; }
+.controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 6px;
+}
+.controls button { min-height: 42px; font-weight: 700; }
+.status {
+  min-height: 56px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.status .message { font-size: 1rem; font-weight: 800; }
+.status .small { color: var(--muted); font-size: 0.86rem; line-height: 1.2; }
+.sumbar {
+  padding: 12px;
+}
+.sumfocus {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+.sumcore {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.sumactions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  width: min(152px, 28vw);
+}
+.sumactions button {
+  min-height: 48px;
+  font-weight: 800;
+}
+.sumlabel {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.totalbox {
+  width: clamp(180px, 46vw, 270px);
+  min-height: clamp(88px, 14vh, 118px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  border: 2px solid rgba(255,255,255,0.16);
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 14px 32px rgba(0,0,0,0.24);
+}
+.total {
+  min-width: 3ch;
+  text-align: center;
+  font-size: clamp(3.6rem, 12vw, 5.2rem);
+  line-height: 1;
+  font-weight: 1000;
+  font-variant-numeric: tabular-nums;
+}
+.totalbox.good {
+  border-color: rgba(34,197,94,0.55);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 4px rgba(34,197,94,0.12), 0 14px 32px rgba(0,0,0,0.24);
+}
+.totalbox.bad {
+  border-color: rgba(239,68,68,0.45);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 4px rgba(239,68,68,0.10), 0 14px 32px rgba(0,0,0,0.24);
+}
+.total.good { color: #86efac; }
+.total.bad { color: #fca5a5; }
+.table {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 8px;
+}
+.card {
+  position: relative;
+  min-height: clamp(86px, 14vh, 118px);
+  border-radius: 18px;
+  border: 2px solid rgba(255,255,255,0.18);
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(236,240,255,0.96));
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+  padding: 8px;
+}
+.card.selected {
+  transform: translateY(-1px) scale(0.99);
+  border-color: rgba(250,204,21,0.95);
+  box-shadow: 0 0 0 4px rgba(250,204,21,0.26), 0 16px 34px rgba(0,0,0,0.24);
+}
+.card.hint { animation: hintPulse 0.9s ease-in-out 3; }
+.corner {
+  position: absolute;
+  left: 9px;
+  top: 7px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #4b5563;
+}
+.corner.bottom {
+  left: auto;
+  right: 9px;
+  top: auto;
+  bottom: 7px;
+  transform: rotate(180deg);
+}
+.centerValue {
+  font-size: clamp(2.2rem, 7vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 0.84rem;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 20;
+}
+#feedbackOverlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2,6,23,0.82);
+  z-index: 60;
+}
+#feedbackContent {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(2.4rem, 11vw, 5rem);
+  font-weight: 1000;
+  letter-spacing: 0.04em;
+  color: #facc15;
+  text-shadow: 0 0 18px rgba(250,204,21,0.35);
+  text-align: center;
+  padding: 24px;
+}
+#feedbackConfetti {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.panel {
+  width: min(760px, 100%);
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(15,23,42,0.98), rgba(30,41,59,0.98));
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+.panel h1, .panel h2 { margin: 0 0 8px; }
+.panel p { margin: 0 0 12px; color: var(--muted); line-height: 1.35; }
+.optionrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.optionrow button.selected { outline: 2px solid rgba(250,204,21,0.82); }
+.names {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.rules {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+.rulecard {
+  border-radius: 16px;
+  padding: 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+}
+.rulecard strong { display: block; margin-bottom: 6px; }
+.settingcard {
+  border-radius: 18px;
+  padding: 14px;
+  margin: 8px 0 18px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+}
+.settinghead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.settingtitle {
+  font-weight: 800;
+}
+.settingvalue {
+  font-weight: 900;
+  color: var(--gold);
+  min-width: 72px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.rangewrap input[type="range"] {
+  width: 100%;
+}
+.turnpanel {
+  min-width: 150px;
+  padding: 10px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(250,204,21,0.25);
+  background: rgba(124,58,237,0.14);
+  box-shadow: inset 0 0 0 1px rgba(250,204,21,0.08);
+  text-align: right;
+}
+.turnpanel .label {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.turnpanel .value {
+  font-size: 1.08rem;
+  font-weight: 900;
+  color: #fde68a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.turn-panel {
+  width: min(460px, 94vw);
+  text-align: center;
+}
+.turn-name {
+  font-size: clamp(34px, 6vw, 52px);
+  color: var(--gold);
+  font-weight: 1000;
+  letter-spacing: 1px;
+  margin: 6px 0 4px;
+  text-shadow: 0 0 18px rgba(250,204,21,0.25);
+}
+.turn-sub {
+  color: rgba(255,255,255,0.82);
+  font-size: 15px;
+}
+.endscores {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+.endrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid var(--line);
+  font-weight: 700;
+}
+.hidden { display: none !important; }
+@keyframes hintPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+@media (max-width: 760px) {
+  .app {
+    gap: 6px;
+    padding-inline: 8px;
+  }
+  .topbar {
+    gap: 6px;
+    padding: 7px 8px;
+  }
+  .title { font-size: 0.98rem; }
+  .subtitle {
+    font-size: 0.72rem;
+    line-height: 1.15;
+  }
+  .turnpill {
+    padding: 6px 9px;
+    font-size: 0.78rem;
+  }
+  .main {
+    gap: 6px;
+    grid-template-rows: auto auto auto auto minmax(0,1fr);
+  }
+  .scorebar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+    padding: 5px;
+  }
+  .scorechip {
+    padding: 6px 7px;
+  }
+  .scorechip .name {
+    font-size: 0.72rem;
+  }
+  .scorechip .score {
+    font-size: 1rem;
+  }
+  .controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+    padding: 5px;
+  }
+  .controls button {
+    min-height: 36px;
+    padding: 7px 4px;
+    font-size: 0.76rem;
+    border-radius: 12px;
+  }
+  .status {
+    min-height: 0;
+    padding: 8px 9px;
+    gap: 6px;
+    align-items: center;
+  }
+  .status .message {
+    font-size: 0.88rem;
+    line-height: 1.15;
+  }
+  .status .small {
+    font-size: 0.74rem;
+  }
+  .turnpanel {
+    min-width: 118px;
+    padding: 7px 8px;
+    border-radius: 14px;
+  }
+  .turnpanel .label {
+    font-size: 0.66rem;
+  }
+  .turnpanel .value {
+    font-size: 0.92rem;
+  }
+  .sumbar {
+    padding: 8px;
+  }
+  .sumfocus {
+    gap: 5px;
+  }
+  .sumcore {
+    gap: 8px;
+  }
+  .sumactions {
+    width: 112px;
+    gap: 6px;
+  }
+  .sumactions button {
+    min-height: 36px;
+    padding: 7px 6px;
+    font-size: 0.8rem;
+    border-radius: 12px;
+  }
+  .sumlabel {
+    font-size: 0.74rem;
+  }
+  .totalbox {
+    width: min(100%, 220px);
+    min-height: 66px;
+    border-radius: 18px;
+  }
+  .total {
+    font-size: clamp(2.7rem, 12vw, 4rem);
+  }
+  .comboNote {
+    font-size: 0.75rem;
+  }
+  .table {
+    gap: 6px;
+  }
+  .card {
+    min-height: clamp(68px, 10.2vh, 88px);
+    border-radius: 15px;
+    padding: 6px;
+  }
+  .centerValue {
+    font-size: clamp(2rem, 7.2vw, 2.8rem);
+  }
+  .corner {
+    font-size: 0.7rem;
+    left: 7px;
+    top: 5px;
+  }
+  .corner.bottom {
+    right: 7px;
+    bottom: 5px;
+  }
+  .footer {
+    gap: 6px;
+    padding: 6px 9px;
+    font-size: 0.72rem;
+  }
+  .names, .rules {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 400px) {
+  .sumcore {
+    flex-direction: column;
+  }
+  .sumactions {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.arcade-home-link {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  left: calc(env(safe-area-inset-left, 0px) + 12px);
+  z-index: 2000;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(15,23,42,0.82);
+  color: #fff;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 900;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.24);
+}
+.arcade-home-link:active { transform: translateY(1px); }
+
+</style>
+<style id="arcade-fit-fix">
+*,*::before,*::after{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body>*{min-width:0;max-width:100%}
+.app,.main,.game-view,#game-view,.wrap,.game-area,.overlay{min-width:0;max-width:100%}
+.main{grid-template-columns:minmax(0,1fr)!important}
+.topbar,.footer,.status,.scorebar,.controls,.sumbar,.table,[class*="top"],[class*="bar"],[class*="controls"],[class*="savebar"]{max-width:100%;min-width:0}
+.topbar>*,.status>*,.row>*,[class*="top"]>*,[class*="bar"]>*{min-width:0}
+.row.nowrap{flex-wrap:wrap!important}
+button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.actionBtn,.btn-large-opt{max-width:100%;min-width:0;touch-action:manipulation;font-size:clamp(11px,3.2vw,15px);line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel,.frontCard,.pm-menu-wrap,.modalBody,.settings-panel,#cat-menu .cat-grid,#cat-menu,.overlay>.panel{max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 16px)!important;overflow:hidden!important;box-sizing:border-box!important}
+.cat-btn,.btn-large-opt,.panel button,.frontCard button,.pm-menu-wrap button,.modalBody button{white-space:normal!important}
+.hud-bar,.question-box,.answers-grid{box-sizing:border-box!important;max-width:calc(100vw - 16px)!important}
+@media (max-width:520px),(max-height:720px){
+  .arcade-home-link,.back-btn,#menuBtn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;border-radius:999px!important;max-width:104px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;left:calc(env(safe-area-inset-left,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .settings-btn,.gear-btn,#settingsBtn,#global-settings-btn{padding:7px 9px!important;font-size:12px!important;line-height:1!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important}
+  .bj-savebar{display:flex!important;gap:4px!important;right:calc(env(safe-area-inset-right,0px) + 6px)!important;top:calc(env(safe-area-inset-top,0px) + 6px)!important;max-width:calc(100vw - 118px)!important;flex-wrap:wrap!important;justify-content:flex-end!important}
+  .bj-savebar .ui-btn{padding:7px 8px!important;font-size:12px!important;line-height:1!important}
+  .topbar,.ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{height:auto!important;min-height:44px!important;padding-top:6px!important;padding-bottom:6px!important;gap:6px!important;flex-wrap:wrap!important;align-content:center!important}
+  .topbar{padding-left:max(8px,env(safe-area-inset-left,0px))!important;padding-right:max(8px,env(safe-area-inset-right,0px))!important}
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:76px!important;padding-right:8px!important}
+  .ck-top>div,.ttt-top>div,.mz-top>div,.mg-top>div,.si-top>div,.ms-top>div{display:flex!important;flex-wrap:wrap!important;gap:4px!important;min-width:0!important;max-width:100%!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{padding:6px 8px!important;font-size:12px!important;gap:5px!important;white-space:nowrap!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{padding:7px 8px!important;font-size:12px!important;min-height:0!important}
+  #modePvp,#modeCpu{white-space:normal!important;line-height:1!important}
+  #g-dots .top{padding-left:72px!important;gap:5px!important}
+  #g-dots .row{gap:5px!important;flex-wrap:wrap!important;justify-content:center!important}
+  #g-dots .pill{padding:5px 7px!important;font-size:12px!important;white-space:nowrap!important}
+  #g-dots .status-pill{flex:1 1 100%!important;margin-left:0!important;max-width:100%!important}
+  #g-dots canvas{max-width:calc(100vw - 20px)!important;max-height:calc(100svh - 154px)!important}
+  #g-hangman .top-bar{min-height:42px!important;padding:4px 8px!important;gap:4px!important}
+  #g-hangman .hm-left-slot{flex-basis:68px!important;width:68px!important}
+  #g-hangman .cat-pill{font-size:11px!important;padding:5px 8px!important}
+  #g-hangman .hm-status{gap:5px!important;max-width:50vw!important}
+  #g-hangman canvas{max-height:18vh!important}
+  #g-hangman #word-display{font-size:clamp(24px,8vw,34px)!important;min-height:34px!important;margin:2px 0!important}
+  #g-hangman #hint-box{font-size:12px!important;min-height:18px!important;padding:4px 8px!important}
+  #g-hangman .controls{gap:4px!important;padding:0 6px 2px!important;flex-wrap:nowrap!important}
+  #g-hangman .btn-hint,#g-hangman .btn-risk{padding:6px 6px!important;font-size:11px!important;gap:2px!important;box-shadow:none!important;flex:1 1 0!important;justify-content:center!important}
+  #g-hangman .keyboard{gap:3px!important;padding:3px!important;width:calc(100vw - 12px)!important;margin-bottom:2px!important}
+  #g-hangman .key{height:clamp(30px,6.6vh,42px)!important;font-size:clamp(15px,5vw,20px)!important;border-bottom-width:2px!important;border-radius:6px!important}
+  #g-orbslicer .orb-ui{left:6px!important;right:6px!important;top:42px!important;gap:4px!important}
+  #g-orbslicer .orb-pill{padding:5px 7px!important;font-size:12px!important;letter-spacing:0!important}
+  #g-orbslicer .orb-lives{font-size:13px!important;letter-spacing:0!important}
+  #g-minigolf #mg-menu{gap:8px!important;padding:12px 10px!important;justify-content:flex-start!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(30px,10vw,48px)!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:9px 10px!important;font-size:12px!important;min-height:0!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:8px!important}
+  .math-box{width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;left:auto!important;right:auto!important}
+  .hud-bar{padding:8px 10px!important;width:calc(100vw - 16px)!important;gap:4px!important}
+  .question-box{width:calc(100vw - 16px)!important;padding:14px!important;min-height:130px!important}
+  .cat-grid{gap:8px!important}
+  .cat-btn{padding:12px 8px!important;font-size:clamp(13px,4vw,18px)!important}
+  .menu-title{font-size:clamp(32px,11vw,48px)!important;margin:0!important}
+}
+@media (max-width:360px){
+  .ck-top,.ttt-top,.mz-top,.mg-top,.si-top,.ms-top{padding-left:66px!important}
+  .ck-pill,.ttt-pill,.mz-pill,.mg-pill,.si-pill{font-size:11px!important;padding:5px 7px!important}
+  .ck-btn,.ttt-btn,.mz-btn,.mg-btn,.si-btn,.ui-btn,.secondary,.small,.btn-large,.actionBtn,.btn-large-opt{font-size:11px!important;padding:6px 7px!important}
+  #g-dots .top{padding-left:64px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .wrap{gap:6px!important}
+  .titlebar{padding:6px 8px!important;gap:6px!important}
+  .layout{gap:6px!important}
+  .side{min-height:0!important;overflow:hidden!important}
+  .side .panel{max-height:calc(100svh - 410px)!important;overflow:hidden!important}
+  .panel .phead{padding:6px 8px!important}
+  .panel .pbody{padding:6px 8px!important}
+  #g-dots #menuOverlay .dots-mode-row,#g-dots #menuOverlay .dots-ai-row,#g-dots #menuOverlay .grid-options{width:100%!important;max-width:100%!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn{padding:6px 5px!important;font-size:11px!important;min-width:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  #g-dots .dots-menu-card{padding:6px!important;gap:5px!important;max-height:calc(100svh - 12px)!important}
+  #g-dots .dots-section-card{padding:5px!important;gap:4px!important}
+  #g-dots .dots-swatch-btn{padding:5px!important;font-size:10px!important;gap:3px!important}
+  #g-dots .dots-swatch-chip{width:16px!important;height:16px!important}
+  #g-dots .dots-swatch-hex{font-size:9px!important;letter-spacing:0!important}
+  .btn-large-opt{min-height:32px!important;line-height:1.15!important}
+  .ttt-piece-btn{white-space:normal!important;font-size:11px!important;line-height:1.05!important;padding:7px 8px!important}
+}
+
+@media (max-width:520px),(max-height:720px){
+  .modalPanel{max-height:calc(100svh - 14px)!important;overflow:hidden!important;padding:8px!important}
+  .modalHead{margin-bottom:5px!important}
+  .optRow{padding:6px!important;margin:5px 0!important;gap:6px!important}
+  .optRow .label .desc{font-size:10px!important;line-height:1.15!important}
+  .seg button{font-size:10px!important;padding:6px 7px!important;line-height:1.05!important;white-space:normal!important}
+}
+</style>
+<link rel="icon" href="data:,">
+<style id="arcade-v6-size-fix">
+@media (max-width:520px),(max-height:720px){
+  html,body{height:100%;overflow:hidden!important}
+  .panel,.frontCard,.pm-menu-wrap,.modal,.modalBody,.settings-panel,.overlay>.panel{overflow:hidden!important;max-height:calc(100svh - 8px)!important}
+  .small-note,.menu-sub,.sub{line-height:1.12!important}
+  .panel h1,.splash-title,.menu-title{line-height:1!important}
+  .panel button,.frontCard button,.pm-menu-wrap button,.modalBody button,.btn-large,.btn-large-opt{min-height:0!important}
+  .overlay,.modalBack,.front{padding:6px!important}
+  .app,.wrap{height:100svh!important;min-height:0!important;max-height:100svh!important;overflow:hidden!important}
+  .main,.game-area,.game-view,#game-view,.layout,.boardShell,.board-wrap,.side,.stage,#stage{min-height:0!important;overflow:hidden!important}
+  .rules{margin:6px 0!important;gap:5px!important}
+  .rulecard{padding:7px!important;font-size:10px!important;line-height:1.15!important;border-radius:10px!important}
+  .rulecard strong{margin-bottom:2px!important}
+  .panel>p{display:none!important}
+  .settingcard{padding:8px!important;margin:6px 0!important;border-radius:12px!important}
+  .settingcard p{display:none!important}
+  .optionrow{gap:5px!important;margin-bottom:7px!important}
+  .names{gap:5px!important;margin-bottom:7px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #g-dots #menuOverlay{padding:4px!important;gap:4px!important}
+  #g-dots .dots-menu-card{padding:5px!important;gap:4px!important;width:100%!important;max-height:calc(100svh - 8px)!important;overflow:hidden!important}
+  #g-dots .splash-title{font-size:20px!important;margin:0!important}
+  #g-dots .menu-sub,#g-dots .dots-subtle,#g-dots .dots-color-hint,#g-dots #dotsAiWrap div[style*="font-size:10px"]{display:none!important}
+  #g-dots .dots-menu-head{gap:0!important}
+  #g-dots .dots-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important}
+  #g-dots .dots-mode,#g-dots #dotsPlayerCountWrap,#g-dots #dotsAiWrap,#g-dots .dots-section-card.dots-colors,#g-dots .dots-section-card.dots-grid-card{grid-column:auto!important}
+  #g-dots .dots-section-card{padding:4px!important;gap:3px!important;border-radius:9px!important}
+  #g-dots .dots-sec-title{font-size:8px!important;margin:0!important;line-height:1!important}
+  #g-dots .dots-mode-row,#g-dots .dots-player-row,#g-dots .dots-ai-row,#g-dots .dots-toggles-row{gap:3px!important;flex-wrap:wrap!important}
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{padding:5px 3px!important;font-size:9px!important;line-height:1.05!important;border-radius:7px!important}
+  #g-dots .dots-name-grid,#g-dots .dots-team-grid,#g-dots .dots-team-name-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-mini-label{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-name-field,#g-dots .dots-team-field,#g-dots .dots-team-name-field{gap:2px!important}
+  #g-dots .dots-name-input,#g-dots .dots-team-select{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #g-dots .dots-toggle-pill{padding:4px 5px!important;font-size:8px!important;gap:3px!important;line-height:1.05!important}
+  #g-dots .dots-toggle-pill input{width:12px!important;height:12px!important}
+  #g-dots .dots-color-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
+  #g-dots .dots-color-item{gap:1px!important}
+  #g-dots .dots-color-name{font-size:8px!important;line-height:1!important}
+  #g-dots .dots-swatch-btn{padding:3px!important;gap:2px!important;border-radius:7px!important;border-width:1px!important}
+  #g-dots .dots-swatch-chip{width:18px!important;height:14px!important;border-radius:5px!important}
+  #g-dots .dots-swatch-hex{font-size:7px!important;letter-spacing:0!important}
+  #g-dots .grid-options{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important;width:100%!important}
+  .front{align-items:center!important}
+  .frontCard{padding:8px!important;border-radius:18px!important}
+  .frontHeader{padding:4px!important;margin-bottom:6px!important}
+  .frontTitle{font-size:18px!important;line-height:1!important}
+  .frontHeader .mini,.modeDesc,.modeExamples{display:none!important}
+  .modeGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+  .modeCard{padding:12px 7px!important;border-radius:14px!important;text-align:center!important}
+  .modeTitle{font-size:16px!important;line-height:1.05!important}
+  #startOverlay .panel h1{font-size:20px!important;margin:0 0 4px!important}
+  #startOverlay .panel .sub,#startOverlay .small-note{display:none!important}
+  #startOverlay .panel{padding:8px!important;border-radius:14px!important}
+  #startOverlay .row{gap:5px!important}
+  #startOverlay .opt{padding:6px!important;min-width:0!important;border-radius:10px!important}
+  #startOverlay .opt label{font-size:10px!important;margin-bottom:3px!important}
+  #startOverlay select,#startOverlay input[type="range"]{padding:6px 8px!important;font-size:12px!important}
+  #startOverlay .toggle-row{padding:6px 8px!important;margin-top:5px!important;border-radius:10px!important}
+  #startOverlay .t-desc{display:none!important}
+  #startOverlay .hr{margin:5px 0!important}
+  #startOverlay .btn-large{padding:8px 9px!important;font-size:13px!important;border-radius:11px!important}
+  #startBackBtn,#loadStartBtn{margin-top:5px!important}
+  #startOverlay .pm-menu-wrap{gap:6px!important;padding:0!important}
+  #startOverlay .pm-card{padding:8px!important;border-radius:12px!important}
+  #startOverlay .pm-pill-row{gap:4px!important}
+  #startOverlay .pm-pill{padding:7px 8px!important;font-size:12px!important}
+  #startOverlay .btn-large-opt{padding:9px 10px!important;font-size:13px!important;border-radius:11px!important}
+  #startOverlay.splash-title,.splash-title{font-size:clamp(26px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu{gap:5px!important;padding:8px!important;justify-content:center!important;overflow:hidden!important}
+  #g-minigolf #mg-menu h1{font-size:clamp(24px,9vw,38px)!important;margin:0!important}
+  #g-minigolf #mg-menu>div[style*="max-width:520px"],#g-minigolf #mg-diff-wrap>div:last-child{display:none!important}
+  #g-minigolf #mg-best-line{font-size:11px!important;margin-top:0!important;padding:0!important}
+  #g-minigolf #mg-diff-wrap{margin-top:2px!important;gap:4px!important}
+  #g-minigolf #mg-diff-wrap>div:first-child{font-size:10px!important;line-height:1!important}
+  #g-minigolf #mg-diff-wrap .ui-btn{padding:6px 8px!important;font-size:11px!important}
+  #g-minigolf #mg-menu div[style*="flex-direction:column"]{gap:5px!important}
+  #g-minigolf #mg-menu .btn-large-opt{padding:7px 9px!important;font-size:12px!important;max-width:240px!important}
+  .pm-menu-wrap .small-note,.pm-menu-wrap+.small-note{display:none!important}
+  .modalBack{align-items:center!important}
+  .modal{max-height:calc(100svh - 8px)!important;overflow:hidden!important;border-radius:16px!important}
+  .modalHeader{position:static!important;padding:7px 9px!important}
+  .modalTitle{font-size:14px!important}
+  .modalBody{padding:8px!important;gap:6px!important;overflow:hidden!important}
+  .grid2,.namesGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+  label{gap:3px!important;font-size:9px!important;line-height:1!important}
+  input[type="text"],input[type="number"],select{padding:5px 7px!important;font-size:11px!important;border-radius:8px!important}
+  .nameRow{gap:3px!important}
+  .nameLabel{font-size:9px!important;gap:4px!important;line-height:1!important}
+  .helper{display:none!important}
+  .footerActions{gap:5px!important;justify-content:center!important}
+  .footerActions button{padding:7px 10px!important;font-size:12px!important}
+  #startOverlay .panel-head{padding-right:88px!important}
+  #startOverlay .panel-top-back{padding:5px 7px!important;font-size:10px!important;max-width:82px!important}
+  #startOverlay .choice-grid{gap:3px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{padding:5px 3px!important;font-size:9px!important;border-radius:8px!important}
+  #startOverlay .more-players-row{margin-top:3px!important;gap:3px!important}
+  #startOverlay .theme-grid,#startOverlay .size-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #startOverlay .names-wrap,#startOverlay .team-wrap{margin-top:3px!important}
+  #startOverlay .names-label{font-size:8px!important;margin:2px 0!important}
+  #startOverlay .name-input{padding:4px!important;font-size:9px!important;border-radius:7px!important}
+  #startOverlay .team-choice-grid{width:88px!important;flex-basis:88px!important;gap:2px!important}
+  #startOverlay .team-grid,#startOverlay .team-names-grid{gap:3px!important}
+  #startOverlay .panel-footer{position:static!important;padding-top:2px!important;margin-top:2px!important;background:none!important}
+  #startOverlay .row{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  body.memory-game #game{gap:6px!important;padding:calc(env(safe-area-inset-top,0px) + 8px) 8px max(8px,calc(env(safe-area-inset-bottom,0px) + 6px))!important}
+  body.memory-game #board{flex:0 0 auto!important;max-width:calc(100vw - 16px)!important;max-height:calc(100svh - 64px)!important;overflow:hidden!important;align-content:start!important}
+  body.memory-game .card-front .face{font-size:clamp(25px,8vmin,48px)!important}
+}
+@media (max-width:360px){
+  #g-dots .dots-mode-btn,#g-dots .dots-player-btn,#g-dots .dots-ai-btn,#g-dots .grid-btn{font-size:8px!important;padding:4px 2px!important}
+  .modeTitle{font-size:14px!important}
+  .modalBody{gap:4px!important}
+  input[type="text"],input[type="number"],select{padding:4px 6px!important;font-size:10px!important}
+  #startOverlay .choice-btn,#startOverlay .team-choice-btn{font-size:8px!important;padding:4px 2px!important}
+}
+</style>
+
+<style id="arcade-v6-late-fix">
+@media (max-width:520px),(max-height:720px){
+  body.make10-game .app{gap:4px!important;padding:5px 8px!important}
+  body.make10-game .main{gap:4px!important;grid-template-rows:auto auto auto auto minmax(0,1fr)!important}
+  body.make10-game .topbar{padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .title{font-size:14px!important;line-height:1!important}
+  body.make10-game .subtitle,body.make10-game .status .small,body.make10-game .comboNote{display:none!important}
+  body.make10-game .turnpill{padding:5px 8px!important;font-size:11px!important}
+  body.make10-game .scorebar{gap:4px!important;padding:4px!important}
+  body.make10-game .scorechip{padding:4px!important;border-radius:10px!important}
+  body.make10-game .scorechip .name{font-size:10px!important}
+  body.make10-game .scorechip .score{font-size:14px!important}
+  body.make10-game .controls{gap:4px!important;padding:4px!important}
+  body.make10-game .controls button{min-height:30px!important;padding:6px 7px!important;font-size:11px!important}
+  body.make10-game .status{min-height:34px!important;padding:5px 7px!important;border-radius:12px!important}
+  body.make10-game .status .message{font-size:12px!important;line-height:1.05!important}
+  body.make10-game .sumbar{padding:5px!important;border-radius:12px!important}
+  body.make10-game .sumfocus{gap:4px!important}
+  body.make10-game .sumlabel{font-size:10px!important}
+  body.make10-game .sumcore{gap:6px!important}
+  body.make10-game .sumactions{gap:4px!important;width:108px!important}
+  body.make10-game .sumactions button{min-height:30px!important;padding:5px!important;font-size:11px!important}
+  body.make10-game .totalbox{width:140px!important;min-height:45px!important;border-radius:14px!important}
+  body.make10-game .total{font-size:34px!important}
+  body.make10-game .table{gap:4px!important}
+  body.make10-game .card{min-height:48px!important;border-radius:11px!important;padding:4px!important;border-width:1px!important}
+  body.make10-game .centerValue{font-size:28px!important}
+  body.make10-game .corner{font-size:9px!important;left:5px!important;top:4px!important}
+  body.make10-game .corner.bottom{right:5px!important;bottom:4px!important}
+  body.make10-game .footer{padding:5px 7px!important;font-size:10px!important;border-radius:12px!important}
+  #g-clock{justify-content:center!important;gap:6px!important;padding-top:34px!important;padding-bottom:6px!important;box-sizing:border-box!important;overflow:hidden!important}
+  #g-clock .clock-face{width:206px!important;height:206px!important;border-width:6px!important;margin:0 0 6px!important;box-sizing:border-box!important}
+  #g-clock .clock-ui{gap:5px!important;max-height:310px!important;overflow:hidden!important}
+  #g-clock .display-box{font-size:22px!important;padding:5px 10px!important;min-width:98px!important;border-radius:8px!important}
+  #g-clock .keypad{gap:5px!important;margin-top:4px!important;max-width:190px!important}
+  #g-clock .kp-btn{padding:8px!important;font-size:16px!important;border-radius:7px!important;line-height:1!important}
+  #g-clock .mc-grid{gap:5px!important;width:94%!important}
+  #g-clock .mc-btn{padding:8px!important;font-size:16px!important}
+}
+@media (max-width:360px){
+  #g-clock .clock-face{width:190px!important;height:190px!important}
+  #g-clock .keypad{max-width:180px!important}
+  #g-clock .kp-btn{padding:7px!important;font-size:15px!important}
+}
+</style>
+
+<style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+</head>
+<body class="make10-game">
+<a class="arcade-home-link" href="../index.html">← ARCADE</a>
+<div class="app">
+  <div class="topbar">
+    <div class="titleblock">
+      <div class="title">Make 10</div>
+      <div class="subtitle">Use 6 cards. Any total that is a multiple of 10 counts: 10, 20, 30, and so on. Cards now run from 1 to 12.</div>
+    </div>
+    <div class="turnpill" id="turnPill">Turn: Solo</div>
+  </div>
+  <div class="main">
+    <div class="scorebar" id="scoreBar"></div>
+    <div class="controls">
+      <button class="secondary" id="undoBtn" disabled>↶ Undo</button>
+      <button class="secondary" id="hintBtn">Hint</button>
+      <button class="secondary" id="newRowBtn">New Row</button>
+      <button class="secondary" id="saveBtn">Save</button>
+      <button class="secondary" id="loadBtn">Load</button>
+    </div>
+    <div class="status">
+      <div>
+        <div class="message" id="message">Choose cards that make 10, 20, 30, or another multiple of 10.</div>
+        <div class="small" id="subMessage">With 6 cards, there should always be something to grab.</div>
+      </div>
+      <div class="turnpanel">
+        <div class="label">Current turn</div>
+        <div class="value" id="turnPanelName">Solo</div>
+        <div class="small" id="selectedInfo">Selected: 0 cards</div>
+      </div>
+    </div>
+    <div class="sumbar">
+      <div class="sumfocus">
+        <div class="sumlabel">Current sum</div>
+        <div class="sumcore">
+          <div class="totalbox" id="totalBox">
+            <div class="total" id="currentTotal">0</div>
+          </div>
+          <div class="sumactions">
+            <button class="secondary" id="clearBtn">Clear</button>
+            <button id="collectBtn">Collect</button>
+          </div>
+        </div>
+        <div class="small comboNote" id="comboNote">Examples: 6 + 4, 9 + 1, 8 + 7 + 5, or 12 + 11 + 7.</div>
+      </div>
+    </div>
+    <div class="table" id="table"></div>
+  </div>
+  <div class="footer">
+    <div id="footerText">Deck: 0 • Table: 0 • A scoring combo is available.</div>
+    <div id="roundInfo">Round ready</div>
+  </div>
+</div>
+
+<div class="overlay" id="startOverlay">
+  <div class="panel">
+    <h1>Make 10</h1>
+    <p>Great for 1-4 players. Pick one or more cards. If the total is 10, 20, 30, or any other multiple of 10, you collect them all. New Row always costs 1 point, and sums above 40 earn a bonus point.</p>
+    <div class="rules">
+      <div class="rulecard"><strong>Easy to spot</strong>Six cards are on the table at once, so there are more good choices.</div>
+      <div class="rulecard"><strong>Good math</strong>Singles, pairs, or bigger combos all count if the total is a multiple of 10.</div>
+      <div class="rulecard"><strong>Stuck?</strong>Tap New Row for a fresh set of 6 cards, but it always costs 1 point.</div>
+    </div>
+    <h2>Players</h2>
+    <div class="optionrow" id="playerButtons"></div>
+    <div class="names" id="nameInputs"></div>
+    <div class="settingcard">
+      <div class="settinghead">
+        <div class="settingtitle">Game length</div>
+        <div class="settingvalue" id="goalValue">40 cards</div>
+      </div>
+      <p>The game ends once this many cards have been collected in total.</p>
+      <div class="rangewrap">
+        <input type="range" id="goalSlider" min="10" max="40" step="1" value="40">
+      </div>
+    </div>
+    <div class="optionrow">
+      <button class="good" id="startBtn">Start Game</button>
+      <button class="secondary" id="loadStartBtn">Load Saved Game</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay hidden" id="turnOverlay">
+  <div class="panel turn-panel">
+    <div class="turn-sub" id="turnOverlaySub">Next turn:</div>
+    <div class="turn-name" id="turnOverlayName">Player 1</div>
+  </div>
+</div>
+
+<div id="feedbackOverlay">
+  <div id="feedbackContent">AWESOME!</div>
+  <canvas id="feedbackConfetti"></canvas>
+</div>
+
+<div class="overlay hidden" id="endOverlay">
+  <div class="panel">
+    <h2 id="endTitle">Game Over</h2>
+    <p id="endText"></p>
+    <div class="endscores" id="endScores"></div>
+    <div class="optionrow">
+      <button class="secondary" id="endUndoBtn">↶ Undo Last Turn</button>
+      <button class="good" id="playAgainBtn">Play Again</button>
+      <button class="secondary" id="changePlayersBtn">Change Players</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const defaultNames = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
+  const state = {
+    playerCount: 1,
+    players: [],
+    currentPlayer: 0,
+    deck: [],
+    table: [],
+    selected: [],
+    over: false,
+    tableSize: 6,
+    goalCards: 40
+  };
+
+  const els = {
+    playerButtons: document.getElementById('playerButtons'),
+    nameInputs: document.getElementById('nameInputs'),
+    startBtn: document.getElementById('startBtn'),
+    startOverlay: document.getElementById('startOverlay'),
+    table: document.getElementById('table'),
+    message: document.getElementById('message'),
+    subMessage: document.getElementById('subMessage'),
+    selectedInfo: document.getElementById('selectedInfo'),
+    turnPanelName: document.getElementById('turnPanelName'),
+    scoreBar: document.getElementById('scoreBar'),
+    turnPill: document.getElementById('turnPill'),
+    footerText: document.getElementById('footerText'),
+    roundInfo: document.getElementById('roundInfo'),
+    currentTotal: document.getElementById('currentTotal'),
+    totalBox: document.getElementById('totalBox'),
+    comboNote: document.getElementById('comboNote'),
+    hintBtn: document.getElementById('hintBtn'),
+    clearBtn: document.getElementById('clearBtn'),
+    newRowBtn: document.getElementById('newRowBtn'),
+    undoBtn: document.getElementById('undoBtn'),
+    endUndoBtn: document.getElementById('endUndoBtn'),
+    saveBtn: document.getElementById('saveBtn'),
+    loadBtn: document.getElementById('loadBtn'),
+    loadStartBtn: document.getElementById('loadStartBtn'),
+    collectBtn: document.getElementById('collectBtn'),
+    endOverlay: document.getElementById('endOverlay'),
+    endTitle: document.getElementById('endTitle'),
+    endText: document.getElementById('endText'),
+    endScores: document.getElementById('endScores'),
+    playAgainBtn: document.getElementById('playAgainBtn'),
+    changePlayersBtn: document.getElementById('changePlayersBtn'),
+    goalSlider: document.getElementById('goalSlider'),
+    goalValue: document.getElementById('goalValue'),
+    turnOverlay: document.getElementById('turnOverlay'),
+    turnOverlaySub: document.getElementById('turnOverlaySub'),
+    turnOverlayName: document.getElementById('turnOverlayName'),
+    feedbackOverlay: document.getElementById('feedbackOverlay'),
+    feedbackContent: document.getElementById('feedbackContent'),
+    feedbackConfetti: document.getElementById('feedbackConfetti')
+  };
+
+  const SAVE_KEY = 'arcade_make10_save_v1';
+
+  let turnSplashTimer = 0;
+  let undoStack = [];
+  const feedback = {
+    canvas: els.feedbackConfetti,
+    ctx: els.feedbackConfetti.getContext('2d'),
+    particles: [],
+    animId: 0,
+    hideTimer: 0
+  };
+
+  function resizeFeedbackCanvas() {
+    const ratio = window.devicePixelRatio || 1;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    feedback.canvas.width = Math.max(1, Math.floor(w * ratio));
+    feedback.canvas.height = Math.max(1, Math.floor(h * ratio));
+    feedback.canvas.style.width = `${w}px`;
+    feedback.canvas.style.height = `${h}px`;
+    feedback.ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  }
+
+  function stopAwesome() {
+    clearTimeout(feedback.hideTimer);
+    if (feedback.animId) cancelAnimationFrame(feedback.animId);
+    feedback.animId = 0;
+    feedback.particles = [];
+    feedback.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    els.feedbackOverlay.style.display = 'none';
+  }
+
+  function launchConfetti() {
+    resizeFeedbackCanvas();
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    feedback.particles = [];
+    for (let i = 0; i < 140; i += 1) {
+      feedback.particles.push({
+        x: Math.random() * w,
+        y: -20 - Math.random() * h * 0.35,
+        r: 4 + Math.random() * 6,
+        vx: -2 + Math.random() * 4,
+        vy: 2 + Math.random() * 5,
+        g: 0.06 + Math.random() * 0.08,
+        rot: Math.random() * Math.PI * 2,
+        vr: -0.16 + Math.random() * 0.32,
+        color: ['#facc15', '#fb7185', '#60a5fa', '#34d399', '#c084fc', '#f97316'][Math.floor(Math.random() * 6)]
+      });
+    }
+
+    const draw = () => {
+      feedback.ctx.clearRect(0, 0, w, h);
+      for (const p of feedback.particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.g;
+        p.rot += p.vr;
+        feedback.ctx.save();
+        feedback.ctx.translate(p.x, p.y);
+        feedback.ctx.rotate(p.rot);
+        feedback.ctx.fillStyle = p.color;
+        feedback.ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * 1.4);
+        feedback.ctx.restore();
+      }
+      feedback.particles = feedback.particles.filter((p) => p.y < h + 30);
+      if (feedback.particles.length) feedback.animId = requestAnimationFrame(draw);
+      else feedback.animId = 0;
+    };
+    draw();
+  }
+
+  function showAwesome(text = 'AWESOME!') {
+    stopAwesome();
+    els.feedbackContent.textContent = text;
+    els.feedbackOverlay.style.display = 'flex';
+    launchConfetti();
+    feedback.hideTimer = setTimeout(stopAwesome, 1200);
+  }
+
+
+  function buildPlayerButtons() {
+    els.playerButtons.innerHTML = '';
+    for (let i = 1; i <= 4; i += 1) {
+      const btn = document.createElement('button');
+      btn.textContent = i === 1 ? '1 Player' : `${i} Players`;
+      btn.className = i === state.playerCount ? 'selected' : 'secondary';
+      btn.addEventListener('click', () => {
+        state.playerCount = i;
+        buildPlayerButtons();
+        buildNameInputs();
+      });
+      els.playerButtons.appendChild(btn);
+    }
+  }
+
+  function buildNameInputs() {
+    els.nameInputs.innerHTML = '';
+    for (let i = 0; i < state.playerCount; i += 1) {
+      const wrap = document.createElement('div');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.maxLength = 16;
+      input.placeholder = defaultNames[i];
+      input.value = state.players[i]?.name || defaultNames[i];
+      wrap.appendChild(input);
+      els.nameInputs.appendChild(wrap);
+    }
+  }
+
+  function createDeck() {
+    const deck = [];
+    let id = 0;
+    for (let suit = 0; suit < 4; suit += 1) {
+      for (let value = 1; value <= 12; value += 1) {
+        deck.push({ id: `m${id++}`, value, suit });
+      }
+    }
+    return shuffle(deck);
+  }
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function currentSum() {
+    return state.selected.reduce((sum, id) => sum + (state.table.find((card) => card.id === id)?.value || 0), 0);
+  }
+
+  function totalCollected() {
+    return state.players.reduce((sum, player) => sum + player.collected, 0);
+  }
+
+  function hideTurnSplash() {
+    clearTimeout(turnSplashTimer);
+    els.turnOverlay.classList.add('hidden');
+  }
+
+  function showTurnSplash(label) {
+    if (state.playerCount <= 1 || state.over) return;
+    const currentName = state.players[state.currentPlayer]?.name || `Player ${state.currentPlayer + 1}`;
+    els.turnOverlaySub.textContent = label || 'Next turn:';
+    els.turnOverlayName.textContent = currentName;
+    els.turnOverlay.classList.remove('hidden');
+    clearTimeout(turnSplashTimer);
+    turnSplashTimer = setTimeout(() => {
+      els.turnOverlay.classList.add('hidden');
+    }, 1000);
+  }
+
+  function isScoringSum(sum) {
+    return sum >= 10 && sum % 10 === 0;
+  }
+
+  function findScoringCombo(cards) {
+    const totalMasks = 1 << cards.length;
+    let best = null;
+    for (let mask = 1; mask < totalMasks; mask += 1) {
+      let sum = 0;
+      const ids = [];
+      for (let i = 0; i < cards.length; i += 1) {
+        if (mask & (1 << i)) {
+          sum += cards[i].value;
+          ids.push(cards[i].id);
+        }
+      }
+      if (isScoringSum(sum)) {
+        if (!best || ids.length > best.ids.length || (ids.length === best.ids.length && sum > best.sum)) {
+          best = { ids, sum };
+        }
+      }
+    }
+    return best;
+  }
+
+  function fillTable() {
+    while (state.table.length < state.tableSize && state.deck.length) state.table.push(state.deck.pop());
+  }
+
+  function resetTableWithScoringCombo() {
+    let tries = 0;
+    do {
+      state.deck = shuffle(state.deck.concat(state.table));
+      state.table = [];
+      fillTable();
+      tries += 1;
+    } while (!findScoringCombo(state.table) && state.deck.length + state.table.length >= state.tableSize && tries < 50);
+  }
+
+  function ensurePlayableTable(opening = false) {
+    if (findScoringCombo(state.table)) return;
+    if (state.deck.length) {
+      resetTableWithScoringCombo();
+      if (findScoringCombo(state.table)) return;
+    }
+    if (!findScoringCombo(state.table) && !state.deck.length && !opening) finishGame();
+  }
+
+  function startGame() {
+    try { localStorage.removeItem(SAVE_KEY); } catch (err) {}
+    const inputs = Array.from(els.nameInputs.querySelectorAll('input'));
+    state.players = [];undoStack = [];
+    for (let i = 0; i < state.playerCount; i += 1) {
+      const raw = inputs[i]?.value?.trim();
+      state.players.push({ name: raw || defaultNames[i], score: 0, collected: 0 });
+    }
+    state.currentPlayer = 0;
+    state.goalCards = Math.max(10, Math.min(40, parseInt(els.goalSlider.value, 10) || 40));
+    state.deck = createDeck();
+    state.table = [];
+    state.selected = [];
+    state.over = false;
+    hideTurnSplash();
+    stopAwesome();
+    fillTable();
+    ensurePlayableTable(true);
+    els.startOverlay.classList.add('hidden');
+    els.endOverlay.classList.add('hidden');
+    setMessage('Choose cards that make a multiple of 10.', `Game ends after ${state.goalCards} collected cards.`);
+    renderAll();
+    showTurnSplash('First turn:');
+  }
+
+  function renderAll() {
+    renderScoreBar();
+    renderTable();
+    renderMeta();
+  }
+
+  function renderScoreBar() {
+    els.scoreBar.innerHTML = '';
+    state.players.forEach((player, index) => {
+      const chip = document.createElement('div');
+      chip.className = `scorechip${index === state.currentPlayer && !state.over ? ' active' : ''}`;
+      chip.innerHTML = `<div class="name">${escapeHtml(player.name)}</div><div class="score">${player.score}</div>`;
+      els.scoreBar.appendChild(chip);
+    });
+  }
+
+  function renderTable() {
+    els.table.innerHTML = '';
+    state.table.forEach((card) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `card${state.selected.includes(card.id) ? ' selected' : ''}`;
+      btn.dataset.id = card.id;
+      btn.innerHTML = `<div class="corner">${card.value}</div><div class="centerValue">${card.value}</div><div class="corner bottom">${card.value}</div>`;
+      btn.addEventListener('click', () => toggleCard(card.id));
+      els.table.appendChild(btn);
+    });
+  }
+
+  function renderMeta() {
+    const currentName = state.players[state.currentPlayer]?.name || 'Solo';
+    const sum = currentSum();
+    const scoring = isScoringSum(sum);
+    const combo = findScoringCombo(state.table);
+    const collected = totalCollected();
+    const totalState = scoring ? ' good' : sum > 0 && sum % 10 !== 0 && sum > 10 ? ' bad' : '';
+    els.turnPill.textContent = state.playerCount === 1 ? 'Solo Mode' : `Now playing: ${currentName}`;
+    els.turnPanelName.textContent = currentName;
+    els.currentTotal.textContent = String(sum);
+    els.currentTotal.className = `total${totalState}`;
+    els.totalBox.className = `totalbox${totalState}`;
+    els.selectedInfo.textContent = `Selected: ${state.selected.length}`;
+    els.footerText.textContent = `Deck: ${state.deck.length} • Table: ${state.table.length} • Collected: ${collected}/${state.goalCards}`;
+    els.roundInfo.textContent = state.over ? 'Finished' : `${state.playerCount > 1 ? `${currentName}'s turn` : 'Your turn'} • ${combo ? 'Combo ready' : 'Need a fresh look'}`;
+    els.collectBtn.disabled = !scoring || state.over;
+    els.hintBtn.disabled = state.over;
+    els.clearBtn.disabled = state.selected.length === 0 || state.over;
+    els.newRowBtn.disabled = state.over;
+    els.undoBtn.disabled = undoStack.length === 0;
+    els.endUndoBtn.disabled = undoStack.length === 0;
+    if (sum === 0) els.comboNote.textContent = 'Try any cards that make 10, 20, 30, or another multiple of 10.';
+    else if (scoring) els.comboNote.textContent = sum > 40 ? `${sum} works. That earns a bonus point too.` : `${sum} works. Collect those cards.`;
+    else {
+      const next = Math.ceil(sum / 10) * 10;
+      els.comboNote.textContent = `${sum} is not a multiple of 10. Aim for ${next}.`;
+    }
+  }
+
+  function toggleCard(cardId) {
+    if (state.over) return;
+    const idx = state.selected.indexOf(cardId);
+    if (idx >= 0) state.selected.splice(idx, 1);
+    else state.selected.push(cardId);
+    renderTable();
+    renderMeta();
+  }
+
+  function clearSelection() {
+    state.selected = [];
+    renderTable();
+    renderMeta();
+  }
+
+  function advanceTurn() {
+    if (state.over) return;
+    if (state.playerCount > 1) {
+      state.currentPlayer = (state.currentPlayer + 1) % state.playerCount;
+      showTurnSplash('Next turn:');
+    }
+  }
+
+  function collectSelection() {
+    const sum = currentSum();
+    if (state.over || !isScoringSum(sum)) return;
+    const before = captureState();if (before) { undoStack.push(before);if (undoStack.length > 40) undoStack.shift(); }
+    const currentName = state.players[state.currentPlayer].name;
+    const captured = state.selected.length;
+    const bonus = sum > 40 ? 1 : 0;
+    state.players[state.currentPlayer].score += captured + bonus;
+    state.players[state.currentPlayer].collected += captured;
+    const selectedIds = new Set(state.selected);
+    state.table = state.table.filter((card) => !selectedIds.has(card.id));
+    fillTable();
+    state.selected = [];
+    if (sum >= 30) showAwesome('AWESOME!');
+    if (totalCollected() >= state.goalCards) {
+      setMessage(`${currentName} scored ${sum}!`, bonus ? `${currentName} pushed the game to ${state.goalCards} collected cards and earned a bonus point.` : `${currentName} pushed the game to ${state.goalCards} collected cards.`);
+      finishGame();
+      return;
+    }
+    ensurePlayableTable();
+    setMessage(`${currentName} scored ${sum}!`, bonus ? `${currentName} collected ${captured} ${captured === 1 ? 'card' : 'cards'} and earned 1 bonus point.` : `${currentName} collected ${captured} ${captured === 1 ? 'card' : 'cards'}.`);
+    if (!state.over) advanceTurn();
+    renderAll();
+  }
+
+  function showHint() {
+    if (state.over) return;
+    const combo = findScoringCombo(state.table);
+    if (!combo) {
+      setMessage('No scoring combo is left.', 'Tap New Row for a fresh set of cards.');
+      return;
+    }
+    const hintId = combo.ids[Math.floor(Math.random() * combo.ids.length)];
+    const node = els.table.querySelector(`[data-id="${hintId}"]`);
+    if (node) {
+      node.classList.add('hint');
+      setTimeout(() => node.classList.remove('hint'), 2400);
+    }
+    setMessage('Hint used.', `One card from a ${combo.sum} combo just flashed.`);
+  }
+
+  function newRow() {
+    if (state.over) return;
+    const before = captureState();if (before) { undoStack.push(before);if (undoStack.length > 40) undoStack.shift(); }
+    state.selected = [];
+    state.players[state.currentPlayer].score -= 1;
+    if (state.table.length) state.deck = shuffle(state.deck.concat(state.table));
+    state.table = [];
+    fillTable();
+    ensurePlayableTable();
+    setMessage('Fresh row.', `${state.players[state.currentPlayer].name} took a new row and lost 1 point.`);
+    advanceTurn();
+    renderAll();
+  }
+
+  function finishGame() {
+    state.over = true;
+    try { localStorage.removeItem(SAVE_KEY); } catch (err) {}
+    try { if (window.ArcadeSave) ArcadeSave.saveNow(); } catch (err) {}
+    hideTurnSplash();
+    renderAll();
+    const high = Math.max(...state.players.map((player) => player.score));
+    const winners = state.players.filter((player) => player.score === high);
+    els.endTitle.textContent = winners.length === 1 ? `${winners[0].name} wins!` : 'Tie game!';
+    els.endText.textContent = winners.length === 1 ? `${winners[0].name} had the highest score by the ${state.goalCards}-card finish line.` : `Multiple players tied for the top score at the ${state.goalCards}-card finish line.`;
+    els.endScores.innerHTML = state.players.map((player) => `<div class="endrow"><span>${escapeHtml(player.name)}</span><span>${player.score}</span></div>`).join('');
+    els.endOverlay.classList.remove('hidden');
+    setMessage('Game over.', winners.length === 1 ? `${winners[0].name} finished with the highest score.` : 'Multiple players tied for the top score.');
+  }
+
+  function meaningful() {
+    return !!(state.players.length && !state.over && (state.deck.length || state.table.length));
+  }
+
+  function captureState() {
+    if (!meaningful()) return undefined;
+    return {
+      playerCount: state.playerCount,
+      players: state.players.map((player) => ({ name: player.name, score: player.score, collected: player.collected })),
+      currentPlayer: state.currentPlayer,
+      deck: state.deck.map((card) => ({ id: card.id, value: card.value, suit: card.suit })),
+      table: state.table.map((card) => ({ id: card.id, value: card.value, suit: card.suit })),
+      selected: state.selected.slice(),
+      over: false,
+      tableSize: state.tableSize,
+      goalCards: state.goalCards
+    };
+  }
+
+  function saveGame() {
+    const saved = captureState();
+    if (!saved) {
+      setMessage('No game to save yet.', 'Start a game first, then tap Save.');
+      return;
+    }
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify(saved));
+      setMessage('Game saved.', 'Tap Load later to continue from this point.');
+    } catch (err) {
+      setMessage('Save failed.', 'Your browser storage is not available.');
+    }
+  }
+
+  function restoreState(saved) {
+      if (!saved || saved.over || !Array.isArray(saved.players) || !Array.isArray(saved.deck) || !Array.isArray(saved.table)) throw new Error('bad save');
+      const normalizeCards = (cards) => cards.map((card) => ({
+        id: String(card && card.id || ''),
+        value: Math.max(1, Math.min(12, Number(card && card.value) || 1)),
+        suit: Math.max(0, Math.min(3, Number(card && card.suit) || 0))
+      })).filter((card) => card.id);
+      state.playerCount = Math.max(1, Math.min(4, Number(saved.playerCount) || 1));
+      state.players = saved.players.map((player, index) => ({
+        name: String(player && player.name ? player.name : defaultNames[index] || `Player ${index + 1}`),
+        score: Number(player && player.score) || 0,
+        collected: Number(player && player.collected) || 0
+      })).slice(0, state.playerCount);
+      while (state.players.length < state.playerCount) state.players.push({ name: defaultNames[state.players.length] || `Player ${state.players.length + 1}`, score: 0, collected: 0 });
+      state.currentPlayer = Math.max(0, Math.min(state.players.length - 1, Number(saved.currentPlayer) || 0));
+      state.deck = normalizeCards(saved.deck);
+      state.table = normalizeCards(saved.table);
+      if (!state.deck.length && !state.table.length) throw new Error('empty save');
+      const tableIds = new Set(state.table.map((card) => card.id));
+      state.selected = Array.isArray(saved.selected) ? saved.selected.map(String).filter((id) => tableIds.has(id)) : [];
+      state.over = false;
+      state.tableSize = Math.max(1, Number(saved.tableSize) || 6);
+      state.goalCards = Math.max(10, Math.min(40, Number(saved.goalCards) || 40));
+      if (totalCollected() >= state.goalCards) throw new Error('finished save');
+      els.goalSlider.value = String(state.goalCards);
+      syncGoalLabel();
+      hideTurnSplash();
+      stopAwesome();
+      els.startOverlay.classList.add('hidden');
+      els.endOverlay.classList.add('hidden');
+      buildPlayerButtons();
+      buildNameInputs();
+      renderAll();
+      setMessage('Game loaded.', 'Continue from your saved turn.');
+      return true;
+  }
+
+  function undoTurn() {
+    if (!undoStack.length) return;
+    hideTurnSplash();stopAwesome();
+    const saved = undoStack.pop();restoreState(saved);els.endOverlay.classList.add('hidden');
+    setMessage('Last turn undone.', 'Choose a different combo or deal a different row.');renderAll();
+  }
+
+  function loadGame() {
+    undoStack = [];
+    if (window.ArcadeSave && ArcadeSave.hasSave()) return ArcadeSave.load();
+    try {
+      const raw = localStorage.getItem(SAVE_KEY);
+      if (!raw) {
+        setMessage('No saved game found.', 'Start a game first, then tap Save.');
+        return false;
+      }
+      restoreState(JSON.parse(raw));
+      if (window.ArcadeSave) ArcadeSave.touch(0);
+      return true;
+    } catch (err) {
+      try { localStorage.removeItem(SAVE_KEY); } catch (_err) {}
+      setMessage('Load failed.', 'The saved game could not be read.');
+      return false;
+    }
+  }
+
+  function startFresh() {
+    try { localStorage.removeItem(SAVE_KEY); } catch (err) {}
+    hideTurnSplash();
+    stopAwesome();
+    state.playerCount = 1;undoStack = [];
+    state.players = [];
+    state.currentPlayer = 0;
+    state.deck = [];
+    state.table = [];
+    state.selected = [];
+    state.over = false;
+    state.tableSize = 6;
+    state.goalCards = 40;
+    els.goalSlider.value = '40';
+    syncGoalLabel();
+    els.table.innerHTML = '';
+    els.scoreBar.innerHTML = '';
+    els.endOverlay.classList.add('hidden');
+    els.startOverlay.classList.remove('hidden');
+    buildPlayerButtons();
+    buildNameInputs();
+    setMessage('Choose cards that make a multiple of 10.', 'Game ends after the selected number of collected cards.');
+  }
+
+  function saveSummary() {
+    if (!state.players.length) return '';
+    const current = state.players[state.currentPlayer]?.name || 'Solo';
+    return `${current}'s turn · ${totalCollected()}/${state.goalCards} cards`;
+  }
+
+  function setMessage(main, sub) {
+    els.message.textContent = main;
+    els.subMessage.textContent = sub;
+  }
+
+  function escapeHtml(text) {
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  els.startBtn.addEventListener('click', startGame);
+  els.collectBtn.addEventListener('click', collectSelection);
+  els.hintBtn.addEventListener('click', showHint);
+  els.clearBtn.addEventListener('click', clearSelection);
+  els.newRowBtn.addEventListener('click', newRow);
+  els.undoBtn.addEventListener('click', undoTurn);
+  els.endUndoBtn.addEventListener('click', undoTurn);
+  els.saveBtn.addEventListener('click', saveGame);
+  els.loadBtn.addEventListener('click', loadGame);
+  els.loadStartBtn.addEventListener('click', loadGame);
+  els.playAgainBtn.addEventListener('click', startGame);
+  els.changePlayersBtn.addEventListener('click', () => {
+    hideTurnSplash();
+    els.endOverlay.classList.add('hidden');
+    els.startOverlay.classList.remove('hidden');
+  });
+
+  const homeLink = document.querySelector('.arcade-home-link');
+  if (homeLink) homeLink.addEventListener('click', (event) => {
+    if (!window.ArcadeSave || !meaningful()) return;
+    event.preventDefault();
+    const href = homeLink.getAttribute('href') || '../index.html';
+    ArcadeSave.saveNow().then(() => { window.location.href = href; }, () => { window.location.href = href; });
+  });
+
+  function syncGoalLabel() {
+    const value = Math.max(10, Math.min(40, parseInt(els.goalSlider.value, 10) || 40));
+    els.goalValue.textContent = `${value} cards`;
+  }
+
+  els.goalSlider.addEventListener('input', syncGoalLabel);
+  syncGoalLabel();
+  window.addEventListener('resize', resizeFeedbackCanvas);
+
+  buildPlayerButtons();
+  buildNameInputs();
+  window.Make10Autosave = {
+    id: 'make-10', title: 'Make 10', version: 1,
+    capture: captureState, restore: saved => { undoStack = []; return restoreState(saved); }, meaningful, summary: saveSummary, startFresh
+  };
+})();
+</script>
+
+<script src="../arcade-save.js"></script>
+<script>
+  ArcadeSave.register(window.Make10Autosave);
+</script>
+
+</body>
+</html>

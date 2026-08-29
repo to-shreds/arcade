@@ -1,0 +1,19 @@
+{
+  "title": "Emoji Jigsaw",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 100,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "puzzle"
+  ],
+  "tags": [
+    "touch",
+    "calm"
+  ],
+  "orientation": "any"
+}

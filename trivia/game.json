@@ -1,0 +1,20 @@
+{
+  "title": "Trivia",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 240,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 4,
+  "categories": [
+    "educational",
+    "word"
+  ],
+  "tags": [
+    "touch",
+    "turn-based"
+  ],
+  "orientation": "any"
+}

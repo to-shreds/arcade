@@ -1,0 +1,19 @@
+{
+  "title": "Typing",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 250,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "educational"
+  ],
+  "tags": [
+    "keyboard",
+    "calm"
+  ],
+  "orientation": "any"
+}

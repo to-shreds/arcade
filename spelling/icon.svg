@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect x="28" y="27" width="200" height="202" rx="30" fill="#f9fbff" stroke="#1d2038" stroke-width="11"/>
+  <path d="M28 155h200v44a30 30 0 0 1-30 30H58a30 30 0 0 1-30-30v-44Z" fill="#21dcff" stroke="#1d2038" stroke-width="10"/>
+  <ellipse cx="128" cy="105" rx="63" ry="35" fill="#72ef80" stroke="#1d2038" stroke-width="9"/>
+  <circle cx="101" cy="82" r="30" fill="#72ef80" stroke="#1d2038" stroke-width="9"/><circle cx="155" cy="82" r="30" fill="#72ef80" stroke="#1d2038" stroke-width="9"/>
+  <circle cx="103" cy="86" r="8" fill="#1d2038"/><circle cx="153" cy="86" r="8" fill="#1d2038"/><path d="M109 111q19 18 38 0" fill="none" stroke="#1d2038" stroke-width="8" stroke-linecap="round"/>
+  <rect x="43" y="169" width="47" height="47" rx="10" fill="#ffce3a" stroke="#1d2038" stroke-width="7"/><rect x="104" y="169" width="47" height="47" rx="10" fill="#ff5ac8" stroke="#1d2038" stroke-width="7"/><rect x="166" y="169" width="47" height="47" rx="10" fill="#9b7cff" stroke="#1d2038" stroke-width="7"/>
+  <text x="66.5" y="204" text-anchor="middle" font-size="34" font-family="Arial,sans-serif" font-weight="900" fill="#1d2038">A</text><text x="127.5" y="204" text-anchor="middle" font-size="34" font-family="Arial,sans-serif" font-weight="900" fill="#1d2038">B</text><text x="189.5" y="204" text-anchor="middle" font-size="34" font-family="Arial,sans-serif" font-weight="900" fill="#1d2038">C</text>
+</svg>

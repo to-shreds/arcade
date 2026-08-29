@@ -1,0 +1,19 @@
+{
+  "title": "Silly Face Lab",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 280,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": [
+    "creative"
+  ],
+  "tags": [
+    "touch",
+    "calm"
+  ],
+  "orientation": "portrait"
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Blackjack",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 30,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 3,
+  "categories": [
+    "strategy",
+    "board"
+  ],
+  "tags": [
+    "touch",
+    "turn-based"
+  ],
+  "orientation": "landscape"
+}
