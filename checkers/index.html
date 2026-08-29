@@ -1731,6 +1731,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             <div class="ck-pill">TURN <span class="ck-turn" id="ck-turn">RED</span></div>
             <div style="display:flex; gap:10px;">
                 <button class="ck-btn" onclick="CheckersGame.reset()">Reset</button>
+                <button class="ck-btn" id="ck-undo" onclick="CheckersGame.undo()" disabled>↶ Undo</button>
                 <button class="ck-btn" id="ck-endturn" onclick="CheckersGame.endTurn()" disabled style="opacity:0.55;">End Turn</button>
                 <button class="ck-btn" onclick="CheckersGame.saveGame()">Save</button>
                 <button class="ck-btn" onclick="CheckersGame.loadGame()">Load</button>
@@ -2283,6 +2284,23 @@ const FeedbackSys = (function(){
         let heldSave = null;
         let cpuTimer = 0;
         let cpuEpoch = 0;
+        let undoStack = [];
+
+        function syncUndoButton(){
+            const button = document.getElementById('ck-undo');
+            if(button) button.disabled = undoStack.length === 0;
+        }
+
+        function clearUndo(){
+            undoStack = [];
+            syncUndoButton();
+        }
+
+        function recordUndo(){
+            undoStack.push(cloneSave(captureCurrentGame()));
+            if(undoStack.length > 100) undoStack.shift();
+            syncUndoButton();
+        }
 
         function cancelCpuWork(){
             cpuEpoch++;
@@ -2650,6 +2668,7 @@ const FeedbackSys = (function(){
 
             if(preserveCurrent) holdCurrentSave();
             cancelCpuWork();
+            clearUndo();
             gameStarted = true;
             moveCount = 0;
 
@@ -2790,6 +2809,7 @@ const FeedbackSys = (function(){
         function applyMove(m){
             const {from,to,cap} = m;
             const v = board[from.r][from.c];
+            recordUndo();
             heldSave = null;
             gameStarted = true;
             moveCount++;
@@ -3331,9 +3351,10 @@ const FeedbackSys = (function(){
                 (data.turn === -1 ? 'Black' : 'Red') + ' to move · ' + red + '-' + black + ' pieces';
         }
 
-        function restoreGameData(saved){
+        function restoreGameData(saved, preserveUndo=false){
             if(!saved || typeof saved !== 'object') throw new Error('bad save');
             const restoredBoard = normalizeBoard(saved.board);
+            if(!preserveUndo) clearUndo();
             cancelCpuWork();
             heldSave = null;
             board = restoredBoard;
@@ -3392,8 +3413,44 @@ const FeedbackSys = (function(){
             return true;
         }
 
+        function popUndoTurn(){
+            if(!undoStack.length) return null;
+            let target = undoStack.pop();
+            while(undoStack.length && undoStack[undoStack.length - 1].turn === target.turn){
+                target = undoStack.pop();
+            }
+            return target;
+        }
+
+        function undo(){
+            if(!undoStack.length){
+                subEl.textContent = baseSub + ' Nothing to undo yet.';
+                syncUndoButton();
+                return false;
+            }
+            cancelCpuWork();
+            let target = popUndoTurn();
+            if(mode === 'cpu' && target && target.turn === -1 && undoStack.length){
+                target = popUndoTurn() || target;
+            }
+            try{
+                restoreGameData(target, true);
+                const feedback = document.getElementById('feedback-overlay');
+                if(feedback) feedback.style.display = 'none';
+                subEl.textContent = baseSub + ' Move undone.';
+                syncUndoButton();
+                touchSave(100);
+                return true;
+            }catch(e){
+                clearUndo();
+                subEl.textContent = baseSub + ' Undo was not available for that move.';
+                return false;
+            }
+        }
+
         function startFreshState(){
             cancelCpuWork();
+            clearUndo();
             heldSave = null;
             try{ localStorage.removeItem(SAVE_KEY); }catch(_){ }
             gameStarted = false;
@@ -3491,7 +3548,7 @@ const FeedbackSys = (function(){
 
         installArcadeSave();
 
-        return { openMenu, start, reset, resize, quit, endTurn: endTurnBtnAction, saveGame, loadGame };
+        return { openMenu, start, reset, resize, quit, undo, endTurn: endTurnBtnAction, saveGame, loadGame };
     })();
 
     
