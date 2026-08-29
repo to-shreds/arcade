@@ -1473,7 +1473,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             <div id="hint-box">???</div>
             <div class="controls">
                 <button class="btn-hint" id="hm-undo" onclick="HangmanGame.undo()" disabled><span>↶</span> Undo</button>
-                <button class="btn-hint" onclick="HangmanGame.showHint()"><span>❓</span> Clue</button>
+                <button class="btn-hint" id="hm-clue" onclick="HangmanGame.showHint()"><span>❓</span> Clue</button>
                 <button class="btn-risk" id="risk-btn" onclick="HangmanGame.toggleRisk()"><span>⚡</span> Dbl Down</button>
                 <button class="btn-hint" onclick="HangmanGame.saveGame()"><span>💾</span> Save</button>
                 <button class="btn-hint" onclick="HangmanGame.loadGame()"><span>↺</span> Load</button>
@@ -2294,7 +2294,7 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
         }
 
         function updateClueButton(){
-            const clueBtn = document.querySelector('#g-hangman .btn-hint');
+            const clueBtn = document.getElementById('hm-clue');
             if(!clueBtn) return;
             clueBtn.style.opacity = (cluesLeft <= 0) ? 0.55 : 1;
             clueBtn.innerHTML = `<span>❓</span> Clue` + (cluesLeft > 0 ? ` (${cluesLeft})` : ``);
