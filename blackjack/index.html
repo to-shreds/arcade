@@ -856,6 +856,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   <div id="g-blackjack" class="game-view">
     <button class="back-btn" onclick="goToMenu()">← MENU</button>
     <div class="bj-savebar">
+      <button class="ui-btn" id="bj-undo" type="button" onclick="BJGame.undo()" disabled>↶ Undo</button>
       <button class="ui-btn" type="button" onclick="BJGame.saveGame()">Save</button>
       <button class="ui-btn" type="button" onclick="BJGame.loadGame()">Load</button>
     </div>
@@ -918,7 +919,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
       <div id="ctrl-reset" class="control-group">
         <div class="control-heading">Round complete</div>
-        <button class="btn-action deal" onclick="BJGame.startBettingPhase()">Next Round</button>
+        <button class="btn-action deal" onclick="BJGame.nextRound()">Next Round</button>
       </div>
     </div>
   </div>
@@ -1288,6 +1289,26 @@ const BJGame = (function(){
   let phase = 'setup';
   let gameGeneration = 0;
   const transitionTimers = new Set();
+  let undoStack = [];
+
+  function syncUndoButton(){
+    const button = document.getElementById('bj-undo');
+    if(button) button.disabled = undoStack.length === 0;
+  }
+
+  function clearUndo(){
+    undoStack = [];
+    syncUndoButton();
+  }
+
+  function recordUndo(){
+    const state = captureState();
+    if(!state) return false;
+    undoStack.push(JSON.parse(JSON.stringify(state)));
+    if(undoStack.length > 60) undoStack.shift();
+    syncUndoButton();
+    return true;
+  }
 
   function later(fn, ms){
     const generation = gameGeneration;
@@ -1604,6 +1625,7 @@ const BJGame = (function(){
   
   function init(n){
     cancelTransitions();
+    clearUndo();
     try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
     document.getElementById('setup-screen').style.display = 'none';
     document.getElementById('game-over-screen').style.display = 'none';
@@ -1621,6 +1643,7 @@ const BJGame = (function(){
 
   function reset(){
     cancelTransitions();
+    clearUndo();
     phase = 'setup';
     document.getElementById('game-over-screen').style.display = 'none';
     document.getElementById('setup-screen').style.display = 'flex';
@@ -1683,9 +1706,15 @@ const BJGame = (function(){
     updateBetControls();
   }
 
+  function nextRound(){
+    recordUndo();
+    startBettingPhase();
+  }
+
   function addBet(amt){
     const p = players[pIdx];
     if(p.bank >= amt){
+      recordUndo();
       p.bank -= amt;
       p.curBet += amt;
       updateBetControls();
@@ -1694,6 +1723,7 @@ const BJGame = (function(){
   function maxBet(){
     const p = players[pIdx];
     if(p.bank > 0){
+      recordUndo();
       p.curBet += p.bank;
       p.bank = 0;
       updateBetControls();
@@ -1702,6 +1732,7 @@ const BJGame = (function(){
   function halfBet(){
     const p = players[pIdx];
     if(p.bank > 0){
+      recordUndo();
       let amt = Math.floor(p.bank / 2);
       if(amt < 1) amt = p.bank;
       p.curBet += amt;
@@ -1711,6 +1742,8 @@ const BJGame = (function(){
   }
   function clearBet(){
     const p = players[pIdx];
+    if(!p || p.curBet <= 0) return;
+    recordUndo();
     p.bank += p.curBet;
     p.curBet = 0;
     updateBetControls();
@@ -1718,6 +1751,8 @@ const BJGame = (function(){
 
   function placeBet(){
     const p = players[pIdx];
+    if(!p || p.curBet <= 0) return;
+    recordUndo();
     p.hands.push(new Hand(p.curBet));
     pIdx++;
     findNextActivePlayer();
@@ -1815,6 +1850,8 @@ const BJGame = (function(){
   function hit(){
     if(advanceTimeout) return;
     const h = players[pIdx].hands[hIdx];
+    if(!h) return;
+    recordUndo();
     h.add(deck.deal());
     renderAllHands(false);
     nextTurn();
@@ -1824,7 +1861,9 @@ const BJGame = (function(){
   function stand(){
     if(advanceTimeout) return;
     const h = players[pIdx] && players[pIdx].hands[hIdx];
-    if(h) h.status = 'stand';
+    if(!h) return;
+    recordUndo();
+    h.status = 'stand';
     try{ if(window.ArcadeSave) ArcadeSave.saveNow(); }catch(e){}
     scheduleNextHand(0);
   }
@@ -1834,6 +1873,7 @@ const BJGame = (function(){
     const p = players[pIdx];
     const h = p.hands[hIdx];
     if(!h || h.cards.length !== 2 || p.bank < h.bet) return;
+    recordUndo();
     p.bank -= h.bet;
     h.bet *= 2;
     h.add(deck.deal());
@@ -1854,6 +1894,7 @@ const BJGame = (function(){
     const p = players[pIdx];
     const h = p.hands[hIdx];
     if(!h || !h.canSplit() || p.bank < h.bet) return;
+    recordUndo();
 
     p.bank -= h.bet;
     const seat = document.getElementById(`seat-${p.id}`);
@@ -1990,8 +2031,9 @@ const BJGame = (function(){
     return ['betting','dealing','action','dealer','roundOver'].includes(value) ? value : 'action';
   }
 
-  function restoreState(saved){
+  function restoreState(saved, preserveUndo=false){
     if(!saved || !Array.isArray(saved.players) || !saved.players.length) throw new Error('bad save');
+    if(!preserveUndo) clearUndo();
     cancelTransitions();
     deck = new Deck();
     deck.cards = Array.isArray(saved.deck) && saved.deck.length ? saved.deck.map(cardFrom) : deck.cards;
@@ -2059,6 +2101,28 @@ const BJGame = (function(){
       nextTurn();
     }
     return true;
+  }
+
+  function undo(){
+    if(!undoStack.length){
+      setStatus('Nothing to undo yet.');
+      syncUndoButton();
+      return false;
+    }
+    const previous = undoStack.pop();
+    try{
+      restoreState(previous, true);
+      const feedback = document.getElementById('feedback-overlay');
+      if(feedback) feedback.style.display = 'none';
+      setStatus('Last move undone.');
+      syncUndoButton();
+      try{ if(window.ArcadeSave) ArcadeSave.touch(100); }catch(e){}
+      return true;
+    }catch(e){
+      clearUndo();
+      setStatus('Undo was not available for that move.');
+      return false;
+    }
   }
 
   function meaningful(){
@@ -2136,7 +2200,7 @@ const BJGame = (function(){
 
   return {
     init, reset, quit,
-    startBettingPhase,
+    startBettingPhase, nextRound, undo,
     addBet, maxBet, halfBet, clearBet, placeBet,
     hit, stand, double, split, saveGame, loadGame
   };
