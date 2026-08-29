@@ -1472,6 +1472,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             <div id="word-display">_ _ _ _ _ _</div>
             <div id="hint-box">???</div>
             <div class="controls">
+                <button class="btn-hint" id="hm-undo" onclick="HangmanGame.undo()" disabled><span>↶</span> Undo</button>
                 <button class="btn-hint" onclick="HangmanGame.showHint()"><span>❓</span> Clue</button>
                 <button class="btn-risk" id="risk-btn" onclick="HangmanGame.toggleRisk()"><span>⚡</span> Dbl Down</button>
                 <button class="btn-hint" onclick="HangmanGame.saveGame()"><span>💾</span> Save</button>
@@ -2034,7 +2035,26 @@ const FeedbackSys = (function(){
         let cluesLeft = 1; 
         let currentCategory = "";
         const SAVE_KEY = 'arcade_hangman_save_v1';
+        let undoStack = [];
 function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
+
+        function syncUndoButton(){
+            const button = document.getElementById('hm-undo');
+            if(button) button.disabled = undoStack.length === 0;
+        }
+
+        function clearUndo(){
+            undoStack = [];
+            syncUndoButton();
+        }
+
+        function recordUndo(){
+            const state = captureState();
+            if(!state) return;
+            undoStack.push(JSON.parse(JSON.stringify(state)));
+            if(undoStack.length > 40) undoStack.shift();
+            syncUndoButton();
+        }
 
         function syncBestStreakUI(){
             const el = document.getElementById('hm-best-streak');
@@ -2136,6 +2156,7 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
         function handleGuess(char){
             if(currentGameId !== 'hangman') return;
             if(mistakes >= maxMistakes || guesses.includes(char)) return;
+            recordUndo();
             guesses.push(char);
             const key = document.getElementById("key-"+char);
             let isCorrect = currentObj.w.includes(char);
@@ -2306,7 +2327,7 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
             };
         }
 
-        function restoreState(saved){
+        function restoreState(saved, preserveUndo=false){
             if(!saved || !saved.currentObj || !saved.currentObj.w) throw new Error('bad save');
             const nextObj = {
                 w: String(saved.currentObj.w).toUpperCase().replace(/[^A-Z]/g, ''),
@@ -2319,6 +2340,7 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
             const nextMaxMistakes = Math.max(1, Number(saved.maxMistakes) || 6);
             const nextSolved = nextObj.w && Array.from(nextObj.w).every(ch => nextGuesses.includes(ch));
             if(!nextObj.w || nextMistakes >= nextMaxMistakes || nextSolved) throw new Error('finished save');
+            if(!preserveUndo) clearUndo();
 
             if(animationId) cancelAnimationFrame(animationId);
             animationId = null;
@@ -2356,7 +2378,31 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
             renderHearts();
             renderWord();
             syncDifficultyUI();
+            syncUndoButton();
             return true;
+        }
+
+        function undo(){
+            if(!undoStack.length){
+                hintBox.textContent = 'Nothing to undo yet.';
+                hintBox.style.visibility = 'visible';
+                syncUndoButton();
+                return false;
+            }
+            const previous = undoStack.pop();
+            try{
+                restoreState(previous, true);
+                hintBox.textContent = 'Last guess undone.';
+                hintBox.style.visibility = 'visible';
+                syncUndoButton();
+                try{ if(window.ArcadeSave) ArcadeSave.touch(100); }catch(e){}
+                return true;
+            }catch(e){
+                clearUndo();
+                hintBox.textContent = 'Undo was not available for that guess.';
+                hintBox.style.visibility = 'visible';
+                return false;
+            }
         }
 
         function saveGame(){
@@ -2450,6 +2496,7 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
 
         function newGame(obj){
             try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+            clearUndo();
             currentObj = obj; mistakes = 0; guesses = []; riskMode = false;
             if(difficulty === 'easy'){ maxMistakes = 8; cluesLeft = 2; }
             else if(difficulty === 'hard'){ maxMistakes = 5; cluesLeft = 0; }
@@ -2471,6 +2518,7 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
 
         function startFresh(){
             try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+            clearUndo();
             if(animationId) cancelAnimationFrame(animationId);
             animationId = null;
             particles = [];
@@ -2510,7 +2558,7 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
 
         return {
             openMenu, startRandom, startCategory, setupCustom, startCustom, showHint, toggleRisk,
-            setDifficulty, saveGame, loadGame, onCategoryClick, resize, resume, quit,
+            setDifficulty, saveGame, loadGame, undo, onCategoryClick, resize, resume, quit,
             autosave: {
                 id: 'hangman', title: 'Hangman', version: 1,
                 capture: captureState, restore: restoreState, meaningful, summary: saveSummary, startFresh
