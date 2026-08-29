@@ -1661,6 +1661,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
                 <div class="ttt-board" id="ttt-board"></div>
                 <div class="ttt-mini">
                     <button class="ttt-btn" onclick="TicTacToe.restart()">Restart</button>
+                    <button class="ttt-btn" id="ttt-undo" onclick="TicTacToe.undo()" disabled>↶ Undo</button>
                     <button class="ttt-btn" onclick="TicTacToe.saveGame()">Save</button>
                     <button class="ttt-btn" onclick="TicTacToe.loadGame()">Load</button>
                     <button class="ttt-btn" onclick="TicTacToe.openMenu()">Mode</button>
@@ -2108,7 +2109,16 @@ const FeedbackSys = (function(){
             animId = requestAnimationFrame(loop);
         }
 
-        return { show };
+        function hide(){
+            if(show._t){ clearTimeout(show._t); show._t = null; }
+            if(animId){ cancelAnimationFrame(animId); animId = null; }
+            particles = [];
+            active = false;
+            overlay.style.display = 'none';
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+        }
+
+        return { show, hide };
     })();
 
     const TicTacToe = (function(){
@@ -2141,6 +2151,23 @@ const FeedbackSys = (function(){
         let scoreX = 0, scoreO = 0;
         let cpuTimer = null, roundTimer = null, timerGeneration = 0;
         let heldSave = null;
+        let undoStack = [];
+
+        function syncUndoButton(){
+            const button = document.getElementById('ttt-undo');
+            if(button) button.disabled = undoStack.length === 0;
+        }
+
+        function clearUndo(){
+            undoStack = [];
+            syncUndoButton();
+        }
+
+        function recordUndo(){
+            undoStack.push(JSON.parse(JSON.stringify(gameSnapshot())));
+            if(undoStack.length > 30) undoStack.shift();
+            syncUndoButton();
+        }
 
         
         let symX = (window.ArcadeStore ? ArcadeStore.getStr('ttt_sym_X','💩') : '💩');
@@ -2285,6 +2312,7 @@ const FeedbackSys = (function(){
 
         function quit(){
             cancelGameTimers();
+            clearUndo();
             closePiecePicker();
             menu.style.display = 'flex';
             clearBoardUI();
@@ -2295,9 +2323,10 @@ const FeedbackSys = (function(){
             updateHud();
         }
 
-        function restart(preserveCurrent=true){
+        function restart(preserveCurrent=true, clearHistory=true){
             if(preserveCurrent)holdCurrentSave();
             cancelGameTimers();
+            if(clearHistory) clearUndo();
             locked = false;
             turn = 'X';
             board = Array(9).fill('');
@@ -2348,6 +2377,7 @@ const FeedbackSys = (function(){
             if(locked) return;
             if(board[i]) return;
 
+            recordUndo();
             board[i] = turn;
             heldSave=null;
             renderMarks();
@@ -2394,7 +2424,7 @@ const FeedbackSys = (function(){
             roundTimer=setTimeout(() => {
                 roundTimer=null;
                 if(generation!==timerGeneration)return;
-                restart(false);
+                restart(false, false);
                 try{if(window.ArcadeSave)ArcadeSave.touch(100);}catch(e){}
             }, 900);
             try{if(window.ArcadeSave)ArcadeSave.touch(100);}catch(e){}
@@ -2418,6 +2448,7 @@ const FeedbackSys = (function(){
             if(currentGameId !== 'tictactoe') return;
             const move = bestMove(board.slice());
             if(move === -1) return;
+            recordUndo();
             board[move] = 'O';
             renderMarks();
             const info = winnerInfo();
@@ -2514,13 +2545,14 @@ const FeedbackSys = (function(){
         function currentGameMeaningful(){return board.some(Boolean)||scoreX>0||scoreO>0;}
         function holdCurrentSave(){if(!heldSave&&currentGameMeaningful())heldSave=gameSnapshot();}
         function effectiveSnapshot(){return JSON.parse(JSON.stringify(heldSave||gameSnapshot()));}
-        function applySavedGame(saved,announce){
+        function applySavedGame(saved,announce,preserveUndo=false){
             if(!saved||!Array.isArray(saved.board)||saved.board.length!==9||saved.board.some(v=>v!==''&&v!=='X'&&v!=='O'))return false;
             const nextBoard=saved.board.slice(),xCount=nextBoard.filter(v=>v==='X').length,oCount=nextBoard.filter(v=>v==='O').length;
             if(oCount>xCount||xCount-oCount>1)return false;
             const info=winnerInfo(nextBoard);
             if(info&&info.w==='X'&&xCount!==oCount+1)return false;
             if(info&&info.w==='O'&&xCount!==oCount)return false;
+            if(!preserveUndo)clearUndo();
             cancelGameTimers();closePiecePicker();heldSave=null;
             mode=saved.mode==='pvp'?'pvp':'cpu';
             cpuDifficulty=['kid','normal','mean'].includes(saved.cpuDifficulty)?saved.cpuDifficulty:'normal';
@@ -2532,7 +2564,33 @@ const FeedbackSys = (function(){
             buildBoardUI();renderMarks();syncCpuButtons();syncShapeUI();updateHud();
             subEl.textContent=announce?(info?'Match loaded. Starting the next round.':'Game loaded. Continue from the saved board.'):(mode==='cpu'?"Tap a square. CPU plays as O. Try to beat it!":"Tap a square. Pass & play: X then O.");
             if(mode==='cpu'&&turn==='O')scheduleCpuMove();
+            syncUndoButton();
             return true;
+        }
+
+        function undo(){
+            if(!undoStack.length){
+                subEl.textContent='Nothing to undo yet.';
+                syncUndoButton();
+                return false;
+            }
+            cancelGameTimers();
+            let previous=undoStack.pop();
+            if(mode==='cpu'&&previous&&previous.turn==='O'&&undoStack.length){
+                previous=undoStack.pop();
+            }
+            try{
+                if(!applySavedGame(previous,false,true))throw new Error('bad undo');
+                try{FeedbackSys.hide();}catch(e){}
+                subEl.textContent='Move undone. Your turn again.';
+                syncUndoButton();
+                try{if(window.ArcadeSave)ArcadeSave.touch(100);}catch(e){}
+                return true;
+            }catch(e){
+                clearUndo();
+                subEl.textContent='Undo was not available for that move.';
+                return false;
+            }
         }
         function saveGame(){
             try{localStorage.setItem(SAVE_KEY,JSON.stringify(effectiveSnapshot()));if(window.ArcadeSave)ArcadeSave.saveNow();subEl.textContent='Game saved. Tap Load later to continue.';return true;}
@@ -2572,7 +2630,7 @@ const FeedbackSys = (function(){
         openMenu();
         registerArcadeSave();
 
-        return { openMenu, start, restart, pause:pauseGame, saveGame, loadGame, setCpuDifficulty, setShape, openPiecePicker, closePiecePicker, quit };
+        return { openMenu, start, restart, undo, pause:pauseGame, saveGame, loadGame, setCpuDifficulty, setShape, openPiecePicker, closePiecePicker, quit };
     })();
 ;
 
