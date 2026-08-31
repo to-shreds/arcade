@@ -117,7 +117,9 @@ saves=readSaves();
 const cats=[...new Set(items.flatMap(x=>x.categories||[]))].sort();
 category.replaceChildren(new Option('Categories',''),...cats.map(x=>new Option(label(x),x)));
 render();
+requestAnimationFrame(()=>requestAnimationFrame(()=>{
 if(window.ArcadeNative&&typeof ArcadeNative.arcadeReady==='function')ArcadeNative.arcadeReady();
+}));
 }
 function updateFilterUI(){
 filters.filter(b=>b.dataset.filter).forEach(b=>b.classList.toggle('active',b.dataset.filter===mode));
