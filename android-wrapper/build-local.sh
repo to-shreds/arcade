@@ -38,6 +38,10 @@ if [ -z "${ARCADE_KEYSTORE_PASSWORD:-}" ]; then
 fi
 export ARCADE_KEY_PASSWORD="${ARCADE_KEY_PASSWORD:-$ARCADE_KEYSTORE_PASSWORD}"
 OUTPUT="$PROJECT_ROOT/app/build/outputs/apk/release/Arcade.apk"
-"$BUILD_TOOLS/apksigner" sign --ks "$KEYSTORE" --ks-key-alias "$KEY_ALIAS" --ks-pass env:ARCADE_KEYSTORE_PASSWORD --key-pass env:ARCADE_KEY_PASSWORD --out "$OUTPUT" "$TEMP_BUILD/aligned.apk"
-"$BUILD_TOOLS/apksigner" verify --verbose "$OUTPUT"
+SIGNED_TEMP="$TEMP_BUILD/Arcade-signed.apk"
+"$BUILD_TOOLS/apksigner" sign --ks "$KEYSTORE" --ks-key-alias "$KEY_ALIAS" --ks-pass env:ARCADE_KEYSTORE_PASSWORD --key-pass env:ARCADE_KEY_PASSWORD --out "$SIGNED_TEMP" "$TEMP_BUILD/aligned.apk"
+"$BUILD_TOOLS/apksigner" verify --verbose --print-certs "$SIGNED_TEMP"
+PUBLISHED_TEMP="$PROJECT_ROOT/app/build/outputs/apk/release/.Arcade.apk.$$.tmp"
+cp "$SIGNED_TEMP" "$PUBLISHED_TEMP"
+mv -f "$PUBLISHED_TEMP" "$OUTPUT"
 echo "$OUTPUT"

@@ -1161,6 +1161,7 @@ function pawnBadgeText(pawn,isSelectable){
   if(!state)return"";
   if(selectedTargetId===pawn.id)return"CHOSEN";
   if(state.currentCard==="7"&&selectedPawnId===pawn.id&&selectedAmount!==null)return"FIRST +"+selectedAmount;
+  if((state.currentCard==="S"||state.currentCard==="11")&&selectedPawnId===pawn.id)return"YOUR PAWN";
   if(!isSelectable)return"";
   if(pawn.player!==state.turn){
     if(state.phase==="ice")return"ICE";
