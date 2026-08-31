@@ -79,9 +79,7 @@
   }
 
   function snapshot(state){
-    const copy = clone(state);
-    copy.history = [];
-    return copy;
+    return clone({...state, history:[]});
   }
 
   function checkpoint(state){
@@ -184,7 +182,8 @@
       checkpoint(state);
       sourcePile.splice(sourcePile.length - moving.length, moving.length);
       dest.push(...moving);
-      state.score += from.kind === "foundation" ? -5 : 5;
+      if(from.kind === "waste") state.score += 5;
+      else if(from.kind === "foundation") state.score = Math.max(0, state.score - 10);
       state.score += flipExposed(sourcePile);
     }else if(to.kind === "foundation"){
       if(moving.length !== 1) return false;
@@ -282,6 +281,7 @@
       if(t && (t.rank !== moving[0].rank + 1 || sameColor(t, moving[0]))) return false;
       checkpoint(state); remove(); dest.push(...moving);
     }else return false;
+    if(from.kind === "foundation" && to.kind !== "foundation") state.score = Math.max(0, state.score - 10);
     state.moves++; state.message = "Move complete.";
     state.won = SUITS.every(s => state.foundations[s].length === 13);
     return true;
@@ -343,9 +343,9 @@
     let removed = 0;
     for(let p=0; p<10; p++){
       const pile = state.tableau[p];
-      if(pile.length < 13) continue;
-      const run = pile.slice(-13);
-      if(run[0].rank === 13 && run[12].rank === 1 && spiderPacked(run)){
+      while(pile.length >= 13){
+        const run = pile.slice(-13);
+        if(run[0].rank !== 13 || run[12].rank !== 1 || !spiderPacked(run)) break;
         pile.splice(-13);
         state.completed.push(run[0].suit);
         state.score += 100;
@@ -405,6 +405,7 @@
     state.pyramid = [];
     for(let i=0; i<28; i++) state.pyramid.push(deck.pop());
     state.removed = [];
+    state.cleared = [];
     state.stock = deck;
     state.waste = [];
     return state;
@@ -441,7 +442,7 @@
     checkpoint(state);
     [a,b].filter(Boolean).forEach(loc => {
       if(loc.kind === "pyramid") state.removed.push(loc.index);
-      else if(loc.kind === "waste") state.waste.pop();
+      else if(loc.kind === "waste") state.cleared.push(state.waste.pop());
     });
     state.score += b ? 10 : 5; state.moves++;
     state.won = state.removed.length === 28; state.message = b ? "Pair cleared." : "King cleared.";
@@ -497,6 +498,7 @@
     (s.stock || []).forEach(take); (s.waste || []).forEach(take);
     Object.values(s.foundations || {}).forEach(p => p.forEach(take));
     (s.cells || []).forEach(take); (s.pyramid || []).forEach(take);
+    (s.cleared || []).forEach(take);
     const expected = s.variant === "spider" ? 104 : 52;
     const cleared = s.variant === "spider" ? (s.completed || []).length * 13 : 0;
     return ids.length + cleared === expected && new Set(ids).size === ids.length;

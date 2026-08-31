@@ -9,6 +9,7 @@
   function rng(seed){let x=hash(seed);return()=>{x+=0x6D2B79F5;let t=x;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296}}
   function pick(r,a){return a[Math.floor(r()*a.length)]}
   function shuffle(r,a){a=a.slice();for(let i=a.length-1;i;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+  function sample(r,a,count){return shuffle(r,a).slice(0,count)}
   function int(r,min,max){return min+Math.floor(r()*(max-min+1))}
   function escapeRegex(s){return String(s).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
 
@@ -100,7 +101,7 @@
 
   function pack(pattern,flags,yes,no,explanation,hint){return {pattern,flags,yes:[...new Set(yes)],no:[...new Set(no)],explanation,hint}}
   function templatesFor(level){return baseTemplates().filter(t=>t.level<=level&&t.level>=Math.max(1,level-1))}
-  function fingerprint(c){return [c.mode,c.pattern,c.prompt,c.broken||"",(c.candidates||c.samples||[]).map(x=>x.text).join("|"),(c.choices||[]).join("|")].join("::")}
+  function fingerprint(c){return [c.mode,c.pattern,c.prompt,c.broken||"",(c.candidates||c.samples||[]).map(x=>x.text).sort().join("|"),(c.choices||[]).slice().sort().join("|")].join("::")}
 
   function mutatePatterns(base){
     const out=new Set();
@@ -117,12 +118,17 @@
 
   function classifications(pattern,flags,samples){return samples.map(x=>safeTest(pattern,flags,x))}
   function makePatternChoices(r,base){
-    const samples=shuffle(r,[...base.yes.slice(0,3),...base.no.slice(0,3)]);
+    const samples=shuffle(r,[...sample(r,base.yes,3),...sample(r,base.no,3)]);
     const truth=classifications(base.pattern,base.flags,samples);
-    const distractors=mutatePatterns(base).filter(p=>{
-      const c=classifications(p,base.flags,samples);return c.some((v,i)=>v!==truth[i]);
-    });
-    while(distractors.length<3)distractors.push(`^${escapeRegex(pick(r,base.yes))}$`);
+    const distractors=[];
+    function addDistractor(pattern){
+      if(!isSafePattern(pattern)||pattern===base.pattern||distractors.includes(pattern))return;
+      const result=classifications(pattern,base.flags,samples);
+      if(result.some((value,i)=>value!==truth[i]))distractors.push(pattern);
+    }
+    mutatePatterns(base).forEach(addDistractor);
+    shuffle(r,[...base.yes,...base.no]).forEach(text=>addDistractor(`^${escapeRegex(text)}$`));
+    for(let i=0;distractors.length<3;i++)addDistractor(`^regex-lab-never-${i}$`);
     const choices=shuffle(r,[base.pattern,...distractors.slice(0,3)]);
     return {samples:samples.map((text,i)=>({text,matches:truth[i]})),choices,answer:choices.indexOf(base.pattern)};
   }
@@ -138,7 +144,7 @@
     if(/\$/.test(p))variants.push({broken:p.slice(0,-1),patch:"$",position:"back",alts:["^","+","\\b"]});
     const fallback=p.startsWith("\\b")
       ? {broken:`___${p.slice(2)}`,patch:"\\b",position:"blank",alts:["^","$","."]}
-      : {broken:`___${p.slice(1)}`,patch:p[0],position:"blank",alts:["^","$","."]};
+      : {broken:`___${p.slice(1)}`,patch:p[0],position:"blank",alts:["$",".","\\b"]};
     const v=pick(r,variants.length?variants:[fallback]);
     const shown=v.position==="front"?`___${v.broken}`:v.position==="back"?`${v.broken}___`:v.broken;
     const choices=shuffle(r,[v.patch,...v.alts]);
@@ -147,17 +153,17 @@
 
   function makeChallenge(options){
     options=options||{};const mode=options.mode||"hunt",level=Math.max(1,Math.min(4,Number(options.level)||1)),seed=String(options.seed||Date.now()),recent=new Set(options.recent||[]);
-    for(let attempt=0;attempt<30;attempt++){
+    for(let attempt=0;attempt<120;attempt++){
       const r=rng(`${seed}:${attempt}`),template=pick(r,templatesFor(level)),base=template.make(r);
       let c={schema:1,mode,level,seed,title:template.title,skill:template.skill,pattern:base.pattern,flags:base.flags,explanation:base.explanation,hint:base.hint};
       if(mode==="forge"){
         const x=makePatternChoices(r,base);Object.assign(c,x,{prompt:"Which pattern labels every example correctly?"});
       }else if(mode==="repair"){
-        const x=makeRepair(r,base);Object.assign(c,x,{candidates:shuffle(r,[...base.yes.slice(0,2),...base.no.slice(0,2)]).map(text=>({text,matches:safeTest(base.pattern,base.flags,text)})),prompt:"Choose the missing piece that repairs the pattern."});
+        const x=makeRepair(r,base);Object.assign(c,x,{candidates:shuffle(r,[...sample(r,base.yes,2),...sample(r,base.no,2)]).map(text=>({text,matches:safeTest(base.pattern,base.flags,text)})),prompt:"Choose the missing piece that repairs the pattern."});
       }else if(mode==="runner"){
         const match=r()>.45,text=pick(r,match?base.yes:base.no);Object.assign(c,{candidates:[{text,matches:match}],answer:match,prompt:"Does this text match?",limit:Math.max(5,13-level*2)});
       }else{
-        const all=shuffle(r,[...base.yes.slice(0,3).map(text=>({text,matches:true})),...base.no.slice(0,3).map(text=>({text,matches:false}))]);
+        const all=shuffle(r,[...sample(r,base.yes,3).map(text=>({text,matches:true})),...sample(r,base.no,3).map(text=>({text,matches:false}))]);
         Object.assign(c,{candidates:all,answer:all.map((x,i)=>x.matches?i:null).filter(x=>x!==null),prompt:"Tap every text that matches."});
       }
       c.fingerprint=fingerprint(c);

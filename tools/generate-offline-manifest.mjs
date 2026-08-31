@@ -20,7 +20,7 @@ const ignoredDirectoryNames = new Set([
   '.git', '.github', 'node_modules', 'coverage', 'test-results',
   'playwright-report', 'test', 'tests', 'spec', 'specs'
 ]);
-const ignoredFileNames = new Set(['.DS_Store', 'Thumbs.db', 'offline-manifest.json']);
+const ignoredFileNames = new Set(['.DS_Store', 'Thumbs.db', 'offline-manifest.json', 'test.cjs']);
 
 function usage(message) {
   if (message) console.error(message);
