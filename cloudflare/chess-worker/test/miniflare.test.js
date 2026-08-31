@@ -10,6 +10,23 @@ function headers(token = null) {
   return value;
 }
 
+function nextRoom(socket, predicate = () => true) {
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      socket.removeEventListener("message", onMessage);
+      reject(new Error("WebSocket state timed out"));
+    }, 1500);
+    function onMessage(event) {
+      const message = JSON.parse(event.data);
+      if (message.type !== "state" || !predicate(message.room)) return;
+      clearTimeout(timeout);
+      socket.removeEventListener("message", onMessage);
+      resolve(message);
+    }
+    socket.addEventListener("message", onMessage);
+  });
+}
+
 test("two independent clients create, join, reconnect and synchronize through Miniflare", async (t) => {
   const sourceRoot = new URL("../src/", import.meta.url).pathname;
   const mf = new Miniflare({
@@ -43,17 +60,27 @@ test("two independent clients create, join, reconnect and synchronize through Mi
   assert.equal(socketResponse.status, 101);
   const socket = socketResponse.webSocket;
   socket.accept();
-  const firstSocketState = await new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => reject(new Error("WebSocket state timed out")), 1500);
-    socket.addEventListener("message", (event) => { clearTimeout(timeout); resolve(JSON.parse(event.data)); }, { once: true });
-  });
+  const firstSocketState = await nextRoom(socket);
   assert.equal(firstSocketState.type, "state");
   assert.equal(firstSocketState.room.side, "w");
 
+  const blackSocketResponse = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/ws?token=${second.token}`, { headers: { Origin: ORIGIN, Upgrade: "websocket" } });
+  assert.equal(blackSocketResponse.status, 101);
+  const blackSocket = blackSocketResponse.webSocket;
+  blackSocket.accept();
+  const blackSocketState = await nextRoom(blackSocket);
+  assert.equal(blackSocketState.room.side, "b");
+
+  const whiteMoveBroadcast = nextRoom(socket, (room) => room.game.moves.length === 1);
+  const blackMoveBroadcast = nextRoom(blackSocket, (room) => room.game.moves.length === 1);
   const firstMove = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/actions`, {
     method: "POST", headers: headers(first.token), body: JSON.stringify({ type: "move", uci: "e2e4", expectedVersion: second.room.version })
   });
   assert.equal(firstMove.status, 200);
+  const [whiteLive, blackLive] = await Promise.all([whiteMoveBroadcast, blackMoveBroadcast]);
+  assert.equal(whiteLive.room.game.moves[0].uci, "e2e4");
+  assert.equal(blackLive.room.game.turn, "b");
+  assert.deepEqual(blackLive.room.presence, { w: true, b: true });
 
   const blackView = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/state`, { headers: { Origin: ORIGIN, authorization: `Bearer ${second.token}` } });
   const blackState = await blackView.json();
@@ -72,7 +99,17 @@ test("two independent clients create, join, reconnect and synchronize through Mi
   });
   assert.equal(stolen.status, 403);
 
+  socket.close(1000, "simulate interruption");
+  const resumedSocketResponse = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/ws?token=${first.token}`, { headers: { Origin: ORIGIN, Upgrade: "websocket" } });
+  assert.equal(resumedSocketResponse.status, 101);
+  const resumedSocket = resumedSocketResponse.webSocket;
+  resumedSocket.accept();
+  const resumedLive = await nextRoom(resumedSocket, (room) => room.game.moves.length === 1);
+  assert.equal(resumedLive.room.side, "w");
+  assert.equal(resumedLive.room.game.moves[0].uci, "e2e4");
+
   const badOrigin = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/state`, { headers: { Origin: "https://evil.example", authorization: `Bearer ${first.token}` } });
   assert.equal(badOrigin.status, 403);
-  socket.close(1000, "test complete");
+  resumedSocket.close(1000, "test complete");
+  blackSocket.close(1000, "test complete");
 });

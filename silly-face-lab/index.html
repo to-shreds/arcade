@@ -939,13 +939,17 @@
     @media (max-width: 430px) {
         .quick-label { display: none; }
         .quick-btn { padding: 0; }
-        .studio-main { grid-template-rows: minmax(225px, 46%) minmax(0, 1fr); gap: 7px; padding: 7px; }
+        .studio-main {
+            grid-template-rows: minmax(225px, 46%) minmax(0, 1fr);
+            gap: 7px;
+            padding: 7px max(7px, env(safe-area-inset-right)) max(7px, env(safe-area-inset-bottom)) max(7px, env(safe-area-inset-left));
+        }
         .canvas-area, .controls-wrapper { border-radius: 20px; }
         .horizontal-list { grid-template-columns: repeat(auto-fill, minmax(61px, 1fr)); gap: 6px; }
         .option-card { height: 68px; }
-        .bottom-toolbar { grid-template-columns: minmax(70px, .55fr) minmax(0, 2fr) 58px; gap: 5px; padding: 6px !important; }
+        .bottom-toolbar { grid-template-columns: minmax(50px, .45fr) minmax(0, 2.4fr) 46px; gap: 5px; padding: 6px !important; }
         .move-btn { min-width: 29px; height: 37px; padding: 0; }
-        .remove-btn { min-width: 60px; height: 37px; padding: 0 5px; }
+        .remove-btn { min-width: 46px; height: 37px; padding: 0 2px; font-size: .65rem; }
         .panel-heading { padding-top: 7px; }
         .category-nav { padding-bottom: 5px; }
     }
@@ -991,13 +995,18 @@
         .canvas-hint { font-size: .58rem; bottom: 5px; }
     }
 
+    @media (orientation: landscape) and (max-width: 640px) {
+        .canvas-hint { font-size: 0; }
+        .canvas-hint::after { content: 'Drag • Pinch'; font-size: .58rem; }
+    }
+
     @media (max-height: 590px) and (orientation: portrait) {
         .studio-header { padding-top: max(5px, env(safe-area-inset-top)); padding-bottom: 5px; }
         .topbar { min-height: 38px; }
         #arcade-home-nav, .quick-btn { width: 36px; min-width: 36px; height: 36px; border-radius: 11px; }
         .app-subtitle { display: none; }
         .tabs-inner { margin-top: 5px; }
-        .tab-btn { min-height: 32px; }
+        .tab-btn { min-height: 34px; }
         .tab-btn .stage-icon { display: inline; margin-right: 2px; font-size: .82rem; }
         .studio-main { grid-template-rows: minmax(190px, 45%) minmax(0, 1fr); }
         .panel-heading { display: none; }
@@ -1397,7 +1406,7 @@
         ctx2.restore();
     }
     
-    function renderFaceToCtx(ctx2, st, w, h, yOff, includeBackground) {
+    function renderFaceToCtx(ctx2, st, w, h, yOff, includeBackground, renderScale = 1) {
         if (!ctx2 || !st) return;
         if (yOff === undefined) yOff = 20;
         try {
@@ -1409,6 +1418,7 @@
             
             ctx2.save();
             ctx2.translate(w/2, h/2 + yOff);
+            ctx2.scale(renderScale, renderScale);
 
             const fs = st.faceSize;
 
@@ -1699,7 +1709,7 @@
                     appendOptionLabel(card, friendlyLabel(key), 'preset-label');
                     const temp = JSON.parse(JSON.stringify(DEFAULTS));
                     Object.assign(temp, PRESETS[key]);
-                    renderFaceToCtx(preview.getContext('2d'), temp, preview.width, preview.height, 32);
+                    renderFaceToCtx(preview.getContext('2d'), temp, preview.width, preview.height, 8, false, .16);
                     card.onclick = () => {
                         pushHistory();
                         state = JSON.parse(JSON.stringify(DEFAULTS));

@@ -28,6 +28,7 @@ test("server rejects wrong turns, stale versions, illegal moves and piece theft"
   await assert.rejects(model.act(white.token, { type: "move", uci: "e7e5", expectedVersion: room.version }), (error) => error.status === 422);
   const moved = await model.act(white.token, { type: "move", uci: "e2e4", expectedVersion: room.version });
   await assert.rejects(model.act(black.token, { type: "move", uci: "e7e5", expectedVersion: room.version }), (error) => error.status === 409);
+  await assert.rejects(model.act(black.token, { type: "move", uci: "d2d4", expectedVersion: moved.version }), (error) => error.status === 422);
   assert.equal(moved.game.turn, "b");
 });
 

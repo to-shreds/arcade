@@ -19,8 +19,10 @@
 - Made Sorry card and pawn interactions direct and discoverable, including
   interactive 7 splits, 11 swaps, Sorry bumps, and the positive-card start
   house rule.
-- Added a polished multi-variant Solitaire game.
-- Added Regex Lab, with multiple generative modes and difficulty levels.
+- Added Solitaire Parlor with Klondike draw 1/3, Spider 1/2/4 suits,
+  FreeCell, Pyramid, hints, undo, statistics, and autosave.
+- Added Regex Lab with Match Hunt, Pattern Forge, Repair Shop, and timed Regex
+  Rush across four generative difficulty levels.
 - Updated release, backend, build, metadata, and operational documentation.
 
 ## 2.2.0 - 2026-08-29

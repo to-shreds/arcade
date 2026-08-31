@@ -2154,8 +2154,10 @@ const movesEl = $("#movesList");
 
         if(settings.coords){
   
-  const rankLabel = settings.flipped ? String(8 - rankOf(sq)) : String(rankOf(sq) + 1);
-  const fileLabel = settings.flipped ? files[7 - fileOf(sq)] : files[fileOf(sq)];
+  // `sq` is already the actual square after display orientation is applied.
+  // Label it directly so Black's flipped view still reads h1..a8 correctly.
+  const rankLabel = String(rankOf(sq) + 1);
+  const fileLabel = files[fileOf(sq)];
   if(c===0){
     const sp = el("span","coord rank"); sp.textContent = rankLabel; btn.appendChild(sp);
   }
@@ -3153,6 +3155,9 @@ clearSelection();
 
   function applyOnlineRoom(room){
     if(!room || !room.game) return;
+    const currentVersion = Number(online.room && online.room.version);
+    const incomingVersion = Number(room.version);
+    if(online.room && online.room.code === room.code && Number.isFinite(currentVersion) && Number.isFinite(incomingVersion) && incomingVersion < currentVersion) return;
     online.room = room;
     if(room.side) online.side = room.side;
     const game = room.game;
@@ -3215,7 +3220,14 @@ clearSelection();
         else if(message.type === "error") { toast(message.error || "Online move rejected"); refreshOnlineState(); }
       }catch(_){ }
     });
-    socket.addEventListener("close",()=>{ clearTimeout(timeout); if(online.socket === socket) online.socket = null; scheduleOnlineReconnect(); });
+    socket.addEventListener("close",()=>{
+      clearTimeout(timeout);
+      // Ignore a late close from a socket we deliberately replaced. Without this
+      // guard, switching or restoring rooms can start a second reconnect loop.
+      if(online.socket !== socket) return;
+      online.socket = null;
+      scheduleOnlineReconnect();
+    });
     socket.addEventListener("error",()=>{ if(socket.readyState < WebSocket.CLOSING) socket.close(); });
   }
 
@@ -3228,6 +3240,9 @@ clearSelection();
   }
 
   async function beginOnline(payload){
+    // Preserve an in-progress local/CPU game before the authoritative online
+    // snapshot replaces the board. It remains available through Save/Load.
+    if(settings.mode !== "online") holdCurrentSave();
     stopOnlineSocket(false);
     settings.mode = "online";
     online.code = payload.room.code;

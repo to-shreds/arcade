@@ -20,10 +20,11 @@ test("start-position perft matches canonical counts", () => {
   assert.equal(perft(position, 3), 8902);
 });
 
-test("complex reference position exercises castling, checks and pinned pieces", () => {
-  const position = fromFen("r3k2r/p1ppqpb1/bn2pnp1/2pP4/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1");
-  assert.equal(perft(position, 1), 42);
-  assert.equal(perft(position, 2), 1779);
+test("canonical Kiwipete perft exercises castling, checks and pinned pieces", () => {
+  const position = fromFen("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1");
+  assert.equal(perft(position, 1), 48);
+  assert.equal(perft(position, 2), 2039);
+  assert.equal(perft(position, 3), 97862);
 });
 
 test("castling requires the rook and safe transit squares", () => {
