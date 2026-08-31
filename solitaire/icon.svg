@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#22b891"/><stop offset="1" stop-color="#075247"/></linearGradient><linearGradient id="g" x1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#dfeaf1"/></linearGradient></defs>
+  <rect width="256" height="256" rx="56" fill="url(#b)"/>
+  <circle cx="54" cy="48" r="30" fill="#ffd166" opacity=".25"/><circle cx="220" cy="198" r="44" fill="#5eead4" opacity=".18"/>
+  <g transform="rotate(-12 128 128)"><rect x="57" y="31" width="137" height="194" rx="18" fill="#082d63" stroke="#fff" stroke-width="9"/><path d="M66 48h119v159H66z" fill="none" stroke="#6ca3de" stroke-width="5"/><path d="m81 64 88 126M169 64 81 190" stroke="#ffd166" stroke-width="8" opacity=".65"/></g>
+  <g transform="rotate(9 128 128)"><rect x="72" y="27" width="137" height="194" rx="18" fill="url(#g)" stroke="#d2e0ea" stroke-width="4"/><text x="89" y="71" font-family="Georgia,serif" font-size="39" font-weight="bold" fill="#d52e45">A</text><text x="91" y="101" font-family="Georgia,serif" font-size="33" fill="#d52e45">♥</text><text x="140" y="159" text-anchor="middle" font-family="Georgia,serif" font-size="78" fill="#d52e45">♥</text></g>
+</svg>
