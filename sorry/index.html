@@ -73,9 +73,12 @@ button:disabled{opacity:.35;transform:none;cursor:default}
 .center-logo{font-size:clamp(17px,5.2vmin,39px);font-weight:1000;letter-spacing:-1.2px;transform:rotate(-26deg);text-shadow:0 0 12px rgba(255,255,255,.28)}
 .center-logo span{color:var(--gold)}
 .power-center{position:absolute;bottom:5%;display:flex;gap:3px;font-size:clamp(10px,2.5vmin,19px)}
-#boardCard{position:absolute;left:50%;top:50%;width:18.5%;aspect-ratio:.69;transform:translate(-50%,-50%) rotate(-4deg);z-index:16;border-radius:9%;border:2px solid rgba(255,255,255,.86);background:repeating-linear-gradient(135deg,#171923 0 8%,#272b38 8% 16%);color:#fff;box-shadow:0 8px 18px rgba(0,0,0,.58),inset 0 0 0 2px rgba(0,0,0,.22);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;overflow:hidden}
+#boardCard{position:absolute;left:50%;top:50%;width:18.5%;aspect-ratio:.69;transform:translate(-50%,-50%) rotate(-4deg);z-index:16;border-radius:9%;border:2px solid rgba(255,255,255,.86);background:repeating-linear-gradient(135deg,#171923 0 8%,#272b38 8% 16%);color:#fff;box-shadow:0 8px 18px rgba(0,0,0,.58),inset 0 0 0 2px rgba(0,0,0,.22);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:auto;overflow:hidden;cursor:default;padding:0;-webkit-tap-highlight-color:transparent}
 #boardCard:before,#boardCard:after{content:"";position:absolute;inset:5%;border:1px solid rgba(255,255,255,.28);border-radius:7%;pointer-events:none}
 #boardCard:after{inset:11%;border-color:rgba(255,215,0,.34)}
+#boardCard.draw-ready{cursor:pointer;animation:deckReady .72s ease-in-out infinite alternate;box-shadow:0 0 0 3px rgba(255,215,0,.24),0 0 22px rgba(255,215,0,.74),0 8px 18px rgba(0,0,0,.58),inset 0 0 0 2px rgba(0,0,0,.22)}
+#boardCard.draw-ready:active{transform:translate(-50%,-50%) rotate(-4deg) scale(.93)}
+@keyframes deckReady{from{filter:brightness(.94)}to{filter:brightness(1.24)}}
 #boardCard.revealed{background:linear-gradient(145deg,#fff,#d5d7dc);color:#111;border-color:#fff}
 #boardCard.sorry-card{background:linear-gradient(145deg,#fff,#efefef)}
 #boardCardValue{position:relative;z-index:1;font-size:clamp(18px,5.4vmin,42px);font-weight:1000;line-height:.88;letter-spacing:-1px;text-shadow:0 1px 0 rgba(255,255,255,.35)}
@@ -87,6 +90,9 @@ button:disabled{opacity:.35;transform:none;cursor:default}
 #endpointLayer{position:absolute;inset:0;z-index:28;pointer-events:none}
 .endpoint-marker{position:absolute;min-width:34px;height:28px;padding:0 7px;transform:translate(-50%,-50%);border-radius:999px;border:2px solid #fff;background:linear-gradient(180deg,#00e5ff,#0876a8);color:#00151b;font-size:9px;font-weight:1000;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(0,229,255,.27),0 0 19px rgba(0,229,255,.92),0 4px 9px rgba(0,0,0,.7);pointer-events:auto;z-index:28;animation:endpointPulse .7s ease-in-out infinite alternate}
 .endpoint-marker.backward{background:linear-gradient(180deg,#ffe46b,#ff9d18);color:#321600;box-shadow:0 0 0 4px rgba(255,215,0,.28),0 0 19px rgba(255,190,20,.92),0 4px 9px rgba(0,0,0,.7)}
+.endpoint-marker.split-step{min-width:28px;height:28px;padding:0 5px;background:linear-gradient(180deg,#ffe75f,#ff9d18);color:#2c1600;box-shadow:0 0 0 4px rgba(255,215,0,.25),0 0 18px rgba(255,190,20,.92),0 4px 9px rgba(0,0,0,.7)}
+.endpoint-marker.split-finish{background:linear-gradient(180deg,#79ffb0,#14a858);color:#001e0e;box-shadow:0 0 0 4px rgba(58,255,135,.24),0 0 19px rgba(58,255,135,.9),0 4px 9px rgba(0,0,0,.7)}
+.endpoint-marker.whole-seven{background:linear-gradient(180deg,#00e5ff,#0876a8);color:#00151b}
 .endpoint-marker:after{content:"";position:absolute;inset:-8px;border:2px dashed rgba(255,255,255,.9);border-radius:999px}
 @keyframes endpointPulse{from{transform:translate(-50%,-50%) scale(.94)}to{transform:translate(-50%,-50%) scale(1.1)}}
 #pawnLayer{position:absolute;inset:0;z-index:20;pointer-events:none}
@@ -107,7 +113,8 @@ button:disabled{opacity:.35;transform:none;cursor:default}
 @keyframes pulsePawn{from{transform:translate(-50%,-50%) scale(1.04)}to{transform:translate(-50%,-50%) scale(1.24);box-shadow:0 0 0 3px rgba(255,255,255,.92),0 0 0 6px rgba(255,215,0,.82),0 0 20px rgba(255,215,0,.72)}}
 @keyframes targetPawn{from{transform:translate(-50%,-50%) scale(1.02)}to{transform:translate(-50%,-50%) scale(1.2);box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 0 6px rgba(0,229,255,.82),0 0 20px rgba(0,229,255,.75)}}
 #controlPanel{flex:0 0 140px;min-height:0;width:min(760px,100%);align-self:center;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(0,0,0,.34));border-radius:16px;padding:7px;display:grid;grid-template-columns:86px minmax(0,1fr);grid-template-rows:36px minmax(0,1fr);gap:6px;box-shadow:var(--shadow);overflow:hidden}
-#cardDisplay{grid-column:1;grid-row:1/3;border-radius:11px;border:2px solid rgba(255,255,255,.5);background:linear-gradient(145deg,#f9f9fa,#cfd1d6);color:#13141a;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 5px 12px rgba(0,0,0,.35);overflow:hidden;min-width:0}
+#cardDisplay{grid-column:1;grid-row:1/3;border-radius:11px;border:2px solid rgba(255,255,255,.5);background:linear-gradient(145deg,#f9f9fa,#cfd1d6);color:#13141a;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 5px 12px rgba(0,0,0,.35);overflow:hidden;min-width:0;padding:0;cursor:default}
+#cardDisplay.draw-ready{cursor:pointer;border-color:#fff0a0;box-shadow:0 0 0 3px rgba(255,215,0,.18),0 0 18px rgba(255,215,0,.43),0 5px 12px rgba(0,0,0,.35)}
 #cardValue{font-size:34px;line-height:.95;font-weight:1000;letter-spacing:-1px;text-align:center}
 #cardMini{font-size:10px;font-weight:1000;text-align:center;line-height:1.08;padding:4px 5px;max-width:100%}
 #cardDisplay.sorry-card{background:linear-gradient(145deg,#fff,#ececec);color:#111}
@@ -264,9 +271,9 @@ body.keyboard-open .setup-actions{margin-top:5px}
     </div>
   </header>
   <main id="playArea">
-    <div id="boardWrap"><div id="board"><div id="trackLayer"></div><svg id="pathLayer" class="board-paths" viewBox="0 0 16 16" aria-hidden="true"></svg><div id="safetyLayer"></div><div id="zoneLayer"></div><div class="center-well"><div class="center-logo">SORRY<span>!</span></div><div class="power-center" id="powerCenter">🔥 ❄️</div></div><div id="boardCard"><div id="boardCardValue">SORRY!</div><div id="boardCardText">DRAW</div></div><div id="endpointLayer"></div><div id="pawnLayer"></div></div></div>
+    <div id="boardWrap"><div id="board"><div id="trackLayer"></div><svg id="pathLayer" class="board-paths" viewBox="0 0 16 16" aria-hidden="true"></svg><div id="safetyLayer"></div><div id="zoneLayer"></div><div class="center-well"><div class="center-logo">SORRY<span>!</span></div><div class="power-center" id="powerCenter">🔥 ❄️</div></div><button id="boardCard" type="button" aria-label="Draw a card"><div id="boardCardValue">SORRY!</div><div id="boardCardText">DRAW</div></button><div id="endpointLayer"></div><div id="pawnLayer"></div></div></div>
     <section id="controlPanel">
-      <div id="cardDisplay"><div id="cardValue">?</div><div id="cardMini">DRAW</div></div>
+      <button id="cardDisplay" type="button" aria-label="Draw a card"><div id="cardValue">?</div><div id="cardMini">DRAW</div></button>
       <div id="message">Set up a new game.</div>
       <div id="choices"><button class="action-btn primary" id="openSetupBtn" type="button">New Game</button><button class="action-btn cyan" id="quickLoadBtn" type="button">Load Saved</button></div>
     </section>
@@ -353,7 +360,7 @@ const CARD_TEXT={
   "1":"Move Ice, then move forward 1 or leave Start.",
   "2":"Move Fire, then move forward 2 or leave Start.",
   "3":"Move forward 3 or leave Start.",
-  "4":"Move backward 4 or leave Start.",
+  "4":"Move backward 4. A backward card cannot leave Start.",
   "5":"Move forward 5 or leave Start.",
   "7":"Move forward 7, split 7, or leave Start.",
   "8":"Move forward 8 or leave Start.",
@@ -364,7 +371,7 @@ const CARD_TEXT={
 };
 const RULE_PAGES=[
   {title:"Goal and Turn",html:"<p>Be the first player to move all three pawns from Start to Home. Draw a card and complete a legal move. If a move is available, you must make one.</p><p>Any positive number card may move a pawn from Start. The colored START circle counts as space 1, and the pawn continues clockwise for the rest of the card value. A backward 4 cannot leave Start.</p><p>Pawns move clockwise. You may jump over pawns, but two pawns of the same color cannot share a track or Safety Zone space.</p>"},
-  {title:"Cards 1 through 7",html:"<div class='rule-grid'><div class='rule-card'><b>1</b><br>Move Ice, then forward 1.</div><div class='rule-card'><b>2</b><br>Move Fire, then forward 2.</div><div class='rule-card'><b>3</b><br>Forward 3.</div><div class='rule-card'><b>4</b><br>Backward 4.</div><div class='rule-card'><b>5</b><br>Forward 5.</div><div class='rule-card'><b>7</b><br>Forward 7 or split all 7 between two pawns.</div></div><p>A split 7 must use two pawns and all seven spaces. Split portions cannot move a pawn out of Start.</p>"},
+  {title:"Cards 1 through 7",html:"<div class='rule-grid'><div class='rule-card'><b>1</b><br>Move Ice, then forward 1.</div><div class='rule-card'><b>2</b><br>Move Fire, then forward 2.</div><div class='rule-card'><b>3</b><br>Forward 3.</div><div class='rule-card'><b>4</b><br>Backward 4.</div><div class='rule-card'><b>5</b><br>Forward 5.</div><div class='rule-card'><b>7</b><br>Forward 7 or split all 7 between two pawns.</div></div><p>Every positive number card may move a pawn out of Start; the backward 4 may not. On a 7, tap a numbered landing spot: 7 moves one pawn, while 1 through 6 begins a split. A split must use two pawns and all seven spaces, and split portions cannot move a pawn out of Start.</p>"},
   {title:"Cards 8 through SORRY!",html:"<div class='rule-grid'><div class='rule-card'><b>8</b><br>Forward 8.</div><div class='rule-card'><b>10</b><br>Forward 10 or back 1.</div><div class='rule-card'><b>11</b><br>Forward 11 or switch open-track pawns.</div><div class='rule-card'><b>12</b><br>Forward 12.</div></div><p><b>SORRY!</b> Move a pawn from Start onto an opponent's open-track pawn, sending it back to Start. You may instead move one pawn forward 4.</p><p>An 11 cannot switch pawns in Start, Safety, or Home. Iced pawns cannot be switched.</p>"},
   {title:"Board Rules",html:"<p>Landing on an opponent sends that pawn to Start. You cannot land on your own pawn or an Iced pawn.</p><p>Land exactly on the triangle at the beginning of a slide that includes your color to follow the arrow to its end. Every movable pawn in the slide path, including your own, returns to Start.</p><p>Only your pawns may enter your Safety Zone. Backward moves may leave it. Home requires an exact count.</p>"},
   {title:"Fire and Ice",html:"<p><b>Ice:</b> After drawing 1, move Ice to a different opponent's open-track pawn. That pawn cannot move, be bumped, be switched, be targeted by SORRY!, be landed on, or be pulled Home. If there is no different target, Ice comes off the board.</p><p><b>Fire:</b> After drawing 2, move Fire to a different unfinished, non-Iced pawn of yours. If there is no different target, Fire comes off the board. Before drawing on a later turn, a Fire pawn may jump to the next fire space if the move is legal.</p><p>When a Fire pawn moves into Home, it may bring one other non-Iced pawn directly Home.</p>"},
@@ -380,6 +387,7 @@ let setup={count:2,mode:"fireIce",skill:2,showEndpoints:true,cpu:[false,false,fa
 let undoStack=[];
 let autoPlayerId=null;
 let selectedPawnId=null;
+let selectedTargetId=null;
 let selectedAmount=null;
 let selectedMode=null;
 let ruleIndex=0;
@@ -517,7 +525,7 @@ function createGame(){
   }
   state={version:VERSION,started:true,mode:setup.mode,skill:setup.skill,showEndpoints:setup.showEndpoints,players:players,pawns:pawns,turn:0,deck:deck,discard:[],hands:hands,firePawnId:null,icePawnId:null,currentCard:null,phase:"preFire",selectedCardIndex:null,flow:{},winner:null,moveNo:0,savedAt:Date.now()};
   undoStack=[];autoPlayerId=null;
-  selectedPawnId=null;selectedAmount=null;selectedMode=null;
+  selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;
   hideKeyboard();
   el.setupOverlay.classList.add("hidden");
   el.menuOverlay.classList.add("hidden");
@@ -543,7 +551,7 @@ function pushUndo(){
 function undoMove(){
   if(!undoStack.length)return;
   clearTimeout(cpuTimer);clearTimeout(animationTimer);autoPlayerId=null;heldSave=null;
-  state=undoStack.pop();selectedPawnId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
+  state=undoStack.pop();selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
   el.winOverlay.classList.add("hidden");el.menuOverlay.classList.add("hidden");
   render();autoSave();showToast("Last choice undone.");maybeCpu();
 }
@@ -686,6 +694,27 @@ function getSplitActions(s,playerIndex){
   }
   return actions;
 }
+function countedDestination(s,pawnId,kind,amount){
+  const pawn=pawnById(pawnId,s);
+  if(!pawn)return null;
+  if(kind==="start"){
+    if(pawn.zone!=="start"||amount<1)return null;
+    const color=getColorByPlayer(pawn.player,s);
+    const entered={id:pawn.id,player:pawn.player,slot:pawn.slot,zone:"track",pos:color.start};
+    return amount===1?{zone:"track",pos:color.start}:destinationFor(s,entered,"forward",amount-1);
+  }
+  return destinationFor(s,pawn,kind,amount);
+}
+function materializeSplit(s,action){
+  if(!action||action.type!=="split")return null;
+  const copy=cloneGame(s);
+  const first=planMove(copy,action.first.pawnId,"forward",action.first.amount);
+  if(!first)return null;
+  applyMove(copy,first);
+  const second=planMove(copy,action.second.pawnId,"forward",action.second.amount);
+  if(!second)return null;
+  return{afterFirst:copy,first:first,second:second};
+}
 function legalActionsForCard(s,card,playerIndex){
   const actions=[];
   const own=s.pawns.filter(function(p){return p.player===playerIndex;});
@@ -737,7 +766,7 @@ function startTurn(){
   clearTimeout(animationTimer);
   if(!state||state.winner!==null)return;
   state.currentCard=null;state.selectedCardIndex=null;state.flow={};state.pendingFirePull=false;
-  selectedPawnId=null;selectedAmount=null;selectedMode=null;
+  selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;
   const fire=state.firePawnId!==null?pawnById(state.firePawnId):null;
   const jump=fire&&fire.player===state.turn?planFireJump(state,fire.id):null;
   state.phase=jump?"preFire":state.mode==="strategic"?"chooseCard":"draw";
@@ -764,7 +793,7 @@ function chooseHandCard(index){
   prepareCard();
 }
 function prepareCard(){
-  selectedPawnId=null;selectedAmount=null;selectedMode=null;state.flow={};
+  selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;state.flow={};
   if(state.mode!=="classic"&&state.currentCard==="1"){
     state.flow.previousIcePawnId=state.icePawnId;state.icePawnId=null;
     const targets=iceTokenTargets();
@@ -788,7 +817,7 @@ function fireTokenTargets(){
   return state.pawns.filter(function(p){return p.id!==previous&&p.player===state.turn&&p.zone!=="home"&&!isIced(state,p.id);});
 }
 function beginAction(){
-  selectedPawnId=null;selectedAmount=null;selectedMode=null;
+  selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;
   const actions=legalActionsForCard(state,state.currentCard,state.turn);
   if(!actions.length){
     state.phase="noMove";
@@ -798,7 +827,8 @@ function beginAction(){
     return;
   }
   state.phase="action";
-  if(actions.length===1&&!currentPlayer().cpu&&autoPlayerId===null){performAction(actions[0]);return;}
+  const needsBoardChoice=state.currentCard==="7"||state.currentCard==="11"||state.currentCard==="S";
+  if(actions.length===1&&!needsBoardChoice&&!currentPlayer().cpu&&autoPlayerId===null){performAction(actions[0]);return;}
   render();autoSave();maybeCpu();
 }
 function moveIceTo(pawnId){
@@ -924,7 +954,7 @@ function performAction(action){
   }
   state.moveNo++;
   const summary=actionSummary(action,player);
-  selectedPawnId=null;selectedAmount=null;selectedMode=null;
+  selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;
   state.phase="resolving";state.flow={animationText:summary};
   render();announce(summary);autoSave();
   animationTimer=setTimeout(completeResolvedAction,animateResolvedAction(motion,before));
@@ -989,7 +1019,7 @@ function useFireJump(use){
   state.phase=state.mode==="strategic"?"chooseCard":"draw";
   render();autoSave();maybeCpu();
 }
-function chooseActionMode(mode){selectedMode=mode;selectedPawnId=null;selectedAmount=null;render();}
+function chooseActionMode(mode){selectedMode=mode;selectedPawnId=null;selectedTargetId=null;selectedAmount=null;render();}
 function handlePawnTap(id){
   if(!state||currentPlayer().cpu)return;
   if(state.phase==="ice"){moveIceTo(id);return;}
@@ -999,30 +1029,91 @@ function handlePawnTap(id){
   const actions=legalActionsForCard(state,state.currentCard,state.turn);
   const card=state.currentCard;
   if(card==="S"){
-    if(selectedMode==="sorry"){
-      if(selectedPawnId===null){if(actions.some(function(a){return a.type==="sorry"&&a.pawnId===id;})){selectedPawnId=id;render();}return;}
-      const action=actions.find(function(a){return a.type==="sorry"&&a.pawnId===selectedPawnId&&a.targetId===id;});
-      if(action)performAction(action);
-      return;
-    }
     if(selectedMode==="forward4"){
       const action=actions.find(function(a){return a.type==="move"&&a.kind==="forward"&&a.amount===4&&a.pawnId===id;});
       if(action)performAction(action);
       return;
     }
-  }
-  if(card==="11"&&selectedMode==="switch"){
-    if(selectedPawnId===null){if(actions.some(function(a){return a.type==="switch"&&a.ownId===id;})){selectedPawnId=id;render();}return;}
-    const action=actions.find(function(a){return a.type==="switch"&&a.ownId===selectedPawnId&&a.targetId===id;});
-    if(action)performAction(action);
+    const sorryActions=actions.filter(function(a){return a.type==="sorry";});
+    const forward=actions.find(function(a){return a.type==="move"&&a.kind==="forward"&&a.amount===4&&a.pawnId===id;});
+    const tapped=pawnById(id);
+    if(selectedMode==="sorry"){
+      if(selectedPawnId!==null){
+        const action=sorryActions.find(function(a){return a.pawnId===selectedPawnId&&a.targetId===id;});
+        if(action){performAction(action);return;}
+        if(tapped&&tapped.player!==state.turn&&sorryActions.some(function(a){return a.targetId===id;})){selectedTargetId=id;selectedPawnId=null;render();}
+        return;
+      }
+      if(selectedTargetId!==null){
+        const action=sorryActions.find(function(a){return a.targetId===selectedTargetId&&a.pawnId===id;});
+        if(action){performAction(action);return;}
+        if(tapped&&tapped.player===state.turn&&sorryActions.some(function(a){return a.pawnId===id;})){selectedPawnId=id;selectedTargetId=null;render();}
+        return;
+      }
+      if(tapped&&tapped.player!==state.turn&&sorryActions.some(function(a){return a.targetId===id;})){selectedTargetId=id;render();return;}
+      if(sorryActions.some(function(a){return a.pawnId===id;})){selectedPawnId=id;render();}
+      return;
+    }
+    if(tapped&&tapped.player!==state.turn&&sorryActions.some(function(a){return a.targetId===id;})){
+      selectedMode="sorry";selectedTargetId=id;render();return;
+    }
+    if(forward){performAction(forward);return;}
+    if(sorryActions.some(function(a){return a.pawnId===id;})){
+      selectedMode="sorry";selectedPawnId=id;render();return;
+    }
     return;
   }
-  if(card==="7"&&selectedMode==="split"){
+  if(card==="11"){
+    const switchActions=actions.filter(function(a){return a.type==="switch";});
+    const moves=actions.filter(function(a){return a.type==="move"&&a.pawnId===id;});
+    const tapped=pawnById(id);
+    if(selectedMode==="forward11"||selectedMode==="start"){
+      const action=moves.find(function(a){return selectedMode==="start"?a.kind==="start":a.kind==="forward"&&a.amount===11;});
+      if(action)performAction(action);
+      return;
+    }
+    if(selectedMode==="switch"){
+      if(selectedPawnId!==null){
+        const action=switchActions.find(function(a){return a.ownId===selectedPawnId&&a.targetId===id;});
+        if(action){performAction(action);return;}
+      }else if(selectedTargetId!==null){
+        const action=switchActions.find(function(a){return a.targetId===selectedTargetId&&a.ownId===id;});
+        if(action){performAction(action);return;}
+      }else if(tapped&&tapped.player!==state.turn&&switchActions.some(function(a){return a.targetId===id;})){
+        selectedTargetId=id;render();return;
+      }else if(switchActions.some(function(a){return a.ownId===id;})){
+        selectedPawnId=id;render();return;
+      }
+      return;
+    }
+    if(selectedPawnId!==null){
+      const action=switchActions.find(function(a){return a.ownId===selectedPawnId&&a.targetId===id;});
+      if(action){performAction(action);return;}
+    }
+    if(selectedTargetId!==null){
+      const action=switchActions.find(function(a){return a.targetId===selectedTargetId&&a.ownId===id;});
+      if(action){performAction(action);return;}
+    }
+    if(tapped&&tapped.player!==state.turn&&switchActions.some(function(a){return a.targetId===id;})){
+      selectedMode="switch";selectedTargetId=id;selectedPawnId=null;render();return;
+    }
+    if(tapped&&tapped.player===state.turn){
+      const ownSwitches=switchActions.filter(function(a){return a.ownId===id;});
+      if(moves.length===1&&!ownSwitches.length){performAction(moves[0]);return;}
+      if(!moves.length&&ownSwitches.length){selectedMode="switch";selectedPawnId=id;selectedTargetId=null;render();return;}
+      if(moves.length||ownSwitches.length){selectedPawnId=id;selectedTargetId=null;selectedMode=null;render();return;}
+    }
+    return;
+  }
+  if(card==="7"){
     const splitActions=actions.filter(function(a){return a.type==="split";});
-    if(selectedPawnId===null){if(splitActions.some(function(a){return a.first.pawnId===id;})){selectedPawnId=id;render();}return;}
-    if(selectedAmount===null)return;
-    const action=splitActions.find(function(a){return a.first.pawnId===selectedPawnId&&a.first.amount===selectedAmount&&a.second.pawnId===id;});
-    if(action)performAction(action);
+    if(selectedPawnId!==null&&selectedAmount!==null){
+      const matches=splitActions.filter(function(a){return a.first.pawnId===selectedPawnId&&a.first.amount===selectedAmount&&a.second.pawnId===id;});
+      if(matches.length===1)performAction(matches[0]);
+      else if(matches.length>1)showToast("Tap the glowing landing spot.");
+      return;
+    }
+    if(getSelectablePawnIds().indexOf(id)>=0)showToast("Tap a numbered landing spot.");
     return;
   }
   const filtered=actions.filter(function(a){
@@ -1034,6 +1125,7 @@ function handlePawnTap(id){
     if(selectedMode==="forward10")return a.kind==="forward"&&a.amount===10;
     if(selectedMode==="back1")return a.kind==="backward"&&a.amount===1;
     if(selectedMode==="forward11")return a.kind==="forward"&&a.amount===11;
+    if(selectedMode==="forward4")return a.kind==="forward"&&a.amount===4;
     return true;
   });
   if(filtered.length===1)performAction(filtered[0]);
@@ -1066,11 +1158,14 @@ function renderHeader(){
   el.turnDot.style.background=color.hex;el.turnDot.style.color=color.hex;el.board.style.setProperty("--turn-color",color.hex);el.board.classList.add("turn-active");
 }
 function pawnBadgeText(pawn,isSelectable){
-  if(!isSelectable||!state)return"";
+  if(!state)return"";
+  if(selectedTargetId===pawn.id)return"CHOSEN";
+  if(state.currentCard==="7"&&selectedPawnId===pawn.id&&selectedAmount!==null)return"FIRST +"+selectedAmount;
+  if(!isSelectable)return"";
   if(pawn.player!==state.turn){
     if(state.phase==="ice")return"ICE";
-    if(state.currentCard==="11")return"SWAP";
-    return"TARGET";
+    if(state.currentCard==="11")return selectedTargetId===pawn.id?"CHOSEN":"SWAP";
+    return selectedTargetId===pawn.id?"CHOSEN":"BUMP";
   }
   if(state.phase==="fireToken")return"FIRE";
   if(state.phase==="firePull")return"HOME";
@@ -1078,12 +1173,12 @@ function pawnBadgeText(pawn,isSelectable){
   if(pawn.zone==="start")return card==="S"?"SORRY":card?"+"+card:"OUT";
   if(card==="4")return"-4";
   if(card==="10"&&selectedMode==="back1")return"-1";
-  if(card==="11"&&selectedMode==="switch")return"SWAP";
-  if(card==="7"&&selectedMode==="split"){
+  if(card==="11")return"SWAP / +11";
+  if(card==="7"){
     if(selectedAmount!==null)return pawn.id===selectedPawnId?"+"+selectedAmount:"+"+(7-selectedAmount);
-    return"SPLIT";
+    return"1–7";
   }
-  if(card==="S")return selectedMode==="forward4"?"+4":"SORRY";
+  if(card==="S")return pawn.zone==="start"?"SORRY":"+4";
   return card?"+"+card:"";
 }
 function renderBoard(){
@@ -1107,7 +1202,7 @@ function renderBoard(){
     if(pawn.player===state.turn)node.classList.add("current-turn");else node.classList.add("waiting");
     if(isSelectable)node.classList.add("selectable");
     if(isSelectable&&pawn.player!==state.turn)node.classList.add("targetable");
-    if(selectedPawnId===pawn.id)node.classList.add("selected");
+    if(selectedPawnId===pawn.id||selectedTargetId===pawn.id)node.classList.add("selected");
     if(state.players[pawn.player].cpu)node.classList.add("cpu-pawn");
     const badgeText=pawnBadgeText(pawn,isSelectable);if(badgeText){const badge=document.createElement("span");badge.className="move-badge";badge.textContent=badgeText;node.appendChild(badge);}
     if(state.firePawnId===pawn.id){node.classList.add("has-fire");const badge=document.createElement("span");badge.className="power-badge";badge.textContent="🔥";node.appendChild(badge);}
@@ -1133,18 +1228,44 @@ function actionMatchesChoice(action){
 }
 function renderEndpoints(){
   if(!state||state.phase!=="action"||currentPlayer().cpu)return;
-  const alwaysForChoice=selectedPawnId!==null&&state.currentCard==="10";
+  const alwaysForChoice=state.currentCard==="7"||selectedPawnId!==null&&(state.currentCard==="10"||state.currentCard==="11");
   if(!state.showEndpoints&&!alwaysForChoice)return;
   const seen={};
-  legalActionsForCard(state,state.currentCard,state.turn).filter(actionMatchesChoice).forEach(function(action){
+  const spotCounts={};
+  function addMarker(pawn,dest,label,className,aria,onTap,key){
+    if(!pawn||!dest||seen[key])return;
+    seen[key]=true;
+    const marker=document.createElement("button");marker.type="button";marker.className="endpoint-marker"+(className?" "+className:"");marker.textContent=label;marker.setAttribute("aria-label",aria);
+    const pos=pawnScreenPosition({id:pawn.id,player:pawn.player,slot:pawn.slot,zone:dest.zone,pos:dest.pos});marker.style.left=pos.left;marker.style.top=pos.top;
+    const spot=dest.zone+":"+dest.pos;const count=spotCounts[spot]||0;spotCounts[spot]=count+1;
+    const offsets=[[0,0],[13,-9],[-13,9],[13,9],[-13,-9]];const offset=offsets[count%offsets.length];marker.style.marginLeft=offset[0]+"px";marker.style.marginTop=offset[1]+"px";
+    marker.addEventListener("click",function(e){e.stopPropagation();onTap();});el.endpointLayer.appendChild(marker);
+  }
+  const actions=legalActionsForCard(state,state.currentCard,state.turn);
+  if(state.currentCard==="7"){
+    if(selectedPawnId!==null&&selectedAmount!==null){
+      actions.filter(function(action){return action.type==="split"&&action.first.pawnId===selectedPawnId&&action.first.amount===selectedAmount;}).forEach(function(action){
+        const parts=materializeSplit(state,action);if(!parts)return;
+        const pawn=pawnById(action.second.pawnId);const dest=countedDestination(parts.afterFirst,action.second.pawnId,"forward",action.second.amount);
+        addMarker(pawn,dest,String(action.second.amount),"split-finish","Finish the split by moving "+pawnName(pawn)+" "+action.second.amount+" spaces",function(){performAction(action);},"split2:"+action.first.pawnId+":"+action.first.amount+":"+action.second.pawnId);
+      });
+    }else{
+      actions.filter(function(action){return action.type==="move"&&action.amount===7;}).forEach(function(action){
+        const pawn=pawnById(action.pawnId);const dest=countedDestination(state,action.pawnId,action.kind,7);
+        addMarker(pawn,dest,"7","whole-seven","Move "+pawnName(pawn)+" all 7 spaces",function(){performAction(action);},"whole7:"+action.pawnId+":"+action.kind);
+      });
+      actions.filter(function(action){return action.type==="split";}).forEach(function(action){
+        const pawn=pawnById(action.first.pawnId);const dest=countedDestination(state,action.first.pawnId,"forward",action.first.amount);
+        addMarker(pawn,dest,String(action.first.amount),"split-step","Move "+pawnName(pawn)+" "+action.first.amount+" first, then split the remainder",function(){selectedMode="split";selectedPawnId=action.first.pawnId;selectedTargetId=null;selectedAmount=action.first.amount;render();},"split1:"+action.first.pawnId+":"+action.first.amount);
+      });
+    }
+    return;
+  }
+  actions.filter(actionMatchesChoice).forEach(function(action){
     const pawn=pawnById(action.pawnId);if(!pawn||!action.dest)return;
     const key=action.dest.zone+":"+action.dest.pos+":"+action.pawnId+":"+action.kind+":"+action.amount;
-    if(seen[key])return;seen[key]=true;
-    const marker=document.createElement("button");marker.type="button";marker.className="endpoint-marker"+(action.kind==="backward"?" backward":"");
-    marker.textContent=action.kind==="backward"?"−"+action.amount:action.kind==="start"?"OUT +"+action.amount:"+"+action.amount;
-    marker.setAttribute("aria-label","Move "+action.label+" to this space");
-    const pos=pawnScreenPosition({id:pawn.id,player:pawn.player,slot:pawn.slot,zone:action.dest.zone,pos:action.dest.pos});marker.style.left=pos.left;marker.style.top=pos.top;
-    marker.addEventListener("click",function(e){e.stopPropagation();performAction(action);});el.endpointLayer.appendChild(marker);
+    const label=action.kind==="backward"?"−"+action.amount:action.kind==="start"?"OUT +"+action.amount:"+"+action.amount;
+    addMarker(pawn,action.dest,label,action.kind==="backward"?"backward":"","Move "+action.label+" to this space",function(){performAction(action);},key);
   });
 }
 function pawnScreenPosition(pawn){
@@ -1161,10 +1282,15 @@ function pawnScreenPosition(pawn){
 }
 function renderCard(){
   const card=state&&state.currentCard?state.currentCard:null;
+  const canDraw=!!(state&&state.phase==="draw"&&!currentPlayer().cpu);
   el.cardDisplay.classList.toggle("sorry-card",card==="S");
+  el.cardDisplay.classList.toggle("draw-ready",canDraw);
+  el.cardDisplay.setAttribute("aria-label",canDraw?"Draw a card":card?"Current card: "+(card==="S"?"Sorry":card):"Card display");
   el.cardValue.textContent=card?card==="S"?"SORRY!":card:"?";
   el.cardMini.textContent=card?shortCardText(card):state&&state.mode==="strategic"?"HAND":"DRAW";
   el.boardCard.classList.toggle("revealed",!!card);el.boardCard.classList.toggle("sorry-card",card==="S");
+  el.boardCard.classList.toggle("draw-ready",canDraw);
+  el.boardCard.setAttribute("aria-label",canDraw?"Draw a card":card?"Current card: "+(card==="S"?"Sorry":card):"Card deck");
   el.boardCardValue.textContent=card?card==="S"?"SORRY!":card:"SORRY!";
   el.boardCardText.textContent=card?shortCardText(card):state&&state.mode==="strategic"?"CHOOSE A CARD":"DRAW";
   const key=card||"deck";
@@ -1219,14 +1345,22 @@ function renderControls(){
 function addButton(text,kind,fn){const b=document.createElement("button");b.type="button";b.className="action-btn"+(kind?" "+kind:"");b.textContent=text;b.addEventListener("click",fn);el.choices.appendChild(b);return b;}
 function actionPrompt(actions){
   const card=state.currentCard;
-  if(card==="S"&&selectedMode==="sorry")return selectedPawnId===null?"Choose your Start pawn.":"Choose an opponent to send back.";
-  if(card==="S"&&selectedMode==="forward4")return"Choose a pawn to move forward 4.";
-  if(card==="11"&&selectedMode==="switch")return selectedPawnId===null?"Choose your open-track pawn.":"Choose an opponent to switch with.";
-  if(card==="7"&&selectedMode==="split"){
-    if(selectedPawnId===null)return"Choose the first pawn for the split.";
-    if(selectedAmount===null)return"Choose the first part of the split.";
-    return"Choose a second pawn to move "+(7-selectedAmount)+".";
+  if(card==="S"&&selectedMode==="sorry"){
+    if(selectedPawnId!==null)return"Now tap an opponent pawn to bump.";
+    if(selectedTargetId!==null)return"Now tap one of your Start pawns.";
+    return"Tap your Start pawn or the opponent you want to bump.";
   }
+  if(card==="S"&&selectedMode==="forward4")return"Choose a pawn to move forward 4.";
+  if(card==="S")return"Tap your pawn for +4, or tap a Start pawn or opponent to use SORRY!";
+  if(card==="11"&&selectedMode==="switch"){
+    if(selectedPawnId!==null)return"Now tap the opponent pawn to switch with.";
+    if(selectedTargetId!==null)return"Now tap one of your open-track pawns.";
+    return"Tap either pawn in the switch.";
+  }
+  if(card==="11"&&selectedPawnId!==null)return"Tap an opponent to switch, or tap the glowing +11 destination.";
+  if(card==="11")return"Tap your pawn for +11, or tap an opponent pawn to start a switch.";
+  if(card==="7"&&selectedPawnId!==null&&selectedAmount!==null)return"Split started: tap a green "+(7-selectedAmount)+" landing spot for another pawn.";
+  if(card==="7")return"Tap 1–6 to split between two pawns, or tap 7 to move one pawn.";
   if(selectedMode==="start")return"Choose a Start pawn to move "+state.currentCard+" spaces.";
   if(selectedPawnId!==null&&state.currentCard==="10")return"Choose one of the two glowing destinations.";
   if(selectedMode)return"Choose a highlighted pawn.";
@@ -1254,20 +1388,21 @@ function renderActionButtons(actions){
     actions.filter(function(a){return a.type==="move"&&a.pawnId===selectedPawnId;}).forEach(function(a){addButton(a.kind==="backward"?"Go Back 1":"Go Forward 10",a.kind==="backward"?"":"primary",function(){performAction(a);});});
     addButton("Choose Another Pawn","",function(){selectedPawnId=null;render();});return;
   }
-  if(card==="7"&&selectedMode==="split"&&selectedPawnId!==null&&selectedAmount===null){
-    const amounts=[];actions.filter(function(a){return a.type==="split"&&a.first.pawnId===selectedPawnId;}).forEach(function(a){if(amounts.indexOf(a.first.amount)<0)amounts.push(a.first.amount);});
-    amounts.sort(function(a,b){return a-b;}).forEach(function(n){addButton(n+" + "+(7-n),"primary",function(){setSplitAmount(n);});});
-    addButton("Back","",function(){selectedPawnId=null;render();});return;
+  if(card==="7"){
+    if(selectedPawnId!==null&&selectedAmount!==null)addButton("Cancel Split","",function(){selectedMode=null;selectedPawnId=null;selectedTargetId=null;selectedAmount=null;render();});
+    return;
+  }
+  if(card==="11"&&selectedPawnId!==null&&selectedMode===null){
+    const move=actions.find(function(a){return a.type==="move"&&a.pawnId===selectedPawnId;});
+    if(move)addButton(move.kind==="start"?"Leave Start +11":"Move Forward 11","primary",function(){performAction(move);});
+    addButton("Choose Another","",function(){selectedPawnId=null;selectedTargetId=null;render();});return;
   }
   if(selectedMode){
-    addButton("Back","",function(){selectedMode=null;selectedPawnId=null;selectedAmount=null;render();});
+    addButton("Back","",function(){selectedMode=null;selectedPawnId=null;selectedTargetId=null;selectedAmount=null;render();});
     return;
   }
   if(modes.some(function(m){return m==="start";}))addButton("From Start "+card,"cyan",function(){chooseActionMode("start");});
-  if(card==="7"){
-    if(modes.indexOf("forward7")>=0)addButton("Forward 7","primary",function(){chooseActionMode("forward7");});
-    if(modes.indexOf("split")>=0)addButton("Split 7","primary",function(){chooseActionMode("split");});
-  }else if(card==="10"){
+  if(card==="10"){
     if(modes.indexOf("forward10")>=0)addButton("Forward 10","primary",function(){chooseActionMode("forward10");});
     if(modes.indexOf("back1")>=0)addButton("Back 1","",function(){chooseActionMode("back1");});
   }else if(card==="11"){
@@ -1305,19 +1440,36 @@ function getSelectablePawnIds(){
   if(state.phase!=="action")return[];
   const actions=legalActionsForCard(state,state.currentCard,state.turn);
   const ids=[];function add(id){if(ids.indexOf(id)<0)ids.push(id);}
-  if(state.currentCard==="S"&&selectedMode==="sorry"){
-    if(selectedPawnId===null)actions.filter(function(a){return a.type==="sorry";}).forEach(function(a){add(a.pawnId);});
-    else actions.filter(function(a){return a.type==="sorry"&&a.pawnId===selectedPawnId;}).forEach(function(a){add(a.targetId);});
+  if(state.currentCard==="S"){
+    const sorryActions=actions.filter(function(a){return a.type==="sorry";});
+    if(selectedMode==="forward4")actions.filter(function(a){return a.type==="move"&&a.kind==="forward"&&a.amount===4;}).forEach(function(a){add(a.pawnId);});
+    else if(selectedMode==="sorry"&&selectedPawnId!==null)sorryActions.filter(function(a){return a.pawnId===selectedPawnId;}).forEach(function(a){add(a.targetId);});
+    else if(selectedMode==="sorry"&&selectedTargetId!==null)sorryActions.filter(function(a){return a.targetId===selectedTargetId;}).forEach(function(a){add(a.pawnId);});
+    else{
+      sorryActions.forEach(function(a){add(a.pawnId);add(a.targetId);});
+      actions.filter(function(a){return a.type==="move"&&a.kind==="forward"&&a.amount===4;}).forEach(function(a){add(a.pawnId);});
+    }
     return ids;
   }
-  if(state.currentCard==="11"&&selectedMode==="switch"){
-    if(selectedPawnId===null)actions.filter(function(a){return a.type==="switch";}).forEach(function(a){add(a.ownId);});
-    else actions.filter(function(a){return a.type==="switch"&&a.ownId===selectedPawnId;}).forEach(function(a){add(a.targetId);});
+  if(state.currentCard==="11"){
+    const switches=actions.filter(function(a){return a.type==="switch";});
+    if(selectedMode==="forward11")actions.filter(function(a){return a.type==="move"&&a.kind==="forward"&&a.amount===11;}).forEach(function(a){add(a.pawnId);});
+    else if(selectedMode==="start")actions.filter(function(a){return a.type==="move"&&a.kind==="start";}).forEach(function(a){add(a.pawnId);});
+    else if(selectedPawnId!==null){
+      add(selectedPawnId);switches.filter(function(a){return a.ownId===selectedPawnId;}).forEach(function(a){add(a.targetId);});
+    }else if(selectedTargetId!==null)switches.filter(function(a){return a.targetId===selectedTargetId;}).forEach(function(a){add(a.ownId);});
+    else{
+      actions.filter(function(a){return a.type==="move";}).forEach(function(a){add(a.pawnId);});
+      switches.forEach(function(a){add(a.ownId);add(a.targetId);});
+    }
     return ids;
   }
-  if(state.currentCard==="7"&&selectedMode==="split"){
-    if(selectedPawnId===null)actions.filter(function(a){return a.type==="split";}).forEach(function(a){add(a.first.pawnId);});
-    else if(selectedAmount!==null)actions.filter(function(a){return a.type==="split"&&a.first.pawnId===selectedPawnId&&a.first.amount===selectedAmount;}).forEach(function(a){add(a.second.pawnId);});
+  if(state.currentCard==="7"){
+    if(selectedPawnId!==null&&selectedAmount!==null)actions.filter(function(a){return a.type==="split"&&a.first.pawnId===selectedPawnId&&a.first.amount===selectedAmount;}).forEach(function(a){add(a.second.pawnId);});
+    else{
+      actions.filter(function(a){return a.type==="move"&&a.amount===7;}).forEach(function(a){add(a.pawnId);});
+      actions.filter(function(a){return a.type==="split";}).forEach(function(a){add(a.first.pawnId);});
+    }
     return ids;
   }
   actions.filter(function(a){
@@ -1450,7 +1602,7 @@ function applyLoadedGame(saved,show){
   heldSave=null;state=loaded;undoStack=[];autoPlayerId=null;
   if(typeof state.pendingFirePull!=="boolean")state.pendingFirePull=false;
   if(!state.flow||typeof state.flow!=="object")state.flow={};
-  selectedPawnId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
+  selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
   el.setupOverlay.classList.add("hidden");el.menuOverlay.classList.add("hidden");el.rulesOverlay.classList.add("hidden");el.winOverlay.classList.add("hidden");hideKeyboard();
   render();if(show)showToast("Saved game loaded.");
   if(state.phase==="noMove")animationTimer=setTimeout(function(){if(state&&state.phase==="noMove")finishCard();},500);
@@ -1472,7 +1624,7 @@ function holdCurrentSave(){if(!heldSave&&currentStateMeaningful())heldSave=clone
 function effectiveState(){return cloneGame(heldSave||state);}
 function freshSetup(){
   clearTimeout(cpuTimer);clearTimeout(animationTimer);
-  heldSave=null;state=null;undoStack=[];autoPlayerId=null;selectedPawnId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
+  heldSave=null;state=null;undoStack=[];autoPlayerId=null;selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
   try{localStorage.removeItem(SAVE_KEY);}catch(e){}
   hideKeyboard();el.menuOverlay.classList.add("hidden");el.rulesOverlay.classList.add("hidden");el.winOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");
   render();
@@ -1536,6 +1688,8 @@ function bind(){
   Array.from(document.querySelectorAll(".name-input")).forEach(function(input){input.addEventListener("click",function(){openKeyboard(this);});input.addEventListener("pointerdown",function(e){e.preventDefault();openKeyboard(this);});});
   el.keyboard.addEventListener("click",function(e){const b=e.target.closest("button");if(!b)return;const name=b.dataset.kName;const char=b.dataset.kChar;const action=b.dataset.kAction;if(name)keyboardInput(name,true);else if(char)keyboardInput(char,false);else if(action==="space")keyboardInput(" ",false);else if(action==="back"&&activeInput){activeInput.value=activeInput.value.slice(0,-1);el.keyboardDisplay.textContent=activeInput.value||" ";}else if(action==="clear")keyboardInput("",true);else if(action==="letters")el.keyboard.classList.toggle("expanded");else if(action==="done")hideKeyboard();});
   $("startBtn").addEventListener("click",createGame);
+  el.boardCard.addEventListener("click",function(){if(state&&state.phase==="draw"&&!currentPlayer().cpu)drawCard();});
+  el.cardDisplay.addEventListener("click",function(){if(state&&state.phase==="draw"&&!currentPlayer().cpu)drawCard();});
   $("setupLoadBtn").addEventListener("click",function(){loadGame(true);});
   $("setupBackBtn").addEventListener("click",goToArcade);
   $("saveBtn").addEventListener("click",function(){saveGame(true);});
