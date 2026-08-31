@@ -145,12 +145,20 @@ public final class MainActivity extends BaseActivity {
                 if (validatedManifest != null) {
                     archiveSyncInProgress = true;
                     mainHandler.post(() -> beginRemoteWeb(generation, requestedIntent, false));
+                    boolean synchronizationFailed = false;
                     try {
                         manager.synchronize(validatedManifest);
                     } catch (IOException | RuntimeException error) {
+                        synchronizationFailed = true;
                         Log.w("Arcade", "Offline Arcade update was not activated", error);
                     } finally {
                         archiveSyncInProgress = false;
+                    }
+                    if (synchronizationFailed && hasArchive) {
+                        mainHandler.post(() -> {
+                            if (!remoteGenerationCurrent(generation) || forceOffline || !manager.isReady()) return;
+                            fallbackAfterRemoteFailure(activeClient, webView);
+                        });
                     }
                 } else {
                     boolean fallbackReady = hasArchive && manager.isReady();

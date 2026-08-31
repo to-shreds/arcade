@@ -1,4 +1,4 @@
-const WORKER_VERSION = '2026-08-31-manifest-v1';
+const WORKER_VERSION = '2026-08-31-manifest-v2';
 const SNAPSHOT_PREFIX = 'family-arcade-snapshot-';
 const META_CACHE = 'family-arcade-snapshot-meta';
 const ACTIVE_KEY = new URL('__arcade_active_snapshot__', self.registration.scope).href;
@@ -9,6 +9,8 @@ const MAX_FILE_BYTES = 50 * 1024 * 1024;
 const MAX_ARCHIVE_BYTES = 250 * 1024 * 1024;
 const MAX_FILES = 10000;
 let refreshTask = null;
+let validatedSnapshotKey = null;
+let validationTask = null;
 
 function timeoutFetch(input, options = {}, timeoutMs = 6500) {
   const controller = new AbortController();
@@ -82,6 +84,70 @@ async function activeMarker() {
   }
 }
 
+function markerKey(marker) {
+  return marker ? `${marker.cache}:${marker.manifestSha256}` : '';
+}
+
+async function validateSnapshot(marker, expectedManifest = null, expectedDigest = null) {
+  if (!marker || !(await caches.has(marker.cache))) return null;
+  const cache = await caches.open(marker.cache);
+  const storedManifest = await cache.match(MANIFEST_URL);
+  if (!storedManifest) return null;
+  try {
+    const manifestBytes = await storedManifest.arrayBuffer();
+    if (!manifestBytes.byteLength || manifestBytes.byteLength > MAX_MANIFEST_BYTES) return null;
+    const digest = await sha256(manifestBytes);
+    if (digest !== marker.manifestSha256 || (expectedDigest && digest !== expectedDigest)) return null;
+    const manifest = validateManifest(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(manifestBytes)));
+    if (manifest.version !== marker.version || (expectedManifest && manifest.version !== expectedManifest.version)) return null;
+    if (expectedManifest && JSON.stringify(manifest.files) !== JSON.stringify(expectedManifest.files)) return null;
+    for (let start = 0; start < manifest.files.length; start += 4) {
+      const batch = manifest.files.slice(start, start + 4);
+      const valid = await Promise.all(batch.map(file => reusableResponse(cache, file)));
+      if (valid.some(response => !response)) return null;
+    }
+    validatedSnapshotKey = markerKey(marker);
+    return marker;
+  } catch (_) {
+    return null;
+  }
+}
+
+async function recoverSnapshot() {
+  const names = (await caches.keys())
+    .filter(name => name.startsWith(SNAPSHOT_PREFIX))
+    .sort((left, right) => {
+      const leftTime = Number((left.match(/-(\d{10,})-[^-]+$/) || [])[1] || 0);
+      const rightTime = Number((right.match(/-(\d{10,})-[^-]+$/) || [])[1] || 0);
+      return rightTime - leftTime || right.localeCompare(left);
+    });
+  for (const cacheName of names) {
+    const cache = await caches.open(cacheName);
+    const storedManifest = await cache.match(MANIFEST_URL);
+    if (!storedManifest) continue;
+    try {
+      const bytes = await storedManifest.clone().arrayBuffer();
+      if (!bytes.byteLength || bytes.byteLength > MAX_MANIFEST_BYTES) continue;
+      const manifest = validateManifest(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes)));
+      const marker = { cache: cacheName, version: manifest.version, manifestSha256: await sha256(bytes), worker: WORKER_VERSION };
+      if (!await validateSnapshot(marker, manifest, marker.manifestSha256)) continue;
+      await (await caches.open(META_CACHE)).put(ACTIVE_KEY, new Response(JSON.stringify(marker), { headers: { 'content-type': 'application/json' } }));
+      return marker;
+    } catch (_) {}
+  }
+  validatedSnapshotKey = null;
+  return null;
+}
+
+async function verifiedActiveMarker() {
+  const marker = await activeMarker();
+  if (marker && validatedSnapshotKey === markerKey(marker)) return marker;
+  if (validationTask) return validationTask;
+  validationTask = (async () => await validateSnapshot(marker) || await recoverSnapshot())()
+    .finally(() => { validationTask = null; });
+  return validationTask;
+}
+
 async function verifiedResponse(file) {
   const url = new URL(file.path, self.registration.scope).href;
   const response = await timeoutFetch(url, { cache: 'no-store', redirect: 'error' }, 12000);
@@ -104,15 +170,11 @@ async function reusableResponse(cache, file) {
   return response;
 }
 
-async function deleteSnapshotsExcept(keep) {
-  const names = await caches.keys();
-  await Promise.all(names.filter(name => name.startsWith(SNAPSHOT_PREFIX) && name !== keep).map(name => caches.delete(name)));
-}
-
 async function buildSnapshot() {
   const remote = await fetchManifest();
   const oldMarker = await activeMarker();
-  if (oldMarker && oldMarker.version === remote.manifest.version && oldMarker.manifestSha256 === remote.digest) return oldMarker;
+  if (oldMarker && oldMarker.version === remote.manifest.version && oldMarker.manifestSha256 === remote.digest &&
+      await validateSnapshot(oldMarker, remote.manifest, remote.digest)) return oldMarker;
 
   const suffix = `${remote.manifest.version.replace(/[^A-Za-z0-9._-]/g, '_')}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
   const cacheName = `${SNAPSHOT_PREFIX}${suffix}`;
@@ -133,7 +195,7 @@ async function buildSnapshot() {
 
     const marker = { cache: cacheName, version: remote.manifest.version, manifestSha256: remote.digest, worker: WORKER_VERSION };
     await (await caches.open(META_CACHE)).put(ACTIVE_KEY, new Response(JSON.stringify(marker), { headers: { 'content-type': 'application/json' } }));
-    await deleteSnapshotsExcept(cacheName);
+    validatedSnapshotKey = markerKey(marker);
     return marker;
   } catch (error) {
     await caches.delete(cacheName);
@@ -148,7 +210,7 @@ function refreshSnapshot() {
 }
 
 async function cachedFallback(request) {
-  const marker = await activeMarker();
+  const marker = await verifiedActiveMarker();
   if (!marker) return null;
   const cache = await caches.open(marker.cache);
   let response = await cache.match(request, { ignoreSearch: true });
@@ -173,7 +235,7 @@ self.addEventListener('install', event => {
     try {
       await refreshSnapshot();
     } catch (error) {
-      if (!await activeMarker()) throw error;
+      if (!await verifiedActiveMarker()) throw error;
     }
     await self.skipWaiting();
   })());
@@ -181,8 +243,7 @@ self.addEventListener('install', event => {
 
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
-    const marker = await activeMarker();
-    await deleteSnapshotsExcept(marker && marker.cache);
+    await verifiedActiveMarker();
     await self.clients.claim();
   })());
 });
