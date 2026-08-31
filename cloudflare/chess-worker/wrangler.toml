@@ -1,0 +1,15 @@
+name = "arcade-chess"
+main = "src/index.js"
+compatibility_date = "2026-08-06"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGINS = "https://to-shreds.github.io,https://arcade.local,http://localhost:8787,http://127.0.0.1:8787"
+
+[[durable_objects.bindings]]
+name = "CHESS_ROOMS"
+class_name = "ChessRoom"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ChessRoom"]

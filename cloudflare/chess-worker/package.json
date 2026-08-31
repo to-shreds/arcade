@@ -1,0 +1,15 @@
+{
+  "name": "arcade-chess-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "npm test && wrangler deploy --dry-run --outdir .wrangler/dry-run"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.1",
+    "miniflare": "^4.20260730.0",
+    "wrangler": "^4.33.2"
+  }
+}
