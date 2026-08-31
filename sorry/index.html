@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>Arcade - Sorry! Fire & Ice</title>
+<title>Arcade - Sorry! Fire &amp; Ice</title>
 <style>
 :root{
   --bg:#050609;
@@ -271,9 +271,9 @@ body.keyboard-open .setup-actions{margin-top:5px}
     </div>
   </header>
   <main id="playArea">
-    <div id="boardWrap"><div id="board"><div id="trackLayer"></div><svg id="pathLayer" class="board-paths" viewBox="0 0 16 16" aria-hidden="true"></svg><div id="safetyLayer"></div><div id="zoneLayer"></div><div class="center-well"><div class="center-logo">SORRY<span>!</span></div><div class="power-center" id="powerCenter">🔥 ❄️</div></div><button id="boardCard" type="button" aria-label="Draw a card"><div id="boardCardValue">SORRY!</div><div id="boardCardText">DRAW</div></button><div id="endpointLayer"></div><div id="pawnLayer"></div></div></div>
+    <div id="boardWrap"><div id="board"><div id="trackLayer"></div><svg id="pathLayer" class="board-paths" viewBox="0 0 16 16" aria-hidden="true"></svg><div id="safetyLayer"></div><div id="zoneLayer"></div><div class="center-well"><div class="center-logo">SORRY<span>!</span></div><div class="power-center" id="powerCenter">🔥 ❄️</div></div><button id="boardCard" type="button" aria-label="Draw a card"><span id="boardCardValue">SORRY!</span><span id="boardCardText">DRAW</span></button><div id="endpointLayer"></div><div id="pawnLayer"></div></div></div>
     <section id="controlPanel">
-      <button id="cardDisplay" type="button" aria-label="Draw a card"><div id="cardValue">?</div><div id="cardMini">DRAW</div></button>
+      <button id="cardDisplay" type="button" aria-label="Draw a card"><span id="cardValue">?</span><span id="cardMini">DRAW</span></button>
       <div id="message">Set up a new game.</div>
       <div id="choices"><button class="action-btn primary" id="openSetupBtn" type="button">New Game</button><button class="action-btn cyan" id="quickLoadBtn" type="button">Load Saved</button></div>
     </section>
@@ -282,7 +282,7 @@ body.keyboard-open .setup-actions{margin-top:5px}
 <div class="overlay" id="setupOverlay">
   <div class="panel">
     <div class="panel-title">SORRY<span>!</span></div>
-    <div class="panel-sub">Fire & Ice Power-Ups</div>
+    <div class="panel-sub">Fire &amp; Ice Power-Ups</div>
     <div class="setup-grid">
       <div class="setup-box"><div class="setup-label">Players</div><div class="choice-row" style="--count:3" id="playerCountChoices"><button class="choice active" data-value="2" type="button">2</button><button class="choice" data-value="3" type="button">3</button><button class="choice" data-value="4" type="button">4</button></div></div>
       <div class="setup-box"><div class="setup-label">Rules</div><div class="choice-row" style="--count:3" id="modeChoices"><button class="choice active" data-value="fireIce" type="button">F&amp;I</button><button class="choice" data-value="classic" type="button">Classic</button><button class="choice" data-value="strategic" type="button">5 Card</button></div></div>
@@ -1590,8 +1590,10 @@ function migrateSave(saved){
   const migrated=cloneGame(saved);
   migrated.pawns.forEach(function(pawn){
     if(pawn.zone!=="track")return;
-    const progress=(pawn.pos-starts[pawn.player]+60)%60;
-    pawn.pos=(COLORS[pawn.player].start+progress)%60;
+    const color=getColorByPlayer(pawn.player,migrated);
+    const colorIndex=Math.max(0,COLORS.indexOf(color));
+    const progress=(pawn.pos-starts[colorIndex]+60)%60;
+    pawn.pos=(color.start+progress)%60;
   });
   migrated.version=VERSION;
   return migrated;

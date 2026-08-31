@@ -16,5 +16,5 @@
     "touch",
     "turn-based"
   ],
-  "orientation": "landscape"
+  "orientation": "any"
 }
