@@ -946,6 +946,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
           <section class="startCard online">
             <h2>Player vs. Player Online</h2><p>Create a room and share its six-character code, or enter a code from another player.</p>
             <div class="onlineActions"><button id="onlineCreateBtn" class="ui-btn primary">Create Room</button><button id="onlineJoinOpenBtn" class="ui-btn">Join Room</button></div>
+            <button id="onlineResumeBtn" class="ui-btn ghost" type="button" hidden>Resume Last Room</button>
             <div id="onlineSetupStatus" class="tiny" aria-live="polite"></div>
           </section>
         </div>
@@ -3123,6 +3124,24 @@ clearSelection();
     try{ localStorage.setItem(ONLINE_SESSION_KEY, JSON.stringify({code:online.code, token:online.token})); }catch(_){ }
   }
 
+  function storedOnlineSession(){
+    let saved = null;
+    try{ saved = JSON.parse(localStorage.getItem(ONLINE_SESSION_KEY) || "null"); }catch(_){ }
+    if(!saved || typeof saved !== "object") return null;
+    const code = String(saved.code || "").trim().toUpperCase();
+    const token = typeof saved.token === "string" ? saved.token.trim() : "";
+    if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code) || !/^[A-Za-z0-9_-]{32,128}$/.test(token)) return null;
+    return {code, token};
+  }
+
+  function syncOnlineResumeButton(){
+    const button = $("#onlineResumeBtn");
+    if(!button) return;
+    const saved = storedOnlineSession();
+    button.hidden = !saved;
+    button.textContent = saved ? ("Resume Room " + saved.code) : "Resume Last Room";
+  }
+
   function serverPiece(piece){
     const map = {P:WP,N:WN,B:WB,R:WR,Q:WQ,K:WK,p:BP,n:BN,b:BB,r:BR,q:BQ,k:BK};
     return piece ? (map[piece] || 0) : 0;
@@ -3321,15 +3340,27 @@ clearSelection();
   }
 
   async function resumeOnlineSession(){
-    let saved = null;
-    try{ saved = JSON.parse(localStorage.getItem(ONLINE_SESSION_KEY) || "null"); }catch(_){ }
-    if(!saved || !saved.code || !saved.token) return false;
+    const saved = storedOnlineSession();
+    const button = $("#onlineResumeBtn");
+    const status = $("#onlineSetupStatus");
+    if(!saved){ syncOnlineResumeButton(); return false; }
+    if(button) button.disabled = true;
+    if(status) status.textContent = "Resuming room " + saved.code + "…";
     try{
       const body = await onlineFetch("/api/chess/rooms/"+encodeURIComponent(saved.code)+"/join",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({reconnectToken:saved.token})});
       await beginOnline(body);
       toast("Online game restored.");
       return true;
-    }catch(_){ return false; }
+    }catch(error){
+      if(error && (error.status === 401 || error.status === 403 || error.status === 404)){
+        try{ localStorage.removeItem(ONLINE_SESSION_KEY); }catch(_){ }
+        syncOnlineResumeButton();
+      }
+      if(status) status.textContent = onlineErrorMessage(error);
+      return false;
+    }finally{
+      if(button) button.disabled = false;
+    }
   }
 
   async function onlineAction(type, extra){
@@ -3477,6 +3508,7 @@ clearSelection();
     setupModal.setAttribute("aria-hidden","false");
     showSetupPane(view === "prefs" ? "prefs" : "start");
     syncSetupUI();
+    syncOnlineResumeButton();
   }
   function closeSetup(){
     const beginsGame = !gameStarted;
@@ -3572,6 +3604,7 @@ clearSelection();
   autoFlipCheck.addEventListener("change", ()=>{ settings.autoFlip = autoFlipCheck.checked; saveSettings(); });
   opponentFacingCheck.addEventListener("change", ()=>{ settings.opponentFacing = opponentFacingCheck.checked; saveSettings(); updateUI(false); });
   $("#onlineCreateBtn").addEventListener("click", createOnlineRoom);
+  $("#onlineResumeBtn").addEventListener("click", resumeOnlineSession);
   $("#onlineJoinForm").addEventListener("submit", e=>{
     e.preventDefault();
     joinOnlineRoom();
@@ -3731,7 +3764,7 @@ clearSelection();
   resetGame({preserve:false, started:false});
   try{ openSetup("start"); }catch(_){}
   try{ installArcadeSave(); }catch(_){}
-  try{ renderOnlineBar(); resumeOnlineSession(); }catch(_){}
+  try{ renderOnlineBar(); }catch(_){}
 
   
   window.addEventListener("resize", ()=>{ scheduleResizeBoard(true); updateUI(false); }, {passive:true});

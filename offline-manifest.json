@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.3.0+20260901.1",
-  "generatedAt": "2026-09-01T04:40:10.863Z",
-  "fileCount": 301,
-  "totalBytes": 16272437,
+  "version": "2.3.0+20260901.2",
+  "generatedAt": "2026-09-01T05:08:58.117Z",
+  "fileCount": 297,
+  "totalBytes": 16241174,
   "files": [
     {
       "path": "arcade-save.js",
@@ -34,26 +34,6 @@
       "path": "balloons/index.html",
       "bytes": 126911,
       "sha256": "d776c4d5adeeea5d37d83e851d71bd6197f57bf7f93c8fc5b9bb3b9778a83034"
-    },
-    {
-      "path": "baseball/game.json",
-      "bytes": 298,
-      "sha256": "39247a6b1f42541d85808d51eb8eb270f93e042e0d47fb5aa888c269d5a4e8c7"
-    },
-    {
-      "path": "baseball/icon.png",
-      "bytes": 16827,
-      "sha256": "38fbb2b0cf912eb1fa63cad5e5cb5ca35075a87bdf119313e2d817290bf0f421"
-    },
-    {
-      "path": "baseball/icon.svg",
-      "bytes": 833,
-      "sha256": "32b337bf64c172648bb00bf7567cad62bf0c2b24176d74d5457cbf6a4004d9aa"
-    },
-    {
-      "path": "baseball/index.html",
-      "bytes": 14715,
-      "sha256": "adea671be65698636e2c79f9aa436455429a79a8311958c63140a2a4544d16bb"
     },
     {
       "path": "blackjack/game.json",
@@ -137,8 +117,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 20319,
-      "sha256": "64fdb01b6fa4867071e5d50bcc74f5fb1701dc3c8663cddc76de129032b3c5b6"
+      "bytes": 20320,
+      "sha256": "3b5c695ed6b2317c291f1d8bd296cb631912f95fd130b2b31a6cb215a4e97d98"
     },
     {
       "path": "checkers/game.json",
@@ -167,8 +147,8 @@
     },
     {
       "path": "chess/index.html",
-      "bytes": 143299,
-      "sha256": "5d3942487fc0a73b8f8b4693dd23f12829644283c722b4fd636b01aeed35d22a"
+      "bytes": 144707,
+      "sha256": "b9d7aaed955de04e01b767ae4ffff7405cf2054a5ca45f1ab2386321669b1c98"
     },
     {
       "path": "codebreaking/game.json",
@@ -1412,8 +1392,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 11694,
-      "sha256": "d9ed38dbb086f52a684f8ad63f0a7ffa582f5cc0550481b4a9417ee10ab40cf5"
+      "bytes": 11695,
+      "sha256": "c39cea02eef40e7860a1c8ab606b2b49e58bf0f909894e89b982250f20d7397f"
     },
     {
       "path": "tic-tac-toe/game.json",

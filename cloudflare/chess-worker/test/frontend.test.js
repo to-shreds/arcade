@@ -32,7 +32,7 @@ function tapSquare(window, square) {
   }
 }
 
-async function loadChess(fetchImpl = async () => { throw new Error("unexpected fetch"); }, savedSettings = null) {
+async function loadChess(fetchImpl = async () => { throw new Error("unexpected fetch"); }, savedSettings = null, savedOnlineSession = null) {
   const errors = [];
   const virtualConsole = new VirtualConsole();
   virtualConsole.on("jsdomError", (error) => errors.push(error));
@@ -43,6 +43,7 @@ async function loadChess(fetchImpl = async () => { throw new Error("unexpected f
     runScripts: "dangerously", pretendToBeVisual: true, virtualConsole,
     beforeParse(window) {
       if (savedSettings) window.localStorage.setItem("arcadeChess_settings", savedSettings);
+      if (savedOnlineSession) window.localStorage.setItem("arcadeChess_onlineSession_v1", savedOnlineSession);
       window.fetch = fetchImpl;
       window.confirm = () => true;
       window.alert = () => {};
@@ -122,6 +123,68 @@ test("flipped coordinates and opponent-piece orientation persist correctly", asy
   assert.equal(restored.dom.window.document.querySelectorAll("#board .piece.opposite-facing").length, 0);
   assert.equal(restored.errors.length, 0, restored.errors.map((error) => error.message).join("\n"));
   restored.dom.window.close();
+});
+
+test("a saved online room never bypasses the startup mode menu", async () => {
+  const calls = [];
+  const saved = { code: "ABC234", token: "r".repeat(43) };
+  const fetchImpl = async (url, options = {}) => {
+    calls.push({ url: String(url), options });
+    if (String(url).endsWith("/api/chess/rooms/ABC234/join")) {
+      return { ok: true, status: 200, async json() { return { ok: true, token: saved.token, side: "w", room: room("w") }; } };
+    }
+    throw new Error("unexpected fetch " + url);
+  };
+  const { dom, errors } = await loadChess(fetchImpl, null, JSON.stringify(saved));
+  try {
+    const { document } = dom.window;
+    assert.equal(document.querySelector("#setupModal").classList.contains("show"), true);
+    assert.equal(document.querySelector("#startPane").hidden, false);
+    assert.ok(document.querySelector("#modePvp"));
+    assert.ok(document.querySelector("#modeCpu"));
+    assert.ok(document.querySelector("#onlineCreateBtn"));
+    assert.ok(document.querySelector("#onlineJoinOpenBtn"));
+    assert.equal(calls.length, 0);
+    assert.equal(dom.window.__chessTestSockets.length, 0);
+    assert.match(document.querySelector("#modeText").textContent, /LOCAL PVP/);
+    const resume = document.querySelector("#onlineResumeBtn");
+    assert.equal(resume.hidden, false);
+    assert.match(resume.textContent, /ABC234/);
+
+    resume.click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 30));
+    assert.equal(calls.length, 1);
+    assert.match(calls[0].url, /\/api\/chess\/rooms\/ABC234\/join$/);
+    assert.deepEqual(JSON.parse(calls[0].options.body), { reconnectToken: saved.token });
+    assert.equal(document.querySelector("#setupModal").classList.contains("show"), false);
+    assert.match(document.querySelector("#modeText").textContent, /ONLINE ABC234/);
+    assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
+  } finally {
+    dom.window.close();
+  }
+});
+
+test("a failed explicit online resume leaves local and CPU choices available", async () => {
+  const saved = { code: "ABC234", token: "r".repeat(43) };
+  const fetchImpl = async () => { throw new Error("Network unavailable"); };
+  const { dom, errors } = await loadChess(fetchImpl, null, JSON.stringify(saved));
+  try {
+    const { document } = dom.window;
+    const resume = document.querySelector("#onlineResumeBtn");
+    resume.click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 30));
+    assert.equal(document.querySelector("#setupModal").classList.contains("show"), true);
+    assert.equal(document.querySelector("#startPane").hidden, false);
+    assert.equal(resume.disabled, false);
+    assert.match(document.querySelector("#onlineSetupStatus").textContent, /Network unavailable/);
+
+    document.querySelector("#modePvp").click();
+    assert.match(document.querySelector("#modeText").textContent, /LOCAL PVP/);
+    assert.equal(dom.window.localStorage.getItem("arcadeChess_onlineSession_v1"), null);
+    assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
+  } finally {
+    dom.window.close();
+  }
 });
 
 test("online creation enters the shared board and exposes room/reconnect state", async () => {

@@ -50,7 +50,7 @@
       "entry": "index.html",
       "icon": "icon.png",
       "order": 25,
-      "enabled": true,
+      "enabled": false,
       "type": "game",
       "multiplayer": false,
       "playersMin": 1,

@@ -9,6 +9,10 @@
 - Reworked online Chess joining into a dedicated, responsive room-code pane
   with a large native input and submit-time validation that preserves IME input
   order.
+- Corrected Chess startup so the Local, CPU, and Online choices always appear
+  before any saved online room is resumed. Saved rooms now require an explicit
+  Resume Room selection.
+- Removed Backyard Baseball from the published catalog and offline archive.
 
 - Made the Android wrapper GitHub Pages first, with a complete staged,
   hash-validated, atomic last-known-good offline archive and fast failure
