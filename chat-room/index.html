@@ -92,19 +92,19 @@
     }
     function ensureAudio(){
       if(!soundEnabled)return null;const AudioContext=window.AudioContext||window.webkitAudioContext;if(!AudioContext)return null;
-      try{if(!audioContext)audioContext=new AudioContext();if(audioContext.state==="suspended"&&audioContext.resume)audioContext.resume().catch(()=>{});return audioContext}catch(_){return null}
+      try{if(!audioContext||audioContext.state==="closed")audioContext=new AudioContext();if(audioContext.state!=="running"&&audioContext.resume)audioContext.resume().catch(()=>{});return audioContext}catch(_){return null}
     }
     function playIncomingChime(){
       const context=ensureAudio();if(!context)return;
       try{const now=context.currentTime||0,oscillator=context.createOscillator(),gain=context.createGain();oscillator.type="sine";oscillator.frequency.setValueAtTime(660,now);oscillator.frequency.exponentialRampToValueAtTime(880,now+.1);gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.12,now+.015);gain.gain.exponentialRampToValueAtTime(.0001,now+.14);oscillator.connect(gain);gain.connect(context.destination);oscillator.start(now);oscillator.stop(now+.15)}catch(_){}
     }
-    function plainNotificationText(value){return String(value||"").replace(/[\u0000-\u001f\u007f<>]/g," ").replace(/\s+/g," ").trim().slice(0,240)}
+    function plainNotificationText(value){return String(value||"").replace(/[\u0000-\u001f\u007f\u202a-\u202e\u2066-\u2069<>]/gi," ").replace(/\s+/g," ").trim().slice(0,240)}
     function messageKey(item,index){const id=String(item&&item.id||"").slice(0,160);return id||[item&&item.playerId,item&&item.createdAt,item&&item.text,index].map(value=>String(value||"")).join("\u001f")}
     function resetMessageTracking(){messageRoomCode="";seenMessageIds.clear();lastMessageCount=0}
     function notifyForMessage(item,key,roomCode){
       if(!notificationsEnabled||!notificationAvailable()||Notification.permission!=="granted")return;
       const background=document.visibilityState==="hidden"||(typeof document.hasFocus==="function"&&!document.hasFocus());if(!background)return;
-      const username=cleanName(item&&item.username).replace(/[<>]/g,"")||"Arcade player",body=plainNotificationText(item&&item.text);if(!body)return;
+      const username=cleanName(item&&item.username).replace(/[\u202a-\u202e\u2066-\u2069<>]/gi,"")||"Arcade player",body=plainNotificationText(item&&item.text);if(!body)return;
       try{new Notification("Arcade Chat · "+username,{body,tag:"arcade-chat-"+roomCode+"-"+key,silent:true})}catch(_){}
     }
     function captureIncomingMessages(next){
@@ -150,6 +150,7 @@
     $("#soundBtn").addEventListener("click",()=>{soundEnabled=!soundEnabled;savePreference(SOUND_KEY,soundEnabled);syncPreferenceButtons();if(soundEnabled)ensureAudio()});
     $("#notifyBtn").addEventListener("click",()=>{toggleNotifications()});
     window.addEventListener("pointerdown",()=>{ensureAudio()},{once:true,capture:true});
+    window.addEventListener("keydown",()=>{ensureAudio()},{once:true,capture:true});
     $("#homeBtn").addEventListener("click",()=>{if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.goHome==="function"){ArcadeMultiplayer.goHome();return}location.href="../index.html"});$("#createBtn").addEventListener("click",createRoom);$("#joinOpenBtn").addEventListener("click",()=>{$("#joinOverlay").classList.remove("hidden");$("#joinStatus").textContent="";setTimeout(()=>$("#joinCode").focus(),50)});$("#joinBackBtn").addEventListener("click",()=>$("#joinOverlay").classList.add("hidden"));$("#joinCode").addEventListener("input",e=>{e.target.value=escCode(e.target.value)});$("#joinForm").addEventListener("submit",joinRoom);$("#resumeBtn").addEventListener("click",resumeRoom);$("#composer").addEventListener("submit",sendMessage);$("#copyBtn").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(room.code);toast("Room code copied")}catch(_){toast("Room code: "+room.code)}});$("#renameBtn").addEventListener("click",()=>{if(nearbyActive())return;const mine=room.members.find(m=>m.playerId===room.playerId);$("#renameInput").value=mine?.username||readName();$("#renameStatus").textContent="";$("#renameOverlay").classList.remove("hidden");setTimeout(()=>$("#renameInput").select(),50)});$("#renameCancel").addEventListener("click",()=>$("#renameOverlay").classList.add("hidden"));$("#renameForm").addEventListener("submit",rename);$("#leaveBtn").addEventListener("click",leave);$("#membersBtn").addEventListener("click",()=>{if(innerWidth<=720)$("#sidebar").classList.toggle("mobileOpen")});$("#closeMembersBtn").addEventListener("click",()=>$("#sidebar").classList.remove("mobileOpen"));window.addEventListener("resize",()=>{if(innerWidth>720)$("#sidebar").classList.remove("mobileOpen")});window.addEventListener("keydown",event=>{if(event.key==="Escape")$("#sidebar").classList.remove("mobileOpen")});window.addEventListener("online",()=>{if(session&&!socket)connectSocket()});window.addEventListener("offline",()=>setStatus("reconnecting","Offline"));document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&session)refresh()});
     $("#startName").value=readName();showStart();const invited=invitedRoomCode();if(invited){$("#joinCode").value=invited;$("#joinOverlay").classList.remove("hidden")}syncMultiplayerTransport();syncPreferenceButtons();
   })();

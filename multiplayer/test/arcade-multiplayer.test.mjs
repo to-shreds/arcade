@@ -470,3 +470,190 @@ test("bridge messages require the exact origin and parent source", () => {
   assert.equal(env.window.ArcadeMultiplayer.getStatus().nearby, true);
   env.dom.window.close();
 });
+
+function genericTurnRoom({
+  code = "ABC234", game = "memory", version = 1, revision = version, status = "lobby",
+  selfSeat = 0, turnSeat = null, turnNumber = 0, selfPlayerId = `p${selfSeat}`
+} = {}){
+  const turnPlayerId = Number.isInteger(turnSeat) ? `p${turnSeat}` : null;
+  return {
+    code, game, version, revision, status,
+    playerId: selfPlayerId, seat: selfSeat,
+    turn: Number.isInteger(turnSeat) ? { seat: turnSeat, playerId: turnPlayerId, number: turnNumber } : null,
+    members: [{ playerId: "p0", seat: 0 }, { playerId: "p1", seat: 1 }]
+  };
+}
+
+function installAudio(window){
+  const counters = { starts: 0, resumes: 0, contexts: 0 };
+  window.AudioContext = class {
+    constructor(){ this.state = "suspended"; this.currentTime = 1; this.destination = {}; counters.contexts++; }
+    resume(){ this.state = "running"; counters.resumes++; return Promise.resolve(); }
+    createOscillator(){
+      return {
+        type: "sine", frequency: { setValueAtTime() {} }, connect() {},
+        start(){ counters.starts++; }, stop() {}
+      };
+    }
+    createGain(){ return { gain: { setValueAtTime() {}, exponentialRampToValueAtTime() {} }, connect() {} }; }
+  };
+  return counters;
+}
+
+test("authoritative generic ownership edges chime once and retained turns stay silent", async () => {
+  const env = environment({ framed: false });
+  const audio = installAudio(env.window);
+  let alerts = 0;
+  env.window.addEventListener("arcadeturnalert", () => { alerts++; });
+  env.window.dispatchEvent(new env.window.Event("pointerdown"));
+  await tick();
+  assert.equal(audio.contexts, 1);
+  assert.equal(audio.resumes, 1, "a trusted gesture primes the persistent audio context");
+
+  const api = env.window.ArcadeMultiplayer;
+  assert.equal(api.observeRoom(genericTurnRoom(), "memory"), false, "the lobby establishes a baseline");
+  assert.equal(api.observeRoom(genericTurnRoom({ status: "active", turnSeat: 0, turnNumber: 1, version: 2 }), "memory"), true, "seat zero receives the initial turn alert");
+  assert.equal(api.observeRoom(genericTurnRoom({ status: "active", turnSeat: 0, turnNumber: 1, version: 2 }), "memory"), false, "the WebSocket/HTTP duplicate is silent");
+  assert.equal(api.observeRoom(genericTurnRoom({ status: "active", turnSeat: 0, turnNumber: 2, version: 3 }), "memory"), false, "a retained Memory turn is silent");
+  assert.equal(api.observeRoom(genericTurnRoom({ status: "active", turnSeat: 1, turnNumber: 3, version: 4 }), "memory"), false);
+  assert.equal(api.observeRoom(genericTurnRoom({ status: "active", turnSeat: 0, turnNumber: 4, version: 5 }), "memory"), true, "the next genuine handoff alerts");
+  assert.equal(api.observeRoom(genericTurnRoom({ status: "active", turnSeat: 1, turnNumber: 3, version: 4 }), "memory"), false, "a stale snapshot cannot rewind the latch");
+  assert.equal(alerts, 2);
+  assert.equal(audio.starts, 4, "each two-note chime is emitted once per handoff");
+  env.dom.window.close();
+});
+
+test("a shell-launched game delegates one shaped alert instead of double-playing locally", async () => {
+  const env = environment();
+  const audio = installAudio(env.window);
+  env.hello({ nearby: false, connected: 1, status: "Internet" });
+  env.window.dispatchEvent(new env.window.Event("pointerdown"));
+  await tick();
+  const api = env.window.ArcadeMultiplayer;
+  api.observeRoom(genericTurnRoom({ game: "monopoly" }), "monopoly");
+  assert.equal(api.observeRoom(genericTurnRoom({ game: "monopoly", status: "active", turnSeat: 0, turnNumber: 1, version: 2 }), "monopoly"), true);
+  const message = env.last("turn-alert");
+  assert.deepEqual(
+    { type: message.type, gameId: message.gameId, roomCode: message.roomCode, turnKey: message.turnKey },
+    { type: "turn-alert", gameId: "monopoly", roomCode: "ABC234", turnKey: "1:p0:v2" }
+  );
+  assert.equal(audio.starts, 2, "the gesture-primed game frame owns one chime while the shell owns background notification delivery");
+  env.dom.window.close();
+});
+
+test("active room hydration and reconnect replay establish a silent baseline", () => {
+  const env = environment({ framed: false });
+  const api = env.window.ArcadeMultiplayer;
+  const active = genericTurnRoom({ game: "sorry", status: "active", turnSeat: 0, turnNumber: 9, version: 15, revision: 19 });
+  assert.equal(api.observeRoom(active, "sorry"), false, "opening an already-active saved room does not replay an old alert");
+  assert.equal(api.observeRoom({ ...active, revision: 20 }, "sorry"), false, "presence/reconnect revision changes are silent");
+  assert.equal(api.observeRoom({ ...active, version: 16, revision: 21, turn: { seat: 0, playerId: "p0", number: 10 } }, "sorry"), false, "multi-step state updates retaining authority are silent");
+  env.dom.window.close();
+});
+
+test("same-room rematches receive a fresh first-turn alert", () => {
+  const env = environment({ framed: false });
+  const api = env.window.ArcadeMultiplayer;
+  api.observeRoom(genericTurnRoom({ game: "sorry", version: 1 }), "sorry");
+  assert.equal(api.observeRoom(genericTurnRoom({ game: "sorry", status: "active", turnSeat: 0, turnNumber: 1, version: 2 }), "sorry"), true);
+  assert.equal(api.observeRoom(genericTurnRoom({ game: "sorry", status: "finished", turnSeat: null, version: 8 }), "sorry"), false);
+  assert.equal(api.observeRoom(genericTurnRoom({ game: "sorry", status: "active", turnSeat: 0, turnNumber: 1, version: 9 }), "sorry"), true, "restart version prevents first-turn deduplication against the prior match");
+  env.dom.window.close();
+});
+
+test("Chess ignores non-move versions and alerts only when the side becomes local", () => {
+  const env = environment({ framed: false });
+  const api = env.window.ArcadeMultiplayer;
+  const room = (version, side, turn, ready = true, moves = []) => ({
+    code: "CHS234", version, side, ready,
+    game: { turn, moves, result: { over: false } }
+  });
+  assert.equal(api.observeRoom(room(1, "w", "w", false), "chess"), false);
+  assert.equal(api.observeRoom(room(2, "w", "w"), "chess"), true, "Chess start alerts White");
+  assert.equal(api.observeRoom({ ...room(3, "w", "w"), pending: { type: "draw", from: "b" } }, "chess"), false, "draw request does not create another turn");
+  assert.equal(api.observeRoom(room(4, "w", "b", true, [{ uci: "e2e4" }]), "chess"), false);
+  assert.equal(api.observeRoom(room(5, "w", "w", true, [{ uci: "e2e4" }, { uci: "e7e5" }]), "chess"), true);
+  assert.equal(api.observeRoom({ ...room(6, "w", "w", true, [{ uci: "e2e4" }, { uci: "e7e5" }]), pending: { type: "undo", from: "b" } }, "chess"), false);
+  env.dom.window.close();
+});
+
+test("finished, turnless, malformed, and Chat rooms never alert", () => {
+  const env = environment({ framed: false });
+  const api = env.window.ArcadeMultiplayer;
+  assert.equal(api.observeRoom(genericTurnRoom({ status: "finished", turnSeat: null }), "dots"), false);
+  assert.equal(api.observeRoom(genericTurnRoom({ game: "chat", status: "active", turnSeat: 0 }), "chat"), false);
+  assert.equal(api.observeRoom({ code: "bad", game: "memory", status: "active" }, "memory"), false);
+  assert.equal(api.observeRoom(null, "memory"), false);
+  env.dom.window.close();
+});
+
+test("turn sound preference persists and muting never blocks room synchronization", async () => {
+  const env = environment({ framed: false });
+  const audio = installAudio(env.window);
+  const api = env.window.ArcadeMultiplayer;
+  api.setTurnSoundEnabled(false);
+  env.window.dispatchEvent(new env.window.Event("keydown"));
+  await tick();
+  api.observeRoom(genericTurnRoom({ game: "dots" }), "dots");
+  assert.equal(api.observeRoom(genericTurnRoom({ game: "dots", status: "active", turnSeat: 0, version: 2 }), "dots"), true);
+  assert.equal(audio.starts, 0);
+  assert.equal(env.window.localStorage.getItem("arcade.turnAlerts.sound.v1"), "0");
+  assert.equal(api.getTurnAlertSettings().soundEnabled, false);
+  env.dom.window.close();
+});
+
+test("Windows notifications are explicit opt-in, background-only, fixed, and silent", async () => {
+  const env = environment({ framed: false });
+  const notices = [];
+  let permissionRequests = 0;
+  class FakeNotification {
+    static permission = "default";
+    static requestPermission(){ permissionRequests++; FakeNotification.permission = "granted"; return Promise.resolve("granted"); }
+    constructor(title, options){ this.title = title; this.options = options; notices.push(this); }
+    close() {}
+  }
+  env.window.Notification = FakeNotification;
+  Object.defineProperty(env.window.navigator, "platform", { configurable: true, value: "Win32" });
+  Object.defineProperty(env.window.document, "hasFocus", { configurable: true, value: () => false });
+  const api = env.window.ArcadeMultiplayer;
+  api.observeRoom(genericTurnRoom({ game: "checkers" }), "checkers");
+  assert.ok(env.window.document.querySelector("#arcadeTurnAlertOffer"), "a direct Windows game offers the explicit notification opt-in");
+  api.observeRoom(genericTurnRoom({ game: "checkers", status: "active", turnSeat: 0, version: 2 }), "checkers");
+  assert.equal(permissionRequests, 0, "room state never requests permission without a click");
+  assert.equal(notices.length, 0);
+
+  await api.requestTurnNotifications();
+  assert.equal(permissionRequests, 1);
+  assert.equal(api.getTurnAlertSettings().notificationsEnabled, true);
+  api.observeRoom(genericTurnRoom({ game: "checkers", status: "active", turnSeat: 1, turnNumber: 2, version: 3 }), "checkers");
+  api.observeRoom(genericTurnRoom({ game: "checkers", status: "active", turnSeat: 0, turnNumber: 3, version: 4 }), "checkers");
+  assert.equal(notices.length, 1);
+  assert.equal(notices[0].title, "Your turn · Checkers");
+  assert.equal(notices[0].options.body, "Your Checkers game is waiting.");
+  assert.doesNotMatch(notices[0].options.body, /ABC234/, "room join codes stay off lock-screen notification text");
+  assert.equal(notices[0].options.silent, true, "Windows must not add a second OS ding");
+
+  Object.defineProperty(env.window.document, "hasFocus", { configurable: true, value: () => true });
+  api.observeRoom(genericTurnRoom({ game: "checkers", status: "active", turnSeat: 1, turnNumber: 4, version: 5 }), "checkers");
+  api.observeRoom(genericTurnRoom({ game: "checkers", status: "active", turnSeat: 0, turnNumber: 5, version: 6 }), "checkers");
+  assert.equal(notices.length, 1, "foreground play uses the audible ding without an OS banner");
+  env.dom.window.close();
+});
+
+test("framed games offer notification opt-in only once per top-level session", () => {
+  const env = environment();
+  class FakeNotification {
+    static permission = "default";
+    static requestPermission(){ return Promise.resolve("default"); }
+  }
+  env.window.Notification = FakeNotification;
+  Object.defineProperty(env.window.navigator, "platform", { configurable: true, value: "Win32" });
+  env.window.ArcadeMultiplayer.observeRoom(genericTurnRoom({ game: "dots" }), "dots");
+  const offer = env.window.document.querySelector("#arcadeTurnAlertOffer");
+  assert.ok(offer);
+  assert.equal(offer.getAttribute("aria-live"), "polite");
+  offer.querySelectorAll("button")[1].click();
+  env.window.ArcadeMultiplayer.observeRoom(genericTurnRoom({ code: "DEF345", game: "memory" }), "memory");
+  assert.equal(env.window.document.querySelector("#arcadeTurnAlertOffer"), null, "switching rooms does not repeat the offer in the same session");
+  env.dom.window.close();
+});

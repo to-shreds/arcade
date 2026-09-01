@@ -2759,6 +2759,7 @@ const FeedbackSys = (function(){
             }
             online.lastVersion = version;
             online.lastRevision = revision;
+            if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.observeRoom === 'function') ArcadeMultiplayer.observeRoom(room, 'dots');
             return true;
         }
         function acceptOnlineResponse(body){

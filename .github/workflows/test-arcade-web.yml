@@ -1,0 +1,56 @@
+name: Test Arcade Web
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: arcade-web-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out Arcade
+        uses: actions/checkout@v6
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: cloudflare/chess-worker/package-lock.json
+
+      - name: Install locked test dependencies
+        working-directory: cloudflare/chess-worker
+        run: npm ci
+
+      - name: Test Worker, authority models, and browser clients
+        working-directory: cloudflare/chess-worker
+        run: npm test
+
+      - name: Test shared multiplayer shell and Nearby transport
+        run: node --test multiplayer/test/*.test.mjs
+
+      - name: Test turn-based game clients
+        run: |
+          node --test sorry/test.cjs checkers/online.test.mjs dots/online.test.mjs
+          node memory/test-online.cjs
+          node memory/online.browser.test.mjs
+          node tic-tac-toe/test-online.cjs
+          node tic-tac-toe/online.browser.test.mjs
+
+      - name: Validate packaged Arcade runtime
+        run: |
+          node tools/test-native-keyboard.mjs
+          node tools/test-shell-navigation.mjs
+          node tools/test-android-wrapper.mjs
+          node tools/test-offline-runtime.mjs

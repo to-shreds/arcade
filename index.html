@@ -49,7 +49,7 @@ button:active{transform:scale(.97);background:rgba(255,255,255,.16)}
 </head>
 <body>
 <main class="app">
-<header><h1>Arcade</h1><time class="updated" datetime="2026-09-01">Last updated Sep 1, 2026</time><span class="count" id="count"></span><div class="head-actions"><button class="icon-btn" id="reload" aria-label="Reload arcade">↻</button><button class="icon-btn" id="manage" aria-label="Manage games">⚙</button></div></header>
+<header><h1>Arcade</h1><time class="updated" datetime="2026-09-01">Last updated Sep 1, 2026</time><span class="count" id="count"></span><div class="head-actions"><button class="icon-btn" id="reload" aria-label="Reload arcade">↻</button><button class="icon-btn" id="manage" aria-label="Arcade settings">⚙</button></div></header>
 <nav class="filters" aria-label="Filters">
 <button class="filter active" data-filter="all">All</button>
 <button class="filter" data-filter="game">Games</button>
@@ -143,7 +143,7 @@ updateFilterUI();render();
 playerFilter.addEventListener('click',()=>{playerMode=playerMode==='any'?'single':playerMode==='single'?'two':'any';updateFilterUI();render()});
 category.addEventListener('change',()=>{cat=category.value;updateFilterUI();render()});
 document.getElementById('reload').addEventListener('click',()=>{if(window.ArcadeShell&&typeof ArcadeShell.refresh==='function'){load();ArcadeShell.refresh();return;}if(window.ArcadeNative&&ArcadeNative.reloadArcade)ArcadeNative.reloadArcade();else load()});
-document.getElementById('manage').addEventListener('click',()=>{if(window.ArcadeNative&&ArcadeNative.openManager)ArcadeNative.openManager()});
+document.getElementById('manage').addEventListener('click',()=>{if(window.ArcadeShell&&typeof ArcadeShell.openSettings==='function'){ArcadeShell.openSettings();return;}if(window.ArcadeNative&&ArcadeNative.openManager)ArcadeNative.openManager()});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){saves=readSaves();render();}});
 load();
 if('serviceWorker' in navigator&&location.protocol==='https:'&&location.hostname.endsWith('github.io')){
@@ -151,6 +151,7 @@ navigator.serviceWorker.register('sw.js',{scope:'./'}).then(async reg=>{await re
 }
 })();
 </script>
+<script src="multiplayer/arcade-multiplayer.js"></script>
 <script type="module" src="arcade-shell.js"></script>
 </body>
 </html>

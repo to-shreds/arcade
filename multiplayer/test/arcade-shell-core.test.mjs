@@ -45,6 +45,20 @@ test("the frame bridge accepts only exact-origin, exact-source, shaped messages"
   const oversized = { ...message, payload: { data: "x".repeat(1024) } };
   assert.ok(byteLength(oversized) > 100);
   assert.equal(validateFrameMessage({ origin, source, data: oversized }, { origin, source, maxBytes: 100 }), null);
+
+  const turnAlert = {
+    scope: ARCADE_BRIDGE_SCOPE,
+    bridgeVersion: ARCADE_BRIDGE_VERSION,
+    frameId: "frame_chess_1234",
+    type: "turn-alert",
+    gameId: "chess",
+    roomCode: "ABC234",
+    turnKey: "w:8:v14"
+  };
+  assert.equal(validateFrameMessage({ origin, source, data: turnAlert }, { origin, source }), turnAlert);
+  assert.equal(validateFrameMessage({ origin, source, data: { ...turnAlert, title: "peer supplied" } }, { origin, source }), null);
+  assert.equal(validateFrameMessage({ origin, source, data: { ...turnAlert, roomCode: "BAD!" } }, { origin, source }), null);
+  assert.equal(validateFrameMessage({ origin, source, data: { ...turnAlert, turnKey: "<script>" } }, { origin, source }), null);
 });
 
 test("secure identifiers fail closed when Web Crypto is unavailable", () => {

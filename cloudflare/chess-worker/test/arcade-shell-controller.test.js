@@ -61,6 +61,42 @@ test("blocked localStorage does not prevent shell construction", () => {
   installDom();
 });
 
+test("Arcade settings expose persistent turn sound and explicit desktop notification controls", async () => {
+  const controller = controllerWithCatalog();
+  let soundEnabled = true;
+  let notificationsEnabled = false;
+  let permissionRequests = 0;
+  window.ArcadeMultiplayer = {
+    getTurnAlertSettings: () => ({
+      soundEnabled,
+      notificationsEnabled,
+      notificationsSelected: notificationsEnabled,
+      notificationsSupported: true,
+      notificationPermission: notificationsEnabled ? "granted" : "default",
+      windows: true
+    }),
+    setTurnSoundEnabled(value){ soundEnabled = value; },
+    setTurnNotificationsEnabled(value){ notificationsEnabled = value; },
+    async requestTurnNotifications(){ permissionRequests++; notificationsEnabled = true; }
+  };
+  controller.openSettings({ history: false });
+  assert.equal(document.querySelector("#arcadeSettingsOverlay").hidden, false);
+  assert.equal(document.querySelector("#turnNotificationLabel").textContent, "Windows notifications");
+  assert.equal(document.querySelector("#turnSoundSetting").textContent, "Sound On");
+  assert.equal(permissionRequests, 0, "opening settings never requests browser permission");
+
+  document.querySelector("#turnSoundSetting").click();
+  assert.equal(soundEnabled, false);
+  assert.equal(document.querySelector("#turnSoundSetting").textContent, "Muted");
+  document.querySelector("#turnNotificationSetting").click();
+  await new Promise(resolve => setTimeout(resolve, 0));
+  assert.equal(permissionRequests, 1, "permission is requested only by the explicit button click");
+  assert.equal(document.querySelector("#turnNotificationSetting").textContent, "Notify On");
+
+  assert.equal(controller.handleNativeBack(), true);
+  assert.equal(document.querySelector("#arcadeSettingsOverlay").hidden, true);
+});
+
 test("blocked Nearby storage does not abort the Arcade launcher", async () => {
   installDom("https://to-shreds.github.io/arcade/?game=chess");
   const controller = new ArcadeShellController();
@@ -224,6 +260,25 @@ test("host socket payloads cannot forge privileged shell-to-frame messages", () 
 
   assert.equal(controller._pushFrame({ type: "transport-state", state: null, frameId: "frame_attacker_9999" }), false);
   assert.equal(sent.length, 3, "malformed privileged messages are not posted");
+});
+
+test("only the authenticated current game frame may route a turn alert to the persistent shell", async () => {
+  const controller = controllerWithCatalog();
+  controller.openGame("chess", "", { history: false });
+  const source = document.querySelector("#shellGameFrame").contentWindow;
+  const delivered = [];
+  window.ArcadeMultiplayer = { deliverTurnAlert: (value, options) => { delivered.push({ value, options }); return true; } };
+  await controller._receiveFrameMessage({ origin: location.origin, source, data: bridge("frame_turn_1234", "hello") });
+  const alert = bridge("frame_turn_1234", "turn-alert", { gameId: "chess", roomCode: "ABC234", turnKey: "w:8:v14" });
+  await controller._receiveFrameMessage({ origin: "https://evil.example", source, data: alert });
+  await controller._receiveFrameMessage({ origin: location.origin, source: {}, data: alert });
+  await controller._receiveFrameMessage({ origin: location.origin, source, data: { ...alert, frameId: "frame_stale_5678" } });
+  await controller._receiveFrameMessage({ origin: location.origin, source, data: { ...alert, gameId: "memory" } });
+  assert.equal(delivered.length, 0);
+  await controller._receiveFrameMessage({ origin: location.origin, source, data: alert });
+  assert.equal(delivered.length, 1);
+  assert.equal(delivered[0].value.turnKey, "w:8:v14");
+  assert.deepEqual(delivered[0].options, { sound: false }, "the gesture-primed game frame owns sound while the shell owns background notification delivery");
 });
 
 test("open, close, and open preserves the shared Nearby session object", () => {

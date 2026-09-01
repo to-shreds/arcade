@@ -46,6 +46,16 @@ test("visible setup labels stay transport-neutral and Chat alone keeps condition
   assert.match(loaded["chat-room"], /if\(nearbyActive\(\)\).*return/);
 });
 
+test("every turn-based multiplayer game reports accepted canonical turns to the shared alert service", async () => {
+  for (const [game, relative] of pages.filter(([name]) => name !== "chat-room")) {
+    const source = await readFile(new URL(relative, import.meta.url), "utf8");
+    assert.match(source, /ArcadeMultiplayer\.observeRoom\s*\(/, `${game} reports canonical room ownership through the shared turn alert API`);
+    assert.doesNotMatch(source, /new\s+Notification\s*\(|AudioContext\s*\(\).*Your turn/s, `${game} does not implement a competing per-game notification path`);
+  }
+  const chat = await readFile(new URL("../../../chat-room/index.html", import.meta.url), "utf8");
+  assert.doesNotMatch(chat, /ArcadeMultiplayer\.observeRoom\s*\(/, "Chat remains message-driven rather than pretending to have turns");
+});
+
 test("saved rooms persist and restore their original authority before reconnecting", async () => {
   const direct = pages.filter(([game]) => !["memory", "tic-tac-toe"].includes(game));
   for (const [game, relative] of direct){

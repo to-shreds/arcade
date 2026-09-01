@@ -800,7 +800,7 @@ function applyOnlineRoom(room,forceState){
   if(online.room&&Number.isFinite(currentVersion)&&Number.isFinite(incomingVersion)&&incomingVersion<currentVersion)return;
   if(online.room&&incomingVersion===currentVersion&&Number.isFinite(currentRevision)&&Number.isFinite(incomingRevision)&&incomingRevision<currentRevision)return;
   if(!forceHydrate&&online.room&&incomingVersion===currentVersion&&state&&validOnlineSnapshot(state)&&validOnlineSnapshot(room.state)){
-    online.room=room;renderRoom();renderHeader();return;
+    online.room=room;if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.observeRoom==="function")ArcadeMultiplayer.observeRoom(room,"sorry");renderRoom();renderHeader();return;
   }
   const wasLobby=!online.room||online.room.status==="lobby";
   online.room=room;
@@ -816,6 +816,7 @@ function applyOnlineRoom(room,forceState){
   }else if(room.status==="lobby"){
     state=null;online.restoreRequired=false;el.setupOverlay.classList.add("hidden");$("roomOverlay").classList.remove("hidden");
   }
+  if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.observeRoom==="function")ArcadeMultiplayer.observeRoom(room,"sorry");
   renderRoom();render();
 }
 async function enterOnline(payload,restoredTransport){

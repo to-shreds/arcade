@@ -269,9 +269,17 @@ export function validateFrameMessage(event, { origin, source, maxBytes = MAX_BRI
   const message = event.data;
   if(!message || typeof message !== "object" || Array.isArray(message) || message.scope !== ARCADE_BRIDGE_SCOPE || message.bridgeVersion !== ARCADE_BRIDGE_VERSION) return null;
   if(!/^[A-Za-z0-9:_-]{8,120}$/.test(String(message.frameId || "")) || byteLength(message) > maxBytes) return null;
-  const allowed = new Set(["hello", "rpc", "home", "open-game", "invite", "game-completed"]);
+  const allowed = new Set(["hello", "rpc", "home", "open-game", "invite", "game-completed", "turn-alert"]);
   if(!allowed.has(message.type)) return null;
   if(message.type === "rpc" && (!/^[A-Za-z0-9:_-]{8,180}$/.test(String(message.requestId || "")) || !["http", "ws-open", "ws-send", "ws-close"].includes(message.operation))) return null;
+  if(message.type === "turn-alert"){
+    const keys = Object.keys(message).sort();
+    const expected = ["bridgeVersion", "frameId", "gameId", "roomCode", "scope", "turnKey", "type"].sort();
+    if(keys.length !== expected.length || keys.some((key, index) => key !== expected[index])) return null;
+    if(!/^[a-z0-9][a-z0-9-]{0,39}$/.test(String(message.gameId || ""))) return null;
+    if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(String(message.roomCode || ""))) return null;
+    if(!/^[A-Za-z0-9:._-]{1,80}$/.test(String(message.turnKey || ""))) return null;
+  }
   return message;
 }
 

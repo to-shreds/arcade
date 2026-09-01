@@ -1721,7 +1721,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             <div class="settings-row">
                 <div class="label">
                     <div class="name">Sound</div>
-                    <div class="desc">Mute all game sounds</div>
+                    <div class="desc">Mute this game's sound effects</div>
                 </div>
                 <input id="set-sound" type="checkbox" />
             </div>
@@ -2579,6 +2579,7 @@ const FeedbackSys = (function(){
             }
             online.lastVersion = version;
             online.lastRevision = revision;
+            if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.observeRoom === 'function') ArcadeMultiplayer.observeRoom(room, 'checkers');
             return true;
         }
         function acceptOnlineResponse(body){

@@ -33,6 +33,7 @@ export class ArcadeShellController {
     this.drawerMode = "home";
     this.drawerOpener = null;
     this.pairOpener = null;
+    this.settingsOpener = null;
     this.pendingRole = null;
     this.pendingPairing = null;
     this.qrDisplay = null;
@@ -67,6 +68,7 @@ export class ArcadeShellController {
       goHome: () => this.goHome(),
       handleNativeBack: () => this.handleNativeBack(),
       refresh: () => this.refresh(),
+      openSettings: () => this.openSettings(),
       getNearbyState: () => this.session.snapshot()
     });
     try{
@@ -156,6 +158,13 @@ export class ArcadeShellController {
     pair.innerHTML = '<section class="nearby-panel compact pair-panel" role="dialog" aria-modal="true" aria-labelledby="pairTitle"><button class="shell-close" id="pairClose" type="button" aria-label="Cancel pairing">✕</button><h2 id="pairTitle">Connect Devices</h2><p class="nearby-lead" id="pairLead"></p><div id="pairBody"></div><div class="pair-actions" id="pairActions"></div><div class="pair-help">Make sure both devices are on the same Wi-Fi or phone hotspot. Internet isn\'t needed.</div><details style="margin-top:8px;text-align:left"><summary>Pairing details</summary><p class="nearby-lead" id="pairDiagnostics">WebRTC uses local network candidates only. No STUN or TURN server is contacted.</p></details></section>';
     document.body.append(pair);
 
+    const settings = document.createElement("div");
+    settings.id = "arcadeSettingsOverlay";
+    settings.className = "shell-overlay";
+    settings.hidden = true;
+    settings.innerHTML = '<section class="nearby-panel compact" role="dialog" aria-modal="true" aria-labelledby="arcadeSettingsTitle"><button class="shell-close" id="arcadeSettingsClose" type="button" aria-label="Close Arcade settings">✕</button><h2 id="arcadeSettingsTitle">Arcade Settings</h2><p class="arcade-settings-copy">Multiplayer games ding when your turn begins. Desktop notifications can also let you know when Arcade is in the background.</p><div class="arcade-settings-list"><div class="arcade-setting"><div><strong>Turn sound</strong><small id="turnSoundHelp">Plays on phones, tablets, the APK, and computers.</small></div><button id="turnSoundSetting" type="button" aria-describedby="turnSoundHelp"></button></div><div class="arcade-setting"><div><strong id="turnNotificationLabel">Desktop notifications</strong><small id="turnNotificationHelp">Shows a notification only while Arcade is hidden or unfocused.</small></div><button id="turnNotificationSetting" type="button" aria-describedby="turnNotificationHelp"></button></div></div><div class="arcade-settings-actions"><button id="arcadeManageLibrary" type="button" hidden>Manage Games</button><button id="arcadeSettingsDone" class="shell-primary" type="button">Done</button></div></section>';
+    document.body.append(settings);
+
     const toastStack = document.createElement("div");
     toastStack.id = "shellToastStack";
     toastStack.className = "shell-toast-stack";
@@ -171,16 +180,37 @@ export class ArcadeShellController {
     $("#nearbyClose")?.addEventListener("click", () => this.closeDrawer());
     $("#nearbyDrawer")?.addEventListener("click", event => { if(event.target.id === "nearbyDrawer") this.closeDrawer(); });
     $("#pairClose")?.addEventListener("click", () => this.closePairing());
+    $("#arcadeSettingsClose")?.addEventListener("click", () => this.closeSettings());
+    $("#arcadeSettingsDone")?.addEventListener("click", () => this.closeSettings());
+    $("#arcadeSettingsOverlay")?.addEventListener("click", event => { if(event.target.id === "arcadeSettingsOverlay") this.closeSettings(); });
+    $("#turnSoundSetting")?.addEventListener("click", () => {
+      const alerts = window.ArcadeMultiplayer;
+      const settings = alerts?.getTurnAlertSettings?.();
+      alerts?.setTurnSoundEnabled?.(settings?.soundEnabled === false);
+      this._renderSettings();
+    });
+    $("#turnNotificationSetting")?.addEventListener("click", async () => {
+      const alerts = window.ArcadeMultiplayer;
+      const settings = alerts?.getTurnAlertSettings?.();
+      if(!alerts || !settings?.notificationsSupported || settings.notificationPermission === "denied") return;
+      if(settings.notificationsEnabled) alerts.setTurnNotificationsEnabled(false);
+      else await alerts.requestTurnNotifications();
+      this._renderSettings();
+    });
+    $("#arcadeManageLibrary")?.addEventListener("click", () => window.ArcadeNative?.openManager?.());
     window.addEventListener("popstate", () => this._reconcileHistory());
     window.addEventListener("keydown", event => {
       if(event.key === "Tab" && this._trapModalFocus(event)) return;
       if(event.key !== "Escape") return;
-      if(!$("#pairOverlay").hidden) this.closePairing();
+      if(!$("#arcadeSettingsOverlay").hidden) this.closeSettings();
+      else if(!$("#pairOverlay").hidden) this.closePairing();
       else if(!$("#nearbyDrawer").hidden) this.closeDrawer();
     });
     document.addEventListener("visibilitychange", () => {
       if(!document.hidden && this.session.snapshot().role === "host") this._acquireWakeLock();
+      if(!$("#arcadeSettingsOverlay")?.hidden) this._renderSettings();
     });
+    window.addEventListener("arcadeturnalertsettings", () => this._renderSettings());
     window.addEventListener("beforeunload", event => {
       if(!this.session.snapshot().active) return;
       event.preventDefault();
@@ -260,6 +290,10 @@ export class ArcadeShellController {
     }
     if(message.type === "game-completed"){
       if(this.session.snapshot().active) this.session.reportGameCompleted(message.details);
+      return;
+    }
+    if(message.type === "turn-alert"){
+      if(message.gameId === this.currentItem?.folder) window.ArcadeMultiplayer?.deliverTurnAlert?.(message, { sound: false });
       return;
     }
     if(message.type !== "rpc") return;
@@ -569,16 +603,25 @@ export class ArcadeShellController {
     }
     const desiredModal = history.state?.arcadeModal || "";
     if(!desiredModal){
+      if(!$("#arcadeSettingsOverlay").hidden) this.closeSettings({ history: false });
       if(!$("#pairOverlay").hidden) this.closePairing({ history: false });
       if(!$("#nearbyDrawer").hidden) this.closeDrawer({ history: false });
       return;
     }
+    if(desiredModal === "settings"){
+      if(!$("#pairOverlay").hidden) this.closePairing({ history: false, restoreFocus: false });
+      if(!$("#nearbyDrawer").hidden) this.closeDrawer({ history: false, restoreFocus: false });
+      if($("#arcadeSettingsOverlay").hidden) this.openSettings({ history: false });
+      return;
+    }
     if(desiredModal === "drawer"){
+      if(!$("#arcadeSettingsOverlay").hidden) this.closeSettings({ history: false, restoreFocus: false });
       if(!$("#pairOverlay").hidden) this.closePairing({ history: false, restoreFocus: false });
       if($("#nearbyDrawer").hidden) this.openDrawer({ history: false });
       return;
     }
     if(desiredModal === "pair"){
+      if(!$("#arcadeSettingsOverlay").hidden) this.closeSettings({ history: false, restoreFocus: false });
       if(!$("#pairOverlay").hidden) return;
       if(this.pendingPairing && $("#pairBody")?.childElementCount){
         this._showModal("pair", { history: false });
@@ -599,6 +642,7 @@ export class ArcadeShellController {
   }
 
   goHome(){
+    if(!$("#arcadeSettingsOverlay").hidden){ this.closeSettings(); return true; }
     if(!$("#pairOverlay").hidden){ this.closePairing(); return true; }
     if(!$("#nearbyDrawer").hidden){ this.closeDrawer(); return true; }
     if(this.currentItem){ this.closeGame({ history: true }); return true; }
@@ -606,6 +650,7 @@ export class ArcadeShellController {
   }
 
   handleNativeBack(){
+    if(!$("#arcadeSettingsOverlay").hidden){ this.closeSettings(); return true; }
     if(!$("#pairOverlay").hidden){ this.closePairing(); return true; }
     if(!$("#nearbyDrawer").hidden){ this.closeDrawer(); return true; }
     if(this.currentItem){ this.closeGame({ history: true }); return true; }
@@ -634,12 +679,64 @@ export class ArcadeShellController {
     }
   }
 
+  openSettings({ history: useHistory = true } = {}){
+    if($("#arcadeSettingsOverlay")?.hidden && !this.settingsOpener) this.settingsOpener = this._usableOpener(document.activeElement);
+    this._showModal("settings", { history: useHistory });
+    this._renderSettings();
+    requestAnimationFrame(() => $("#arcadeSettingsClose")?.focus());
+  }
+
+  closeSettings({ history: useHistory = true, restoreFocus = true } = {}){
+    const overlay = $("#arcadeSettingsOverlay");
+    if(overlay) overlay.hidden = true;
+    this._closeModalHistory("settings", useHistory);
+    this._updateBackgroundInert();
+    if(restoreFocus){
+      const opener = this.settingsOpener;
+      this.settingsOpener = null;
+      requestAnimationFrame(() => opener?.focus?.());
+    }
+  }
+
+  _renderSettings(){
+    const alerts = window.ArcadeMultiplayer;
+    const settings = alerts?.getTurnAlertSettings?.() || { soundEnabled: true, notificationsEnabled: false, notificationsSupported: false, notificationPermission: "unsupported", windows: false };
+    const sound = $("#turnSoundSetting");
+    if(sound){
+      sound.textContent = settings.soundEnabled ? "Sound On" : "Muted";
+      sound.classList.toggle("on", settings.soundEnabled === true);
+      sound.setAttribute("aria-pressed", String(settings.soundEnabled === true));
+      sound.setAttribute("aria-label", `Turn sound, ${settings.soundEnabled ? "on" : "muted"}`);
+    }
+    const notify = $("#turnNotificationSetting");
+    const help = $("#turnNotificationHelp");
+    const label = $("#turnNotificationLabel");
+    if(label) label.textContent = settings.windows ? "Windows notifications" : "Desktop notifications";
+    if(notify){
+      notify.classList.toggle("on", settings.notificationsEnabled === true);
+      notify.classList.toggle("blocked", settings.notificationPermission === "denied");
+      notify.setAttribute("aria-pressed", String(settings.notificationsEnabled === true));
+      if(!settings.notificationsSupported){ notify.textContent = "Unavailable"; notify.disabled = true; }
+      else if(settings.notificationPermission === "denied"){ notify.textContent = "Blocked"; notify.disabled = true; }
+      else{ notify.textContent = settings.notificationsEnabled ? "Notify On" : "Enable"; notify.disabled = false; }
+      const notificationName = settings.windows ? "Windows turn notifications" : "Desktop turn notifications";
+      notify.setAttribute("aria-label", `${notificationName}, ${notify.textContent.toLowerCase()}`);
+    }
+    if(help){
+      help.textContent = settings.notificationPermission === "denied"
+        ? "Notifications are blocked in this browser's site settings."
+        : "Shows a notification only while Arcade is hidden or unfocused.";
+    }
+    const manage = $("#arcadeManageLibrary");
+    if(manage) manage.hidden = !(window.ArcadeNative && typeof window.ArcadeNative.openManager === "function");
+  }
+
   _usableOpener(value){
     return value instanceof HTMLElement && value.isConnected && !value.closest?.("[hidden]") ? value : null;
   }
 
   _showModal(type, { history: useHistory = true } = {}){
-    const overlay = type === "pair" ? $("#pairOverlay") : $("#nearbyDrawer");
+    const overlay = type === "pair" ? $("#pairOverlay") : type === "settings" ? $("#arcadeSettingsOverlay") : $("#nearbyDrawer");
     if(!overlay) return;
     if(type === "pair" && overlay.hidden && !this.pairOpener) this.pairOpener = this.drawerOpener || this._usableOpener(document.activeElement);
     overlay.hidden = false;
@@ -661,7 +758,7 @@ export class ArcadeShellController {
   }
 
   _updateBackgroundInert(){
-    const modalOpen = !$("#nearbyDrawer")?.hidden || !$("#pairOverlay")?.hidden;
+    const modalOpen = !$("#nearbyDrawer")?.hidden || !$("#pairOverlay")?.hidden || !$("#arcadeSettingsOverlay")?.hidden;
     const gameOpen = !!this.currentItem;
     if(this.app){
       this.app.inert = modalOpen || gameOpen;
@@ -677,7 +774,7 @@ export class ArcadeShellController {
   }
 
   _trapModalFocus(event){
-    const overlay = !$("#pairOverlay")?.hidden ? $("#pairOverlay") : !$("#nearbyDrawer")?.hidden ? $("#nearbyDrawer") : null;
+    const overlay = !$("#arcadeSettingsOverlay")?.hidden ? $("#arcadeSettingsOverlay") : !$("#pairOverlay")?.hidden ? $("#pairOverlay") : !$("#nearbyDrawer")?.hidden ? $("#nearbyDrawer") : null;
     if(!overlay) return false;
     const focusable = [...overlay.querySelectorAll('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),a[href],summary,[tabindex]:not([tabindex="-1"])')]
       .filter(node => !node.closest("[hidden]") && node.getAttribute("aria-hidden") !== "true");

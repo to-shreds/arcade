@@ -3299,6 +3299,7 @@ clearSelection();
     gameStarted = true;
     renderOnlineBar();
     updateUI(true);
+    if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.observeRoom === "function") ArcadeMultiplayer.observeRoom(room, "chess");
   }
 
   function stopOnlineSocket(permanent){

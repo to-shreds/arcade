@@ -7,6 +7,25 @@
   const MAX_BODY_BYTES = 384 * 1024;
   const MAX_NEARBY_BODY_BYTES = 96 * 1024;
   const HANDSHAKE_TIMEOUT_MS = 900;
+  const TURN_SOUND_KEY = "arcade.turnAlerts.sound.v1";
+  const TURN_NOTIFICATIONS_KEY = "arcade.turnAlerts.notifications.v1";
+  const TURN_NOTICE_DISMISSED_KEY = "arcade.turnAlerts.noticeDismissed.v1";
+  const TURN_ROOM_LIMIT = 24;
+  const GAME_LABELS = Object.freeze({
+    chess: "Chess",
+    sorry: "Sorry!",
+    monopoly: "Monopoly",
+    memory: "Memory",
+    "tic-tac-toe": "Tic Tac Toe",
+    dots: "Dots",
+    checkers: "Checkers"
+  });
+  const TURN_ICON_URL = (() => {
+    try{
+      const scriptUrl = root.document?.currentScript?.src;
+      return scriptUrl ? new URL("../arcade.png", scriptUrl).href : "";
+    }catch(_error){ return ""; }
+  })();
   const nativeFetch = typeof root.fetch === "function" ? root.fetch.bind(root) : null;
   const NativeWebSocket = root.WebSocket;
   const listeners = new Set();
@@ -16,6 +35,10 @@
   let sequence = 0;
   let pinnedTransport = null;
   let bridgeAvailable = false;
+  let turnAudioContext = null;
+  let turnNotice = null;
+  const observedTurns = new Map();
+  const deliveredTurnAlerts = new Map();
   const nearbyFrameRequested = (() => {
     if(root.parent === root) return "online";
     try{ return new URL(root.location.href).searchParams.get("_arcadeTransport") === "nearby" ? "nearby" : "online"; }
@@ -29,6 +52,333 @@
     identity: null,
     status: "Internet"
   });
+
+  function storedValue(key){
+    try{ return root.localStorage ? root.localStorage.getItem(key) : null; }
+    catch(_error){ return null; }
+  }
+
+  function storeValue(key, value){
+    try{
+      if(!root.localStorage) return false;
+      root.localStorage.setItem(key, value);
+      return true;
+    }catch(_error){ return false; }
+  }
+
+  function sessionValue(key){
+    try{ return root.sessionStorage ? root.sessionStorage.getItem(key) : null; }
+    catch(_error){ return null; }
+  }
+
+  function storeSessionValue(key, value){
+    try{
+      if(!root.sessionStorage) return false;
+      root.sessionStorage.setItem(key, value);
+      return true;
+    }catch(_error){ return false; }
+  }
+
+  function notificationPermission(){
+    try{ return root.Notification && typeof root.Notification.permission === "string" ? root.Notification.permission : "unsupported"; }
+    catch(_error){ return "unsupported"; }
+  }
+
+  function windowsPlatform(){
+    const navigatorValue = root.navigator || {};
+    const platform = String(navigatorValue.userAgentData?.platform || navigatorValue.platform || "");
+    const userAgent = String(navigatorValue.userAgent || "");
+    return /windows|win32|win64/i.test(platform + " " + userAgent);
+  }
+
+  function turnSoundEnabled(){ return storedValue(TURN_SOUND_KEY) !== "0"; }
+  function turnNotificationsSelected(){ return storedValue(TURN_NOTIFICATIONS_KEY) === "1"; }
+
+  function turnAlertSettings(){
+    const permission = notificationPermission();
+    return Object.freeze({
+      soundEnabled: turnSoundEnabled(),
+      notificationsEnabled: turnNotificationsSelected() && permission === "granted",
+      notificationsSelected: turnNotificationsSelected(),
+      notificationPermission: permission,
+      notificationsSupported: permission !== "unsupported",
+      windows: windowsPlatform()
+    });
+  }
+
+  function emitTurnSettings(){
+    const detail = turnAlertSettings();
+    try{ root.dispatchEvent(new CustomEvent("arcadeturnalertsettings", { detail })); }catch(_error){}
+    return detail;
+  }
+
+  function setTurnSoundEnabled(enabled){
+    storeValue(TURN_SOUND_KEY, enabled === false ? "0" : "1");
+    if(enabled !== false) primeTurnAlerts();
+    return emitTurnSettings();
+  }
+
+  function setTurnNotificationsEnabled(enabled){
+    if(enabled !== true){
+      storeValue(TURN_NOTIFICATIONS_KEY, "0");
+      return emitTurnSettings();
+    }
+    return requestTurnNotifications();
+  }
+
+  async function requestTurnNotifications(){
+    if(!root.Notification || typeof root.Notification.requestPermission !== "function") return emitTurnSettings();
+    let permission = notificationPermission();
+    try{
+      if(permission === "default") permission = await root.Notification.requestPermission();
+    }catch(_error){ permission = notificationPermission(); }
+    if(permission === "granted") storeValue(TURN_NOTIFICATIONS_KEY, "1");
+    else if(permission === "denied") storeValue(TURN_NOTIFICATIONS_KEY, "0");
+    if(permission !== "default") removeTurnNotice();
+    return emitTurnSettings();
+  }
+
+  function audioContext(){
+    if(turnAudioContext?.state === "closed") turnAudioContext = null;
+    if(turnAudioContext) return turnAudioContext;
+    const AudioContextImpl = root.AudioContext || root.webkitAudioContext;
+    if(typeof AudioContextImpl !== "function") return null;
+    try{ turnAudioContext = new AudioContextImpl(); }
+    catch(_error){ turnAudioContext = null; }
+    return turnAudioContext;
+  }
+
+  function primeTurnAlerts(){
+    if(!turnSoundEnabled()) return false;
+    const context = audioContext();
+    if(!context) return false;
+    try{
+      if(context.state !== "running" && typeof context.resume === "function") Promise.resolve(context.resume()).catch(() => null);
+      return true;
+    }catch(_error){ return false; }
+  }
+
+  function playTurnChime(){
+    if(!turnSoundEnabled()) return false;
+    const context = audioContext();
+    if(!context) return false;
+    const play = () => {
+      if(context.state !== "running") return false;
+      try{
+        const now = Number(context.currentTime) || 0;
+        const tones = [{ frequency: 740, start: now, stop: now + 0.085 }, { frequency: 988, start: now + 0.09, stop: now + 0.19 }];
+        for(const tone of tones){
+          const oscillator = context.createOscillator();
+          const gain = context.createGain();
+          oscillator.type = "sine";
+          oscillator.frequency.setValueAtTime(tone.frequency, tone.start);
+          gain.gain.setValueAtTime(0.0001, tone.start);
+          gain.gain.exponentialRampToValueAtTime(0.11, tone.start + 0.018);
+          gain.gain.exponentialRampToValueAtTime(0.0001, tone.stop);
+          oscillator.connect(gain);
+          gain.connect(context.destination);
+          oscillator.start(tone.start);
+          oscillator.stop(tone.stop + 0.01);
+        }
+        return true;
+      }catch(_error){ return false; }
+    };
+    if(context.state !== "running" && typeof context.resume === "function"){
+      try{ Promise.resolve(context.resume()).then(play).catch(() => null); return true; }
+      catch(_error){ return false; }
+    }
+    return play();
+  }
+
+  function topContext(){
+    try{
+      const topWindow = root.top && root.top.document ? root.top : root;
+      return { window: topWindow, document: topWindow.document || root.document };
+    }catch(_error){ return { window: root, document: root.document }; }
+  }
+
+  function arcadeInBackground(){
+    const context = topContext();
+    try{ return !!context.document?.hidden || (typeof context.document?.hasFocus === "function" && !context.document.hasFocus()); }
+    catch(_error){ return !!root.document?.hidden; }
+  }
+
+  function showTurnNotification(detail){
+    if(!turnNotificationsSelected() || notificationPermission() !== "granted" || !arcadeInBackground()) return false;
+    const label = GAME_LABELS[detail.gameId] || "Arcade game";
+    try{
+      const options = {
+        body: `Your ${label} game is waiting.`,
+        tag: `arcade-turn-${detail.gameId}-${detail.roomCode}`,
+        renotify: true,
+        silent: true
+      };
+      if(TURN_ICON_URL) options.icon = TURN_ICON_URL;
+      const notice = new root.Notification(`Your turn · ${label}`, options);
+      notice.onclick = () => {
+        try{ topContext().window.focus(); }catch(_error){}
+        try{ notice.close(); }catch(_error){}
+      };
+      return true;
+    }catch(_error){ return false; }
+  }
+
+  function cleanRoomCode(value){
+    const code = String(value || "").trim().toUpperCase();
+    return /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code) ? code : "";
+  }
+
+  function cleanGameId(value){
+    const id = String(value || "").trim().toLowerCase();
+    return Object.hasOwn(GAME_LABELS, id) ? id : "";
+  }
+
+  function numericCursor(value, fallback = -1){
+    const number = Number(value);
+    return Number.isFinite(number) ? number : fallback;
+  }
+
+  function describeTurn(room, gameHint){
+    if(!room || typeof room !== "object" || Array.isArray(room)) return null;
+    const roomCode = cleanRoomCode(room.code);
+    if(!roomCode) return null;
+    const chess = gameHint === "chess" || (room.game && typeof room.game === "object" && !Array.isArray(room.game));
+    if(chess){
+      const game = room.game;
+      const side = room.side === "w" || room.side === "b" ? room.side : "";
+      const turn = game && (game.turn === "w" || game.turn === "b") ? game.turn : "";
+      const active = room.ready === true && !!side && !!turn && !(game.result && game.result.over === true);
+      return {
+        key: `chess:${roomCode}`,
+        gameId: "chess",
+        roomCode,
+        version: numericCursor(room.version),
+        revision: numericCursor(room.version),
+        active,
+        mine: active && side === turn,
+        selfKey: side,
+        turnKey: `${turn}:${Array.isArray(game.moves) ? game.moves.length : "?"}:v${numericCursor(room.version)}`
+      };
+    }
+    const gameId = cleanGameId(gameHint || room.game);
+    if(!gameId || gameId === "chat-room") return null;
+    const turn = room.turn && typeof room.turn === "object" && !Array.isArray(room.turn) ? room.turn : null;
+    const playerId = typeof room.playerId === "string" ? room.playerId : "";
+    const seat = room.seat === null || room.seat === undefined ? null : Number(room.seat);
+    const turnPlayerId = typeof turn?.playerId === "string" ? turn.playerId : "";
+    const turnSeat = turn?.seat === null || turn?.seat === undefined ? null : Number(turn.seat);
+    const playerMatch = !!playerId && !!turnPlayerId ? playerId === turnPlayerId : null;
+    const seatMatch = Number.isInteger(seat) && Number.isInteger(turnSeat) ? seat === turnSeat : null;
+    const identityKnown = playerMatch !== null || seatMatch !== null;
+    const identityConsistent = (playerMatch === null || playerMatch) && (seatMatch === null || seatMatch);
+    const active = room.status === "active" && !!turn && identityKnown;
+    return {
+      key: `${gameId}:${roomCode}`,
+      gameId,
+      roomCode,
+      version: numericCursor(room.version),
+      revision: numericCursor(room.revision, numericCursor(room.version)),
+      active,
+      mine: active && identityConsistent,
+      selfKey: playerId || (Number.isInteger(seat) ? `seat:${seat}` : ""),
+        turnKey: `${numericCursor(turn?.number, 0)}:${turnPlayerId || turnSeat}:v${numericCursor(room.version)}`
+    };
+  }
+
+  function staleTurn(previous, incoming){
+    if(!previous) return false;
+    return incoming.version < previous.version || (incoming.version === previous.version && incoming.revision < previous.revision);
+  }
+
+  function rememberTurn(detail){
+    if(observedTurns.has(detail.key)) observedTurns.delete(detail.key);
+    observedTurns.set(detail.key, detail);
+    while(observedTurns.size > TURN_ROOM_LIMIT) observedTurns.delete(observedTurns.keys().next().value);
+  }
+
+  function removeTurnNotice(){
+    if(turnNotice?.isConnected) turnNotice.remove();
+    turnNotice = null;
+  }
+
+  function maybeOfferTurnNotifications(){
+    if(!windowsPlatform() || !["default", "granted"].includes(notificationPermission()) || storedValue(TURN_NOTIFICATIONS_KEY) !== null || sessionValue(TURN_NOTICE_DISMISSED_KEY) === "1") return;
+    if(turnNotice?.isConnected || !root.document?.body) return;
+    const panel = root.document.createElement("aside");
+    panel.id = "arcadeTurnAlertOffer";
+    panel.setAttribute("role", "region");
+    panel.setAttribute("aria-label", "Windows turn notifications");
+    panel.setAttribute("aria-live", "polite");
+    Object.assign(panel.style, {
+      position: "fixed", left: "50%", bottom: "max(14px, env(safe-area-inset-bottom))", transform: "translateX(-50%)",
+      zIndex: "2147483646", width: "min(430px, calc(100vw - 24px))", padding: "11px 12px", borderRadius: "16px",
+      border: "1px solid rgba(255,255,255,.24)", background: "rgba(9,13,30,.97)", color: "white",
+      boxShadow: "0 12px 34px rgba(0,0,0,.45)", font: "700 13px/1.35 system-ui, sans-serif", textAlign: "center"
+    });
+    const text = root.document.createElement("span");
+    text.textContent = "Turn sounds are on. Enable Windows notifications when Arcade is in the background?";
+    const actions = root.document.createElement("div");
+    Object.assign(actions.style, { display: "flex", justifyContent: "center", gap: "8px", marginTop: "9px" });
+    const enable = root.document.createElement("button");
+    enable.type = "button";
+    enable.textContent = "Enable notifications";
+    const dismiss = root.document.createElement("button");
+    dismiss.type = "button";
+    dismiss.textContent = "Not now";
+    for(const button of [enable, dismiss]) Object.assign(button.style, { minHeight: "44px", borderRadius: "12px", border: "1px solid rgba(255,255,255,.22)", padding: "7px 11px", background: "rgba(255,255,255,.1)", color: "white", font: "inherit" });
+    enable.style.background = "linear-gradient(135deg,#21dcff,#4277ff)";
+    enable.style.color = "#071126";
+    enable.addEventListener("click", () => { requestTurnNotifications(); });
+    dismiss.addEventListener("click", removeTurnNotice);
+    actions.append(enable, dismiss);
+    panel.append(text, actions);
+    root.document.body.append(panel);
+    turnNotice = panel;
+    storeSessionValue(TURN_NOTICE_DISMISSED_KEY, "1");
+  }
+
+  function observeRoom(room, gameHint){
+    const detail = describeTurn(room, gameHint);
+    if(!detail) return false;
+    maybeOfferTurnNotifications();
+    const previous = observedTurns.get(detail.key) || null;
+    if(staleTurn(previous, detail)) return false;
+    const sameIdentity = !previous || !previous.selfKey || !detail.selfKey || previous.selfKey === detail.selfKey;
+    const becameMine = !!previous && sameIdentity && detail.active && detail.mine && (!previous.active || !previous.mine);
+    rememberTurn(detail);
+    if(!becameMine) return false;
+    const alert = { gameId: detail.gameId, roomCode: detail.roomCode, turnKey: detail.turnKey };
+    const bridged = bridgeAvailable && post({ type: "turn-alert", ...alert });
+    deliverTurnAlert(alert, { notification: !bridged });
+    return true;
+  }
+
+  function deliverTurnAlert(value, options = {}){
+    if(!value || typeof value !== "object" || Array.isArray(value)) return false;
+    const gameId = cleanGameId(value.gameId);
+    const roomCode = cleanRoomCode(value.roomCode);
+    const turnKey = String(value.turnKey || "");
+    if(!gameId || !roomCode || !/^[A-Za-z0-9:._-]{1,80}$/.test(turnKey)) return false;
+    const eventKey = `${gameId}:${roomCode}:${turnKey}`;
+    if(deliveredTurnAlerts.has(eventKey)) return false;
+    deliveredTurnAlerts.set(eventKey, Date.now());
+    while(deliveredTurnAlerts.size > TURN_ROOM_LIMIT * 4) deliveredTurnAlerts.delete(deliveredTurnAlerts.keys().next().value);
+    const detail = Object.freeze({ gameId, roomCode, turnKey });
+    if(options.sound !== false) playTurnChime();
+    if(options.notification !== false) showTurnNotification(detail);
+    try{ root.dispatchEvent(new CustomEvent("arcadeturnalert", { detail })); }catch(_error){}
+    return true;
+  }
+
+  function forgetRoomAlert(gameId, roomCode){
+    const id = cleanGameId(gameId);
+    const code = cleanRoomCode(roomCode);
+    if(id && code){
+      observedTurns.delete(`${id}:${code}`);
+      const prefix = `${id}:${code}:`;
+      for(const key of deliveredTurnAlerts.keys()) if(key.startsWith(prefix)) deliveredTurnAlerts.delete(key);
+    }
+  }
 
   function declareServiceWorkerMode(mode){
     declaredNetworkMode = mode === "nearby" ? "nearby" : "online";
@@ -579,11 +929,19 @@
 
   function resetRoomTransport(){
     pinnedTransport = null;
+    observedTurns.clear();
+    deliveredTurnAlerts.clear();
     declareServiceWorkerMode(currentTransport() === "nearby" ? "nearby" : "online");
     emit();
   }
 
   root.addEventListener("message", receive);
+  root.addEventListener("pointerdown", primeTurnAlerts, { passive: true });
+  root.addEventListener("keydown", primeTurnAlerts);
+  root.addEventListener("storage", event => {
+    if(event && (event.key === TURN_SOUND_KEY || event.key === TURN_NOTIFICATIONS_KEY)) emitTurnSettings();
+  });
+  root.document?.addEventListener?.("visibilitychange", () => emitTurnSettings());
   if(root.navigator && root.navigator.serviceWorker){
     root.navigator.serviceWorker.addEventListener("controllerchange", () => declareServiceWorkerMode(declaredNetworkMode));
   }
@@ -603,6 +961,14 @@
     openGame,
     invite,
     gameCompleted,
+    observeRoom,
+    deliverTurnAlert,
+    forgetRoomAlert,
+    primeTurnAlerts,
+    getTurnAlertSettings: turnAlertSettings,
+    setTurnSoundEnabled,
+    setTurnNotificationsEnabled,
+    requestTurnNotifications,
     pinRoomTransport,
     resetRoomTransport
   });

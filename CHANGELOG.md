@@ -33,6 +33,13 @@
   plus gesture-enabled desktop notifications for new messages while Chat is in
   the background. History, reconnect replay, and a player's own messages do not
   trigger duplicate alerts.
+- Added Arcade-wide multiplayer turn alerts for Chess, Sorry, Monopoly, Memory,
+  Tic Tac Toe, Dots, and Checkers. A two-note chime plays only when canonical
+  room authority newly passes to the local player; retained multi-step turns,
+  reconnects, stale snapshots, and duplicate HTTP/WebSocket updates stay
+  silent. Arcade Settings provides a persistent sound toggle and explicit,
+  background-only Windows/desktop notification opt-in. Direct game links use
+  the same shared alert service.
 - Added session-level reactions with rate limiting, Arcade Stars, friendly room
   names and mascots, joining feedback, multiplayer game invitations, and
   Surprise Me selection without creating accounts or public matchmaking.

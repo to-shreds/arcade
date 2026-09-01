@@ -79,6 +79,29 @@ No game has separate Online and Nearby buttons. A small read-only status may
 say `Nearby Arcade · 3 connected` or `Internet`, but connection management
 belongs to the main Arcade.
 
+### Multiplayer turn alerts
+
+Chess, Sorry, Monopoly, Memory, Tic Tac Toe, Dots, and Checkers use the shared
+multiplayer bridge for turn alerts. The bridge observes only a room snapshot
+that the game has accepted from its authoritative room service. It dings when
+turn ownership changes from another player to the local player, including the
+first turn after a lobby starts. Reconnect replays, stale or duplicate
+snapshots, and multi-step actions that retain the same player do not alert
+again.
+
+Turn sound is enabled by default and is primed by normal pointer or keyboard
+interaction so it works under browser and Android WebView media policies. The
+Arcade gear opens **Arcade Settings**, where turn sound can be muted and desktop
+notifications can be enabled. Browser notification permission is requested
+only from that explicit control (or the one-time prompt shown after joining a
+multiplayer game). Desktop notifications appear only while Arcade is
+hidden or unfocused and use fixed game/status text rather than player-supplied
+content; room join codes are not shown on the lock screen. Browser permission,
+Windows notification settings, and Focus Assist can still suppress an
+operating-system notification. The Arcade page must remain open: this is a live
+room alert, not Web Push, and a browser or mobile OS may suspend a backgrounded
+page.
+
 ## Nearby design
 
 Nearby Arcade uses data-only WebRTC with an authoritative host and a star
@@ -159,7 +182,7 @@ The generated manifest must be refreshed whenever deployable web content
 changes:
 
 ```sh
-node tools/generate-offline-manifest.mjs --version 2.4.0+20260901.1
+node tools/generate-offline-manifest.mjs --version 2.4.0+20260901.2
 ```
 
 ## Practical browser limitations
