@@ -77,7 +77,7 @@ test("simplified setup preserves local play, all CPU levels and secondary settin
   const orientation = document.querySelector("#opponentFacingCheck");
   orientation.checked = false;
   orientation.dispatchEvent(new Event("change", { bubbles: true }));
-  assert.equal(JSON.parse(dom.window.localStorage.getItem("arcadeChess_settings")).opponentFacing, false);
+  assert.equal(JSON.parse(dom.window.localStorage.getItem("arcadeChess_settings")).opponentFacingByMode.pvp, false);
   document.querySelector("#prefsBack").click();
   document.querySelector("#modePvp").click();
   assert.equal(document.querySelectorAll("#board .sq").length, 64);
@@ -97,6 +97,80 @@ test("simplified setup preserves local play, all CPU levels and secondary settin
   }
   assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
   dom.window.close();
+});
+
+test("opponent pieces face the other player by default only in local PVP", async () => {
+  const fetchImpl = async (url) => {
+    if (!String(url).endsWith("/api/chess/rooms")) throw new Error("unexpected fetch " + url);
+    return { ok: true, status: 200, async json() { return { ok: true, token: "t".repeat(43), side: "w", room: room("w") }; } };
+  };
+  const { dom, errors } = await loadChess(fetchImpl);
+  try {
+    const { document } = dom.window;
+    assert.equal(document.querySelectorAll("#board .piece.opposite-facing").length, 16);
+
+    document.querySelector("#modeCpu").click();
+    assert.equal(document.querySelectorAll("#board .piece.opposite-facing").length, 0);
+    document.querySelector("#settingsBtn").click();
+    assert.equal(document.querySelector("#opponentFacingCheck").checked, false);
+
+    document.querySelector("#prefsBack").click();
+    document.querySelector("#onlineCreateBtn").click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 30));
+    assert.match(document.querySelector("#modeText").textContent, /ONLINE ABC234/);
+    assert.equal(document.querySelectorAll("#board .piece.opposite-facing").length, 0);
+    assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
+  } finally {
+    dom.window.close();
+  }
+});
+
+test("opponent-piece orientation overrides persist separately for each mode", async () => {
+  const first = await loadChess();
+  const { document, Event } = first.dom.window;
+  document.querySelector("#modeCpu").click();
+  document.querySelector("#settingsBtn").click();
+  const orientation = document.querySelector("#opponentFacingCheck");
+  assert.equal(orientation.checked, false);
+  orientation.checked = true;
+  orientation.dispatchEvent(new Event("change", { bubbles: true }));
+  assert.equal(document.querySelectorAll("#board .piece.opposite-facing").length, 16);
+
+  const stored = JSON.parse(first.dom.window.localStorage.getItem("arcadeChess_settings"));
+  assert.equal(stored.opponentFacingByMode.cpu, true);
+  assert.equal(stored.opponentFacingByMode.pvp, null);
+  assert.equal(stored.opponentFacingByMode.online, null);
+  first.dom.window.close();
+
+  const restored = await loadChess(undefined, JSON.stringify(stored));
+  try {
+    const restoredDocument = restored.dom.window.document;
+    assert.match(restoredDocument.querySelector("#modeText").textContent, /CPU/);
+    assert.equal(restoredDocument.querySelectorAll("#board .piece.opposite-facing").length, 16);
+    restoredDocument.querySelector("#settingsBtn").click();
+    assert.equal(restoredDocument.querySelector("#opponentFacingCheck").checked, true);
+    restoredDocument.querySelector("#prefsBack").click();
+    restoredDocument.querySelector("#modePvp").click();
+    assert.equal(restoredDocument.querySelectorAll("#board .piece.opposite-facing").length, 16);
+    assert.equal(restored.errors.length, 0, restored.errors.map((error) => error.message).join("\n"));
+  } finally {
+    restored.dom.window.close();
+  }
+});
+
+test("legacy saved defaults do not keep CPU pieces rotated", async () => {
+  const legacySettings = JSON.stringify({ mode: "cpu", playerSide: "w", opponentFacing: true });
+  const { dom, errors } = await loadChess(undefined, legacySettings);
+  try {
+    const { document } = dom.window;
+    assert.match(document.querySelector("#modeText").textContent, /CPU/);
+    assert.equal(document.querySelectorAll("#board .piece.opposite-facing").length, 0);
+    document.querySelector("#settingsBtn").click();
+    assert.equal(document.querySelector("#opponentFacingCheck").checked, false);
+    assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
+  } finally {
+    dom.window.close();
+  }
 });
 
 test("flipped coordinates and opponent-piece orientation persist correctly", async () => {

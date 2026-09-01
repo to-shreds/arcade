@@ -1,22 +1,21 @@
 {
-  "title": "Memory",
+  "title": "Arcade Chat",
   "entry": "index.html",
   "icon": "icon.png",
-  "order": 130,
+  "order": 55,
   "enabled": true,
-  "type": "game",
+  "type": "activity",
   "multiplayer": true,
   "playersMin": 1,
-  "playersMax": 8,
+  "playersMax": 32,
   "categories": [
-    "memory",
-    "puzzle"
+    "social",
+    "creative"
   ],
   "tags": [
-    "touch",
-    "turn-based",
-    "same-device",
-    "online"
+    "online",
+    "chat",
+    "keyboard"
   ],
   "orientation": "any"
 }

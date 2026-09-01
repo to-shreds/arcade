@@ -16,6 +16,7 @@
     "touch",
     "turn-based",
     "same-device",
+    "online",
     "saveable"
   ],
   "orientation": "landscape"

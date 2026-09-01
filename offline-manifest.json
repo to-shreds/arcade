@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.3.0+20260901.3",
-  "generatedAt": "2026-09-01T05:15:51.180Z",
-  "fileCount": 297,
-  "totalBytes": 16241228,
+  "version": "2.3.0+20260901.4",
+  "generatedAt": "2026-09-01T06:21:47.043Z",
+  "fileCount": 304,
+  "totalBytes": 16512523,
   "files": [
     {
       "path": "arcade-save.js",
@@ -117,13 +117,33 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 20320,
-      "sha256": "3b5c695ed6b2317c291f1d8bd296cb631912f95fd130b2b31a6cb215a4e97d98"
+      "bytes": 20952,
+      "sha256": "c3c84c608c8501e0908e9ed9b7881020b9f48340c939034db9884dcd77ba655d"
+    },
+    {
+      "path": "chat-room/game.json",
+      "bytes": 328,
+      "sha256": "8f3d58a86725f860b97684d570cef04dcdfe9ee1ea9cff25415fd1ef8dbf5ec4"
+    },
+    {
+      "path": "chat-room/icon.png",
+      "bytes": 10930,
+      "sha256": "7aae87bea293bfe4008f5acb124f92f100db360e93dbd41104535dddcebfb0aa"
+    },
+    {
+      "path": "chat-room/icon.svg",
+      "bytes": 999,
+      "sha256": "7a5baca90d1c6c9e862a25c0ad8d2fa6a4921fed56ab79af7388bfc614971539"
+    },
+    {
+      "path": "chat-room/index.html",
+      "bytes": 25930,
+      "sha256": "e971589507c6a638005a874923b2f0a5356ef389ee219cb89d98770aee1e9c06"
     },
     {
       "path": "checkers/game.json",
-      "bytes": 327,
-      "sha256": "37fff49df6449f5bfabb9c521f6599caad2e0f0fcc7d7de65e7e30e14a28141b"
+      "bytes": 341,
+      "sha256": "21e14f3bcf2e6f05fb1123a031b5e5d2055199a8102887f2b8b7f8f2afe77ecb"
     },
     {
       "path": "checkers/icon.png",
@@ -132,8 +152,8 @@
     },
     {
       "path": "checkers/index.html",
-      "bytes": 172486,
-      "sha256": "38a52b1af88881c074322014c9e14c36a367f0701c27975d35319e22f0d81faf"
+      "bytes": 204554,
+      "sha256": "589788fe4adc71ab28c999cee8668cc0fd8ff4c4d6b60f084d1a79decbf08d43"
     },
     {
       "path": "chess/game.json",
@@ -147,8 +167,8 @@
     },
     {
       "path": "chess/index.html",
-      "bytes": 144758,
-      "sha256": "52c7510b7e3d6d69f74e664cf2d4c97ede347170371974f1af6fdbda95991fe0"
+      "bytes": 145698,
+      "sha256": "9b24fa9237b36386f22555d98f07d104d54d873ef65a1a112dac1e71aef520ce"
     },
     {
       "path": "codebreaking/game.json",
@@ -187,8 +207,8 @@
     },
     {
       "path": "dots/game.json",
-      "bytes": 323,
-      "sha256": "6f7f0d8d4a0c5c96fe346108a17f13c97c26c46e05839fa1b6f742844fa2bb6a"
+      "bytes": 337,
+      "sha256": "ed2efdd2fc0af7efa2ac9ad74a5ac36acf7cbb0b38d8a2e14487800d7fd6fa7a"
     },
     {
       "path": "dots/icon.png",
@@ -197,8 +217,8 @@
     },
     {
       "path": "dots/index.html",
-      "bytes": 195182,
-      "sha256": "63e970e3d6fcb82a083788bd1b943d648cffa183d2982a855316f0fd569f05b0"
+      "bytes": 228931,
+      "sha256": "d2901f8f3afdf4fbe7de076fb7e2f3dda8489ff18d11fcecc69a29c1002c4078"
     },
     {
       "path": "firefighter-frenzy/game.json",
@@ -327,8 +347,8 @@
     },
     {
       "path": "memory/game.json",
-      "bytes": 325,
-      "sha256": "2f97630eb8856f4a2955d7b418c9806896d6361d840823276c114cbe29973900"
+      "bytes": 339,
+      "sha256": "f02e504024c31cbc9982e136dd337b45b6f8cb2e5a586b7edabb1aba4a41aed5"
     },
     {
       "path": "memory/icon.png",
@@ -337,8 +357,18 @@
     },
     {
       "path": "memory/index.html",
-      "bytes": 110280,
-      "sha256": "0468c26a75208b66344b7e0842fbc3a099e4056dc9d8950a83dd7807e00fa56c"
+      "bytes": 135869,
+      "sha256": "2f0f62b002999b199f891c11f42ef746358522d6c653e0eb7ab149d5e9a30994"
+    },
+    {
+      "path": "memory/online-model.js",
+      "bytes": 5244,
+      "sha256": "e0ea1eab70e65e23498208119b437e5d373136ee853c8a1f3c4b179b5c4a6185"
+    },
+    {
+      "path": "memory/room-client.js",
+      "bytes": 12376,
+      "sha256": "813b053263c0bfbf72d06119c28f02570ceb7a4ba12724c62a2d569773f9ebbf"
     },
     {
       "path": "minesweeper/game.json",
@@ -372,8 +402,8 @@
     },
     {
       "path": "monopoly/game.json",
-      "bytes": 350,
-      "sha256": "c3074275d3c8ed8ab33bf49b374e21b88abf30cb765ca5a6edebf2f8db364c89"
+      "bytes": 364,
+      "sha256": "24ea4094487c74b22c2bbf54a2ebd2cf8b959d061736acd22959a83226b1c634"
     },
     {
       "path": "monopoly/icon.png",
@@ -382,8 +412,8 @@
     },
     {
       "path": "monopoly/index.html",
-      "bytes": 128772,
-      "sha256": "e26bea2f51da0a43a971c1b414de69912e7a1b745833a616af3a12a0606521f5"
+      "bytes": 163705,
+      "sha256": "8f55bf7445ef1770532a547f68ba49dedb86a8e73d7dff2729f201bd3ac96c92"
     },
     {
       "path": "monster-dentist/game.json",
@@ -1357,8 +1387,8 @@
     },
     {
       "path": "sorry/game.json",
-      "bytes": 337,
-      "sha256": "d658520df9c14889f3ca8986ef20afa87bdb7df104cf381b641cf1b9b51c01d0"
+      "bytes": 371,
+      "sha256": "a05de6ded99036005b2648b281d2f4fe746b02adb30cbd42aa2d7b8265ea3e74"
     },
     {
       "path": "sorry/icon.png",
@@ -1367,8 +1397,8 @@
     },
     {
       "path": "sorry/index.html",
-      "bytes": 117826,
-      "sha256": "20cdf192cce93fc676e2e2a61dc29e4928690c3fa20732d8b5f9d8cca73493b5"
+      "bytes": 161633,
+      "sha256": "abc68956ba79ddc871ceeb131830d2cefede18c594ae28452424d028ab29b211"
     },
     {
       "path": "spelling/game.json",
@@ -1392,13 +1422,13 @@
     },
     {
       "path": "sw.js",
-      "bytes": 11698,
-      "sha256": "d3294acbf8e2d2d1c030f2e1de6336708e02f8520b804146e9a21a7b62499f18"
+      "bytes": 11694,
+      "sha256": "f529868b8868fc046e19e92300e98957739355b5ca4a54e27d6f5058e4d89020"
     },
     {
       "path": "tic-tac-toe/game.json",
-      "bytes": 331,
-      "sha256": "a80c771ae620fd9250300f87eca5bd681d81954f81a6b3c5ea45c4cf0cf54830"
+      "bytes": 345,
+      "sha256": "3afdfd5bf4e48315d96430c447d2905643f95ca583fad1b5237674de18776bae"
     },
     {
       "path": "tic-tac-toe/icon.png",
@@ -1407,8 +1437,13 @@
     },
     {
       "path": "tic-tac-toe/index.html",
-      "bytes": 137699,
-      "sha256": "203dc4dc0a0798a57da0314db21796361374e84f19dbdf350bfcbe894a62e24e"
+      "bytes": 169841,
+      "sha256": "9c979004995e6b6fe3d5e426500aee2a2521b8a11a019bad1f98b398df6718bd"
+    },
+    {
+      "path": "tic-tac-toe/room-client.js",
+      "bytes": 11528,
+      "sha256": "7d8e32c5bff6b7741e9293ffeab343d76114115c9363304f5f911abedb12261e"
     },
     {
       "path": "time/game.json",

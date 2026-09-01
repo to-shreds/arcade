@@ -761,6 +761,29 @@ body.reduce-motion.unicorn-mega #g-balloons, body.reduce-motion.unicorn-mega #g-
             font-size: 13px; text-align:center;
             max-width: 560px;
         }
+        #g-checkers [hidden]{ display:none !important; }
+        #g-checkers .ck-online-card{
+            width:min(430px,92vw); padding:12px; border-radius:16px;
+            border:1px solid rgba(0,229,255,.34); background:rgba(0,38,48,.5);
+            display:flex; flex-direction:column; gap:9px;
+        }
+        #g-checkers .ck-online-fields{ display:grid; grid-template-columns:minmax(0,1fr) minmax(130px,.65fr); gap:8px; }
+        #g-checkers .ck-online-input{
+            width:100%; min-width:0; padding:11px 12px; border-radius:11px;
+            border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.09);
+            color:#fff; font-size:16px; font-weight:800; outline:none;
+        }
+        #g-checkers .ck-online-code{ text-transform:uppercase; text-align:center; letter-spacing:.16em; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+        #g-checkers .ck-online-actions{ display:flex; flex-wrap:wrap; gap:8px; }
+        #g-checkers .ck-online-actions .ui-btn{ flex:1 1 120px; }
+        #g-checkers .ck-online-state{ min-height:18px; color:#b9f8ff; font-size:12px; font-weight:800; line-height:1.35; text-align:center; }
+        #g-checkers #ck-online-badge{ border-color:rgba(0,229,255,.55); color:#b9f8ff; cursor:pointer; }
+        #g-checkers #ck-online-badge strong{ color:#fff; letter-spacing:.12em; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+        #g-checkers.online-game #ck-reset,
+        #g-checkers.online-game #ck-undo,
+        #g-checkers.online-game #ck-save,
+        #g-checkers.online-game #ck-load{ display:none !important; }
+        @media(max-width:520px){ #g-checkers .ck-online-fields{ grid-template-columns:1fr; } }
 
         
         #g-simon { background: radial-gradient(circle at center, #0a0a0a 0%, #000 80%); flex-direction: column; }
@@ -1162,6 +1185,15 @@ body.reduce-motion.unicorn-mega #g-balloons, body.reduce-motion.unicorn-mega #g-
         }
         #g-checkers #ck-menu .btn-large-opt{ font-size: 1.15rem; padding: 14px 18px; max-width: 340px; width: 86%; }
         #g-checkers #ck-menu .splash-title{ font-size: 2.1rem; margin: 0 0 10px 0; }
+        @media(max-height:620px){
+            #g-checkers #ck-menu{
+                justify-content:flex-start; overflow-y:auto; -webkit-overflow-scrolling:touch;
+                box-sizing:border-box; padding:max(12px,env(safe-area-inset-top)) 10px max(12px,env(safe-area-inset-bottom));
+                gap:10px;
+            }
+            #g-checkers #ck-menu .splash-title{ font-size:1.65rem; margin:0; }
+            #g-checkers #ck-menu .btn-large-opt{ padding:10px 14px; }
+        }
 
         #g-checkers .ck-looks-card{
             width: min(560px, calc(100vw - 36px));
@@ -1729,12 +1761,13 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         <button class="back-btn" onclick="goToMenu()">← MENU</button>
         <div class="ck-top">
             <div class="ck-pill">TURN <span class="ck-turn" id="ck-turn">RED</span></div>
+            <button class="ck-btn" id="ck-online-badge" hidden title="Tap to copy room code">ROOM <strong id="ck-online-badge-code"></strong></button>
             <div style="display:flex; gap:10px;">
-                <button class="ck-btn" onclick="CheckersGame.reset()">Reset</button>
+                <button class="ck-btn" id="ck-reset" onclick="CheckersGame.reset()">Reset</button>
                 <button class="ck-btn" id="ck-undo" onclick="CheckersGame.undo()" disabled>↶ Undo</button>
                 <button class="ck-btn" id="ck-endturn" onclick="CheckersGame.endTurn()" disabled style="opacity:0.55;">End Turn</button>
-                <button class="ck-btn" onclick="CheckersGame.saveGame()">Save</button>
-                <button class="ck-btn" onclick="CheckersGame.loadGame()">Load</button>
+                <button class="ck-btn" id="ck-save" onclick="CheckersGame.saveGame()">Save</button>
+                <button class="ck-btn" id="ck-load" onclick="CheckersGame.loadGame()">Load</button>
                 <button class="ck-btn" onclick="CheckersGame.openMenu()">Mode</button>
             </div>
         </div>
@@ -1752,6 +1785,23 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             <div style="display:flex; flex-direction:column; gap:16px; width:100%; align-items:center;">
                 <button class="btn-large-opt" onclick="CheckersGame.start('pvp')">2 Players (Pass &amp; Play)</button>
                 <button class="btn-large-opt" onclick="CheckersGame.start('cpu')">1 Player (vs CPU)</button>
+                <button class="btn-large-opt" onclick="CheckersGame.showOnlineSetup()">Online Match</button>
+                <div id="ck-online-panel" class="ck-online-card" hidden>
+                    <div class="ck-card-title" style="margin:0">ONLINE ROOM</div>
+                    <div class="ck-online-fields">
+                        <input id="ck-online-name" class="ck-online-input" maxlength="18" autocomplete="nickname" placeholder="Your name" aria-label="Your online name" />
+                        <input id="ck-online-code" class="ck-online-input ck-online-code" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ROOM CODE" aria-label="Room code" />
+                    </div>
+                    <div class="ck-online-actions">
+                        <button id="ck-online-create" class="ui-btn" type="button">Create Room</button>
+                        <button id="ck-online-join" class="ui-btn" type="button">Join Room</button>
+                        <button id="ck-online-resume" class="ui-btn" type="button" hidden>Resume Room</button>
+                        <button id="ck-online-start" class="ui-btn" type="button" hidden>Start Match</button>
+                        <button id="ck-online-copy" class="ui-btn" type="button" hidden>Copy Code</button>
+                        <button id="ck-online-leave" class="ui-btn" type="button" hidden>Leave Room</button>
+                    </div>
+                    <div id="ck-online-state" class="ck-online-state">Create a room or enter a code to join.</div>
+                </div>
                 <div class="ck-row" style="width:min(360px,92vw); background:rgba(255,255,255,0.08);">
                     <div class="ck-lab">
                         <div class="ck-name">CPU difficulty</div>
@@ -2285,10 +2335,29 @@ const FeedbackSys = (function(){
         let cpuTimer = 0;
         let cpuEpoch = 0;
         let undoStack = [];
+        const ONLINE_API_BASE = 'https://arcade-chess.jonathanjablon.workers.dev';
+        const ONLINE_SESSION_KEY = 'arcade_checkers_online_v1';
+        let online = {
+            code:'', token:'', playerId:'', seat:0, username:'', room:null,
+            socket:null, socketEpoch:0, retryTimer:0, retryCount:0, busy:false, applying:false, restoreRequired:false, messageIsError:false, lastVersion:-1, lastRevision:-1
+        };
+
+        const onlinePanel = document.getElementById('ck-online-panel');
+        const onlineNameInput = document.getElementById('ck-online-name');
+        const onlineCodeInput = document.getElementById('ck-online-code');
+        const onlineCreateBtn = document.getElementById('ck-online-create');
+        const onlineJoinBtn = document.getElementById('ck-online-join');
+        const onlineResumeBtn = document.getElementById('ck-online-resume');
+        const onlineStartBtn = document.getElementById('ck-online-start');
+        const onlineCopyBtn = document.getElementById('ck-online-copy');
+        const onlineLeaveBtn = document.getElementById('ck-online-leave');
+        const onlineStateEl = document.getElementById('ck-online-state');
+        const onlineBadge = document.getElementById('ck-online-badge');
+        const onlineBadgeCode = document.getElementById('ck-online-badge-code');
 
         function syncUndoButton(){
             const button = document.getElementById('ck-undo');
-            if(button) button.disabled = undoStack.length === 0;
+            if(button) button.disabled = mode === 'online' || undoStack.length === 0;
         }
 
         function clearUndo(){
@@ -2324,6 +2393,330 @@ const FeedbackSys = (function(){
             try{
                 if(window.ArcadeSave && typeof ArcadeSave.touch === 'function') ArcadeSave.touch(delay);
             }catch(_){ }
+        }
+
+        let onlineSetupShown = false;
+        function cleanOnlineCode(value){ return String(value || '').toUpperCase().replace(/[^ABCDEFGHJKLMNPQRSTUVWXYZ23456789]/g, '').slice(0, 6); }
+        function cleanOnlineName(value){ return String(value || '').replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, 18); }
+        function savedOnlineSession(){
+            try{
+                const data = JSON.parse(localStorage.getItem(ONLINE_SESSION_KEY) || 'null');
+                const code = cleanOnlineCode(data && data.code);
+                const token = String(data && data.token || '');
+                if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code) || !/^[A-Za-z0-9_-]{20,}$/.test(token)) return null;
+                return {code:code, token:token, username:cleanOnlineName(data.username)};
+            }catch(e){ return null; }
+        }
+        function persistOnlineSession(){
+            if(!online.code || !online.token) return;
+            try{ localStorage.setItem(ONLINE_SESSION_KEY, JSON.stringify({code:online.code,token:online.token,username:online.username})); }catch(e){}
+        }
+        function clearOnlineRetry(){ if(online.retryTimer){ clearTimeout(online.retryTimer); online.retryTimer = 0; } }
+        function closeOnlineSocket(){
+            clearOnlineRetry();
+            online.socketEpoch++;
+            const socket = online.socket;
+            online.socket = null;
+            if(socket){ try{ socket.close(); }catch(e){} }
+        }
+        function setOnlineMessage(message, isError){
+            online.messageIsError = !!isError;
+            if(onlineStateEl){ onlineStateEl.textContent = message || ''; onlineStateEl.style.color = isError ? '#ffaaaa' : '#b9f8ff'; }
+        }
+        function onlineMembers(){
+            return online.room && Array.isArray(online.room.members) ? online.room.members.slice().sort(function(a,b){return Number(a.seat)-Number(b.seat);}) : [];
+        }
+        function onlineSeatName(seat){
+            const member = onlineMembers().find(function(item){return Number(item.seat)===Number(seat);});
+            return member ? cleanOnlineName(member.username) || ('Player ' + seat) : ('Player ' + seat);
+        }
+        function onlineIsHost(){ return !!(online.room && online.room.hostPlayerId === online.playerId); }
+        function seatForTurn(value){ return value === -1 ? 1 : 0; }
+        function onlineCanAct(){
+            return mode === 'online' && online.room && online.room.status === 'active' && !online.busy && !online.restoreRequired &&
+                online.room.turn && Number(online.room.turn.seat) === online.seat && seatForTurn(turn) === online.seat;
+        }
+        function updateOnlineControls(){
+            const connected = !!(online.code && online.token && online.room);
+            const saved = savedOnlineSession();
+            if(onlinePanel) onlinePanel.hidden = !(onlineSetupShown || connected || mode === 'online');
+            if(onlineResumeBtn){
+                onlineResumeBtn.hidden = connected || !saved;
+                if(saved) onlineResumeBtn.textContent = 'Resume ' + saved.code;
+            }
+            if(onlineLeaveBtn) onlineLeaveBtn.hidden = !connected;
+            if(onlineCopyBtn) onlineCopyBtn.hidden = !connected;
+            if(onlineStartBtn) onlineStartBtn.hidden = !(connected && online.room.status === 'lobby' && onlineIsHost() && onlineMembers().length >= 2);
+            if(onlineCreateBtn) onlineCreateBtn.disabled = online.busy || connected;
+            if(onlineJoinBtn) onlineJoinBtn.disabled = online.busy || connected;
+            if(onlineCodeInput) onlineCodeInput.disabled = online.busy || connected;
+            if(onlineNameInput) onlineNameInput.disabled = online.busy || connected;
+            if(onlineBadge) onlineBadge.hidden = !connected;
+            if(onlineBadgeCode) onlineBadgeCode.textContent = connected ? online.code : '';
+            const root = document.getElementById('g-checkers');
+            if(root) root.classList.toggle('online-game', mode === 'online' && connected);
+            syncUndoButton();
+            setEndTurnEnabled(chainLock);
+            if(!onlineSetupShown && !connected && mode !== 'online') return;
+            if(online.messageIsError && !online.busy) return;
+            if(!connected){
+                if(!online.busy) setOnlineMessage(saved ? 'Create or join a room, or resume ' + saved.code + '.' : 'Create a room or enter a code to join.');
+            }else if(online.restoreRequired){
+                setOnlineMessage('Restoring the latest room state…');
+            }else if(online.room.status === 'lobby'){
+                if(onlineIsHost()) setOnlineMessage(onlineMembers().length >= 2 ? 'Opponent joined. Start room ' + online.code + ' when ready.' : 'Room ' + online.code + ' created. Share the code with your opponent.');
+                else setOnlineMessage('Joined ' + online.code + '. Waiting for the host to start.');
+            }else if(online.room.status === 'finished'){
+                setOnlineMessage('Room ' + online.code + ' finished.');
+            }else{
+                const activeSeat = online.room.turn && Number(online.room.turn.seat);
+                setOnlineMessage(activeSeat === online.seat ? 'Your turn in ' + online.code + '.' : 'Waiting for ' + onlineSeatName(activeSeat) + '.');
+            }
+        }
+        async function onlineFetch(path, options){
+            const opts = Object.assign({}, options || {});
+            opts.headers = Object.assign({'accept':'application/json'}, opts.headers || {});
+            const controller = typeof AbortController === 'function' ? new AbortController() : null;
+            const timer = controller ? setTimeout(function(){controller.abort();}, 8000) : 0;
+            if(controller) opts.signal = controller.signal;
+            try{
+                const response = await fetch(ONLINE_API_BASE + path, opts);
+                let body = null;
+                try{ body = await response.json(); }catch(e){}
+                if(!response.ok || !body || body.ok === false){
+                    const error = new Error((body && body.error) || ('Request failed (' + response.status + ')'));
+                    error.status = response.status;
+                    throw error;
+                }
+                return body;
+            }finally{ if(timer) clearTimeout(timer); }
+        }
+        function roomFromResponse(body){ return body && body.room ? body.room : null; }
+        function applyOnlineRoom(room, forceHydrate){
+            if(!room || room.game !== 'checkers') return false;
+            if(!['lobby','active','finished'].includes(room.status)) return false;
+            const roomCode = cleanOnlineCode(room.code || online.code);
+            const members = Array.isArray(room.members) ? room.members : [];
+            const occupied = new Set();
+            if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(roomCode) || Number(room.maxPlayers) !== 2 || members.length > 2) return false;
+            for(const member of members){
+                const seat = Number(member && member.seat);
+                if(!Number.isInteger(seat) || seat < 0 || seat > 1 || occupied.has(seat)) return false;
+                occupied.add(seat);
+            }
+            if(room.status === 'active'){
+                const activeSeat = Number(room.turn && room.turn.seat);
+                if(!room.state || members.length !== 2 || !Number.isInteger(activeSeat) || !occupied.has(activeSeat)) return false;
+            }
+            const version = Number(room.version);
+            const revision = Number(room.revision !== undefined ? room.revision : room.version);
+            if(!Number.isFinite(version) || !Number.isFinite(revision)) return false;
+            if(online.lastVersion >= 0 && (version < online.lastVersion || (version === online.lastVersion && revision < online.lastRevision))) return false;
+            const previous = {room:online.room,code:online.code,playerId:online.playerId,seat:online.seat,mode:mode,onlineSetupShown:onlineSetupShown};
+            function rejectRoom(message){
+                online.room=previous.room;online.code=previous.code;online.playerId=previous.playerId;online.seat=previous.seat;
+                mode=previous.mode;onlineSetupShown=previous.onlineSetupShown;
+                setOnlineMessage(message,true);
+                return false;
+            }
+            online.room = room;
+            online.code = roomCode;
+            if(room.playerId) online.playerId = String(room.playerId);
+            if(room.seat !== undefined && room.seat !== null) online.seat = Number(room.seat);
+            mode = 'online'; onlineSetupShown = true;
+            const forceAuthoritative = !!forceHydrate || online.restoreRequired;
+            const shouldHydrate = room.state && room.status !== 'lobby' && (forceAuthoritative || version > online.lastVersion || !gameStarted || !Array.isArray(board));
+            if(shouldHydrate){
+                const snapshot = JSON.parse(JSON.stringify(room.state));
+                snapshot.mode = 'online';
+                snapshot.baseSub = 'Online match. You are ' + (online.seat === 0 ? 'RED' : 'BLACK') + '. Moves are synchronized automatically.';
+                snapshot.cpuDifficulty = cpuDifficulty;
+                snapshot.gameStarted = true;
+                if(room.turn && Number.isInteger(Number(room.turn.seat))){
+                    const authoritativeSeat = Number(room.turn.seat);
+                    if(authoritativeSeat !== 0 && authoritativeSeat !== 1){
+                        return rejectRoom('The room sent an invalid turn. Reconnecting…');
+                    }
+                    snapshot.turn = authoritativeSeat === 0 ? 1 : -1;
+                }
+                online.applying = true;
+                try{ restoreGameData(snapshot); }
+                catch(e){ online.applying = false; return rejectRoom('The room sent an invalid board. Reconnecting…'); }
+                online.applying = false;
+                mode = 'online';
+                menu.style.display = 'none';
+                if(forceAuthoritative){ online.restoreRequired = false; clearOnlineRetry(); }
+            }else if(room.status === 'lobby'){
+                cancelCpuWork();
+                menu.style.display = 'flex';
+                winOv.style.display = 'none';
+            }
+            const abandoned = room.status === 'finished' && room.result && room.result.type === 'abandoned';
+            if(abandoned){ menu.style.display = 'flex'; winOv.style.display = 'none'; }
+            online.messageIsError = false;
+            updateOnlineControls();
+            updateHud();
+            if(room.status === 'active' && room.turn){
+                subEl.textContent = Number(room.turn.seat) === online.seat ? 'Your move.' : ('Waiting for ' + onlineSeatName(room.turn.seat) + '.');
+            }
+            if(abandoned){
+                setOnlineMessage('Your opponent left, so this match has ended. Leave the room to start another game.', true);
+                subEl.textContent = 'Online match ended because a player left.';
+            }
+            online.lastVersion = version;
+            online.lastRevision = revision;
+            return true;
+        }
+        function acceptOnlineResponse(body){
+            online.code = cleanOnlineCode(body.code || (body.room && body.room.code));
+            online.token = String(body.token || online.token || '');
+            online.playerId = String(body.playerId || (body.room && body.room.playerId) || online.playerId || '');
+            if(body.seat !== undefined && body.seat !== null) online.seat = Number(body.seat);
+            else if(body.room && body.room.seat !== undefined && body.room.seat !== null) online.seat = Number(body.room.seat);
+            persistOnlineSession();
+            applyOnlineRoom(roomFromResponse(body));
+            connectOnlineSocket();
+        }
+        function scheduleOnlineReconnect(){
+            if(!online.code || !online.token || online.retryTimer) return;
+            const delay = Math.min(10000, 700 * Math.pow(2, Math.min(online.retryCount++, 4)));
+            setOnlineMessage('Connection interrupted. Reconnecting…');
+            online.retryTimer = setTimeout(async function(){
+                online.retryTimer = 0;
+                try{ await refreshOnlineRoom(); connectOnlineSocket(); }
+                catch(e){ scheduleOnlineReconnect(); }
+            }, delay);
+        }
+        function connectOnlineSocket(){
+            if(!online.code || !online.token || typeof WebSocket !== 'function') return;
+            closeOnlineSocket();
+            const epoch = ++online.socketEpoch;
+            const wsBase = ONLINE_API_BASE.replace(/^http/, 'ws');
+            let socket;
+            try{ socket = new WebSocket(wsBase + '/api/arcade/rooms/' + encodeURIComponent(online.code) + '/ws?token=' + encodeURIComponent(online.token)); }
+            catch(e){ scheduleOnlineReconnect(); return; }
+            online.socket = socket;
+            socket.addEventListener('open', function(){ if(epoch === online.socketEpoch){ online.retryCount = 0; updateOnlineControls(); } });
+            socket.addEventListener('message', function(event){
+                if(epoch !== online.socketEpoch) return;
+                try{
+                    const message = JSON.parse(event.data);
+                    if(message.type === 'state' && message.room) applyOnlineRoom(message.room);
+                    else if(message.type === 'error'){
+                        setOnlineMessage(message.error || 'The room rejected that action.', true);
+                        refreshOnlineRoom().catch(function(){});
+                    }
+                }catch(e){}
+            });
+            socket.addEventListener('close', function(){ if(epoch === online.socketEpoch){ online.socket = null; scheduleOnlineReconnect(); } });
+            socket.addEventListener('error', function(){ if(epoch === online.socketEpoch) setOnlineMessage('Connection interrupted. Reconnecting…'); });
+        }
+        async function refreshOnlineRoom(forceHydrate){
+            if(!online.code || !online.token) return false;
+            const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(online.code) + '/state', {headers:{'authorization':'Bearer ' + online.token}});
+            return applyOnlineRoom(roomFromResponse(body), !!forceHydrate);
+        }
+        function showOnlineSetup(){ onlineSetupShown = true; updateOnlineControls(); if(onlineNameInput && !onlineNameInput.value) onlineNameInput.focus(); }
+        async function createOnlineRoom(){
+            if(online.busy) return;
+            const username = cleanOnlineName(onlineNameInput && onlineNameInput.value);
+            if(!username){ setOnlineMessage('Enter your name first.', true); if(onlineNameInput) onlineNameInput.focus(); return; }
+            online.busy = true; online.username = username; onlineSetupShown = true; updateOnlineControls(); setOnlineMessage('Creating room…');
+            try{
+                const body = await onlineFetch('/api/arcade/rooms', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({game:'checkers',username:username,maxPlayers:2})});
+                acceptOnlineResponse(body);
+            }catch(e){ setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true); }
+            finally{ online.busy = false; updateOnlineControls(); }
+        }
+        async function joinOnlineRoom(){
+            if(online.busy) return;
+            const username = cleanOnlineName(onlineNameInput && onlineNameInput.value);
+            const code = cleanOnlineCode(onlineCodeInput && onlineCodeInput.value);
+            if(!username){ setOnlineMessage('Enter your name first.', true); if(onlineNameInput) onlineNameInput.focus(); return; }
+            if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)){ setOnlineMessage('Enter the six-character room code from the host.', true); if(onlineCodeInput) onlineCodeInput.focus(); return; }
+            online.busy = true; online.username = username; onlineSetupShown = true; updateOnlineControls(); setOnlineMessage('Joining ' + code + '…');
+            try{
+                const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(code) + '/join', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({username:username})});
+                acceptOnlineResponse(body);
+            }catch(e){ setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true); }
+            finally{ online.busy = false; updateOnlineControls(); }
+        }
+        async function resumeOnlineRoom(){
+            const saved = savedOnlineSession();
+            if(!saved || online.busy) return;
+            online.busy = true; online.username = saved.username || cleanOnlineName(onlineNameInput && onlineNameInput.value) || 'Player'; onlineSetupShown = true;
+            updateOnlineControls(); setOnlineMessage('Rejoining ' + saved.code + '…');
+            try{
+                const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(saved.code) + '/join', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({username:online.username,reconnectToken:saved.token})});
+                online.token = saved.token; acceptOnlineResponse(body);
+            }catch(e){
+                if(e.status === 401 || e.status === 403 || e.status === 404) try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(_){}
+                setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true);
+            }finally{ online.busy = false; updateOnlineControls(); }
+        }
+        function finishLeavingOnlineRoom(){
+            closeOnlineSocket();
+            try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(e){}
+            online = {code:'',token:'',playerId:'',seat:0,username:'',room:null,socket:null,socketEpoch:online.socketEpoch+1,retryTimer:0,retryCount:0,busy:false,applying:false,restoreRequired:false,messageIsError:false,lastVersion:-1,lastRevision:-1};
+            mode = 'pvp'; onlineSetupShown = false; gameStarted = false;
+            menu.style.display = 'flex'; winOv.style.display = 'none';
+            baseSub = ''; clearUndo(); updateOnlineControls(); updateHud();
+        }
+        async function leaveOnlineRoom(){
+            if(online.busy) return false;
+            if(!online.room || !online.code || !online.token){ finishLeavingOnlineRoom(); return true; }
+            online.busy = true; updateOnlineControls(); setOnlineMessage('Leaving room ' + online.code + '…');
+            try{
+                await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(online.code) + '/actions', {
+                    method:'POST',headers:{'content-type':'application/json','authorization':'Bearer ' + online.token},body:JSON.stringify({type:'leave'})
+                });
+                finishLeavingOnlineRoom();
+                return true;
+            }catch(e){
+                if(e.status === 401 || e.status === 404){ finishLeavingOnlineRoom(); return true; }
+                online.busy = false; updateOnlineControls();
+                setOnlineMessage(e.name === 'AbortError' ? 'Leave timed out. You are still in the room; try again.' : ('Could not leave: ' + e.message), true);
+                return false;
+            }
+        }
+        async function postOnlineAction(action){
+            if(!online.room || !online.code || !online.token) throw new Error('No active online room.');
+            const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(online.code) + '/actions', {
+                method:'POST', headers:{'content-type':'application/json','authorization':'Bearer ' + online.token}, body:JSON.stringify(action)
+            });
+            applyOnlineRoom(roomFromResponse(body));
+            return body;
+        }
+        async function startOnlineMatch(){
+            if(online.busy || !online.room || online.room.status !== 'lobby' || !onlineIsHost()) return;
+            if(onlineMembers().length < 2){ setOnlineMessage('Wait for your opponent to join.', true); return; }
+            online.busy = true; mode = 'online'; gameStarted = true;
+            baseSub = 'Online match. You are RED. Moves are synchronized automatically.';
+            reset(false);
+            menu.style.display = 'flex';
+            updateOnlineControls(); setOnlineMessage('Starting the match…');
+            try{ await postOnlineAction({type:'start',expectedVersion:Number(online.room.version),state:captureCurrentGame(),firstSeat:0}); }
+            catch(e){ setOnlineMessage(e.name === 'AbortError' ? 'Start timed out. Try again.' : e.message, true); try{await refreshOnlineRoom(true);}catch(_){} }
+            finally{ online.busy = false; updateOnlineControls(); }
+        }
+        async function syncCheckersOnline(winner){
+            if(mode !== 'online' || online.applying || !online.room) return;
+            online.busy = true; updateOnlineControls();
+            try{
+                await postOnlineAction({
+                    type:'state', expectedVersion:Number(online.room.version), state:captureCurrentGame(),
+                    nextSeat:seatForTurn(turn), finish:!!winner,
+                    result:winner ? {winnerSeat:seatForTurn(winner),winnerColor:winner===1?'red':'black'} : undefined
+                });
+            }catch(e){
+                online.restoreRequired = true;
+                setOnlineMessage(e.name === 'AbortError' ? 'Move timed out. Restoring the room…' : e.message, true);
+                try{await refreshOnlineRoom(true);}catch(_){if(online.restoreRequired)scheduleOnlineReconnect();}
+            }finally{
+                online.busy = false;
+                updateOnlineControls();
+                setEndTurnEnabled(chainLock);
+            }
         }
 
         const THEMES = [
@@ -2641,12 +3034,20 @@ const FeedbackSys = (function(){
             cancelCpuWork();
             menu.style.display = 'flex';
             winOv.style.display = 'none';
+            if(mode === 'online' && online.room) onlineSetupShown = true;
+            updateOnlineControls();
         }
 
         function start(m){
+            if(mode === 'online' && online.room){
+                onlineSetupShown = true;
+                setOnlineMessage('Leave the online room before starting a local game.', true);
+                updateOnlineControls();
+                return;
+            }
             holdCurrentSave();
             cancelCpuWork();
-            mode = m;
+            mode = m === 'cpu' ? 'cpu' : 'pvp';
             gameStarted = true;
             menu.style.display = 'none';
             winOv.style.display = 'none';
@@ -2659,12 +3060,24 @@ const FeedbackSys = (function(){
 
         function quit(){
             cancelCpuWork();
+            closeOnlineSocket();
             menu.style.display = 'flex';
             winOv.style.display = 'none';
             ctx.clearRect(0,0,canvas.width,canvas.height);
         }
 
         function reset(preserveCurrent=true){
+
+            if(mode === 'online' && preserveCurrent && online.room){
+                winOv.style.display = 'none';
+                menu.style.display = 'flex';
+                onlineSetupShown = true;
+                setOnlineMessage(online.room.status === 'finished'
+                    ? 'Leave this finished room, then create or join another match.'
+                    : 'Reset is unavailable during an online match.', true);
+                updateOnlineControls();
+                return false;
+            }
 
             if(preserveCurrent) holdCurrentSave();
             cancelCpuWork();
@@ -2701,18 +3114,21 @@ const FeedbackSys = (function(){
 
             if(mode==='cpu' && turn===-1) cpuTurn();
             touchSave(0);
+            return true;
         }
 
         function updateHud(){
-            turnEl.textContent = (turn===1) ? "RED" : "BLACK";
+            const colorName = (turn===1) ? "RED" : "BLACK";
+            turnEl.textContent = mode === 'online' && online.room ? colorName + ' · ' + onlineSeatName(seatForTurn(turn)) : colorName;
             const c = (turn===1) ? redColor : blackColor;
             turnEl.style.color = c;
         }
 
         function setEndTurnEnabled(on){
             if(!endTurnBtn) return;
-            endTurnBtn.disabled = !on;
-            endTurnBtn.style.opacity = on ? "1" : "0.55";
+            const enabled = !!on && (mode !== 'online' || onlineCanAct());
+            endTurnBtn.disabled = !enabled;
+            endTurnBtn.style.opacity = enabled ? "1" : "0.55";
         }
 
         function resize(){
@@ -2807,9 +3223,10 @@ const FeedbackSys = (function(){
         }
 
         function applyMove(m){
+            if(mode === 'online' && !onlineCanAct()) return false;
             const {from,to,cap} = m;
             const v = board[from.r][from.c];
-            recordUndo();
+            if(mode !== 'online') recordUndo();
             heldSave = null;
             gameStarted = true;
             moveCount++;
@@ -2862,6 +3279,7 @@ const FeedbackSys = (function(){
                     subEl.textContent = baseSub + " Double-jump available - continue jumping with this piece, or hit End Turn.";
                     draw();
                     touchSave(120);
+                    if(mode === 'online') syncCheckersOnline(null);
                     return;
                 }
             }
@@ -2869,9 +3287,11 @@ const FeedbackSys = (function(){
             chainLock = false;
             setEndTurnEnabled(false);
             endTurn();
+            return true;
         }
 
         function endTurn(){
+            if(mode === 'online' && !onlineCanAct()) return false;
             clearSelection();
             chainLock = false;
             dragging = false;
@@ -2885,13 +3305,16 @@ const FeedbackSys = (function(){
             const winner = checkWinner();
             draw();
             if(winner){
+                if(mode === 'online') syncCheckersOnline(winner);
                 showWin(winner);
-                return;
+                return true;
             }
             if(mode==='cpu' && turn===-1){
                 scheduleCpuWork(cpuTurn, 350);
             }
+            if(mode === 'online') syncCheckersOnline(null);
             touchSave(120);
+            return true;
         }
 
         function checkWinner(){
@@ -2951,6 +3374,10 @@ const FeedbackSys = (function(){
         function pointerDown(e){
             if(currentGameId !== 'checkers') return;
             if(menu.style.display === 'flex') return;
+            if(mode === 'online' && !onlineCanAct()){
+                subEl.textContent = online.restoreRequired ? 'Restoring the latest room state…' : (online.busy ? 'Sending your move…' : (online.room && online.room.status === 'active' ? ('Waiting for ' + onlineSeatName(online.room.turn && online.room.turn.seat) + '.') : 'Waiting for the room to start.'));
+                return;
+            }
             if(mode==='cpu' && turn===-1) return;
 
             const pos = toCanvasPos(e);
@@ -3269,6 +3696,27 @@ const FeedbackSys = (function(){
         canvas.addEventListener('pointermove', (e) => { if(dragging){ e.preventDefault(); pointerMove(e); } });
         canvas.addEventListener('pointerup', (e) => { if(dragging){ e.preventDefault(); pointerUp(e); } });
         canvas.addEventListener('pointercancel', (e) => { if(dragging){ e.preventDefault(); pointerUp(e); } });
+        if(onlineCodeInput) onlineCodeInput.addEventListener('input', function(){
+            const next = cleanOnlineCode(onlineCodeInput.value);
+            if(onlineCodeInput.value !== next) onlineCodeInput.value = next;
+        });
+        if(onlineCreateBtn) onlineCreateBtn.addEventListener('click', createOnlineRoom);
+        if(onlineJoinBtn) onlineJoinBtn.addEventListener('click', joinOnlineRoom);
+        if(onlineResumeBtn) onlineResumeBtn.addEventListener('click', resumeOnlineRoom);
+        if(onlineStartBtn) onlineStartBtn.addEventListener('click', startOnlineMatch);
+        if(onlineLeaveBtn) onlineLeaveBtn.addEventListener('click', function(){ leaveOnlineRoom(); });
+        function copyOnlineCode(){
+            if(!online.code) return;
+            try{
+                if(navigator.clipboard && navigator.clipboard.writeText){
+                    navigator.clipboard.writeText(online.code).then(function(){subEl.textContent='Room code copied: '+online.code;},function(){subEl.textContent='Room code: '+online.code;});
+                }else subEl.textContent='Room code: '+online.code;
+            }catch(e){subEl.textContent='Room code: '+online.code;}
+        }
+        if(onlineCopyBtn) onlineCopyBtn.addEventListener('click',copyOnlineCode);
+        if(onlineBadge) onlineBadge.addEventListener('click',copyOnlineCode);
+        const priorOnline = savedOnlineSession();
+        if(priorOnline && onlineNameInput) onlineNameInput.value = priorOnline.username || '';
         window.addEventListener('resize', () => {
         try{ if(window.__arcadeSelfResize) window.__arcadeSelfResize(); }catch(e){}
     });
@@ -3292,14 +3740,20 @@ const FeedbackSys = (function(){
 
         function normalizeBoard(value){
             if(!Array.isArray(value) || value.length !== 8) throw new Error('bad board');
-            return value.map(row => {
+            let red = 0, black = 0;
+            const normalized = value.map((row,r) => {
                 if(!Array.isArray(row) || row.length !== 8) throw new Error('bad row');
-                return row.map(raw => {
+                return row.map((raw,c) => {
                     const piece = Number(raw);
                     if(![-2,-1,0,1,2].includes(piece)) throw new Error('bad piece');
+                    if(piece !== 0 && (r+c)%2 !== 1) throw new Error('piece on light square');
+                    if(piece > 0) red++;
+                    if(piece < 0) black++;
                     return piece;
                 });
             });
+            if(red > 12 || black > 12) throw new Error('too many pieces');
+            return normalized;
         }
 
         function captureCurrentGame(){
@@ -3322,6 +3776,7 @@ const FeedbackSys = (function(){
         }
 
         function currentGameIsMeaningful(){
+            if(mode === 'online') return false;
             if(!gameStarted || moveCount < 1 || !Array.isArray(board) || board.length !== 8) return false;
             return checkWinner() == null;
         }
@@ -3359,15 +3814,17 @@ const FeedbackSys = (function(){
             heldSave = null;
             board = restoredBoard;
             turn = saved.turn === -1 ? -1 : 1;
-            mode = saved.mode === 'cpu' ? 'cpu' : 'pvp';
+            mode = saved.mode === 'cpu' ? 'cpu' : (saved.mode === 'online' ? 'online' : 'pvp');
             cpuDifficulty = Math.max(1, Math.min(5, Number(saved.cpuDifficulty) || cpuDifficulty));
             baseSub = typeof saved.baseSub === 'string' && saved.baseSub
                 ? saved.baseSub
                 : (mode === 'cpu'
                     ? 'You are RED. Tap or drag a piece to move. CPU is BLACK. Jumping is optional.'
-                    : '2 players. RED goes first. Tap or drag a piece to move. Jumping is optional.');
+                    : (mode === 'online'
+                        ? 'Online match. Moves are synchronized automatically.'
+                        : '2 players. RED goes first. Tap or drag a piece to move. Jumping is optional.'));
             gameStarted = saved.gameStarted !== false;
-            moveCount = Math.max(0, Math.floor(Number(saved.moveCount) || 0));
+            moveCount = Math.max(0, Math.min(10000, Math.floor(Number(saved.moveCount) || 0)));
             if(moveCount === 0 && !isStandardBoard(board)) moveCount = 1;
 
             selected = null;
@@ -3423,6 +3880,10 @@ const FeedbackSys = (function(){
         }
 
         function undo(){
+            if(mode === 'online'){
+                subEl.textContent = 'Undo is unavailable during an online match.';
+                return false;
+            }
             if(!undoStack.length){
                 subEl.textContent = baseSub + ' Nothing to undo yet.';
                 syncUndoButton();
@@ -3475,6 +3936,10 @@ const FeedbackSys = (function(){
         }
 
         function saveLegacyGame(showMessage=true){
+            if(mode === 'online'){
+                if(showMessage) subEl.textContent = 'Online games stay synchronized through the room.';
+                return false;
+            }
             if(!hasMeaningfulSave()){
                 if(showMessage) subEl.textContent = 'No checkers game to save yet.';
                 return false;
@@ -3516,6 +3981,10 @@ const FeedbackSys = (function(){
         }
 
         function loadGame(){
+            if(mode === 'online'){
+                subEl.textContent = 'Leave the online room before loading a local game.';
+                return;
+            }
             try{
                 if(window.ArcadeSave && ArcadeSave.hasSave()){
                     Promise.resolve(ArcadeSave.load()).then(ok => { if(!ok) loadLegacyGame(); });
@@ -3541,6 +4010,7 @@ const FeedbackSys = (function(){
 
         function endTurnBtnAction(){
             if(!chainLock) return;
+            if(mode === 'online' && !onlineCanAct()) return;
             chainLock = false;
             setEndTurnEnabled(false);
             endTurn();
@@ -3548,7 +4018,7 @@ const FeedbackSys = (function(){
 
         installArcadeSave();
 
-        return { openMenu, start, reset, resize, quit, undo, endTurn: endTurnBtnAction, saveGame, loadGame };
+        return { openMenu, start, reset, resize, quit, undo, endTurn: endTurnBtnAction, saveGame, loadGame, showOnlineSetup, createOnlineRoom, joinOnlineRoom, resumeOnlineRoom, leaveOnlineRoom, startOnlineMatch };
     })();
 
     

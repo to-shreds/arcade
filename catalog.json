@@ -107,7 +107,8 @@
       "tags": [
         "touch",
         "turn-based",
-        "same-device"
+        "same-device",
+        "online"
       ],
       "orientation": "any",
       "folder": "checkers",
@@ -137,6 +138,29 @@
       "orientation": "any",
       "folder": "chess",
       "launchPath": "chess/index.html"
+    },
+    {
+      "title": "Arcade Chat",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 55,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 32,
+      "categories": [
+        "social",
+        "creative"
+      ],
+      "tags": [
+        "online",
+        "chat",
+        "keyboard"
+      ],
+      "orientation": "any",
+      "folder": "chat-room",
+      "launchPath": "chat-room/index.html"
     },
     {
       "title": "Time",
@@ -176,7 +200,8 @@
       "tags": [
         "touch",
         "turn-based",
-        "same-device"
+        "same-device",
+        "online"
       ],
       "orientation": "any",
       "folder": "dots",
@@ -402,7 +427,8 @@
       "tags": [
         "touch",
         "turn-based",
-        "same-device"
+        "same-device",
+        "online"
       ],
       "orientation": "any",
       "folder": "memory",
@@ -649,7 +675,8 @@
       "tags": [
         "touch",
         "turn-based",
-        "same-device"
+        "same-device",
+        "online"
       ],
       "orientation": "any",
       "folder": "tic-tac-toe",
@@ -801,7 +828,9 @@
       "tags": [
         "touch",
         "turn-based",
-        "same-device"
+        "same-device",
+        "online",
+        "cross-device"
       ],
       "orientation": "any",
       "folder": "sorry",
@@ -942,6 +971,7 @@
         "touch",
         "turn-based",
         "same-device",
+        "online",
         "saveable"
       ],
       "orientation": "landscape",
@@ -961,6 +991,7 @@
     "music",
     "puzzle",
     "reaction",
+    "social",
     "sports",
     "strategy",
     "trivia",

@@ -725,6 +725,39 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   body.memory-game #menuOverlay .memory-menu-grid .btn-large{height:40px!important;min-height:40px!important;max-height:40px!important;padding:7px 8px!important;font-size:13px!important;line-height:1.05!important;border-radius:13px!important}
   body.memory-game #menuOverlay #resumeBtn,body.memory-game #menuOverlay #backBtn{grid-column:1/-1}
   body.memory-game #menuOverlay .small-note{min-height:16px;margin-top:8px}
+  .memory-online{
+    margin-top:8px;
+    padding:10px;
+    border:1px solid rgba(0,229,255,.28);
+    border-radius:14px;
+    background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(224,64,251,.07));
+  }
+  .memory-online-title{font-size:12px;font-weight:1000;letter-spacing:.9px;color:#8df4ff;text-align:center;margin-bottom:7px}
+  .memory-online-row{display:flex;gap:7px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .memory-online input{
+    flex:1 1 150px;min-width:0;max-width:260px;box-sizing:border-box;
+    border:1px solid var(--ui-border-strong);border-radius:11px;background:#151515;color:#fff;
+    padding:9px 10px;font-size:16px;font-weight:900;text-transform:none;outline:none;
+  }
+  .memory-online input.room-code{text-transform:uppercase;letter-spacing:3px;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .memory-online .online-action{padding:9px 11px;border-radius:11px;cursor:pointer}
+  .memory-online .online-action.primary{background:rgba(0,229,255,.18);border-color:rgba(0,229,255,.55)}
+  .memory-online .online-action:disabled{opacity:.45;cursor:not-allowed}
+  .memory-online-status{min-height:17px;margin-top:6px;text-align:center;font-size:12px;color:rgba(255,255,255,.76);font-weight:750}
+  .memory-lobby{margin-top:8px;padding:8px;border-radius:12px;background:rgba(0,0,0,.28);text-align:center}
+  .memory-room-code{font:1000 24px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:4px;color:var(--ui-gold);margin:3px 0 6px}
+  .memory-members{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin:6px 0}
+  .memory-member{padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.08);font-size:11px;font-weight:900}
+  .memory-member.connected::before{content:"● ";color:var(--ok)}
+  .memory-member:not(.connected)::before{content:"● ";color:#888}
+  #memoryOnlineActions[hidden],#memoryOnlineJoinRow[hidden],#memoryOnlineResume[hidden],#memoryOnlineLobby[hidden],#memoryOnlineStart[hidden]{display:none!important}
+  #board.online-wait .card:not(.matched){cursor:not-allowed}
+  #board.online-wait .card:not(.revealed):not(.matched){opacity:.76}
+  @media(max-width:520px){
+    .memory-online{padding:8px}
+    .memory-online-row{gap:5px}
+    .memory-online .online-action{padding:8px;font-size:11px}
+  }
 </style>
 <style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
 </head>
@@ -842,8 +875,34 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
           </div></div>
       </div>
 
+      <section class="memory-online" id="memoryOnlineSetup" aria-label="Online multiplayer">
+        <div class="memory-online-title">PLAY ONLINE</div>
+        <div style="text-align:center;font-size:11px;color:#aaa;margin:-3px 0 7px">Online rooms support 2–4 players. Local play supports up to 8.</div>
+        <div class="memory-online-row" id="memoryOnlineActions">
+          <input id="memoryOnlineName" maxlength="20" autocomplete="nickname" enterkeyhint="done" placeholder="Your username" aria-label="Your online username" />
+          <button type="button" class="ui-btn online-action primary" id="memoryOnlineCreate">Create Room</button>
+          <button type="button" class="ui-btn online-action" id="memoryOnlineJoin">Join Room</button>
+        </div>
+        <div class="memory-online-row" id="memoryOnlineJoinRow" hidden>
+          <input id="memoryOnlineCode" class="room-code" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" placeholder="ROOM CODE" aria-label="Six-character room code" />
+          <button type="button" class="ui-btn online-action primary" id="memoryOnlineConnect">Join</button>
+          <button type="button" class="ui-btn online-action" id="memoryOnlineJoinCancel">Cancel</button>
+        </div>
+        <button type="button" class="ui-btn online-action" id="memoryOnlineResume" hidden>Resume Online Room</button>
+        <div class="memory-online-status" id="memoryOnlineStatus" aria-live="polite">Create a room or join with a six-character code.</div>
+        <div class="memory-lobby" id="memoryOnlineLobby" hidden>
+          <div style="font-size:11px;font-weight:900;color:#aaa;letter-spacing:.7px">ROOM CODE</div>
+          <div class="memory-room-code" id="memoryOnlineRoomCode">------</div>
+          <div class="memory-members" id="memoryOnlineMembers"></div>
+          <div class="memory-online-row">
+            <button type="button" class="ui-btn online-action primary" id="memoryOnlineStart" hidden>Start Online Game</button>
+            <button type="button" class="ui-btn online-action" id="memoryOnlineLeave">Leave Room</button>
+          </div>
+        </div>
+      </section>
+
       <div class="panel-footer"><div class="hr"></div>
-      <button class="btn-large" id="startBtn">START</button>
+      <button class="btn-large" id="startBtn">PLAY ON THIS DEVICE</button>
       <button class="btn-large" id="loadStartBtn" style="margin-top:8px;">LOAD SAVED GAME</button></div></div>
   </div>
 
@@ -886,6 +945,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     </div>
   </div>
 
+<script src="online-model.js"></script>
+<script src="room-client.js"></script>
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
@@ -962,6 +1023,21 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   const backBtn = $("backBtn");
   const menuNote = $("menuNote");
   const awardsUndo = $("awardsUndo");
+  const onlineName = $("memoryOnlineName");
+  const onlineActions = $("memoryOnlineActions");
+  const onlineCode = $("memoryOnlineCode");
+  const onlineCreate = $("memoryOnlineCreate");
+  const onlineJoin = $("memoryOnlineJoin");
+  const onlineConnect = $("memoryOnlineConnect");
+  const onlineJoinCancel = $("memoryOnlineJoinCancel");
+  const onlineJoinRow = $("memoryOnlineJoinRow");
+  const onlineResume = $("memoryOnlineResume");
+  const onlineStatus = $("memoryOnlineStatus");
+  const onlineLobby = $("memoryOnlineLobby");
+  const onlineRoomCode = $("memoryOnlineRoomCode");
+  const onlineMembers = $("memoryOnlineMembers");
+  const onlineStart = $("memoryOnlineStart");
+  const onlineLeave = $("memoryOnlineLeave");
 
 
   function bindPress(el, handler){
@@ -1019,6 +1095,22 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
   let state = null;
   const SAVE_KEY = "arcade_memory_save_v1";
+  const ONLINE_NAME_KEY = "arcade_memory_online_name_v1";
+  let onlineMode = false;
+  let onlineRoom = null;
+  let onlineActionBusy = false;
+  let onlineRollbackSnapshot = null;
+  let appliedOnlineVersion = -1;
+  const roomClient = window.ArcadeRoomClient ? ArcadeRoomClient.createRoomClient({
+    game: "memory",
+    sessionKey: "arcade_memory_online_room_v1",
+    onRoom: handleOnlineRoom,
+    onStatus: (status) => {
+      setOnlineStatus(status.text, status.kind === "error");
+      if(onlineMode && status.kind === "reconnecting") setStatus(status.text);
+    },
+    onSession: syncOnlineResume
+  }) : null;
 
   function beep(freq=520, dur=0.06, vol=0.02){
     if(!state || !state.sound) return;
@@ -1066,6 +1158,330 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       [deck[i],deck[j]]=[deck[j],deck[i]];
     }
     return deck;
+  }
+
+  function setOnlineStatus(text, isError){
+    if(!onlineStatus) return;
+    onlineStatus.textContent = String(text || "");
+    onlineStatus.style.color = isError ? "#ff8d8d" : "rgba(255,255,255,.76)";
+  }
+
+  function syncOnlineResume(){
+    if(!onlineResume || !roomClient) return;
+    const saved = roomClient.saved();
+    onlineResume.hidden = !saved || !!roomClient.session;
+    if(saved) onlineResume.textContent = "Resume Room " + saved.code;
+  }
+
+  function setOnlineButtonsBusy(busy){
+    [onlineCreate, onlineJoin, onlineConnect, onlineResume, onlineStart, onlineLeave].forEach((button) => {
+      if(button) button.disabled = !!busy;
+    });
+  }
+
+  function getOnlineUsername(){
+    const username = roomClient ? roomClient.cleanUsername(onlineName && onlineName.value) : "";
+    if(username){
+      if(onlineName) onlineName.value = username;
+      try{ localStorage.setItem(ONLINE_NAME_KEY, username); }catch(_error){}
+    }
+    return username;
+  }
+
+  function sortedMembers(room){
+    return (Array.isArray(room && room.members) ? room.members.slice() : []).sort((a,b) => Number(a.seat) - Number(b.seat));
+  }
+
+  function localTurnForSeat(room, seat){
+    const index = sortedMembers(room).findIndex((member) => Number(member.seat) === Number(seat));
+    return index >= 0 ? index + 1 : 1;
+  }
+
+  function seatForLocalTurn(room, turn){
+    const members = sortedMembers(room);
+    const member = members[Math.max(0, Number(turn) - 1)] || members[0];
+    return member ? Number(member.seat) : 0;
+  }
+
+  function renderOnlineLobby(room){
+    if(!room) return;
+    if(onlineActions) onlineActions.hidden = true;
+    if(onlineJoinRow) onlineJoinRow.hidden = true;
+    if(onlineLobby) onlineLobby.hidden = false;
+    if(onlineRoomCode) onlineRoomCode.textContent = room.code || (roomClient && roomClient.session && roomClient.session.code) || "------";
+    if(onlineMembers){
+      onlineMembers.innerHTML = "";
+      sortedMembers(room).forEach((member) => {
+        const chip = document.createElement("span");
+        chip.className = "memory-member" + (member.connected ? " connected" : "");
+        chip.textContent = (Number(member.seat) + 1) + ". " + (member.username || "Player");
+        onlineMembers.appendChild(chip);
+      });
+    }
+    const session = roomClient && roomClient.session;
+    const isHost = !!(session && room.hostPlayerId && session.playerId === room.hostPlayerId);
+    const count = sortedMembers(room).length;
+    if(onlineStart){
+      onlineStart.hidden = !isHost || room.status !== "lobby";
+      onlineStart.disabled = !room.ready;
+      onlineStart.textContent = room.ready ? ("Start with " + count) : "Waiting for another player";
+    }
+    if(room.status === "lobby"){
+      setOnlineStatus(isHost
+        ? (room.ready ? (count < Number(room.maxPlayers) ? (count + " joined. Start now or wait for up to " + room.maxPlayers + ".") : "Room full. Start when you want.") : "Share the code. Waiting for another player…")
+        : ("Joined as player " + ((session ? Number(session.seat) : Math.max(0, count - 1)) + 1) + ". Waiting for the host…"));
+    }
+  }
+
+  function onlineInitialSnapshot(room){
+    const members = sortedMembers(room);
+    const players = Math.max(2, Math.min(4, members.length));
+    const {cols, rows} = parseSize(sizeSel.value);
+    const matchSize = Math.max(2, Math.min(3, parseInt(matchSel && matchSel.value, 10) || 2));
+    const playableTotal = (cols * rows) - ((cols * rows) % matchSize);
+    const totalMatches = Math.floor(playableTotal / matchSize);
+    return {
+      schema: 1,
+      players,
+      seatOrder: members.slice(0, players).map((member) => Number(member.seat)),
+      names: members.slice(0, players).map((member, index) => member.username || ("Player " + (index + 1))),
+      teams: Array.from({length:players}, (_, index) => index + 1),
+      uniqueTeams: Array.from({length:players}, (_, index) => index + 1),
+      teamMode: false,
+      teamNames: ["Team 1","Team 2","Team 3","Team 4"],
+      cols, rows, matchSize, freeCount: 0, totalMatches,
+      deck: makeDeck("weird", totalMatches, matchSize, 0),
+      revealed: [], matchedKeys: [], owners: Array.from({length:playableTotal}, () => 0),
+      lock: false, awaitingTurn: false, moves: 0, tElapsed: 0,
+      scores: Array.from({length:players}, () => 0), turn: 1,
+      stats: Array.from({length:players}, () => newStats()), sound: true
+    };
+  }
+
+  function onlineSnapshot(){
+    if(!state) return null;
+    return {
+      schema: 1,
+      players: state.players,
+      seatOrder: Array.isArray(state.seatOrder) ? state.seatOrder.slice() : sortedMembers(onlineRoom).map((member) => Number(member.seat)),
+      names: state.names.slice(),
+      teams: state.teams.slice(),
+      uniqueTeams: state.uniqueTeams.slice(),
+      teamMode: false,
+      teamNames: state.teamNames.slice(),
+      cols: state.cols, rows: state.rows, matchSize: state.matchSize,
+      freeCount: 0, totalMatches: state.totalMatches,
+      deck: state.deck.map((card) => ({ id: card.id, key: card.key, emoji: card.emoji })),
+      revealed: [], matchedKeys: Array.from(state.matchedKeys || []), owners: state.owners.slice(),
+      lock: false, awaitingTurn: false, moves: state.moves || 0,
+      tElapsed: elapsedForSave(), scores: state.scores.slice(), turn: state.turn,
+      stats: cleanStats(state.stats), sound: state.sound !== false
+    };
+  }
+
+  function reconcileOnlinePlayers(saved, members){
+    if(!saved || !Array.isArray(saved.seatOrder) || !members.length) return null;
+    const oldIndexBySeat = new Map(saved.seatOrder.map((seat,index) => [Number(seat), index]));
+    const keptOldIndexes = members.map((member) => oldIndexBySeat.get(Number(member.seat)));
+    if(keptOldIndexes.some((index) => !Number.isInteger(index))) return null;
+    if(keptOldIndexes.length === saved.players && keptOldIndexes.every((index,position)=>index===position)) return saved;
+    const newOwnerByOldOwner = new Map();
+    keptOldIndexes.forEach((oldIndex,newIndex) => newOwnerByOldOwner.set(oldIndex + 1, newIndex + 1));
+    saved.owners = saved.owners.map((owner) => owner === 0 ? 0 : (newOwnerByOldOwner.get(owner) || 0));
+    saved.players = members.length;
+    saved.seatOrder = members.map((member) => Number(member.seat));
+    saved.names = members.map((member,index) => member.username || ("Player " + (index + 1)));
+    saved.teams = members.map((_member,index) => index + 1);
+    saved.uniqueTeams = saved.teams.slice();
+    saved.scores = Array.from({length:members.length}, () => 0);
+    for(const key of saved.matchedKeys){
+      const cardIndex = saved.deck.findIndex((card) => card.key === key);
+      const owner = cardIndex >= 0 ? saved.owners[cardIndex] : 0;
+      if(owner > 0) saved.scores[owner - 1]++;
+    }
+    saved.stats = keptOldIndexes.map((oldIndex,newIndex) => {
+      const item = Object.assign({}, saved.stats[oldIndex] || newStats());
+      item.matches = saved.scores[newIndex];
+      item.mismatchPairCounts = {};
+      return item;
+    });
+    return saved;
+  }
+
+  function applyOnlineRoomState(room){
+    const members = sortedMembers(room);
+    if(room.status === "finished" && members.length < 2){
+      onlineMode = true;
+      board.classList.add("online-wait");
+      setStatus("Online game ended because a player left the room.");
+      setOnlineStatus("A player left, so this online game has ended.", true);
+      if(state){
+        if(awardsSub) awardsSub.textContent = "The room ended because there were not enough players.";
+        renderFinalScores();
+        showOverlay(awardsOverlay, true);
+      }else showOverlay(startOverlay, true);
+      syncOnlineGameControls();
+      return;
+    }
+    const snapshotPlayers = Number(room && room.state && room.state.players);
+    let saved = window.MemoryOnlineModel ? MemoryOnlineModel.sanitizeMemorySnapshot(room && room.state, snapshotPlayers) : null;
+    if(saved) saved = reconcileOnlinePlayers(saved, members);
+    if(!saved){
+      setOnlineStatus("The room sent an invalid Memory game state.", true);
+      return;
+    }
+    saved.players = members.length;
+    saved.names = members.map((member, index) => member.username || ("Player " + (index + 1)));
+    saved.teams = members.map((_member, index) => index + 1);
+    saved.uniqueTeams = saved.teams.slice();
+    saved.teamMode = false;
+    saved.turn = room.turn && Number.isInteger(Number(room.turn.seat)) ? localTurnForSeat(room, room.turn.seat) : Math.max(1, Number(saved.turn) || 1);
+    saved.revealed = [];
+    saved.lock = false;
+    saved.awaitingTurn = false;
+    onlineMode = true;
+    try{
+      restoreState(saved, { online: true, allowFinished: room.status === "finished" });
+      const session = roomClient && roomClient.session;
+      const myTurn = !!(session && room.turn && Number(session.seat) === Number(room.turn.seat));
+      board.classList.toggle("online-wait", room.status !== "active" || !myTurn);
+      syncOnlineGameControls();
+      if(room.status === "finished" || state.matchedKeys.size === state.totalMatches) onWin();
+      else tick(true);
+    }catch(_error){
+      setOnlineStatus("This online Memory state could not be loaded.", true);
+    }
+  }
+
+  function handleOnlineRoom(room){
+    onlineRoom = room;
+    onlineMode = true;
+    renderOnlineLobby(room);
+    if(room.status === "lobby"){
+      showOverlay(startOverlay, true);
+      return;
+    }
+    if((room.status === "active" || room.status === "finished") && room.state && Number(room.version) !== appliedOnlineVersion){
+      appliedOnlineVersion = Number(room.version);
+      applyOnlineRoomState(room);
+    }
+  }
+
+  function syncOnlineGameControls(){
+    [saveBtn, loadBtn, restartBtn].forEach((button) => { if(button) button.disabled = !!onlineMode; });
+    if(onlineMode) [undoBtnSmall, menuUndoBtn, awardsUndo].forEach((button) => { if(button) button.disabled = true; });
+    else syncUndoButtons();
+    if(menuNote && onlineMode) menuNote.textContent = "This room stays synchronized automatically. Undo, local save, and restart are unavailable online.";
+  }
+
+  async function pushOnlineState(finished){
+    if(!onlineMode || !roomClient || !state || onlineActionBusy) return;
+    const attemptedVersion = Number(onlineRoom && onlineRoom.version);
+    onlineActionBusy = true;
+    board.classList.add("online-wait");
+    try{
+      const result = finished ? { scores: state.scores.slice(), winners: state.scores.map((score,index)=>({score,index})).filter((entry, _i, arr)=>entry.score === Math.max(...arr.map((item)=>item.score))).map((entry)=>state.names[entry.index]) } : undefined;
+      await roomClient.action({
+        type: "state",
+        state: onlineSnapshot(),
+        nextSeat: seatForLocalTurn(onlineRoom, state.turn),
+        finish: !!finished,
+        result
+      });
+    }catch(error){
+      setStatus(error && error.message ? error.message : "The move could not be synchronized.");
+      setOnlineStatus(error && error.message ? error.message : "The move could not be synchronized.", true);
+      let restored = !!(onlineRoom && Number(onlineRoom.version) > attemptedVersion && appliedOnlineVersion >= Number(onlineRoom.version));
+      if(!restored){
+        try{
+          const authoritative = await roomClient.refresh();
+          if(authoritative){
+            appliedOnlineVersion = Number(authoritative.version);
+            applyOnlineRoomState(authoritative);
+            restored = true;
+          }
+        }catch(_refreshError){}
+      }
+      if(!restored && onlineRoom && Number(onlineRoom.version) > attemptedVersion && appliedOnlineVersion >= Number(onlineRoom.version)) restored = true;
+      if(!restored && onlineRollbackSnapshot && onlineRoom){
+        applyOnlineRoomState(Object.assign({}, onlineRoom, { state: JSON.parse(JSON.stringify(onlineRollbackSnapshot)) }));
+      }
+    }finally{
+      onlineActionBusy = false;
+      onlineRollbackSnapshot = null;
+      if(onlineRoom && onlineRoom.status === "active" && roomClient.session){
+        board.classList.toggle("online-wait", Number(roomClient.session.seat) !== Number(onlineRoom.turn && onlineRoom.turn.seat));
+      }
+    }
+  }
+
+  async function createOnlineRoom(){
+    if(!roomClient) return setOnlineStatus("Online play is not available in this browser.", true);
+    const username = getOnlineUsername();
+    const maxPlayers = Math.max(2, Math.min(4, parseInt(playersSel.value, 10) || 2));
+    setSelectValue(playersSel, maxPlayers);
+    setOnlineButtonsBusy(true);
+    try{ await roomClient.create({ username, maxPlayers }); }
+    catch(error){ setOnlineStatus(error.message || "Room creation failed.", true); }
+    finally{ setOnlineButtonsBusy(false); }
+  }
+
+  async function joinOnlineRoom(){
+    if(!roomClient) return setOnlineStatus("Online play is not available in this browser.", true);
+    setOnlineButtonsBusy(true);
+    try{ await roomClient.join({ username: getOnlineUsername(), code: onlineCode && onlineCode.value }); }
+    catch(error){ setOnlineStatus(error.message || "Could not join that room.", true); }
+    finally{ setOnlineButtonsBusy(false); }
+  }
+
+  async function resumeOnlineRoom(){
+    if(!roomClient) return;
+    setOnlineButtonsBusy(true);
+    try{
+      const saved = roomClient.saved();
+      if(saved && onlineName) onlineName.value = saved.username || onlineName.value;
+      await roomClient.resume();
+    }catch(error){ setOnlineStatus(error.message || "Could not resume that room.", true); }
+    finally{ setOnlineButtonsBusy(false); syncOnlineResume(); }
+  }
+
+  async function startOnlineRoom(){
+    if(!roomClient || !onlineRoom || !onlineRoom.ready) return;
+    setOnlineButtonsBusy(true);
+    try{ await roomClient.action({ type: "start", state: onlineInitialSnapshot(onlineRoom), firstSeat: seatForLocalTurn(onlineRoom, 1) }); }
+    catch(error){ setOnlineStatus(error.message || "The online game could not start.", true); }
+    finally{ setOnlineButtonsBusy(false); }
+  }
+
+  function resetOnlineLocalState(){
+    onlineMode = false;
+    onlineRoom = null;
+    onlineActionBusy = false;
+    onlineRollbackSnapshot = null;
+    appliedOnlineVersion = -1;
+    board.classList.remove("online-wait");
+    if(onlineLobby) onlineLobby.hidden = true;
+    if(onlineActions) onlineActions.hidden = false;
+    if(onlineJoinRow) onlineJoinRow.hidden = true;
+    setOnlineButtonsBusy(false);
+    syncOnlineGameControls();
+    syncOnlineResume();
+  }
+
+  async function leaveOnlineRoom(){
+    if(!roomClient || !roomClient.session){ resetOnlineLocalState(); return true; }
+    setOnlineButtonsBusy(true);
+    setOnlineStatus("Leaving room…");
+    try{
+      await roomClient.leave();
+      resetOnlineLocalState();
+      setOnlineStatus("Create a room or join with a six-character code.");
+      return true;
+    }catch(error){
+      setOnlineStatus(error.message || "Could not leave the room. Your reconnect seat was kept.", true);
+      setOnlineButtonsBusy(false);
+      return false;
+    }
   }
 
   function setStatus(text){
@@ -1153,15 +1569,19 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     resumeBtn.textContent = "RESUME";
     if(menuNote) menuNote.textContent = "The game is paused while this menu is open.";
     setStatus("Ready");
+    syncOnlineGameControls();
   }
 
   function restartCurrentGame(){
+    if(onlineMode){ setStatus("Online games cannot be restarted from one device."); return; }
     if(!state){ returnToSetup(); return; }
     syncSetupFromState();
     startNewGame();
   }
 
   function startNewGame(){
+    if(onlineMode){ leaveOnlineRoom().then((left) => { if(left) startNewGame(); }); return; }
+    onlineMode = false;
     clearTimeout(turnSplashTimer);
     clearTimeout(matchResolveTimer);undoStack = [];syncUndoButtons();
     matchResolveTimer = 0;
@@ -1189,6 +1609,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
     state = {
       players,
+      seatOrder: Array.from({length:players}, (_,index)=>index),
       names,
       teams,
       uniqueTeams,
@@ -1340,7 +1761,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   let undoStack = [];
   let matchResolveDue = 0;
   function showTurnSplash(){
-    if(!state || state.players <= 1) return;
+    if(!state || state.players <= 1 || onlineMode) return;
     state.awaitingTurn = true;
     const name = state.names[state.turn-1] || `Player ${state.turn}`;
     const individualMatches = state.scores[state.turn-1] || 0;
@@ -1387,7 +1808,23 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         row.className = "final-score-row";
         const members = teamTotals[teamNo].members.join(", ");
         const teamName = teamTotals[teamNo].name || `Team ${teamNo}`;
-        row.innerHTML = `<div class="final-score-name"><div class="team-badge">T${teamNo}</div><div><div>${teamName}</div><div style="font-size:12px;color:rgba(255,255,255,0.7);font-weight:700;">${members}</div></div></div><div class="final-score-points">${teamTotals[teamNo].score}</div>`;
+        const nameWrap = document.createElement("div");
+        nameWrap.className = "final-score-name";
+        const badge = document.createElement("div");
+        badge.className = "team-badge";
+        badge.textContent = "T" + teamNo;
+        const copy = document.createElement("div");
+        const title = document.createElement("div");
+        title.textContent = teamName;
+        const memberLine = document.createElement("div");
+        memberLine.style.cssText = "font-size:12px;color:rgba(255,255,255,0.7);font-weight:700;";
+        memberLine.textContent = members;
+        copy.appendChild(title); copy.appendChild(memberLine);
+        nameWrap.appendChild(badge); nameWrap.appendChild(copy);
+        const points = document.createElement("div");
+        points.className = "final-score-points";
+        points.textContent = String(teamTotals[teamNo].score);
+        row.appendChild(nameWrap); row.appendChild(points);
         finalScores.appendChild(row);
       });
       return;
@@ -1396,8 +1833,24 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       const row = document.createElement("div");
       row.className = "final-score-row";
       const name = state.names[p-1] || `Player ${p}`;
-      const teamLabel = (state.players > 2 ? `<div class="team-badge">T${state.teams[p-1]}</div>` : '');
-      row.innerHTML = `<div class="final-score-name"><div class="final-score-dot p${p}"></div>${teamLabel}<div>${name}</div></div><div class="final-score-points">${state.scores[p-1]}</div>`;
+      const nameWrap = document.createElement("div");
+      nameWrap.className = "final-score-name";
+      const dot = document.createElement("div");
+      dot.className = `final-score-dot p${p}`;
+      nameWrap.appendChild(dot);
+      if(state.players > 2){
+        const badge = document.createElement("div");
+        badge.className = "team-badge";
+        badge.textContent = "T" + state.teams[p-1];
+        nameWrap.appendChild(badge);
+      }
+      const label = document.createElement("div");
+      label.textContent = name;
+      nameWrap.appendChild(label);
+      const points = document.createElement("div");
+      points.className = "final-score-points";
+      points.textContent = String(state.scores[p-1]);
+      row.appendChild(nameWrap); row.appendChild(points);
       finalScores.appendChild(row);
     }
   }
@@ -1419,7 +1872,17 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       const individualMatches = state.scores[state.turn-1] || 0;
       const matchText = `${individualMatches} ${individualMatches === 1 ? "match" : "matches"}`;
       const remaining = Math.max(0, (state.totalMatches || 0) - state.matchedKeys.size);
-      setStatus(`Turn: ${currentName} · ${matchText} · ${remaining} left`);
+      if(onlineMode && roomClient && roomClient.session){
+        const disconnected = sortedMembers(onlineRoom).filter((member) => member.playerId !== roomClient.session.playerId && !member.connected);
+        if(disconnected.length){
+          setStatus(`Online · ${disconnected.map((member)=>member.username || "Player").join(", ")} disconnected · seat reserved`);
+          return;
+        }
+        const mine = Number(roomClient.session.seat) === seatForLocalTurn(onlineRoom, state.turn);
+        setStatus(`Online · ${mine ? "Your turn" : currentName + "'s turn"} · ${remaining} left`);
+      } else {
+        setStatus(`Turn: ${currentName} · ${matchText} · ${remaining} left`);
+      }
     }
   }
 
@@ -1773,7 +2236,7 @@ function renderScoreBar(){
       beep(220, 0.08, 0.02);
       if(state.players > 1){
         state.turn = (state.turn % state.players) + 1;
-        showTurnSplash();
+        if(!onlineMode) showTurnSplash();
       }
     }
 
@@ -1781,7 +2244,9 @@ function renderScoreBar(){
     state.lock = false;
     renderScoreBar();
     tick(true);
-    if(state.matchedKeys.size === state.totalMatches) onWin();
+    const finished = state.matchedKeys.size === state.totalMatches;
+    if(onlineMode) pushOnlineState(finished);
+    if(finished) onWin();
     try{ if(window.ArcadeSave) ArcadeSave.touch(0); }catch(e){}
   }
 
@@ -1794,6 +2259,13 @@ function renderScoreBar(){
 
   function onCardTap(i){
     if(!state || state.lock || state.awaitingTurn) return;
+    if(onlineMode){
+      const session = roomClient && roomClient.session;
+      if(onlineActionBusy || !onlineRoom || onlineRoom.status !== "active" || !session || !onlineRoom.turn || Number(session.seat) !== Number(onlineRoom.turn.seat)){
+        setStatus("Online · Wait for your turn.");
+        return;
+      }
+    }
 
     const el = cardEl(i);
     if(!el) return;
@@ -1802,6 +2274,7 @@ function renderScoreBar(){
     if(state.deck[i]?.free) return;
 
     if(state.revealed.length === 0){const snapshot=captureState();if(snapshot){undoStack.push(JSON.parse(JSON.stringify(snapshot)));if(undoStack.length>50)undoStack.shift();syncUndoButtons();}}
+    if(onlineMode && state.revealed.length === 0) onlineRollbackSnapshot = onlineSnapshot();
     const pIdx = (state.players > 1 ? (state.turn-1) : 0);
     state.stats[pIdx].flips += 1;
     if(state.revealed.length === 0) state.firstFlipAt = performance.now();
@@ -1891,6 +2364,7 @@ function renderScoreBar(){
   }
 
   function meaningful(){
+    if(onlineMode) return false;
     return !!(state && state.deck && state.deck.length && state.matchedKeys.size < state.totalMatches);
   }
 
@@ -1899,6 +2373,7 @@ function renderScoreBar(){
     const elapsed = elapsedForSave();
     return {
       players: state.players,
+      seatOrder: Array.isArray(state.seatOrder) ? state.seatOrder.slice() : Array.from({length:state.players}, (_,index)=>index),
       names: state.names,
       teams: state.teams,
       uniqueTeams: state.uniqueTeams,
@@ -1931,6 +2406,7 @@ function renderScoreBar(){
   }
 
   function undoAttempt(){
+    if(onlineMode){ setStatus("Undo is unavailable in an online room."); return false; }
     if(!undoStack.length)return false;
     clearTimeout(turnSplashTimer);clearTimeout(matchResolveTimer);matchResolveTimer=0;matchResolveDue=0;
     const saved=undoStack.pop();restoreState(saved);showOverlay(menuOverlay,false);showOverlay(awardsOverlay,false);resumeBtn.textContent='RESUME';
@@ -1938,6 +2414,7 @@ function renderScoreBar(){
   }
 
   function saveGame(){
+    if(onlineMode){ setStatus("Online rooms synchronize automatically."); return false; }
     const saved = captureState();
     if(!saved){ setStatus("Start a game first."); return false; }
     try{
@@ -1951,7 +2428,8 @@ function renderScoreBar(){
     }
   }
 
-  function restoreState(saved){
+  function restoreState(saved, options){
+    options = options || {};
     if(!saved || !Array.isArray(saved.deck)) throw new Error("bad save");
     const savedOwners = Array.isArray(saved.owners) ? saved.owners : [];
     const filteredDeck = [];
@@ -1966,7 +2444,7 @@ function renderScoreBar(){
     saved.freeCount = 0;
     saved.totalMatches = Math.floor(saved.deck.length / Math.max(2, Math.min(3, parseInt(saved.matchSize, 10) || 2)));
     const savedMatchedKeys = Array.isArray(saved.matchedKeys) ? saved.matchedKeys : [];
-    if(!saved.deck.length || savedMatchedKeys.length >= saved.totalMatches) throw new Error("finished save");
+    if(!saved.deck.length || (!options.allowFinished && savedMatchedKeys.length >= saved.totalMatches)) throw new Error("finished save");
     clearTimeout(turnSplashTimer);
     clearTimeout(matchResolveTimer);
     matchResolveTimer = 0;
@@ -1976,6 +2454,7 @@ function renderScoreBar(){
     const elapsed = Math.max(0, Number(saved.tElapsed) || 0);
     state = {
       players,
+      seatOrder: Array.isArray(saved.seatOrder) ? saved.seatOrder.slice(0, players) : Array.from({length:players}, (_,index)=>index),
       names: Array.isArray(saved.names) ? saved.names.slice(0, players) : Array.from({length: players}, (_,i)=>`Player ${i+1}`),
       teams: Array.isArray(saved.teams) ? saved.teams.slice(0, players) : Array.from({length: players}, (_,i)=>(i % 4) + 1),
       uniqueTeams: Array.isArray(saved.uniqueTeams) ? saved.uniqueTeams : [],
@@ -2025,12 +2504,14 @@ function renderScoreBar(){
     }else{
       state.lock = false;
     }
-    if(state.awaitingTurn && !state.lock) showTurnSplash();
-    setStatus("Game loaded.");syncUndoButtons();
+    if(state.awaitingTurn && !state.lock && !options.online) showTurnSplash();
+    setStatus(options.online ? "Online game synchronized." : "Game loaded.");syncUndoButtons();
     return true;
   }
 
   function loadGame(){
+    if(onlineMode){ leaveOnlineRoom().then((left) => { if(left) loadGame(); }); return false; }
+    onlineMode = false;
     undoStack=[];syncUndoButtons();
     if(window.ArcadeSave && ArcadeSave.hasSave()) return ArcadeSave.load();
     let saved;
@@ -2061,6 +2542,7 @@ function renderScoreBar(){
 
   function leaveArcade(){
     const leave = () => { window.location.href = "../index.html"; };
+    if(onlineMode){ if(roomClient) roomClient.disconnect(); leave(); return; }
     if(window.ArcadeSave && meaningful()) ArcadeSave.saveNow().then(leave, leave);
     else leave();
   }
@@ -2073,6 +2555,7 @@ function renderScoreBar(){
     menuOverlay.querySelector(".sub").textContent = "Pause time - choose an option.";
     resumeBtn.textContent = "RESUME";
     if(menuNote) menuNote.textContent = "The game is paused while this menu is open.";
+    syncOnlineGameControls();
     tick(true);
   }
 
@@ -2104,6 +2587,16 @@ function renderScoreBar(){
   });
 
   bindPress(startBtn, startNewGame);
+  bindPress(onlineCreate, createOnlineRoom);
+  bindPress(onlineJoin, () => {
+    if(onlineJoinRow) onlineJoinRow.hidden = false;
+    if(onlineCode){ onlineCode.focus(); onlineCode.select(); }
+  });
+  bindPress(onlineJoinCancel, () => { if(onlineJoinRow) onlineJoinRow.hidden = true; });
+  bindPress(onlineConnect, joinOnlineRoom);
+  bindPress(onlineResume, resumeOnlineRoom);
+  bindPress(onlineStart, startOnlineRoom);
+  bindPress(onlineLeave, async () => { if(await leaveOnlineRoom()) returnToSetup(); });
   bindPress(saveBtn, () => {
     const saved = saveGame();
     if(menuNote) menuNote.textContent = saved ? "Game saved." : "Start a game first.";
@@ -2128,16 +2621,25 @@ function renderScoreBar(){
     else closeMenu();
   });
   bindPress(restartBtn, restartCurrentGame);
-  bindPress(newGameBtn, returnToSetup);
+  bindPress(newGameBtn, async () => { if(!onlineMode || await leaveOnlineRoom()) returnToSetup(); });
   bindPress(backBtn, () => {
     leaveArcade();
   });
 
   bindPress(awardsAgain, () => {
+    if(onlineMode){ leaveOnlineRoom().then((left) => { if(left) returnToSetup(); }); return; }
     showOverlay(awardsOverlay, false);
     startNewGame();
   });
-  bindPress(awardsSettings, returnToSetup);
+  bindPress(awardsSettings, async () => { if(!onlineMode || await leaveOnlineRoom()) returnToSetup(); });
+
+  if(onlineCode){
+    onlineCode.addEventListener("input", () => {
+      onlineCode.value = String(onlineCode.value || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6);
+    });
+    onlineCode.addEventListener("keydown", (event) => { if(event.key === "Enter") joinOnlineRoom(); });
+  }
+  if(onlineName) onlineName.addEventListener("keydown", (event) => { if(event.key === "Enter") createOnlineRoom(); });
 
   window.addEventListener("resize", () => {
     if(!state) return;
@@ -2151,6 +2653,9 @@ function renderScoreBar(){
   }
 
   setStatus("Ready");
+  try{ if(onlineName) onlineName.value = localStorage.getItem(ONLINE_NAME_KEY) || ""; }catch(_error){}
+  syncOnlineResume();
+  window.addEventListener("pagehide", () => { if(roomClient) roomClient.disconnect(); });
   window.MemoryGame = {
     saveGame, loadGame, restartGame: restartCurrentGame,
     autosave: {

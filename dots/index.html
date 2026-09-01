@@ -570,6 +570,21 @@
             line-height: 1.15;
         }
         #g-dots .dots-color-item.is-hidden { display:none !important; }
+        #g-dots [hidden]{ display:none !important; }
+        #g-dots .dots-online-panel{ grid-column:1 / -1; }
+        #g-dots .dots-online-fields{ display:grid; grid-template-columns:minmax(0,1fr) minmax(120px,.6fr); gap:8px; }
+        #g-dots .dots-online-actions{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+        #g-dots .dots-online-actions .grid-btn{ flex:1 1 128px; padding:10px 8px; font-size:13px; }
+        #g-dots .dots-room-code{ text-transform:uppercase; letter-spacing:.18em; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; text-align:center; }
+        #g-dots .dots-online-state{ min-height:18px; color:#b9eaff; font-size:12px; font-weight:800; text-align:center; line-height:1.3; }
+        #g-dots #dotsOnlineBadge{ border-color:rgba(0,229,255,.55); color:#b9f8ff; cursor:pointer; }
+        #g-dots #dotsOnlineBadge strong{ color:#fff; letter-spacing:.12em; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+        #g-dots.online-game #saveBtn,
+        #g-dots.online-game #loadBtn,
+        #g-dots.online-game #undoBtn{ display:none !important; }
+        @media(max-width:520px){
+            #g-dots .dots-online-fields{ grid-template-columns:1fr; }
+        }
         #g-dots canvas { display: block; touch-action: none; border-radius: 8px; }
         #g-dots #c { max-width: none !important; max-height: none !important; flex: 0 0 auto; }
         #g-dots #dots-confetti-canvas { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events: none; z-index: 25; }
@@ -1710,6 +1725,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
                     <button class="back-btn" style="position:static; margin-right:10px;" onclick="goToMenu()">← MENU</button>
                     <div style="font-weight:bold; font-size:16px;">Dots!</div>
                     <div>
+                        <button id="dotsOnlineBadge" hidden title="Tap to copy room code">ROOM <strong id="dotsOnlineBadgeCode"></strong></button>
                         <button id="contrastBtn" onclick="DotsGame.toggleContrast()" title="High contrast" aria-label="High contrast">👁️</button>
                         <button id="undoBtn">Undo</button>
                         <button id="saveBtn">Save</button>
@@ -1749,7 +1765,24 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
                                 <div class="dots-mode-row">
                                     <button class="grid-btn dots-mode-btn" id="dotsModePvp" onclick="DotsGame.setMode('pvp')">Pass & Play</button>
                                     <button class="grid-btn dots-mode-btn" id="dotsModeCpu" onclick="DotsGame.setMode('cpu')">vs. CPU</button>
+                                    <button class="grid-btn dots-mode-btn" id="dotsModeOnline" onclick="DotsGame.setMode('online')">Online</button>
                                 </div>
+                            </div>
+
+                            <div id="dotsOnlinePanel" class="dots-section-card dots-online-panel" hidden>
+                                <div class="dots-sec-title">ONLINE ROOM</div>
+                                <div class="dots-online-fields">
+                                    <input id="dotsOnlineName" class="dots-name-input" maxlength="18" autocomplete="nickname" placeholder="Your name" aria-label="Your online name" />
+                                    <input id="dotsOnlineCode" class="dots-name-input dots-room-code" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ROOM CODE" aria-label="Room code" />
+                                </div>
+                                <div class="dots-online-actions">
+                                    <button id="dotsOnlineCreate" class="grid-btn" type="button">Create Room</button>
+                                    <button id="dotsOnlineJoin" class="grid-btn" type="button">Join Room</button>
+                                    <button id="dotsOnlineResume" class="grid-btn" type="button" hidden>Resume Room</button>
+                                    <button id="dotsOnlineCopy" class="grid-btn" type="button" hidden>Copy Code</button>
+                                    <button id="dotsOnlineLeave" class="grid-btn" type="button" hidden>Leave Room</button>
+                                </div>
+                                <div id="dotsOnlineState" class="dots-online-state">Create a room or enter a code to join.</div>
                             </div>
 
                             <div id="dotsPlayerCountWrap" class="dots-players dots-section-card">
@@ -2351,6 +2384,12 @@ const FeedbackSys = (function(){
         let splashTimer = null;
         let finishTimer = null;
         let heldSave = null;
+        const ONLINE_API_BASE = 'https://arcade-chess.jonathanjablon.workers.dev';
+        const ONLINE_SESSION_KEY = 'arcade_dots_online_v1';
+        let online = {
+            code:'', token:'', playerId:'', seat:0, username:'', room:null,
+            socket:null, socketEpoch:0, retryTimer:0, retryCount:0, busy:false, applying:false, restoreRequired:false, messageIsError:false, lastVersion:-1, lastRevision:-1
+        };
 
         const canvas = document.getElementById("c");
         const ctx = canvas.getContext("2d");
@@ -2413,6 +2452,7 @@ const FeedbackSys = (function(){
         const openBoxCount = document.getElementById("open-box-count");
         const modePvpBtn = document.getElementById("dotsModePvp");
         const modeCpuBtn = document.getElementById("dotsModeCpu");
+        const modeOnlineBtn = document.getElementById("dotsModeOnline");
         const aiWrap = document.getElementById("dotsAiWrap");
         const aiBtns = [1,2,3,4,5].map(function(n){ return document.getElementById("dotsAi" + n); });
         const playerCountWrap = document.getElementById("dotsPlayerCountWrap");
@@ -2428,11 +2468,33 @@ const FeedbackSys = (function(){
         const turnSplashOverlay = document.getElementById("turnSplashOverlay");
         const turnSplashName = document.getElementById("turnSplashName");
         const turnSplashTeam = document.getElementById("turnSplashTeam");
+        const onlinePanel = document.getElementById('dotsOnlinePanel');
+        const onlineNameInput = document.getElementById('dotsOnlineName');
+        const onlineCodeInput = document.getElementById('dotsOnlineCode');
+        const onlineCreateBtn = document.getElementById('dotsOnlineCreate');
+        const onlineJoinBtn = document.getElementById('dotsOnlineJoin');
+        const onlineResumeBtn = document.getElementById('dotsOnlineResume');
+        const onlineCopyBtn = document.getElementById('dotsOnlineCopy');
+        const onlineLeaveBtn = document.getElementById('dotsOnlineLeave');
+        const onlineStateEl = document.getElementById('dotsOnlineState');
+        const onlineBadge = document.getElementById('dotsOnlineBadge');
+        const onlineBadgeCode = document.getElementById('dotsOnlineBadgeCode');
+        const playerNamesCard = document.querySelector('#g-dots .dots-player-names');
+        const turnOptionsCard = document.querySelector('#g-dots .dots-turn-options');
 
         function mk2(r,c,val){ let a=[]; for(let i=0;i<r;i++){ let row=[]; for(let j=0;j<c;j++) row.push(val); a.push(row); } return a; }
         function copy2(a){ return a.map(function(r){ return r.slice(); }); }
         function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
         function activePlayers(){ return mode === 'cpu' ? 2 : playerCount; }
+        function occupiedPlayerNumbers(){
+            if(mode === 'online' && online.room){
+                const players = onlineMembers().map(function(member){ return Number(member.seat) + 1; })
+                    .filter(function(player){ return Number.isInteger(player) && player >= 1 && player <= playerCount; })
+                    .sort(function(a,b){ return a-b; });
+                if(players.length) return players;
+            }
+            return Array.from({length:activePlayers()}, function(_,index){ return index + 1; });
+        }
         function teamModeActive(){ return mode === 'pvp' && activePlayers() > 2 && !!teamPlay; }
         function getPlayerColor(p){ return playerColors[p] || DEFAULT_COLORS[p] || "#FFFFFF"; }
         function getPlayerName(p){
@@ -2466,6 +2528,10 @@ const FeedbackSys = (function(){
             return names.join(', ');
         }
         function nextPlayer(p, total){
+            if(mode === 'online' && online.room){
+                const players = occupiedPlayerNumbers();
+                return players.find(function(player){ return player > p; }) || players[0] || p;
+            }
             const n = total || activePlayers();
             return (p % n) + 1;
         }
@@ -2474,6 +2540,380 @@ const FeedbackSys = (function(){
             const n = activePlayers();
             const arr = new Array(n + 1).fill(0);
             return arr;
+        }
+
+        function cleanOnlineCode(value){
+            return String(value || '').toUpperCase().replace(/[^ABCDEFGHJKLMNPQRSTUVWXYZ23456789]/g, '').slice(0, 6);
+        }
+        function cleanOnlineName(value){
+            return String(value || '').replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, 18);
+        }
+        function savedOnlineSession(){
+            try{
+                const data = JSON.parse(localStorage.getItem(ONLINE_SESSION_KEY) || 'null');
+                const code = cleanOnlineCode(data && data.code);
+                const token = String(data && data.token || '');
+                if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code) || !/^[A-Za-z0-9_-]{20,}$/.test(token)) return null;
+                return {code:code, token:token, username:cleanOnlineName(data.username)};
+            }catch(e){ return null; }
+        }
+        function persistOnlineSession(){
+            if(!online.code || !online.token) return;
+            try{ localStorage.setItem(ONLINE_SESSION_KEY, JSON.stringify({code:online.code, token:online.token, username:online.username})); }catch(e){}
+        }
+        function clearOnlineRetry(){
+            if(online.retryTimer){ clearTimeout(online.retryTimer); online.retryTimer = 0; }
+        }
+        function closeOnlineSocket(){
+            clearOnlineRetry();
+            online.socketEpoch++;
+            const socket = online.socket;
+            online.socket = null;
+            if(socket){ try{ socket.close(); }catch(e){} }
+        }
+        function setOnlineMessage(message, isError){
+            online.messageIsError = !!isError;
+            if(onlineStateEl){
+                onlineStateEl.textContent = message || '';
+                onlineStateEl.style.color = isError ? '#ffaaaa' : '#b9eaff';
+            }
+        }
+        function onlineMembers(){
+            return online.room && Array.isArray(online.room.members) ? online.room.members.slice().sort(function(a,b){ return Number(a.seat)-Number(b.seat); }) : [];
+        }
+        function onlineIsHost(){ return !!(online.room && online.room.hostPlayerId && online.room.hostPlayerId === online.playerId); }
+        function onlineSeatName(seat){
+            const member = onlineMembers().find(function(item){ return Number(item.seat) === Number(seat); });
+            const localPlayer = Number(seat) + 1;
+            return member ? cleanOnlineName(member.username) || ('Player ' + localPlayer) : ('Player ' + localPlayer);
+        }
+        function hydrateOnlineNames(){
+            const members = onlineMembers();
+            members.forEach(function(member){
+                const seat = Number(member.seat) + 1;
+                if(seat >= 1 && seat <= 4) playerNames[seat] = cleanOnlineName(member.username) || ('Player ' + seat);
+            });
+        }
+        function updateOnlineControls(){
+            const connected = !!(online.code && online.token && online.room);
+            const saved = savedOnlineSession();
+            if(onlinePanel) onlinePanel.hidden = mode !== 'online';
+            if(onlineResumeBtn){
+                onlineResumeBtn.hidden = connected || !saved;
+                if(saved) onlineResumeBtn.textContent = 'Resume ' + saved.code;
+            }
+            if(onlineLeaveBtn) onlineLeaveBtn.hidden = !connected;
+            if(onlineCopyBtn) onlineCopyBtn.hidden = !connected;
+            if(onlineCreateBtn) onlineCreateBtn.disabled = online.busy || connected;
+            if(onlineJoinBtn) onlineJoinBtn.disabled = online.busy || connected;
+            if(onlineCodeInput) onlineCodeInput.disabled = online.busy || connected;
+            if(onlineNameInput) onlineNameInput.disabled = online.busy || connected;
+            if(onlineBadge){ onlineBadge.hidden = !connected; }
+            if(onlineBadgeCode) onlineBadgeCode.textContent = connected ? online.code : '';
+            const root = document.getElementById('g-dots');
+            if(root) root.classList.toggle('online-game', mode === 'online' && connected);
+            if(mode !== 'online') return;
+            if(online.messageIsError && !online.busy) return;
+            if(!connected){
+                if(!online.busy) setOnlineMessage(saved ? 'Create or join a room, or resume ' + saved.code + '.' : 'Create a room or enter a code to join.');
+                return;
+            }
+            const members = onlineMembers();
+            const wanted = Math.max(2, Number(online.room.maxPlayers) || playerCount || 2);
+            if(online.restoreRequired){
+                setOnlineMessage('Restoring the latest room state…');
+            }else if(online.room.status === 'lobby'){
+                if(onlineIsHost()){
+                    setOnlineMessage(members.length >= wanted
+                        ? 'Everyone is here. Pick a grid to start room ' + online.code + '.'
+                        : 'Room ' + online.code + ': waiting for ' + members.length + ' of ' + wanted + ' players.');
+                }else{
+                    setOnlineMessage('Joined ' + online.code + '. Waiting for the host to start.');
+                }
+            }else if(online.room.status === 'finished'){
+                setOnlineMessage('Room ' + online.code + ' finished.');
+            }else{
+                const activeSeat = online.room.turn && Number(online.room.turn.seat);
+                setOnlineMessage(activeSeat === online.seat ? 'Your turn in ' + online.code + '.' : 'Waiting for ' + onlineSeatName(activeSeat) + '.');
+            }
+        }
+        async function onlineFetch(path, options){
+            const opts = Object.assign({}, options || {});
+            opts.headers = Object.assign({'accept':'application/json'}, opts.headers || {});
+            const controller = typeof AbortController === 'function' ? new AbortController() : null;
+            const timer = controller ? setTimeout(function(){ controller.abort(); }, 8000) : 0;
+            if(controller) opts.signal = controller.signal;
+            try{
+                const response = await fetch(ONLINE_API_BASE + path, opts);
+                let body = null;
+                try{ body = await response.json(); }catch(e){}
+                if(!response.ok || !body || body.ok === false){
+                    const error = new Error((body && body.error) || ('Request failed (' + response.status + ')'));
+                    error.status = response.status;
+                    throw error;
+                }
+                return body;
+            }finally{ if(timer) clearTimeout(timer); }
+        }
+        function roomFromResponse(body){ return body && body.room ? body.room : null; }
+        function applyOnlineRoom(room, forceHydrate){
+            if(!room || room.game !== 'dots') return false;
+            if(!['lobby','active','finished'].includes(room.status)) return false;
+            const roomCode = cleanOnlineCode(room.code || online.code);
+            const maxPlayers = Number(room.maxPlayers);
+            const members = Array.isArray(room.members) ? room.members : [];
+            const occupied = new Set();
+            if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(roomCode) || !Number.isInteger(maxPlayers) || maxPlayers < 2 || maxPlayers > 4 || members.length > maxPlayers) return false;
+            for(const member of members){
+                const seat = Number(member && member.seat);
+                if(!Number.isInteger(seat) || seat < 0 || seat >= maxPlayers || occupied.has(seat)) return false;
+                occupied.add(seat);
+            }
+            if(room.status === 'active'){
+                const activeSeat = Number(room.turn && room.turn.seat);
+                if(!room.state || members.length < 2 || !Number.isInteger(activeSeat) || !occupied.has(activeSeat)) return false;
+            }
+            const version = Number(room.version);
+            const revision = Number(room.revision !== undefined ? room.revision : room.version);
+            if(!Number.isFinite(version) || !Number.isFinite(revision)) return false;
+            if(online.lastVersion >= 0 && (version < online.lastVersion || (version === online.lastVersion && revision < online.lastRevision))) return false;
+            const previous = {room:online.room,code:online.code,playerId:online.playerId,seat:online.seat,playerCount:playerCount,mode:mode,names:playerNames.slice(),teamPlay:teamPlay,showTurnSplash:showTurnSplash};
+            function rejectRoom(message){
+                online.room=previous.room;online.code=previous.code;online.playerId=previous.playerId;online.seat=previous.seat;
+                playerCount=previous.playerCount;mode=previous.mode;playerNames=previous.names;teamPlay=previous.teamPlay;showTurnSplash=previous.showTurnSplash;
+                setOnlineMessage(message,true);
+                return false;
+            }
+            online.room = room;
+            online.code = roomCode;
+            if(room.playerId) online.playerId = String(room.playerId);
+            if(room.seat !== undefined && room.seat !== null) online.seat = Number(room.seat);
+            playerCount = maxPlayers;
+            mode = 'online';
+            teamPlay = false;
+            showTurnSplash = false;
+            hydrateOnlineNames();
+            const forceAuthoritative = !!forceHydrate || online.restoreRequired;
+            const shouldHydrate = room.state && room.status !== 'lobby' && (forceAuthoritative || version > online.lastVersion || !HO || !VO || !boxOwner);
+            if(shouldHydrate){
+                const snapshot = JSON.parse(JSON.stringify(room.state));
+                snapshot.mode = 'online';
+                snapshot.playerCount = playerCount;
+                snapshot.playerNames = playerNames.slice();
+                snapshot.playerColors = DEFAULT_COLORS.slice();
+                snapshot.showTurnSplash = false;
+                snapshot.teamPlay = false;
+                snapshot.teams = [null,1,2,1,2];
+                snapshot.teamNames = [null,'Team 1','Team 2'];
+                snapshot.history = [];
+                if(room.turn && Number.isInteger(Number(room.turn.seat))){
+                    const authoritativeTurn = Number(room.turn.seat) + 1;
+                    if(authoritativeTurn < 1 || authoritativeTurn > playerCount){
+                        return rejectRoom('The room sent an invalid turn. Reconnecting…');
+                    }
+                    snapshot.turn = authoritativeTurn;
+                }
+                online.applying = true;
+                const restored = applySavedGame(snapshot, false);
+                online.applying = false;
+                if(!restored) return rejectRoom('The room sent an invalid board. Reconnecting…');
+                mode = 'online';
+                menuOverlay.style.display = 'none';
+                if(forceAuthoritative){ online.restoreRequired = false; clearOnlineRetry(); }
+            }else if(room.status === 'lobby'){
+                menuOverlay.style.display = 'flex';
+                winnerOverlay.style.display = 'none';
+            }
+            const abandoned = room.status === 'finished' && room.result && room.result.type === 'abandoned';
+            if(abandoned){ menuOverlay.style.display = 'flex'; winnerOverlay.style.display = 'none'; }
+            online.messageIsError = false;
+            syncMenuUI();
+            updateOnlineControls();
+            if(HO && VO && boxOwner) updateUI();
+            if(room.status === 'active' && room.turn){
+                status(Number(room.turn.seat) === online.seat ? 'Your turn' : ('Waiting for ' + onlineSeatName(room.turn.seat)));
+            }
+            if(abandoned){
+                setOnlineMessage('A player left, so this room has ended. Leave the room to start another game.', true);
+                status('Online game ended because a player left.');
+            }
+            online.lastVersion = version;
+            online.lastRevision = revision;
+            return true;
+        }
+        function acceptOnlineResponse(body){
+            online.code = cleanOnlineCode(body.code || (body.room && body.room.code));
+            online.token = String(body.token || online.token || '');
+            online.playerId = String(body.playerId || (body.room && body.room.playerId) || online.playerId || '');
+            if(body.seat !== undefined && body.seat !== null) online.seat = Number(body.seat);
+            else if(body.room && body.room.seat !== undefined && body.room.seat !== null) online.seat = Number(body.room.seat);
+            persistOnlineSession();
+            applyOnlineRoom(roomFromResponse(body));
+            connectOnlineSocket();
+        }
+        function scheduleOnlineReconnect(){
+            if(!online.code || !online.token || online.retryTimer) return;
+            const delay = Math.min(10000, 700 * Math.pow(2, Math.min(online.retryCount++, 4)));
+            setOnlineMessage('Connection interrupted. Reconnecting…');
+            online.retryTimer = setTimeout(async function(){
+                online.retryTimer = 0;
+                try{ await refreshOnlineRoom(); connectOnlineSocket(); }
+                catch(e){ scheduleOnlineReconnect(); }
+            }, delay);
+        }
+        function connectOnlineSocket(){
+            if(!online.code || !online.token || typeof WebSocket !== 'function') return;
+            closeOnlineSocket();
+            const epoch = ++online.socketEpoch;
+            const wsBase = ONLINE_API_BASE.replace(/^http/, 'ws');
+            let socket;
+            try{ socket = new WebSocket(wsBase + '/api/arcade/rooms/' + encodeURIComponent(online.code) + '/ws?token=' + encodeURIComponent(online.token)); }
+            catch(e){ scheduleOnlineReconnect(); return; }
+            online.socket = socket;
+            socket.addEventListener('open', function(){
+                if(epoch !== online.socketEpoch) return;
+                online.retryCount = 0;
+                updateOnlineControls();
+            });
+            socket.addEventListener('message', function(event){
+                if(epoch !== online.socketEpoch) return;
+                try{
+                    const message = JSON.parse(event.data);
+                    if(message.type === 'state' && message.room) applyOnlineRoom(message.room);
+                    else if(message.type === 'error'){
+                        setOnlineMessage(message.error || 'The room rejected that action.', true);
+                        refreshOnlineRoom().catch(function(){});
+                    }
+                }catch(e){}
+            });
+            socket.addEventListener('close', function(){
+                if(epoch !== online.socketEpoch) return;
+                online.socket = null;
+                scheduleOnlineReconnect();
+            });
+            socket.addEventListener('error', function(){ if(epoch === online.socketEpoch) setOnlineMessage('Connection interrupted. Reconnecting…'); });
+        }
+        async function refreshOnlineRoom(forceHydrate){
+            if(!online.code || !online.token) return false;
+            const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(online.code) + '/state', {
+                headers:{'authorization':'Bearer ' + online.token}
+            });
+            return applyOnlineRoom(roomFromResponse(body), !!forceHydrate);
+        }
+        async function createOnlineRoom(){
+            if(online.busy) return;
+            const username = cleanOnlineName(onlineNameInput && onlineNameInput.value);
+            if(!username){ setOnlineMessage('Enter your name first.', true); if(onlineNameInput) onlineNameInput.focus(); return; }
+            online.busy = true; online.username = username; updateOnlineControls(); setOnlineMessage('Creating room…');
+            try{
+                const body = await onlineFetch('/api/arcade/rooms', {
+                    method:'POST', headers:{'content-type':'application/json'},
+                    body:JSON.stringify({game:'dots', username:username, maxPlayers:playerCount})
+                });
+                acceptOnlineResponse(body);
+            }catch(e){ setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true); }
+            finally{ online.busy = false; updateOnlineControls(); }
+        }
+        async function joinOnlineRoom(){
+            if(online.busy) return;
+            const username = cleanOnlineName(onlineNameInput && onlineNameInput.value);
+            const code = cleanOnlineCode(onlineCodeInput && onlineCodeInput.value);
+            if(!username){ setOnlineMessage('Enter your name first.', true); if(onlineNameInput) onlineNameInput.focus(); return; }
+            if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)){ setOnlineMessage('Enter the six-character room code from the host.', true); if(onlineCodeInput) onlineCodeInput.focus(); return; }
+            online.busy = true; online.username = username; updateOnlineControls(); setOnlineMessage('Joining ' + code + '…');
+            try{
+                const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(code) + '/join', {
+                    method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify({username:username})
+                });
+                acceptOnlineResponse(body);
+            }catch(e){ setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true); }
+            finally{ online.busy = false; updateOnlineControls(); }
+        }
+        async function resumeOnlineRoom(){
+            const saved = savedOnlineSession();
+            if(!saved || online.busy) return;
+            online.busy = true; online.username = saved.username || cleanOnlineName(onlineNameInput && onlineNameInput.value) || 'Player';
+            updateOnlineControls(); setOnlineMessage('Rejoining ' + saved.code + '…');
+            try{
+                const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(saved.code) + '/join', {
+                    method:'POST', headers:{'content-type':'application/json'},
+                    body:JSON.stringify({username:online.username, reconnectToken:saved.token})
+                });
+                online.token = saved.token;
+                acceptOnlineResponse(body);
+            }catch(e){
+                if(e.status === 401 || e.status === 403 || e.status === 404) try{ localStorage.removeItem(ONLINE_SESSION_KEY); }catch(_){}
+                setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true);
+            }finally{ online.busy = false; updateOnlineControls(); }
+        }
+        function finishLeavingOnlineRoom(){
+            closeOnlineSocket();
+            try{ localStorage.removeItem(ONLINE_SESSION_KEY); }catch(e){}
+            online = {code:'',token:'',playerId:'',seat:0,username:'',room:null,socket:null,socketEpoch:online.socketEpoch+1,retryTimer:0,retryCount:0,busy:false,applying:false,restoreRequired:false,messageIsError:false,lastVersion:-1,lastRevision:-1};
+            mode = 'pvp'; playerCount = 2; showTurnSplash = true; teamPlay = false;
+            menuOverlay.style.display = 'flex'; winnerOverlay.style.display = 'none';
+            syncMenuUI(); updateOnlineControls(); status('Pick a mode, choose colors, then pick a grid');
+        }
+        async function leaveOnlineRoom(){
+            if(online.busy) return false;
+            if(!online.room || !online.code || !online.token){ finishLeavingOnlineRoom(); return true; }
+            online.busy = true; updateOnlineControls(); setOnlineMessage('Leaving room ' + online.code + '…');
+            try{
+                await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(online.code) + '/actions', {
+                    method:'POST', headers:{'content-type':'application/json','authorization':'Bearer ' + online.token},
+                    body:JSON.stringify({type:'leave'})
+                });
+                finishLeavingOnlineRoom();
+                return true;
+            }catch(e){
+                if(e.status === 401 || e.status === 404){ finishLeavingOnlineRoom(); return true; }
+                online.busy = false; updateOnlineControls();
+                setOnlineMessage(e.name === 'AbortError' ? 'Leave timed out. You are still in the room; try again.' : ('Could not leave: ' + e.message), true);
+                return false;
+            }
+        }
+        async function postOnlineAction(action){
+            if(!online.room || !online.code || !online.token) throw new Error('No active online room.');
+            const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(online.code) + '/actions', {
+                method:'POST',
+                headers:{'content-type':'application/json','authorization':'Bearer ' + online.token},
+                body:JSON.stringify(action)
+            });
+            applyOnlineRoom(roomFromResponse(body));
+            return body;
+        }
+        function onlineCanAct(){
+            return mode === 'online' && online.room && online.room.status === 'active' && !online.busy && !online.restoreRequired &&
+                online.room.turn && Number(online.room.turn.seat) === online.seat && (Number(turn) - 1) === online.seat;
+        }
+        function dotsOnlineResult(){
+            const sc = currentScores();
+            let best = -1, winners = [];
+            const players = occupiedPlayerNumbers();
+            for(const player of players){
+                if((sc[player] || 0) > best){ best = sc[player] || 0; winners = [player]; }
+                else if((sc[player] || 0) === best) winners.push(player);
+            }
+            return {
+                winnerSeat:winners.length === 1 ? winners[0] - 1 : null,
+                tie:winners.length !== 1,
+                scores:players.map(function(player){ return {seat:player-1,score:sc[player] || 0}; })
+            };
+        }
+        async function syncDotsOnlineState(){
+            if(mode !== 'online' || online.applying || !online.room) return;
+            online.busy = true; updateOnlineControls();
+            try{
+                await postOnlineAction({
+                    type:'state', expectedVersion:Number(online.room.version), state:gameSnapshot(),
+                    nextSeat:Number(turn) - 1, finish:claimed === TOTAL,
+                    result:claimed === TOTAL ? dotsOnlineResult() : undefined
+                });
+            }catch(e){
+                online.restoreRequired = true;
+                setOnlineMessage(e.name === 'AbortError' ? 'Move timed out. Restoring the room…' : e.message, true);
+                try{ await refreshOnlineRoom(true); }catch(_){ if(online.restoreRequired) scheduleOnlineReconnect(); }
+            }finally{ online.busy = false; updateOnlineControls(); }
         }
 
         function normColor(v, fallback){
@@ -2591,10 +3031,14 @@ const FeedbackSys = (function(){
             }
         }
         function readMenuSettings(){
-            for(let i=1;i<=4;i++){
-                if(nameInputs[i]){
-                    const v = String(nameInputs[i].value || '').trim();
-                    playerNames[i] = v || ('Player ' + i);
+            if(mode === 'online'){
+                hydrateOnlineNames();
+            }else{
+                for(let i=1;i<=4;i++){
+                    if(nameInputs[i]){
+                        const v = String(nameInputs[i].value || '').trim();
+                        playerNames[i] = v || ('Player ' + i);
+                    }
                 }
             }
             showTurnSplash = !!(showSplashInput && showSplashInput.checked);
@@ -2720,16 +3164,26 @@ const FeedbackSys = (function(){
         function syncMenuUI(){
             if(modePvpBtn) modePvpBtn.classList.toggle('dots-sel', mode==='pvp');
             if(modeCpuBtn) modeCpuBtn.classList.toggle('dots-sel', mode==='cpu');
+            if(modeOnlineBtn) modeOnlineBtn.classList.toggle('dots-sel', mode==='online');
             if(aiWrap) aiWrap.style.display = (mode==='cpu') ? 'block' : 'none';
-            if(playerCountWrap) playerCountWrap.style.display = (mode==='pvp') ? 'block' : 'none';
+            if(playerCountWrap) playerCountWrap.style.display = (mode==='pvp' || (mode==='online' && !online.room)) ? 'block' : 'none';
+            if(playerNamesCard) playerNamesCard.style.display = mode === 'online' ? 'none' : '';
+            if(turnOptionsCard) turnOptionsCard.style.display = mode === 'online' ? 'none' : '';
             playerBtns.forEach(function(btn, idx){ if(btn) btn.classList.toggle('dots-sel', playerCount === (idx + 2)); });
             aiBtns.forEach(function(btn, idx){ if(btn) btn.classList.toggle('dots-sel', cpuLevel === (idx + 1)); });
             hydrateMenuSettings();
             syncColorLabels();
+            updateOnlineControls();
         }
         function setMode(m){
-            mode = (m === 'cpu') ? 'cpu' : 'pvp';
+            const requested = m === 'cpu' ? 'cpu' : (m === 'online' ? 'online' : 'pvp');
+            if(mode === 'online' && online.room && requested !== 'online'){
+                setOnlineMessage('Leave the online room before starting a local game.', true);
+                return;
+            }
+            mode = requested;
             if(mode === 'cpu'){ playerCount = 2; teamPlay = false; }
+            if(mode === 'online'){ teamPlay = false; showTurnSplash = false; }
             syncMenuUI();
         }
         function setPlayerCount(n){
@@ -2751,9 +3205,17 @@ const FeedbackSys = (function(){
             menuOverlay.style.display = 'flex';
             winnerOverlay.style.display = 'none';
             syncMenuUI();
-            status("Pick a mode, choose colors, then pick a grid");
+            status(mode === 'online' && online.room ? 'Online room ' + online.code : "Pick a mode, choose colors, then pick a grid");
         }
-        function startGame(rows, cols){
+        async function startGame(rows, cols){
+            if(mode === 'online'){
+                if(!online.room){ setOnlineMessage('Create or join a room first.', true); return false; }
+                if(online.room.status !== 'lobby'){ setOnlineMessage('This room has already started.', true); return false; }
+                if(!onlineIsHost()){ setOnlineMessage('Waiting for the host to pick the grid.', true); return false; }
+                const wanted = Math.max(2, Number(online.room.maxPlayers) || playerCount);
+                if(onlineMembers().length < wanted){ setOnlineMessage('Wait for all ' + wanted + ' players before starting.', true); return false; }
+                online.busy = true; updateOnlineControls(); setOnlineMessage('Starting the match…');
+            }
             holdCurrentSave();
             stopCpu();
             clearTurnSplash();
@@ -2767,12 +3229,24 @@ const FeedbackSys = (function(){
             turn = 1;
             scores = new Array(activePlayers() + 1).fill(0);
             claimed = 0; history = []; sel = null; lastMove = null; particles = [];
-            menuOverlay.style.display = 'none'; winnerOverlay.style.display = 'none';
+            if(mode !== 'online') menuOverlay.style.display = 'none';
+            winnerOverlay.style.display = 'none';
             syncMenuUI();
             status(mode === 'cpu' ? "Your move." : ('Start with ' + getPlayerName(1)));
             updateUI(); fitCanvas();
             maybeShowTurnSplash();
             try{if(window.ArcadeSave)ArcadeSave.touch(0);}catch(e){}
+            if(mode === 'online'){
+                try{
+                    await postOnlineAction({type:'start', expectedVersion:Number(online.room.version), state:gameSnapshot(), firstSeat:0});
+                }catch(e){
+                    setOnlineMessage(e.name === 'AbortError' ? 'Start timed out. Try again.' : e.message, true);
+                    menuOverlay.style.display = 'flex';
+                    try{ await refreshOnlineRoom(true); }catch(_){}
+                    return false;
+                }finally{ online.busy = false; updateOnlineControls(); }
+            }
+            return true;
         }
         function quit() {
             pauseGame();
@@ -2794,6 +3268,7 @@ const FeedbackSys = (function(){
             updateUI();
         }
         function undo(){
+            if(mode === 'online'){ status('Undo is unavailable in online games.'); return false; }
             if(!history.length) return;
             stopCpu();
             const s = history.pop();
@@ -2816,7 +3291,7 @@ const FeedbackSys = (function(){
                 version:2, DR:DR, DC:DC, BR:BR, BC:BC, TOTAL:TOTAL,
                 HO:copy2(HO), VO:copy2(VO), boxOwner:copy2(boxOwner), boxAnim:copy2(boxAnim || mk2(BR, BC, 0)),
                 turn:turn, scores:currentScores().slice(), claimed:claimed,
-                history:JSON.parse(JSON.stringify(history || [])),
+                history:mode === 'online' ? [] : JSON.parse(JSON.stringify(history || [])),
                 lastMove:lastMove ? Object.assign({}, lastMove) : null,
                 mode:mode, playerCount:playerCount, cpuLevel:cpuLevel,
                 playerNames:playerNames.slice(), playerColors:playerColors.slice(),
@@ -2824,6 +3299,7 @@ const FeedbackSys = (function(){
             };
         }
         function currentGameMeaningful(){
+            if(mode === 'online') return false;
             if(!HO||!VO||!boxOwner||claimed>=TOTAL)return false;
             return HO.some(function(row){return row.some(Boolean);})||VO.some(function(row){return row.some(Boolean);});
         }
@@ -2863,7 +3339,7 @@ const FeedbackSys = (function(){
             if(!saved || typeof saved !== 'object') return false;
             const rows=Number(saved.DR), cols=Number(saved.DC);
             if(!Number.isInteger(rows)||!Number.isInteger(cols)||rows<2||rows>20||cols<2||cols>20) return false;
-            const nextMode=saved.mode==='cpu'?'cpu':'pvp';
+            const nextMode=saved.mode==='cpu'?'cpu':(saved.mode==='online'?'online':'pvp');
             const nextCount=nextMode==='cpu'?2:Math.max(2,Math.min(4,Number(saved.playerCount)||2));
             const br=rows-1,bc=cols-1;
             if(!matrixIs(saved.HO,rows,bc,nextCount)||!matrixIs(saved.VO,br,cols,nextCount)||!matrixIs(saved.boxOwner,br,bc,nextCount)) return false;
@@ -2895,12 +3371,14 @@ const FeedbackSys = (function(){
             return true;
         }
         function saveGame(){
+            if(mode === 'online'){ status('Online games stay synchronized through the room.'); return false; }
             const snapshot=heldSave?effectiveSnapshot():gameSnapshot();
             if(!snapshot){status('No dots game to save yet.');return false;}
             try{localStorage.setItem(SAVE_KEY,JSON.stringify(snapshot));if(window.ArcadeSave)ArcadeSave.saveNow();status('Game saved. Tap Load later to continue.');return true;}
             catch(e){status('Save failed. Browser storage is not available.');return false;}
         }
         function loadGame(){
+            if(mode === 'online'){ status('Leave the online room before loading a local game.'); return false; }
             if(window.ArcadeSave&&ArcadeSave.hasSave()){ArcadeSave.load();return true;}
             try{
                 const raw=localStorage.getItem(SAVE_KEY);
@@ -2912,18 +3390,32 @@ const FeedbackSys = (function(){
 
         function updateUI(){
             const sc = currentScores();
-            const parts = [];
+            if(!scoreEl) return;
+            scoreEl.replaceChildren();
+            const entries = [];
             if(teamModeActive()){
                 const totals = getTeamTotals();
                 for(let t=1;t<=2;t++){
-                    parts.push("<span style='color:" + (t===1 ? '#7cd6ff' : '#ffd86b') + "'>" + getTeamName(t) + ": " + (totals[t] || 0) + "</span>");
+                    entries.push({color:t===1 ? '#7cd6ff' : '#ffd86b', text:getTeamName(t) + ': ' + (totals[t] || 0)});
                 }
             } else {
-                for(let i=1;i<=activePlayers();i++){
-                    parts.push("<span style='color:" + getPlayerColor(i) + "'>" + getPlayerLabel(i) + ": " + (sc[i] || 0) + "</span>");
+                const displayedPlayers = mode === 'online' ? occupiedPlayerNumbers() : Array.from({length:activePlayers()}, function(_,index){return index+1;});
+                for(const i of displayedPlayers){
+                    entries.push({color:getPlayerColor(i), text:getPlayerLabel(i) + ': ' + (sc[i] || 0)});
                 }
             }
-            scoreEl.innerHTML = parts.join(" <span style='color:#777'>|</span> ");
+            entries.forEach(function(entry,index){
+                if(index){
+                    const separator = document.createElement('span');
+                    separator.style.color = '#777';
+                    separator.textContent = ' | ';
+                    scoreEl.appendChild(separator);
+                }
+                const part = document.createElement('span');
+                part.style.color = entry.color;
+                part.textContent = entry.text;
+                scoreEl.appendChild(part);
+            });
             undoBtn.disabled = !history || history.length === 0;
             const color = getPlayerColor(turn || 1);
             const topPanel = document.querySelector('#g-dots .top');
@@ -3002,7 +3494,8 @@ const FeedbackSys = (function(){
                     const sc = currentScores();
                     let best = -1;
                     let winners = [];
-                    for(let i=1;i<=activePlayers();i++){
+                    const eligiblePlayers = mode === 'online' ? occupiedPlayerNumbers() : Array.from({length:activePlayers()}, function(_,index){return index+1;});
+                    for(const i of eligiblePlayers){
                         if(sc[i] > best){ best = sc[i]; winners = [i]; }
                         else if(sc[i] === best){ winners.push(i); }
                     }
@@ -3020,12 +3513,13 @@ const FeedbackSys = (function(){
             }, 500);
         }
         function makeMove(d1, d2){
+            if(mode === 'online' && !onlineCanAct()) return false;
             const type = (d1.r === d2.r) ? 'H' : 'V';
             const r = (type === 'H') ? d1.r : Math.min(d1.r, d2.r);
             const c = (type === 'H') ? Math.min(d1.c, d2.c) : d1.c;
             if((type === 'H' ? HO[r][c] : VO[r][c]) !== 0) return false;
             heldSave=null;
-            saveStateHistory();
+            if(mode !== 'online') saveStateHistory();
             const p = turn;
             if(type === 'H') HO[r][c] = p; else VO[r][c] = p;
             lastMove = {type:type, r:r, c:c};
@@ -3052,6 +3546,7 @@ const FeedbackSys = (function(){
             if(claimed === TOTAL) finishGame();
             updateUI();
             if(mode === 'cpu' && turn === 2 && claimed !== TOTAL) maybeCpu();
+            if(mode === 'online') syncDotsOnlineState();
             try{if(window.ArcadeSave)ArcadeSave.touch(120);}catch(e){}
             return true;
         }
@@ -3257,6 +3752,10 @@ const FeedbackSys = (function(){
         }
         function onDown(ev){
             if(claimed === TOTAL) return;
+            if(mode === 'online' && !onlineCanAct()){
+                status(online.restoreRequired ? 'Restoring the latest room state…' : (online.busy ? 'Sending your move…' : (online.room && online.room.status === 'active' ? ('Waiting for ' + onlineSeatName(online.room.turn && online.room.turn.seat)) : 'Waiting for the room to start')));
+                return;
+            }
             if(mode === 'cpu' && turn === 2){ status("CPU's turn"); return; }
             if(cpuThinking) return;
             ev.preventDefault();
@@ -3269,6 +3768,7 @@ const FeedbackSys = (function(){
             sel = hit; status('Drag or Tap Neighbor');
         }
         function onMove(ev){
+            if(mode === 'online' && !onlineCanAct()) return;
             if(mode === 'cpu' && turn === 2) return;
             if(!isDrag || !sel) return;
             ev.preventDefault();
@@ -3429,11 +3929,31 @@ const FeedbackSys = (function(){
         if(loadBtn) loadBtn.addEventListener('click', loadGame);
         document.getElementById('g-dots').querySelector('#menuBtn').addEventListener('click', openNewGameMenu);
         document.getElementById('g-dots').querySelector('#playAgainBtn').addEventListener('click', openNewGameMenu);
+        if(onlineCodeInput) onlineCodeInput.addEventListener('input', function(){
+            const next = cleanOnlineCode(onlineCodeInput.value);
+            if(onlineCodeInput.value !== next) onlineCodeInput.value = next;
+        });
+        if(onlineCreateBtn) onlineCreateBtn.addEventListener('click', createOnlineRoom);
+        if(onlineJoinBtn) onlineJoinBtn.addEventListener('click', joinOnlineRoom);
+        if(onlineResumeBtn) onlineResumeBtn.addEventListener('click', resumeOnlineRoom);
+        if(onlineLeaveBtn) onlineLeaveBtn.addEventListener('click', function(){ leaveOnlineRoom(); });
+        function copyOnlineCode(){
+            if(!online.code) return;
+            try{
+                if(navigator.clipboard && navigator.clipboard.writeText){
+                    navigator.clipboard.writeText(online.code).then(function(){ status('Room code copied: ' + online.code); }, function(){ status('Room code: ' + online.code); });
+                }else status('Room code: ' + online.code);
+            }catch(e){ status('Room code: ' + online.code); }
+        }
+        if(onlineCopyBtn) onlineCopyBtn.addEventListener('click', copyOnlineCode);
+        if(onlineBadge) onlineBadge.addEventListener('click', copyOnlineCode);
+        const priorOnline = savedOnlineSession();
+        if(priorOnline && onlineNameInput) onlineNameInput.value = priorOnline.username || '';
         window.addEventListener('resize', fitCanvas);
         requestAnimationFrame(draw);
         syncMenuUI();
         registerArcadeSave();
-        return { startGame:startGame, resize:fitCanvas, resume:function(){ requestAnimationFrame(draw); }, pause:pauseGame, toggleContrast:toggleContrast, quit:quit, saveGame:saveGame, loadGame:loadGame, setMode:setMode, setCpuLevel:setCpuLevel, setPlayerCount:setPlayerCount, syncGlobalContrast:syncGlobalContrast };
+        return { startGame:startGame, resize:fitCanvas, resume:function(){ requestAnimationFrame(draw); }, pause:pauseGame, toggleContrast:toggleContrast, quit:quit, saveGame:saveGame, loadGame:loadGame, setMode:setMode, setCpuLevel:setCpuLevel, setPlayerCount:setPlayerCount, syncGlobalContrast:syncGlobalContrast, createOnlineRoom:createOnlineRoom, joinOnlineRoom:joinOnlineRoom, resumeOnlineRoom:resumeOnlineRoom, leaveOnlineRoom:leaveOnlineRoom };
     })();
 
 

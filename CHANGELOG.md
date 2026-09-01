@@ -13,6 +13,18 @@
   before any saved online room is resumed. Saved rooms now require an explicit
   Resume Room selection.
 - Removed Backyard Baseball from the published catalog and offline archive.
+- Made Chess opponent pieces face the opposite player by default only in local
+  same-device PvP. CPU and online play now default to upright pieces, with a
+  separate persistent override retained for every mode.
+- Added reconnecting online rooms to Sorry, Monopoly, Memory, Tic Tac Toe,
+  Dots, and Checkers while preserving their existing local play modes.
+- Added Arcade Chat, a live multi-user room with nicknames, room codes,
+  presence, reconnect support, and safe real-time messages.
+- Extended the Cloudflare Worker with reusable, versioned multiplayer rooms,
+  durable seat ownership, presence, bounded state, and reconnect tokens.
+- Added a source-controlled GitHub Actions release workflow so tested Worker
+  changes deploy automatically without storing Cloudflare credentials in the
+  repository.
 
 - Made the Android wrapper GitHub Pages first, with a complete staged,
   hash-validated, atomic last-known-good offline archive and fast failure

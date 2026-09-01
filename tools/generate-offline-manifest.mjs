@@ -67,7 +67,8 @@ async function collectDirectory(directory, files) {
       await collectDirectory(path.join(directory, entry.name), files);
       continue;
     }
-    if (!entry.isFile() || entry.name.startsWith('.') || ignoredFileNames.has(entry.name) || /\.(?:part|tmp)$/i.test(entry.name)) continue;
+    if (!entry.isFile() || entry.name.startsWith('.') || ignoredFileNames.has(entry.name) ||
+        /(?:^test-|\.test\.)/i.test(entry.name) || /\.(?:part|tmp)$/i.test(entry.name)) continue;
     files.add(relativeSitePath(path.join(directory, entry.name)));
   }
 }

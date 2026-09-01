@@ -34,6 +34,7 @@ test("two independent clients create, join, reconnect and synchronize through Mi
     modules: [
       { type: "ESModule", path: new URL("../src/index.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../src/room-model.js", import.meta.url).pathname },
+      { type: "ESModule", path: new URL("../src/generic-room-model.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../src/chess-engine.js", import.meta.url).pathname }
     ],
     compatibilityDate: "2026-08-06",

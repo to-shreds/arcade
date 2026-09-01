@@ -15,7 +15,8 @@
   "tags": [
     "touch",
     "turn-based",
-    "same-device"
+    "same-device",
+    "online"
   ],
   "orientation": "any"
 }

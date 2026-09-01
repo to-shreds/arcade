@@ -13,7 +13,7 @@ complete web release.
 - `index.html`, `catalog.json`, and shared `arcade-*` files: web arcade shell
 - game folders: self-contained games and activities
 - `android-wrapper/`: Android wrapper source and reproducible build helper
-- `cloudflare/chess-worker/`: Chess multiplayer Worker and Durable Object source
+- `cloudflare/chess-worker/`: Arcade multiplayer Worker and Durable Object source
 - `tools/`: release and offline-manifest utilities
 - `releases/`: intentionally retained, installable release APKs
 - `licenses/`: project and third-party notices
@@ -33,7 +33,7 @@ The generated manifest must be refreshed whenever deployable web content
 changes:
 
 ```sh
-node tools/generate-offline-manifest.mjs --version 2.3.0+20260901.3
+node tools/generate-offline-manifest.mjs --version 2.3.0+20260901.4
 ```
 
 ## Building Android
@@ -42,9 +42,11 @@ See `android-wrapper/README.md`. Private signing keys and passwords are never
 stored in this public repository. The retained APK in `releases/` is built
 from the same source revision as the release commit.
 
-## Chess multiplayer
+## Online multiplayer
 
 The browser contains no Cloudflare credential. It connects only to the public
-Worker endpoint. Backend source, tests, and safe Wrangler configuration live
+Worker endpoint. The Worker keeps Chess authoritative and provides reusable,
+versioned rooms, presence, reconnection, seat ownership, and room chat for the
+other online games. Backend source, tests, and safe Wrangler configuration live
 under `cloudflare/chess-worker/`; deployment credentials remain in Cloudflare
 or the operator's environment.

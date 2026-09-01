@@ -152,6 +152,43 @@ button:disabled{opacity:.35;transform:none;cursor:default}
 .big-btn.primary{grid-column:1/3;background:linear-gradient(180deg,rgba(255,215,0,.36),rgba(255,215,0,.13));border-color:rgba(255,215,0,.68);color:#fff8bd}
 .big-btn.load{background:linear-gradient(180deg,rgba(0,229,255,.25),rgba(0,229,255,.09));border-color:rgba(0,229,255,.48)}
 .big-btn.back{background:rgba(255,255,255,.055)}
+.play-mode-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}
+.play-mode{height:38px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.065);font-size:11px;font-weight:1000}
+.play-mode.active{background:linear-gradient(180deg,rgba(0,229,255,.25),rgba(0,229,255,.08));border-color:rgba(0,229,255,.68);color:#d5fbff;box-shadow:inset 0 0 0 1px rgba(0,229,255,.12)}
+.online-setup{margin-top:8px;display:grid;gap:7px}
+.online-name-box{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:center;padding:7px;border:1px solid var(--border);border-radius:12px;background:rgba(0,0,0,.24)}
+.online-name-box label{font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.78)}
+.online-name-box .name-input{height:34px;font-size:13px}
+.online-join-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px}
+.room-code-input{width:100%;height:43px;border-radius:12px;border:1px solid rgba(0,229,255,.48);background:rgba(0,0,0,.42);color:#fff;padding:0 12px;font-weight:1000;font-size:20px;letter-spacing:3px;text-align:center;text-transform:uppercase;outline:none;user-select:text;-webkit-user-select:text}
+.room-code-input:focus{border-color:#7cf4ff;box-shadow:0 0 0 3px rgba(0,229,255,.16)}
+.online-status{min-height:17px;text-align:center;font-size:11px;font-weight:850;color:rgba(255,255,255,.72)}
+.room-panel{width:min(500px,95vw);max-height:94svh;display:flex;flex-direction:column;gap:8px;overflow:auto}
+.room-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.room-code{font-size:24px;font-weight:1000;letter-spacing:2px;color:var(--gold)}
+.room-connection{font-size:10px;font-weight:1000;color:var(--green);text-align:right}
+.room-connection.warn{color:#ffd16b}.room-connection.bad{color:#ff8c9b}
+.member-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.member{min-width:0;display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:6px;align-items:center;padding:8px;border-radius:11px;border:1px solid var(--border);background:rgba(255,255,255,.055)}
+.member-dot{width:10px;height:10px;border-radius:50%;background:#69707a;box-shadow:0 0 0 2px rgba(255,255,255,.12)}
+.member.connected .member-dot{background:var(--green);box-shadow:0 0 8px rgba(114,255,123,.65)}
+.member-name{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;font-weight:1000}
+.member-seat{font-size:9px;font-weight:900;color:rgba(255,255,255,.58)}
+.room-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.room-actions .big-btn{height:39px;font-size:11px}
+.room-actions .primary{grid-column:auto}
+.chat-log{height:min(210px,29svh);overflow:auto;border:1px solid var(--border);border-radius:12px;background:rgba(0,0,0,.32);padding:7px;display:flex;flex-direction:column;gap:5px;user-select:text;-webkit-user-select:text}
+.chat-empty{margin:auto;color:rgba(255,255,255,.46);font-size:11px;font-weight:850;text-align:center}
+.chat-line{align-self:flex-start;max-width:88%;padding:6px 8px;border-radius:10px 10px 10px 3px;background:rgba(255,255,255,.1);font-size:11px;line-height:1.25;overflow-wrap:anywhere}
+.chat-line.mine{align-self:flex-end;border-radius:10px 10px 3px 10px;background:rgba(0,229,255,.16);border:1px solid rgba(0,229,255,.22)}
+.chat-name{display:block;font-size:8px;font-weight:1000;color:var(--cyan);margin-bottom:2px}
+.chat-compose{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px}
+.chat-input{width:100%;height:39px;border-radius:11px;border:1px solid var(--border);background:rgba(0,0,0,.38);color:#fff;padding:0 10px;font-size:13px;outline:none;user-select:text;-webkit-user-select:text}
+.chat-input:focus{border-color:rgba(0,229,255,.7)}
+.room-hint{text-align:center;font-size:10px;color:rgba(255,255,255,.62);font-weight:800}
+#roomBtn{color:#d6fbff;border-color:rgba(0,229,255,.45);background:rgba(0,229,255,.1)}
+#roomBtn.reconnecting{color:#ffe5a0;border-color:rgba(255,190,42,.55);background:rgba(255,190,42,.1)}
+#setupOverlay>.panel{overflow:auto}
 .menu-panel{width:min(360px,94vw);display:flex;flex-direction:column;gap:7px}
 .menu-title{font-size:26px;font-weight:1000;color:var(--gold);text-align:center;margin-bottom:3px}
 .menu-btn{height:45px;border-radius:13px;border:1px solid var(--border);background:rgba(255,255,255,.075);font-weight:1000;font-size:13px}
@@ -205,6 +242,9 @@ button:disabled{opacity:.35;transform:none;cursor:default}
   .type-toggle{height:28px;font-size:8px}
   .setup-actions{gap:5px;margin-top:6px}
   .big-btn{height:39px;font-size:11px}
+  .play-mode-row{margin-top:6px;gap:4px}.play-mode{height:34px;font-size:10px}
+  .online-setup{margin-top:6px;gap:5px}.online-name-box{padding:5px}.online-name-box .name-input{height:31px}
+  .room-code-input{height:39px;font-size:17px}.member{padding:6px}.chat-log{height:min(180px,27svh)}
   .rules-page{padding:7px;gap:5px}
   .rules-page h3{font-size:13px}
   .rules-page p{font-size:10.5px}
@@ -251,6 +291,7 @@ button:disabled{opacity:.35;transform:none;cursor:default}
       <button class="ui-btn" id="autoBtn" type="button" aria-label="Play the smartest move" title="Play the smartest move">AUTO</button>
       <button class="ui-btn" id="saveBtn" type="button">Save</button>
       <button class="ui-btn" id="loadBtn" type="button">Load</button>
+      <button class="ui-btn hidden" id="roomBtn" type="button" aria-label="Open online room">ROOM</button>
       <button class="ui-btn" id="menuBtn" type="button" aria-label="Menu">☰</button>
     </div>
   </header>
@@ -267,19 +308,47 @@ button:disabled{opacity:.35;transform:none;cursor:default}
   <div class="panel">
     <div class="panel-title">SORRY<span>!</span></div>
     <div class="panel-sub">Fire &amp; Ice Power-Ups</div>
-    <div class="setup-grid">
-      <div class="setup-box"><div class="setup-label">Players</div><div class="choice-row" style="--count:3" id="playerCountChoices"><button class="choice active" data-value="2" type="button">2</button><button class="choice" data-value="3" type="button">3</button><button class="choice" data-value="4" type="button">4</button></div></div>
-      <div class="setup-box"><div class="setup-label">Rules</div><div class="choice-row" style="--count:3" id="modeChoices"><button class="choice active" data-value="fireIce" type="button">F&amp;I</button><button class="choice" data-value="classic" type="button">Classic</button><button class="choice" data-value="strategic" type="button">5 Card</button></div></div>
-      <div class="setup-box"><div class="setup-label">CPU Skill</div><div class="choice-row" style="--count:3" id="skillChoices"><button class="choice" data-value="1" type="button">1</button><button class="choice active" data-value="2" type="button">2</button><button class="choice" data-value="3" type="button">3</button></div></div>
-      <div class="setup-box"><div class="setup-label">Endpoints</div><div class="choice-row" style="--count:2" id="endpointChoices"><button class="choice active" data-value="on" type="button">ON</button><button class="choice" data-value="off" type="button">OFF</button></div></div>
+    <div class="play-mode-row" id="playModeChoices"><button class="play-mode active" data-value="local" type="button">LOCAL TABLE</button><button class="play-mode" data-value="online" type="button">ONLINE ROOM</button></div>
+    <div id="localSetupFields">
+      <div class="setup-grid">
+        <div class="setup-box"><div class="setup-label">Players</div><div class="choice-row" style="--count:3" id="playerCountChoices"><button class="choice active" data-value="2" type="button">2</button><button class="choice" data-value="3" type="button">3</button><button class="choice" data-value="4" type="button">4</button></div></div>
+        <div class="setup-box"><div class="setup-label">Rules</div><div class="choice-row" style="--count:3" id="modeChoices"><button class="choice active" data-value="fireIce" type="button">F&amp;I</button><button class="choice" data-value="classic" type="button">Classic</button><button class="choice" data-value="strategic" type="button">5 Card</button></div></div>
+        <div class="setup-box"><div class="setup-label">CPU Skill</div><div class="choice-row" style="--count:3" id="skillChoices"><button class="choice" data-value="1" type="button">1</button><button class="choice active" data-value="2" type="button">2</button><button class="choice" data-value="3" type="button">3</button></div></div>
+        <div class="setup-box"><div class="setup-label">Endpoints</div><div class="choice-row" style="--count:2" id="endpointChoices"><button class="choice active" data-value="on" type="button">ON</button><button class="choice" data-value="off" type="button">OFF</button></div></div>
+      </div>
+      <div class="player-list" id="playerList">
+        <div class="player-row" data-player="0" style="--row-color:var(--red)"><button class="player-color" data-player="0" type="button" aria-label="Change player color">RED</button><input class="name-input" id="name0" value="Scarlett" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="0" type="button">Human</button></div>
+        <div class="player-row" data-player="1" style="--row-color:var(--blue)"><button class="player-color" data-player="1" type="button" aria-label="Change player color">BLUE</button><input class="name-input" id="name1" value="Logan" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="1" type="button">Human</button></div>
+        <div class="player-row hidden" data-player="2" style="--row-color:var(--yellow)"><button class="player-color" data-player="2" type="button" aria-label="Change player color">YELLOW</button><input class="name-input" id="name2" value="Mom" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="2" type="button">Human</button></div>
+        <div class="player-row hidden" data-player="3" style="--row-color:var(--player-green)"><button class="player-color" data-player="3" type="button" aria-label="Change player color">GREEN</button><input class="name-input" id="name3" value="Dad" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="3" type="button">Human</button></div>
+      </div>
+      <div class="setup-actions"><button class="big-btn primary" id="startBtn" type="button">START LOCAL GAME</button><button class="big-btn load" id="setupLoadBtn" type="button">LOAD SAVED GAME</button><button class="big-btn back" id="setupBackBtn" type="button">BACK TO ARCADE</button></div>
     </div>
-    <div class="player-list" id="playerList">
-      <div class="player-row" data-player="0" style="--row-color:var(--red)"><button class="player-color" data-player="0" type="button" aria-label="Change player color">RED</button><input class="name-input" id="name0" value="Scarlett" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="0" type="button">Human</button></div>
-      <div class="player-row" data-player="1" style="--row-color:var(--blue)"><button class="player-color" data-player="1" type="button" aria-label="Change player color">BLUE</button><input class="name-input" id="name1" value="Logan" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="1" type="button">Human</button></div>
-      <div class="player-row hidden" data-player="2" style="--row-color:var(--yellow)"><button class="player-color" data-player="2" type="button" aria-label="Change player color">YELLOW</button><input class="name-input" id="name2" value="Mom" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="2" type="button">Human</button></div>
-      <div class="player-row hidden" data-player="3" style="--row-color:var(--player-green)"><button class="player-color" data-player="3" type="button" aria-label="Change player color">GREEN</button><input class="name-input" id="name3" value="Dad" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="3" type="button">Human</button></div>
+    <div class="online-setup hidden" id="onlineSetupFields">
+      <div class="online-name-box"><label for="onlineName">Your name</label><input class="name-input" id="onlineName" value="Player" maxlength="18" autocomplete="nickname" autocapitalize="words" enterkeyhint="done"></div>
+      <div class="setup-grid">
+        <div class="setup-box"><div class="setup-label">Room Size</div><div class="choice-row" style="--count:3" id="onlinePlayerCountChoices"><button class="choice active" data-value="2" type="button">2</button><button class="choice" data-value="3" type="button">3</button><button class="choice" data-value="4" type="button">4</button></div></div>
+        <div class="setup-box"><div class="setup-label">Rules</div><div class="choice-row" style="--count:3" id="onlineModeChoices"><button class="choice active" data-value="fireIce" type="button">F&amp;I</button><button class="choice" data-value="classic" type="button">Classic</button><button class="choice" data-value="strategic" type="button">5 Card</button></div></div>
+        <div class="setup-box"><div class="setup-label">Endpoints</div><div class="choice-row" style="--count:2" id="onlineEndpointChoices"><button class="choice active" data-value="on" type="button">ON</button><button class="choice" data-value="off" type="button">OFF</button></div></div>
+        <div class="setup-box"><div class="setup-label">How it works</div><div class="setup-label" style="margin:0;text-transform:none;line-height:1.25;font-weight:750">Create and share a six-character room code.</div></div>
+      </div>
+      <div class="online-join-row"><button class="big-btn primary" id="createOnlineBtn" type="button" style="grid-column:auto">CREATE ROOM</button><button class="big-btn" id="showJoinBtn" type="button">JOIN ROOM</button></div>
+      <div class="online-join-row hidden" id="joinCodeRow"><input class="room-code-input" id="onlineJoinCode" maxlength="6" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ROOM CODE" aria-label="Room code"><button class="big-btn" id="joinOnlineBtn" type="button">JOIN</button></div>
+      <button class="big-btn load hidden" id="resumeOnlineBtn" type="button">RESUME LAST ROOM</button>
+      <div class="online-status" id="onlineSetupStatus" role="status"></div>
+      <button class="big-btn back" id="onlineBackBtn" type="button">BACK TO ARCADE</button>
     </div>
-    <div class="setup-actions"><button class="big-btn primary" id="startBtn" type="button">START GAME</button><button class="big-btn load" id="setupLoadBtn" type="button">LOAD SAVED GAME</button><button class="big-btn back" id="setupBackBtn" type="button">BACK TO ARCADE</button></div>
+  </div>
+</div>
+<div class="overlay hidden" id="roomOverlay">
+  <div class="panel room-panel">
+    <div class="room-head"><div><div class="setup-label">Online room</div><div class="room-code" id="onlineRoomCode">------</div></div><div class="room-connection" id="onlineConnection">Connecting...</div></div>
+    <div class="member-list" id="onlineMembers"></div>
+    <div class="room-hint" id="onlineRoomHint">Share the room code, then start when everyone is here.</div>
+    <div class="room-actions"><button class="big-btn" id="copyRoomBtn" type="button">COPY CODE</button><button class="big-btn primary" id="startOnlineBtn" type="button">START GAME</button><button class="big-btn back" id="closeRoomBtn" type="button">CLOSE</button></div>
+    <div class="chat-log" id="onlineChatLog" aria-live="polite"><div class="chat-empty">Room chat will appear here.</div></div>
+    <div class="chat-compose"><input class="chat-input" id="onlineChatInput" maxlength="280" autocomplete="off" placeholder="Message the room" aria-label="Chat message"><button class="big-btn" id="sendChatBtn" type="button">SEND</button></div>
+    <button class="big-btn back" id="leaveRoomBtn" type="button">LEAVE ROOM</button>
   </div>
 </div>
 <div class="overlay hidden" id="menuOverlay">
@@ -310,6 +379,8 @@ button:disabled{opacity:.35;transform:none;cursor:default}
 "use strict";
 const SAVE_KEY="arcade_sorry_save_v1";
 const VERSION=5;
+const ARCADE_API_BASE="https://arcade-chess.jonathanjablon.workers.dev";
+const ONLINE_SESSION_KEY="arcadeSorry_onlineSession_v1";
 const OLD_STARTS={
   1:[53,8,23,38],
   2:[36,51,6,21],
@@ -359,7 +430,7 @@ const el={
 };
 let state=null;
 let heldSave=null;
-let setup={count:2,mode:"fireIce",skill:2,showEndpoints:true,cpu:[false,false,false,false],colors:[0,1,2,3]};
+let setup={playMode:"local",count:2,mode:"fireIce",skill:2,showEndpoints:true,cpu:[false,false,false,false],colors:[0,1,2,3]};
 let undoStack=[];
 let autoPlayerId=null;
 let selectedPawnId=null;
@@ -372,6 +443,7 @@ let cpuTimer=0;
 let audioCtx=null;
 let animationTimer=0;
 let lastBoardCard=null;
+const online={active:false,code:"",token:"",playerId:"",seat:null,username:"",room:null,socket:null,status:"offline",manualClose:false,reconnectTimer:0,reconnectAttempt:0,syncing:false,setupBusy:false,restoreRequired:false};
 function trackCoord(index){
   if(index<=15)return{r:0,c:index};
   if(index<=29)return{r:index-15,c:15};
@@ -486,23 +558,35 @@ function blurActiveInput(){
   const active=document.activeElement;
   if(active&&/^(INPUT|TEXTAREA)$/.test(active.tagName)&&typeof active.blur==="function")active.blur();
 }
+function buildGameState(playerDefs,options){
+  const opts=options||{};
+  const players=playerDefs.map(function(player,index){
+    const colorIndex=Number.isInteger(player.colorIndex)?player.colorIndex:index%COLORS.length;
+    return{id:index,name:String(player.name||COLORS[colorIndex].name).trim().slice(0,18)||COLORS[colorIndex].name,colorIndex:colorIndex,color:COLORS[colorIndex].key,cpu:!!player.cpu,seat:Number.isInteger(player.seat)?player.seat:null,memberId:player.memberId||null};
+  });
+  const pawns=[];
+  players.forEach(function(player){for(let p=0;p<3;p++)pawns.push({id:player.id*3+p,player:player.id,slot:p,zone:"start",pos:0});});
+  const deck=makeDeck();
+  const hands=Array.from({length:players.length},function(){return[];});
+  const mode=opts.mode||"fireIce";
+  if(mode==="strategic")for(let r=0;r<5;r++)for(let p=0;p<players.length;p++)hands[p].push(deck.pop());
+  let firstPlayer=0;
+  if(Number.isInteger(opts.firstSeat)){
+    const match=players.findIndex(function(player){return player.seat===opts.firstSeat;});
+    if(match>=0)firstPlayer=match;
+  }
+  return{version:VERSION,started:true,mode:mode,skill:Number(opts.skill)||2,showEndpoints:opts.showEndpoints!==false,players:players,pawns:pawns,turn:firstPlayer,deck:deck,discard:[],hands:hands,firePawnId:null,icePawnId:null,currentCard:null,phase:"preFire",selectedCardIndex:null,flow:{},winner:null,moveNo:0,savedAt:Date.now(),online:!!opts.online};
+}
 function createGame(){
   holdCurrentSave();
   clearTimeout(animationTimer);clearTimeout(cpuTimer);
   const names=[0,1,2,3].map(function(i){return($("name"+i).value||COLORS[i].name).trim().slice(0,14)||COLORS[i].name;});
   const players=[];
-  const pawns=[];
   for(let i=0;i<setup.count;i++){
     const colorIndex=setup.colors[i];
-    players.push({id:i,name:names[i],colorIndex:colorIndex,color:COLORS[colorIndex].key,cpu:setup.cpu[i]});
-    for(let p=0;p<3;p++)pawns.push({id:i*3+p,player:i,slot:p,zone:"start",pos:0});
+    players.push({name:names[i],colorIndex:colorIndex,cpu:setup.cpu[i]});
   }
-  const deck=makeDeck();
-  const hands=Array.from({length:setup.count},function(){return[];});
-  if(setup.mode==="strategic"){
-    for(let r=0;r<5;r++)for(let p=0;p<setup.count;p++)hands[p].push(deck.pop());
-  }
-  state={version:VERSION,started:true,mode:setup.mode,skill:setup.skill,showEndpoints:setup.showEndpoints,players:players,pawns:pawns,turn:0,deck:deck,discard:[],hands:hands,firePawnId:null,icePawnId:null,currentCard:null,phase:"preFire",selectedCardIndex:null,flow:{},winner:null,moveNo:0,savedAt:Date.now()};
+  state=buildGameState(players,{mode:setup.mode,skill:setup.skill,showEndpoints:setup.showEndpoints});
   undoStack=[];autoPlayerId=null;
   selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;
   blurActiveInput();
@@ -514,6 +598,14 @@ function createGame(){
   saveGame(false);
 }
 function currentPlayer(){return state.players[state.turn];}
+function nextPlayerIndex(fromIndex){
+  if(!isOnlineGame())return(fromIndex+1)%state.players.length;
+  const activeSeats=new Set((online.room&&online.room.members||[]).map(function(member){return Number(member.seat);}));
+  for(let offset=1;offset<=state.players.length;offset++){
+    const index=(fromIndex+offset)%state.players.length;if(activeSeats.has(Number(state.players[index].seat)))return index;
+  }
+  return fromIndex;
+}
 function getColorByPlayer(playerIndex,s){
   const source=s||state;const player=source&&source.players?source.players[playerIndex]:null;
   if(player&&Number.isInteger(player.colorIndex)&&COLORS[player.colorIndex])return COLORS[player.colorIndex];
@@ -522,12 +614,317 @@ function getColorByPlayer(playerIndex,s){
 }
 function pawnById(id,s){return(s||state).pawns.find(function(p){return p.id===id;});}
 function cloneGame(s){return JSON.parse(JSON.stringify(s));}
+function isOnlineGame(){return online.active;}
+function currentTurnSeat(){const player=state&&state.players?state.players[state.turn]:null;return player&&Number.isInteger(player.seat)?player.seat:null;}
+function canCurrentPlayerAct(){
+  if(!state||!state.started||state.winner!==null||currentPlayer().cpu)return false;
+  if(!isOnlineGame())return true;
+  const roomTurn=online.room&&online.room.turn;
+  return online.status==="connected"&&!online.syncing&&online.room&&online.room.status==="active"&&roomTurn&&Number(roomTurn.seat)===Number(online.seat)&&Number(currentTurnSeat())===Number(online.seat);
+}
+function onlineUsername(){return($("onlineName").value||"Player").trim().replace(/\s+/g," ").slice(0,18)||"Player";}
+function onlineErrorMessage(error){
+  if(!error)return"Could not reach the multiplayer service.";
+  if(error.status===404)return"Room not found. Check the code and try again.";
+  if(error.status===409)return error.message||"That room changed. Please try again.";
+  if(error.status===401||error.status===403)return"That saved seat is no longer available.";
+  return error.message||"Could not reach the multiplayer service.";
+}
+async function onlineFetch(path,options){
+  const controller=typeof AbortController==="function"?new AbortController():null;
+  const timeout=controller?setTimeout(function(){controller.abort();},10000):0;
+  try{
+    const request=Object.assign({},options||{});if(controller)request.signal=controller.signal;
+    const response=await fetch(ARCADE_API_BASE+path,request);
+    let body=null;try{body=await response.json();}catch(e){}
+    if(!response.ok){const error=new Error(body&&body.error?body.error:"Online request failed.");error.status=response.status;throw error;}
+    return body||{};
+  }catch(error){if(error&&error.name==="AbortError")throw new Error("The multiplayer service took too long to respond.");throw error;}
+  finally{if(timeout)clearTimeout(timeout);}
+}
+function saveOnlineSession(){
+  if(!online.code||!online.token)return;
+  try{localStorage.setItem(ONLINE_SESSION_KEY,JSON.stringify({code:online.code,token:online.token,username:online.username}));}catch(e){}
+}
+function storedOnlineSession(){
+  let saved=null;try{saved=JSON.parse(localStorage.getItem(ONLINE_SESSION_KEY)||"null");}catch(e){}
+  if(!saved||typeof saved!=="object")return null;
+  const code=String(saved.code||"").trim().toUpperCase();const token=String(saved.token||"").trim();
+  if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)||!token)return null;
+  return{code:code,token:token,username:String(saved.username||"Player").trim().slice(0,18)||"Player"};
+}
+function syncOnlineResumeButton(){
+  const saved=storedOnlineSession();const button=$("resumeOnlineBtn");
+  button.classList.toggle("hidden",!saved);button.textContent=saved?"RESUME ROOM "+saved.code:"RESUME LAST ROOM";
+}
+function setOnlineSetupBusy(busy){
+  online.setupBusy=!!busy;
+  ["createOnlineBtn","showJoinBtn","joinOnlineBtn","resumeOnlineBtn"].forEach(function(id){$(id).disabled=online.setupBusy;});
+  $("onlineName").disabled=online.setupBusy;$("onlineJoinCode").disabled=online.setupBusy;
+}
+function stopOnlineSocket(permanent){
+  online.manualClose=true;
+  if(online.reconnectTimer){clearTimeout(online.reconnectTimer);online.reconnectTimer=0;}
+  if(online.socket){try{online.socket.close(1000,"Leaving room");}catch(e){}online.socket=null;}
+  if(permanent){online.active=false;online.code="";online.token="";online.playerId="";online.seat=null;online.username="";online.room=null;online.status="offline";online.syncing=false;online.restoreRequired=false;setOnlineSetupBusy(false);try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(e){}}
+}
+function scheduleOnlineReconnect(){
+  if(online.manualClose||!online.active||!online.code||!online.token)return;
+  online.status="reconnecting";renderRoom();render();
+  if(online.reconnectTimer)return;
+  const delay=Math.min(10000,700*Math.pow(1.7,online.reconnectAttempt++));
+  online.reconnectTimer=setTimeout(function(){online.reconnectTimer=0;connectOnlineSocket();},delay);
+}
+function connectOnlineSocket(){
+  if(!online.active||!online.code||!online.token)return;
+  online.manualClose=false;let socket;
+  try{socket=new WebSocket(ARCADE_API_BASE.replace(/^http/,"ws")+"/api/arcade/rooms/"+encodeURIComponent(online.code)+"/ws?token="+encodeURIComponent(online.token));}
+  catch(e){scheduleOnlineReconnect();return;}
+  online.socket=socket;
+  const timeout=setTimeout(function(){if(socket.readyState===WebSocket.CONNECTING)socket.close();},7000);
+  socket.addEventListener("open",function(){clearTimeout(timeout);online.status="connected";online.reconnectAttempt=0;renderRoom();render();});
+  socket.addEventListener("message",function(event){
+    try{const message=JSON.parse(event.data);if(message.type==="state")applyOnlineRoom(message.room);else if(message.type==="error"){showToast(message.error||"Online action rejected.");refreshOnlineState(true);}}catch(e){}
+  });
+  socket.addEventListener("close",function(){clearTimeout(timeout);if(online.socket!==socket)return;online.socket=null;scheduleOnlineReconnect();});
+  socket.addEventListener("error",function(){if(socket.readyState<WebSocket.CLOSING)socket.close();});
+}
+async function refreshOnlineState(forceState){
+  if(!online.active||!online.code||!online.token)return;
+  if(forceState)online.restoreRequired=true;
+  try{const body=await onlineFetch("/api/arcade/rooms/"+encodeURIComponent(online.code)+"/state",{headers:{Authorization:"Bearer "+online.token}});applyOnlineRoom(body.room,!!forceState);}
+  catch(error){online.status="reconnecting";if(online.socket&&online.socket.readyState<2)try{online.socket.close();}catch(e){}else scheduleOnlineReconnect();renderRoom();render();}
+}
+function validOnlineSnapshot(snapshot){return!!(snapshot&&snapshot.version===VERSION&&snapshot.started&&Array.isArray(snapshot.players)&&snapshot.players.length>=2&&snapshot.players.length<=4&&Array.isArray(snapshot.pawns)&&snapshot.pawns.length===snapshot.players.length*3);}
+function sanitizeOnlineSnapshot(snapshot,room){
+  if(!validOnlineSnapshot(snapshot)||!room||!Array.isArray(room.members))return null;
+  const previous=state&&state.online&&validOnlineSnapshot(state)?state:null;
+  const members=room.members.slice();const bySeat=new Map(members.map(function(member){return[Number(member.seat),member];}));
+  const freshStart=room.status==="active"&&room.turn&&Number(room.turn.number)===1&&snapshot.moveNo===0&&snapshot.currentCard===null&&snapshot.pawns.every(function(pawn){return pawn&&pawn.zone==="start";});
+  const expectedCount=freshStart?members.length:previous?previous.players.length:members.length;
+  if(snapshot.players.length!==expectedCount||expectedCount<2||expectedCount>4)return null;
+  const usedColors=new Set();const usedSeats=new Set();const players=[];
+  for(let i=0;i<snapshot.players.length;i++){
+    const raw=snapshot.players[i];if(!raw||raw.id!==i||!Number.isInteger(raw.seat)||raw.seat<0||raw.seat>=Number(room.maxPlayers||4)||usedSeats.has(raw.seat))return null;
+    const member=bySeat.get(raw.seat);const old=previous&&previous.players.find(function(player){return player.seat===raw.seat;});
+    if(!member&&!old)return null;
+    const identity=member||{playerId:old.memberId,username:old.name};
+    if(!Number.isInteger(raw.colorIndex)||raw.colorIndex<0||raw.colorIndex>=COLORS.length||usedColors.has(raw.colorIndex))return null;
+    usedSeats.add(raw.seat);usedColors.add(raw.colorIndex);
+    players.push({id:i,name:String(identity.username||COLORS[raw.colorIndex].name).trim().slice(0,24)||COLORS[raw.colorIndex].name,colorIndex:raw.colorIndex,color:COLORS[raw.colorIndex].key,cpu:false,seat:raw.seat,memberId:identity.playerId||null});
+  }
+  for(const member of members)if(!usedSeats.has(Number(member.seat)))return null;
+  const pawns=[];const occupiedTrack=new Set();const occupiedSafety=new Set();
+  for(let i=0;i<snapshot.pawns.length;i++){
+    const raw=snapshot.pawns[i];const player=Math.floor(i/3);const slot=i%3;
+    if(!raw||raw.id!==i||raw.player!==player||raw.slot!==slot||!["start","track","safety","home"].includes(raw.zone)||!Number.isInteger(raw.pos))return null;
+    if((raw.zone==="start"||raw.zone==="home")&&raw.pos!==0)return null;
+    if(raw.zone==="track"&&(raw.pos<0||raw.pos>59||occupiedTrack.has(raw.pos)))return null;
+    if(raw.zone==="safety"&&(raw.pos<0||raw.pos>4||occupiedSafety.has(player+":"+raw.pos)))return null;
+    if(raw.zone==="track")occupiedTrack.add(raw.pos);if(raw.zone==="safety")occupiedSafety.add(player+":"+raw.pos);
+    pawns.push({id:i,player:player,slot:slot,zone:raw.zone,pos:raw.pos});
+  }
+  const cardValues=new Set(["1","2","3","4","5","7","8","10","11","12","S"]);
+  function cards(value,max){if(!Array.isArray(value)||value.length>max||value.some(function(card){return!cardValues.has(card);}))return null;return value.slice();}
+  const deck=cards(snapshot.deck,45);const discard=cards(snapshot.discard,45);if(!deck||!discard||!Array.isArray(snapshot.hands)||snapshot.hands.length!==players.length)return null;
+  const hands=[];for(const hand of snapshot.hands){const clean=cards(hand,5);if(!clean)return null;hands.push(clean);}
+  const mode=["fireIce","classic","strategic"].includes(snapshot.mode)?snapshot.mode:null;if(!mode)return null;
+  if(mode!=="strategic"&&hands.some(function(hand){return hand.length;}))return null;
+  const currentCard=snapshot.currentCard===null?null:(cardValues.has(snapshot.currentCard)?snapshot.currentCard:null);if(snapshot.currentCard!==null&&!currentCard)return null;
+  let selectedCardIndex=snapshot.selectedCardIndex===null?null:snapshot.selectedCardIndex;
+  if(selectedCardIndex!==null&&(!Number.isInteger(selectedCardIndex)||selectedCardIndex<0||!hands[snapshot.turn]||selectedCardIndex>=hands[snapshot.turn].length))return null;
+  if(mode!=="strategic"&&selectedCardIndex!==null)return null;
+  if(mode==="strategic"&&currentCard!==null&&(selectedCardIndex===null||hands[snapshot.turn][selectedCardIndex]!==currentCard))return null;
+  const cardCounts={"1":5,"2":4,"3":4,"4":4,"5":4,"7":4,"8":4,"10":4,"11":4,"12":4,"S":4};const seen={};
+  function countCards(list){list.forEach(function(card){seen[card]=(seen[card]||0)+1;});}
+  countCards(deck);countCards(discard);hands.forEach(countCards);if(currentCard!==null&&mode!=="strategic")countCards([currentCard]);
+  if(Object.keys(cardCounts).some(function(card){return seen[card]!==cardCounts[card];}))return null;
+  const phases=new Set(["preFire","draw","chooseCard","ice","fireToken","action","noMove","resolving","firePull","gameOver"]);if(!phases.has(snapshot.phase))return null;
+  if((["preFire","draw","chooseCard"].includes(snapshot.phase)&&currentCard!==null)||(["ice","fireToken","action","noMove","resolving","firePull","gameOver"].includes(snapshot.phase)&&currentCard===null))return null;
+  if(mode==="classic"&&(snapshot.phase==="ice"||snapshot.phase==="fireToken"))return null;
+  if(!Number.isInteger(snapshot.turn)||snapshot.turn<0||snapshot.turn>=players.length)return null;
+  const rawTurnSeat=players[snapshot.turn].seat;const authoritativeSeat=room.turn&&Number.isInteger(room.turn.seat)?room.turn.seat:rawTurnSeat;
+  const authoritativeTurn=players.findIndex(function(player){return player.seat===authoritativeSeat;});if(authoritativeTurn<0)return null;
+  let phase=snapshot.phase;let card=currentCard;let flow={};let pendingFirePull=!!snapshot.pendingFirePull;
+  if(snapshot.flow&&typeof snapshot.flow==="object"&&!Array.isArray(snapshot.flow)){
+    ["previousIcePawnId","previousFirePawnId"].forEach(function(key){const value=snapshot.flow[key];if(value===null||(Number.isInteger(value)&&value>=0&&value<pawns.length))flow[key]=value;});
+    if(typeof snapshot.flow.animationText==="string")flow.animationText=snapshot.flow.animationText.slice(0,100);
+  }
+  if(room.status==="active"&&rawTurnSeat!==authoritativeSeat){
+    if(card!==null&&mode!=="strategic")discard.push(card);
+    card=null;selectedCardIndex=null;flow={};pendingFirePull=false;phase=mode==="strategic"?"chooseCard":"draw";
+  }
+  const firePawnId=snapshot.firePawnId===null?null:snapshot.firePawnId;const icePawnId=snapshot.icePawnId===null?null:snapshot.icePawnId;
+  if(firePawnId!==null&&(!Number.isInteger(firePawnId)||firePawnId<0||firePawnId>=pawns.length))return null;
+  if(icePawnId!==null&&(!Number.isInteger(icePawnId)||icePawnId<0||icePawnId>=pawns.length||pawns[icePawnId].zone!=="track"))return null;
+  if(firePawnId!==null&&firePawnId===icePawnId)return null;
+  let winner=snapshot.winner;if(winner!==null&&(!Number.isInteger(winner)||winner<0||winner>=players.length))return null;
+  if(winner!==null&&pawns.filter(function(pawn){return pawn.player===winner&&pawn.zone==="home";}).length!==3)return null;
+  if(room.status==="active"&&(winner!==null||phase==="gameOver"))return null;
+  return{version:VERSION,started:true,mode:mode,skill:Number.isInteger(snapshot.skill)&&snapshot.skill>=1&&snapshot.skill<=3?snapshot.skill:2,showEndpoints:snapshot.showEndpoints!==false,players:players,pawns:pawns,turn:authoritativeTurn,deck:deck,discard:discard,hands:hands,firePawnId:firePawnId,icePawnId:icePawnId,currentCard:card,phase:phase,selectedCardIndex:selectedCardIndex,flow:flow,winner:winner,moveNo:Number.isInteger(snapshot.moveNo)&&snapshot.moveNo>=0&&snapshot.moveNo<=100000?snapshot.moveNo:0,savedAt:Date.now(),pendingFirePull:pendingFirePull,online:true};
+}
+function applyOnlineRoom(room,forceState){
+  if(!online.active||!room)return;
+  const forceHydrate=!!forceState||online.restoreRequired;
+  const currentVersion=Number(online.room&&online.room.version);const incomingVersion=Number(room.version);
+  const currentRevision=Number(online.room&&online.room.revision);const incomingRevision=Number(room.revision);
+  if(online.room&&Number.isFinite(currentVersion)&&Number.isFinite(incomingVersion)&&incomingVersion<currentVersion)return;
+  if(online.room&&incomingVersion===currentVersion&&Number.isFinite(currentRevision)&&Number.isFinite(incomingRevision)&&incomingRevision<currentRevision)return;
+  if(!forceHydrate&&online.room&&incomingVersion===currentVersion&&state&&validOnlineSnapshot(state)&&validOnlineSnapshot(room.state)){
+    online.room=room;renderRoom();renderHeader();return;
+  }
+  const wasLobby=!online.room||online.room.status==="lobby";
+  online.room=room;
+  if(room.playerId)online.playerId=room.playerId;if(Number.isInteger(room.seat))online.seat=room.seat;
+  if(validOnlineSnapshot(room.state)){
+    const sanitized=sanitizeOnlineSnapshot(room.state,room);
+    if(!sanitized){online.room=room;if(forceHydrate)online.restoreRequired=true;showToast("The room sent an invalid game update. Keeping the last safe board.");renderRoom();return;}
+    clearTimeout(cpuTimer);clearTimeout(animationTimer);state=sanitized;online.restoreRequired=false;undoStack=[];autoPlayerId=null;selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
+    el.setupOverlay.classList.add("hidden");
+    if(wasLobby)$("roomOverlay").classList.add("hidden");
+    if(state.winner!==null){el.winName.textContent=state.players[state.winner].name+" wins!";el.winOverlay.classList.remove("hidden");}
+    else if(room.status==="finished")$("roomOverlay").classList.remove("hidden");
+  }else if(room.status==="lobby"){
+    state=null;online.restoreRequired=false;el.setupOverlay.classList.add("hidden");$("roomOverlay").classList.remove("hidden");
+  }
+  renderRoom();render();
+}
+async function enterOnline(payload){
+  if(!payload||!payload.room||payload.room.game!=="sorry"){
+    if(payload&&payload.room&&payload.token){try{await onlineFetch("/api/arcade/rooms/"+encodeURIComponent(payload.room.code)+"/actions",{method:"POST",headers:{"content-type":"application/json",Authorization:"Bearer "+payload.token},body:JSON.stringify({type:"leave"})});}catch(e){}}
+    const error=new Error("That code belongs to a different Arcade game.");error.status=409;throw error;
+  }
+  if(!online.active)holdCurrentSave();
+  stopOnlineSocket(false);
+  online.active=true;online.code=String(payload.code||(payload.room&&payload.room.code)||"").toUpperCase();online.token=payload.token||"";online.playerId=payload.playerId||(payload.room&&payload.room.playerId)||"";online.seat=Number.isInteger(payload.seat)?payload.seat:(payload.room&&Number.isInteger(payload.room.seat)?payload.room.seat:null);online.username=onlineUsername();online.room=null;online.status="reconnecting";online.reconnectAttempt=0;online.syncing=false;online.restoreRequired=false;
+  saveOnlineSession();applyOnlineRoom(payload.room);connectOnlineSocket();
+}
+async function createOnlineRoom(){
+  if(online.setupBusy)return;
+  setOnlineSetupBusy(true);
+  const status=$("onlineSetupStatus");status.textContent="Creating room...";const username=onlineUsername();blurActiveInput();
+  try{
+    const lobby={kind:"sorry-lobby",mode:setup.mode,showEndpoints:setup.showEndpoints,colors:setup.colors.slice(0,setup.count)};
+    const body=await onlineFetch("/api/arcade/rooms",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({game:"sorry",username:username,maxPlayers:setup.count,state:{lobby:lobby}})});
+    status.textContent="";await enterOnline(body);showToast("Share room code "+online.code+".");
+  }catch(error){status.textContent=onlineErrorMessage(error);}
+  finally{setOnlineSetupBusy(false);}
+}
+async function joinOnlineRoom(resume){
+  if(online.setupBusy)return;
+  const saved=resume?storedOnlineSession():null;const input=$("onlineJoinCode");const code=resume&&saved?saved.code:input.value.trim().replace(/\s+/g,"").toUpperCase();const status=$("onlineSetupStatus");
+  if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)){status.textContent="Enter a valid six-character room code.";$("joinCodeRow").classList.remove("hidden");input.focus();input.select();return;}
+  setOnlineSetupBusy(true);
+  if(resume&&saved){$("onlineName").value=saved.username;}
+  status.textContent=resume?"Resuming room "+code+"...":"Joining room "+code+"...";blurActiveInput();
+  try{
+    const body=await onlineFetch("/api/arcade/rooms/"+encodeURIComponent(code)+"/join",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(Object.assign({username:onlineUsername()},resume&&saved?{reconnectToken:saved.token}:{}))});
+    status.textContent="";await enterOnline(body);
+  }catch(error){if(resume&&error&&(error.status===401||error.status===403||error.status===404)){try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(e){}syncOnlineResumeButton();}status.textContent=onlineErrorMessage(error);}
+  finally{setOnlineSetupBusy(false);}
+}
+function onlineLobbyOptions(){
+  const lobby=online.room&&online.room.state&&online.room.state.lobby;
+  if(lobby&&lobby.kind==="sorry-lobby"){
+    const mode=["fireIce","classic","strategic"].includes(lobby.mode)?lobby.mode:"fireIce";const rawColors=Array.isArray(lobby.colors)?lobby.colors.slice(0,4):[0,1,2,3];const colors=rawColors.map(function(color,index){return Number.isInteger(color)&&color>=0&&color<COLORS.length?color:index;});
+    return{mode:mode,showEndpoints:lobby.showEndpoints!==false,colors:new Set(colors).size===colors.length?colors:[0,1,2,3]};
+  }
+  const game=online.room&&online.room.state;
+  if(validOnlineSnapshot(game)){
+    const mode=["fireIce","classic","strategic"].includes(game.mode)?game.mode:"fireIce";const colors=game.players.map(function(player,index){return Number.isInteger(player.colorIndex)&&player.colorIndex>=0&&player.colorIndex<COLORS.length?player.colorIndex:index;});
+    return{mode:mode,showEndpoints:game.showEndpoints!==false,colors:new Set(colors).size===colors.length?colors:[0,1,2,3]};
+  }
+  return{mode:"fireIce",showEndpoints:true,colors:[0,1,2,3]};
+}
+async function startOnlineGame(restart){
+  if(!online.room||online.playerId!==online.room.hostPlayerId||online.syncing)return;
+  const members=(online.room.members||[]).slice().sort(function(a,b){return Number(a.seat)-Number(b.seat);});
+  if(members.length<2){showToast("At least two players are needed.");return;}
+  const opts=onlineLobbyOptions();
+  const players=members.map(function(member,index){return{name:member.username,colorIndex:Number.isInteger(opts.colors&&opts.colors[index])?opts.colors[index]:index,seat:Number(member.seat),memberId:member.playerId,cpu:false};});
+  const firstSeat=Number(players[0].seat);const snapshot=buildGameState(players,{mode:opts.mode,showEndpoints:opts.showEndpoints,skill:2,firstSeat:firstSeat,online:true});
+  snapshot.phase=snapshot.mode==="strategic"?"chooseCard":"draw";
+  online.syncing=true;renderRoom();
+  try{
+    const type=restart?"restart":"start";const body=await onlineFetch("/api/arcade/rooms/"+encodeURIComponent(online.code)+"/actions",{method:"POST",headers:{"content-type":"application/json",Authorization:"Bearer "+online.token},body:JSON.stringify({type:type,expectedVersion:online.room.version,state:snapshot,firstSeat:firstSeat})});
+    el.winOverlay.classList.add("hidden");applyOnlineRoom(body.room);
+  }catch(error){showToast(onlineErrorMessage(error));await refreshOnlineState();}
+  finally{online.syncing=false;renderRoom();render();}
+}
+async function sendOnlineSnapshot(options){
+  if(!online.active||!online.room||!state||online.syncing)return;
+  const opts=options||{};online.syncing=true;render();renderRoom();
+  const payload={type:"state",expectedVersion:online.room.version,state:cloneGame(state)};
+  if(Number.isInteger(opts.nextSeat))payload.nextSeat=opts.nextSeat;
+  if(opts.finish){payload.finish=true;payload.result=opts.result||{winner:state.winner};}
+  const path="/api/arcade/rooms/"+encodeURIComponent(online.code)+"/actions";const request=function(){return onlineFetch(path,{method:"POST",headers:{"content-type":"application/json",Authorization:"Bearer "+online.token},body:JSON.stringify(payload)});};
+  try{
+    let body;
+    try{body=await request();}
+    catch(error){
+      if(error.status!==409)throw error;
+      const fresh=await onlineFetch("/api/arcade/rooms/"+encodeURIComponent(online.code)+"/state",{headers:{Authorization:"Bearer "+online.token}});
+      online.restoreRequired=true;
+      applyOnlineRoom(fresh.room,true);
+      showToast("The room changed in another tab. Check the updated board and try again.");
+      return;
+    }
+    applyOnlineRoom(body.room);
+  }catch(error){showToast(onlineErrorMessage(error));online.restoreRequired=true;await refreshOnlineState(true);}
+  finally{online.syncing=false;render();renderRoom();}
+}
+function syncOnlineDecisionPhase(){
+  if(isOnlineGame()&&state&&state.phase!=="resolving"&&state.phase!=="noMove")sendOnlineSnapshot();
+}
+async function sendOnlineChat(){
+  if(!online.active||!online.room||!online.token||online.syncing)return;const input=$("onlineChatInput");const text=input.value.trim().slice(0,280);if(!text)return;input.value="";
+  try{const body=await onlineFetch("/api/arcade/rooms/"+encodeURIComponent(online.code)+"/actions",{method:"POST",headers:{"content-type":"application/json",Authorization:"Bearer "+online.token},body:JSON.stringify({type:"chat",text:text})});applyOnlineRoom(body.room);}
+  catch(error){input.value=text;showToast(onlineErrorMessage(error));}
+}
+function renderRoom(){
+  const room=online.room;const roomButton=$("roomBtn");const active=online.active;
+  roomButton.classList.toggle("hidden",!active);roomButton.classList.toggle("reconnecting",active&&online.status!=="connected");roomButton.textContent=active?(online.status==="connected"?"ROOM":"SYNC") : "ROOM";
+  if(!active){$("playAgainBtn").textContent="PLAY AGAIN";$("playAgainBtn").disabled=false;return;}
+  if(!room)return;
+  $("onlineRoomCode").textContent=online.code;
+  const connection=$("onlineConnection");connection.className="room-connection";
+  if(online.status==="connected")connection.textContent=room.status==="lobby"?"LOBBY CONNECTED":"LIVE AND SYNCED";
+  else{connection.textContent=online.status==="reconnecting"?"RECONNECTING...":"CONNECTING...";connection.classList.add(online.status==="reconnecting"?"warn":"bad");}
+  const list=$("onlineMembers");list.innerHTML="";
+  (room.members||[]).slice().sort(function(a,b){return Number(a.seat)-Number(b.seat);}).forEach(function(member){
+    const present=room.presence?room.presence[member.playerId]!==false:member.connected!==false;const row=document.createElement("div");row.className="member"+(present?" connected":"");
+    const dot=document.createElement("span");dot.className="member-dot";const name=document.createElement("span");name.className="member-name";name.textContent=member.username+(member.playerId===room.hostPlayerId?" ★":"")+(member.playerId===online.playerId?" (you)":"");const seat=document.createElement("span");seat.className="member-seat";seat.textContent="SEAT "+(Number(member.seat)+1);row.append(dot,name,seat);list.appendChild(row);
+  });
+  const host=online.playerId===room.hostPlayerId;const start=$("startOnlineBtn");start.classList.toggle("hidden",room.status==="active");const canStart=room.status==="finished"||room.ready;start.disabled=!host||!canStart||online.syncing||online.status!=="connected";start.textContent=host?(room.status==="finished"?"PLAY AGAIN":room.ready?"START GAME":"WAITING..."):room.status==="finished"?"HOST REMATCH":"HOST STARTS";
+  const replay=$("playAgainBtn");if(state&&state.winner!==null&&isOnlineGame()){replay.textContent=host?"PLAY AGAIN":"WAITING FOR HOST";replay.disabled=!host||online.syncing;}
+  $("onlineRoomHint").textContent=room.status==="lobby"?(host?"Share the code. You can start as soon as two players have joined.":"Waiting for the host to start the game."):room.status==="finished"?(host?"Start a rematch when everyone is ready.":"The host can start a rematch."):"Room members and chat stay available during the game.";
+  const log=$("onlineChatLog");log.innerHTML="";const chat=Array.isArray(room.chat)?room.chat:[];
+  if(!chat.length){const empty=document.createElement("div");empty.className="chat-empty";empty.textContent="Room chat will appear here.";log.appendChild(empty);}else chat.forEach(function(entry){const line=document.createElement("div");line.className="chat-line"+(entry.playerId===online.playerId?" mine":"");const who=document.createElement("span");who.className="chat-name";who.textContent=entry.username||entry.name||"Player";line.appendChild(who);line.appendChild(document.createTextNode(String(entry.text||entry.message||"")));log.appendChild(line);});
+  log.scrollTop=log.scrollHeight;
+}
+function copyRoomCode(){
+  if(!online.code)return;
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(online.code).then(function(){showToast("Room code copied.");},function(){showToast("Room code: "+online.code);});
+  else showToast("Room code: "+online.code);
+}
+async function leaveOnlineRoom(){
+  if(online.active&&online.room&&online.token){
+    try{await onlineFetch("/api/arcade/rooms/"+encodeURIComponent(online.code)+"/actions",{method:"POST",headers:{"content-type":"application/json",Authorization:"Bearer "+online.token},body:JSON.stringify({type:"leave"})});}
+    catch(error){
+      if(!error||(error.status!==401&&error.status!==404)){showToast("Could not leave the room yet. Your seat is still saved.");return false;}
+    }
+  }
+  const backup=heldSave?cloneGame(heldSave):null;stopOnlineSocket(true);state=backup;heldSave=null;undoStack=[];selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;
+  $("roomOverlay").classList.add("hidden");el.winOverlay.classList.add("hidden");setup.playMode="online";updateSetupMode();el.setupOverlay.classList.remove("hidden");syncOnlineResumeButton();render();
+  return true;
+}
 function pushUndo(){
-  if(!state||!state.started)return;
+  if(!state||!state.started||isOnlineGame())return;
   undoStack.push(cloneGame(state));
   if(undoStack.length>50)undoStack.shift();
 }
 function undoMove(){
+  if(isOnlineGame()){showToast("Undo is unavailable in an online room.");return;}
   if(!undoStack.length)return;
   clearTimeout(cpuTimer);clearTimeout(animationTimer);autoPlayerId=null;heldSave=null;
   state=undoStack.pop();selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
@@ -754,22 +1151,24 @@ function startTurn(){
   maybeCpu();
 }
 function drawCard(){
-  if(!state||state.phase!=="draw")return;
+  if(!state||state.phase!=="draw"||(isOnlineGame()&&!canCurrentPlayerAct()))return;
   pushUndo();
   heldSave=null;
   const card=drawFromDeck();
   if(!card){announce("No cards available.");return;}
   state.currentCard=card;
   prepareCard();
+  syncOnlineDecisionPhase();
 }
 function chooseHandCard(index){
-  if(!state||state.phase!=="chooseCard")return;
+  if(!state||state.phase!=="chooseCard"||(isOnlineGame()&&!canCurrentPlayerAct()))return;
   const hand=state.hands[state.turn];
   if(index<0||index>=hand.length)return;
   pushUndo();
   heldSave=null;
   state.currentCard=hand[index];state.selectedCardIndex=index;
   prepareCard();
+  syncOnlineDecisionPhase();
 }
 function prepareCard(){
   selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;state.flow={};
@@ -811,22 +1210,24 @@ function beginAction(){
   render();autoSave();maybeCpu();
 }
 function moveIceTo(pawnId){
-  if(state.phase!=="ice")return;
+  if(state.phase!=="ice"||(isOnlineGame()&&!canCurrentPlayerAct()))return;
   const pawn=pawnById(pawnId);
   if(!pawn||iceTokenTargets().every(function(p){return p.id!==pawnId;}))return;
   pushUndo();
   state.icePawnId=pawnId;
   announce(pawnName(pawn)+" is frozen.");
   beginAction();
+  syncOnlineDecisionPhase();
 }
 function moveFireTo(pawnId){
-  if(state.phase!=="fireToken")return;
+  if(state.phase!=="fireToken"||(isOnlineGame()&&!canCurrentPlayerAct()))return;
   const pawn=pawnById(pawnId);
   if(!pawn||fireTokenTargets().every(function(p){return p.id!==pawnId;}))return;
   pushUndo();
   state.firePawnId=pawnId;
   announce(pawnName(pawn)+" has Fire.");
   beginAction();
+  syncOnlineDecisionPhase();
 }
 function logicalStep(pawn,direction){
   const next={id:pawn.id,player:pawn.player,slot:pawn.slot,zone:pawn.zone,pos:pawn.pos};
@@ -885,12 +1286,12 @@ function completeResolvedAction(){
   if(!state||state.phase!=="resolving")return;
   if(state.pendingFirePull){
     const candidates=firePullCandidates();
-    if(candidates.length){state.phase="firePull";state.flow={};render();autoSave();maybeCpu();return;}
+    if(candidates.length){state.phase="firePull";state.flow={};render();autoSave();maybeCpu();syncOnlineDecisionPhase();return;}
   }
   finishCard();
 }
 function performAction(action){
-  if(!state||state.phase!=="action")return;
+  if(!state||state.phase!=="action"||(isOnlineGame()&&!canCurrentPlayerAct()))return;
   clearTimeout(animationTimer);
   pushUndo();
   const before=cloneGame(state);const motion={moves:[],direct:[],bumpIds:[]};
@@ -951,7 +1352,7 @@ function firePullCandidates(){
   return state.pawns.filter(function(p){return p.player===fire.player&&p.id!==fire.id&&p.zone!=="home"&&!isIced(state,p.id);});
 }
 function pullPawnHome(pawnId){
-  if(state.phase!=="firePull")return;
+  if(state.phase!=="firePull"||(isOnlineGame()&&!canCurrentPlayerAct()))return;
   pushUndo();
   if(pawnId!==null){
     const pawn=pawnById(pawnId);
@@ -976,9 +1377,10 @@ function finishCard(){
       if(replacement)hand.push(replacement);
     }else state.discard.push(state.currentCard);
   }
-  state.currentCard=null;state.selectedCardIndex=null;state.turn=(state.turn+1)%state.players.length;
+  state.currentCard=null;state.selectedCardIndex=null;state.turn=nextPlayerIndex(state.turn);
   if(autoPlayerId!==null&&state.turn!==autoPlayerId)autoPlayerId=null;
   startTurn();
+  if(isOnlineGame())sendOnlineSnapshot({nextSeat:currentTurnSeat()});
 }
 function endGame(playerIndex){
   state.winner=playerIndex;state.phase="gameOver";
@@ -988,19 +1390,24 @@ function endGame(playerIndex){
   confetti();
   render();
   sound(740,.12);setTimeout(function(){sound(990,.18);},130);
+  if(isOnlineGame()){
+    const winner=state.players[playerIndex];
+    sendOnlineSnapshot({finish:true,result:{winnerSeat:winner.seat,winnerName:winner.name,reason:"home"}});
+  }
 }
 function useFireJump(use){
-  if(state.phase!=="preFire")return;
+  if(state.phase!=="preFire"||(isOnlineGame()&&!canCurrentPlayerAct()))return;
   pushUndo();
   const fire=pawnById(state.firePawnId);
   const plan=fire?planFireJump(state,fire.id):null;
   if(use&&plan){applyFireJump(state,plan);announce(pawnName(fire)+" jumped to the next fire space.");}
   state.phase=state.mode==="strategic"?"chooseCard":"draw";
   render();autoSave();maybeCpu();
+  syncOnlineDecisionPhase();
 }
 function chooseActionMode(mode){selectedMode=mode;selectedPawnId=null;selectedTargetId=null;selectedAmount=null;render();}
 function handlePawnTap(id){
-  if(!state||currentPlayer().cpu)return;
+  if(!state||!canCurrentPlayerAct())return;
   if(state.phase==="ice"){moveIceTo(id);return;}
   if(state.phase==="fireToken"){moveFireTo(id);return;}
   if(state.phase==="firePull"){pullPawnHome(id);return;}
@@ -1112,7 +1519,7 @@ function handlePawnTap(id){
 }
 function setSplitAmount(amount){selectedAmount=amount;render();}
 function skipEleven(){
-  if(!state||state.phase!=="action"||state.currentCard!=="11")return;
+  if(!state||state.phase!=="action"||state.currentCard!=="11"||(isOnlineGame()&&!canCurrentPlayerAct()))return;
   const actions=legalActionsForCard(state,"11",state.turn);
   const canForward=actions.some(function(a){return a.type==="move"&&(a.kind==="forward"||a.kind==="start");});
   if(canForward)return;
@@ -1122,18 +1529,22 @@ function skipEleven(){
 }
 function pawnName(pawn){return state.players[pawn.player].name+" pawn "+(pawn.slot+1);}
 function render(){
-  renderHeader();renderBoard();renderCard();renderControls();
+  renderHeader();renderBoard();renderCard();renderControls();renderRoom();
 }
 function renderHeader(){
-  $("undoBtn").disabled=!undoStack.length;$("menuUndoBtn").disabled=!undoStack.length;
-  $("autoBtn").disabled=!state||!state.started||state.winner!==null||currentPlayer().cpu||state.phase==="resolving"||state.phase==="noMove";
+  const onlineGame=isOnlineGame();
+  ["undoBtn","autoBtn","saveBtn","loadBtn"].forEach(function(id){$(id).classList.toggle("hidden",onlineGame);});
+  $("menuUndoBtn").classList.toggle("hidden",onlineGame);$("menuSaveBtn").classList.toggle("hidden",onlineGame);
+  $("newGameBtn").textContent=onlineGame?"Leave Online Room":"New Game";$("newGameBtn").classList.toggle("danger",onlineGame);
+  $("undoBtn").disabled=onlineGame||!undoStack.length;$("menuUndoBtn").disabled=onlineGame||!undoStack.length;
+  $("autoBtn").disabled=onlineGame||!state||!state.started||state.winner!==null||currentPlayer().cpu||state.phase==="resolving"||state.phase==="noMove";
   if(!state||!state.started){
-    el.turnName.textContent="Ready";el.turnSub.textContent="Start or load a game";el.turnDot.style.background="#777";el.turnDot.style.color="#777";el.board.classList.remove("turn-active");el.board.style.removeProperty("--turn-color");return;
+    el.turnName.textContent=onlineGame?"Online Room":"Ready";el.turnSub.textContent=onlineGame?"Waiting for the host to start":"Start or load a game";el.turnDot.style.background=onlineGame?"#00e5ff":"#777";el.turnDot.style.color=onlineGame?"#00e5ff":"#777";el.board.classList.remove("turn-active");el.board.style.removeProperty("--turn-color");return;
   }
   const p=currentPlayer();const color=getColorByPlayer(p.id);
   el.turnName.textContent=p.name+(p.cpu?" • CPU":"");
   const home=state.pawns.filter(function(x){return x.player===p.id&&x.zone==="home";}).length;
-  el.turnSub.textContent=color.name+" • "+home+" of 3 Home";
+  el.turnSub.textContent=color.name+" • "+home+" of 3 Home"+(onlineGame?(canCurrentPlayerAct()?" • YOUR TURN":" • ONLINE"):"");
   el.turnDot.style.background=color.hex;el.turnDot.style.color=color.hex;el.board.style.setProperty("--turn-color",color.hex);el.board.classList.add("turn-active");
 }
 function pawnBadgeText(pawn,isSelectable){
@@ -1210,7 +1621,7 @@ function actionMatchesChoice(action){
   return selectedMode===null;
 }
 function renderEndpoints(){
-  if(!state||state.phase!=="action"||currentPlayer().cpu)return;
+  if(!state||state.phase!=="action"||!canCurrentPlayerAct())return;
   const alwaysForChoice=state.currentCard==="7"||selectedPawnId!==null&&(state.currentCard==="10"||state.currentCard==="11");
   if(!state.showEndpoints&&!alwaysForChoice)return;
   const seen={};
@@ -1277,7 +1688,7 @@ function pawnScreenPosition(pawn){
 }
 function renderCard(){
   const card=state&&state.currentCard?state.currentCard:null;
-  const canDraw=!!(state&&state.phase==="draw"&&!currentPlayer().cpu);
+  const canDraw=!!(state&&state.phase==="draw"&&canCurrentPlayerAct());
   el.cardDisplay.classList.toggle("sorry-card",card==="S");
   el.cardDisplay.classList.toggle("draw-ready",canDraw);
   el.cardDisplay.setAttribute("aria-label",canDraw?"Draw a card":card?"Current card: "+(card==="S"?"Sorry":card):"Card display");
@@ -1306,6 +1717,16 @@ function renderControls(){
   if(!state||!state.started){el.message.textContent="Set up a new game.";addButton("New Game","primary",function(){el.setupOverlay.classList.remove("hidden");});addButton("Load Saved","cyan",function(){loadGame(true);});return;}
   const p=currentPlayer();
   if(state.phase==="gameOver"){el.message.textContent=state.players[state.winner].name+" won the game.";return;}
+  if(isOnlineGame()&&online.room&&online.room.status==="finished"){
+    el.message.textContent=online.room.result&&online.room.result.reason==="not-enough-players"?"The game ended because too many players left.":"This online game has ended.";
+    addButton("ROOM & CHAT","cyan",function(){$("roomOverlay").classList.remove("hidden");});return;
+  }
+  if(isOnlineGame()&&!canCurrentPlayerAct()){
+    if(online.syncing)el.message.textContent="Saving your move to the room...";
+    else if(online.status!=="connected")el.message.textContent="Connection interrupted. Reconnecting...";
+    else el.message.textContent=p.name+" is playing. Your seat is waiting.";
+    addButton("ROOM & CHAT","cyan",function(){$("roomOverlay").classList.remove("hidden");});return;
+  }
   if(state.phase==="preFire"){
     el.message.textContent=p.name+": use the Fire jump before drawing?";
     addButton("Use Fire Jump","primary",function(){useFireJump(true);});addButton("Skip","",function(){useFireJump(false);});return;
@@ -1317,7 +1738,7 @@ function renderControls(){
   if(state.phase==="chooseCard"){
     el.message.textContent=p.name+": choose a card from your hand.";
     const row=document.createElement("div");row.className="hand-row";
-    state.hands[state.turn].forEach(function(card,index){const b=document.createElement("button");b.type="button";b.className="hand-card"+(card==="S"?" sorry":"");b.innerHTML=card==="S"?"SORRY!<span>BUMP / +4</span>":card+"<span>"+shortCardText(card)+"</span>";b.addEventListener("click",function(){chooseHandCard(index);});row.appendChild(b);});
+    state.hands[state.turn].forEach(function(card,index){const b=document.createElement("button");b.type="button";b.className="hand-card"+(card==="S"?" sorry":"");b.appendChild(document.createTextNode(card==="S"?"SORRY!":card));const detail=document.createElement("span");detail.textContent=card==="S"?"BUMP / +4":shortCardText(card);b.appendChild(detail);b.addEventListener("click",function(){chooseHandCard(index);});row.appendChild(b);});
     el.choices.appendChild(row);return;
   }
   if(state.phase==="ice"){
@@ -1428,7 +1849,7 @@ function modeToSelection(mode,card){
   return"forward";
 }
 function getSelectablePawnIds(){
-  if(!state||currentPlayer().cpu)return[];
+  if(!state||!canCurrentPlayerAct())return[];
   if(state.phase==="ice")return iceTokenTargets().map(function(p){return p.id;});
   if(state.phase==="fireToken")return fireTokenTargets().map(function(p){return p.id;});
   if(state.phase==="firePull")return firePullCandidates().map(function(p){return p.id;});
@@ -1514,11 +1935,11 @@ function chooseCpuAction(actions,forceSmart){
 }
 function maybeCpu(){
   clearTimeout(cpuTimer);
-  if(!state||state.winner!==null||state.phase==="resolving"||(!currentPlayer().cpu&&autoPlayerId!==state.turn))return;
+  if(isOnlineGame()||!state||state.winner!==null||state.phase==="resolving"||(!currentPlayer().cpu&&autoPlayerId!==state.turn))return;
   cpuTimer=setTimeout(cpuStep,520);
 }
 function autoPlayTurn(){
-  if(!state||state.winner!==null||currentPlayer().cpu||state.phase==="resolving"||state.phase==="noMove")return;
+  if(isOnlineGame()||!state||state.winner!==null||currentPlayer().cpu||state.phase==="resolving"||state.phase==="noMove")return;
   autoPlayerId=state.turn;showToast("Auto is choosing the smartest move.");cpuStep();
 }
 function cpuStep(){
@@ -1571,11 +1992,11 @@ function sound(freq,duration){
   try{if(navigator.vibrate)navigator.vibrate(18);}catch(e){}
 }
 function saveGame(show){
-  const saved=heldSave||state;
+  const saved=heldSave||(!isOnlineGame()?state:null);
   if(!saved||!saved.started||saved.winner!==null){if(show)showToast("No active game to save.");return false;}
   try{const snapshot=cloneGame(saved);snapshot.savedAt=Date.now();if(!heldSave)state.savedAt=snapshot.savedAt;localStorage.setItem(SAVE_KEY,JSON.stringify({version:VERSION,savedAt:snapshot.savedAt,state:snapshot}));if(show&&window.ArcadeSave)ArcadeSave.saveNow();if(show)showToast("Game saved.");return true;}catch(e){if(show)showToast("Save failed.");return false;}
 }
-function autoSave(){saveGame(false);}
+function autoSave(){if(!isOnlineGame())saveGame(false);}
 function migrateSave(saved){
   if(!saved||!saved.started)return null;
   if(saved.version===VERSION)return saved;
@@ -1596,6 +2017,7 @@ function applyLoadedGame(saved,show){
   clearTimeout(cpuTimer);clearTimeout(animationTimer);
   const loaded=migrateSave(saved);
   if(!validSave(loaded))return false;
+  if(isOnlineGame()){stopOnlineSocket(true);$("roomOverlay").classList.add("hidden");}
   heldSave=null;state=loaded;undoStack=[];autoPlayerId=null;
   if(typeof state.pendingFirePull!=="boolean")state.pendingFirePull=false;
   if(!state.flow||typeof state.flow!=="object")state.flow={};
@@ -1616,14 +2038,15 @@ function loadGame(show){
   return true;
 }
 function validSave(s){return!!(s&&s.version===VERSION&&s.started&&Array.isArray(s.players)&&s.players.length>=2&&s.players.length<=4&&Array.isArray(s.pawns)&&s.pawns.length===s.players.length*3&&s.winner===null);}
-function currentStateMeaningful(){return!!(state&&state.started&&state.winner===null);}
+function currentStateMeaningful(){return!!(!isOnlineGame()&&state&&state.started&&state.winner===null);}
 function holdCurrentSave(){if(!heldSave&&currentStateMeaningful())heldSave=cloneGame(state);}
-function effectiveState(){return cloneGame(heldSave||state);}
+function effectiveState(){const value=heldSave||(!isOnlineGame()?state:null);return value?cloneGame(value):null;}
 function freshSetup(){
   clearTimeout(cpuTimer);clearTimeout(animationTimer);
+  if(isOnlineGame())stopOnlineSocket(true);
   heldSave=null;state=null;undoStack=[];autoPlayerId=null;selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
   try{localStorage.removeItem(SAVE_KEY);}catch(e){}
-  blurActiveInput();el.menuOverlay.classList.add("hidden");el.rulesOverlay.classList.add("hidden");el.winOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");
+  blurActiveInput();$("roomOverlay").classList.add("hidden");el.menuOverlay.classList.add("hidden");el.rulesOverlay.classList.add("hidden");el.winOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");
   render();
 }
 function registerArcadeSave(){
@@ -1636,7 +2059,7 @@ function registerArcadeSave(){
     restore:function(saved){if(!applyLoadedGame(saved,false))throw new Error("Invalid Sorry save");return true;},
     meaningful:function(){return!!heldSave||currentStateMeaningful();},
     summary:function(){
-      const data=heldSave||state;if(!data||data.winner!==null)return"";
+      const data=heldSave||(!isOnlineGame()?state:null);if(!data||data.winner!==null)return"";
       const p=data.players[data.turn];const home=data.pawns.filter(function(x){return x.player===p.id&&x.zone==="home";}).length;
       return p.name+"'s turn · "+home+" of 3 pawns Home";
     },
@@ -1651,6 +2074,19 @@ function confetti(){
   document.body.appendChild(wrap);setTimeout(function(){wrap.remove();},4800);
 }
 function selectChoice(container,value){Array.from(container.querySelectorAll(".choice")).forEach(function(b){b.classList.toggle("active",b.dataset.value===String(value));});}
+function updateSetupMode(){
+  Array.from($("playModeChoices").querySelectorAll(".play-mode")).forEach(function(button){button.classList.toggle("active",button.dataset.value===setup.playMode);});
+  $("localSetupFields").classList.toggle("hidden",setup.playMode!=="local");$("onlineSetupFields").classList.toggle("hidden",setup.playMode!=="online");
+  if(setup.playMode==="online"){
+    const name=$("onlineName");if(!name.dataset.touched){name.value=($("name0").value||"Player").trim().slice(0,18)||"Player";}
+    syncOnlineResumeButton();
+  }
+}
+function syncSetupChoices(){
+  selectChoice($("playerCountChoices"),setup.count);selectChoice($("onlinePlayerCountChoices"),setup.count);
+  selectChoice($("modeChoices"),setup.mode);selectChoice($("onlineModeChoices"),setup.mode);
+  selectChoice($("endpointChoices"),setup.showEndpoints?"on":"off");selectChoice($("onlineEndpointChoices"),setup.showEndpoints?"on":"off");
+}
 function updateSetupRows(){
   Array.from(document.querySelectorAll(".player-row")).forEach(function(row){row.classList.toggle("hidden",Number(row.dataset.player)>=setup.count);});
   updateSetupColors();
@@ -1666,13 +2102,29 @@ function cyclePlayerColor(playerIndex){
   setup.colors[playerIndex]=nextColor;if(owner>=0&&owner!==playerIndex)setup.colors[owner]=oldColor;updateSetupColors();
 }
 function bind(){
-  $("playerCountChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.count=Number(b.dataset.value);selectChoice(this,setup.count);updateSetupRows();});
-  $("modeChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.mode=b.dataset.value;selectChoice(this,setup.mode);});
+  $("playModeChoices").addEventListener("click",function(e){const b=e.target.closest(".play-mode");if(!b)return;setup.playMode=b.dataset.value;updateSetupMode();});
+  [$("playerCountChoices"),$("onlinePlayerCountChoices")].forEach(function(container){container.addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.count=Number(b.dataset.value);syncSetupChoices();updateSetupRows();});});
+  [$("modeChoices"),$("onlineModeChoices")].forEach(function(container){container.addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.mode=b.dataset.value;syncSetupChoices();});});
   $("skillChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.skill=Number(b.dataset.value);selectChoice(this,setup.skill);});
-  $("endpointChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.showEndpoints=b.dataset.value==="on";selectChoice(this,b.dataset.value);});
+  [$("endpointChoices"),$("onlineEndpointChoices")].forEach(function(container){container.addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.showEndpoints=b.dataset.value==="on";syncSetupChoices();});});
   Array.from(document.querySelectorAll(".player-color")).forEach(function(b){b.addEventListener("click",function(){cyclePlayerColor(Number(this.dataset.player));});});
   Array.from(document.querySelectorAll(".type-toggle")).forEach(function(b){b.addEventListener("click",function(){const i=Number(this.dataset.player);setup.cpu[i]=!setup.cpu[i];this.textContent=setup.cpu[i]?"CPU":"Human";this.classList.toggle("active",setup.cpu[i]);});});
   $("startBtn").addEventListener("click",createGame);
+  $("createOnlineBtn").addEventListener("click",createOnlineRoom);
+  $("showJoinBtn").addEventListener("click",function(){$("joinCodeRow").classList.remove("hidden");$("onlineJoinCode").focus();});
+  $("joinOnlineBtn").addEventListener("click",function(){joinOnlineRoom(false);});
+  $("onlineJoinCode").addEventListener("input",function(){this.value=this.value.replace(/[^A-Za-z0-9]/g,"").toUpperCase().slice(0,6);});
+  $("onlineJoinCode").addEventListener("keydown",function(event){if(event.key==="Enter")joinOnlineRoom(false);});
+  $("onlineName").addEventListener("input",function(){this.dataset.touched="1";});
+  $("resumeOnlineBtn").addEventListener("click",function(){joinOnlineRoom(true);});
+  $("roomBtn").addEventListener("click",function(){if(online.active)$("roomOverlay").classList.remove("hidden");});
+  $("copyRoomBtn").addEventListener("click",copyRoomCode);
+  $("startOnlineBtn").addEventListener("click",function(){startOnlineGame(online.room&&online.room.status==="finished");});
+  $("closeRoomBtn").addEventListener("click",function(){$("roomOverlay").classList.add("hidden");});
+  $("leaveRoomBtn").addEventListener("click",leaveOnlineRoom);
+  $("sendChatBtn").addEventListener("click",sendOnlineChat);
+  $("onlineChatInput").addEventListener("keydown",function(event){if(event.key==="Enter"&&!event.shiftKey){event.preventDefault();sendOnlineChat();}});
+  $("onlineBackBtn").addEventListener("click",goToArcade);
   el.boardCard.addEventListener("click",function(){if(state&&state.phase==="draw"&&!currentPlayer().cpu)drawCard();});
   el.cardDisplay.addEventListener("click",function(){if(state&&state.phase==="draw"&&!currentPlayer().cpu)drawCard();});
   $("setupLoadBtn").addEventListener("click",function(){loadGame(true);});
@@ -1686,14 +2138,14 @@ function bind(){
   $("menuUndoBtn").addEventListener("click",undoMove);
   $("menuSaveBtn").addEventListener("click",function(){saveGame(true);el.menuOverlay.classList.add("hidden");});
   $("rulesBtn").addEventListener("click",function(){el.menuOverlay.classList.add("hidden");openRules();});
-  $("newGameBtn").addEventListener("click",function(){el.menuOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");});
+  $("newGameBtn").addEventListener("click",function(){el.menuOverlay.classList.add("hidden");if(isOnlineGame())leaveOnlineRoom();else el.setupOverlay.classList.remove("hidden");});
   $("arcadeBtn").addEventListener("click",goToArcade);
   $("openSetupBtn").addEventListener("click",function(){el.setupOverlay.classList.remove("hidden");});
   $("quickLoadBtn").addEventListener("click",function(){loadGame(true);});
   $("rulesCloseBtn").addEventListener("click",function(){el.rulesOverlay.classList.add("hidden");});
   el.rulesPrevBtn.addEventListener("click",function(){if(ruleIndex>0){ruleIndex--;renderRules();}});
   el.rulesNextBtn.addEventListener("click",function(){if(ruleIndex<RULE_PAGES.length-1){ruleIndex++;renderRules();}});
-  $("playAgainBtn").addEventListener("click",function(){el.winOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");});
+  $("playAgainBtn").addEventListener("click",function(){if(isOnlineGame())startOnlineGame(true);else{el.winOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");}});
   $("winArcadeBtn").addEventListener("click",goToArcade);
   window.addEventListener("beforeunload",function(){saveGame(false);});
   document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")saveGame(false);});
@@ -1701,6 +2153,7 @@ function bind(){
 }
 function goToArcade(){
   clearTimeout(cpuTimer);clearTimeout(animationTimer);saveGame(false);
+  if(isOnlineGame())stopOnlineSocket(false);
   const leave=function(){location.href="../index.html";};
   try{
     if(window.ArcadeSave&&typeof ArcadeSave.saveNow==="function"){
@@ -1711,11 +2164,17 @@ function goToArcade(){
   leave();
 }
 function init(){
-  buildBoard();bind();updateSetupRows();render();
+  buildBoard();bind();syncSetupChoices();updateSetupRows();updateSetupMode();syncOnlineResumeButton();render();
   let wantsLoad=false;try{const q=new URLSearchParams(location.search);wantsLoad=q.get("load")==="1"||q.get("resume")==="1";}catch(e){}
   if(wantsLoad&&!loadGame(false))el.setupOverlay.classList.remove("hidden");
 }
-window.SorryGame={saveGame:function(){return saveGame(true);},loadGame:function(){return loadGame(true);},newGame:createGame,getState:function(){return state;}};
+window.SorryGame={
+  saveGame:function(){return saveGame(true);},loadGame:function(){return loadGame(true);},newGame:createGame,getState:function(){return state;},
+  online:{
+    create:createOnlineRoom,join:function(){return joinOnlineRoom(false);},resume:function(){return joinOnlineRoom(true);},start:function(){return startOnlineGame(false);},restart:function(){return startOnlineGame(true);},leave:leaveOnlineRoom,
+    applyRoom:applyOnlineRoom,canAct:canCurrentPlayerAct,getRoom:function(){return online.room?cloneGame(online.room):null;},getSession:function(){return{active:online.active,code:online.code,playerId:online.playerId,seat:online.seat,status:online.status,syncing:online.syncing};},getLocalBackup:function(){return heldSave?cloneGame(heldSave):null;}
+  }
+};
 init();
 registerArcadeSave();
 })();

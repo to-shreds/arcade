@@ -1,0 +1,37 @@
+name: Deploy Arcade Worker
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "cloudflare/chess-worker/**"
+      - ".github/workflows/deploy-arcade-worker.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: arcade-worker-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out Arcade
+        uses: actions/checkout@v6
+
+      - name: Test and validate Worker
+        working-directory: cloudflare/chess-worker
+        run: npm ci && npm test
+
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: cloudflare/chess-worker
+          command: deploy

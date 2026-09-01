@@ -10,6 +10,14 @@ ALLOWED_ORIGINS = "https://to-shreds.github.io,https://arcade.local,http://local
 name = "CHESS_ROOMS"
 class_name = "ChessRoom"
 
+[[durable_objects.bindings]]
+name = "ARCADE_ROOMS"
+class_name = "ArcadeRoom"
+
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["ChessRoom"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["ArcadeRoom"]

@@ -1588,6 +1588,37 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 }
 </style>
 
+<style id="ttt-online-styles">
+#ttt-menu.overlay{overflow-y:auto!important;justify-content:flex-start}
+#g-tictactoe .ttt-online-card{
+    width:min(520px,100%);box-sizing:border-box;padding:12px;border-radius:16px;
+    border:1px solid rgba(0,229,255,.35);background:linear-gradient(135deg,rgba(0,229,255,.10),rgba(224,64,251,.08));
+}
+#g-tictactoe .ttt-online-title{text-align:center;color:#8df4ff;font-size:12px;font-weight:1000;letter-spacing:.9px;margin-bottom:8px}
+#g-tictactoe .ttt-online-row{display:flex;gap:7px;align-items:center;justify-content:center;flex-wrap:wrap}
+#g-tictactoe .ttt-online-input{
+    flex:1 1 160px;min-width:0;max-width:260px;box-sizing:border-box;padding:10px 11px;border-radius:11px;
+    border:1px solid rgba(255,255,255,.28);background:#151515;color:#fff;font-size:16px;font-weight:900;outline:none;
+}
+#g-tictactoe .ttt-online-input.code{text-transform:uppercase;text-align:center;letter-spacing:3px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+#g-tictactoe .ttt-online-action{padding:10px 12px;border-radius:11px}
+#g-tictactoe .ttt-online-action.primary{background:rgba(0,229,255,.20);border-color:rgba(0,229,255,.58)}
+#g-tictactoe .ttt-online-action:disabled{opacity:.45;cursor:not-allowed}
+#g-tictactoe .ttt-online-status{min-height:18px;margin-top:7px;text-align:center;color:#bbb;font-size:12px;font-weight:750}
+#g-tictactoe .ttt-online-lobby{margin-top:9px;padding:9px;border-radius:12px;background:rgba(0,0,0,.28);text-align:center}
+#g-tictactoe .ttt-room-code{font:1000 25px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:4px;color:#ffd700;margin:4px 0 7px}
+#g-tictactoe .ttt-members{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin:7px 0}
+#g-tictactoe .ttt-member{padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.08);font-size:11px;font-weight:900}
+#g-tictactoe .ttt-member.connected::before{content:"● ";color:#7cff6b}
+#g-tictactoe .ttt-member:not(.connected)::before{content:"● ";color:#888}
+#g-tictactoe .ttt-board.ttt-online-wait .ttt-cell:empty{opacity:.72;cursor:not-allowed}
+#ttt-online-actions[hidden],#ttt-online-join-row[hidden],#ttt-online-resume[hidden],#ttt-online-lobby[hidden],#ttt-online-start[hidden],#ttt-online-return[hidden],#ttt-online-pill[hidden]{display:none!important}
+@media(max-width:520px){
+  #g-tictactoe .ttt-online-card{padding:9px}
+  #g-tictactoe .ttt-online-action{padding:8px;font-size:11px}
+}
+</style>
+
 <style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
 </head>
 <body>
@@ -1651,6 +1682,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         <div class="ttt-top">
             <div class="ttt-top-row">
                 <div class="ttt-pill" id="ttt-status">TURN: <span class="ttt-score" id="ttt-turn">X</span></div>
+                <div class="ttt-pill" id="ttt-online-pill" hidden>ONLINE</div>
             </div>
             <div class="ttt-top-row">
                 <div class="ttt-pill">SCORE <span class="ttt-score" id="ttt-score">X 0 - 0 O</span></div>
@@ -1660,10 +1692,10 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             <div style="display:flex; flex-direction:column; align-items:center;">
                 <div class="ttt-board" id="ttt-board"></div>
                 <div class="ttt-mini">
-                    <button class="ttt-btn" onclick="TicTacToe.restart()">Restart</button>
+                    <button class="ttt-btn" id="ttt-restart" onclick="TicTacToe.restart()">Restart</button>
                     <button class="ttt-btn" id="ttt-undo" onclick="TicTacToe.undo()" disabled>↶ Undo</button>
-                    <button class="ttt-btn" onclick="TicTacToe.saveGame()">Save</button>
-                    <button class="ttt-btn" onclick="TicTacToe.loadGame()">Load</button>
+                    <button class="ttt-btn" id="ttt-save" onclick="TicTacToe.saveGame()">Save</button>
+                    <button class="ttt-btn" id="ttt-load" onclick="TicTacToe.loadGame()">Load</button>
                     <button class="ttt-btn" onclick="TicTacToe.openMenu()">Mode</button>
                 </div>
                 <div class="ttt-sub" id="ttt-sub">Tap a square. If you're vs CPU, it will play as O.</div>
@@ -1725,12 +1757,39 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
                 <button class="btn-large-opt" onclick="TicTacToe.start('pvp')">2 Players (Pass & Play)</button>
 
+                <section class="ttt-online-card" aria-label="Online multiplayer">
+                    <div class="ttt-online-title">PLAY ONLINE</div>
+                    <div class="ttt-online-row" id="ttt-online-actions">
+                        <input class="ttt-online-input" id="ttt-online-name" maxlength="20" autocomplete="nickname" enterkeyhint="done" placeholder="Your username" aria-label="Your online username" />
+                        <button type="button" class="ttt-btn ttt-online-action primary" onclick="TicTacToe.createOnline()">Create Room</button>
+                        <button type="button" class="ttt-btn ttt-online-action" onclick="TicTacToe.showOnlineJoin()">Join Room</button>
+                    </div>
+                    <div class="ttt-online-row" id="ttt-online-join-row" hidden>
+                        <input class="ttt-online-input code" id="ttt-online-code" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" placeholder="ROOM CODE" aria-label="Six-character room code" />
+                        <button type="button" class="ttt-btn ttt-online-action primary" onclick="TicTacToe.joinOnline()">Join</button>
+                        <button type="button" class="ttt-btn ttt-online-action" onclick="TicTacToe.hideOnlineJoin()">Cancel</button>
+                    </div>
+                    <button type="button" class="ttt-btn ttt-online-action" id="ttt-online-resume" onclick="TicTacToe.resumeOnline()" hidden>Resume Online Room</button>
+                    <div class="ttt-online-status" id="ttt-online-status" aria-live="polite">Create a room or join with a six-character code.</div>
+                    <div class="ttt-online-lobby" id="ttt-online-lobby" hidden>
+                        <div style="font-size:11px;font-weight:900;color:#aaa;letter-spacing:.7px">ROOM CODE</div>
+                        <div class="ttt-room-code" id="ttt-online-room-code">------</div>
+                        <div class="ttt-members" id="ttt-online-members"></div>
+                        <div class="ttt-online-row">
+                            <button type="button" class="ttt-btn ttt-online-action primary" id="ttt-online-start" onclick="TicTacToe.startOnlineRoom()" hidden>Start Online Game</button>
+                            <button type="button" class="ttt-btn ttt-online-action primary" id="ttt-online-return" onclick="TicTacToe.returnToOnlineGame()" hidden>Return to Game</button>
+                            <button type="button" class="ttt-btn ttt-online-action" onclick="TicTacToe.leaveOnline()">Leave Room</button>
+                        </div>
+                    </div>
+                </section>
+
                 <button class="btn-large-opt" style="background:#245f8f" onclick="TicTacToe.loadGame()">Load Saved Game</button>
                 <button class="btn-large-opt" style="background:#444" onclick="goToMenu()">Back to Menu</button>
             </div>
         </div>
 </div>
 
+<script src="room-client.js"></script>
 <script src="../arcade-save.js"></script>
 <script>
 
@@ -2132,6 +2191,18 @@ const FeedbackSys = (function(){
         const piecePicker = document.getElementById('ttt-piece-picker');
         const pieceGrid = document.getElementById('ttt-piece-grid');
         const pieceTitle = document.getElementById('ttt-piece-title');
+        const onlinePill = document.getElementById('ttt-online-pill');
+        const onlineActions = document.getElementById('ttt-online-actions');
+        const onlineName = document.getElementById('ttt-online-name');
+        const onlineCode = document.getElementById('ttt-online-code');
+        const onlineJoinRow = document.getElementById('ttt-online-join-row');
+        const onlineResumeButton = document.getElementById('ttt-online-resume');
+        const onlineStatusEl = document.getElementById('ttt-online-status');
+        const onlineLobby = document.getElementById('ttt-online-lobby');
+        const onlineRoomCode = document.getElementById('ttt-online-room-code');
+        const onlineMembers = document.getElementById('ttt-online-members');
+        const onlineStartButton = document.getElementById('ttt-online-start');
+        const onlineReturnButton = document.getElementById('ttt-online-return');
         let pieceWho = 'X';
         
         
@@ -2152,6 +2223,28 @@ const FeedbackSys = (function(){
         let cpuTimer = null, roundTimer = null, timerGeneration = 0;
         let heldSave = null;
         let undoStack = [];
+        const ONLINE_NAME_KEY = 'arcade_tictactoe_online_name_v1';
+        let onlineRoom = null;
+        let onlineActionBusy = false;
+        let onlineRoundOver = null;
+        let onlineRollbackState = null;
+        let lastTrustedOnlineState = null;
+        let onlineRepairBusy = false;
+        let onlineRepairRequired = false;
+        let onlineRepairTimer = null;
+        let onlineRepairAttempts = 0;
+        let onlineRoundResetAttempts = 0;
+        let appliedOnlineVersion = -1;
+        const roomClient = window.ArcadeRoomClient ? ArcadeRoomClient.createRoomClient({
+            game:'tic-tac-toe',
+            sessionKey:'arcade_tictactoe_online_room_v1',
+            onRoom:handleOnlineRoom,
+            onStatus:function(status){
+                setOnlineStatus(status.text,status.kind==='error');
+                if(mode==='online'&&status.kind==='reconnecting')subEl.textContent=status.text;
+            },
+            onSession:syncOnlineResume
+        }) : null;
 
         function syncUndoButton(){
             const button = document.getElementById('ttt-undo');
@@ -2193,6 +2286,7 @@ const FeedbackSys = (function(){
         }
 
         function setShape(mark, sym){
+            if(mode==='online'&&onlineRoom&&onlineRoom.status==='active')return;
             if(mark !== 'X' && mark !== 'O') return;
             if(!SYMBOLS.includes(sym)) return;
 
@@ -2290,17 +2384,407 @@ const FeedbackSys = (function(){
             syncCpuButtons();
         }
 
+        function setOnlineStatus(text,isError){
+            if(!onlineStatusEl)return;
+            onlineStatusEl.textContent=String(text||'');
+            onlineStatusEl.style.color=isError?'#ff8d8d':'#bbb';
+        }
+
+        function syncOnlineResume(){
+            if(!onlineResumeButton||!roomClient)return;
+            const saved=roomClient.saved();
+            onlineResumeButton.hidden=!saved||!!roomClient.session;
+            if(saved)onlineResumeButton.textContent='Resume Room '+saved.code;
+        }
+
+        function setOnlineBusy(busy){
+            document.querySelectorAll('#ttt-menu .ttt-online-action').forEach(function(button){button.disabled=!!busy;});
+            if(!busy&&onlineRoom)renderOnlineLobby(onlineRoom);
+        }
+
+        function onlineUsername(){
+            const username=roomClient?roomClient.cleanUsername(onlineName&&onlineName.value):'';
+            if(username){
+                if(onlineName)onlineName.value=username;
+                try{localStorage.setItem(ONLINE_NAME_KEY,username);}catch(_error){}
+            }
+            return username;
+        }
+
+        function onlineMembersSorted(room){
+            return (Array.isArray(room&&room.members)?room.members.slice():[]).sort(function(a,b){return Number(a.seat)-Number(b.seat);});
+        }
+
+        function markForSeat(room,seat){
+            const index=onlineMembersSorted(room).findIndex(function(member){return Number(member.seat)===Number(seat);});
+            return index===1?'O':'X';
+        }
+
+        function seatForMark(room,mark){
+            const members=onlineMembersSorted(room);
+            const member=members[mark==='O'?1:0]||members[0];
+            return member?Number(member.seat):0;
+        }
+
+        function renderOnlineLobby(room){
+            if(!room)return;
+            if(onlineActions)onlineActions.hidden=true;
+            if(onlineJoinRow)onlineJoinRow.hidden=true;
+            if(onlineLobby)onlineLobby.hidden=false;
+            if(onlineRoomCode)onlineRoomCode.textContent=room.code||(roomClient&&roomClient.session&&roomClient.session.code)||'------';
+            if(onlineMembers){
+                onlineMembers.innerHTML='';
+                onlineMembersSorted(room).forEach(function(member){
+                    const chip=document.createElement('span');
+                    chip.className='ttt-member'+(member.connected?' connected':'');
+                    chip.textContent=(Number(member.seat)+1)+'. '+(member.username||'Player');
+                    onlineMembers.appendChild(chip);
+                });
+            }
+            const session=roomClient&&roomClient.session;
+            const isHost=!!(session&&room.hostPlayerId===session.playerId);
+            if(onlineStartButton){
+                onlineStartButton.hidden=!isHost||room.status!=='lobby';
+                onlineStartButton.disabled=!room.ready||onlineActionBusy;
+                onlineStartButton.textContent=room.ready?'Start Online Game':'Waiting for opponent';
+            }
+            if(onlineReturnButton)onlineReturnButton.hidden=room.status!=='active';
+            if(room.status==='lobby'){
+                setOnlineStatus(isHost?(room.ready?'Opponent joined. Start when ready.':'Share the code. Waiting for an opponent…'):'Joined. Waiting for the host to start…');
+            }else if(room.status==='active'){
+                setOnlineStatus('Room '+room.code+' is in progress.');
+            }
+        }
+
+        function validOnlineState(saved){
+            if(!saved||typeof saved!=='object'||!Array.isArray(saved.board)||saved.board.length!==9)return false;
+            if(saved.board.some(function(value){return value!==''&&value!=='X'&&value!=='O';}))return false;
+            if(saved.turn!=='X'&&saved.turn!=='O')return false;
+            if(!Number.isInteger(saved.scoreX)||saved.scoreX<0||saved.scoreX>10000||!Number.isInteger(saved.scoreO)||saved.scoreO<0||saved.scoreO>10000)return false;
+            if(!SYMBOLS.includes(saved.symX)||!SYMBOLS.includes(saved.symO)||saved.symX===saved.symO)return false;
+            const xCount=saved.board.filter(function(value){return value==='X';}).length;
+            const oCount=saved.board.filter(function(value){return value==='O';}).length;
+            if(oCount>xCount||xCount-oCount>1)return false;
+            const winningLines=wins.filter(function(line){return saved.board[line[0]]&&saved.board[line[0]]===saved.board[line[1]]&&saved.board[line[0]]===saved.board[line[2]];});
+            const winners=Array.from(new Set(winningLines.map(function(line){return saved.board[line[0]];})));
+            if(winners.length>1)return false;
+            const actualWinner=winners[0]||(saved.board.every(Boolean)?'D':null);
+            if(saved.roundOver){
+                if(!['X','O','D'].includes(saved.roundOver.winner)||saved.roundOver.winner!==actualWinner)return false;
+                if(actualWinner==='X'&&xCount!==oCount+1)return false;
+                if(actualWinner==='O'&&xCount!==oCount)return false;
+                if(actualWinner==='D'&&(xCount!==5||oCount!==4||saved.roundOver.line!==null))return false;
+                if(actualWinner!=='D'){
+                    if(!Array.isArray(saved.roundOver.line)||saved.roundOver.line.length!==3||!winningLines.some(function(line){return line.every(function(index,position){return index===saved.roundOver.line[position];});}))return false;
+                }
+                if(saved.turn!==(actualWinner==='O'?'O':'X'))return false;
+            }else{
+                if(actualWinner)return false;
+                if(saved.turn!==(xCount===oCount?'X':'O'))return false;
+            }
+            return true;
+        }
+
+        function onlineTurnMatchesRoom(room,saved){
+            if(!room||room.status!=='active'||!room.turn)return true;
+            return saved.turn===markForSeat(room,room.turn.seat);
+        }
+
+        function initialOnlineState(){
+            return {schema:1,board:Array(9).fill(''),turn:'X',scoreX:0,scoreO:0,symX:symX,symO:symO,roundOver:null};
+        }
+
+        function onlineStateSnapshot(){
+            return {schema:1,board:board.slice(),turn:turn,scoreX:scoreX,scoreO:scoreO,symX:symX,symO:symO,roundOver:onlineRoundOver?JSON.parse(JSON.stringify(onlineRoundOver)):null};
+        }
+
+        function syncOnlineControls(){
+            const online=mode==='online';
+            const undoButton=document.getElementById('ttt-undo');
+            const restartButton=document.getElementById('ttt-restart');
+            const saveButton=document.getElementById('ttt-save');
+            const loadButton=document.getElementById('ttt-load');
+            if(restartButton)restartButton.disabled=online;
+            if(saveButton)saveButton.disabled=online;
+            if(loadButton)loadButton.disabled=online;
+            document.querySelectorAll('#ttt-menu .ttt-piece-btn').forEach(function(button){button.disabled=online&&onlineRoom&&onlineRoom.status==='active';});
+            if(online&&undoButton)undoButton.disabled=true;
+            if(!online)syncUndoButton();
+            if(onlinePill){
+                onlinePill.hidden=!online;
+                if(online&&roomClient&&roomClient.session)onlinePill.textContent='ONLINE · '+(markForSeat(onlineRoom,roomClient.session.seat)==='X'?symX:symO);
+            }
+        }
+
+        function scheduleOnlineRoundReset(){
+            if(mode!=='online'||!onlineRoundOver||!roomClient||!roomClient.session||!onlineRoom||!onlineRoom.turn)return;
+            if(Number(roomClient.session.seat)!==Number(onlineRoom.turn.seat))return;
+            if(roundTimer)clearTimeout(roundTimer);
+            const version=Number(onlineRoom.version);
+            const retrying=onlineRoundResetAttempts>0;
+            const delay=retrying?Math.min(4000,500*Math.pow(2,Math.min(3,onlineRoundResetAttempts-1))):1400;
+            roundTimer=setTimeout(async function(){
+                roundTimer=null;
+                if(mode!=='online'||!onlineRoundOver||!onlineRoom||Number(onlineRoom.version)!==version)return;
+                const next=onlineStateSnapshot();
+                next.board=Array(9).fill('');next.turn='X';next.roundOver=null;
+                onlineActionBusy=true;syncOnlineControls();
+                let failed=false;
+                try{await roomClient.action({type:'state',state:next,nextSeat:seatForMark(onlineRoom,'X')});}
+                catch(error){failed=true;setOnlineStatus(error.message||'The next round could not start.',true);try{await roomClient.refresh();}catch(_refreshError){}}
+                finally{
+                    onlineActionBusy=false;
+                    if(failed&&mode==='online'&&onlineRoundOver&&onlineRoom&&Number(onlineRoom.version)===version){
+                        onlineRoundResetAttempts++;
+                        setOnlineStatus('The next round is waiting for the connection. Retrying…',true);
+                        scheduleOnlineRoundReset();
+                    }
+                }
+            },delay);
+        }
+
+        async function repairOnlineTurnMismatch(room){
+            const session=roomClient&&roomClient.session;
+            if(onlineRepairBusy||!session||!room||room.status!=='active'||!room.turn||Number(session.seat)!==Number(room.turn.seat))return;
+            if(onlineRepairTimer){clearTimeout(onlineRepairTimer);onlineRepairTimer=null;}
+            onlineRepairBusy=true;boardEl.classList.add('ttt-online-wait');syncOnlineControls();
+            const trusted=lastTrustedOnlineState&&validOnlineState(lastTrustedOnlineState)?lastTrustedOnlineState:initialOnlineState();
+            const repaired={schema:1,board:Array(9).fill(''),turn:'X',scoreX:trusted.scoreX,scoreO:trusted.scoreO,symX:trusted.symX,symO:trusted.symO,roundOver:null};
+            try{
+                await roomClient.action({type:'state',state:repaired,nextSeat:seatForMark(room,'X')});
+                setOnlineStatus('The inconsistent turn was repaired. A fresh round has started.');
+            }catch(error){
+                setOnlineStatus(error.message||'The inconsistent room turn could not be repaired.',true);
+                try{
+                    const authoritative=await roomClient.refresh();
+                    if(authoritative&&validOnlineState(authoritative.state)&&onlineTurnMatchesRoom(authoritative,authoritative.state)){
+                        appliedOnlineVersion=Number(authoritative.version);
+                        applyOnlineState(authoritative);
+                    }
+                }catch(_refreshError){}
+            }finally{
+                onlineRepairBusy=false;syncOnlineControls();
+                if(onlineRepairRequired)scheduleOnlineRepairRetry();
+            }
+        }
+
+        function scheduleOnlineRepairRetry(){
+            const session=roomClient&&roomClient.session;
+            if(onlineRepairTimer||!onlineRepairRequired||!session||!onlineRoom||onlineRoom.status!=='active'||!onlineRoom.turn||Number(session.seat)!==Number(onlineRoom.turn.seat))return;
+            const delay=Math.min(4000,500*Math.pow(2,Math.min(3,onlineRepairAttempts)));
+            onlineRepairAttempts++;
+            onlineRepairTimer=setTimeout(function(){
+                onlineRepairTimer=null;
+                if(onlineRepairRequired)repairOnlineTurnMismatch(onlineRoom);
+            },delay);
+        }
+
+        function applyOnlineState(room){
+            if(!validOnlineState(room&&room.state)){
+                setOnlineStatus('The room sent an invalid Tic Tac Toe state.',true);
+                boardEl.classList.add('ttt-online-wait');
+                return false;
+            }
+            if(!onlineTurnMatchesRoom(room,room.state)){
+                onlineRepairRequired=true;locked=true;boardEl.classList.add('ttt-online-wait');
+                setOnlineStatus('The room turn did not match the board. Repairing safely…',true);
+                subEl.textContent='The synchronized turn was inconsistent. The current player is repairing the round.';
+                repairOnlineTurnMismatch(room);
+                return false;
+            }
+            cancelGameTimers();clearUndo();closePiecePicker();heldSave=null;mode='online';
+            const saved=room.state;
+            onlineRepairRequired=false;onlineRepairAttempts=0;
+            if(onlineRepairTimer){clearTimeout(onlineRepairTimer);onlineRepairTimer=null;}
+            board=saved.board.slice();turn=saved.turn;scoreX=Math.max(0,Math.floor(Number(saved.scoreX)||0));scoreO=Math.max(0,Math.floor(Number(saved.scoreO)||0));
+            symX=saved.symX;symO=saved.symO;onlineRoundOver=saved.roundOver?JSON.parse(JSON.stringify(saved.roundOver)):null;
+            lastTrustedOnlineState=JSON.parse(JSON.stringify(saved));
+            if(!saved.roundOver)onlineRoundResetAttempts=0;
+            locked=!!onlineRoundOver;menu.style.display='none';
+            buildBoardUI();renderMarks();syncShapeUI();updateHud();syncOnlineControls();
+            const session=roomClient&&roomClient.session;
+            const myTurn=!!(session&&room.turn&&Number(session.seat)===Number(room.turn.seat));
+            boardEl.classList.toggle('ttt-online-wait',!myTurn||locked||onlineActionBusy);
+            if(onlineRoundOver){
+                if(Array.isArray(onlineRoundOver.line))onlineRoundOver.line.forEach(function(index){if(boardEl.children[index])boardEl.children[index].classList.add('ttt-win');});
+                if(onlineRoundOver.winner==='D'){
+                    subEl.textContent='Tie! A fresh round starts in a moment.';
+                    FeedbackSys.show({kind:'neutral',text:'TIE!',confetti:false});
+                }else{
+                    subEl.textContent=symbolFor(onlineRoundOver.winner)+' wins! A fresh round starts in a moment.';
+                    FeedbackSys.show({kind:'win',text:symbolFor(onlineRoundOver.winner)+' WINS!',confetti:true});
+                }
+                scheduleOnlineRoundReset();
+            }else{
+                const turnName=onlineMembersSorted(room).find(function(member){return Number(member.seat)===Number(room.turn&&room.turn.seat);});
+                const opponent=onlineMembersSorted(room).find(function(member){return !session||member.playerId!==session.playerId;});
+                subEl.textContent=opponent&&!opponent.connected
+                    ? ((opponent.username||'Opponent')+' disconnected. Their seat is reserved while they reconnect.')
+                    : (myTurn?'Your turn. Pick a square.':((turnName&&turnName.username?turnName.username:'Opponent')+' is thinking…'));
+            }
+            return true;
+        }
+
+        function handleOnlineRoom(room){
+            onlineRoom=room;mode='online';renderOnlineLobby(room);syncOnlineControls();
+            if((room.status==='active'||room.status==='finished')&&room.state&&Number(room.version)!==appliedOnlineVersion){
+                appliedOnlineVersion=Number(room.version);
+                applyOnlineState(room);
+            }else if(room.status==='active'){
+                if(onlineRepairRequired&&room.state&&validOnlineState(room.state)&&!onlineTurnMatchesRoom(room,room.state))scheduleOnlineRepairRetry();
+                const session=roomClient&&roomClient.session;
+                const opponent=onlineMembersSorted(room).find(function(member){return !session||member.playerId!==session.playerId;});
+                if(opponent&&!opponent.connected)subEl.textContent=(opponent.username||'Opponent')+' disconnected. Their seat is reserved while they reconnect.';
+                else if(!onlineRoundOver&&session&&room.turn){
+                    const myTurn=Number(session.seat)===Number(room.turn.seat);
+                    const turnName=onlineMembersSorted(room).find(function(member){return Number(member.seat)===Number(room.turn.seat);});
+                    subEl.textContent=myTurn?'Your turn. Pick a square.':((turnName&&turnName.username?turnName.username:'Opponent')+' is thinking…');
+                }
+            }else if(room.status==='finished'&&room.result&&room.result.reason==='not-enough-players'){
+                locked=true;subEl.textContent='Your opponent left the room. This game is over.';boardEl.classList.add('ttt-online-wait');
+            }
+        }
+
+        async function sendOnlineState(nextSeat){
+            if(!roomClient||onlineActionBusy)return;
+            const attemptedVersion=Number(onlineRoom&&onlineRoom.version);
+            onlineActionBusy=true;boardEl.classList.add('ttt-online-wait');syncOnlineControls();
+            try{await roomClient.action({type:'state',state:onlineStateSnapshot(),nextSeat:nextSeat});}
+            catch(error){
+                setOnlineStatus(error.message||'The move could not be synchronized.',true);
+                subEl.textContent=error.message||'The move could not be synchronized.';
+                let restored=!!(onlineRoom&&Number(onlineRoom.version)>attemptedVersion&&appliedOnlineVersion>=Number(onlineRoom.version));
+                if(!restored){
+                    try{
+                        const authoritative=await roomClient.refresh();
+                        if(authoritative){
+                            appliedOnlineVersion=Number(authoritative.version);
+                            restored=applyOnlineState(authoritative);
+                        }
+                    }catch(_refreshError){}
+                }
+                if(!restored&&onlineRoom&&Number(onlineRoom.version)>attemptedVersion&&appliedOnlineVersion>=Number(onlineRoom.version))restored=true;
+                if(!restored&&onlineRollbackState&&onlineRoom){
+                    applyOnlineState(Object.assign({},onlineRoom,{state:JSON.parse(JSON.stringify(onlineRollbackState))}));
+                }
+            }finally{
+                onlineActionBusy=false;onlineRollbackState=null;
+                if(onlineRoom&&roomClient.session)boardEl.classList.toggle('ttt-online-wait',Number(roomClient.session.seat)!==Number(onlineRoom.turn&&onlineRoom.turn.seat)||!!onlineRoundOver);
+            }
+        }
+
+        function tapOnline(i){
+            const session=roomClient&&roomClient.session;
+            if(onlineActionBusy||locked||!onlineRoom||onlineRoom.status!=='active'||!session||!onlineRoom.turn||Number(session.seat)!==Number(onlineRoom.turn.seat)){
+                subEl.textContent='Wait for your turn.';return;
+            }
+            const mark=markForSeat(onlineRoom,session.seat);
+            if(turn!==mark||board[i])return;
+            onlineRollbackState=onlineStateSnapshot();
+            board[i]=mark;renderMarks();
+            const info=winnerInfo();
+            let nextSeat;
+            if(info){
+                if(info.w==='X')scoreX++;
+                if(info.w==='O')scoreO++;
+                onlineRoundOver={winner:info.w,line:info.line?info.line.slice():null};
+                locked=true;nextSeat=Number(session.seat);
+                if(info.line)info.line.forEach(function(index){if(boardEl.children[index])boardEl.children[index].classList.add('ttt-win');});
+            }else{
+                turn=turn==='X'?'O':'X';nextSeat=seatForMark(onlineRoom,turn);
+            }
+            updateHud();sendOnlineState(nextSeat);
+        }
+
+        function showOnlineJoin(){
+            if(onlineJoinRow)onlineJoinRow.hidden=false;
+            if(onlineCode){onlineCode.focus();onlineCode.select();}
+        }
+        function hideOnlineJoin(){if(onlineJoinRow)onlineJoinRow.hidden=true;}
+
+        async function createOnline(){
+            if(!roomClient)return setOnlineStatus('Online play is unavailable in this browser.',true);
+            holdCurrentSave();setOnlineBusy(true);
+            try{await roomClient.create({username:onlineUsername(),maxPlayers:2});}
+            catch(error){setOnlineStatus(error.message||'Room creation failed.',true);}
+            finally{setOnlineBusy(false);}
+        }
+
+        async function joinOnline(){
+            if(!roomClient)return setOnlineStatus('Online play is unavailable in this browser.',true);
+            holdCurrentSave();setOnlineBusy(true);
+            try{await roomClient.join({username:onlineUsername(),code:onlineCode&&onlineCode.value});}
+            catch(error){setOnlineStatus(error.message||'Could not join that room.',true);}
+            finally{setOnlineBusy(false);}
+        }
+
+        async function resumeOnline(){
+            if(!roomClient)return;
+            holdCurrentSave();setOnlineBusy(true);
+            try{
+                const saved=roomClient.saved();if(saved&&onlineName)onlineName.value=saved.username||onlineName.value;
+                await roomClient.resume();
+            }catch(error){setOnlineStatus(error.message||'Could not resume that room.',true);}
+            finally{setOnlineBusy(false);syncOnlineResume();}
+        }
+
+        async function startOnlineRoom(){
+            if(!roomClient||!onlineRoom||!onlineRoom.ready)return;
+            setOnlineBusy(true);
+            try{await roomClient.action({type:'start',state:initialOnlineState(),firstSeat:seatForMark(onlineRoom,'X')});}
+            catch(error){setOnlineStatus(error.message||'The online game could not start.',true);}
+            finally{setOnlineBusy(false);}
+        }
+
+        function resetOnlineLocalState(){
+            onlineRoom=null;onlineRoundOver=null;onlineActionBusy=false;onlineRollbackState=null;lastTrustedOnlineState=null;onlineRepairBusy=false;onlineRepairRequired=false;onlineRepairAttempts=0;onlineRoundResetAttempts=0;appliedOnlineVersion=-1;
+            if(onlineRepairTimer){clearTimeout(onlineRepairTimer);onlineRepairTimer=null;}
+            boardEl.classList.remove('ttt-online-wait');
+            if(onlinePill)onlinePill.hidden=true;
+            if(onlineLobby)onlineLobby.hidden=true;
+            if(onlineActions)onlineActions.hidden=false;
+            if(onlineJoinRow)onlineJoinRow.hidden=true;
+            syncOnlineResume();
+        }
+
+        async function leaveOnlineSession(){
+            if(!roomClient||!roomClient.session){resetOnlineLocalState();return true;}
+            setOnlineBusy(true);setOnlineStatus('Leaving room…');
+            try{
+                await roomClient.leave();
+                resetOnlineLocalState();setOnlineBusy(false);
+                return true;
+            }catch(error){
+                setOnlineStatus(error.message||'Could not leave the room. Your reconnect seat was kept.',true);
+                setOnlineBusy(false);return false;
+            }
+        }
+
+        async function leaveOnline(){
+            if(!await leaveOnlineSession())return false;
+            mode='cpu';quit();syncOnlineControls();
+            setOnlineStatus('Create a room or join with a six-character code.');
+            return true;
+        }
+
+        function returnToOnlineGame(){
+            if(mode!=='online'||!onlineRoom||onlineRoom.status!=='active')return;
+            menu.style.display='none';syncOnlineControls();
+            if(onlineRoundOver)scheduleOnlineRoundReset();
+        }
+
         function cancelGameTimers(){
             timerGeneration++;
             if(cpuTimer){clearTimeout(cpuTimer);cpuTimer=null;}
             if(roundTimer){clearTimeout(roundTimer);roundTimer=null;}
         }
-        function pauseGame(){cancelGameTimers();}
-        function openMenu(){ cancelGameTimers(); syncCpuButtons(); try{ syncShapeUI(); }catch(e){} menu.style.display = 'flex'; }
+        function pauseGame(){cancelGameTimers();if(mode==='online'&&roomClient)roomClient.disconnect();}
+        function openMenu(){ cancelGameTimers(); syncCpuButtons(); try{ syncShapeUI(); }catch(e){} if(mode==='online'&&onlineRoom)renderOnlineLobby(onlineRoom); menu.style.display = 'flex'; }
 
         function start(m){
             holdCurrentSave();
             cancelGameTimers();
+            if(mode==='online'){leaveOnlineSession().then(function(left){if(left){mode='cpu';start(m);}});return;}
             mode = m;
             menu.style.display = 'none';
             scoreX = 0; scoreO = 0;
@@ -2308,9 +2792,11 @@ const FeedbackSys = (function(){
             subEl.textContent = (mode === 'cpu')
                 ? "Tap a square. CPU plays as O. Try to beat it!"
                 : "Tap a square. Pass & play: X then O.";
+            syncOnlineControls();
         }
 
         function quit(){
+            if(mode==='online'){leaveOnlineSession().then(function(left){if(left){mode='cpu';quit();}});return;}
             cancelGameTimers();
             clearUndo();
             closePiecePicker();
@@ -2321,9 +2807,11 @@ const FeedbackSys = (function(){
             locked = false;
             scoreX = 0; scoreO = 0;
             updateHud();
+            syncOnlineControls();
         }
 
         function restart(preserveCurrent=true, clearHistory=true){
+            if(mode==='online'){subEl.textContent='Online rounds restart for both players automatically.';return;}
             if(preserveCurrent)holdCurrentSave();
             cancelGameTimers();
             if(clearHistory) clearUndo();
@@ -2339,6 +2827,7 @@ const FeedbackSys = (function(){
             turnEl.textContent = symbolFor(turn);
             turnEl.style.color = (turn==='X') ? '#ff5252' : '#00e5ff';
             scoreEl.textContent = `${symX} ${scoreX} - ${scoreO} ${symO}`;
+            if(mode==='online'&&onlinePill&&roomClient&&roomClient.session)onlinePill.textContent='ONLINE · '+(markForSeat(onlineRoom,roomClient.session.seat)==='X'?symX:symO);
         }
 
         function clearBoardUI(){ boardEl.innerHTML = ''; }
@@ -2374,6 +2863,7 @@ const FeedbackSys = (function(){
 
         function tap(i){
             if(currentGameId !== 'tictactoe') return;
+            if(mode==='online'){tapOnline(i);return;}
             if(locked) return;
             if(board[i]) return;
 
@@ -2542,7 +3032,7 @@ const FeedbackSys = (function(){
         function gameSnapshot(){
             return {version:1,mode:mode,cpuDifficulty:cpuDifficulty,board:board.slice(),turn:turn,scoreX:scoreX,scoreO:scoreO,symX:symX,symO:symO};
         }
-        function currentGameMeaningful(){return board.some(Boolean)||scoreX>0||scoreO>0;}
+        function currentGameMeaningful(){return mode!=='online'&&(board.some(Boolean)||scoreX>0||scoreO>0);}
         function holdCurrentSave(){if(!heldSave&&currentGameMeaningful())heldSave=gameSnapshot();}
         function effectiveSnapshot(){return JSON.parse(JSON.stringify(heldSave||gameSnapshot()));}
         function applySavedGame(saved,announce,preserveUndo=false){
@@ -2569,6 +3059,7 @@ const FeedbackSys = (function(){
         }
 
         function undo(){
+            if(mode==='online'){subEl.textContent='Undo is unavailable in an online game.';return false;}
             if(!undoStack.length){
                 subEl.textContent='Nothing to undo yet.';
                 syncUndoButton();
@@ -2593,11 +3084,13 @@ const FeedbackSys = (function(){
             }
         }
         function saveGame(){
+            if(mode==='online'){subEl.textContent='Online games synchronize automatically.';return false;}
             try{localStorage.setItem(SAVE_KEY,JSON.stringify(effectiveSnapshot()));if(window.ArcadeSave)ArcadeSave.saveNow();subEl.textContent='Game saved. Tap Load later to continue.';return true;}
             catch(e){subEl.textContent='Save failed. Browser storage is not available.';return false;}
         }
 
         function loadGame(){
+            if(mode==='online'){leaveOnlineSession().then(function(left){if(left){mode='cpu';syncOnlineControls();loadGame();}});return false;}
             if(window.ArcadeSave&&ArcadeSave.hasSave()){ArcadeSave.load();return true;}
             try{
                 const raw=localStorage.getItem(SAVE_KEY);
@@ -2630,7 +3123,17 @@ const FeedbackSys = (function(){
         openMenu();
         registerArcadeSave();
 
-        return { openMenu, start, restart, undo, pause:pauseGame, saveGame, loadGame, setCpuDifficulty, setShape, openPiecePicker, closePiecePicker, quit };
+        try{if(onlineName)onlineName.value=localStorage.getItem(ONLINE_NAME_KEY)||'';}catch(_error){}
+        if(onlineCode){
+            onlineCode.addEventListener('input',function(){onlineCode.value=String(onlineCode.value||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);});
+            onlineCode.addEventListener('keydown',function(event){if(event.key==='Enter')joinOnline();});
+        }
+        if(onlineName)onlineName.addEventListener('keydown',function(event){if(event.key==='Enter')createOnline();});
+        syncOnlineResume();syncOnlineControls();
+        window.addEventListener('pagehide',function(){if(roomClient)roomClient.disconnect();});
+
+        return { openMenu, start, restart, undo, pause:pauseGame, saveGame, loadGame, setCpuDifficulty, setShape, openPiecePicker, closePiecePicker, quit,
+            createOnline,showOnlineJoin,hideOnlineJoin,joinOnline,resumeOnline,startOnlineRoom,returnToOnlineGame,leaveOnline };
     })();
 ;
 

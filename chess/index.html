@@ -967,7 +967,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       <div id="prefsPane" hidden>
         <div class="optRow"><div class="label"><div class="name">Move Highlights</div><div class="desc">Show legal destinations when a piece is selected.</div></div><input id="hlCheck" type="checkbox" checked /></div>
         <div class="optRow"><div class="label"><div class="name">Coordinates</div><div class="desc">Show file and rank labels around the board.</div></div><input id="coordCheck" type="checkbox" checked /></div>
-        <div class="optRow"><div class="label"><div class="name">Opponent Pieces Face Them</div><div class="desc">Rotate the other side’s individual pieces. Turn this off to keep every piece upright for you.</div></div><div class="settingPreview"><span class="previewPiece">♙</span><span class="previewPiece turned">♟</span><input id="opponentFacingCheck" type="checkbox" checked /></div></div>
+        <div class="optRow"><div class="label"><div class="name">Opponent Pieces Face Them</div><div class="desc">On by default for local two-player games and off for CPU and online play. Your choice is remembered separately for each mode.</div></div><div class="settingPreview"><span class="previewPiece">♙</span><span class="previewPiece turned">♟</span><input id="opponentFacingCheck" type="checkbox" checked /></div></div>
         <div class="optRow"><div class="label"><div class="name">Auto-flip Board</div><div class="desc">For local two-player games only, rotate the whole board after each turn.</div></div><input id="autoFlipCheck" type="checkbox" /></div>
         <div class="optRow"><div class="label"><div class="name">Start Position</div><div class="desc">Reset the current local or CPU game.</div></div><button class="ui-btn" id="resetBtn">Reset Game</button></div>
         <button id="prefsBack" class="ui-btn ghost">← Back to game choices</button>
@@ -1128,8 +1128,29 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     coords: true,
     autoFlip: false,
     flipped: false,
-    opponentFacing: true,
+    opponentFacingByMode: {pvp:null, cpu:null, online:null},
   };
+
+  function opponentFacingEnabled(mode = settings.mode){
+    const saved = settings.opponentFacingByMode && settings.opponentFacingByMode[mode];
+    return typeof saved === "boolean" ? saved : mode === "pvp";
+  }
+
+  function restoreOpponentFacingPreferences(saved){
+    if(!saved || typeof saved !== "object") return;
+    const byMode = saved.opponentFacingByMode;
+    if(byMode && typeof byMode === "object"){
+      for(const mode of ["pvp", "cpu", "online"]){
+        if(typeof byMode[mode] === "boolean") settings.opponentFacingByMode[mode] = byMode[mode];
+      }
+      return;
+    }
+    // The former setting defaulted to true and was saved even when untouched.
+    // A legacy false value, however, could only have come from the user.
+    if(saved.opponentFacing === false){
+      settings.opponentFacingByMode = {pvp:false, cpu:false, online:false};
+    }
+  }
 
   const CHESS_API_BASE = "https://arcade-chess.jonathanjablon.workers.dev";
   const ONLINE_SESSION_KEY = "arcadeChess_onlineSession_v1";
@@ -2180,7 +2201,7 @@ const movesEl = $("#movesList");
           btn.innerHTML = pieceSVG(p);
           const pieceNode = btn.querySelector(".piece");
           const localPerspective = settings.mode === "online" && online.side ? online.side : (settings.mode === "cpu" ? settings.playerSide : (settings.flipped ? "b" : "w"));
-          const facesOtherPlayer = settings.opponentFacing && colorOf(p) !== localPerspective;
+          const facesOtherPlayer = opponentFacingEnabled() && colorOf(p) !== localPerspective;
           if(pieceNode && facesOtherPlayer) pieceNode.classList.add("opposite-facing");
         }
 
@@ -2911,7 +2932,7 @@ clearSelection();
       states: states.map(exportSnap),
       moves: moves.map(exportMove),
       currentPly,
-      settings: Object.assign({}, settings),
+      settings: Object.assign({}, settings, {opponentFacingByMode:Object.assign({}, settings.opponentFacingByMode)}),
       gameStarted
     };
   }
@@ -2959,7 +2980,7 @@ clearSelection();
     if(typeof saved.coords === "boolean") settings.coords = saved.coords;
     if(typeof saved.autoFlip === "boolean") settings.autoFlip = saved.autoFlip;
     if(typeof saved.flipped === "boolean") settings.flipped = saved.flipped;
-    if(typeof saved.opponentFacing === "boolean") settings.opponentFacing = saved.opponentFacing;
+    restoreOpponentFacingPreferences(saved);
   }
 
   function restoreGameData(saved){
@@ -3554,7 +3575,7 @@ clearSelection();
     hlCheck.checked = settings.highlight;
     coordCheck.checked = settings.coords;
     autoFlipCheck.checked = settings.autoFlip;
-    opponentFacingCheck.checked = settings.opponentFacing;
+    opponentFacingCheck.checked = opponentFacingEnabled();
   }
 
   modePvpBtn.addEventListener("click", ()=>{
@@ -3603,7 +3624,11 @@ clearSelection();
   hlCheck.addEventListener("change", ()=>{ settings.highlight = hlCheck.checked; saveSettings(); updateUI(false); });
   coordCheck.addEventListener("change", ()=>{ settings.coords = coordCheck.checked; saveSettings(); updateUI(false); });
   autoFlipCheck.addEventListener("change", ()=>{ settings.autoFlip = autoFlipCheck.checked; saveSettings(); });
-  opponentFacingCheck.addEventListener("change", ()=>{ settings.opponentFacing = opponentFacingCheck.checked; saveSettings(); updateUI(false); });
+  opponentFacingCheck.addEventListener("change", ()=>{
+    settings.opponentFacingByMode[settings.mode] = opponentFacingCheck.checked;
+    saveSettings();
+    updateUI(false);
+  });
   $("#onlineCreateBtn").addEventListener("click", createOnlineRoom);
   $("#onlineResumeBtn").addEventListener("click", resumeOnlineSession);
   $("#onlineJoinForm").addEventListener("submit", e=>{
@@ -3755,7 +3780,7 @@ clearSelection();
         if(typeof o.coords==="boolean") settings.coords = o.coords;
         if(typeof o.autoFlip==="boolean") settings.autoFlip = o.autoFlip;
         if(typeof o.flipped==="boolean") settings.flipped = o.flipped;
-        if(typeof o.opponentFacing==="boolean") settings.opponentFacing = o.opponentFacing;
+        restoreOpponentFacingPreferences(o);
       }
     }catch(_){}
   }
