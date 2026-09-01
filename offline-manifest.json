@@ -1,19 +1,14 @@
 {
   "schema": 1,
-  "version": "2.3.0+20260831.1",
-  "generatedAt": "2026-08-31T23:23:45.691Z",
-  "fileCount": 302,
-  "totalBytes": 16287486,
+  "version": "2.3.0+20260901.1",
+  "generatedAt": "2026-09-01T04:40:10.863Z",
+  "fileCount": 301,
+  "totalBytes": 16272437,
   "files": [
     {
-      "path": "arcade-keyboard.js",
-      "bytes": 10245,
-      "sha256": "78e79b4b59ff6beff1d046e961b15073ed7edf3afcf7eac331e5d25c99118fca"
-    },
-    {
       "path": "arcade-save.js",
-      "bytes": 18424,
-      "sha256": "e6d79f8f4ebf1c62a4188ee03765104b0512a0171e7c8b5aec7b9c0933866ebe"
+      "bytes": 17170,
+      "sha256": "b33a9573e7903f715f85e9bc16a7f270176f47635ad570177087ee35c8be1a36"
     },
     {
       "path": "arcade-ui.css",
@@ -157,8 +152,8 @@
     },
     {
       "path": "checkers/index.html",
-      "bytes": 172532,
-      "sha256": "29f5a35514321198b60ab967270978e0e80ab1ae5c379cae20f5e3eacb9836e9"
+      "bytes": 172486,
+      "sha256": "38a52b1af88881c074322014c9e14c36a367f0701c27975d35319e22f0d81faf"
     },
     {
       "path": "chess/game.json",
@@ -172,8 +167,8 @@
     },
     {
       "path": "chess/index.html",
-      "bytes": 140267,
-      "sha256": "93682530e323e6e0318822f43511e6046db76a0ebb82f56de9ddc538f4814866"
+      "bytes": 143299,
+      "sha256": "5d3942487fc0a73b8f8b4693dd23f12829644283c722b4fd636b01aeed35d22a"
     },
     {
       "path": "codebreaking/game.json",
@@ -222,8 +217,8 @@
     },
     {
       "path": "dots/index.html",
-      "bytes": 195228,
-      "sha256": "05f420750a15ad26509885971114964502a36123215a6c2709602eb51c3f929e"
+      "bytes": 195182,
+      "sha256": "63e970e3d6fcb82a083788bd1b943d648cffa183d2982a855316f0fd569f05b0"
     },
     {
       "path": "firefighter-frenzy/game.json",
@@ -252,13 +247,13 @@
     },
     {
       "path": "hangman/index.html",
-      "bytes": 135677,
-      "sha256": "daa51182355a795a53d7f3b147a347a11662b9e7abc6b7b30082e04fe20df758"
+      "bytes": 135631,
+      "sha256": "9550a2ecfc5412269d49e159f22a688ad105fcdadf42ee05afebfff5ab887cfc"
     },
     {
       "path": "index.html",
-      "bytes": 10840,
-      "sha256": "5af27a7bea39cafacd47e0260ad7f923704ce4deed170670e700535bbceb7525"
+      "bytes": 10839,
+      "sha256": "fc80bf0334cfa9c86507f2e5bc6945aeb3517e909d9585333ca50c95f70eb4d9"
     },
     {
       "path": "insultinator/game.json",
@@ -272,8 +267,8 @@
     },
     {
       "path": "insultinator/index.html",
-      "bytes": 62369,
-      "sha256": "69343232e8f3d2f3fcc5ad85534d559609eb0ea9a0ebb8dcd092e6448e7e6997"
+      "bytes": 62323,
+      "sha256": "6197f5141f39f47babc65b99e4c0172aa082539852eed828c22a3a3d9a80ed0d"
     },
     {
       "path": "jigsaw/game.json",
@@ -302,8 +297,8 @@
     },
     {
       "path": "mad-libs/index.html",
-      "bytes": 145942,
-      "sha256": "cd5ba55fe6eac60ad203405c8a30345196963d225fa4522436ddd107ff140330"
+      "bytes": 145896,
+      "sha256": "157181a9b7ecad50e89b623c38c33ae0c3a365f97f68d86098dc75eb6423403b"
     },
     {
       "path": "make-10/game.json",
@@ -317,8 +312,8 @@
     },
     {
       "path": "make-10/index.html",
-      "bytes": 63325,
-      "sha256": "57d007c8b4275b8337dc7b272c43ce994f829653d9f49049d2f1d80aa6e12680"
+      "bytes": 63279,
+      "sha256": "1fb9b9c5f4ad139fbf8ed4f6874824a23521b1ae3eca23d313d07f978b5d2352"
     },
     {
       "path": "math/game.json",
@@ -362,8 +357,8 @@
     },
     {
       "path": "memory/index.html",
-      "bytes": 110517,
-      "sha256": "49f5d1eafd1f61ffb98d06587db9bc6df089f9fa8c1c73ebcab6a25a36d335b8"
+      "bytes": 110280,
+      "sha256": "0468c26a75208b66344b7e0842fbc3a099e4056dc9d8950a83dd7807e00fa56c"
     },
     {
       "path": "minesweeper/game.json",
@@ -407,8 +402,8 @@
     },
     {
       "path": "monopoly/index.html",
-      "bytes": 128818,
-      "sha256": "63e0bd9315ad1bbe0a3bdc475646b9b52575b8d37c53e04f22619068e453b2be"
+      "bytes": 128772,
+      "sha256": "e26bea2f51da0a43a971c1b414de69912e7a1b745833a616af3a12a0606521f5"
     },
     {
       "path": "monster-dentist/game.json",
@@ -1322,8 +1317,8 @@
     },
     {
       "path": "shuffleboard/index.html",
-      "bytes": 65866,
-      "sha256": "a2a1e7ad1ad2704d54635e61f209f844d464436d7d5055376261faf938b54836"
+      "bytes": 65820,
+      "sha256": "888fed169d74783688505c6b215ae2eac365ce2ef1c63db47d5c52bee9692e10"
     },
     {
       "path": "silly-face-lab/game.json",
@@ -1377,8 +1372,8 @@
     },
     {
       "path": "solitaire/index.html",
-      "bytes": 31222,
-      "sha256": "334f8467d69670802ad741b1383d795534ed9f4f5dc1587ffa9d766e583a6f7c"
+      "bytes": 31195,
+      "sha256": "4de4da88eef42215da39a77fc0b52049774851b4edcda0f391036b7ba97ca8aa"
     },
     {
       "path": "sorry/game.json",
@@ -1392,8 +1387,8 @@
     },
     {
       "path": "sorry/index.html",
-      "bytes": 123779,
-      "sha256": "12282f642de1e37addec838aa47d3f09328b2f1eaf9f7c98671627d1880bfe24"
+      "bytes": 117826,
+      "sha256": "20cdf192cce93fc676e2e2a61dc29e4928690c3fa20732d8b5f9d8cca73493b5"
     },
     {
       "path": "spelling/game.json",
@@ -1417,8 +1412,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 11690,
-      "sha256": "7ad67ec05c734595052dbaca2d2c0a35acaa39e507471f50b1804411bbde6956"
+      "bytes": 11694,
+      "sha256": "d9ed38dbb086f52a684f8ad63f0a7ffa582f5cc0550481b4a9417ee10ab40cf5"
     },
     {
       "path": "tic-tac-toe/game.json",

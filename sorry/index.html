@@ -144,8 +144,8 @@ button:disabled{opacity:.35;transform:none;cursor:default}
 .player-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:8px}
 .player-row{height:44px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.055);display:grid;grid-template-columns:50px minmax(0,1fr) 63px;gap:5px;align-items:center;padding:5px 6px;min-width:0}
 .player-color{width:48px;height:30px;border-radius:9px;background:var(--row-color);border:2px solid rgba(255,255,255,.82);box-shadow:0 0 9px var(--row-color);color:#111;font-size:8px;font-weight:1000;text-shadow:0 1px rgba(255,255,255,.45)}
-.name-input{width:100%;height:30px;min-width:0;border-radius:8px;border:1px solid rgba(255,255,255,.19);background:rgba(0,0,0,.35);color:#fff;padding:0 7px;font-weight:900;font-size:12px;outline:none;caret-color:transparent;user-select:none;-webkit-user-select:none}
-.name-input.active-input{border-color:rgba(255,215,0,.9);box-shadow:0 0 0 2px rgba(255,215,0,.16)}
+.name-input{width:100%;height:30px;min-width:0;border-radius:8px;border:1px solid rgba(255,255,255,.19);background:rgba(0,0,0,.35);color:#fff;padding:0 7px;font-weight:900;font-size:12px;outline:none;caret-color:auto;user-select:text;-webkit-user-select:text}
+.name-input:focus{border-color:rgba(255,215,0,.9);box-shadow:0 0 0 2px rgba(255,215,0,.16)}
 .type-toggle{height:30px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.075);font-size:9px;font-weight:1000;padding:0 4px}.type-toggle.active{background:rgba(0,229,255,.17);border-color:rgba(0,229,255,.55);color:#c7fbff}
 .setup-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}
 .big-btn{height:44px;border-radius:13px;border:1px solid var(--border2);background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.07));font-weight:1000;font-size:13px;letter-spacing:.2px}
@@ -175,22 +175,6 @@ button:disabled{opacity:.35;transform:none;cursor:default}
 .confetti{position:fixed;inset:0;z-index:999;pointer-events:none;overflow:hidden}
 .confetti i{position:absolute;top:-8%;width:8px;height:16px;border-radius:2px;background:hsl(var(--h),90%,60%);animation:fall var(--d) linear forwards;transform:rotate(var(--r))}
 @keyframes fall{to{transform:translate(var(--x),112vh) rotate(780deg)}}
-#htmlKeyboard{position:fixed;left:max(5px,env(safe-area-inset-left,0px));right:max(5px,env(safe-area-inset-right,0px));bottom:max(5px,env(safe-area-inset-bottom,0px));z-index:4000;display:none;padding:5px;border:1px solid rgba(255,255,255,.23);border-radius:14px;background:rgba(12,14,22,.985);box-shadow:0 -10px 28px rgba(0,0,0,.58);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-height:42svh;overflow:hidden}
-#htmlKeyboard.open{display:block}
-.k-row{display:flex;gap:3px;margin:3px auto;max-width:760px;width:100%}
-.k-key{height:28px;min-width:0;flex:1 1 0;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.08));font-size:12px;font-weight:1000;padding:0 2px;white-space:nowrap;overflow:hidden}
-.k-key.name{font-size:10px;background:linear-gradient(180deg,rgba(0,229,255,.28),rgba(0,229,255,.11));border-color:rgba(0,229,255,.38)}
-.k-key.action{background:linear-gradient(180deg,rgba(255,215,0,.28),rgba(255,215,0,.11));border-color:rgba(255,215,0,.42)}
-.k-key.wide{flex:2 1 0}
-.k-display{height:28px;flex:1 1 auto;min-width:0;border-radius:9px;border:1px solid rgba(255,215,0,.45);background:rgba(0,0,0,.38);display:flex;align-items:center;padding:0 8px;color:#fff4b0;font-size:12px;font-weight:1000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.k-letters{display:none}
-#htmlKeyboard.expanded .k-letters{display:flex}
-body.keyboard-open #setupOverlay{align-items:flex-start;padding-top:max(4px,env(safe-area-inset-top,0px))}
-body.keyboard-open #setupOverlay .panel{max-height:calc(100svh - 155px);padding-top:6px}
-body.keyboard-open .panel-title{font-size:24px}
-body.keyboard-open .panel-sub{display:none}
-body.keyboard-open .setup-grid{margin-top:5px}
-body.keyboard-open .setup-actions{margin-top:5px}
 @media (max-width:420px){
   :root{--topbar-h:40px}
   #app{gap:4px;padding-left:4px;padding-right:4px}
@@ -290,10 +274,10 @@ body.keyboard-open .setup-actions{margin-top:5px}
       <div class="setup-box"><div class="setup-label">Endpoints</div><div class="choice-row" style="--count:2" id="endpointChoices"><button class="choice active" data-value="on" type="button">ON</button><button class="choice" data-value="off" type="button">OFF</button></div></div>
     </div>
     <div class="player-list" id="playerList">
-      <div class="player-row" data-player="0" style="--row-color:var(--red)"><button class="player-color" data-player="0" type="button" aria-label="Change player color">RED</button><input class="name-input" id="name0" value="Scarlett" maxlength="14" inputmode="none" readonly><button class="type-toggle" data-player="0" type="button">Human</button></div>
-      <div class="player-row" data-player="1" style="--row-color:var(--blue)"><button class="player-color" data-player="1" type="button" aria-label="Change player color">BLUE</button><input class="name-input" id="name1" value="Logan" maxlength="14" inputmode="none" readonly><button class="type-toggle" data-player="1" type="button">Human</button></div>
-      <div class="player-row hidden" data-player="2" style="--row-color:var(--yellow)"><button class="player-color" data-player="2" type="button" aria-label="Change player color">YELLOW</button><input class="name-input" id="name2" value="Mom" maxlength="14" inputmode="none" readonly><button class="type-toggle" data-player="2" type="button">Human</button></div>
-      <div class="player-row hidden" data-player="3" style="--row-color:var(--player-green)"><button class="player-color" data-player="3" type="button" aria-label="Change player color">GREEN</button><input class="name-input" id="name3" value="Dad" maxlength="14" inputmode="none" readonly><button class="type-toggle" data-player="3" type="button">Human</button></div>
+      <div class="player-row" data-player="0" style="--row-color:var(--red)"><button class="player-color" data-player="0" type="button" aria-label="Change player color">RED</button><input class="name-input" id="name0" value="Scarlett" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="0" type="button">Human</button></div>
+      <div class="player-row" data-player="1" style="--row-color:var(--blue)"><button class="player-color" data-player="1" type="button" aria-label="Change player color">BLUE</button><input class="name-input" id="name1" value="Logan" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="1" type="button">Human</button></div>
+      <div class="player-row hidden" data-player="2" style="--row-color:var(--yellow)"><button class="player-color" data-player="2" type="button" aria-label="Change player color">YELLOW</button><input class="name-input" id="name2" value="Mom" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="2" type="button">Human</button></div>
+      <div class="player-row hidden" data-player="3" style="--row-color:var(--player-green)"><button class="player-color" data-player="3" type="button" aria-label="Change player color">GREEN</button><input class="name-input" id="name3" value="Dad" maxlength="14" autocomplete="off" autocapitalize="words" enterkeyhint="done"><button class="type-toggle" data-player="3" type="button">Human</button></div>
     </div>
     <div class="setup-actions"><button class="big-btn primary" id="startBtn" type="button">START GAME</button><button class="big-btn load" id="setupLoadBtn" type="button">LOAD SAVED GAME</button><button class="big-btn back" id="setupBackBtn" type="button">BACK TO ARCADE</button></div>
   </div>
@@ -320,14 +304,6 @@ body.keyboard-open .setup-actions{margin-top:5px}
   <div class="panel"><div class="win-title">SORRY!</div><div class="win-name" id="winName"></div><button class="big-btn primary" id="playAgainBtn" type="button">PLAY AGAIN</button><button class="big-btn back" id="winArcadeBtn" type="button" style="width:100%;margin-top:7px">BACK TO ARCADE</button></div>
 </div>
 <div id="toast"></div>
-<div id="htmlKeyboard" aria-hidden="true">
-  <div class="k-row"><div class="k-display" id="keyboardDisplay"></div><button class="k-key action" data-k-action="done" type="button">Done</button></div>
-  <div class="k-row"><button class="k-key name" data-k-name="Scarlett" type="button">Scarlett</button><button class="k-key name" data-k-name="Logan" type="button">Logan</button><button class="k-key name" data-k-name="Mom" type="button">Mom</button><button class="k-key name" data-k-name="Dad" type="button">Dad</button></div>
-  <div class="k-row"><button class="k-key" data-k-action="letters" type="button">ABC</button><button class="k-key wide" data-k-action="space" type="button">Space</button><button class="k-key" data-k-action="back" type="button">⌫</button><button class="k-key action" data-k-action="clear" type="button">Clear</button></div>
-  <div class="k-row k-letters"><button class="k-key" data-k-char="Q" type="button">Q</button><button class="k-key" data-k-char="W" type="button">W</button><button class="k-key" data-k-char="E" type="button">E</button><button class="k-key" data-k-char="R" type="button">R</button><button class="k-key" data-k-char="T" type="button">T</button><button class="k-key" data-k-char="Y" type="button">Y</button><button class="k-key" data-k-char="U" type="button">U</button><button class="k-key" data-k-char="I" type="button">I</button><button class="k-key" data-k-char="O" type="button">O</button><button class="k-key" data-k-char="P" type="button">P</button></div>
-  <div class="k-row k-letters"><button class="k-key" data-k-char="A" type="button">A</button><button class="k-key" data-k-char="S" type="button">S</button><button class="k-key" data-k-char="D" type="button">D</button><button class="k-key" data-k-char="F" type="button">F</button><button class="k-key" data-k-char="G" type="button">G</button><button class="k-key" data-k-char="H" type="button">H</button><button class="k-key" data-k-char="J" type="button">J</button><button class="k-key" data-k-char="K" type="button">K</button><button class="k-key" data-k-char="L" type="button">L</button></div>
-  <div class="k-row k-letters"><button class="k-key" data-k-char="Z" type="button">Z</button><button class="k-key" data-k-char="X" type="button">X</button><button class="k-key" data-k-char="C" type="button">C</button><button class="k-key" data-k-char="V" type="button">V</button><button class="k-key" data-k-char="B" type="button">B</button><button class="k-key" data-k-char="N" type="button">N</button><button class="k-key" data-k-char="M" type="button">M</button></div>
-</div>
 <script src="../arcade-save.js"></script>
 <script>
 (function(){
@@ -379,7 +355,7 @@ const RULE_PAGES=[
 ];
 const $=function(id){return document.getElementById(id);};
 const el={
-  board:$("board"),trackLayer:$("trackLayer"),pathLayer:$("pathLayer"),safetyLayer:$("safetyLayer"),zoneLayer:$("zoneLayer"),endpointLayer:$("endpointLayer"),pawnLayer:$("pawnLayer"),powerCenter:$("powerCenter"),boardCard:$("boardCard"),boardCardValue:$("boardCardValue"),boardCardText:$("boardCardText"),turnDot:$("turnDot"),turnName:$("turnName"),turnSub:$("turnSub"),cardDisplay:$("cardDisplay"),cardValue:$("cardValue"),cardMini:$("cardMini"),message:$("message"),choices:$("choices"),setupOverlay:$("setupOverlay"),menuOverlay:$("menuOverlay"),rulesOverlay:$("rulesOverlay"),rulesPage:$("rulesPage"),rulesCount:$("rulesCount"),rulesPrevBtn:$("rulesPrevBtn"),rulesNextBtn:$("rulesNextBtn"),winOverlay:$("winOverlay"),winName:$("winName"),toast:$("toast"),keyboard:$("htmlKeyboard"),keyboardDisplay:$("keyboardDisplay")
+  board:$("board"),trackLayer:$("trackLayer"),pathLayer:$("pathLayer"),safetyLayer:$("safetyLayer"),zoneLayer:$("zoneLayer"),endpointLayer:$("endpointLayer"),pawnLayer:$("pawnLayer"),powerCenter:$("powerCenter"),boardCard:$("boardCard"),boardCardValue:$("boardCardValue"),boardCardText:$("boardCardText"),turnDot:$("turnDot"),turnName:$("turnName"),turnSub:$("turnSub"),cardDisplay:$("cardDisplay"),cardValue:$("cardValue"),cardMini:$("cardMini"),message:$("message"),choices:$("choices"),setupOverlay:$("setupOverlay"),menuOverlay:$("menuOverlay"),rulesOverlay:$("rulesOverlay"),rulesPage:$("rulesPage"),rulesCount:$("rulesCount"),rulesPrevBtn:$("rulesPrevBtn"),rulesNextBtn:$("rulesNextBtn"),winOverlay:$("winOverlay"),winName:$("winName"),toast:$("toast")
 };
 let state=null;
 let heldSave=null;
@@ -393,7 +369,6 @@ let selectedMode=null;
 let ruleIndex=0;
 let toastTimer=0;
 let cpuTimer=0;
-let activeInput=null;
 let audioCtx=null;
 let animationTimer=0;
 let lastBoardCard=null;
@@ -507,6 +482,10 @@ function shuffle(array){
   for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}
   return a;
 }
+function blurActiveInput(){
+  const active=document.activeElement;
+  if(active&&/^(INPUT|TEXTAREA)$/.test(active.tagName)&&typeof active.blur==="function")active.blur();
+}
 function createGame(){
   holdCurrentSave();
   clearTimeout(animationTimer);clearTimeout(cpuTimer);
@@ -526,7 +505,7 @@ function createGame(){
   state={version:VERSION,started:true,mode:setup.mode,skill:setup.skill,showEndpoints:setup.showEndpoints,players:players,pawns:pawns,turn:0,deck:deck,discard:[],hands:hands,firePawnId:null,icePawnId:null,currentCard:null,phase:"preFire",selectedCardIndex:null,flow:{},winner:null,moveNo:0,savedAt:Date.now()};
   undoStack=[];autoPlayerId=null;
   selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;
-  hideKeyboard();
+  blurActiveInput();
   el.setupOverlay.classList.add("hidden");
   el.menuOverlay.classList.add("hidden");
   el.winOverlay.classList.add("hidden");
@@ -1621,7 +1600,7 @@ function applyLoadedGame(saved,show){
   if(typeof state.pendingFirePull!=="boolean")state.pendingFirePull=false;
   if(!state.flow||typeof state.flow!=="object")state.flow={};
   selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
-  el.setupOverlay.classList.add("hidden");el.menuOverlay.classList.add("hidden");el.rulesOverlay.classList.add("hidden");el.winOverlay.classList.add("hidden");hideKeyboard();
+  el.setupOverlay.classList.add("hidden");el.menuOverlay.classList.add("hidden");el.rulesOverlay.classList.add("hidden");el.winOverlay.classList.add("hidden");blurActiveInput();
   render();if(show)showToast("Saved game loaded.");
   if(state.phase==="noMove")animationTimer=setTimeout(function(){if(state&&state.phase==="noMove")finishCard();},500);
   else if(state.phase==="resolving")animationTimer=setTimeout(completeResolvedAction,300);
@@ -1644,7 +1623,7 @@ function freshSetup(){
   clearTimeout(cpuTimer);clearTimeout(animationTimer);
   heldSave=null;state=null;undoStack=[];autoPlayerId=null;selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;lastBoardCard=null;
   try{localStorage.removeItem(SAVE_KEY);}catch(e){}
-  hideKeyboard();el.menuOverlay.classList.add("hidden");el.rulesOverlay.classList.add("hidden");el.winOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");
+  blurActiveInput();el.menuOverlay.classList.add("hidden");el.rulesOverlay.classList.add("hidden");el.winOverlay.classList.add("hidden");el.setupOverlay.classList.remove("hidden");
   render();
 }
 function registerArcadeSave(){
@@ -1686,16 +1665,6 @@ function cyclePlayerColor(playerIndex){
   const oldColor=setup.colors[playerIndex];const nextColor=(oldColor+1)%COLORS.length;const owner=setup.colors.indexOf(nextColor);
   setup.colors[playerIndex]=nextColor;if(owner>=0&&owner!==playerIndex)setup.colors[owner]=oldColor;updateSetupColors();
 }
-function openKeyboard(input){
-  activeInput=input;Array.from(document.querySelectorAll(".name-input")).forEach(function(x){x.classList.toggle("active-input",x===input);});el.keyboardDisplay.textContent=input.value||" ";el.keyboard.classList.add("open");el.keyboard.classList.remove("expanded");el.keyboard.setAttribute("aria-hidden","false");document.body.classList.add("keyboard-open");
-}
-function hideKeyboard(){if(activeInput)activeInput.classList.remove("active-input");activeInput=null;el.keyboard.classList.remove("open","expanded");el.keyboard.setAttribute("aria-hidden","true");document.body.classList.remove("keyboard-open");}
-function keyboardInput(value,replace){
-  if(!activeInput)return;
-  if(replace)activeInput.value=value.slice(0,14);else activeInput.value=(activeInput.value+value).slice(0,14);
-  el.keyboardDisplay.textContent=activeInput.value||" ";
-  activeInput.dispatchEvent(new Event("input",{bubbles:true}));
-}
 function bind(){
   $("playerCountChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.count=Number(b.dataset.value);selectChoice(this,setup.count);updateSetupRows();});
   $("modeChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.mode=b.dataset.value;selectChoice(this,setup.mode);});
@@ -1703,8 +1672,6 @@ function bind(){
   $("endpointChoices").addEventListener("click",function(e){const b=e.target.closest(".choice");if(!b)return;setup.showEndpoints=b.dataset.value==="on";selectChoice(this,b.dataset.value);});
   Array.from(document.querySelectorAll(".player-color")).forEach(function(b){b.addEventListener("click",function(){cyclePlayerColor(Number(this.dataset.player));});});
   Array.from(document.querySelectorAll(".type-toggle")).forEach(function(b){b.addEventListener("click",function(){const i=Number(this.dataset.player);setup.cpu[i]=!setup.cpu[i];this.textContent=setup.cpu[i]?"CPU":"Human";this.classList.toggle("active",setup.cpu[i]);});});
-  Array.from(document.querySelectorAll(".name-input")).forEach(function(input){input.addEventListener("click",function(){openKeyboard(this);});input.addEventListener("pointerdown",function(e){e.preventDefault();openKeyboard(this);});});
-  el.keyboard.addEventListener("click",function(e){const b=e.target.closest("button");if(!b)return;const name=b.dataset.kName;const char=b.dataset.kChar;const action=b.dataset.kAction;if(name)keyboardInput(name,true);else if(char)keyboardInput(char,false);else if(action==="space")keyboardInput(" ",false);else if(action==="back"&&activeInput){activeInput.value=activeInput.value.slice(0,-1);el.keyboardDisplay.textContent=activeInput.value||" ";}else if(action==="clear")keyboardInput("",true);else if(action==="letters")el.keyboard.classList.toggle("expanded");else if(action==="done")hideKeyboard();});
   $("startBtn").addEventListener("click",createGame);
   el.boardCard.addEventListener("click",function(){if(state&&state.phase==="draw"&&!currentPlayer().cpu)drawCard();});
   el.cardDisplay.addEventListener("click",function(){if(state&&state.phase==="draw"&&!currentPlayer().cpu)drawCard();});

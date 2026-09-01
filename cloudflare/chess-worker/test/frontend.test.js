@@ -156,6 +156,57 @@ test("online creation enters the shared board and exposes room/reconnect state",
   dom.window.close();
 });
 
+test("online join uses a roomy native field and preserves typed character order", async () => {
+  const calls = [];
+  const fetchImpl = async (url, options = {}) => {
+    calls.push({ url: String(url), options });
+    if (String(url).endsWith("/api/chess/rooms/ABC234/join")) {
+      return { ok: true, status: 200, async json() { return { ok: true, token: "b".repeat(43), side: "b", room: room("b") }; } };
+    }
+    throw new Error("unexpected fetch " + url);
+  };
+  const { dom, errors } = await loadChess(fetchImpl);
+  try {
+    const { document, Event } = dom.window;
+
+    assert.equal(document.querySelector(".startCard.online input"), null);
+    document.querySelector("#onlineJoinOpenBtn").click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 20));
+    assert.equal(document.querySelector("#joinPane").hidden, false);
+    const input = document.querySelector("#onlineJoinCode");
+    assert.equal(document.activeElement, input);
+    assert.equal(input.readOnly, false);
+    assert.equal(input.inputMode, "text");
+
+    for (const character of "ABCDE") {
+      input.value += character;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+    assert.equal(input.value, "ABCDE");
+    document.querySelector("#onlineJoinForm").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    assert.equal(calls.length, 0);
+    assert.match(document.querySelector("#onlineJoinStatus").textContent, /valid six-character/i);
+
+    document.querySelector("#onlineJoinBack").click();
+    assert.equal(document.querySelector("#joinPane").hidden, true);
+    assert.equal(document.querySelector("#startPane").hidden, false);
+    document.querySelector("#onlineJoinOpenBtn").click();
+    input.value = "abc234";
+    document.querySelector("#onlineJoinForm").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 30));
+
+    assert.equal(calls.length, 1);
+    assert.match(calls[0].url, /\/api\/chess\/rooms\/ABC234\/join$/);
+    assert.deepEqual(JSON.parse(calls[0].options.body), {});
+    assert.equal(input.value, "ABC234");
+    assert.match(document.querySelector("#modeText").textContent, /ONLINE ABC234/);
+    assert.notEqual(document.activeElement, input);
+    assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
+  } finally {
+    dom.window.close();
+  }
+});
+
 test("out-of-order online snapshots cannot roll the board back", async () => {
   const initial = room("w");
   const fetchImpl = async (url) => {

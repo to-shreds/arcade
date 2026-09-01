@@ -3,30 +3,6 @@
 
   if(window.ArcadeSave) return;
 
-  // Every arcade page loads this save layer. Use it as the single safe place
-  // to install the kid-safe on-screen keyboard for ordinary text fields.
-  // Pages can opt out per field with data-arcade-keyboard="off".
-  (function installSafeKeyboard(){
-    if(window.ArcadeKeyboard) return;
-    var selector = 'textarea,input:not([type]),input[type="text"],input[type="search"],input[type="email"],input[type="url"]';
-    var fields = document.querySelectorAll(selector);
-    if(!fields.length) return;
-    // Lock fields immediately, before the keyboard component finishes loading,
-    // so even a very fast tap cannot summon the system keyboard.
-    Array.prototype.forEach.call(fields, function(field){
-      if(field.dataset && field.dataset.arcadeKeyboard === 'off') return;
-      field.readOnly = true;
-      field.inputMode = 'none';
-      try { field.setAttribute('autocomplete', 'off'); } catch(_) {}
-    });
-    var ownScript = document.currentScript;
-    var src = ownScript && ownScript.src ? ownScript.src.replace(/arcade-save\.js(?:\?.*)?$/i, 'arcade-keyboard.js') : '../arcade-keyboard.js';
-    var script = document.createElement('script');
-    script.src = src;
-    script.async = false;
-    document.head.appendChild(script);
-  })();
-
   var DB_NAME = 'arcade-autosaves';
   var DB_VERSION = 1;
   var STORE_NAME = 'saves';

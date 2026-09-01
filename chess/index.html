@@ -564,13 +564,33 @@
   .startCard.online{grid-column:1/-1;background:linear-gradient(135deg,rgba(0,229,255,.11),rgba(125,92,255,.08))}
   .startCard h2{margin:0;color:#fff;font-size:1.05rem}.startCard p{margin:0;color:rgba(255,255,255,.72);font-size:12px;line-height:1.35}
   .startCard .ui-btn{width:100%;padding:12px}.startCard .primary{background:rgba(0,229,255,.2);border-color:rgba(0,229,255,.58)}
-  .onlineJoin{display:flex;gap:8px}.onlineJoin input{min-width:0;flex:1;text-transform:uppercase;letter-spacing:3px;text-align:center;font-weight:1000;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.3);color:white;padding:10px;font-size:16px}
+  .onlineActions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .joinIntro{margin:4px 0 14px;color:rgba(255,255,255,.76);font-size:13px;line-height:1.45}
+  .joinCodeForm{display:flex;flex-direction:column;gap:10px}
+  .joinCodeLabel{font-size:12px;font-weight:900;color:rgba(255,255,255,.82)}
+  #onlineJoinCode{display:block;width:100%!important;min-width:0!important;min-height:62px!important;padding:10px 14px!important;border-radius:15px;border:2px solid rgba(0,229,255,.52);background:rgba(0,0,0,.42);color:#fff;text-transform:uppercase;text-align:center;font:1000 clamp(25px,7vw,34px)/1 system-ui,-apple-system,"Segoe UI",sans-serif!important;letter-spacing:.22em;caret-color:#fff;user-select:text;-webkit-user-select:text;outline:none}
+  #onlineJoinCode:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,215,0,.16),0 0 22px rgba(0,229,255,.16)}
+  #onlineJoinCode::placeholder{font-size:14px;letter-spacing:.08em;color:rgba(255,255,255,.4)}
+  .joinCodeActions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.joinCodeActions .ui-btn{width:100%;padding:12px}
   .onlineBar{display:none;margin-top:10px;padding:10px 12px;border-radius:14px;border:1px solid rgba(0,229,255,.3);background:rgba(0,229,255,.08);gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
   .onlineBar.show{display:flex}.roomCode{font-weight:1000;letter-spacing:2px;color:var(--gold)}
   .requestBox{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-  #prefsPane[hidden],#startPane[hidden]{display:none}
+  #prefsPane[hidden],#startPane[hidden],#joinPane[hidden]{display:none}
   .settingPreview{display:flex;gap:8px;align-items:center}.previewPiece{font-size:28px;line-height:1}.previewPiece.turned{transform:rotate(180deg)}
-  @media(max-width:560px){.startChoices{grid-template-columns:1fr}.startCard.online{grid-column:auto}.onlineJoin{flex-wrap:wrap}.onlineJoin .ui-btn{flex:1}.modalPanel{padding:12px}}
+  @media(max-width:560px){.startChoices{grid-template-columns:1fr}.startCard.online{grid-column:auto}.modalPanel{padding:12px}}
+  @media(max-width:360px){.onlineActions,.joinCodeActions{grid-template-columns:1fr}}
+  @media(max-height:560px){
+    #setupModal .modalPanel{max-height:calc(100svh - 14px)!important;overflow:auto!important;padding:8px!important}
+    #setupModal .modalHead{margin-bottom:5px}
+    #setupModal .startChoices{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:4px 0 6px}
+    #setupModal .startCard{padding:8px;gap:6px;border-radius:12px}
+    #setupModal .startCard.online{grid-column:1/-1}
+    #setupModal .startCard p{display:none}
+    #setupModal .startCard h2{font-size:.9rem}
+    #setupModal .startCard .ui-btn{padding:7px 8px}
+    #setupModal .onlineActions{grid-template-columns:repeat(2,minmax(0,1fr))}
+    #setupModal .seg button{padding:5px 7px}
+  }
 
         .splash-title{ color:#ffd700 !important; text-shadow:0 0 16px rgba(255,215,0,0.25) !important; }
         [id$="-menu"].overlay, #menuOverlay, #startOverlay, #cat-menu, #g-balloons .b-start-overlay{ background: rgba(0,0,0,0.95) !important; }
@@ -925,11 +945,21 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
           </section>
           <section class="startCard online">
             <h2>Player vs. Player Online</h2><p>Create a room and share its six-character code, or enter a code from another player.</p>
-            <div class="onlineJoin"><button id="onlineCreateBtn" class="ui-btn primary">Create Room</button><input id="onlineJoinCode" maxlength="6" autocomplete="off" spellcheck="false" aria-label="Room code" placeholder="ROOM CODE"><button id="onlineJoinBtn" class="ui-btn">Join</button></div>
+            <div class="onlineActions"><button id="onlineCreateBtn" class="ui-btn primary">Create Room</button><button id="onlineJoinOpenBtn" class="ui-btn">Join Room</button></div>
             <div id="onlineSetupStatus" class="tiny" aria-live="polite"></div>
           </section>
         </div>
         <div class="row spread"><button id="prefsOpen" class="ui-btn ghost">⚙︎ Settings</button><button id="setupLoadBtn" class="ui-btn ghost">Load Saved Game</button></div>
+      </div>
+
+      <div id="joinPane" hidden>
+        <p class="joinIntro">Enter the six-character code shown on the other player's screen.</p>
+        <form id="onlineJoinForm" class="joinCodeForm" novalidate>
+          <label class="joinCodeLabel" for="onlineJoinCode">Room code</label>
+          <input id="onlineJoinCode" type="text" maxlength="6" inputmode="text" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="go" pattern="[A-HJ-NP-Za-hj-np-z2-9]{6}" aria-describedby="onlineJoinStatus" placeholder="ABC234">
+          <div class="joinCodeActions"><button id="onlineJoinBack" class="ui-btn ghost" type="button">Back</button><button id="onlineJoinBtn" class="ui-btn primary" type="submit">Join Room</button></div>
+          <div id="onlineJoinStatus" class="tiny" aria-live="polite"></div>
+        </form>
       </div>
 
       <div id="prefsPane" hidden>
@@ -3268,9 +3298,16 @@ clearSelection();
   }
 
   async function joinOnlineRoom(){
-    const code = $("#onlineJoinCode").value.trim().toUpperCase();
-    const status = $("#onlineSetupStatus");
-    if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)){ status.textContent = "Enter the six-character room code."; return; }
+    const input = $("#onlineJoinCode");
+    const code = input.value.trim().replace(/\s+/g, "").toUpperCase();
+    const status = $("#onlineJoinStatus");
+    input.value = code;
+    if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)){
+      status.textContent = "Enter a valid six-character room code.";
+      input.focus();
+      input.select();
+      return;
+    }
     status.textContent = "Joining room…";
     let reconnectToken = null;
     try{
@@ -3415,12 +3452,24 @@ clearSelection();
   const opponentFacingCheck = $("#opponentFacingCheck");
   const startPane = $("#startPane");
   const prefsPane = $("#prefsPane");
+  const joinPane = $("#joinPane");
 
   function showSetupPane(view){
     const prefs = view === "prefs";
-    startPane.hidden = prefs;
+    const join = view === "join";
+    startPane.hidden = prefs || join;
     prefsPane.hidden = !prefs;
-    $("#setupTitle").textContent = prefs ? "Chess Settings" : "Choose a Chess Game";
+    joinPane.hidden = !join;
+    $("#setupTitle").textContent = prefs ? "Chess Settings" : join ? "Join an Online Game" : "Choose a Chess Game";
+    if(join){
+      $("#onlineJoinStatus").textContent = "";
+      requestAnimationFrame(()=>{
+        if(joinPane.hidden || !setupModal.classList.contains("show")) return;
+        const input = $("#onlineJoinCode");
+        input.focus();
+        input.select();
+      });
+    }
   }
   function openSetup(view){
     cancelCpuWork();
@@ -3431,6 +3480,8 @@ clearSelection();
   }
   function closeSetup(){
     const beginsGame = !gameStarted;
+    const active = document.activeElement;
+    if(active && setupModal.contains(active) && /^(INPUT|TEXTAREA)$/.test(active.tagName)) active.blur();
     setupModal.classList.remove("show");
     setupModal.setAttribute("aria-hidden","true");
     if(beginsGame) gameStarted = true;
@@ -3440,6 +3491,12 @@ clearSelection();
   $("#settingsBtn").addEventListener("click", ()=>openSetup("prefs"));
   $("#prefsOpen").addEventListener("click", ()=>showSetupPane("prefs"));
   $("#prefsBack").addEventListener("click", ()=>showSetupPane("start"));
+  $("#onlineJoinOpenBtn").addEventListener("click", ()=>showSetupPane("join"));
+  $("#onlineJoinBack").addEventListener("click", ()=>{
+    $("#onlineJoinCode").blur();
+    showSetupPane("start");
+    $("#onlineJoinOpenBtn").focus();
+  });
 
   function openMoves(){
     movesModal.classList.add("show");
@@ -3515,9 +3572,10 @@ clearSelection();
   autoFlipCheck.addEventListener("change", ()=>{ settings.autoFlip = autoFlipCheck.checked; saveSettings(); });
   opponentFacingCheck.addEventListener("change", ()=>{ settings.opponentFacing = opponentFacingCheck.checked; saveSettings(); updateUI(false); });
   $("#onlineCreateBtn").addEventListener("click", createOnlineRoom);
-  $("#onlineJoinBtn").addEventListener("click", joinOnlineRoom);
-  $("#onlineJoinCode").addEventListener("input",e=>{ e.target.value = e.target.value.toUpperCase().replace(/[^ABCDEFGHJKLMNPQRSTUVWXYZ23456789]/g,"").slice(0,6); });
-  $("#onlineJoinCode").addEventListener("keydown",e=>{ if(e.key === "Enter") joinOnlineRoom(); });
+  $("#onlineJoinForm").addEventListener("submit", e=>{
+    e.preventDefault();
+    joinOnlineRoom();
+  });
 
   $("#resetBtn").addEventListener("click", ()=>{
     if(settings.mode === "online"){ toast("Start a new room for a new online game."); showSetupPane("start"); return; }

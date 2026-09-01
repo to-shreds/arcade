@@ -12,7 +12,6 @@ const rootRuntimeFiles = [
   'catalog.json',
   'arcade-ui.css',
   'arcade-save.js',
-  'arcade-keyboard.js',
   'arcade.png',
   'sw.js'
 ];

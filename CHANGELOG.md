@@ -2,6 +2,14 @@
 
 ## 2.3.0 - 2026-08-31
 
+### Web update - 2026-09-01
+
+- Restored the normal Windows and Android system keyboard for text entry across
+  the Arcade, removing the shared and Sorry-specific HTML keyboards.
+- Reworked online Chess joining into a dedicated, responsive room-code pane
+  with a large native input and submit-time validation that preserves IME input
+  order.
+
 - Made the Android wrapper GitHub Pages first, with a complete staged,
   hash-validated, atomic last-known-good offline archive and fast failure
   fallback.
