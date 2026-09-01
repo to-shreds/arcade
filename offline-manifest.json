@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "version": "2.4.0+20260901.2",
-  "generatedAt": "2026-09-01T18:21:19.906Z",
+  "generatedAt": "2026-09-01T18:28:00.533Z",
   "fileCount": 331,
   "totalBytes": 17405720,
   "files": [
@@ -1558,7 +1558,7 @@
     {
       "path": "sw.js",
       "bytes": 27785,
-      "sha256": "4e12d2512064db3d58ab2aa619ab565610f5e160ed0e940f44c0fb115b165285"
+      "sha256": "9829fc15cfb3c4d002e5a28aaed0d5b01c2f4db1e053e828e227dd180d33bec6"
     },
     {
       "path": "tic-tac-toe/game.json",

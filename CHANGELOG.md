@@ -40,6 +40,9 @@
   silent. Arcade Settings provides a persistent sound toggle and explicit,
   background-only Windows/desktop notification opt-in. Direct game links use
   the same shared alert service.
+- Advanced the PWA service-worker release so already-prepared browsers
+  automatically stage the new hash-verified offline snapshot on their next
+  update check while keeping the previous snapshot safe until validation.
 - Added session-level reactions with rate limiting, Arcade Stars, friendly room
   names and mascots, joining feedback, multiplayer game invitations, and
   Surprise Me selection without creating accounts or public matchmaking.
