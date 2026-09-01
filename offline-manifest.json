@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.3.0+20260901.2",
-  "generatedAt": "2026-09-01T05:08:58.117Z",
+  "version": "2.3.0+20260901.3",
+  "generatedAt": "2026-09-01T05:15:51.180Z",
   "fileCount": 297,
-  "totalBytes": 16241174,
+  "totalBytes": 16241228,
   "files": [
     {
       "path": "arcade-save.js",
@@ -147,8 +147,8 @@
     },
     {
       "path": "chess/index.html",
-      "bytes": 144707,
-      "sha256": "b9d7aaed955de04e01b767ae4ffff7405cf2054a5ca45f1ab2386321669b1c98"
+      "bytes": 144758,
+      "sha256": "52c7510b7e3d6d69f74e664cf2d4c97ede347170371974f1af6fdbda95991fe0"
     },
     {
       "path": "codebreaking/game.json",
@@ -1392,8 +1392,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 11695,
-      "sha256": "c39cea02eef40e7860a1c8ab606b2b49e58bf0f909894e89b982250f20d7397f"
+      "bytes": 11698,
+      "sha256": "d3294acbf8e2d2d1c030f2e1de6336708e02f8520b804146e9a21a7b62499f18"
     },
     {
       "path": "tic-tac-toe/game.json",
