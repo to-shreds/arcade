@@ -12,6 +12,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
@@ -23,6 +25,8 @@ import android.webkit.ConsoleMessage;
 import android.webkit.JavascriptInterface;
 import android.webkit.PermissionRequest;
 import android.webkit.RenderProcessGoneDetail;
+import android.webkit.ServiceWorkerClient;
+import android.webkit.ServiceWorkerController;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -43,11 +47,16 @@ import org.json.JSONException;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Locale;
+import java.lang.ref.WeakReference;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class MainActivity extends BaseActivity {
@@ -76,7 +85,17 @@ public final class MainActivity extends BaseActivity {
     private volatile TextToSpeech textToSpeech;
     private volatile boolean ttsReady;
     private volatile boolean remoteMode = true;
+    private volatile boolean forceOffline;
+    private volatile boolean archiveSyncInProgress;
     private final AtomicBoolean remoteRecoveryScheduled = new AtomicBoolean();
+    private final ExecutorService archiveExecutor = Executors.newSingleThreadExecutor();
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
+    private OfflineArchiveManager offlineArchive;
+    private int startupGeneration;
+    private int webGeneration;
+    private int watchdogTicket;
+    private Runnable startupWatchdog;
+    private boolean webReady;
     private String pendingSpeech;
     private float pendingSpeechRate = 1f;
     private float pendingSpeechPitch = 1f;
@@ -89,6 +108,12 @@ public final class MainActivity extends BaseActivity {
         setContentView(root);
         initializeSpeech();
         storage = ArcadeStorage.fromPreferences(this);
+        try {
+            offlineArchive = new OfflineArchiveManager(getApplicationContext());
+        } catch (RuntimeException error) {
+            Log.e("Arcade", "Offline archive could not initialize", error);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ServiceWorkerApi24.install(this);
         if (getIntent().getBooleanExtra("changeFolder", false)) {
             chooseFolder();
         } else {
@@ -98,11 +123,89 @@ public final class MainActivity extends BaseActivity {
 
     private void startOnlineArcade(Intent intent) {
         remoteMode = true;
+        forceOffline = false;
+        final int generation = ++startupGeneration;
+        final Intent requestedIntent = new Intent(intent);
+        showStartingScreen();
+        OfflineArchiveManager manager = offlineArchive;
+        if (manager == null) {
+            beginRemoteWeb(generation, requestedIntent, false);
+            return;
+        }
+        try {
+            archiveExecutor.execute(() -> {
+                boolean hasArchive = manager.validateReadyArchive();
+                OfflineArchiveManager.ArchiveManifest remoteManifest = null;
+                try {
+                    remoteManifest = manager.fetchRemoteManifest();
+                } catch (IOException | RuntimeException error) {
+                    Log.w("Arcade", "Remote Arcade manifest is unavailable", error);
+                }
+                OfflineArchiveManager.ArchiveManifest validatedManifest = remoteManifest;
+                if (validatedManifest != null) {
+                    archiveSyncInProgress = true;
+                    mainHandler.post(() -> beginRemoteWeb(generation, requestedIntent, false));
+                    boolean synchronizationFailed = false;
+                    try {
+                        manager.synchronize(validatedManifest);
+                    } catch (IOException | RuntimeException error) {
+                        synchronizationFailed = true;
+                        Log.w("Arcade", "Offline Arcade update was not activated", error);
+                    } finally {
+                        archiveSyncInProgress = false;
+                    }
+                    if (synchronizationFailed && hasArchive) {
+                        mainHandler.post(() -> {
+                            if (!remoteGenerationCurrent(generation) || forceOffline || !manager.isReady()) return;
+                            fallbackAfterRemoteFailure(activeClient, webView);
+                        });
+                    }
+                } else {
+                    boolean fallbackReady = hasArchive && manager.isReady();
+                    mainHandler.post(() -> {
+                        if (!remoteGenerationCurrent(generation)) return;
+                        if (fallbackReady) beginRemoteWeb(generation, requestedIntent, true);
+                        else showRemoteRecoveryScreen("The hosted Arcade could not be reached and no validated offline copy is ready yet.");
+                    });
+                }
+            });
+        } catch (RejectedExecutionException error) {
+            if (!destroyed) showRemoteRecoveryScreen("The Arcade startup service is unavailable.");
+        }
+    }
+
+    private void showStartingScreen() {
+        destroyWebView();
+        root.removeAllViews();
+        LinearLayout panel = new LinearLayout(this);
+        panel.setOrientation(LinearLayout.VERTICAL);
+        panel.setGravity(Gravity.CENTER);
+        panel.setPadding(Ui.dp(this, 28), Ui.dp(this, 24), Ui.dp(this, 28), Ui.dp(this, 24));
+        panel.setBackgroundColor(Ui.BG);
+        TextView title = Ui.text(this, "Arcade", 38, Ui.GOLD, true);
+        title.setGravity(Gravity.CENTER);
+        TextView copy = Ui.text(this, "Opening your games…", 17, Ui.MUTED, false);
+        copy.setGravity(Gravity.CENTER);
+        copy.setPadding(0, Ui.dp(this, 12), 0, Ui.dp(this, 18));
+        panel.addView(title);
+        panel.addView(copy, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        panel.addView(new ProgressBar(this), new LinearLayout.LayoutParams(Ui.dp(this, 46), Ui.dp(this, 46)));
+        root.addView(panel, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    }
+
+    private void beginRemoteWeb(int generation, Intent intent, boolean offline) {
+        if (!remoteGenerationCurrent(generation)) return;
+        forceOffline = offline;
+        destroyWebView();
         if (!showWebView()) {
-            showRemoteRecoveryScreen("The online Arcade viewer could not start.");
+            showRemoteRecoveryScreen("The Arcade viewer could not start.");
             return;
         }
         openIntentPath(intent);
+    }
+
+    private boolean remoteGenerationCurrent(int generation) {
+        return !destroyed && !isFinishing() && remoteMode && generation == startupGeneration;
     }
 
     private void initializeSpeech() {
@@ -134,6 +237,8 @@ public final class MainActivity extends BaseActivity {
 
     private void startRememberedFolder(Intent intent) {
         remoteMode = false;
+        forceOffline = false;
+        startupGeneration++;
         if (storage == null) {
             ArcadeStorage.clearRememberedTree(this);
             showFolderScreen(null);
@@ -257,7 +362,7 @@ public final class MainActivity extends BaseActivity {
         panel.setBackgroundColor(Ui.BG);
         TextView title = Ui.text(this, "Arcade", 38, Ui.GOLD, true);
         title.setGravity(Gravity.CENTER);
-        TextView copy = Ui.text(this, warning + "\nTry again when connected, or use a local Arcade folder. Previously opened online games remain available when Android's web cache is intact.", 17, Ui.MUTED, false);
+        TextView copy = Ui.text(this, warning + "\nTry again when connected, or use a selected local Arcade folder. A failed download never replaces the last validated offline copy.", 17, Ui.MUTED, false);
         copy.setGravity(Gravity.CENTER);
         copy.setPadding(0, Ui.dp(this, 12), 0, Ui.dp(this, 22));
         LinearLayout actions = Ui.row(this);
@@ -364,6 +469,8 @@ public final class MainActivity extends BaseActivity {
             destroyWebView();
             storage = candidate;
             remoteMode = false;
+            forceOffline = false;
+            startupGeneration++;
             invalidateCatalog(false);
             if (!showWebView()) {
                 showViewerRecoveryScreen("The folder is valid, but the Arcade viewer could not start.");
@@ -424,15 +531,17 @@ public final class MainActivity extends BaseActivity {
             settings.setDisplayZoomControls(false);
             settings.setUseWideViewPort(true);
             settings.setLoadWithOverviewMode(false);
-            settings.setUserAgentString(settings.getUserAgentString() + " ArcadePlatform/2.2.0");
+            settings.setUserAgentString(settings.getUserAgentString() + " ArcadePlatform/2.3.0");
             WebView.setWebContentsDebuggingEnabled(false);
-            created.addJavascriptInterface(new ArcadeBridge(), "ArcadeNative");
+            int boundGeneration = remoteMode ? startupGeneration : 0;
+            boolean boundOffline = remoteMode && forceOffline;
+            created.addJavascriptInterface(new ArcadeBridge(boundGeneration), "ArcadeNative");
             WebView boundView = created;
             ArcadeStorage boundStorage = storage;
             boolean boundRemote = remoteMode;
             LocalClient client = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
-                ? new LocalClientApi26(boundView, boundStorage, boundRemote)
-                : new LocalClient(boundView, boundStorage, boundRemote);
+                ? new LocalClientApi26(boundView, boundStorage, boundRemote, boundOffline, boundGeneration)
+                : new LocalClient(boundView, boundStorage, boundRemote, boundOffline, boundGeneration);
             created.setWebViewClient(client);
             created.setWebChromeClient(new ArcadeChrome());
             ProgressBar spinner = new ProgressBar(this);
@@ -442,6 +551,8 @@ public final class MainActivity extends BaseActivity {
             webView = created;
             activeClient = client;
             progress = spinner;
+            webGeneration = boundGeneration;
+            webReady = false;
             loaded = true;
             return true;
         } catch (RuntimeException | LinkageError error) {
@@ -465,6 +576,8 @@ public final class MainActivity extends BaseActivity {
         ProgressBar oldProgress = progress;
         webView = null;
         progress = null;
+        webGeneration = 0;
+        webReady = false;
         loaded = false;
         if (pendingFileChooser != null) {
             try { pendingFileChooser.onReceiveValue(null); } catch (Exception ignored) {}
@@ -489,8 +602,37 @@ public final class MainActivity extends BaseActivity {
         if (webView == null) return;
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         if (progress != null) progress.setVisibility(View.VISIBLE);
-        if (remoteMode) webView.loadUrl(REMOTE_BASE);
+        if (remoteMode) {
+            webReady = false;
+            scheduleStartupWatchdog(webGeneration);
+            webView.loadUrl(REMOTE_BASE);
+        }
         else webView.loadUrl(BASE + "index.html?t=" + System.currentTimeMillis());
+    }
+
+    private void scheduleStartupWatchdog(int generation) {
+        if (generation <= 0) return;
+        final int ticket = ++watchdogTicket;
+        Runnable watchdog = () -> {
+            if (destroyed || ticket != watchdogTicket || generation != webGeneration || generation != startupGeneration || webReady || !remoteMode) return;
+            Log.w("Arcade", "Arcade startup readiness timed out");
+            fallbackAfterRemoteFailure(activeClient, webView);
+        };
+        startupWatchdog = watchdog;
+        mainHandler.postDelayed(watchdog, 10000L);
+    }
+
+    private void markArcadeReady(int generation) {
+        if (generation <= 0 || generation != webGeneration || generation != startupGeneration || !remoteMode) return;
+        webReady = true;
+        watchdogTicket++;
+        Runnable watchdog = startupWatchdog;
+        startupWatchdog = null;
+        if (watchdog != null) mainHandler.removeCallbacks(watchdog);
+        if (progress != null) progress.setVisibility(View.GONE);
+        try {
+            if (webView != null) webView.requestFocus(View.FOCUS_DOWN);
+        } catch (RuntimeException ignored) {}
     }
 
     private void openGame(String path) {
@@ -611,6 +753,10 @@ public final class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         destroyed = true;
+        watchdogTicket++;
+        mainHandler.removeCallbacksAndMessages(null);
+        archiveExecutor.shutdownNow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ServiceWorkerApi24.clear(this);
         TextToSpeech engine = textToSpeech;
         textToSpeech = null;
         ttsReady = false;
@@ -619,6 +765,7 @@ public final class MainActivity extends BaseActivity {
             try { engine.shutdown(); } catch (RuntimeException ignored) {}
         }
         destroyWebView();
+        offlineArchive = null;
         storage = null;
         invalidateCatalog(false);
         super.onDestroy();
@@ -648,6 +795,17 @@ public final class MainActivity extends BaseActivity {
     }
 
     private final class ArcadeBridge {
+        private final int generation;
+
+        ArcadeBridge(int generation) {
+            this.generation = generation;
+        }
+
+        @JavascriptInterface
+        public void arcadeReady() {
+            runOnUiThread(() -> markArcadeReady(generation));
+        }
+
         @JavascriptInterface
         public void openGame(String path) {
             runOnUiThread(() -> MainActivity.this.openGame(path));
@@ -662,11 +820,15 @@ public final class MainActivity extends BaseActivity {
         public void openManager() {
             runOnUiThread(() -> {
                 if (remoteMode) {
+                    OfflineArchiveManager manager = offlineArchive;
+                    String offlineStatus = manager != null && manager.isReady()
+                        ? "A validated offline copy is ready" + (manager.activeVersion() == null ? "." : " (" + manager.activeVersion() + ").")
+                        : "The first complete offline copy is not ready yet.";
                     new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Online Arcade")
-                        .setMessage("Games update automatically from GitHub Pages and are cached as you use them. The local-folder tools are still available for offline editing or a manual backup copy.")
+                        .setMessage("Games update automatically from GitHub Pages. " + offlineStatus + " Updates are downloaded and validated in the background without replacing the last working copy. The local-folder tools remain available for editing.")
                         .setPositiveButton("Refresh Online", (dialog, which) -> {
-                            if (webView != null) webView.reload();
+                            startOnlineArcade(getIntent());
                         })
                         .setNeutralButton("Use Local Folder", (dialog, which) -> useLocalFolder())
                         .setNegativeButton("Cancel", null)
@@ -690,7 +852,7 @@ public final class MainActivity extends BaseActivity {
         public void reloadArcade() {
             runOnUiThread(() -> {
                 if (remoteMode) {
-                    if (webView != null) webView.reload();
+                    startOnlineArcade(getIntent());
                     return;
                 }
                 invalidateCatalog(true);
@@ -766,9 +928,15 @@ public final class MainActivity extends BaseActivity {
     }
 
     private static boolean isRemoteArcadeUri(Uri uri) {
-        if (uri == null || !"https".equalsIgnoreCase(uri.getScheme()) || !REMOTE_HOST.equalsIgnoreCase(uri.getHost())) return false;
+        if (uri == null || !"https".equalsIgnoreCase(uri.getScheme()) || !REMOTE_HOST.equalsIgnoreCase(uri.getHost()) || uri.getPort() != -1) return false;
         String path = uri.getPath();
         return path != null && (path.equals("/arcade") || path.startsWith("/arcade/"));
+    }
+
+    private static boolean isRemoteHomeUri(Uri uri) {
+        if (!isRemoteArcadeUri(uri)) return false;
+        String path = uri.getPath();
+        return "/arcade".equals(path) || "/arcade/".equals(path) || "/arcade/index.html".equals(path);
     }
 
     private void requestRemoteRecovery(LocalClient client, WebView failedView) {
@@ -776,32 +944,52 @@ public final class MainActivity extends BaseActivity {
         if (!remoteRecoveryScheduled.compareAndSet(false, true)) return;
         runOnUiThread(() -> {
             try {
-                if (destroyed || isFinishing() || client != activeClient || failedView != webView || !remoteMode) return;
-                ArcadeStorage local = storage;
-                if (local != null && local.hasPersistedAccess() && local.available()) {
-                    destroyWebView();
-                    startRememberedFolder(getIntent());
-                    message("Local offline copy loaded. Reopen the app when connected to return online.");
-                } else {
-                    showRemoteRecoveryScreen("The online arcade is unavailable and no local fallback folder is ready.");
-                }
+                fallbackAfterRemoteFailure(client, failedView);
             } finally {
                 remoteRecoveryScheduled.set(false);
             }
         });
     }
 
+    private void fallbackAfterRemoteFailure(LocalClient client, WebView failedView) {
+        if (destroyed || isFinishing() || client == null || client != activeClient || failedView == null || failedView != webView || !remoteMode) return;
+        OfflineArchiveManager manager = offlineArchive;
+        if (!client.boundOffline && manager != null && manager.isReady()) {
+            int generation = ++startupGeneration;
+            beginRemoteWeb(generation, new Intent(getIntent()), true);
+            return;
+        }
+        if (!client.boundOffline && archiveSyncInProgress) {
+            mainHandler.postDelayed(() -> requestRemoteRecovery(client, failedView), 900L);
+            return;
+        }
+        ArcadeStorage local = storage;
+        if (local != null && local.hasPersistedAccess() && local.available()) {
+            destroyWebView();
+            startRememberedFolder(getIntent());
+            message("The app-managed offline copy was unavailable, so the selected local folder was opened.");
+        } else {
+            showRemoteRecoveryScreen(client.boundOffline
+                ? "The validated offline Arcade could not finish loading."
+                : "The hosted Arcade is unavailable and no validated offline copy is ready.");
+        }
+    }
+
     private class LocalClient extends WebViewClient {
         private final WebView boundView;
         private final ArcadeStorage boundStorage;
         private final boolean boundRemote;
+        private final boolean boundOffline;
+        private final int boundGeneration;
         private final AtomicBoolean storageRecoveryScheduled = new AtomicBoolean();
         private final AtomicBoolean mainFrameRecoveryRequested = new AtomicBoolean();
 
-        LocalClient(WebView boundView, ArcadeStorage boundStorage, boolean boundRemote) {
+        LocalClient(WebView boundView, ArcadeStorage boundStorage, boolean boundRemote, boolean boundOffline, int boundGeneration) {
             this.boundView = boundView;
             this.boundStorage = boundStorage;
             this.boundRemote = boundRemote;
+            this.boundOffline = boundOffline;
+            this.boundGeneration = boundGeneration;
         }
 
         void cancelRecovery() {
@@ -811,7 +999,17 @@ public final class MainActivity extends BaseActivity {
 
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-            if (boundRemote) return null;
+            if (boundRemote) {
+                if (!boundOffline) return null;
+                Uri uri = request.getUrl();
+                if (!isRemoteArcadeUri(uri)) return null;
+                if (destroyed || view != boundView || view != webView || boundGeneration != webGeneration || !forceOffline) {
+                    return errorResponse(410, "Arcade viewer replaced");
+                }
+                OfflineArchiveManager manager = offlineArchive;
+                WebResourceResponse archived = manager == null ? null : manager.responseFor(uri);
+                return archived != null ? archived : errorResponse(404, "Not in the validated offline Arcade");
+            }
             ArcadeStorage active = boundStorage;
             try {
                 Uri uri = request.getUrl();
@@ -910,27 +1108,67 @@ public final class MainActivity extends BaseActivity {
 
         @Override
         public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-            if (boundRemote && request.isForMainFrame() && isRemoteArcadeUri(request.getUrl()) && errorResponse.getStatusCode() >= 500) requestRemoteRecovery(this, view);
+            if (boundRemote && request.isForMainFrame() && isRemoteArcadeUri(request.getUrl()) && errorResponse.getStatusCode() >= 400) requestRemoteRecovery(this, view);
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
             if (view != boundView || view != webView || boundRemote != remoteMode || (!boundRemote && boundStorage != storage)) return;
-            if (progress != null) progress.setVisibility(View.GONE);
+            Uri finished = url == null ? null : Uri.parse(url);
+            if (!boundRemote || !isRemoteHomeUri(finished)) {
+                if (progress != null) progress.setVisibility(View.GONE);
+            }
             try { view.requestFocus(View.FOCUS_DOWN); } catch (RuntimeException ignored) {}
         }
     }
 
     @TargetApi(Build.VERSION_CODES.O)
     private final class LocalClientApi26 extends LocalClient {
-        LocalClientApi26(WebView boundView, ArcadeStorage boundStorage, boolean boundRemote) {
-            super(boundView, boundStorage, boundRemote);
+        LocalClientApi26(WebView boundView, ArcadeStorage boundStorage, boolean boundRemote, boolean boundOffline, int boundGeneration) {
+            super(boundView, boundStorage, boundRemote, boundOffline, boundGeneration);
         }
 
         @Override
         public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
             handleRendererGone(view, detail.didCrash());
             return true;
+        }
+    }
+
+    private WebResourceResponse serviceWorkerResponse(WebResourceRequest request) {
+        if (destroyed || !remoteMode || !forceOffline || request == null || !isRemoteArcadeUri(request.getUrl())) return null;
+        OfflineArchiveManager manager = offlineArchive;
+        WebResourceResponse response = manager == null ? null : manager.responseFor(request.getUrl());
+        if (response != null) return response;
+        String text = "Not in the validated offline Arcade";
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Cache-Control", "no-store, max-age=0");
+        headers.put("X-Content-Type-Options", "nosniff");
+        return new WebResourceResponse("text/plain", "UTF-8", 404, "Not Found", headers, new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8)));
+    }
+
+    @TargetApi(Build.VERSION_CODES.N)
+    private static final class ServiceWorkerApi24 {
+        private static WeakReference<MainActivity> owner = new WeakReference<>(null);
+
+        static synchronized void install(MainActivity activity) {
+            WeakReference<MainActivity> reference = new WeakReference<>(activity);
+            owner = reference;
+            ServiceWorkerController controller = ServiceWorkerController.getInstance();
+            controller.getServiceWorkerWebSettings().setBlockNetworkLoads(false);
+            controller.setServiceWorkerClient(new ServiceWorkerClient() {
+                @Override
+                public WebResourceResponse shouldInterceptRequest(WebResourceRequest request) {
+                    MainActivity current = reference.get();
+                    return current == null ? null : current.serviceWorkerResponse(request);
+                }
+            });
+        }
+
+        static synchronized void clear(MainActivity activity) {
+            if (owner.get() != activity) return;
+            ServiceWorkerController.getInstance().setServiceWorkerClient(null);
+            owner.clear();
         }
     }
 
@@ -975,6 +1213,8 @@ public final class MainActivity extends BaseActivity {
         webView = null;
         activeClient = null;
         progress = null;
+        webGeneration = 0;
+        webReady = false;
         loaded = false;
         if (oldClient != null) oldClient.cancelRecovery();
         pendingFileChooser = null;
@@ -991,7 +1231,7 @@ public final class MainActivity extends BaseActivity {
         public void onPermissionRequest(PermissionRequest request) {
             runOnUiThread(() -> {
                 Uri origin = request.getOrigin();
-                boolean local = origin != null && "https".equalsIgnoreCase(origin.getScheme()) && (HOST.equalsIgnoreCase(origin.getHost()) || REMOTE_HOST.equalsIgnoreCase(origin.getHost()));
+                boolean local = origin != null && "https".equalsIgnoreCase(origin.getScheme()) && origin.getPort() == -1 && (HOST.equalsIgnoreCase(origin.getHost()) || REMOTE_HOST.equalsIgnoreCase(origin.getHost()));
                 boolean audio = false;
                 for (String resource : request.getResources()) if (PermissionRequest.RESOURCE_AUDIO_CAPTURE.equals(resource)) audio = true;
                 if (!local || !audio) {

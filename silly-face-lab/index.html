@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="screen-orientation" content="portrait">
+    <meta name="screen-orientation" content="any">
     <title>Scarlett's Silly Face Lab</title>
     <style>
         :root {
@@ -449,57 +449,624 @@
         }
 
 </style>
-<style id="arcade-home-nav-style">#arcade-home-nav{position:fixed;z-index:2147483000;left:max(7px,env(safe-area-inset-left));top:max(7px,env(safe-area-inset-top));width:42px;height:42px;border:1px solid rgba(255,255,255,.28);border-radius:13px;background:rgba(7,10,22,.82);color:#fff;font:900 20px/1 system-ui;box-shadow:0 5px 16px rgba(0,0,0,.32);backdrop-filter:blur(7px);-webkit-tap-highlight-color:transparent}#arcade-home-nav:active{transform:scale(.96)}.tabs-container{padding-left:max(58px,calc(env(safe-area-inset-left) + 56px))!important;padding-right:max(8px,env(safe-area-inset-right))!important;padding-top:max(7px,env(safe-area-inset-top))!important}.bottom-toolbar{padding-bottom:max(6px,env(safe-area-inset-bottom))!important;height:auto!important;min-height:64px}.portrait-name{pointer-events:auto!important;border:2px solid rgba(9,132,227,.3)!important;cursor:pointer;font-family:inherit}.portrait-name:active{transform:translateX(-50%) scale(.97)}.portrait-lock{display:none;position:fixed;inset:0;z-index:2147483500;background:#090d1e;color:#fff;place-items:center;text-align:center;padding:24px;font:900 22px/1.3 system-ui}.portrait-lock span{display:block;font-size:60px;margin-bottom:12px}@media(orientation:landscape) and (max-height:620px){.controls-wrapper,.canvas-area,#arcade-home-nav{visibility:hidden}.portrait-lock{display:grid}}</style></head>
+<style id="face-lab-studio-style">
+    :root {
+        --lab-ink: #241b47;
+        --lab-muted: #746d8b;
+        --lab-violet: #6c4ce7;
+        --lab-violet-dark: #5033c7;
+        --lab-mint: #20bf9f;
+        --lab-yellow: #ffd369;
+        --lab-pink: #ff6e9f;
+        --lab-paper: #fffdf9;
+        --lab-line: #e9e3f6;
+        --lab-shadow: 0 14px 36px rgba(37, 23, 82, .18);
+    }
+
+    html, body { height: 100%; min-height: 100%; }
+    body {
+        display: block;
+        background: #241753;
+        color: var(--lab-ink);
+        overscroll-behavior: none;
+    }
+    button { -webkit-tap-highlight-color: transparent; }
+    .app-shell {
+        height: 100vh;
+        height: 100dvh;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        overflow: hidden;
+        background:
+            radial-gradient(circle at 12% 5%, rgba(255, 211, 105, .22), transparent 26%),
+            radial-gradient(circle at 90% 92%, rgba(32, 191, 159, .17), transparent 30%),
+            linear-gradient(145deg, #2b1a61, #171130);
+    }
+    .studio-header {
+        position: relative;
+        z-index: 30;
+        color: #fff;
+        padding: max(8px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) 8px max(10px, env(safe-area-inset-left));
+        background: linear-gradient(120deg, rgba(108, 76, 231, .97), rgba(137, 84, 238, .96));
+        box-shadow: 0 8px 24px rgba(13, 7, 41, .28);
+    }
+    .topbar {
+        min-height: 45px;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 9px;
+    }
+    #arcade-home-nav {
+        position: static;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(255, 255, 255, .35);
+        border-radius: 14px;
+        background: rgba(28, 18, 72, .36);
+        color: #fff;
+        font: 900 21px/1 system-ui;
+        box-shadow: 0 5px 13px rgba(22, 10, 66, .2);
+        cursor: pointer;
+    }
+    #arcade-home-nav:active { transform: scale(.95); }
+    .brand { min-width: 0; }
+    .app-title {
+        color: #fff;
+        text-align: left;
+        font-size: clamp(1rem, 3.9vw, 1.34rem);
+        line-height: 1.05;
+        letter-spacing: -.02em;
+        text-shadow: none;
+    }
+    .app-subtitle {
+        margin-top: 2px;
+        color: rgba(255, 255, 255, .79);
+        font-size: clamp(.64rem, 2.1vw, .79rem);
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .quick-actions { display: flex; gap: 6px; }
+    .quick-btn {
+        min-width: 42px;
+        height: 42px;
+        padding: 0 10px;
+        border: 1px solid rgba(255, 255, 255, .32);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, .15);
+        color: #fff;
+        font-weight: 900;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+    .quick-btn.primary { background: #fff; color: var(--lab-violet-dark); }
+    .quick-btn:active { transform: translateY(1px) scale(.97); }
+    .quick-label { font-size: .75rem; }
+
+    .tabs-inner {
+        margin-top: 8px;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 5px;
+    }
+    .tab-btn {
+        min-width: 0;
+        min-height: 38px;
+        padding: 5px 4px;
+        border: 1px solid rgba(255, 255, 255, .24);
+        border-radius: 13px;
+        background: rgba(35, 20, 89, .22);
+        color: rgba(255, 255, 255, .82);
+        text-transform: none;
+        font-size: clamp(.6rem, 2.2vw, .78rem);
+        line-height: 1.05;
+        cursor: pointer;
+        overflow: visible;
+        white-space: normal;
+    }
+    .tab-btn .stage-icon { display: block; font-size: 1rem; line-height: 1; margin-bottom: 2px; }
+    .tab-btn.active {
+        background: #fff;
+        color: var(--lab-violet-dark);
+        border-color: #fff;
+        transform: translateY(-1px);
+        box-shadow: 0 5px 12px rgba(37, 18, 100, .2);
+    }
+
+    .studio-main {
+        min-height: 0;
+        display: grid;
+        grid-template-rows: minmax(245px, 48%) minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+    }
+    .canvas-area {
+        min-height: 0;
+        flex: none;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 25px;
+        box-shadow: var(--lab-shadow);
+        isolation: isolate;
+        overflow: hidden;
+    }
+    .canvas-area::before,
+    .canvas-area::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        border: 22px solid rgba(255, 255, 255, .13);
+    }
+    .canvas-area::before { left: -57px; top: -60px; }
+    .canvas-area::after { right: -66px; bottom: -60px; }
+    .canvas-frame {
+        position: absolute;
+        inset: 8px;
+        border: 1px solid rgba(255, 255, 255, .26);
+        border-radius: 19px;
+        pointer-events: none;
+    }
+    .canvas-area > canvas {
+        display: block;
+        max-width: calc(100% - 18px);
+        max-height: calc(100% - 12px);
+        filter: drop-shadow(0 12px 22px rgba(31, 20, 65, .22));
+        z-index: 2;
+    }
+    .portrait-name {
+        top: 10px;
+        z-index: 7;
+        min-width: 150px;
+        max-width: min(56vw, 370px);
+        padding: 7px 13px;
+        border: 2px solid rgba(108, 76, 231, .2) !important;
+        background: rgba(255, 255, 255, .94);
+        color: var(--lab-ink);
+        font-size: clamp(.72rem, 2.4vw, .94rem);
+        cursor: pointer;
+        pointer-events: auto !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .canvas-hint {
+        position: absolute;
+        left: 50%;
+        bottom: 8px;
+        z-index: 6;
+        transform: translateX(-50%);
+        max-width: calc(100% - 26px);
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(36, 27, 71, .76);
+        color: #fff;
+        font-size: clamp(.58rem, 2vw, .72rem);
+        font-weight: 800;
+        text-align: center;
+        white-space: nowrap;
+        pointer-events: none;
+    }
+
+    .controls-wrapper {
+        min-height: 0;
+        max-height: none;
+        flex: none;
+        display: grid;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, .2);
+        border-radius: 24px;
+        background: var(--lab-paper);
+        box-shadow: var(--lab-shadow);
+    }
+    .panel-heading {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        padding: 9px 12px 3px;
+    }
+    .stage-kicker {
+        color: var(--lab-violet);
+        font-size: .67rem;
+        font-weight: 900;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+    }
+    .panel-title { margin: 0; font-size: 1rem; line-height: 1.15; }
+    .category-nav {
+        display: flex;
+        gap: 6px;
+        padding: 5px 10px 7px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+    .category-nav::-webkit-scrollbar { display: none; }
+    .category-btn {
+        flex: 0 0 auto;
+        min-height: 35px;
+        padding: 7px 11px;
+        border: 1px solid var(--lab-line);
+        border-radius: 999px;
+        background: #f4f0fb;
+        color: #5a5271;
+        font-size: .76rem;
+        font-weight: 900;
+        cursor: pointer;
+    }
+    .category-btn.active {
+        border-color: var(--lab-violet);
+        background: var(--lab-violet);
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(108, 76, 231, .25);
+    }
+    .options-strip {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        overflow: hidden;
+        border: 0;
+        background: transparent;
+    }
+    .section-view {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        padding: 6px 10px 9px;
+        overflow-y: auto;
+        align-items: flex-start;
+        justify-content: flex-start;
+        align-content: flex-start;
+    }
+    .horizontal-list {
+        width: 100%;
+        max-width: none;
+        max-height: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
+        gap: 8px;
+        align-items: stretch;
+        justify-content: stretch;
+        overflow: visible;
+    }
+    .option-card {
+        width: auto;
+        height: 76px;
+        min-width: 0;
+        padding: 3px 3px 19px;
+        border: 2px solid var(--lab-line);
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: 0 3px 8px rgba(46, 31, 84, .07);
+        color: var(--lab-ink);
+    }
+    .option-card canvas { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+    .option-card:hover { border-color: #c8b9ef; }
+    .option-card.selected {
+        border-color: var(--lab-violet);
+        background: #f2efff;
+        transform: none;
+        box-shadow: 0 4px 10px rgba(108, 76, 231, .15);
+    }
+    .option-card.selected::after {
+        top: 3px;
+        right: 3px;
+        width: 17px;
+        height: 17px;
+        line-height: 17px;
+        font-size: 10px;
+    }
+    .option-name,
+    .preset-label {
+        position: absolute;
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
+        width: auto;
+        padding: 1px 2px;
+        border-radius: 7px;
+        background: rgba(255, 255, 255, .92);
+        color: #514967;
+        font-size: .61rem;
+        font-weight: 900;
+        line-height: 1.05;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        pointer-events: none;
+    }
+    .stickers-list { grid-template-columns: repeat(auto-fill, minmax(57px, 1fr)); gap: 7px; }
+    .sticker-card {
+        width: auto;
+        height: 61px;
+        padding: 3px 3px 18px;
+        font-size: 1.72rem;
+    }
+    .color-option {
+        width: auto;
+        height: 57px;
+        min-width: 0;
+        padding: 4px 4px 17px;
+        border: 2px solid var(--lab-line);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 3px 8px rgba(46, 31, 84, .07);
+        cursor: pointer;
+        position: relative;
+    }
+    .color-circle {
+        width: 32px;
+        height: 32px;
+        margin: 0 auto;
+        border: 3px solid #fff;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, .25);
+        pointer-events: none;
+    }
+    .color-option.active {
+        border-color: var(--lab-violet);
+        background: #f2efff;
+    }
+    .color-option.active::after {
+        content: '✓';
+        position: absolute;
+        right: 5px;
+        top: 4px;
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+        background: var(--lab-mint);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 900;
+        line-height: 17px;
+        text-align: center;
+    }
+    .color-name { bottom: 3px; }
+    .name-panel {
+        min-height: 100%;
+        padding: 6px 10px 12px;
+        gap: 7px;
+        justify-content: flex-start;
+    }
+    .name-title { color: var(--lab-ink); font-size: 1rem; }
+    .name-sub { color: var(--lab-muted); font-size: .75rem; }
+    .name-display {
+        display: block;
+        min-width: 165px;
+        padding: 7px 13px;
+        border-color: rgba(108, 76, 231, .3);
+        background: #f3efff;
+        color: var(--lab-violet-dark);
+        font-size: 1rem;
+    }
+    .finish-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
+    .name-btn,
+    .finish-btn {
+        min-height: 40px;
+        padding: 8px 14px;
+        border: 0;
+        border-radius: 13px;
+        background: var(--lab-violet);
+        color: #fff;
+        font-weight: 900;
+        box-shadow: 0 4px 0 rgba(69, 43, 158, .18);
+        cursor: pointer;
+    }
+    .finish-btn.mint { background: var(--lab-mint); box-shadow-color: rgba(11, 122, 100, .2); }
+    .finish-btn.pink { background: var(--lab-pink); box-shadow-color: rgba(168, 43, 88, .2); }
+
+    .bottom-toolbar {
+        height: auto !important;
+        min-height: 78px;
+        padding: 8px 10px max(8px, env(safe-area-inset-bottom)) !important;
+        border: 0;
+        border-top: 1px solid var(--lab-line);
+        background: #faf8ff;
+        display: grid;
+        grid-template-columns: minmax(105px, .75fr) minmax(0, 1.8fr) auto;
+        gap: 9px;
+        justify-content: stretch;
+        overflow: visible;
+    }
+    .tool-group { align-items: stretch; gap: 3px; }
+    .tool-label {
+        color: var(--lab-muted);
+        font-size: .63rem;
+        text-transform: none;
+        display: flex;
+        justify-content: space-between;
+        gap: 4px;
+    }
+    #selectedPartLabel { color: var(--lab-violet-dark); }
+    #sizeValue { color: var(--lab-violet-dark); }
+    input[type=range] { width: 100%; min-height: 31px; accent-color: var(--lab-violet); }
+    .nudge-controls { justify-content: stretch; gap: 4px; }
+    .move-btn {
+        width: auto;
+        min-width: 34px;
+        height: 40px;
+        flex: 1 1 34px;
+        border: 1px solid #ded5f5;
+        border-radius: 11px;
+        background: #eee9ff;
+        color: var(--lab-violet-dark);
+        box-shadow: 0 2px 0 rgba(76, 48, 151, .13);
+        font-size: .98rem;
+    }
+    .move-center { background: #fff5d6; color: #805a00; border-color: #f0db9b; }
+    .remove-btn {
+        align-self: end;
+        min-width: 68px;
+        height: 40px;
+        padding: 0 9px;
+        border: 1px solid #ffd0dd;
+        border-radius: 11px;
+        background: #fff0f4;
+        color: #b83e68;
+        font-size: .72rem;
+        font-weight: 900;
+        cursor: pointer;
+    }
+    .remove-btn:disabled { opacity: .35; cursor: default; }
+    .toast {
+        position: fixed;
+        z-index: 2147483600;
+        left: 50%;
+        bottom: max(18px, env(safe-area-inset-bottom));
+        transform: translate(-50%, 18px);
+        max-width: min(88vw, 420px);
+        padding: 10px 15px;
+        border-radius: 999px;
+        background: #251948;
+        color: #fff;
+        font-size: .82rem;
+        font-weight: 900;
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(13, 7, 41, .3);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .16s, transform .16s;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 430px) {
+        .quick-label { display: none; }
+        .quick-btn { padding: 0; }
+        .studio-main {
+            grid-template-rows: minmax(225px, 46%) minmax(0, 1fr);
+            gap: 7px;
+            padding: 7px max(7px, env(safe-area-inset-right)) max(7px, env(safe-area-inset-bottom)) max(7px, env(safe-area-inset-left));
+        }
+        .canvas-area, .controls-wrapper { border-radius: 20px; }
+        .horizontal-list { grid-template-columns: repeat(auto-fill, minmax(61px, 1fr)); gap: 6px; }
+        .option-card { height: 68px; }
+        .bottom-toolbar { grid-template-columns: minmax(50px, .45fr) minmax(0, 2.4fr) 46px; gap: 5px; padding: 6px !important; }
+        .move-btn { min-width: 29px; height: 37px; padding: 0; }
+        .remove-btn { min-width: 46px; height: 37px; padding: 0 2px; font-size: .65rem; }
+        .panel-heading { padding-top: 7px; }
+        .category-nav { padding-bottom: 5px; }
+    }
+
+    @media (orientation: landscape), (min-width: 760px) {
+        .app-shell { grid-template-rows: auto minmax(0, 1fr); }
+        .studio-main {
+            grid-template-columns: minmax(0, 1fr) minmax(350px, 42%);
+            grid-template-rows: minmax(0, 1fr);
+            gap: 12px;
+        }
+        .canvas-area { grid-column: 1; }
+        .controls-wrapper { grid-column: 2; }
+        .portrait-name { max-width: 42vw; }
+    }
+
+    @media (orientation: landscape) and (max-height: 620px) {
+        .studio-header {
+            min-height: 62px;
+            display: grid;
+            grid-template-columns: minmax(170px, 25%) minmax(0, 1fr);
+            align-items: center;
+            gap: 8px;
+            padding-top: max(5px, env(safe-area-inset-top));
+            padding-bottom: 5px;
+        }
+        .topbar { min-height: 48px; }
+        .app-subtitle { display: none; }
+        .quick-label { display: none; }
+        .quick-btn { min-width: 38px; width: 38px; height: 38px; padding: 0; border-radius: 12px; }
+        #arcade-home-nav { width: 38px; height: 38px; border-radius: 12px; }
+        .tabs-inner { margin-top: 0; gap: 4px; }
+        .tab-btn { min-height: 48px; padding: 4px 3px; }
+        .studio-main { padding-top: 7px; gap: 8px; }
+        .panel-heading { display: none; }
+        .controls-wrapper { grid-template-rows: auto minmax(0, 1fr) auto; }
+        .category-nav { padding-top: 7px; }
+        .section-view { padding-top: 3px; }
+        .horizontal-list { grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)); gap: 6px; }
+        .option-card { height: 65px; }
+        .bottom-toolbar { min-height: 68px; padding: 5px 7px !important; }
+        .move-btn, .remove-btn { height: 36px; }
+        .canvas-hint { font-size: .58rem; bottom: 5px; }
+    }
+
+    @media (orientation: landscape) and (max-width: 640px) {
+        .canvas-hint { font-size: 0; }
+        .canvas-hint::after { content: 'Drag • Pinch'; font-size: .58rem; }
+    }
+
+    @media (max-height: 590px) and (orientation: portrait) {
+        .studio-header { padding-top: max(5px, env(safe-area-inset-top)); padding-bottom: 5px; }
+        .topbar { min-height: 38px; }
+        #arcade-home-nav, .quick-btn { width: 36px; min-width: 36px; height: 36px; border-radius: 11px; }
+        .app-subtitle { display: none; }
+        .tabs-inner { margin-top: 5px; }
+        .tab-btn { min-height: 34px; }
+        .tab-btn .stage-icon { display: inline; margin-right: 2px; font-size: .82rem; }
+        .studio-main { grid-template-rows: minmax(190px, 45%) minmax(0, 1fr); }
+        .panel-heading { display: none; }
+        .controls-wrapper { grid-template-rows: auto minmax(0, 1fr) auto; }
+        .bottom-toolbar { min-height: 63px; }
+    }
+</style></head>
 <body>
-
-<div class="portrait-lock"><div><span>📱</span>Face Lab stays in portrait.<br>Turn the screen upright to keep the whole face visible.</div></div>
-
-<div class="controls-wrapper">
-    <div class="tabs-container">
-        <div class="app-title" aria-label="Scarlett's Silly Face Lab">Scarlett's Silly Face Lab</div>
-        <div class="tabs-inner" id="tabsInner"></div>
-    </div>
-    <div class="options-strip" id="optionsContainer"></div>
-    
-    <div class="bottom-toolbar" id="bottomToolbar">
-        <div class="tool-group">
-            <span class="tool-label" id="sliderLabel">Size</span>
-            <input type="range" id="sizeSlider" min="0.5" max="2.5" step="0.1" value="1">
-        </div>
-        <div class="tool-group">
-            <span class="tool-label" id="moveLabel">Move</span>
-            <div class="nudge-controls" id="moveControls">
-                <button class="move-btn move-left" onclick="move(-16, 0)" title="Move left" aria-label="Move left">◀</button>
-                <button class="move-btn move-up" onclick="move(0, -16)" title="Move up" aria-label="Move up">▲</button>
-                <button class="move-btn move-down" onclick="move(0, 16)" title="Move down" aria-label="Move down">▼</button>
-                <button class="move-btn move-right" onclick="move(16, 0)" title="Move right" aria-label="Move right">▶</button>
-                <button class="move-btn move-center" id="moveCenterBtn" onclick="resetPos()" title="Center this part" aria-label="Center this part">↺</button>
+<div class="app-shell">
+    <header class="studio-header">
+        <div class="topbar">
+            <button id="arcade-home-nav" type="button" aria-label="Back to Arcade">⌂</button>
+            <div class="brand">
+                <div class="app-title" aria-label="Scarlett's Silly Face Lab">Scarlett's Silly Face Lab</div>
+                <div class="app-subtitle">Mix, move and decorate a wonderfully weird face.</div>
+            </div>
+            <div class="quick-actions" aria-label="Quick actions">
+                <button class="quick-btn" type="button" onclick="undo()" title="Undo" aria-label="Undo">↶ <span class="quick-label">Undo</span></button>
+                <button class="quick-btn" type="button" onclick="clearFace()" title="Start over" aria-label="Start over">✕</button>
+                <button class="quick-btn primary" type="button" onclick="randomize()" title="Surprise me" aria-label="Make a surprise face">🎲 <span class="quick-label">Surprise</span></button>
             </div>
         </div>
-    </div>
-</div>
+        <nav class="tabs-inner" id="tabsInner" aria-label="Face Lab stages"></nav>
+    </header>
 
-<div class="canvas-area" id="bgArea">
-    <div class="utility-bar">
-        <button class="util-btn btn-undo" onclick="undo()" title="Undo" aria-label="Undo last change">
-            <svg viewBox="0 0 24 24"><path d="M12.5,8c-2.65,0-5.05,1-6.9,2.6L2,7v9h9l-3.62-3.62c1.39-1.16,3.16-1.88,5.12-1.88c3.54,0,6.55,2.31,7.6,5.5 l2.37-0.78C21.08,11.03,17.15,8,12.5,8z"/></svg>
-        </button>
-        <button class="util-btn btn-clear" onclick="clearFace()" title="Clear All" aria-label="Clear the face">
-            <svg viewBox="0 0 24 24"><path d="M6,19c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V7H6V19z M19,4h-3.5l-1-1h-5l-1,1H5v2h14V4z"/></svg>
-        </button>
-    </div>
+    <main class="studio-main">
+        <section class="canvas-area" id="bgArea" aria-label="Face workspace">
+            <div class="canvas-frame" aria-hidden="true"></div>
+            <canvas id="mainCanvas" width="800" height="800" aria-label="Your silly face. Drag the selected part to move it and pinch to resize."></canvas>
+            <button id="portraitName" class="portrait-name" type="button" onclick="generateName(true)" aria-label="Generate a silly name">Tap to name this face</button>
+            <div class="canvas-hint">Drag to move • Pinch to resize</div>
+        </section>
 
-    <canvas id="mainCanvas" width="800" height="800"></canvas>
-
-    <button id="portraitName" class="portrait-name" type="button" onclick="generateName(true)" aria-label="Generate a silly name">Tap Name → Generate</button>
-    <div class="fab-container">
-        <button class="fab fab-random" onclick="randomize()" title="Surprise Face" aria-label="Make a surprise face">
-            <svg viewBox="0 0 24 24"><path d="M17,1H7A5,5,0,0,0,2,6V18a5,5,0,0,0,5,5H17a5,5,0,0,0,5-5V6A5,5,0,0,0,17,1ZM7,11a2,2,0,1,1,2-2A2,2,0,0,1,7,11Zm5,3a2,2,0,1,1,2-2A2,2,0,0,1,12,14Zm5,5a2,2,0,1,1,2-2A2,2,0,0,1,17,19Z"/></svg>
-        </button>
-        <button class="fab fab-save" onclick="downloadImage()" title="Save Image" aria-label="Save face as image">
-            <svg viewBox="0 0 24 24"><path d="M20,6H16.83l-1.42-2.52A1.94,1.94,0,0,0,13.68,2H10.32a1.94,1.94,0,0,0-1.73,1.48L7.17,6H4A3,3,0,0,0,1,9V19a3,3,0,0,0,3,3H20a3,3,0,0,0,3-3V9A3,3,0,0,0,20,6ZM12,18a5,5,0,1,1,5-5A5,5,0,0,1,12,18Zm0-8a3,3,0,1,0,3,3A3,3,0,0,0,12,10Z"/></svg>
-        </button>
-    </div>
+        <aside class="controls-wrapper" aria-label="Face customization controls">
+            <div class="panel-heading">
+                <span class="stage-kicker" id="stageKicker">Start</span>
+                <h2 class="panel-title" id="panelTitle">Pick a template</h2>
+            </div>
+            <nav class="category-nav" id="categoryTabs" aria-label="Customization categories"></nav>
+            <div class="options-strip" id="optionsContainer"></div>
+            <div class="bottom-toolbar" id="bottomToolbar">
+                <div class="tool-group">
+                    <span class="tool-label"><span id="sliderLabel">Size</span><span id="sizeValue">100%</span></span>
+                    <input type="range" id="sizeSlider" min="0.5" max="2.5" step="0.1" value="1" aria-label="Selected part size">
+                </div>
+                <div class="tool-group">
+                    <span class="tool-label"><span id="moveLabel">Move</span><span id="selectedPartLabel">Template</span></span>
+                    <div class="nudge-controls" id="moveControls">
+                        <button class="move-btn move-left" onclick="move(-16, 0)" title="Move left" aria-label="Move left">◀</button>
+                        <button class="move-btn move-up" onclick="move(0, -16)" title="Move up" aria-label="Move up">▲</button>
+                        <button class="move-btn move-down" onclick="move(0, 16)" title="Move down" aria-label="Move down">▼</button>
+                        <button class="move-btn move-right" onclick="move(16, 0)" title="Move right" aria-label="Move right">▶</button>
+                        <button class="move-btn move-center" id="moveCenterBtn" onclick="resetPos()" title="Center this part" aria-label="Center this part">↺</button>
+                    </div>
+                </div>
+                <button class="remove-btn" id="removePartBtn" type="button" onclick="removeCurrentThing()" disabled>Remove</button>
+            </div>
+        </aside>
+    </main>
+    <div class="toast" id="labToast" role="status" aria-live="polite"></div>
 </div>
 
 <script>
@@ -524,9 +1091,21 @@
     }
     const sizeSlider = document.getElementById('sizeSlider');
     const sliderLabel = document.getElementById('sliderLabel');
+    const sizeValue = document.getElementById('sizeValue');
 
     let currentTab = null;
+    let currentStageId = 'start';
     let historyStack = [];
+    let toastTimer = null;
+
+    function showToast(message) {
+        const toast = document.getElementById('labToast');
+        if(!toast || !message) return;
+        window.clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add('show');
+        toastTimer = window.setTimeout(() => toast.classList.remove('show'), 1800);
+    }
 
     
     const DEFAULTS = {
@@ -827,7 +1406,7 @@
         ctx2.restore();
     }
     
-    function renderFaceToCtx(ctx2, st, w, h, yOff, includeBackground) {
+    function renderFaceToCtx(ctx2, st, w, h, yOff, includeBackground, renderScale = 1) {
         if (!ctx2 || !st) return;
         if (yOff === undefined) yOff = 20;
         try {
@@ -839,6 +1418,7 @@
             
             ctx2.save();
             ctx2.translate(w/2, h/2 + yOff);
+            ctx2.scale(renderScale, renderScale);
 
             const fs = st.faceSize;
 
@@ -887,6 +1467,7 @@
         selectedStickerEmoji = sticker.emoji;
         draw();
         refreshUI();
+        if(saveHistory) showToast(`${sticker.emoji} sticker added. Drag it anywhere!`);
         return sticker;
     }
 
@@ -899,6 +1480,7 @@
         state.activeStickerId = state.stickers.length ? state.stickers[state.stickers.length - 1].id : null;
         draw();
         refreshUI();
+        showToast('Sticker removed');
     }
 
     function getCurrentSizeValue() {
@@ -918,12 +1500,14 @@
             if(active) {
                 active.size = Math.round(STICKER_BASE_SIZE * v);
                 draw();
+                if(sizeValue) sizeValue.textContent = `${Math.round(v * 100)}%`;
             }
             return;
         }
         if(currentTab && currentTab.sizeTarget) {
             state[currentTab.sizeTarget] = v;
             draw();
+            if(sizeValue) sizeValue.textContent = `${Math.round(v * 100)}%`;
         }
     }
 
@@ -933,6 +1517,27 @@
 
     function canSizeCurrentThing() {
         return !!(currentTab && (currentTab.sizeTarget || (currentTab.id === 'stickers' && getActiveSticker())));
+    }
+
+    function canRemoveCurrentThing() {
+        if(!currentTab) return false;
+        if(currentTab.id === 'stickers') return !!getActiveSticker();
+        return !!(currentTab.type === 'grid' && currentTab.id !== 'shape' && currentTab.data &&
+            Object.prototype.hasOwnProperty.call(currentTab.data, 'none') && state[currentTab.target] !== 'none');
+    }
+
+    function removeCurrentThing() {
+        if(!currentTab) return;
+        if(currentTab.id === 'stickers') {
+            removeActiveSticker();
+            return;
+        }
+        if(!canRemoveCurrentThing()) return;
+        pushHistory();
+        state[currentTab.target] = 'none';
+        draw();
+        refreshUI();
+        showToast(`${currentTab.label} removed`);
     }
 
     function pushHistory() {
@@ -946,11 +1551,11 @@
         const disp = document.getElementById('nameDisplay');
         const portrait = document.getElementById('portraitName');
         if(disp) {
-            disp.textContent = name;
-            disp.style.display = name ? 'block' : 'none';
+            disp.textContent = name || 'Not named yet';
+            disp.style.display = 'block';
         }
         if(portrait) {
-            portrait.textContent = name || 'Tap Name → Generate';
+            portrait.textContent = name || 'Tap to name this face';
         }
     }
 
@@ -966,6 +1571,9 @@
             state = historyStack.pop();
             draw();
             refreshUI();
+            showToast('Last change undone');
+        } else {
+            showToast('Nothing to undo yet');
         }
     }
 
@@ -974,6 +1582,7 @@
         state = JSON.parse(JSON.stringify(DEFAULTS));
         draw();
         refreshUI();
+        showToast('Fresh face, ready to create');
     }
 
     
@@ -982,71 +1591,132 @@
 
     const UI_MAP = [
         { id: 'presets', label: 'Templates', type: 'presets', data: PRESETS },
-        { id: 'name', label: 'Name', type: 'name' },
-        { id: 'stickers', label: 'Stickers', type: 'stickers' },
+        { id: 'bg', label: 'Backdrop', type: 'color', target: 'bgColor', colors: ['#dfe6e9', '#74b9ff', '#ff7675', '#55efc4', '#a29bfe', '#fdcb6e', '#2d3436'] },
         { id: 'shape', label: 'Face', type: 'grid', data: ASSETS.faces, target: 'faceShape', sizeTarget: 'faceSize', posTarget: 'face' },
         { id: 'skin', label: 'Skin', type: 'color', target: 'skinColor', colors: SKIN_TONES },
-
-        { id: 'hair', label: 'Hair', type: 'grid', data: {...ASSETS.hairFront, ...ASSETS.hairBack}, target: 'hairStyle', sizeTarget: 'hairSize', posTarget: 'hair' },
-        { id: 'haircolor', label: 'Hair Color', type: 'color', target: 'hairColor', colors: HAIR_COLORS },
-
         { id: 'eyes', label: 'Eyes', type: 'grid', data: ASSETS.eyes, target: 'eyeStyle', sizeTarget: 'eyeSize', posTarget: 'eye' },
         { id: 'brows', label: 'Brows', type: 'grid', data: ASSETS.brows, target: 'browStyle', sizeTarget: 'browSize', posTarget: 'brow' },
         { id: 'nose', label: 'Nose', type: 'grid', data: ASSETS.noses, target: 'noseStyle', sizeTarget: 'noseSize', posTarget: 'nose' },
         { id: 'mouth', label: 'Mouth', type: 'grid', data: ASSETS.mouths, target: 'mouthStyle', sizeTarget: 'mouthSize', posTarget: 'mouth' },
-
+        { id: 'hair', label: 'Hair', type: 'grid', data: {...ASSETS.hairFront, ...ASSETS.hairBack}, target: 'hairStyle', sizeTarget: 'hairSize', posTarget: 'hair' },
+        { id: 'haircolor', label: 'Hair Color', type: 'color', target: 'hairColor', colors: HAIR_COLORS },
         { id: 'beard', label: 'Beard', type: 'grid', data: ASSETS.beards, target: 'beardStyle', sizeTarget: 'beardSize', posTarget: 'beard' },
-        { id: 'mustache', label: 'Stache', type: 'grid', data: ASSETS.mustaches, target: 'mustacheStyle', sizeTarget: 'mustacheSize', posTarget: 'mustache' },
-        { id: 'facialhaircolor', label: 'Beard Color', type: 'color', target: 'facialHairColor', colors: HAIR_COLORS },
-
+        { id: 'mustache', label: 'Mustache', type: 'grid', data: ASSETS.mustaches, target: 'mustacheStyle', sizeTarget: 'mustacheSize', posTarget: 'mustache' },
+        { id: 'facialhaircolor', label: 'Facial Hair Color', type: 'color', target: 'facialHairColor', colors: HAIR_COLORS },
         { id: 'glasses', label: 'Glasses', type: 'grid', data: ASSETS.glasses, target: 'glassesStyle', sizeTarget: 'glassesSize', posTarget: 'glasses' },
-        { id: 'glassescolor', label: 'Specs Color', type: 'color', target: 'glassesColor', colors: ['#111111', '#333333', '#d4af37', '#0984e3', '#e84393', '#ffffff'] },
+        { id: 'glassescolor', label: 'Glasses Color', type: 'color', target: 'glassesColor', colors: ['#111111', '#333333', '#d4af37', '#0984e3', '#e84393', '#ffffff'] },
         { id: 'hats', label: 'Hats', type: 'grid', data: ASSETS.hats, target: 'hatStyle', sizeTarget: 'hatSize', posTarget: 'hat' },
         { id: 'hatcolor', label: 'Hat Color', type: 'color', target: 'hatColor', colors: ['#D32F2F', '#111111', '#0984e3', '#00B894', '#fdcb6e', '#e84393', '#6C5CE7', '#f1c40f'] },
-        { id: 'bg', label: 'Backdrop', type: 'color', target: 'bgColor', colors: ['#dfe6e9', '#74b9ff', '#ff7675', '#55efc4', '#a29bfe', '#fdcb6e', '#2d3436'] }
+        { id: 'stickers', label: 'Stickers', type: 'stickers' },
+        { id: 'name', label: 'Name & Save', type: 'name' }
     ];
 
+    const STAGES = [
+        { id: 'start', label: 'Start', icon: '✨', categories: ['presets', 'bg'] },
+        { id: 'face', label: 'Face', icon: '🙂', categories: ['shape', 'skin', 'eyes', 'brows', 'nose', 'mouth'] },
+        { id: 'hair', label: 'Hair', icon: '💇', categories: ['hair', 'haircolor', 'beard', 'mustache', 'facialhaircolor'] },
+        { id: 'extras', label: 'Extras', icon: '🎩', categories: ['glasses', 'glassescolor', 'hats', 'hatcolor', 'stickers'] },
+        { id: 'finish', label: 'Finish', icon: '🌟', categories: ['name'] }
+    ];
+
+    const COLOR_NAMES = {
+        '#dfe6e9': 'Cloud', '#74b9ff': 'Sky', '#ff7675': 'Coral', '#55efc4': 'Mint', '#a29bfe': 'Lilac', '#fdcb6e': 'Sunshine',
+        '#2d3436': 'Charcoal', '#81c784': 'Green', '#64b5f6': 'Blue', '#ba68c8': 'Purple', '#ff80ab': 'Pink', '#ffd54f': 'Gold',
+        '#ff8a65': 'Orange', '#00e5ff': 'Aqua', '#76ff03': 'Lime', '#ffea00': 'Yellow', '#ff5252': 'Red', '#b388ff': 'Violet',
+        '#90a4ae': 'Silver', '#ffffff': 'White', '#090909': 'Black', '#2c2c2c': 'Soft Black', '#3b2820': 'Espresso', '#4a3b2a': 'Brown',
+        '#5d4037': 'Chestnut', '#8d5524': 'Copper', '#b57b57': 'Caramel', '#c68642': 'Honey', '#e6cea8': 'Blonde', '#a52a2a': 'Auburn',
+        '#800000': 'Burgundy', '#95a5a6': 'Gray', '#ecf0f1': 'Platinum', '#ff6b6b': 'Candy', '#4834d4': 'Indigo', '#6ab04c': 'Leaf',
+        '#111111': 'Black', '#333333': 'Graphite', '#d4af37': 'Gold', '#0984e3': 'Blue', '#e84393': 'Pink', '#d32f2f': 'Red',
+        '#00b894': 'Teal', '#6c5ce7': 'Purple', '#f1c40f': 'Yellow'
+    };
+
+    function friendlyLabel(value) {
+        const labels = { none: 'None', pigtails: 'Pigtails', spacebuns: 'Space Buns', handlebar: 'Handlebar' };
+        if(labels[value]) return labels[value];
+        return String(value).replace(/[_-]+/g, ' ').replace(/([a-z])([A-Z])/g, '$1 $2').replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    function appendOptionLabel(card, label, className = 'option-name') {
+        const span = document.createElement('span');
+        span.className = className;
+        span.textContent = label;
+        card.appendChild(span);
+    }
+
+    function drawOptionPreview(cat, key, context) {
+        context.translate(50, 50);
+        context.scale(.25, .25);
+        if(cat.id === 'shape') ASSETS.faces[key](context, 1, '#ddd');
+        else if(cat.id === 'hair') {
+            ASSETS.faces.oval(context, 1, '#eee');
+            if(ASSETS.hairBack[key]) ASSETS.hairBack[key](context, '#555');
+            if(ASSETS.hairFront[key]) ASSETS.hairFront[key](context, '#555');
+        } else if(cat.id === 'hats') {
+            ASSETS.faces.oval(context, 1, '#eee');
+            context.translate(0, -50);
+            ASSETS.hats[key](context, state.hatColor);
+        } else if(cat.id === 'brows') ASSETS.brows[key](context, '#333');
+        else if(cat.id === 'nose') ASSETS.noses[key](context);
+        else if(cat.id === 'beard') {
+            ASSETS.faces.oval(context, 1, '#eee');
+            context.translate(0, 50);
+            ASSETS.beards[key](context, '#333');
+        } else if(cat.id === 'mustache') {
+            ASSETS.faces.oval(context, 1, '#eee');
+            context.translate(0, 45);
+            ASSETS.mustaches[key](context, '#333');
+        } else if(cat.id === 'eyes') ASSETS.eyes[key](context);
+        else if(cat.id === 'mouth') ASSETS.mouths[key](context);
+        else if(cat.id === 'glasses') {
+            ASSETS.faces.oval(context, 1, '#eee');
+            context.translate(0, -20);
+            ASSETS.glasses[key](context, '#333');
+        }
+    }
+
     function initUI() {
-        const tabs = document.getElementById('tabsInner');
+        const stageTabs = document.getElementById('tabsInner');
         const options = document.getElementById('optionsContainer');
 
-        UI_MAP.forEach((cat, idx) => {
-            const btn = document.createElement('button');
-            btn.className = `tab-btn ${idx===0?'active':''}`;
-            btn.innerText = cat.label;
-            btn.onclick = () => switchTab(cat, btn);
-            tabs.appendChild(btn);
+        STAGES.forEach(stage => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'tab-btn stage-btn';
+            button.dataset.stage = stage.id;
+            button.innerHTML = `<span class="stage-icon" aria-hidden="true">${stage.icon}</span>${stage.label}`;
+            button.onclick = () => switchStage(stage.id);
+            stageTabs.appendChild(button);
+        });
 
+        UI_MAP.forEach(cat => {
             const section = document.createElement('div');
             section.className = 'section-view';
             section.id = `sec-${cat.id}`;
-            section.style.display = idx===0?'flex':'none';
-
+            section.style.display = 'none';
             const list = document.createElement('div');
             list.className = 'horizontal-list';
 
             if(cat.type === 'presets') {
                 Object.keys(cat.data).forEach(key => {
-                    const card = document.createElement('div');
+                    const card = document.createElement('button');
+                    card.type = 'button';
                     card.className = 'option-card';
-                    card.innerHTML = `<div class="preset-label">${key}</div>`;
-                    
-                    const mc = document.createElement('canvas');
-                    mc.width = 100; mc.height = 100;
-                    card.appendChild(mc);
-                    
-                    const mx = mc.getContext('2d');
-                    const tmp = JSON.parse(JSON.stringify(DEFAULTS)); Object.assign(tmp, PRESETS[key]); renderFaceToCtx(mx, tmp, mc.width, mc.height, 32);
-
+                    card.setAttribute('aria-label', `Use ${friendlyLabel(key)} template`);
+                    const preview = document.createElement('canvas');
+                    preview.width = 100;
+                    preview.height = 100;
+                    card.appendChild(preview);
+                    appendOptionLabel(card, friendlyLabel(key), 'preset-label');
+                    const temp = JSON.parse(JSON.stringify(DEFAULTS));
+                    Object.assign(temp, PRESETS[key]);
+                    renderFaceToCtx(preview.getContext('2d'), temp, preview.width, preview.height, 8, false, .16);
                     card.onclick = () => {
-                        pushHistory(); 
-                        
-                        
+                        pushHistory();
                         state = JSON.parse(JSON.stringify(DEFAULTS));
                         Object.assign(state, PRESETS[key]);
-                        
                         draw();
                         refreshUI();
+                        showToast(`${friendlyLabel(key)} template loaded`);
                     };
                     list.appendChild(card);
                 });
@@ -1054,233 +1724,185 @@
                 const panel = document.createElement('div');
                 panel.className = 'name-panel';
                 panel.innerHTML = `
-                    <div class="name-title">Give the face a silly name</div>
-                    <div class="name-sub">Tap Generate for a goofy creature name Scarlett can read aloud.</div>
-                    <button class="name-btn" id="nameGenBtn" type="button">Generate Name</button>
-                    <div class="name-display" id="nameDisplay" aria-live="polite"></div>
-                `;
+                    <div class="name-title">Your creation is ready!</div>
+                    <div class="name-sub">Give it a wonderfully odd name, make one more surprise, or save it as a picture.</div>
+                    <div class="name-display" id="nameDisplay" aria-live="polite">Not named yet</div>
+                    <div class="finish-actions">
+                        <button class="name-btn" id="nameGenBtn" type="button">✨ New Name</button>
+                        <button class="finish-btn pink" type="button" onclick="randomize()">🎲 Surprise</button>
+                        <button class="finish-btn mint" type="button" onclick="downloadImage()">⬇ Save Picture</button>
+                    </div>`;
                 section.appendChild(panel);
-
             } else if(cat.type === 'stickers') {
                 list.classList.add('stickers-list');
                 STICKER_EMOJIS.forEach(emoji => {
-                    const card = document.createElement('div');
-                    card.className = `option-card sticker-card ${selectedStickerEmoji===emoji?'selected':''}`;
+                    const card = document.createElement('button');
+                    card.type = 'button';
+                    card.className = `option-card sticker-card ${selectedStickerEmoji === emoji ? 'selected' : ''}`;
                     card.dataset.emoji = emoji;
-                    card.setAttribute('role', 'button');
-                    card.setAttribute('aria-label', `Add sticker ${emoji}`);
-                    card.textContent = emoji;
+                    card.setAttribute('aria-label', `Add ${emoji} sticker`);
+                    const symbol = document.createElement('span');
+                    symbol.textContent = emoji;
+                    symbol.setAttribute('aria-hidden', 'true');
+                    card.appendChild(symbol);
+                    appendOptionLabel(card, 'Add');
                     card.onclick = () => addSticker(emoji);
                     list.appendChild(card);
                 });
-
-            } else if(cat.type === 'combo') {
-                
-                const group1 = document.createElement('div');
-                group1.className = 'combo-group-title';
-                group1.textContent = 'Style';
-                section.appendChild(group1);
-
-                const gridList = document.createElement('div');
-                gridList.className = 'horizontal-list';
-                Object.keys(cat.grid.data).forEach(key => {
-                    const card = document.createElement('div');
-                    card.className = `option-card ${state[cat.grid.target]===key?'selected':''}`;
-                    card.dataset.val = key;
-                    card.onclick = () => {
-                        pushHistory();
-                        state[cat.grid.target] = key;
-                        draw();
-                        gridList.querySelectorAll('.option-card').forEach(c=>c.classList.remove('selected'));
-                        card.classList.add('selected');
-                    };
-
-                    const mc = document.createElement('canvas');
-                    mc.width = 100; mc.height = 100;
-                    const mx = mc.getContext('2d');
-                    mx.translate(50, 50); mx.scale(0.25, 0.25);
-
-                    if(cat.id==='hair') {
-                        ASSETS.faces.oval(mx,1,'#eee');
-                        if(ASSETS.hairBack[key]) ASSETS.hairBack[key](mx, '#555');
-                        if(ASSETS.hairFront[key]) ASSETS.hairFront[key](mx, '#555');
-                    } else if(cat.id==='beard') {
-                        ASSETS.faces.oval(mx,1,'#eee');
-                        mx.translate(0,50);
-                        ASSETS.beards[key](mx, '#333');
-                    } else if(cat.id==='mustache') {
-                        ASSETS.faces.oval(mx,1,'#eee');
-                        mx.translate(0,45);
-                        ASSETS.mustaches[key](mx, '#333');
-                    } else {
-                        
-                        try { cat.grid.data[key](mx); } catch(e) {}
-                    }
-
-                    card.appendChild(mc);
-                    gridList.appendChild(card);
-                });
-                section.appendChild(gridList);
-
-                const group2 = document.createElement('div');
-                group2.className = 'combo-group-title';
-                group2.textContent = 'Color';
-                section.appendChild(group2);
-
-                const colorList = document.createElement('div');
-                colorList.className = 'horizontal-list';
-                cat.color.colors.forEach(c => {
-                    const circle = document.createElement('div');
-                    circle.className = 'color-circle';
-                    circle.style.backgroundColor = c;
-                    circle.dataset.color = c;
-                    if(String(state[cat.color.target]).toLowerCase() === c.toLowerCase()) circle.classList.add('active');
-                    circle.onclick = () => {
-                        pushHistory();
-                        state[cat.color.target] = c;
-                        draw();
-                        colorList.querySelectorAll('.color-circle').forEach(el=>el.classList.remove('active'));
-                        circle.classList.add('active');
-                    };
-                    colorList.appendChild(circle);
-                });
-                section.appendChild(colorList);
-                
-
             } else if(cat.type === 'grid') {
                 Object.keys(cat.data).forEach(key => {
                     if(cat.id === 'shape' && key === 'none') return;
-                    const card = document.createElement('div');
-                    card.className = `option-card ${state[cat.target]===key?'selected':''}`;
+                    const card = document.createElement('button');
+                    card.type = 'button';
+                    card.className = `option-card ${state[cat.target] === key ? 'selected' : ''}`;
                     card.dataset.val = key;
+                    card.setAttribute('aria-label', `${cat.label}: ${friendlyLabel(key)}`);
+                    const preview = document.createElement('canvas');
+                    preview.width = 100;
+                    preview.height = 100;
+                    drawOptionPreview(cat, key, preview.getContext('2d'));
+                    card.appendChild(preview);
+                    appendOptionLabel(card, friendlyLabel(key));
                     card.onclick = () => {
                         pushHistory();
                         state[cat.target] = key;
                         draw();
-                        list.querySelectorAll('.option-card').forEach(c=>c.classList.remove('selected'));
-                        card.classList.add('selected');
-                    }
-                    const mc = document.createElement('canvas');
-                    mc.width = 100; mc.height = 100;
-                    const mx = mc.getContext('2d');
-                    mx.translate(50, 50); mx.scale(0.25, 0.25);
-                    if(cat.id==='shape') ASSETS.faces[key](mx, 1, '#ddd');
-                    else if(cat.id==='hair') { ASSETS.faces.oval(mx,1,'#eee'); if(ASSETS.hairBack[key]) ASSETS.hairBack[key](mx, '#555'); if(ASSETS.hairFront[key]) ASSETS.hairFront[key](mx, '#555'); }
-                    else if(cat.id==='hats') { ASSETS.faces.oval(mx,1,'#eee'); mx.translate(0,-50); ASSETS.hats[key](mx, state.hatColor); }
-                    else if(cat.id==='brows') { ASSETS.brows[key](mx, '#333'); }
-                    else if(cat.id==='nose') { ASSETS.noses[key](mx); }
-                    else if(cat.id==='beard') { ASSETS.faces.oval(mx,1,'#eee'); mx.translate(0,50); ASSETS.beards[key](mx, '#333'); }
-                    else if(cat.id==='mustache') { ASSETS.faces.oval(mx,1,'#eee'); mx.translate(0,45); ASSETS.mustaches[key](mx, '#333'); }
-                    else if(cat.id==='eyes') { ASSETS.eyes[key](mx); }
-                    else if(cat.id==='mouth') { ASSETS.mouths[key](mx); }
-                    else if(cat.id==='glasses') { ASSETS.faces.oval(mx,1,'#eee'); mx.translate(0,-20); ASSETS.glasses[key](mx, '#333'); }
-                    card.appendChild(mc);
+                        refreshUI();
+                    };
                     list.appendChild(card);
                 });
-            } else {
-                cat.colors.forEach(c => {
-                    const circle = document.createElement('div');
-                    circle.className = 'color-circle';
-                    circle.style.backgroundColor = c;
-                    circle.dataset.color = c;
-                    if(String(state[cat.target]).toLowerCase() === c.toLowerCase()) circle.classList.add('active');
-                    circle.onclick = (e) => {
+            } else if(cat.type === 'color') {
+                cat.colors.forEach(color => {
+                    const normalized = color.toLowerCase();
+                    const name = COLOR_NAMES[normalized] || 'Color';
+                    const card = document.createElement('button');
+                    card.type = 'button';
+                    card.className = `color-option ${String(state[cat.target]).toLowerCase() === normalized ? 'active' : ''}`;
+                    card.dataset.color = color;
+                    card.setAttribute('aria-label', `${cat.label}: ${name}`);
+                    const swatch = document.createElement('span');
+                    swatch.className = 'color-circle';
+                    swatch.style.backgroundColor = color;
+                    card.appendChild(swatch);
+                    appendOptionLabel(card, name, 'option-name color-name');
+                    card.onclick = () => {
                         pushHistory();
-                        state[cat.target] = c;
+                        state[cat.target] = color;
                         draw();
-                        list.querySelectorAll('.color-circle').forEach(el=>el.classList.remove('active'));
-                        circle.classList.add('active');
-                    }
-                    list.appendChild(circle);
+                        refreshUI();
+                    };
+                    list.appendChild(card);
                 });
             }
-            if(cat.type !== 'name' && cat.type !== 'combo') section.appendChild(list);
+            if(cat.type !== 'name') section.appendChild(list);
             options.appendChild(section);
         });
 
-        updateToolbar(UI_MAP[0]);
-        updateSelectionVisuals();
-        updateColorVisuals();
+        switchStage('start', 'presets');
     }
 
-    function switchTab(cat, btn) {
-        document.querySelectorAll('.section-view').forEach(s => s.style.display='none');
-        document.getElementById(`sec-${cat.id}`).style.display='flex';
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    function switchStage(stageId, preferredCategoryId) {
+        const stage = STAGES.find(item => item.id === stageId) || STAGES[0];
+        currentStageId = stage.id;
+        document.querySelectorAll('.stage-btn').forEach(button => {
+            button.classList.toggle('active', button.dataset.stage === stage.id);
+        });
+        const kicker = document.getElementById('stageKicker');
+        if(kicker) kicker.textContent = stage.label;
+
+        const categoryTabs = document.getElementById('categoryTabs');
+        categoryTabs.replaceChildren();
+        const preferred = stage.categories.includes(preferredCategoryId) ? preferredCategoryId : stage.categories[0];
+        let selectedButton = null;
+        stage.categories.forEach(categoryId => {
+            const category = UI_MAP.find(item => item.id === categoryId);
+            if(!category) return;
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'category-btn';
+            button.dataset.category = category.id;
+            button.textContent = category.label;
+            button.onclick = () => switchTab(category, button);
+            categoryTabs.appendChild(button);
+            if(category.id === preferred) selectedButton = button;
+        });
+        const selectedCategory = UI_MAP.find(item => item.id === preferred) || UI_MAP[0];
+        switchTab(selectedCategory, selectedButton || categoryTabs.firstElementChild);
+    }
+
+    function openCategory(categoryId) {
+        const stage = STAGES.find(item => item.categories.includes(categoryId)) || STAGES[0];
+        switchStage(stage.id, categoryId);
+    }
+
+    function switchTab(cat, button) {
+        document.querySelectorAll('.section-view').forEach(section => { section.style.display = 'none'; });
+        const section = document.getElementById(`sec-${cat.id}`);
+        if(section) section.style.display = 'flex';
+        document.querySelectorAll('.category-btn').forEach(item => item.classList.remove('active'));
+        if(button) {
+            button.classList.add('active');
+            button.scrollIntoView({block: 'nearest', inline: 'nearest'});
+        }
+        const title = document.getElementById('panelTitle');
+        if(title) title.textContent = cat.label;
         updateToolbar(cat);
         updateColorVisuals();
         updateSelectionVisuals();
+        syncNameUI();
+        draw();
     }
 
     function updateToolbar(cat) {
         currentTab = cat;
         const hasSize = canSizeCurrentThing();
+        const currentSize = getCurrentSizeValue();
         sizeSlider.disabled = !hasSize;
-        sizeSlider.value = getCurrentSizeValue();
-        sliderLabel.innerText = cat && cat.id === 'stickers' ? 'Sticker' : (hasSize ? 'Size' : '---');
+        sizeSlider.value = currentSize;
+        sliderLabel.textContent = 'Size';
+        if(sizeValue) sizeValue.textContent = hasSize ? `${Math.round(currentSize * 100)}%` : '—';
 
-        const btns = document.querySelectorAll('.move-btn');
         const canMove = canMoveCurrentThing();
-        btns.forEach(b => { b.disabled = !canMove; });
-
+        document.querySelectorAll('.move-btn').forEach(button => { button.disabled = !canMove; });
         const center = document.getElementById('moveCenterBtn');
-        const moveLabel = document.getElementById('moveLabel');
         if(center) {
-            if(cat && cat.id === 'stickers') {
-                center.textContent = '✕';
-                center.title = getActiveSticker() ? 'Remove this sticker' : 'Add a sticker first';
-                center.setAttribute('aria-label', center.title);
-            } else {
-                center.textContent = '↺';
-                center.title = 'Center this part';
-                center.setAttribute('aria-label', 'Center this part');
-            }
+            center.textContent = '↺';
+            center.title = canMove ? 'Center this part' : 'Choose a movable part';
+            center.setAttribute('aria-label', center.title);
         }
-        if(moveLabel) moveLabel.textContent = cat && cat.id === 'stickers' ? 'Sticker' : 'Move';
+        const moveLabel = document.getElementById('moveLabel');
+        if(moveLabel) moveLabel.textContent = 'Move';
+        const selected = document.getElementById('selectedPartLabel');
+        if(selected) selected.textContent = cat ? cat.label : '';
+        const remove = document.getElementById('removePartBtn');
+        if(remove) {
+            remove.disabled = !canRemoveCurrentThing();
+            remove.textContent = cat && cat.id === 'stickers' ? 'Remove Sticker' : 'Remove';
+        }
     }
 
     function updateSelectionVisuals() {
         UI_MAP.forEach(cat => {
+            const section = document.getElementById(`sec-${cat.id}`);
+            if(!section) return;
             if(cat.type === 'grid') {
-                const section = document.getElementById(`sec-${cat.id}`);
-                const cards = section.querySelectorAll('.option-card');
-                cards.forEach(c => {
-                    c.classList.remove('selected');
-                    if(c.dataset.val === state[cat.target]) c.classList.add('selected');
+                section.querySelectorAll('.option-card').forEach(card => {
+                    card.classList.toggle('selected', card.dataset.val === state[cat.target]);
                 });
-            }
-            if(cat.type === 'stickers') {
-                const section = document.getElementById(`sec-${cat.id}`);
-                if(!section) return;
-                const cards = section.querySelectorAll('.sticker-card');
-                cards.forEach(c => {
-                    c.classList.toggle('selected', c.dataset.emoji === selectedStickerEmoji);
-                });
-            }
-            if(cat.type === 'combo') {
-                const section = document.getElementById(`sec-${cat.id}`);
-                if(!section) return;
-                const cards = section.querySelectorAll('.option-card');
-                cards.forEach(c => {
-                    c.classList.remove('selected');
-                    if(c.dataset.val === state[cat.grid.target]) c.classList.add('selected');
+            } else if(cat.type === 'stickers') {
+                section.querySelectorAll('.sticker-card').forEach(card => {
+                    card.classList.toggle('selected', card.dataset.emoji === selectedStickerEmoji);
                 });
             }
         });
     }
 
     function updateColorVisuals() {
-        UI_MAP.forEach(cat => {
-            if(cat.type !== 'color' && cat.type !== 'combo') return;
+        UI_MAP.filter(cat => cat.type === 'color').forEach(cat => {
             const section = document.getElementById(`sec-${cat.id}`);
             if(!section) return;
-            const circles = section.querySelectorAll('.color-circle');
-            const t = (cat.type==='combo') ? cat.color.target : cat.target;
-            circles.forEach(el => {
-                const val = el.dataset && el.dataset.color ? el.dataset.color : '';
-                if(val.toLowerCase() === String(state[t]).toLowerCase()) el.classList.add('active');
-                else el.classList.remove('active');
+            section.querySelectorAll('.color-option').forEach(card => {
+                card.classList.toggle('active', String(card.dataset.color).toLowerCase() === String(state[cat.target]).toLowerCase());
             });
         });
     }
@@ -1322,7 +1944,13 @@
 
     function resetPos() {
         if(currentTab && currentTab.id === 'stickers') {
-            removeActiveSticker();
+            const active = getActiveSticker();
+            if(!active) return;
+            pushHistory();
+            active.x = 0;
+            active.y = 0;
+            draw();
+            showToast('Sticker centered');
             return;
         }
         if(currentTab && currentTab.posTarget) {
@@ -1330,6 +1958,7 @@
             state[currentTab.posTarget + 'X'] = 0;
             state[currentTab.posTarget + 'Y'] = 0;
             draw();
+            showToast(`${currentTab.label} centered`);
         }
     }
 
@@ -1413,7 +2042,8 @@
             pointerDrag = { mode: 'sticker', id: hitSticker.id, last: facePoint, changed: false };
             try { canvas.setPointerCapture?.(evt.pointerId); } catch(e) {}
             evt.preventDefault();
-            refreshUI();
+            if(!currentTab || currentTab.id !== 'stickers') openCategory('stickers');
+            else refreshUI();
             draw();
             return;
         }
@@ -1531,6 +2161,7 @@
 
         draw();
         refreshUI();
+        showToast('A brand-new weird face appeared!');
     }
 
     function downloadImage() {
@@ -1552,6 +2183,7 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            showToast('Picture saved!');
         } catch (e) {
             const dataUrl = exportCanvas.toDataURL("image/png");
             const win = window.open();
@@ -1604,6 +2236,7 @@
         state.faceName = name || 'Unnamed';
         syncNameUI();
         draw();
+        showToast(`Meet ${state.faceName}!`);
         return state.faceName;
     }
 
@@ -1644,20 +2277,19 @@
             ensureStickerState();
             historyStack=Array.isArray(saved.history)?saved.history.slice(-20).filter(item=>item&&typeof item==='object'):[];
             pointerDrag=null;
-            const tabIndex=Math.max(0,UI_MAP.findIndex(cat=>cat.id===saved.tab));
-            const buttons=document.querySelectorAll('.tab-btn');
-            if(buttons[tabIndex])switchTab(UI_MAP[tabIndex],buttons[tabIndex]);
+            const savedTab=UI_MAP.some(cat=>cat.id===saved.tab)?saved.tab:UI_MAP[0].id;
+            openCategory(savedTab);
             draw();refreshUI();
         },
         meaningful: function(){ return JSON.stringify(state)!==JSON.stringify(DEFAULTS); },
         summary: function(){ return state.faceName ? String(state.faceName).slice(0,40) : 'Custom face'; },
         startFresh: function(){
-            state=JSON.parse(JSON.stringify(DEFAULTS));historyStack=[];pointerDrag=null;draw();refreshUI();
+            state=JSON.parse(JSON.stringify(DEFAULTS));historyStack=[];pointerDrag=null;openCategory('presets');draw();refreshUI();
         }
     };
 
 </script>
 <script src="../arcade-save.js"></script>
 <script>ArcadeSave.register(window.SillyFaceAutosave);</script>
-<button id="arcade-home-nav" type="button" aria-label="Back to Arcade">⌂</button><script>document.getElementById('arcade-home-nav').addEventListener('click',()=>{ArcadeSave.saveNow().finally(()=>{location.href='../index.html'});});</script></body>
+<script>document.getElementById('arcade-home-nav').addEventListener('click',()=>{ArcadeSave.saveNow().finally(()=>{location.href='../index.html'});});</script></body>
 </html>

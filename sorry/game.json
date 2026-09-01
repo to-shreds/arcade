@@ -17,5 +17,5 @@
     "turn-based",
     "same-device"
   ],
-  "orientation": "landscape"
+  "orientation": "any"
 }

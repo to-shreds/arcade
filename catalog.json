@@ -86,7 +86,7 @@
         "touch",
         "turn-based"
       ],
-      "orientation": "landscape",
+      "orientation": "any",
       "folder": "blackjack",
       "launchPath": "blackjack/index.html"
     },
@@ -130,7 +130,9 @@
       "tags": [
         "touch",
         "turn-based",
-        "same-device"
+        "same-device",
+        "online",
+        "cpu"
       ],
       "orientation": "any",
       "folder": "chess",
@@ -201,6 +203,33 @@
       "orientation": "any",
       "folder": "hangman",
       "launchPath": "hangman/index.html"
+    },
+    {
+      "title": "Solitaire Parlor",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 82,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "cards",
+        "puzzle",
+        "strategy"
+      ],
+      "tags": [
+        "touch",
+        "klondike",
+        "spider",
+        "freecell",
+        "pyramid",
+        "autosave"
+      ],
+      "orientation": "any",
+      "folder": "solitaire",
+      "launchPath": "solitaire/index.html"
     },
     {
       "title": "Insultinator",
@@ -577,6 +606,33 @@
       "launchPath": "simon/index.html"
     },
     {
+      "title": "Regex Lab",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 214,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "learning",
+        "puzzle",
+        "word"
+      ],
+      "tags": [
+        "regex",
+        "coding",
+        "patterns",
+        "procedural",
+        "touch",
+        "autosave"
+      ],
+      "orientation": "any",
+      "folder": "regex-lab",
+      "launchPath": "regex-lab/index.html"
+    },
+    {
       "title": "Tic Tac Toe",
       "entry": "index.html",
       "icon": "icon.png",
@@ -724,7 +780,7 @@
         "touch",
         "calm"
       ],
-      "orientation": "portrait",
+      "orientation": "any",
       "folder": "silly-face-lab",
       "launchPath": "silly-face-lab/index.html"
     },
@@ -747,7 +803,7 @@
         "turn-based",
         "same-device"
       ],
-      "orientation": "landscape",
+      "orientation": "any",
       "folder": "sorry",
       "launchPath": "sorry/index.html"
     },
@@ -896,8 +952,10 @@
   "categories": [
     "arcade",
     "board",
+    "cards",
     "creative",
     "educational",
+    "learning",
     "math",
     "memory",
     "music",

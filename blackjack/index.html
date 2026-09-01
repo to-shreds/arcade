@@ -194,6 +194,8 @@
       --felt-dark: #1b520e;
       --card-w: 75px;
       --card-h: 108px;
+      --card-x-step: 10px;
+      --card-y-step: 22px;
       --chip-size: 55px;
       flex-direction: column;
       background:#111;
@@ -379,6 +381,7 @@
       font-size: 18px;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       top:0; left:0;
+      transform:translate(calc(var(--card-i,0) * var(--card-x-step)),calc(var(--card-i,0) * var(--card-y-step)));
       user-select:none;
     }
     #g-blackjack .card.red{ color:#d00; }
@@ -796,6 +799,85 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 #g-blackjack .chip{border-width:3px!important;box-shadow:0 5px 10px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.14)!important}
 @media(max-width:520px),(max-height:600px){#g-blackjack #status-banner{gap:5px;padding-top:5px!important;padding-bottom:5px!important}.summary-pill{padding:3px 6px!important;font-size:9px!important}.control-heading{display:none}.btn-action{min-height:40px!important}}
 </style>
+<style id="blackjack-casino-v9">
+/* Casino presentation and responsive table layout. */
+#g-blackjack{background:#071710;isolation:isolate}
+#g-blackjack .modal-screen{max-height:none;height:100%;padding-top:max(64px,calc(env(safe-area-inset-top,0px) + 52px));padding-bottom:max(16px,env(safe-area-inset-bottom,0px))}
+#g-blackjack #table:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.17;background-image:radial-gradient(circle at 20% 18%,rgba(255,255,255,.6) 0 1px,transparent 1.5px),radial-gradient(circle at 77% 61%,rgba(255,255,255,.5) 0 1px,transparent 1.5px);background-size:31px 31px,43px 43px;mix-blend-mode:soft-light}
+#g-blackjack #deck-shoe{position:absolute;right:max(12px,env(safe-area-inset-right));top:64px;width:56px;height:78px;border-radius:7px;background:linear-gradient(145deg,#670713,#b31224);border:3px solid #f5e6c5;box-shadow:-5px 7px 0 #1f0509,-8px 11px 18px rgba(0,0,0,.38);z-index:12;transform:rotate(4deg);pointer-events:none}
+#g-blackjack #deck-shoe:before{content:"♠";position:absolute;inset:5px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.72);border-radius:4px;color:#fff;font-size:30px;text-shadow:0 2px #4a0009;background:repeating-linear-gradient(45deg,transparent 0 5px,rgba(255,255,255,.1) 5px 7px)}
+#g-blackjack #deck-shoe:after{content:"6 DECK";position:absolute;top:82px;left:-6px;width:70px;text-align:center;font-size:8px;font-weight:1000;letter-spacing:1px;color:rgba(255,255,255,.7)}
+#g-blackjack .card{border:1px solid #d9d4ca;box-shadow:-3px 4px 9px rgba(0,0,0,.46),inset 0 0 0 1px rgba(255,255,255,.8);backface-visibility:hidden;transform-origin:center;will-change:transform,opacity}
+#g-blackjack #dealer-hand .card{--card-x-step:14px;--card-y-step:4px}
+#g-blackjack .card.card-deal{animation:bjDeal .19s cubic-bezier(.2,.8,.25,1) both}
+#g-blackjack .card.card-reveal{animation:bjReveal .32s ease both}
+#g-blackjack button.chip:disabled{opacity:.28;filter:grayscale(1);cursor:not-allowed;box-shadow:none!important}
+@keyframes bjDeal{0%{opacity:0;transform:translate(42vw,-120px) rotate(18deg) scale(.76)}70%{opacity:1}100%{opacity:1}}
+@keyframes bjReveal{0%{transform:rotateY(90deg) scale(.92)}100%{transform:rotateY(0)}}
+#g-blackjack .v-chip{animation:chipLand .18s ease-out both}
+@keyframes chipLand{0%{transform:translateY(-25px) scale(.75);opacity:0}100%{transform:none;opacity:1}}
+#g-blackjack .player-seat.paid .player-info{animation:paidGlow .55s ease}
+@keyframes paidGlow{40%{transform:translateY(-3px);box-shadow:0 0 0 3px rgba(255,215,0,.35),0 0 28px #ffd700!important}}
+#g-blackjack .debt-pill{border-color:rgba(255,151,66,.6);color:#ffca8d;cursor:pointer;font:1000 10px system-ui;text-transform:uppercase;letter-spacing:.4px}
+#g-blackjack .p-debt{display:none;color:#ffbd78;font:900 10px ui-monospace,monospace}.p-debt.visible{display:block}
+#g-blackjack .debt-pill.has-debt{background:rgba(146,59,0,.52);animation:debtPulse 2.2s ease-in-out infinite}
+@keyframes debtPulse{50%{box-shadow:0 0 0 4px rgba(255,146,61,.1)}}
+#bj-toast-stack{position:fixed;z-index:1900;left:50%;top:max(72px,calc(env(safe-area-inset-top) + 58px));transform:translateX(-50%);width:min(430px,calc(100vw - 24px));display:grid;gap:7px;pointer-events:none}
+.bj-toast{padding:10px 13px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(6,9,18,.94);box-shadow:0 9px 28px rgba(0,0,0,.4);font-size:13px;font-weight:850;text-align:center;animation:toastLife 3s ease both}
+.bj-toast.money{color:#8cffab;border-color:rgba(94,255,141,.45)}.bj-toast.debt{color:#ffd09c;border-color:rgba(255,156,68,.55)}.bj-toast.bad{color:#ff9c9c;border-color:rgba(255,86,86,.5)}
+@keyframes toastLife{0%{opacity:0;transform:translateY(-9px)}8%,84%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-5px)}}
+#debt-desk{display:none;position:fixed;inset:0;z-index:1800;align-items:center;justify-content:center;padding:max(48px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom));background:rgba(0,0,0,.74);backdrop-filter:blur(8px)}
+body.debt-open,#debt-desk,#debt-desk .debt-panel{touch-action:pan-y}
+#debt-desk.open{display:flex}
+#debt-desk .debt-panel{width:min(760px,100%);max-height:100%;overflow:auto;overscroll-behavior:contain;background:linear-gradient(155deg,#201326,#0d1524 58%,#071916);border:1px solid rgba(255,204,122,.42);border-radius:22px;box-shadow:0 22px 70px rgba(0,0,0,.65);padding:16px;color:#fff}
+#debt-desk .debt-head{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:12px}.debt-title{font-size:clamp(22px,5vw,34px);line-height:1;font-weight:1000;color:#ffd084}.debt-sub{font-size:12px;color:#c8b9cf;margin-top:5px}
+.debt-section{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px;margin-top:10px}.debt-section h3{margin:0 0 9px;font-size:13px;letter-spacing:.8px;text-transform:uppercase;color:#ffd084}
+.debt-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:8px;align-items:end}.debt-field{display:grid;gap:4px;font-size:10px;font-weight:900;color:#bfc5d7;text-transform:uppercase}.debt-field select,.debt-field input{width:100%;min-height:42px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:#121929;color:#fff;padding:8px;font:800 14px system-ui}.debt-action{min-height:42px;border:0;border-radius:11px;padding:8px 13px;background:linear-gradient(145deg,#ffbd5c,#db761c);color:#201003;font-weight:1000;cursor:pointer}
+.loan-card{display:grid;grid-template-columns:minmax(140px,1fr) auto;gap:8px;align-items:center;padding:10px;border-radius:12px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.1);margin-top:7px}.loan-main{font-size:13px;font-weight:900}.loan-meta{font-size:11px;color:#b9bfd0;margin-top:3px}.loan-balance{font:1000 18px ui-monospace,monospace;color:#ffcb86;text-align:right}.loan-actions{grid-column:1/-1;display:flex;align-items:center;gap:6px;flex-wrap:wrap}.loan-actions input{width:90px;min-height:36px;border:1px solid rgba(255,255,255,.2);border-radius:9px;background:#101725;color:#fff;padding:6px;font-weight:900}.loan-actions button,.pending-actions button{min-height:36px;border:1px solid rgba(255,255,255,.17);border-radius:9px;background:#26354e;color:#fff;padding:6px 10px;font-weight:900}.pending-actions{display:flex;gap:7px;justify-content:flex-end}.pending-actions .approve{background:#18613a}.pending-actions .reject{background:#70252c}.debt-empty{padding:8px;color:#9da6b9;font-size:12px;text-align:center}.debt-footnote{font-size:10px;color:#929bae;margin-top:9px;line-height:1.35}
+#g-blackjack .hands-wrapper{justify-content:safe center;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;padding:0 3px}
+@media(max-width:520px){.bj-savebar{right:calc(env(safe-area-inset-right) + 54px)!important;max-width:calc(100vw - 176px)!important;flex-wrap:nowrap!important}.bj-savebar .ui-btn{font-size:10px!important;padding:6px!important}#g-blackjack #status-banner{padding:38px 6px 5px!important;min-height:72px}#g-blackjack #deck-shoe{top:82px}}
+body.swap-corners .bj-savebar{right:calc(env(safe-area-inset-right,0px) + 92px)!important;left:auto!important}
+@media(max-width:600px){.debt-form{grid-template-columns:1fr 1fr}.debt-form .debt-action{grid-column:1/-1}.loan-card{grid-template-columns:1fr auto}#debt-desk .debt-panel{padding:12px;border-radius:17px}}
+@media(max-width:420px){
+  #g-blackjack{--card-x-step:21px}
+  #g-blackjack .p-bank:before,#g-blackjack .p-bet:before{display:none!important}
+  #g-blackjack .player-info{padding:5px!important;margin-bottom:2px!important}
+  #g-blackjack .visual-chips{height:32px;top:-5px}
+  #g-blackjack .hand-container{height:186px;margin-top:4px}
+}
+@media(max-height:680px) and (orientation:portrait){#g-blackjack{--card-w:58px;--card-h:84px;--card-x-step:8px;--card-y-step:12px;--chip-size:43px}#g-blackjack #dealer-area{flex-basis:112px!important;padding-top:2px}#g-blackjack .hand-container{height:133px!important;margin-top:3px!important}#g-blackjack #players-area{padding:5px!important}#g-blackjack .visual-chips{height:24px;top:-3px}#g-blackjack .v-chip{width:31px;height:8px}#g-blackjack #controls-bar{min-height:82px!important;padding:6px 7px max(7px,env(safe-area-inset-bottom))!important}#g-blackjack .btn-action{min-height:38px!important;padding:8px 0!important}#g-blackjack #deck-shoe{width:42px;height:59px;top:76px}#g-blackjack #deck-shoe:before{font-size:21px}#g-blackjack #deck-shoe:after{display:none}}
+@media(max-height:680px) and (orientation:portrait){#g-blackjack #ctrl-betting.active{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;align-items:center}#g-blackjack #ctrl-betting .chip{margin:auto}#g-blackjack #ctrl-betting .btn-action{max-width:none}#g-blackjack #ctrl-betting .deal{grid-column:3/5;font-size:16px}}
+/* Very short portrait WebViews need a compact shoe and seat treatment.  The
+   reduced card stack still fits five cards while keeping every hand above the
+   control tray at 320x568. */
+@media(max-height:680px) and (orientation:portrait){
+  #g-blackjack{--card-w:52px;--card-h:74px;--card-x-step:7px;--card-y-step:7px}
+  #g-blackjack #dealer-area{flex-basis:124px!important;min-height:0!important;padding-top:1px!important}
+  #g-blackjack .dealer-rule-text{display:none!important}
+  #g-blackjack .dealer-label{font-size:10px!important;padding:2px 8px!important}
+  #g-blackjack .hand-container{width:64px!important;height:104px!important;margin-top:1px!important}
+  #g-blackjack #players-area{padding:4px!important}
+  #g-blackjack .player-info{padding:3px!important;margin-bottom:1px!important;gap:0!important}
+  #g-blackjack .p-name{font-size:10px!important}
+  #g-blackjack .p-bank,#g-blackjack .p-bet{font-size:12px!important}
+  #g-blackjack .p-bank:before,#g-blackjack .p-bet:before{display:none!important}
+  #g-blackjack .visual-chips{display:none!important}
+  #g-blackjack .hands-wrapper{height:105px!important}
+}
+/* Landscape is a table plus a true side console, so controls never cover cards. */
+@media(orientation:landscape) and (max-height:620px){
+  #g-blackjack{display:grid;grid-template-columns:minmax(0,1fr) clamp(220px,28vw,310px);grid-template-rows:100dvh;--card-w:52px;--card-h:75px;--card-x-step:7px;--card-y-step:9px;--chip-size:43px}
+  #g-blackjack #table{grid-column:1;grid-row:1;height:100%;display:grid;grid-template-rows:auto minmax(116px,38%) minmax(0,1fr)}
+  #g-blackjack #controls-bar{grid-column:2;grid-row:1;height:100%;min-height:0;padding:max(48px,calc(env(safe-area-inset-top) + 42px)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) 8px;border-top:0!important;border-left:1px solid rgba(255,255,255,.2)!important;align-items:center;overflow:auto}
+  #g-blackjack .control-group.active{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-content:center}.control-heading{grid-column:1/-1!important;display:block!important;margin:0!important}
+  #g-blackjack .chip{margin:auto;width:43px;height:43px;font-size:12px}#g-blackjack .btn-action{max-width:none;min-height:42px;padding:8px 4px;font-size:12px}#g-blackjack .deal{grid-column:1/-1;font-size:17px;max-width:none}
+  #g-blackjack #status-banner{padding:5px 68px 5px 76px!important;min-height:44px;gap:4px;font-size:12px;flex-wrap:nowrap;overflow:hidden}#g-blackjack #status-banner .summary-pill,#g-blackjack #status-banner .streak-pill{font-size:8px!important;min-height:24px;padding:3px 5px!important}#g-blackjack #game-msg{max-width:34%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #g-blackjack #dealer-area{grid-row:2;min-height:0;flex:none;padding:2px;border-bottom:1px solid rgba(255,255,255,.15)}#g-blackjack #players-area{grid-row:3;padding:4px 7px;gap:4px;align-items:flex-start}#g-blackjack .player-seat{min-width:82px;max-width:none}#g-blackjack .player-info{padding:3px!important;margin-bottom:1px!important;gap:0!important}#g-blackjack .p-name{font-size:10px!important}#g-blackjack .p-bank,#g-blackjack .p-bet{font-size:11px!important}#g-blackjack .p-bank:before,#g-blackjack .p-bet:before{display:none}#g-blackjack .visual-chips{height:22px;top:-3px}#g-blackjack .v-chip{width:30px;height:8px}#g-blackjack .hand-container{width:68px;height:112px;margin-top:1px}#g-blackjack .hands-wrapper{gap:4px}#g-blackjack .card{font-size:13px;padding:3px}#g-blackjack .big-suit{font-size:25px}#g-blackjack .score-bubble{min-width:24px;height:24px;font-size:12px;top:-5px;right:-4px}#g-blackjack .result-text{font-size:12px;padding:3px 5px}
+  #g-blackjack #deck-shoe{right:10px;top:48px;width:39px;height:55px}#g-blackjack #deck-shoe:before{font-size:19px;inset:3px}#g-blackjack #deck-shoe:after{display:none}.bj-savebar{right:calc(env(safe-area-inset-right) + 56px)!important;max-width:250px!important}.bj-savebar .ui-btn{font-size:10px!important;padding:6px!important}
+}
+@media(orientation:landscape) and (max-height:380px){#g-blackjack{grid-template-columns:minmax(0,1fr) 210px;--card-w:46px;--card-h:66px;--card-x-step:6px;--card-y-step:6px}#g-blackjack #table{grid-template-rows:40px 101px minmax(0,1fr)}#g-blackjack .hand-container{height:91px;width:58px}#g-blackjack .card{font-size:11px}#g-blackjack .p-bet{display:none}#g-blackjack .visual-chips{display:none}#g-blackjack .dealer-label{font-size:9px;padding:2px 7px}.dealer-rule-text{display:none}}
+body.reduce-motion #g-blackjack .debt-pill{animation:none}
+</style>
 </head>
 <body>
 
@@ -873,15 +955,17 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
     <div id="game-over-screen" class="modal-screen" style="display:none;">
       <h1 style="color:#f44; font-size: 3rem; margin:0;">GAME OVER</h1>
-      <p style="color:#fff; margin:0;">All players are bankrupt.</p>
+      <p style="color:#fff; margin:0;">Nobody can cover the $10 table minimum.</p>
+      <button class="btn-large" type="button" onclick="BJGame.openDebtDesk()">DEBT DESK</button>
       <button class="btn-large" onclick="BJGame.reset()">RESTART</button>
     </div>
 
     <div id="table">
-      <div id="status-banner">
+      <div id="status-banner" role="status" aria-live="polite">
         <span id="game-msg">Welcome</span>
         <span id="bankroll-summary" class="summary-pill">Bankroll $0</span>
         <span id="bet-summary" class="summary-pill">Bet $0</span>
+        <button id="debt-summary" class="summary-pill debt-pill" type="button" onclick="BJGame.openDebtDesk()">Debt Desk</button>
         <span id="streak-disp" class="streak-pill" style="display:none">🔥 0</span>
         <span id="odds-disp" class="streak-pill" style="display:none; border-color: rgba(0,229,255,0.55); color:#00e5ff;">
           🎯 0%
@@ -892,6 +976,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         <div class="dealer-label">DEALER</div>
         <div class="dealer-rule-text">Dealer must hit soft 17</div>
         <div class="hand-container" id="dealer-hand"></div>
+        <div id="deck-shoe" aria-hidden="true"></div>
       </div>
 
       <div id="players-area"></div>
@@ -900,9 +985,9 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     <div id="controls-bar">
       <div id="ctrl-betting" class="control-group">
         <div class="control-heading">Choose a bet, then deal</div>
-        <div class="chip c10" onclick="BJGame.addBet(10)">10</div>
-        <div class="chip c50" onclick="BJGame.addBet(50)">50</div>
-        <div class="chip c100" onclick="BJGame.addBet(100)">100</div>
+        <button class="chip c10" type="button" onclick="BJGame.addBet(10)" aria-label="Bet 10 dollars">10</button>
+        <button class="chip c50" type="button" onclick="BJGame.addBet(50)" aria-label="Bet 50 dollars">50</button>
+        <button class="chip c100" type="button" onclick="BJGame.addBet(100)" aria-label="Bet 100 dollars">100</button>
         <button class="btn-action max" onclick="BJGame.maxBet()">MAX</button>
         <button class="btn-action half" onclick="BJGame.halfBet()">BET HALF</button>
         <button class="btn-action clear" onclick="BJGame.clearBet()">Clear</button>
@@ -921,6 +1006,38 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         <div class="control-heading">Round complete</div>
         <button class="btn-action deal" onclick="BJGame.nextRound()">Next Round</button>
       </div>
+    </div>
+  </div>
+
+  <div id="bj-toast-stack" aria-live="polite"></div>
+  <div id="debt-desk" role="dialog" aria-modal="true" aria-labelledby="debt-title">
+    <div class="debt-panel">
+      <div class="debt-head">
+        <div>
+          <div class="debt-title" id="debt-title">THE DEBT DESK</div>
+          <div class="debt-sub">Rescue a broke player. Become their extremely polite casino creditor.</div>
+        </div>
+        <button class="ui-btn" type="button" onclick="BJGame.closeDebtDesk()" aria-label="Close Debt Desk">✕</button>
+      </div>
+      <section class="debt-section">
+        <h3>Propose a loan</h3>
+        <div class="debt-form">
+          <label class="debt-field">Lender<select id="loan-lender"></select></label>
+          <label class="debt-field">Borrower<select id="loan-borrower"></select></label>
+          <label class="debt-field">Principal<input id="loan-principal" type="number" inputmode="numeric" min="10" step="10" value="100" /></label>
+          <label class="debt-field">Interest each round<select id="loan-rate"><option value="0.01">1%</option><option value="0.02" selected>2%</option><option value="0.03">3%</option></select></label>
+          <button class="debt-action" type="button" onclick="BJGame.proposeLoan()">Request approval</button>
+        </div>
+        <div class="debt-footnote">Interest compounds once after every completed round. The lender must approve before any money moves.</div>
+      </section>
+      <section class="debt-section">
+        <h3>Awaiting lender approval</h3>
+        <div id="pending-loans"></div>
+      </section>
+      <section class="debt-section">
+        <h3>Outstanding accounts</h3>
+        <div id="active-loans"></div>
+      </section>
     </div>
   </div>
 
@@ -1196,8 +1313,10 @@ window.FeedbackSys = FeedbackSys;
 const BJGame = (function(){
   const SUITS = ['♠', '♥', '♣', '♦'];
   const RANKS = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+  const MIN_BET = 10;
   let streak = 0;
-  const SAVE_KEY = 'arcade_blackjack_save_v1';
+  const SAVE_KEY = 'arcade_blackjack_save_v3';
+  const LEGACY_SAVE_KEYS = ['arcade_blackjack_save_v1', 'arcade_blackjack_save_v2'];
 
   class Card{
     constructor(suit, rank){
@@ -1211,14 +1330,13 @@ const BJGame = (function(){
       if(this.rank === 'A') return 11;
       return parseInt(this.rank, 10);
     }
-    getHTML(index, total, hidden=false){
-      let x = index * 20;
-      let y = index * 40;
+    getHTML(index, total, hidden=false, effect=''){
+      const effectClass = effect === 'deal' ? ' card-deal' : (effect === 'reveal' ? ' card-reveal' : '');
       if(hidden){
-        return `<div class="card card-back" style="transform: translate(${x}px, ${y}px); z-index:${index};"></div>`;
+        return `<div class="card card-back${effectClass}" style="--card-i:${index}; z-index:${index};"></div>`;
       }
       return `
-        <div class="card ${this.color}" style="transform: translate(${x}px, ${y}px); z-index:${index};">
+        <div class="card ${this.color}${effectClass}" style="--card-i:${index}; z-index:${index};">
           <div class="rank-suit"><span>${this.rank}</span><span>${this.suit}</span></div>
           <div class="big-suit">${this.suit}</div>
           <div class="rank-suit bottom-right"><span>${this.rank}</span><span>${this.suit}</span></div>
@@ -1257,6 +1375,7 @@ const BJGame = (function(){
       this.bet = bet;
       this.status = 'playing';
       this.result = null;
+      this.fromSplit = false;
     }
     add(card){ this.cards.push(card); }
     score(){
@@ -1276,7 +1395,7 @@ const BJGame = (function(){
       return hasAce && (low + 10) === 17;
     }
     isBust(){ return this.score() > 21; }
-    isBJ(){ return this.cards.length === 2 && this.score() === 21; }
+    isBJ(){ return !this.fromSplit && this.cards.length === 2 && this.score() === 21; }
     isCharlie(){ return this.cards.length >= 5 && this.score() <= 21; }
     canSplit(){ return this.cards.length === 2 && this.cards[0].val === this.cards[1].val; }
   }
@@ -1290,6 +1409,249 @@ const BJGame = (function(){
   let gameGeneration = 0;
   const transitionTimers = new Set();
   let undoStack = [];
+  let roundNumber = 1;
+  let loans = [];
+  let pendingLoans = [];
+  let nextLoanId = 1;
+
+  function cleanMoney(value){
+    const n = Number(value);
+    return Number.isFinite(n) ? Math.min(1000000000, Math.max(0, Math.round(n * 100) / 100)) : 0;
+  }
+  function formatMoney(value){
+    const n = cleanMoney(value);
+    return `$${n.toLocaleString(undefined, {minimumFractionDigits:Number.isInteger(n) ? 0 : 2, maximumFractionDigits:2})}`;
+  }
+  function playerById(id){ return players.find(p => p.id === Number(id)); }
+  function escapeHTML(value){
+    return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function toast(message, kind=''){
+    const stack = document.getElementById('bj-toast-stack');
+    if(!stack) return;
+    const item = document.createElement('div');
+    item.className = `bj-toast ${kind}`;
+    item.textContent = message;
+    stack.appendChild(item);
+    setTimeout(() => item.remove(), 3100);
+  }
+  const BJAudio = (() => {
+    let ctx = null;
+    function context(){
+      if(!window.ArcadeSettings || !ArcadeSettings.soundOn) return null;
+      try{
+        if(!ctx){ ctx = new (window.AudioContext || window.webkitAudioContext)(); ArcadeSettings.registerAudioCtx(ctx); }
+        if(ctx.state === 'suspended') ctx.resume();
+        return ctx;
+      }catch(e){ return null; }
+    }
+    function note(freq, duration=.055, volume=.035, delay=0, type='sine'){
+      const c = context(); if(!c) return;
+      const oscillator = c.createOscillator();
+      const gain = c.createGain();
+      oscillator.type = type; oscillator.frequency.value = freq;
+      gain.gain.setValueAtTime(0.0001, c.currentTime + delay);
+      gain.gain.exponentialRampToValueAtTime(volume, c.currentTime + delay + .008);
+      gain.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + delay + duration);
+      oscillator.connect(gain).connect(c.destination);
+      oscillator.start(c.currentTime + delay); oscillator.stop(c.currentTime + delay + duration + .015);
+    }
+    return {
+      card(){ note(520,.045,.022,0,'triangle'); },
+      chip(){ note(760,.045,.03,0,'square'); },
+      reveal(){ note(310,.06,.025); note(465,.08,.025,.04); },
+      win(){ note(523,.09,.035); note(659,.1,.035,.07); note(784,.14,.04,.14); },
+      lose(){ note(190,.12,.035,0,'sawtooth'); },
+      debt(){ note(392,.06,.025); note(330,.08,.025,.055); }
+    };
+  })();
+
+  function updateDebtBadge(){
+    const button = document.getElementById('debt-summary');
+    if(!button) return;
+    const total = loans.filter(l => l.status === 'active').reduce((sum,l) => sum + cleanMoney(l.balance), 0);
+    button.textContent = total > 0 ? `Debt ${formatMoney(total)}` : (pendingLoans.length ? `${pendingLoans.length} approval${pendingLoans.length === 1 ? '' : 's'}` : 'Debt Desk');
+    button.classList.toggle('has-debt', total > 0 || pendingLoans.length > 0);
+  }
+  function borrowerBalance(playerId){
+    return loans.filter(l => l.status === 'active' && l.borrowerId === Number(playerId)).reduce((sum,l) => sum + cleanMoney(l.balance), 0);
+  }
+  function updateSeatDebt(){
+    for(const p of players){
+      const el = document.getElementById(`debt-${p.id}`);
+      if(!el) continue;
+      const balance = borrowerBalance(p.id);
+      el.textContent = balance ? `OWES ${formatMoney(balance)}` : '';
+      el.classList.toggle('visible', balance > 0);
+    }
+  }
+
+  function refreshMoneyViews(){
+    for(const p of players){
+      p.bank = cleanMoney(p.bank);
+      const seat = document.getElementById(`seat-${p.id}`);
+      if(!seat) continue;
+      const bankEl = seat.querySelector('.p-bank');
+      if(bankEl) bankEl.textContent = p.bankrupt && p.bank <= 0 ? 'OUT' : formatMoney(p.bank);
+      seat.classList.toggle('bankrupt', p.bankrupt && p.bank <= 0);
+    }
+    const p = players[pIdx];
+    if(p) updateMoneySummary(p, p.hands && p.hands[hIdx] ? p.hands[hIdx] : null);
+    updateDebtBadge();
+    updateSeatDebt();
+    if(phase === 'action' && p && p.hands && p.hands[hIdx]) updateActionControls(p, p.hands[hIdx]);
+  }
+
+  function debtDeskIsOpen(){ return document.getElementById('debt-desk')?.classList.contains('open'); }
+  function renderDebtDesk(){
+    const lenderSelect = document.getElementById('loan-lender');
+    const borrowerSelect = document.getElementById('loan-borrower');
+    if(!lenderSelect || !borrowerSelect) return;
+    const oldLender = lenderSelect.value;
+    const oldBorrower = borrowerSelect.value;
+    lenderSelect.innerHTML = players.map(p => `<option value="${p.id}">${escapeHTML(p.name)} (${formatMoney(p.bank)})</option>`).join('');
+    borrowerSelect.innerHTML = players.map(p => `<option value="${p.id}">${escapeHTML(p.name)} (${formatMoney(p.bank)})</option>`).join('');
+    if(players.some(p => String(p.id) === oldLender)) lenderSelect.value = oldLender;
+    if(players.some(p => String(p.id) === oldBorrower)) borrowerSelect.value = oldBorrower;
+    if(lenderSelect.value === borrowerSelect.value && players.length > 1){
+      const other = players.find(p => String(p.id) !== lenderSelect.value);
+      if(other) borrowerSelect.value = String(other.id);
+    }
+
+    const pending = document.getElementById('pending-loans');
+    pending.innerHTML = pendingLoans.length ? pendingLoans.map(l => {
+      const lender = playerById(l.lenderId), borrower = playerById(l.borrowerId);
+      return `<div class="loan-card"><div><div class="loan-main">${escapeHTML(lender?.name || 'Former player')} must approve ${formatMoney(l.principal)} for ${escapeHTML(borrower?.name || 'Former player')}</div><div class="loan-meta">${Math.round(l.rate*100)}% compounded after each round</div></div><div class="pending-actions"><button class="approve" type="button" onclick="BJGame.approveLoan(${l.id})">Approve</button><button class="reject" type="button" onclick="BJGame.rejectLoan(${l.id})">Nope</button></div></div>`;
+    }).join('') : '<div class="debt-empty">No paperwork waiting. Miraculous.</div>';
+
+    const active = document.getElementById('active-loans');
+    const openLoans = loans.filter(l => l.status === 'active' && l.balance > 0);
+    active.innerHTML = openLoans.length ? openLoans.map(l => {
+      const lender = playerById(l.lenderId), borrower = playerById(l.borrowerId);
+      const suggested = Math.min(100, Math.floor(cleanMoney(borrower?.bank || 0)));
+      return `<div class="loan-card"><div><div class="loan-main">${escapeHTML(borrower?.name || 'Former player')} owes ${escapeHTML(lender?.name || 'Former player')}</div><div class="loan-meta">Started at ${formatMoney(l.principal)} · ${Math.round(l.rate*100)}% each round · ${l.roundsAccrued || 0} interest tick${l.roundsAccrued === 1 ? '' : 's'}</div></div><div class="loan-balance">${formatMoney(l.balance)}</div><div class="loan-actions"><input id="repay-${l.id}" type="number" inputmode="decimal" min="0.01" step="1" value="${suggested || ''}" placeholder="Amount" aria-label="Repayment amount"><button type="button" onclick="BJGame.repayLoan(${l.id})">Pay amount</button><button type="button" onclick="BJGame.repayLoan(${l.id},true)">Pay in full</button></div></div>`;
+    }).join('') : '<div class="debt-empty">Nobody owes anybody. Enjoy it while it lasts.</div>';
+    updateDebtBadge();
+  }
+
+  function openDebtDesk(){
+    if(players.length < 2){ toast('Loans need at least two players.', 'bad'); return false; }
+    renderDebtDesk();
+    document.getElementById('debt-desk').classList.add('open');
+    document.body.classList.add('debt-open');
+    return true;
+  }
+  function closeDebtDesk(){ document.getElementById('debt-desk')?.classList.remove('open'); document.body.classList.remove('debt-open'); }
+
+  function proposeLoan(){
+    if(players.length < 2) return false;
+    const lenderId = Number(document.getElementById('loan-lender').value);
+    const borrowerId = Number(document.getElementById('loan-borrower').value);
+    const principal = Math.floor(Number(document.getElementById('loan-principal').value));
+    const rate = Number(document.getElementById('loan-rate').value);
+    const lender = playerById(lenderId), borrower = playerById(borrowerId);
+    if(!lender || !borrower){ toast('Choose two current players.', 'bad'); return false; }
+    if(lenderId === borrowerId){ toast('You cannot charge yourself interest. Nice try.', 'bad'); return false; }
+    if(!Number.isFinite(principal) || principal < 10){ toast('The minimum rescue loan is $10.', 'bad'); return false; }
+    if(principal > lender.bank){ toast(`${lender.name} only has ${formatMoney(lender.bank)} available.`, 'bad'); return false; }
+    if(![.01,.02,.03].includes(rate)){ toast('Choose a 1%, 2%, or 3% round rate.', 'bad'); return false; }
+    recordUndo();
+    pendingLoans.push({id:nextLoanId++, lenderId, borrowerId, principal, rate, createdRound:roundNumber});
+    BJAudio.debt();
+    toast(`${lender.name}, please approve or reject the ${formatMoney(principal)} rescue package.`, 'debt');
+    renderDebtDesk();
+    autosaveSoon();
+    return true;
+  }
+
+  function approveLoan(id){
+    const request = pendingLoans.find(l => l.id === Number(id));
+    if(!request) return false;
+    const lender = playerById(request.lenderId), borrower = playerById(request.borrowerId);
+    if(!lender || !borrower || lender.id === borrower.id){ rejectLoan(id); return false; }
+    if(lender.bank < request.principal){ toast(`${lender.name} no longer has enough cash to fund that loan.`, 'bad'); return false; }
+    recordUndo();
+    const borrowerWasSittingOut = borrower.bankrupt && (!borrower.hands || borrower.hands.length === 0);
+    lender.bank = cleanMoney(lender.bank - request.principal);
+    borrower.bank = cleanMoney(borrower.bank + request.principal);
+    borrower.bankrupt = false;
+    loans.push({
+      id:request.id, lenderId:lender.id, borrowerId:borrower.id,
+      principal:request.principal, balance:request.principal, rate:request.rate,
+      createdRound:roundNumber, lastAccruedRound:roundNumber, roundsAccrued:0, status:'active'
+    });
+    pendingLoans = pendingLoans.filter(l => l.id !== request.id);
+    BJAudio.chip(); ArcadeHaptics.success();
+    toast(`${lender.name} funded ${borrower.name}. The casino vultures applaud.`, 'money');
+    if(resumeCompletedTableIfFunded()){
+      renderDebtDesk();
+    }else{
+      // If a player was skipped at the start of this betting round, a rescue
+      // loan should let them place a bet now.  Players who already bet are
+      // skipped when play advances back toward the current seat.
+      if(phase === 'betting' && borrowerWasSittingOut && borrower.bank >= MIN_BET && borrower.id < pIdx){
+        pIdx = borrower.id;
+      }
+      refreshMoneyViews();
+      renderDebtDesk();
+      if(phase === 'betting') updateBetControls();
+    }
+    autosaveSoon();
+    return true;
+  }
+
+  function rejectLoan(id){
+    const request = pendingLoans.find(l => l.id === Number(id));
+    if(!request) return false;
+    recordUndo();
+    pendingLoans = pendingLoans.filter(l => l.id !== request.id);
+    toast('Loan denied. The Debt Desk has stamped it dramatically.', 'debt');
+    renderDebtDesk(); autosaveSoon();
+    return true;
+  }
+
+  function repayLoan(id, full=false){
+    const loan = loans.find(l => l.id === Number(id) && l.status === 'active');
+    if(!loan) return false;
+    const borrower = playerById(loan.borrowerId), lender = playerById(loan.lenderId);
+    if(!borrower || !lender) return false;
+    const input = document.getElementById(`repay-${loan.id}`);
+    const requested = full ? loan.balance : Number(input && input.value);
+    if(!Number.isFinite(requested) || requested <= 0){ toast('Enter a repayment amount.', 'bad'); return false; }
+    const amount = cleanMoney(Math.min(requested, loan.balance, borrower.bank));
+    if(amount <= 0){ toast(`${borrower.name} has no cash available to repay this yet.`, 'bad'); return false; }
+    recordUndo();
+    borrower.bank = cleanMoney(borrower.bank - amount);
+    lender.bank = cleanMoney(lender.bank + amount);
+    loan.balance = cleanMoney(loan.balance - amount);
+    if(loan.balance <= 0){ loan.balance = 0; loan.status = 'paid'; loan.paidRound = roundNumber; }
+    lender.bankrupt = false;
+    BJAudio.chip();
+    toast(loan.status === 'paid' ? `${borrower.name} is debt-free. Confetti has been repossessed.` : `${borrower.name} paid ${formatMoney(amount)}. ${formatMoney(loan.balance)} remains.`, 'money');
+    if(resumeCompletedTableIfFunded()) renderDebtDesk();
+    else{ refreshMoneyViews(); renderDebtDesk(); }
+    autosaveSoon();
+    return true;
+  }
+
+  function accrueInterest(){
+    const notices = [];
+    for(const loan of loans){
+      if(loan.status !== 'active' || loan.balance <= 0 || loan.lastAccruedRound >= roundNumber) continue;
+      const before = cleanMoney(loan.balance);
+      loan.balance = cleanMoney(Math.ceil(before * (1 + loan.rate) * 100) / 100);
+      loan.lastAccruedRound = roundNumber;
+      loan.roundsAccrued = Math.max(0, Number(loan.roundsAccrued) || 0) + 1;
+      const borrower = playerById(loan.borrowerId);
+      notices.push(`${borrower?.name || 'A borrower'} +${formatMoney(loan.balance - before)} interest`);
+    }
+    if(notices.length){ BJAudio.debt(); toast(`Interest bell: ${notices.join(' · ')}`, 'debt'); }
+    updateDebtBadge();
+  }
+
+  function autosaveSoon(){
+    try{ if(window.ArcadeSave) ArcadeSave.touch(120); }catch(e){}
+  }
 
   function syncUndoButton(){
     const button = document.getElementById('bj-undo');
@@ -1343,15 +1705,17 @@ const BJGame = (function(){
       cards: hand.cards.map(cardData),
       bet: hand.bet,
       status: hand.status,
-      result: hand.result
+      result: hand.result,
+      fromSplit: Boolean(hand.fromSplit)
     } : null;
   }
 
   function handFrom(data){
-    const h = new Hand(Number(data && data.bet) || 0);
+    const h = new Hand(cleanMoney(data && data.bet));
     h.cards = Array.isArray(data && data.cards) ? data.cards.map(cardFrom) : [];
-    h.status = data && typeof data.status === 'string' ? data.status : 'playing';
-    h.result = data && data.result ? String(data.result) : null;
+    h.status = data && ['playing','stand','bust','bj','charlie'].includes(data.status) ? data.status : 'playing';
+    h.result = data && ['win','lose','push'].includes(data.result) ? data.result : null;
+    h.fromSplit = Boolean(data && data.fromSplit);
     return h;
   }
 
@@ -1386,8 +1750,8 @@ const BJGame = (function(){
   function updateMoneySummary(p, h){
     const bankroll = document.getElementById('bankroll-summary');
     const bet = document.getElementById('bet-summary');
-    if(bankroll) bankroll.textContent = p ? `Bankroll $${p.bank}` : 'Bankroll $0';
-    if(bet) bet.textContent = `Bet $${h ? h.bet : (p ? p.curBet : 0)}`;
+    if(bankroll) bankroll.textContent = p ? `Bankroll ${formatMoney(p.bank)}` : 'Bankroll $0';
+    if(bet) bet.textContent = `Bet ${formatMoney(h ? h.bet : (p ? p.curBet : 0))}`;
   }
   function updateStreak(){
     const el = document.getElementById('streak-disp');
@@ -1521,14 +1885,16 @@ const BJGame = (function(){
       div.id = `seat-${p.id}`;
       div.innerHTML = `
         <div class="player-info">
-          <div class="p-name">${p.name}</div>
-          <div class="p-bank">$${p.bank}</div>
+          <div class="p-name">${escapeHTML(p.name)}</div>
+          <div class="p-bank">${formatMoney(p.bank)}</div>
           <div class="p-bet" id="bet-disp-${p.id}">Bet: $0</div>
+          <div class="p-debt" id="debt-${p.id}"></div>
         </div>
         <div class="visual-chips" id="chips-${p.id}"></div>
         <div class="hands-wrapper" id="hands-${p.id}"></div>`;
       area.appendChild(div);
     }
+    updateSeatDebt();
   }
 
   function renderChips(pid){
@@ -1576,22 +1942,30 @@ const BJGame = (function(){
 
     const btn = document.getElementById('btn-deal');
     btn.textContent = isLast ? "DEAL" : "NEXT";
-    btn.disabled = (p.curBet === 0);
+    btn.disabled = (p.curBet < MIN_BET);
+    document.querySelector('#ctrl-betting .c10').disabled = p.bank < 10;
+    document.querySelector('#ctrl-betting .c50').disabled = p.bank < 50;
+    document.querySelector('#ctrl-betting .c100').disabled = p.bank < 100;
+    document.querySelector('#ctrl-betting .max').disabled = p.bank < MIN_BET;
+    document.querySelector('#ctrl-betting .half').disabled = p.bank < MIN_BET;
+    document.querySelector('#ctrl-betting .clear').disabled = p.curBet <= 0;
+    if(p.bank < MIN_BET && p.curBet < MIN_BET) setStatus(`${p.name}: visit the Debt Desk for a rescue`);
 
     const seat = document.getElementById(`seat-${p.id}`);
-    seat.querySelector('.p-bank').textContent = `$${p.bank}`;
+    seat.querySelector('.p-bank').textContent = formatMoney(p.bank);
 
     const betEl = document.getElementById(`bet-disp-${p.id}`);
-    if(betEl) betEl.textContent = `Bet: $${p.curBet}`;
+    if(betEl) betEl.textContent = `Bet: ${formatMoney(p.curBet)}`;
 
     renderChips(p.id);
   }
 
-  function renderAllHands(revealDealer=false){
+  function renderAllHands(revealDealer=false, effect=null){
     const dDiv = document.getElementById('dealer-hand');
     dDiv.innerHTML = '';
     dealerHand.cards.forEach((c, i) => {
-      dDiv.innerHTML += c.getHTML(i, dealerHand.cards.length, i===0 && !revealDealer);
+      const fx = effect && effect.dealerIndex === i ? 'deal' : (effect && effect.reveal && i === 0 ? 'reveal' : '');
+      dDiv.innerHTML += c.getHTML(i, dealerHand.cards.length, i===0 && !revealDealer, fx);
     });
     if(revealDealer){
       dDiv.innerHTML += `<div class="bubble score-bubble">${dealerHand.score()}</div>`;
@@ -1603,11 +1977,14 @@ const BJGame = (function(){
       hDiv.innerHTML = '';
       p.hands.forEach((h, i) => {
         let html = `<div class="hand-container" id="p${p.id}h${i}">`;
-        h.cards.forEach((c, ci) => html += c.getHTML(ci, h.cards.length));
+        h.cards.forEach((c, ci) => {
+          const fx = effect && effect.playerId === p.id && effect.handIndex === i && effect.cardIndex === ci ? 'deal' : '';
+          html += c.getHTML(ci, h.cards.length, false, fx);
+        });
         html += `<div class="bubble score-bubble">${h.score()}</div>`;
-        if(h.result){
+        if(h.result || h.status === 'charlie' || h.status === 'bj'){
           let cls = h.result;
-          let label = h.result.toUpperCase();
+          let label = h.result ? h.result.toUpperCase() : '';
           if(h.status === 'bj'){ cls='bj'; label='BJ'; }
           else if(h.status === 'charlie'){ cls='charlie'; label='5-CARD!'; }
           html += `<div class="result-text ${cls}">${label}</div>`;
@@ -1622,11 +1999,23 @@ const BJGame = (function(){
     while(pIdx < players.length && players[pIdx].bankrupt) pIdx++;
   }
 
+  function findNextBettingPlayer(){
+    while(pIdx < players.length && (players[pIdx].bankrupt || players[pIdx].hands.length > 0)) pIdx++;
+  }
+
+  function resumeCompletedTableIfFunded(){
+    if(phase !== 'completed' || !players.some(p => p.bank >= MIN_BET)) return false;
+    document.getElementById('game-over-screen').style.display = 'none';
+    renderSeats();
+    startBettingPhase();
+    return true;
+  }
+
   
   function init(n){
     cancelTransitions();
     clearUndo();
-    try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+    try{ localStorage.removeItem(SAVE_KEY); LEGACY_SAVE_KEYS.forEach(k => localStorage.removeItem(k)); }catch(e){}
     document.getElementById('setup-screen').style.display = 'none';
     document.getElementById('game-over-screen').style.display = 'none';
     deck = new Deck();
@@ -1635,9 +2024,14 @@ const BJGame = (function(){
     for(let i=0; i<n; i++){
       players.push({ id:i, name:`P${i+1}`, bank:1000, hands:[], curBet:0, bankrupt:false });
     }
+    loans = [];
+    pendingLoans = [];
+    nextLoanId = 1;
+    roundNumber = 1;
     streak = 0;
     updateStreak();
     renderSeats();
+    updateDebtBadge();
     startBettingPhase();
   }
 
@@ -1657,6 +2051,12 @@ const BJGame = (function(){
     pIdx = 0;
     hIdx = 0;
     streak = 0;
+    loans = [];
+    pendingLoans = [];
+    nextLoanId = 1;
+    roundNumber = 1;
+    closeDebtDesk();
+    updateDebtBadge();
     updateStreak();
   }
 
@@ -1679,17 +2079,17 @@ const BJGame = (function(){
       const seat = document.getElementById(`seat-${p.id}`);
       const bankEl = seat.querySelector('.p-bank');
 
-      if(p.bank <= 0){
+      if(p.bank < MIN_BET){
         p.bankrupt = true;
         seat.classList.add('bankrupt');
-        bankEl.textContent = "OUT";
+        bankEl.textContent = p.bank > 0 ? `${formatMoney(p.bank)} · NEEDS LOAN` : "OUT";
       }else{
         p.bankrupt = false;
         seat.classList.remove('bankrupt');
         active++;
         const betEl = document.getElementById(`bet-disp-${p.id}`);
         if(betEl) betEl.textContent = "Bet: $0";
-        bankEl.textContent = `$${p.bank}`;
+        bankEl.textContent = formatMoney(p.bank);
       }
     }
 
@@ -1701,9 +2101,11 @@ const BJGame = (function(){
     }
 
     pIdx = 0;
-    findNextActivePlayer();
+    findNextBettingPlayer();
     highlightSeat();
     updateBetControls();
+    updateDebtBadge();
+    updateSeatDebt();
   }
 
   function nextRound(){
@@ -1715,28 +2117,31 @@ const BJGame = (function(){
     const p = players[pIdx];
     if(p.bank >= amt){
       recordUndo();
-      p.bank -= amt;
-      p.curBet += amt;
+      p.bank = cleanMoney(p.bank - amt);
+      p.curBet = cleanMoney(p.curBet + amt);
+      BJAudio.chip();
       updateBetControls();
     }
   }
   function maxBet(){
     const p = players[pIdx];
-    if(p.bank > 0){
+    if(p.bank >= MIN_BET){
       recordUndo();
-      p.curBet += p.bank;
+      p.curBet = cleanMoney(p.curBet + p.bank);
       p.bank = 0;
+      BJAudio.chip();
       updateBetControls();
     }
   }
   function halfBet(){
     const p = players[pIdx];
-    if(p.bank > 0){
+    if(p.bank >= MIN_BET){
       recordUndo();
       let amt = Math.floor(p.bank / 2);
-      if(amt < 1) amt = p.bank;
-      p.curBet += amt;
-      p.bank -= amt;
+      if(amt < MIN_BET) amt = MIN_BET;
+      p.curBet = cleanMoney(p.curBet + amt);
+      p.bank = cleanMoney(p.bank - amt);
+      BJAudio.chip();
       updateBetControls();
     }
   }
@@ -1744,18 +2149,19 @@ const BJGame = (function(){
     const p = players[pIdx];
     if(!p || p.curBet <= 0) return;
     recordUndo();
-    p.bank += p.curBet;
+    p.bank = cleanMoney(p.bank + p.curBet);
     p.curBet = 0;
+    BJAudio.chip();
     updateBetControls();
   }
 
   function placeBet(){
     const p = players[pIdx];
-    if(!p || p.curBet <= 0) return;
+    if(!p || p.curBet < MIN_BET) return;
     recordUndo();
     p.hands.push(new Hand(p.curBet));
     pIdx++;
-    findNextActivePlayer();
+    findNextBettingPlayer();
     if(pIdx < players.length){
       highlightSeat();
       updateBetControls();
@@ -1767,21 +2173,39 @@ const BJGame = (function(){
   function dealCards(){
     phase = 'dealing';
     document.querySelectorAll('#g-blackjack .control-group').forEach(c => c.classList.remove('active'));
-    setStatus("DEALING...");
-
+    setStatus("DEALING");
+    document.querySelectorAll('#g-blackjack .player-seat').forEach(e => e.classList.remove('inactive'));
+    const queue = [];
     for(let r=0; r<2; r++){
       for(const p of players){
-        if(!p.bankrupt && p.hands.length > 0) p.hands[0].add(deck.deal());
+        if(!p.bankrupt && p.hands.length > 0 && p.hands[0].cards.length <= r) queue.push({kind:'player', player:p});
       }
-      dealerHand.add(deck.deal());
+      if(dealerHand.cards.length <= r) queue.push({kind:'dealer'});
     }
-
-    document.querySelectorAll('#g-blackjack .player-seat').forEach(e => e.classList.remove('inactive'));
+    let dealt = 0;
+    const step = () => {
+      const target = queue.shift();
+      if(!target){
+        pIdx = 0; hIdx = 0;
+        findNextActivePlayer();
+        setStatus('CARDS ARE OUT');
+        later(() => { autosaveSoon(); nextTurn(); }, 150);
+        return;
+      }
+      if(target.kind === 'dealer'){
+        dealerHand.add(deck.deal());
+        renderAllHands(false, {dealerIndex:dealerHand.cards.length - 1});
+      }else{
+        target.player.hands[0].add(deck.deal());
+        renderAllHands(false, {playerId:target.player.id, handIndex:0, cardIndex:target.player.hands[0].cards.length - 1});
+      }
+      dealt++;
+      setStatus(`DEALING ${dealt}`);
+      BJAudio.card();
+      later(step, ArcadeSettings.reduceMotion ? 12 : 105);
+    };
     renderAllHands(false);
-
-    pIdx = 0; hIdx = 0;
-    findNextActivePlayer();
-    later(() => nextTurn(), 450);
+    step();
   }
 
   function updateActionControls(p, h){
@@ -1818,26 +2242,31 @@ const BJGame = (function(){
 
     if(h.isBJ()){
       h.status = 'bj';
-      scheduleNextHand(700);
+      BJAudio.win();
+      toast(`${p.name}: blackjack!`, 'money');
+      scheduleNextHand(380);
       return;
     }
     if(h.isCharlie()){
       h.status = 'charlie';
-      h.result = 'win';
       renderAllHands(false);
-      scheduleNextHand(700);
+      BJAudio.win();
+      toast(`${p.name}: five-card Charlie!`, 'money');
+      scheduleNextHand(380);
       return;
     }
     if(h.isBust()){
       h.status = 'bust';
       h.result = 'lose';
       renderAllHands(false);
-      scheduleNextHand(700);
+      BJAudio.lose();
+      toast(`${p.name} busts.`, 'bad');
+      scheduleNextHand(380);
       return;
     }
     if(h.score() === 21){
       h.status = 'stand';
-      scheduleNextHand(700);
+      scheduleNextHand(380);
       return;
     }
 
@@ -1849,11 +2278,13 @@ const BJGame = (function(){
 
   function hit(){
     if(advanceTimeout) return;
-    const h = players[pIdx].hands[hIdx];
+    const p = players[pIdx];
+    const h = p.hands[hIdx];
     if(!h) return;
     recordUndo();
     h.add(deck.deal());
-    renderAllHands(false);
+    BJAudio.card();
+    renderAllHands(false, {playerId:p.id, handIndex:hIdx, cardIndex:h.cards.length - 1});
     nextTurn();
     updateOddsDisplay();
   }
@@ -1874,18 +2305,19 @@ const BJGame = (function(){
     const h = p.hands[hIdx];
     if(!h || h.cards.length !== 2 || p.bank < h.bet) return;
     recordUndo();
-    p.bank -= h.bet;
-    h.bet *= 2;
+    p.bank = cleanMoney(p.bank - h.bet);
+    h.bet = cleanMoney(h.bet * 2);
     h.add(deck.deal());
     h.status = h.isBust() ? 'bust' : 'stand';
     if(h.isBust()) h.result = 'lose';
 
     renderChips(p.id);
     const seat = document.getElementById(`seat-${p.id}`);
-    seat.querySelector('.p-bank').textContent = `$${p.bank}`;
+    seat.querySelector('.p-bank').textContent = formatMoney(p.bank);
 
-    renderAllHands(false);
-    scheduleNextHand(650);
+    BJAudio.card();
+    renderAllHands(false, {playerId:p.id, handIndex:hIdx, cardIndex:h.cards.length - 1});
+    scheduleNextHand(360);
     updateOddsDisplay();
   }
 
@@ -1896,21 +2328,29 @@ const BJGame = (function(){
     if(!h || !h.canSplit() || p.bank < h.bet) return;
     recordUndo();
 
-    p.bank -= h.bet;
+    p.bank = cleanMoney(p.bank - h.bet);
     const seat = document.getElementById(`seat-${p.id}`);
-    seat.querySelector('.p-bank').textContent = `$${p.bank}`;
+    seat.querySelector('.p-bank').textContent = formatMoney(p.bank);
 
     const h2 = new Hand(h.bet);
+    h.fromSplit = true;
+    h2.fromSplit = true;
     h2.add(h.cards.pop());
 
     h.add(deck.deal());
-    h2.add(deck.deal());
-
     p.hands.splice(hIdx + 1, 0, h2);
     renderChips(p.id);
-    renderAllHands(false);
-    nextTurn();
-    updateOddsDisplay();
+    BJAudio.card();
+    setActionEnabled(false);
+    renderAllHands(false, {playerId:p.id, handIndex:hIdx, cardIndex:h.cards.length - 1});
+    later(() => {
+      h2.add(deck.deal());
+      BJAudio.card();
+      renderAllHands(false, {playerId:p.id, handIndex:hIdx + 1, cardIndex:h2.cards.length - 1});
+      setActionEnabled(true);
+      nextTurn();
+      updateOddsDisplay();
+    }, ArcadeSettings.reduceMotion ? 12 : 120);
   }
 
   function dealerTurn(){
@@ -1921,7 +2361,8 @@ const BJGame = (function(){
     if(pill) pill.style.display = 'none';
 
     document.querySelectorAll('#g-blackjack .hand-container').forEach(e => e.style.opacity = '1');
-    renderAllHands(true);
+    BJAudio.reveal();
+    renderAllHands(true, {reveal:true});
 
     const play = () => {
       const score = dealerHand.score();
@@ -1929,11 +2370,12 @@ const BJGame = (function(){
       if(score < 17 || soft17){
         later(() => {
           dealerHand.add(deck.deal());
-          renderAllHands(true);
+          BJAudio.card();
+          renderAllHands(true, {dealerIndex:dealerHand.cards.length - 1});
           play();
-        }, 900);
+        }, ArcadeSettings.reduceMotion ? 30 : 330);
       }else{
-        later(resolve, 700);
+        later(resolve, ArcadeSettings.reduceMotion ? 30 : 320);
       }
     };
     play();
@@ -1945,46 +2387,72 @@ const BJGame = (function(){
     const dBJ = (dScore === 21 && dealerHand.cards.length === 2);
 
     let anyWin = false;
+    let anyPush = false;
 
     for(const p of players){
       if(p.bankrupt) continue;
+      let playerWon = false;
 
       for(const h of p.hands){
         if(h.result){
           if(h.result === 'win') anyWin = true;
+          if(h.result === 'push') anyPush = true;
           continue;
         }
 
         const pScore = h.score();
-        const pBJ = (h.status === 'bj');
+        const pBJ = (h.status === 'bj' && !h.fromSplit && h.cards.length === 2);
 
         if(pBJ && !dBJ){
           h.result = 'win';
-          p.bank += h.bet * 2.5;
+          p.bank = cleanMoney(p.bank + h.bet * 2.5);
           anyWin = true;
+          playerWon = true;
         }else if(pBJ && dBJ){
           h.result = 'push';
-          p.bank += h.bet;
+          anyPush = true;
+          p.bank = cleanMoney(p.bank + h.bet);
+        }else if(dBJ){
+          // A dealer natural outranks every non-natural 21.  Resolve it before
+          // ordinary score ties (and before the five-card house bonus).
+          h.result = 'lose';
+        }else if(h.status === 'charlie'){
+          h.result = 'win';
+          p.bank = cleanMoney(p.bank + h.bet * 2);
+          anyWin = true;
+          playerWon = true;
         }else if(dScore > 21){
           h.result = 'win';
-          p.bank += h.bet * 2;
+          p.bank = cleanMoney(p.bank + h.bet * 2);
           anyWin = true;
+          playerWon = true;
         }else if(pScore > dScore){
           h.result = 'win';
-          p.bank += h.bet * 2;
+          p.bank = cleanMoney(p.bank + h.bet * 2);
           anyWin = true;
+          playerWon = true;
         }else if(pScore < dScore){
           h.result = 'lose';
         }else{
           h.result = 'push';
-          p.bank += h.bet;
+          anyPush = true;
+          p.bank = cleanMoney(p.bank + h.bet);
         }
       }
 
       const seat = document.getElementById(`seat-${p.id}`);
-      seat.querySelector('.p-bank').textContent = `$${p.bank}`;
+      seat.querySelector('.p-bank').textContent = formatMoney(p.bank);
       document.getElementById(`chips-${p.id}`).innerHTML = '';
+      if(playerWon){
+        seat.classList.remove('paid');
+        void seat.offsetWidth;
+        seat.classList.add('paid');
+        setTimeout(() => seat.classList.remove('paid'), 650);
+      }
     }
+
+    roundNumber++;
+    accrueInterest();
 
     if(anyWin) streak++; else streak = 0;
     updateStreak();
@@ -1996,15 +2464,23 @@ const BJGame = (function(){
     
     
     if(anyWin){
+      BJAudio.win();
       try{ FeedbackSys.show(true); }catch(e){}
+      toast('Payouts delivered. The house looks mildly concerned.', 'money');
+    }else if(anyPush){
+      toast('A push. Everybody keeps their chips and their dignity.');
+    }else{
+      BJAudio.lose();
+      toast('The dealer takes this one. The felt remains smug.', 'bad');
     }
     try{ if(window.ArcadeSave) ArcadeSave.touch(250); }catch(e){}
   }
 
   function captureState(){
     if(!players.length) return undefined;
-    if(!['betting','dealing','action','dealer','roundOver'].includes(phase)) return undefined;
+    if(!['betting','dealing','action','dealer','roundOver','completed'].includes(phase)) return undefined;
     return {
+      schemaVersion: 3,
       deck: deck.cards.map(cardData),
       players: players.map(p => ({
         id: p.id,
@@ -2018,7 +2494,11 @@ const BJGame = (function(){
       pIdx,
       hIdx,
       streak,
-      phase
+      phase,
+      roundNumber,
+      loans: loans.map(l => ({...l})),
+      pendingLoans: pendingLoans.map(l => ({...l})),
+      nextLoanId
     };
   }
 
@@ -2028,7 +2508,7 @@ const BJGame = (function(){
     if(value === 'ctrl-action'){
       return Number(saved && saved.pIdx) >= (saved && saved.players ? saved.players.length : 0) ? 'dealer' : 'action';
     }
-    return ['betting','dealing','action','dealer','roundOver'].includes(value) ? value : 'action';
+    return ['betting','dealing','action','dealer','roundOver','completed'].includes(value) ? value : 'action';
   }
 
   function restoreState(saved, preserveUndo=false){
@@ -2040,9 +2520,9 @@ const BJGame = (function(){
     players = saved.players.slice(0, 3).map((p, idx) => ({
       id: idx,
       name: String(p && p.name || `P${idx + 1}`).slice(0, 18),
-      bank: Math.max(0, Number(p && p.bank) || 0),
+      bank: cleanMoney(p && p.bank),
       hands: Array.isArray(p && p.hands) ? p.hands.map(handFrom) : [],
-      curBet: Math.max(0, Number(p && p.curBet) || 0),
+      curBet: cleanMoney(p && p.curBet),
       bankrupt: Boolean(p && p.bankrupt)
     }));
     dealerHand = handFrom(saved.dealerHand || { bet:0, cards:[] });
@@ -2050,6 +2530,40 @@ const BJGame = (function(){
     hIdx = Math.max(0, Number(saved.hIdx) || 0);
     streak = Math.max(0, Number(saved.streak) || 0);
     phase = normalizeSavedPhase(saved.phase, saved);
+    roundNumber = Math.max(1, Math.min(1000000, Math.floor(Number(saved.roundNumber) || 1)));
+    const validIds = new Set(players.map(p => p.id));
+    const normalizedIds = new Set();
+    loans = (Array.isArray(saved.loans) ? saved.loans : []).slice(0, 100).map(raw => {
+      const lenderId = Number(raw && raw.lenderId), borrowerId = Number(raw && raw.borrowerId);
+      const rate = [.01,.02,.03].includes(Number(raw && raw.rate)) ? Number(raw.rate) : .02;
+      const rawId = Number(raw && raw.id);
+      let id = Number.isFinite(rawId) ? Math.min(1000000000, Math.max(1, Math.floor(rawId))) : 1;
+      while(normalizedIds.has(id)) id++;
+      normalizedIds.add(id);
+      return {
+        id, lenderId, borrowerId, rate,
+        principal:cleanMoney(raw && raw.principal), balance:cleanMoney(raw && raw.balance),
+        createdRound:Math.min(roundNumber,Math.max(1,Math.floor(Number(raw && raw.createdRound)||1))),
+        lastAccruedRound:Math.min(roundNumber,Math.max(1,Math.floor(Number(raw && raw.lastAccruedRound)||1))),
+        roundsAccrued:Math.min(roundNumber,Math.max(0,Math.floor(Number(raw && raw.roundsAccrued)||0))),
+        status:raw && raw.status === 'paid' ? 'paid' : 'active'
+      };
+    }).filter(l => validIds.has(l.lenderId) && validIds.has(l.borrowerId) && l.lenderId !== l.borrowerId && l.principal > 0 && (l.balance > 0 || l.status === 'paid'));
+    pendingLoans = (Array.isArray(saved.pendingLoans) ? saved.pendingLoans : []).slice(0, 30).map(raw => {
+      const lenderId = Number(raw && raw.lenderId), borrowerId = Number(raw && raw.borrowerId);
+      const rate = [.01,.02,.03].includes(Number(raw && raw.rate)) ? Number(raw.rate) : .02;
+      const rawId = Number(raw && raw.id);
+      let id = Number.isFinite(rawId) ? Math.min(1000000000, Math.max(1, Math.floor(rawId))) : 1;
+      while(normalizedIds.has(id)) id++;
+      normalizedIds.add(id);
+      return {id,lenderId,borrowerId,rate,principal:cleanMoney(raw && raw.principal),createdRound:Math.min(roundNumber,Math.max(1,Math.floor(Number(raw && raw.createdRound)||roundNumber)))};
+    }).filter(l => validIds.has(l.lenderId) && validIds.has(l.borrowerId) && l.lenderId !== l.borrowerId && l.principal >= 10);
+    const maxId = [...loans,...pendingLoans].reduce((max,l) => Math.max(max,l.id),0);
+    const requestedNextId = Number(saved.nextLoanId);
+    nextLoanId = Math.min(1000000001, Math.max(maxId + 1, Number.isFinite(requestedNextId) ? Math.floor(requestedNextId) : 1));
+    if(phase !== 'roundOver' && phase !== 'completed'){
+      for(const p of players) for(const h of p.hands) if(h.status === 'charlie') h.result = null;
+    }
 
     document.getElementById('setup-screen').style.display = 'none';
     document.getElementById('game-over-screen').style.display = 'none';
@@ -2058,13 +2572,22 @@ const BJGame = (function(){
       renderChips(p.id);
       const seat = document.getElementById(`seat-${p.id}`);
       if(seat){
-        seat.querySelector('.p-bank').textContent = p.bankrupt ? 'OUT' : `$${p.bank}`;
+        seat.querySelector('.p-bank').textContent = p.bankrupt && p.bank <= 0 ? 'OUT' : formatMoney(p.bank);
         seat.classList.toggle('bankrupt', p.bankrupt);
       }
       const betEl = document.getElementById(`bet-disp-${p.id}`);
-      if(betEl) betEl.textContent = `Bet: $${p.curBet}`;
+      if(betEl) betEl.textContent = `Bet: ${formatMoney(p.curBet)}`;
     }
     updateStreak();
+    updateDebtBadge();
+    updateSeatDebt();
+
+    if(phase === 'completed'){
+      renderAllHands(true);
+      document.getElementById('game-over-screen').style.display = 'flex';
+      setStatus('TABLE CLOSED');
+      return true;
+    }
 
     if(phase === 'betting'){
       highlightSeat();
@@ -2084,7 +2607,7 @@ const BJGame = (function(){
     }
     if(phase === 'dealing'){
       renderAllHands(false);
-      nextTurn();
+      dealCards();
       return true;
     }
 
@@ -2126,14 +2649,15 @@ const BJGame = (function(){
   }
 
   function meaningful(){
-    if(!players.length || phase === 'setup' || phase === 'completed') return false;
+    if(!players.length || phase === 'setup') return false;
     return players.some(p => p.curBet > 0 || p.hands.length > 0 || p.bank !== 1000);
   }
 
   function summary(){
+    if(phase === 'completed') return `Table closed • ${loans.filter(l=>l.status==='active').length} open loan${loans.filter(l=>l.status==='active').length === 1 ? '' : 's'}`;
     if(phase === 'roundOver') return `Round over • ${players.length} player${players.length === 1 ? '' : 's'}`;
     const p = players[Math.min(pIdx, players.length - 1)];
-    return p ? `${p.name} • $${p.bank} • ${phase === 'betting' ? 'betting' : 'playing'}` : '';
+    return p ? `${p.name} • ${formatMoney(p.bank)} • ${phase === 'betting' ? 'betting' : 'playing'}` : '';
   }
 
   function saveGame(){
@@ -2158,12 +2682,17 @@ const BJGame = (function(){
   }
 
   function loadLegacyGame(){
-    const raw = localStorage.getItem(SAVE_KEY);
+    let usedKey = SAVE_KEY;
+    let raw = localStorage.getItem(SAVE_KEY);
+    if(!raw){
+      usedKey = LEGACY_SAVE_KEYS.find(k => localStorage.getItem(k)) || SAVE_KEY;
+      raw = localStorage.getItem(usedKey);
+    }
     if(!raw) return false;
     restoreState(JSON.parse(raw));
     if(window.ArcadeSave && typeof ArcadeSave.saveNow === 'function'){
       ArcadeSave.saveNow().then(() => {
-        try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+        try{ localStorage.removeItem(usedKey); }catch(e){}
       });
     }
     return true;
@@ -2186,13 +2715,25 @@ const BJGame = (function(){
   }
 
   function startFresh(){
-    try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+    try{ localStorage.removeItem(SAVE_KEY); LEGACY_SAVE_KEYS.forEach(k => localStorage.removeItem(k)); }catch(e){}
     reset();
+  }
+
+  function migrateState(saved){
+    if(!saved || typeof saved !== 'object') return undefined;
+    const migrated = {...saved};
+    migrated.schemaVersion = 3;
+    if(!Array.isArray(migrated.loans)) migrated.loans = [];
+    if(!Array.isArray(migrated.pendingLoans)) migrated.pendingLoans = [];
+    if(!Number.isFinite(Number(migrated.roundNumber))) migrated.roundNumber = 1;
+    if(!Number.isFinite(Number(migrated.nextLoanId))) migrated.nextLoanId = 1;
+    return migrated;
   }
 
   window.BlackjackAutosave = {
     capture: captureState,
     restore: restoreState,
+    migrate: migrateState,
     meaningful,
     summary,
     startFresh
@@ -2202,7 +2743,8 @@ const BJGame = (function(){
     init, reset, quit,
     startBettingPhase, nextRound, undo,
     addBet, maxBet, halfBet, clearBet, placeBet,
-    hit, stand, double, split, saveGame, loadGame
+    hit, stand, double, split, saveGame, loadGame,
+    openDebtDesk, closeDebtDesk, proposeLoan, approveLoan, rejectLoan, repayLoan
   };
 })();
 window.BJGame = BJGame;
@@ -2213,14 +2755,23 @@ if(window.ArcadeSave && window.BlackjackAutosave){
   ArcadeSave.register({
     id: 'blackjack',
     title: 'Blackjack',
-    version: 2,
+    version: 3,
     capture: BlackjackAutosave.capture,
     restore: BlackjackAutosave.restore,
+    migrate: BlackjackAutosave.migrate,
     meaningful: BlackjackAutosave.meaningful,
     summary: BlackjackAutosave.summary,
     startFresh: BlackjackAutosave.startFresh
   });
 }
+</script>
+<script>
+document.getElementById('debt-desk')?.addEventListener('click', event => {
+  if(event.target.id === 'debt-desk') BJGame.closeDebtDesk();
+});
+document.addEventListener('keydown', event => {
+  if(event.key === 'Escape') BJGame.closeDebtDesk();
+});
 </script>
 
 </body>

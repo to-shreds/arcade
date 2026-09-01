@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#071a2a">
+  <title>Solitaire Parlor</title>
+  <style>
+    :root{
+      color-scheme:dark;
+      --ink:#f7fbff; --muted:#a9bed0; --gold:#ffd166; --aqua:#5eead4;
+      --felt:#0c6b55; --felt2:#06483f; --panel:rgba(5,20,31,.9);
+      --cw:clamp(44px,11.7vw,84px); --ch:calc(var(--cw)*1.42); --overlap:clamp(22px,5.5vw,38px);
+      font-family:Inter,ui-rounded,"Segoe UI",system-ui,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;min-height:100%;background:#061520;color:var(--ink);overscroll-behavior:none}
+    body{min-height:100dvh;overflow:hidden;-webkit-tap-highlight-color:transparent}
+    button,input,select{font:inherit}
+    button{touch-action:manipulation}
+    .app{width:100%;min-width:0;height:100dvh;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);overflow:hidden;background:
+      radial-gradient(circle at 50% -15%,rgba(94,234,212,.19),transparent 43%),
+      linear-gradient(145deg,#08273a,#04111d)}
+    header{min-width:0;display:flex;align-items:center;gap:10px;min-height:58px;padding:max(8px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) 7px max(10px,env(safe-area-inset-left));border-bottom:1px solid rgba(255,255,255,.1);background:rgba(4,15,25,.86);backdrop-filter:blur(14px);z-index:5}
+    .brand{display:flex;align-items:center;gap:9px;min-width:0;margin-right:auto}
+    .brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#ffd166,#ff8c61);box-shadow:0 7px 20px #0008;color:#351600;font-size:22px}
+    .brand>div:last-child{min-width:0}.brand h1{font-size:clamp(17px,4vw,25px);line-height:1;margin:0;font-weight:1000;letter-spacing:-.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand p{font-size:11px;margin:4px 0 0;color:var(--muted);font-weight:800;white-space:nowrap}
+    .stats{display:flex;gap:6px}
+    .stat{min-width:54px;padding:5px 8px;border-radius:11px;background:#ffffff0c;border:1px solid #ffffff15;text-align:center}
+    .stat b{display:block;font-size:14px}.stat span{display:block;color:var(--muted);font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.5px}
+    .icon-btn{border:1px solid #ffffff1d;background:#ffffff0d;color:#fff;border-radius:12px;min-width:40px;height:40px;padding:0 10px;font-weight:900;box-shadow:0 4px 12px #0004}
+    .icon-btn:active,.action:active,.variant-card:active{transform:scale(.96)}
+    .toolbar{min-width:0;max-width:100%;display:flex;align-items:center;gap:7px;padding:7px max(10px,env(safe-area-inset-right)) 7px max(10px,env(safe-area-inset-left));background:#071c2b;border-bottom:1px solid #ffffff12;overflow:auto;scrollbar-width:none;z-index:4}
+    .toolbar::-webkit-scrollbar{display:none}
+    .game-label{margin-right:auto;min-width:max-content}
+    .game-label b{font-size:14px}.game-label span{display:block;font-size:10px;color:var(--muted);font-weight:800}
+    .action{border:1px solid #ffffff20;border-radius:999px;background:#ffffff0d;color:#fff;padding:8px 12px;font-size:12px;font-weight:950;white-space:nowrap}
+    .action.primary{background:linear-gradient(135deg,#ffcf55,#ff9662);color:#311400;border:0}
+    .action:disabled{opacity:.4;filter:grayscale(1)}
+    .board-wrap{min-width:0;min-height:0;overflow:auto;position:relative;padding:10px max(10px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));background:
+      radial-gradient(circle at 50% 30%,#148267 0,#0b5f50 45%,#064339 100%)}
+    .board-wrap::before{content:"";position:absolute;inset:0;opacity:.17;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E")}
+    #board{position:relative;z-index:1;min-width:min-content;min-height:100%}
+    .top-row{display:grid;grid-template-columns:repeat(7,var(--cw));gap:clamp(6px,1.5vw,14px);justify-content:center;margin-bottom:12px}
+    .top-spacer{grid-column:span 1}
+    .tableau{display:grid;grid-template-columns:repeat(7,var(--cw));gap:clamp(6px,1.5vw,14px);justify-content:center;align-items:start}
+    .tableau.spider{grid-template-columns:repeat(10,var(--cw));gap:clamp(3px,.75vw,9px)}
+    .spider-board{--cw:clamp(35px,8.25vw,78px);--overlap:clamp(18px,3.5vw,32px)}
+    .pile{position:relative;width:var(--cw);min-height:calc(var(--ch) + var(--overlap)*8);border-radius:calc(var(--cw)*.12)}
+    .pile.empty-target{min-height:var(--ch)}
+    .slot{width:var(--cw);height:var(--ch);border:2px dashed #ffffff3b;border-radius:calc(var(--cw)*.12);background:#001b171c;color:#ffffff55;display:grid;place-items:center;font-size:calc(var(--cw)*.38);font-weight:1000;padding:0}
+    .slot.foundation{border-style:solid;border-color:#ffffff20;background:#ffffff0a}
+    .card{position:absolute;left:0;top:calc(var(--i,0)*var(--overlap));width:var(--cw);height:var(--ch);border:1px solid #d9e1e7;border-radius:calc(var(--cw)*.105);padding:0;background:linear-gradient(145deg,#fff,#eef2f6);color:#15212d;box-shadow:0 3px 8px #001a;transition:transform .13s ease,filter .13s,box-shadow .13s;cursor:pointer;overflow:hidden;z-index:var(--z,1);user-select:none}
+    .card.red{color:#d82e43}
+    .card .corner{position:absolute;left:7%;top:4%;font:bold calc(var(--cw)*.25)/.92 Georgia,serif;text-align:center;letter-spacing:-1px}
+    .card .corner small{display:block;font-size:calc(var(--cw)*.22);line-height:1}
+    .card .pip{position:absolute;inset:18% 5% 4%;display:grid;place-items:center;font:calc(var(--cw)*.55)/1 Georgia,serif}
+    .card .mini{position:absolute;right:6%;bottom:4%;font:calc(var(--cw)*.23)/1 Georgia,serif;transform:rotate(180deg)}
+    .card.back{border-color:#bad8e6;background:
+      linear-gradient(135deg,transparent 44%,#ffffff28 45% 55%,transparent 56%) 0 0/12px 12px,
+      radial-gradient(circle,#ffd166 0 10%,transparent 11%) 0 0/14px 14px,
+      linear-gradient(145deg,#173f78,#0a2252);box-shadow:inset 0 0 0 4px #eaf6ff,inset 0 0 0 6px #2b63a6,0 3px 8px #001a}
+    .card.selected{transform:translateY(-8px);box-shadow:0 0 0 4px var(--gold),0 12px 20px #0029;filter:brightness(1.06);z-index:100!important}
+    .card.hinted,.slot.hinted{animation:hintPulse .85s ease 2}
+    @keyframes hintPulse{50%{box-shadow:0 0 0 5px #5eead4,0 0 22px #5eead4aa;filter:brightness(1.13)}}
+    .card.deal-in{animation:deal .2s ease-out both}
+    @keyframes deal{from{transform:translate(-70px,-50px) rotate(-7deg);opacity:.1}to{transform:none;opacity:1}}
+    .stock-count{position:absolute;right:-5px;bottom:-5px;z-index:120;display:grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border-radius:11px;background:#ffcf55;color:#342000;font-size:10px;font-weight:1000;box-shadow:0 2px 5px #0008;pointer-events:none}
+    .foundation-stack,.stock-pile{position:relative;width:var(--cw);height:var(--ch)}
+    .foundation-stack .card,.stock-pile .card{top:0}
+    .free-top{display:grid;grid-template-columns:repeat(4,var(--cw)) minmax(14px,1fr) repeat(4,var(--cw));gap:clamp(4px,1vw,10px);justify-content:center;margin-bottom:12px}
+    .free-tableau{display:grid;grid-template-columns:repeat(8,var(--cw));gap:clamp(4px,1vw,10px);justify-content:center}
+    .free-board{--cw:clamp(38px,9.5vw,76px);--overlap:clamp(24px,5vw,38px)}
+    .completed{display:flex;justify-content:center;gap:8px;margin-bottom:9px;font-size:11px;font-weight:900;color:#d8fff7}
+    .completed i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#e8fff1;color:#0c5f4a;font-style:normal}
+    .pyramid-board{--cw:clamp(45px,11.5vw,78px)}
+    .pyramid-stage{position:relative;width:min(94vw,680px);height:calc(var(--ch)*4.5);margin:0 auto 10px}
+    .pyramid-stage .card{top:calc(var(--row)*var(--ch)*.56);left:calc(var(--left)*1%);transform:translateX(-50%)}
+    .pyramid-stage .card.selected{transform:translateX(-50%) translateY(-8px)}
+    .pyramid-stage .card.removed{opacity:.08;pointer-events:none;box-shadow:none}
+    .pyramid-stock{display:flex;justify-content:center;gap:14px}
+    .message{position:sticky;z-index:3;bottom:6px;width:max-content;max-width:min(90vw,580px);margin:12px auto 0;padding:8px 13px;border-radius:999px;background:#021b1be8;border:1px solid #ffffff26;color:#dffff8;font-size:12px;font-weight:850;box-shadow:0 8px 24px #0028;pointer-events:none;opacity:0;transform:translateY(6px);transition:.18s}
+    .message.show{opacity:1;transform:none}
+    .overlay{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:max(15px,env(safe-area-inset-top)) max(15px,env(safe-area-inset-right)) max(15px,env(safe-area-inset-bottom)) max(15px,env(safe-area-inset-left));background:#020a12db;backdrop-filter:blur(13px)}
+    .overlay[hidden]{display:none}
+    .modal{width:min(760px,96vw);max-height:94dvh;overflow:auto;border:1px solid #ffffff22;border-radius:25px;background:linear-gradient(145deg,#102b3d,#071824);box-shadow:0 28px 90px #000b;padding:clamp(16px,3vw,26px)}
+    .modal-head{display:flex;align-items:start;gap:12px;margin-bottom:15px}.modal-head div{margin-right:auto}.modal h2{margin:0;font-size:clamp(24px,6vw,38px);letter-spacing:-1px}.modal p{margin:5px 0;color:var(--muted);font-weight:700;font-size:13px;line-height:1.35}
+    .variants{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+    .variant-card{min-height:116px;border:1px solid #ffffff1f;border-radius:17px;background:#ffffff0a;color:#fff;padding:12px;text-align:left}
+    .variant-card.selected{border-color:#5eead4;background:#5eead41c;box-shadow:0 0 0 2px #5eead43c}
+    .variant-card .emoji{display:block;font-size:28px;margin-bottom:7px}.variant-card b{display:block;font-size:14px}.variant-card small{display:block;color:var(--muted);font-size:10px;line-height:1.3;margin-top:4px;font-weight:750}
+    .options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
+    .field{padding:10px;border-radius:14px;background:#ffffff0a;border:1px solid #ffffff15}.field label{display:block;font-size:10px;color:var(--muted);font-weight:950;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}.field select,.field input{width:100%;height:39px;border-radius:10px;border:1px solid #ffffff20;background:#061722;color:#fff;padding:0 9px;font-weight:850}
+    .modal-actions{display:flex;justify-content:flex-end;gap:8px}.big{min-height:48px;padding:0 18px;border-radius:14px}
+    .rules{margin-top:13px;padding:12px 14px;border-radius:15px;background:#0003;color:#c9deeb;font-size:12px;line-height:1.4}.rules b{color:#fff}
+    .win-card{text-align:center;width:min(440px,94vw)}.win-icon{font-size:60px;filter:drop-shadow(0 10px 20px #0008)}.win-card h2{margin:4px 0}.win-stats{display:flex;justify-content:center;gap:10px;margin:15px 0}.win-stats span{padding:9px 14px;border-radius:12px;background:#ffffff0c;font-weight:900}.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}.confetti i{position:absolute;top:-20px;width:10px;height:18px;background:var(--c);animation:fall var(--d) linear forwards;transform:rotate(var(--r))}@keyframes fall{to{top:110vh;transform:rotate(800deg)}}
+    @media(max-width:640px){
+      .stats .stat:nth-child(2){display:none}.brand p{display:none}.variants{grid-template-columns:1fr 1fr}.options{grid-template-columns:1fr 1fr}.options .seed-field{grid-column:1/-1}.modal{border-radius:20px}.top-row{justify-content:start}.tableau,.free-tableau{justify-content:start}.free-top{justify-content:start}.board-wrap{padding-left:7px;padding-right:7px}.toolbar{gap:5px}.action{padding:8px 10px}
+    }
+    @media(max-width:340px){header{gap:6px}.stats .stat:nth-child(3){display:none}.brand-mark{flex:0 0 35px;width:35px;height:35px}.brand{gap:6px}.brand h1{font-size:16px}}
+    @media(max-height:500px) and (orientation:landscape){
+      :root{--cw:clamp(38px,7.7vw,67px);--overlap:clamp(17px,3.3vw,26px)}
+      header{min-height:45px;padding-top:max(4px,env(safe-area-inset-top));padding-bottom:4px}.brand-mark{width:32px;height:32px}.brand p{display:none}.toolbar{padding-top:4px;padding-bottom:4px}.board-wrap{padding-top:6px}.top-row{margin-bottom:7px}.stat{padding:3px 6px}.modal{max-height:96dvh}.variant-card{min-height:86px;padding:8px}.variant-card .emoji{font-size:21px;margin-bottom:2px}.options{margin:8px 0}.rules{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <header>
+    <div class="brand"><div class="brand-mark" aria-hidden="true">♠</div><div><h1>Solitaire Parlor</h1><p>Four classics, one beautiful table</p></div></div>
+    <div class="stats"><div class="stat"><b id="moveCount">0</b><span>Moves</span></div><div class="stat"><b id="scoreCount">0</b><span>Score</span></div><div class="stat"><b id="clock">0:00</b><span>Time</span></div></div>
+    <button class="icon-btn" id="menuBtn" aria-label="Choose a solitaire game">☰</button>
+    <button class="icon-btn" id="homeBtn" aria-label="Return to Arcade">⌂</button>
+  </header>
+  <nav class="toolbar" aria-label="Game controls">
+    <div class="game-label"><b id="variantName">Klondike</b><span id="dealLabel">Draw 1</span></div>
+    <button class="action" id="undoBtn">↶ Undo</button>
+    <button class="action" id="hintBtn">💡 Hint</button>
+    <button class="action" id="restartBtn">↻ Restart</button>
+    <button class="action primary" id="newBtn">New deal</button>
+  </nav>
+  <section class="board-wrap" aria-label="Solitaire table"><div id="board"></div><div class="message" id="message" role="status" aria-live="polite"></div></section>
+</main>
+
+<div class="overlay" id="gameMenu" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
+  <section class="modal">
+    <div class="modal-head"><div><h2 id="menuTitle">Pick your game</h2><p>Every deal is seeded, autosaved, and ready for touch.</p></div><button class="icon-btn" id="closeMenu" aria-label="Close">✕</button></div>
+    <div class="variants" id="variantCards">
+      <button class="variant-card selected" data-variant="klondike"><span class="emoji">♠️</span><b>Klondike</b><small>The traditional red-on-black classic.</small></button>
+      <button class="variant-card" data-variant="spider"><span class="emoji">🕸️</span><b>Spider</b><small>Build same-suit runs from king to ace.</small></button>
+      <button class="variant-card" data-variant="freecell"><span class="emoji">🧠</span><b>FreeCell</b><small>Nearly every deal rewards careful planning.</small></button>
+      <button class="variant-card" data-variant="pyramid"><span class="emoji">🔺</span><b>Pyramid</b><small>Pair exposed cards that total thirteen.</small></button>
+    </div>
+    <div class="options">
+      <div class="field" id="klondikeOption"><label for="drawCount">Draw rule</label><select id="drawCount"><option value="1">Draw 1</option><option value="3">Draw 3</option></select></div>
+      <div class="field" id="spiderOption" hidden><label for="suitCount">Spider suits</label><select id="suitCount"><option value="1">1 suit · relaxed</option><option value="2">2 suits · standard</option><option value="4">4 suits · expert</option></select></div>
+      <div class="field seed-field"><label for="dealSeed">Deal number or phrase</label><input id="dealSeed" data-arcade-keyboard="off" maxlength="32" autocomplete="off" spellcheck="false"></div>
+      <div class="field"><label>Your record</label><div id="record" style="font-weight:900;padding-top:8px">No wins yet</div></div>
+    </div>
+    <div class="modal-actions"><button class="action big" id="resumeBtn">Resume</button><button class="action primary big" id="startBtn">Deal cards</button></div>
+    <div class="rules" id="rulesText"></div>
+  </section>
+</div>
+
+<div class="overlay" id="winOverlay" hidden><section class="modal win-card"><div class="win-icon">🏆</div><h2>Beautifully played!</h2><p id="winText">You cleared the table.</p><div class="win-stats"><span id="winMoves"></span><span id="winTime"></span></div><div class="modal-actions" style="justify-content:center"><button class="action big" id="winMenu">Choose game</button><button class="action primary big" id="winNew">Another deal</button></div></section><div class="confetti" id="confetti"></div></div>
+
+<script src="../arcade-save.js"></script>
+<script src="engine.js"></script>
+<script>
+(function(){
+  "use strict";
+  const E = window.SolitaireEngine;
+  const $ = s => document.querySelector(s);
+  const board = $("#board"), menu = $("#gameMenu"), message = $("#message");
+  const SAVE_KEY = "arcade.solitaire.parlor.v2";
+  const STATS_KEY = "arcade.solitaire.stats.v2";
+  const symbols = {S:"♠",H:"♥",D:"♦",C:"♣"};
+  const names = {klondike:"Klondike",spider:"Spider",freecell:"FreeCell",pyramid:"Pyramid"};
+  const ruleCopy = {
+    klondike:"<b>Klondike:</b> Build tableau columns downward in alternating colors. Empty columns accept kings. Build each foundation upward by suit from ace to king.",
+    spider:"<b>Spider:</b> Build downward by rank. Only a packed same-suit run can move together. Complete king-to-ace runs to clear them. Fill every empty column before dealing a new row.",
+    freecell:"<b>FreeCell:</b> Build down in alternating colors and move aces upward by suit. Empty cells hold one card. Open cells and columns determine how long a sequence can move at once.",
+    pyramid:"<b>Pyramid:</b> Remove exposed pairs totaling 13. Kings leave by themselves. Jacks are 11 and queens are 12. Clear all 28 pyramid cards to win."
+  };
+  let state = null, selected = null, menuVariant = "klondike", hintTimer = 0, messageTimer = 0;
+  let stats = readJSON(STATS_KEY, {});
+
+  function readJSON(key, fallback){ try{return JSON.parse(localStorage.getItem(key)) || fallback}catch(_){return fallback} }
+  function writeJSON(key, value){ try{localStorage.setItem(key,JSON.stringify(value))}catch(_){} }
+  function freshSeed(){ return String(Math.floor(100000 + Math.random()*900000)); }
+  function optionsFor(variant){ return variant === "spider" ? {suits:Number($("#suitCount").value)} : variant === "klondike" ? {drawCount:Number($("#drawCount").value)} : {}; }
+  function elapsed(){ return Math.max(0,Math.floor((Date.now()-state.startedAt)/1000)+(state.elapsed||0)); }
+  function timeText(sec){ const m=Math.floor(sec/60),s=sec%60; return `${m}:${String(s).padStart(2,"0")}`; }
+  function save(){
+    if(!state) return;
+    const copy=E.clone(state); copy.elapsed=elapsed(); copy.startedAt=Date.now();
+    writeJSON(SAVE_KEY,copy);
+    try{ if(window.ArcadeSave) ArcadeSave.touch(120); }catch(_){}
+  }
+  function toast(text){ clearTimeout(messageTimer); message.textContent=text; message.classList.add("show"); messageTimer=setTimeout(()=>message.classList.remove("show"),2100); }
+  function locKey(loc){ return loc ? [loc.kind,loc.pile,loc.index,loc.suit].join(":") : ""; }
+  function isSelected(loc){ return selected && locKey(selected)===locKey(loc); }
+  function cardHTML(card,loc,index,extra){
+    if(!card) return "";
+    const cls=["card",E.color(card),card.faceUp?"":"back",isSelected(loc)?"selected":"",extra||""].join(" ");
+    const data=card.faceUp?`data-loc='${JSON.stringify(loc)}'`:"";
+    const label=card.faceUp?`${E.rankName(card.rank)} of ${card.suit==="S"?"spades":card.suit==="H"?"hearts":card.suit==="D"?"diamonds":"clubs"}`:"Face-down card";
+    const face=card.faceUp?`<span class="corner">${E.rankName(card.rank)}<small>${symbols[card.suit]}</small></span><span class="pip">${symbols[card.suit]}</span><span class="mini">${symbols[card.suit]}</span>`:"";
+    return `<button class="${cls}" style="--i:${index||0};--z:${(index||0)+2}" ${data} aria-label="${label}">${face}</button>`;
+  }
+  function slot(loc,label,icon,extra){ return `<button class="slot ${extra||""}" data-target='${JSON.stringify(loc)}' aria-label="${label}">${icon||""}</button>`; }
+  function pileHTML(pile,pileIndex,kind){
+    const cards=pile.map((c,i)=>cardHTML(c,{kind,pile:pileIndex,index:i},i)).join("");
+    const emptyMark=state.variant==="klondike"?"K":"";
+    return `<div class="pile" style="min-height:calc(var(--ch) + var(--overlap)*${Math.max(8,pile.length-1)})">${cards}${slot({kind:"tableau",pile:pileIndex},`Empty column ${pileIndex+1}`,emptyMark)}</div>`;
+  }
+  function foundationHTML(suit){
+    const pile=state.foundations[suit],c=pile[pile.length-1];
+    return `<div class="foundation-stack">${slot({kind:"foundation",suit},`${suit} foundation`,symbols[suit],"foundation")}${c?cardHTML(c,{kind:"foundation",suit},0):""}</div>`;
+  }
+  function stockHTML(actionKind){
+    const has=state.stock&&state.stock.length;
+    return `<div class="stock-pile">${slot({kind:"stock"},"Draw cards",has?"":"↻")}${has?cardHTML({...state.stock[state.stock.length-1],faceUp:false},null,0):""}<button class="slot" data-action="${actionKind}" style="position:absolute;inset:0;z-index:130;opacity:0" aria-label="Draw cards"></button>${has?`<span class="stock-count">${state.stock.length}</span>`:""}</div>`;
+  }
+  function renderKlondike(){
+    const waste=state.waste[state.waste.length-1];
+    board.className="";
+    board.innerHTML=`<div class="top-row">${stockHTML("draw-klondike")}<div class="foundation-stack">${slot({kind:"waste"},"Waste pile","○")}${waste?cardHTML(waste,{kind:"waste"},0):""}</div><div class="top-spacer"></div>${E.SUITS.map(foundationHTML).join("")}</div><div class="tableau">${state.tableau.map((p,i)=>pileHTML(p,i,"tableau")).join("")}</div>`;
+  }
+  function renderSpider(){
+    board.className="spider-board";
+    board.innerHTML=`<div class="completed">${Array.from({length:8},(_,i)=>`<i>${state.completed[i]?symbols[state.completed[i]]:"·"}</i>`).join("")}</div><div style="display:flex;justify-content:center;margin-bottom:8px">${stockHTML("deal-spider")}</div><div class="tableau spider">${state.tableau.map((p,i)=>pileHTML(p,i,"tableau")).join("")}</div>`;
+  }
+  function renderFreeCell(){
+    board.className="free-board";
+    const cells=state.cells.map((c,i)=>`<div class="foundation-stack">${slot({kind:"cell",pile:i},`Free cell ${i+1}`,"◇")}${c?cardHTML(c,{kind:"cell",pile:i},0):""}</div>`).join("");
+    board.innerHTML=`<div class="free-top">${cells}<div></div>${E.SUITS.map(foundationHTML).join("")}</div><div class="free-tableau">${state.tableau.map((p,i)=>pileHTML(p,i,"tableau")).join("")}</div>`;
+  }
+  function pyramidPosition(index){ let row=0,start=0;while(index>=start+row+1){start+=row+1;row++}const off=index-start;return {row,left:50+(off-row/2)*12.8}; }
+  function renderPyramid(){
+    board.className="pyramid-board";
+    const cards=state.pyramid.map((c,i)=>{const p=pyramidPosition(i),removed=state.removed.includes(i),exposed=E.pyramidExposed(state,i);return `<button class="card ${E.color(c)} ${isSelected({kind:"pyramid",index:i})?"selected":""} ${removed?"removed":""}" style="--row:${p.row};--left:${p.left};--z:${i}" ${exposed&&!removed?`data-loc='${JSON.stringify({kind:"pyramid",index:i})}'`:"disabled"} aria-label="${removed?"Cleared card":E.rankName(c.rank)+" of "+c.suit}"><span class="corner">${E.rankName(c.rank)}<small>${symbols[c.suit]}</small></span><span class="pip">${symbols[c.suit]}</span><span class="mini">${symbols[c.suit]}</span></button>`}).join("");
+    const waste=state.waste[state.waste.length-1];
+    board.innerHTML=`<div class="pyramid-stage">${cards}</div><div class="pyramid-stock">${stockHTML("draw-pyramid")}<div class="foundation-stack">${slot({kind:"waste"},"Waste","○")}${waste?cardHTML(waste,{kind:"waste"},0):""}</div></div>`;
+  }
+  function render(){
+    if(!state)return;
+    if(state.variant==="spider")renderSpider(); else if(state.variant==="freecell")renderFreeCell(); else if(state.variant==="pyramid")renderPyramid(); else renderKlondike();
+    $("#moveCount").textContent=state.moves; $("#scoreCount").textContent=state.score;
+    $("#variantName").textContent=names[state.variant];
+    $("#dealLabel").textContent=state.variant==="klondike"?`Draw ${state.options.drawCount}`:state.variant==="spider"?`${state.options.suits} suit${state.options.suits>1?"s":""}`:`Deal ${state.seed}`;
+    $("#undoBtn").disabled=!state.history.length;
+  }
+  function afterMove(ok,fail){
+    if(!ok){toast(fail||"That card cannot go there.");return false}
+    selected=null;render();save();if(state.won)win();return true;
+  }
+  function attempt(from,to){
+    let ok=false;
+    if(state.variant==="klondike")ok=E.moveKlondike(state,from,to);
+    else if(state.variant==="spider")ok=E.moveSpider(state,from,to);
+    else if(state.variant==="freecell")ok=E.moveFreeCell(state,from,to);
+    return afterMove(ok);
+  }
+  function choose(loc){
+    if(state.variant==="pyramid"){
+      const card=loc.kind==="pyramid"?state.pyramid[loc.index]:state.waste[state.waste.length-1];
+      if(!card)return;
+      if(card.rank===13){afterMove(E.removePyramidPair(state,loc,null));return}
+      if(selected){const first=selected;selected=null;afterMove(E.removePyramidPair(state,first,loc),"Those cards do not total 13.");return}
+      selected=loc;render();toast("Now choose a card that makes 13.");return;
+    }
+    if(selected){
+      if(locKey(selected)===locKey(loc)){selected=null;render();return}
+      const to=loc.kind==="tableau"?{kind:"tableau",pile:loc.pile}:loc;
+      if(attempt(selected,to))return;
+    }
+    selected=loc;render();
+  }
+  board.addEventListener("click",e=>{
+    const action=e.target.closest("[data-action]");
+    if(action){
+      selected=null;
+      if(action.dataset.action==="draw-klondike")afterMove(E.drawKlondike(state),"No cards left to draw.");
+      else if(action.dataset.action==="deal-spider")afterMove(E.dealSpiderRow(state),state.tableau.some(p=>!p.length)?"Fill every empty column before dealing.":"No rows remain.");
+      else if(action.dataset.action==="draw-pyramid")afterMove(E.drawPyramid(state),"No cards left to draw.");
+      return;
+    }
+    const target=e.target.closest("[data-target]");
+    if(target){const to=JSON.parse(target.dataset.target);if(selected)attempt(selected,to);return}
+    const card=e.target.closest("[data-loc]"); if(card)choose(JSON.parse(card.dataset.loc));
+  });
+  board.addEventListener("dblclick",e=>{
+    if(!["klondike","freecell"].includes(state.variant))return;
+    const card=e.target.closest("[data-loc]");if(!card)return;
+    const from=JSON.parse(card.dataset.loc),c=from.kind==="waste"?state.waste.at(-1):from.kind==="cell"?state.cells[from.pile]:from.kind==="tableau"?state.tableau[from.pile][from.index]:null;
+    if(c)attempt(from,{kind:"foundation",suit:c.suit});
+  });
+  function start(variant,seed,opts){state=E.createGame(variant,seed||freshSeed(),opts||{});selected=null;menu.hidden=true;render();save();toast(`${names[variant]} dealt. Good luck!`)}
+  function openMenu(){menuVariant=state?state.variant:menuVariant;$("#dealSeed").value=freshSeed();updateMenu();menu.hidden=false}
+  function updateMenu(){
+    document.querySelectorAll(".variant-card").forEach(b=>b.classList.toggle("selected",b.dataset.variant===menuVariant));
+    $("#klondikeOption").hidden=menuVariant!=="klondike";$("#spiderOption").hidden=menuVariant!=="spider";$("#rulesText").innerHTML=ruleCopy[menuVariant];
+    const rec=stats[menuVariant]||{};$("#record").textContent=rec.wins?`${rec.wins} win${rec.wins===1?"":"s"} · best ${timeText(rec.best)}`:"No wins yet";
+    $("#resumeBtn").hidden=!state;
+  }
+  $("#variantCards").addEventListener("click",e=>{const b=e.target.closest("[data-variant]");if(b){menuVariant=b.dataset.variant;updateMenu()}});
+  $("#startBtn").onclick=()=>start(menuVariant,$("#dealSeed").value.trim()||freshSeed(),optionsFor(menuVariant));
+  $("#resumeBtn").onclick=()=>menu.hidden=true;$("#closeMenu").onclick=()=>{if(state)menu.hidden=true};$("#menuBtn").onclick=openMenu;
+  $("#newBtn").onclick=()=>start(state.variant,freshSeed(),state.options);$("#restartBtn").onclick=()=>start(state.variant,state.seed,state.options);
+  $("#undoBtn").onclick=()=>{selected=null;afterMove(E.undo(state),"Nothing to undo yet.")};
+  $("#hintBtn").onclick=()=>{
+    clearTimeout(hintTimer);const choices=E.hints(state);if(!choices.length){toast("No legal move found. Try undoing.");return}
+    const hint=choices[0];toast(hint.text);const keys=[locKey(hint.from),locKey(hint.to)];
+    document.querySelectorAll("[data-loc],[data-target]").forEach(el=>{const raw=el.dataset.loc||el.dataset.target;if(raw&&keys.includes(locKey(JSON.parse(raw))))el.classList.add("hinted")});
+    hintTimer=setTimeout(()=>document.querySelectorAll(".hinted").forEach(el=>el.classList.remove("hinted")),1800);
+  };
+  $("#homeBtn").onclick=()=>{save();location.href="../index.html"};
+  function win(){
+    const secs=elapsed(),v=state.variant,rec=stats[v]||{wins:0,best:Infinity};rec.wins++;rec.best=Math.min(rec.best||Infinity,secs);stats[v]=rec;writeJSON(STATS_KEY,stats);
+    $("#winMoves").textContent=`${state.moves} moves`;$("#winTime").textContent=timeText(secs);$("#winText").textContent=`You conquered deal ${state.seed}.`;$("#winOverlay").hidden=false;
+    const box=$("#confetti");box.innerHTML=Array.from({length:45},(_,i)=>`<i style="left:${Math.random()*100}%;--c:${["#ffd166","#5eead4","#ff6685","#8ba5ff"][i%4]};--d:${1.8+Math.random()*2}s;--r:${Math.random()*180}deg"></i>`).join("");save();
+  }
+  $("#winMenu").onclick=()=>{$("#winOverlay").hidden=true;openMenu()};$("#winNew").onclick=()=>{$("#winOverlay").hidden=true;start(state.variant,freshSeed(),state.options)};
+  setInterval(()=>{if(state&&!state.won)$("#clock").textContent=timeText(elapsed())},1000);
+  document.addEventListener("visibilitychange",()=>{if(document.hidden)save()});window.addEventListener("pagehide",save);
+  try{
+    const saved=readJSON(SAVE_KEY,null);
+    if(saved&&E.validateState(saved)){state=saved;const resumedAt=Date.now();(state.history||[]).forEach(h=>{h.elapsed=state.elapsed||0;h.startedAt=resumedAt});state.startedAt=resumedAt;selected=null;render();menu.hidden=true}else{state=E.createGame("klondike",freshSeed(),{drawCount:1});render();updateMenu()}
+  }catch(_){state=E.createGame("klondike",freshSeed(),{drawCount:1});render();updateMenu()}
+  if(window.ArcadeSave&&ArcadeSave.register){
+    ArcadeSave.register({id:"solitaire",title:"Solitaire Parlor",version:2,capture:()=>{const c=E.clone(state);c.elapsed=elapsed();c.startedAt=Date.now();return c},restore:data=>{if(!E.validateState(data))return false;state=data;const resumedAt=Date.now();(state.history||[]).forEach(h=>{h.elapsed=state.elapsed||0;h.startedAt=resumedAt});state.startedAt=resumedAt;selected=null;menu.hidden=true;render();return true},meaningful:data=>!!data&&data.moves>0,summary:data=>`${names[data.variant]||"Solitaire"} · ${data.moves||0} moves`,startFresh:()=>start("klondike",freshSeed(),{drawCount:1})});
+  }
+  window.__SolitaireApp={getState:()=>state,start,choose,render};
+})();
+</script>
+</body>
+</html>

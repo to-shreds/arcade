@@ -1,18 +1,50 @@
 # Family Arcade
 
-Play the arcade at:
+The production arcade is served from this repository at
+[to-shreds.github.io/arcade](https://to-shreds.github.io/arcade/).
 
-https://to-shreds.github.io/arcade/
-
-The playable web arcade lives at the repository root so GitHub Pages can serve it directly. Each game has its own folder with an `index.html`, icon, and metadata, while `catalog.json` powers the centralized game menu.
+GitHub is the content source of truth. Each game lives in a self-contained
+folder with its entry page, icon, and `game.json` metadata. `catalog.json`
+powers the central menu, and the generated offline manifest describes the
+complete web release.
 
 ## Repository layout
 
-- `index.html`: centralized tablet and PC game menu
-- `catalog.json`: game catalog and filters
-- game folders: self-contained browser games and activities
-- `android-wrapper/`: Android wrapper source, without private signing keys or generated build files
+- `index.html`, `catalog.json`, and shared `arcade-*` files: web arcade shell
+- game folders: self-contained games and activities
+- `android-wrapper/`: Android wrapper source and reproducible build helper
+- `cloudflare/chess-worker/`: Chess multiplayer Worker and Durable Object source
+- `tools/`: release and offline-manifest utilities
+- `releases/`: intentionally retained, installable release APKs
 - `licenses/`: project and third-party notices
-- `archive/legacy-2026-03-09/`: the previous arcade version preserved exactly as it existed before this update
+- `CHANGELOG.md`: release history and user-visible changes
 
-Open the Pages link above to play. No installation is required. The Android wrapper uses the same Pages build by default and keeps a web cache for offline recovery.
+## Online and offline operation
+
+The Android app ordinarily opens the GitHub Pages production site, so web
+game updates do not require a new APK. It also stages and validates a complete
+app-managed snapshot of the site. Only a fully downloaded, hash-verified
+snapshot becomes the last-known-good offline copy. If Pages is unreachable,
+the connection is captive, or an update fails partway through, the wrapper
+falls back to the previous complete snapshot while preserving WebView storage,
+game saves, preferences, and statistics.
+
+The generated manifest must be refreshed whenever deployable web content
+changes:
+
+```sh
+node tools/generate-offline-manifest.mjs --version 2.3.0+20260831.1
+```
+
+## Building Android
+
+See `android-wrapper/README.md`. Private signing keys and passwords are never
+stored in this public repository. The retained APK in `releases/` is built
+from the same source revision as the release commit.
+
+## Chess multiplayer
+
+The browser contains no Cloudflare credential. It connects only to the public
+Worker endpoint. Backend source, tests, and safe Wrangler configuration live
+under `cloudflare/chess-worker/`; deployment credentials remain in Cloudflare
+or the operator's environment.

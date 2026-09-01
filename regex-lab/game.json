@@ -1,0 +1,14 @@
+{
+  "title": "Regex Lab",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "order": 214,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["learning", "puzzle", "word"],
+  "tags": ["regex", "coding", "patterns", "procedural", "touch", "autosave"],
+  "orientation": "any"
+}

@@ -1,11 +1,32 @@
 # Never publish Android signing credentials.
 *.jks
 *.keystore
+*.p12
+*.pfx
+android-wrapper/private-signing/
+Arcade-private-signing-bundle*
 
 # Android and Gradle build output.
 .gradle/
 **/build/
 local.properties
+
+# Local JavaScript, Cloudflare, test, and temporary output.
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+!.env.example
+coverage/
+.nyc_output/
+lcov.info
+test-results/
+playwright-report/
+*.tmp
+*.part
 
 # Editor and operating-system files.
 .DS_Store

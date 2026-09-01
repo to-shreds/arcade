@@ -15,5 +15,5 @@
     "touch",
     "calm"
   ],
-  "orientation": "portrait"
+  "orientation": "any"
 }

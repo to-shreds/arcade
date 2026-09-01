@@ -559,6 +559,19 @@
   .toast.show{ display:block; animation: toastIn .18s ease-out; }
   @keyframes toastIn { from { opacity:0; transform: translateX(-50%) translateY(6px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }
 
+  .startChoices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0 12px}
+  .startCard{border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(255,255,255,.055);padding:14px;display:flex;flex-direction:column;gap:10px}
+  .startCard.online{grid-column:1/-1;background:linear-gradient(135deg,rgba(0,229,255,.11),rgba(125,92,255,.08))}
+  .startCard h2{margin:0;color:#fff;font-size:1.05rem}.startCard p{margin:0;color:rgba(255,255,255,.72);font-size:12px;line-height:1.35}
+  .startCard .ui-btn{width:100%;padding:12px}.startCard .primary{background:rgba(0,229,255,.2);border-color:rgba(0,229,255,.58)}
+  .onlineJoin{display:flex;gap:8px}.onlineJoin input{min-width:0;flex:1;text-transform:uppercase;letter-spacing:3px;text-align:center;font-weight:1000;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.3);color:white;padding:10px;font-size:16px}
+  .onlineBar{display:none;margin-top:10px;padding:10px 12px;border-radius:14px;border:1px solid rgba(0,229,255,.3);background:rgba(0,229,255,.08);gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .onlineBar.show{display:flex}.roomCode{font-weight:1000;letter-spacing:2px;color:var(--gold)}
+  .requestBox{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  #prefsPane[hidden],#startPane[hidden]{display:none}
+  .settingPreview{display:flex;gap:8px;align-items:center}.previewPiece{font-size:28px;line-height:1}.previewPiece.turned{transform:rotate(180deg)}
+  @media(max-width:560px){.startChoices{grid-template-columns:1fr}.startCard.online{grid-column:auto}.onlineJoin{flex-wrap:wrap}.onlineJoin .ui-btn{flex:1}.modalPanel{padding:12px}}
+
         .splash-title{ color:#ffd700 !important; text-shadow:0 0 16px rgba(255,215,0,0.25) !important; }
         [id$="-menu"].overlay, #menuOverlay, #startOverlay, #cat-menu, #g-balloons .b-start-overlay{ background: rgba(0,0,0,0.95) !important; }
         #cat-menu .menu-title, #startOverlay .panel h1, #g-balloons .b-start-overlay h1{ color:#ffd700 !important; text-shadow:0 0 18px rgba(255,215,0,0.35) !important; }
@@ -874,10 +887,15 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             </div>
             <div class="row" style="margin-top:10px;">
               <button class="ui-btn" id="hintBtn" title="Show a quick hint (best move for the side to move)">Hint</button>
+              <button class="ui-btn" id="drawBtn" title="Offer a draw to your online opponent">Offer Draw</button>
               <button class="ui-btn" id="resignBtn" title="Resign the game">Resign</button>
               <button class="ui-btn" id="copyPgnBtn" title="Copy the move list to your clipboard">Copy</button>
               <button class="ui-btn" id="saveBtn" title="Save this game">Save</button>
               <button class="ui-btn" id="loadBtn" title="Load saved game">Load</button>
+            </div>
+            <div id="onlineBar" class="onlineBar" aria-live="polite">
+              <div><span id="onlineStatus">Connecting…</span> <span id="onlineRoomCode" class="roomCode"></span></div>
+              <div id="onlineRequestBox" class="requestBox"></div>
             </div>
           </div>
         </div>
@@ -887,90 +905,40 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
   
   <div id="setupModal" class="modal" aria-hidden="true">
-    <div class="modalPanel" role="dialog" aria-modal="true" aria-label="Chess settings">
+    <div class="modalPanel" role="dialog" aria-modal="true" aria-label="Chess setup">
       <div class="modalHead">
-        <div class="modalTitle">Chess Setup</div>
+        <div class="modalTitle" id="setupTitle">Choose a Chess Game</div>
         <button class="ui-btn" id="setupClose" title="Close">Done</button>
       </div>
-
-      <div class="optRow">
-        <div class="label">
-          <div class="name">Mode</div>
-          <div class="desc">Play another human, or play the computer.</div>
+      <div id="startPane">
+        <div class="startChoices">
+          <section class="startCard">
+            <h2>Player vs. Player</h2><p>Share this screen and pass the device after each move.</p>
+            <button id="modePvp" class="ui-btn primary">Play Local</button>
+          </section>
+          <section class="startCard">
+            <h2>Player vs. CPU</h2><p>Choose a side and difficulty, then play immediately.</p>
+            <div class="seg"><button id="sideWhite" class="sel">White</button><button id="sideBlack">Black</button></div>
+            <label class="tiny" for="diffRange">Difficulty <span class="kpi" id="diffLabel">5</span> of 10</label>
+            <input id="diffRange" type="range" min="1" max="10" value="5" />
+            <button id="modeCpu" class="ui-btn primary">Play CPU</button>
+          </section>
+          <section class="startCard online">
+            <h2>Player vs. Player Online</h2><p>Create a room and share its six-character code, or enter a code from another player.</p>
+            <div class="onlineJoin"><button id="onlineCreateBtn" class="ui-btn primary">Create Room</button><input id="onlineJoinCode" maxlength="6" autocomplete="off" spellcheck="false" aria-label="Room code" placeholder="ROOM CODE"><button id="onlineJoinBtn" class="ui-btn">Join</button></div>
+            <div id="onlineSetupStatus" class="tiny" aria-live="polite"></div>
+          </section>
         </div>
-        <div class="seg" role="tablist">
-          <button id="modePvp" class="sel" title="Two players on the same device">Player vs Player</button>
-          <button id="modeCpu" title="Play against the computer">Player vs CPU</button>
-        </div>
+        <div class="row spread"><button id="prefsOpen" class="ui-btn ghost">⚙︎ Settings</button><button id="setupLoadBtn" class="ui-btn ghost">Load Saved Game</button></div>
       </div>
 
-      <div class="optRow" id="cpuSideRow">
-        <div class="label">
-          <div class="name">Your Side</div>
-          <div class="desc">Choose whether you play White or Black.</div>
-        </div>
-        <div class="seg">
-          <button id="sideWhite" class="sel" title="You play White">White</button>
-          <button id="sideBlack" title="You play Black">Black</button>
-        </div>
-      </div>
-
-      <div class="optRow" id="diffRow">
-        <div class="label">
-          <div class="name">CPU Difficulty <span class="kpi" id="diffLabel">5</span></div>
-          <div class="desc">1 = child, 10 = grandmaster-ish (stronger + slower).</div>
-        </div>
-        <div style="width: 220px;">
-          <input id="diffRange" type="range" min="1" max="10" value="5" />
-        </div>
-      </div>
-
-      <div class="optRow">
-        <div class="label">
-          <div class="name">Highlights</div>
-          <div class="desc">Show legal moves when you tap a piece.</div>
-        </div>
-        <input id="hlCheck" type="checkbox" checked />
-      </div>
-
-      <div class="optRow">
-        <div class="label">
-          <div class="name">Coordinates</div>
-          <div class="desc">Show file/rank labels on the board.</div>
-        </div>
-        <input id="coordCheck" type="checkbox" checked />
-      </div>
-
-      <div class="optRow">
-        <div class="label">
-          <div class="name">Auto-flip</div>
-          <div class="desc">In Player vs Player, flips the board each turn.</div>
-        </div>
-        <input id="autoFlipCheck" type="checkbox" />
-      </div>
-
-      <div class="optRow">
-        <div class="label">
-          <div class="name">Start Position</div>
-          <div class="desc">Reset to standard chess start.</div>
-        </div>
-        <button class="ui-btn" id="resetBtn" title="Reset to a fresh standard game">Reset Game</button>
-      </div>
-
-      <div class="optRow">
-        <div class="label">
-          <div class="name">Saved Game</div>
-          <div class="desc">Continue your most recent autosave or legacy save.</div>
-        </div>
-        <button class="ui-btn" id="setupLoadBtn" title="Load saved chess game">Load Saved</button>
-      </div>
-
-      <div class="optRow">
-        <div class="label">
-          <div class="name">Tip</div>
-          <div class="desc">Tap any move below to jump there. If you play a new move, the future line is replaced.</div>
-        </div>
-        <div class="tiny">Works like a “time machine.”</div>
+      <div id="prefsPane" hidden>
+        <div class="optRow"><div class="label"><div class="name">Move Highlights</div><div class="desc">Show legal destinations when a piece is selected.</div></div><input id="hlCheck" type="checkbox" checked /></div>
+        <div class="optRow"><div class="label"><div class="name">Coordinates</div><div class="desc">Show file and rank labels around the board.</div></div><input id="coordCheck" type="checkbox" checked /></div>
+        <div class="optRow"><div class="label"><div class="name">Opponent Pieces Face Them</div><div class="desc">Rotate the other side’s individual pieces. Turn this off to keep every piece upright for you.</div></div><div class="settingPreview"><span class="previewPiece">♙</span><span class="previewPiece turned">♟</span><input id="opponentFacingCheck" type="checkbox" checked /></div></div>
+        <div class="optRow"><div class="label"><div class="name">Auto-flip Board</div><div class="desc">For local two-player games only, rotate the whole board after each turn.</div></div><input id="autoFlipCheck" type="checkbox" /></div>
+        <div class="optRow"><div class="label"><div class="name">Start Position</div><div class="desc">Reset the current local or CPU game.</div></div><button class="ui-btn" id="resetBtn">Reset Game</button></div>
+        <button id="prefsBack" class="ui-btn ghost">← Back to game choices</button>
       </div>
     </div>
   </div>
@@ -1128,6 +1096,14 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     coords: true,
     autoFlip: false,
     flipped: false,
+    opponentFacing: true,
+  };
+
+  const CHESS_API_BASE = "https://arcade-chess.jonathanjablon.workers.dev";
+  const ONLINE_SESSION_KEY = "arcadeChess_onlineSession_v1";
+  const online = {
+    code: "", token: "", side: null, room: null, socket: null,
+    reconnectTimer: 0, reconnectAttempt: 0, manualClose: false, status: "offline"
   };
 
   function computeHash(){
@@ -2171,14 +2147,17 @@ const movesEl = $("#movesList");
         if(p !== 0){
           btn.innerHTML = pieceSVG(p);
           const pieceNode = btn.querySelector(".piece");
-          const facesOtherPlayer = settings.mode === "pvp" && ((p < 0 && !settings.flipped) || (p > 0 && settings.flipped));
+          const localPerspective = settings.mode === "online" && online.side ? online.side : (settings.mode === "cpu" ? settings.playerSide : (settings.flipped ? "b" : "w"));
+          const facesOtherPlayer = settings.opponentFacing && colorOf(p) !== localPerspective;
           if(pieceNode && facesOtherPlayer) pieceNode.classList.add("opposite-facing");
         }
 
         if(settings.coords){
   
-  const rankLabel = settings.flipped ? String(8 - rankOf(sq)) : String(rankOf(sq) + 1);
-  const fileLabel = settings.flipped ? files[7 - fileOf(sq)] : files[fileOf(sq)];
+  // `sq` is already the actual square after display orientation is applied.
+  // Label it directly so Black's flipped view still reads h1..a8 correctly.
+  const rankLabel = String(rankOf(sq) + 1);
+  const fileLabel = files[fileOf(sq)];
   if(c===0){
     const sp = el("span","coord rank"); sp.textContent = rankLabel; btn.appendChild(sp);
   }
@@ -2266,10 +2245,16 @@ const movesEl = $("#movesList");
     turnTextEl.textContent = t;
     turnDotEl.className = "dot " + (state.turn === "w" ? "w" : "b");
 
-    modeTextEl.textContent = (settings.mode === "cpu") ? ("CPU (" + (settings.playerSide === "w" ? "You=White" : "You=Black") + ", L" + settings.diff + ")") : "PVP";
+    modeTextEl.textContent = settings.mode === "cpu"
+      ? ("CPU (" + (settings.playerSide === "w" ? "You=White" : "You=Black") + ", L" + settings.diff + ")")
+      : settings.mode === "online" ? ("ONLINE " + (online.code || "")) : "LOCAL PVP";
 
     if(state.gameOver){
       statePill.textContent = "Game Over";
+    } else if(settings.mode === "online" && (!online.room || !online.room.ready)){
+      statePill.textContent = online.status === "reconnecting" ? "Reconnecting…" : "Waiting for opponent";
+    } else if(settings.mode === "online" && online.status !== "connected"){
+      statePill.textContent = "Reconnecting…";
     } else if(cpuThinking){
       statePill.textContent = "CPU thinking…";
     } else if(inCheck(state.turn)){
@@ -2281,8 +2266,8 @@ const movesEl = $("#movesList");
     }
     const undoButton = $("#undoBtn");
     const redoButton = $("#redoBtn");
-    if(undoButton) undoButton.disabled = currentPly <= 0 || cpuThinking;
-    if(redoButton) redoButton.disabled = currentPly >= moves.length || cpuThinking;
+    if(undoButton) undoButton.disabled = settings.mode === "online" ? !online.room?.game?.moves?.length || state.gameOver : currentPly <= 0 || cpuThinking;
+    if(redoButton) redoButton.disabled = settings.mode === "online" || currentPly >= moves.length || cpuThinking;
   }
 
   function updateOverlay(){
@@ -2312,7 +2297,7 @@ const movesEl = $("#movesList");
 
   function isPlayersTurn(){
     if(settings.mode === "pvp") return true;
-    
+    if(settings.mode === "online") return Boolean(online.room?.ready && online.side === state.turn && online.status === "connected");
     return state.turn === settings.playerSide;
   }
 
@@ -2410,7 +2395,7 @@ const movesEl = $("#movesList");
   function attemptMove(from, to){
     if(state.gameOver) return;
     if(!isPlayersTurn()){
-      toast("CPU's turn!");
+      toast(settings.mode === "online" ? "Waiting for your opponent." : "CPU's turn!");
       clearSelection();
       updateUI(false);
       return;
@@ -2444,6 +2429,10 @@ const movesEl = $("#movesList");
   }
 
   function playMove(mv, legalMoves){
+    if(settings.mode === "online"){
+      sendOnlineMove(mv);
+      return;
+    }
     heldSave = null;
     gameStarted = true;
     
@@ -2900,6 +2889,7 @@ clearSelection();
   }
 
   function currentGameIsMeaningful(){
+    if(settings.mode === "online") return false;
     if(!gameStarted || moves.length < 1 || states.length !== moves.length + 1) return false;
     const latest = states[states.length - 1];
     return Boolean(latest && !latest.gameOver);
@@ -2937,6 +2927,7 @@ clearSelection();
     if(typeof saved.coords === "boolean") settings.coords = saved.coords;
     if(typeof saved.autoFlip === "boolean") settings.autoFlip = saved.autoFlip;
     if(typeof saved.flipped === "boolean") settings.flipped = saved.flipped;
+    if(typeof saved.opponentFacing === "boolean") settings.opponentFacing = saved.opponentFacing;
   }
 
   function restoreGameData(saved){
@@ -2948,6 +2939,7 @@ clearSelection();
     const restoredPly = clamp(Number.isFinite(ply) ? Math.floor(ply) : loadedMoves.length, 0, loadedMoves.length);
 
     cancelCpuWork();
+    if(settings.mode === "online") stopOnlineSocket(true);
     heldSave = null;
     restoreSettings(saved.settings);
     states = loadedStates;
@@ -3051,6 +3043,10 @@ clearSelection();
   }
 
   function jumpToPly(ply){
+    if(settings.mode === "online"){
+      toast("Online history is view-only during the live game.");
+      return;
+    }
     ply = clamp(ply, 0, moves.length);
     currentPly = ply;
     loadSnap(states[ply]);
@@ -3075,12 +3071,257 @@ clearSelection();
     toast(removed > 1 ? "Last turn undone. Make a different move or tap Redo." : "Move undone. Make a different move or tap Redo.");
   }
 
+  function onlineErrorMessage(error){
+    if(error && error.message) return error.message;
+    return "The online room could not be reached.";
+  }
+
+  async function onlineFetch(path, options){
+    const response = await fetch(CHESS_API_BASE + path, options);
+    let body = null;
+    try{ body = await response.json(); }catch(_){ }
+    if(!response.ok){
+      const error = new Error(body && body.error ? body.error : "Online request failed (" + response.status + ")");
+      error.status = response.status;
+      throw error;
+    }
+    return body;
+  }
+
+  function saveOnlineSession(){
+    if(!online.code || !online.token) return;
+    try{ localStorage.setItem(ONLINE_SESSION_KEY, JSON.stringify({code:online.code, token:online.token})); }catch(_){ }
+  }
+
+  function serverPiece(piece){
+    const map = {P:WP,N:WN,B:WB,R:WR,Q:WQ,K:WK,p:BP,n:BN,b:BB,r:BR,q:BQ,k:BK};
+    return piece ? (map[piece] || 0) : 0;
+  }
+
+  function remoteResultText(result){
+    if(!result || !result.over) return "";
+    const winner = result.winner === "w" ? "White" : result.winner === "b" ? "Black" : "";
+    const labels = {
+      "checkmate": "Checkmate",
+      "stalemate": "Draw - stalemate.",
+      "insufficient-material": "Draw - insufficient material.",
+      "fifty-move": "Draw - 50-move rule.",
+      "threefold-repetition": "Draw - threefold repetition.",
+      "agreement": "Draw by agreement.",
+      "resignation": winner ? (winner + " wins by resignation.") : "Game ended by resignation."
+    };
+    if(result.reason === "checkmate") return "Checkmate - " + winner + " wins.";
+    return labels[result.reason] || "Game over.";
+  }
+
+  function renderOnlineBar(){
+    const bar = $("#onlineBar");
+    const draw = $("#drawBtn");
+    if(settings.mode !== "online"){
+      bar.classList.remove("show");
+      draw.style.display = "none";
+      return;
+    }
+    bar.classList.add("show");
+    draw.style.display = "";
+    $("#onlineRoomCode").textContent = online.code ? ("ROOM " + online.code) : "";
+    let status = "Connecting…";
+    if(online.status === "reconnecting") status = "Connection interrupted. Reconnecting…";
+    else if(online.status === "connected" && online.room){
+      if(!online.room.ready) status = "Waiting for another player";
+      else {
+        const opponent = online.side === "w" ? "b" : "w";
+        status = online.room.presence && !online.room.presence[opponent] ? "Opponent disconnected. Their seat is saved." : "Connected as " + (online.side === "w" ? "White" : "Black");
+      }
+    }
+    $("#onlineStatus").textContent = status;
+    const box = $("#onlineRequestBox");
+    box.innerHTML = "";
+    const pending = online.room && online.room.pending;
+    if(pending){
+      const label = el("span","tiny");
+      if(pending.from === online.side){
+        label.textContent = (pending.type === "undo" ? "Undo" : "Draw") + " request sent";
+        const cancel = el("button","ui-btn small"); cancel.textContent = "Cancel"; cancel.addEventListener("click",()=>onlineAction("cancel-request"));
+        box.append(label,cancel);
+      }else{
+        label.textContent = "Opponent requests " + (pending.type === "undo" ? "an undo" : "a draw");
+        const accept = el("button","ui-btn small"); accept.textContent = "Accept"; accept.addEventListener("click",()=>onlineAction("accept-request"));
+        const reject = el("button","ui-btn small ghost"); reject.textContent = "Decline"; reject.addEventListener("click",()=>onlineAction("reject-request"));
+        box.append(label,accept,reject);
+      }
+    }
+  }
+
+  function applyOnlineRoom(room){
+    if(!room || !room.game) return;
+    const currentVersion = Number(online.room && online.room.version);
+    const incomingVersion = Number(room.version);
+    if(online.room && online.room.code === room.code && Number.isFinite(currentVersion) && Number.isFinite(incomingVersion) && incomingVersion < currentVersion) return;
+    online.room = room;
+    if(room.side) online.side = room.side;
+    const game = room.game;
+    state.board = new Int8Array(game.board.map(serverPiece));
+    state.turn = game.turn;
+    state.castling = {K:game.castling.includes("K"),Q:game.castling.includes("Q"),k:game.castling.includes("k"),q:game.castling.includes("q")};
+    state.ep = game.enPassant ? algToSq(game.enPassant) : -1;
+    state.halfmove = game.halfmove || 0;
+    state.fullmove = game.fullmove || 1;
+    state.kingW = Array.from(state.board).indexOf(WK);
+    state.kingB = Array.from(state.board).indexOf(BK);
+    state.gameOver = Boolean(game.result && game.result.over);
+    state.result = remoteResultText(game.result);
+    computeHash();
+    moves = (game.moves || []).map(item=>({from:algToSq(item.from),to:algToSq(item.to),promo:item.promotion ? ({q:5,r:4,b:3,n:2}[item.promotion]||0):0,san:item.san,flags:{}}));
+    currentPly = moves.length;
+    states = [snapshot()];
+    clearSelection();
+    settings.flipped = online.side === "b";
+    gameStarted = true;
+    renderOnlineBar();
+    updateUI(true);
+  }
+
+  function stopOnlineSocket(permanent){
+    online.manualClose = true;
+    if(online.reconnectTimer){ clearTimeout(online.reconnectTimer); online.reconnectTimer = 0; }
+    if(online.socket){ try{ online.socket.close(1000,"Leaving online game"); }catch(_){ } online.socket = null; }
+    if(permanent){
+      online.code = ""; online.token = ""; online.side = null; online.room = null; online.status = "offline";
+      try{ localStorage.removeItem(ONLINE_SESSION_KEY); }catch(_){ }
+    }
+  }
+
+  function scheduleOnlineReconnect(){
+    if(online.manualClose || settings.mode !== "online" || !online.code || !online.token) return;
+    online.status = "reconnecting";
+    renderOnlineBar(); updateHeader();
+    if(online.reconnectTimer) return;
+    const delay = Math.min(10000, 800 * Math.pow(1.7, online.reconnectAttempt++));
+    online.reconnectTimer = setTimeout(()=>{ online.reconnectTimer = 0; connectOnlineSocket(); }, delay);
+  }
+
+  function connectOnlineSocket(){
+    if(!online.code || !online.token) return;
+    online.manualClose = false;
+    const wsBase = CHESS_API_BASE.replace(/^http/,"ws");
+    let socket;
+    try{ socket = new WebSocket(wsBase + "/api/chess/rooms/" + encodeURIComponent(online.code) + "/ws?token=" + encodeURIComponent(online.token)); }
+    catch(_){ scheduleOnlineReconnect(); return; }
+    online.socket = socket;
+    const timeout = setTimeout(()=>{ if(socket.readyState === WebSocket.CONNECTING) socket.close(); },7000);
+    socket.addEventListener("open",()=>{
+      clearTimeout(timeout); online.status = "connected"; online.reconnectAttempt = 0; renderOnlineBar(); updateHeader();
+    });
+    socket.addEventListener("message",event=>{
+      try{
+        const message = JSON.parse(event.data);
+        if(message.type === "state") applyOnlineRoom(message.room);
+        else if(message.type === "error") { toast(message.error || "Online move rejected"); refreshOnlineState(); }
+      }catch(_){ }
+    });
+    socket.addEventListener("close",()=>{
+      clearTimeout(timeout);
+      // Ignore a late close from a socket we deliberately replaced. Without this
+      // guard, switching or restoring rooms can start a second reconnect loop.
+      if(online.socket !== socket) return;
+      online.socket = null;
+      scheduleOnlineReconnect();
+    });
+    socket.addEventListener("error",()=>{ if(socket.readyState < WebSocket.CLOSING) socket.close(); });
+  }
+
+  async function refreshOnlineState(){
+    if(!online.code || !online.token) return;
+    try{
+      const body = await onlineFetch("/api/chess/rooms/" + encodeURIComponent(online.code) + "/state", {headers:{Authorization:"Bearer " + online.token}});
+      applyOnlineRoom(body.room);
+    }catch(error){ scheduleOnlineReconnect(); }
+  }
+
+  async function beginOnline(payload){
+    // Preserve an in-progress local/CPU game before the authoritative online
+    // snapshot replaces the board. It remains available through Save/Load.
+    if(settings.mode !== "online") holdCurrentSave();
+    stopOnlineSocket(false);
+    settings.mode = "online";
+    online.code = payload.room.code;
+    online.token = payload.token;
+    online.side = payload.side;
+    online.status = "reconnecting";
+    online.room = payload.room;
+    settings.flipped = payload.side === "b";
+    saveSettings(); saveOnlineSession();
+    closeSetup();
+    applyOnlineRoom(payload.room);
+    connectOnlineSocket();
+  }
+
+  async function createOnlineRoom(){
+    const status = $("#onlineSetupStatus"); status.textContent = "Creating room…";
+    try{
+      const body = await onlineFetch("/api/chess/rooms",{method:"POST",headers:{"content-type":"application/json"},body:"{}"});
+      status.textContent = "Room " + body.room.code + " created.";
+      await beginOnline(body);
+      toast("Share room code " + body.room.code);
+    }catch(error){ status.textContent = onlineErrorMessage(error); }
+  }
+
+  async function joinOnlineRoom(){
+    const code = $("#onlineJoinCode").value.trim().toUpperCase();
+    const status = $("#onlineSetupStatus");
+    if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)){ status.textContent = "Enter the six-character room code."; return; }
+    status.textContent = "Joining room…";
+    let reconnectToken = null;
+    try{
+      const saved = JSON.parse(localStorage.getItem(ONLINE_SESSION_KEY) || "null");
+      if(saved && saved.code === code) reconnectToken = saved.token;
+    }catch(_){ }
+    try{
+      const body = await onlineFetch("/api/chess/rooms/"+code+"/join",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(reconnectToken?{reconnectToken}:{})});
+      await beginOnline(body);
+    }catch(error){ status.textContent = onlineErrorMessage(error); }
+  }
+
+  async function resumeOnlineSession(){
+    let saved = null;
+    try{ saved = JSON.parse(localStorage.getItem(ONLINE_SESSION_KEY) || "null"); }catch(_){ }
+    if(!saved || !saved.code || !saved.token) return false;
+    try{
+      const body = await onlineFetch("/api/chess/rooms/"+encodeURIComponent(saved.code)+"/join",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({reconnectToken:saved.token})});
+      await beginOnline(body);
+      toast("Online game restored.");
+      return true;
+    }catch(_){ return false; }
+  }
+
+  async function onlineAction(type, extra){
+    if(!online.room || !online.token) return;
+    try{
+      const body = await onlineFetch("/api/chess/rooms/"+encodeURIComponent(online.code)+"/actions",{
+        method:"POST",headers:{"content-type":"application/json",Authorization:"Bearer "+online.token},
+        body:JSON.stringify(Object.assign({type,expectedVersion:online.room.version},extra||{}))
+      });
+      applyOnlineRoom(body.room);
+    }catch(error){
+      toast(onlineErrorMessage(error));
+      if(error.status === 409) refreshOnlineState();
+    }
+  }
+
+  function sendOnlineMove(mv){
+    const promotion = mv.promo ? ({5:"q",4:"r",3:"b",2:"n"}[mv.promo] || "q") : "";
+    const uci = sqToAlg(mv.from) + sqToAlg(mv.to) + promotion;
+    clearSelection(); updateUI(false);
+    onlineAction("move",{uci});
+  }
+
   
-  $("#newBtn").addEventListener("click", ()=> openSetup());
-  $("#ovNew").addEventListener("click", ()=> { overlayEl.classList.remove("show"); openSetup(); });
+  $("#newBtn").addEventListener("click", ()=> openSetup("start"));
+  $("#ovNew").addEventListener("click", ()=> { overlayEl.classList.remove("show"); openSetup("start"); });
   $("#ovClose").addEventListener("click", ()=> { overlayEl.classList.remove("show"); });
 
-  $("#undoBtn").addEventListener("click", undoGameMove);
+  $("#undoBtn").addEventListener("click", ()=> settings.mode === "online" ? onlineAction("request-undo") : undoGameMove());
   $("#redoBtn").addEventListener("click", ()=> jumpToPly(currentPly+1));
   $("#firstBtn").addEventListener("click", ()=> jumpToPly(0));
   $("#lastBtn").addEventListener("click", ()=> jumpToPly(moves.length));
@@ -3090,11 +3331,23 @@ clearSelection();
   $("#saveBtn").addEventListener("click", saveGame);
   $("#loadBtn").addEventListener("click", loadGame);
   $("#setupLoadBtn").addEventListener("click", loadGame);
+  $("#drawBtn").addEventListener("click", ()=>{
+    if(settings.mode !== "online"){ toast("Draw offers are available in online games."); return; }
+    onlineAction("request-draw");
+  });
+  $("#onlineRoomCode").addEventListener("click", async ()=>{
+    if(!online.code) return;
+    try{ await navigator.clipboard.writeText(online.code); toast("Room code copied."); }catch(_){ toast("Room code: " + online.code); }
+  });
 
   $("#plySlider").addEventListener("input", (e)=> jumpToPly(parseInt(e.target.value,10)));
 
   $("#resignBtn").addEventListener("click", ()=>{
     if(state.gameOver){ toast("Already finished."); return; }
+    if(settings.mode === "online"){
+      if(confirm("Resign this online game?")) onlineAction("resign");
+      return;
+    }
     state.gameOver = true;
     state.result = (state.turn === "w") ? "White resigns - Black wins." : "Black resigns - White wins.";
     states[currentPly] = snapshot();
@@ -3159,13 +3412,21 @@ clearSelection();
   const hlCheck = $("#hlCheck");
   const coordCheck = $("#coordCheck");
   const autoFlipCheck = $("#autoFlipCheck");
-  const cpuSideRow = $("#cpuSideRow");
-  const diffRow = $("#diffRow");
+  const opponentFacingCheck = $("#opponentFacingCheck");
+  const startPane = $("#startPane");
+  const prefsPane = $("#prefsPane");
 
-  function openSetup(){
+  function showSetupPane(view){
+    const prefs = view === "prefs";
+    startPane.hidden = prefs;
+    prefsPane.hidden = !prefs;
+    $("#setupTitle").textContent = prefs ? "Chess Settings" : "Choose a Chess Game";
+  }
+  function openSetup(view){
     cancelCpuWork();
     setupModal.classList.add("show");
     setupModal.setAttribute("aria-hidden","false");
+    showSetupPane(view === "prefs" ? "prefs" : "start");
     syncSetupUI();
   }
   function closeSetup(){
@@ -3176,7 +3437,9 @@ clearSelection();
     maybeAutoCpu();
   }
   $("#setupClose").addEventListener("click", closeSetup);
-  $("#settingsBtn").addEventListener("click", openSetup);
+  $("#settingsBtn").addEventListener("click", ()=>openSetup("prefs"));
+  $("#prefsOpen").addEventListener("click", ()=>showSetupPane("prefs"));
+  $("#prefsBack").addEventListener("click", ()=>showSetupPane("start"));
 
   function openMoves(){
     movesModal.classList.add("show");
@@ -3192,11 +3455,6 @@ clearSelection();
   $("#movesClose").addEventListener("click", closeMoves);
 
   function syncSetupUI(){
-    modePvpBtn.classList.toggle("sel", settings.mode==="pvp");
-    modeCpuBtn.classList.toggle("sel", settings.mode==="cpu");
-    cpuSideRow.style.display = (settings.mode==="cpu") ? "" : "none";
-    diffRow.style.display = (settings.mode==="cpu") ? "" : "none";
-
     sideWhiteBtn.classList.toggle("sel", settings.playerSide==="w");
     sideBlackBtn.classList.toggle("sel", settings.playerSide==="b");
 
@@ -3206,19 +3464,29 @@ clearSelection();
     hlCheck.checked = settings.highlight;
     coordCheck.checked = settings.coords;
     autoFlipCheck.checked = settings.autoFlip;
+    opponentFacingCheck.checked = settings.opponentFacing;
   }
 
   modePvpBtn.addEventListener("click", ()=>{
+    const wasOnline = settings.mode === "online";
+    stopOnlineSocket(true);
     settings.mode = "pvp";
-    syncSetupUI();
+    settings.flipped = false;
     saveSettings();
-    updateUI(false);
+    resetGame({preserve:!wasOnline,started:true});
+    closeSetup();
+    renderOnlineBar();
+    toast("Local two-player game ready.");
   });
   modeCpuBtn.addEventListener("click", ()=>{
+    const wasOnline = settings.mode === "online";
+    stopOnlineSocket(true);
     settings.mode = "cpu";
-    syncSetupUI();
+    settings.flipped = settings.playerSide === "b";
     saveSettings();
-    updateUI(false);
+    resetGame({preserve:!wasOnline,started:true});
+    closeSetup();
+    renderOnlineBar();
     maybeAutoCpu();
   });
   sideWhiteBtn.addEventListener("click", ()=>{
@@ -3227,7 +3495,6 @@ clearSelection();
     syncSetupUI();
     saveSettings();
     updateUI(false);
-    maybeAutoCpu();
   });
   sideBlackBtn.addEventListener("click", ()=>{
     settings.playerSide = "b";
@@ -3235,7 +3502,6 @@ clearSelection();
     syncSetupUI();
     saveSettings();
     updateUI(false);
-    maybeAutoCpu();
   });
 
   diffRange.addEventListener("input", ()=>{
@@ -3247,8 +3513,14 @@ clearSelection();
   hlCheck.addEventListener("change", ()=>{ settings.highlight = hlCheck.checked; saveSettings(); updateUI(false); });
   coordCheck.addEventListener("change", ()=>{ settings.coords = coordCheck.checked; saveSettings(); updateUI(false); });
   autoFlipCheck.addEventListener("change", ()=>{ settings.autoFlip = autoFlipCheck.checked; saveSettings(); });
+  opponentFacingCheck.addEventListener("change", ()=>{ settings.opponentFacing = opponentFacingCheck.checked; saveSettings(); updateUI(false); });
+  $("#onlineCreateBtn").addEventListener("click", createOnlineRoom);
+  $("#onlineJoinBtn").addEventListener("click", joinOnlineRoom);
+  $("#onlineJoinCode").addEventListener("input",e=>{ e.target.value = e.target.value.toUpperCase().replace(/[^ABCDEFGHJKLMNPQRSTUVWXYZ23456789]/g,"").slice(0,6); });
+  $("#onlineJoinCode").addEventListener("keydown",e=>{ if(e.key === "Enter") joinOnlineRoom(); });
 
   $("#resetBtn").addEventListener("click", ()=>{
+    if(settings.mode === "online"){ toast("Start a new room for a new online game."); showSetupPane("start"); return; }
     closeSetup();
     resetGame();
     toast("New game!");
@@ -3391,6 +3663,7 @@ clearSelection();
         if(typeof o.coords==="boolean") settings.coords = o.coords;
         if(typeof o.autoFlip==="boolean") settings.autoFlip = o.autoFlip;
         if(typeof o.flipped==="boolean") settings.flipped = o.flipped;
+        if(typeof o.opponentFacing==="boolean") settings.opponentFacing = o.opponentFacing;
       }
     }catch(_){}
   }
@@ -3398,8 +3671,9 @@ clearSelection();
 
   
   resetGame({preserve:false, started:false});
-  try{ openSetup(); }catch(_){}
+  try{ openSetup("start"); }catch(_){}
   try{ installArcadeSave(); }catch(_){}
+  try{ renderOnlineBar(); resumeOnlineSession(); }catch(_){}
 
   
   window.addEventListener("resize", ()=>{ scheduleResizeBoard(true); updateUI(false); }, {passive:true});

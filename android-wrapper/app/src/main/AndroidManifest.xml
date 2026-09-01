@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.familyarcade.platform" android:versionCode="2026082901" android:versionName="2.2.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.familyarcade.platform" android:versionCode="2026083101" android:versionName="2.3.0">
     <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="35" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
