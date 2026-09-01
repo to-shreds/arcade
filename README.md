@@ -33,7 +33,7 @@ The generated manifest must be refreshed whenever deployable web content
 changes:
 
 ```sh
-node tools/generate-offline-manifest.mjs --version 2.3.0+20260901.5
+node tools/generate-offline-manifest.mjs --version 2.3.0+20260901.6
 ```
 
 ## Building Android

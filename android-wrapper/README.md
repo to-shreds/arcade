@@ -29,7 +29,7 @@ The site service worker independently maintains an integrity-checked browser sna
 Generate the release manifest only after all hosted source and assets are final:
 
 ```bash
-node tools/generate-offline-manifest.mjs --version 2.3.0+20260901.5
+node tools/generate-offline-manifest.mjs --version 2.3.0+20260901.6
 ```
 
 The generator reads enabled entries from `catalog.json`, requires each game folder to be a direct child of the repository root, recursively includes its runtime files, and records the exact byte length and SHA-256 hash of every file. Increment the manifest release ID whenever hosted content changes. Commit `offline-manifest.json` with the exact files it describes.

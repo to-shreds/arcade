@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "version": "2.3.0+20260901.5",
-  "generatedAt": "2026-09-01T06:58:41.479Z",
+  "version": "2.3.0+20260901.6",
+  "generatedAt": "2026-09-01T07:01:37.026Z",
   "fileCount": 304,
   "totalBytes": 16512547,
   "files": [
@@ -253,7 +253,7 @@
     {
       "path": "index.html",
       "bytes": 10863,
-      "sha256": "a76e9b1d14d976d6b21fc63d3e4097814d4418cb4868023c1b04787b966eeca0"
+      "sha256": "76f2d7c7236706d47353e196ba2d3c8d7a7c73ba206a28fd4764c5aaba60f50a"
     },
     {
       "path": "insultinator/game.json",
@@ -1423,7 +1423,7 @@
     {
       "path": "sw.js",
       "bytes": 11694,
-      "sha256": "ead912bf94afb74027cdbc698160b0c3d2f1dbaead560440761ed5e4197f54e1"
+      "sha256": "f355799f67884a0053d358c205852e64774153b4fbb8309fc8db91d0e81bfef1"
     },
     {
       "path": "tic-tac-toe/game.json",
