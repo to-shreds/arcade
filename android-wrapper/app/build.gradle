@@ -2,10 +2,24 @@ plugins {
     id "com.android.application"
 }
 
-def releaseKeystorePath = System.getenv("ARCADE_KEYSTORE_PATH")
+def localSigningPropertiesFile = rootProject.file("private-signing/signing.properties")
+def localSigningProperties = new Properties()
+if (localSigningPropertiesFile.isFile()) {
+    localSigningPropertiesFile.withInputStream { localSigningProperties.load(it) }
+}
+def localKeystoreName = localSigningProperties.getProperty("storeFile")
+def localKeystorePath = localKeystoreName
+        ? new File(localSigningPropertiesFile.parentFile, localKeystoreName).canonicalPath
+        : null
+def releaseKeystorePath = System.getenv("ARCADE_KEYSTORE_PATH") ?: localKeystorePath
 def releaseKeystorePassword = System.getenv("ARCADE_KEYSTORE_PASSWORD")
-def releaseKeyAlias = System.getenv("ARCADE_KEY_ALIAS") ?: "arcade"
-def releaseKeyPassword = System.getenv("ARCADE_KEY_PASSWORD") ?: releaseKeystorePassword
+        ?: localSigningProperties.getProperty("storePassword")
+def releaseKeyAlias = System.getenv("ARCADE_KEY_ALIAS")
+        ?: localSigningProperties.getProperty("keyAlias")
+        ?: "arcade"
+def releaseKeyPassword = System.getenv("ARCADE_KEY_PASSWORD")
+        ?: localSigningProperties.getProperty("keyPassword")
+        ?: releaseKeystorePassword
 def hasReleaseSigning = releaseKeystorePath && releaseKeystorePassword && releaseKeyPassword
 
 android {

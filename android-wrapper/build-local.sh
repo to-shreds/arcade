@@ -28,8 +28,27 @@ cp "$TEMP_BUILD/resources.apk" "$TEMP_BUILD/unsigned.apk"
 "$BUILD_TOOLS/zipalign" -f 4 "$TEMP_BUILD/unsigned.apk" "$TEMP_BUILD/aligned.apk"
 KEYSTORE="${ARCADE_KEYSTORE_PATH:-}"
 KEY_ALIAS="${ARCADE_KEY_ALIAS:-arcade}"
+SIGNING_PROPERTIES="$PROJECT_ROOT/private-signing/signing.properties"
+property_value() {
+  sed -n "s/^$1=//p" "$SIGNING_PROPERTIES" | tail -n 1
+}
+if [ -f "$SIGNING_PROPERTIES" ]; then
+  LOCAL_KEYSTORE="$(property_value storeFile)"
+  LOCAL_KEY_ALIAS="$(property_value keyAlias)"
+  if [ -z "$KEYSTORE" ] && [ -n "$LOCAL_KEYSTORE" ]; then
+    case "$LOCAL_KEYSTORE" in
+      /*) KEYSTORE="$LOCAL_KEYSTORE" ;;
+      *) KEYSTORE="$PROJECT_ROOT/private-signing/$LOCAL_KEYSTORE" ;;
+    esac
+  fi
+  export ARCADE_KEYSTORE_PASSWORD="${ARCADE_KEYSTORE_PASSWORD:-$(property_value storePassword)}"
+  if [ -z "${ARCADE_KEY_ALIAS:-}" ] && [ -n "$LOCAL_KEY_ALIAS" ]; then
+    KEY_ALIAS="$LOCAL_KEY_ALIAS"
+  fi
+  export ARCADE_KEY_PASSWORD="${ARCADE_KEY_PASSWORD:-$(property_value keyPassword)}"
+fi
 if [ -z "$KEYSTORE" ] || [ ! -f "$KEYSTORE" ]; then
-  echo "Set ARCADE_KEYSTORE_PATH to an existing private Android signing keystore."
+  echo "Set ARCADE_KEYSTORE_PATH or install private-signing/signing.properties and its private keystore."
   exit 1
 fi
 if [ -z "${ARCADE_KEYSTORE_PASSWORD:-}" ]; then

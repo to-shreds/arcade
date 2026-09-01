@@ -1,6 +1,10 @@
 # Never publish Android signing credentials.
 *.jks
 *.keystore
+*.p12
+*.pfx
+android-wrapper/private-signing/
+Arcade-private-signing-bundle*
 
 # Android and Gradle build output.
 .gradle/

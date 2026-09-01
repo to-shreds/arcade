@@ -23,6 +23,9 @@
   FreeCell, Pyramid, hints, undo, statistics, and autosave.
 - Added Regex Lab with Match Hunt, Pattern Forge, Repair Shop, and timed Regex
   Rush across four generative difficulty levels.
+- Established a new Android release signing identity. Devices with an older
+  differently signed build require a one-time uninstall before installing
+  2.3.0; retained signing credentials allow normal in-place updates afterward.
 - Updated release, backend, build, metadata, and operational documentation.
 
 ## 2.2.0 - 2026-08-29

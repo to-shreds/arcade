@@ -43,7 +43,7 @@ Open the project in Android Studio and build the `release` variant, or use `buil
 - JDK 17 or newer
 - Android SDK platform 35
 - Android build-tools 35.0.0
-- The established private Arcade signing keystore
+- The private Arcade release signing keystore
 
 Private signing keys and passwords must stay outside this public repository. Configure them locally:
 
@@ -55,9 +55,26 @@ export ARCADE_KEY_PASSWORD='...'
 ./build-local.sh
 ```
 
-`ARCADE_KEY_ALIAS` defaults to `arcade`, and `ARCADE_KEY_PASSWORD` defaults to the keystore password. The local build script signs and verifies a temporary APK first, then atomically publishes the verified result to:
+`ARCADE_KEY_ALIAS` defaults to `arcade`, and `ARCADE_KEY_PASSWORD` defaults to the keystore password. As a reusable alternative, place the private files at:
+
+```text
+private-signing/arcade-release.p12
+private-signing/signing.properties
+```
+
+Both the Gradle release build and `build-local.sh` detect that ignored local
+directory automatically. A private signing bundle may be unpacked at the
+repository root to install those files. Never commit or publish the bundle,
+keystore, or properties file.
+
+The local build script signs and verifies a temporary APK first, then atomically publishes the verified result to:
 
 `app/build/outputs/apk/release/Arcade.apk`
+
+Arcade 2.3.0 establishes a new release signing identity. An installation signed
+with an older identity must be uninstalled once before 2.3.0 can be installed.
+Keep the private 2.3.0 signing bundle safe so later releases can update 2.3.0
+without another uninstall.
 
 For a repository release, copy that verified APK to the repository's stable `releases/` location using the versioned filename. Do not commit the keystore, passwords, Gradle caches, or transient build directories.
 
