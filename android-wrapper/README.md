@@ -1,6 +1,6 @@
 # Arcade Android Wrapper
 
-Version 2.3.0 is the remote-first Android player for the Arcade at:
+Version 2.4.0 is the remote-first Android player for the Arcade at:
 
 `https://to-shreds.github.io/arcade/`
 
@@ -22,17 +22,33 @@ If the manifest probe fails, a page cannot finish rendering within ten seconds, 
 
 Android 7.0 and newer also route service-worker requests through the native offline responder. Android 6.0 uses normal WebView request interception because its public service-worker client API is unavailable.
 
-The site service worker independently maintains an integrity-checked browser snapshot. It stages each release into a unique cache, changes the active marker only after the entire snapshot validates, and uses online-first requests with the active snapshot as the fallback.
+The site service worker independently maintains an integrity-checked browser snapshot. It stages each release into a unique cache, changes the active marker only after the entire snapshot validates, keeps one prior rollback snapshot, and serves the active snapshot cache-first. The web Arcade reports preparation progress and only labels the browser Offline Ready after the complete manifest has validated.
+
+The persistent web shell remains loaded while games open in its same-origin game viewport. Normal game launches therefore do not replace the WebView document or disconnect a Nearby Arcade session. The shell asks the native wrapper only to apply a game's orientation preference. Android Back and game Home requests are delegated to the shell first, with direct-game pages retaining the older safe return-to-index fallback.
+
+If the hosted shell or an embedded game document cannot load, the wrapper may reopen the validated app-managed archive. Ordinary missing images, audio, scripts, or other subresources do not tear down an otherwise healthy WebView.
+
+While a Nearby Arcade session is active, the wrapper cancels and pauses native
+manifest and archive network work so the local session does not create Internet
+traffic. Archive refresh resumes safely after Nearby disconnects.
+
+`ArcadeNative.hasOfflineArchive()` reports ready only when the current WebView
+is actually bound to a validated archive from the exact current generation. A
+remote-bound page must instead finish the browser service worker's verified
+Offline Ready flow; an unrelated native archive cannot make that page claim it
+is prepared.
+
+Live QR scanning uses the standard browser camera API. The wrapper grants camera or microphone access only to the trusted GitHub Pages and `arcade.local` origins, after the corresponding Android runtime permission is approved. QR image/file import remains available when a device has no usable camera.
 
 ## Offline manifest
 
 Generate the release manifest only after all hosted source and assets are final:
 
 ```bash
-node tools/generate-offline-manifest.mjs --version 2.3.0+20260901.6
+node tools/generate-offline-manifest.mjs --version 2.4.0+20260901.N
 ```
 
-The generator reads enabled entries from `catalog.json`, requires each game folder to be a direct child of the repository root, recursively includes its runtime files, and records the exact byte length and SHA-256 hash of every file. Increment the manifest release ID whenever hosted content changes. Commit `offline-manifest.json` with the exact files it describes.
+The generator reads enabled entries from `catalog.json`, requires each game folder to be a direct child of the repository root, recursively includes its runtime files and the shared `multiplayer/` runtime, and records the exact byte length and SHA-256 hash of every file. It also includes the PWA manifest and install icons. Increment the manifest release ID whenever hosted content changes. Commit `offline-manifest.json` with the exact files it describes. Run `node tools/test-offline-runtime.mjs` after generation to verify every byte/hash, PWA asset, static local import, and the Nearby no-network guard.
 
 ## Building
 
@@ -71,9 +87,10 @@ The local build script signs and verifies a temporary APK first, then atomically
 
 `app/build/outputs/apk/release/Arcade.apk`
 
-Arcade 2.3.0 establishes a new release signing identity. An installation signed
-with an older identity must be uninstalled once before 2.3.0 can be installed.
-Keep the private 2.3.0 signing bundle safe so later releases can update 2.3.0
+Arcade 2.3.0 established the current release signing identity. An installation
+signed with an older identity must be uninstalled once before 2.3.0 or later can
+be installed. Arcade 2.4.0 preserves that identity and updates 2.3.0 in place.
+Keep the private signing bundle safe so later releases continue to update
 without another uninstall.
 
 For a repository release, copy that verified APK to the repository's stable `releases/` location using the versioned filename. Do not commit the keystore, passwords, Gradle caches, or transient build directories.

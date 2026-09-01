@@ -34,7 +34,7 @@ function installBrowserMocks(window,fetchImpl){
     };
 }
 
-async function loadCheckers(fetchImpl,savedSession){
+async function loadCheckers(fetchImpl,savedSession,arcadeMultiplayer=null){
     const errors=[];
     const virtualConsole=new VirtualConsole();
     virtualConsole.on('jsdomError',error=>errors.push(error));
@@ -44,6 +44,7 @@ async function loadCheckers(fetchImpl,savedSession){
         beforeParse(window){
             if(savedSession)window.localStorage.setItem('arcade_checkers_online_v1',JSON.stringify(savedSession));
             installBrowserMocks(window,fetchImpl);
+            if(arcadeMultiplayer)window.ArcadeMultiplayer=arcadeMultiplayer;
         }
     });
     if(dom.window.document.readyState!=='complete')await new Promise(resolve=>dom.window.addEventListener('load',resolve,{once:true}));
@@ -280,4 +281,72 @@ test('Checkers join and resume send usernames and reconnect tokens',async t=>{
     assert.equal(resumeFetches,2);
     assert.notEqual(resume.dom.window.localStorage.getItem('arcade_checkers_online_v1'),null,'recoverable leave failure preserves reconnect token');
     assert.equal(resume.dom.window.document.querySelector('#ck-online-badge').hidden,false);
+});
+
+test('Checkers restores saved authority before resolving Nearby identity and handles failed room ownership safely',async t=>{
+    const events=[];
+    let failureStatus=503;
+    const bridge={
+        getStatus(){return{effectiveTransport:'nearby',nearby:true,connected:2,identity:{nickname:'Nearby Name',avatar:'🚀'}};},
+        onStatus(){return()=>{};},
+        pinRoomTransport(transport){events.push('pin:'+transport);return transport;},
+        resetRoomTransport(){events.push('reset');},
+        preferredUsername(name){events.push('name:'+name);return name;},
+        invite(){},goHome(){}
+    };
+    const fetchImpl=async()=>{events.push('fetch');return response({ok:false,error:'room unavailable'},failureStatus);};
+    const saved={code:'CHK234',token:'r'.repeat(43),username:'Saved Name',transport:'cloudflare'};
+    const{dom,errors}=await loadCheckers(fetchImpl,saved,bridge);
+    t.after(()=>dom.window.close());
+    const d=dom.window.document;
+    dom.window.CheckersGame.showOnlineSetup();
+    events.length=0;
+    d.querySelector('#ck-online-resume').click();
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.deepEqual(events.slice(0,3),['pin:cloudflare','name:Saved Name','fetch'],'the saved room pins its original authority before identity is selected or any request is sent');
+    assert.doesNotMatch(events.join(','),/reset/,'a transient failure retains the saved authority and reconnect token');
+    assert.notEqual(dom.window.localStorage.getItem('arcade_checkers_online_v1'),null);
+
+    failureStatus=410;
+    events.length=0;
+    d.querySelector('#ck-online-resume').click();
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.ok(events.includes('reset'),'a terminal Gone response releases the room authority pin');
+    assert.equal(dom.window.localStorage.getItem('arcade_checkers_online_v1'),null);
+
+    events.length=0;
+    d.querySelector('#ck-online-name').value='Fresh Host';
+    d.querySelector('#ck-online-create').click();
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.ok(events.includes('reset'),'a failed fresh create does not leave a transport pinned without a room');
+
+    events.length=0;
+    d.querySelector('#ck-online-code').value='CHK234';
+    d.querySelector('#ck-online-join').click();
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.ok(events.includes('reset'),'a failed fresh join does not leave a transport pinned without a room');
+    assert.equal(errors.length,0,errors.map(error=>error.message).join('\n'));
+});
+
+test('Checkers treats terminal refresh as ownership loss instead of reconnecting forever',async t=>{
+    let resets=0;
+    const lobby={code:'CHK234',game:'checkers',version:1,status:'lobby',ready:false,hostPlayerId:'p1',playerId:'p1',seat:0,members:[{playerId:'p1',seat:0,username:'Host'}],turn:null,state:null,result:null,maxPlayers:2};
+    const fetchImpl=async(url)=>String(url).endsWith('/state')
+        ? response({ok:false,error:'room closed'},410)
+        : response({ok:true,code:'CHK234',token:'h'.repeat(43),playerId:'p1',seat:0,room:lobby});
+    const bridge={getStatus:()=>({effectiveTransport:'nearby'}),onStatus:()=>()=>{},resetRoomTransport(){resets++;},invite(){},goHome(){}};
+    const{dom,errors}=await loadCheckers(fetchImpl,null,bridge);
+    t.after(()=>dom.window.close());
+    const d=dom.window.document;
+    dom.window.CheckersGame.showOnlineSetup();
+    d.querySelector('#ck-online-name').value='Host';
+    d.querySelector('#ck-online-create').click();
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.notEqual(dom.window.localStorage.getItem('arcade_checkers_online_v1'),null);
+    dom.window.__testSockets.at(-1).emit('message',{data:JSON.stringify({type:'error',error:'Room closed'})});
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.equal(dom.window.localStorage.getItem('arcade_checkers_online_v1'),null);
+    assert.equal(d.querySelector('#ck-online-badge').hidden,true);
+    assert.equal(resets,1);
+    assert.equal(errors.length,0,errors.map(error=>error.message).join('\n'));
 });

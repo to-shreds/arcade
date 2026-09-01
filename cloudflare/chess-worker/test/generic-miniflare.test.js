@@ -28,14 +28,14 @@ function nextMessage(socket, predicate = () => true) {
 }
 
 function createMiniflare() {
-  const sourceRoot = new URL("../src/", import.meta.url).pathname;
+  const sourceRoot = new URL("../../../", import.meta.url).pathname;
   return new Miniflare({
     modulesRoot: sourceRoot,
     modules: [
       { type: "ESModule", path: new URL("../src/index.js", import.meta.url).pathname },
-      { type: "ESModule", path: new URL("../src/room-model.js", import.meta.url).pathname },
-      { type: "ESModule", path: new URL("../src/generic-room-model.js", import.meta.url).pathname },
-      { type: "ESModule", path: new URL("../src/chess-engine.js", import.meta.url).pathname }
+      { type: "ESModule", path: new URL("../../../multiplayer/models/room-model.js", import.meta.url).pathname },
+      { type: "ESModule", path: new URL("../../../multiplayer/models/generic-room-model.js", import.meta.url).pathname },
+      { type: "ESModule", path: new URL("../../../multiplayer/models/chess-engine.js", import.meta.url).pathname }
     ],
     compatibilityDate: "2026-08-06",
     compatibilityFlags: ["nodejs_compat"],

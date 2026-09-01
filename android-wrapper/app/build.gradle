@@ -30,8 +30,8 @@ android {
         applicationId "com.familyarcade.platform"
         minSdk 23
         targetSdk 35
-        versionCode 2026083101
-        versionName "2.3.0"
+        versionCode 2026090101
+        versionName "2.4.0"
     }
 
     signingConfigs {

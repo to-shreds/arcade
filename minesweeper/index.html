@@ -646,7 +646,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   <script>
     
     function goToMenu(){
-      const leave = () => { window.location.href = '../index.html'; };
+      const leave = () => { ArcadeSave.goHome(); };
       try{
         if(window.ArcadeSave && typeof ArcadeSave.saveNow === 'function'){
           ArcadeSave.saveNow().then(leave, leave);

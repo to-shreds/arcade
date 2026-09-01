@@ -21,13 +21,22 @@
     for(let index=0;index<players;index++){
       const source=value[index];
       if(!source||typeof source!=='object'||Array.isArray(source))return null;
-      const item={matches:scores[index],mismatchPairCounts:{}};
+      const item={matches:scores[index],mismatchPairCounts:Object.create(null)};
       for(const field of fields){
         const maximum=field==='totalDecision'?86400000:100000;
         const raw=field==='totalDecision'?Math.floor(Number(source[field])||0):(source[field]||0);
         const safe=integer(raw,0,maximum);
         if(safe===null)return null;
         item[field]=safe;
+      }
+      const mismatch=source.mismatchPairCounts;
+      if(!mismatch||typeof mismatch!=='object'||Array.isArray(mismatch))return null;
+      const mismatchEntries=Object.entries(mismatch);
+      if(mismatchEntries.length>2048)return null;
+      for(const entry of mismatchEntries){
+        const key=entry[0],count=integer(entry[1],1,100000);
+        if(!key||key.length>64||count===null||key==='__proto__'||key==='constructor'||key==='prototype')return null;
+        item.mismatchPairCounts[key]=count;
       }
       if(item.attempts<item.matches||item.flips<item.attempts)return null;
       result.push(item);

@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 public abstract class BaseActivity extends Activity {
@@ -13,7 +12,6 @@ public abstract class BaseActivity extends Activity {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         window.setStatusBarColor(Color.rgb(5, 8, 21));
         window.setNavigationBarColor(Color.rgb(5, 8, 21));
         immersive();

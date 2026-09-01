@@ -1,10 +1,12 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.familyarcade.platform" android:versionCode="2026083101" android:versionName="2.3.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.familyarcade.platform" android:versionCode="2026090101" android:versionName="2.4.0">
     <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="35" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-feature android:name="android.hardware.microphone" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.any" android:required="false" />
     <uses-feature android:name="android.hardware.faketouch" android:required="true" />
     <queries>
         <intent><action android:name="android.intent.action.TTS_SERVICE" /></intent>

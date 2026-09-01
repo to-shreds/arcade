@@ -32,6 +32,19 @@ test("server rejects wrong turns, stale versions, illegal moves and piece theft"
   assert.equal(moved.game.turn, "b");
 });
 
+test("trusted side actions use the same authoritative path as reconnect-token actions", async () => {
+  const { model, black } = await roomWithTwoPlayers();
+  let room = await model.load();
+  const whiteMove = await model.actAsSide("w", { type: "move", uci: "e2e4", expectedVersion: room.version }, { w: true, b: true });
+  assert.equal(whiteMove.game.moves[0].uci, "e2e4");
+  assert.deepEqual(whiteMove.presence, { w: true, b: true });
+  room = await model.load();
+  const blackMove = await model.act(black.token, { type: "move", uci: "e7e5", expectedVersion: room.version }, { w: true, b: true });
+  assert.equal(blackMove.game.moves[1].uci, "e7e5");
+  assert.equal(blackMove.game.turn, "w");
+  await assert.rejects(model.actAsSide("x", { type: "resign", expectedVersion: blackMove.version }), (error) => error.status === 401);
+});
+
 test("undo and draw require opponent approval", async () => {
   const { model, white, black } = await roomWithTwoPlayers();
   let room = await model.load();
@@ -64,6 +77,30 @@ test("resignation and active state survive a model reconstruction", async () => 
   await model.act(black.token, { type: "resign", expectedVersion: room.version });
   room = await model.load();
   assert.deepEqual({ reason: room.game.result.reason, winner: room.game.result.winner }, { reason: "resignation", winner: "w" });
+});
+
+test("leaving Chess is terminal, revokes the seat, and closes an empty lobby without inventing a winner", async () => {
+  const model = new RoomModel(new MemoryStorage());
+  const host = await model.create("BYE234");
+  const left = await model.act(host.token, { type: "leave", expectedVersion: host.room.version });
+  assert.equal(left.ready, false);
+  assert.equal(left.game.result.over, false, "an empty waiting room is not recorded as a played-game result");
+  await assert.rejects(model.state(host.token), (error) => error.status === 401);
+  await assert.rejects(model.join(), (error) => error.status === 410);
+});
+
+test("leaving an active Chess room is an authoritative resignation and preserves the opponent's result", async () => {
+  const { model, white, black } = await roomWithTwoPlayers();
+  const room = await model.load();
+  const left = await model.act(white.token, { type: "leave", expectedVersion: room.version });
+  assert.deepEqual(
+    { reason: left.game.result.reason, winner: left.game.result.winner },
+    { reason: "resignation", winner: "b" }
+  );
+  await assert.rejects(model.state(white.token), (error) => error.status === 401);
+  const opponent = await model.state(black.token);
+  assert.equal(opponent.game.result.winner, "b");
+  await assert.rejects(model.join(), (error) => error.status === 410);
 });
 
 test("the room protocol applies castling, en passant and promotion through server validation", async () => {

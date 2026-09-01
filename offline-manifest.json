@@ -1,14 +1,29 @@
 {
   "schema": 1,
-  "version": "2.3.0+20260901.6",
-  "generatedAt": "2026-09-01T07:01:37.026Z",
-  "fileCount": 304,
-  "totalBytes": 16512547,
+  "version": "2.4.0+20260901.1",
+  "generatedAt": "2026-09-01T15:51:31.469Z",
+  "fileCount": 331,
+  "totalBytes": 17379689,
   "files": [
     {
+      "path": "apple-touch-icon.png",
+      "bytes": 10459,
+      "sha256": "9f51a09b0a96437b6d224f611563b48ed69152c94f7edb5009b3460b55a97279"
+    },
+    {
       "path": "arcade-save.js",
-      "bytes": 17170,
-      "sha256": "b33a9573e7903f715f85e9bc16a7f270176f47635ad570177087ee35c8be1a36"
+      "bytes": 19313,
+      "sha256": "97bfd0353935f79d315d67debff21a02bcd8c0533b9c641845a805c61086c6a2"
+    },
+    {
+      "path": "arcade-shell.css",
+      "bytes": 10833,
+      "sha256": "389d2bf7c60bad719af8415b24e7489daeeb9b49a8d1bf075e67228c2239de8a"
+    },
+    {
+      "path": "arcade-shell.js",
+      "bytes": 70682,
+      "sha256": "e2e68ee0f4d5a5e09a2fc02639881e1024308a0a7c9c9b60df2b6854d4acff18"
     },
     {
       "path": "arcade-ui.css",
@@ -32,8 +47,8 @@
     },
     {
       "path": "balloons/index.html",
-      "bytes": 126911,
-      "sha256": "d776c4d5adeeea5d37d83e851d71bd6197f57bf7f93c8fc5b9bb3b9778a83034"
+      "bytes": 126873,
+      "sha256": "34179cb1cd6c4221f4e38b5c256e9ac877ab850c085f955aa52447ef31d231a3"
     },
     {
       "path": "blackjack/game.json",
@@ -47,8 +62,8 @@
     },
     {
       "path": "blackjack/index.html",
-      "bytes": 124182,
-      "sha256": "a09bb19c7e56eb7fb312ea14759ab6ee27d49e1f5a26421e7490d31a459a1827"
+      "bytes": 124163,
+      "sha256": "7608b3d67e32a82e986966d2afa2f036b4ffe2e811a37996448b47fc4be0e48f"
     },
     {
       "path": "bounce-boxes/game.json",
@@ -77,8 +92,8 @@
     },
     {
       "path": "bowling/index.html",
-      "bytes": 44571,
-      "sha256": "c7f1a6ec4badab2c1dd7c7ccf332565bd7c2b56d9e8145f91a00dc39624eb252"
+      "bytes": 44390,
+      "sha256": "0218db47968a8916095bb580a2689daefc63c03c36479a7ed22d5979dc5588a0"
     },
     {
       "path": "bug-squish/game.json",
@@ -92,8 +107,8 @@
     },
     {
       "path": "bug-squish/index.html",
-      "bytes": 41899,
-      "sha256": "202a50b30409845a907ccfca8361721aa60c86d35067fffc12e24a3eeae5a1ac"
+      "bytes": 41802,
+      "sha256": "9c0e44aa0173b151a6da86eed7ea193d8654b5a521d37b31664a48dd65bad7e8"
     },
     {
       "path": "build-my-joke/game.json",
@@ -112,8 +127,8 @@
     },
     {
       "path": "build-my-joke/index.html",
-      "bytes": 10962,
-      "sha256": "cc8c0f23fe59122e9fd6a7530bebc0cd37669f92d3a1b4643effe6258f442fd4"
+      "bytes": 10883,
+      "sha256": "a9ce4bc2d2637e1e1dd0d34f85a26d3642ce34281f0cdca5c61b947b1a14bfdb"
     },
     {
       "path": "catalog.json",
@@ -137,8 +152,8 @@
     },
     {
       "path": "chat-room/index.html",
-      "bytes": 25930,
-      "sha256": "e971589507c6a638005a874923b2f0a5356ef389ee219cb89d98770aee1e9c06"
+      "bytes": 36476,
+      "sha256": "f2d6c58c693fdcd4725dd90cf62d58b17638ee8a2331ac6814fa564def90dc50"
     },
     {
       "path": "checkers/game.json",
@@ -152,8 +167,8 @@
     },
     {
       "path": "checkers/index.html",
-      "bytes": 204554,
-      "sha256": "589788fe4adc71ab28c999cee8668cc0fd8ff4c4d6b60f084d1a79decbf08d43"
+      "bytes": 209242,
+      "sha256": "83aff74faa6f1489a3668229085b8fdeff93919ba522bd3eb1fec3ad9582cdd1"
     },
     {
       "path": "chess/game.json",
@@ -167,8 +182,8 @@
     },
     {
       "path": "chess/index.html",
-      "bytes": 145698,
-      "sha256": "9b24fa9237b36386f22555d98f07d104d54d873ef65a1a112dac1e71aef520ce"
+      "bytes": 151915,
+      "sha256": "906114df939374832f3e4fea157678a727427f7f94cef5f4b35ea41cc3c32a7f"
     },
     {
       "path": "codebreaking/game.json",
@@ -187,8 +202,8 @@
     },
     {
       "path": "codebreaking/index.html",
-      "bytes": 13170,
-      "sha256": "dcf8388cde99196c7dbbeb00b0dcc1367c29e3b8eaf4505c8e9736b0ee77796d"
+      "bytes": 13091,
+      "sha256": "d4e969857d478deccf5406135e7e3745159828694368e2f8acf13af4e3bbf295"
     },
     {
       "path": "contraption-maker/game.json",
@@ -202,8 +217,8 @@
     },
     {
       "path": "contraption-maker/index.html",
-      "bytes": 37766,
-      "sha256": "73bc33232cb68d03b13bc534d2b035e61fcceb789909913a5d4299dc207e28b9"
+      "bytes": 37687,
+      "sha256": "dc88eb452fcb94bd1f9691ddf0b58551f574bf277ef97971dfed60d5b1d22363"
     },
     {
       "path": "dots/game.json",
@@ -217,8 +232,8 @@
     },
     {
       "path": "dots/index.html",
-      "bytes": 228931,
-      "sha256": "d2901f8f3afdf4fbe7de076fb7e2f3dda8489ff18d11fcecc69a29c1002c4078"
+      "bytes": 234348,
+      "sha256": "4a9f5cdca04d83f1f039d6270da9138dbfaea3a41f22f5a88158ffcfadc95e97"
     },
     {
       "path": "firefighter-frenzy/game.json",
@@ -232,8 +247,8 @@
     },
     {
       "path": "firefighter-frenzy/index.html",
-      "bytes": 55066,
-      "sha256": "98e2907c0bb970e3d7044f07c2a2161e42fa4e990b1b21d79c416e97472a4170"
+      "bytes": 54969,
+      "sha256": "489263f1265a2b2364dda4be46e87beed72eaa04eee5fdd4db22beecd41c94e5"
     },
     {
       "path": "hangman/game.json",
@@ -247,13 +262,13 @@
     },
     {
       "path": "hangman/index.html",
-      "bytes": 135631,
-      "sha256": "9550a2ecfc5412269d49e159f22a688ad105fcdadf42ee05afebfff5ab887cfc"
+      "bytes": 135593,
+      "sha256": "58ada4001b87e388e0ce9a09ee5dfc28d4456888f547cd29acae8a6872a9d052"
     },
     {
       "path": "index.html",
-      "bytes": 10863,
-      "sha256": "76f2d7c7236706d47353e196ba2d3c8d7a7c73ba206a28fd4764c5aaba60f50a"
+      "bytes": 11658,
+      "sha256": "b0607bc98d20cafb5de2b691c27b65193361368d3dd6d28912b11292a34467f0"
     },
     {
       "path": "insultinator/game.json",
@@ -282,8 +297,8 @@
     },
     {
       "path": "jigsaw/index.html",
-      "bytes": 66084,
-      "sha256": "5d869562277f75e3dd653a03ab69bd53e51730b5a7c8575be32d154a6b58ec03"
+      "bytes": 66065,
+      "sha256": "c4bbcb34c24f3750ca2c7faaff572bf8512b820cabc42c8c56c899ac8dbb4ecd"
     },
     {
       "path": "mad-libs/game.json",
@@ -297,8 +312,8 @@
     },
     {
       "path": "mad-libs/index.html",
-      "bytes": 145896,
-      "sha256": "157181a9b7ecad50e89b623c38c33ae0c3a365f97f68d86098dc75eb6423403b"
+      "bytes": 145850,
+      "sha256": "b2601fcaf2c3b48935cc5e522c2be442f615ba1a6ffc5638cb51bd627e50646f"
     },
     {
       "path": "make-10/game.json",
@@ -312,8 +327,13 @@
     },
     {
       "path": "make-10/index.html",
-      "bytes": 63279,
-      "sha256": "1fb9b9c5f4ad139fbf8ed4f6874824a23521b1ae3eca23d313d07f978b5d2352"
+      "bytes": 63073,
+      "sha256": "c7aba2232d5290813d95165cfd55512bf836e7ce7b265da0a418159df9c169b9"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "bytes": 768,
+      "sha256": "69ca6bf9e90dd795bace6f5617551facfe12ee412e3cc24407c0550006114e05"
     },
     {
       "path": "math/game.json",
@@ -327,8 +347,8 @@
     },
     {
       "path": "math/index.html",
-      "bytes": 112544,
-      "sha256": "8a8dfa578811a75a433f7302450f706d0a3b3fc0c7d50050fbb0674732070678"
+      "bytes": 112506,
+      "sha256": "56fb45e5a66837c5f3965bbcb52163d84da0255a4ada405c30fd730ad534926a"
     },
     {
       "path": "maze/game.json",
@@ -342,8 +362,8 @@
     },
     {
       "path": "maze/index.html",
-      "bytes": 120150,
-      "sha256": "71acb0072d59987b3befd8c8eec0618e3364c6602d48b11f3bc385539bc09711"
+      "bytes": 120112,
+      "sha256": "963928fe00f4556d9407c4697314ac97a812d4a8ae8ce27c7497c5842a0bb802"
     },
     {
       "path": "memory/game.json",
@@ -357,18 +377,18 @@
     },
     {
       "path": "memory/index.html",
-      "bytes": 135869,
-      "sha256": "2f0f62b002999b199f891c11f42ef746358522d6c653e0eb7ab149d5e9a30994"
+      "bytes": 138111,
+      "sha256": "726ed721f0d30f49f12972092073d7aab6f6dc7bf12634edeac0b53bc3e2ed54"
     },
     {
       "path": "memory/online-model.js",
-      "bytes": 5244,
-      "sha256": "e0ea1eab70e65e23498208119b437e5d373136ee853c8a1f3c4b179b5c4a6185"
+      "bytes": 5771,
+      "sha256": "be7799ce60bdaef9f12588c871ec9c4b91279874a72b8d761cfa9645d88aa333"
     },
     {
       "path": "memory/room-client.js",
-      "bytes": 12376,
-      "sha256": "813b053263c0bfbf72d06119c28f02570ceb7a4ba12724c62a2d569773f9ebbf"
+      "bytes": 14228,
+      "sha256": "eb1bfb9b5f13fb74d275f687ec7b60dae32b01c3c3f9cf42a63db9ed40d6d1e3"
     },
     {
       "path": "minesweeper/game.json",
@@ -382,8 +402,8 @@
     },
     {
       "path": "minesweeper/index.html",
-      "bytes": 57354,
-      "sha256": "298dd644adec37dc932b324fb7e84346c562138c04967dde2f13b9b76ff4eafa"
+      "bytes": 57335,
+      "sha256": "3ed8040d2fb0caaddfc181ca13a50001a4977f566d40de001581d4ac4035eecf"
     },
     {
       "path": "mini-golf/game.json",
@@ -397,8 +417,8 @@
     },
     {
       "path": "mini-golf/index.html",
-      "bytes": 181797,
-      "sha256": "b5bb61ff5b4a922b2e06971dc3ca24f2acc162a984ae0d2856dd5695d2f9f400"
+      "bytes": 181759,
+      "sha256": "30eb04b2b3057341b18739402529f3b3db67b431ef4fb11b8fbf03b4a593551d"
     },
     {
       "path": "monopoly/game.json",
@@ -412,8 +432,8 @@
     },
     {
       "path": "monopoly/index.html",
-      "bytes": 163705,
-      "sha256": "8f55bf7445ef1770532a547f68ba49dedb86a8e73d7dff2729f201bd3ac96c92"
+      "bytes": 172543,
+      "sha256": "83e1c5f6dc036fb0c3015fc88cd5dc37a4ffc82ba54663507ff9247cdf211ffc"
     },
     {
       "path": "monster-dentist/game.json",
@@ -427,8 +447,108 @@
     },
     {
       "path": "monster-dentist/index.html",
-      "bytes": 58940,
-      "sha256": "bea6c9a92959f688e4cd4adc804b816f542e7b088adaab7c8f9ea93eee7de0da"
+      "bytes": 58747,
+      "sha256": "77e6ed43a7ced8f4892910724b8294a03c22cbd328bf82dcdbd52f647f5c47ea"
+    },
+    {
+      "path": "multiplayer/arcade-multiplayer.js",
+      "bytes": 28219,
+      "sha256": "c7bb85c22009ff0a281354aeba094c7bceb982bf4c94a9e50579e33aabb0cce1"
+    },
+    {
+      "path": "multiplayer/arcade-shell-core.mjs",
+      "bytes": 14637,
+      "sha256": "aaca7834e3f645a3d9a08fc9ecc78ae0dfadd67bad55665954b1228b791d24ee"
+    },
+    {
+      "path": "multiplayer/models/chess-engine.js",
+      "bytes": 17400,
+      "sha256": "da311b34472dec92c627081600f39abe42df0f4d21a47403d05789b7d4a7ed58"
+    },
+    {
+      "path": "multiplayer/models/generic-room-model.js",
+      "bytes": 17293,
+      "sha256": "96a144376e76dc75cd9476e6223e5108109cc0f1253cadc0e0f452455eda03d6"
+    },
+    {
+      "path": "multiplayer/models/generic-transition-validators.js",
+      "bytes": 61225,
+      "sha256": "483b8cc2853047da9453d25957d9abeae09b53271d42921c8a572764cb8b9fd0"
+    },
+    {
+      "path": "multiplayer/models/monopoly-authority.js",
+      "bytes": 111918,
+      "sha256": "7c143e4a2d3b25b84ee26a7effda2b3a297dd7bf1e6804ef5967048faed6e075"
+    },
+    {
+      "path": "multiplayer/models/room-model.js",
+      "bytes": 7513,
+      "sha256": "e6d5e43f429c5c015d0dcd009c263cbde30d70961be18c41a10b611e129f68eb"
+    },
+    {
+      "path": "multiplayer/models/sorry-transition-validator.js",
+      "bytes": 39867,
+      "sha256": "73ea7f809d36214b6e6910548ea247b754dee85114d09849d83474d86a296e30"
+    },
+    {
+      "path": "multiplayer/nearby-room-service.js",
+      "bytes": 47216,
+      "sha256": "57f803052ea2f89dea6b9ee4dd78dfa4516dc9e8d5bdf1b16b7bf448bc2b738a"
+    },
+    {
+      "path": "multiplayer/nearby-session.mjs",
+      "bytes": 56091,
+      "sha256": "7ed2b10dce76adf218f02d2d976ebf59786edb3a9fc352d0e49a910a725cc5a6"
+    },
+    {
+      "path": "multiplayer/nearby-storage.mjs",
+      "bytes": 5319,
+      "sha256": "e0d9880eebb4fbb60e70fd187b840129664a96b6f212c190c365ab167c5eb46e"
+    },
+    {
+      "path": "multiplayer/protocol.mjs",
+      "bytes": 8135,
+      "sha256": "4699a611aa2e2217b105c82acfe5325a40d02e4594f6edc58ceb50d46af666c1"
+    },
+    {
+      "path": "multiplayer/qr.mjs",
+      "bytes": 14031,
+      "sha256": "69ced9b8f1deedece6eb716f6f72c2ef11d87ff0932ed97c50025bd109d73c41"
+    },
+    {
+      "path": "multiplayer/signaling.mjs",
+      "bytes": 15478,
+      "sha256": "44159270eeb7da102ebe363996998749216315afe9a7fe825b30e4528846ebbb"
+    },
+    {
+      "path": "multiplayer/vendor/jsqr-1.4.0.min.js",
+      "bytes": 130420,
+      "sha256": "8e7582406ad4551d6d07ce50cb6de04d3b9e020c6bbb6c57ac0a2125456730bd"
+    },
+    {
+      "path": "multiplayer/vendor/LICENSE.jsQR.txt",
+      "bytes": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    },
+    {
+      "path": "multiplayer/vendor/LICENSE.qrcode-generator.txt",
+      "bytes": 1071,
+      "sha256": "3a850fa5f08101db6f40676c2786e10bd2cd5fff7b12ffdf1e0c434d4e49d90c"
+    },
+    {
+      "path": "multiplayer/vendor/qrcode-generator-2.0.4.min.js",
+      "bytes": 20706,
+      "sha256": "6644ce8e36232ecec643ce7a98bb99ed978c920ee9d640b56bf0a675f1d8f255"
+    },
+    {
+      "path": "multiplayer/vendor/README.md",
+      "bytes": 718,
+      "sha256": "7900d9c96df21fe8dc856b171b962af55eddc8a948d7aacad20717b4129b2392"
+    },
+    {
+      "path": "multiplayer/webrtc.mjs",
+      "bytes": 9201,
+      "sha256": "1fd5f1960c038afa494c713179243980070831b47970d20228b94725d8c701fd"
     },
     {
       "path": "music-maker/AUDIO-NOTICE.txt",
@@ -477,8 +597,8 @@
     },
     {
       "path": "music-maker/music-maker.js",
-      "bytes": 21957,
-      "sha256": "7f577ed6975f4dc78acaad443890a055ae7e27e79c6a56f9b7411e8cbf49d8b4"
+      "bytes": 21780,
+      "sha256": "73cb6e62d646448302b5a9dea13ea0d06eac2b4c3e168644ba3354bc3a0e332a"
     },
     {
       "path": "music-maker/samples/bass/high-A.wav",
@@ -1257,8 +1377,8 @@
     },
     {
       "path": "orb-slicer/index.html",
-      "bytes": 124071,
-      "sha256": "69e14129bb18b9d02cdcb5ee8e726df076d921268f9c8c4acd0eef9b1d784ed0"
+      "bytes": 124033,
+      "sha256": "0ccafbacc7723471c2094ed114605befcb5825fae0f2f78cd34a957e4ba924be"
     },
     {
       "path": "paint-lab/game.json",
@@ -1287,8 +1407,23 @@
     },
     {
       "path": "patterns/index.html",
-      "bytes": 15523,
-      "sha256": "d3b2e82c5f1ac0423b212dbd1def7c040b2053793c9f855231f4ddf95a68cc41"
+      "bytes": 15444,
+      "sha256": "ddbe54c69fca35120d23ba5888d1c10368cba0ee05e5fb78c6cf700cf48e2a08"
+    },
+    {
+      "path": "pwa-icon-192.png",
+      "bytes": 17376,
+      "sha256": "24f9099de51bc6a787707d79bd91bf31dda8ba709156cdd3a4dbd6ac76eebc13"
+    },
+    {
+      "path": "pwa-icon-512.png",
+      "bytes": 41951,
+      "sha256": "3d83d06aec5007d173fec771fd0a3cfd86ec957262f2d79b868c36a329d36f38"
+    },
+    {
+      "path": "pwa-icon-maskable-512.png",
+      "bytes": 31883,
+      "sha256": "18da3059162d331b8130a791d3383483b87d0feb99d7a81b5c9e0dcc124b93c1"
     },
     {
       "path": "regex-lab/engine.js",
@@ -1312,8 +1447,8 @@
     },
     {
       "path": "regex-lab/index.html",
-      "bytes": 32536,
-      "sha256": "a1c4c8cc3fbe1fa0be70121763db6501a8371e95d1b2d770793612fca588e295"
+      "bytes": 32526,
+      "sha256": "b61883c8703ad319ea8e8d927b9baad8ef7d9e1c26207df3422e640f34957812"
     },
     {
       "path": "shuffleboard/game.json",
@@ -1327,8 +1462,8 @@
     },
     {
       "path": "shuffleboard/index.html",
-      "bytes": 65820,
-      "sha256": "888fed169d74783688505c6b215ae2eac365ce2ef1c63db47d5c52bee9692e10"
+      "bytes": 65702,
+      "sha256": "c4f1bb61d162acaf8fdcb6eeee0de12d11c8a7f5ad56364e2b3fb70202585346"
     },
     {
       "path": "silly-face-lab/game.json",
@@ -1342,8 +1477,8 @@
     },
     {
       "path": "silly-face-lab/index.html",
-      "bytes": 109677,
-      "sha256": "87543b9b61f2e43f734d3b4e7dc8e88582e8de36e5c3612cea3bdc74c5d4e254"
+      "bytes": 109631,
+      "sha256": "a0dd8fa18fd53e4234b70d1f2328638a2679514e0d8b0ba4b21929b24718945b"
     },
     {
       "path": "simon/game.json",
@@ -1357,8 +1492,8 @@
     },
     {
       "path": "simon/index.html",
-      "bytes": 112528,
-      "sha256": "32107fab3c278286edf3708dc429c39e5c887066f24dc6be6b178afdba4e34e3"
+      "bytes": 112490,
+      "sha256": "b62ca3f0508384eb6110eb405e53d6954d16f861f8c5bdbc9d898ae37d620f09"
     },
     {
       "path": "solitaire/engine.js",
@@ -1382,8 +1517,8 @@
     },
     {
       "path": "solitaire/index.html",
-      "bytes": 31195,
-      "sha256": "4de4da88eef42215da39a77fc0b52049774851b4edcda0f391036b7ba97ca8aa"
+      "bytes": 31185,
+      "sha256": "b736163db785e37132780819555dd7b9d882035a00b4c3f6dc219e69c09cf2e1"
     },
     {
       "path": "sorry/game.json",
@@ -1397,8 +1532,8 @@
     },
     {
       "path": "sorry/index.html",
-      "bytes": 161633,
-      "sha256": "abc68956ba79ddc871ceeb131830d2cefede18c594ae28452424d028ab29b211"
+      "bytes": 165866,
+      "sha256": "d46132466461871c1eeb72cef559400de9ec82f95550122ff666a4ace96d76f5"
     },
     {
       "path": "spelling/game.json",
@@ -1417,13 +1552,13 @@
     },
     {
       "path": "spelling/index.html",
-      "bytes": 10458,
-      "sha256": "3b65ff5939794d15bb6e262c06ca004840ca30a8f3cb99432074b38a03d48a89"
+      "bytes": 10379,
+      "sha256": "ce1dfbee497a77703338740422e68d3255bd8b7be06d69376754b123b7f40651"
     },
     {
       "path": "sw.js",
-      "bytes": 11694,
-      "sha256": "f355799f67884a0053d358c205852e64774153b4fbb8309fc8db91d0e81bfef1"
+      "bytes": 27785,
+      "sha256": "4e12d2512064db3d58ab2aa619ab565610f5e160ed0e940f44c0fb115b165285"
     },
     {
       "path": "tic-tac-toe/game.json",
@@ -1437,13 +1572,13 @@
     },
     {
       "path": "tic-tac-toe/index.html",
-      "bytes": 169841,
-      "sha256": "9c979004995e6b6fe3d5e426500aee2a2521b8a11a019bad1f98b398df6718bd"
+      "bytes": 171962,
+      "sha256": "15137c6363e222369e707d5bc3b3c2d8f8d8088752716d200d09e069603b34e3"
     },
     {
       "path": "tic-tac-toe/room-client.js",
-      "bytes": 11528,
-      "sha256": "7d8e32c5bff6b7741e9293ffeab343d76114115c9363304f5f911abedb12261e"
+      "bytes": 13354,
+      "sha256": "26a8c702d82b3ae825dec58539d8eb3a1f41fa4bdd27be93106cdca20121ae44"
     },
     {
       "path": "time/game.json",
@@ -1457,8 +1592,8 @@
     },
     {
       "path": "time/index.html",
-      "bytes": 117651,
-      "sha256": "e7b912fc870c19ea0caf0f5cb2452f7d5ad9cb4f98aefe6ea2f17698ee687fdd"
+      "bytes": 117613,
+      "sha256": "a118fb8868da02e81ae0ca0e6f209c14b2f19e20599075f4c89aeadf00888701"
     },
     {
       "path": "trail/game.json",
@@ -1472,8 +1607,8 @@
     },
     {
       "path": "trail/index.html",
-      "bytes": 132257,
-      "sha256": "314c361a298a7cd6734a7cfc6edc973960aac2444088aca50d3ff478bb533d14"
+      "bytes": 132219,
+      "sha256": "acc4c3348f1d03e33bbf52008a44ac288628d42797136d3fba9d94d53e40df23"
     },
     {
       "path": "trivia/game.json",
@@ -1487,8 +1622,8 @@
     },
     {
       "path": "trivia/index.html",
-      "bytes": 66471,
-      "sha256": "146214ea4f61856261d354abf4c46da8bfadba1bc2cffaae7afa1cf39d398e4f"
+      "bytes": 66454,
+      "sha256": "ba517fe369126bb8ce84bb15f5a7c65b835fe216c9b3c60cfdd85efe7ad92cd6"
     },
     {
       "path": "two-truths/game.json",
@@ -1507,8 +1642,8 @@
     },
     {
       "path": "two-truths/index.html",
-      "bytes": 30474,
-      "sha256": "489d5ae232f3cd886b06247ecee87791b694284ee17f8cea891245aad86940ad"
+      "bytes": 30395,
+      "sha256": "9c9e1734d18221d5bf460d0d20e8d7a07c8024080ed3f44f943f780cc7eda18a"
     },
     {
       "path": "typing/game.json",
@@ -1522,8 +1657,8 @@
     },
     {
       "path": "typing/index.html",
-      "bytes": 9064,
-      "sha256": "a313f17f60607ddfe624520c76f4d363b035bb8634574a7880d441cf3ace3db9"
+      "bytes": 8974,
+      "sha256": "d06694f4d413381527d566d00656046702d7e2c841aba52b43ed47fbaae23259"
     }
   ]
 }

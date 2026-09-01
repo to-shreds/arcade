@@ -1785,11 +1785,12 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             <div style="display:flex; flex-direction:column; gap:16px; width:100%; align-items:center;">
                 <button class="btn-large-opt" onclick="CheckersGame.start('pvp')">2 Players (Pass &amp; Play)</button>
                 <button class="btn-large-opt" onclick="CheckersGame.start('cpu')">1 Player (vs CPU)</button>
-                <button class="btn-large-opt" onclick="CheckersGame.showOnlineSetup()">Online Match</button>
+                <button class="btn-large-opt" onclick="CheckersGame.showOnlineSetup()">Multiplayer</button>
                 <div id="ck-online-panel" class="ck-online-card" hidden>
-                    <div class="ck-card-title" style="margin:0">ONLINE ROOM</div>
+                    <div class="ck-card-title" style="margin:0">MULTIPLAYER ROOM</div>
+                    <div id="ck-transport-status" class="ck-online-state" aria-live="polite">Internet</div>
                     <div class="ck-online-fields">
-                        <input id="ck-online-name" class="ck-online-input" maxlength="18" autocomplete="nickname" placeholder="Your name" aria-label="Your online name" />
+                        <input id="ck-online-name" class="ck-online-input" maxlength="18" autocomplete="nickname" placeholder="Your name" aria-label="Your multiplayer name" />
                         <input id="ck-online-code" class="ck-online-input ck-online-code" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ROOM CODE" aria-label="Room code" />
                     </div>
                     <div class="ck-online-actions">
@@ -1931,6 +1932,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         </div>
 
 
+<script src="../multiplayer/arcade-multiplayer.js"></script>
 <script src="../arcade-save.js"></script>
 <script>
 
@@ -2242,7 +2244,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
     
     function openGame(_id) {  }
-    function goToMenu() { try{ ArcadeSettings.closeModal(); }catch(e){} window.location.href = '../index.html'; }
+    function goToMenu() { try{ ArcadeSettings.closeModal(); }catch(e){} if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.goHome==='function'){ArcadeMultiplayer.goHome();return;} window.location.href = '../index.html'; }
 
 const FeedbackSys = (function(){
         const overlay = document.getElementById('feedback-overlay');
@@ -2338,7 +2340,7 @@ const FeedbackSys = (function(){
         const ONLINE_API_BASE = 'https://arcade-chess.jonathanjablon.workers.dev';
         const ONLINE_SESSION_KEY = 'arcade_checkers_online_v1';
         let online = {
-            code:'', token:'', playerId:'', seat:0, username:'', room:null,
+            code:'', token:'', transport:'', playerId:'', seat:0, username:'', room:null,
             socket:null, socketEpoch:0, retryTimer:0, retryCount:0, busy:false, applying:false, restoreRequired:false, messageIsError:false, lastVersion:-1, lastRevision:-1
         };
 
@@ -2354,6 +2356,11 @@ const FeedbackSys = (function(){
         const onlineStateEl = document.getElementById('ck-online-state');
         const onlineBadge = document.getElementById('ck-online-badge');
         const onlineBadgeCode = document.getElementById('ck-online-badge-code');
+        const multiplayerTransportStatus = document.getElementById('ck-transport-status');
+
+        function invitedRoomCode(){let code='';try{const params=new URLSearchParams(location.search);code=String(params.get('room')||params.get('join')||params.get('code')||'').trim().toUpperCase();}catch(e){}return/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)?code:'';}
+        function syncMultiplayerTransport(status){const current=status||(window.ArcadeMultiplayer&&ArcadeMultiplayer.getStatus?ArcadeMultiplayer.getStatus():null),nearby=!!(current&&(current.effectiveTransport||(current.nearby?'nearby':'cloudflare'))==='nearby'),identity=nearby&&current.identity;if(multiplayerTransportStatus)multiplayerTransportStatus.textContent=nearby?'Nearby Arcade · '+current.connected+' connected'+(identity?' · '+(identity.avatar?identity.avatar+' ':'')+identity.nickname:''):'Internet';if(identity&&onlineNameInput)onlineNameInput.value=identity.nickname;if(onlineNameInput)onlineNameInput.hidden=!!identity;}
+        if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.onStatus==='function')ArcadeMultiplayer.onStatus(syncMultiplayerTransport);
 
         function syncUndoButton(){
             const button = document.getElementById('ck-undo');
@@ -2398,18 +2405,25 @@ const FeedbackSys = (function(){
         let onlineSetupShown = false;
         function cleanOnlineCode(value){ return String(value || '').toUpperCase().replace(/[^ABCDEFGHJKLMNPQRSTUVWXYZ23456789]/g, '').slice(0, 6); }
         function cleanOnlineName(value){ return String(value || '').replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, 18); }
+        function cleanRoomTransport(value, legacy){ return (value === undefined || value === null || value === '') && legacy ? 'cloudflare' : value === 'nearby' || value === 'cloudflare' ? value : ''; }
+        function currentRoomTransport(){ const status=window.ArcadeMultiplayer&&ArcadeMultiplayer.getStatus?ArcadeMultiplayer.getStatus():null;return cleanRoomTransport(status&&(status.pinnedTransport||status.effectiveTransport||(status.nearby?'nearby':'cloudflare')),false)||'cloudflare'; }
+        function pinSavedRoomTransport(transport){const selected=cleanRoomTransport(transport,false);if(!selected)throw new TypeError('Saved room transport is invalid.');if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.pinRoomTransport==='function')return ArcadeMultiplayer.pinRoomTransport(selected);if(selected==='nearby')throw new Error('Nearby Arcade is unavailable. This saved room will not be sent to the Internet.');return selected;}
+        function resetRoomTransport(){if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.resetRoomTransport==='function')ArcadeMultiplayer.resetRoomTransport();}
+        function terminalRoomStatus(error){return !!(error && [401,403,404,410].includes(Number(error.status)));}
+        function requestedOnlineName(){const entered=cleanOnlineName(onlineNameInput&&onlineNameInput.value);return window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.preferredUsername==='function'?ArcadeMultiplayer.preferredUsername(entered):entered;}
         function savedOnlineSession(){
             try{
                 const data = JSON.parse(localStorage.getItem(ONLINE_SESSION_KEY) || 'null');
                 const code = cleanOnlineCode(data && data.code);
                 const token = String(data && data.token || '');
-                if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code) || !/^[A-Za-z0-9_-]{20,}$/.test(token)) return null;
-                return {code:code, token:token, username:cleanOnlineName(data.username)};
+                const transport = cleanRoomTransport(data && data.transport, true);
+                if(!transport || !/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code) || !/^[A-Za-z0-9_-]{20,}$/.test(token)) return null;
+                return {code:code, token:token, username:cleanOnlineName(data.username), transport:transport};
             }catch(e){ return null; }
         }
         function persistOnlineSession(){
             if(!online.code || !online.token) return;
-            try{ localStorage.setItem(ONLINE_SESSION_KEY, JSON.stringify({code:online.code,token:online.token,username:online.username})); }catch(e){}
+            try{ localStorage.setItem(ONLINE_SESSION_KEY, JSON.stringify({code:online.code,token:online.token,username:online.username,transport:online.transport||currentRoomTransport()})); }catch(e){}
         }
         function clearOnlineRetry(){ if(online.retryTimer){ clearTimeout(online.retryTimer); online.retryTimer = 0; } }
         function closeOnlineSocket(){
@@ -2568,13 +2582,22 @@ const FeedbackSys = (function(){
             return true;
         }
         function acceptOnlineResponse(body){
-            online.code = cleanOnlineCode(body.code || (body.room && body.room.code));
-            online.token = String(body.token || online.token || '');
-            online.playerId = String(body.playerId || (body.room && body.room.playerId) || online.playerId || '');
-            if(body.seat !== undefined && body.seat !== null) online.seat = Number(body.seat);
-            else if(body.room && body.room.seat !== undefined && body.room.seat !== null) online.seat = Number(body.room.seat);
+            const room = roomFromResponse(body);
+            const candidate = {
+                transport:cleanRoomTransport(online.transport,false) || currentRoomTransport(),
+                code:cleanOnlineCode(body && (body.code || (room && room.code))),
+                token:String(body && body.token || ''),
+                playerId:String(body && (body.playerId || (room && room.playerId)) || ''),
+                seat:Number(body && body.seat !== undefined && body.seat !== null ? body.seat : room && room.seat)
+            };
+            if(!room || room.game !== 'checkers' || !/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(candidate.code) || !/^[A-Za-z0-9_-]{20,}$/.test(candidate.token) || !Number.isInteger(candidate.seat)) throw new Error('The room server returned an invalid session.');
+            const previous = {transport:online.transport,code:online.code,token:online.token,playerId:online.playerId,seat:online.seat};
+            Object.assign(online,candidate);
+            if(!applyOnlineRoom(room)){
+                Object.assign(online,previous);
+                throw new Error('The room server returned an invalid room state.');
+            }
             persistOnlineSession();
-            applyOnlineRoom(roomFromResponse(body));
             connectOnlineSocket();
         }
         function scheduleOnlineReconnect(){
@@ -2613,24 +2636,30 @@ const FeedbackSys = (function(){
         }
         async function refreshOnlineRoom(forceHydrate){
             if(!online.code || !online.token) return false;
-            const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(online.code) + '/state', {headers:{'authorization':'Bearer ' + online.token}});
-            return applyOnlineRoom(roomFromResponse(body), !!forceHydrate);
+            try{
+                const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(online.code) + '/state', {headers:{'authorization':'Bearer ' + online.token}});
+                return applyOnlineRoom(roomFromResponse(body), !!forceHydrate);
+            }catch(error){
+                if(terminalRoomStatus(error)){ finishLeavingOnlineRoom(); return false; }
+                throw error;
+            }
         }
         function showOnlineSetup(){ onlineSetupShown = true; updateOnlineControls(); if(onlineNameInput && !onlineNameInput.value) onlineNameInput.focus(); }
         async function createOnlineRoom(){
             if(online.busy) return;
-            const username = cleanOnlineName(onlineNameInput && onlineNameInput.value);
+            const username = requestedOnlineName();
             if(!username){ setOnlineMessage('Enter your name first.', true); if(onlineNameInput) onlineNameInput.focus(); return; }
             online.busy = true; online.username = username; onlineSetupShown = true; updateOnlineControls(); setOnlineMessage('Creating room…');
             try{
                 const body = await onlineFetch('/api/arcade/rooms', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({game:'checkers',username:username,maxPlayers:2})});
                 acceptOnlineResponse(body);
-            }catch(e){ setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true); }
+                if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.invite==='function')ArcadeMultiplayer.invite('checkers',online.code,'Checkers');
+            }catch(e){ if(!online.code || !online.token) resetRoomTransport(); setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true); }
             finally{ online.busy = false; updateOnlineControls(); }
         }
         async function joinOnlineRoom(){
             if(online.busy) return;
-            const username = cleanOnlineName(onlineNameInput && onlineNameInput.value);
+            const username = requestedOnlineName();
             const code = cleanOnlineCode(onlineCodeInput && onlineCodeInput.value);
             if(!username){ setOnlineMessage('Enter your name first.', true); if(onlineNameInput) onlineNameInput.focus(); return; }
             if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)){ setOnlineMessage('Enter the six-character room code from the host.', true); if(onlineCodeInput) onlineCodeInput.focus(); return; }
@@ -2638,26 +2667,29 @@ const FeedbackSys = (function(){
             try{
                 const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(code) + '/join', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({username:username})});
                 acceptOnlineResponse(body);
-            }catch(e){ setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true); }
+            }catch(e){ if(!online.code || !online.token) resetRoomTransport(); setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true); }
             finally{ online.busy = false; updateOnlineControls(); }
         }
         async function resumeOnlineRoom(){
             const saved = savedOnlineSession();
             if(!saved || online.busy) return;
-            online.busy = true; online.username = saved.username || cleanOnlineName(onlineNameInput && onlineNameInput.value) || 'Player'; onlineSetupShown = true;
+            online.busy = true; onlineSetupShown = true;
             updateOnlineControls(); setOnlineMessage('Rejoining ' + saved.code + '…');
             try{
+                pinSavedRoomTransport(saved.transport); online.transport = saved.transport;
+                online.username = window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.preferredUsername==='function'?ArcadeMultiplayer.preferredUsername(saved.username||cleanOnlineName(onlineNameInput&&onlineNameInput.value)||'Player'):(saved.username||cleanOnlineName(onlineNameInput&&onlineNameInput.value)||'Player');
                 const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(saved.code) + '/join', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({username:online.username,reconnectToken:saved.token})});
                 online.token = saved.token; acceptOnlineResponse(body);
             }catch(e){
-                if(e.status === 401 || e.status === 403 || e.status === 404) try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(_){}
+                if(terminalRoomStatus(e)){try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(_){}resetRoomTransport();}
                 setOnlineMessage(e.name === 'AbortError' ? 'The room server timed out. Try again.' : e.message, true);
             }finally{ online.busy = false; updateOnlineControls(); }
         }
         function finishLeavingOnlineRoom(){
             closeOnlineSocket();
             try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(e){}
-            online = {code:'',token:'',playerId:'',seat:0,username:'',room:null,socket:null,socketEpoch:online.socketEpoch+1,retryTimer:0,retryCount:0,busy:false,applying:false,restoreRequired:false,messageIsError:false,lastVersion:-1,lastRevision:-1};
+            resetRoomTransport();
+            online = {code:'',token:'',transport:'',playerId:'',seat:0,username:'',room:null,socket:null,socketEpoch:online.socketEpoch+1,retryTimer:0,retryCount:0,busy:false,applying:false,restoreRequired:false,messageIsError:false,lastVersion:-1,lastRevision:-1};
             mode = 'pvp'; onlineSetupShown = false; gameStarted = false;
             menu.style.display = 'flex'; winOv.style.display = 'none';
             baseSub = ''; clearUndo(); updateOnlineControls(); updateHud();
@@ -2673,7 +2705,7 @@ const FeedbackSys = (function(){
                 finishLeavingOnlineRoom();
                 return true;
             }catch(e){
-                if(e.status === 401 || e.status === 404){ finishLeavingOnlineRoom(); return true; }
+                if(terminalRoomStatus(e)){ finishLeavingOnlineRoom(); return true; }
                 online.busy = false; updateOnlineControls();
                 setOnlineMessage(e.name === 'AbortError' ? 'Leave timed out. You are still in the room; try again.' : ('Could not leave: ' + e.message), true);
                 return false;
@@ -3717,6 +3749,8 @@ const FeedbackSys = (function(){
         if(onlineBadge) onlineBadge.addEventListener('click',copyOnlineCode);
         const priorOnline = savedOnlineSession();
         if(priorOnline && onlineNameInput) onlineNameInput.value = priorOnline.username || '';
+        const invited=invitedRoomCode();if(invited&&onlineCodeInput){onlineCodeInput.value=invited;onlineSetupShown=true;}
+        syncMultiplayerTransport();
         window.addEventListener('resize', () => {
         try{ if(window.__arcadeSelfResize) window.__arcadeSelfResize(); }catch(e){}
     });
@@ -4037,7 +4071,7 @@ function goToMenu() {
             CheckersGame.quit();
         }
     }catch(e){}
-    const leave = function(){ window.location.href = '../index.html'; };
+    const leave = function(){ if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.goHome==='function'){ArcadeMultiplayer.goHome();return;} window.location.href = '../index.html'; };
     try{
         if(window.ArcadeSave && typeof ArcadeSave.saveNow === 'function'){
             Promise.resolve(ArcadeSave.saveNow()).then(leave, leave);

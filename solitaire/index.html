@@ -297,7 +297,7 @@
     document.querySelectorAll("[data-loc],[data-target]").forEach(el=>{const raw=el.dataset.loc||el.dataset.target;if(raw&&keys.includes(locKey(JSON.parse(raw))))el.classList.add("hinted")});
     hintTimer=setTimeout(()=>document.querySelectorAll(".hinted").forEach(el=>el.classList.remove("hinted")),1800);
   };
-  $("#homeBtn").onclick=()=>{save();location.href="../index.html"};
+  $("#homeBtn").onclick=()=>{save();ArcadeSave.goHome()};
   function win(){
     const secs=elapsed(),v=state.variant,rec=stats[v]||{wins:0,best:Infinity};rec.wins++;rec.best=Math.min(rec.best||Infinity,secs);stats[v]=rec;writeJSON(STATS_KEY,stats);
     $("#winMoves").textContent=`${state.moves} moves`;$("#winTime").textContent=timeText(secs);$("#winText").textContent=`You conquered deal ${state.seed}.`;$("#winOverlay").hidden=false;

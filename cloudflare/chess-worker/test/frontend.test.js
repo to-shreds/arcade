@@ -32,19 +32,20 @@ function tapSquare(window, square) {
   }
 }
 
-async function loadChess(fetchImpl = async () => { throw new Error("unexpected fetch"); }, savedSettings = null, savedOnlineSession = null) {
+async function loadChess(fetchImpl = async () => { throw new Error("unexpected fetch"); }, savedSettings = null, savedOnlineSession = null, pageUrl = "https://to-shreds.github.io/arcade/chess/index.html", arcadeMultiplayer = null) {
   const errors = [];
   const virtualConsole = new VirtualConsole();
   virtualConsole.on("jsdomError", (error) => errors.push(error));
   const [pageHtml, saveScript] = await Promise.all([readFile(chessPath,"utf8"),readFile(savePath,"utf8")]);
   const html = pageHtml.replace('<script src="../arcade-save.js"></script>', `<script>${saveScript}</script>`);
   const dom = new JSDOM(html, {
-    url: "https://to-shreds.github.io/arcade/chess/index.html",
+    url: pageUrl,
     runScripts: "dangerously", pretendToBeVisual: true, virtualConsole,
     beforeParse(window) {
       if (savedSettings) window.localStorage.setItem("arcadeChess_settings", savedSettings);
       if (savedOnlineSession) window.localStorage.setItem("arcadeChess_onlineSession_v1", savedOnlineSession);
       window.fetch = fetchImpl;
+      if (arcadeMultiplayer) window.ArcadeMultiplayer = arcadeMultiplayer;
       window.confirm = () => true;
       window.alert = () => {};
       window.HTMLElement.prototype.scrollIntoView = () => {};
@@ -64,6 +65,23 @@ async function loadChess(fetchImpl = async () => { throw new Error("unexpected f
   await new Promise((resolve) => dom.window.setTimeout(resolve, 20));
   return { dom, errors };
 }
+
+test("a shell invitation prefills Chess join UI but never starts a room automatically", async () => {
+  const calls = [];
+  const { dom, errors } = await loadChess(async (...args) => { calls.push(args); throw new Error("unexpected fetch"); }, null, null,
+    "https://to-shreds.github.io/arcade/chess/index.html?room=ABC234");
+  try {
+    const { document } = dom.window;
+    assert.equal(document.querySelector("#setupModal").classList.contains("show"), true);
+    assert.equal(document.querySelector("#joinPane").hidden, false);
+    assert.equal(document.querySelector("#onlineJoinCode").value, "ABC234");
+    assert.equal(calls.length, 0);
+    assert.match(document.querySelector("#modeText").textContent, /LOCAL PVP/);
+    assert.ok(document.querySelector("#modePvp"));
+    assert.ok(document.querySelector("#modeCpu"));
+    assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
 
 test("simplified setup preserves local play, all CPU levels and secondary settings", async () => {
   const { dom, errors } = await loadChess();
@@ -254,7 +272,7 @@ test("a failed explicit online resume leaves local and CPU choices available", a
 
     document.querySelector("#modePvp").click();
     assert.match(document.querySelector("#modeText").textContent, /LOCAL PVP/);
-    assert.equal(dom.window.localStorage.getItem("arcadeChess_onlineSession_v1"), null);
+    assert.notEqual(dom.window.localStorage.getItem("arcadeChess_onlineSession_v1"), null, "a dormant recoverable room is preserved while its transient transport pin is released");
     assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
   } finally {
     dom.window.close();
@@ -283,7 +301,7 @@ test("online creation enters the shared board and exposes room/reconnect state",
   assert.equal(document.querySelector("#onlineBar").classList.contains("show"), true);
   assert.match(document.querySelector("#onlineRoomCode").textContent, /ABC234/);
   const session = JSON.parse(dom.window.localStorage.getItem("arcadeChess_onlineSession_v1"));
-  assert.deepEqual(session, { code: "ABC234", token: "t".repeat(43) });
+  assert.deepEqual(session, { code: "ABC234", token: "t".repeat(43), transport: "cloudflare" });
   tapSquare(dom.window, 12);
   tapSquare(dom.window, 28);
   await new Promise((resolve) => dom.window.setTimeout(resolve, 20));
@@ -409,4 +427,101 @@ test("a deliberately replaced online socket cannot start a duplicate reconnect l
   assert.match(dom.window.__chessTestSockets[1].url, /XYZ789/);
   assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
   dom.window.close();
+});
+
+test("switching an active online Chess game to local or CPU leaves authoritatively first", async () => {
+  const calls = [];
+  let createCount = 0;
+  let failLeave = true;
+  const resetEvents = [];
+  const bridge = {
+    getStatus() { return { effectiveTransport: "nearby", nearby: true, connected: 2 }; },
+    onStatus() { return () => {}; },
+    resetRoomTransport() { resetEvents.push("reset"); },
+    pinRoomTransport(value) { return value; },
+    invite() {}, goHome() {}
+  };
+  const fetchImpl = async (url, options = {}) => {
+    const path = String(url), body = options.body ? JSON.parse(options.body) : null;
+    calls.push({ path, body });
+    if (path.endsWith("/api/chess/rooms")) {
+      const code = createCount++ ? "XYZ789" : "ABC234";
+      return { ok: true, status: 200, async json() { return { ok: true, token: code.repeat(8), side: "w", room: room("w", code) }; } };
+    }
+    if (path.endsWith("/actions") && body?.type === "leave") {
+      if (failLeave) return { ok: false, status: 503, async json() { return { ok: false, error: "Temporary outage" }; } };
+      return { ok: true, status: 200, async json() { return { ok: true, room: null }; } };
+    }
+    throw new Error("unexpected fetch " + path);
+  };
+  const { dom, errors } = await loadChess(fetchImpl, null, null, undefined, bridge);
+  try {
+    const { document } = dom.window;
+    document.querySelector("#onlineCreateBtn").click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 30));
+    document.querySelector("#newBtn").click();
+    document.querySelector("#modePvp").click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 30));
+    const firstLeave = calls.find((call) => call.body?.type === "leave");
+    assert.deepEqual(firstLeave.body, { type: "leave", expectedVersion: 2 });
+    assert.match(document.querySelector("#modeText").textContent, /ONLINE ABC234/, "a transient leave failure cannot silently abandon the authoritative room");
+    assert.notEqual(dom.window.localStorage.getItem("arcadeChess_onlineSession_v1"), null);
+
+    failLeave = false;
+    document.querySelector("#modePvp").click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 30));
+    assert.match(document.querySelector("#modeText").textContent, /LOCAL PVP/);
+    assert.equal(dom.window.localStorage.getItem("arcadeChess_onlineSession_v1"), null);
+    assert.ok(resetEvents.length >= 1);
+
+    document.querySelector("#newBtn").click();
+    document.querySelector("#onlineCreateBtn").click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 30));
+    document.querySelector("#newBtn").click();
+    document.querySelector("#modeCpu").click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 30));
+    const leaves = calls.filter((call) => call.body?.type === "leave");
+    assert.equal(leaves.length, 3, "both the retried local switch and CPU switch leave their active rooms");
+    assert.deepEqual(leaves.at(-1).body, { type: "leave", expectedVersion: 2 });
+    assert.match(document.querySelector("#modeText").textContent, /CPU/);
+    assert.equal(dom.window.localStorage.getItem("arcadeChess_onlineSession_v1"), null);
+    assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("failed fresh Chess create/join releases transport but terminal saved resume clears ownership", async () => {
+  const resetEvents = [];
+  let status = 503;
+  const bridge = {
+    getStatus() { return { effectiveTransport: "nearby", nearby: true, connected: 2 }; },
+    onStatus() { return () => {}; },
+    resetRoomTransport() { resetEvents.push("reset"); },
+    pinRoomTransport(value) { return value; },
+    invite() {}, goHome() {}
+  };
+  const fetchImpl = async () => ({ ok: false, status, async json() { return { ok: false, error: "room unavailable" }; } });
+  const saved = JSON.stringify({ code: "ABC234", token: "r".repeat(43), transport: "cloudflare" });
+  const { dom, errors } = await loadChess(fetchImpl, null, saved, undefined, bridge);
+  try {
+    const { document, Event } = dom.window;
+    resetEvents.length = 0;
+    document.querySelector("#onlineCreateBtn").click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 25));
+    assert.equal(resetEvents.length, 1);
+
+    document.querySelector("#onlineJoinOpenBtn").click();
+    const input = document.querySelector("#onlineJoinCode");
+    input.value = "XYZ789";
+    document.querySelector("#onlineJoinForm").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 25));
+    assert.equal(resetEvents.length, 2, "fresh join failure also releases the unowned transport pin");
+
+    status = 410;
+    document.querySelector("#onlineJoinBack").click();
+    document.querySelector("#onlineResumeBtn").click();
+    await new Promise((resolve) => dom.window.setTimeout(resolve, 25));
+    assert.equal(dom.window.localStorage.getItem("arcadeChess_onlineSession_v1"), null);
+    assert.equal(resetEvents.length, 3, "terminal resume cleanup releases the persisted authority pin");
+    assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
+  } finally { dom.window.close(); }
 });

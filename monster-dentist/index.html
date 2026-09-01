@@ -466,8 +466,7 @@ function showBanner(text,kind=''){
   bannerTimer=setTimeout(()=>{ui.tipBanner.className='tip-banner';},1100);
 }
 function goToArcade(){
-  const leave=()=>{try{window.location.href='../index.html';}catch(_e){try{window.location.assign('../index.html');}catch(_ignore){}}};
-  if(window.ArcadeSave)window.ArcadeSave.saveNow().finally(leave);else leave();
+  ArcadeSave.goHome();
 }
 const AudioFX=(()=>{
   let audioContext=null;

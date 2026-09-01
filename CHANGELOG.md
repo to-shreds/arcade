@@ -1,5 +1,53 @@
 # Changelog
 
+## 2.4.0 - 2026-09-01
+
+- Turned the Arcade index into a persistent, same-origin shell that opens games
+  in a full-viewport iframe while keeping the player session and WebRTC peer
+  connections alive across Arcade Home, browser Back, and game changes.
+- Added the shared `ArcadeMultiplayer` bridge and automatic transport selection.
+  Existing Multiplayer choices use Cloudflare normally and use Nearby Arcade
+  while an index-level connection is active. Active rooms stay pinned to their
+  original authority and never silently migrate after a connection failure.
+- Added browser-only Nearby Arcade for up to eight reserved members using a
+  host-authoritative WebRTC DataChannel star topology with no STUN, TURN,
+  Cloudflare, Android-native API, or Internet signaling dependency.
+- Added fully offline offer/answer pairing with bundled QR generation and
+  decoding, camera and image scanning, copy/paste fallback, expiring secret
+  tokens, protocol version checks, and automatically reassembled sequential QR
+  frames for large signaling payloads.
+- Added persistent cryptographic browser identities, host-locked unique
+  nicknames and emoji avatars, reconnect proofs, reserved departed identities,
+  presence, joining locks, host removal controls, and session checkpoints.
+- Kept Nearby Arcade sessions separate from individual game rooms. Paired
+  devices can accept friendly invitations and move among Chess, Sorry,
+  Monopoly, Memory, Tic Tac Toe, Dots, Checkers, and Arcade Chat without
+  pairing again or adding a per-game Nearby mode.
+- Reused strict authoritative Chess rules in the Nearby host and added exact
+  semantic transition validation for Memory, Tic Tac Toe, Dots, Checkers,
+  Sorry, and Monopoly, including locked nested identities, turns, legal game
+  actions, completion, bounded state, compare-and-swap versions, presence, and
+  reconnection. Nearby Sorry and Monopoly randomness is host-originated rather
+  than accepted from the acting player.
+- Added an incoming-message chime to Arcade Chat with a persistent mute control,
+  plus gesture-enabled desktop notifications for new messages while Chat is in
+  the background. History, reconnect replay, and a player's own messages do not
+  trigger duplicate alerts.
+- Added session-level reactions with rate limiting, Arcade Stars, friendly room
+  names and mascots, joining feedback, multiplayer game invitations, and
+  Surprise Me selection without creating accounts or public matchmaking.
+- Added an installable browser PWA and an Offline Ready flow backed by the
+  generated hash manifest. New snapshots are staged and verified completely
+  before activation, interrupted updates retain the last working snapshot, and
+  Nearby/offline operation blocks required Internet traffic.
+- Bundled all QR dependencies locally, extended the generated offline archive
+  to include the shell and Nearby modules, and added browser-facing status,
+  progress, network mode, and storage-persistence handling.
+- Updated the Android wrapper for persistent-shell Back/Home behavior, QR camera
+  permission, exact archive-bound offline readiness, and archive networking
+  that pauses throughout Nearby sessions, while keeping Nearby available to
+  ordinary browsers without the APK.
+
 ## 2.3.0 - 2026-08-31
 
 ### Web update - 2026-09-01

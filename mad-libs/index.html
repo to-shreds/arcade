@@ -190,5 +190,5 @@ renderStoryGrid();
 </script>
 <script src="../arcade-save.js"></script>
 <script>ArcadeSave.register(window.MadLibsAutosave);</script>
-<button id="arcade-home-nav" type="button" aria-label="Back to Arcade">⌂</button><script>document.getElementById('arcade-home-nav').addEventListener('click',()=>{ArcadeSave.saveNow().finally(()=>{location.href='../index.html'});});</script></body>
+<button id="arcade-home-nav" type="button" aria-label="Back to Arcade">⌂</button><script>document.getElementById('arcade-home-nav').addEventListener('click',()=>{ArcadeSave.goHome();});</script></body>
 </html>

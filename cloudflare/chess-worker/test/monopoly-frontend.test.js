@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { JSDOM, VirtualConsole } from "jsdom";
+import { validateMonopolyStart, validateMonopolyTransition } from "../../../multiplayer/models/monopoly-authority.js";
 
 const monopolyPath = fileURLToPath(new URL("../../../monopoly/index.html", import.meta.url));
 const savePath = fileURLToPath(new URL("../../../arcade-save.js", import.meta.url));
@@ -153,7 +154,7 @@ class RoomServer {
   }
 }
 
-async function loadMonopoly(server = null, savedOnline = null) {
+async function loadMonopoly(server = null, savedOnline = null, arcadeMultiplayer = null) {
   const errors = [], virtualConsole = new VirtualConsole();
   virtualConsole.on("jsdomError", (error) => errors.push(error));
   const [pageHtml, saveScript] = await Promise.all([readFile(monopolyPath, "utf8"), readFile(savePath, "utf8")]);
@@ -164,6 +165,7 @@ async function loadMonopoly(server = null, savedOnline = null) {
       if (savedOnline) window.localStorage.setItem("arcade_monopoly_online_v1", savedOnline);
       window.fetch = server ? server.fetch.bind(server) : async () => { throw new Error("Unexpected network request"); };
       window.WebSocket = server ? server.socketClass() : class { constructor() { throw new Error("Unexpected socket"); } };
+      if (arcadeMultiplayer) window.ArcadeMultiplayer = arcadeMultiplayer;
       window.confirm = () => true; window.alert = () => {};
       window.matchMedia = () => ({ matches: true, addListener() {}, removeListener() {} });
       window.HTMLElement.prototype.scrollIntoView = () => {};
@@ -186,6 +188,29 @@ test("Monopoly keeps its complete local setup and local engine", async () => {
     assert.equal(MonopolyGame.getState().phase, "offer");
     assert.equal(MonopolyGame.saveGame(true), true);
     assert.equal(MonopolyGame.getOnline(), null);
+    assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("Monopoly snapshot normalization preserves bankruptcy mortgage decisions without legacy wire fields", async () => {
+  const { dom, errors } = await loadMonopoly();
+  try {
+    const game = dom.window.MonopolyGame;
+    const snapshot = game.startGame({ players: ["Alice", "Bob"], mode: "standard", handoff: false });
+    snapshot.phase = "debt";
+    snapshot.pendingDebt = null;
+    snapshot.deeds[1] = { owner: 0, mortgaged: true, houses: 0 };
+    snapshot.pendingMortgageChoices = [{ playerId: 0, spaceId: 1 }];
+    snapshot.mortgageChoiceResume = "afterBankruptcy";
+    snapshot.bankruptcyContext = { playerId: 1, wasCurrent: false, resume: "finish" };
+    delete snapshot.bankruptcyStack;
+    delete snapshot.endReason;
+    game.importState(snapshot);
+    const normalized = game.getState();
+    assert.equal(normalized.phase, "debt", "a transferred-mortgage choice remains actionable after server echo normalization");
+    assert.deepEqual(JSON.parse(JSON.stringify(normalized.bankruptcyStack)), [{ playerId: 1, wasCurrent: false, resume: "finish" }]);
+    assert.equal(Object.hasOwn(normalized, "bankruptcyContext"), false, "legacy bankruptcyContext never returns to the authoritative wire state");
+    assert.equal(normalized.endReason, "", "the initial and normalized state use the same empty end reason");
     assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
   } finally { dom.window.close(); }
 });
@@ -233,6 +258,12 @@ test("two independent Monopoly clients create, join, start, hand off decisions, 
     assert.equal(server.room.state.phase, "offer");
     assert.equal(guest.dom.window.MonopolyGame.getState().offerSpace, 3);
     assert.equal(guest.dom.window.MonopolyGame.rollDice([1, 2]), false);
+    const startWire = server.calls.find((call) => call.body?.type === "start");
+    const rollWire = server.calls.find((call) => call.body?.type === "state" && call.body.intent?.kind === "roll");
+    const authorityMembers = server.room.members.map((member) => ({ playerId: member.playerId, seat: member.seat, username: member.username, leftAt: null }));
+    const authorityRoom = { game: "monopoly", state: startWire.body.state, maxPlayers: 2, members: authorityMembers, turn: { seat: 0, playerId: authorityMembers[0].playerId, number: 1 } };
+    assert.doesNotThrow(() => validateMonopolyStart(authorityRoom, startWire.body), "a fresh frontend start snapshot satisfies the Nearby authority");
+    assert.doesNotThrow(() => validateMonopolyTransition(authorityRoom, authorityMembers[0], rollWire.body), "the first post-echo frontend roll satisfies the Nearby authority");
 
     hostDoc.querySelector('[data-act="trade"]').click();
     hostDoc.querySelector("#offerCash").value = "10";
@@ -256,6 +287,12 @@ test("two independent Monopoly clients create, join, start, hand off decisions, 
     assert.equal(guest.dom.window.MonopolyGame.getState().turnIndex, 1);
     assert.equal(host.dom.window.MonopolyGame.rollDice([1, 2]), false);
     assert.equal(guestDoc.querySelector('[data-act="roll"]').disabled, false);
+    const stateIntents = server.calls.filter((call) => call.body?.type === "state").map((call) => call.body.intent);
+    assert.ok(stateIntents.length >= 5);
+    assert.equal(stateIntents.every((intent) => intent?.version === 1), true, "every Monopoly state action declares a versioned authority intent");
+    for (const kind of ["roll", "trade-propose", "trade-accept", "buy", "end-turn"]) {
+      assert.ok(stateIntents.some((intent) => intent.kind === kind), `Monopoly sends its ${kind} intent`);
+    }
 
     server.room.state.players[0].name = "Forged Alice";
     server.room.state.players[0].color = 'red" onmouseover="window.__stolen=true';
@@ -419,4 +456,63 @@ test("leaving a Monopoly room retains its reconnect token on transient failure a
     assert.equal(document.querySelector("#setupOverlay").classList.contains("hidden"), false);
     assert.equal(client.errors.length, 0, client.errors.map((error) => error.message).join("\n"));
   } finally { client.dom.window.MonopolyGame.disconnectOnline(); client.dom.window.close(); }
+});
+
+test("Monopoly pins saved authority before locked identity and releases failed fresh attempts", async () => {
+  const events = [];
+  let failureStatus = 503;
+  const server = {
+    async fetch() {
+      events.push("fetch");
+      return { ok: false, status: failureStatus, async json() { return { ok: false, error: "room unavailable" }; } };
+    },
+    socketClass() { return class { constructor() { throw new Error("Unexpected socket"); } }; }
+  };
+  const bridge = {
+    getStatus() { return { effectiveTransport: "nearby", nearby: true, connected: 2, identity: { nickname: "Nearby Name", avatar: "🚀" } }; },
+    onStatus() { return () => {}; },
+    pinRoomTransport(transport) { events.push("pin:" + transport); return transport; },
+    resetRoomTransport() { events.push("reset"); },
+    preferredUsername(name) { events.push("name:" + name); return name; },
+    invite() {}, goHome() {}
+  };
+  const saved = JSON.stringify({ code: "ABC234", token: "r".repeat(43), username: "Saved Name", transport: "cloudflare" });
+  const { dom, errors } = await loadMonopoly(server, saved, bridge);
+  try {
+    const { document } = dom.window;
+    document.querySelector('[data-play-mode="online"]').click();
+    events.length = 0;
+    document.querySelector("#resumeOnlineBtn").click();
+    await wait(dom.window, 45);
+    assert.deepEqual(events.slice(0, 3), ["pin:cloudflare", "name:Saved Name", "fetch"], "saved authority wins before locked identity lookup or network access");
+    assert.doesNotMatch(events.join(","), /reset/, "transient resume failure preserves the saved authority pin");
+    assert.notEqual(dom.window.localStorage.getItem("arcade_monopoly_online_v1"), null);
+
+    failureStatus = 410;
+    events.length = 0;
+    document.querySelector("#resumeOnlineBtn").click();
+    await wait(dom.window, 45);
+    assert.ok(events.includes("reset"), "terminal Gone releases the room authority pin");
+    assert.equal(dom.window.localStorage.getItem("arcade_monopoly_online_v1"), null);
+
+    events.length = 0;
+    document.querySelector("#onlineName").value = "Fresh Host";
+    document.querySelector("#createOnlineBtn").click();
+    await wait(dom.window, 45);
+    assert.ok(events.includes("reset"), "failed fresh create cannot retain a transport pin without an accepted room");
+
+    events.length = 0;
+    document.querySelector("#onlineCode").value = "ABC234";
+    document.querySelector("#joinOnlineBtn").click();
+    await wait(dom.window, 45);
+    assert.ok(events.includes("reset"), "failed fresh join cannot retain a transport pin without an accepted room");
+    assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("a socket broadcast cannot unlock Monopoly while its originating action is pending", async () => {
+  const source = await readFile(monopolyPath, "utf8");
+  const applyRoom = /function applyOnlineRoom\(room,force=false\)\{([^\n]+)\}/.exec(source)?.[1] || "";
+  assert.ok(applyRoom, "online room applicator remains present");
+  assert.doesNotMatch(applyRoom, /onlineSyncing\s*=\s*false/, "only the action promise may release its input lock");
 });

@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "cloudflare/chess-worker/**"
+      - "multiplayer/models/**"
       - ".github/workflows/deploy-arcade-worker.yml"
   workflow_dispatch:
 

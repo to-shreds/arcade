@@ -37,7 +37,7 @@ function installBrowserMocks(window, fetchImpl){
     };
 }
 
-async function loadDots(fetchImpl, savedSession){
+async function loadDots(fetchImpl, savedSession, arcadeMultiplayer=null){
     const errors=[];
     const virtualConsole=new VirtualConsole();
     virtualConsole.on('jsdomError', error=>errors.push(error));
@@ -47,6 +47,7 @@ async function loadDots(fetchImpl, savedSession){
         beforeParse(window){
             if(savedSession) window.localStorage.setItem('arcade_dots_online_v1',JSON.stringify(savedSession));
             installBrowserMocks(window,fetchImpl);
+            if(arcadeMultiplayer) window.ArcadeMultiplayer=arcadeMultiplayer;
         }
     });
     if(dom.window.document.readyState!=='complete') await new Promise(resolve=>dom.window.addEventListener('load',resolve,{once:true}));
@@ -102,7 +103,12 @@ test('Dots create, host start, 0-based seat gating and remote state apply', asyn
             if(body.type==='leave') return response({ok:true,room:room('finished',null)});
             if(body.type==='start'){
                 assert.equal(body.firstSeat,0);
-                state=body.state; version++;
+                state=body.state;
+                state.playerNames=[null,'Host','Guest','Canonical Three','Canonical Four'];
+                state.playerColors=[null,'#123456','#654321','#ABCDEF','#FEDCBA'];
+                state.teams=[null,2,1,2,1];
+                state.teamNames=[null,'Comets','Rockets'];
+                version++;
                 return response({ok:true,room:room('active',0)});
             }
             assert.equal(body.type,'state');
@@ -145,6 +151,10 @@ test('Dots create, host start, 0-based seat gating and remote state apply', asyn
     assert.equal(stateActions().length,1);
     assert.equal(stateActions()[0].body.expectedVersion,2);
     assert.equal(stateActions()[0].body.nextSeat,1);
+    assert.deepEqual(stateActions()[0].body.state.playerNames,[null,'Host','Guest','Canonical Three','Canonical Four'],'unused canonical name slots do not drift to this browser\'s local setup names');
+    assert.deepEqual(stateActions()[0].body.state.playerColors,[null,'#123456','#654321','#ABCDEF','#FEDCBA'],'the first hydrated move preserves canonical player colors');
+    assert.deepEqual(stateActions()[0].body.state.teams,[null,2,1,2,1],'the first hydrated move preserves canonical teams');
+    assert.deepEqual(stateActions()[0].body.state.teamNames,[null,'Comets','Rockets'],'the first hydrated move preserves canonical team names');
 
     const socket=dom.window.__testSockets.at(-1);
     const remoteState=structuredClone(state);
@@ -225,6 +235,76 @@ test('Dots create, host start, 0-based seat gating and remote state apply', asyn
     assert.equal(errors.length,0,errors.map(e=>e.message).join('\n'));
 });
 
+test('Dots host and guest preserve canonical inactive configuration slots across turns', async t=>{
+    const hostToken='h'.repeat(43),guestToken='g'.repeat(43),actions=[];
+    const members=[
+        {playerId:'p1',seat:0,username:'Host',connected:true},
+        {playerId:'p2',seat:1,username:'Guest',connected:true}
+    ];
+    let state=null,version=1,turnSeat=null;
+    function viewer(options){return String(options?.headers?.authorization||'').endsWith(guestToken)?1:0;}
+    function room(seat,status=state?'active':'lobby'){
+        return {code:'CFG234',game:'dots',version,status,ready:true,hostPlayerId:'p1',playerId:members[seat].playerId,seat,members,
+            presence:{p1:true,p2:true},turn:turnSeat===null?null:{seat:turnSeat,playerId:members[turnSeat].playerId,number:version},state,result:null,maxPlayers:2};
+    }
+    const fetchImpl=async(url,options={})=>{
+        const path=String(url),body=options.body?JSON.parse(options.body):null;
+        if(path.endsWith('/api/arcade/rooms')) return response({ok:true,code:'CFG234',token:hostToken,playerId:'p1',seat:0,room:room(0)});
+        if(path.endsWith('/api/arcade/rooms/CFG234/join')){
+            assert.equal(body.reconnectToken,guestToken);
+            return response({ok:true,code:'CFG234',token:guestToken,playerId:'p2',seat:1,room:room(1)});
+        }
+        if(path.endsWith('/api/arcade/rooms/CFG234/actions')){
+            const seat=viewer(options);
+            if(body.type==='start'){
+                state=body.state;
+                state.playerNames=[null,'Host','Guest','Server Three','Server Four'];
+                state.playerColors=[null,'#102030','#405060','#708090','#A0B0C0'];
+                state.teams=[null,2,1,2,1];
+                state.teamNames=[null,'Moon Team','Sun Team'];
+                turnSeat=0;version++;
+                return response({ok:true,room:room(seat)});
+            }
+            assert.equal(body.type,'state');
+            actions.push({seat,body});state=body.state;turnSeat=body.nextSeat;version++;
+            return response({ok:true,room:room(seat)});
+        }
+        if(path.endsWith('/api/arcade/rooms/CFG234/state')) return response({ok:true,room:room(viewer(options))});
+        throw new Error('unexpected fetch '+path);
+    };
+
+    const host=await loadDots(fetchImpl);
+    t.after(()=>host.dom.window.close());
+    host.dom.window.DotsGame.setMode('online');
+    host.dom.window.document.querySelector('#dotsOnlineName').value='Host';
+    host.dom.window.document.querySelector('#dotsOnlineCreate').click();
+    await new Promise(resolve=>host.dom.window.setTimeout(resolve,30));
+    [...host.dom.window.document.querySelectorAll('#menuOverlay .grid-btn')].find(button=>button.getAttribute('onclick')?.includes('startGame(5,5)')).click();
+    await new Promise(resolve=>host.dom.window.setTimeout(resolve,30));
+    let canvas=host.dom.window.document.querySelector('#c');
+    pointer(host.dom.window,canvas,'pointerdown',52,52);pointer(host.dom.window,canvas,'pointerup',52,52);pointer(host.dom.window,canvas,'pointerdown',127,52);
+    await new Promise(resolve=>host.dom.window.setTimeout(resolve,30));
+    assert.equal(actions.length,1);
+
+    const guest=await loadDots(fetchImpl,{code:'CFG234',token:guestToken,username:'Guest',transport:'cloudflare'});
+    t.after(()=>guest.dom.window.close());
+    guest.dom.window.DotsGame.setMode('online');
+    guest.dom.window.document.querySelector('#dotsOnlineResume').click();
+    await new Promise(resolve=>guest.dom.window.setTimeout(resolve,40));
+    canvas=guest.dom.window.document.querySelector('#c');
+    pointer(guest.dom.window,canvas,'pointerdown',52,52);pointer(guest.dom.window,canvas,'pointerup',52,52);pointer(guest.dom.window,canvas,'pointerdown',52,127);
+    await new Promise(resolve=>guest.dom.window.setTimeout(resolve,40));
+    assert.equal(actions.length,2,'the guest can submit the following turn after independent hydration');
+    for(const action of actions){
+        assert.deepEqual(action.body.state.playerNames,[null,'Host','Guest','Server Three','Server Four']);
+        assert.deepEqual(action.body.state.playerColors,[null,'#102030','#405060','#708090','#A0B0C0']);
+        assert.deepEqual(action.body.state.teams,[null,2,1,2,1]);
+        assert.deepEqual(action.body.state.teamNames,[null,'Moon Team','Sun Team']);
+    }
+    assert.equal(host.errors.length,0,host.errors.map(error=>error.message).join('\n'));
+    assert.equal(guest.errors.length,0,guest.errors.map(error=>error.message).join('\n'));
+});
+
 test('Dots resume is explicit and sends the reconnect token', async t=>{
     let fetchCount=0;
     const fetchImpl=async(url,options={})=>{
@@ -247,6 +327,74 @@ test('Dots resume is explicit and sends the reconnect token', async t=>{
     assert.equal(fetchCount,2);
     assert.notEqual(dom.window.localStorage.getItem('arcade_dots_online_v1'),null,'recoverable leave failure preserves reconnect token');
     assert.equal(dom.window.document.querySelector('#dotsOnlineBadge').hidden,false);
+});
+
+test('Dots restores saved authority before resolving Nearby identity and handles failed room ownership safely',async t=>{
+    const events=[];
+    let failureStatus=503;
+    const bridge={
+        getStatus(){return{effectiveTransport:'nearby',nearby:true,connected:2,identity:{nickname:'Nearby Name',avatar:'🚀'}};},
+        onStatus(){return()=>{};},
+        pinRoomTransport(transport){events.push('pin:'+transport);return transport;},
+        resetRoomTransport(){events.push('reset');},
+        preferredUsername(name){events.push('name:'+name);return name;},
+        invite(){},goHome(){}
+    };
+    const fetchImpl=async()=>{events.push('fetch');return response({ok:false,error:'room unavailable'},failureStatus);};
+    const saved={code:'ABC234',token:'r'.repeat(43),username:'Saved Name',transport:'cloudflare'};
+    const{dom,errors}=await loadDots(fetchImpl,saved,bridge);
+    t.after(()=>dom.window.close());
+    const d=dom.window.document;
+    dom.window.DotsGame.setMode('online');
+    events.length=0;
+    d.querySelector('#dotsOnlineResume').click();
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.deepEqual(events.slice(0,3),['pin:cloudflare','name:Saved Name','fetch'],'the saved room pins its original authority before identity is selected or any request is sent');
+    assert.doesNotMatch(events.join(','),/reset/,'a transient failure retains the saved authority and reconnect token');
+    assert.notEqual(dom.window.localStorage.getItem('arcade_dots_online_v1'),null);
+
+    failureStatus=410;
+    events.length=0;
+    d.querySelector('#dotsOnlineResume').click();
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.ok(events.includes('reset'),'a terminal Gone response releases the room authority pin');
+    assert.equal(dom.window.localStorage.getItem('arcade_dots_online_v1'),null);
+
+    events.length=0;
+    d.querySelector('#dotsOnlineName').value='Fresh Host';
+    d.querySelector('#dotsOnlineCreate').click();
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.ok(events.includes('reset'),'a failed fresh create does not leave a transport pinned without a room');
+
+    events.length=0;
+    d.querySelector('#dotsOnlineCode').value='ABC234';
+    d.querySelector('#dotsOnlineJoin').click();
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.ok(events.includes('reset'),'a failed fresh join does not leave a transport pinned without a room');
+    assert.equal(errors.length,0,errors.map(error=>error.message).join('\n'));
+});
+
+test('Dots treats terminal refresh as ownership loss instead of reconnecting forever',async t=>{
+    let resets=0;
+    const lobby={code:'DQT234',game:'dots',version:1,status:'lobby',ready:false,hostPlayerId:'p1',playerId:'p1',seat:0,members:[{playerId:'p1',seat:0,username:'Host'}],turn:null,state:null,result:null,maxPlayers:2};
+    const fetchImpl=async(url)=>String(url).endsWith('/state')
+        ? response({ok:false,error:'room closed'},410)
+        : response({ok:true,code:'DQT234',token:'h'.repeat(43),playerId:'p1',seat:0,room:lobby});
+    const bridge={getStatus:()=>({effectiveTransport:'nearby'}),onStatus:()=>()=>{},resetRoomTransport(){resets++;},invite(){},goHome(){}};
+    const{dom,errors}=await loadDots(fetchImpl,null,bridge);
+    t.after(()=>dom.window.close());
+    const d=dom.window.document;
+    dom.window.DotsGame.setMode('online');
+    d.querySelector('#dotsOnlineName').value='Host';
+    d.querySelector('#dotsOnlineCreate').click();
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.notEqual(dom.window.localStorage.getItem('arcade_dots_online_v1'),null);
+    dom.window.__testSockets.at(-1).emit('message',{data:JSON.stringify({type:'error',error:'Room closed'})});
+    await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+    assert.equal(dom.window.localStorage.getItem('arcade_dots_online_v1'),null);
+    assert.equal(d.querySelector('#dotsOnlineBadge').hidden,true);
+    assert.equal(resets,1);
+    assert.equal(errors.length,0,errors.map(error=>error.message).join('\n'));
 });
 
 test('Dots supports four occupied online seats with explicit server-to-local seat mapping',async t=>{

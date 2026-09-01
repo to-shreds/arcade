@@ -19,7 +19,7 @@ function lobby(overrides = {}) {
   }, overrides);
 }
 
-async function loadSorry(fetchImpl, savedSession) {
+async function loadSorry(fetchImpl, savedSession, arcadeMultiplayer) {
   const errors = [];
   const virtualConsole = new VirtualConsole();
   virtualConsole.on("jsdomError", error => errors.push(error));
@@ -29,6 +29,7 @@ async function loadSorry(fetchImpl, savedSession) {
     runScripts: "dangerously", pretendToBeVisual: true, virtualConsole,
     beforeParse(window) {
       if (savedSession) window.localStorage.setItem("arcadeSorry_onlineSession_v1", JSON.stringify(savedSession));
+      if (arcadeMultiplayer) window.ArcadeMultiplayer = arcadeMultiplayer;
       window.fetch = fetchImpl || (async url => { throw new Error("unexpected fetch " + url); });
       window.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} });
       window.HTMLElement.prototype.animate = () => ({ cancel() {} });
@@ -429,6 +430,98 @@ test("leaving relinquishes the server seat and retains the session on a transien
     document.querySelector("#leaveRoomBtn").click(); await wait(dom.window, 30);
     assert.equal(SorryGame.online.getSession().active, false);
     assert.equal(dom.window.localStorage.getItem("arcadeSorry_onlineSession_v1"), null);
+    assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("failed fresh Sorry create and join attempts release their implicit transport pin", async () => {
+  const transport = {
+    resets: 0,
+    getStatus() { return { effectiveTransport: "nearby", nearby: true, connected: 2, identity: { nickname: "Logan", avatar: "🦖" } }; },
+    resetRoomTransport() { this.resets++; },
+    preferredUsername(value) { return value; }
+  };
+  const fetchImpl = async (url, options = {}) => {
+    if (String(url).endsWith("/api/arcade/rooms") && options.method === "POST") return response({ error: "temporary" }, 503);
+    if (String(url).endsWith("/ABC234/join")) return response({ error: "missing" }, 404);
+    throw new Error("unexpected fetch " + url);
+  };
+  const { dom, errors } = await loadSorry(fetchImpl, null, transport);
+  try {
+    const { document } = dom.window;
+    document.querySelector('#playModeChoices [data-value="online"]').click();
+    document.querySelector("#createOnlineBtn").click();
+    await wait(dom.window, 30);
+    assert.equal(transport.resets, 1);
+
+    document.querySelector("#showJoinBtn").click();
+    document.querySelector("#onlineJoinCode").value = "ABC234";
+    document.querySelector("#joinOnlineBtn").click();
+    await wait(dom.window, 30);
+    assert.equal(transport.resets, 2);
+    assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("saved Sorry resume preserves authority on transient failure and clears it on terminal 410", async () => {
+  let terminal = false;
+  const transport = {
+    pins: [], resets: 0,
+    getStatus() { return { effectiveTransport: "cloudflare", nearby: false, connected: 0 }; },
+    pinRoomTransport(value) { this.pins.push(value); return value; },
+    resetRoomTransport() { this.resets++; }
+  };
+  const saved = { code: "ABC234", token: "saved-token", username: "Logan", transport: "nearby" };
+  const fetchImpl = async (url) => {
+    if (String(url).endsWith("/ABC234/join")) return response({ error: terminal ? "gone" : "temporary" }, terminal ? 410 : 503);
+    throw new Error("unexpected fetch " + url);
+  };
+  const { dom, errors } = await loadSorry(fetchImpl, saved, transport);
+  try {
+    const { document, localStorage } = dom.window;
+    document.querySelector('#playModeChoices [data-value="online"]').click();
+    document.querySelector("#resumeOnlineBtn").click();
+    await wait(dom.window, 30);
+    assert.deepEqual(transport.pins, ["nearby"]);
+    assert.equal(transport.resets, 0);
+    assert.ok(localStorage.getItem("arcadeSorry_onlineSession_v1"));
+
+    terminal = true;
+    document.querySelector("#resumeOnlineBtn").click();
+    await wait(dom.window, 30);
+    assert.deepEqual(transport.pins, ["nearby", "nearby"]);
+    assert.equal(transport.resets, 1);
+    assert.equal(localStorage.getItem("arcadeSorry_onlineSession_v1"), null);
+    assert.equal(document.querySelector("#resumeOnlineBtn").classList.contains("hidden"), true);
+    assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("terminal 410 while leaving Sorry clears the saved room and authority pin", async () => {
+  const activeRoom = lobby();
+  const transport = {
+    resets: 0,
+    getStatus() { return { effectiveTransport: "nearby", nearby: true, connected: 2, identity: { nickname: "Logan", avatar: "🦖" } }; },
+    resetRoomTransport() { this.resets++; },
+    preferredUsername(value) { return value; }
+  };
+  const fetchImpl = async (url, options = {}) => {
+    if (String(url).endsWith("/api/arcade/rooms") && options.method === "POST") return response({ ok: true, code: activeRoom.code, token: "host-token", playerId: "p0", seat: 0, room: activeRoom });
+    if (String(url).endsWith("/actions")) return response({ error: "gone" }, 410);
+    if (String(url).endsWith("/state")) return response({ ok: true, room: activeRoom });
+    throw new Error("unexpected fetch " + url);
+  };
+  const { dom, errors } = await loadSorry(fetchImpl, null, transport);
+  try {
+    const { document, SorryGame, localStorage } = dom.window;
+    document.querySelector('#playModeChoices [data-value="online"]').click();
+    document.querySelector("#createOnlineBtn").click();
+    await wait(dom.window, 50);
+    assert.equal(SorryGame.online.getSession().active, true);
+    assert.equal(await SorryGame.online.leave(), true);
+    assert.equal(SorryGame.online.getSession().active, false);
+    assert.equal(localStorage.getItem("arcadeSorry_onlineSession_v1"), null);
+    assert.equal(transport.resets, 1);
     assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
   } finally { dom.window.close(); }
 });

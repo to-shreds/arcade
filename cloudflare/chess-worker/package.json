@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test test/*.test.js",
+    "test": "node --test test/*.test.js ../../multiplayer/nearby-room-service.test.js ../../multiplayer/models/*.test.js",
     "check": "npm test && wrangler deploy --dry-run --outdir .wrangler/dry-run"
   },
   "devDependencies": {

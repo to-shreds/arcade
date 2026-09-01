@@ -4,7 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#090d1e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script>if(window.parent!==window){try{if(parent.ArcadeShell&&typeof parent.ArcadeShell.goHome==='function'){document.documentElement.style.display='none';parent.ArcadeShell.goHome();}}catch(_){}}</script>
 <link rel="icon" href="arcade.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="arcade-shell.css">
 <title>Arcade</title>
 <style>
 :root{color-scheme:dark;--bg:#090d1e;--panel:#141a33;--text:#fff;--muted:#aab5d9;--line:rgba(255,255,255,.14);--gold:#ffce3a;--cyan:#21dcff;--pink:#ff5ac8}
@@ -84,6 +90,7 @@ if(cat&&!(item.categories||[]).includes(cat))return false;
 return true;
 }
 function launch(item){
+if(window.ArcadeShell&&typeof ArcadeShell.openGame==='function'){ArcadeShell.openGame(item.folder);return;}
 if(window.ArcadeNative&&typeof ArcadeNative.openGameWithOrientation==='function'){ArcadeNative.openGameWithOrientation(item.launchPath,item.orientation||'any');return;}
 if(window.ArcadeNative&&ArcadeNative.openGame){ArcadeNative.openGame(item.launchPath);return;}
 location.href=item.launchPath;
@@ -113,6 +120,7 @@ if(!r.ok)throw new Error();
 data=await r.json();
 }catch(_){grid.textContent='Arcade catalog unavailable';return;}
 items=(data.items||[]).slice().sort((a,b)=>(a.order-b.order)||a.title.localeCompare(b.title));
+window.ArcadeCatalogItems=items;
 saves=readSaves();
 const cats=[...new Set(items.flatMap(x=>x.categories||[]))].sort();
 category.replaceChildren(new Option('Categories',''),...cats.map(x=>new Option(label(x),x)));
@@ -134,7 +142,7 @@ updateFilterUI();render();
 }));
 playerFilter.addEventListener('click',()=>{playerMode=playerMode==='any'?'single':playerMode==='single'?'two':'any';updateFilterUI();render()});
 category.addEventListener('change',()=>{cat=category.value;updateFilterUI();render()});
-document.getElementById('reload').addEventListener('click',()=>{if(window.ArcadeNative&&ArcadeNative.reloadArcade)ArcadeNative.reloadArcade();else load()});
+document.getElementById('reload').addEventListener('click',()=>{if(window.ArcadeShell&&typeof ArcadeShell.refresh==='function'){load();ArcadeShell.refresh();return;}if(window.ArcadeNative&&ArcadeNative.reloadArcade)ArcadeNative.reloadArcade();else load()});
 document.getElementById('manage').addEventListener('click',()=>{if(window.ArcadeNative&&ArcadeNative.openManager)ArcadeNative.openManager()});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){saves=readSaves();render();}});
 load();
@@ -143,5 +151,6 @@ navigator.serviceWorker.register('sw.js',{scope:'./'}).then(async reg=>{await re
 }
 })();
 </script>
+<script type="module" src="arcade-shell.js"></script>
 </body>
 </html>

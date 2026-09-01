@@ -28,14 +28,14 @@ function nextRoom(socket, predicate = () => true) {
 }
 
 test("two independent clients create, join, reconnect and synchronize through Miniflare", async (t) => {
-  const sourceRoot = new URL("../src/", import.meta.url).pathname;
+  const sourceRoot = new URL("../../../", import.meta.url).pathname;
   const mf = new Miniflare({
     modulesRoot: sourceRoot,
     modules: [
       { type: "ESModule", path: new URL("../src/index.js", import.meta.url).pathname },
-      { type: "ESModule", path: new URL("../src/room-model.js", import.meta.url).pathname },
-      { type: "ESModule", path: new URL("../src/generic-room-model.js", import.meta.url).pathname },
-      { type: "ESModule", path: new URL("../src/chess-engine.js", import.meta.url).pathname }
+      { type: "ESModule", path: new URL("../../../multiplayer/models/room-model.js", import.meta.url).pathname },
+      { type: "ESModule", path: new URL("../../../multiplayer/models/generic-room-model.js", import.meta.url).pathname },
+      { type: "ESModule", path: new URL("../../../multiplayer/models/chess-engine.js", import.meta.url).pathname }
     ],
     compatibilityDate: "2026-08-06",
     compatibilityFlags: ["nodejs_compat"],
@@ -83,10 +83,19 @@ test("two independent clients create, join, reconnect and synchronize through Mi
   assert.equal(blackLive.room.game.turn, "b");
   assert.deepEqual(blackLive.room.presence, { w: true, b: true });
 
+  const whiteWebSocketMove = nextRoom(socket, (room) => room.game.moves.length === 2);
+  const blackWebSocketMove = nextRoom(blackSocket, (room) => room.game.moves.length === 2);
+  blackSocket.send(JSON.stringify({ type: "move", uci: "e7e5", expectedVersion: blackLive.room.version }));
+  const [whiteAfterSocket, blackAfterSocket] = await Promise.all([whiteWebSocketMove, blackWebSocketMove]);
+  assert.equal(whiteAfterSocket.room.game.moves[1].uci, "e7e5");
+  assert.equal(blackAfterSocket.room.game.turn, "w");
+  assert.equal(whiteAfterSocket.room.version, blackAfterSocket.room.version, "HTTP and WebSocket actions share one canonical version path");
+
   const blackView = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/state`, { headers: { Origin: ORIGIN, authorization: `Bearer ${second.token}` } });
   const blackState = await blackView.json();
   assert.equal(blackState.room.game.moves[0].uci, "e2e4");
-  assert.equal(blackState.room.game.turn, "b");
+  assert.equal(blackState.room.game.moves[1].uci, "e7e5");
+  assert.equal(blackState.room.game.turn, "w");
 
   const reconnect = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/join`, {
     method: "POST", headers: headers(), body: JSON.stringify({ reconnectToken: first.token })
@@ -94,9 +103,10 @@ test("two independent clients create, join, reconnect and synchronize through Mi
   const restored = await reconnect.json();
   assert.equal(restored.side, "w");
   assert.equal(restored.room.game.moves[0].uci, "e2e4");
+  assert.equal(restored.room.game.moves[1].uci, "e7e5");
 
   const stolen = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/actions`, {
-    method: "POST", headers: headers(first.token), body: JSON.stringify({ type: "move", uci: "e7e5", expectedVersion: restored.room.version })
+    method: "POST", headers: headers(second.token), body: JSON.stringify({ type: "move", uci: "d7d5", expectedVersion: restored.room.version })
   });
   assert.equal(stolen.status, 403);
 
@@ -105,9 +115,27 @@ test("two independent clients create, join, reconnect and synchronize through Mi
   assert.equal(resumedSocketResponse.status, 101);
   const resumedSocket = resumedSocketResponse.webSocket;
   resumedSocket.accept();
-  const resumedLive = await nextRoom(resumedSocket, (room) => room.game.moves.length === 1);
+  const resumedLive = await nextRoom(resumedSocket, (room) => room.game.moves.length === 2);
   assert.equal(resumedLive.room.side, "w");
   assert.equal(resumedLive.room.game.moves[0].uci, "e2e4");
+  assert.equal(resumedLive.room.game.moves[1].uci, "e7e5");
+
+  const opponentCompletion = nextRoom(blackSocket, (room) => room.game.result.over);
+  const leavingSocketClosed = new Promise((resolve) => resumedSocket.addEventListener("close", resolve, { once: true }));
+  const leave = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/actions`, {
+    method: "POST", headers: headers(first.token), body: JSON.stringify({ type: "leave", expectedVersion: resumedLive.room.version })
+  });
+  assert.equal(leave.status, 200);
+  const completed = await opponentCompletion;
+  assert.deepEqual(
+    { reason: completed.room.game.result.reason, winner: completed.room.game.result.winner },
+    { reason: "resignation", winner: "b" }
+  );
+  await leavingSocketClosed;
+  const revoked = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/state`, { headers: { Origin: ORIGIN, authorization: `Bearer ${first.token}` } });
+  assert.equal(revoked.status, 401);
+  const replacement = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/join`, { method: "POST", headers: headers(), body: "{}" });
+  assert.equal(replacement.status, 410);
 
   const badOrigin = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/state`, { headers: { Origin: "https://evil.example", authorization: `Bearer ${first.token}` } });
   assert.equal(badOrigin.status, 403);

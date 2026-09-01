@@ -315,8 +315,8 @@ function renderScoreboard(){
 }
 function updateAll(){renderScoreboard();updateTurn();draw()}
 function goHome(){
-  const leave=()=>{stopAudio();if(window.ArcadeNative&&ArcadeNative.goHome)ArcadeNative.goHome();else location.href='../index.html'};
-  if(gameActive&&window.ArcadeSave)ArcadeSave.saveNow().finally(leave);else leave();
+  stopAudio();
+  ArcadeSave.goHome();
 }
 document.getElementById('home').addEventListener('click',goHome);document.getElementById('resultHome').addEventListener('click',goHome);
 document.getElementById('newGame').addEventListener('click',showSetup);document.getElementById('start').addEventListener('click',startNew);resumeBtn.addEventListener('click',resumeGame);document.getElementById('playAgain').addEventListener('click',()=>{results.hidden=true;showSetup()});

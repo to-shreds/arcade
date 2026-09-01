@@ -1682,7 +1682,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         <div class="ttt-top">
             <div class="ttt-top-row">
                 <div class="ttt-pill" id="ttt-status">TURN: <span class="ttt-score" id="ttt-turn">X</span></div>
-                <div class="ttt-pill" id="ttt-online-pill" hidden>ONLINE</div>
+                <div class="ttt-pill" id="ttt-online-pill" hidden>ROOM</div>
             </div>
             <div class="ttt-top-row">
                 <div class="ttt-pill">SCORE <span class="ttt-score" id="ttt-score">X 0 - 0 O</span></div>
@@ -1757,10 +1757,11 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
                 <button class="btn-large-opt" onclick="TicTacToe.start('pvp')">2 Players (Pass & Play)</button>
 
-                <section class="ttt-online-card" aria-label="Online multiplayer">
-                    <div class="ttt-online-title">PLAY ONLINE</div>
+                <section class="ttt-online-card" aria-label="Multiplayer">
+                    <div class="ttt-online-title">MULTIPLAYER</div>
+                    <div class="ttt-online-status" id="ttt-transport-status" aria-live="polite">Internet</div>
                     <div class="ttt-online-row" id="ttt-online-actions">
-                        <input class="ttt-online-input" id="ttt-online-name" maxlength="20" autocomplete="nickname" enterkeyhint="done" placeholder="Your username" aria-label="Your online username" />
+                        <input class="ttt-online-input" id="ttt-online-name" maxlength="20" autocomplete="nickname" enterkeyhint="done" placeholder="Your username" aria-label="Your multiplayer username" />
                         <button type="button" class="ttt-btn ttt-online-action primary" onclick="TicTacToe.createOnline()">Create Room</button>
                         <button type="button" class="ttt-btn ttt-online-action" onclick="TicTacToe.showOnlineJoin()">Join Room</button>
                     </div>
@@ -1769,14 +1770,14 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
                         <button type="button" class="ttt-btn ttt-online-action primary" onclick="TicTacToe.joinOnline()">Join</button>
                         <button type="button" class="ttt-btn ttt-online-action" onclick="TicTacToe.hideOnlineJoin()">Cancel</button>
                     </div>
-                    <button type="button" class="ttt-btn ttt-online-action" id="ttt-online-resume" onclick="TicTacToe.resumeOnline()" hidden>Resume Online Room</button>
+                    <button type="button" class="ttt-btn ttt-online-action" id="ttt-online-resume" onclick="TicTacToe.resumeOnline()" hidden>Resume Room</button>
                     <div class="ttt-online-status" id="ttt-online-status" aria-live="polite">Create a room or join with a six-character code.</div>
                     <div class="ttt-online-lobby" id="ttt-online-lobby" hidden>
                         <div style="font-size:11px;font-weight:900;color:#aaa;letter-spacing:.7px">ROOM CODE</div>
                         <div class="ttt-room-code" id="ttt-online-room-code">------</div>
                         <div class="ttt-members" id="ttt-online-members"></div>
                         <div class="ttt-online-row">
-                            <button type="button" class="ttt-btn ttt-online-action primary" id="ttt-online-start" onclick="TicTacToe.startOnlineRoom()" hidden>Start Online Game</button>
+                            <button type="button" class="ttt-btn ttt-online-action primary" id="ttt-online-start" onclick="TicTacToe.startOnlineRoom()" hidden>Start Multiplayer Game</button>
                             <button type="button" class="ttt-btn ttt-online-action primary" id="ttt-online-return" onclick="TicTacToe.returnToOnlineGame()" hidden>Return to Game</button>
                             <button type="button" class="ttt-btn ttt-online-action" onclick="TicTacToe.leaveOnline()">Leave Room</button>
                         </div>
@@ -1789,6 +1790,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         </div>
 </div>
 
+<script src="../multiplayer/arcade-multiplayer.js"></script>
 <script src="room-client.js"></script>
 <script src="../arcade-save.js"></script>
 <script>
@@ -2101,7 +2103,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
     
     function openGame(_id) {  }
-    function goToMenu() { try{ ArcadeSettings.closeModal(); }catch(e){} window.location.href = '../index.html'; }
+    function goToMenu() { try{ ArcadeSettings.closeModal(); }catch(e){} if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.goHome==='function'){ArcadeMultiplayer.goHome();return;} window.location.href = '../index.html'; }
 
 const FeedbackSys = (function(){
         const overlay = document.getElementById('feedback-overlay');
@@ -2203,6 +2205,7 @@ const FeedbackSys = (function(){
         const onlineMembers = document.getElementById('ttt-online-members');
         const onlineStartButton = document.getElementById('ttt-online-start');
         const onlineReturnButton = document.getElementById('ttt-online-return');
+        const multiplayerTransportStatus = document.getElementById('ttt-transport-status');
         let pieceWho = 'X';
         
         
@@ -2235,6 +2238,9 @@ const FeedbackSys = (function(){
         let onlineRepairAttempts = 0;
         let onlineRoundResetAttempts = 0;
         let appliedOnlineVersion = -1;
+        function invitedRoomCode(){let code='';try{const params=new URLSearchParams(location.search);code=String(params.get('room')||params.get('join')||params.get('code')||'').trim().toUpperCase();}catch(_error){}return/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)?code:'';}
+        function syncMultiplayerTransport(status){const current=status||(window.ArcadeMultiplayer&&ArcadeMultiplayer.getStatus?ArcadeMultiplayer.getStatus():null),nearby=!!(current&&(current.effectiveTransport||(current.nearby?'nearby':'cloudflare'))==='nearby'),identity=nearby&&current.identity;if(multiplayerTransportStatus)multiplayerTransportStatus.textContent=nearby?'Nearby Arcade · '+current.connected+' connected'+(identity?' · '+(identity.avatar?identity.avatar+' ':'')+identity.nickname:''):'Internet';if(identity&&onlineName)onlineName.value=identity.nickname;if(onlineName)onlineName.hidden=!!identity;}
+        if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.onStatus==='function')ArcadeMultiplayer.onStatus(syncMultiplayerTransport);
         const roomClient = window.ArcadeRoomClient ? ArcadeRoomClient.createRoomClient({
             game:'tic-tac-toe',
             sessionKey:'arcade_tictactoe_online_room_v1',
@@ -2403,7 +2409,8 @@ const FeedbackSys = (function(){
         }
 
         function onlineUsername(){
-            const username=roomClient?roomClient.cleanUsername(onlineName&&onlineName.value):'';
+            const entered=roomClient?roomClient.cleanUsername(onlineName&&onlineName.value):'';
+            const username=window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.preferredUsername==='function'?ArcadeMultiplayer.preferredUsername(entered):entered;
             if(username){
                 if(onlineName)onlineName.value=username;
                 try{localStorage.setItem(ONLINE_NAME_KEY,username);}catch(_error){}
@@ -2512,7 +2519,7 @@ const FeedbackSys = (function(){
             if(!online)syncUndoButton();
             if(onlinePill){
                 onlinePill.hidden=!online;
-                if(online&&roomClient&&roomClient.session)onlinePill.textContent='ONLINE · '+(markForSeat(onlineRoom,roomClient.session.seat)==='X'?symX:symO);
+                if(online&&roomClient&&roomClient.session)onlinePill.textContent='ROOM · '+(markForSeat(onlineRoom,roomClient.session.seat)==='X'?symX:symO);
             }
         }
 
@@ -2705,7 +2712,7 @@ const FeedbackSys = (function(){
         async function createOnline(){
             if(!roomClient)return setOnlineStatus('Online play is unavailable in this browser.',true);
             holdCurrentSave();setOnlineBusy(true);
-            try{await roomClient.create({username:onlineUsername(),maxPlayers:2});}
+            try{const created=await roomClient.create({username:onlineUsername(),maxPlayers:2});const code=created&&(created.code||(created.room&&created.room.code))||(roomClient.session&&roomClient.session.code);if(code&&window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.invite==='function')ArcadeMultiplayer.invite('tic-tac-toe',code,'Tic Tac Toe');}
             catch(error){setOnlineStatus(error.message||'Room creation failed.',true);}
             finally{setOnlineBusy(false);}
         }
@@ -3124,6 +3131,8 @@ const FeedbackSys = (function(){
         registerArcadeSave();
 
         try{if(onlineName)onlineName.value=localStorage.getItem(ONLINE_NAME_KEY)||'';}catch(_error){}
+        const invited=invitedRoomCode();if(invited&&onlineCode){onlineCode.value=invited;if(onlineJoinRow)onlineJoinRow.hidden=false;}
+        syncMultiplayerTransport();
         if(onlineCode){
             onlineCode.addEventListener('input',function(){onlineCode.value=String(onlineCode.value||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);});
             onlineCode.addEventListener('keydown',function(event){if(event.key==='Enter')joinOnline();});
@@ -3153,7 +3162,7 @@ function goToMenu() {
             TicTacToe.pause();
         }
     }catch(e){}
-    const leave = function(){ window.location.href = '../index.html'; };
+    const leave = function(){ if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.goHome==='function'){ArcadeMultiplayer.goHome();return;} window.location.href = '../index.html'; };
     try{
         if(window.ArcadeSave && typeof ArcadeSave.saveNow === 'function'){
             Promise.resolve(ArcadeSave.saveNow()).then(leave, leave);

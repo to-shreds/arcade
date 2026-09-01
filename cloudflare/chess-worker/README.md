@@ -2,10 +2,55 @@
 
 Cloudflare Worker and SQLite-backed Durable Objects for the Arcade's online rooms.
 
+This Worker remains the default Internet transport. Nearby Arcade is an
+index-level browser transport, not another Worker route or a separate game
+mode. `multiplayer/arcade-multiplayer.js` sends room operations to this Worker
+when no Nearby session is active. With Nearby active, the same client operations
+are sent through the persistent Arcade shell to the authoritative browser host,
+with no Cloudflare request. The selected authority is pinned for the life of an
+active game room and is never changed silently after a connection failure.
+
 - `ChessRoom` remains the authoritative Chess service. It validates membership, turns, every legal move, special moves, endings, resignation, and mutually approved undo/draw requests.
 - `ArcadeRoom` is the shared room, presence, chat, reconnection, and state-synchronization service for Sorry, Monopoly, Memory, Tic-Tac-Toe, Dots, Checkers, and the standalone Chat Room.
 
 Each room is a single Durable Object, so membership changes and game-state replacements are serialized. Token hashing happens before room storage is read, keeping the load/check/write section inside the Durable Object input gate. Reconnect tokens identify seats, exact game versions prevent lost updates, and the server owns the current turn metadata. Generic game snapshots are opaque JSON; the game client still produces the rules-validated snapshot, while the room prevents a different seat, a stale client, or two concurrent requests from silently replacing it.
+
+## Shared authority and Nearby parity
+
+The environment-neutral room models under `multiplayer/models/` are shared by
+the Cloudflare service and the browser-hosted `NearbyRoomService`. This keeps
+room creation, tokens, reconnect behavior, seat assignment, compare-and-swap
+versions, turn ownership, bounds, presence, room chat, and result shape aligned
+between transports. The Nearby host additionally binds each request to the
+locked Arcade-session member identity, rejects identity fields supplied by a
+game action, and rejects rename actions for the life of that Nearby session.
+
+Chess has strict rule authority in both environments. The shared Chess engine
+validates ordinary moves, captures, turns, castling, en passant, promotion,
+check, endings, resignation, and the supported draw and undo flows before it
+broadcasts canonical state.
+
+The deployed generic `ArcadeRoom` keeps its compatible Internet snapshot
+contract. The Nearby host adds a semantic validation layer before that shared
+model commits a candidate: Memory, Tic-Tac-Toe, Dots, and Checkers validate an
+exact board transition; Sorry validates its canonical deck and legal card,
+pawn, Fire, and Ice resolutions; and Monopoly validates explicit action intents
+against its complete economic and property ledger. Nested labels are bound to
+the locked Arcade membership. Invalid, stale, oversized, or unbroadcastable
+candidates are rejected transactionally without mutating the canonical room.
+Arcade Chat is host-routed, bounded, rate-limited, and associated with the
+authoritative locked member identity.
+
+Nearby Arcade protocol `arcade-nearby` version 1, QR signaling, WebRTC peer
+connections, IndexedDB checkpoints, and session UI live in `multiplayer/` and
+the root shell files. They do not run in Cloudflare. Nearby session identities,
+messages, game state, reactions, and Arcade Stars remain on the paired devices.
+
+The Nearby Arcade session and a game room are separate scopes. A host may keep
+the same peer star connected while a Chess room ends and a Sorry room begins.
+The existing Worker room codes remain available for Internet multiplayer and as
+a familiar game-room concept, but QR pairing establishes the Arcade transport,
+not a Worker room.
 
 ## Local verification
 

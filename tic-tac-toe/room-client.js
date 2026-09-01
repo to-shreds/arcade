@@ -17,11 +17,18 @@
     return String(value || "").trim().replace(/\s+/g, " ").slice(0, 20);
   }
 
+  function cleanTransport(value, allowLegacy){
+    if((value === undefined || value === null || value === "") && allowLegacy) return "cloudflare";
+    return value === "nearby" || value === "cloudflare" ? value : "";
+  }
+
   function storedSession(storage, key){
     try{
       const value = JSON.parse(storage.getItem(key) || "null");
       if(!value || !cleanCode(value.code) || typeof value.token !== "string" || value.token.length < 16) return null;
-      return { code: cleanCode(value.code), token: value.token, playerId: String(value.playerId || ""), seat: Number(value.seat) || 0, username: cleanUsername(value.username) };
+      const transport = cleanTransport(value.transport, true);
+      if(!transport) return null;
+      return { code: cleanCode(value.code), token: value.token, playerId: String(value.playerId || ""), seat: Number(value.seat) || 0, username: cleanUsername(value.username), transport };
     }catch(_error){ return null; }
   }
 
@@ -36,6 +43,7 @@
     const onRoom = typeof settings.onRoom === "function" ? settings.onRoom : function(){};
     const onStatus = typeof settings.onStatus === "function" ? settings.onStatus : function(){};
     const onSession = typeof settings.onSession === "function" ? settings.onSession : function(){};
+    const multiplayer = settings.multiplayer || root.ArcadeMultiplayer || null;
     let session = null, room = null, socket = null, stopped = true, retryTimer = 0, pollTimer = 0, retryCount = 0, requestBusy = false;
 
     function emitStatus(kind, text){ onStatus({ kind, text: String(text || "") }); }
@@ -44,6 +52,18 @@
       onSession(session ? Object.assign({}, session) : null);
     }
     function saved(){ return storedSession(storage, sessionKey); }
+    function currentRoomTransport(){
+      const status = multiplayer && typeof multiplayer.getStatus === "function" ? multiplayer.getStatus() : null;
+      return cleanTransport(status && (status.pinnedTransport || status.effectiveTransport || (status.nearby ? "nearby" : "cloudflare")), false) || "cloudflare";
+    }
+    function pinSavedRoomTransport(transport){
+      const selected = cleanTransport(transport, false);
+      if(!selected) throw new TypeError("Saved room transport is invalid.");
+      if(multiplayer && typeof multiplayer.pinRoomTransport === "function") return multiplayer.pinRoomTransport(selected);
+      if(selected === "nearby") throw new Error("Nearby Arcade is unavailable. This saved room will not be sent to the Internet.");
+      return selected;
+    }
+    function resetRoomTransport(){ if(multiplayer && typeof multiplayer.resetRoomTransport === "function") multiplayer.resetRoomTransport(); }
 
     async function request(path, init, timeoutMs){
       const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
@@ -113,9 +133,11 @@
       activeSocket.onclose = function(){ clearTimeout(timeout); if(socket === activeSocket) socket = null; scheduleReconnect(); };
     }
 
-    function acceptJoin(body, username){
-      session = { code: cleanCode(body.code || (body.room && body.room.code)), token: String(body.token || ""), playerId: String(body.playerId || ""), seat: Number(body.seat) || 0, username: cleanUsername(username) };
-      if(!session.code || session.token.length < 16) throw new Error("The room server returned an invalid session.");
+    function acceptJoin(body, username, restoredTransport){
+      const transport = cleanTransport(restoredTransport, false) || currentRoomTransport();
+      const nextSession = { code: cleanCode(body.code || (body.room && body.room.code)), token: String(body.token || ""), playerId: String(body.playerId || ""), seat: Number(body.seat) || 0, username: cleanUsername(username), transport };
+      if(!nextSession.code || nextSession.token.length < 16) throw new Error("The room server returned an invalid session.");
+      session = nextSession;
       stopped = false; persist(); if(body.room) absorb(body.room); connectSocket(); return body;
     }
     async function create(params){
@@ -128,6 +150,9 @@
         const payload = { game, username, maxPlayers: Math.max(2, Math.min(8, Number(params && params.maxPlayers) || 2)) };
         if(params && params.state !== undefined) payload.state = params.state;
         return acceptJoin(await request("/api/arcade/rooms", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) }), username);
+      }catch(error){
+        if(!session) resetRoomTransport();
+        throw error;
       }finally{ requestBusy = false; }
     }
     async function join(params){
@@ -138,6 +163,7 @@
       if(!code){ requestBusy = false; throw new Error("Enter the six-character room code."); }
       emitStatus("connecting", "Joining room " + code + "…");
       try{ return acceptJoin(await request("/api/arcade/rooms/" + encodeURIComponent(code) + "/join", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ username }) }), username); }
+      catch(error){ if(!session) resetRoomTransport(); throw error; }
       finally{ requestBusy = false; }
     }
     async function resume(){
@@ -145,8 +171,11 @@
       const prior = saved();
       if(!prior) throw new Error("No saved room is available.");
       requestBusy = true; emitStatus("connecting", "Rejoining room " + prior.code + "…");
-      try{ return acceptJoin(await request("/api/arcade/rooms/" + encodeURIComponent(prior.code) + "/join", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ username: prior.username || "Player", reconnectToken: prior.token }) }), prior.username || "Player"); }
-      catch(error){ if(error && (error.status === 401 || error.status === 403 || error.status === 404)) forget(); throw error; }
+      try{
+        pinSavedRoomTransport(prior.transport);
+        return acceptJoin(await request("/api/arcade/rooms/" + encodeURIComponent(prior.code) + "/join", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ username: prior.username || "Player", reconnectToken: prior.token }) }), prior.username || "Player", prior.transport);
+      }
+      catch(error){ if(error && (error.status === 401 || error.status === 403 || error.status === 404 || error.status === 410)) forget(); throw error; }
       finally{ requestBusy = false; }
     }
     async function refresh(){
@@ -168,9 +197,9 @@
       try{
         const body = await request("/api/arcade/rooms/" + encodeURIComponent(session.code) + "/actions", { method: "POST", headers: { "content-type": "application/json", Authorization: "Bearer " + session.token }, body: JSON.stringify({ type: "leave" }) });
         forget(); return body.room || null;
-      }catch(error){ if(error && (error.status === 401 || error.status === 403 || error.status === 404)) forget(); throw error; }
+      }catch(error){ if(error && (error.status === 401 || error.status === 403 || error.status === 404 || error.status === 410)){ forget(); return null; } throw error; }
     }
-    function forget(){ stopped = true; closeSocket(); session = null; room = null; persist(); emitStatus("offline", "Online room closed on this device."); }
+    function forget(){ stopped = true; closeSocket(); session = null; room = null; persist(); resetRoomTransport(); emitStatus("offline", "Online room closed on this device."); }
     function disconnect(){ stopped = true; closeSocket(); }
 
     return { create, join, resume, refresh, action, leave, forget, disconnect, saved, cleanCode, cleanUsername, get room(){ return room; }, get session(){ return session ? Object.assign({}, session) : null; } };

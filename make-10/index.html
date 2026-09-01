@@ -1541,10 +1541,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
   const homeLink = document.querySelector('.arcade-home-link');
   if (homeLink) homeLink.addEventListener('click', (event) => {
-    if (!window.ArcadeSave || !meaningful()) return;
     event.preventDefault();
-    const href = homeLink.getAttribute('href') || '../index.html';
-    ArcadeSave.saveNow().then(() => { window.location.href = href; }, () => { window.location.href = href; });
+    ArcadeSave.goHome();
   });
 
   function syncGoalLabel() {

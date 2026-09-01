@@ -1516,8 +1516,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
   if(homeLink){
     homeLink.addEventListener('click',e=>{
-      e.preventDefault();const leave=()=>{location.href=homeLink.href};
-      if(state.running&&window.ArcadeSave)ArcadeSave.saveNow().finally(leave);else leave();
+      e.preventDefault();ArcadeSave.goHome();
     });
   }
   window.ShuffleboardAutosave={

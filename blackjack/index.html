@@ -1045,7 +1045,7 @@ body.reduce-motion #g-blackjack .debt-pill{animation:none}
 
 function goToMenu(){
   try{ ArcadeSettings.closeModal(); }catch(e){}
-  const leave = () => { window.location.href = '../index.html'; };
+  const leave = () => { ArcadeSave.goHome(); };
   try{
     if(window.ArcadeSave && typeof ArcadeSave.saveNow === 'function'){
       ArcadeSave.saveNow().then(leave, leave);

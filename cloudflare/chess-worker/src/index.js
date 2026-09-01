@@ -1,5 +1,5 @@
-import { RoomModel } from "./room-model.js";
-import { GenericRoomModel } from "./generic-room-model.js";
+import { RoomModel } from "../../../multiplayer/models/room-model.js";
+import { GenericRoomModel } from "../../../multiplayer/models/generic-room-model.js";
 
 const CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 const CODE_LENGTH = 6;
@@ -231,6 +231,14 @@ export class ChessRoom {
     return presence;
   }
 
+  closeSideSockets(side) {
+    for (const socket of this.state.getWebSockets()) {
+      const attachment = socket.deserializeAttachment() || {};
+      if (attachment.side !== side) continue;
+      try { socket.close(1000, "Left room"); } catch {}
+    }
+  }
+
   async broadcast() {
     const room = await this.model.load();
     if (!room) return;
@@ -260,7 +268,9 @@ export class ChessRoom {
         return json({ ok: true, room: await this.model.state(bearer(request), this.connections()) });
       }
       if (url.pathname === "/action" && request.method === "POST") {
-        const result = await this.model.act(bearer(request), await request.json(), this.connections());
+        const action = await request.json();
+        const result = await this.model.act(bearer(request), action, this.connections());
+        if (action.type === "leave") this.closeSideSockets(result.side);
         await this.broadcast();
         return json({ ok: true, room: result });
       }
@@ -287,46 +297,11 @@ export class ChessRoom {
   async webSocketMessage(socket, message) {
     const attachment = socket.deserializeAttachment() || {};
     try {
-      const action = JSON.parse(typeof message === "string" ? message : new TextDecoder().decode(message));
-      const room = await this.model.load();
-      if (!room) throw Object.assign(new Error("Room not found"), { status: 404 });
-      const tokenSide = attachment.side;
-      const tokenHashValue = tokenSide === "w" ? room.whiteHash : room.blackHash;
-      if (!tokenHashValue) throw Object.assign(new Error("Invalid room seat"), { status: 401 });
-      // WebSockets are authenticated during upgrade. A temporary token shim lets the model
-      // enforce the exact same rules without placing the reconnect token in socket state.
-      const side = tokenSide;
-      const expectedVersion = Number(action.expectedVersion);
-      if (!Number.isInteger(expectedVersion) || expectedVersion !== room.version) throw Object.assign(new Error("Room state changed; refresh and try again"), { status: 409 });
-      const other = side === "w" ? "b" : "w";
-      if (action.type === "move") {
-        if (!room.blackHash) throw Object.assign(new Error("Wait for an opponent before moving"), { status: 409 });
-        if (room.game.result?.over) throw Object.assign(new Error("Game is already over"), { status: 409 });
-        if (room.game.position.turn !== side) throw Object.assign(new Error("It is not your turn"), { status: 403 });
-        try { room.game = (await import("./chess-engine.js")).applyGameMove(room.game, action.uci); }
-        catch (error) { throw Object.assign(new Error(error.message === "Illegal move" ? "Illegal move" : "Invalid move"), { status: 422 }); }
-        room.pending = null;
-      } else if (action.type === "request-undo" || action.type === "request-draw") {
-        if (!room.blackHash || room.game.result?.over || room.pending) throw Object.assign(new Error("Request is not available"), { status: 409 });
-        if (action.type === "request-undo" && !room.game.moves.length) throw Object.assign(new Error("There is no move to undo"), { status: 409 });
-        room.pending = { type: action.type === "request-undo" ? "undo" : "draw", from: side, createdAt: nowIsoForSocket() };
-      } else if (action.type === "accept-request") {
-        if (!room.pending || room.pending.from !== other) throw Object.assign(new Error("There is no opponent request to accept"), { status: 403 });
-        const engine = await import("./chess-engine.js");
-        room.game = room.pending.type === "undo" ? engine.undoLastMove(room.game) : engine.forceDraw(room.game, "agreement");
-        room.pending = null;
-      } else if (action.type === "reject-request") {
-        if (!room.pending || room.pending.from !== other) throw Object.assign(new Error("There is no opponent request to reject"), { status: 403 });
-        room.pending = null;
-      } else if (action.type === "cancel-request") {
-        if (!room.pending || room.pending.from !== side) throw Object.assign(new Error("You have no request to cancel"), { status: 409 });
-        room.pending = null;
-      } else if (action.type === "resign") {
-        room.game = (await import("./chess-engine.js")).forceResign(room.game, side);
-        room.pending = null;
-      } else throw Object.assign(new Error("Unknown action"), { status: 400 });
-      room.version++;
-      await this.model.save(room);
+      const source = typeof message === "string" ? message : new TextDecoder().decode(message);
+      if (new TextEncoder().encode(source).byteLength > 384 * 1024) throw Object.assign(new Error("Action is too large"), { status: 413 });
+      const action = JSON.parse(source);
+      await this.model.actAsSide(attachment.side, action, this.connections());
+      if (action.type === "leave") this.closeSideSockets(attachment.side);
       await this.broadcast();
     } catch (error) {
       try { socket.send(JSON.stringify({ type: "error", status: Number(error.status) || 400, error: error.message || "Invalid action" })); } catch {}
@@ -432,5 +407,3 @@ export class ArcadeRoom {
   async webSocketClose() { await this.broadcast(); }
   async webSocketError() { await this.broadcast(); }
 }
-
-function nowIsoForSocket() { return new Date().toISOString(); }

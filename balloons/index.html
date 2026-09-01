@@ -1788,7 +1788,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
     
     function openGame(_id) {  }
-    function goToMenu() { try{ ArcadeSettings.closeModal(); }catch(e){} window.location.href = '../index.html'; }
+    function goToMenu() { try{ ArcadeSettings.closeModal(); }catch(e){} ArcadeSave.goHome(); }
 
 const FeedbackSys = (function(){
         const overlay = document.getElementById('feedback-overlay');
@@ -2325,7 +2325,7 @@ function goToMenu() {
             BalloonGame.quit();
         }
     }catch(e){}
-    window.location.href = '../index.html';
+    ArcadeSave.goHome();
 }
 
 try{

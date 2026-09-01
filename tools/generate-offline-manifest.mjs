@@ -11,10 +11,18 @@ const rootRuntimeFiles = [
   'index.html',
   'catalog.json',
   'arcade-ui.css',
+  'arcade-shell.css',
+  'arcade-shell.js',
   'arcade-save.js',
   'arcade.png',
+  'manifest.webmanifest',
+  'pwa-icon-192.png',
+  'pwa-icon-512.png',
+  'pwa-icon-maskable-512.png',
+  'apple-touch-icon.png',
   'sw.js'
 ];
+const rootRuntimeDirectories = ['multiplayer'];
 const ignoredDirectoryNames = new Set([
   '.git', '.github', 'node_modules', 'coverage', 'test-results',
   'playwright-report', 'test', 'tests', 'spec', 'specs'
@@ -86,6 +94,15 @@ if (!catalog || !Array.isArray(catalog.items)) throw new Error('catalog.json doe
 
 const selectedFiles = new Set(rootRuntimeFiles);
 const selectedFolders = new Set();
+for (const directoryName of rootRuntimeDirectories) {
+  const folder = directChild(directoryName, 'Shared runtime folder');
+  const folderPath = path.join(root, folder);
+  const information = await lstat(folderPath);
+  if (!information.isDirectory() || information.isSymbolicLink()) {
+    throw new Error(`Shared runtime folder is not a regular direct child directory: ${folder}`);
+  }
+  await collectDirectory(folderPath, selectedFiles);
+}
 for (const item of catalog.items) {
   if (!item || item.enabled !== true) continue;
   const folder = directChild(item.folder, 'Catalog folder');

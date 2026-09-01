@@ -261,6 +261,56 @@
     else saveChain = saveChain.then(runCapture, runCapture);
     return saveChain;
   }
+
+  function leaveForArcade(){
+    // Multiplayer games already have a versioned bridge with their own frame
+    // identity. Prefer it so an active room can close its virtual sockets
+    // before the persistent shell removes the game frame.
+    try{
+      if(window.ArcadeMultiplayer && typeof window.ArcadeMultiplayer.goHome === 'function' && window.ArcadeMultiplayer.goHome()) return true;
+    }catch(_){}
+
+    // Other games use this deliberately tiny navigation message. The shell
+    // accepts it only from its current same-origin game frame and validates the
+    // exact message shape; a direct game URL never takes this branch.
+    try{
+      if(window.parent !== window && window.parent.ArcadeShell && typeof window.parent.ArcadeShell.goHome === 'function'){
+        window.parent.postMessage({scope:'arcade-shell-navigation', version:1, type:'home'}, window.location.origin);
+        return true;
+      }
+    }catch(_){}
+
+    // Keep legacy/direct Android game URLs working outside the web shell.
+    try{
+      if(window.ArcadeNative && typeof window.ArcadeNative.goHome === 'function'){
+        window.ArcadeNative.goHome();
+        return true;
+      }
+    }catch(_){}
+
+    window.location.href = '../index.html';
+    return true;
+  }
+
+  function goHome(){
+    return Promise.resolve(saveNow()).catch(function(){ return null; }).then(leaveForArcade);
+  }
+
+  // A few older activities use a real link so Home still works without
+  // JavaScript. Intercept that shared control when scripts are available and
+  // route it through the persistent shell instead of loading a nested index.
+  document.addEventListener('click', function(event){
+    var link = event.target && event.target.closest ? event.target.closest('a.arcade-home-link[href]') : null;
+    if(!link) return;
+    try{
+      var target = new URL(link.href, window.location.href);
+      var home = new URL('../index.html', window.location.href);
+      if(target.origin !== home.origin || target.pathname !== home.pathname) return;
+    }catch(_){ return; }
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    goHome();
+  }, true);
   function scheduleSave(delay){
     if(!adapter || restoring || decisionPending || !sessionEngaged) return;
     dirty = true;
@@ -378,6 +428,7 @@
   window.ArcadeSave = {
     register: register,
     saveNow: saveNow,
+    goHome: goHome,
     touch: scheduleSave,
     load: function(){ return currentEntry ? restoreEntry(currentEntry, true) : readEntry(adapter.id).then(function(entry){ return entry ? restoreEntry(entry, true) : false; }); },
     clear: function(){ return clearSaved(true); },

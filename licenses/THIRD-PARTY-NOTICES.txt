@@ -1,6 +1,8 @@
 THIRD-PARTY NOTICES
 
-No third-party JavaScript frameworks, web fonts, audio libraries, sample packs, backing tracks, images, analytics, advertising components, or network services are bundled or required by this release.
+Nearby Arcade bundles qrcode-generator 2.0.4 by Kazuhiko Arase under the MIT License and jsQR 1.4.0 under the Apache License 2.0. These locally bundled JavaScript components generate and scan pairing QR codes without a CDN or Internet connection. Complete license texts are stored beside the bundled files in multiplayer/vendor/.
+
+No other third-party JavaScript frameworks, web fonts, audio libraries, sample packs, backing tracks, images, analytics, advertising components, or network services are bundled or required by this release.
 
 No runtime CDN or remote asset references are present. SVG namespace identifiers such as http://www.w3.org/2000/svg identify XML vocabulary and do not make network requests.
 

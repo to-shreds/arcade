@@ -465,8 +465,7 @@ function showBanner(text,kind=''){
   bannerTimer=setTimeout(()=>{ui.tipBanner.className='tip-banner';},1100);
 }
 function goToArcade(){
-  try{window.location.href='../index.html';}
-  catch(_e){try{window.location.assign('../index.html');}catch(_ignore){}}
+  ArcadeSave.goHome();
 }
 const AudioFX=(()=>{
   let audioContext=null;

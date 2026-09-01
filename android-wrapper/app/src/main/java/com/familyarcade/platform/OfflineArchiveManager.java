@@ -52,9 +52,12 @@ final class OfflineArchiveManager {
     private final File previousDirectory;
     private final Object promotionLock = new Object();
     private final Object synchronizationLock = new Object();
+    private final Object networkLock = new Object();
     private volatile boolean ready;
     private volatile File activeDirectory;
     private volatile ArchiveManifest activeManifest;
+    private volatile boolean networkPaused;
+    private HttpURLConnection activeNetworkConnection;
 
     OfflineArchiveManager(Context context) {
         archiveRoot = new File(context.getFilesDir(), "offline-arcade");
@@ -73,6 +76,45 @@ final class OfflineArchiveManager {
     String activeVersion() {
         ArchiveManifest manifest = activeManifest;
         return ready && manifest != null ? manifest.version : null;
+    }
+
+    void setNetworkPaused(boolean paused) {
+        HttpURLConnection connection = null;
+        synchronized (networkLock) {
+            networkPaused = paused;
+            if (paused) connection = activeNetworkConnection;
+        }
+        // HttpURLConnection interrupt handling varies by Android release.
+        // Disconnect the exact active transfer so a Nearby transition does not
+        // wait for its read timeout before network traffic stops.
+        if (connection != null) connection.disconnect();
+    }
+
+    boolean isNetworkPaused() {
+        return networkPaused;
+    }
+
+    private void ensureNetworkAllowed() throws IOException {
+        if (networkPaused) throw new IOException("Offline archive networking is paused for Nearby Arcade");
+    }
+
+    private HttpURLConnection openNetworkConnection(URL url, int readTimeout) throws IOException {
+        HttpURLConnection connection = openConnection(url, readTimeout);
+        synchronized (networkLock) {
+            if (networkPaused) {
+                connection.disconnect();
+                throw new IOException("Offline archive networking is paused for Nearby Arcade");
+            }
+            activeNetworkConnection = connection;
+        }
+        return connection;
+    }
+
+    private void releaseNetworkConnection(HttpURLConnection connection) {
+        synchronized (networkLock) {
+            if (activeNetworkConnection == connection) activeNetworkConnection = null;
+        }
+        connection.disconnect();
     }
 
     boolean validateReadyArchive() {
@@ -96,28 +138,33 @@ final class OfflineArchiveManager {
     }
 
     ArchiveManifest fetchRemoteManifest() throws IOException {
-        HttpURLConnection connection = openConnection(new URL(REMOTE_BASE + MANIFEST_NAME + "?native=" + System.currentTimeMillis()), MANIFEST_READ_TIMEOUT_MS);
+        HttpURLConnection connection = openNetworkConnection(new URL(REMOTE_BASE + MANIFEST_NAME + "?native=" + System.currentTimeMillis()), MANIFEST_READ_TIMEOUT_MS);
         try {
+            ensureNetworkAllowed();
             int status = connection.getResponseCode();
+            ensureNetworkAllowed();
             if (status != HttpURLConnection.HTTP_OK || isRedirect(status) || !isExactRemote(connection.getURL(), MANIFEST_NAME)) {
                 throw new IOException("Offline manifest HTTP " + status);
             }
             int declared = connection.getContentLength();
             if (declared > MAX_MANIFEST_BYTES) throw new IOException("Offline manifest length is invalid");
             byte[] bytes;
+            ensureNetworkAllowed();
             try (InputStream input = connection.getInputStream()) {
                 bytes = readLimited(input, MAX_MANIFEST_BYTES);
             }
             if (declared >= 0 && bytes.length != declared) throw new IOException("Offline manifest was incomplete");
+            ensureNetworkAllowed();
             return parseManifest(bytes);
         } finally {
-            connection.disconnect();
+            releaseNetworkConnection(connection);
         }
     }
 
     boolean synchronize(ArchiveManifest remote) throws IOException {
         if (remote == null) throw new IOException("No remote manifest");
         synchronized (synchronizationLock) {
+            ensureNetworkAllowed();
             ArchiveManifest existing = activeManifest;
             File sourceDirectory = activeDirectory;
             if (ready && existing != null && sameFiles(existing, remote)) return false;
@@ -126,6 +173,7 @@ final class OfflineArchiveManager {
             if (!staging.mkdir()) throw new IOException("Could not create offline staging directory");
             try {
                 for (ArchiveEntry entry : remote.files.values()) {
+                    ensureNetworkAllowed();
                     File destination = resolve(staging, entry.path);
                     File parent = destination.getParentFile();
                     if (parent == null || (!parent.exists() && !parent.mkdirs())) throw new IOException("Could not create " + entry.path);
@@ -137,8 +185,10 @@ final class OfflineArchiveManager {
                         downloadFile(entry, destination);
                     }
                 }
+                ensureNetworkAllowed();
                 writeManifest(staging, remote.rawBytes);
                 if (!validateDirectory(staging, remote)) throw new IOException("Staged offline archive failed validation");
+                ensureNetworkAllowed();
                 promote(staging, remote);
                 return true;
             } finally {
@@ -259,9 +309,11 @@ final class OfflineArchiveManager {
 
     private void downloadFile(ArchiveEntry entry, File destination) throws IOException {
         File temporary = new File(destination.getParentFile(), destination.getName() + ".part");
-        HttpURLConnection connection = openConnection(new URL(REMOTE_BASE + entry.path), FILE_READ_TIMEOUT_MS);
+        HttpURLConnection connection = openNetworkConnection(new URL(REMOTE_BASE + entry.path), FILE_READ_TIMEOUT_MS);
         try {
+            ensureNetworkAllowed();
             int status = connection.getResponseCode();
+            ensureNetworkAllowed();
             if (status != HttpURLConnection.HTTP_OK || isRedirect(status) || !isExactRemote(connection.getURL(), entry.path)) {
                 throw new IOException(entry.path + ": HTTP " + status);
             }
@@ -269,10 +321,12 @@ final class OfflineArchiveManager {
             if (declared >= 0 && declared != entry.bytes) throw new IOException(entry.path + ": unexpected length");
             MessageDigest digest = digest();
             long total = 0;
+            ensureNetworkAllowed();
             try (InputStream input = connection.getInputStream(); FileOutputStream output = new FileOutputStream(temporary)) {
                 byte[] buffer = new byte[32768];
                 int count;
                 while ((count = input.read(buffer)) != -1) {
+                    ensureNetworkAllowed();
                     total += count;
                     if (total > entry.bytes || total > MAX_FILE_BYTES) throw new IOException(entry.path + ": file is too large");
                     digest.update(buffer, 0, count);
@@ -281,9 +335,10 @@ final class OfflineArchiveManager {
                 output.getFD().sync();
             }
             if (total != entry.bytes || !entry.sha256.equals(hex(digest.digest()))) throw new IOException(entry.path + ": integrity check failed");
+            ensureNetworkAllowed();
             if (!temporary.renameTo(destination)) throw new IOException(entry.path + ": could not publish downloaded file");
         } finally {
-            connection.disconnect();
+            releaseNetworkConnection(connection);
             if (temporary.exists()) temporary.delete();
         }
     }
@@ -322,7 +377,7 @@ final class OfflineArchiveManager {
         connection.setUseCaches(false);
         connection.setRequestProperty("Accept-Encoding", "identity");
         connection.setRequestProperty("Cache-Control", "no-cache");
-        connection.setRequestProperty("User-Agent", "ArcadePlatform/2.3.0");
+        connection.setRequestProperty("User-Agent", "ArcadePlatform/2.4.0");
         return connection;
     }
 
@@ -485,6 +540,7 @@ final class OfflineArchiveManager {
         if (lower.endsWith(".html") || lower.endsWith(".htm")) return "text/html";
         if (lower.endsWith(".css")) return "text/css";
         if (lower.endsWith(".js") || lower.endsWith(".mjs")) return "text/javascript";
+        if (lower.endsWith(".webmanifest")) return "application/manifest+json";
         if (lower.endsWith(".json")) return "application/json";
         if (lower.endsWith(".svg")) return "image/svg+xml";
         if (lower.endsWith(".png")) return "image/png";

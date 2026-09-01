@@ -1491,7 +1491,7 @@ function trySnap(piece, el){
   }
 
   function leaveArcade(){
-    const leave = () => { window.location.href = "../index.html"; };
+    const leave = () => { ArcadeSave.goHome(); };
     if(window.ArcadeSave && meaningful()) ArcadeSave.saveNow().then(leave, leave);
     else leave();
   }

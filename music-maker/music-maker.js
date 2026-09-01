@@ -437,8 +437,8 @@ function stopMicIfIdle(){
 function setStatus(side,text){side.voiceStatus.textContent=text}
 
 function goHome(){
-  const leave=()=>{shutdown();if(window.ArcadeNative&&ArcadeNative.goHome)ArcadeNative.goHome();else location.href='../index.html';};
-  if(window.ArcadeSave)window.ArcadeSave.saveNow().finally(leave);else leave();
+  shutdown();
+  ArcadeSave.goHome();
 }
 
 function pauseMicrophone(){

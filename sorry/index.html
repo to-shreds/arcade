@@ -291,7 +291,7 @@ button:disabled{opacity:.35;transform:none;cursor:default}
       <button class="ui-btn" id="autoBtn" type="button" aria-label="Play the smartest move" title="Play the smartest move">AUTO</button>
       <button class="ui-btn" id="saveBtn" type="button">Save</button>
       <button class="ui-btn" id="loadBtn" type="button">Load</button>
-      <button class="ui-btn hidden" id="roomBtn" type="button" aria-label="Open online room">ROOM</button>
+      <button class="ui-btn hidden" id="roomBtn" type="button" aria-label="Open multiplayer room">ROOM</button>
       <button class="ui-btn" id="menuBtn" type="button" aria-label="Menu">☰</button>
     </div>
   </header>
@@ -308,7 +308,7 @@ button:disabled{opacity:.35;transform:none;cursor:default}
   <div class="panel">
     <div class="panel-title">SORRY<span>!</span></div>
     <div class="panel-sub">Fire &amp; Ice Power-Ups</div>
-    <div class="play-mode-row" id="playModeChoices"><button class="play-mode active" data-value="local" type="button">LOCAL TABLE</button><button class="play-mode" data-value="online" type="button">ONLINE ROOM</button></div>
+    <div class="play-mode-row" id="playModeChoices"><button class="play-mode active" data-value="local" type="button">LOCAL TABLE</button><button class="play-mode" data-value="online" type="button">MULTIPLAYER</button></div>
     <div id="localSetupFields">
       <div class="setup-grid">
         <div class="setup-box"><div class="setup-label">Players</div><div class="choice-row" style="--count:3" id="playerCountChoices"><button class="choice active" data-value="2" type="button">2</button><button class="choice" data-value="3" type="button">3</button><button class="choice" data-value="4" type="button">4</button></div></div>
@@ -326,6 +326,7 @@ button:disabled{opacity:.35;transform:none;cursor:default}
     </div>
     <div class="online-setup hidden" id="onlineSetupFields">
       <div class="online-name-box"><label for="onlineName">Your name</label><input class="name-input" id="onlineName" value="Player" maxlength="18" autocomplete="nickname" autocapitalize="words" enterkeyhint="done"></div>
+      <div class="online-status" id="multiplayerTransportStatus" aria-live="polite">Internet</div>
       <div class="setup-grid">
         <div class="setup-box"><div class="setup-label">Room Size</div><div class="choice-row" style="--count:3" id="onlinePlayerCountChoices"><button class="choice active" data-value="2" type="button">2</button><button class="choice" data-value="3" type="button">3</button><button class="choice" data-value="4" type="button">4</button></div></div>
         <div class="setup-box"><div class="setup-label">Rules</div><div class="choice-row" style="--count:3" id="onlineModeChoices"><button class="choice active" data-value="fireIce" type="button">F&amp;I</button><button class="choice" data-value="classic" type="button">Classic</button><button class="choice" data-value="strategic" type="button">5 Card</button></div></div>
@@ -342,7 +343,7 @@ button:disabled{opacity:.35;transform:none;cursor:default}
 </div>
 <div class="overlay hidden" id="roomOverlay">
   <div class="panel room-panel">
-    <div class="room-head"><div><div class="setup-label">Online room</div><div class="room-code" id="onlineRoomCode">------</div></div><div class="room-connection" id="onlineConnection">Connecting...</div></div>
+    <div class="room-head"><div><div class="setup-label">Multiplayer room</div><div class="room-code" id="onlineRoomCode">------</div></div><div class="room-connection" id="onlineConnection">Connecting...</div></div>
     <div class="member-list" id="onlineMembers"></div>
     <div class="room-hint" id="onlineRoomHint">Share the room code, then start when everyone is here.</div>
     <div class="room-actions"><button class="big-btn" id="copyRoomBtn" type="button">COPY CODE</button><button class="big-btn primary" id="startOnlineBtn" type="button">START GAME</button><button class="big-btn back" id="closeRoomBtn" type="button">CLOSE</button></div>
@@ -373,6 +374,7 @@ button:disabled{opacity:.35;transform:none;cursor:default}
   <div class="panel"><div class="win-title">SORRY!</div><div class="win-name" id="winName"></div><button class="big-btn primary" id="playAgainBtn" type="button">PLAY AGAIN</button><button class="big-btn back" id="winArcadeBtn" type="button" style="width:100%;margin-top:7px">BACK TO ARCADE</button></div>
 </div>
 <div id="toast"></div>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
 <script src="../arcade-save.js"></script>
 <script>
 (function(){
@@ -425,6 +427,19 @@ const RULE_PAGES=[
   {title:"Game Modes",html:"<p><b>Fire & Ice:</b> Uses both power-up tokens and the standard draw pile.</p><p><b>Classic:</b> Uses the same three-pawn 2013 board and card rules, but ignores Fire and Ice.</p><p><b>Strategic:</b> Uses Fire and Ice. Each player receives five cards, chooses one to play, then draws a replacement.</p>"}
 ];
 const $=function(id){return document.getElementById(id);};
+function invitedRoomCode(){
+  let code="";try{const params=new URLSearchParams(location.search);code=String(params.get("room")||params.get("join")||params.get("code")||"").trim().toUpperCase();}catch(e){}
+  return/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)?code:"";
+}
+function syncMultiplayerTransport(status){
+  const current=status||(window.ArcadeMultiplayer&&ArcadeMultiplayer.getStatus?ArcadeMultiplayer.getStatus():null);const output=$("multiplayerTransportStatus");
+  const nearby=!!(current&&(current.effectiveTransport||(current.nearby?"nearby":"cloudflare"))==="nearby");const identity=nearby&&current.identity;
+  if(output)output.textContent=nearby?"Nearby Arcade · "+current.connected+" connected"+(identity?" · "+(identity.avatar?identity.avatar+" ":"")+identity.nickname:""):"Internet";
+  const input=$("onlineName");const box=input&&input.closest(".online-name-box");
+  if(identity&&input){input.value=identity.nickname;input.dataset.touched="1";}
+  if(box)box.hidden=!!identity;
+}
+if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.onStatus==="function")ArcadeMultiplayer.onStatus(syncMultiplayerTransport);
 const el={
   board:$("board"),trackLayer:$("trackLayer"),pathLayer:$("pathLayer"),safetyLayer:$("safetyLayer"),zoneLayer:$("zoneLayer"),endpointLayer:$("endpointLayer"),pawnLayer:$("pawnLayer"),powerCenter:$("powerCenter"),boardCard:$("boardCard"),boardCardValue:$("boardCardValue"),boardCardText:$("boardCardText"),turnDot:$("turnDot"),turnName:$("turnName"),turnSub:$("turnSub"),cardDisplay:$("cardDisplay"),cardValue:$("cardValue"),cardMini:$("cardMini"),message:$("message"),choices:$("choices"),setupOverlay:$("setupOverlay"),menuOverlay:$("menuOverlay"),rulesOverlay:$("rulesOverlay"),rulesPage:$("rulesPage"),rulesCount:$("rulesCount"),rulesPrevBtn:$("rulesPrevBtn"),rulesNextBtn:$("rulesNextBtn"),winOverlay:$("winOverlay"),winName:$("winName"),toast:$("toast")
 };
@@ -443,7 +458,7 @@ let cpuTimer=0;
 let audioCtx=null;
 let animationTimer=0;
 let lastBoardCard=null;
-const online={active:false,code:"",token:"",playerId:"",seat:null,username:"",room:null,socket:null,status:"offline",manualClose:false,reconnectTimer:0,reconnectAttempt:0,syncing:false,setupBusy:false,restoreRequired:false};
+const online={active:false,code:"",token:"",transport:"",playerId:"",seat:null,username:"",room:null,socket:null,status:"offline",manualClose:false,reconnectTimer:0,reconnectAttempt:0,syncing:false,setupBusy:false,restoreRequired:false};
 function trackCoord(index){
   if(index<=15)return{r:0,c:index};
   if(index<=29)return{r:index-15,c:15};
@@ -554,6 +569,16 @@ function shuffle(array){
   for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}
   return a;
 }
+function nearbyAuthorityShuffle(array,s){
+  // Nearby host and client replay this same order, so deck exhaustion cannot
+  // become a client-selected draw. Local and Cloudflare games remain random.
+  const a=array.slice();const source=s||state||{moveNo:0,turn:0};const material=String(source.moveNo)+"|"+String(source.turn)+"|"+array.join("|");let seed=2166136261;
+  for(let i=0;i<material.length;i++){seed^=material.charCodeAt(i);seed=Math.imul(seed,16777619)>>>0;}
+  if(!seed)seed=0x9e3779b9;
+  function random(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)/4294967296;}
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}
+  return a;
+}
 function blurActiveInput(){
   const active=document.activeElement;
   if(active&&/^(INPUT|TEXTAREA)$/.test(active.tagName)&&typeof active.blur==="function")active.blur();
@@ -622,7 +647,11 @@ function canCurrentPlayerAct(){
   const roomTurn=online.room&&online.room.turn;
   return online.status==="connected"&&!online.syncing&&online.room&&online.room.status==="active"&&roomTurn&&Number(roomTurn.seat)===Number(online.seat)&&Number(currentTurnSeat())===Number(online.seat);
 }
-function onlineUsername(){return($("onlineName").value||"Player").trim().replace(/\s+/g," ").slice(0,18)||"Player";}
+function onlineUsername(){const entered=($("onlineName").value||"Player").trim().replace(/\s+/g," ").slice(0,18)||"Player";return window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.preferredUsername==="function"?ArcadeMultiplayer.preferredUsername(entered):entered;}
+function cleanRoomTransport(value,legacy){return(value===undefined||value===null||value==="")&&legacy?"cloudflare":value==="nearby"||value==="cloudflare"?value:"";}
+function currentRoomTransport(){const status=window.ArcadeMultiplayer&&ArcadeMultiplayer.getStatus?ArcadeMultiplayer.getStatus():null;return cleanRoomTransport(status&&(status.pinnedTransport||status.effectiveTransport||(status.nearby?"nearby":"cloudflare")),false)||"cloudflare";}
+function pinSavedRoomTransport(transport){const selected=cleanRoomTransport(transport,false);if(!selected)throw new TypeError("Saved room transport is invalid.");if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.pinRoomTransport==="function")return ArcadeMultiplayer.pinRoomTransport(selected);if(selected==="nearby")throw new Error("Nearby Arcade is unavailable. This saved room will not be sent to the Internet.");return selected;}
+function resetRoomTransport(){if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.resetRoomTransport==="function")ArcadeMultiplayer.resetRoomTransport();}
 function onlineErrorMessage(error){
   if(!error)return"Could not reach the multiplayer service.";
   if(error.status===404)return"Room not found. Check the code and try again.";
@@ -644,14 +673,14 @@ async function onlineFetch(path,options){
 }
 function saveOnlineSession(){
   if(!online.code||!online.token)return;
-  try{localStorage.setItem(ONLINE_SESSION_KEY,JSON.stringify({code:online.code,token:online.token,username:online.username}));}catch(e){}
+  try{localStorage.setItem(ONLINE_SESSION_KEY,JSON.stringify({code:online.code,token:online.token,username:online.username,transport:online.transport||currentRoomTransport()}));}catch(e){}
 }
 function storedOnlineSession(){
   let saved=null;try{saved=JSON.parse(localStorage.getItem(ONLINE_SESSION_KEY)||"null");}catch(e){}
   if(!saved||typeof saved!=="object")return null;
-  const code=String(saved.code||"").trim().toUpperCase();const token=String(saved.token||"").trim();
-  if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)||!token)return null;
-  return{code:code,token:token,username:String(saved.username||"Player").trim().slice(0,18)||"Player"};
+  const code=String(saved.code||"").trim().toUpperCase();const token=String(saved.token||"").trim();const transport=cleanRoomTransport(saved.transport,true);
+  if(!transport||!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)||!token)return null;
+  return{code:code,token:token,username:String(saved.username||"Player").trim().slice(0,18)||"Player",transport:transport};
 }
 function syncOnlineResumeButton(){
   const saved=storedOnlineSession();const button=$("resumeOnlineBtn");
@@ -666,7 +695,7 @@ function stopOnlineSocket(permanent){
   online.manualClose=true;
   if(online.reconnectTimer){clearTimeout(online.reconnectTimer);online.reconnectTimer=0;}
   if(online.socket){try{online.socket.close(1000,"Leaving room");}catch(e){}online.socket=null;}
-  if(permanent){online.active=false;online.code="";online.token="";online.playerId="";online.seat=null;online.username="";online.room=null;online.status="offline";online.syncing=false;online.restoreRequired=false;setOnlineSetupBusy(false);try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(e){}}
+  if(permanent){online.active=false;online.code="";online.token="";online.transport="";online.playerId="";online.seat=null;online.username="";online.room=null;online.status="offline";online.syncing=false;online.restoreRequired=false;setOnlineSetupBusy(false);try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(e){}resetRoomTransport();}
 }
 function scheduleOnlineReconnect(){
   if(online.manualClose||!online.active||!online.code||!online.token)return;
@@ -789,14 +818,14 @@ function applyOnlineRoom(room,forceState){
   }
   renderRoom();render();
 }
-async function enterOnline(payload){
+async function enterOnline(payload,restoredTransport){
   if(!payload||!payload.room||payload.room.game!=="sorry"){
     if(payload&&payload.room&&payload.token){try{await onlineFetch("/api/arcade/rooms/"+encodeURIComponent(payload.room.code)+"/actions",{method:"POST",headers:{"content-type":"application/json",Authorization:"Bearer "+payload.token},body:JSON.stringify({type:"leave"})});}catch(e){}}
     const error=new Error("That code belongs to a different Arcade game.");error.status=409;throw error;
   }
   if(!online.active)holdCurrentSave();
   stopOnlineSocket(false);
-  online.active=true;online.code=String(payload.code||(payload.room&&payload.room.code)||"").toUpperCase();online.token=payload.token||"";online.playerId=payload.playerId||(payload.room&&payload.room.playerId)||"";online.seat=Number.isInteger(payload.seat)?payload.seat:(payload.room&&Number.isInteger(payload.room.seat)?payload.room.seat:null);online.username=onlineUsername();online.room=null;online.status="reconnecting";online.reconnectAttempt=0;online.syncing=false;online.restoreRequired=false;
+  online.active=true;online.code=String(payload.code||(payload.room&&payload.room.code)||"").toUpperCase();online.token=payload.token||"";online.transport=cleanRoomTransport(restoredTransport,false)||currentRoomTransport();online.playerId=payload.playerId||(payload.room&&payload.room.playerId)||"";online.seat=Number.isInteger(payload.seat)?payload.seat:(payload.room&&Number.isInteger(payload.room.seat)?payload.room.seat:null);online.username=onlineUsername();online.room=null;online.status="reconnecting";online.reconnectAttempt=0;online.syncing=false;online.restoreRequired=false;
   saveOnlineSession();applyOnlineRoom(payload.room);connectOnlineSocket();
 }
 async function createOnlineRoom(){
@@ -806,8 +835,8 @@ async function createOnlineRoom(){
   try{
     const lobby={kind:"sorry-lobby",mode:setup.mode,showEndpoints:setup.showEndpoints,colors:setup.colors.slice(0,setup.count)};
     const body=await onlineFetch("/api/arcade/rooms",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({game:"sorry",username:username,maxPlayers:setup.count,state:{lobby:lobby}})});
-    status.textContent="";await enterOnline(body);showToast("Share room code "+online.code+".");
-  }catch(error){status.textContent=onlineErrorMessage(error);}
+    status.textContent="";await enterOnline(body);if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.invite==="function")ArcadeMultiplayer.invite("sorry",online.code,"Sorry!");showToast("Share room code "+online.code+".");
+  }catch(error){resetRoomTransport();status.textContent=onlineErrorMessage(error);}
   finally{setOnlineSetupBusy(false);}
 }
 async function joinOnlineRoom(resume){
@@ -818,9 +847,10 @@ async function joinOnlineRoom(resume){
   if(resume&&saved){$("onlineName").value=saved.username;}
   status.textContent=resume?"Resuming room "+code+"...":"Joining room "+code+"...";blurActiveInput();
   try{
+    if(resume&&saved)pinSavedRoomTransport(saved.transport);
     const body=await onlineFetch("/api/arcade/rooms/"+encodeURIComponent(code)+"/join",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(Object.assign({username:onlineUsername()},resume&&saved?{reconnectToken:saved.token}:{}))});
-    status.textContent="";await enterOnline(body);
-  }catch(error){if(resume&&error&&(error.status===401||error.status===403||error.status===404)){try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(e){}syncOnlineResumeButton();}status.textContent=onlineErrorMessage(error);}
+    status.textContent="";await enterOnline(body,resume&&saved?saved.transport:undefined);
+  }catch(error){if(resume&&error&&(error.status===401||error.status===403||error.status===404||error.status===410)){try{localStorage.removeItem(ONLINE_SESSION_KEY);}catch(e){}resetRoomTransport();syncOnlineResumeButton();}else if(!resume)resetRoomTransport();status.textContent=onlineErrorMessage(error);}
   finally{setOnlineSetupBusy(false);}
 }
 function onlineLobbyOptions(){
@@ -911,7 +941,7 @@ async function leaveOnlineRoom(){
   if(online.active&&online.room&&online.token){
     try{await onlineFetch("/api/arcade/rooms/"+encodeURIComponent(online.code)+"/actions",{method:"POST",headers:{"content-type":"application/json",Authorization:"Bearer "+online.token},body:JSON.stringify({type:"leave"})});}
     catch(error){
-      if(!error||(error.status!==401&&error.status!==404)){showToast("Could not leave the room yet. Your seat is still saved.");return false;}
+      if(!error||(error.status!==401&&error.status!==403&&error.status!==404&&error.status!==410)){showToast("Could not leave the room yet. Your seat is still saved.");return false;}
     }
   }
   const backup=heldSave?cloneGame(heldSave):null;stopOnlineSocket(true);state=backup;heldSave=null;undoStack=[];selectedPawnId=null;selectedTargetId=null;selectedAmount=null;selectedMode=null;
@@ -1135,7 +1165,7 @@ function applyFireJump(s,plan){
   const pawn=pawnById(plan.pawnId,s);pawn.zone=plan.dest.zone;pawn.pos=plan.dest.pos;
 }
 function drawFromDeck(){
-  if(!state.deck.length){state.deck=shuffle(state.discard);state.discard=[];}
+  if(!state.deck.length){state.deck=online.active&&online.transport==="nearby"?nearbyAuthorityShuffle(state.discard,state):shuffle(state.discard);state.discard=[];}
   return state.deck.pop()||null;
 }
 function startTurn(){
@@ -2154,7 +2184,7 @@ function bind(){
 function goToArcade(){
   clearTimeout(cpuTimer);clearTimeout(animationTimer);saveGame(false);
   if(isOnlineGame())stopOnlineSocket(false);
-  const leave=function(){location.href="../index.html";};
+  const leave=function(){if(window.ArcadeMultiplayer&&typeof ArcadeMultiplayer.goHome==="function"){ArcadeMultiplayer.goHome();return;}location.href="../index.html";};
   try{
     if(window.ArcadeSave&&typeof ArcadeSave.saveNow==="function"){
       Promise.resolve(ArcadeSave.saveNow()).then(leave,leave);
@@ -2166,6 +2196,7 @@ function goToArcade(){
 function init(){
   buildBoard();bind();syncSetupChoices();updateSetupRows();updateSetupMode();syncOnlineResumeButton();render();
   let wantsLoad=false;try{const q=new URLSearchParams(location.search);wantsLoad=q.get("load")==="1"||q.get("resume")==="1";}catch(e){}
+  const invited=invitedRoomCode();if(invited){setup.playMode="online";updateSetupMode();$("onlineJoinCode").value=invited;$("joinCodeRow").classList.remove("hidden");}
   if(wantsLoad&&!loadGame(false))el.setupOverlay.classList.remove("hidden");
 }
 window.SorryGame={

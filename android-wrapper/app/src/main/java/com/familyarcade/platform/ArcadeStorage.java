@@ -405,6 +405,7 @@ public final class ArcadeStorage {
         if (lower.endsWith(".html") || lower.endsWith(".htm")) return "text/html";
         if (lower.endsWith(".css")) return "text/css";
         if (lower.endsWith(".js") || lower.endsWith(".mjs")) return "application/javascript";
+        if (lower.endsWith(".webmanifest")) return "application/manifest+json";
         if (lower.endsWith(".json")) return "application/json";
         if (lower.endsWith(".svg")) return "image/svg+xml";
         if (lower.endsWith(".wasm")) return "application/wasm";

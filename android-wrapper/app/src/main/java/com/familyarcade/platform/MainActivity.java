@@ -50,7 +50,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Locale;
 import java.lang.ref.WeakReference;
@@ -66,13 +68,14 @@ public final class MainActivity extends BaseActivity {
     public static final String REMOTE_BASE = "https://" + REMOTE_HOST + "/arcade/";
     private static final int PICK_TREE = 40;
     private static final int PICK_WEB_FILE = 41;
-    private static final int RECORD_AUDIO_REQUEST = 42;
+    private static final int MEDIA_PERMISSION_REQUEST = 42;
     private FrameLayout root;
     private volatile WebView webView;
     private volatile LocalClient activeClient;
     private ProgressBar progress;
     private volatile ArcadeStorage storage;
-    private PermissionRequest pendingAudioPermission;
+    private PermissionRequest pendingMediaPermission;
+    private String[] pendingWebMediaResources;
     private ValueCallback<Uri[]> pendingFileChooser;
     private boolean pinRequested;
     private boolean loaded;
@@ -87,12 +90,15 @@ public final class MainActivity extends BaseActivity {
     private volatile boolean remoteMode = true;
     private volatile boolean forceOffline;
     private volatile boolean archiveSyncInProgress;
+    private final AtomicBoolean nearbyArchiveNetworkPaused = new AtomicBoolean();
+    private final AtomicBoolean archiveResumeQueued = new AtomicBoolean();
+    private final AtomicBoolean archiveResumeRequested = new AtomicBoolean();
     private final AtomicBoolean remoteRecoveryScheduled = new AtomicBoolean();
     private final ExecutorService archiveExecutor = Executors.newSingleThreadExecutor();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private OfflineArchiveManager offlineArchive;
     private int startupGeneration;
-    private int webGeneration;
+    private volatile int webGeneration;
     private int watchdogTicket;
     private Runnable startupWatchdog;
     private boolean webReady;
@@ -145,20 +151,12 @@ public final class MainActivity extends BaseActivity {
                 if (validatedManifest != null) {
                     archiveSyncInProgress = true;
                     mainHandler.post(() -> beginRemoteWeb(generation, requestedIntent, false));
-                    boolean synchronizationFailed = false;
                     try {
                         manager.synchronize(validatedManifest);
                     } catch (IOException | RuntimeException error) {
-                        synchronizationFailed = true;
                         Log.w("Arcade", "Offline Arcade update was not activated", error);
                     } finally {
                         archiveSyncInProgress = false;
-                    }
-                    if (synchronizationFailed && hasArchive) {
-                        mainHandler.post(() -> {
-                            if (!remoteGenerationCurrent(generation) || forceOffline || !manager.isReady()) return;
-                            fallbackAfterRemoteFailure(activeClient, webView);
-                        });
                     }
                 } else {
                     boolean fallbackReady = hasArchive && manager.isReady();
@@ -171,6 +169,49 @@ public final class MainActivity extends BaseActivity {
             });
         } catch (RejectedExecutionException error) {
             if (!destroyed) showRemoteRecoveryScreen("The Arcade startup service is unavailable.");
+        }
+    }
+
+    private void setNearbyArchiveNetworkPaused(boolean paused) {
+        OfflineArchiveManager manager = offlineArchive;
+        if (manager == null) return;
+        boolean wasPaused = nearbyArchiveNetworkPaused.getAndSet(paused);
+        manager.setNetworkPaused(paused);
+        if (wasPaused && !paused) resumeNativeArchiveUpdate();
+    }
+
+    private void resumeNativeArchiveUpdate() {
+        OfflineArchiveManager manager = offlineArchive;
+        if (destroyed || !remoteMode || manager == null || manager.isNetworkPaused()) return;
+        if (!archiveResumeQueued.compareAndSet(false, true)) {
+            // A quick Nearby pause/resume can happen while the cancelled task is
+            // still unwinding. Remember the resume so it is not stranded.
+            archiveResumeRequested.set(true);
+            return;
+        }
+        archiveResumeRequested.set(false);
+        try {
+            archiveExecutor.execute(() -> {
+                try {
+                    if (destroyed || !remoteMode || manager != offlineArchive || manager.isNetworkPaused()) return;
+                    OfflineArchiveManager.ArchiveManifest remoteManifest = manager.fetchRemoteManifest();
+                    if (destroyed || !remoteMode || manager != offlineArchive || manager.isNetworkPaused()) return;
+                    archiveSyncInProgress = true;
+                    manager.synchronize(remoteManifest);
+                } catch (IOException | RuntimeException error) {
+                    Log.w("Arcade", "Resumed offline Arcade update was not activated", error);
+                } finally {
+                    archiveSyncInProgress = false;
+                    archiveResumeQueued.set(false);
+                    if (archiveResumeRequested.getAndSet(false) && !destroyed && remoteMode && manager == offlineArchive && !manager.isNetworkPaused()) {
+                        resumeNativeArchiveUpdate();
+                    }
+                }
+            });
+        } catch (RejectedExecutionException error) {
+            archiveResumeQueued.set(false);
+            archiveResumeRequested.set(false);
+            Log.w("Arcade", "Offline Arcade update could not resume", error);
         }
     }
 
@@ -531,11 +572,11 @@ public final class MainActivity extends BaseActivity {
             settings.setDisplayZoomControls(false);
             settings.setUseWideViewPort(true);
             settings.setLoadWithOverviewMode(false);
-            settings.setUserAgentString(settings.getUserAgentString() + " ArcadePlatform/2.3.0");
+            settings.setUserAgentString(settings.getUserAgentString() + " ArcadePlatform/2.4.0");
             WebView.setWebContentsDebuggingEnabled(false);
             int boundGeneration = remoteMode ? startupGeneration : 0;
             boolean boundOffline = remoteMode && forceOffline;
-            created.addJavascriptInterface(new ArcadeBridge(boundGeneration), "ArcadeNative");
+            created.addJavascriptInterface(new ArcadeBridge(boundGeneration, boundOffline), "ArcadeNative");
             WebView boundView = created;
             ArcadeStorage boundStorage = storage;
             boolean boundRemote = remoteMode;
@@ -583,9 +624,10 @@ public final class MainActivity extends BaseActivity {
             try { pendingFileChooser.onReceiveValue(null); } catch (Exception ignored) {}
             pendingFileChooser = null;
         }
-        if (pendingAudioPermission != null) {
-            try { pendingAudioPermission.deny(); } catch (Exception ignored) {}
-            pendingAudioPermission = null;
+        if (pendingMediaPermission != null) {
+            try { pendingMediaPermission.deny(); } catch (Exception ignored) {}
+            pendingMediaPermission = null;
+            pendingWebMediaResources = null;
         }
         if (oldProgress != null) {
             try { root.removeView(oldProgress); } catch (Exception ignored) {}
@@ -706,15 +748,37 @@ public final class MainActivity extends BaseActivity {
     private boolean atHome() {
         if (webView == null || webView.getUrl() == null) return true;
         Uri uri = Uri.parse(webView.getUrl());
+        if (uri.getQueryParameter("game") != null) return false;
         String path = uri.getPath();
         if (path == null) return true;
         if (remoteMode) return path.equals("/arcade/") || path.equals("/arcade/index.html");
         return path.equals("/") || path.equals("/index.html");
     }
 
+    private void delegateToArcadeShell(String method, Runnable fallback) {
+        WebView active = webView;
+        if (active == null) {
+            if (fallback != null) fallback.run();
+            return;
+        }
+        String script = "(function(){try{var shell=window.ArcadeShell;if(shell&&typeof shell."
+            + method + "==='function'){shell." + method + "();return true;}return false;}catch(_){return false;}})()";
+        try {
+            active.evaluateJavascript(script, value -> {
+                if (destroyed || active != webView) return;
+                if (!"true".equals(value) && fallback != null) fallback.run();
+            });
+        } catch (RuntimeException error) {
+            if (fallback != null) fallback.run();
+        }
+    }
+
     @Override
     public void onBackPressed() {
-        if (!atHome()) loadHome();
+        final boolean wasHome = atHome();
+        delegateToArcadeShell("handleNativeBack", () -> {
+            if (!wasHome) loadHome();
+        });
     }
 
     @Override
@@ -755,6 +819,8 @@ public final class MainActivity extends BaseActivity {
         destroyed = true;
         watchdogTicket++;
         mainHandler.removeCallbacksAndMessages(null);
+        OfflineArchiveManager manager = offlineArchive;
+        if (manager != null) manager.setNetworkPaused(true);
         archiveExecutor.shutdownNow();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) ServiceWorkerApi24.clear(this);
         TextToSpeech engine = textToSpeech;
@@ -774,11 +840,15 @@ public final class MainActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] results) {
         super.onRequestPermissionsResult(requestCode, permissions, results);
-        if (requestCode != RECORD_AUDIO_REQUEST || pendingAudioPermission == null) return;
-        PermissionRequest request = pendingAudioPermission;
-        pendingAudioPermission = null;
+        if (requestCode != MEDIA_PERMISSION_REQUEST || pendingMediaPermission == null) return;
+        PermissionRequest request = pendingMediaPermission;
+        String[] webResources = pendingWebMediaResources;
+        pendingMediaPermission = null;
+        pendingWebMediaResources = null;
+        boolean granted = results.length == permissions.length && results.length > 0;
+        for (int result : results) if (result != PackageManager.PERMISSION_GRANTED) granted = false;
         try {
-            if (results.length > 0 && results[0] == PackageManager.PERMISSION_GRANTED) request.grant(new String[]{PermissionRequest.RESOURCE_AUDIO_CAPTURE});
+            if (granted && webResources != null && webResources.length > 0) request.grant(webResources);
             else request.deny();
         } catch (RuntimeException ignored) {}
     }
@@ -796,9 +866,11 @@ public final class MainActivity extends BaseActivity {
 
     private final class ArcadeBridge {
         private final int generation;
+        private final boolean boundOffline;
 
-        ArcadeBridge(int generation) {
+        ArcadeBridge(int generation, boolean boundOffline) {
             this.generation = generation;
+            this.boundOffline = boundOffline;
         }
 
         @JavascriptInterface
@@ -814,6 +886,30 @@ public final class MainActivity extends BaseActivity {
         @JavascriptInterface
         public void openGameWithOrientation(String path, String orientation) {
             runOnUiThread(() -> MainActivity.this.openGame(path, orientation));
+        }
+
+        @JavascriptInterface
+        public void setGameOrientation(String orientation) {
+            runOnUiThread(() -> applyOrientation(orientation));
+        }
+
+        @JavascriptInterface
+        public boolean hasOfflineArchive() {
+            OfflineArchiveManager manager = offlineArchive;
+            return boundOffline
+                && generation > 0
+                && generation == webGeneration
+                && remoteMode
+                && forceOffline
+                && manager != null
+                && manager.isReady();
+        }
+
+        @JavascriptInterface
+        public void setNearbyNetworkPaused(boolean paused) {
+            // Ignore a stale interface retained by any replaced WebView.
+            if (generation != webGeneration) return;
+            setNearbyArchiveNetworkPaused(paused);
         }
 
         @JavascriptInterface
@@ -863,7 +959,7 @@ public final class MainActivity extends BaseActivity {
 
         @JavascriptInterface
         public void goHome() {
-            runOnUiThread(() -> loadHome());
+            runOnUiThread(() -> delegateToArcadeShell("goHome", () -> loadHome()));
         }
 
         @JavascriptInterface
@@ -937,6 +1033,27 @@ public final class MainActivity extends BaseActivity {
         if (!isRemoteArcadeUri(uri)) return false;
         String path = uri.getPath();
         return "/arcade".equals(path) || "/arcade/".equals(path) || "/arcade/index.html".equals(path);
+    }
+
+    private static boolean isDocumentRequest(WebResourceRequest request) {
+        if (request == null) return false;
+        if (request.isForMainFrame()) return true;
+        Map<String, String> headers = request.getRequestHeaders();
+        String destination = "";
+        String accept = "";
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                String name = entry.getKey();
+                if (name == null) continue;
+                if ("sec-fetch-dest".equalsIgnoreCase(name)) destination = String.valueOf(entry.getValue()).toLowerCase(Locale.US);
+                else if ("accept".equalsIgnoreCase(name)) accept = String.valueOf(entry.getValue()).toLowerCase(Locale.US);
+            }
+        }
+        if ("document".equals(destination) || "iframe".equals(destination) || "frame".equals(destination)) return true;
+        if (!accept.contains("text/html")) return false;
+        Uri uri = request.getUrl();
+        String path = uri == null ? null : uri.getPath();
+        return path != null && (path.endsWith("/") || path.toLowerCase(Locale.US).endsWith(".html"));
     }
 
     private void requestRemoteRecovery(LocalClient client, WebView failedView) {
@@ -1049,10 +1166,10 @@ public final class MainActivity extends BaseActivity {
                 }
                 if (served != null) return served;
                 if (failure == null) failure = new FileNotFoundException(path);
-                requestStorageRecovery(this, view, active, failure, request.isForMainFrame());
+                requestStorageRecovery(this, view, active, failure, isDocumentRequest(request));
                 return errorResponse(failure instanceof FileNotFoundException ? 404 : 503, failure instanceof FileNotFoundException ? "Not found" : "Arcade folder unavailable");
             } catch (Exception error) {
-                requestStorageRecovery(this, view, active, error, request.isForMainFrame());
+                requestStorageRecovery(this, view, active, error, isDocumentRequest(request));
                 return errorResponse(503, "Arcade folder unavailable");
             }
         }
@@ -1103,12 +1220,12 @@ public final class MainActivity extends BaseActivity {
 
         @Override
         public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-            if (boundRemote && request.isForMainFrame() && isRemoteArcadeUri(request.getUrl())) requestRemoteRecovery(this, view);
+            if (boundRemote && isDocumentRequest(request) && isRemoteArcadeUri(request.getUrl())) requestRemoteRecovery(this, view);
         }
 
         @Override
         public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-            if (boundRemote && request.isForMainFrame() && isRemoteArcadeUri(request.getUrl()) && errorResponse.getStatusCode() >= 400) requestRemoteRecovery(this, view);
+            if (boundRemote && isDocumentRequest(request) && isRemoteArcadeUri(request.getUrl()) && errorResponse.getStatusCode() >= 400) requestRemoteRecovery(this, view);
         }
 
         @Override
@@ -1218,7 +1335,11 @@ public final class MainActivity extends BaseActivity {
         loaded = false;
         if (oldClient != null) oldClient.cancelRecovery();
         pendingFileChooser = null;
-        pendingAudioPermission = null;
+        if (pendingMediaPermission != null) {
+            try { pendingMediaPermission.deny(); } catch (RuntimeException ignored) {}
+        }
+        pendingMediaPermission = null;
+        pendingWebMediaResources = null;
         if (oldProgress != null) {
             try { root.removeView(oldProgress); } catch (Exception ignored) {}
         }
@@ -1232,24 +1353,48 @@ public final class MainActivity extends BaseActivity {
             runOnUiThread(() -> {
                 Uri origin = request.getOrigin();
                 boolean local = origin != null && "https".equalsIgnoreCase(origin.getScheme()) && origin.getPort() == -1 && (HOST.equalsIgnoreCase(origin.getHost()) || REMOTE_HOST.equalsIgnoreCase(origin.getHost()));
-                boolean audio = false;
-                for (String resource : request.getResources()) if (PermissionRequest.RESOURCE_AUDIO_CAPTURE.equals(resource)) audio = true;
-                if (!local || !audio) {
+                List<String> webResources = new ArrayList<>();
+                List<String> androidPermissions = new ArrayList<>();
+                if (local) for (String resource : request.getResources()) {
+                    if (PermissionRequest.RESOURCE_AUDIO_CAPTURE.equals(resource)) {
+                        webResources.add(resource);
+                        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && !androidPermissions.contains(Manifest.permission.RECORD_AUDIO)) {
+                            androidPermissions.add(Manifest.permission.RECORD_AUDIO);
+                        }
+                    } else if (PermissionRequest.RESOURCE_VIDEO_CAPTURE.equals(resource)) {
+                        webResources.add(resource);
+                        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && !androidPermissions.contains(Manifest.permission.CAMERA)) {
+                            androidPermissions.add(Manifest.permission.CAMERA);
+                        }
+                    } else {
+                        webResources.clear();
+                        break;
+                    }
+                }
+                if (!local || webResources.isEmpty()) {
                     request.deny();
                     return;
                 }
-                if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-                    request.grant(new String[]{PermissionRequest.RESOURCE_AUDIO_CAPTURE});
+                String[] allowed = webResources.toArray(new String[0]);
+                if (androidPermissions.isEmpty()) {
+                    request.grant(allowed);
                 } else {
-                    pendingAudioPermission = request;
-                    requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, RECORD_AUDIO_REQUEST);
+                    if (pendingMediaPermission != null) {
+                        try { pendingMediaPermission.deny(); } catch (RuntimeException ignored) {}
+                    }
+                    pendingMediaPermission = request;
+                    pendingWebMediaResources = allowed;
+                    requestPermissions(androidPermissions.toArray(new String[0]), MEDIA_PERMISSION_REQUEST);
                 }
             });
         }
 
         @Override
         public void onPermissionRequestCanceled(PermissionRequest request) {
-            if (pendingAudioPermission == request) pendingAudioPermission = null;
+            if (pendingMediaPermission == request) {
+                pendingMediaPermission = null;
+                pendingWebMediaResources = null;
+            }
         }
 
         @Override

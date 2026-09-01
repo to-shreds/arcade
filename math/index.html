@@ -1778,7 +1778,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
     
     function openGame(_id) {  }
-    function goToMenu() { try{ ArcadeSettings.closeModal(); }catch(e){} window.location.href = '../index.html'; }
+    function goToMenu() { try{ ArcadeSettings.closeModal(); }catch(e){} ArcadeSave.goHome(); }
 
 const FeedbackSys = (function(){
         const overlay = document.getElementById('feedback-overlay');
@@ -2097,7 +2097,7 @@ try{ window.FeedbackSys = FeedbackSys; }catch(e){}
 
 function goToMenu() {
     try{ ArcadeSettings.closeModal(); }catch(e){}
-    const leave = () => { window.location.href = '../index.html'; };
+    const leave = () => { ArcadeSave.goHome(); };
     if(window.ArcadeSave && MathGame.autosave.meaningful()) ArcadeSave.saveNow().then(leave, leave);
     else leave();
 }

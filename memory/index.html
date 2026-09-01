@@ -875,11 +875,12 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
           </div></div>
       </div>
 
-      <section class="memory-online" id="memoryOnlineSetup" aria-label="Online multiplayer">
-        <div class="memory-online-title">PLAY ONLINE</div>
-        <div style="text-align:center;font-size:11px;color:#aaa;margin:-3px 0 7px">Online rooms support 2–4 players. Local play supports up to 8.</div>
+      <section class="memory-online" id="memoryOnlineSetup" aria-label="Multiplayer">
+        <div class="memory-online-title">MULTIPLAYER</div>
+        <div style="text-align:center;font-size:11px;color:#aaa;margin:-3px 0 7px">Multiplayer rooms support 2–4 players. Local play supports up to 8.</div>
+        <div class="memory-online-status" id="multiplayerTransportStatus" aria-live="polite">Internet</div>
         <div class="memory-online-row" id="memoryOnlineActions">
-          <input id="memoryOnlineName" maxlength="20" autocomplete="nickname" enterkeyhint="done" placeholder="Your username" aria-label="Your online username" />
+          <input id="memoryOnlineName" maxlength="20" autocomplete="nickname" enterkeyhint="done" placeholder="Your username" aria-label="Your multiplayer username" />
           <button type="button" class="ui-btn online-action primary" id="memoryOnlineCreate">Create Room</button>
           <button type="button" class="ui-btn online-action" id="memoryOnlineJoin">Join Room</button>
         </div>
@@ -888,14 +889,14 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
           <button type="button" class="ui-btn online-action primary" id="memoryOnlineConnect">Join</button>
           <button type="button" class="ui-btn online-action" id="memoryOnlineJoinCancel">Cancel</button>
         </div>
-        <button type="button" class="ui-btn online-action" id="memoryOnlineResume" hidden>Resume Online Room</button>
+        <button type="button" class="ui-btn online-action" id="memoryOnlineResume" hidden>Resume Room</button>
         <div class="memory-online-status" id="memoryOnlineStatus" aria-live="polite">Create a room or join with a six-character code.</div>
         <div class="memory-lobby" id="memoryOnlineLobby" hidden>
           <div style="font-size:11px;font-weight:900;color:#aaa;letter-spacing:.7px">ROOM CODE</div>
           <div class="memory-room-code" id="memoryOnlineRoomCode">------</div>
           <div class="memory-members" id="memoryOnlineMembers"></div>
           <div class="memory-online-row">
-            <button type="button" class="ui-btn online-action primary" id="memoryOnlineStart" hidden>Start Online Game</button>
+            <button type="button" class="ui-btn online-action primary" id="memoryOnlineStart" hidden>Start Multiplayer Game</button>
             <button type="button" class="ui-btn online-action" id="memoryOnlineLeave">Leave Room</button>
           </div>
         </div>
@@ -945,6 +946,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     </div>
   </div>
 
+<script src="../multiplayer/arcade-multiplayer.js"></script>
 <script src="online-model.js"></script>
 <script src="room-client.js"></script>
 <script>
@@ -1038,6 +1040,23 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   const onlineMembers = $("memoryOnlineMembers");
   const onlineStart = $("memoryOnlineStart");
   const onlineLeave = $("memoryOnlineLeave");
+  const multiplayerTransportStatus = $("multiplayerTransportStatus");
+
+  function invitedRoomCode(){
+    let code = "";
+    try{ const params = new URLSearchParams(location.search); code = String(params.get("room") || params.get("join") || params.get("code") || "").trim().toUpperCase(); }catch(_error){}
+    return /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code) ? code : "";
+  }
+
+  function syncMultiplayerTransport(status){
+    const current = status || (window.ArcadeMultiplayer && ArcadeMultiplayer.getStatus ? ArcadeMultiplayer.getStatus() : null);
+    const nearby = !!(current && (current.effectiveTransport || (current.nearby ? "nearby" : "cloudflare")) === "nearby");
+    const identity = nearby && current.identity;
+    if(multiplayerTransportStatus) multiplayerTransportStatus.textContent = nearby ? `Nearby Arcade · ${current.connected} connected${identity ? ` · ${identity.avatar ? identity.avatar + " " : ""}${identity.nickname}` : ""}` : "Internet";
+    if(identity && onlineName) onlineName.value = identity.nickname;
+    if(onlineName) onlineName.hidden = !!identity;
+  }
+  if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.onStatus === "function") ArcadeMultiplayer.onStatus(syncMultiplayerTransport);
 
 
   function bindPress(el, handler){
@@ -1180,7 +1199,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   }
 
   function getOnlineUsername(){
-    const username = roomClient ? roomClient.cleanUsername(onlineName && onlineName.value) : "";
+    const entered = roomClient ? roomClient.cleanUsername(onlineName && onlineName.value) : "";
+    const username = window.ArcadeMultiplayer && typeof ArcadeMultiplayer.preferredUsername === "function" ? ArcadeMultiplayer.preferredUsername(entered) : entered;
     if(username){
       if(onlineName) onlineName.value = username;
       try{ localStorage.setItem(ONLINE_NAME_KEY, username); }catch(_error){}
@@ -1421,7 +1441,11 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     const maxPlayers = Math.max(2, Math.min(4, parseInt(playersSel.value, 10) || 2));
     setSelectValue(playersSel, maxPlayers);
     setOnlineButtonsBusy(true);
-    try{ await roomClient.create({ username, maxPlayers }); }
+    try{
+      const created = await roomClient.create({ username, maxPlayers });
+      const code = created && (created.code || (created.room && created.room.code)) || (roomClient.session && roomClient.session.code);
+      if(code && window.ArcadeMultiplayer && typeof ArcadeMultiplayer.invite === "function") ArcadeMultiplayer.invite("memory", code, "Memory Match");
+    }
     catch(error){ setOnlineStatus(error.message || "Room creation failed.", true); }
     finally{ setOnlineButtonsBusy(false); }
   }
@@ -2346,7 +2370,7 @@ function renderScoreBar(){
       flips: item.flips || 0,
       curStreak: item.curStreak || 0,
       longestStreak: item.longestStreak || 0,
-      totalDecision: item.totalDecision || 0,
+      totalDecision: Math.max(0, Math.min(86400000, Math.floor(Number(item.totalDecision) || 0))),
       decisionCount: item.decisionCount || 0,
       mismatchPairCounts: Object.assign({}, item.mismatchPairCounts || {}),
       bestRepeat: item.bestRepeat || 0
@@ -2541,7 +2565,10 @@ function renderScoreBar(){
   }
 
   function leaveArcade(){
-    const leave = () => { window.location.href = "../index.html"; };
+    const leave = () => {
+      if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.goHome === "function"){ ArcadeMultiplayer.goHome(); return; }
+      window.location.href = "../index.html";
+    };
     if(onlineMode){ if(roomClient) roomClient.disconnect(); leave(); return; }
     if(window.ArcadeSave && meaningful()) ArcadeSave.saveNow().then(leave, leave);
     else leave();
@@ -2654,6 +2681,9 @@ function renderScoreBar(){
 
   setStatus("Ready");
   try{ if(onlineName) onlineName.value = localStorage.getItem(ONLINE_NAME_KEY) || ""; }catch(_error){}
+  const invited = invitedRoomCode();
+  if(invited && onlineCode){ onlineCode.value = invited; if(onlineJoinRow) onlineJoinRow.hidden = false; }
+  syncMultiplayerTransport();
   syncOnlineResume();
   window.addEventListener("pagehide", () => { if(roomClient) roomClient.disconnect(); });
   window.MemoryGame = {

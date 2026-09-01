@@ -16,6 +16,10 @@
     --ui-accent: #00e5ff;
     --gold:#ffd700;
     --ui-radius: 14px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
 
     --light: #d8d2c7;
     --dark:  #6a5b4e;
@@ -945,7 +949,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             <button id="modeCpu" class="ui-btn primary">Play CPU</button>
           </section>
           <section class="startCard online">
-            <h2>Player vs. Player Online</h2><p>Create a room and share its six-character code, or enter a code from another player.</p>
+            <h2>Multiplayer</h2><p>Create a room and share its six-character code, or enter a code from another player.</p>
+            <div id="multiplayerTransportStatus" class="tiny" aria-live="polite">Internet</div>
             <div class="onlineActions"><button id="onlineCreateBtn" class="ui-btn primary">Create Room</button><button id="onlineJoinOpenBtn" class="ui-btn">Join Room</button></div>
             <button id="onlineResumeBtn" class="ui-btn ghost" type="button" hidden>Resume Last Room</button>
             <div id="onlineSetupStatus" class="tiny" aria-live="polite"></div>
@@ -1016,6 +1021,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
   <div id="toast" class="toast"></div>
 
+<script src="../multiplayer/arcade-multiplayer.js"></script>
 <script src="../arcade-save.js"></script>
 <script>
 (() => {
@@ -1027,6 +1033,22 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const files = "abcdefgh";
   const now = () => (performance && performance.now) ? performance.now() : Date.now();
+
+  function invitedRoomCode(){
+    const params = new URLSearchParams(window.location.search);
+    const code = String(params.get("room") || params.get("join") || params.get("code") || "").trim().toUpperCase();
+    return /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code) ? code : "";
+  }
+
+  function syncMultiplayerTransport(status){
+    const current = status || (window.ArcadeMultiplayer && ArcadeMultiplayer.getStatus ? ArcadeMultiplayer.getStatus() : null);
+    const output = $("#multiplayerTransportStatus");
+    if(!output) return;
+    const nearby = !!(current && (current.effectiveTransport || (current.nearby ? "nearby" : "cloudflare")) === "nearby");
+    const identity = nearby && current.identity;
+    output.textContent = nearby ? ("Nearby Arcade · " + current.connected + " connected" + (identity ? " · " + (identity.avatar ? identity.avatar + " " : "") + identity.nickname : "")) : "Internet";
+  }
+  if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.onStatus === "function") ArcadeMultiplayer.onStatus(syncMultiplayerTransport);
 
   function sqToAlg(sq){
     const f = sq & 7;
@@ -1155,7 +1177,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   const CHESS_API_BASE = "https://arcade-chess.jonathanjablon.workers.dev";
   const ONLINE_SESSION_KEY = "arcadeChess_onlineSession_v1";
   const online = {
-    code: "", token: "", side: null, room: null, socket: null,
+    code: "", token: "", transport: "", side: null, room: null, socket: null,
     reconnectTimer: 0, reconnectAttempt: 0, manualClose: false, status: "offline"
   };
 
@@ -3143,7 +3165,32 @@ clearSelection();
 
   function saveOnlineSession(){
     if(!online.code || !online.token) return;
-    try{ localStorage.setItem(ONLINE_SESSION_KEY, JSON.stringify({code:online.code, token:online.token})); }catch(_){ }
+    try{ localStorage.setItem(ONLINE_SESSION_KEY, JSON.stringify({code:online.code, token:online.token, transport:online.transport || currentRoomTransport()})); }catch(_){ }
+  }
+
+  function cleanRoomTransport(value, legacy){
+    return (value === undefined || value === null || value === "") && legacy ? "cloudflare" : value === "nearby" || value === "cloudflare" ? value : "";
+  }
+
+  function currentRoomTransport(){
+    const status = window.ArcadeMultiplayer && ArcadeMultiplayer.getStatus ? ArcadeMultiplayer.getStatus() : null;
+    return cleanRoomTransport(status && (status.pinnedTransport || status.effectiveTransport || (status.nearby ? "nearby" : "cloudflare")), false) || "cloudflare";
+  }
+
+  function pinSavedRoomTransport(transport){
+    const selected = cleanRoomTransport(transport, false);
+    if(!selected) throw new TypeError("Saved room transport is invalid.");
+    if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.pinRoomTransport === "function") return ArcadeMultiplayer.pinRoomTransport(selected);
+    if(selected === "nearby") throw new Error("Nearby Arcade is unavailable. This saved room will not be sent to the Internet.");
+    return selected;
+  }
+
+  function resetRoomTransport(){
+    if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.resetRoomTransport === "function") ArcadeMultiplayer.resetRoomTransport();
+  }
+
+  function terminalRoomStatus(error){
+    return !!(error && (error.status === 401 || error.status === 403 || error.status === 404 || error.status === 410));
   }
 
   function storedOnlineSession(){
@@ -3152,8 +3199,9 @@ clearSelection();
     if(!saved || typeof saved !== "object") return null;
     const code = String(saved.code || "").trim().toUpperCase();
     const token = typeof saved.token === "string" ? saved.token.trim() : "";
-    if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code) || !/^[A-Za-z0-9_-]{32,128}$/.test(token)) return null;
-    return {code, token};
+    const transport = cleanRoomTransport(saved.transport, true);
+    if(!transport || !/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code) || !/^[A-Za-z0-9_-]{32,128}$/.test(token)) return null;
+    return {code, token, transport};
   }
 
   function syncOnlineResumeButton(){
@@ -3258,8 +3306,9 @@ clearSelection();
     if(online.reconnectTimer){ clearTimeout(online.reconnectTimer); online.reconnectTimer = 0; }
     if(online.socket){ try{ online.socket.close(1000,"Leaving online game"); }catch(_){ } online.socket = null; }
     if(permanent){
-      online.code = ""; online.token = ""; online.side = null; online.room = null; online.status = "offline";
+      online.code = ""; online.token = ""; online.transport = ""; online.side = null; online.room = null; online.status = "offline";
       try{ localStorage.removeItem(ONLINE_SESSION_KEY); }catch(_){ }
+      resetRoomTransport();
     }
   }
 
@@ -3307,17 +3356,25 @@ clearSelection();
     try{
       const body = await onlineFetch("/api/chess/rooms/" + encodeURIComponent(online.code) + "/state", {headers:{Authorization:"Bearer " + online.token}});
       applyOnlineRoom(body.room);
-    }catch(error){ scheduleOnlineReconnect(); }
+    }catch(error){
+      if(terminalRoomStatus(error)){ stopOnlineSocket(true); syncOnlineResumeButton(); }
+      else scheduleOnlineReconnect();
+    }
   }
 
-  async function beginOnline(payload){
+  async function beginOnline(payload, restoredTransport){
+    const candidateRoom = payload && payload.room;
+    const candidateCode = String(candidateRoom && candidateRoom.code || "").trim().toUpperCase();
+    const candidateToken = String(payload && payload.token || "");
+    if(!candidateRoom || !candidateRoom.game || !/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(candidateCode) || !/^[A-Za-z0-9_-]{32,128}$/.test(candidateToken) || (payload.side !== "w" && payload.side !== "b")) throw new Error("The room server returned an invalid Chess session.");
     // Preserve an in-progress local/CPU game before the authoritative online
     // snapshot replaces the board. It remains available through Save/Load.
     if(settings.mode !== "online") holdCurrentSave();
     stopOnlineSocket(false);
     settings.mode = "online";
-    online.code = payload.room.code;
-    online.token = payload.token;
+    online.code = candidateCode;
+    online.token = candidateToken;
+    online.transport = cleanRoomTransport(restoredTransport, false) || currentRoomTransport();
     online.side = payload.side;
     online.status = "reconnecting";
     online.room = payload.room;
@@ -3330,12 +3387,18 @@ clearSelection();
 
   async function createOnlineRoom(){
     const status = $("#onlineSetupStatus"); status.textContent = "Creating room…";
+    let receivedSession = false;
     try{
       const body = await onlineFetch("/api/chess/rooms",{method:"POST",headers:{"content-type":"application/json"},body:"{}"});
-      status.textContent = "Room " + body.room.code + " created.";
       await beginOnline(body);
+      receivedSession = true;
+      status.textContent = "Room " + body.room.code + " created.";
+      if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.invite === "function") ArcadeMultiplayer.invite("chess", body.room.code, "Chess");
       toast("Share room code " + body.room.code);
-    }catch(error){ status.textContent = onlineErrorMessage(error); }
+    }catch(error){
+      if(!receivedSession) resetRoomTransport();
+      status.textContent = onlineErrorMessage(error);
+    }
   }
 
   async function joinOnlineRoom(){
@@ -3350,15 +3413,23 @@ clearSelection();
       return;
     }
     status.textContent = "Joining room…";
-    let reconnectToken = null;
+    let reconnectToken = null, restoredTransport = null;
+    let receivedSession = false;
+    const saved = storedOnlineSession();
+    if(saved && saved.code === code){ reconnectToken = saved.token; restoredTransport = saved.transport; }
     try{
-      const saved = JSON.parse(localStorage.getItem(ONLINE_SESSION_KEY) || "null");
-      if(saved && saved.code === code) reconnectToken = saved.token;
-    }catch(_){ }
-    try{
+      if(restoredTransport) pinSavedRoomTransport(restoredTransport);
       const body = await onlineFetch("/api/chess/rooms/"+code+"/join",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(reconnectToken?{reconnectToken}:{})});
-      await beginOnline(body);
-    }catch(error){ status.textContent = onlineErrorMessage(error); }
+      await beginOnline(body, restoredTransport);
+      receivedSession = true;
+    }catch(error){
+      if(restoredTransport && terminalRoomStatus(error)){
+        try{ localStorage.removeItem(ONLINE_SESSION_KEY); }catch(_){ }
+        resetRoomTransport();
+        syncOnlineResumeButton();
+      }else if(!restoredTransport && !receivedSession) resetRoomTransport();
+      status.textContent = onlineErrorMessage(error);
+    }
   }
 
   async function resumeOnlineSession(){
@@ -3369,13 +3440,15 @@ clearSelection();
     if(button) button.disabled = true;
     if(status) status.textContent = "Resuming room " + saved.code + "…";
     try{
+      pinSavedRoomTransport(saved.transport);
       const body = await onlineFetch("/api/chess/rooms/"+encodeURIComponent(saved.code)+"/join",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({reconnectToken:saved.token})});
-      await beginOnline(body);
+      await beginOnline(body, saved.transport);
       toast("Online game restored.");
       return true;
     }catch(error){
-      if(error && (error.status === 401 || error.status === 403 || error.status === 404)){
+      if(terminalRoomStatus(error)){
         try{ localStorage.removeItem(ONLINE_SESSION_KEY); }catch(_){ }
+        resetRoomTransport();
         syncOnlineResumeButton();
       }
       if(status) status.textContent = onlineErrorMessage(error);
@@ -3404,6 +3477,30 @@ clearSelection();
     const uci = sqToAlg(mv.from) + sqToAlg(mv.to) + promotion;
     clearSelection(); updateUI(false);
     onlineAction("move",{uci});
+  }
+
+  async function leaveOnlineBeforeModeSwitch(){
+    if(settings.mode !== "online") return true;
+    if(!online.room || !online.code || !online.token){
+      toast("The multiplayer room is still reconnecting. Try again in a moment.");
+      return false;
+    }
+    try{
+      await onlineFetch("/api/chess/rooms/" + encodeURIComponent(online.code) + "/actions", {
+        method:"POST",
+        headers:{"content-type":"application/json",Authorization:"Bearer " + online.token},
+        body:JSON.stringify({type:"leave",expectedVersion:online.room.version})
+      });
+    }catch(error){
+      if(!terminalRoomStatus(error)){
+        toast("Could not leave the multiplayer room yet. Check the connection and try again.");
+        if(error && error.status === 409) refreshOnlineState();
+        return false;
+      }
+    }
+    stopOnlineSocket(true);
+    syncOnlineResumeButton();
+    return true;
   }
 
   
@@ -3513,7 +3610,7 @@ clearSelection();
     startPane.hidden = prefs || join;
     prefsPane.hidden = !prefs;
     joinPane.hidden = !join;
-    $("#setupTitle").textContent = prefs ? "Chess Settings" : join ? "Join an Online Game" : "Choose a Chess Game";
+    $("#setupTitle").textContent = prefs ? "Chess Settings" : join ? "Join a Multiplayer Game" : "Choose a Chess Game";
     if(join){
       $("#onlineJoinStatus").textContent = "";
       requestAnimationFrame(()=>{
@@ -3578,9 +3675,12 @@ clearSelection();
     opponentFacingCheck.checked = opponentFacingEnabled();
   }
 
-  modePvpBtn.addEventListener("click", ()=>{
+  modePvpBtn.addEventListener("click", async ()=>{
     const wasOnline = settings.mode === "online";
-    stopOnlineSocket(true);
+    modePvpBtn.disabled = true;
+    try{ if(wasOnline && !await leaveOnlineBeforeModeSwitch()) return; }
+    finally{ modePvpBtn.disabled = false; }
+    if(!wasOnline) resetRoomTransport();
     settings.mode = "pvp";
     settings.flipped = false;
     saveSettings();
@@ -3589,9 +3689,12 @@ clearSelection();
     renderOnlineBar();
     toast("Local two-player game ready.");
   });
-  modeCpuBtn.addEventListener("click", ()=>{
+  modeCpuBtn.addEventListener("click", async ()=>{
     const wasOnline = settings.mode === "online";
-    stopOnlineSocket(true);
+    modeCpuBtn.disabled = true;
+    try{ if(wasOnline && !await leaveOnlineBeforeModeSwitch()) return; }
+    finally{ modeCpuBtn.disabled = false; }
+    if(!wasOnline) resetRoomTransport();
     settings.mode = "cpu";
     settings.flipped = settings.playerSide === "b";
     saveSettings();
@@ -3744,14 +3847,24 @@ clearSelection();
     menuDrag = null;
   });
 
-  function envSafeTop(){ return 0; }
-  function envSafeBottom(){ return 0; }
-  function envSafeLeft(){ return 0; }
-  function envSafeRight(){ return 0; }
+  function envSafeInset(name){
+    const value = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name));
+    return Number.isFinite(value) && value > 0 ? value : 0;
+  }
+  function envSafeTop(){ return envSafeInset("--safe-top"); }
+  function envSafeBottom(){ return envSafeInset("--safe-bottom"); }
+  function envSafeLeft(){ return envSafeInset("--safe-left"); }
+  function envSafeRight(){ return envSafeInset("--safe-right"); }
 
   function goToMenu(){
     cancelCpuWork();
-    const leave = ()=>{ window.location.href = "../index.html"; };
+    const leave = ()=>{
+      if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.goHome === "function"){
+        ArcadeMultiplayer.goHome();
+        return;
+      }
+      window.location.href = "../index.html";
+    };
     try{
       if(window.ArcadeSave && typeof ArcadeSave.saveNow === "function"){
         Promise.resolve(ArcadeSave.saveNow()).then(leave, leave);
@@ -3788,7 +3901,11 @@ clearSelection();
 
   
   resetGame({preserve:false, started:false});
-  try{ openSetup("start"); }catch(_){}
+  try{
+    openSetup("start");
+    const code = invitedRoomCode();
+    if(code){ $("#onlineJoinCode").value = code; showSetupPane("join"); }
+  }catch(_){}
   try{ installArcadeSave(); }catch(_){}
   try{ renderOnlineBar(); }catch(_){}
 
