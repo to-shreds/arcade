@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.3.0+20260901.4",
-  "generatedAt": "2026-09-01T06:21:47.043Z",
+  "version": "2.3.0+20260901.5",
+  "generatedAt": "2026-09-01T06:58:41.479Z",
   "fileCount": 304,
-  "totalBytes": 16512523,
+  "totalBytes": 16512547,
   "files": [
     {
       "path": "arcade-save.js",
@@ -252,8 +252,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 10839,
-      "sha256": "fc80bf0334cfa9c86507f2e5bc6945aeb3517e909d9585333ca50c95f70eb4d9"
+      "bytes": 10863,
+      "sha256": "a76e9b1d14d976d6b21fc63d3e4097814d4418cb4868023c1b04787b966eeca0"
     },
     {
       "path": "insultinator/game.json",
@@ -1423,7 +1423,7 @@
     {
       "path": "sw.js",
       "bytes": 11694,
-      "sha256": "f529868b8868fc046e19e92300e98957739355b5ca4a54e27d6f5058e4d89020"
+      "sha256": "ead912bf94afb74027cdbc698160b0c3d2f1dbaead560440761ed5e4197f54e1"
     },
     {
       "path": "tic-tac-toe/game.json",
