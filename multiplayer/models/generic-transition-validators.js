@@ -1,3 +1,4 @@
+import { GUESS_WHO_AUTHORITY } from "./guess-who-authority.js";
 import {
   MONOPOLY_AUTHORITY,
   monopolyWorth as authoritativeMonopolyWorth,
@@ -44,6 +45,7 @@ const MONOPOLY_PROPERTY = Object.freeze({
 });
 
 export const GENERIC_GAME_AUTHORITY = Object.freeze({
+  "guess-who": GUESS_WHO_AUTHORITY,
   memory: Object.freeze({ id: "memory-transition-v1", ruleValidated: true, completionVerified: true, scope: "one resolved reveal group" }),
   "tic-tac-toe": Object.freeze({ id: "tic-tac-toe-transition-v1", ruleValidated: true, completionVerified: true, scope: "one mark or canonical round reset" }),
   dots: Object.freeze({ id: "dots-transition-v1", ruleValidated: true, completionVerified: true, scope: "one edge and its adjacent boxes" }),
@@ -764,6 +766,8 @@ export function validateGenericGameAction(roomValue, memberValue, actionValue) {
   requireValue(object(room) && object(member) && object(action), "Invalid authoritative game action");
   const authority = authorityForGenericGame(room.game);
   requireValue(authority, "Unsupported authoritative game");
+  // Guess Who validates action intents in GenericRoomModel on both transports.
+  if (room.game === "guess-who") return authority;
   if (room.game === "chat" || action.type === "chat" || action.type === "leave") return authority;
   if (action.type === "start" || action.type === "restart") {
     requireValue(Object.hasOwn(action, "state"), `${room.game} start requires a state snapshot`);

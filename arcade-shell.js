@@ -11,7 +11,7 @@ import { decodeQrSource, renderQrToCanvas, startAnimatedQrDisplay, startQrCamera
 const BRIDGE_MAX_BYTES = 112 * 1024;
 const FRAME_ALLOW = "autoplay; camera; clipboard-read; clipboard-write; fullscreen; screen-wake-lock";
 const MICROPHONE_GAME = "music-maker";
-const MULTIPLAYER_GAMES = new Set(["chess", "sorry", "monopoly", "memory", "tic-tac-toe", "dots", "checkers", "chat-room"]);
+const MULTIPLAYER_GAMES = new Set(["chess", "sorry", "monopoly", "memory", "tic-tac-toe", "dots", "checkers", "guess-who", "chat-room"]);
 const $ = (selector, root = document) => root.querySelector(selector);
 
 function safeMessage(error, fallback = "Nearby Arcade could not complete that step."){

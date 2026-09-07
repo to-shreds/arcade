@@ -1,0 +1,40 @@
+name: Guess Who browser tests
+on:
+  push:
+    branches: [main]
+    paths: ['guess-who/**', 'multiplayer/**', 'cloudflare/chess-worker/**', 'arcade-ui.css', '.github/workflows/guess-who-browser.yml']
+  pull_request:
+    paths: ['guess-who/**', 'multiplayer/**', 'cloudflare/chess-worker/**', 'arcade-ui.css', '.github/workflows/guess-who-browser.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - run: npm ci --prefix cloudflare/chess-worker
+      - run: pip install playwright==1.57.0
+      - run: python -m playwright install --with-deps chromium
+      - name: Exercise two browsers against the actual Durable Object
+        run: |
+          node guess-who/test-server.mjs > /tmp/guess-who-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 40); do curl -fsS http://127.0.0.1:8788/health && break || sleep 1; done
+          python guess-who/test-browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guess-who-browser-checks
+          path: |
+            test-results/guess-who
+            /tmp/guess-who-server.log
+          retention-days: 7

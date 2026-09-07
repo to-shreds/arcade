@@ -1,5 +1,7 @@
 import { randomToken, tokenHash } from "./room-model.js";
 
+import { createGuessWhoState, applyGuessWhoAction, publicGuessWhoState } from "./guess-who-authority.js";
+
 const ROOM_KEY = "room";
 const MAX_STATE_BYTES = 256 * 1024;
 const MAX_RESULT_BYTES = 16 * 1024;
@@ -12,6 +14,7 @@ const CHAT_BURST_LIMIT = 12;
 const USERNAME_PATTERN = /^[\p{L}\p{N}][\p{L}\p{N} _.'-]{0,23}$/u;
 
 export const GAME_TYPES = Object.freeze({
+  "guess-who": Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 2 }),
   sorry: Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 4 }),
   monopoly: Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 6 }),
   memory: Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 4 }),
@@ -153,6 +156,7 @@ export class GenericRoomModel {
     const username = normalizeUsername(usernameValue);
     const maxPlayers = normalizeMaxPlayers(game, requestedMaxPlayers);
     validatedJson(state, "State", MAX_STATE_BYTES);
+    if (game === "guess-who" && state !== null) throw httpError(400, "Guess Who state is created by the room authority");
     const token = randomToken();
     const reconnectHash = await tokenHash(token);
     if (await this.load()) throw httpError(409, "Room already exists");
@@ -181,7 +185,7 @@ export class GenericRoomModel {
         chatWindowCount: 0
       }],
       turn: null,
-      state,
+      state: game === "guess-who" ? createGuessWhoState() : state,
       result: null,
       chat: [],
       createdAt: timestamp,
@@ -256,7 +260,7 @@ export class GenericRoomModel {
       members,
       presence: Object.fromEntries(members.map((member) => [member.playerId, member.connected])),
       turn: room.turn,
-      state: room.state,
+      state: room.game === "guess-who" ? publicGuessWhoState(room, viewerPlayerId) : room.state,
       result: room.result,
       chat: room.chat,
       createdAt: room.createdAt,
@@ -318,7 +322,9 @@ export class GenericRoomModel {
       if (room.chat.length > MAX_CHAT_MESSAGES) room.chat.splice(0, room.chat.length - MAX_CHAT_MESSAGES);
     } else {
       if (type !== "leave") requireExactVersion(room, action);
-      if (type === "start") {
+      if (room.game === "guess-who" && type !== "leave") {
+        applyGuessWhoAction(room, member, action);
+      } else if (type === "start") {
         if (room.game === "chat") throw httpError(409, "Chat rooms are already active");
         if (room.status !== "lobby") throw httpError(409, "Game is not waiting to start");
         if (room.hostPlayerId !== member.playerId) throw httpError(403, "Only the room host can start the game");
