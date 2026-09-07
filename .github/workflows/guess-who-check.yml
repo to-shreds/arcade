@@ -2,6 +2,7 @@ name: Guess Who verification
 on:
   push:
     branches: [work/guess-who-20260907]
+    paths: ['.github/guess-who-update.b64', '.github/workflows/guess-who-check.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -25,8 +26,9 @@ jobs:
           fi
           echo 'present=true' >> "$GITHUB_OUTPUT"
           python - <<'PY'
-          import base64,gzip,hashlib,pathlib
-          patch=gzip.decompress(base64.b64decode(pathlib.Path('.github/guess-who-update.b64').read_text()))
+          import base64,lzma,hashlib,pathlib
+          parts=[pathlib.Path(f'.github/guess-who-update.{i:02d}.b64').read_text().strip() for i in range(7)]
+          patch=lzma.decompress(base64.b64decode(''.join(parts),validate=True))
           assert hashlib.sha256(patch).hexdigest() == 'adcac4079faf633391d09aa76362bf31e1726d45ebfc214c1e942d88ecbe5f0e', 'Delivery hash mismatch'
           pathlib.Path('/tmp/guess-who.patch').write_bytes(patch)
           PY
@@ -79,10 +81,10 @@ jobs:
       - name: Commit tested source to the isolated branch
         if: success() && steps.patch.outputs.present == 'true'
         run: |
-          rm .github/guess-who-update.b64 .github/workflows/guess-who-check.yml
+          rm .github/guess-who-update*.b64 .github/workflows/guess-who-check.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .github/workflows/guess-who-check.yml .github/guess-who-update.b64
+          git add -u .github
           git add .github/workflows/guess-who-browser.yml CHANGELOG.md README.md arcade-shell.js catalog.json cloudflare/chess-worker/test guess-who multiplayer offline-manifest.json sw.js
           git diff --cached --check
           git commit -m 'feat: add authoritative multiplayer Guess Who'
