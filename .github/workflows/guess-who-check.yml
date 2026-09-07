@@ -1,0 +1,28 @@
+name: Guess Who verification
+on:
+  push:
+    branches: [work/guess-who-20260907]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test Guess Who when present
+        if: hashFiles('guess-who/index.html') != ''
+        run: |
+          npm ci --prefix cloudflare/chess-worker
+          npm test --prefix cloudflare/chess-worker
+      - name: Bundle exact repository source
+        run: git archive --format=zip HEAD -o /tmp/arcade-source.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: arcade-guess-who-source
+          path: /tmp/arcade-source.zip
+          retention-days: 3
