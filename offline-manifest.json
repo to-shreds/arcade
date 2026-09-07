@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.4.0+20260901.2",
-  "generatedAt": "2026-09-01T18:28:00.533Z",
-  "fileCount": 331,
-  "totalBytes": 17405720,
+  "version": "2.4.1+20260907.1",
+  "generatedAt": "2026-09-07T16:36:16.240Z",
+  "fileCount": 339,
+  "totalBytes": 17478276,
   "files": [
     {
       "path": "apple-touch-icon.png",
@@ -22,8 +22,8 @@
     },
     {
       "path": "arcade-shell.js",
-      "bytes": 77636,
-      "sha256": "1580fa15b7c19d937a434d80706b9d256c72a4bbac3ce9c6bae8ce872ed0fdcf"
+      "bytes": 77649,
+      "sha256": "76722d306fb5d86c6eec2942d07532c295fd47f01bcd400b40ed854c93c75ded"
     },
     {
       "path": "arcade-ui.css",
@@ -132,8 +132,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 20952,
-      "sha256": "c3c84c608c8501e0908e9ed9b7881020b9f48340c939034db9884dcd77ba655d"
+      "bytes": 21469,
+      "sha256": "9301b8347012d524acaa95e39e5a29ac8f5cb7d4f2c932c80624eb2a9492f800"
     },
     {
       "path": "chat-room/game.json",
@@ -249,6 +249,36 @@
       "path": "firefighter-frenzy/index.html",
       "bytes": 54969,
       "sha256": "489263f1265a2b2364dda4be46e87beed72eaa04eee5fdd4db22beecd41c94e5"
+    },
+    {
+      "path": "guess-who/game.js",
+      "bytes": 31621,
+      "sha256": "48b5a7728b97e46164b751c5a9d3cd786ee985128c623a036d5a4058c1195f62"
+    },
+    {
+      "path": "guess-who/game.json",
+      "bytes": 351,
+      "sha256": "412d46fb1bb92db0558382f0a69476cc7fb870fabcc555a54efcce18d6a2a885"
+    },
+    {
+      "path": "guess-who/icon.svg",
+      "bytes": 3068,
+      "sha256": "9dd7685deab8202076383d22b50167709022c823ed684a75b240676bab730018"
+    },
+    {
+      "path": "guess-who/index.html",
+      "bytes": 16486,
+      "sha256": "d60856373de4567af3552a51e0a65481b4ded0094ae26e17a736afc674636ff8"
+    },
+    {
+      "path": "guess-who/portraits.js",
+      "bytes": 3568,
+      "sha256": "c5f787d505d0313c46148a49a5d0cfd12e67bf3a945e918f4a65e8bc6a40401e"
+    },
+    {
+      "path": "guess-who/README.md",
+      "bytes": 4024,
+      "sha256": "c3fe1921e12fdf61878e36d75a18a3d6b34e4b857f74c368b7cacccc23dc1177"
     },
     {
       "path": "hangman/game.json",
@@ -452,13 +482,13 @@
     },
     {
       "path": "multiplayer/arcade-multiplayer.js",
-      "bytes": 44024,
-      "sha256": "653d4caa9bd28253288fa1777aa7cbf8db77c5f5069211725ed523718b633191"
+      "bytes": 44054,
+      "sha256": "d7c5753ea1e00b6075f589567650d444beff404c6c1928a075951224cb6f95b2"
     },
     {
       "path": "multiplayer/arcade-shell-core.mjs",
-      "bytes": 15223,
-      "sha256": "bc0f5d4becd85181a27b86334516b8431585f0c4ca5fadcf50eeffffe20aa42c"
+      "bytes": 15250,
+      "sha256": "0c7a01a9f1c88d72ecf7c2625a995b52cda9d3517ab3c7621011e40cbffa6b4f"
     },
     {
       "path": "multiplayer/models/chess-engine.js",
@@ -467,13 +497,23 @@
     },
     {
       "path": "multiplayer/models/generic-room-model.js",
-      "bytes": 17293,
-      "sha256": "96a144376e76dc75cd9476e6223e5108109cc0f1253cadc0e0f452455eda03d6"
+      "bytes": 17840,
+      "sha256": "8ca5670cefdd06f805fbdbe2680bd4d24543b57768651ddeecb4485fa3c95b84"
     },
     {
       "path": "multiplayer/models/generic-transition-validators.js",
-      "bytes": 61225,
-      "sha256": "483b8cc2853047da9453d25957d9abeae09b53271d42921c8a572764cb8b9fd0"
+      "bytes": 61456,
+      "sha256": "e476fbe30d54fdf102ee9b8d5b718c68f59d6ee45cdf67f91fa860612891a24a"
+    },
+    {
+      "path": "multiplayer/models/guess-who-authority.js",
+      "bytes": 7645,
+      "sha256": "7d2e037c034db98a16f588c80f1f3f4a1b332634e387cd0826510c8d84634b0d"
+    },
+    {
+      "path": "multiplayer/models/guess-who-data.js",
+      "bytes": 4429,
+      "sha256": "0d83649799c82569c89e419b2b4864caa5c4e2b6a886bcccf043208fb121d6be"
     },
     {
       "path": "multiplayer/models/monopoly-authority.js",
@@ -1557,8 +1597,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27785,
-      "sha256": "9829fc15cfb3c4d002e5a28aaed0d5b01c2f4db1e053e828e227dd180d33bec6"
+      "bytes": 27784,
+      "sha256": "715a947871c6f3b9889e1786eaff9c15b6bbe091d378bff8b80b4502559703a6"
     },
     {
       "path": "tic-tac-toe/game.json",

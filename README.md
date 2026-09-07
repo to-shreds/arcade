@@ -27,9 +27,34 @@ Arcade and complete **Make Available Offline** while it has Internet access. A
 device that has never downloaded a website cannot open that site while offline.
 
 Nearby transport is integrated with Chess, Sorry, Monopoly, Memory, Tic Tac
-Toe, Dots, Checkers, and Arcade Chat. Local same-device play and CPU modes are
+Toe, Dots, Checkers, Guess Who, and Arcade Chat. Local same-device play and CPU modes are
 unchanged. Direct links such as `/chess/` also remain usable; without the
 persistent Arcade shell they use Internet multiplayer through Cloudflare.
+
+## Guess Who
+
+Guess Who is a two-player game using the same Arcade rooms, connection bridge,
+and visual theme as the other multiplayer games. Open its tile, create a room,
+and share the six-character code. After the second player joins, the host starts
+and each player privately locks a character. An existing Nearby connection is
+used automatically; otherwise the room runs through Cloudflare.
+
+Ask a built-in question for an automatic answer, or send a custom yes/no question
+to your opponent. Flip cards manually, undo your last flip, inspect a larger
+portrait, or enable automatic elimination from your built-in clues. A final
+guess uses your turn, and a wrong guess loses the round. Rematches require both
+players to agree, preserve the room's score, and alternate the starting player.
+
+Names and secret choices cannot change during a round. The room authority keeps
+both secrets, while each device receives only its own secret until the round
+ends. In Nearby play, the host device is the trusted authority. Room credentials
+and private card notes are saved in the browser; the **Resume saved room** button
+restores the seat and asks the room authority for its current state.
+
+The game uses the existing `ARCADE_ROOMS` Durable Object binding. Deploy the
+updated Worker together with the web release; no new binding, migration, or
+service account is needed. See [Guess Who implementation notes](guess-who/README.md)
+for the protocol and test commands.
 
 ## Repository layout
 
@@ -81,7 +106,7 @@ belongs to the main Arcade.
 
 ### Multiplayer turn alerts
 
-Chess, Sorry, Monopoly, Memory, Tic Tac Toe, Dots, and Checkers use the shared
+Chess, Sorry, Monopoly, Memory, Tic Tac Toe, Dots, Checkers, and Guess Who use the shared
 multiplayer bridge for turn alerts. The bridge observes only a room snapshot
 that the game has accepted from its authoritative room service. It dings when
 turn ownership changes from another player to the local player, including the

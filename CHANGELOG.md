@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.4.1 - 2026-09-07
+
+- Added two-player Guess Who with 24 original illustrated characters, the shared
+  Arcade theme, and automatic Internet or Nearby multiplayer transport.
+- Kept secret character choices with the room authority. Public HTTP, WebSocket,
+  and Nearby snapshots expose only the viewer's own choice until the round ends.
+- Added 21 canonical yes/no questions, custom questions with Yes/No/Not sure
+  replies, manual card elimination, local undo, portrait inspection, and optional
+  automatic elimination from the player's own built-in clues.
+- Added server-checked turns and guesses, wrong-guess losses, resignation,
+  shared scores, and mutually approved rematches with alternating starters.
+- Added locked names and choices, browser-local seat/notebook recovery,
+  reconnect/polling fallback, and safe handling of simultaneous choices/votes.
+- Integrated the catalog, Nearby invitations and session scores, turn chimes,
+  notification controls, and the hash-verified offline snapshot.
+- Added model, Nearby, Durable Object HTTP/WebSocket, client regression, and
+  two-browser responsive-layout tests without changing other games' rules.
+
 ## 2.4.0 - 2026-09-01
 
 - Turned the Arcade index into a persistent, same-origin shell that opens games

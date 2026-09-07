@@ -18,7 +18,8 @@
     memory: "Memory",
     "tic-tac-toe": "Tic Tac Toe",
     dots: "Dots",
-    checkers: "Checkers"
+    checkers: "Checkers",
+    "guess-who": "Guess Who"
   });
   const TURN_ICON_URL = (() => {
     try{

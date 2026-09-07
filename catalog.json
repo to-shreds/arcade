@@ -257,6 +257,31 @@
       "launchPath": "solitaire/index.html"
     },
     {
+      "title": "Guess Who",
+      "entry": "index.html",
+      "icon": "icon.svg",
+      "order": 85,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 2,
+      "playersMax": 2,
+      "categories": [
+        "board",
+        "strategy",
+        "social"
+      ],
+      "tags": [
+        "touch",
+        "turn-based",
+        "online",
+        "nearby"
+      ],
+      "orientation": "any",
+      "folder": "guess-who",
+      "launchPath": "guess-who/index.html"
+    },
+    {
       "title": "Insultinator",
       "entry": "index.html",
       "icon": "icon.png",

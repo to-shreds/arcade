@@ -35,6 +35,8 @@ test("two independent clients create, join, reconnect and synchronize through Mi
       { type: "ESModule", path: new URL("../src/index.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/room-model.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/generic-room-model.js", import.meta.url).pathname },
+      { type: "ESModule", path: new URL("../../../multiplayer/models/guess-who-authority.js", import.meta.url).pathname },
+      { type: "ESModule", path: new URL("../../../multiplayer/models/guess-who-data.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/chess-engine.js", import.meta.url).pathname }
     ],
     compatibilityDate: "2026-08-06",
