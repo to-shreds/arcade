@@ -32,8 +32,10 @@ jobs:
           assert hashlib.sha256(patch).hexdigest() == 'adcac4079faf633391d09aa76362bf31e1726d45ebfc214c1e942d88ecbe5f0e', 'Delivery hash mismatch'
           pathlib.Path('/tmp/guess-who.patch').write_bytes(patch)
           PY
-          git apply --check /tmp/guess-who.patch
-          git apply /tmp/guess-who.patch
+          # The PNG was an empty, discarded local intent-to-add placeholder.
+          # The finished game uses its tested SVG icon instead.
+          git apply --check --exclude=guess-who/icon.png /tmp/guess-who.patch
+          git apply --exclude=guess-who/icon.png /tmp/guess-who.patch
       - uses: actions/setup-node@v6
         if: steps.patch.outputs.present == 'true'
         with:
@@ -78,14 +80,14 @@ jobs:
             test-results/guess-who
             /tmp/guess-who-server.log
           retention-days: 3
-      - name: Commit tested source to the isolated branch
+      - name: Commit tested runtime to the isolated branch
         if: success() && steps.patch.outputs.present == 'true'
         run: |
-          rm .github/guess-who-update*.b64 .github/workflows/guess-who-check.yml
+          rm .github/guess-who-update*.b64
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -u .github
-          git add .github/workflows/guess-who-browser.yml CHANGELOG.md README.md arcade-shell.js catalog.json cloudflare/chess-worker/test guess-who multiplayer offline-manifest.json sw.js
+          git add CHANGELOG.md README.md arcade-shell.js catalog.json cloudflare/chess-worker/test guess-who multiplayer offline-manifest.json sw.js
           git diff --cached --check
           git commit -m 'feat: add authoritative multiplayer Guess Who'
           git push origin HEAD:work/guess-who-20260907
