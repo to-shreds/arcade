@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.4.2 - 2026-09-17
+
+- Fixed online Memory so all players see each card as it is flipped, including
+  non-matching pairs and three-card attempts, before the cards turn back over.
+- Kept scoring and turn changes at the end of the attempt. Only the current
+  player resolves it; other devices cannot advance the game or double-count it.
+- Preserved in-progress reveals on reconnect, handled slow acknowledgements,
+  and added an explicit tap-to-retry path after an interrupted resolution.
+- Extended the Nearby Memory validator and browser regressions to cover live
+  reveals, illegal flips, recovery, guest turns, and matching through completion.
+- Refreshed the hash-verified offline snapshot and service-worker release.
+
 ## 2.4.1 - 2026-09-07
 
 - Added two-player Guess Who with 24 original illustrated characters, the shared
