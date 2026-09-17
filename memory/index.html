@@ -658,7 +658,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   body.memory-game #startOverlay .size-grid,body.memory-game #startOverlay .theme-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:3px!important}
   body.memory-game #startOverlay .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))!important}
   body.memory-game #startOverlay .panel-footer{position:static!important;margin-top:4px!important;padding-top:0!important;background:none!important}
-  body.memory-game #startOverlay .hr{margin:5px 0!important}
+  body.memory-game #startOverlay .hr{margin:5px!important}
   body.memory-game #startOverlay .btn-large{min-height:35px!important;padding:8px 9px!important;font-size:13px!important;line-height:1!important;border-radius:11px!important}
   body.memory-game #loadStartBtn{margin-top:5px!important}
 }
@@ -1119,6 +1119,9 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   let onlineRoom = null;
   let onlineActionBusy = false;
   let onlineRollbackSnapshot = null;
+  let onlineRecovering = false;
+  let onlineFirstFlipAt = 0;
+  let onlineDecisionMs = 0;
   let appliedOnlineVersion = -1;
   const roomClient = window.ArcadeRoomClient ? ArcadeRoomClient.createRoomClient({
     game: "memory",
@@ -1319,6 +1322,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       const owner = cardIndex >= 0 ? saved.owners[cardIndex] : 0;
       if(owner > 0) saved.scores[owner - 1]++;
     }
+    saved.revealed = [];
+    saved.lock = false;
     saved.stats = keptOldIndexes.map((oldIndex,newIndex) => {
       const item = Object.assign({}, saved.stats[oldIndex] || newStats());
       item.matches = saved.scores[newIndex];
@@ -1357,12 +1362,16 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     saved.uniqueTeams = saved.teams.slice();
     saved.teamMode = false;
     saved.turn = room.turn && Number.isInteger(Number(room.turn.seat)) ? localTurnForSeat(room, room.turn.seat) : Math.max(1, Number(saved.turn) || 1);
-    saved.revealed = [];
-    saved.lock = false;
     saved.awaitingTurn = false;
     onlineMode = true;
+    const mine = roomClient && roomClient.session && room.turn && Number(roomClient.session.seat) === Number(room.turn.seat);
+    if(!saved.revealed.length || !mine){ onlineFirstFlipAt = 0; onlineDecisionMs = 0; }
+    else {
+      if(!onlineFirstFlipAt) onlineFirstFlipAt = performance.now();
+      if(saved.revealed.length === saved.matchSize && !(state && state.lock)) onlineDecisionMs = Math.max(0, performance.now() - onlineFirstFlipAt);
+    }
     try{
-      restoreState(saved, { online: true, allowFinished: room.status === "finished" });
+      restoreState(saved, { online: true, resolveOnline: !!mine && !onlineRecovering, allowFinished: room.status === "finished" });
       const session = roomClient && roomClient.session;
       const myTurn = !!(session && room.turn && Number(session.seat) === Number(room.turn.seat));
       board.classList.toggle("online-wait", room.status !== "active" || !myTurn);
@@ -1397,27 +1406,38 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     if(menuNote && onlineMode) menuNote.textContent = "This room stays synchronized automatically. Undo, local save, and restart are unavailable online.";
   }
 
-  async function pushOnlineState(finished){
+  async function pushOnlineState(finished, revealIndex){
     if(!onlineMode || !roomClient || !state || onlineActionBusy) return;
     const attemptedVersion = Number(onlineRoom && onlineRoom.version);
+    const revealing = Number.isInteger(revealIndex);
+    let snapshot = onlineSnapshot();
+    if(revealing){
+      const revealed = state.revealed.slice();
+      if(revealed.length >= snapshot.matchSize || revealed.includes(revealIndex) || !snapshot.deck[revealIndex] || snapshot.matchedKeys.includes(snapshot.deck[revealIndex].key)) return;
+      revealed.push(revealIndex);
+      snapshot.revealed = revealed;
+      snapshot.lock = revealed.length === snapshot.matchSize;
+    }
     onlineActionBusy = true;
     board.classList.add("online-wait");
     try{
       const result = finished ? { scores: state.scores.slice(), winners: state.scores.map((score,index)=>({score,index})).filter((entry, _i, arr)=>entry.score === Math.max(...arr.map((item)=>item.score))).map((entry)=>state.names[entry.index]) } : undefined;
       await roomClient.action({
         type: "state",
-        state: onlineSnapshot(),
-        nextSeat: seatForLocalTurn(onlineRoom, state.turn),
+        state: snapshot,
+        nextSeat: revealing ? Number(roomClient.session.seat) : seatForLocalTurn(onlineRoom, state.turn),
         finish: !!finished,
         result
       });
     }catch(error){
+      onlineRecovering = true;
       setStatus(error && error.message ? error.message : "The move could not be synchronized.");
       setOnlineStatus(error && error.message ? error.message : "The move could not be synchronized.", true);
       let restored = !!(onlineRoom && Number(onlineRoom.version) > attemptedVersion && appliedOnlineVersion >= Number(onlineRoom.version));
       if(!restored){
         try{
-          const authoritative = await roomClient.refresh();
+          await roomClient.refresh();
+          const authoritative = roomClient.room;
           if(authoritative){
             appliedOnlineVersion = Number(authoritative.version);
             applyOnlineRoomState(authoritative);
@@ -1429,7 +1449,11 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       if(!restored && onlineRollbackSnapshot && onlineRoom){
         applyOnlineRoomState(Object.assign({}, onlineRoom, { state: JSON.parse(JSON.stringify(onlineRollbackSnapshot)) }));
       }
+      if(state && state.lock && state.revealed.length === state.matchSize && !matchResolveTimer){
+        setStatus("Turn not finished. Tap a face-up card to retry.");
+      }
     }finally{
+      onlineRecovering = false;
       onlineActionBusy = false;
       onlineRollbackSnapshot = null;
       if(onlineRoom && onlineRoom.status === "active" && roomClient.session){
@@ -1486,6 +1510,9 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     onlineActionBusy = false;
     onlineRollbackSnapshot = null;
     appliedOnlineVersion = -1;
+    onlineRecovering = false;
+    onlineFirstFlipAt = 0;
+    onlineDecisionMs = 0;
     board.classList.remove("online-wait");
     if(onlineLobby) onlineLobby.hidden = true;
     if(onlineActions) onlineActions.hidden = false;
@@ -1900,6 +1927,10 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       const matchText = `${individualMatches} ${individualMatches === 1 ? "match" : "matches"}`;
       const remaining = Math.max(0, (state.totalMatches || 0) - state.matchedKeys.size);
       if(onlineMode && roomClient && roomClient.session){
+        if(state.lock && state.revealed.length === state.matchSize && !matchResolveTimer && !onlineActionBusy && Number(roomClient.session.seat) === Number(onlineRoom.turn && onlineRoom.turn.seat)){
+          setStatus("Turn not finished. Tap a face-up card to retry.");
+          return;
+        }
         const disconnected = sortedMembers(onlineRoom).filter((member) => member.playerId !== roomClient.session.playerId && !member.connected);
         if(disconnected.length){
           setStatus(`Online · ${disconnected.map((member)=>member.username || "Player").join(", ")} disconnected · seat reserved`);
@@ -2238,6 +2269,18 @@ function renderScoreBar(){
       state.lock = false;
       return;
     }
+    if(onlineMode){
+      const session = roomClient && roomClient.session;
+      if(!session || !onlineRoom || onlineRoom.status !== "active" || Number(onlineRoom.turn && onlineRoom.turn.seat) !== Number(session.seat)) return;
+      // A socket may deliver the final reveal before its HTTP acknowledgement.
+      if(onlineActionBusy){ scheduleResolve(picked, pIdx2, isMatch, 100); return; }
+      onlineRollbackSnapshot = JSON.parse(JSON.stringify(onlineRoom.state));
+      state.moves += 1;
+      state.stats[pIdx2].flips += state.matchSize;
+      state.stats[pIdx2].attempts += 1;
+      state.stats[pIdx2].decisionCount += 1;
+      state.stats[pIdx2].totalDecision += onlineDecisionMs;
+    }
     if(isMatch) {
       picked.forEach((idx) => {
         markMatched(idx);
@@ -2273,7 +2316,7 @@ function renderScoreBar(){
     tick(true);
     const finished = state.matchedKeys.size === state.totalMatches;
     if(onlineMode) pushOnlineState(finished);
-    if(finished) onWin();
+    if(finished && !onlineMode) onWin();
     try{ if(window.ArcadeSave) ArcadeSave.touch(0); }catch(e){}
   }
 
@@ -2285,14 +2328,27 @@ function renderScoreBar(){
   }
 
   function onCardTap(i){
-    if(!state || state.lock || state.awaitingTurn) return;
+    if(!state) return;
     if(onlineMode){
       const session = roomClient && roomClient.session;
       if(onlineActionBusy || !onlineRoom || onlineRoom.status !== "active" || !session || !onlineRoom.turn || Number(session.seat) !== Number(onlineRoom.turn.seat)){
         setStatus("Online · Wait for your turn.");
         return;
       }
+      if(state.lock){
+        if(!matchResolveTimer && state.revealed.length === state.matchSize && state.revealed.includes(i)){
+          const picked = state.revealed.slice();
+          const isMatch = picked.every((index) => state.deck[index].key === state.deck[picked[0]].key);
+          scheduleResolve(picked, state.turn - 1, isMatch, 0);
+        }
+        return;
+      }
+      if(state.awaitingTurn || state.matchedKeys.has(state.deck[i]?.key) || state.revealed.includes(i)) return;
+      beep(620, 0.05, 0.015);
+      pushOnlineState(false, i);
+      return;
     }
+    if(state.lock || state.awaitingTurn) return;
 
     const el = cardEl(i);
     if(!el) return;
@@ -2301,7 +2357,6 @@ function renderScoreBar(){
     if(state.deck[i]?.free) return;
 
     if(state.revealed.length === 0){const snapshot=captureState();if(snapshot){undoStack.push(JSON.parse(JSON.stringify(snapshot)));if(undoStack.length>50)undoStack.shift();syncUndoButtons();}}
-    if(onlineMode && state.revealed.length === 0) onlineRollbackSnapshot = onlineSnapshot();
     const pIdx = (state.players > 1 ? (state.turn-1) : 0);
     state.stats[pIdx].flips += 1;
     if(state.revealed.length === 0) state.firstFlipAt = performance.now();
@@ -2479,6 +2534,7 @@ function renderScoreBar(){
     if(state && state.timer) clearInterval(state.timer);
     const players = Math.max(1, Math.min(8, parseInt(saved.players, 10) || 1));
     const elapsed = Math.max(0, Number(saved.tElapsed) || 0);
+    const onlineAudio = options.online && state ? state.audio : null;
     state = {
       players,
       seatOrder: Array.isArray(saved.seatOrder) ? saved.seatOrder.slice(0, players) : Array.from({length:players}, (_,index)=>index),
@@ -2506,7 +2562,7 @@ function renderScoreBar(){
       firstFlipAt: saved.firstFlipAge ? performance.now() - Math.max(0, Number(saved.firstFlipAge) || 0) : 0,
       stats: restoreStats(saved.stats, players),
       sound: saved.sound !== false,
-      audio: null,
+      audio: onlineAudio,
       awaitingTurn: !!saved.awaitingTurn
     };
     if(!state.uniqueTeams.length) state.uniqueTeams = Array.from(new Set(state.teams));
@@ -2527,7 +2583,10 @@ function renderScoreBar(){
       const pickedCards = picked.map((idx) => state.deck[idx]);
       const isMatch = pickedCards.length === state.matchSize && pickedCards.every((card) => card && card.key === pickedCards[0].key);
       if(!isMatch) picked.forEach(flashWrong);
-      scheduleResolve(picked, state.players > 1 ? state.turn - 1 : 0, isMatch, Math.max(80, Math.min(1520, Number(saved.resolveRemaining) || 260)));
+      if(!options.online || options.resolveOnline){
+        const delay = options.online ? (isMatch ? 650 : 1520) : Math.max(80, Math.min(1520, Number(saved.resolveRemaining) || 260));
+        scheduleResolve(picked, state.players > 1 ? state.turn - 1 : 0, isMatch, delay);
+      }
     }else{
       state.lock = false;
     }

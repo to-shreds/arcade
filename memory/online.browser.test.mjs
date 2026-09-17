@@ -128,6 +128,10 @@ class MemoryRoomServer {
       this.tokens.set(hostToken, 'player-0');
       return this.response({ ok: true, code: this.room.code, token: hostToken, playerId: 'player-0', seat: 0, room: this.view(hostToken) });
     }
+    if (url.pathname === '/api/arcade/rooms/MEM234/join' && options.method === 'POST') {
+      const seat = this.room.members.length, token = this.addMember(body.username, seat);
+      return this.response({ ok: true, code: this.room.code, token, playerId: `player-${seat}`, seat, room: this.view(token) });
+    }
     if (url.pathname === '/api/arcade/rooms/MEM234/state') {
       if (this.raceNewerStateOnNextGet) {
         this.raceNewerStateOnNextGet = false;
@@ -140,6 +144,7 @@ class MemoryRoomServer {
         state.stats[0].matches = state.scores[0];
         state.stats[0].attempts = Math.max(state.stats[0].attempts, state.stats[0].matches);
         state.stats[0].flips = Math.max(state.stats[0].flips, state.stats[0].attempts);
+        state.revealed = []; state.lock = false;
         this.room.state = state;
         this.room.turn = { seat: 2, playerId: 'player-2', number: this.room.turn.number + 1 };
         this.room.version++; this.room.revision++;
@@ -158,11 +163,12 @@ class MemoryRoomServer {
       } else if (body.type === 'state') {
         if (this.room.turn.seat !== member.seat) return this.response({ ok: false, error: 'It is not your turn' }, 403);
         if (!this.room.members.some((item) => item.seat === body.nextSeat)) return this.response({ ok: false, error: 'Next seat is unavailable' }, 400);
-        if (this.failNextStateBeforeCommit) {
+        if (this.failNextStateBeforeCommit && !body.state.revealed?.length) {
           this.failNextStateBeforeCommit = false;
           return this.response({ ok: false, error: 'Temporary outage before commit' }, 503);
         }
         this.room.state = clone(body.state);
+        if (body.finish) { this.room.status = 'finished'; this.room.result = clone(body.result); }
         this.room.turn = { seat: body.nextSeat, playerId: this.room.members.find((item) => item.seat === body.nextSeat).playerId, number: this.room.turn.number + 1 };
       } else return this.response({ ok: false, error: 'Unsupported action' }, 400);
       this.room.version++; this.room.revision++;
@@ -235,7 +241,7 @@ try {
   const firstFace = first.querySelector('.face').textContent;
   const second = candidates.find((card) => card.querySelector('.face').textContent !== firstFace);
   assert.ok(first && second, 'two unmatched, non-pair cards are available');
-  first.click(); second.click();
+  first.click(); await wait(dom.window, 80); second.click();
   await wait(dom.window, 1750);
 
   const stateAction = [...server.calls].reverse().find((call) => call.body.type === 'state');
@@ -251,23 +257,29 @@ try {
   await wait(dom.window, 80);
   const authoritativeVersion = server.room.version;
   const authoritativeState = clone(server.room.state);
-  const actionCount = server.calls.filter((call) => call.body.type === 'state').length;
+  const actionCount = server.calls.filter((call) => call.body.type === 'state' && !call.body.state.revealed?.length).length;
   server.failNextStateBeforeCommit = true;
   const retryCandidates = [...document.querySelectorAll('#board .card:not(.matched)')];
   const retryFirst = retryCandidates[0];
   const retryFace = retryFirst.querySelector('.face').textContent;
   const retrySecond = retryCandidates.find((card) => card.querySelector('.face').textContent !== retryFace);
   assert.ok(retryFirst && retrySecond, 'a second non-matching attempt is available');
-  retryFirst.click(); retrySecond.click();
+  retryFirst.click(); await wait(dom.window, 80); retrySecond.click();
   await wait(dom.window, 1750);
 
-  assert.equal(server.room.version, authoritativeVersion, 'pre-commit 503 does not advance the authoritative room');
-  assert.deepEqual(server.room.state, authoritativeState, 'pre-commit 503 leaves the server snapshot unchanged');
-  assert.equal(server.calls.filter((call) => call.body.type === 'state').length, actionCount + 1, 'the failed move was submitted exactly once');
+  assert.equal(server.room.version, authoritativeVersion + 2, 'only the two acknowledged reveals advance the authoritative room');
+  assert.deepEqual(server.room.state.scores, authoritativeState.scores, 'failed resolution cannot change scores');
+  assert.equal(server.room.state.moves, authoritativeState.moves, 'failed resolution cannot count a completed attempt');
+  assert.equal(server.calls.filter((call) => call.body.type === 'state' && !call.body.state.revealed?.length).length, actionCount + 1, 'the failed resolution was submitted exactly once');
   assert.ok(server.calls.some((call) => call.path === '/api/arcade/rooms/MEM234/state'), 'the client refreshes after the failed move');
-  assert.equal(document.querySelectorAll('#board .card.revealed').length, 0, 'same-version refresh rolls back speculative card reveals');
+  assert.equal(document.querySelectorAll('#board .card.revealed').length, 2, 'same-version refresh restores the canonical face-up cards');
   assert.equal(document.querySelector('#board').classList.contains('online-wait'), false, 'the authoritative current player can retry after rollback');
 
+  document.querySelector('#board .card.revealed').click();
+  await wait(dom.window, 150);
+  assert.equal(server.room.state.moves, authoritativeState.moves + 1, 'retry resolves the attempt exactly once');
+  server.passSeatTwoToHost();
+  await wait(dom.window, 80);
   const raceVersion = server.room.version;
   const raceCandidates = [...document.querySelectorAll('#board .card:not(.matched)')];
   const raceFirst = raceCandidates[0];
@@ -275,9 +287,9 @@ try {
   const raceSecond = raceCandidates.find((card) => card.querySelector('.face').textContent !== raceFace);
   server.failNextStateBeforeCommit = true;
   server.raceNewerStateOnNextGet = true;
-  raceFirst.click(); raceSecond.click();
+  raceFirst.click(); await wait(dom.window, 80); raceSecond.click();
   await wait(dom.window, 1750);
-  assert.equal(server.room.version, raceVersion + 1, 'a newer authoritative socket snapshot wins a recovery-GET race');
+  assert.equal(server.room.version, raceVersion + 3, 'a newer authoritative socket snapshot wins a recovery-GET race');
   assert.ok(server.racedMatchIndexes.length > 0);
   assert.ok(server.racedMatchIndexes.every((index) => document.querySelectorAll('#board .card')[index].classList.contains('matched')), 'failed recovery GET cannot roll an already-applied newer room back');
   assert.equal(document.querySelector('#board').classList.contains('online-wait'), true, 'newer authoritative turn gating is preserved');
@@ -285,4 +297,54 @@ try {
   console.log('Memory departure and same-version rollback browser regressions passed.');
 } finally {
   dom.window.close();
+}
+
+
+// Two independent game pages must see the attempt, not merely its final score.
+const liveServer = new MemoryRoomServer();
+const host = await loadMemory(liveServer), guest = await loadMemory(liveServer);
+try {
+  const a = host.dom.window.document, b = guest.dom.window.document;
+  a.querySelector('#memoryOnlineName').value = 'Alice';
+  a.querySelector('#memoryOnlineCreate').click(); await wait(host.dom.window, 80);
+  b.querySelector('#memoryOnlineName').value = 'Bob';
+  b.querySelector('#memoryOnlineJoin').click();
+  b.querySelector('#memoryOnlineCode').value = 'MEM234';
+  b.querySelector('#memoryOnlineConnect').click(); await wait(host.dom.window, 80);
+  a.querySelector('#memoryOnlineStart').click(); await wait(host.dom.window, 100);
+  const deck = liveServer.room.state.deck;
+  const different = deck.findIndex((card) => card.key !== deck[0].key);
+  a.querySelectorAll('#board .card')[0].click(); await wait(host.dom.window, 80);
+  assert.equal(a.querySelectorAll('.card.revealed').length, 1);
+  assert.equal(b.querySelectorAll('.card.revealed').length, 1, 'opponent sees the first card');
+  const firstVersion = liveServer.room.version;
+  b.querySelectorAll('#board .card')[different].click(); await wait(host.dom.window, 80);
+  assert.equal(liveServer.room.version, firstVersion, 'waiting player cannot flip cards');
+  a.querySelectorAll('#board .card')[different].click(); await wait(host.dom.window, 80);
+  assert.equal(b.querySelectorAll('.card.revealed').length, 2, 'opponent sees the non-matching pair before it hides');
+  assert.equal(liveServer.room.state.moves, 0, 'reveals do not prematurely count an attempt');
+  await wait(host.dom.window, 1600);
+  assert.equal(liveServer.room.turn.seat, 1);
+  assert.equal(liveServer.room.state.moves, 1, 'only the acting page resolves the attempt');
+  assert.equal(a.querySelectorAll('.card.revealed').length, 0);
+  assert.equal(b.querySelectorAll('.card.revealed').length, 0);
+  for (const key of new Set(deck.map((card) => card.key))) {
+    const indexes = deck.map((card, i) => card.key === key ? i : -1).filter((i) => i >= 0);
+    for (const [n, index] of indexes.entries()) {
+      b.querySelectorAll('#board .card')[index].click(); await wait(guest.dom.window, 80);
+      assert.equal(a.querySelectorAll('.card.revealed').length, n + 1, 'host sees the guest reveal');
+    }
+    await wait(guest.dom.window, 750);
+    assert.equal(liveServer.room.turn.seat, 1, 'matching retains the turn');
+  }
+  assert.equal(liveServer.room.status, 'finished');
+  assert.deepEqual(liveServer.room.state.scores, [0, liveServer.room.state.totalMatches]);
+  assert.equal(liveServer.room.state.moves, liveServer.room.state.totalMatches + 1);
+  assert.equal(a.querySelector('#awardsOverlay').classList.contains('hidden'), false);
+  assert.equal(b.querySelector('#awardsOverlay').classList.contains('hidden'), false);
+  assert.equal(a.querySelector('#finalScores').textContent, b.querySelector('#finalScores').textContent);
+  assert.deepEqual([...host.errors, ...guest.errors], []);
+  console.log('Memory two-page live-reveal, turn, completion, and scoring regressions passed.');
+} finally {
+  host.dom.window.close(); guest.dom.window.close();
 }

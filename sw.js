@@ -1,4 +1,4 @@
-const WORKER_VERSION = '2026-09-07-guess-who-v1';
+const WORKER_VERSION = '2026-09-17-memory-live-reveals-v1';
 const SNAPSHOT_PREFIX = 'family-arcade-snapshot-';
 const META_CACHE = 'family-arcade-snapshot-meta';
 const ACTIVE_KEY = new URL('__arcade_active_snapshot__', self.registration.scope).href;

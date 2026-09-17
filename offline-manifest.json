@@ -1,1704 +1,349 @@
 {
   "schema": 1,
-  "version": "2.4.1+20260907.1",
-  "generatedAt": "2026-09-07T16:36:16.240Z",
-  "fileCount": 339,
-  "totalBytes": 17478276,
+  "version": "2.4.2",
+  "generatedAt": "2026-09-17T21:11:11.717Z",
+  "fileCount": 340,
+  "totalBytes": 17486289,
   "files": [
-    {
-      "path": "apple-touch-icon.png",
-      "bytes": 10459,
-      "sha256": "9f51a09b0a96437b6d224f611563b48ed69152c94f7edb5009b3460b55a97279"
-    },
-    {
-      "path": "arcade-save.js",
-      "bytes": 19313,
-      "sha256": "97bfd0353935f79d315d67debff21a02bcd8c0533b9c641845a805c61086c6a2"
-    },
-    {
-      "path": "arcade-shell.css",
-      "bytes": 11649,
-      "sha256": "daab771825efd1e5132c1524d52869dfd7483a3f1906e55949e034846db60137"
-    },
-    {
-      "path": "arcade-shell.js",
-      "bytes": 77649,
-      "sha256": "76722d306fb5d86c6eec2942d07532c295fd47f01bcd400b40ed854c93c75ded"
-    },
-    {
-      "path": "arcade-ui.css",
-      "bytes": 6597,
-      "sha256": "e956d72d8a5140a7b87f0745fdc55e850d2518a809439a96b2cbebba71c31882"
-    },
-    {
-      "path": "arcade.png",
-      "bytes": 34427,
-      "sha256": "a1082d341de5aa9c1fee6efd178f20720df7434a2aabd0b6216bb6d520237c03"
-    },
-    {
-      "path": "balloons/game.json",
-      "bytes": 305,
-      "sha256": "64409d88a4a338a36262ba1c3f0b17c7cfd0085d7ac1144af02ef6c74279e1ec"
-    },
-    {
-      "path": "balloons/icon.png",
-      "bytes": 16043,
-      "sha256": "e938f3b2beeb6ef3542405787370ffe91b0e0b7fb97aa8060d7ab54fd3fa4476"
-    },
-    {
-      "path": "balloons/index.html",
-      "bytes": 126873,
-      "sha256": "34179cb1cd6c4221f4e38b5c256e9ac877ab850c085f955aa52447ef31d231a3"
-    },
-    {
-      "path": "blackjack/game.json",
-      "bytes": 309,
-      "sha256": "a68ac16ea486c48c2844791d3b768197e54a90c77ee2e622a5b2e3c4510b96b8"
-    },
-    {
-      "path": "blackjack/icon.png",
-      "bytes": 14024,
-      "sha256": "6330f845a470834a6ac12e76f1baa4a9065a638f304ddb588e6723c51bf8c418"
-    },
-    {
-      "path": "blackjack/index.html",
-      "bytes": 124163,
-      "sha256": "7608b3d67e32a82e986966d2afa2f036b4ffe2e811a37996448b47fc4be0e48f"
-    },
-    {
-      "path": "bounce-boxes/game.json",
-      "bytes": 310,
-      "sha256": "8894d62734856daf39e19cf97b5741fb2729d56260325fc3f586565ec3d05434"
-    },
-    {
-      "path": "bounce-boxes/icon.png",
-      "bytes": 17909,
-      "sha256": "9b2bbfbdfa197f051c98d89fed594e45b647181d0090c6f72c24069c053c1ac3"
-    },
-    {
-      "path": "bounce-boxes/index.html",
-      "bytes": 79706,
-      "sha256": "56ece1c408640aa21233e68a21e98f81097def4545ea7109c4c797ce2506d9f2"
-    },
-    {
-      "path": "bowling/game.json",
-      "bytes": 331,
-      "sha256": "c5f2e0a847205b653b3997b0ac9615e6eb522488fcb89350b665262211defade"
-    },
-    {
-      "path": "bowling/icon.png",
-      "bytes": 12459,
-      "sha256": "8d2e92d9dcc2113ff0eb8fcf2c47e725de70fe6dfa3d36fcc1307ad4262166f4"
-    },
-    {
-      "path": "bowling/index.html",
-      "bytes": 44390,
-      "sha256": "0218db47968a8916095bb580a2689daefc63c03c36479a7ed22d5979dc5588a0"
-    },
-    {
-      "path": "bug-squish/game.json",
-      "bytes": 351,
-      "sha256": "ae34e66dc16728254b26b240205db6ba8757a4d4388fae0d3f8ba249d0df998d"
-    },
-    {
-      "path": "bug-squish/icon.png",
-      "bytes": 17874,
-      "sha256": "d68cc2c305c506b95899d5841abb01204384febae6d39b8f6aead3029baf24f0"
-    },
-    {
-      "path": "bug-squish/index.html",
-      "bytes": 41802,
-      "sha256": "9c0e44aa0173b151a6da86eed7ea193d8654b5a521d37b31664a48dd65bad7e8"
-    },
-    {
-      "path": "build-my-joke/game.json",
-      "bytes": 303,
-      "sha256": "bec9b48914ebd622dbe5273591b6f4ec7ea88ead4e587957c3a7c5a3bb346ee3"
-    },
-    {
-      "path": "build-my-joke/icon.png",
-      "bytes": 12802,
-      "sha256": "cc67e69d118f4a15e4a70eec78dd98b1ce69af1b05f6833cf121e80900329ec0"
-    },
-    {
-      "path": "build-my-joke/icon.svg",
-      "bytes": 985,
-      "sha256": "7bd04595cb06bd4259eaeb65fc845378fd169e493ebfed0fc5bd64beb93ecfdc"
-    },
-    {
-      "path": "build-my-joke/index.html",
-      "bytes": 10883,
-      "sha256": "a9ce4bc2d2637e1e1dd0d34f85a26d3642ce34281f0cdca5c61b947b1a14bfdb"
-    },
-    {
-      "path": "catalog.json",
-      "bytes": 21469,
-      "sha256": "9301b8347012d524acaa95e39e5a29ac8f5cb7d4f2c932c80624eb2a9492f800"
-    },
-    {
-      "path": "chat-room/game.json",
-      "bytes": 328,
-      "sha256": "8f3d58a86725f860b97684d570cef04dcdfe9ee1ea9cff25415fd1ef8dbf5ec4"
-    },
-    {
-      "path": "chat-room/icon.png",
-      "bytes": 10930,
-      "sha256": "7aae87bea293bfe4008f5acb124f92f100db360e93dbd41104535dddcebfb0aa"
-    },
-    {
-      "path": "chat-room/icon.svg",
-      "bytes": 999,
-      "sha256": "7a5baca90d1c6c9e862a25c0ad8d2fa6a4921fed56ab79af7388bfc614971539"
-    },
-    {
-      "path": "chat-room/index.html",
-      "bytes": 36644,
-      "sha256": "1e161fa75c7bf4389316dc77778ab03d4ac439e785f847b16a3acc4136a96e18"
-    },
-    {
-      "path": "checkers/game.json",
-      "bytes": 341,
-      "sha256": "21e14f3bcf2e6f05fb1123a031b5e5d2055199a8102887f2b8b7f8f2afe77ecb"
-    },
-    {
-      "path": "checkers/icon.png",
-      "bytes": 13409,
-      "sha256": "01eadc0c6f60736bf7eb392b287a861307cb95262a04943908c7277854c6fd12"
-    },
-    {
-      "path": "checkers/index.html",
-      "bytes": 209397,
-      "sha256": "b1c4cda43bac613e91606a5bb6d2ff39c75e393c32701e45edcc0573c15f15a2"
-    },
-    {
-      "path": "chess/game.json",
-      "bytes": 349,
-      "sha256": "23690ee24548f195bffb60632b94638c13c8e0e6011a9c1a3d7e2beb07750edd"
-    },
-    {
-      "path": "chess/icon.png",
-      "bytes": 8802,
-      "sha256": "4b9b5fbd10de267ef06304632c1bc406cff9bdf82f1f8fae496bd3d7b0f2abbe"
-    },
-    {
-      "path": "chess/index.html",
-      "bytes": 152049,
-      "sha256": "5eece62f4b3f690af1627aa5be6fa229cd5b39b71d157838df71086d801c6ca9"
-    },
-    {
-      "path": "codebreaking/game.json",
-      "bytes": 302,
-      "sha256": "81aec626053c7aee07931dbc4a8e2cca88fe586a8584a1ed1015e1214118817b"
-    },
-    {
-      "path": "codebreaking/icon.png",
-      "bytes": 10523,
-      "sha256": "0bf7cd1be429b5cda15bf413530b55edb451cca9c7312ffb6df81e57ce3a1565"
-    },
-    {
-      "path": "codebreaking/icon.svg",
-      "bytes": 1124,
-      "sha256": "502a529a69b0fd74f2db35533b7827a85fb976a96c8410c32f02dafa05d2d40b"
-    },
-    {
-      "path": "codebreaking/index.html",
-      "bytes": 13091,
-      "sha256": "d4e969857d478deccf5406135e7e3745159828694368e2f8acf13af4e3bbf295"
-    },
-    {
-      "path": "contraption-maker/game.json",
-      "bytes": 329,
-      "sha256": "4af0c433c37452d6c9eb7a1f56273c3501fc474515675724e4e179b9a9b23de4"
-    },
-    {
-      "path": "contraption-maker/icon.png",
-      "bytes": 16705,
-      "sha256": "a740683a8fb368fdd0397745bf53a672a388a7d3aa55aa551ff6aa69a9d5db7f"
-    },
-    {
-      "path": "contraption-maker/index.html",
-      "bytes": 37687,
-      "sha256": "dc88eb452fcb94bd1f9691ddf0b58551f574bf277ef97971dfed60d5b1d22363"
-    },
-    {
-      "path": "dots/game.json",
-      "bytes": 337,
-      "sha256": "ed2efdd2fc0af7efa2ac9ad74a5ac36acf7cbb0b38d8a2e14487800d7fd6fa7a"
-    },
-    {
-      "path": "dots/icon.png",
-      "bytes": 10856,
-      "sha256": "bb10346c2b060a85a771de32fa6204a24151f8d00a24d44f30aad9de1811757c"
-    },
-    {
-      "path": "dots/index.html",
-      "bytes": 234489,
-      "sha256": "d3e3ed1d0e5c1d8da9919624a5ef12839741f8566246e0fc4aa4c870058570d5"
-    },
-    {
-      "path": "firefighter-frenzy/game.json",
-      "bytes": 346,
-      "sha256": "973c3a226d1a69144ab3f8ce5b660a906d2c0a36a4469f1fa63db5214b17c425"
-    },
-    {
-      "path": "firefighter-frenzy/icon.png",
-      "bytes": 15315,
-      "sha256": "d54e3bad9304b4630bfd22285b1295274597c1999a2ccb18a19c180758a7d475"
-    },
-    {
-      "path": "firefighter-frenzy/index.html",
-      "bytes": 54969,
-      "sha256": "489263f1265a2b2364dda4be46e87beed72eaa04eee5fdd4db22beecd41c94e5"
-    },
-    {
-      "path": "guess-who/game.js",
-      "bytes": 31621,
-      "sha256": "48b5a7728b97e46164b751c5a9d3cd786ee985128c623a036d5a4058c1195f62"
-    },
-    {
-      "path": "guess-who/game.json",
-      "bytes": 351,
-      "sha256": "412d46fb1bb92db0558382f0a69476cc7fb870fabcc555a54efcce18d6a2a885"
-    },
-    {
-      "path": "guess-who/icon.svg",
-      "bytes": 3068,
-      "sha256": "9dd7685deab8202076383d22b50167709022c823ed684a75b240676bab730018"
-    },
-    {
-      "path": "guess-who/index.html",
-      "bytes": 16486,
-      "sha256": "d60856373de4567af3552a51e0a65481b4ded0094ae26e17a736afc674636ff8"
-    },
-    {
-      "path": "guess-who/portraits.js",
-      "bytes": 3568,
-      "sha256": "c5f787d505d0313c46148a49a5d0cfd12e67bf3a945e918f4a65e8bc6a40401e"
-    },
-    {
-      "path": "guess-who/README.md",
-      "bytes": 4024,
-      "sha256": "c3fe1921e12fdf61878e36d75a18a3d6b34e4b857f74c368b7cacccc23dc1177"
-    },
-    {
-      "path": "hangman/game.json",
-      "bytes": 307,
-      "sha256": "94924952bac47965fde82463b86ac757954601b30df662e4d490fcf6b7bcf999"
-    },
-    {
-      "path": "hangman/icon.png",
-      "bytes": 15291,
-      "sha256": "6517613acdc2c0abf2ff8a100536657985e8ecefa305ec7d914252f1d7075ae4"
-    },
-    {
-      "path": "hangman/index.html",
-      "bytes": 135593,
-      "sha256": "58ada4001b87e388e0ce9a09ee5dfc28d4456888f547cd29acae8a6872a9d052"
-    },
-    {
-      "path": "index.html",
-      "bytes": 11823,
-      "sha256": "cba075b43de1fcd5269608c5dea02caada014c218a7ce9a4ca76dfaae0e37919"
-    },
-    {
-      "path": "insultinator/game.json",
-      "bytes": 315,
-      "sha256": "b11e0ef2cdab4965fdca4407b035d87a974c9884861d802e399ef80759c1a36f"
-    },
-    {
-      "path": "insultinator/icon.png",
-      "bytes": 10707,
-      "sha256": "d2c2376ff7f23d95591977514faeca4c0845242891314f3695a24fa3ab6d0aa8"
-    },
-    {
-      "path": "insultinator/index.html",
-      "bytes": 62323,
-      "sha256": "6197f5141f39f47babc65b99e4c0172aa082539852eed828c22a3a3d9a80ed0d"
-    },
-    {
-      "path": "jigsaw/game.json",
-      "bytes": 293,
-      "sha256": "b7e7651ce572e1ce66104db265241e07810d2d484ac8827b6e94ca47fc9b09c9"
-    },
-    {
-      "path": "jigsaw/icon.png",
-      "bytes": 13987,
-      "sha256": "b1a5803f4fe5f6fe895ec4cfccaf25673cca1623e0fbeb63fa1b7ddd46aab72d"
-    },
-    {
-      "path": "jigsaw/index.html",
-      "bytes": 66065,
-      "sha256": "c4bbcb34c24f3750ca2c7faaff572bf8512b820cabc42c8c56c899ac8dbb4ecd"
-    },
-    {
-      "path": "mad-libs/game.json",
-      "bytes": 317,
-      "sha256": "0207179144524dbf2d293a4bfa7fa45030ec7779fa3599c706711423ebb11d3e"
-    },
-    {
-      "path": "mad-libs/icon.png",
-      "bytes": 6445,
-      "sha256": "74b3ca2b57821a668993a300f034eb078178a880b4e4bebf48a265b4b3e346a5"
-    },
-    {
-      "path": "mad-libs/index.html",
-      "bytes": 145850,
-      "sha256": "b2601fcaf2c3b48935cc5e522c2be442f615ba1a6ffc5638cb51bd627e50646f"
-    },
-    {
-      "path": "make-10/game.json",
-      "bytes": 304,
-      "sha256": "b7ec9289eae523f6def8df076ece2359a4ea39fdd7b3794f1e40b85197f2f25f"
-    },
-    {
-      "path": "make-10/icon.png",
-      "bytes": 15795,
-      "sha256": "1d2ccd5850633203a7db6d470795e119ef5a828542c0419ce770011b24883c45"
-    },
-    {
-      "path": "make-10/index.html",
-      "bytes": 63073,
-      "sha256": "c7aba2232d5290813d95165cfd55512bf836e7ce7b265da0a418159df9c169b9"
-    },
-    {
-      "path": "manifest.webmanifest",
-      "bytes": 768,
-      "sha256": "69ca6bf9e90dd795bace6f5617551facfe12ee412e3cc24407c0550006114e05"
-    },
-    {
-      "path": "math/game.json",
-      "bytes": 303,
-      "sha256": "9f9cfc479727c50b20af7a4b0bb5874e4c1d2fe4cd487865479721a650daf9c8"
-    },
-    {
-      "path": "math/icon.png",
-      "bytes": 15502,
-      "sha256": "6037b7a5bc0d78e4a5641738d5f71d30cf89b6ef33835e3e19c8a2d563545dc7"
-    },
-    {
-      "path": "math/index.html",
-      "bytes": 112506,
-      "sha256": "56fb45e5a66837c5f3965bbcb52163d84da0255a4ada405c30fd730ad534926a"
-    },
-    {
-      "path": "maze/game.json",
-      "bytes": 273,
-      "sha256": "b8b98f186d80d7416a0ca06c4e44d6a910712467a8f8fd6c8db316ed79e04841"
-    },
-    {
-      "path": "maze/icon.png",
-      "bytes": 7301,
-      "sha256": "709edfd5b5a85b9de78f667c5fa4fd7f2aae2e5057734933296409a4e3338249"
-    },
-    {
-      "path": "maze/index.html",
-      "bytes": 120112,
-      "sha256": "963928fe00f4556d9407c4697314ac97a812d4a8ae8ce27c7497c5842a0bb802"
-    },
-    {
-      "path": "memory/game.json",
-      "bytes": 339,
-      "sha256": "f02e504024c31cbc9982e136dd337b45b6f8cb2e5a586b7edabb1aba4a41aed5"
-    },
-    {
-      "path": "memory/icon.png",
-      "bytes": 20923,
-      "sha256": "f9801318a2115502b0423e938970fbbf168b04989eef131fe4debcd2da1b2023"
-    },
-    {
-      "path": "memory/index.html",
-      "bytes": 138522,
-      "sha256": "6e10a7582f9b4e9920f90d575e0646e6cbd00630bff54e5e37ed6d1bd59b5ed4"
-    },
-    {
-      "path": "memory/online-model.js",
-      "bytes": 5771,
-      "sha256": "be7799ce60bdaef9f12588c871ec9c4b91279874a72b8d761cfa9645d88aa333"
-    },
-    {
-      "path": "memory/room-client.js",
-      "bytes": 14228,
-      "sha256": "eb1bfb9b5f13fb74d275f687ec7b60dae32b01c3c3f9cf42a63db9ed40d6d1e3"
-    },
-    {
-      "path": "minesweeper/game.json",
-      "bytes": 296,
-      "sha256": "59bd4cc04e179aa9da35571a23843771ecee89cfce5622632460251326e8a5ee"
-    },
-    {
-      "path": "minesweeper/icon.png",
-      "bytes": 9218,
-      "sha256": "702882722ee03a5a4b0f3a96b55549eb46a64b12a6c31f019e0c00c7c735c6a8"
-    },
-    {
-      "path": "minesweeper/index.html",
-      "bytes": 57335,
-      "sha256": "3ed8040d2fb0caaddfc181ca13a50001a4977f566d40de001581d4ac4035eecf"
-    },
-    {
-      "path": "mini-golf/game.json",
-      "bytes": 292,
-      "sha256": "36b39ed91263016214fb5b439fd20517ea23ff9b7ab9304289dcd369a5226bb4"
-    },
-    {
-      "path": "mini-golf/icon.png",
-      "bytes": 9018,
-      "sha256": "c2e77d5b8919de46fe00fefccf7283be0ab8678d1ef7a827a208240e116c6acd"
-    },
-    {
-      "path": "mini-golf/index.html",
-      "bytes": 181759,
-      "sha256": "30eb04b2b3057341b18739402529f3b3db67b431ef4fb11b8fbf03b4a593551d"
-    },
-    {
-      "path": "monopoly/game.json",
-      "bytes": 364,
-      "sha256": "24ea4094487c74b22c2bbf54a2ebd2cf8b959d061736acd22959a83226b1c634"
-    },
-    {
-      "path": "monopoly/icon.png",
-      "bytes": 21287,
-      "sha256": "f6c49eb68c2fe0d8d0069ab7148c5ca89afc7d09904de76e611fa89871bf017b"
-    },
-    {
-      "path": "monopoly/index.html",
-      "bytes": 172673,
-      "sha256": "bb3c1ffcb44f8a73f00cc4846c259729d987c27dcc32a64b303d3b6d8b6bcae7"
-    },
-    {
-      "path": "monster-dentist/game.json",
-      "bytes": 349,
-      "sha256": "c0f9874edb2e27285229a2005008639122488c2124ca8f6558d4fd811c238e53"
-    },
-    {
-      "path": "monster-dentist/icon.png",
-      "bytes": 17045,
-      "sha256": "8c05c9a993cd111481ebcefdddc627bf66840653046f3149fbbb662474db20a3"
-    },
-    {
-      "path": "monster-dentist/index.html",
-      "bytes": 58747,
-      "sha256": "77e6ed43a7ced8f4892910724b8294a03c22cbd328bf82dcdbd52f647f5c47ea"
-    },
-    {
-      "path": "multiplayer/arcade-multiplayer.js",
-      "bytes": 44054,
-      "sha256": "d7c5753ea1e00b6075f589567650d444beff404c6c1928a075951224cb6f95b2"
-    },
-    {
-      "path": "multiplayer/arcade-shell-core.mjs",
-      "bytes": 15250,
-      "sha256": "0c7a01a9f1c88d72ecf7c2625a995b52cda9d3517ab3c7621011e40cbffa6b4f"
-    },
-    {
-      "path": "multiplayer/models/chess-engine.js",
-      "bytes": 17400,
-      "sha256": "da311b34472dec92c627081600f39abe42df0f4d21a47403d05789b7d4a7ed58"
-    },
-    {
-      "path": "multiplayer/models/generic-room-model.js",
-      "bytes": 17840,
-      "sha256": "8ca5670cefdd06f805fbdbe2680bd4d24543b57768651ddeecb4485fa3c95b84"
-    },
-    {
-      "path": "multiplayer/models/generic-transition-validators.js",
-      "bytes": 61456,
-      "sha256": "e476fbe30d54fdf102ee9b8d5b718c68f59d6ee45cdf67f91fa860612891a24a"
-    },
-    {
-      "path": "multiplayer/models/guess-who-authority.js",
-      "bytes": 7645,
-      "sha256": "7d2e037c034db98a16f588c80f1f3f4a1b332634e387cd0826510c8d84634b0d"
-    },
-    {
-      "path": "multiplayer/models/guess-who-data.js",
-      "bytes": 4429,
-      "sha256": "0d83649799c82569c89e419b2b4864caa5c4e2b6a886bcccf043208fb121d6be"
-    },
-    {
-      "path": "multiplayer/models/monopoly-authority.js",
-      "bytes": 111918,
-      "sha256": "7c143e4a2d3b25b84ee26a7effda2b3a297dd7bf1e6804ef5967048faed6e075"
-    },
-    {
-      "path": "multiplayer/models/room-model.js",
-      "bytes": 7513,
-      "sha256": "e6d5e43f429c5c015d0dcd009c263cbde30d70961be18c41a10b611e129f68eb"
-    },
-    {
-      "path": "multiplayer/models/sorry-transition-validator.js",
-      "bytes": 39867,
-      "sha256": "73ea7f809d36214b6e6910548ea247b754dee85114d09849d83474d86a296e30"
-    },
-    {
-      "path": "multiplayer/nearby-room-service.js",
-      "bytes": 47216,
-      "sha256": "57f803052ea2f89dea6b9ee4dd78dfa4516dc9e8d5bdf1b16b7bf448bc2b738a"
-    },
-    {
-      "path": "multiplayer/nearby-session.mjs",
-      "bytes": 56091,
-      "sha256": "7ed2b10dce76adf218f02d2d976ebf59786edb3a9fc352d0e49a910a725cc5a6"
-    },
-    {
-      "path": "multiplayer/nearby-storage.mjs",
-      "bytes": 5319,
-      "sha256": "e0d9880eebb4fbb60e70fd187b840129664a96b6f212c190c365ab167c5eb46e"
-    },
-    {
-      "path": "multiplayer/protocol.mjs",
-      "bytes": 8135,
-      "sha256": "4699a611aa2e2217b105c82acfe5325a40d02e4594f6edc58ceb50d46af666c1"
-    },
-    {
-      "path": "multiplayer/qr.mjs",
-      "bytes": 14031,
-      "sha256": "69ced9b8f1deedece6eb716f6f72c2ef11d87ff0932ed97c50025bd109d73c41"
-    },
-    {
-      "path": "multiplayer/signaling.mjs",
-      "bytes": 15478,
-      "sha256": "44159270eeb7da102ebe363996998749216315afe9a7fe825b30e4528846ebbb"
-    },
-    {
-      "path": "multiplayer/vendor/jsqr-1.4.0.min.js",
-      "bytes": 130420,
-      "sha256": "8e7582406ad4551d6d07ce50cb6de04d3b9e020c6bbb6c57ac0a2125456730bd"
-    },
-    {
-      "path": "multiplayer/vendor/LICENSE.jsQR.txt",
-      "bytes": 11357,
-      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
-    },
-    {
-      "path": "multiplayer/vendor/LICENSE.qrcode-generator.txt",
-      "bytes": 1071,
-      "sha256": "3a850fa5f08101db6f40676c2786e10bd2cd5fff7b12ffdf1e0c434d4e49d90c"
-    },
-    {
-      "path": "multiplayer/vendor/qrcode-generator-2.0.4.min.js",
-      "bytes": 20706,
-      "sha256": "6644ce8e36232ecec643ce7a98bb99ed978c920ee9d640b56bf0a675f1d8f255"
-    },
-    {
-      "path": "multiplayer/vendor/README.md",
-      "bytes": 718,
-      "sha256": "7900d9c96df21fe8dc856b171b962af55eddc8a948d7aacad20717b4129b2392"
-    },
-    {
-      "path": "multiplayer/webrtc.mjs",
-      "bytes": 9201,
-      "sha256": "1fd5f1960c038afa494c713179243980070831b47970d20228b94725d8c701fd"
-    },
-    {
-      "path": "music-maker/AUDIO-NOTICE.txt",
-      "bytes": 224,
-      "sha256": "c7a7d576b223037e00905c630032c6234260a62dbe6abe4bcd7cd08a1c7a5aea"
-    },
-    {
-      "path": "music-maker/audio/pitch-processor.js",
-      "bytes": 1565,
-      "sha256": "6faacf10897718a28e9099b534c9cb06adf0223ffd3fb7936edc90f18e1d9939"
-    },
-    {
-      "path": "music-maker/background/chill.wav",
-      "bytes": 504044,
-      "sha256": "0dd068710461b85fa6b9f9ac4e38a59c91c89c60d2f58e02cbb8495669f9ed08"
-    },
-    {
-      "path": "music-maker/background/dance.wav",
-      "bytes": 341462,
-      "sha256": "e799f42b2e8d2cf2d27b8f949d2687ffcc1cabd5165b4a0f4b933ef0c7e01466"
-    },
-    {
-      "path": "music-maker/background/funk.wav",
-      "bytes": 378044,
-      "sha256": "50d3cb4b668e7c8500fb4ce3a81eae798d50b296dad00636145b1d822d3d7cbe"
-    },
-    {
-      "path": "music-maker/background/pop.wav",
-      "bytes": 407120,
-      "sha256": "c26e600c75e69b33dbf20e142ca1ac16b7271c742f161c662891b6712c6169e8"
-    },
-    {
-      "path": "music-maker/game.json",
-      "bytes": 354,
-      "sha256": "a41a8be2f29a34700f53157383fb0c55b88cb92358c510f29500d70c5314ba17"
-    },
-    {
-      "path": "music-maker/icon.png",
-      "bytes": 10001,
-      "sha256": "10e61ea03e93e617770bb8fe58c4fcaa77c07c420994713edf15308e4738a263"
-    },
-    {
-      "path": "music-maker/index.html",
-      "bytes": 9045,
-      "sha256": "4413cf874f3bc812270dc0a1370da3177dc2911668aa9137d8e8fe3b3a422a9d"
-    },
-    {
-      "path": "music-maker/music-maker.js",
-      "bytes": 21780,
-      "sha256": "73cb6e62d646448302b5a9dea13ea0d06eac2b4c3e168644ba3354bc3a0e332a"
-    },
-    {
-      "path": "music-maker/samples/bass/high-A.wav",
-      "bytes": 66194,
-      "sha256": "da390a2ba7d6898836a64c79bcb21dc6cf8b3bdb59368e91110171a6b8e7eaa5"
-    },
-    {
-      "path": "music-maker/samples/bass/high-B.wav",
-      "bytes": 66194,
-      "sha256": "efbf7b08fe09c382ad1ab81320984fdb88bef675c877abc1ee804e3125f76bb5"
-    },
-    {
-      "path": "music-maker/samples/bass/high-C.wav",
-      "bytes": 66194,
-      "sha256": "2423d74d45dd2325b143beed6e19c0bb25520bbb9fea39125c6f628ff2ff0296"
-    },
-    {
-      "path": "music-maker/samples/bass/high-C2.wav",
-      "bytes": 66194,
-      "sha256": "da61bbb97f19d9583277996dc4ef3a59f5a68f75ef598e5cf656ed5115b972e2"
-    },
-    {
-      "path": "music-maker/samples/bass/high-D.wav",
-      "bytes": 66194,
-      "sha256": "084098c9d8adc3e522ad191bc457afa2e8ba6a63d022011682e2dcb03eeb10dc"
-    },
-    {
-      "path": "music-maker/samples/bass/high-E.wav",
-      "bytes": 66194,
-      "sha256": "986b023a76cdc1edd239a54e591985c2412cfb7adb3389123c15a78e78ff531e"
-    },
-    {
-      "path": "music-maker/samples/bass/high-F.wav",
-      "bytes": 66194,
-      "sha256": "1abbe8ce201f4fa76c8f80c01bb4011c7df2088e59322e4aacf47694b1a992f0"
-    },
-    {
-      "path": "music-maker/samples/bass/high-G.wav",
-      "bytes": 66194,
-      "sha256": "3f4b834fa2b2c14e2c4d692eeca8c6bcbc34acffc652131e3601acb3d696391d"
-    },
-    {
-      "path": "music-maker/samples/bass/low-A.wav",
-      "bytes": 66194,
-      "sha256": "2bc33a1aa0d9815f581eaf9b6e20e15eaf6d20bea436d4f6abc7584b81e872af"
-    },
-    {
-      "path": "music-maker/samples/bass/low-B.wav",
-      "bytes": 66194,
-      "sha256": "ace274c992b36bb286f4deda7e5b9f315e233387d507952f8f7f8982641749a8"
-    },
-    {
-      "path": "music-maker/samples/bass/low-C.wav",
-      "bytes": 66194,
-      "sha256": "90f3ca602314746aad56bc1a3dd8f16f0a5c35af8f14ad076c30d2dccda3e778"
-    },
-    {
-      "path": "music-maker/samples/bass/low-C2.wav",
-      "bytes": 66194,
-      "sha256": "561d65bc22c6608615033b9ee8eb221e9de72a0d0e4103957c65fcdab901327b"
-    },
-    {
-      "path": "music-maker/samples/bass/low-D.wav",
-      "bytes": 66194,
-      "sha256": "6a56a2795ae312ebbc810bb63f03e98fc901e2932db923bb880c80bf583cdc91"
-    },
-    {
-      "path": "music-maker/samples/bass/low-E.wav",
-      "bytes": 66194,
-      "sha256": "30a59870dd78725a99d9ab6f54eaf6fe09cc58dc231f38588b933c392c8daa3f"
-    },
-    {
-      "path": "music-maker/samples/bass/low-F.wav",
-      "bytes": 66194,
-      "sha256": "13b921084721a2f54f4c1209beca373aa092260fa3fcd8eb7e01484b7f381bbf"
-    },
-    {
-      "path": "music-maker/samples/bass/low-G.wav",
-      "bytes": 66194,
-      "sha256": "e53cffb88e48faa5bb093157bc4ee863e80e095221f38a5088456544e6b4a34a"
-    },
-    {
-      "path": "music-maker/samples/bass/middle-A.wav",
-      "bytes": 66194,
-      "sha256": "464b018391039ef90a01f2eff9b47cb3663639a670836746276653047762657d"
-    },
-    {
-      "path": "music-maker/samples/bass/middle-B.wav",
-      "bytes": 66194,
-      "sha256": "5faf7d02eb28ae6a119c0b7e113485690178f4f905337cf476d76a5771c0e96c"
-    },
-    {
-      "path": "music-maker/samples/bass/middle-C.wav",
-      "bytes": 66194,
-      "sha256": "981ba95a3c678c0e688150120737d3044c408559a1a42ec1a828128fe0f0a1bc"
-    },
-    {
-      "path": "music-maker/samples/bass/middle-C2.wav",
-      "bytes": 66194,
-      "sha256": "a848c077deeee824af67ff8bf2698125491249712131be487d001dccb47e33b4"
-    },
-    {
-      "path": "music-maker/samples/bass/middle-D.wav",
-      "bytes": 66194,
-      "sha256": "23e45291bfe597765336e39b819600cd7415b3bdef3dd284d72fbf8866adff13"
-    },
-    {
-      "path": "music-maker/samples/bass/middle-E.wav",
-      "bytes": 66194,
-      "sha256": "91ce73bb42ee4077ebdaf128ac3cf425dcad663f2e9e71373cb9450b14dd433b"
-    },
-    {
-      "path": "music-maker/samples/bass/middle-F.wav",
-      "bytes": 66194,
-      "sha256": "22c830d9c865cae36cc8ecabe46b2da720e1ab46b37657554e09e579759fd7ef"
-    },
-    {
-      "path": "music-maker/samples/bass/middle-G.wav",
-      "bytes": 66194,
-      "sha256": "29c94fe5d02dfdbaf8967d2db8adff9ad94c86eedb0f0ccafb4f900ea0ad2c3c"
-    },
-    {
-      "path": "music-maker/samples/bells/high-A.wav",
-      "bytes": 94858,
-      "sha256": "19c4aea32136556c00e207938f413ca78c47667352b68168ecbeccef8a30c1ab"
-    },
-    {
-      "path": "music-maker/samples/bells/high-B.wav",
-      "bytes": 94858,
-      "sha256": "6d112f54e81e5ba60002875f5a87f97909aadd691c8793c4570185ef08e5129c"
-    },
-    {
-      "path": "music-maker/samples/bells/high-C.wav",
-      "bytes": 94858,
-      "sha256": "e04220b2d5ff4ff6531fb11eb7fc65845992536f7fc7cf77f7b3ac7402915db0"
-    },
-    {
-      "path": "music-maker/samples/bells/high-C2.wav",
-      "bytes": 94858,
-      "sha256": "a1f842edf3cc5f001d19ebc7cea326dcb19878b6cfb6a9eec522b3e227f6768e"
-    },
-    {
-      "path": "music-maker/samples/bells/high-D.wav",
-      "bytes": 94858,
-      "sha256": "a34b7f3e9e1a83181b267d8429ac8ed8873a2583c8108954e5d7550184cfc902"
-    },
-    {
-      "path": "music-maker/samples/bells/high-E.wav",
-      "bytes": 94858,
-      "sha256": "e25f442649ceb9aa08bd0942d75239e4cc781a96cf6007ea8057202ce8468857"
-    },
-    {
-      "path": "music-maker/samples/bells/high-F.wav",
-      "bytes": 94858,
-      "sha256": "69735091ea339a1cfa76732e94523f713614f3feab00cb141e0a68fdc8a99b34"
-    },
-    {
-      "path": "music-maker/samples/bells/high-G.wav",
-      "bytes": 94858,
-      "sha256": "242ae27cccfa77bf3bbdc5f313a9b38ee5a17443c37dd8e9c12f7a5b03889a9c"
-    },
-    {
-      "path": "music-maker/samples/bells/low-A.wav",
-      "bytes": 94858,
-      "sha256": "9fda9515e8f755425a7fe7f4b68c64ba0069a4f889c9e54bf77067c073bca64a"
-    },
-    {
-      "path": "music-maker/samples/bells/low-B.wav",
-      "bytes": 94858,
-      "sha256": "92c81ddcd156925c540874a7186b9424643edd43400e2c25347d293e2028ee05"
-    },
-    {
-      "path": "music-maker/samples/bells/low-C.wav",
-      "bytes": 94858,
-      "sha256": "20eee87a6a471206e9b7c3d855828069b4a55f419073de196a0632acacfeb455"
-    },
-    {
-      "path": "music-maker/samples/bells/low-C2.wav",
-      "bytes": 94858,
-      "sha256": "0f6db0bec0823792bcddf67674da37b2c4e3b4b3d5b3215d7e291449be0503e3"
-    },
-    {
-      "path": "music-maker/samples/bells/low-D.wav",
-      "bytes": 94858,
-      "sha256": "4b2192fe79a9f8a68fab470daa32f41fc14280876915bd035dfbfb146607a831"
-    },
-    {
-      "path": "music-maker/samples/bells/low-E.wav",
-      "bytes": 94858,
-      "sha256": "2f11286cef0ea8ad63d73cf029bdbb4b58d4f044ba0d633e5c3d125c816a771a"
-    },
-    {
-      "path": "music-maker/samples/bells/low-F.wav",
-      "bytes": 94858,
-      "sha256": "8b203d829e8ef484709fef8d03fca3b56b9dd1b21ab628d2be20ed3dfb099d9e"
-    },
-    {
-      "path": "music-maker/samples/bells/low-G.wav",
-      "bytes": 94858,
-      "sha256": "dedc8dc3afeeeef706508311dabec3c6967d389d1a15d5c6e4ebb8bb04b63fd5"
-    },
-    {
-      "path": "music-maker/samples/bells/middle-A.wav",
-      "bytes": 94858,
-      "sha256": "8f1f0341543bed87e6e18e9c50fe674fb1b9b32231d393c7abe0b7f11329d334"
-    },
-    {
-      "path": "music-maker/samples/bells/middle-B.wav",
-      "bytes": 94858,
-      "sha256": "2eea34dc3989932cabb7296f7d1368a8049437eb6a912a853f2be6842ee41730"
-    },
-    {
-      "path": "music-maker/samples/bells/middle-C.wav",
-      "bytes": 94858,
-      "sha256": "0f6db0bec0823792bcddf67674da37b2c4e3b4b3d5b3215d7e291449be0503e3"
-    },
-    {
-      "path": "music-maker/samples/bells/middle-C2.wav",
-      "bytes": 94858,
-      "sha256": "e04220b2d5ff4ff6531fb11eb7fc65845992536f7fc7cf77f7b3ac7402915db0"
-    },
-    {
-      "path": "music-maker/samples/bells/middle-D.wav",
-      "bytes": 94858,
-      "sha256": "3532c29ed3f44e247b2b97fe333230bded83f2ce28aa67628ae21a13e604a65a"
-    },
-    {
-      "path": "music-maker/samples/bells/middle-E.wav",
-      "bytes": 94858,
-      "sha256": "b81f63252acd7bec9f08a467986f80660ef59460b83f4c07b36eba9a8b237d1b"
-    },
-    {
-      "path": "music-maker/samples/bells/middle-F.wav",
-      "bytes": 94858,
-      "sha256": "e62d0ec28030d9952d87d6e4aa639cfd5ceca9645d5c3c8991053444b1e22e13"
-    },
-    {
-      "path": "music-maker/samples/bells/middle-G.wav",
-      "bytes": 94858,
-      "sha256": "4be8b59fead306c92f63a7254187dee0bdbe292fae7d18a63d3f5b088ec18fbf"
-    },
-    {
-      "path": "music-maker/samples/drums/clap.wav",
-      "bytes": 16802,
-      "sha256": "032091b3ee511964df32ce291f52f91344c332cf46d5553349e8d451e4fc2e75"
-    },
-    {
-      "path": "music-maker/samples/drums/cowbell.wav",
-      "bytes": 22094,
-      "sha256": "481904042bb1569ee7e5fa0070c3eb676eae13b1c7701f168bddde0f8b778096"
-    },
-    {
-      "path": "music-maker/samples/drums/cymbal.wav",
-      "bytes": 55168,
-      "sha256": "fe2ba4a7b93422a1a327ca1d854525644d6df7ae216da78bc40dc32ea6863c8a"
-    },
-    {
-      "path": "music-maker/samples/drums/hihat.wav",
-      "bytes": 9746,
-      "sha256": "4d01c1e0ecd1e100c275da693bfb4a26ad030755824b8c1e4ae128f0d97a3f0b"
-    },
-    {
-      "path": "music-maker/samples/drums/kick.wav",
-      "bytes": 24298,
-      "sha256": "a9aa7d2a8bfd91988ec9f5b9c144b9efa0db4b58377e5a9422f52dd6027b17fb"
-    },
-    {
-      "path": "music-maker/samples/drums/shaker.wav",
-      "bytes": 14156,
-      "sha256": "b883c7f92044d3b59d8457a3f979f259ca8e9f7c8ba86835813875795c4b26d1"
-    },
-    {
-      "path": "music-maker/samples/drums/snare.wav",
-      "bytes": 19888,
-      "sha256": "1d3b08164e0f8d5a409978fa9a17339930a5836b29d0176a6d5463a91e113b55"
-    },
-    {
-      "path": "music-maker/samples/drums/tom.wav",
-      "bytes": 28708,
-      "sha256": "ebf9dde8a4122c5d4bb415a5bd63ef40162fcb8213bb771fbf44a8af21ff44f0"
-    },
-    {
-      "path": "music-maker/samples/guitar/high-A.wav",
-      "bytes": 77218,
-      "sha256": "ebf9f4a3314e3355f12dfe455c666b3ab7e7688c477dda899d57b6a7be5f04ff"
-    },
-    {
-      "path": "music-maker/samples/guitar/high-B.wav",
-      "bytes": 77218,
-      "sha256": "21cc0e0a7bb5f409ce5cff3ce316948fed8dc572142b530aac0ac9e9c7406073"
-    },
-    {
-      "path": "music-maker/samples/guitar/high-C.wav",
-      "bytes": 77218,
-      "sha256": "1029433179df32f1235c5073230c603153e0df11365c2f14c4a28a375098836e"
-    },
-    {
-      "path": "music-maker/samples/guitar/high-C2.wav",
-      "bytes": 77218,
-      "sha256": "5e2998f91e6a6de87de59339a5567fb5217bbca7e4052a4a68fdc543f8be2ee9"
-    },
-    {
-      "path": "music-maker/samples/guitar/high-D.wav",
-      "bytes": 77218,
-      "sha256": "598151a1d61a15f72f02e23a7984bfe66642343ac6ed6f76b5b62629ba5a9a06"
-    },
-    {
-      "path": "music-maker/samples/guitar/high-E.wav",
-      "bytes": 77218,
-      "sha256": "156d267f99d3858d81087ac958f68dfeed26726f3fcba2c624602dc384ad7f57"
-    },
-    {
-      "path": "music-maker/samples/guitar/high-F.wav",
-      "bytes": 77218,
-      "sha256": "b07c4f8551bc90f3e72fb705764c7ec8ed59d176edaf0a3c6d0ac9e4c3775722"
-    },
-    {
-      "path": "music-maker/samples/guitar/high-G.wav",
-      "bytes": 77218,
-      "sha256": "f1f537f990d9e4568843b1a80f812f202de313565495194b39aee947fe64fa12"
-    },
-    {
-      "path": "music-maker/samples/guitar/low-A.wav",
-      "bytes": 77218,
-      "sha256": "238213d8faa8ded1f1a0aefa19cf9a7ecf8f14260800474b095744b105d2066f"
-    },
-    {
-      "path": "music-maker/samples/guitar/low-B.wav",
-      "bytes": 77218,
-      "sha256": "83e8334e93895fe8fdeaa9ecf17fa03f2d13f01bce56ad0d74bd50244ca45cf5"
-    },
-    {
-      "path": "music-maker/samples/guitar/low-C.wav",
-      "bytes": 77218,
-      "sha256": "61062409eb35fa6ef686d7af9bfbf57c4ccb150e7808f9f86dfc84899b00f7cf"
-    },
-    {
-      "path": "music-maker/samples/guitar/low-C2.wav",
-      "bytes": 77218,
-      "sha256": "be6e00f6142aff220b5c76324d1e6ae38452dfc64ba1a79e39756d66f43d7cf7"
-    },
-    {
-      "path": "music-maker/samples/guitar/low-D.wav",
-      "bytes": 77218,
-      "sha256": "d8b77c7c9ccf05922a78bec63d13445b5070bae15473424ce0857b07701f94b2"
-    },
-    {
-      "path": "music-maker/samples/guitar/low-E.wav",
-      "bytes": 77218,
-      "sha256": "d877aeeb35e229eeec1e92b95cba6263b6f7cbccbc0af5251e6a3d99f0d0109c"
-    },
-    {
-      "path": "music-maker/samples/guitar/low-F.wav",
-      "bytes": 77218,
-      "sha256": "3ea68811de345383f32ebb626ecc683a48b1fc82943d14d9dc5de270da3bc60f"
-    },
-    {
-      "path": "music-maker/samples/guitar/low-G.wav",
-      "bytes": 77218,
-      "sha256": "b2d47c049aaf160d43e625b17fc21a9bafc20be79deb8b8e952ad60f9f509dc2"
-    },
-    {
-      "path": "music-maker/samples/guitar/middle-A.wav",
-      "bytes": 77218,
-      "sha256": "5be83be1076467af394f674b19eb54652c98cd4478986fb70d3fa8e7ebe168c6"
-    },
-    {
-      "path": "music-maker/samples/guitar/middle-B.wav",
-      "bytes": 77218,
-      "sha256": "ce4c636e9fe1730e3a58372d5ff9209caf4d511fbad08352c383fd2308a2df30"
-    },
-    {
-      "path": "music-maker/samples/guitar/middle-C.wav",
-      "bytes": 77218,
-      "sha256": "581ecfeff2d62b93ace8fa7d7587a90d58f6406116cbce14593000dc08e611da"
-    },
-    {
-      "path": "music-maker/samples/guitar/middle-C2.wav",
-      "bytes": 77218,
-      "sha256": "73aa9c557e84a8bc238942508d0b9a429199c781f4d6ced5ff8a00a3fcdbfa55"
-    },
-    {
-      "path": "music-maker/samples/guitar/middle-D.wav",
-      "bytes": 77218,
-      "sha256": "f2ebe0505b18df965bc91266fcd4ba4ab32d3dd1663484e37de4321edb760293"
-    },
-    {
-      "path": "music-maker/samples/guitar/middle-E.wav",
-      "bytes": 77218,
-      "sha256": "6948641043492db837eaa53cfcfb79f67cd52cdfa7b44f7250961d6865ffe32f"
-    },
-    {
-      "path": "music-maker/samples/guitar/middle-F.wav",
-      "bytes": 77218,
-      "sha256": "5e915b2a0afedcb31d0ce744f2daf9329b6270f55fec8a6784d46193d58aaca1"
-    },
-    {
-      "path": "music-maker/samples/guitar/middle-G.wav",
-      "bytes": 77218,
-      "sha256": "4bf02902a8454d81f0069714038bffe257900b42177a9d55a8be6dfa3f1377c1"
-    },
-    {
-      "path": "music-maker/samples/piano/high-A.wav",
-      "bytes": 79424,
-      "sha256": "ced05b73f1df37c9f6ceeb824b3ad70129c6959dc72e3c4148ed14ac12dc70d5"
-    },
-    {
-      "path": "music-maker/samples/piano/high-B.wav",
-      "bytes": 79424,
-      "sha256": "82ba83e41363ac523f4285f769a644687ff3562aecc79fc3c791adab8a33698f"
-    },
-    {
-      "path": "music-maker/samples/piano/high-C.wav",
-      "bytes": 79424,
-      "sha256": "ff5a132f20d1a734296a7767206965aa6a5a72edd9e99c8b96bc4756a1a17322"
-    },
-    {
-      "path": "music-maker/samples/piano/high-C2.wav",
-      "bytes": 79424,
-      "sha256": "89d5d94fec2f29ab95df53454cdb4bbbb84c62681b0381706781cc20705ec321"
-    },
-    {
-      "path": "music-maker/samples/piano/high-D.wav",
-      "bytes": 79424,
-      "sha256": "4c9d3682d75843eeb23823d0c6b8381e132c56f17da37c786aac05cc445d9a0a"
-    },
-    {
-      "path": "music-maker/samples/piano/high-E.wav",
-      "bytes": 79424,
-      "sha256": "ac898e406cb9292d20c105777490858d532e84a1bc7432c7e7cc7bca425c400e"
-    },
-    {
-      "path": "music-maker/samples/piano/high-F.wav",
-      "bytes": 79424,
-      "sha256": "d21c78a21433f59d53470ebcc467a7c8b9970e87fe0a33e812103b6474b51f4e"
-    },
-    {
-      "path": "music-maker/samples/piano/high-G.wav",
-      "bytes": 79424,
-      "sha256": "2a8c5b50d86f2004ae14e95bb58f6d77dbeba3d56f30f5d2bdb541673b72c436"
-    },
-    {
-      "path": "music-maker/samples/piano/low-A.wav",
-      "bytes": 79424,
-      "sha256": "d77ebd2953ee82e9d89beade61764c490e030bffa32db56b799101b368dd400b"
-    },
-    {
-      "path": "music-maker/samples/piano/low-B.wav",
-      "bytes": 79424,
-      "sha256": "e1674230f3a2d1590f4e5ab268c85b9e883f4189b979636130e2bb958813390e"
-    },
-    {
-      "path": "music-maker/samples/piano/low-C.wav",
-      "bytes": 79424,
-      "sha256": "bd96a92de80d6a01b1587a5b1435cfcb2e0d32ab546f0cc99ac3d486ebb22083"
-    },
-    {
-      "path": "music-maker/samples/piano/low-C2.wav",
-      "bytes": 79424,
-      "sha256": "acedc59667bd204179a12c71b0dbb7b64ea257448668430734bf75172ef5bae0"
-    },
-    {
-      "path": "music-maker/samples/piano/low-D.wav",
-      "bytes": 79424,
-      "sha256": "4a1bfea060294aca6c88b4f3a44a6cd24f7ebbb0bf974a518114618a6d7af6d1"
-    },
-    {
-      "path": "music-maker/samples/piano/low-E.wav",
-      "bytes": 79424,
-      "sha256": "2c9f6e7b6e58474122d2528da157145e8c3f10373cae9f1c8fc1a4dfcd1bfe4b"
-    },
-    {
-      "path": "music-maker/samples/piano/low-F.wav",
-      "bytes": 79424,
-      "sha256": "9a1ccaa7be2c2184d82314298bfc9603f9ec53b9ecae0789cfa130d16f226a1c"
-    },
-    {
-      "path": "music-maker/samples/piano/low-G.wav",
-      "bytes": 79424,
-      "sha256": "bbb680398b6b8fd3ea15f08168237a39b0fbf9d9a100c2f3dd4be005a11bbe3d"
-    },
-    {
-      "path": "music-maker/samples/piano/middle-A.wav",
-      "bytes": 79424,
-      "sha256": "5d5f9e6445819658f6a981a69ff1b7679b8ad30fc5f695ea805d9bc9e089c237"
-    },
-    {
-      "path": "music-maker/samples/piano/middle-B.wav",
-      "bytes": 79424,
-      "sha256": "f8e6ae56495f0706fd9c56431e5cb44474622c13ef7108882aed18bb32cbd2ea"
-    },
-    {
-      "path": "music-maker/samples/piano/middle-C.wav",
-      "bytes": 79424,
-      "sha256": "acedc59667bd204179a12c71b0dbb7b64ea257448668430734bf75172ef5bae0"
-    },
-    {
-      "path": "music-maker/samples/piano/middle-C2.wav",
-      "bytes": 79424,
-      "sha256": "ff5a132f20d1a734296a7767206965aa6a5a72edd9e99c8b96bc4756a1a17322"
-    },
-    {
-      "path": "music-maker/samples/piano/middle-D.wav",
-      "bytes": 79424,
-      "sha256": "91f09acea6a4d6758d139ad2343f3ffe746d1011aca060a050b56d2c477f8baf"
-    },
-    {
-      "path": "music-maker/samples/piano/middle-E.wav",
-      "bytes": 79424,
-      "sha256": "213ce22635d1328636e7b962995a9140a4feca2ca5b6fc64c6795435f6040d8b"
-    },
-    {
-      "path": "music-maker/samples/piano/middle-F.wav",
-      "bytes": 79424,
-      "sha256": "60e2ccc71f356ba4cd6a2deaa545cc783932d007241695698d896e7f8c2709cd"
-    },
-    {
-      "path": "music-maker/samples/piano/middle-G.wav",
-      "bytes": 79424,
-      "sha256": "c29e7771f0f65649e31cc592ebe17b6c26551e54a38a674bdaf14a6436309b46"
-    },
-    {
-      "path": "music-maker/samples/synth/high-A.wav",
-      "bytes": 59578,
-      "sha256": "8941dd31429c13c844941457e10cd8d48ddfd9551d294c1f1a5dc412973ee2b5"
-    },
-    {
-      "path": "music-maker/samples/synth/high-B.wav",
-      "bytes": 59578,
-      "sha256": "dcacadd81200232ba42ff54497a397e8a67227ef2e251efade74ea717954479d"
-    },
-    {
-      "path": "music-maker/samples/synth/high-C.wav",
-      "bytes": 59578,
-      "sha256": "098e75cb5b53c275500758e70d7fe6818c0c4d63d8944654cb30d2223758d6ae"
-    },
-    {
-      "path": "music-maker/samples/synth/high-C2.wav",
-      "bytes": 59578,
-      "sha256": "20415e4ab125187ecb8bc0b4a2595fcebad3810f6c7f48a264e1bf1e4a44d1c3"
-    },
-    {
-      "path": "music-maker/samples/synth/high-D.wav",
-      "bytes": 59578,
-      "sha256": "6bc13214e8cf9b2df6012a1d45e909e5876437def52fbb835a0f56297109f98c"
-    },
-    {
-      "path": "music-maker/samples/synth/high-E.wav",
-      "bytes": 59578,
-      "sha256": "599804db8c2aeddb9a76f575dc1957612294fdfaf5af6ec2c7473addf263f4a0"
-    },
-    {
-      "path": "music-maker/samples/synth/high-F.wav",
-      "bytes": 59578,
-      "sha256": "bb065738df8f2816e8c28365b913b36f317fbdfed11e239d9f2da1c72fd1e789"
-    },
-    {
-      "path": "music-maker/samples/synth/high-G.wav",
-      "bytes": 59578,
-      "sha256": "669157f239b26fbaf2df62159417e1ea2f05f98e5af51e4ac90352a5216e3c91"
-    },
-    {
-      "path": "music-maker/samples/synth/low-A.wav",
-      "bytes": 59578,
-      "sha256": "f6199997aef0b23393ae3e32fb2501b2ae0b1cbdb41f6ef78cbb51826bf5ec7e"
-    },
-    {
-      "path": "music-maker/samples/synth/low-B.wav",
-      "bytes": 59578,
-      "sha256": "23433ac2056db8c9c62c0fef4988f9ae354c23e1f8cd3da28cc53408de1e53a1"
-    },
-    {
-      "path": "music-maker/samples/synth/low-C.wav",
-      "bytes": 59578,
-      "sha256": "3998a5429e6b39740f219b41526bbc2c6c7787559a1d237e134aa52f671015e2"
-    },
-    {
-      "path": "music-maker/samples/synth/low-C2.wav",
-      "bytes": 59578,
-      "sha256": "825275d9e24e32bf4a3a53414dd832759c6816e2e179b68ab6909e8a05718fef"
-    },
-    {
-      "path": "music-maker/samples/synth/low-D.wav",
-      "bytes": 59578,
-      "sha256": "d90c07c91c74ee95e9d8986fc81eb4d8583954957caca339f13abd17c489db0c"
-    },
-    {
-      "path": "music-maker/samples/synth/low-E.wav",
-      "bytes": 59578,
-      "sha256": "cd3c99a90f8a76f0ca4a3e97e0d0240a41fe0521573d789044ec1c678d3f3b25"
-    },
-    {
-      "path": "music-maker/samples/synth/low-F.wav",
-      "bytes": 59578,
-      "sha256": "69fa785549a031f450a64cb304738d38d2ab7a5f04173d701ee82e7482f7e1e4"
-    },
-    {
-      "path": "music-maker/samples/synth/low-G.wav",
-      "bytes": 59578,
-      "sha256": "652112aff9cdf3c54288f97b18e93991f3bc4e0886a05b89608a4893ef547d34"
-    },
-    {
-      "path": "music-maker/samples/synth/middle-A.wav",
-      "bytes": 59578,
-      "sha256": "239da458b5e99426ee0f4a10e35da8faaa117ae3bf9bac1cd3335242e7568c58"
-    },
-    {
-      "path": "music-maker/samples/synth/middle-B.wav",
-      "bytes": 59578,
-      "sha256": "2af74910ac6b4f48cbd1404137a7392ba50323f82667171a0f9d1179060af540"
-    },
-    {
-      "path": "music-maker/samples/synth/middle-C.wav",
-      "bytes": 59578,
-      "sha256": "825275d9e24e32bf4a3a53414dd832759c6816e2e179b68ab6909e8a05718fef"
-    },
-    {
-      "path": "music-maker/samples/synth/middle-C2.wav",
-      "bytes": 59578,
-      "sha256": "098e75cb5b53c275500758e70d7fe6818c0c4d63d8944654cb30d2223758d6ae"
-    },
-    {
-      "path": "music-maker/samples/synth/middle-D.wav",
-      "bytes": 59578,
-      "sha256": "cd3cd419acfd31e1577575428acc673e89d643e3f3d5d10d2bbb7c8f2d169d6a"
-    },
-    {
-      "path": "music-maker/samples/synth/middle-E.wav",
-      "bytes": 59578,
-      "sha256": "2cfc5abbbec8b41a90f1599585c395d9ae8eb4aacb84697bcb609e08ada29573"
-    },
-    {
-      "path": "music-maker/samples/synth/middle-F.wav",
-      "bytes": 59578,
-      "sha256": "e4bbcb01aeaa5c958b3bdbb2cca905973cd19e47fc1c6c0c4e36fdceb2015144"
-    },
-    {
-      "path": "music-maker/samples/synth/middle-G.wav",
-      "bytes": 59578,
-      "sha256": "d4c71159fc629faaca44ac7346fb0f25c75749c53a41e70c861a9fc2d88099ac"
-    },
-    {
-      "path": "music-maker/samples/xylophone/high-A.wav",
-      "bytes": 46348,
-      "sha256": "ad7b2b49dfde42824301aaead28484728453ae82beb2d8a9efd7dc0707aecebf"
-    },
-    {
-      "path": "music-maker/samples/xylophone/high-B.wav",
-      "bytes": 46348,
-      "sha256": "81fe7af7cd6b4320630f9f31473b47999aa86a0769daac83dfccb98538d1884e"
-    },
-    {
-      "path": "music-maker/samples/xylophone/high-C.wav",
-      "bytes": 46348,
-      "sha256": "fff3dc4cc01342f39a0f649495803e42b89e571d50bf2668c132b8a8854b25f3"
-    },
-    {
-      "path": "music-maker/samples/xylophone/high-C2.wav",
-      "bytes": 46348,
-      "sha256": "e9855cbfd5b14d2a38fa85f53cc0b00fa281d017b0b3f1f7009960d3f47b5bcd"
-    },
-    {
-      "path": "music-maker/samples/xylophone/high-D.wav",
-      "bytes": 46348,
-      "sha256": "fc71c7cf1269601276af68d2b4ea6b4deeb425a8cb756992c312a44ee204825b"
-    },
-    {
-      "path": "music-maker/samples/xylophone/high-E.wav",
-      "bytes": 46348,
-      "sha256": "4dfcfc8e21b05f458c4843de607afca6013832d7da846605bd003b2a1b28f6d2"
-    },
-    {
-      "path": "music-maker/samples/xylophone/high-F.wav",
-      "bytes": 46348,
-      "sha256": "58ecc2d7755c883c72210aaa9103828a1366369f8b83fd1a6be801cf1df25d38"
-    },
-    {
-      "path": "music-maker/samples/xylophone/high-G.wav",
-      "bytes": 46348,
-      "sha256": "f131b8130982927620064ad9e581ecb9a6fe2c080639b93b460aab0444e2c15b"
-    },
-    {
-      "path": "music-maker/samples/xylophone/low-A.wav",
-      "bytes": 46348,
-      "sha256": "e590b1fcbed8be5cf57d93391940e26e630fc346bb019d57981dca04f902bf32"
-    },
-    {
-      "path": "music-maker/samples/xylophone/low-B.wav",
-      "bytes": 46348,
-      "sha256": "97a4f5ebca9696cc185d67a29688da09f79076bce56c69f2d98755128dc345c9"
-    },
-    {
-      "path": "music-maker/samples/xylophone/low-C.wav",
-      "bytes": 46348,
-      "sha256": "f53c2186ccd7f70f91a2dfde06ac95cae2ef5684bac8f743111980551483706f"
-    },
-    {
-      "path": "music-maker/samples/xylophone/low-C2.wav",
-      "bytes": 46348,
-      "sha256": "498e9bf2f5b5becd65f8e7c8f7dac9e2fa5a5bd68d0e36e840f2f7ea5f684b2e"
-    },
-    {
-      "path": "music-maker/samples/xylophone/low-D.wav",
-      "bytes": 46348,
-      "sha256": "84f3bdf6958015ad2e72ff41cf526c1d5f0e0f44a2ea451253bd57532e617c66"
-    },
-    {
-      "path": "music-maker/samples/xylophone/low-E.wav",
-      "bytes": 46348,
-      "sha256": "a47519888a295ac913fd23051ad16cd14ca164f3b8c75b2fd2bd9c27a2b000c0"
-    },
-    {
-      "path": "music-maker/samples/xylophone/low-F.wav",
-      "bytes": 46348,
-      "sha256": "03ae9afaee43039627e9f10b65ac1776e36753481d2ee003d4994a1f11b77534"
-    },
-    {
-      "path": "music-maker/samples/xylophone/low-G.wav",
-      "bytes": 46348,
-      "sha256": "bb3fb8aecbe9c0375025626b866852d52e6ff2befd0ea16eb443096624ed1312"
-    },
-    {
-      "path": "music-maker/samples/xylophone/middle-A.wav",
-      "bytes": 46348,
-      "sha256": "25c0d8d29c0ea23921f5b339b5eb9c267479983217dc079149a0d99d0afdef13"
-    },
-    {
-      "path": "music-maker/samples/xylophone/middle-B.wav",
-      "bytes": 46348,
-      "sha256": "58ec4395a7f8e4a2c83de2121bd712b8502a8d0680234137a1ea5746310d8c08"
-    },
-    {
-      "path": "music-maker/samples/xylophone/middle-C.wav",
-      "bytes": 46348,
-      "sha256": "e6407e64cceffc7850a7aa94b686c0c892d4876f2a13e73e62d5dcebffd5696b"
-    },
-    {
-      "path": "music-maker/samples/xylophone/middle-C2.wav",
-      "bytes": 46348,
-      "sha256": "94276e9dac6a7347b0e42e82fd8f2287aaa544b02cda043f07b2735d11f238f4"
-    },
-    {
-      "path": "music-maker/samples/xylophone/middle-D.wav",
-      "bytes": 46348,
-      "sha256": "3a3c03f92fe91a013210536578526826b97d33a0892949e177f58fe09a44edeb"
-    },
-    {
-      "path": "music-maker/samples/xylophone/middle-E.wav",
-      "bytes": 46348,
-      "sha256": "704b2b940993d6b60a358728a790758bdcd7efce3a16ac911c2ec241b4c3a1a0"
-    },
-    {
-      "path": "music-maker/samples/xylophone/middle-F.wav",
-      "bytes": 46348,
-      "sha256": "8b84bec91b52c3cc36b2df6ead7b01651a08ebc88b82080810b940be8397c808"
-    },
-    {
-      "path": "music-maker/samples/xylophone/middle-G.wav",
-      "bytes": 46348,
-      "sha256": "22613c6f094cb3586809fe6f3c95b40f941ca4e7c09aeb36b2dbc88d63ef97f7"
-    },
-    {
-      "path": "music-maker/style.css",
-      "bytes": 4558,
-      "sha256": "12551a7da44fe102c7518b5838693ed1f4468c0ff75bc0d20f618e43c210d7b6"
-    },
-    {
-      "path": "orb-slicer/game.json",
-      "bytes": 308,
-      "sha256": "be4372a368ed884b0320507f38d5e6cf164e6d971ea7cf79ec135eabf5ab7c84"
-    },
-    {
-      "path": "orb-slicer/icon.png",
-      "bytes": 18488,
-      "sha256": "bdf1d1082b0f067ece061a70c1f5b7efa9aaecab06de0d5869e21a9d20942cea"
-    },
-    {
-      "path": "orb-slicer/index.html",
-      "bytes": 124033,
-      "sha256": "0ccafbacc7723471c2094ed114605befcb5825fae0f2f78cd34a957e4ba924be"
-    },
-    {
-      "path": "paint-lab/game.json",
-      "bytes": 296,
-      "sha256": "d59c517eaf6ba03eea27e440bd3e249c2902391b3cf8e7978ea9f1e7620d1417"
-    },
-    {
-      "path": "paint-lab/icon.png",
-      "bytes": 16066,
-      "sha256": "d18afe215f77d618e621e2183f658e23de5c11fb5d747f259ccaabe73e64ec5c"
-    },
-    {
-      "path": "paint-lab/index.html",
-      "bytes": 51938,
-      "sha256": "3ef637cae98b1942ddcd633d9f333efb7037963c88900da4ae4a8bde4afe085e"
-    },
-    {
-      "path": "patterns/game.json",
-      "bytes": 308,
-      "sha256": "79badb906c556b0b652babbfbd71b94310149ef7c4a5eef753a9d43271f7d2ae"
-    },
-    {
-      "path": "patterns/icon.png",
-      "bytes": 15897,
-      "sha256": "1c801a2522f4002cab90515cbf7b0f2f345c8ea19835c36dacdc84654ab49726"
-    },
-    {
-      "path": "patterns/index.html",
-      "bytes": 15444,
-      "sha256": "ddbe54c69fca35120d23ba5888d1c10368cba0ee05e5fb78c6cf700cf48e2a08"
-    },
-    {
-      "path": "pwa-icon-192.png",
-      "bytes": 17376,
-      "sha256": "24f9099de51bc6a787707d79bd91bf31dda8ba709156cdd3a4dbd6ac76eebc13"
-    },
-    {
-      "path": "pwa-icon-512.png",
-      "bytes": 41951,
-      "sha256": "3d83d06aec5007d173fec771fd0a3cfd86ec957262f2d79b868c36a329d36f38"
-    },
-    {
-      "path": "pwa-icon-maskable-512.png",
-      "bytes": 31883,
-      "sha256": "18da3059162d331b8130a791d3383483b87d0feb99d7a81b5c9e0dcc124b93c1"
-    },
-    {
-      "path": "regex-lab/engine.js",
-      "bytes": 14444,
-      "sha256": "3b778609e60e72a19670dba903e6fdda2b656b1c48e40e5ad9147bcc6d31c2e5"
-    },
-    {
-      "path": "regex-lab/game.json",
-      "bytes": 339,
-      "sha256": "1a4869e253ddd57231645b7b6ee0cd7b344b0f58784dc04c02302cb583281f54"
-    },
-    {
-      "path": "regex-lab/icon.png",
-      "bytes": 43756,
-      "sha256": "703104285b556d1dd11ffd042cf90c63bc0f51b16ece9e7b335766f26f65ad5c"
-    },
-    {
-      "path": "regex-lab/icon.svg",
-      "bytes": 1189,
-      "sha256": "e3614f59f890344d05fd19ae04d582405cdfa1374c9d9cb4f7b758a1f651ba02"
-    },
-    {
-      "path": "regex-lab/index.html",
-      "bytes": 32526,
-      "sha256": "b61883c8703ad319ea8e8d927b9baad8ef7d9e1c26207df3422e640f34957812"
-    },
-    {
-      "path": "shuffleboard/game.json",
-      "bytes": 339,
-      "sha256": "da0d054ea9ff093c2ab53ed7756523cf9b6cbe4fb182f2f6c594924efe0fc737"
-    },
-    {
-      "path": "shuffleboard/icon.png",
-      "bytes": 9207,
-      "sha256": "4d57e564791d2a17625f1ad8823765a83403813011d309aa6ca70e8f3dea01a0"
-    },
-    {
-      "path": "shuffleboard/index.html",
-      "bytes": 65702,
-      "sha256": "c4f1bb61d162acaf8fdcb6eeee0de12d11c8a7f5ad56364e2b3fb70202585346"
-    },
-    {
-      "path": "silly-face-lab/game.json",
-      "bytes": 301,
-      "sha256": "da34dcaa73f631f895f191229cc31ea66d411496ddc4b0f151237c6f55e6790e"
-    },
-    {
-      "path": "silly-face-lab/icon.png",
-      "bytes": 17141,
-      "sha256": "63b8da2a9b2f3ce4e0117033716c0d873b655b6af89a59c499b3b809a83be8a6"
-    },
-    {
-      "path": "silly-face-lab/index.html",
-      "bytes": 109631,
-      "sha256": "a0dd8fa18fd53e4234b70d1f2328638a2679514e0d8b0ba4b21929b24718945b"
-    },
-    {
-      "path": "simon/game.json",
-      "bytes": 308,
-      "sha256": "42011750e1c4dff088c9022dd3149d1675f729223cc4207db24c72a26d76b68b"
-    },
-    {
-      "path": "simon/icon.png",
-      "bytes": 13336,
-      "sha256": "b316da0b149582666c848380e4a0befe81d1fd58d0635e515d1aeea298988c23"
-    },
-    {
-      "path": "simon/index.html",
-      "bytes": 112490,
-      "sha256": "b62ca3f0508384eb6110eb405e53d6954d16f861f8c5bdbc9d898ae37d620f09"
-    },
-    {
-      "path": "solitaire/engine.js",
-      "bytes": 19945,
-      "sha256": "e0b4f693b613a1197e53285f570699da7a095c603a0eafe1b22f4c1a5e447fca"
-    },
-    {
-      "path": "solitaire/game.json",
-      "bytes": 346,
-      "sha256": "796b2426e6de8ae9f7a4acedff697390583a490fb142de3fcd07aac083397961"
-    },
-    {
-      "path": "solitaire/icon.png",
-      "bytes": 45777,
-      "sha256": "b8bdb6944f0b0faf38c65ae47105f19ff2f11b4c20888fb8bf9a9124db4edc18"
-    },
-    {
-      "path": "solitaire/icon.svg",
-      "bytes": 1284,
-      "sha256": "56d892a691141ea37a3d9c2ce135af612d0c88b6b6ed05b63a13508f7ede18e4"
-    },
-    {
-      "path": "solitaire/index.html",
-      "bytes": 31185,
-      "sha256": "b736163db785e37132780819555dd7b9d882035a00b4c3f6dc219e69c09cf2e1"
-    },
-    {
-      "path": "sorry/game.json",
-      "bytes": 371,
-      "sha256": "a05de6ded99036005b2648b281d2f4fe746b02adb30cbd42aa2d7b8265ea3e74"
-    },
-    {
-      "path": "sorry/icon.png",
-      "bytes": 13464,
-      "sha256": "6bafe06600d5816389d9a797d778e53ef90d06a2de0007950cdea84089b0bceb"
-    },
-    {
-      "path": "sorry/index.html",
-      "bytes": 166115,
-      "sha256": "c3baf705856bd1962fdcefc938837a41d88f84a0445ec3d234b8cf4b213ff952"
-    },
-    {
-      "path": "spelling/game.json",
-      "bytes": 304,
-      "sha256": "a6a4bec2dce90edfa50afa8814bf6d856a1b031be350c3a5cb689de8f972556b"
-    },
-    {
-      "path": "spelling/icon.png",
-      "bytes": 13588,
-      "sha256": "84b80cc8f43ce7f6527929c10035389f355d2fc939d87d9b7c2c53ab789eda30"
-    },
-    {
-      "path": "spelling/icon.svg",
-      "bytes": 1469,
-      "sha256": "9067ff10bd48d14468ee3ccbdfff2477907b19b8f1b7a924621b497077cd6d6f"
-    },
-    {
-      "path": "spelling/index.html",
-      "bytes": 10379,
-      "sha256": "ce1dfbee497a77703338740422e68d3255bd8b7be06d69376754b123b7f40651"
-    },
-    {
-      "path": "sw.js",
-      "bytes": 27784,
-      "sha256": "715a947871c6f3b9889e1786eaff9c15b6bbe091d378bff8b80b4502559703a6"
-    },
-    {
-      "path": "tic-tac-toe/game.json",
-      "bytes": 345,
-      "sha256": "3afdfd5bf4e48315d96430c447d2905643f95ca583fad1b5237674de18776bae"
-    },
-    {
-      "path": "tic-tac-toe/icon.png",
-      "bytes": 7849,
-      "sha256": "c170c3f46f0326ef338cbf91054ae58e8021cc7680352be7b6caf198f7110249"
-    },
-    {
-      "path": "tic-tac-toe/index.html",
-      "bytes": 172279,
-      "sha256": "6bc0d7312569f774b859ca0e8e941058c64ea2d601a29b507133d1c109f7aea1"
-    },
-    {
-      "path": "tic-tac-toe/room-client.js",
-      "bytes": 13354,
-      "sha256": "26a8c702d82b3ae825dec58539d8eb3a1f41fa4bdd27be93106cdca20121ae44"
-    },
-    {
-      "path": "time/game.json",
-      "bytes": 289,
-      "sha256": "62f4cfdd31c1ada2b59f620e7bf65449dfe72f560fd2723cd2a0e5c0cdd14744"
-    },
-    {
-      "path": "time/icon.png",
-      "bytes": 15313,
-      "sha256": "06cb8f5b56db46852f9c1e7b26fbc22397f9fdc27d55862c7a6d5f79957cc4d3"
-    },
-    {
-      "path": "time/index.html",
-      "bytes": 117613,
-      "sha256": "a118fb8868da02e81ae0ca0e6f209c14b2f19e20599075f4c89aeadf00888701"
-    },
-    {
-      "path": "trail/game.json",
-      "bytes": 292,
-      "sha256": "9c55c2e3f8df7c7fcf82abe7553aa05cc1ccc181561e16a352b3853d5ebd27af"
-    },
-    {
-      "path": "trail/icon.png",
-      "bytes": 10636,
-      "sha256": "c59dbaee16fb12c6fe274e3897baf6d6f07e2c51e06f2ee5464fba4ce85a4b01"
-    },
-    {
-      "path": "trail/index.html",
-      "bytes": 132219,
-      "sha256": "acc4c3348f1d03e33bbf52008a44ac288628d42797136d3fba9d94d53e40df23"
-    },
-    {
-      "path": "trivia/game.json",
-      "bytes": 309,
-      "sha256": "c9327663f9564fdf682785e94f7af89f33a2489ee52b15c40523dd8ce49aea06"
-    },
-    {
-      "path": "trivia/icon.png",
-      "bytes": 8745,
-      "sha256": "2b9c305efa8f8eeedd48f7a4f22e7a144842a132a3f65e90a38db0fcdf5ad2e0"
-    },
-    {
-      "path": "trivia/index.html",
-      "bytes": 66454,
-      "sha256": "ba517fe369126bb8ce84bb15f5a7c65b835fe216c9b3c60cfdd85efe7ad92cd6"
-    },
-    {
-      "path": "two-truths/game.json",
-      "bytes": 306,
-      "sha256": "aedc3430cf255a51864ef6931abd383437bf06aa0f2185cf29e5240f53315fc2"
-    },
-    {
-      "path": "two-truths/icon.png",
-      "bytes": 9279,
-      "sha256": "41fe57275273d501b187e79c1bcef21c268ad4ea8054ac3342d04f84d729d9d9"
-    },
-    {
-      "path": "two-truths/icon.svg",
-      "bytes": 734,
-      "sha256": "2914de0655a3ef728a8885ad5c1686f935b79dc93bcf0f20a487ba943fbc705b"
-    },
-    {
-      "path": "two-truths/index.html",
-      "bytes": 30395,
-      "sha256": "9c9e1734d18221d5bf460d0d20e8d7a07c8024080ed3f44f943f780cc7eda18a"
-    },
-    {
-      "path": "typing/game.json",
-      "bytes": 299,
-      "sha256": "db1da23dbcadd7422b15723ef1064c9b2343ad247b633df648db7c0db3edc61a"
-    },
-    {
-      "path": "typing/icon.png",
-      "bytes": 7589,
-      "sha256": "1d0c326e41c4eb89d88678f73162820929c27d3e25282cf363d6126f031d0c77"
-    },
-    {
-      "path": "typing/index.html",
-      "bytes": 8974,
-      "sha256": "d06694f4d413381527d566d00656046702d7e2c841aba52b43ed47fbaae23259"
-    }
+    {"path":"apple-touch-icon.png","bytes":10459,"sha256":"9f51a09b0a96437b6d224f611563b48ed69152c94f7edb5009b3460b55a97279"},
+    {"path":"arcade-save.js","bytes":19313,"sha256":"97bfd0353935f79d315d67debff21a02bcd8c0533b9c641845a805c61086c6a2"},
+    {"path":"arcade-shell.css","bytes":11649,"sha256":"daab771825efd1e5132c1524d52869dfd7483a3f1906e55949e034846db60137"},
+    {"path":"arcade-shell.js","bytes":77649,"sha256":"76722d306fb5d86c6eec2942d07532c295fd47f01bcd400b40ed854c93c75ded"},
+    {"path":"arcade-ui.css","bytes":6597,"sha256":"e956d72d8a5140a7b87f0745fdc55e850d2518a809439a96b2cbebba71c31882"},
+    {"path":"arcade.png","bytes":34427,"sha256":"a1082d341de5aa9c1fee6efd178f20720df7434a2aabd0b6216bb6d520237c03"},
+    {"path":"balloons/game.json","bytes":305,"sha256":"64409d88a4a338a36262ba1c3f0b17c7cfd0085d7ac1144af02ef6c74279e1ec"},
+    {"path":"balloons/icon.png","bytes":16043,"sha256":"e938f3b2beeb6ef3542405787370ffe91b0e0b7fb97aa8060d7ab54fd3fa4476"},
+    {"path":"balloons/index.html","bytes":126873,"sha256":"34179cb1cd6c4221f4e38b5c256e9ac877ab850c085f955aa52447ef31d231a3"},
+    {"path":"blackjack/game.json","bytes":309,"sha256":"a68ac16ea486c48c2844791d3b768197e54a90c77ee2e622a5b2e3c4510b96b8"},
+    {"path":"blackjack/icon.png","bytes":14024,"sha256":"6330f845a470834a6ac12e76f1baa4a9065a638f304ddb588e6723c51bf8c418"},
+    {"path":"blackjack/index.html","bytes":124163,"sha256":"7608b3d67e32a82e986966d2afa2f036b4ffe2e811a37996448b47fc4be0e48f"},
+    {"path":"bounce-boxes/game.json","bytes":310,"sha256":"8894d62734856daf39e19cf97b5741fb2729d56260325fc3f586565ec3d05434"},
+    {"path":"bounce-boxes/icon.png","bytes":17909,"sha256":"9b2bbfbdfa197f051c98d89fed594e45b647181d0090c6f72c24069c053c1ac3"},
+    {"path":"bounce-boxes/index.html","bytes":79706,"sha256":"56ece1c408640aa21233e68a21e98f81097def4545ea7109c4c797ce2506d9f2"},
+    {"path":"bowling/game.json","bytes":331,"sha256":"c5f2e0a847205b653b3997b0ac9615e6eb522488fcb89350b665262211defade"},
+    {"path":"bowling/icon.png","bytes":12459,"sha256":"8d2e92d9dcc2113ff0eb8fcf2c47e725de70fe6dfa3d36fcc1307ad4262166f4"},
+    {"path":"bowling/index.html","bytes":44390,"sha256":"0218db47968a8916095bb580a2689daefc63c03c36479a7ed22d5979dc5588a0"},
+    {"path":"bug-squish/game.json","bytes":351,"sha256":"ae34e66dc16728254b26b240205db6ba8757a4d4388fae0d3f8ba249d0df998d"},
+    {"path":"bug-squish/icon.png","bytes":17874,"sha256":"d68cc2c305c506b95899d5841abb01204384febae6d39b8f6aead3029baf24f0"},
+    {"path":"bug-squish/index.html","bytes":41802,"sha256":"9c0e44aa0173b151a6da86eed7ea193d8654b5a521d37b31664a48dd65bad7e8"},
+    {"path":"build-my-joke/game.json","bytes":303,"sha256":"bec9b48914ebd622dbe5273591b6f4ec7ea88ead4e587957c3a7c5a3bb346ee3"},
+    {"path":"build-my-joke/icon.png","bytes":12802,"sha256":"cc67e69d118f4a15e4a70eec78dd98b1ce69af1b05f6833cf121e80900329ec0"},
+    {"path":"build-my-joke/icon.svg","bytes":985,"sha256":"7bd04595cb06bd4259eaeb65fc845378fd169e493ebfed0fc5bd64beb93ecfdc"},
+    {"path":"build-my-joke/index.html","bytes":10883,"sha256":"a9ce4bc2d2637e1e1dd0d34f85a26d3642ce34281f0cdca5c61b947b1a14bfdb"},
+    {"path":"catalog.json","bytes":21469,"sha256":"9301b8347012d524acaa95e39e5a29ac8f5cb7d4f2c932c80624eb2a9492f800"},
+    {"path":"chat-room/game.json","bytes":328,"sha256":"8f3d58a86725f860b97684d570cef04dcdfe9ee1ea9cff25415fd1ef8dbf5ec4"},
+    {"path":"chat-room/icon.png","bytes":10930,"sha256":"7aae87bea293bfe4008f5acb124f92f100db360e93dbd41104535dddcebfb0aa"},
+    {"path":"chat-room/icon.svg","bytes":999,"sha256":"7a5baca90d1c6c9e862a25c0ad8d2fa6a4921fed56ab79af7388bfc614971539"},
+    {"path":"chat-room/index.html","bytes":36644,"sha256":"1e161fa75c7bf4389316dc77778ab03d4ac439e785f847b16a3acc4136a96e18"},
+    {"path":"checkers/game.json","bytes":341,"sha256":"21e14f3bcf2e6f05fb1123a031b5e5d2055199a8102887f2b8b7f8f2afe77ecb"},
+    {"path":"checkers/icon.png","bytes":13409,"sha256":"01eadc0c6f60736bf7eb392b287a861307cb95262a04943908c7277854c6fd12"},
+    {"path":"checkers/index.html","bytes":209397,"sha256":"b1c4cda43bac613e91606a5bb6d2ff39c75e393c32701e45edcc0573c15f15a2"},
+    {"path":"chess/game.json","bytes":349,"sha256":"23690ee24548f195bffb60632b94638c13c8e0e6011a9c1a3d7e2beb07750edd"},
+    {"path":"chess/icon.png","bytes":8802,"sha256":"4b9b5fbd10de267ef06304632c1bc406cff9bdf82f1f8fae496bd3d7b0f2abbe"},
+    {"path":"chess/index.html","bytes":152049,"sha256":"5eece62f4b3f690af1627aa5be6fa229cd5b39b71d157838df71086d801c6ca9"},
+    {"path":"codebreaking/game.json","bytes":302,"sha256":"81aec626053c7aee07931dbc4a8e2cca88fe586a8584a1ed1015e1214118817b"},
+    {"path":"codebreaking/icon.png","bytes":10523,"sha256":"0bf7cd1be429b5cda15bf413530b55edb451cca9c7312ffb6df81e57ce3a1565"},
+    {"path":"codebreaking/icon.svg","bytes":1124,"sha256":"502a529a69b0fd74f2db35533b7827a85fb976a96c8410c32f02dafa05d2d40b"},
+    {"path":"codebreaking/index.html","bytes":13091,"sha256":"d4e969857d478deccf5406135e7e3745159828694368e2f8acf13af4e3bbf295"},
+    {"path":"contraption-maker/game.json","bytes":329,"sha256":"4af0c433c37452d6c9eb7a1f56273c3501fc474515675724e4e179b9a9b23de4"},
+    {"path":"contraption-maker/icon.png","bytes":16705,"sha256":"a740683a8fb368fdd0397745bf53a672a388a7d3aa55aa551ff6aa69a9d5db7f"},
+    {"path":"contraption-maker/index.html","bytes":37687,"sha256":"dc88eb452fcb94bd1f9691ddf0b58551f574bf277ef97971dfed60d5b1d22363"},
+    {"path":"dots/game.json","bytes":337,"sha256":"ed2efdd2fc0af7efa2ac9ad74a5ac36acf7cbb0b38d8a2e14487800d7fd6fa7a"},
+    {"path":"dots/icon.png","bytes":10856,"sha256":"bb10346c2b060a85a771de32fa6204a24151f8d00a24d44f30aad9de1811757c"},
+    {"path":"dots/index.html","bytes":234489,"sha256":"d3e3ed1d0e5c1d8da9919624a5ef12839741f8566246e0fc4aa4c870058570d5"},
+    {"path":"firefighter-frenzy/game.json","bytes":346,"sha256":"973c3a226d1a69144ab3f8ce5b660a906d2c0a36a4469f1fa63db5214b17c425"},
+    {"path":"firefighter-frenzy/icon.png","bytes":15315,"sha256":"d54e3bad9304b4630bfd22285b1295274597c1999a2ccb18a19c180758a7d475"},
+    {"path":"firefighter-frenzy/index.html","bytes":54969,"sha256":"489263f1265a2b2364dda4be46e87beed72eaa04eee5fdd4db22beecd41c94e5"},
+    {"path":"guess-who/game.js","bytes":31621,"sha256":"48b5a7728b97e46164b751c5a9d3cd786ee985128c623a036d5a4058c1195f62"},
+    {"path":"guess-who/game.json","bytes":351,"sha256":"412d46fb1bb92db0558382f0a69476cc7fb870fabcc555a54efcce18d6a2a885"},
+    {"path":"guess-who/icon.svg","bytes":3068,"sha256":"9dd7685deab8202076383d22b50167709022c823ed684a75b240676bab730018"},
+    {"path":"guess-who/index.html","bytes":16486,"sha256":"d60856373de4567af3552a51e0a65481b4ded0094ae26e17a736afc674636ff8"},
+    {"path":"guess-who/portraits.js","bytes":3568,"sha256":"c5f787d505d0313c46148a49a5d0cfd12e67bf3a945e918f4a65e8bc6a40401e"},
+    {"path":"guess-who/README.md","bytes":4024,"sha256":"c3fe1921e12fdf61878e36d75a18a3d6b34e4b857f74c368b7cacccc23dc1177"},
+    {"path":"hangman/game.json","bytes":307,"sha256":"94924952bac47965fde82463b86ac757954601b30df662e4d490fcf6b7bcf999"},
+    {"path":"hangman/icon.png","bytes":15291,"sha256":"6517613acdc2c0abf2ff8a100536657985e8ecefa305ec7d914252f1d7075ae4"},
+    {"path":"hangman/index.html","bytes":135593,"sha256":"58ada4001b87e388e0ce9a09ee5dfc28d4456888f547cd29acae8a6872a9d052"},
+    {"path":"index.html","bytes":11823,"sha256":"cba075b43de1fcd5269608c5dea02caada014c218a7ce9a4ca76dfaae0e37919"},
+    {"path":"insultinator/game.json","bytes":315,"sha256":"b11e0ef2cdab4965fdca4407b035d87a974c9884861d802e399ef80759c1a36f"},
+    {"path":"insultinator/icon.png","bytes":10707,"sha256":"d2c2376ff7f23d95591977514faeca4c0845242891314f3695a24fa3ab6d0aa8"},
+    {"path":"insultinator/index.html","bytes":62323,"sha256":"6197f5141f39f47babc65b99e4c0172aa082539852eed828c22a3a3d9a80ed0d"},
+    {"path":"jigsaw/game.json","bytes":293,"sha256":"b7e7651ce572e1ce66104db265241e07810d2d484ac8827b6e94ca47fc9b09c9"},
+    {"path":"jigsaw/icon.png","bytes":13987,"sha256":"b1a5803f4fe5f6fe895ec4cfccaf25673cca1623e0fbeb63fa1b7ddd46aab72d"},
+    {"path":"jigsaw/index.html","bytes":66065,"sha256":"c4bbcb34c24f3750ca2c7faaff572bf8512b820cabc42c8c56c899ac8dbb4ecd"},
+    {"path":"mad-libs/game.json","bytes":317,"sha256":"0207179144524dbf2d293a4bfa7fa45030ec7779fa3599c706711423ebb11d3e"},
+    {"path":"mad-libs/icon.png","bytes":6445,"sha256":"74b3ca2b57821a668993a300f034eb078178a880b4e4bebf48a265b4b3e346a5"},
+    {"path":"mad-libs/index.html","bytes":145850,"sha256":"b2601fcaf2c3b48935cc5e522c2be442f615ba1a6ffc5638cb51bd627e50646f"},
+    {"path":"make-10/game.json","bytes":304,"sha256":"b7ec9289eae523f6def8df076ece2359a4ea39fdd7b3794f1e40b85197f2f25f"},
+    {"path":"make-10/icon.png","bytes":15795,"sha256":"1d2ccd5850633203a7db6d470795e119ef5a828542c0419ce770011b24883c45"},
+    {"path":"make-10/index.html","bytes":63073,"sha256":"c7aba2232d5290813d95165cfd55512bf836e7ce7b265da0a418159df9c169b9"},
+    {"path":"manifest.webmanifest","bytes":768,"sha256":"69ca6bf9e90dd795bace6f5617551facfe12ee412e3cc24407c0550006114e05"},
+    {"path":"math/game.json","bytes":303,"sha256":"9f9cfc479727c50b20af7a4b0bb5874e4c1d2fe4cd487865479721a650daf9c8"},
+    {"path":"math/icon.png","bytes":15502,"sha256":"6037b7a5bc0d78e4a5641738d5f71d30cf89b6ef33835e3e19c8a2d563545dc7"},
+    {"path":"math/index.html","bytes":112506,"sha256":"56fb45e5a66837c5f3965bbcb52163d84da0255a4ada405c30fd730ad534926a"},
+    {"path":"maze/game.json","bytes":273,"sha256":"b8b98f186d80d7416a0ca06c4e44d6a910712467a8f8fd6c8db316ed79e04841"},
+    {"path":"maze/icon.png","bytes":7301,"sha256":"709edfd5b5a85b9de78f667c5fa4fd7f2aae2e5057734933296409a4e3338249"},
+    {"path":"maze/index.html","bytes":120112,"sha256":"963928fe00f4556d9407c4697314ac97a812d4a8ae8ce27c7497c5842a0bb802"},
+    {"path":"memory/game.json","bytes":339,"sha256":"f02e504024c31cbc9982e136dd337b45b6f8cb2e5a586b7edabb1aba4a41aed5"},
+    {"path":"memory/icon.png","bytes":20923,"sha256":"f9801318a2115502b0423e938970fbbf168b04989eef131fe4debcd2da1b2023"},
+    {"path":"memory/index.html","bytes":141687,"sha256":"435e98cfc60ba3ba28bfe3c7f8e6374b06b55bcfea2f766b46cacd5c9a36463c"},
+    {"path":"memory/online-model.js","bytes":6228,"sha256":"d51247b13bfcfc85f80193927247580d6edd94d9180ba65b0fb6edddb52e7e70"},
+    {"path":"memory/room-client.js","bytes":14228,"sha256":"eb1bfb9b5f13fb74d275f687ec7b60dae32b01c3c3f9cf42a63db9ed40d6d1e3"},
+    {"path":"minesweeper/game.json","bytes":296,"sha256":"59bd4cc04e179aa9da35571a23843771ecee89cfce5622632460251326e8a5ee"},
+    {"path":"minesweeper/icon.png","bytes":9218,"sha256":"702882722ee03a5a4b0f3a96b55549eb46a64b12a6c31f019e0c00c7c735c6a8"},
+    {"path":"minesweeper/index.html","bytes":57335,"sha256":"3ed8040d2fb0caaddfc181ca13a50001a4977f566d40de001581d4ac4035eecf"},
+    {"path":"mini-golf/game.json","bytes":292,"sha256":"36b39ed91263016214fb5b439fd20517ea23ff9b7ab9304289dcd369a5226bb4"},
+    {"path":"mini-golf/icon.png","bytes":9018,"sha256":"c2e77d5b8919de46fe00fefccf7283be0ab8678d1ef7a827a208240e116c6acd"},
+    {"path":"mini-golf/index.html","bytes":181759,"sha256":"30eb04b2b3057341b18739402529f3b3db67b431ef4fb11b8fbf03b4a593551d"},
+    {"path":"monopoly/game.json","bytes":364,"sha256":"24ea4094487c74b22c2bbf54a2ebd2cf8b959d061736acd22959a83226b1c634"},
+    {"path":"monopoly/icon.png","bytes":21287,"sha256":"f6c49eb68c2fe0d8d0069ab7148c5ca89afc7d09904de76e611fa89871bf017b"},
+    {"path":"monopoly/index.html","bytes":172673,"sha256":"bb3c1ffcb44f8a73f00cc4846c259729d987c27dcc32a64b303d3b6d8b6bcae7"},
+    {"path":"monster-dentist/game.json","bytes":349,"sha256":"c0f9874edb2e27285229a2005008639122488c2124ca8f6558d4fd811c238e53"},
+    {"path":"monster-dentist/icon.png","bytes":17045,"sha256":"8c05c9a993cd111481ebcefdddc627bf66840653046f3149fbbb662474db20a3"},
+    {"path":"monster-dentist/index.html","bytes":58747,"sha256":"77e6ed43a7ced8f4892910724b8294a03c22cbd328bf82dcdbd52f647f5c47ea"},
+    {"path":"multiplayer/arcade-multiplayer.js","bytes":44054,"sha256":"d7c5753ea1e00b6075f589567650d444beff404c6c1928a075951224cb6f95b2"},
+    {"path":"multiplayer/arcade-shell-core.mjs","bytes":15250,"sha256":"0c7a01a9f1c88d72ecf7c2625a995b52cda9d3517ab3c7621011e40cbffa6b4f"},
+    {"path":"multiplayer/models/chess-engine.js","bytes":17400,"sha256":"da311b34472dec92c627081600f39abe42df0f4d21a47403d05789b7d4a7ed58"},
+    {"path":"multiplayer/models/generic-room-model.js","bytes":17840,"sha256":"8ca5670cefdd06f805fbdbe2680bd4d24543b57768651ddeecb4485fa3c95b84"},
+    {"path":"multiplayer/models/generic-transition-validators.js","bytes":4381,"sha256":"cdb52f4cce8789c1fabe9e308a5c459d118396358ccdbea0d52f6f8b80b611d0"},
+    {"path":"multiplayer/models/guess-who-authority.js","bytes":7645,"sha256":"7d2e037c034db98a16f588c80f1f3f4a1b332634e387cd0826510c8d84634b0d"},
+    {"path":"multiplayer/models/guess-who-data.js","bytes":4429,"sha256":"0d83649799c82569c89e419b2b4864caa5c4e2b6a886bcccf043208fb121d6be"},
+    {"path":"multiplayer/models/monopoly-authority.js","bytes":111918,"sha256":"7c143e4a2d3b25b84ee26a7effda2b3a297dd7bf1e6804ef5967048faed6e075"},
+    {"path":"multiplayer/models/resolved-transition-validators.js","bytes":61456,"sha256":"e476fbe30d54fdf102ee9b8d5b718c68f59d6ee45cdf67f91fa860612891a24a"},
+    {"path":"multiplayer/models/room-model.js","bytes":7513,"sha256":"e6d5e43f429c5c015d0dcd009c263cbde30d70961be18c41a10b611e129f68eb"},
+    {"path":"multiplayer/models/sorry-transition-validator.js","bytes":39867,"sha256":"73ea7f809d36214b6e6910548ea247b754dee85114d09849d83474d86a296e30"},
+    {"path":"multiplayer/nearby-room-service.js","bytes":47216,"sha256":"57f803052ea2f89dea6b9ee4dd78dfa4516dc9e8d5bdf1b16b7bf448bc2b738a"},
+    {"path":"multiplayer/nearby-session.mjs","bytes":56091,"sha256":"7ed2b10dce76adf218f02d2d976ebf59786edb3a9fc352d0e49a910a725cc5a6"},
+    {"path":"multiplayer/nearby-storage.mjs","bytes":5319,"sha256":"e0d9880eebb4fbb60e70fd187b840129664a96b6f212c190c365ab167c5eb46e"},
+    {"path":"multiplayer/protocol.mjs","bytes":8135,"sha256":"4699a611aa2e2217b105c82acfe5325a40d02e4594f6edc58ceb50d46af666c1"},
+    {"path":"multiplayer/qr.mjs","bytes":14031,"sha256":"69ced9b8f1deedece6eb716f6f72c2ef11d87ff0932ed97c50025bd109d73c41"},
+    {"path":"multiplayer/signaling.mjs","bytes":15478,"sha256":"44159270eeb7da102ebe363996998749216315afe9a7fe825b30e4528846ebbb"},
+    {"path":"multiplayer/vendor/jsqr-1.4.0.min.js","bytes":130420,"sha256":"8e7582406ad4551d6d07ce50cb6de04d3b9e020c6bbb6c57ac0a2125456730bd"},
+    {"path":"multiplayer/vendor/LICENSE.jsQR.txt","bytes":11357,"sha256":"b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"},
+    {"path":"multiplayer/vendor/LICENSE.qrcode-generator.txt","bytes":1071,"sha256":"3a850fa5f08101db6f40676c2786e10bd2cd5fff7b12ffdf1e0c434d4e49d90c"},
+    {"path":"multiplayer/vendor/qrcode-generator-2.0.4.min.js","bytes":20706,"sha256":"6644ce8e36232ecec643ce7a98bb99ed978c920ee9d640b56bf0a675f1d8f255"},
+    {"path":"multiplayer/vendor/README.md","bytes":718,"sha256":"7900d9c96df21fe8dc856b171b962af55eddc8a948d7aacad20717b4129b2392"},
+    {"path":"multiplayer/webrtc.mjs","bytes":9201,"sha256":"1fd5f1960c038afa494c713179243980070831b47970d20228b94725d8c701fd"},
+    {"path":"music-maker/AUDIO-NOTICE.txt","bytes":224,"sha256":"c7a7d576b223037e00905c630032c6234260a62dbe6abe4bcd7cd08a1c7a5aea"},
+    {"path":"music-maker/audio/pitch-processor.js","bytes":1565,"sha256":"6faacf10897718a28e9099b534c9cb06adf0223ffd3fb7936edc90f18e1d9939"},
+    {"path":"music-maker/background/chill.wav","bytes":504044,"sha256":"0dd068710461b85fa6b9f9ac4e38a59c91c89c60d2f58e02cbb8495669f9ed08"},
+    {"path":"music-maker/background/dance.wav","bytes":341462,"sha256":"e799f42b2e8d2cf2d27b8f949d2687ffcc1cabd5165b4a0f4b933ef0c7e01466"},
+    {"path":"music-maker/background/funk.wav","bytes":378044,"sha256":"50d3cb4b668e7c8500fb4ce3a81eae798d50b296dad00636145b1d822d3d7cbe"},
+    {"path":"music-maker/background/pop.wav","bytes":407120,"sha256":"c26e600c75e69b33dbf20e142ca1ac16b7271c742f161c662891b6712c6169e8"},
+    {"path":"music-maker/game.json","bytes":354,"sha256":"a41a8be2f29a34700f53157383fb0c55b88cb92358c510f29500d70c5314ba17"},
+    {"path":"music-maker/icon.png","bytes":10001,"sha256":"10e61ea03e93e617770bb8fe58c4fcaa77c07c420994713edf15308e4738a263"},
+    {"path":"music-maker/index.html","bytes":9045,"sha256":"4413cf874f3bc812270dc0a1370da3177dc2911668aa9137d8e8fe3b3a422a9d"},
+    {"path":"music-maker/music-maker.js","bytes":21780,"sha256":"73cb6e62d646448302b5a9dea13ea0d06eac2b4c3e168644ba3354bc3a0e332a"},
+    {"path":"music-maker/samples/bass/high-A.wav","bytes":66194,"sha256":"da390a2ba7d6898836a64c79bcb21dc6cf8b3bdb59368e91110171a6b8e7eaa5"},
+    {"path":"music-maker/samples/bass/high-B.wav","bytes":66194,"sha256":"efbf7b08fe09c382ad1ab81320984fdb88bef675c877abc1ee804e3125f76bb5"},
+    {"path":"music-maker/samples/bass/high-C.wav","bytes":66194,"sha256":"2423d74d45dd2325b143beed6e19c0bb25520bbb9fea39125c6f628ff2ff0296"},
+    {"path":"music-maker/samples/bass/high-C2.wav","bytes":66194,"sha256":"da61bbb97f19d9583277996dc4ef3a59f5a68f75ef598e5cf656ed5115b972e2"},
+    {"path":"music-maker/samples/bass/high-D.wav","bytes":66194,"sha256":"084098c9d8adc3e522ad191bc457afa2e8ba6a63d022011682e2dcb03eeb10dc"},
+    {"path":"music-maker/samples/bass/high-E.wav","bytes":66194,"sha256":"986b023a76cdc1edd239a54e591985c2412cfb7adb3389123c15a78e78ff531e"},
+    {"path":"music-maker/samples/bass/high-F.wav","bytes":66194,"sha256":"1abbe8ce201f4fa76c8f80c01bb4011c7df2088e59322e4aacf47694b1a992f0"},
+    {"path":"music-maker/samples/bass/high-G.wav","bytes":66194,"sha256":"3f4b834fa2b2c14e2c4d692eeca8c6bcbc34acffc652131e3601acb3d696391d"},
+    {"path":"music-maker/samples/bass/low-A.wav","bytes":66194,"sha256":"2bc33a1aa0d9815f581eaf9b6e20e15eaf6d20bea436d4f6abc7584b81e872af"},
+    {"path":"music-maker/samples/bass/low-B.wav","bytes":66194,"sha256":"ace274c992b36bb286f4deda7e5b9f315e233387d507952f8f7f8982641749a8"},
+    {"path":"music-maker/samples/bass/low-C.wav","bytes":66194,"sha256":"90f3ca602314746aad56bc1a3dd8f16f0a5c35af8f14ad076c30d2dccda3e778"},
+    {"path":"music-maker/samples/bass/low-C2.wav","bytes":66194,"sha256":"561d65bc22c6608615033b9ee8eb221e9de72a0d0e4103957c65fcdab901327b"},
+    {"path":"music-maker/samples/bass/low-D.wav","bytes":66194,"sha256":"6a56a2795ae312ebbc810bb63f03e98fc901e2932db923bb880c80bf583cdc91"},
+    {"path":"music-maker/samples/bass/low-E.wav","bytes":66194,"sha256":"30a59870dd78725a99d9ab6f54eaf6fe09cc58dc231f38588b933c392c8daa3f"},
+    {"path":"music-maker/samples/bass/low-F.wav","bytes":66194,"sha256":"13b921084721a2f54f4c1209beca373aa092260fa3fcd8eb7e01484b7f381bbf"},
+    {"path":"music-maker/samples/bass/low-G.wav","bytes":66194,"sha256":"e53cffb88e48faa5bb093157bc4ee863e80e095221f38a5088456544e6b4a34a"},
+    {"path":"music-maker/samples/bass/middle-A.wav","bytes":66194,"sha256":"464b018391039ef90a01f2eff9b47cb3663639a670836746276653047762657d"},
+    {"path":"music-maker/samples/bass/middle-B.wav","bytes":66194,"sha256":"5faf7d02eb28ae6a119c0b7e113485690178f4f905337cf476d76a5771c0e96c"},
+    {"path":"music-maker/samples/bass/middle-C.wav","bytes":66194,"sha256":"981ba95a3c678c0e688150120737d3044c408559a1a42ec1a828128fe0f0a1bc"},
+    {"path":"music-maker/samples/bass/middle-C2.wav","bytes":66194,"sha256":"a848c077deeee824af67ff8bf2698125491249712131be487d001dccb47e33b4"},
+    {"path":"music-maker/samples/bass/middle-D.wav","bytes":66194,"sha256":"23e45291bfe597765336e39b819600cd7415b3bdef3dd284d72fbf8866adff13"},
+    {"path":"music-maker/samples/bass/middle-E.wav","bytes":66194,"sha256":"91ce73bb42ee4077ebdaf128ac3cf425dcad663f2e9e71373cb9450b14dd433b"},
+    {"path":"music-maker/samples/bass/middle-F.wav","bytes":66194,"sha256":"22c830d9c865cae36cc8ecabe46b2da720e1ab46b37657554e09e579759fd7ef"},
+    {"path":"music-maker/samples/bass/middle-G.wav","bytes":66194,"sha256":"29c94fe5d02dfdbaf8967d2db8adff9ad94c86eedb0f0ccafb4f900ea0ad2c3c"},
+    {"path":"music-maker/samples/bells/high-A.wav","bytes":94858,"sha256":"19c4aea32136556c00e207938f413ca78c47667352b68168ecbeccef8a30c1ab"},
+    {"path":"music-maker/samples/bells/high-B.wav","bytes":94858,"sha256":"6d112f54e81e5ba60002875f5a87f97909aadd691c8793c4570185ef08e5129c"},
+    {"path":"music-maker/samples/bells/high-C.wav","bytes":94858,"sha256":"e04220b2d5ff4ff6531fb11eb7fc65845992536f7fc7cf77f7b3ac7402915db0"},
+    {"path":"music-maker/samples/bells/high-C2.wav","bytes":94858,"sha256":"a1f842edf3cc5f001d19ebc7cea326dcb19878b6cfb6a9eec522b3e227f6768e"},
+    {"path":"music-maker/samples/bells/high-D.wav","bytes":94858,"sha256":"a34b7f3e9e1a83181b267d8429ac8ed8873a2583c8108954e5d7550184cfc902"},
+    {"path":"music-maker/samples/bells/high-E.wav","bytes":94858,"sha256":"e25f442649ceb9aa08bd0942d75239e4cc781a96cf6007ea8057202ce8468857"},
+    {"path":"music-maker/samples/bells/high-F.wav","bytes":94858,"sha256":"69735091ea339a1cfa76732e94523f713614f3feab00cb141e0a68fdc8a99b34"},
+    {"path":"music-maker/samples/bells/high-G.wav","bytes":94858,"sha256":"242ae27cccfa77bf3bbdc5f313a9b38ee5a17443c37dd8e9c12f7a5b03889a9c"},
+    {"path":"music-maker/samples/bells/low-A.wav","bytes":94858,"sha256":"9fda9515e8f755425a7fe7f4b68c64ba0069a4f889c9e54bf77067c073bca64a"},
+    {"path":"music-maker/samples/bells/low-B.wav","bytes":94858,"sha256":"92c81ddcd156925c540874a7186b9424643edd43400e2c25347d293e2028ee05"},
+    {"path":"music-maker/samples/bells/low-C.wav","bytes":94858,"sha256":"20eee87a6a471206e9b7c3d855828069b4a55f419073de196a0632acacfeb455"},
+    {"path":"music-maker/samples/bells/low-C2.wav","bytes":94858,"sha256":"0f6db0bec0823792bcddf67674da37b2c4e3b4b3d5b3215d7e291449be0503e3"},
+    {"path":"music-maker/samples/bells/low-D.wav","bytes":94858,"sha256":"4b2192fe79a9f8a68fab470daa32f41fc14280876915bd035dfbfb146607a831"},
+    {"path":"music-maker/samples/bells/low-E.wav","bytes":94858,"sha256":"2f11286cef0ea8ad63d73cf029bdbb4b58d4f044ba0d633e5c3d125c816a771a"},
+    {"path":"music-maker/samples/bells/low-F.wav","bytes":94858,"sha256":"8b203d829e8ef484709fef8d03fca3b56b9dd1b21ab628d2be20ed3dfb099d9e"},
+    {"path":"music-maker/samples/bells/low-G.wav","bytes":94858,"sha256":"dedc8dc3afeeeef706508311dabec3c6967d389d1a15d5c6e4ebb8bb04b63fd5"},
+    {"path":"music-maker/samples/bells/middle-A.wav","bytes":94858,"sha256":"8f1f0341543bed87e6e18e9c50fe674fb1b9b32231d393c7abe0b7f11329d334"},
+    {"path":"music-maker/samples/bells/middle-B.wav","bytes":94858,"sha256":"2eea34dc3989932cabb7296f7d1368a8049437eb6a912a853f2be6842ee41730"},
+    {"path":"music-maker/samples/bells/middle-C.wav","bytes":94858,"sha256":"0f6db0bec0823792bcddf67674da37b2c4e3b4b3d5b3215d7e291449be0503e3"},
+    {"path":"music-maker/samples/bells/middle-C2.wav","bytes":94858,"sha256":"e04220b2d5ff4ff6531fb11eb7fc65845992536f7fc7cf77f7b3ac7402915db0"},
+    {"path":"music-maker/samples/bells/middle-D.wav","bytes":94858,"sha256":"3532c29ed3f44e247b2b97fe333230bded83f2ce28aa67628ae21a13e604a65a"},
+    {"path":"music-maker/samples/bells/middle-E.wav","bytes":94858,"sha256":"b81f63252acd7bec9f08a467986f80660ef59460b83f4c07b36eba9a8b237d1b"},
+    {"path":"music-maker/samples/bells/middle-F.wav","bytes":94858,"sha256":"e62d0ec28030d9952d87d6e4aa639cfd5ceca9645d5c3c8991053444b1e22e13"},
+    {"path":"music-maker/samples/bells/middle-G.wav","bytes":94858,"sha256":"4be8b59fead306c92f63a7254187dee0bdbe292fae7d18a63d3f5b088ec18fbf"},
+    {"path":"music-maker/samples/drums/clap.wav","bytes":16802,"sha256":"032091b3ee511964df32ce291f52f91344c332cf46d5553349e8d451e4fc2e75"},
+    {"path":"music-maker/samples/drums/cowbell.wav","bytes":22094,"sha256":"481904042bb1569ee7e5fa0070c3eb676eae13b1c7701f168bddde0f8b778096"},
+    {"path":"music-maker/samples/drums/cymbal.wav","bytes":55168,"sha256":"fe2ba4a7b93422a1a327ca1d854525644d6df7ae216da78bc40dc32ea6863c8a"},
+    {"path":"music-maker/samples/drums/hihat.wav","bytes":9746,"sha256":"4d01c1e0ecd1e100c275da693bfb4a26ad030755824b8c1e4ae128f0d97a3f0b"},
+    {"path":"music-maker/samples/drums/kick.wav","bytes":24298,"sha256":"a9aa7d2a8bfd91988ec9f5b9c144b9efa0db4b58377e5a9422f52dd6027b17fb"},
+    {"path":"music-maker/samples/drums/shaker.wav","bytes":14156,"sha256":"b883c7f92044d3b59d8457a3f979f259ca8e9f7c8ba86835813875795c4b26d1"},
+    {"path":"music-maker/samples/drums/snare.wav","bytes":19888,"sha256":"1d3b08164e0f8d5a409978fa9a17339930a5836b29d0176a6d5463a91e113b55"},
+    {"path":"music-maker/samples/drums/tom.wav","bytes":28708,"sha256":"ebf9dde8a4122c5d4bb415a5bd63ef40162fcb8213bb771fbf44a8af21ff44f0"},
+    {"path":"music-maker/samples/guitar/high-A.wav","bytes":77218,"sha256":"ebf9f4a3314e3355f12dfe455c666b3ab7e7688c477dda899d57b6a7be5f04ff"},
+    {"path":"music-maker/samples/guitar/high-B.wav","bytes":77218,"sha256":"21cc0e0a7bb5f409ce5cff3ce316948fed8dc572142b530aac0ac9e9c7406073"},
+    {"path":"music-maker/samples/guitar/high-C.wav","bytes":77218,"sha256":"1029433179df32f1235c5073230c603153e0df11365c2f14c4a28a375098836e"},
+    {"path":"music-maker/samples/guitar/high-C2.wav","bytes":77218,"sha256":"5e2998f91e6a6de87de59339a5567fb5217bbca7e4052a4a68fdc543f8be2ee9"},
+    {"path":"music-maker/samples/guitar/high-D.wav","bytes":77218,"sha256":"598151a1d61a15f72f02e23a7984bfe66642343ac6ed6f76b5b62629ba5a9a06"},
+    {"path":"music-maker/samples/guitar/high-E.wav","bytes":77218,"sha256":"156d267f99d3858d81087ac958f68dfeed26726f3fcba2c624602dc384ad7f57"},
+    {"path":"music-maker/samples/guitar/high-F.wav","bytes":77218,"sha256":"b07c4f8551bc90f3e72fb705764c7ec8ed59d176edaf0a3c6d0ac9e4c3775722"},
+    {"path":"music-maker/samples/guitar/high-G.wav","bytes":77218,"sha256":"f1f537f990d9e4568843b1a80f812f202de313565495194b39aee947fe64fa12"},
+    {"path":"music-maker/samples/guitar/low-A.wav","bytes":77218,"sha256":"238213d8faa8ded1f1a0aefa19cf9a7ecf8f14260800474b095744b105d2066f"},
+    {"path":"music-maker/samples/guitar/low-B.wav","bytes":77218,"sha256":"83e8334e93895fe8fdeaa9ecf17fa03f2d13f01bce56ad0d74bd50244ca45cf5"},
+    {"path":"music-maker/samples/guitar/low-C.wav","bytes":77218,"sha256":"61062409eb35fa6ef686d7af9bfbf57c4ccb150e7808f9f86dfc84899b00f7cf"},
+    {"path":"music-maker/samples/guitar/low-C2.wav","bytes":77218,"sha256":"be6e00f6142aff220b5c76324d1e6ae38452dfc64ba1a79e39756d66f43d7cf7"},
+    {"path":"music-maker/samples/guitar/low-D.wav","bytes":77218,"sha256":"d8b77c7c9ccf05922a78bec63d13445b5070bae15473424ce0857b07701f94b2"},
+    {"path":"music-maker/samples/guitar/low-E.wav","bytes":77218,"sha256":"d877aeeb35e229eeec1e92b95cba6263b6f7cbccbc0af5251e6a3d99f0d0109c"},
+    {"path":"music-maker/samples/guitar/low-F.wav","bytes":77218,"sha256":"3ea68811de345383f32ebb626ecc683a48b1fc82943d14d9dc5de270da3bc60f"},
+    {"path":"music-maker/samples/guitar/low-G.wav","bytes":77218,"sha256":"b2d47c049aaf160d43e625b17fc21a9bafc20be79deb8b8e952ad60f9f509dc2"},
+    {"path":"music-maker/samples/guitar/middle-A.wav","bytes":77218,"sha256":"5be83be1076467af394f674b19eb54652c98cd4478986fb70d3fa8e7ebe168c6"},
+    {"path":"music-maker/samples/guitar/middle-B.wav","bytes":77218,"sha256":"ce4c636e9fe1730e3a58372d5ff9209caf4d511fbad08352c383fd2308a2df30"},
+    {"path":"music-maker/samples/guitar/middle-C.wav","bytes":77218,"sha256":"581ecfeff2d62b93ace8fa7d7587a90d58f6406116cbce14593000dc08e611da"},
+    {"path":"music-maker/samples/guitar/middle-C2.wav","bytes":77218,"sha256":"73aa9c557e84a8bc238942508d0b9a429199c781f4d6ced5ff8a00a3fcdbfa55"},
+    {"path":"music-maker/samples/guitar/middle-D.wav","bytes":77218,"sha256":"f2ebe0505b18df965bc91266fcd4ba4ab32d3dd1663484e37de4321edb760293"},
+    {"path":"music-maker/samples/guitar/middle-E.wav","bytes":77218,"sha256":"6948641043492db837eaa53cfcfb79f67cd52cdfa7b44f7250961d6865ffe32f"},
+    {"path":"music-maker/samples/guitar/middle-F.wav","bytes":77218,"sha256":"5e915b2a0afedcb31d0ce744f2daf9329b6270f55fec8a6784d46193d58aaca1"},
+    {"path":"music-maker/samples/guitar/middle-G.wav","bytes":77218,"sha256":"4bf02902a8454d81f0069714038bffe257900b42177a9d55a8be6dfa3f1377c1"},
+    {"path":"music-maker/samples/piano/high-A.wav","bytes":79424,"sha256":"ced05b73f1df37c9f6ceeb824b3ad70129c6959dc72e3c4148ed14ac12dc70d5"},
+    {"path":"music-maker/samples/piano/high-B.wav","bytes":79424,"sha256":"82ba83e41363ac523f4285f769a644687ff3562aecc79fc3c791adab8a33698f"},
+    {"path":"music-maker/samples/piano/high-C.wav","bytes":79424,"sha256":"ff5a132f20d1a734296a7767206965aa6a5a72edd9e99c8b96bc4756a1a17322"},
+    {"path":"music-maker/samples/piano/high-C2.wav","bytes":79424,"sha256":"89d5d94fec2f29ab95df53454cdb4bbbb84c62681b0381706781cc20705ec321"},
+    {"path":"music-maker/samples/piano/high-D.wav","bytes":79424,"sha256":"4c9d3682d75843eeb23823d0c6b8381e132c56f17da37c786aac05cc445d9a0a"},
+    {"path":"music-maker/samples/piano/high-E.wav","bytes":79424,"sha256":"ac898e406cb9292d20c105777490858d532e84a1bc7432c7e7cc7bca425c400e"},
+    {"path":"music-maker/samples/piano/high-F.wav","bytes":79424,"sha256":"d21c78a21433f59d53470ebcc467a7c8b9970e87fe0a33e812103b6474b51f4e"},
+    {"path":"music-maker/samples/piano/high-G.wav","bytes":79424,"sha256":"2a8c5b50d86f2004ae14e95bb58f6d77dbeba3d56f30f5d2bdb541673b72c436"},
+    {"path":"music-maker/samples/piano/low-A.wav","bytes":79424,"sha256":"d77ebd2953ee82e9d89beade61764c490e030bffa32db56b799101b368dd400b"},
+    {"path":"music-maker/samples/piano/low-B.wav","bytes":79424,"sha256":"e1674230f3a2d1590f4e5ab268c85b9e883f4189b979636130e2bb958813390e"},
+    {"path":"music-maker/samples/piano/low-C.wav","bytes":79424,"sha256":"bd96a92de80d6a01b1587a5b1435cfcb2e0d32ab546f0cc99ac3d486ebb22083"},
+    {"path":"music-maker/samples/piano/low-C2.wav","bytes":79424,"sha256":"acedc59667bd204179a12c71b0dbb7b64ea257448668430734bf75172ef5bae0"},
+    {"path":"music-maker/samples/piano/low-D.wav","bytes":79424,"sha256":"4a1bfea060294aca6c88b4f3a44a6cd24f7ebbb0bf974a518114618a6d7af6d1"},
+    {"path":"music-maker/samples/piano/low-E.wav","bytes":79424,"sha256":"2c9f6e7b6e58474122d2528da157145e8c3f10373cae9f1c8fc1a4dfcd1bfe4b"},
+    {"path":"music-maker/samples/piano/low-F.wav","bytes":79424,"sha256":"9a1ccaa7be2c2184d82314298bfc9603f9ec53b9ecae0789cfa130d16f226a1c"},
+    {"path":"music-maker/samples/piano/low-G.wav","bytes":79424,"sha256":"bbb680398b6b8fd3ea15f08168237a39b0fbf9d9a100c2f3dd4be005a11bbe3d"},
+    {"path":"music-maker/samples/piano/middle-A.wav","bytes":79424,"sha256":"5d5f9e6445819658f6a981a69ff1b7679b8ad30fc5f695ea805d9bc9e089c237"},
+    {"path":"music-maker/samples/piano/middle-B.wav","bytes":79424,"sha256":"f8e6ae56495f0706fd9c56431e5cb44474622c13ef7108882aed18bb32cbd2ea"},
+    {"path":"music-maker/samples/piano/middle-C.wav","bytes":79424,"sha256":"acedc59667bd204179a12c71b0dbb7b64ea257448668430734bf75172ef5bae0"},
+    {"path":"music-maker/samples/piano/middle-C2.wav","bytes":79424,"sha256":"ff5a132f20d1a734296a7767206965aa6a5a72edd9e99c8b96bc4756a1a17322"},
+    {"path":"music-maker/samples/piano/middle-D.wav","bytes":79424,"sha256":"91f09acea6a4d6758d139ad2343f3ffe746d1011aca060a050b56d2c477f8baf"},
+    {"path":"music-maker/samples/piano/middle-E.wav","bytes":79424,"sha256":"213ce22635d1328636e7b962995a9140a4feca2ca5b6fc64c6795435f6040d8b"},
+    {"path":"music-maker/samples/piano/middle-F.wav","bytes":79424,"sha256":"60e2ccc71f356ba4cd6a2deaa545cc783932d007241695698d896e7f8c2709cd"},
+    {"path":"music-maker/samples/piano/middle-G.wav","bytes":79424,"sha256":"c29e7771f0f65649e31cc592ebe17b6c26551e54a38a674bdaf14a6436309b46"},
+    {"path":"music-maker/samples/synth/high-A.wav","bytes":59578,"sha256":"8941dd31429c13c844941457e10cd8d48ddfd9551d294c1f1a5dc412973ee2b5"},
+    {"path":"music-maker/samples/synth/high-B.wav","bytes":59578,"sha256":"dcacadd81200232ba42ff54497a397e8a67227ef2e251efade74ea717954479d"},
+    {"path":"music-maker/samples/synth/high-C.wav","bytes":59578,"sha256":"098e75cb5b53c275500758e70d7fe6818c0c4d63d8944654cb30d2223758d6ae"},
+    {"path":"music-maker/samples/synth/high-C2.wav","bytes":59578,"sha256":"20415e4ab125187ecb8bc0b4a2595fcebad3810f6c7f48a264e1bf1e4a44d1c3"},
+    {"path":"music-maker/samples/synth/high-D.wav","bytes":59578,"sha256":"6bc13214e8cf9b2df6012a1d45e909e5876437def52fbb835a0f56297109f98c"},
+    {"path":"music-maker/samples/synth/high-E.wav","bytes":59578,"sha256":"599804db8c2aeddb9a76f575dc1957612294fdfaf5af6ec2c7473addf263f4a0"},
+    {"path":"music-maker/samples/synth/high-F.wav","bytes":59578,"sha256":"bb065738df8f2816e8c28365b913b36f317fbdfed11e239d9f2da1c72fd1e789"},
+    {"path":"music-maker/samples/synth/high-G.wav","bytes":59578,"sha256":"669157f239b26fbaf2df62159417e1ea2f05f98e5af51e4ac90352a5216e3c91"},
+    {"path":"music-maker/samples/synth/low-A.wav","bytes":59578,"sha256":"f6199997aef0b23393ae3e32fb2501b2ae0b1cbdb41f6ef78cbb51826bf5ec7e"},
+    {"path":"music-maker/samples/synth/low-B.wav","bytes":59578,"sha256":"23433ac2056db8c9c62c0fef4988f9ae354c23e1f8cd3da28cc53408de1e53a1"},
+    {"path":"music-maker/samples/synth/low-C.wav","bytes":59578,"sha256":"3998a5429e6b39740f219b41526bbc2c6c7787559a1d237e134aa52f671015e2"},
+    {"path":"music-maker/samples/synth/low-C2.wav","bytes":59578,"sha256":"825275d9e24e32bf4a3a53414dd832759c6816e2e179b68ab6909e8a05718fef"},
+    {"path":"music-maker/samples/synth/low-D.wav","bytes":59578,"sha256":"d90c07c91c74ee95e9d8986fc81eb4d8583954957caca339f13abd17c489db0c"},
+    {"path":"music-maker/samples/synth/low-E.wav","bytes":59578,"sha256":"cd3c99a90f8a76f0ca4a3e97e0d0240a41fe0521573d789044ec1c678d3f3b25"},
+    {"path":"music-maker/samples/synth/low-F.wav","bytes":59578,"sha256":"69fa785549a031f450a64cb304738d38d2ab7a5f04173d701ee82e7482f7e1e4"},
+    {"path":"music-maker/samples/synth/low-G.wav","bytes":59578,"sha256":"652112aff9cdf3c54288f97b18e93991f3bc4e0886a05b89608a4893ef547d34"},
+    {"path":"music-maker/samples/synth/middle-A.wav","bytes":59578,"sha256":"239da458b5e99426ee0f4a10e35da8faaa117ae3bf9bac1cd3335242e7568c58"},
+    {"path":"music-maker/samples/synth/middle-B.wav","bytes":59578,"sha256":"2af74910ac6b4f48cbd1404137a7392ba50323f82667171a0f9d1179060af540"},
+    {"path":"music-maker/samples/synth/middle-C.wav","bytes":59578,"sha256":"825275d9e24e32bf4a3a53414dd832759c6816e2e179b68ab6909e8a05718fef"},
+    {"path":"music-maker/samples/synth/middle-C2.wav","bytes":59578,"sha256":"098e75cb5b53c275500758e70d7fe6818c0c4d63d8944654cb30d2223758d6ae"},
+    {"path":"music-maker/samples/synth/middle-D.wav","bytes":59578,"sha256":"cd3cd419acfd31e1577575428acc673e89d643e3f3d5d10d2bbb7c8f2d169d6a"},
+    {"path":"music-maker/samples/synth/middle-E.wav","bytes":59578,"sha256":"2cfc5abbbec8b41a90f1599585c395d9ae8eb4aacb84697bcb609e08ada29573"},
+    {"path":"music-maker/samples/synth/middle-F.wav","bytes":59578,"sha256":"e4bbcb01aeaa5c958b3bdbb2cca905973cd19e47fc1c6c0c4e36fdceb2015144"},
+    {"path":"music-maker/samples/synth/middle-G.wav","bytes":59578,"sha256":"d4c71159fc629faaca44ac7346fb0f25c75749c53a41e70c861a9fc2d88099ac"},
+    {"path":"music-maker/samples/xylophone/high-A.wav","bytes":46348,"sha256":"ad7b2b49dfde42824301aaead28484728453ae82beb2d8a9efd7dc0707aecebf"},
+    {"path":"music-maker/samples/xylophone/high-B.wav","bytes":46348,"sha256":"81fe7af7cd6b4320630f9f31473b47999aa86a0769daac83dfccb98538d1884e"},
+    {"path":"music-maker/samples/xylophone/high-C.wav","bytes":46348,"sha256":"fff3dc4cc01342f39a0f649495803e42b89e571d50bf2668c132b8a8854b25f3"},
+    {"path":"music-maker/samples/xylophone/high-C2.wav","bytes":46348,"sha256":"e9855cbfd5b14d2a38fa85f53cc0b00fa281d017b0b3f1f7009960d3f47b5bcd"},
+    {"path":"music-maker/samples/xylophone/high-D.wav","bytes":46348,"sha256":"fc71c7cf1269601276af68d2b4ea6b4deeb425a8cb756992c312a44ee204825b"},
+    {"path":"music-maker/samples/xylophone/high-E.wav","bytes":46348,"sha256":"4dfcfc8e21b05f458c4843de607afca6013832d7da846605bd003b2a1b28f6d2"},
+    {"path":"music-maker/samples/xylophone/high-F.wav","bytes":46348,"sha256":"58ecc2d7755c883c72210aaa9103828a1366369f8b83fd1a6be801cf1df25d38"},
+    {"path":"music-maker/samples/xylophone/high-G.wav","bytes":46348,"sha256":"f131b8130982927620064ad9e581ecb9a6fe2c080639b93b460aab0444e2c15b"},
+    {"path":"music-maker/samples/xylophone/low-A.wav","bytes":46348,"sha256":"e590b1fcbed8be5cf57d93391940e26e630fc346bb019d57981dca04f902bf32"},
+    {"path":"music-maker/samples/xylophone/low-B.wav","bytes":46348,"sha256":"97a4f5ebca9696cc185d67a29688da09f79076bce56c69f2d98755128dc345c9"},
+    {"path":"music-maker/samples/xylophone/low-C.wav","bytes":46348,"sha256":"f53c2186ccd7f70f91a2dfde06ac95cae2ef5684bac8f743111980551483706f"},
+    {"path":"music-maker/samples/xylophone/low-C2.wav","bytes":46348,"sha256":"498e9bf2f5b5becd65f8e7c8f7dac9e2fa5a5bd68d0e36e840f2f7ea5f684b2e"},
+    {"path":"music-maker/samples/xylophone/low-D.wav","bytes":46348,"sha256":"84f3bdf6958015ad2e72ff41cf526c1d5f0e0f44a2ea451253bd57532e617c66"},
+    {"path":"music-maker/samples/xylophone/low-E.wav","bytes":46348,"sha256":"a47519888a295ac913fd23051ad16cd14ca164f3b8c75b2fd2bd9c27a2b000c0"},
+    {"path":"music-maker/samples/xylophone/low-F.wav","bytes":46348,"sha256":"03ae9afaee43039627e9f10b65ac1776e36753481d2ee003d4994a1f11b77534"},
+    {"path":"music-maker/samples/xylophone/low-G.wav","bytes":46348,"sha256":"bb3fb8aecbe9c0375025626b866852d52e6ff2befd0ea16eb443096624ed1312"},
+    {"path":"music-maker/samples/xylophone/middle-A.wav","bytes":46348,"sha256":"25c0d8d29c0ea23921f5b339b5eb9c267479983217dc079149a0d99d0afdef13"},
+    {"path":"music-maker/samples/xylophone/middle-B.wav","bytes":46348,"sha256":"58ec4395a7f8e4a2c83de2121bd712b8502a8d0680234137a1ea5746310d8c08"},
+    {"path":"music-maker/samples/xylophone/middle-C.wav","bytes":46348,"sha256":"e6407e64cceffc7850a7aa94b686c0c892d4876f2a13e73e62d5dcebffd5696b"},
+    {"path":"music-maker/samples/xylophone/middle-C2.wav","bytes":46348,"sha256":"94276e9dac6a7347b0e42e82fd8f2287aaa544b02cda043f07b2735d11f238f4"},
+    {"path":"music-maker/samples/xylophone/middle-D.wav","bytes":46348,"sha256":"3a3c03f92fe91a013210536578526826b97d33a0892949e177f58fe09a44edeb"},
+    {"path":"music-maker/samples/xylophone/middle-E.wav","bytes":46348,"sha256":"704b2b940993d6b60a358728a790758bdcd7efce3a16ac911c2ec241b4c3a1a0"},
+    {"path":"music-maker/samples/xylophone/middle-F.wav","bytes":46348,"sha256":"8b84bec91b52c3cc36b2df6ead7b01651a08ebc88b82080810b940be8397c808"},
+    {"path":"music-maker/samples/xylophone/middle-G.wav","bytes":46348,"sha256":"22613c6f094cb3586809fe6f3c95b40f941ca4e7c09aeb36b2dbc88d63ef97f7"},
+    {"path":"music-maker/style.css","bytes":4558,"sha256":"12551a7da44fe102c7518b5838693ed1f4468c0ff75bc0d20f618e43c210d7b6"},
+    {"path":"orb-slicer/game.json","bytes":308,"sha256":"be4372a368ed884b0320507f38d5e6cf164e6d971ea7cf79ec135eabf5ab7c84"},
+    {"path":"orb-slicer/icon.png","bytes":18488,"sha256":"bdf1d1082b0f067ece061a70c1f5b7efa9aaecab06de0d5869e21a9d20942cea"},
+    {"path":"orb-slicer/index.html","bytes":124033,"sha256":"0ccafbacc7723471c2094ed114605befcb5825fae0f2f78cd34a957e4ba924be"},
+    {"path":"paint-lab/game.json","bytes":296,"sha256":"d59c517eaf6ba03eea27e440bd3e249c2902391b3cf8e7978ea9f1e7620d1417"},
+    {"path":"paint-lab/icon.png","bytes":16066,"sha256":"d18afe215f77d618e621e2183f658e23de5c11fb5d747f259ccaabe73e64ec5c"},
+    {"path":"paint-lab/index.html","bytes":51938,"sha256":"3ef637cae98b1942ddcd633d9f333efb7037963c88900da4ae4a8bde4afe085e"},
+    {"path":"patterns/game.json","bytes":308,"sha256":"79badb906c556b0b652babbfbd71b94310149ef7c4a5eef753a9d43271f7d2ae"},
+    {"path":"patterns/icon.png","bytes":15897,"sha256":"1c801a2522f4002cab90515cbf7b0f2f345c8ea19835c36dacdc84654ab49726"},
+    {"path":"patterns/index.html","bytes":15444,"sha256":"ddbe54c69fca35120d23ba5888d1c10368cba0ee05e5fb78c6cf700cf48e2a08"},
+    {"path":"pwa-icon-192.png","bytes":17376,"sha256":"24f9099de51bc6a787707d79bd91bf31dda8ba709156cdd3a4dbd6ac76eebc13"},
+    {"path":"pwa-icon-512.png","bytes":41951,"sha256":"3d83d06aec5007d173fec771fd0a3cfd86ec957262f2d79b868c36a329d36f38"},
+    {"path":"pwa-icon-maskable-512.png","bytes":31883,"sha256":"18da3059162d331b8130a791d3383483b87d0feb99d7a81b5c9e0dcc124b93c1"},
+    {"path":"regex-lab/engine.js","bytes":14444,"sha256":"3b778609e60e72a19670dba903e6fdda2b656b1c48e40e5ad9147bcc6d31c2e5"},
+    {"path":"regex-lab/game.json","bytes":339,"sha256":"1a4869e253ddd57231645b7b6ee0cd7b344b0f58784dc04c02302cb583281f54"},
+    {"path":"regex-lab/icon.png","bytes":43756,"sha256":"703104285b556d1dd11ffd042cf90c63bc0f51b16ece9e7b335766f26f65ad5c"},
+    {"path":"regex-lab/icon.svg","bytes":1189,"sha256":"e3614f59f890344d05fd19ae04d582405cdfa1374c9d9cb4f7b758a1f651ba02"},
+    {"path":"regex-lab/index.html","bytes":32526,"sha256":"b61883c8703ad319ea8e8d927b9baad8ef7d9e1c26207df3422e640f34957812"},
+    {"path":"shuffleboard/game.json","bytes":339,"sha256":"da0d054ea9ff093c2ab53ed7756523cf9b6cbe4fb182f2f6c594924efe0fc737"},
+    {"path":"shuffleboard/icon.png","bytes":9207,"sha256":"4d57e564791d2a17625f1ad8823765a83403813011d309aa6ca70e8f3dea01a0"},
+    {"path":"shuffleboard/index.html","bytes":65702,"sha256":"c4f1bb61d162acaf8fdcb6eeee0de12d11c8a7f5ad56364e2b3fb70202585346"},
+    {"path":"silly-face-lab/game.json","bytes":301,"sha256":"da34dcaa73f631f895f191229cc31ea66d411496ddc4b0f151237c6f55e6790e"},
+    {"path":"silly-face-lab/icon.png","bytes":17141,"sha256":"63b8da2a9b2f3ce4e0117033716c0d873b655b6af89a59c499b3b809a83be8a6"},
+    {"path":"silly-face-lab/index.html","bytes":109631,"sha256":"a0dd8fa18fd53e4234b70d1f2328638a2679514e0d8b0ba4b21929b24718945b"},
+    {"path":"simon/game.json","bytes":308,"sha256":"42011750e1c4dff088c9022dd3149d1675f729223cc4207db24c72a26d76b68b"},
+    {"path":"simon/icon.png","bytes":13336,"sha256":"b316da0b149582666c848380e4a0befe81d1fd58d0635e515d1aeea298988c23"},
+    {"path":"simon/index.html","bytes":112490,"sha256":"b62ca3f0508384eb6110eb405e53d6954d16f861f8c5bdbc9d898ae37d620f09"},
+    {"path":"solitaire/engine.js","bytes":19945,"sha256":"e0b4f693b613a1197e53285f570699da7a095c603a0eafe1b22f4c1a5e447fca"},
+    {"path":"solitaire/game.json","bytes":346,"sha256":"796b2426e6de8ae9f7a4acedff697390583a490fb142de3fcd07aac083397961"},
+    {"path":"solitaire/icon.png","bytes":45777,"sha256":"b8bdb6944f0b0faf38c65ae47105f19ff2f11b4c20888fb8bf9a9124db4edc18"},
+    {"path":"solitaire/icon.svg","bytes":1284,"sha256":"56d892a691141ea37a3d9c2ce135af612d0c88b6b6ed05b63a13508f7ede18e4"},
+    {"path":"solitaire/index.html","bytes":31185,"sha256":"b736163db785e37132780819555dd7b9d882035a00b4c3f6dc219e69c09cf2e1"},
+    {"path":"sorry/game.json","bytes":371,"sha256":"a05de6ded99036005b2648b281d2f4fe746b02adb30cbd42aa2d7b8265ea3e74"},
+    {"path":"sorry/icon.png","bytes":13464,"sha256":"6bafe06600d5816389d9a797d778e53ef90d06a2de0007950cdea84089b0bceb"},
+    {"path":"sorry/index.html","bytes":166115,"sha256":"c3baf705856bd1962fdcefc938837a41d88f84a0445ec3d234b8cf4b213ff952"},
+    {"path":"spelling/game.json","bytes":304,"sha256":"a6a4bec2dce90edfa50afa8814bf6d856a1b031be350c3a5cb689de8f972556b"},
+    {"path":"spelling/icon.png","bytes":13588,"sha256":"84b80cc8f43ce7f6527929c10035389f355d2fc939d87d9b7c2c53ab789eda30"},
+    {"path":"spelling/icon.svg","bytes":1469,"sha256":"9067ff10bd48d14468ee3ccbdfff2477907b19b8f1b7a924621b497077cd6d6f"},
+    {"path":"spelling/index.html","bytes":10379,"sha256":"ce1dfbee497a77703338740422e68d3255bd8b7be06d69376754b123b7f40651"},
+    {"path":"sw.js","bytes":27794,"sha256":"f2174c6f4cd3a9aba97ce0acaedae9b7e5ea88667ebe8dc5cebd07410858b8c1"},
+    {"path":"tic-tac-toe/game.json","bytes":345,"sha256":"3afdfd5bf4e48315d96430c447d2905643f95ca583fad1b5237674de18776bae"},
+    {"path":"tic-tac-toe/icon.png","bytes":7849,"sha256":"c170c3f46f0326ef338cbf91054ae58e8021cc7680352be7b6caf198f7110249"},
+    {"path":"tic-tac-toe/index.html","bytes":172279,"sha256":"6bc0d7312569f774b859ca0e8e941058c64ea2d601a29b507133d1c109f7aea1"},
+    {"path":"tic-tac-toe/room-client.js","bytes":13354,"sha256":"26a8c702d82b3ae825dec58539d8eb3a1f41fa4bdd27be93106cdca20121ae44"},
+    {"path":"time/game.json","bytes":289,"sha256":"62f4cfdd31c1ada2b59f620e7bf65449dfe72f560fd2723cd2a0e5c0cdd14744"},
+    {"path":"time/icon.png","bytes":15313,"sha256":"06cb8f5b56db46852f9c1e7b26fbc22397f9fdc27d55862c7a6d5f79957cc4d3"},
+    {"path":"time/index.html","bytes":117613,"sha256":"a118fb8868da02e81ae0ca0e6f209c14b2f19e20599075f4c89aeadf00888701"},
+    {"path":"trail/game.json","bytes":292,"sha256":"9c55c2e3f8df7c7fcf82abe7553aa05cc1ccc181561e16a352b3853d5ebd27af"},
+    {"path":"trail/icon.png","bytes":10636,"sha256":"c59dbaee16fb12c6fe274e3897baf6d6f07e2c51e06f2ee5464fba4ce85a4b01"},
+    {"path":"trail/index.html","bytes":132219,"sha256":"acc4c3348f1d03e33bbf52008a44ac288628d42797136d3fba9d94d53e40df23"},
+    {"path":"trivia/game.json","bytes":309,"sha256":"c9327663f9564fdf682785e94f7af89f33a2489ee52b15c40523dd8ce49aea06"},
+    {"path":"trivia/icon.png","bytes":8745,"sha256":"2b9c305efa8f8eeedd48f7a4f22e7a144842a132a3f65e90a38db0fcdf5ad2e0"},
+    {"path":"trivia/index.html","bytes":66454,"sha256":"ba517fe369126bb8ce84bb15f5a7c65b835fe216c9b3c60cfdd85efe7ad92cd6"},
+    {"path":"two-truths/game.json","bytes":306,"sha256":"aedc3430cf255a51864ef6931abd383437bf06aa0f2185cf29e5240f53315fc2"},
+    {"path":"two-truths/icon.png","bytes":9279,"sha256":"41fe57275273d501b187e79c1bcef21c268ad4ea8054ac3342d04f84d729d9d9"},
+    {"path":"two-truths/icon.svg","bytes":734,"sha256":"2914de0655a3ef728a8885ad5c1686f935b79dc93bcf0f20a487ba943fbc705b"},
+    {"path":"two-truths/index.html","bytes":30395,"sha256":"9c9e1734d18221d5bf460d0d20e8d7a07c8024080ed3f44f943f780cc7eda18a"},
+    {"path":"typing/game.json","bytes":299,"sha256":"db1da23dbcadd7422b15723ef1064c9b2343ad247b633df648db7c0db3edc61a"},
+    {"path":"typing/icon.png","bytes":7589,"sha256":"1d0c326e41c4eb89d88678f73162820929c27d3e25282cf363d6126f031d0c77"},
+    {"path":"typing/index.html","bytes":8974,"sha256":"d06694f4d413381527d566d00656046702d7e2c841aba52b43ed47fbaae23259"}
   ]
 }
