@@ -77,6 +77,16 @@
       matchedSet.add(rawKey);matchedKeys.push(rawKey);
     }
 
+    const pending=value.revealed===undefined?[]:value.revealed;
+    if(!Array.isArray(pending)||pending.length>matchSize)return null;
+    const revealed=[];
+    for(const index of pending){
+      if(!Number.isInteger(index)||index<0||index>=deck.length||revealed.includes(index)||matchedSet.has(deck[index].key))return null;
+      revealed.push(index);
+    }
+    const lock=revealed.length===matchSize;
+    if(value.lock!==undefined&&value.lock!==lock)return null;
+
     if(!Array.isArray(value.owners)||value.owners.length!==deck.length)return null;
     const owners=[];
     for(const rawOwner of value.owners){
@@ -110,8 +120,8 @@
       teams:Array.from({length:players},function(_,index){return index+1;}),
       uniqueTeams:Array.from({length:players},function(_,index){return index+1;}),
       teamMode:false,teamNames:['Team 1','Team 2','Team 3','Team 4'],
-      cols,rows,matchSize,freeCount:0,totalMatches,deck,revealed:[],matchedKeys,owners,
-      lock:false,awaitingTurn:false,moves,tElapsed:elapsed,scores,turn:1,stats,sound:true
+      cols,rows,matchSize,freeCount:0,totalMatches,deck,revealed,matchedKeys,owners,
+      lock,awaitingTurn:false,moves,tElapsed:elapsed,scores,turn:1,stats,sound:true
     };
   }
 
