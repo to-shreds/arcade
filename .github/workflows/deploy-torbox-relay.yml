@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: to-shreds/torbox-web-player
-          ref: browser-direct-experiment
+          ref: main
           path: torbox-src
 
       - name: Show TorBox relay source revision
