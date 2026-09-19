@@ -27,6 +27,10 @@ jobs:
           ref: browser-direct-experiment
           path: torbox-src
 
+      - name: Show TorBox relay source revision
+        working-directory: torbox-src
+        run: git rev-parse HEAD
+
       - name: Deploy TorBox backup relay
         uses: cloudflare/wrangler-action@v4
         with:
