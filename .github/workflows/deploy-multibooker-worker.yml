@@ -44,3 +44,16 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: multibooker/worker
           command: deploy
+
+      - name: Verify deployed Worker health
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in {1..10}; do
+            if body="$(curl --fail --silent --show-error https://multibooker-api.jonathanjablon.workers.dev/health)"; then
+              printf '%s\n' "$body"
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
