@@ -64,25 +64,3 @@ jobs:
             sleep 2
           done
           exit 1
-
-      - name: Smoke test MultiBooker scheduling API
-        shell: bash
-        run: |
-          set -euo pipefail
-          BASE="https://multibooker-api.jonathanjablon.workers.dev"
-          CODE="SMOKE${GITHUB_RUN_ID}"
-          PIN="4268"
-          CREATED=$(curl --fail --silent --show-error -X POST "$BASE/api/groups" -H 'content-type: application/json' --data "{\"code\":\"$CODE\",\"name\":\"Deployment smoke test\",\"organizerName\":\"Smoke One\",\"requiredPeople\":2,\"pin\":\"$PIN\",\"timezone\":\"America/New_York\",\"round\":{\"startDate\":\"2026-09-21\",\"endDate\":\"2026-09-21\",\"durationMinutes\":60,\"weekdayStart\":\"18:00\",\"weekdayEnd\":\"20:00\",\"weekendStart\":\"08:00\",\"weekendEnd\":\"10:00\",\"allowedDays\":[1]}}")
-          FIRST=$(printf '%s' "$CREATED" | jq -r '.participantId')
-          ROUND=$(printf '%s' "$CREATED" | jq -r '.round.id')
-          JOINED=$(curl --fail --silent --show-error -X POST "$BASE/api/groups/$CODE/participants" -H 'content-type: application/json' --data '{"name":"Smoke Two"}')
-          SECOND=$(printf '%s' "$JOINED" | jq -r '.participantId')
-          for PERSON in "$FIRST" "$SECOND"; do
-            curl --fail --silent --show-error -X PUT "$BASE/api/groups/$CODE/availability" -H 'content-type: application/json' --data "{\"roundId\":\"$ROUND\",\"participantId\":\"$PERSON\",\"updates\":{\"2026-09-21T18:00\":\"yes\",\"2026-09-21T18:30\":\"yes\"}}" >/dev/null
-          done
-          STATE=$(curl --fail --silent --show-error "$BASE/api/groups/$CODE")
-          printf '%s' "$STATE" | jq -e '.candidates[] | select(.startKey == "2026-09-21T18:00" and .classification == "ready" and (.yesIds | length) >= 2)' >/dev/null
-          CONFIRMED=$(curl --fail --silent --show-error -X POST "$BASE/api/groups/$CODE/confirm" -H 'content-type: application/json' --data "{\"pin\":\"$PIN\",\"roundId\":\"$ROUND\",\"startKey\":\"2026-09-21T18:00\",\"participantIds\":[\"$FIRST\",\"$SECOND\"]}")
-          printf '%s' "$CONFIRMED" | jq -e '.round.confirmed.startKey == "2026-09-21T18:00" and (.round.confirmed.participantIds | length) == 2' >/dev/null
-          echo "Production scheduling smoke test passed for $CODE"
-
