@@ -1,5 +1,5 @@
 name: Deploy TorBox Relay Backup
-# relay-source: torbox-web-player 2.0.5
+# relay-source: torbox-web-player 2.2.1
 
 on:
   push:
@@ -63,3 +63,6 @@ jobs:
 
           curl --fail --silent --show-error -G             -H "Origin: https://to-shreds.github.io"             --data-urlencode "path=/catalog/movie/top.json"             "$base/relay/cinemeta" > /tmp/catalog.json
           node -e "const x=require('/tmp/catalog.json'); if(!Array.isArray(x?.metas)||!x.metas.length) process.exit(1)"
+
+          curl --fail --silent --show-error -G             -H "Origin: https://to-shreds.github.io"             --data-urlencode "path=/catalog/series/top/search=Elena%20of%20avalor.json"             "$base/relay/cinemeta" > /tmp/search.json
+          node -e "const x=require('/tmp/search.json'); if(!Array.isArray(x?.metas)||x.metas.some(m=>!String(m?.name||'').toLowerCase().includes('elena'))) process.exit(1)"
