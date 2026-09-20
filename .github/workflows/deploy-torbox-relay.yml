@@ -1,4 +1,5 @@
 name: Deploy TorBox Relay Backup
+# relay-source: torbox-web-player 2.0.5
 
 on:
   push:
@@ -39,17 +40,26 @@ jobs:
           workingDirectory: torbox-src/relay/cloudflare
           command: deploy
 
-      - name: Verify deployed relay health
+      - name: Verify deployed relay health and Cinemeta fallback
         shell: bash
         run: |
           set -euo pipefail
-          url="https://torbox-web-player-relay.jonathanjablon.workers.dev/relay/health"
+          base="https://torbox-web-player-relay.jonathanjablon.workers.dev"
           for i in {1..10}; do
-            if curl --fail --silent --show-error -H "Origin: https://to-shreds.github.io" "$url"; then
+            if curl --fail --silent --show-error -H "Origin: https://to-shreds.github.io" "$base/relay/health" >/tmp/health.json; then
+              cat /tmp/health.json
               echo
-              exit 0
+              break
+            fi
+            if [ "$i" = 10 ]; then
+              echo "Cloudflare relay health check failed" >&2
+              exit 1
             fi
             sleep 3
           done
-          echo "Cloudflare relay health check failed" >&2
-          exit 1
+
+          curl --fail --silent --show-error -G             -H "Origin: https://to-shreds.github.io"             --data-urlencode "path=/meta/series/tt0182576.json"             "$base/relay/cinemeta" > /tmp/meta.json
+          node -e "const x=require('/tmp/meta.json'); if(x?.meta?.id!=='tt0182576'||x?.meta?.type!=='series') process.exit(1)"
+
+          curl --fail --silent --show-error -G             -H "Origin: https://to-shreds.github.io"             --data-urlencode "path=/catalog/movie/top.json"             "$base/relay/cinemeta" > /tmp/catalog.json
+          node -e "const x=require('/tmp/catalog.json'); if(!Array.isArray(x?.metas)||!x.metas.length) process.exit(1)"
