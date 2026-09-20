@@ -1,0 +1,46 @@
+name: Deploy MultiBooker Worker Bridge
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/deploy-multibooker-worker.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: multibooker-worker-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out MultiBooker
+        uses: actions/checkout@v6
+        with:
+          repository: to-shreds/MultiBooker
+          ref: main
+          path: multibooker
+          persist-credentials: false
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install and test MultiBooker Worker
+        working-directory: multibooker/worker
+        run: npm install && npm run check
+
+      - name: Deploy MultiBooker Worker
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: multibooker/worker
+          command: deploy
