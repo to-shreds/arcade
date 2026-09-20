@@ -33,6 +33,11 @@ jobs:
         with:
           node-version: 24
 
+      - name: Prepare MultiBooker static assets
+        run: |
+          mkdir -p multibooker/worker/public
+          cp multibooker/index.html multibooker/styles.css multibooker/app.js multibooker/manifest.webmanifest multibooker/worker/public/
+
       - name: Install and test MultiBooker Worker
         working-directory: multibooker/worker
         run: npm install && npm run check
@@ -52,7 +57,9 @@ jobs:
           for attempt in {1..10}; do
             if body="$(curl --fail --silent --show-error https://multibooker-api.jonathanjablon.workers.dev/health)"; then
               printf '%s\n' "$body"
-              exit 0
+              if curl --fail --silent --show-error https://multibooker-api.jonathanjablon.workers.dev/ | grep -q "MultiBooker"; then
+                exit 0
+              fi
             fi
             sleep 2
           done
