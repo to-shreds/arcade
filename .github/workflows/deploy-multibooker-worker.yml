@@ -33,11 +33,16 @@ jobs:
         with:
           node-version: 24
 
+      - name: Prepare temporary frontend fallback
+        run: |
+          mkdir -p multibooker/worker/public
+          cp multibooker/index.html multibooker/styles.css multibooker/app.js multibooker/manifest.webmanifest multibooker/worker/public/
+
       - name: Install and test MultiBooker Worker
         working-directory: multibooker/worker
         run: npm install && npm run check
 
-      - name: Deploy MultiBooker API Worker
+      - name: Deploy MultiBooker Worker
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -45,15 +50,14 @@ jobs:
           workingDirectory: multibooker/worker
           command: deploy
 
-      - name: Verify API-only Worker
+      - name: Verify API and temporary fallback
         shell: bash
         run: |
           set -euo pipefail
           for attempt in {1..10}; do
             if body="$(curl --fail --silent --show-error https://multibooker-api.jonathanjablon.workers.dev/health)"; then
               printf '%s\n' "$body"
-              root_status="$(curl --silent --output /dev/null --write-out '%{http_code}' https://multibooker-api.jonathanjablon.workers.dev/)"
-              if [ "$root_status" = "404" ]; then
+              if curl --fail --silent --show-error https://multibooker-api.jonathanjablon.workers.dev/ | grep -q "MultiBooker"; then
                 exit 0
               fi
             fi
