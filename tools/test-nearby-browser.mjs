@@ -71,6 +71,12 @@ try {
       testNearby.configureSignaling({ ...protocol, ...signaling, ...webrtc });
       window.reactions = [];
       window.socketMessages = [];
+      // Automated same-machine RPCs can arrive faster than the unchanged
+      // production 12 ms limiter. Pace every synthetic request realistically.
+      window.requestTestRoomRpc = async (operation, payload) => {
+        await new Promise(resolve => setTimeout(resolve, 20));
+        return testNearby.requestRoomRpc(operation, payload);
+      };
       window.nearbyEvents = [];
       const markPeerLost = testNearby._markPeerLost;
       testNearby._markPeerLost = function(record, side, reason) {
@@ -119,43 +125,43 @@ try {
   await Promise.all(contexts.map(context => context.setOffline(true)));
   assert.equal(await host.evaluate(() => testNearby.sendReaction('🎉')), true);
   await guest.waitForFunction(() => reactions.some(value => value.reaction === '🎉'));
-  const created = await host.evaluate(() => testNearby.requestRoomRpc('http', { path: '/api/arcade/rooms', method: 'POST', body: JSON.stringify({ game: 'chat', username: 'spoof host', maxPlayers: 2 }) }));
+  const created = await host.evaluate(() => requestTestRoomRpc('http', { path: '/api/arcade/rooms', method: 'POST', body: JSON.stringify({ game: 'chat', username: 'spoof host', maxPlayers: 2 }) }));
   assert.equal(created.status, 200);
   assert.equal(created.body.room.members[0].username, 'Host Test');
-  const joined = await guest.evaluate(code => testNearby.requestRoomRpc('http', { path: `/api/arcade/rooms/${code}/join`, method: 'POST', body: JSON.stringify({ username: 'spoof guest' }) }), created.body.code);
+  const joined = await guest.evaluate(code => requestTestRoomRpc('http', { path: `/api/arcade/rooms/${code}/join`, method: 'POST', body: JSON.stringify({ username: 'spoof guest' }) }), created.body.code);
   assert.equal(joined.status, 200);
   assert.equal(joined.body.room.members.find(member => member.playerId === joined.body.playerId).username, 'Guest Test');
   for (const [index, page] of pages.entries()) {
     const token = index ? joined.body.token : created.body.token;
-    const socket = await page.evaluate(value => testNearby.requestRoomRpc('ws-open', { path: `/api/arcade/rooms/${value.code}/ws?token=${value.token}`, socketId: value.socketId }), { code: created.body.code, token, socketId: `browser-test-${index}` });
+    const socket = await page.evaluate(value => requestTestRoomRpc('ws-open', { path: `/api/arcade/rooms/${value.code}/ws?token=${value.token}`, socketId: value.socketId }), { code: created.body.code, token, socketId: `browser-test-${index}` });
     assert.equal(socket.ok, true);
   }
-  const message = await guest.evaluate(code => testNearby.requestRoomRpc('http', { path: `/api/arcade/rooms/${code}/actions`, method: 'POST', body: JSON.stringify({ type: 'chat', text: 'Offline peer message' }) }), created.body.code);
+  const message = await guest.evaluate(code => requestTestRoomRpc('http', { path: `/api/arcade/rooms/${code}/actions`, method: 'POST', body: JSON.stringify({ type: 'chat', text: 'Offline peer message' }) }), created.body.code);
   assert.equal(message.status, 200);
   await host.waitForFunction(() => socketMessages.some(value => value.room?.chat?.some(message => message.text === 'Offline peer message')));
   await guest.waitForFunction(() => socketMessages.some(value => value.room?.chat?.some(message => message.text === 'Offline peer message')));
   const shared = await host.evaluate(() => {
     const data = JSON.stringify({ snapshot: { text: 'Before' }, view: [], frames: [] });
-    return testNearby.requestRoomRpc('http', { path: '/api/arcade/rooms', method: 'POST', body: JSON.stringify({ game: 'shared-activity', maxPlayers: 2, state: { schema: 1, activity: 'typing', codec: 'json', data, decodedBytes: new TextEncoder().encode(data).length, sequence: 1 } }) });
+    return requestTestRoomRpc('http', { path: '/api/arcade/rooms', method: 'POST', body: JSON.stringify({ game: 'shared-activity', maxPlayers: 2, state: { schema: 1, activity: 'typing', codec: 'json', data, decodedBytes: new TextEncoder().encode(data).length, sequence: 1 } }) });
   });
   assert.equal(shared.status, 200);
-  const started = await host.evaluate(body => testNearby.requestRoomRpc('http', { path: `/api/arcade/rooms/${body.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'start', expectedVersion: body.room.version, firstSeat: body.seat, state: body.room.state }) }), shared.body);
+  const started = await host.evaluate(body => requestTestRoomRpc('http', { path: `/api/arcade/rooms/${body.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'start', expectedVersion: body.room.version, firstSeat: body.seat, state: body.room.state }) }), shared.body);
   assert.equal(started.status, 200);
-  const sharedGuest = await guest.evaluate(code => testNearby.requestRoomRpc('http', { path: `/api/arcade/rooms/${code}/join`, method: 'POST', body: '{}' }), shared.body.code);
+  const sharedGuest = await guest.evaluate(code => requestTestRoomRpc('http', { path: `/api/arcade/rooms/${code}/join`, method: 'POST', body: '{}' }), shared.body.code);
   assert.equal(sharedGuest.status, 200);
   for (const [index, page] of pages.entries()) {
     const token = index ? sharedGuest.body.token : shared.body.token;
-    const socket = await page.evaluate(value => testNearby.requestRoomRpc('ws-open', { path: `/api/arcade/rooms/${value.code}/ws?token=${value.token}`, socketId: value.socketId }), { code: shared.body.code, token, socketId: `shared-browser-test-${index}` });
+    const socket = await page.evaluate(value => requestTestRoomRpc('ws-open', { path: `/api/arcade/rooms/${value.code}/ws?token=${value.token}`, socketId: value.socketId }), { code: shared.body.code, token, socketId: `shared-browser-test-${index}` });
     assert.equal(socket.ok, true);
   }
-  const passed = await host.evaluate(body => testNearby.requestRoomRpc('http', { path: `/api/arcade/rooms/${body.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'state', expectedVersion: body.room.version, state: body.room.state, nextSeat: body.seat }) }), sharedGuest.body);
+  const passed = await host.evaluate(body => requestTestRoomRpc('http', { path: `/api/arcade/rooms/${body.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'state', expectedVersion: body.room.version, state: body.room.state, nextSeat: body.seat }) }), sharedGuest.body);
   assert.equal(passed.status, 200);
   assert.equal(passed.body.room.turn.playerId, sharedGuest.body.playerId);
   await Promise.all(pages.map(page => page.waitForFunction(value => socketMessages.some(message => message.room?.code === value.code && message.room?.turn?.playerId === value.playerId), { code: shared.body.code, playerId: sharedGuest.body.playerId })));
   const updated = await guest.evaluate(body => {
     const data = JSON.stringify({ snapshot: { text: 'After guest move' }, view: [], frames: [] });
     const state = { ...body.room.state, data, decodedBytes: new TextEncoder().encode(data).length, sequence: body.room.state.sequence + 1 };
-    return testNearby.requestRoomRpc('http', { path: `/api/arcade/rooms/${body.room.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'state', expectedVersion: body.room.version, state }) });
+    return requestTestRoomRpc('http', { path: `/api/arcade/rooms/${body.room.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'state', expectedVersion: body.room.version, state }) });
   }, passed.body);
   assert.equal(updated.status, 200);
   await Promise.all(pages.map(page => page.waitForFunction(value => socketMessages.some(message => message.room?.code === value.code && message.room?.version === value.version && JSON.parse(message.room.state.data).snapshot.text === 'After guest move'), { code: shared.body.code, version: updated.body.room.version })));
