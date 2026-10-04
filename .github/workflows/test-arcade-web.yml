@@ -1,81 +1,19 @@
-name: Test Arcade Web
+name: Verify Published Arcade
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-  workflow_dispatch:
+      - arcade-production-verification-20261004
 
 permissions:
   contents: read
 
-concurrency:
-  group: arcade-web-tests-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  test:
+  production:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 8
     steps:
-      - name: Check out Arcade
-        uses: actions/checkout@v6
-
-      - name: Use Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: cloudflare/chess-worker/package-lock.json
-
-      - name: Install locked test dependencies
-        working-directory: cloudflare/chess-worker
-        run: npm ci
-
-      - name: Test Worker, authority models, and browser clients
-        working-directory: cloudflare/chess-worker
-        run: npm test
-
-      - name: Test shared multiplayer shell and Nearby transport
-        run: node --test multiplayer/test/*.test.mjs
-
-      - name: Test turn-based game clients
-        run: |
-          node --test sorry/test.cjs checkers/online.test.mjs dots/online.test.mjs
-          node memory/test-online.cjs
-          node memory/online.browser.test.mjs
-          node tic-tac-toe/test-online.cjs
-          node tic-tac-toe/online.browser.test.mjs
-
-      - name: Validate packaged Arcade runtime
-        run: |
-          node tools/test-native-keyboard.mjs
-          node tools/test-shell-navigation.mjs
-          node tools/test-android-wrapper.mjs
-          node tools/test-offline-runtime.mjs
-
-      - name: Install Chromium browser checks
-        run: |
-          npm ci
-          npx playwright install --with-deps chromium
-
-      - name: Exercise desktop and mobile browsers against actual rooms
-        run: npm run test:browser
-
-      - name: Retain browser evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: arcade-browser-checks
-          path: test-results/
-          retention-days: 7
-
-  nearby:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Check out Arcade
+      - name: Check out verified Arcade
         uses: actions/checkout@v6
 
       - name: Use Node.js
@@ -85,18 +23,35 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
-      - name: Install Chromium browser checks
+      - name: Install Chromium
         run: |
           npm ci
           npx playwright install --with-deps chromium
 
-      - name: Verify local WebRTC without Internet signaling
-        run: npm run test:nearby-browser
+      - name: Verify published release and Worker health
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFile } from 'node:fs/promises';
+          const expected = JSON.parse(await readFile('offline-manifest.json', 'utf8'));
+          const response = await fetch('https://to-shreds.github.io/arcade/offline-manifest.json');
+          assert.equal(response.status, 200);
+          assert.deepEqual(await response.json(), expected);
+          const health = await fetch('https://arcade-chess.jonathanjablon.workers.dev/health');
+          assert.equal(health.status, 200);
+          assert.equal((await health.json()).ok, true);
+          console.log('Published manifest exactly matches verified source and Worker health passes.');
+          NODE
 
-      - name: Retain Nearby browser evidence
+      - name: Verify actual public rooms and images
+        run: |
+          node tools/test-production-browser.mjs
+          node -e "const report = require('./test-results/production-browser/report.json'); if (report.status !== 'passed') throw new Error(report.reason || report.status);"
+
+      - name: Retain production browser evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: nearby-browser-checks
-          path: test-results/nearby-browser/
+          name: arcade-production-browser-checks
+          path: test-results/production-browser/
           retention-days: 7
