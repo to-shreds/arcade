@@ -87,7 +87,7 @@ button:disabled{opacity:.35;transform:none;cursor:default}
 #boardCardText{position:relative;z-index:1;margin-top:8%;padding:0 8%;font-size:clamp(5px,1.15vmin,9px);font-weight:1000;line-height:1.05;max-width:100%}
 #boardCard.dealt{animation:dealCard .34s cubic-bezier(.2,.82,.25,1.25)}
 @keyframes dealCard{0%{transform:translate(-50%,-50%) rotate(-16deg) scale(.45);opacity:.1}100%{transform:translate(-50%,-50%) rotate(-4deg) scale(1);opacity:1}}
-#endpointLayer{position:absolute;inset:0;z-index:28;pointer-events:none}
+#endpointLayer{position:absolute;inset:0;z-index:32;pointer-events:none}
 .endpoint-marker{position:absolute;min-width:22px;height:22px;padding:0 3px;transform:translate(-50%,-50%);border-radius:999px;border:1.5px solid #fff;background:linear-gradient(180deg,#00e5ff,#0876a8);color:#00151b;font-size:8px;font-weight:1000;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(0,229,255,.25),0 0 14px rgba(0,229,255,.9),0 3px 7px rgba(0,0,0,.7);pointer-events:auto;z-index:28;animation:endpointPulse .7s ease-in-out infinite alternate}
 .endpoint-marker.backward{background:linear-gradient(180deg,#ffe46b,#ff9d18);color:#321600;box-shadow:0 0 0 4px rgba(255,215,0,.28),0 0 19px rgba(255,190,20,.92),0 4px 9px rgba(0,0,0,.7)}
 .endpoint-marker.split-step{min-width:18px;height:18px;padding:0;background:linear-gradient(180deg,#ffe75f,#ff9d18);color:#2c1600;font-size:7px;box-shadow:0 0 0 2px rgba(255,215,0,.25),0 0 11px rgba(255,190,20,.92),0 3px 7px rgba(0,0,0,.7)}

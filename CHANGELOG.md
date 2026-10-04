@@ -27,6 +27,8 @@
 - Made Sorry card/no-move boundaries visible to other players and extended
   Nearby validation for those phases. Repaired Monopoly validation for animated
   rolls and chained movement to Jail.
+- Kept Sorry destination markers above overlapping pawns so valid move targets
+  remain tappable on desktop and touch screens.
 - Added shared adapters for Simon, Hangman, Jigsaw, Make 10, Trivia, and Music
   Maker to preserve phase, accepted input, completed states, private drafts,
   audio, and compact media during observation and control transfer.

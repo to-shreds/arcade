@@ -21,7 +21,13 @@ const mapping=()=>{
   const originalFetch=window.fetch.bind(window);
   window.fetch=async(input,options)=>{
     const url=typeof input==='string'?input.replace('https://arcade-chess.jonathanjablon.workers.dev','http://127.0.0.1:8788'):input;
-    if(String(url).includes('/actions')&&options?.body)try{window.__actions.push(JSON.parse(options.body));}catch{}
+    if(String(url).includes('/actions')&&options?.body)try{
+      const body=JSON.parse(options.body);
+      // A repeatable, valid deck exercises the captured Sorry pointer overlap
+      // through ordinary draws and authoritative moves, rather than forged state.
+      if(body.type==='start'&&body.state?.mode==='classic'&&window.__sorryStarterDeck){body.state.deck=[...window.__sorryStarterDeck];options={...options,body:JSON.stringify(body)};}
+      window.__actions.push(body);
+    }catch{}
     const response=await originalFetch(url,options);if(String(url).includes('/api/')){window.__fetches.push({url:String(url),status:response.status,text:(await response.clone().text()).slice(0,140)});try{note(await response.clone().json());}catch{}}return response;
   };
   const NativeWebSocket=window.WebSocket;
@@ -155,14 +161,24 @@ if(selected.has('chess'))await run('chess',async({a,b})=>{
 });
 if(selected.has('sorry'))await run('sorry',async({a,b})=>{
   for(const page of [a,b])await page.locator('#playModeChoices [data-value="online"]').click({force:true});await a.locator('#onlineModeChoices [data-value="classic"]').click({force:true});await a.locator('#onlineName').fill('Alice');await a.locator('#createOnlineBtn').click({force:true});await waitRoom(a,()=>!!window.__session?.token);const code=(await room(a)).code;
-  await b.locator('#onlineName').fill('Bob');await b.locator('#showJoinBtn').click({force:true});await b.locator('#onlineJoinCode').fill(code);await b.locator('#joinOnlineBtn').click({force:true});await waitRoom(a,()=>window.__room?.ready);await a.locator('#startOnlineBtn').click({force:true});await waitRoom(b,()=>window.__room?.status==='active');await security(a,b);
+  await b.locator('#onlineName').fill('Bob');await b.locator('#showJoinBtn').click({force:true});await b.locator('#onlineJoinCode').fill(code);await b.locator('#joinOnlineBtn').click({force:true});await waitRoom(a,()=>window.__room?.ready);
+  await a.evaluate(()=>{window.__sorryStarterDeck=['1','7','10','1','12','3','4','10','S','3','7','5','4','10','11','8','1','7','1','2','11','12','1','S','4','S','4','12','12','3','2','2','5','11','3','7','5','S','2','10','5','11','8','8','8'];});
+  await a.locator('#startOnlineBtn').click({force:true});await waitRoom(b,()=>window.__room?.status==='active');await security(a,b);
   for(const page of [a,b])if(await page.locator('#closeRoomBtn').isVisible())await page.locator('#closeRoomBtn').click({force:true});
-  let draws=0,movements=0;const deadline=Date.now()+50000;
+  let draws=0,movements=0,overlapVerified=false;const deadline=Date.now()+50000;
   while(Date.now()<deadline&&(draws<14||movements<4)){
     const current=await room(a),page=current.turn.seat===0?a:b,other=page===a?b:a;
     await page.waitForFunction(()=>SorryGame.online.canAct());const previous=current.version,phase=current.state.phase;
     if(phase==='draw'){await page.locator('#boardCard').click({force:true});draws++;await page.waitForFunction(version=>window.__room.version>version,previous);await sameState(page,other);if((await room(page)).state.currentCard)assert.equal(await other.locator('#boardCardValue').innerText(),(await room(page)).state.currentCard==='S'?'SORRY!':(await room(page)).state.currentCard);}
     else if(phase==='action'){
+      const overlapCase=current.state.currentCard==='5'&&current.state.moveNo===8;
+      if(overlapCase){
+        const hit=await page.evaluate(()=>{const marker=document.querySelector('.endpoint-marker:not(.split-step)'),box=marker.getBoundingClientRect(),x=box.x+box.width/2,y=box.y+box.height/2,stack=document.elementsFromPoint(x,y);return {endpointReceivesClick:stack[0]===marker||marker.contains(stack[0]),waitingPawnUnder:stack.some(element=>element.matches('.pawn.waiting')),x,y,label:marker.getAttribute('aria-label')};});
+        assert.equal(hit.waitingPawnUnder,true,'Captured card5 endpoint overlaps an inactive opponent pawn');
+        assert.equal(hit.endpointReceivesClick,true,'The visible endpoint must receive the pointer above the inactive pawn');
+        await page.screenshot({path:fileURLToPath(new URL('sorry-overlap-hit-target.png',out)),animations:'disabled'});
+        console.log('Sorry overlap pointer geometry:',JSON.stringify(hit));
+      }
       // Pawn/mode selection and the first split endpoint are local substeps.
       // Complete the visible choice before requiring its committed room move.
       for(let substep=0;(await room(page)).version===previous&&substep<8;substep++){
@@ -179,11 +195,13 @@ if(selected.has('sorry'))await run('sorry',async({a,b})=>{
         await page.waitForFunction(({version,ui})=>window.__room.version>version||(SorryGame.online.canAct()&&document.getElementById('board').innerHTML+document.getElementById('choices').innerHTML!==ui),{version:previous,ui:beforeUi});
       }
       await page.waitForFunction(version=>window.__room.version>version,previous);await sameState(page,other);
-      if(JSON.stringify((await room(page)).state.pawns)!==JSON.stringify(current.state.pawns))movements++;
+      const pawnMove=JSON.stringify((await room(page)).state.pawns)!==JSON.stringify(current.state.pawns);
+      if(pawnMove)movements++;
+      if(overlapCase){assert.ok(pawnMove,'The overlapping endpoint pointer click commits a real canonical pawn move');overlapVerified=true;}
     }else if(phase==='noMove'||phase==='resolving'){await page.waitForFunction(version=>window.__room.version>version,previous);await sameState(page,other);}
     else throw Error('Unexpected classic Sorry phase '+phase);
   }
-  assert.ok(draws>=14&&movements>=4,`Sorry covered ${draws} draws and ${movements} movements`);await b.reload();await b.locator('#playModeChoices [data-value="online"]').click({force:true});await b.locator('#resumeOnlineBtn').click({force:true});await waitRoom(b,()=>window.__room?.status==='active');await sameState(a,b);if(await b.locator('#closeRoomBtn').isVisible())await b.locator('#closeRoomBtn').click({force:true});
+  assert.ok(draws>=14&&movements>=4,`Sorry covered ${draws} draws and ${movements} movements`);assert.ok(overlapVerified,'Captured card5 overlap regression was exercised');console.log(`Sorry completed ${draws} draws, ${movements} canonical pawn moves, and the real overlapping endpoint pointer regression`);await b.reload();await b.locator('#playModeChoices [data-value="online"]').click({force:true});await b.locator('#resumeOnlineBtn').click({force:true});await waitRoom(b,()=>window.__room?.status==='active');await sameState(a,b);if(await b.locator('#closeRoomBtn').isVisible())await b.locator('#closeRoomBtn').click({force:true});
 });
 if(selected.has('monopoly'))await run('monopoly',async({a,b})=>{
   for(const page of [a,b])await page.locator('[data-play-mode="online"]').click({force:true});await a.locator('#onlineName').fill('Alice');await a.locator('#createOnlineBtn').click({force:true});await waitRoom(a,()=>!!window.__session?.token);const code=(await room(a)).code;

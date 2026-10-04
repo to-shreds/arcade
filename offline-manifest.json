@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "version": "2.5.0+20261003.1",
-  "generatedAt": "2026-10-04T16:57:29.308Z",
+  "generatedAt": "2026-10-04T17:20:18.638Z",
   "fileCount": 343,
   "totalBytes": 17614694,
   "files": [
@@ -1593,7 +1593,7 @@
     {
       "path": "sorry/index.html",
       "bytes": 167601,
-      "sha256": "f494b4388ae8cf7db5ca98172a5878a4ed9af2c08b326841640af6a0658e720f"
+      "sha256": "c3ff12abdf7a2c26b225a80d2e8013c7c44d29e82a10661885f018187079618d"
     },
     {
       "path": "spelling/game.json",

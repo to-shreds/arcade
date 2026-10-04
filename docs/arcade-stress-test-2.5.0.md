@@ -115,6 +115,8 @@ board, long-duration game, or future browser/OS behavior.
   presence-only updates and input arriving while an online move is pending.
 - Preserved visible card phases and legal no-move progression in Sorry, and
   accepted canonical animated Monopoly rolls and movement to Jail.
+- Repaired Sorry's destination hit targets where an overlapping pawn intercepted
+  a valid endpoint click. A browser regression verifies the actual pointer move.
 - Added state-aware shared adapters for Simon, Hangman, Jigsaw, Make 10, Trivia,
   and Music Maker. They preserve relevant phase/input state and prevent private
   unsubmitted drafts or local-only state from being copied as shared UI.
