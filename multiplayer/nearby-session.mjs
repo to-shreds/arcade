@@ -581,7 +581,13 @@ export class NearbyArcadeSession {
     const channel = record.channel;
     if(!channel || channel.__arcadeWired) return;
     channel.__arcadeWired = true;
+    // A received DataChannel can already be open while its native open event
+    // is still queued.  The eager path below and that event must initialize
+    // the channel once, especially the guest's one-use join credential.
+    let initializedOpen = false;
     channel.onopen = () => {
+      if(initializedOpen) return;
+      initializedOpen = true;
       record.status = "connected";
       record.lastSeen = this.now();
       if(side === "guest"){

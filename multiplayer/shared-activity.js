@@ -6,7 +6,7 @@
   const every = root.setInterval.bind(root), cancelEvery = root.clearInterval.bind(root);
   const pathParts = root.location.pathname.split('/').filter(Boolean);
   const activity = /\.html?$/i.test(pathParts.at(-1)||'') ? pathParts.at(-2) : pathParts.at(-1);
-  const specialNames = {simon:'SimonSharedAdapter', 'music-maker':'MusicMakerSharedAdapter', hangman:'HangmanSharedAdapter','make-10':'Make10SharedAdapter',trivia:'TriviaSharedAdapter',jigsaw:'JigsawSharedAdapter',shuffleboard:'ShuffleboardAutosave'};
+  const specialNames = {simon:'SimonSharedAdapter', 'music-maker':'MusicMakerSharedAdapter', hangman:'HangmanSharedAdapter','make-10':'Make10SharedAdapter',trivia:'TriviaSharedAdapter',jigsaw:'JigsawSharedAdapter',shuffleboard:'ShuffleboardAutosave',balloons:'BalloonsSharedAdapter','orb-slicer':'OrbSlicerSharedAdapter'};
   let room = null, connected = false, active = false, applying = false, working = false, switching = false, awaitingAuthority = false;
   let localBackup = null, lastSent = '', appliedSequence = -1, sequence = 0, applyEpoch = 0, statusText = '';
   let client = null, panel = null, launch = null, notice = null, errorNode = null, seats = null;
@@ -103,6 +103,7 @@
     const canvases = [...document.querySelectorAll('canvas')];
     for(let i=0;i<canvases.length && frames.length<4;i++){
       const canvas = canvases[i], bounds = canvas.getBoundingClientRect();
+      if(/confetti/i.test(canvas.id))continue;
       if(bounds.width < 32 || bounds.height < 32 || getComputedStyle(canvas).display === 'none' || canvas.closest('[data-shared-ui]')) continue;
       if(!canvas.width || !canvas.height) continue;
       const copy = document.createElement('canvas'), scale = Math.min(1,maxSize/Math.max(canvas.width,canvas.height));

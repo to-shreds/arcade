@@ -44,6 +44,55 @@ async function room(page){return page.evaluate(()=>window.__room);}
 async function waitRoom(page,predicate){await page.waitForFunction(predicate);return room(page);}
 async function sharedPayload(page){const checkpoint=(await room(page)).state;return JSON.parse(checkpoint.codec==='gzip'?gunzipSync(Buffer.from(checkpoint.data,'base64')).toString():checkpoint.data);}
 async function visibleClick(page,selector){for(const candidate of await page.locator(selector).all())if(await candidate.isVisible()&&await candidate.isEnabled()){await candidate.click({force:true});return;}throw Error('No usable activity control: '+selector);}
+async function renderedWhitePixels(page,selector){
+  const screenshot=await page.locator(selector).first().screenshot({animations:'disabled'});
+  return page.evaluate(async bytes=>{
+    const image=await createImageBitmap(new Blob([Uint8Array.from(bytes)],{type:'image/png'}));
+    const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;
+    const context=canvas.getContext('2d');context.drawImage(image,0,0);image.close();
+    const data=context.getImageData(0,0,canvas.width,canvas.height).data;let white=0;
+    for(let i=0;i<data.length;i+=4)if(data[i]>210&&data[i+1]>210&&data[i+2]>210)white++;
+    return white;
+  },[...screenshot]);
+}
+async function assertSharedGameVisible(game,observer){
+  if(!['make-10','balloons','orb-slicer'].includes(game))return;
+  // A DOM visibility or checkpoint assertion cannot catch an opaque image
+  // covering the whole game. Inspect the actual rendered card/HUD pixels.
+  if(game==='make-10'){
+    await observer.waitForFunction(()=>getComputedStyle(document.getElementById('feedbackOverlay')).display==='none');
+    assert.ok(await renderedWhitePixels(observer,'#table [data-id]')>100,'Observer can see the actual Make10 cards after scoring');
+  }else if(game==='balloons'){
+    assert.ok(await renderedWhitePixels(observer,'.b-pill:has(#v-uni)')>100,'Observer can see the Balloons score pill over the sky');
+  }else{
+    assert.ok(await renderedWhitePixels(observer,'#orb-score')>5,'Observer can see the Orb Slicer score over the canvas');
+  }
+  if(game!=='make-10'){
+    await observer.waitForFunction(game=>{
+      const state=game==='balloons'?BalloonGame.captureState():OrbSlicer.captureState();
+      return(state.balloons||state.projectiles).some(p=>!p.isBomb&&p.y>(p.r||p.radius)+60&&p.y+(p.r||p.radius)<state.bounds.h);
+    },game);
+    const rendered=await observer.evaluate(game=>{
+      const state=game==='balloons'?BalloonGame.captureState():OrbSlicer.captureState();
+      const p=(state.balloons||state.projectiles).find(p=>!p.isBomb&&p.y>(p.r||p.radius)+60&&p.y+(p.r||p.radius)<state.bounds.h);
+      const canvas=document.querySelector(game==='balloons'?'#c-bal':'#orb-canvas'),context=canvas.getContext('2d');
+      const sx=canvas.width/state.bounds.w,sy=canvas.height/state.bounds.h,r=p.r||p.radius;
+      if(game==='balloons'){
+        const data=context.getImageData(Math.max(0,Math.floor((p.x-r)*sx)),Math.max(0,Math.floor((p.y-r)*sy)),Math.max(1,Math.floor(r*2*sx)),Math.max(1,Math.floor(r*2*sy))).data;
+        let painted=0;for(let i=3;i<data.length;i+=4)if(data[i]>30)painted++;
+        return painted>20;
+      }
+      const reference=document.createElement('canvas').getContext('2d');reference.fillStyle=p.color;reference.fillRect(0,0,1,1);
+      const expected=reference.getImageData(0,0,1,1).data;
+      const data=context.getImageData(Math.max(0,Math.floor((p.x-r)*sx)),Math.max(0,Math.floor((p.y-r)*sy)),Math.max(1,Math.floor(r*2*sx)),Math.max(1,Math.floor(r*2*sy))).data;
+      // Small restored orbs have a white highlight near the centre, so inspect
+      // their coloured interior rather than requiring one centre pixel.
+      let coloured=0;for(let i=0;i<data.length;i+=4)if([0,1,2].every(index=>Math.abs(data[i+index]-expected[index])<10))coloured++;
+      return coloured>10;
+    },game);
+    assert.ok(rendered,'Observer draws a real canonical '+game+' object at its own viewport coordinates');
+  }
+}
 async function drag(page,selector,x1=.4,y1=.5,x2=.6,y2=.55){const box=await page.locator(selector).first().boundingBox();assert.ok(box&&box.width>10);await page.mouse.move(box.x+box.width*x1,box.y+box.height*y1);await page.mouse.down();await page.mouse.move(box.x+box.width*x2,box.y+box.height*y2,{steps:12});await page.mouse.up();}
 const sharedLaunch={
   'make-10':'#startBtn',balloons:'[onclick="BalloonGame.start()"]',blackjack:'[onclick="BJGame.init(2)"]',time:'[onclick="ClockGame.start(1)"]',insultinator:'#pickNice',hangman:'[onclick="HangmanGame.startRandom()"]',solitaire:'#startBtn',jigsaw:'#startBtn',codebreaking:'#play',math:'[onclick="MathGame.start(1)"]',spelling:'#play',maze:'[onclick="MazeGame.start(12,12)"]',minesweeper:'[data-preset="easy"], [data-level="easy"], [data-diff="easy"]','mini-golf':'[onclick="MiniGolf.startOrContinue()"]','orb-slicer':'#orb-ov-btn','two-truths':'#play',patterns:'#play',shuffleboard:'#btnApply',simon:'#si-menu [onclick="SimonGame.start()"]','regex-lab':'#startBtn',trivia:'[onclick="Game.start(\'science\')"]','contraption-maker':'#starter','bug-squish':'#startBtn','firefighter-frenzy':'#startBtn','monster-dentist':'#startBtn',bowling:'#start','mad-libs':'#randomStoryButton'
@@ -105,6 +154,7 @@ async function sharedSemantic(game,a,b){
   assert.notDeepEqual(after.snapshot,before,'an actual activity action changes shared game state');const sequence=(await room(a)).state.sequence;await b.waitForFunction(sequence=>ArcadeSharedActivity.getState().appliedSequence>=sequence,sequence);
   assert.equal(await b.locator('#shared-error').innerText(),'','observer applies action checkpoint');
   if(after.frames.length)assert.ok(await b.locator('img[data-shared-canvas]').count(),'observer displays sender canvas');
+  await assertSharedGameVisible(game,b);
 }
 async function sameState(a,b){await b.waitForFunction(state=>JSON.stringify(window.__room?.state)===JSON.stringify(state),(await room(a)).state);assert.deepEqual((await room(a)).state,(await room(b)).state);}
 async function action(page,body){return page.evaluate(async body=>{const s=window.__session,r=window.__room;const path=r.game?.moves?'/api/chess/rooms/':'/api/arcade/rooms/';const res=await fetch('http://127.0.0.1:8788'+path+r.code+'/actions',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+s.token},body:JSON.stringify(body)});return{status:res.status,data:await res.json()};},body);}
@@ -267,6 +317,20 @@ for(const game of sharedGames)await run(game,async({a,b})=>{
   }else{const expected=snapshot.currentPlayer??snapshot.pIdx;if(Number.isInteger(expected))await a.waitForFunction(expected=>ArcadeSharedActivity.getState().room.turn.seat===expected,expected);}
   const spectator=await a.evaluate(()=>ArcadeSharedActivity.isSpectator())?a:b;const socketCount=await spectator.evaluate(()=>window.__sockets.length);await spectator.evaluate(()=>window.__sockets.filter(socket=>socket.readyState===1).forEach(socket=>socket.close(1000,'test reconnect')));await spectator.waitForFunction(count=>window.__sockets.length>count&&ArcadeSharedActivity.getState().connected,socketCount);assert.equal(await spectator.locator('#shared-error').innerText(),'');
   await b.reload();await b.locator('#shared-launch').click({force:true});await b.locator('#shared-resume').click({force:true});await b.waitForFunction(()=>window.ArcadeSharedActivity.getState().active&&window.ArcadeSharedActivity.getState().appliedSequence>=0);assert.equal(await b.locator('#shared-error').innerText(),'');await b.locator('#shared-close').click({force:true});
+  await assertSharedGameVisible(game,b);
+  if(game==='orb-slicer'){
+    // Exercise the terminal canonical boundary without waiting for five random
+    // missed-orb trajectories. A control transfer must not revive zero lives.
+    const endedScore=await a.evaluate(()=>{const finished={...OrbSlicer.captureState(),gameState:'gameover',lives:0,projectiles:[]};OrbSlicer.restoreState(finished);return finished.score;});
+    await a.evaluate(()=>ArcadeSharedActivity.publish());
+    await b.waitForFunction(()=>{const state=OrbSlicer.captureState();return state.gameState==='gameover'&&state.lives===0;});
+    assert.equal(await b.locator('#orb-ov-btn').innerText(),`SCORE: ${endedScore} - RETRY`,'Observer sees the finished game');
+    await a.evaluate(()=>ArcadeSharedActivity.pass(1));await b.waitForFunction(()=>ArcadeSharedActivity.isController());
+    assert.equal(await b.evaluate(()=>OrbSlicer.captureState().lives),0,'Taking controls preserves zero lives');
+    assert.equal(await b.evaluate(()=>OrbSlicer.captureState().gameState),'gameover','Taking controls preserves the finished phase');
+    await b.locator('#orb-ov-btn').click({force:true});
+    await a.waitForFunction(()=>{const state=OrbSlicer.captureState();return state.gameState==='playing'&&state.lives===5&&state.score===0;});
+  }
 });
 }
 }finally{

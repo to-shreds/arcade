@@ -134,6 +134,19 @@ board, long-duration game, or future browser/OS behavior.
 - Preserved shared canvas proportions across different viewports. Shuffleboard
   observers draw accepted normalized puck positions at their own board size
   without advancing physics, and its Home link no longer covers the title.
+- Excluded decorative confetti from canvas previews and restored the full
+  observer display in Make 10, Balloons, and Orb Slicer. The latter two render
+  accepted snapshots locally without advancing their simulation.
+- Preserved Orb Slicer's completed phase and zero lives during control transfer
+  and room reload, with a synchronized retry.
+- Preserved Bounce Boxes' zero lives and paused game-over state, and
+  Shuffleboard's completed round and final score, during control transfer and
+  room reload. Rendered-pixel checks verify the game-over menu and winner
+  announcement remain visible to observers.
+- Kept Chat's Sound and Notify controls readable and separate in short landscape.
+- Made Nearby channel-open initialization idempotent, so an already-open channel
+  and its queued native event send one join request without weakening replay
+  protection. The transport regression suite now includes this browser race.
 
 ## Image and media limits
 
@@ -173,15 +186,15 @@ browser. No image-storage or media-relay service was added.
 | Check | Current verification result |
 | --- | --- |
 | Worker, room authority, and client regressions | 187/187 passed; no failures |
-| Shared shell and Nearby protocol/transport tests | 108 shared shell/transport/client tests passed; earlier combined game-client run also passed |
+| Shared shell and Nearby protocol/transport tests | 109 shared shell/transport/client tests passed; earlier combined game-client run also passed |
 | Entire catalog visual sweep | 180/180 records passed across 45 pages and four sizes; no JavaScript errors, failed/missing assets, or interaction failures |
 | Eight competitive games against the Worker | Passed in the final 42/42 combined competitive/shared run; no page errors |
 | 34 shared activities against the Worker | Passed in the final 42/42 combined competitive/shared run; no page errors |
 | Chat frontend/model/Nearby/checkpoint regressions | 17 tests passed |
 | Chat actual-browser image flow | Passed desktop, portrait, narrow portrait, and landscape checks with no page errors |
-| Shared adapter and recovery scenarios | Desktop and mobile adapters, 34/34 untouched lobbies, 7/7 recovery cases, and six physics control transfers passed |
+| Shared adapter and recovery scenarios | Desktop and mobile adapters, 34/34 untouched lobbies, seven recovery cases plus two terminal handoff/reload cases, and six physics control transfers passed |
 | Native input, Home, and wrapper/static checks | Passed; no physical-device claim |
-| Offline manifest and service worker | 343 files / 17,614,694 bytes verified; complete offline download, reload, Paint launch, and Home passed in Chromium |
+| Offline manifest and service worker | 343 files / 17,616,787 bytes verified; complete offline download, reload, Paint launch, and Home passed in Chromium |
 | Production Pages and Worker rollout | Per-commit deployment results are recorded in GitHub Actions and ProjectStatus; optional public-browser smoke runner included |
 | Actual local WebRTC browser pairing | Blocked in this runtime; CI check added |
 | Physical iOS/Android hardware | Not tested |

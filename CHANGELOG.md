@@ -40,6 +40,14 @@
   final collision fixes in Checkers, Maze, Simon, and Mini Golf.
 - Preserved shared canvas aspect ratios and rendered Shuffleboard checkpoints
   at each observer's own viewport size, with a readable Home/title layout.
+- Kept decorative confetti out of shared canvas previews and preserved the
+  visible Make 10 celebration, Balloons scenery, and Orb Slicer status display.
+- Preserved completed rounds and zero lives when Orb Slicer, Bounce Boxes, and
+  Shuffleboard pass control or reload, including visible game-over menus and
+  winner announcements on observers.
+- Repaired the Chat sound/notification button spacing in short landscape views.
+- Initialized each Nearby data channel once, preventing a duplicate native-open
+  callback from disconnecting a newly paired player through replay protection.
 - Added repeatable desktop/mobile browser tests against actual Worker
   HTTP/WebSocket rooms, shared-state and recovery checks, image tests, an
   all-catalog visual sweep, and CI coverage for local WebRTC without Internet

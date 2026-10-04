@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.5.0+20261003.1",
-  "generatedAt": "2026-10-04T17:20:18.638Z",
+  "generatedAt": "2026-10-04T18:06:07.734Z",
   "fileCount": 343,
-  "totalBytes": 17614694,
+  "totalBytes": 17616787,
   "files": [
     {
       "path": "apple-touch-icon.png",
@@ -47,8 +47,8 @@
     },
     {
       "path": "balloons/index.html",
-      "bytes": 127054,
-      "sha256": "30f6a63435a2c2776250d8fb0cb1d8f54ec51876db1e04b32289e3f920988be8"
+      "bytes": 127286,
+      "sha256": "3da46e4e1676c567850f42a9fa26a7e95353c187b5f59b46c4e820959268cec0"
     },
     {
       "path": "blackjack/game.json",
@@ -77,8 +77,8 @@
     },
     {
       "path": "bounce-boxes/index.html",
-      "bytes": 79887,
-      "sha256": "01b70d9a5b63d90c731cec0ad71fcf1232493d92fb98291741cfcee601277431"
+      "bytes": 80178,
+      "sha256": "7cefd6805ad773f685c9cee741a360d26bbc664cad0fca851ca2fad483d17803"
     },
     {
       "path": "bowling/game.json",
@@ -152,8 +152,8 @@
     },
     {
       "path": "chat-room/index.html",
-      "bytes": 48679,
-      "sha256": "32ed467281726a35f78668274ad4ac0b7c81e718c40f242e6dd96b04c51ee308"
+      "bytes": 48771,
+      "sha256": "5f272fb8025cf79fc218965d1db4a293a2a1474c98111ab10cbe6a4284529904"
     },
     {
       "path": "checkers/game.json",
@@ -357,8 +357,8 @@
     },
     {
       "path": "make-10/index.html",
-      "bytes": 64921,
-      "sha256": "d6d33824b624adf8bc5c6b9d1ff4297bf8440dd95110f89cc2f9342239c02652"
+      "bytes": 64944,
+      "sha256": "0d24312cbc32f8926c36e3a255e4d8dfac4ae3cffb0282e4d72a4c628a1fc8ac"
     },
     {
       "path": "manifest.webmanifest",
@@ -547,8 +547,8 @@
     },
     {
       "path": "multiplayer/nearby-session.mjs",
-      "bytes": 56091,
-      "sha256": "7ed2b10dce76adf218f02d2d976ebf59786edb3a9fc352d0e49a910a725cc5a6"
+      "bytes": 56416,
+      "sha256": "3e9d57d178e3b14aad2d5ed3b4897795a588158d188ebbe67b89726b90935d58"
     },
     {
       "path": "multiplayer/nearby-storage.mjs",
@@ -567,8 +567,8 @@
     },
     {
       "path": "multiplayer/shared-activity.js",
-      "bytes": 30429,
-      "sha256": "cdadeb54f4c4d636d9db4f2368be9a5bb7d0e18b22b1ede874811aaf3d606990"
+      "bytes": 30547,
+      "sha256": "bd26d2055267ad91cd8c7455d224a894b70686b8e509bf44f7cd7c6e999b73d3"
     },
     {
       "path": "multiplayer/shared-room-client.js",
@@ -1437,8 +1437,8 @@
     },
     {
       "path": "orb-slicer/index.html",
-      "bytes": 124214,
-      "sha256": "c19a7ba390c81178f274347cc190690bd3b6b9332fdbf88ef8628a3e435dde63"
+      "bytes": 125109,
+      "sha256": "a91bd0a6e51be561e9dfdcbc8746819df1dfea5d6d89b93ce250c6d922ef3d5b"
     },
     {
       "path": "paint-lab/game.json",
@@ -1522,8 +1522,8 @@
     },
     {
       "path": "shuffleboard/index.html",
-      "bytes": 66215,
-      "sha256": "b8cae1df18dcebee92417c95f490b82b5bf5a62b6a785b409ffe112cc362a6c2"
+      "bytes": 66332,
+      "sha256": "a7f23b0f17109fce6b207e5d1f90874c18b53a32a3ec5b1349b36565d3467b6a"
     },
     {
       "path": "silly-face-lab/game.json",

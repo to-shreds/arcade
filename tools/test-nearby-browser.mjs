@@ -56,10 +56,7 @@ try {
     if (attempt === 100) throw new Error('Nearby fixture failed to start');
     await new Promise(resolve => setTimeout(resolve, 100));
   }
-  // Isolated CI contexts can lack multicast DNS discovery. Use Chromium's
-  // literal local ICE addresses while still testing real, host-only
-  // RTCPeerConnections without STUN/TURN or a mocked transport.
-  browser = await chromium.launch({ ...browserLaunchOptions, args: [...browserLaunchOptions.args, '--disable-features=WebRtcHideLocalIpsWithMdns'] });
+  browser = await chromium.launch(browserLaunchOptions);
   const contexts = await Promise.all([browser.newContext(), browser.newContext()]);
   pages = await Promise.all(contexts.map(context => context.newPage()));
   for (const [index, page] of pages.entries()) {
@@ -75,6 +72,16 @@ try {
       window.reactions = [];
       window.socketMessages = [];
       window.nearbyEvents = [];
+      const markPeerLost = testNearby._markPeerLost;
+      testNearby._markPeerLost = function(record, side, reason) {
+        nearbyEvents.push({ type: 'peer-lost', detail: {
+          side, reason, status: record.status,
+          connectionState: record.pc.connectionState,
+          iceConnectionState: record.pc.iceConnectionState,
+          channelState: record.channel?.readyState ?? null
+        } });
+        return markPeerLost.call(this, record, side, reason);
+      };
       for (const type of ['error', 'state', 'connected', 'player-joined']) testNearby.on(type, detail => {
         nearbyEvents.push({ type, detail });
         if (nearbyEvents.length > 80) nearbyEvents.shift();
@@ -136,12 +143,26 @@ try {
   assert.equal(started.status, 200);
   const sharedGuest = await guest.evaluate(code => testNearby.requestRoomRpc('http', { path: `/api/arcade/rooms/${code}/join`, method: 'POST', body: '{}' }), shared.body.code);
   assert.equal(sharedGuest.status, 200);
+  for (const [index, page] of pages.entries()) {
+    const token = index ? sharedGuest.body.token : shared.body.token;
+    const socket = await page.evaluate(value => testNearby.requestRoomRpc('ws-open', { path: `/api/arcade/rooms/${value.code}/ws?token=${value.token}`, socketId: value.socketId }), { code: shared.body.code, token, socketId: `shared-browser-test-${index}` });
+    assert.equal(socket.ok, true);
+  }
   const passed = await host.evaluate(body => testNearby.requestRoomRpc('http', { path: `/api/arcade/rooms/${body.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'state', expectedVersion: body.room.version, state: body.room.state, nextSeat: body.seat }) }), sharedGuest.body);
   assert.equal(passed.status, 200);
   assert.equal(passed.body.room.turn.playerId, sharedGuest.body.playerId);
+  await Promise.all(pages.map(page => page.waitForFunction(value => socketMessages.some(message => message.room?.code === value.code && message.room?.turn?.playerId === value.playerId), { code: shared.body.code, playerId: sharedGuest.body.playerId })));
+  const updated = await guest.evaluate(body => {
+    const data = JSON.stringify({ snapshot: { text: 'After guest move' }, view: [], frames: [] });
+    const state = { ...body.room.state, data, decodedBytes: new TextEncoder().encode(data).length, sequence: body.room.state.sequence + 1 };
+    return testNearby.requestRoomRpc('http', { path: `/api/arcade/rooms/${body.room.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'state', expectedVersion: body.room.version, state }) });
+  }, passed.body);
+  assert.equal(updated.status, 200);
+  await Promise.all(pages.map(page => page.waitForFunction(value => socketMessages.some(message => message.room?.code === value.code && message.room?.version === value.version && JSON.parse(message.room.state.data).snapshot.text === 'After guest move'), { code: shared.body.code, version: updated.body.room.version })));
+  for (const page of pages) assert.equal(await page.evaluate(() => testNearby.snapshot().connected), 2, 'the paired players stay connected throughout offline moves and control transfer');
   assert.deepEqual(errors, []);
   await writeEvidence('passed');
-  console.log('Real Chromium WebRTC: pairing, locked identities, offline reaction/chat, canonical broadcasts, shared room create/join, and control transfer passed without Internet.');
+  console.log('Real Chromium WebRTC: pairing, locked identities, offline reaction/chat, canonical broadcasts, shared room create/join, control transfer, and synchronized guest moves passed without Internet.');
   await Promise.all(pages.map(page => page.evaluate(() => testNearby.leave({ preserveCheckpoint: false }))));
 } catch (error) {
   await writeEvidence('failed', error.stack || error.message).catch(evidenceError => console.error('Nearby evidence could not be saved:', evidenceError.message));

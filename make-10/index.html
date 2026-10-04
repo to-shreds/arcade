@@ -1584,6 +1584,7 @@ body.make10-game .card{min-height:44px!important}
     capture: captureState, restore: saved => { undoStack = []; return restoreState(saved); }, meaningful, summary: saveSummary, startFresh
   };
   window.Make10SharedAdapter = {
+    shareCanvas:false,
     capture:()=>captureState(true),restore:saved=>{undoStack=[];return restoreState(saved,true);},startFresh
   };
 })();

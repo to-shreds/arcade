@@ -692,7 +692,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   }
 
   function setTurnDisplay(mode) {
-    if (!state.running) {
+    mode = mode || state.autoPhase;
+    if (!state.running && mode !== 'gameover') {
       turnPill.style.background = 'linear-gradient(180deg,#1d304d,#16253c)';
       turnPill.style.boxShadow = 'var(--shadow)';
       turnBig.textContent = 'Set up a game';
@@ -1503,9 +1504,9 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     state.endIndex=clamp(Number(saved.endIndex)||1,1,state.endsTotal);state.startPlayer=clamp(Number(saved.startPlayer)||0,0,state.players.length-1);
     state.currentPlayer=clamp(Number(saved.currentPlayer)||0,0,state.players.length-1);state.totalShotsPerEnd=Math.max(1,Number(saved.totalShotsPerEnd)||state.players.length*state.pucksPer);
     state.shotsFiredInEnd=Math.max(0,Number(saved.shotsFiredInEnd)||0);state.resting=!!saved.resting;
-    state.autoPhase=['ready','moving'].includes(saved.autoPhase)?saved.autoPhase:'ready';state.settleTimer=Math.max(0,Number(saved.settleTimer)||0);
+    state.autoPhase=['ready','moving','gameover'].includes(saved.autoPhase)?saved.autoPhase:'ready';state.settleTimer=Math.max(0,Number(saved.settleTimer)||0);
     state.friction=Number(saved.friction)||.985;state.wallBounce=Number(saved.wallBounce)||.90;
-    state.shotPower=Number(saved.shotPower)||.055;state.maxPull=Number(saved.maxPull)||160;state.aiming=null;state.running=true;
+    state.shotPower=Number(saved.shotPower)||.055;state.maxPull=Number(saved.maxPull)||160;state.aiming=null;state.running=saved.running!==false&&state.autoPhase!=='gameover';
 
     playerCountSel.value=String(state.players.length);endsInp.value=String(state.endsTotal);pucksPerInp.value=String(state.pucksPer);
     puckSizeSel.value=String(state.puckSizeLevel);difficultySel.value=['easy','normal','hard'].includes(saved.difficulty)?saved.difficulty:'normal';

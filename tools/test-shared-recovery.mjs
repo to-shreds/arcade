@@ -31,6 +31,17 @@ async function page(game,existingContext){
 }
 async function connect(host,guest){const created=await host.evaluate(()=>ArcadeSharedActivity.create({username:'Host'}));const joined=await guest.evaluate(code=>ArcadeSharedActivity.join({username:'Guest',code}),created.code);await until(host,()=>ArcadeSharedActivity.getState().connected&&!ArcadeSharedActivity.isSpectator());await until(guest,()=>ArcadeSharedActivity.getState().connected&&ArcadeSharedActivity.getState().appliedSequence>=0);return joined;}
 async function state(page){return page.evaluate(()=>{const shared=ArcadeSharedActivity.getState();return{active:shared.active,connected:shared.connected,controller:shared.controller,spectator:ArcadeSharedActivity.isSpectator(),code:shared.room?.code,version:shared.room?.version,turn:shared.room?.turn,status:shared.statusText,connection:ArcadeSharedActivity.getClient().getConnectionState(),snapshot:ArcadeSave.getAdapter().capture()};});}
+async function renderedWhitePixels(page,selector){
+  const screenshot=await page.locator(selector).screenshot({animations:'disabled'});
+  return page.evaluate(async bytes=>{
+    const image=await createImageBitmap(new Blob([Uint8Array.from(bytes)],{type:'image/png'}));
+    const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;
+    const context=canvas.getContext('2d');context.drawImage(image,0,0);image.close();
+    const data=context.getImageData(0,0,canvas.width,canvas.height).data;let white=0;
+    for(let i=0;i<data.length;i+=4)if(data[i]>210&&data[i+1]>210&&data[i+2]>210)white++;
+    return white;
+  },[...screenshot]);
+}
 async function run(name,fn){if(onlyCase&&!name.toLowerCase().includes(onlyCase))return;const started=Date.now();try{await fn();results.push({name,status:'passed',elapsedMs:Date.now()-started});console.log('PASS '+name);}catch(error){failures.push(name+': '+error.message);results.push({name,status:'failed',elapsedMs:Date.now()-started,error:error.message});console.log('FAIL '+name+': '+error.message);}finally{await Promise.all(contexts.map(context=>context.close()));contexts=[];}}
 try{
   await run('Typing reconnect, observer freeze, local text and cursor restoration',async()=>{
@@ -135,6 +146,51 @@ try{
     await until(guest,()=>ArcadeSharedActivity.isController()&&!ArcadeSharedActivity.isSpectator());
     assert.equal(await host.evaluate(()=>ArcadeSharedActivity.isController()),false);
     assert.equal(await guest.evaluate(()=>BowlingAutosave.capture().power),.81,'Final state checkpoint accompanies control transfer');
+  });
+
+  await run('Bounce Boxes terminal zero lives survive handoff and saved-room reload',async()=>{
+    const host=await page('bounce-boxes'),guest=await page('bounce-boxes');
+    await host.evaluate(()=>{
+      const adapter=BounceBoxesSaveAdapter, saved=adapter.captureState();
+      const lifetime=localStorage.getItem('bb_lifetime');
+      adapter.restoreState({...saved,lives:0,score:450,paused:true});
+      if(localStorage.getItem('bb_lifetime')!==lifetime)throw new Error('Restoring game over must not award another completed run');
+    });
+    const joined=await connect(host,guest);
+    await until(guest,()=>BounceBoxesSaveAdapter.captureState().lives===0);
+    assert.ok(await renderedWhitePixels(guest,'#menuTitle')>20,'The observer must see the rendered Game over title above the shared canvas');
+    await host.evaluate(seat=>ArcadeSharedActivity.pass(seat),joined.seat);
+    await until(guest,()=>ArcadeSharedActivity.isController()&&!ArcadeSharedActivity.isSpectator());
+    const terminal=await guest.evaluate(()=>{
+      document.getElementById('resumeBtn').click();
+      const saved=BounceBoxesSaveAdapter.captureState();
+      return{lives:saved.lives,paused:saved.paused,score:saved.score,title:document.getElementById('menuTitle').textContent};
+    });
+    assert.deepEqual(terminal,{lives:0,paused:true,score:450,title:'Game over'},'Passing controls must retain the terminal run and prevent Resume');
+    await guest.reload();await guest.evaluate(()=>ArcadeSharedActivity.openPanel());await guest.locator('#shared-resume').click();
+    await until(guest,()=>ArcadeSharedActivity.isController()&&!ArcadeSharedActivity.isSpectator()&&ArcadeSharedActivity.getState().appliedSequence>=0);
+    await delay(250);
+    assert.deepEqual(await guest.evaluate(()=>{const saved=BounceBoxesSaveAdapter.captureState();return{lives:saved.lives,paused:saved.paused,score:saved.score};}),{lives:0,paused:true,score:450},'Reloading the controller must not revive a zero-life run');
+  });
+
+  await run('Shuffleboard terminal winner survives handoff and saved-room reload',async()=>{
+    const host=await page('shuffleboard'),guest=await page('shuffleboard');await host.locator('#btnApply').click();
+    await host.evaluate(()=>{
+      const saved=ShuffleboardAutosave.capture();saved.players[0].score=38;
+      ShuffleboardAutosave.restore({...saved,endIndex:saved.endsTotal,running:false,resting:true,autoPhase:'gameover',shotsFiredInEnd:saved.totalShotsPerEnd,puckQueues:saved.players.map(()=>[])});
+    });
+    const joined=await connect(host,guest);
+    await until(guest,()=>ShuffleboardAutosave.capture().autoPhase==='gameover');
+    assert.ok(await renderedWhitePixels(guest,'#turnBig')>20,'The observer must see the rendered winner announcement');
+    await host.evaluate(seat=>ArcadeSharedActivity.pass(seat),joined.seat);
+    await until(guest,()=>ArcadeSharedActivity.isController()&&!ArcadeSharedActivity.isSpectator());
+    const terminal=await guest.evaluate(()=>{const saved=ShuffleboardAutosave.capture();return{running:saved.running,phase:saved.autoPhase,score:saved.players[0].score,shots:saved.shotsFiredInEnd,pucks:saved.pucks.length};});
+    assert.equal(terminal.running,false);assert.equal(terminal.phase,'gameover');assert.equal(terminal.score,38);
+    assert.match(await guest.locator('#turnBig').textContent(),/wins|tie/,'Terminal display must announce the winner');
+    await guest.reload();await guest.evaluate(()=>ArcadeSharedActivity.openPanel());await guest.locator('#shared-resume').click();
+    await until(guest,()=>ArcadeSharedActivity.isController()&&!ArcadeSharedActivity.isSpectator()&&ArcadeSharedActivity.getState().appliedSequence>=0);
+    await delay(250);
+    assert.deepEqual(await guest.evaluate(()=>{const saved=ShuffleboardAutosave.capture();return{running:saved.running,phase:saved.autoPhase,score:saved.players[0].score,shots:saved.shotsFiredInEnd,pucks:saved.pucks.length};}),terminal,'Reloading must preserve final scores and pucks without creating another shot');
   });
 
   await run('Wrong-activity join preserves prior saved credentials and room',async()=>{

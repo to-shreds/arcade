@@ -154,6 +154,24 @@ test("joining lock permits proof-bound reconnects but rejects new identities", a
   assert.equal(session.registry.getByBrowser(browserId("stranger")), null);
 });
 
+test("an already open guest DataChannel sends its join credential once before the native open event", () => {
+  const session = new NearbyArcadeSession({ storage: new MemoryNearbyStorage({ cryptoObject: webcrypto }), cryptoObject: webcrypto });
+  const sent = [];
+  session._sendRecord = (_record, type) => sent.push(type);
+  const record = {
+    status: "pairing",
+    profile: { nickname: "Guest" },
+    pairingId: "pair_open_event",
+    pairingToken: "token_open_event",
+    channel: { readyState: "open" }
+  };
+  session._wireChannel(record, "guest");
+  assert.deepEqual(sent, ["join-request"], "an already open channel is initialized immediately");
+  record.channel.onopen();
+  assert.deepEqual(sent, ["join-request"], "the queued native event cannot replay the one-use credential");
+  assert.equal(record.status, "connected");
+});
+
 test("a pairing credential is one-shot on its DataChannel", async() => {
   const session = await hostSession();
   const sent = [];
