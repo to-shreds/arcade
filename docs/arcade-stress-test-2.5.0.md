@@ -129,6 +129,9 @@ board, long-duration game, or future browser/OS behavior.
   leaving a shared room.
 - Added stable Chat message elements during history pruning, so incoming
   messages do not force someone reading earlier messages back to the bottom.
+- Preserved shared canvas proportions across different viewports. Shuffleboard
+  observers draw accepted normalized puck positions at their own board size
+  without advancing physics, and its Home link no longer covers the title.
 
 ## Image and media limits
 
@@ -176,7 +179,7 @@ browser. No image-storage or media-relay service was added.
 | Chat actual-browser image flow | Passed desktop, portrait, narrow portrait, and landscape checks with no page errors |
 | Shared adapter and recovery scenarios | Desktop and mobile adapters, 34/34 untouched lobbies, 7/7 recovery cases, and six physics control transfers passed |
 | Native input, Home, and wrapper/static checks | Passed; no physical-device claim |
-| Offline manifest and service worker | 343 files / 17,613,808 bytes verified; complete offline download, reload, Paint launch, and Home passed in Chromium |
+| Offline manifest and service worker | 343 files / 17,614,694 bytes verified; complete offline download, reload, Paint launch, and Home passed in Chromium |
 | Production Pages and Worker rollout | Per-commit deployment results are recorded in GitHub Actions and ProjectStatus; optional public-browser smoke runner included |
 | Actual local WebRTC browser pairing | Blocked in this runtime; CI check added |
 | Physical iOS/Android hardware | Not tested |

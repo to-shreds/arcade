@@ -6,7 +6,7 @@
   const every = root.setInterval.bind(root), cancelEvery = root.clearInterval.bind(root);
   const pathParts = root.location.pathname.split('/').filter(Boolean);
   const activity = /\.html?$/i.test(pathParts.at(-1)||'') ? pathParts.at(-2) : pathParts.at(-1);
-  const specialNames = {simon:'SimonSharedAdapter', 'music-maker':'MusicMakerSharedAdapter', hangman:'HangmanSharedAdapter','make-10':'Make10SharedAdapter',trivia:'TriviaSharedAdapter',jigsaw:'JigsawSharedAdapter'};
+  const specialNames = {simon:'SimonSharedAdapter', 'music-maker':'MusicMakerSharedAdapter', hangman:'HangmanSharedAdapter','make-10':'Make10SharedAdapter',trivia:'TriviaSharedAdapter',jigsaw:'JigsawSharedAdapter',shuffleboard:'ShuffleboardAutosave'};
   let room = null, connected = false, active = false, applying = false, working = false, switching = false, awaitingAuthority = false;
   let localBackup = null, lastSent = '', appliedSequence = -1, sequence = 0, applyEpoch = 0, statusText = '';
   let client = null, panel = null, launch = null, notice = null, errorNode = null, seats = null;
@@ -123,16 +123,26 @@
       let image = paintedFrames.get(frame.index);
       if(!image){
         image = document.createElement('img'); image.alt = 'Live shared game'; image.dataset.sharedCanvas = 'true';
-        Object.assign(image.style,{position:'fixed',pointerEvents:'none',objectFit:'fill',zIndex:'8000'});
+        Object.assign(image.style,{position:'fixed',pointerEvents:'none',objectFit:'contain',background:'#101827',zIndex:'8000'});
         document.body.appendChild(image); paintedFrames.set(frame.index,image);
       }
-      const b = canvas.getBoundingClientRect();
       image.src = frame.image;
-      Object.assign(image.style,{left:b.left+'px',top:b.top+'px',width:b.width+'px',height:b.height+'px',display:b.width&&b.height?'block':'none'});
+      image.hidden = false;
       if(canvas.dataset.sharedOriginalVisibility === undefined) canvas.dataset.sharedOriginalVisibility = canvas.style.visibility;
       canvas.style.visibility = 'hidden';
     }
-    for(const [index,image] of paintedFrames){ if(!showing.has(index)) image.style.display = 'none'; }
+    for(const [index,image] of paintedFrames){ image.hidden = !showing.has(index); }
+    repositionFrames();
+  }
+  function repositionFrames(){
+    const canvases = [...document.querySelectorAll('canvas')];
+    for(const [index,image] of paintedFrames){
+      if(image.hidden){image.style.display='none';continue;}
+      const canvas = canvases[index];
+      if(!canvas)continue;
+      const b = canvas.getBoundingClientRect();
+      Object.assign(image.style,{left:b.left+'px',top:b.top+'px',width:b.width+'px',height:b.height+'px',display:b.width&&b.height?'block':'none'});
+    }
   }
   function clearFrames(){
     for(const image of paintedFrames.values()) image.remove(); paintedFrames.clear();
@@ -183,6 +193,7 @@
     let result;
     try{result=await encode(payload);}catch(error){
       // A smaller exact canvas view leaves more space for the playable state.
+      if(adapter()?.shareCanvas===false)throw error;
       payload.frames=captureFrames(320);result=await encode(payload);
     }
     const nextSeat=seatForSnapshot(payload.snapshot);
@@ -345,7 +356,7 @@
       [data-shared-ui]{font:14px/1.45 system-ui,sans-serif;color:#edf5ff;box-sizing:border-box}
       #shared-launch{position:fixed;right:8px;bottom:max(8px,env(safe-area-inset-bottom));z-index:2147483000;background:#193c67;border:1px solid #7ab8ed;border-radius:999px;padding:0;width:40px;height:40px;min-height:40px;box-shadow:0 4px 16px #0007;font-size:20px;font-weight:750;touch-action:manipulation}
       #shared-panel{position:fixed;inset:0;z-index:2147483100;display:flex;align-items:center;justify-content:center;background:#02091dcc;padding:16px;touch-action:pan-y}
-      #shared-panel[hidden],[data-shared-ui] [hidden]{display:none!important}
+      #shared-panel[hidden],[data-shared-ui] [hidden],[data-shared-canvas][hidden]{display:none!important}
       #shared-card{width:min(100%,460px);max-height:calc(100dvh - 32px);overflow:auto;background:#10213b;border:1px solid #54799f;border-radius:18px;padding:20px;box-shadow:0 12px 50px #0009}
       #shared-card h2{margin:0 0 9px;font-size:21px}#shared-card p{margin:8px 0}#shared-card label{display:block;margin:12px 0 5px}
       #shared-card input,#shared-card select{width:100%;min-height:44px;background:#07172c;color:#edf5ff;border:1px solid #6588a8;border-radius:9px;padding:10px;font:inherit}
@@ -402,7 +413,8 @@
         else if(active){if(captureTimer)cancelLater(captureTimer);captureTimer=later(publish,35);}
       },{capture:true,passive:false});
     }
-    root.addEventListener('resize',()=>{positionLaunch();if(isSpectator())client.refresh().catch(showError);});
+    root.addEventListener('resize',()=>{repositionFrames();positionLaunch();if(isSpectator())client.refresh().catch(showError);});
+    root.addEventListener('scroll',repositionFrames,{capture:true,passive:true});
     every(positionLaunch,1500);
     new MutationObserver(changes=>{if(changes.some(change=>!change.target?.closest?.('[data-shared-ui]')))scheduleLaunchPosition();}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','class','style']});
     root.addEventListener('pagehide',()=>{client.disconnect();cancelEvery(tickInterval);});

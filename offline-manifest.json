@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.5.0+20261003.1",
-  "generatedAt": "2026-10-03T02:08:20.540Z",
+  "generatedAt": "2026-10-04T16:57:29.308Z",
   "fileCount": 343,
-  "totalBytes": 17613808,
+  "totalBytes": 17614694,
   "files": [
     {
       "path": "apple-touch-icon.png",
@@ -567,8 +567,8 @@
     },
     {
       "path": "multiplayer/shared-activity.js",
-      "bytes": 29875,
-      "sha256": "befcfe737881cae8cf4f2ff8d9994a0f63bb28786c387b9188d1c9de29742f47"
+      "bytes": 30429,
+      "sha256": "cdadeb54f4c4d636d9db4f2368be9a5bb7d0e18b22b1ede874811aaf3d606990"
     },
     {
       "path": "multiplayer/shared-room-client.js",
@@ -1522,8 +1522,8 @@
     },
     {
       "path": "shuffleboard/index.html",
-      "bytes": 65883,
-      "sha256": "1324d7e591e87aa5e27e3e6322a0d400d90867a8d8d74456e7f071f397ddae0e"
+      "bytes": 66215,
+      "sha256": "b8cae1df18dcebee92417c95f490b82b5bf5a62b6a785b409ffe112cc362a6c2"
     },
     {
       "path": "silly-face-lab/game.json",

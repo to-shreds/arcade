@@ -90,14 +90,19 @@ async function sharedSemantic(game,a,b){
   }
   else if(game==='bounce-boxes'){await drag(a,'#c',.5,.5,.8,.5);await a.waitForFunction(()=>{const s=ArcadeSave.getAdapter().capture();return s.grow||s.runWalls>0||s.lives<5;});}
   else throw Error('Missing semantic activity action: '+game);
-  await delay(200);await a.evaluate(()=>ArcadeSharedActivity.publish());await delay(150);
-  const after=await sharedPayload(a);assert.notDeepEqual(after.snapshot,before,'an actual activity action changes shared game state');const sequence=(await room(a)).state.sequence;await b.waitForFunction(sequence=>ArcadeSharedActivity.getState().appliedSequence>=sequence,sequence);
+  // A canvas capture or an in-flight checkpoint may outlast the input itself.
+  // Assert against the acknowledged authoritative snapshot, rather than a
+  // fixed delay that can read the checkpoint preceding the action.
+  await a.evaluate(()=>ArcadeSharedActivity.publish());
+  let after;const deadline=Date.now()+10000;
+  do{after=await sharedPayload(a);if(JSON.stringify(after.snapshot)!==JSON.stringify(before))break;await delay(75);}while(Date.now()<deadline);
+  assert.notDeepEqual(after.snapshot,before,'an actual activity action changes shared game state');const sequence=(await room(a)).state.sequence;await b.waitForFunction(sequence=>ArcadeSharedActivity.getState().appliedSequence>=sequence,sequence);
   assert.equal(await b.locator('#shared-error').innerText(),'','observer applies action checkpoint');
   if(after.frames.length)assert.ok(await b.locator('img[data-shared-canvas]').count(),'observer displays sender canvas');
 }
 async function sameState(a,b){await b.waitForFunction(state=>JSON.stringify(window.__room?.state)===JSON.stringify(state),(await room(a)).state);assert.deepEqual((await room(a)).state,(await room(b)).state);}
 async function action(page,body){return page.evaluate(async body=>{const s=window.__session,r=window.__room;const path=r.game?.moves?'/api/chess/rooms/':'/api/arcade/rooms/';const res=await fetch('http://127.0.0.1:8788'+path+r.code+'/actions',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+s.token},body:JSON.stringify(body)});return{status:res.status,data:await res.json()};},body);}
-async function security(a,b){const r=await room(a);const result=await action(b,{type:'state',expectedVersion:r.version,state:r.state,nextSeat:0});assert.equal(result.status,403,'off-turn player cannot write the room');const stale=await action(a,{type:'state',expectedVersion:r.version-1,state:r.state,nextSeat:0});assert.equal(stale.status,409,'stale version cannot overwrite the room');}
+async function security(a,b){await a.waitForFunction(()=>window.__room?.status==='active');await sameState(a,b);const r=await room(a);const result=await action(b,{type:'state',expectedVersion:r.version,state:r.state,nextSeat:0});assert.equal(result.status,403,'off-turn player cannot write the room');const stale=await action(a,{type:'state',expectedVersion:r.version-1,state:r.state,nextSeat:0});assert.equal(stale.status,409,'stale version cannot overwrite the room');}
 async function capture(game,a,b){for(const [kind,page] of [['desktop',a],['mobile',b]]){await page.screenshot({animations:'disabled',timeout:30000,path:fileURLToPath(new URL(`${game}-${kind}.png`,out))});const dimensions=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,view:innerWidth}));if(dimensions.scroll>dimensions.view+1){const geometry=await page.evaluate(()=>[...document.querySelectorAll('*')].map(element=>{const box=element.getBoundingClientRect(),style=getComputedStyle(element);return {tag:element.tagName,id:element.id,class:element.className,x:box.x,right:box.right,width:box.width,clientWidth:element.clientWidth,scrollWidth:element.scrollWidth,display:style.display,boxSizing:style.boxSizing,cssWidth:style.width,padding:style.padding,border:style.border};}).filter(item=>item.width&&item.display!=='none'&&(item.x<-1||item.right>innerWidth+1)));await writeFile(new URL(`${game}-${kind}-overflow.json`,out),JSON.stringify(geometry,null,2));}assert.ok(dimensions.scroll<=dimensions.view+1,`${game} ${kind} horizontal page overflow: ${JSON.stringify(dimensions)}`);}}
 async function resume(page,selector){const before=await room(page);await page.reload();if(selector==='#dotsOnlineResume')await page.locator('#dotsModeOnline').click({force:true});if(selector==='#ck-online-resume')await page.locator('[onclick="CheckersGame.showOnlineSetup()"]').click({force:true});await page.locator(selector).click({force:true});await page.waitForFunction(({code,version})=>window.__room?.code===code&&window.__room?.version>=version,{code:before.code,version:before.version});}
 async function run(game,test){const started=Date.now();const players=await pair(game);try{await test(players);await capture(game,players.a,players.b);assert.equal(errors.filter(e=>e.game===game).length,0,JSON.stringify(errors));results.push({game,pass:true,ms:Date.now()-started});console.log('PASS',game,Date.now()-started,'ms');}catch(error){await writeFile(new URL(`${game}-failure-evidence.json`,out),JSON.stringify(await Promise.all([players.a,players.b].map(page=>page.evaluate(()=>({room:window.__room,actions:window.__actions,fetches:window.__fetches,shared:window.ArcadeSharedActivity?.getState(),text:document.body.innerText})))),null,2)).catch(()=>{});results.push({game,pass:false,error:error.stack,ms:Date.now()-started});console.error('FAIL',game,error.message);for(const [kind,page] of [['desktop',players.a],['mobile',players.b]])await page.screenshot({animations:'disabled',timeout:30000,path:fileURLToPath(new URL(`${game}-failure-${kind}.png`,out))}).catch(()=>{});}finally{await players.close();}}
@@ -158,12 +163,23 @@ if(selected.has('sorry'))await run('sorry',async({a,b})=>{
     await page.waitForFunction(()=>SorryGame.online.canAct());const previous=current.version,phase=current.state.phase;
     if(phase==='draw'){await page.locator('#boardCard').click({force:true});draws++;await page.waitForFunction(version=>window.__room.version>version,previous);await sameState(page,other);if((await room(page)).state.currentCard)assert.equal(await other.locator('#boardCardValue').innerText(),(await room(page)).state.currentCard==='S'?'SORRY!':(await room(page)).state.currentCard);}
     else if(phase==='action'){
-      const marker=page.locator('.endpoint-marker:not(.split-step)').first();
-      if(await marker.count()){await marker.click({force:true});movements++;}
-      else if(await page.locator('.pawn.selectable').count())await page.locator('.pawn.selectable').first().click({force:true});
-      else if(await page.locator('#choices .action-btn').count())await page.locator('#choices .action-btn').first().click({force:true});
-      else throw Error('Sorry action has no usable controls');
+      // Pawn/mode selection and the first split endpoint are local substeps.
+      // Complete the visible choice before requiring its committed room move.
+      for(let substep=0;(await room(page)).version===previous&&substep<8;substep++){
+        await page.waitForFunction(()=>SorryGame.online.canAct());
+        const beforeUi=await page.evaluate(()=>document.getElementById('board').innerHTML+document.getElementById('choices').innerHTML);
+        const marker=page.locator('.endpoint-marker:not(.split-step)').first();
+        const pawn=page.locator('.pawn.selectable:not(.selected)').first();
+        const choice=page.locator('#choices .action-btn').filter({hasNotText:/^(Back|Choose Another|Cancel Split)/}).first();
+        if(await marker.count())await marker.click({force:true});
+        else if(await page.locator('.endpoint-marker.split-step').count())await page.locator('.endpoint-marker.split-step').first().click({force:true});
+        else if(await pawn.count())await pawn.click({force:true});
+        else if(await choice.count())await choice.click({force:true});
+        else{await page.waitForFunction(version=>window.__room.version>version,previous);break;}
+        await page.waitForFunction(({version,ui})=>window.__room.version>version||(SorryGame.online.canAct()&&document.getElementById('board').innerHTML+document.getElementById('choices').innerHTML!==ui),{version:previous,ui:beforeUi});
+      }
       await page.waitForFunction(version=>window.__room.version>version,previous);await sameState(page,other);
+      if(JSON.stringify((await room(page)).state.pawns)!==JSON.stringify(current.state.pawns))movements++;
     }else if(phase==='noMove'||phase==='resolving'){await page.waitForFunction(version=>window.__room.version>version,previous);await sameState(page,other);}
     else throw Error('Unexpected classic Sorry phase '+phase);
   }
@@ -177,7 +193,8 @@ if(selected.has('monopoly'))await run('monopoly',async({a,b})=>{
     const current=await room(a),page=current.turn.seat===0?a:b,other=page===a?b:a,previous=current.version;
     await page.waitForFunction(()=>{const online=MonopolyGame.getOnline();return online.connected&&![...document.querySelectorAll('[data-act]')].every(button=>button.disabled);});
     if(current.state.phase==='moving'){await page.waitForFunction(version=>window.__room.version>version,previous);await sameState(page,other);continue;}
-    await delay(280);const choices={roll:'roll',offer:'buy',end:current.state.extraRoll?'rollAgain':'end',debt:'payDebt'};
+    // The game deliberately rejects a second mutation within 430ms.
+    await delay(450);const choices={roll:'roll',offer:'buy',end:current.state.extraRoll?'rollAgain':'end',debt:'payDebt'};
     if(current.state.phase==='cardDraw'){await page.waitForFunction(()=>!document.querySelector('#resolveCardBtn')?.disabled);await page.locator('#resolveCardBtn').evaluate(button=>button.click());}
     else if(choices[current.state.phase]){const choice=choices[current.state.phase],selector=`[data-act="${choice}"]`;await page.waitForFunction(selector=>{const button=document.querySelector(selector);return !!button&&!button.disabled;},selector);await page.locator(selector).first().evaluate(button=>button.click());if(choice==='roll'||choice==='rollAgain')rolls++;if(choice==='buy')purchases++;}
     else throw Error('Unhandled Monopoly phase '+current.state.phase);

@@ -36,6 +36,8 @@
   cursor editing, and complete-emoji deletion regressions.
 - Repositioned shared-play/settings controls to avoid game controls, including
   final collision fixes in Checkers, Maze, Simon, and Mini Golf.
+- Preserved shared canvas aspect ratios and rendered Shuffleboard checkpoints
+  at each observer's own viewport size, with a readable Home/title layout.
 - Added repeatable desktop/mobile browser tests against actual Worker
   HTTP/WebSocket rooms, shared-state and recovery checks, image tests, an
   all-catalog visual sweep, and CI coverage for local WebRTC without Internet

@@ -7,7 +7,7 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
-The 2.5.0 web release is implemented in the current working changes. It adds
+The 2.5.0 web release is implemented in this repository. It adds
 Internet/Nearby shared play to all 34 previously unsupported activities,
 retains the eight competitive multiplayer games, and adds images to Chat.
 The enabled catalog has 43 entries. Backyard Baseball remains disabled.
