@@ -525,3 +525,76 @@ test("terminal 410 while leaving Sorry clears the saved room and authority pin",
     assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
   } finally { dom.window.close(); }
 });
+
+for(const scenario of [{card:"4",phase:"noMove",sole:false},{card:"3",phase:"action",sole:true}]){
+test(`an online ${scenario.phase} card is visible before its automatic action and waits for acknowledgement`, async () => {
+  let room = lobby({ready:true,members:[{playerId:"p0",seat:0,username:"Alex",connected:true},{playerId:"p1",seat:1,username:"Sam",connected:true}],presence:{p0:true,p1:true}});
+  let releaseReveal, revealPayload; const statePosts = [];
+  const deferred = new Promise(resolve => {releaseReveal = resolve;});
+  const fetchImpl = async (url, options = {}) => {
+    if(String(url).endsWith("/api/arcade/rooms")) return response({ok:true,code:room.code,token:"host-token",playerId:"p0",seat:0,room});
+    if(String(url).endsWith("/join")) return response({ok:true,code:room.code,token:"guest-token",playerId:"p1",seat:1,room:{...room,playerId:"p1",seat:1}});
+    if(String(url).endsWith("/state")) return response({ok:true,room});
+    if(String(url).endsWith("/actions")) {
+      const action=JSON.parse(options.body);
+      if(action.type==="start") room={...room,version:room.version+1,status:"active",turn:{seat:0,playerId:"p0",number:1},state:action.state};
+      if(action.type==="state") {
+        statePosts.push(action);
+        if(!revealPayload&&action.state.phase===scenario.phase){revealPayload=action;return deferred;}
+        room={...room,version:room.version+1,state:action.state,turn:{seat:action.nextSeat,playerId:"p1",number:2}};
+      }
+      return response({ok:true,room});
+    }
+    throw new Error("unexpected fetch "+url);
+  };
+  const host=await loadSorry(fetchImpl), guest=await loadSorry(fetchImpl);
+  try{
+    const h=host.dom.window,g=guest.dom.window;
+    h.document.querySelector('#modeChoices [data-value="classic"]').click();
+    await h.SorryGame.online.create(); await h.SorryGame.online.start();
+    g.document.querySelector('#playModeChoices [data-value="online"]').click();
+    g.document.querySelector('#onlineJoinCode').value=room.code;
+    await g.SorryGame.online.join(); await wait(g,20);
+    const controlled=structuredClone(room); controlled.version++;
+    const cards=controlled.state.deck; cards.push(cards.splice(cards.indexOf(scenario.card),1)[0]);
+    if(scenario.sole){controlled.state.pawns[0].zone="track";controlled.state.pawns[0].pos=4;controlled.state.pawns[1].zone="home";controlled.state.pawns[2].zone="home";}
+    room=controlled;h.SorryGame.online.applyRoom(room);g.SorryGame.online.applyRoom({...room,playerId:"p1",seat:1});
+    h.document.querySelector('#boardCard').click();
+    await wait(h,850);
+    assert.equal(statePosts.length,1,"a delayed reveal is not followed by an unsent local turn pass");
+    assert.equal(h.SorryGame.getState().currentCard,scenario.card);
+    assert.equal(h.SorryGame.getState().turn,0);
+    assert.equal(revealPayload.state.phase,scenario.phase);
+    room={...room,version:room.version+1,state:revealPayload.state};
+    g.SorryGame.online.applyRoom({...room,playerId:"p1",seat:1});
+    assert.equal(g.document.querySelector('#boardCardValue').textContent,scenario.card,"the other seat sees the drawn card");
+    if(!scenario.sole)assert.match(g.document.querySelector('#message').textContent,/no legal move/);
+    releaseReveal(response({ok:true,room}));
+    await wait(h,800);
+    assert.equal(statePosts.length,2,JSON.stringify({phase:h.SorryGame.getState().phase,session:h.SorryGame.online.getSession(),position:h.SorryGame.getState().pawns[0].pos}));
+    assert.equal(statePosts[1].nextSeat,1);
+    assert.equal(h.SorryGame.getState().turn,1);
+    if(scenario.sole)assert.equal(h.SorryGame.getState().pawns[0].pos,7);
+    assert.equal(host.errors.length+guest.errors.length,0);
+  }finally{host.dom.window.close();guest.dom.window.close();}
+});
+}
+
+test("Sorry ignores late messages from a replaced socket and snapshots for another game or room", async () => {
+  let creates=0;
+  const {dom,errors}=await loadSorry(async () => {
+    const code=creates++?"XYZ789":"ABC234";
+    return response({ok:true,code,token:code,playerId:"p0",seat:0,room:lobby({code})});
+  });
+  try{
+    await dom.window.SorryGame.online.create();await wait(dom.window,20);
+    const old=dom.window.__sorrySockets[0];
+    await dom.window.SorryGame.online.create();await wait(dom.window,20);
+    old.emit("message",{data:JSON.stringify({type:"state",room:lobby({version:99})})});
+    dom.window.SorryGame.online.applyRoom(lobby({code:"XYZ789",game:"monopoly",version:100}));
+    assert.equal(dom.window.SorryGame.online.getRoom().code,"XYZ789");
+    assert.equal(dom.window.SorryGame.online.getRoom().game,"sorry");
+    assert.equal(dom.window.SorryGame.online.getRoom().version,1);
+    assert.equal(errors.length,0);
+  }finally{dom.window.close();}
+});

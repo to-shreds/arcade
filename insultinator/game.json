@@ -14,7 +14,11 @@
   ],
   "tags": [
     "keyboard",
-    "speech"
+    "speech",
+    "online",
+    "nearby"
   ],
-  "orientation": "any"
+  "orientation": "any",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

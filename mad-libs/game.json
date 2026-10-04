@@ -14,7 +14,11 @@
     "educational"
   ],
   "tags": [
-    "keyboard"
+    "keyboard",
+    "online",
+    "nearby"
   ],
-  "orientation": "any"
+  "orientation": "any",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

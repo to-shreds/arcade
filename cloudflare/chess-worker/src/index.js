@@ -139,7 +139,7 @@ export default {
           const response = await stub.fetch("https://room.internal/join", {
             method: "POST",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify({ username: body.username, reconnectToken: body.reconnectToken || null })
+            body: JSON.stringify({ username: body.username, reconnectToken: body.reconnectToken || null, activity: body.activity ?? null })
           });
           return proxiedJson(response, cors);
         }
@@ -225,6 +225,7 @@ export class ChessRoom {
   connections() {
     const presence = { w: false, b: false };
     for (const socket of this.state.getWebSockets()) {
+      if (socket.readyState !== WebSocket.OPEN) continue;
       const attachment = socket.deserializeAttachment() || {};
       if (attachment.side === "w" || attachment.side === "b") presence[attachment.side] = true;
     }
@@ -244,6 +245,7 @@ export class ChessRoom {
     if (!room) return;
     const presence = this.connections();
     for (const socket of this.state.getWebSockets()) {
+      if (socket.readyState !== WebSocket.OPEN) continue;
       const attachment = socket.deserializeAttachment() || {};
       try { socket.send(JSON.stringify({ type: "state", room: this.model.public(room, attachment.side || null, presence) })); }
       catch { try { socket.close(1011, "Delivery failed"); } catch {} }
@@ -308,8 +310,16 @@ export class ChessRoom {
     }
   }
 
-  async webSocketClose() { await this.broadcast(); }
-  async webSocketError() { await this.broadcast(); }
+  async webSocketClose(socket) {
+    // Older runtimes require a reciprocal Close frame. New runtimes already
+    // complete it before this callback, so closing again is harmless.
+    try { socket.close(1000, "Peer disconnected"); } catch {}
+    await this.broadcast();
+  }
+  async webSocketError(socket) {
+    try { socket.close(1011, "Connection failed"); } catch {}
+    await this.broadcast();
+  }
 }
 
 export class ArcadeRoom {
@@ -321,6 +331,7 @@ export class ArcadeRoom {
   connections() {
     const playerIds = new Set();
     for (const socket of this.state.getWebSockets()) {
+      if (socket.readyState !== WebSocket.OPEN) continue;
       const attachment = socket.deserializeAttachment() || {};
       if (attachment.playerId) playerIds.add(attachment.playerId);
     }
@@ -340,6 +351,7 @@ export class ArcadeRoom {
     if (!room) return;
     const presence = this.connections();
     for (const socket of this.state.getWebSockets()) {
+      if (socket.readyState !== WebSocket.OPEN) continue;
       const attachment = socket.deserializeAttachment() || {};
       try { socket.send(JSON.stringify({ type: "state", room: this.model.public(room, attachment.playerId || null, presence) })); }
       catch { try { socket.close(1011, "Delivery failed"); } catch {} }
@@ -404,6 +416,12 @@ export class ArcadeRoom {
     }
   }
 
-  async webSocketClose() { await this.broadcast(); }
-  async webSocketError() { await this.broadcast(); }
+  async webSocketClose(socket) {
+    try { socket.close(1000, "Peer disconnected"); } catch {}
+    await this.broadcast();
+  }
+  async webSocketError(socket) {
+    try { socket.close(1011, "Connection failed"); } catch {}
+    await this.broadcast();
+  }
 }

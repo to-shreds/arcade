@@ -130,9 +130,17 @@ test('Checkers create, host start, 0-based turn gating and remote state apply',a
     await new Promise(resolve=>dom.window.setTimeout(resolve,30));
     assert.equal(d.querySelector('#ck-menu').style.display,'none');
     assert.match(d.querySelector('#ck-turn').textContent,/RED.*Host/);
+    const wrongRoom=room('active',0);wrongRoom.code='ZZZ789';wrongRoom.version=99;
+    dom.window.__testSockets.at(-1).emit('message',{data:JSON.stringify({type:'state',room:wrongRoom})});
+    assert.equal(d.querySelector('#ck-online-badge-code').textContent,'CHK234','a different room cannot replace the accepted session');
 
     const canvas=d.querySelector('#ck-canvas');
     pointer(dom.window,canvas,'pointerdown',25,275);
+    pointer(dom.window,canvas,'pointercancel',75,225);
+    assert.equal(calls.filter(call=>call.body?.type==='state').length,0,'an interrupted gesture cannot commit a move');
+    pointer(dom.window,canvas,'pointerdown',25,275);
+    pointer(dom.window,canvas,'pointerup',25,275);
+    pointer(dom.window,canvas,'pointerdown',75,225);
     pointer(dom.window,canvas,'pointerup',75,225);
     await new Promise(resolve=>dom.window.setTimeout(resolve,30));
     const stateActions=()=>calls.filter(call=>call.body?.type==='state');

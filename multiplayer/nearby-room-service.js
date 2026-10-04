@@ -339,7 +339,7 @@ export class NearbyRoomService {
   }
 
   _finishGenericDeparture(room, departedPlayerId, reason) {
-    if (!room || room.game === "chat") return room;
+    if (!room || room.game === "chat" || room.game === "shared-activity") return room;
     room.status = "finished";
     room.turn = null;
     room.result = {
@@ -464,7 +464,7 @@ export class NearbyRoomService {
       try {
         const restored = kind === "chess"
           ? await entry.model.join(existing.token)
-          : await entry.model.join({ reconnectToken: existing.token });
+          : await entry.model.join({ reconnectToken: existing.token, activity: body.activity ?? null });
         await this._broadcastRoom(entry);
         return { ok: true, ...restored, room: await this._publicRoom(entry, member.memberId) };
       } catch (error) {
@@ -485,7 +485,7 @@ export class NearbyRoomService {
     const candidateStorage = new MemoryStorage();
     await candidateStorage.put("room", current);
     const candidateModel = new GenericRoomModel(candidateStorage);
-    const joined = await candidateModel.join({ username: member.nickname });
+    const joined = await candidateModel.join({ username: member.nickname, activity: body.activity ?? null });
     const binding = {
       memberId: member.memberId,
       token: joined.token,

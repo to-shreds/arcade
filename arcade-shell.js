@@ -492,7 +492,10 @@ export class ArcadeShellController {
 
   _item(value){
     const id = typeof value === "string" ? value : value?.folder;
-    return this.items.find(item => item?.enabled === true && item.folder === id) || null;
+    // The launcher can finish before Nearby's IndexedDB initialization. Its
+    // already loaded catalog keeps early clicks and offline launches usable.
+    const items = this.items.length ? this.items : Array.isArray(window.ArcadeCatalogItems) ? window.ArcadeCatalogItems : [];
+    return items.find(item => item?.enabled === true && !item.warning && item.folder === id) || null;
   }
 
   openGame(value, roomCode = "", options = {}){

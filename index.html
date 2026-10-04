@@ -44,12 +44,13 @@ button:active{transform:scale(.97);background:rgba(255,255,255,.16)}
 @media(orientation:landscape) and (min-width:720px){.grid{grid-template-columns:repeat(8,minmax(0,1fr))}}
 @media(max-height:520px){h1{font-size:25px}.count{display:none}.filter,#category{min-height:31px;padding:4px 8px;font-size:11px}.icon-btn{min-height:34px;height:34px}}
 @media(max-width:480px){.count{display:none}.updated{padding:4px 6px;font-size:9px}.filters{gap:4px;grid-template-columns:repeat(3,minmax(0,.85fr)) minmax(82px,1.2fr) minmax(92px,1.32fr)}.filter,#category{font-size:10px;padding:5px 3px}}
+@media(max-width:400px){.filters{grid-template-columns:repeat(6,minmax(0,1fr))}.filter[data-filter]{grid-column:span 2}#playerFilter,#category{grid-column:span 3}.filter,#category{font-size:12px}}
 @media(min-width:900px) and (min-height:521px){.grid{grid-template-columns:repeat(auto-fill,minmax(135px,1fr));grid-auto-rows:124px}.card{grid-template-rows:64px minmax(34px,auto)}.card img{width:60px;height:60px}.name{font-size:14px}}
 </style>
 </head>
 <body>
 <main class="app">
-<header><h1>Arcade</h1><time class="updated" datetime="2026-09-01">Last updated Sep 1, 2026</time><span class="count" id="count"></span><div class="head-actions"><button class="icon-btn" id="reload" aria-label="Reload arcade">↻</button><button class="icon-btn" id="manage" aria-label="Arcade settings">⚙</button></div></header>
+<header><h1>Arcade</h1><time class="updated" datetime="2026-10-03">Last updated Oct 3, 2026</time><span class="count" id="count"></span><div class="head-actions"><button class="icon-btn" id="reload" aria-label="Reload arcade">↻</button><button class="icon-btn" id="manage" aria-label="Arcade settings">⚙</button></div></header>
 <nav class="filters" aria-label="Filters">
 <button class="filter active" data-filter="all">All</button>
 <button class="filter" data-filter="game">Games</button>
@@ -85,7 +86,7 @@ if(!item.enabled||item.warning)return false;
 if(mode==='game'&&item.type!=='game')return false;
 if(mode==='activity'&&item.type!=='activity')return false;
 if(playerMode==='single'&&!(item.playersMin<=1&&item.playersMax>=1))return false;
-if(playerMode==='two'&&item.playersMax<2)return false;
+if(playerMode==='two'&&Math.max(item.playersMax,item.onlinePlayersMax||0)<2)return false;
 if(cat&&!(item.categories||[]).includes(cat))return false;
 return true;
 }
@@ -103,7 +104,7 @@ grid.replaceChildren();
 if(!shown.length){const e=document.createElement('div');e.className='empty';e.textContent='No matches';grid.append(e);return;}
 shown.forEach((item,i)=>{
 const b=document.createElement('button');b.className='card';b.style.setProperty('--accent',accents[i%accents.length]);b.addEventListener('click',()=>launch(item));
-const p=document.createElement('span');p.className='players';p.textContent=playerLabel(item);
+const p=document.createElement('span');p.className='players';p.textContent=playerLabel(item)+(item.onlineMode==='shared'?' · Shared':'');p.title=item.onlineMode==='shared'?'Local play or shared online controls for up to '+item.onlinePlayersMax+' people':item.onlineMode==='competitive'?'Local play or online multiplayer':item.onlineMode==='chat'?'Online chat':'';
 if(saves[item.folder]){const s=document.createElement('span');s.className='saved';s.textContent='↺ SAVED';b.append(s);}
 const img=document.createElement('img');img.src=item.folder+'/'+item.icon;img.alt='';img.addEventListener('error',()=>{img.style.display='none'});
 const n=document.createElement('span');n.className='name';n.textContent=item.title;

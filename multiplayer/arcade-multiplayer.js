@@ -2,6 +2,8 @@
   "use strict";
 
   const SCOPE = "arcade-multiplayer";
+  const bridgeLater = root.setTimeout.bind(root);
+  const bridgeCancel = root.clearTimeout.bind(root);
   const BRIDGE_VERSION = 1;
   const WORKER_ORIGIN = "https://arcade-chess.jonathanjablon.workers.dev";
   const MAX_BODY_BYTES = 384 * 1024;
@@ -12,15 +14,49 @@
   const TURN_NOTICE_DISMISSED_KEY = "arcade.turnAlerts.noticeDismissed.v1";
   const TURN_ROOM_LIMIT = 24;
   const GAME_LABELS = Object.freeze({
-    chess: "Chess",
-    sorry: "Sorry!",
-    monopoly: "Monopoly",
-    memory: "Memory",
+    "make-10": "Make 10",
+    "balloons": "Balloons",
+    "blackjack": "Blackjack",
+    "checkers": "Checkers",
+    "chess": "Chess",
+    "time": "Time",
+    "dots": "Dots",
+    "hangman": "Hangman",
+    "solitaire": "Solitaire Parlor",
+    "guess-who": "Guess Who",
+    "insultinator": "Insultinator",
+    "build-my-joke": "Build My Joke",
+    "jigsaw": "Emoji Jigsaw",
+    "codebreaking": "Robot Codebreaker",
+    "math": "Math",
+    "spelling": "Picture Spelling",
+    "maze": "Maze",
+    "memory": "Memory",
+    "minesweeper": "Minesweeper",
+    "mini-golf": "Mini Golf",
+    "orb-slicer": "Orb Slicer",
+    "two-truths": "Two Truths & a Lie",
+    "paint-lab": "Paint Lab",
+    "patterns": "Patterns",
+    "bounce-boxes": "Bounce Boxes",
+    "shuffleboard": "Shuffleboard",
+    "simon": "Simon Says",
+    "regex-lab": "Regex Lab",
     "tic-tac-toe": "Tic Tac Toe",
-    dots: "Dots",
-    checkers: "Checkers",
-    "guess-who": "Guess Who"
-  });
+    "trail": "Trail",
+    "trivia": "Trivia",
+    "typing": "Typing",
+    "contraption-maker": "Contraption Maker",
+    "mad-libs": "Mad Libs",
+    "silly-face-lab": "Silly Face Lab",
+    "sorry": "Sorry! Fire & Ice",
+    "bug-squish": "Bug Squish",
+    "firefighter-frenzy": "Firefighter Frenzy",
+    "monster-dentist": "Monster Dentist",
+    "music-maker": "Music Maker",
+    "bowling": "Neon Bowling",
+    "monopoly": "Monopoly"
+});
   const TURN_ICON_URL = (() => {
     try{
       const scriptUrl = root.document?.currentScript?.src;
@@ -481,7 +517,7 @@
   function settleRpc(requestId, entry, succeeded, value){
     if(!entry || pending.get(requestId) !== entry) return;
     pending.delete(requestId);
-    root.clearTimeout(entry.timer);
+    bridgeCancel(entry.timer);
     if(entry.signal && entry.abortHandler) entry.signal.removeEventListener("abort", entry.abortHandler);
     if(succeeded) entry.resolve(value);
     else entry.reject(value);
@@ -494,7 +530,7 @@
     const requestId = frameId + ":" + (++sequence);
     return new Promise((resolve, reject) => {
       const entry = { resolve, reject, timer: 0, signal: signal || null, abortHandler: null };
-      entry.timer = root.setTimeout(() => settleRpc(requestId, entry, false, Object.assign(new Error("Nearby Arcade did not respond in time."), { status: 504 })), timeoutMs || 10000);
+      entry.timer = bridgeLater(() => settleRpc(requestId, entry, false, Object.assign(new Error("Nearby Arcade did not respond in time."), { status: 504 })), timeoutMs || 10000);
       if(signal){
         entry.abortHandler = () => settleRpc(requestId, entry, false, abortError(signal));
         signal.addEventListener("abort", entry.abortHandler, { once: true });
@@ -514,14 +550,14 @@
       let timer = 0;
       const cleanup = () => {
         listeners.delete(check);
-        if(timer) root.clearTimeout(timer);
+        if(timer) bridgeCancel(timer);
         if(signal) signal.removeEventListener("abort", abort);
       };
       const finish = () => { if(settled) return; settled = true; cleanup(); resolve(bridgeAvailable); };
       const check = () => finish();
       const abort = () => { if(settled) return; settled = true; cleanup(); reject(abortError(signal)); };
       listeners.add(check);
-      timer = root.setTimeout(finish, HANDSHAKE_TIMEOUT_MS);
+      timer = bridgeLater(finish, HANDSHAKE_TIMEOUT_MS);
       if(signal) signal.addEventListener("abort", abort, { once: true });
       post({ type: "hello" });
     });
@@ -690,9 +726,9 @@
     removeEventListener(type, listener){ const set = this._listeners.get(type); if(set) set.delete(listener); }
     _dispatch(type, event){
       const handler = this["on" + type];
-      if(typeof handler === "function"){ try{ handler.call(this, event); }catch(error){ root.setTimeout(() => { throw error; }); } }
+      if(typeof handler === "function"){ try{ handler.call(this, event); }catch(error){ bridgeLater(() => { throw error; }); } }
       const set = this._listeners.get(type);
-      if(set) for(const listener of [...set]){ try{ listener.call(this, event); }catch(error){ root.setTimeout(() => { throw error; }); } }
+      if(set) for(const listener of [...set]){ try{ listener.call(this, event); }catch(error){ bridgeLater(() => { throw error; }); } }
     }
     send(data){
       if(this.readyState !== NearbyWebSocket.OPEN) throw new DOMException("WebSocket is not open", "InvalidStateError");
@@ -816,9 +852,9 @@
     }
     _dispatch(type, event){
       const handler = this["on" + type];
-      if(typeof handler === "function"){ try{ handler.call(this, event); }catch(error){ root.setTimeout(() => { throw error; }); } }
+      if(typeof handler === "function"){ try{ handler.call(this, event); }catch(error){ bridgeLater(() => { throw error; }); } }
       const set = this._listeners.get(type);
-      if(set) for(const listener of [...set]){ try{ listener.call(this, event); }catch(error){ root.setTimeout(() => { throw error; }); } }
+      if(set) for(const listener of [...set]){ try{ listener.call(this, event); }catch(error){ bridgeLater(() => { throw error; }); } }
     }
     send(data){
       if(this._readyState !== DeferredRoomWebSocket.OPEN || !this._socket) throw new DOMException("WebSocket is not open", "InvalidStateError");

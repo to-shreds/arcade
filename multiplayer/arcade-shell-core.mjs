@@ -296,7 +296,7 @@ export function surpriseGame(items, playerCount, random = Math.random){
   ]);
   const count = Math.max(2, Math.floor(Number(playerCount) || 2));
   const choices = (Array.isArray(items) ? items : []).filter(item => {
-    const capacity = item && capacities.get(item.folder);
+    const capacity = item?.onlineMode === "shared" ? [2, 8] : item && capacities.get(item.folder);
     return item?.enabled === true && capacity && count >= capacity[0] && count <= capacity[1];
   });
   if(!choices.length) return null;

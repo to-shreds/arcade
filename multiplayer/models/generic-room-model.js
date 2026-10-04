@@ -1,12 +1,19 @@
 import { randomToken, tokenHash } from "./room-model.js";
 
 import { createGuessWhoState, applyGuessWhoAction, publicGuessWhoState } from "./guess-who-authority.js";
+import { validateSharedCheckpoint, validateSharedActivityAction } from "./shared-activity-validator.js";
 
 const ROOM_KEY = "room";
 const MAX_STATE_BYTES = 256 * 1024;
 const MAX_RESULT_BYTES = 16 * 1024;
 const MAX_CHAT_MESSAGES = 100;
 const MAX_CHAT_LENGTH = 500;
+// Keep the complete chat snapshot below Nearby's 64 KiB room limit, including
+// member metadata. Images travel with the room on both transports and require
+// neither an upload service nor a separate credential or storage bucket.
+const MAX_CHAT_IMAGE_BYTES = 24 * 1024;
+const MAX_CHAT_IMAGE_DIMENSION = 1280;
+const MAX_CHAT_HISTORY_BYTES = 48 * 1024;
 const MAX_DEPARTED_MEMBERS = 32;
 const CHAT_MIN_INTERVAL_MS = 350;
 const CHAT_BURST_WINDOW_MS = 10_000;
@@ -14,6 +21,7 @@ const CHAT_BURST_LIMIT = 12;
 const USERNAME_PATTERN = /^[\p{L}\p{N}][\p{L}\p{N} _.'-]{0,23}$/u;
 
 export const GAME_TYPES = Object.freeze({
+  "shared-activity": Object.freeze({ minPlayers: 1, minSeats: 2, maxSeats: 8 }),
   "guess-who": Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 2 }),
   sorry: Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 4 }),
   monopoly: Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 6 }),
@@ -94,12 +102,55 @@ export function normalizeUsername(value) {
   return username;
 }
 
-function normalizeChatText(value) {
+function normalizeChatText(value, allowEmpty = false) {
   const text = String(value ?? "").replace(/\r\n?/g, "\n").trim();
-  if (!text) throw httpError(400, "Message cannot be empty");
+  if (!text && !allowEmpty) throw httpError(400, "Message cannot be empty");
   if (text.length > MAX_CHAT_LENGTH) throw httpError(413, `Message cannot exceed ${MAX_CHAT_LENGTH} characters`);
   if (/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(text)) throw httpError(400, "Message contains unsupported control characters");
   return text;
+}
+
+function rasterDimensions(bytes, mime) {
+  const u32 = (index) => (bytes[index] * 0x1000000 + (bytes[index + 1] << 16) + (bytes[index + 2] << 8) + bytes[index + 3]);
+  if (mime === "image/png" && bytes.length >= 33 && [137,80,78,71,13,10,26,10].every((byte, index) => bytes[index] === byte) && String.fromCharCode(...bytes.slice(12,16)) === "IHDR") {
+    return [u32(16), u32(20)];
+  }
+  if (mime === "image/jpeg" && bytes[0] === 255 && bytes[1] === 216 && bytes.at(-2) === 255 && bytes.at(-1) === 217) {
+    let index = 2;
+    while (index + 3 < bytes.length) {
+      if (bytes[index++] !== 255) return null;
+      while (bytes[index] === 255) index++;
+      const marker = bytes[index++];
+      if (marker === 0xd9 || marker === 0xda) break;
+      if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) continue;
+      const length = (bytes[index] << 8) | bytes[index + 1];
+      if (length < 2 || index + length > bytes.length) return null;
+      if ([0xc0,0xc1,0xc2,0xc3,0xc5,0xc6,0xc7,0xc9,0xca,0xcb,0xcd,0xce,0xcf].includes(marker) && length >= 8) return [(bytes[index + 5] << 8) | bytes[index + 6], (bytes[index + 3] << 8) | bytes[index + 4]];
+      index += length;
+    }
+  }
+  if (mime === "image/webp" && bytes.length >= 30 && String.fromCharCode(...bytes.slice(0,4)) === "RIFF" && String.fromCharCode(...bytes.slice(8,12)) === "WEBP") {
+    const kind = String.fromCharCode(...bytes.slice(12,16));
+    if (kind === "VP8X") return [1 + bytes[24] + (bytes[25] << 8) + (bytes[26] << 16), 1 + bytes[27] + (bytes[28] << 8) + (bytes[29] << 16)];
+    if (kind === "VP8 " && bytes[23] === 0x9d && bytes[24] === 0x01 && bytes[25] === 0x2a) return [((bytes[27] << 8) | bytes[26]) & 0x3fff, ((bytes[29] << 8) | bytes[28]) & 0x3fff];
+    if (kind === "VP8L" && bytes[20] === 0x2f) return [1 + bytes[21] + ((bytes[22] & 0x3f) << 8), 1 + (bytes[22] >> 6) + (bytes[23] << 2) + ((bytes[24] & 0x0f) << 10)];
+  }
+  return null;
+}
+
+export function normalizeChatImage(value) {
+  if (value === undefined || value === null) return null;
+  if (!value || typeof value !== "object" || Array.isArray(value) || typeof value.dataUrl !== "string") throw httpError(400, "Image must be a compressed raster image");
+  if (value.dataUrl.length > MAX_CHAT_IMAGE_BYTES) throw httpError(413, "Image is too large; choose a smaller image");
+  const match = /^data:(image\/(?:jpeg|png|webp));base64,([A-Za-z0-9+/]+={0,2})$/.exec(value.dataUrl);
+  if (!match || match[2].length % 4 !== 0) throw httpError(400, "Only JPEG, PNG, and WebP images are supported");
+  let binary;
+  try { binary = atob(match[2]); } catch { throw httpError(400, "Image data is invalid"); }
+  const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+  const dimensions = rasterDimensions(bytes, match[1]);
+  if (!dimensions || dimensions.some((dimension) => !Number.isInteger(dimension) || dimension < 1 || dimension > MAX_CHAT_IMAGE_DIMENSION)) throw httpError(400, "Image dimensions are invalid or too large");
+  if (value.width !== dimensions[0] || value.height !== dimensions[1]) throw httpError(400, "Image dimensions do not match the image data");
+  return { dataUrl: value.dataUrl, width: dimensions[0], height: dimensions[1] };
 }
 
 function normalizeGame(value) {
@@ -156,6 +207,7 @@ export class GenericRoomModel {
     const username = normalizeUsername(usernameValue);
     const maxPlayers = normalizeMaxPlayers(game, requestedMaxPlayers);
     validatedJson(state, "State", MAX_STATE_BYTES);
+    if (game === "shared-activity") validateSharedCheckpoint(state);
     if (game === "guess-who" && state !== null) throw httpError(400, "Guess Who state is created by the room authority");
     const token = randomToken();
     const reconnectHash = await tokenHash(token);
@@ -195,17 +247,19 @@ export class GenericRoomModel {
     return { code, token, playerId, seat: 0, room: this.public(room, playerId) };
   }
 
-  async join({ username: usernameValue, reconnectToken = null }) {
+  async join({ username: usernameValue, reconnectToken = null, activity = null }) {
     const preparedToken = reconnectToken || randomToken();
     const preparedHash = await tokenHash(preparedToken);
     const room = await this.load();
     if (!room) throw httpError(404, "Room not found");
+    if (room.game === "shared-activity" && activity !== null && activity !== room.state?.activity) throw httpError(409, "This room belongs to another activity");
     if (reconnectToken) {
       const member = this.memberForHash(room, preparedHash);
       if (!member) throw httpError(401, "Reconnect token is not valid for this room");
       return { code: room.code, token: reconnectToken, playerId: member.playerId, seat: member.seat, room: this.public(room, member.playerId) };
     }
-    if (room.game !== "chat" && room.status !== "lobby") throw httpError(409, "This game has already started");
+    if (room.game !== "chat" && room.game !== "shared-activity" && room.status !== "lobby") throw httpError(409, "This game has already started");
+    if (room.game === "shared-activity" && room.status === "finished") throw httpError(410, "This shared activity has closed");
     const members = activeMembers(room);
     if (room.game === "chat" && room.status === "finished" && !members.length) throw httpError(410, "This chat room has closed");
     if (members.length >= room.maxPlayers) throw httpError(409, "This room is full");
@@ -297,11 +351,18 @@ export class GenericRoomModel {
   async actForMember(room, member, action, connectedPlayerIds) {
     if (!action || typeof action !== "object" || Array.isArray(action)) throw httpError(400, "Action must be an object");
     const type = action.type;
+    if (room.game === "shared-activity") validateSharedActivityAction(room, member, action);
 
     if (type === "leave" && member.leftAt) return this.public(room, member.playerId, connectedPlayerIds);
 
     if (type === "chat") {
-      const text = normalizeChatText(action.text);
+      if (action.image != null && room.game !== "chat") throw httpError(400, "Images can be shared in Arcade Chat rooms");
+      const image = normalizeChatImage(action.image);
+      const text = normalizeChatText(action.text, !!image);
+      const clientMessageId = action.clientMessageId;
+      if (clientMessageId !== undefined && (typeof clientMessageId !== "string" || !/^[A-Za-z0-9_-]{12,64}$/.test(clientMessageId))) throw httpError(400, "Message identifier is invalid");
+      // A retry after a dropped HTTP response must not append a second copy.
+      if (clientMessageId && room.chat.some((message) => message.playerId === member.playerId && message.clientMessageId === clientMessageId)) return this.public(room, member.playerId, connectedPlayerIds);
       const timestamp = Date.now();
       if (timestamp - Number(member.lastChatAt || 0) < CHAT_MIN_INTERVAL_MS) throw httpError(429, "Please wait a moment before sending another message");
       if (!member.chatWindowStartedAt || timestamp - member.chatWindowStartedAt >= CHAT_BURST_WINDOW_MS) {
@@ -317,9 +378,12 @@ export class GenericRoomModel {
         seat: member.seat,
         username: member.username,
         text,
+        ...(image ? { image } : {}),
+        ...(clientMessageId ? { clientMessageId } : {}),
         createdAt: nowIso()
       });
       if (room.chat.length > MAX_CHAT_MESSAGES) room.chat.splice(0, room.chat.length - MAX_CHAT_MESSAGES);
+      if (room.game === "chat") while (room.chat.length > 1 && jsonBytes(room.chat, "Chat history") > MAX_CHAT_HISTORY_BYTES) room.chat.shift();
     } else {
       if (type !== "leave") requireExactVersion(room, action);
       if (room.game === "guess-who" && type !== "leave") {
@@ -336,6 +400,11 @@ export class GenericRoomModel {
         room.status = "active";
         room.result = null;
         room.turn = { seat: first.seat, playerId: first.playerId, number: 1 };
+      } else if (type === "claim-controls" && room.game === "shared-activity") {
+        if (room.status !== "active" || !room.turn) throw httpError(409, "Shared activity is not active");
+        const present = connectedPlayerIds instanceof Set ? connectedPlayerIds : new Set(connectedPlayerIds || []);
+        if (present.has(room.turn.playerId)) throw httpError(409, "The current controller is still connected. Ask them to pass controls");
+        room.turn = { seat: member.seat, playerId: member.playerId, number: room.turn.number + 1 };
       } else if (type === "state") {
         if (room.game === "chat") throw httpError(409, "Chat rooms do not have game state turns");
         if (room.status !== "active" || !room.turn) throw httpError(409, "Game is not active");
@@ -406,6 +475,9 @@ export const GENERIC_ROOM_LIMITS = Object.freeze({
   MAX_RESULT_BYTES,
   MAX_CHAT_MESSAGES,
   MAX_CHAT_LENGTH,
+  MAX_CHAT_IMAGE_BYTES,
+  MAX_CHAT_IMAGE_DIMENSION,
+  MAX_CHAT_HISTORY_BYTES,
   MAX_DEPARTED_MEMBERS,
   CHAT_MIN_INTERVAL_MS,
   CHAT_BURST_WINDOW_MS,

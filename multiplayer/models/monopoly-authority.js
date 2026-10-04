@@ -1243,6 +1243,12 @@ function validateLanding(before, after, actor, destination, baseCash, rentSpecia
     requireValue(after.bank.houses === before.bank.houses && after.bank.hotels === before.bank.hotels && same(after.decks, before.decks), "Free Parking cannot change buildings or decks");
     assertLandingControls(before, after);
   } else if (landingType === "gojail") {
+    if (after.phase === "moving") {
+      const pendingMove = { playerId: actor, path: [10], cursor: 0, total: 1, collectGo: false, direction: 1, resolution: "jail", meta: { reason: "Go directly to Jail!" } };
+      requireValue(next.pos === destination && next.cash === baseCash && same(after.pendingMove, pendingMove) && same(after.bank, before.bank) && same(after.decks, before.decks), "Invalid Monopoly animated Go To Jail landing");
+      assertLandingControls(before, after, { pendingMove, landingSpecial: persistedSpecial });
+      return;
+    }
     requireValue(after.phase === "end" && next.pos === 10 && next.inJail && next.cash === baseCash && same(after.bank, before.bank) && same(after.decks, before.decks), "Invalid Monopoly Go To Jail landing");
     assertLandingControls(before, after);
   } else {
@@ -1263,7 +1269,8 @@ function validateCompletedMovement(before, after, actor) {
   const movement = before.pendingMove;
   requireValue(before.phase === "moving" && movement?.playerId === actor && movement.path.length > 0, "No Monopoly movement is ready to complete");
   const prior = player(before, actor), destination = movement.path[movement.path.length - 1];
-  requireValue(player(after, actor).pos === destination && after.pendingMove === null, "Monopoly movement did not follow its canonical path");
+  const chainedJail = destination === 30 && movement.resolution !== "jail" && after.phase === "moving";
+  requireValue(player(after, actor).pos === destination && (chainedJail || after.pendingMove === null), "Monopoly movement did not follow its canonical path");
   let cash = prior.cash, previous = prior.pos;
   if (movement.collectGo && movement.direction > 0) for (const position of movement.path.slice(movement.cursor)) {
     if (position < previous) cash += before.settings.goSalary;
@@ -1305,6 +1312,20 @@ function validateResolution(before, after, member, intent, diff) {
     requireValue(integer(intent.d1, 1, 6) && integer(intent.d2, 1, 6), "Invalid Monopoly dice intent");
     requireValue(after.lastRoll[0] === intent.d1 && after.lastRoll[1] === intent.d2, "Monopoly dice do not match the declared roll");
     const priorActor = player(before, actor);
+    if (after.phase === "moving" && (!priorActor.inJail || intent.d1 === intent.d2)) {
+      const total = intent.d1 + intent.d2, tripleDoubles = !priorActor.inJail && intent.d1 === intent.d2 && before.doublesCount >= 2;
+      const pendingMove = tripleDoubles
+        ? { playerId: actor, path: [10], cursor: 0, total: 1, collectGo: false, direction: 1, resolution: "jail", meta: { reason: "Three doubles in one turn. Go directly to Jail!" } }
+        : { playerId: actor, path: pathBy(priorActor.pos, total), cursor: 0, total, collectGo: true, direction: 1, resolution: priorActor.inJail ? "jailRoll" : "roll", meta: priorActor.inJail ? {} : { d1: intent.d1, d2: intent.d2 } };
+      requireValue(same(after.pendingMove, pendingMove), "Invalid Monopoly animated roll path");
+      requireValue(after.doublesCount === (priorActor.inJail || tripleDoubles || intent.d1 !== intent.d2 ? 0 : before.doublesCount + 1) && after.extraRoll === (!priorActor.inJail && !tripleDoubles && intent.d1 === intent.d2), "Invalid Monopoly animated doubles state");
+      const expectedPlayers = clone(before.players);
+      if (priorActor.inJail) { const released = expectedPlayers.find((value) => value.id === actor); released.inJail = false; released.jailTurns = 0; }
+      requireValue(same(after.players, expectedPlayers), "Monopoly animated roll changed the player ledger before arrival");
+      assertStableStructure(before, after, ["phase", "doublesCount", "extraRoll", "lastRoll", "pendingMove"]);
+      assertNoUnrelatedLedger(diff, { jail: priorActor.inJail ? [actor] : [] });
+      return;
+    }
     if (!priorActor.inJail) {
       const tripleDoubles = intent.d1 === intent.d2 && before.doublesCount >= 2;
       const rolledPosition = (priorActor.pos + intent.d1 + intent.d2) % 40;

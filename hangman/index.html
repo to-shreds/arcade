@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Arcade</title>
@@ -2131,7 +2135,7 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
             for(let i=0; i<mistakes; i++) drawPart(i);
         }
 
-        function renderWord(){
+        function renderWord(allowGameOver=true){
             let display = "", win = true;
             for(let char of currentObj.w){
                 if(guesses.includes(char)){ display += char + " "; } else { display += "_ "; win = false; }
@@ -2150,11 +2154,14 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
                 wordDiv.style.letterSpacing = ls + "px";
             }catch(e){}
 
-            if(win) gameOver(true);
+            if(win && allowGameOver) gameOver(true);
         }
 
         function handleGuess(char){
             if(currentGameId !== 'hangman') return;
+            if(window.ArcadeSharedActivity && ArcadeSharedActivity.isSpectator()) return;
+            if(!currentObj.w || solved()) return;
+            if(['start-overlay','msg-overlay','custom-overlay'].some(id=>document.getElementById(id).style.display==='flex')) return;
             if(mistakes >= maxMistakes || guesses.includes(char)) return;
             recordUndo();
             guesses.push(char);
@@ -2186,6 +2193,7 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
                 return;
             }
             cluesLeft--;
+            updateClueButton();
             hintBox.textContent = currentObj.c || "No hint available.";
             hintBox.style.visibility = "visible";
             syncDifficultyUI();
@@ -2537,6 +2545,48 @@ function vibrate(ms){ if(navigator.vibrate) navigator.vibrate(ms); }
             const lives = Math.max(0, maxMistakes - mistakes);
             return `${currentCategory || 'Word'} · ${lives} ${lives === 1 ? 'life' : 'lives'} left`;
         }
+
+        function captureSharedHangman(){
+            return {
+                currentObj:{w:currentObj.w||'',c:currentObj.c||''},guesses:guesses.slice(),mistakes,maxMistakes,riskMode,
+                difficulty,cluesLeft,currentCategory,streak,bestStreak,
+                hintText:hintBox.textContent,hintVisible:hintBox.style.visibility!=='hidden',
+                menuOpen:document.getElementById('start-overlay').style.display==='flex',
+                customOpen:document.getElementById('custom-overlay').style.display==='flex',
+                resultOpen:document.getElementById('msg-overlay').style.display==='flex',
+                resultTitle:document.getElementById('msg-title').textContent,
+                resultColor:document.getElementById('msg-title').style.color,
+                undo:undoStack.slice(-40)
+            };
+        }
+
+        function restoreSharedHangman(saved,options={}){
+            if(!saved||!saved.currentObj||!Array.isArray(saved.guesses))throw new Error('Invalid shared Hangman round');
+            if(animationId)cancelAnimationFrame(animationId);animationId=null;particles=[];
+            currentObj={w:String(saved.currentObj.w||'').toUpperCase().replace(/[^A-Z]/g,'').slice(0,100),c:String(saved.currentObj.c||'').slice(0,1000)};
+            guesses=[...new Set(saved.guesses.map(ch=>String(ch).toUpperCase()).filter(ch=>/^[A-Z]$/.test(ch)))];
+            maxMistakes=Math.max(1,Math.min(8,Number(saved.maxMistakes)||6));mistakes=Math.max(0,Math.min(maxMistakes+1,Number(saved.mistakes)||0));
+            difficulty=['easy','normal','hard'].includes(saved.difficulty)?saved.difficulty:'normal';
+            cluesLeft=Math.max(0,Math.min(2,Number(saved.cluesLeft)||0));riskMode=!!saved.riskMode;
+            currentCategory=String(saved.currentCategory||'').slice(0,100);streak=Math.max(0,Number(saved.streak)||0);bestStreak=Math.max(0,Number(saved.bestStreak)||0);
+            undoStack=Array.isArray(saved.undo)?JSON.parse(JSON.stringify(saved.undo.slice(-40))):[];
+            catDisplay.textContent=currentCategory||'Category';initKeyboard();markLoadedGuesses();
+            document.getElementById('g-hangman').classList.toggle('risk-bg',riskMode);kbDiv.classList.toggle('risk-active',riskMode);riskBtn.classList.toggle('active-state',riskMode);
+            gameArea.style.background=saved.resultOpen&&mistakes>=maxMistakes?'#330000':'transparent';
+            hintBox.textContent=String(saved.hintText||'');hintBox.style.visibility=saved.hintVisible?'visible':'hidden';
+            document.getElementById('start-overlay').style.display=saved.menuOpen?'flex':'none';
+            document.getElementById('custom-overlay').style.display=saved.customOpen?'flex':'none';
+            document.getElementById('msg-overlay').style.display=saved.resultOpen?'flex':'none';
+            document.getElementById('msg-title').textContent=String(saved.resultTitle||'');
+            document.getElementById('msg-title').style.color=saved.resultColor||'#fff';
+            document.getElementById('msg-word').textContent=saved.resultOpen?currentObj.w:'';
+            // Draft PvP words stay on the choosing player's device until Start.
+            if(options.spectator){document.getElementById('custom-word').value='';document.getElementById('custom-clue').value='';}
+            resize();drawMan();renderHearts();renderWord(false);updateClueButton();syncDifficultyUI();syncUndoButton();
+            return true;
+        }
+
+        window.HangmanSharedAdapter={capture:captureSharedHangman,restore:restoreSharedHangman,startFresh};
 
         initKeyboard();
         try{

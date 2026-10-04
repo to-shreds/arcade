@@ -19,5 +19,7 @@
     "online",
     "nearby"
   ],
-  "orientation": "any"
+  "orientation": "any",
+  "onlineMode": "competitive",
+  "onlinePlayersMax": 2
 }

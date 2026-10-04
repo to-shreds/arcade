@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Arcade - Blackjack</title>
@@ -806,7 +810,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 #g-blackjack #table:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.17;background-image:radial-gradient(circle at 20% 18%,rgba(255,255,255,.6) 0 1px,transparent 1.5px),radial-gradient(circle at 77% 61%,rgba(255,255,255,.5) 0 1px,transparent 1.5px);background-size:31px 31px,43px 43px;mix-blend-mode:soft-light}
 #g-blackjack #deck-shoe{position:absolute;right:max(12px,env(safe-area-inset-right));top:64px;width:56px;height:78px;border-radius:7px;background:linear-gradient(145deg,#670713,#b31224);border:3px solid #f5e6c5;box-shadow:-5px 7px 0 #1f0509,-8px 11px 18px rgba(0,0,0,.38);z-index:12;transform:rotate(4deg);pointer-events:none}
 #g-blackjack #deck-shoe:before{content:"♠";position:absolute;inset:5px;display:grid;place-items:center;border:2px solid rgba(255,255,255,.72);border-radius:4px;color:#fff;font-size:30px;text-shadow:0 2px #4a0009;background:repeating-linear-gradient(45deg,transparent 0 5px,rgba(255,255,255,.1) 5px 7px)}
-#g-blackjack #deck-shoe:after{content:"6 DECK";position:absolute;top:82px;left:-6px;width:70px;text-align:center;font-size:8px;font-weight:1000;letter-spacing:1px;color:rgba(255,255,255,.7)}
+#g-blackjack #deck-shoe:after{content:"6 DECK";position:absolute;top:82px;left:0;width:100%;text-align:center;font-size:8px;font-weight:1000;letter-spacing:1px;color:rgba(255,255,255,.7)}
 #g-blackjack .card{border:1px solid #d9d4ca;box-shadow:-3px 4px 9px rgba(0,0,0,.46),inset 0 0 0 1px rgba(255,255,255,.8);backface-visibility:hidden;transform-origin:center;will-change:transform,opacity}
 #g-blackjack #dealer-hand .card{--card-x-step:14px;--card-y-step:4px}
 #g-blackjack .card.card-deal{animation:bjDeal .19s cubic-bezier(.2,.8,.25,1) both}
@@ -2602,11 +2606,13 @@ const BJGame = (function(){
     }
     if(phase === 'dealer'){
       renderAllHands(true);
+      if(window.ArcadeSharedActivity?.isSpectator()){setStatus('DEALER PLAYING');return true;}
       dealerTurn();
       return true;
     }
     if(phase === 'dealing'){
       renderAllHands(false);
+      if(window.ArcadeSharedActivity?.isSpectator()){setStatus('DEALING');return true;}
       dealCards();
       return true;
     }
@@ -2620,7 +2626,7 @@ const BJGame = (function(){
       updateActionControls(p, h);
       setStatus(`${p.name}: Hand ${hIdx + 1} (${h.score()})`);
       updateOddsDisplay();
-    }else{
+    }else if(!window.ArcadeSharedActivity?.isSpectator()){
       nextTurn();
     }
     return true;

@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Arcade - Bounce Boxes (JezzBall-style)</title>
@@ -158,7 +162,7 @@
     place-items:center;
     background:rgba(0,0,0,.60);
     padding:18px;
-    z-index:60;
+    z-index:8500;
   }
   .menu{
     max-width:780px;
@@ -800,16 +804,19 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   let bestScore = store.get("bb_bestScore", 0);
   function openMenu() {
     paused = true;
-    menuTitle.textContent = "Paused";
+    menuTitle.textContent = lives<=0 ? "Game over" : "Paused";
     overlay.style.display = "grid";
     pauseBtn.textContent = "Menu";
+    resumeBtn.disabled = lives<=0;
     bestScoreEl.textContent = String(bestScore);
     updateMenuStats();
   }
   function closeMenu() {
+    if(lives<=0)return;
     overlay.style.display = "none";
     paused = false;
     pauseBtn.textContent = "Pause";
+    resumeBtn.disabled = false;
   }
   function toggleMenu() {
     if (overlay.style.display === "grid") closeMenu();
@@ -1786,7 +1793,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       bounds:{w:Math.max(1,Math.floor(canvas.getBoundingClientRect().width)),h:Math.max(1,Math.floor(canvas.getBoundingClientRect().height))},
       arena:{x:arena.x,y:arena.y,w:arena.w,h:arena.h},
       grid:{size:cell.size,cols:cell.cols,rows:cell.rows,data:Array.from(cell.data||[])},
-      mode:settings.mode,level,lives,goalPct,balls:balls.map(b=>Object.assign({},b)),rngSeed,
+      mode:settings.mode,level,lives,paused,goalPct,balls:balls.map(b=>Object.assign({},b)),rngSeed,
       runElapsedMs:runStartMs?Math.max(0,performance.now()-runStartMs):0,runWalls,runBigCaptures,score,
       shieldCharges,slowRemainingMs:Math.max(0,slowUntilMs-performance.now()),powerSpawnCooldown,
       powerups:powerups.map(p=>Object.assign({},p)),grow:grow?Object.assign({},grow):null
@@ -1808,7 +1815,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     }:{x:0,y:0,w:cols*cell.size,h:rows*cell.size};
     arena.x=savedArena.x;arena.y=savedArena.y;arena.w=savedArena.w;arena.h=savedArena.h;
     level=Math.max(1,Math.floor(Number(state.level)||1));
-    lives=Math.max(1,Math.min(9,Math.floor(Number(state.lives)||3)));
+    const savedLives=Number(state.lives);
+    lives=Math.max(0,Math.min(9,Math.floor(Number.isFinite(savedLives)?savedLives:3)));
     goalPct=Math.max(1,Math.min(100,Number(state.goalPct)||75));
     balls=(Array.isArray(state.balls)?state.balls:[]).map((raw,i)=>({
       x:Number(raw.x)||savedArena.x+savedArena.w/2,y:Number(raw.y)||savedArena.y+savedArena.h/2,
@@ -1835,8 +1843,9 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     shieldCharges=Math.max(0,Math.min(3,Math.floor(Number(state.shieldCharges)||0)));
     slowUntilMs=performance.now()+Math.max(0,Number(state.slowRemainingMs)||0);
     powerSpawnCooldown=Math.max(0,Number(state.powerSpawnCooldown)||0);flash=0;
-    overlay.style.display='none';paused=false;pauseBtn.textContent='Pause';last=performance.now();
+    overlay.style.display='none';paused=false;pauseBtn.textContent='Pause';resumeBtn.disabled=false;last=performance.now();
     syncUI();updateHUD();
+    if(state.paused===true||lives===0){openMenu();if(lives===0)setTab('stats');}
     return true;
   }
 

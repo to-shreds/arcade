@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Arcade</title>
@@ -1376,6 +1380,15 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 </style>
 
 <style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+<style id="arcade-landscape-playable">
+#g-simon .si-top{padding-right:60px!important}
+@media (orientation:landscape) and (max-height:500px){
+#g-simon .si-top{flex:0 0 auto!important;min-height:44px!important}
+#g-simon .si-wrap{min-height:0!important;padding:5px!important;gap:5px!important}
+#g-simon .si-board{width:min(68vw,calc(100svh - 90px))!important;height:min(68vw,calc(100svh - 90px))!important;flex:0 0 auto!important;gap:8px!important;padding:8px!important}
+#g-simon .si-hint{font-size:11px!important;max-width:65vw!important}
+}
+</style>
 </head>
 <body>
 
@@ -1863,6 +1876,7 @@ const FeedbackSys = (function(){
         let best = (window.ArcadeStore ? ArcadeStore.getNum('simon_best', 0) : 0);
         if(bestEl) bestEl.textContent = String(best);
         let audioCtx = null;
+        let sharedSpectator = false;
 
         const freqs = [329.63, 261.63, 392.00, 523.25]; 
 
@@ -1870,7 +1884,7 @@ const FeedbackSys = (function(){
             if(window.ArcadeSettings && !ArcadeSettings.soundOn) return;
             if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
             if(window.ArcadeSettings) ArcadeSettings.registerAudioCtx(audioCtx);
-            if(audioCtx.state === 'suspended') audioCtx.resume();
+            if(audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{});
         }
 
         function beep(i, ms=160){
@@ -1994,6 +2008,7 @@ const FeedbackSys = (function(){
 
         function press(i){
             if(currentGameId !== 'simon') return;
+            if(window.ArcadeSharedActivity && ArcadeSharedActivity.isSpectator()) return;
             if(menu.style.display === 'flex') return;
             if(!started) return;
             if(playing) return;
@@ -2045,7 +2060,7 @@ const FeedbackSys = (function(){
         function sleep(ms, token=epoch){
             return new Promise(resolve=>{
                 const task={id:0,resolve};
-                task.id=setTimeout(()=>{pendingTimers.delete(task);resolve(token===epoch)},Math.max(0,ms));
+                task.id=setTimeout(()=>{pendingTimers.delete(task);resolve(token===epoch && !(window.ArcadeSharedActivity && ArcadeSharedActivity.isSpectator()))},Math.max(0,ms));
                 pendingTimers.add(task);
             });
         }
@@ -2082,6 +2097,51 @@ const FeedbackSys = (function(){
         function startFreshSimon(){
             stop();menu.style.display='flex';hintEl.textContent="Watch the pattern… then tap it back! Miss and you’ll get a buzzer (strict mode resets).";
         }
+
+        function captureSharedSimon(){
+            return {...captureSimon(),menuOpen:menu.style.display==='flex',hint:hintEl.textContent,
+                lit:pads.map((pad,i)=>pad.classList.contains('on')?i:-1).filter(i=>i>=0)};
+        }
+
+        function restoreSharedSimon(saved,options={}){
+            if(!saved||!Array.isArray(saved.seq))throw new Error('Invalid shared Simon pattern');
+            const nextSeq=saved.seq.slice(0,500).map(Number);
+            if(nextSeq.some(n=>!Number.isInteger(n)||n<0||n>3))throw new Error('Invalid shared Simon pattern');
+            const spectator=!!options.spectator;
+            if(!spectator){
+                sharedSpectator=false;
+                best=Math.max(0,Number(saved.best)||0);bestEl.textContent=String(best);
+                if(!saved.started||!nextSeq.length){startFreshSimon();strict=!!saved.strict;updateLevel();return true;}
+                if(saved.menuOpen||saved.phase==='paused'){
+                    cancelAsync();seq=nextSeq;idx=Math.max(0,Math.min(seq.length,Number(saved.idx)||0));
+                    started=true;strict=!!saved.strict;phase='paused';pausedPhase=saved.pausedPhase||'input';
+                    updateLevel();menu.style.display='flex';hintEl.textContent=String(saved.hint||'');return true;
+                }
+                // A player taking control during input keeps every accepted press.
+                // Playback can safely restart while the pattern is still being shown.
+                if(saved.phase!=='input')return restoreSimon(saved);
+                cancelAsync();seq=nextSeq;idx=Math.max(0,Math.min(seq.length,Number(saved.idx)||0));
+                started=true;strict=!!saved.strict;playing=false;phase='input';pausedPhase=saved.pausedPhase||'input';
+                updateLevel();
+                menu.style.display=saved.menuOpen?'flex':'none';hintEl.textContent=String(saved.hint||'Your turn!');
+                return true;
+            }
+            const wasLit=pads.map(pad=>pad.classList.contains('on'));
+            if(!sharedSpectator)cancelAsync();
+            sharedSpectator=true;
+            seq=nextSeq;idx=Math.max(0,Math.min(seq.length,Number(saved.idx)||0));
+            started=!!saved.started;strict=!!saved.strict;playing=!!saved.playing;
+            phase=['idle','watch','input','paused','wrong-strict','wrong-replay','round-delay'].includes(saved.phase)?saved.phase:'idle';
+            pausedPhase=saved.pausedPhase||'input';best=Math.max(0,Number(saved.best)||0);
+            levelEl.textContent=String(seq.length);bestEl.textContent=String(best);strictDot.classList.toggle('on',strict);
+            menu.style.display=saved.menuOpen?'flex':'none';hintEl.textContent=String(saved.hint||'');
+            const lit=new Set(Array.isArray(saved.lit)?saved.lit:[]);
+            pads.forEach((pad,i)=>{light(i,lit.has(i));if(lit.has(i)&&!wasLit[i]){initAudio();beep(i,200);}});
+            return true;
+        }
+
+        window.SimonSharedAdapter={capture:captureSharedSimon,restore:restoreSharedSimon,startFresh:startFreshSimon};
+        for(const event of ['pointerdown','pointerup','click','touchend'])document.addEventListener(event,()=>{try{initAudio();}catch(_){}},{capture:true,passive:true});
 
         window.SimonAutosave={
             id:'simon',title:'Simon Says',version:1,capture:captureSimon,restore:restoreSimon,

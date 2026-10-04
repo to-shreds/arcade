@@ -17,7 +17,10 @@
     "turn-based",
     "same-device",
     "online",
-    "saveable"
+    "saveable",
+    "nearby"
   ],
-  "orientation": "landscape"
+  "orientation": "landscape",
+  "onlineMode": "competitive",
+  "onlinePlayersMax": 6
 }

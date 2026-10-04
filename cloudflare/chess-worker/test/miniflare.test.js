@@ -35,6 +35,7 @@ test("two independent clients create, join, reconnect and synchronize through Mi
       { type: "ESModule", path: new URL("../src/index.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/room-model.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/generic-room-model.js", import.meta.url).pathname },
+      { type: "ESModule", path: new URL("../../../multiplayer/models/shared-activity-validator.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/guess-who-authority.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/guess-who-data.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/chess-engine.js", import.meta.url).pathname }
@@ -112,7 +113,9 @@ test("two independent clients create, join, reconnect and synchronize through Mi
   });
   assert.equal(stolen.status, 403);
 
+  const whiteDisconnected = nextRoom(blackSocket, (room) => room.presence.w === false && room.presence.b === true);
   socket.close(1000, "simulate interruption");
+  assert.equal((await whiteDisconnected).room.game.moves.length, 2, "closing a Chess socket changes presence without losing its board");
   const resumedSocketResponse = await mf.dispatchFetch(`http://worker/api/chess/rooms/${code}/ws?token=${first.token}`, { headers: { Origin: ORIGIN, Upgrade: "websocket" } });
   assert.equal(resumedSocketResponse.status, 101);
   const resumedSocket = resumedSocketResponse.webSocket;

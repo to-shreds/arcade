@@ -8,7 +8,18 @@
   "multiplayer": false,
   "playersMin": 1,
   "playersMax": 1,
-  "categories": ["puzzle", "strategy"],
-  "tags": ["logic", "symbols", "touch"],
-  "orientation": "any"
+  "categories": [
+    "puzzle",
+    "strategy"
+  ],
+  "tags": [
+    "logic",
+    "symbols",
+    "touch",
+    "online",
+    "nearby"
+  ],
+  "orientation": "any",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

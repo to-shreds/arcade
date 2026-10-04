@@ -15,7 +15,10 @@
   "tags": [
     "online",
     "chat",
-    "keyboard"
+    "keyboard",
+    "nearby"
   ],
-  "orientation": "any"
+  "orientation": "any",
+  "onlineMode": "chat",
+  "onlinePlayersMax": 32
 }

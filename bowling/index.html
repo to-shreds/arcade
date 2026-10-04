@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#080b20">
@@ -89,6 +93,8 @@ input[type=range]{width:100%;height:25px;margin:0;accent-color:var(--cyan);touch
 .result-actions{display:flex;gap:8px}
 .result-actions button{flex:1}
 @media(max-width:720px){.play{grid-template-columns:1fr;grid-template-rows:minmax(265px,1fr) auto}.controls{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:7px;overflow:visible}.player-card{grid-column:1/-1;padding:5px 8px}.big-ball{width:26px;height:26px;flex-basis:26px}.control{padding:5px 7px}.control-head{margin-bottom:0}.roll{grid-column:1/-1;min-height:45px;margin:0}.status{grid-column:1/-1}.lane-tip{bottom:4px}.score-row{min-height:43px}.players-setup{grid-template-columns:1fr}}
+@media(max-width:420px){.top{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:5px}.home{width:36px;min-height:36px}.title{min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:18px}.top-actions{grid-column:3;grid-row:1;gap:4px}.top-actions button{padding:5px 6px;font-size:10px}.turn-pill{grid-column:1/-1;grid-row:2;justify-content:center;min-height:28px;padding:3px 8px;font-size:10px}.turn-ball{width:13px;height:13px;flex-basis:13px}}
+@media(max-width:720px) and (max-height:700px) and (orientation:portrait){.play{grid-template-rows:minmax(120px,1fr) auto}.controls{gap:4px;padding:5px}.player-card{padding:3px 7px}.control{padding:3px 6px}.scale{display:none}.control-head{font-size:10px}.control-head output{font-size:10px}input[type=range]{height:22px}.roll{min-height:40px;font-size:17px}.status{font-size:9px}}
 @media(max-height:590px) and (orientation:landscape){.app{grid-template-rows:auto 46px minmax(0,1fr);gap:5px;padding:5px}.title{font-size:19px}.home{width:36px;flex-basis:36px;min-height:34px}.top-actions button{min-height:33px}.score-row{min-height:44px}.controls{padding:7px;gap:5px}.player-card{padding:5px 7px}.big-ball{width:27px;height:27px;flex-basis:27px}.control{padding:4px 7px}.control-head{margin-bottom:0}.roll{min-height:42px;font-size:17px}.lane-tip{display:none}}
 </style>
 </head>

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#3157d5">
@@ -162,6 +166,12 @@ var screen=resultScreen.className.indexOf('hidden')===-1?'result':(wordsScreen.c
 return{storyIndex:currentStoryIndex,activeCategory:activeCategory,visibleLimit:visibleLimit,values:values,screen:screen};
 },
 restore:function(saved){
+if(saved&&saved.storyIndex===-1&&saved.screen==='picker'){
+stopSpeaking();currentStoryIndex=-1;lastStoryText='';storyOutput.innerHTML='';promptList.innerHTML='';
+activeCategory=categories.some(function(c){return c.id===saved.activeCategory;})?saved.activeCategory:'all';
+visibleLimit=Math.max(18,Math.min(stories.length,parseInt(saved.visibleLimit,10)||18));
+renderCategories();renderStoryGrid();showScreen(pickerScreen);return true;
+}
 if(!saved||typeof saved.storyIndex!=='number'||saved.storyIndex<0||saved.storyIndex>=stories.length){throw new Error('Invalid Mad Libs save');}
 stopSpeaking();
 activeCategory=categories.some(function(c){return c.id===saved.activeCategory;})?saved.activeCategory:'all';

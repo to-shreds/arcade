@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Shuffleboard - Arcade Edition v1.3</title>
@@ -60,6 +64,7 @@ button.danger{background:#44232a;border-color:rgba(239,95,116,.32)}
 .topbar{
   display:grid;
   grid-template-columns:auto 1fr auto;
+  padding-left:100px;
   gap:8px;
   align-items:center;
   min-height:52px;
@@ -223,8 +228,8 @@ input[type="text"],input[type="number"],select{
 }
 @media (max-width:520px){
   .wrap{padding:6px;padding-top:max(6px, env(safe-area-inset-top));padding-bottom:max(6px, env(safe-area-inset-bottom));gap:6px}
-  .topbar{grid-template-columns:1fr auto;grid-template-areas:'brand tools' 'turn turn';gap:6px}
-  .brand{grid-area:brand;padding:7px 9px}
+  .topbar{grid-template-columns:1fr;grid-template-areas:'brand' 'tools' 'turn';gap:6px;padding-left:0}
+  .brand{grid-area:brand;padding:7px 9px 7px 104px;min-height:35px}
   .toolbar{grid-area:tools}
   .turnPill{grid-area:turn;padding:8px 10px}
   .brandTitle{font-size:13px}
@@ -498,6 +503,10 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 </style>
 
 <style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+<style id="shuffleboard-home-space">
+@media (min-width:521px){.topbar{padding-left:100px!important}}
+@media (max-width:520px){.topbar{padding-left:0!important;padding-right:0!important}}
+</style>
 </head>
 <body>
 <a class="arcade-home-link" href="../index.html">← ARCADE</a>
@@ -683,7 +692,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   }
 
   function setTurnDisplay(mode) {
-    if (!state.running) {
+    mode = mode || state.autoPhase;
+    if (!state.running && mode !== 'gameover') {
       turnPill.style.background = 'linear-gradient(180deg,#1d304d,#16253c)';
       turnPill.style.boxShadow = 'var(--shadow)';
       turnBig.textContent = 'Set up a game';
@@ -794,12 +804,12 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     const h = rect.height;
     const pad = 8;
     const boardW = Math.max(240, Math.min(w - pad * 2, 560));
-    const boardH = Math.max(320, h - pad * 2);
+    const boardH = Math.max(160, h - pad * 2);
     const bx = (w - boardW) / 2;
     const by = (h - boardH) / 2;
 
     const outerGutter = Math.max(16, Math.min(22, boardW * 0.055));
-    const zoneH = clamp(boardH * 0.085, 40, 62);
+    const zoneH = clamp(boardH * 0.085, Math.min(40, boardH * 0.15), 62);
     const puckR = Math.min(PUCK_RADII[state.puckSizeLevel], boardW * 0.09);
     const spawn = { x: bx + boardW / 2, y: by + boardH - puckR - 38 };
     const inner = {
@@ -1383,7 +1393,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
   btnApply.addEventListener('click', startGame);
 
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', () => { resize(); drawBoard(); });
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalBack.classList.contains('show')) closeModal();
   });
@@ -1494,9 +1504,9 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     state.endIndex=clamp(Number(saved.endIndex)||1,1,state.endsTotal);state.startPlayer=clamp(Number(saved.startPlayer)||0,0,state.players.length-1);
     state.currentPlayer=clamp(Number(saved.currentPlayer)||0,0,state.players.length-1);state.totalShotsPerEnd=Math.max(1,Number(saved.totalShotsPerEnd)||state.players.length*state.pucksPer);
     state.shotsFiredInEnd=Math.max(0,Number(saved.shotsFiredInEnd)||0);state.resting=!!saved.resting;
-    state.autoPhase=['ready','moving'].includes(saved.autoPhase)?saved.autoPhase:'ready';state.settleTimer=Math.max(0,Number(saved.settleTimer)||0);
+    state.autoPhase=['ready','moving','gameover'].includes(saved.autoPhase)?saved.autoPhase:'ready';state.settleTimer=Math.max(0,Number(saved.settleTimer)||0);
     state.friction=Number(saved.friction)||.985;state.wallBounce=Number(saved.wallBounce)||.90;
-    state.shotPower=Number(saved.shotPower)||.055;state.maxPull=Number(saved.maxPull)||160;state.aiming=null;state.running=true;
+    state.shotPower=Number(saved.shotPower)||.055;state.maxPull=Number(saved.maxPull)||160;state.aiming=null;state.running=saved.running!==false&&state.autoPhase!=='gameover';
 
     playerCountSel.value=String(state.players.length);endsInp.value=String(state.endsTotal);pucksPerInp.value=String(state.pucksPer);
     puckSizeSel.value=String(state.puckSizeLevel);difficultySel.value=['easy','normal','hard'].includes(saved.difficulty)?saved.difficulty:'normal';
@@ -1505,7 +1515,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     while(state.puckQueues.length<state.players.length)state.puckQueues.push([]);
     state.history=(saved.history||[]).slice(-20).map(decodeSnapshot);
     if(state.autoPhase==='ready')ensureCurrentPuck();
-    buildNameFields();closeModal();renderScores();setTurnDisplay(state.autoPhase==='moving'?'moving':undefined);updateButtons();return true;
+    buildNameFields();closeModal();renderScores();setTurnDisplay(state.autoPhase==='moving'?'moving':undefined);updateButtons();drawBoard();return true;
   }
 
   function startFreshShuffleboard() {
@@ -1520,7 +1530,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     });
   }
   window.ShuffleboardAutosave={
-    id:'shuffleboard',title:'Shuffleboard',version:1,capture:captureShuffleboard,restore:restoreShuffleboard,
+    id:'shuffleboard',title:'Shuffleboard',version:1,shareCanvas:false,capture:captureShuffleboard,restore:restoreShuffleboard,
     meaningful:()=>state.running&&state.players.length>0&&state.autoPhase!=='gameover'&&(state.endIndex>1||state.shotsFiredInEnd>0),
     summary:()=>`End ${state.endIndex} of ${state.endsTotal} · ${state.players[state.currentPlayer]?.name||'Player'}${state.autoPhase==='moving'?' shooting':''}`,
     startFresh:startFreshShuffleboard

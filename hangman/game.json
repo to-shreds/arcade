@@ -14,7 +14,11 @@
   ],
   "tags": [
     "keyboard",
-    "turn-based"
+    "turn-based",
+    "online",
+    "nearby"
   ],
-  "orientation": "any"
+  "orientation": "any",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

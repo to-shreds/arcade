@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
   <meta name="theme-color" content="#10102d">
@@ -124,7 +128,7 @@
   $("#statsBtn").onclick=openStats;$("#closeStats").onclick=$("#statsDone").onclick=()=>$("#statsOverlay").hidden=true;$("#summaryMenu").onclick=()=>{$("#summaryOverlay").hidden=true;openStart()};$("#summaryAgain").onclick=()=>{$("#summaryOverlay").hidden=true;begin(session.mode,session.level,session.length)};
   document.addEventListener("visibilitychange",()=>{if(document.hidden){clearInterval(runnerTimer);save()}else if(session&&!session.answered)render()});window.addEventListener("pagehide",save);
   updateHeader();const restored=read(SAVE_KEY,null);if(restored&&restored.schema===1&&restored.challenge){session=restored;selection=session.selection||[];answered=!!session.answered;updateStart();$("#startOverlay").hidden=false}else updateStart();
-  if(window.ArcadeSave&&ArcadeSave.register)ArcadeSave.register({id:"regex-lab",title:"Regex Lab",version:1,capture:()=>({session,profile}),restore:data=>{if(!data||!data.session)return false;session=data.session;profile=data.profile||profile;save();updateHeader();$("#startOverlay").hidden=true;render();return true},meaningful:data=>!!(data&&data.session&&data.session.round>1),summary:data=>data&&data.session?`${modes[data.session.mode].name} · round ${data.session.round}/${data.session.length}`:"Regex training",startFresh:()=>begin("hunt",1,10)});
+  if(window.ArcadeSave&&ArcadeSave.register)ArcadeSave.register({id:"regex-lab",title:"Regex Lab",version:1,capture:()=>({session,profile}),restore:data=>{if(!data||!Object.hasOwn(data,'session'))return false;clearInterval(runnerTimer);session=data.session;profile=data.profile||profile;save();updateHeader();if(!session){selection=[];answered=false;challengeEl.replaceChildren();updateStart();$("#startOverlay").hidden=false;return true;}$("#startOverlay").hidden=true;render();return true},meaningful:data=>!!(data&&data.session&&data.session.round>1),summary:data=>data&&data.session?`${modes[data.session.mode].name} · round ${data.session.round}/${data.session.length}`:"Regex training",startFresh:()=>begin("hunt",1,10)});
   window.__RegexLabApp={begin,getSession:()=>session,submit,render};
 })();
 </script>

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Arcade</title>
@@ -1377,6 +1381,19 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 </style>
 
 <style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+<style id="arcade-landscape-playable">
+@media (orientation:landscape) and (max-height:500px){
+#g-math{align-items:center!important;justify-content:center!important;padding:42px 8px 8px!important}
+#g-math .math-box{width:min(760px,calc(100vw - 24px))!important;max-width:calc(100vw - 24px)!important;height:100%!important;min-height:0!important;display:grid!important;grid-template-columns:minmax(0,1fr) 250px!important;grid-template-rows:minmax(0,1fr) auto!important;gap:8px!important;padding:10px!important}
+#g-math #math-problem-area{grid-column:1;grid-row:1;min-width:0;min-height:0;display:grid;place-items:center;overflow:auto}
+#g-math .problem{font-size:clamp(26px,5vw,44px)!important;line-height:1.15!important;margin:0!important;overflow-wrap:anywhere}
+#g-math .word-problem{font-size:22px!important;line-height:1.3!important}
+#g-math .math-display{grid-column:1;grid-row:2;width:100%!important;min-height:48px!important;margin:0!important;font-size:30px!important}
+#g-math .keypad{grid-column:2;grid-row:1/3;width:100%!important;max-width:none!important;grid-template-rows:repeat(5,minmax(44px,1fr));gap:5px!important;margin:0!important}
+#g-math .kp-btn{min-height:44px!important;padding:5px!important;font-size:20px!important}
+#g-math .kp-ok{grid-column:1/-1}
+}
+</style>
 </head>
 <body>
 

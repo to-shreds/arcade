@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Arcade</title>
@@ -1992,6 +1996,7 @@ const FeedbackSys = (function(){
         canvas.style.width = w + "px";
         canvas.style.height = h + "px";
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        drawScene();
     }
 
     function updateUI(){
@@ -2283,15 +2288,19 @@ const FeedbackSys = (function(){
         raf = requestAnimationFrame(loop);
     }
 
-    function loop(){
-        if(!active) return;
-
-        
+    function drawScene(){
         const grad = ctx.createLinearGradient(0, 0, 0, h);
         grad.addColorStop(0, '#1e90ff');
         grad.addColorStop(1, '#ffd700');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, w, h);
+        projectiles.forEach(p=>p.draw());
+        particles.forEach(p=>p.draw());
+        floatTexts.forEach(t=>t.draw());
+    }
+
+    function loop(){
+        if(!active) return;
 
         if(gameState === 'playing'){
             gameTime++;
@@ -2310,7 +2319,6 @@ const FeedbackSys = (function(){
         for(let i=projectiles.length-1;i>=0;i--){
             const p = projectiles[i];
             p.update();
-            p.draw();
             if(!p.active) projectiles.splice(i, 1);
         }
 
@@ -2318,7 +2326,6 @@ const FeedbackSys = (function(){
         for(let i=particles.length-1;i>=0;i--){
             const p = particles[i];
             p.update();
-            p.draw();
             if(p.life <= 0) particles.splice(i, 1);
         }
 
@@ -2326,10 +2333,10 @@ const FeedbackSys = (function(){
         for(let i=floatTexts.length-1;i>=0;i--){
             const t = floatTexts[i];
             t.update();
-            t.draw();
             if(t.life <= 0) floatTexts.splice(i, 1);
         }
 
+        drawScene();
         drawBlade();
 
         raf = requestAnimationFrame(loop);
@@ -2351,7 +2358,7 @@ const FeedbackSys = (function(){
     function captureState(){
         return {
             bounds:{w:Math.max(1,w),h:Math.max(1,h)},
-            score,lives,gameTime,spawnRate,difficulty,
+            gameState,score,lives,gameTime,spawnRate,difficulty,
             projectiles:projectiles.filter(p=>p.active).map(p=>({
                 isBomb:!!p.isBomb,radius:p.radius,x:p.x,y:p.y,vx:p.vx,vy:p.vy,color:p.color,
                 active:!!p.active,rotation:p.rotation,rotationSpeed:p.rotationSpeed
@@ -2371,7 +2378,8 @@ const FeedbackSys = (function(){
         try{if(window.ArcadeStore)ArcadeStore.setStr('orbslicer_difficulty',difficulty);}catch(e){}
         applyDifficulty(difficulty);syncDifficultyUI();
         score=Math.max(0,Number(state.score)||0);
-        lives=Math.max(1,Math.min(5,Number(state.lives)||5));
+        const savedLives=state.lives==null?NaN:Number(state.lives);
+        lives=Number.isFinite(savedLives)?Math.max(0,Math.min(5,savedLives)):5;
         gameTime=Math.max(0,Math.floor(Number(state.gameTime)||0));
         spawnRate=Math.max(SPAWN_MIN,Number(state.spawnRate)||SPAWN_START);
         projectiles=(Array.isArray(state.projectiles)?state.projectiles:[]).map(raw=>{
@@ -2383,8 +2391,16 @@ const FeedbackSys = (function(){
             p.rotation=Number(raw.rotation)||0;p.rotationSpeed=Number(raw.rotationSpeed)||0;
             return p;
         });
-        gameState='playing';overlay.style.display='none';
-        updateUI();startLoop();
+        gameState=['start','playing','gameover'].includes(state.gameState)?state.gameState:(lives===0?'gameover':'playing');
+        overlay.style.display=gameState==='playing'?'none':'flex';
+        if(gameState==='gameover'){
+            ovTitle.textContent='GAME OVER';ovTitle.style.color='#FFD700';
+            ovBtn.textContent=`SCORE: ${score} - RETRY`;ovBest.textContent=String(best());syncDifficultyUI();
+        }else if(gameState==='start'){
+            ovTitle.textContent='ORB SLICER';ovTitle.style.color='#ffffff';
+            ovBtn.textContent='TAP TO START';ovBest.textContent=String(best());syncDifficultyUI();
+        }
+        updateUI();drawScene();startLoop();
         return true;
     }
 
@@ -2587,14 +2603,16 @@ try{
 <script src="../arcade-save.js"></script>
 <script>
 if(window.ArcadeSave&&window.OrbSlicer){
-  ArcadeSave.register({
+  window.OrbSlicerSharedAdapter={
+    shareCanvas:false,
     id:'orb-slicer',title:'Orb Slicer',version:1,
     capture:()=>OrbSlicer.captureState(),
     restore:state=>OrbSlicer.restoreState(state),
     meaningful:()=>OrbSlicer.meaningful(),
     summary:()=>OrbSlicer.saveSummary(),
     startFresh:()=>OrbSlicer.startGame()
-  });
+  };
+  ArcadeSave.register(window.OrbSlicerSharedAdapter);
 }
 </script>
 

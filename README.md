@@ -8,6 +8,74 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.5.0
+
+All 43 enabled catalog entries can use Internet or Nearby rooms. Eight games
+retain their competitive multiplayer rules, 34 activities use shared controls,
+and Arcade Chat provides a multi-user conversation. Backyard Baseball remains
+disabled and is excluded from the supported release.
+
+| Online mode | Entries | How people play |
+| --- | ---: | --- |
+| Competitive | 8 | Chess, Checkers, Dots, Guess Who, Memory, Monopoly, Sorry, and Tic Tac Toe use their existing seats, turns, and game rules. |
+| Shared activity | 34 | One person controls the activity while the others see its state and animation. Players can pass controls without starting over. |
+| Chat | 1 | Everyone can send text or compressed images to the same room. |
+
+See [the release test report](docs/arcade-stress-test-2.5.0.md) for the complete
+catalog mapping, reproducible checks, and the distinction between automated
+browser coverage and physical-device testing.
+
+### Shared activities
+
+Open an activity and choose **Play together** from its globe button. Create a
+room, share its six-character code, and let other players join. The panel shows
+who has controls and lets that person choose another member and **Pass
+controls**. Rooms support up to eight members. The same UI automatically uses
+Nearby while the Arcade's paired-device session is active.
+
+Shared activities have one controller at a time. Other devices receive the
+accepted activity checkpoint and visual updates; their input and game timers
+stay paused. They do not run independent physics or random choices, and this
+mode does not provide simultaneous independent controllers. The current
+controller's disconnected game also pauses until authority is recovered. A
+connected member can take available controls when the prior controller is
+offline. Leaving restores that browser's previous local activity and saves.
+
+Make 10, Blackjack, Shuffleboard, and Bowling can hand controls to the next
+player automatically when their local game has multiple players and that
+player count matches the room roster. Seat order follows the room's player
+list. Otherwise players pass controls themselves. Canvas observers receive
+compressed images at the room's update cadence, so network animation can be
+less sharp or fluid than the controller's local display.
+
+Shared checkpoints have a 50 KiB encoded transport budget and an 8 MiB decoded
+budget. Gzip and smaller canvas previews keep typical games within those
+bounds. A drawing or media-heavy activity that cannot fit reports an error
+instead of silently desynchronizing. Shared rooms protect control ownership,
+activity identity, state versions, and transport bounds; they do not award
+competitive Arcade Stars or independently verify every activity's rules.
+
+Music Maker shares note events, backing selections, and compact recorded loops.
+Its shared voice-loop copy uses up to six seconds of 4 kHz, four-bit audio; the
+local autosave keeps the original recording. Audio playback still depends on
+the receiving browser's media permission and user interaction.
+
+### Chat images
+
+Arcade Chat accepts an image from the **+** button, clipboard paste, or drag and
+drop. Preview or remove it before sending, and optionally add a caption. Each
+member receives the same image in the room history and can open a larger view.
+Images use the existing room transport and require no upload service.
+
+The browser accepts JPEG, PNG, WebP, GIF, and AVIF input, then compresses it to a
+validated raster attachment of at most 24 KiB and 1280 pixels per dimension.
+GIFs become still images. Source files must be at most 12 MiB and 40
+megapixels. Recent chat history is bounded by 100 messages and 48 KiB overall,
+so older text or images expire as new messages arrive. Reloading or reconnecting
+restores the history that the room still retains. A retry after a lost response
+does not duplicate an already committed message. Existing message chimes and
+background desktop notifications also cover image-only messages.
+
 ## Nearby Arcade
 
 Nearby Arcade connects browsers once at the main Arcade and keeps that
@@ -19,16 +87,17 @@ existing **Multiplayer** choice, not another game mode.
    Arcade and choose a nickname and avatar.
 3. Scan the host invitation, then scan the guest response. The Arcade confirms
    when the devices are connected.
-4. Open any supported activity and choose its normal **Multiplayer** option.
+4. Open any enabled activity. Competitive games use their normal multiplayer
+   setup; shared activities use **Play together**; Chat uses its room controls.
    Pairing is not repeated when players return home and open another game.
 
 Internet is not needed during Nearby play. Each browser must first visit the
 Arcade and complete **Make Available Offline** while it has Internet access. A
 device that has never downloaded a website cannot open that site while offline.
 
-Nearby transport is integrated with Chess, Sorry, Monopoly, Memory, Tic Tac
-Toe, Dots, Checkers, Guess Who, and Arcade Chat. Local same-device play and CPU modes are
-unchanged. Direct links such as `/chess/` also remain usable; without the
+Nearby transport is integrated with all 43 enabled catalog entries, using the
+online modes described above. Local same-device play and CPU modes remain
+available. Direct links such as `/chess/` also remain usable; without the
 persistent Arcade shell they use Internet multiplayer through Cloudflare.
 
 ## Guess Who
@@ -106,11 +175,12 @@ belongs to the main Arcade.
 
 ### Multiplayer turn alerts
 
-Chess, Sorry, Monopoly, Memory, Tic Tac Toe, Dots, Checkers, and Guess Who use the shared
-multiplayer bridge for turn alerts. The bridge observes only a room snapshot
+Competitive games and shared activities use the shared multiplayer bridge for
+turn or control-transfer alerts. The bridge observes only a room snapshot
 that the game has accepted from its authoritative room service. It dings when
 turn ownership changes from another player to the local player, including the
-first turn after a lobby starts. Reconnect replays, stale or duplicate
+first turn after a lobby starts. In a shared activity, the alert means that the
+device has received controls. Reconnect replays, stale or duplicate
 snapshots, and multi-step actions that retain the same player do not alert
 again.
 
@@ -207,7 +277,7 @@ The generated manifest must be refreshed whenever deployable web content
 changes:
 
 ```sh
-node tools/generate-offline-manifest.mjs --version 2.4.0+20260901.2
+node tools/generate-offline-manifest.mjs --version 2.5.0+20261003.1
 ```
 
 ## Practical browser limitations
@@ -241,8 +311,9 @@ architecture.
 ## Building Android
 
 See `android-wrapper/README.md`. Private signing keys and passwords are never
-stored in this public repository. The retained APK in `releases/` is built
-from the same source revision as the release commit.
+stored in this public repository. `releases/` retains previous installable
+wrapper releases. This web release does not require a new APK because the
+wrapper loads the current site and stages its validated offline snapshot.
 
 ## Cloudflare multiplayer
 

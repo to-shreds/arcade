@@ -16,7 +16,11 @@
     "touch",
     "quick",
     "cooperative",
-    "same-device"
+    "same-device",
+    "online",
+    "nearby"
   ],
-  "orientation": "landscape"
+  "orientation": "landscape",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

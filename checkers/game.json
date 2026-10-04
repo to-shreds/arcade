@@ -16,7 +16,10 @@
     "touch",
     "turn-based",
     "same-device",
-    "online"
+    "online",
+    "nearby"
   ],
-  "orientation": "any"
+  "orientation": "any",
+  "onlineMode": "competitive",
+  "onlinePlayersMax": 2
 }

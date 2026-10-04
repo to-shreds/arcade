@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Arcade</title>
@@ -2047,6 +2051,12 @@ else {
                 balloons.forEach(b=>{b.x*=sx;b.y*=sy;b.r*=sr;b.vy*=sy;b.amp*=sx;});
                 particles.forEach(p=>{p.x*=sx;p.y*=sy;p.vx*=sx;p.vy*=sy;p.sz*=sr;});
             }
+            drawScene();
+        }
+        function drawScene(){
+            ctx.clearRect(0,0,width,height);
+            balloons.forEach(b=>b.draw());
+            particles.forEach(p=>p.draw());
         }
         let lastTs=0;
         function loop(ts) {
@@ -2066,7 +2076,6 @@ else {
                 sTimePill.style.display = 'none';
             }
 
-            ctx.clearRect(0,0,width,height);
             spawnTimer -= step;
             if(spawnTimer<=0) { 
                 balloons.push(new Balloon()); 
@@ -2076,15 +2085,14 @@ else {
             for(let i=balloons.length-1;i>=0;i--){ 
                 let b=balloons[i]; 
                 b.update(step); 
-                b.draw(); 
                 if(b.y<-150) balloons.splice(i,1); 
             }
             for(let i=particles.length-1;i>=0;i--){ 
                 let p=particles[i]; 
                 p.update(step); 
-                p.draw(); 
                 if(p.l<=0) particles.splice(i,1); 
             }
+            drawScene();
             requestAnimationFrame(loop);
         }
         
@@ -2287,6 +2295,7 @@ function checkMilestones(){
                 megaTO=setTimeout(()=>{spawnRate=isRainbow?Math.max(14,Math.round(35/speedMult)):baseSpawnRate;clearMega();},megaRemaining);
             }
             active=true;lastTs=0;
+            drawScene();
             if(!wasActive)requestAnimationFrame(loop);
             return true;
         }
@@ -2440,14 +2449,16 @@ try{
 <script src="../arcade-save.js"></script>
 <script>
 if(window.ArcadeSave&&window.BalloonGame){
-  ArcadeSave.register({
+  window.BalloonsSharedAdapter={
+    shareCanvas:false,
     id:'balloons',title:'Balloons',version:1,
     capture:()=>BalloonGame.captureState(),
     restore:state=>BalloonGame.restoreState(state),
     meaningful:()=>BalloonGame.meaningful(),
     summary:()=>BalloonGame.saveSummary(),
     startFresh:()=>BalloonGame.start()
-  });
+  };
+  ArcadeSave.register(window.BalloonsSharedAdapter);
 }
 </script>
 

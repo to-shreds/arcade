@@ -5,7 +5,8 @@ import { MemoryStorage } from "../src/room-model.js";
 
 async function createRoom(game = "sorry", options = {}) {
   const model = new GenericRoomModel(new MemoryStorage());
-  const host = await model.create({ code: "ABC234", game, username: "Alice", ...options });
+  const sharedState = game === "shared-activity" ? { schema: 1, activity: "typing", codec: "json", data: "{}", decodedBytes: 2, sequence: 0 } : undefined;
+  const host = await model.create({ code: "ABC234", game, username: "Alice", ...(sharedState ? {state: sharedState} : {}), ...options });
   return { model, host };
 }
 

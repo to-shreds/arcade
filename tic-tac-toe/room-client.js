@@ -81,7 +81,7 @@
     }
 
     function absorb(nextRoom){
-      if(!nextRoom || typeof nextRoom !== "object") return;
+      if(!session || !nextRoom || typeof nextRoom !== "object" || nextRoom.game !== game || nextRoom.code !== session.code) return;
       if(room){
         const incomingVersion = Number(nextRoom.version) || 0;
         const currentVersion = Number(room.version) || 0;
@@ -127,19 +127,37 @@
       catch(_error){ scheduleReconnect(); return; }
       const activeSocket = socket;
       const timeout = setTimeout(function(){ if(activeSocket === socket && !opened){ try{ activeSocket.close(); }catch(_error){} } }, 7000);
-      activeSocket.onopen = function(){ opened = true; clearTimeout(timeout); retryCount = 0; emitStatus("connected", "Connected to room " + session.code + "."); };
-      activeSocket.onmessage = function(event){ try{ const message = JSON.parse(event.data); if(message.type === "state" && message.room) absorb(message.room); else if(message.type === "error") emitStatus("error", message.error || "Room action failed."); }catch(_error){} };
+      activeSocket.onopen = function(){ if(socket !== activeSocket || stopped || !session) return; opened = true; clearTimeout(timeout); retryCount = 0; emitStatus("connected", "Connected to room " + session.code + "."); };
+      activeSocket.onmessage = function(event){ if(socket !== activeSocket || stopped) return; try{ const message = JSON.parse(event.data); if(message.type === "state" && message.room) absorb(message.room); else if(message.type === "error") emitStatus("error", message.error || "Room action failed."); }catch(_error){} };
       activeSocket.onerror = function(){};
-      activeSocket.onclose = function(){ clearTimeout(timeout); if(socket === activeSocket) socket = null; scheduleReconnect(); };
+      activeSocket.onclose = function(){ clearTimeout(timeout); if(socket !== activeSocket) return; socket = null; scheduleReconnect(); };
     }
 
     function acceptJoin(body, username, restoredTransport){
       const transport = cleanTransport(restoredTransport, false) || currentRoomTransport();
       const nextSession = { code: cleanCode(body.code || (body.room && body.room.code)), token: String(body.token || ""), playerId: String(body.playerId || ""), seat: Number(body.seat) || 0, username: cleanUsername(username), transport };
-      if(!nextSession.code || nextSession.token.length < 16) throw new Error("The room server returned an invalid session.");
+      if(!nextSession.code || nextSession.token.length < 16 || !body.room || body.room.game !== game || body.room.code !== nextSession.code) throw new Error("The room server returned an invalid session.");
+      closeSocket();
+      room = null;
       session = nextSession;
       stopped = false; persist(); if(body.room) absorb(body.room); connectSocket(); return body;
     }
+    async function acceptNewJoin(body, username){
+      if(body.room && body.room.game !== game){
+        const code = cleanCode(body.code || body.room.code), token = String(body.token || "");
+        // A mistyped game code may have allocated a fresh seat. Release only
+        // that newly returned seat, never an existing saved reconnect session.
+        if(code && token.length >= 16){
+          try{ await request("/api/arcade/rooms/" + encodeURIComponent(code) + "/actions", {
+            method: "POST", headers: { "content-type":"application/json", Authorization:"Bearer " + token },
+            body: JSON.stringify({type:"leave"})
+          }); }catch(_error){}
+        }
+        throw new Error("That code belongs to another Arcade game.");
+      }
+      return acceptJoin(body, username);
+    }
+
     async function create(params){
       if(requestBusy) throw new Error("A room request is already in progress.");
       requestBusy = true;
@@ -149,7 +167,7 @@
       try{
         const payload = { game, username, maxPlayers: Math.max(2, Math.min(8, Number(params && params.maxPlayers) || 2)) };
         if(params && params.state !== undefined) payload.state = params.state;
-        return acceptJoin(await request("/api/arcade/rooms", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) }), username);
+        return await acceptNewJoin(await request("/api/arcade/rooms", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) }), username);
       }catch(error){
         if(!session) resetRoomTransport();
         throw error;
@@ -162,7 +180,7 @@
       if(!username){ requestBusy = false; throw new Error("Enter a username first."); }
       if(!code){ requestBusy = false; throw new Error("Enter the six-character room code."); }
       emitStatus("connecting", "Joining room " + code + "…");
-      try{ return acceptJoin(await request("/api/arcade/rooms/" + encodeURIComponent(code) + "/join", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ username }) }), username); }
+      try{ return await acceptNewJoin(await request("/api/arcade/rooms/" + encodeURIComponent(code) + "/join", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ username }) }), username); }
       catch(error){ if(!session) resetRoomTransport(); throw error; }
       finally{ requestBusy = false; }
     }
@@ -180,24 +198,29 @@
     }
     async function refresh(){
       if(!session) throw new Error("Join a room first.");
+      const activeSession = session;
       const body = await request("/api/arcade/rooms/" + encodeURIComponent(session.code) + "/state", { headers: { Authorization: "Bearer " + session.token } });
+      if(session !== activeSession) return null;
       if(body.room) absorb(body.room); return body.room;
     }
     async function action(value){
       if(!session || !room) throw new Error("Join a room first.");
+      const activeSession = session;
       const payload = Object.assign({}, value || {});
       if(payload.type !== "chat" && payload.expectedVersion == null) payload.expectedVersion = Number(room.version);
       try{
         const body = await request("/api/arcade/rooms/" + encodeURIComponent(session.code) + "/actions", { method: "POST", headers: { "content-type": "application/json", Authorization: "Bearer " + session.token }, body: JSON.stringify(payload) });
+        if(session !== activeSession) return null;
         if(body.room) absorb(body.room); return body.room;
-      }catch(error){ if(error && error.status === 409){ try{ await refresh(); }catch(_refreshError){} } throw error; }
+      }catch(error){ if(session === activeSession && error && error.status === 409){ try{ await refresh(); }catch(_refreshError){} } throw error; }
     }
     async function leave(){
       if(!session){ forget(); return null; }
+      const activeSession = session;
       try{
         const body = await request("/api/arcade/rooms/" + encodeURIComponent(session.code) + "/actions", { method: "POST", headers: { "content-type": "application/json", Authorization: "Bearer " + session.token }, body: JSON.stringify({ type: "leave" }) });
-        forget(); return body.room || null;
-      }catch(error){ if(error && (error.status === 401 || error.status === 403 || error.status === 404 || error.status === 410)){ forget(); return null; } throw error; }
+        if(session === activeSession) forget(); return body.room || null;
+      }catch(error){ if(session === activeSession && error && (error.status === 401 || error.status === 403 || error.status === 404 || error.status === 410)){ forget(); return null; } throw error; }
     }
     function forget(){ stopped = true; closeSocket(); session = null; room = null; persist(); resetRoomTransport(); emitStatus("offline", "Online room closed on this device."); }
     function disconnect(){ stopped = true; closeSocket(); }

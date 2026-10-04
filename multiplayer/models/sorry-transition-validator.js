@@ -29,7 +29,7 @@ const SLIDES = Object.freeze([
   Object.freeze({ start: 54, end: 58, owner: "red", path: Object.freeze([54, 55, 56, 57, 58]) })
 ]);
 const FIRE_SPACES = Object.freeze([0, 15, 30, 45]);
-const NETWORK_PHASES = new Set(["preFire", "draw", "chooseCard", "ice", "fireToken", "action", "firePull", "gameOver"]);
+const NETWORK_PHASES = new Set(["preFire", "draw", "chooseCard", "ice", "fireToken", "action", "noMove", "firePull", "gameOver"]);
 const ROOT_FIELDS = new Set([
   "version", "started", "mode", "skill", "showEndpoints", "players", "pawns", "turn", "deck", "discard", "hands",
   "firePawnId", "icePawnId", "currentCard", "phase", "selectedCardIndex", "flow", "winner", "moveNo", "savedAt",
@@ -462,7 +462,7 @@ function validateState(state, room) {
   requireValue(integer(state.turn, 0, state.players.length - 1) && NETWORK_PHASES.has(state.phase), "Invalid Sorry turn or network phase");
   requireValue(state.selectedCardIndex === null || integer(state.selectedCardIndex, 0, 4), "Invalid selected Sorry card");
   if (state.currentCard === null) requireValue(state.selectedCardIndex === null && ["preFire", "draw", "chooseCard"].includes(state.phase), "A cardless Sorry state has an invalid phase");
-  else requireValue(["ice", "fireToken", "action", "firePull", "gameOver"].includes(state.phase), "A played Sorry card has an invalid phase");
+  else requireValue(["ice", "fireToken", "action", "noMove", "firePull", "gameOver"].includes(state.phase), "A played Sorry card has an invalid phase");
   if (state.mode === "strategic" && state.currentCard !== null) requireValue(state.selectedCardIndex !== null && state.hands[state.turn][state.selectedCardIndex] === state.currentCard, "Strategic Sorry must play the selected hand card");
   if (state.mode !== "strategic") requireValue(state.selectedCardIndex === null, "Only Strategic Sorry selects a hand card");
   requireValue(object(state.flow), "Invalid Sorry flow");
@@ -650,11 +650,18 @@ function resolvePlan(source, plan, room) {
 
 function beginActionVariants(source, room, allowCombinedResolution) {
   const state = source.state, plans = legalPlans(state, state.currentCard, state.turn);
-  if (!plans.length) return finishCardVariants(source, room);
-  if (allowCombinedResolution && plans.length === 1 && !["7", "11", "S"].includes(state.currentCard)) return resolvePlan(source, plans[0], room);
+  if (!plans.length) {
+    const copy = clone(state);
+    copy.phase = "noMove";
+    // Older clients completed a forfeited draw in one update. Accept that
+    // transition as well as the visible-card boundary used by current clients.
+    return [copyVariant(source, copy), ...finishCardVariants(source, room)];
+  }
   const copy = clone(state);
   copy.phase = "action";
-  return [copyVariant(source, copy)];
+  const visible = copyVariant(source, copy);
+  if (allowCombinedResolution && plans.length === 1 && !["7", "11", "S"].includes(state.currentCard)) return [visible, ...resolvePlan(source, plans[0], room)];
+  return [visible];
 }
 
 function prepareCardVariants(source, room) {
@@ -701,6 +708,10 @@ function enumerateTransitions(before, room, currentSeat) {
       state.firePawnId = target.id;
       return beginActionVariants(copyVariant(source, state), room, true);
     });
+  }
+  if (before.phase === "noMove") {
+    requireValue(legalPlans(before, before.currentCard, before.turn).length === 0, "Sorry still has a legal move");
+    return finishCardVariants(source, room);
   }
   if (before.phase === "action") {
     const plans = legalPlans(before, before.currentCard, before.turn);

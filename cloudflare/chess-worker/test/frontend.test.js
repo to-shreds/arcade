@@ -525,3 +525,65 @@ test("failed fresh Chess create/join releases transport but terminal saved resum
     assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
   } finally { dom.window.close(); }
 });
+
+test("Chess keeps a selected move through a same-version presence update and sends only one pending action", async () => {
+  let releaseMove;
+  const pending = new Promise(resolve => { releaseMove = resolve; });
+  const actions = [];
+  const initial = room("w");
+  const { dom, errors } = await loadChess(async (url, options = {}) => {
+    if (String(url).endsWith("/api/chess/rooms")) return { ok: true, status: 200, async json() { return { ok: true, token: "t".repeat(43), side: "w", room: initial }; } };
+    if (String(url).endsWith("/actions")) { actions.push(JSON.parse(options.body)); return pending; }
+    throw new Error("unexpected fetch " + url);
+  });
+  try {
+    const { document } = dom.window;
+    document.querySelector("#onlineCreateBtn").click();
+    await new Promise(resolve => dom.window.setTimeout(resolve, 30));
+    tapSquare(dom.window, 12);
+    dom.window.__chessTestSockets[0].emit("message", { data: JSON.stringify({type:"state",room:{...initial,presence:{w:true,b:false}}}) });
+    tapSquare(dom.window, 28);
+    assert.equal(actions.length, 1, "presence does not clear the selected e2 pawn");
+    tapSquare(dom.window, 11); tapSquare(dom.window, 27);
+    document.querySelector("#drawBtn").click();
+    assert.equal(actions.length, 1, "pending move blocks another move or draw request");
+    assert.match(document.querySelector("#statePill").textContent, /Saving/);
+    const advanced = room("w");
+    advanced.version = 3; advanced.game.board[12] = null; advanced.game.board[28] = "P"; advanced.game.turn = "b";
+    advanced.game.moves = [{uci:"e2e4",san:"e4",from:"e2",to:"e4",promotion:null}];
+    releaseMove({ok:true,status:200,async json(){return {ok:true,room:advanced};}});
+    await new Promise(resolve => dom.window.setTimeout(resolve, 30));
+    assert.equal(document.querySelector("#turnText").textContent,"BLACK");
+    assert.equal(errors.length,0,errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("Chess ignores replaced socket events and delayed actions from a previous room", async () => {
+  let creates = 0, releaseMove;
+  const pending = new Promise(resolve => { releaseMove = resolve; });
+  const { dom, errors } = await loadChess(async (url) => {
+    if (String(url).endsWith("/api/chess/rooms")) {
+      const code = creates++ ? "XYZ789" : "ABC234";
+      return {ok:true,status:200,async json(){return {ok:true,token:code.repeat(8),side:"w",room:room("w",code)};}};
+    }
+    if (String(url).endsWith("/actions")) return pending;
+    throw new Error("unexpected fetch " + url);
+  });
+  try {
+    const { document } = dom.window;
+    document.querySelector("#onlineCreateBtn").click();
+    await new Promise(resolve => dom.window.setTimeout(resolve,30));
+    const replaced = dom.window.__chessTestSockets[0];
+    tapSquare(dom.window,12); tapSquare(dom.window,28);
+    document.querySelector("#onlineCreateBtn").click();
+    await new Promise(resolve => dom.window.setTimeout(resolve,30));
+    const old = room("w"); old.version = 99; old.game.turn = "b";
+    replaced.emit("open",{});
+    replaced.emit("message",{data:JSON.stringify({type:"state",room:old})});
+    releaseMove({ok:true,status:200,async json(){return {ok:true,room:old};}});
+    await new Promise(resolve => dom.window.setTimeout(resolve,30));
+    assert.match(document.querySelector("#modeText").textContent,/XYZ789/);
+    assert.equal(document.querySelector("#turnText").textContent,"WHITE");
+    assert.equal(errors.length,0,errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
