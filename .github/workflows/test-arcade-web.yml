@@ -56,7 +56,6 @@ jobs:
           node tools/test-offline-runtime.mjs
 
       - name: Install Chromium browser checks
-        id: browser-install
         run: |
           npm ci
           npx playwright install --with-deps chromium
@@ -64,14 +63,40 @@ jobs:
       - name: Exercise desktop and mobile browsers against actual rooms
         run: npm run test:browser
 
-      - name: Verify local WebRTC without Internet signaling
-        if: ${{ !cancelled() && steps.browser-install.outcome == 'success' }}
-        run: npm run test:nearby-browser
-
       - name: Retain browser evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: arcade-browser-checks
           path: test-results/
+          retention-days: 7
+
+  nearby:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out Arcade
+        uses: actions/checkout@v6
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install Chromium browser checks
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Verify local WebRTC without Internet signaling
+        run: npm run test:nearby-browser
+
+      - name: Retain Nearby browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nearby-browser-checks
+          path: test-results/nearby-browser/
           retention-days: 7

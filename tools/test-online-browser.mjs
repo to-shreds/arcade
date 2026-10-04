@@ -129,7 +129,20 @@ if(selected.has('tic-tac-toe'))await run('tic-tac-toe',async({a,b})=>{
     }else await page.locator('#ttt-board .ttt-cell').nth(index).click({force:true});
     await page.waitForFunction(version=>window.__room.version>version,previous);await sameState(page,page===a?b:a);
   }
-  assert.equal((await room(a)).state.roundOver.winner,'X');await resume(b,'#ttt-online-resume');await sameState(a,b);
+  // The host automatically starts the next round; acknowledge the winning
+  // broadcast on both clients instead of racing its short display interval.
+  const winningSnapshots=await Promise.all([a,b].map(async page=>{
+    await page.waitForFunction(()=>window.__rooms.some(room=>room.state?.roundOver?.winner==='X'));
+    return page.evaluate(()=>window.__rooms.find(room=>room.state?.roundOver?.winner==='X'));
+  }));
+  assert.equal(winningSnapshots[0].version,winningSnapshots[1].version,'both clients acknowledge the same winning version');
+  assert.deepEqual(winningSnapshots[0].state,winningSnapshots[1].state,'both clients see the entire winning board');
+  assert.deepEqual(winningSnapshots[0].state.roundOver,{winner:'X',line:[0,1,2]});
+  assert.deepEqual(winningSnapshots[0].state.board,['X','X','X','O','O','','','','']);
+  assert.equal(winningSnapshots[0].state.scoreX,1);assert.equal(winningSnapshots[0].state.scoreO,0);
+  await Promise.all([a,b].map(page=>page.waitForFunction(winningVersion=>window.__room.version>winningVersion&&window.__room.state.roundOver===null&&window.__room.state.board.every(cell=>cell==='')&&window.__room.state.scoreX===1&&window.__room.state.scoreO===0,winningSnapshots[0].version)));
+  await sameState(a,b);console.log('Tic Tac Toe: both clients acknowledged winning version',winningSnapshots[0].version,'and the next round retained its score');
+  await resume(b,'#ttt-online-resume');await sameState(a,b);
 });
 if(selected.has('memory'))await run('memory',async({a,b})=>{
   await a.locator('#memoryOnlineName').fill('Alice');await a.locator('#memoryOnlineCreate').click({force:true});await waitRoom(a,()=>!!window.__session?.token);const code=(await room(a)).code;
