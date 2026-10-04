@@ -4,12 +4,44 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { JSDOM, VirtualConsole } from "jsdom";
 import { validateMonopolyStart, validateMonopolyTransition } from "../../../multiplayer/models/monopoly-authority.js";
+import { NearbyRoomService } from "../../../multiplayer/nearby-room-service.js";
 
 const monopolyPath = fileURLToPath(new URL("../../../monopoly/index.html", import.meta.url));
 const savePath = fileURLToPath(new URL("../../../arcade-save.js", import.meta.url));
 const API_PREFIX = "/api/arcade/rooms";
 const wait = (window, ms = 35) => new Promise((resolve) => window.setTimeout(resolve, ms));
 const clone = (value) => JSON.parse(JSON.stringify(value));
+
+function nearbyClient(service, memberId, calls) {
+  let socketCount = 0;
+  return {
+    async fetch(input, options = {}) {
+      const parsedUrl = new URL(String(input));
+      const request = { url: parsedUrl.pathname + parsedUrl.search, method: options.method || "GET", headers: options.headers || {}, body: options.body || null };
+      const result = await service.handleHttp(memberId, request);
+      calls.push({ memberId, body: options.body ? JSON.parse(options.body) : null, status: result.status, response: clone(result.body) });
+      return { ok: result.status >= 200 && result.status < 300, status: result.status, async json() { return clone(result.body); } };
+    },
+    socketClass() {
+      return class NearbyWebSocket {
+        static CONNECTING = 0; static OPEN = 1; static CLOSING = 2; static CLOSED = 3;
+        constructor(url) {
+          this.readyState = 0; this.closed = false; this.listeners = new Map(); this.socketId = `${memberId}_${++socketCount}`;
+          this.unsubscribe = service.subscribe((event) => {
+            if (!this.closed && event.type === "socket-message" && event.socketId === this.socketId) this.emit("message", { data: event.data });
+          });
+          service.openSocket(memberId, { url: new URL(String(url)).pathname + new URL(String(url)).search, socketId: this.socketId }).then((result) => {
+            if (this.closed) return;
+            this.readyState = 1; this.emit("open", {}); this.emit("message", { data: result.initialData });
+          }).catch(() => this.close());
+        }
+        addEventListener(type, fn) { const list = this.listeners.get(type) || []; list.push(fn); this.listeners.set(type, list); }
+        emit(type, event) { for (const fn of this.listeners.get(type) || []) fn(event); }
+        close() { if (this.closed) return; this.closed = true; this.readyState = 3; this.unsubscribe(); service.closeSocket(memberId, { socketId: this.socketId }); queueMicrotask(() => this.emit("close", {})); }
+      };
+    }
+  };
+}
 
 class RoomServer {
   constructor() {
@@ -515,4 +547,102 @@ test("a socket broadcast cannot unlock Monopoly while its originating action is 
   const applyRoom = /function applyOnlineRoom\(room,force=false\)\{([^\n]+)\}/.exec(source)?.[1] || "";
   assert.ok(applyRoom, "online room applicator remains present");
   assert.doesNotMatch(applyRoom, /onlineSyncing\s*=\s*false/, "only the action promise may release its input lock");
+});
+
+test("Monopoly card acknowledgement restores the actor's persistent DO IT button while the other seat stays locked", async () => {
+  const server = new RoomServer(), host = await loadMonopoly(server), guest = await loadMonopoly(server);
+  try {
+    const h = host.dom.window, g = guest.dom.window;
+    h.document.querySelector('[data-play-mode="online"]').click();
+    h.document.querySelector('#onlineName').value = 'Alice';
+    h.document.querySelector('#createOnlineBtn').click(); await wait(h,50);
+    g.document.querySelector('[data-play-mode="online"]').click();
+    g.document.querySelector('#onlineName').value = 'Bob';
+    g.document.querySelector('#onlineCode').value = server.room.code;
+    g.document.querySelector('#joinOnlineBtn').click(); await wait(g,50);
+    h.document.querySelector('#startOnlineBtn').click(); await wait(h,50);
+    assert.equal(h.MonopolyGame.rollDice([1,1]),true);
+    await wait(h,80);
+    assert.equal(server.room.state.phase,'cardDraw');
+    assert.equal(h.document.querySelector('#resolveCardBtn').disabled,false,'accepted roll unlocks the card action');
+    assert.equal(g.document.querySelector('#resolveCardBtn').disabled,true,'other seat cannot resolve the card');
+    h.document.querySelector('#resolveCardBtn').click(); await wait(h,80);
+    assert.ok(server.calls.some(call => call.body?.intent?.kind === 'resolve-card'),'a real button click sends the card action');
+    assert.equal(host.errors.length+guest.errors.length,0);
+  } finally {
+    host.dom.window.MonopolyGame.disconnectOnline();guest.dom.window.MonopolyGame.disconnectOnline();
+    host.dom.window.close();guest.dom.window.close();
+  }
+});
+
+test("Nearby Monopoly broadcasts host dice and animated paths, then the owner alone completes the accepted movement", async () => {
+  const service = new NearbyRoomService({ cryptoObject: { getRandomValues(values) { values.fill(4); return values; } } }), calls = [];
+  await service.registerMember({ memberId: "member_alice", nickname: "Alice", avatar: "🚀", color: "#AA3355" });
+  await service.registerMember({ memberId: "member_bob", nickname: "Bob", avatar: "🦖", color: "#33AA55" });
+  const transport = { getStatus: () => ({ pinnedTransport: "nearby" }) };
+  const host = await loadMonopoly(nearbyClient(service, "member_alice", calls), null, transport);
+  const guest = await loadMonopoly(nearbyClient(service, "member_bob", calls), null, transport);
+  try {
+    const h = host.dom.window, g = guest.dom.window;
+    h.document.querySelector('[data-play-mode="online"]').click();
+    h.document.querySelector('#onlineName').value = 'Alice'; h.document.querySelector('#createOnlineBtn').click(); await wait(h,70);
+    g.document.querySelector('[data-play-mode="online"]').click();
+    assert.ok(h.MonopolyGame.getOnline(),JSON.stringify({calls,message:h.document.querySelector('#onlineSetupStatus').textContent}));
+    g.document.querySelector('#onlineName').value = 'Bob'; g.document.querySelector('#onlineCode').value = h.MonopolyGame.getOnline().code;
+    g.document.querySelector('#joinOnlineBtn').click(); await wait(g,70);
+    h.document.querySelector('#startOnlineBtn').click(); await wait(h,90);
+    h.MonopolyGame.rollDiceAnimated([6,6]); await wait(h,80);
+    const committed = calls.find(call => call.body?.type === 'monopoly-random');
+    const roll = calls.find(call => call.body?.intent?.kind === 'roll');
+    assert.ok(committed && roll, 'the client requests host randomness before publishing its animated roll');
+    assert.equal(roll.status,200,roll.response.error);
+    assert.deepEqual(roll.body.state.lastRoll,committed.response.room.nearbyRandom.dice,'the proposed client dice cannot replace host dice');
+    assert.equal(roll.body.state.phase,'moving'); assert.equal(roll.body.state.pendingMove.cursor,0);
+    assert.deepEqual(Array.from(g.MonopolyGame.getState().lastRoll),roll.body.state.lastRoll,'the observer sees the dice before arrival');
+    assert.equal(g.MonopolyGame.getState().phase,'moving');
+    await wait(h,180);
+    assert.ok(g.MonopolyGame.getState().pendingMove?.cursor > 0,'the observer animates the canonical path');
+    await h.MonopolyGame.whenIdle(); await wait(h,80);
+    const completed = calls.filter(call => call.body?.intent?.kind === 'complete-move');
+    assert.equal(completed.length,1,'one accepted roll has one completion');
+    assert.equal(completed[0].memberId,'member_alice'); assert.equal(completed[0].status,200,completed[0].response.error);
+    assert.equal(calls.filter(call => call.memberId === 'member_bob' && call.body?.type === 'state').length,0,'observer animation never submits a state');
+    assert.deepEqual(clone(g.MonopolyGame.getState().players),clone(h.MonopolyGame.getState().players));
+    assert.equal(host.errors.length+guest.errors.length,0);
+  } finally { host.dom.window.MonopolyGame.disconnectOnline(); guest.dom.window.MonopolyGame.disconnectOnline(); host.dom.window.close(); guest.dom.window.close(); }
+});
+
+test("Monopoly resumes an acknowledged movement card after owner reload and gives GO salary once", async () => {
+  const server = new RoomServer(), host = await loadMonopoly(server), guest = await loadMonopoly(server);
+  let resumed = null;
+  try {
+    const h = host.dom.window, g = guest.dom.window;
+    h.document.querySelector('[data-play-mode="online"]').click(); h.document.querySelector('#onlineName').value = 'Alice';
+    h.document.querySelector('#createOnlineBtn').click(); await wait(h,50);
+    g.document.querySelector('[data-play-mode="online"]').click(); g.document.querySelector('#onlineName').value = 'Bob';
+    g.document.querySelector('#onlineCode').value = server.room.code; g.document.querySelector('#joinOnlineBtn').click(); await wait(g,50);
+    h.document.querySelector('#startOnlineBtn').click(); await wait(h,50);
+    // A complete, conserved fixture deck makes the movement-card regression deterministic.
+    server.room.state.decks.community = ['m_go', ...server.room.state.decks.community.filter(id => id !== 'm_go')];
+    server.room.version++; server.room.revision++; server.broadcast();
+    h.MonopolyGame.rollDice([1,1]); await wait(h,80);
+    const beforeCard = clone(server.room.state);
+    h.document.querySelector('#resolveCardBtn').click(); await wait(h,60);
+    assert.equal(server.room.state.phase,'moving'); assert.equal(server.room.state.pendingMove.cursor,0);
+    const resolve = server.calls.find(call => call.body?.intent?.kind === 'resolve-card');
+    const members = server.room.members.map(member => ({ playerId: member.playerId, seat: member.seat, username: member.username, leftAt: null }));
+    assert.doesNotThrow(() => validateMonopolyTransition({ game:'monopoly',state:beforeCard,maxPlayers:2,members,turn:{seat:0} },members[0],resolve.body));
+    const saved = h.localStorage.getItem('arcade_monopoly_online_v1');
+    h.MonopolyGame.disconnectOnline(); h.close();
+    resumed = await loadMonopoly(server,saved);
+    resumed.dom.window.document.querySelector('#resumeOnlineBtn').click();
+    for (let attempt = 0; attempt < 100 && server.room.state.phase === 'moving'; attempt++) await wait(resumed.dom.window,60);
+    assert.equal(server.room.state.phase,'end',JSON.stringify({pending:resumed.dom.window.MonopolyGame.getState().pendingMove,online:resumed.dom.window.MonopolyGame.getOnline(),message:resumed.dom.window.document.querySelector('#onlineSetupStatus').textContent})); assert.equal(server.room.state.players[0].pos,0);
+    assert.equal(server.room.state.players[0].cash,1700,'the canonical movement collects GO exactly once');
+    assert.equal(g.MonopolyGame.getState().players[0].cash,1700);
+    const completed = server.calls.filter(call => call.body?.intent?.kind === 'complete-move');
+    assert.equal(completed.length,1,'reload does not leave the card stalled or duplicate its completion');
+    assert.doesNotThrow(() => validateMonopolyTransition({ game:'monopoly',state:resolve.body.state,maxPlayers:2,members,turn:{seat:0} },members[0],completed[0].body));
+    assert.equal(host.errors.length+guest.errors.length+resumed.errors.length,0);
+  } finally { guest.dom.window.MonopolyGame.disconnectOnline(); resumed?.dom.window.MonopolyGame.disconnectOnline(); host.dom.window.close(); guest.dom.window.close(); resumed?.dom.window.close(); }
 });

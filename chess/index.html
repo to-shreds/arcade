@@ -858,6 +858,29 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 </style>
 
 <style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+<style id="arcade-landscape-playable">
+.toast{pointer-events:none}
+@media (orientation:landscape) and (max-height:500px){
+.toast{left:auto;right:8px;max-width:38vw;transform:none!important}
+.wrap{padding:42px 8px 8px!important;gap:6px!important}
+.titlebar{flex:0 0 auto;padding:5px 8px!important;min-height:35px!important}
+.layout{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(270px,.9fr)!important;grid-template-rows:minmax(0,1fr)!important;min-height:0!important;overflow:hidden!important}
+.board-wrap{min-width:0!important;min-height:0!important;flex:none!important}
+.board-shell{width:100%;height:100%;min-height:0!important}
+.board{width:min(100%,calc(100svh - 103px))!important;height:min(100%,calc(100svh - 103px))!important;aspect-ratio:1}
+.side{min-width:0!important;min-height:0!important;overflow:auto!important}
+.side .panel{max-height:none!important;overflow:visible!important}
+.side .phead{flex-wrap:wrap!important;gap:6px!important}
+.side .row.nowrap{flex-wrap:wrap!important}
+.side .ui-btn{min-height:44px!important}
+.board svg.piece{width:88%!important;height:88%!important}
+}
+@media (orientation:portrait) and (max-width:600px){
+.layout{overflow-y:auto!important;overscroll-behavior:contain}
+.side{overflow:visible!important}
+.side .panel{max-height:none!important;overflow:visible!important}
+}
+</style>
 </head>
 <body>
   <button id="menuBtn" class="back-btn" title="Return to the Arcade menu (drag me if I block something)">← MENU</button>
@@ -1178,7 +1201,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   const ONLINE_SESSION_KEY = "arcadeChess_onlineSession_v1";
   const online = {
     code: "", token: "", transport: "", side: null, room: null, socket: null,
-    reconnectTimer: 0, reconnectAttempt: 0, manualClose: false, status: "offline"
+    reconnectTimer: 0, reconnectAttempt: 0, manualClose: false, status: "offline", actionBusy: false
   };
 
   function computeHash(){
@@ -2330,6 +2353,8 @@ const movesEl = $("#movesList");
       statePill.textContent = online.status === "reconnecting" ? "Reconnecting…" : "Waiting for opponent";
     } else if(settings.mode === "online" && online.status !== "connected"){
       statePill.textContent = "Reconnecting…";
+    } else if(settings.mode === "online" && online.actionBusy){
+      statePill.textContent = "Saving move…";
     } else if(cpuThinking){
       statePill.textContent = "CPU thinking…";
     } else if(inCheck(state.turn)){
@@ -2341,7 +2366,7 @@ const movesEl = $("#movesList");
     }
     const undoButton = $("#undoBtn");
     const redoButton = $("#redoBtn");
-    if(undoButton) undoButton.disabled = settings.mode === "online" ? !online.room?.game?.moves?.length || state.gameOver : currentPly <= 0 || cpuThinking;
+    if(undoButton) undoButton.disabled = settings.mode === "online" ? !online.room?.game?.moves?.length || state.gameOver || online.actionBusy : currentPly <= 0 || cpuThinking;
     if(redoButton) redoButton.disabled = settings.mode === "online" || currentPly >= moves.length || cpuThinking;
   }
 
@@ -2372,7 +2397,7 @@ const movesEl = $("#movesList");
 
   function isPlayersTurn(){
     if(settings.mode === "pvp") return true;
-    if(settings.mode === "online") return Boolean(online.room?.ready && online.side === state.turn && online.status === "connected");
+    if(settings.mode === "online") return Boolean(online.room?.ready && online.side === state.turn && online.status === "connected" && !online.actionBusy);
     return state.turn === settings.playerSide;
   }
 
@@ -3253,7 +3278,8 @@ clearSelection();
         status = online.room.presence && !online.room.presence[opponent] ? "Opponent disconnected. Their seat is saved." : "Connected as " + (online.side === "w" ? "White" : "Black");
       }
     }
-    $("#onlineStatus").textContent = status;
+    $("#onlineStatus").textContent = online.actionBusy ? "Saving to the room…" : status;
+    draw.disabled = online.actionBusy || !online.room?.ready || state.gameOver;
     const box = $("#onlineRequestBox");
     box.innerHTML = "";
     const pending = online.room && online.room.pending;
@@ -3270,15 +3296,22 @@ clearSelection();
         box.append(label,accept,reject);
       }
     }
+    box.querySelectorAll("button").forEach(button => { button.disabled = online.actionBusy; });
   }
 
   function applyOnlineRoom(room){
-    if(!room || !room.game) return;
+    if(!room || !room.game || !online.code || room.code !== online.code || settings.mode !== "online") return;
     const currentVersion = Number(online.room && online.room.version);
     const incomingVersion = Number(room.version);
     if(online.room && online.room.code === room.code && Number.isFinite(currentVersion) && Number.isFinite(incomingVersion) && incomingVersion < currentVersion) return;
+    const presenceOnly = online.room && online.room.code === room.code && incomingVersion === currentVersion && gameStarted;
     online.room = room;
     if(room.side) online.side = room.side;
+    if(presenceOnly){
+      renderOnlineBar(); updateHeader();
+      if(window.ArcadeMultiplayer && typeof ArcadeMultiplayer.observeRoom === "function") ArcadeMultiplayer.observeRoom(room, "chess");
+      return;
+    }
     const game = room.game;
     state.board = new Int8Array(game.board.map(serverPiece));
     state.turn = game.turn;
@@ -3307,7 +3340,7 @@ clearSelection();
     if(online.reconnectTimer){ clearTimeout(online.reconnectTimer); online.reconnectTimer = 0; }
     if(online.socket){ try{ online.socket.close(1000,"Leaving online game"); }catch(_){ } online.socket = null; }
     if(permanent){
-      online.code = ""; online.token = ""; online.transport = ""; online.side = null; online.room = null; online.status = "offline";
+      online.code = ""; online.token = ""; online.transport = ""; online.side = null; online.room = null; online.status = "offline"; online.actionBusy = false;
       try{ localStorage.removeItem(ONLINE_SESSION_KEY); }catch(_){ }
       resetRoomTransport();
     }
@@ -3332,9 +3365,10 @@ clearSelection();
     online.socket = socket;
     const timeout = setTimeout(()=>{ if(socket.readyState === WebSocket.CONNECTING) socket.close(); },7000);
     socket.addEventListener("open",()=>{
-      clearTimeout(timeout); online.status = "connected"; online.reconnectAttempt = 0; renderOnlineBar(); updateHeader();
+      clearTimeout(timeout); if(online.socket !== socket) return; online.status = "connected"; online.reconnectAttempt = 0; renderOnlineBar(); updateHeader();
     });
     socket.addEventListener("message",event=>{
+      if(online.socket !== socket) return;
       try{
         const message = JSON.parse(event.data);
         if(message.type === "state") applyOnlineRoom(message.room);
@@ -3354,10 +3388,12 @@ clearSelection();
 
   async function refreshOnlineState(){
     if(!online.code || !online.token) return;
+    const code = online.code, token = online.token;
     try{
-      const body = await onlineFetch("/api/chess/rooms/" + encodeURIComponent(online.code) + "/state", {headers:{Authorization:"Bearer " + online.token}});
-      applyOnlineRoom(body.room);
+      const body = await onlineFetch("/api/chess/rooms/" + encodeURIComponent(code) + "/state", {headers:{Authorization:"Bearer " + token}});
+      if(online.code === code && online.token === token) applyOnlineRoom(body.room);
     }catch(error){
+      if(online.code !== code || online.token !== token) return;
       if(terminalRoomStatus(error)){ stopOnlineSocket(true); syncOnlineResumeButton(); }
       else scheduleOnlineReconnect();
     }
@@ -3378,7 +3414,8 @@ clearSelection();
     online.transport = cleanRoomTransport(restoredTransport, false) || currentRoomTransport();
     online.side = payload.side;
     online.status = "reconnecting";
-    online.room = payload.room;
+    online.actionBusy = false;
+    online.room = null;
     settings.flipped = payload.side === "b";
     saveSettings(); saveOnlineSession();
     closeSetup();
@@ -3460,16 +3497,24 @@ clearSelection();
   }
 
   async function onlineAction(type, extra){
-    if(!online.room || !online.token) return;
+    if(!online.room || !online.token || online.actionBusy) return false;
+    const code = online.code, token = online.token;
+    online.actionBusy = true; renderOnlineBar(); updateHeader();
     try{
-      const body = await onlineFetch("/api/chess/rooms/"+encodeURIComponent(online.code)+"/actions",{
-        method:"POST",headers:{"content-type":"application/json",Authorization:"Bearer "+online.token},
+      const body = await onlineFetch("/api/chess/rooms/"+encodeURIComponent(code)+"/actions",{
+        method:"POST",headers:{"content-type":"application/json",Authorization:"Bearer "+token},
         body:JSON.stringify(Object.assign({type,expectedVersion:online.room.version},extra||{}))
       });
+      if(online.code !== code || online.token !== token) return false;
       applyOnlineRoom(body.room);
+      return true;
     }catch(error){
+      if(online.code !== code || online.token !== token) return false;
       toast(onlineErrorMessage(error));
-      if(error.status === 409) refreshOnlineState();
+      await refreshOnlineState();
+      return false;
+    }finally{
+      if(online.code === code && online.token === token){ online.actionBusy = false; renderOnlineBar(); updateHeader(); }
     }
   }
 

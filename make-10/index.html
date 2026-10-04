@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Make 10</title>
@@ -839,6 +843,24 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 </style>
 
 <style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+<style id="arcade-landscape-playable">
+body.make10-game .topbar{padding-left:140px!important}
+@media (max-width:520px),(max-height:720px){body.make10-game .topbar{padding-left:108px!important}}
+@media (orientation:landscape) and (max-height:500px){
+body.make10-game .main{grid-template-columns:minmax(180px,.8fr) minmax(0,1.7fr)!important;grid-template-rows:auto auto minmax(0,1fr)!important;gap:6px!important}
+body.make10-game .scorebar{grid-column:1;grid-row:1}
+body.make10-game .controls{grid-column:1;grid-row:2/4;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-content:start!important}
+body.make10-game .controls button{min-height:44px!important}
+body.make10-game .status{grid-column:2;grid-row:1}
+body.make10-game .sumbar{grid-column:2;grid-row:2;padding:4px!important}
+body.make10-game .comboNote{display:none!important}
+body.make10-game .sumlabel{font-size:10px!important}
+body.make10-game .totalbox{min-height:40px!important}
+body.make10-game .total{font-size:30px!important}
+body.make10-game .table{grid-column:2;grid-row:3;min-height:0!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important}
+body.make10-game .card{min-height:44px!important}
+}
+</style>
 </head>
 <body class="make10-game">
 <a class="arcade-home-link" href="../index.html">← ARCADE</a>
@@ -1386,8 +1408,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     return !!(state.players.length && !state.over && (state.deck.length || state.table.length));
   }
 
-  function captureState() {
-    if (!meaningful()) return undefined;
+  function captureState(includeCompleted = false) {
+    if (!meaningful() && !(includeCompleted && state.players.length)) return undefined;
     return {
       playerCount: state.playerCount,
       players: state.players.map((player) => ({ name: player.name, score: player.score, collected: player.collected })),
@@ -1395,7 +1417,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       deck: state.deck.map((card) => ({ id: card.id, value: card.value, suit: card.suit })),
       table: state.table.map((card) => ({ id: card.id, value: card.value, suit: card.suit })),
       selected: state.selected.slice(),
-      over: false,
+      over: includeCompleted ? state.over : false,
       tableSize: state.tableSize,
       goalCards: state.goalCards
     };
@@ -1415,8 +1437,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
     }
   }
 
-  function restoreState(saved) {
-      if (!saved || saved.over || !Array.isArray(saved.players) || !Array.isArray(saved.deck) || !Array.isArray(saved.table)) throw new Error('bad save');
+  function restoreState(saved, includeCompleted = false) {
+      if (!saved || (saved.over && !includeCompleted) || !Array.isArray(saved.players) || !Array.isArray(saved.deck) || !Array.isArray(saved.table)) throw new Error('bad save');
       const normalizeCards = (cards) => cards.map((card) => ({
         id: String(card && card.id || ''),
         value: Math.max(1, Math.min(12, Number(card && card.value) || 1)),
@@ -1432,13 +1454,13 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       state.currentPlayer = Math.max(0, Math.min(state.players.length - 1, Number(saved.currentPlayer) || 0));
       state.deck = normalizeCards(saved.deck);
       state.table = normalizeCards(saved.table);
-      if (!state.deck.length && !state.table.length) throw new Error('empty save');
+      if (!state.deck.length && !state.table.length && !(includeCompleted && saved.over)) throw new Error('empty save');
       const tableIds = new Set(state.table.map((card) => card.id));
       state.selected = Array.isArray(saved.selected) ? saved.selected.map(String).filter((id) => tableIds.has(id)) : [];
-      state.over = false;
+      state.over = includeCompleted ? !!saved.over : false;
       state.tableSize = Math.max(1, Number(saved.tableSize) || 6);
       state.goalCards = Math.max(10, Math.min(40, Number(saved.goalCards) || 40));
-      if (totalCollected() >= state.goalCards) throw new Error('finished save');
+      if (totalCollected() >= state.goalCards && !includeCompleted) throw new Error('finished save');
       els.goalSlider.value = String(state.goalCards);
       syncGoalLabel();
       hideTurnSplash();
@@ -1448,6 +1470,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
       buildPlayerButtons();
       buildNameInputs();
       renderAll();
+      if(state.over)finishGame();
       setMessage('Game loaded.', 'Continue from your saved turn.');
       return true;
   }
@@ -1559,6 +1582,9 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   window.Make10Autosave = {
     id: 'make-10', title: 'Make 10', version: 1,
     capture: captureState, restore: saved => { undoStack = []; return restoreState(saved); }, meaningful, summary: saveSummary, startFresh
+  };
+  window.Make10SharedAdapter = {
+    capture:()=>captureState(true),restore:saved=>{undoStack=[];return restoreState(saved,true);},startFresh
   };
 })();
 </script>

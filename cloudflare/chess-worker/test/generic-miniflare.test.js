@@ -27,7 +27,7 @@ function nextMessage(socket, predicate = () => true) {
   });
 }
 
-function createMiniflare() {
+function createMiniflare(compatibilityDate = "2026-08-06") {
   const sourceRoot = new URL("../../../", import.meta.url).pathname;
   return new Miniflare({
     modulesRoot: sourceRoot,
@@ -35,16 +35,59 @@ function createMiniflare() {
       { type: "ESModule", path: new URL("../src/index.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/room-model.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/generic-room-model.js", import.meta.url).pathname },
+      { type: "ESModule", path: new URL("../../../multiplayer/models/shared-activity-validator.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/guess-who-authority.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/guess-who-data.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/chess-engine.js", import.meta.url).pathname }
     ],
-    compatibilityDate: "2026-08-06",
+    compatibilityDate,
     compatibilityFlags: ["nodejs_compat"],
     bindings: { ALLOWED_ORIGINS: `${ORIGIN},https://to-shreds.github.io,https://arcade.local` },
     durableObjects: { ARCADE_ROOMS: { className: "ArcadeRoom", useSQLite: true } }
   });
 }
+
+for (const compatibilityDate of ["2025-08-06", "2026-08-06"]) {
+  test(`generic disconnect broadcasts absent presence without revoking a reconnect seat (${compatibilityDate})`, async (t) => {
+    const mf = createMiniflare(compatibilityDate); t.after(() => mf.dispose());
+    const host = await (await mf.dispatchFetch("http://worker/api/arcade/rooms", { method:"POST",headers:headers(),body:JSON.stringify({game:"chat",username:"Alice",maxPlayers:2}) })).json();
+    const guest = await (await mf.dispatchFetch(`http://worker/api/arcade/rooms/${host.code}/join`, { method:"POST",headers:headers(),body:JSON.stringify({username:"Bob"}) })).json();
+    const connect = async token => {
+      const response = await mf.dispatchFetch(`http://worker/api/arcade/rooms/${host.code}/ws?token=${token}`, {headers:{Origin:ORIGIN,Upgrade:"websocket"}});
+      assert.equal(response.status,101);
+      response.webSocket.accept(); await nextMessage(response.webSocket,message => message.type === "state");
+      return response.webSocket;
+    };
+    const first = await connect(host.token), second = await connect(host.token), observer = await connect(guest.token);
+    t.after(() => { for (const socket of [first, second, observer]) try { socket.close(); } catch {} });
+    first.close(1000,"one tab closed");
+    const stillConnected = await (await mf.dispatchFetch(`http://worker/api/arcade/rooms/${host.code}/state`, {headers:headers(guest.token)})).json();
+    assert.equal(stillConnected.room.presence[host.playerId],true,"another open tab keeps the seat present");
+    const absent = nextMessage(observer,message => message.type === "state" && message.room.presence[host.playerId] === false);
+    second.close(1000,"last tab closed");
+    const disconnected = (await absent).room;
+    assert.equal(disconnected.presence[guest.playerId],true);
+    assert.equal(disconnected.version,guest.room.version,"socket presence does not change game authority");
+    assert.equal(disconnected.members.find(member => member.playerId === host.playerId).connected,false);
+    const restoredLive = nextMessage(observer,message => message.type === "state" && message.room.presence[host.playerId] === true);
+    const restored = await connect(host.token); t.after(() => { try { restored.close(); } catch {} });
+    assert.equal((await restoredLive).room.members.length,2,"the same token reconnects to the same saved seat");
+  });
+}
+
+test("the Worker forwards activity identity so a mistaken join cannot occupy another activity's seat", async (t) => {
+  const mf = createMiniflare(); t.after(() => mf.dispose());
+  const data = JSON.stringify({snapshot:{text:"Before"},view:[],frames:[]});
+  const checkpoint = {schema:1,activity:"typing",codec:"json",data,decodedBytes:Buffer.byteLength(data),sequence:0};
+  const host = await (await mf.dispatchFetch("http://worker/api/arcade/rooms", {method:"POST",headers:headers(),body:JSON.stringify({game:"shared-activity",username:"Alice",maxPlayers:2,state:checkpoint})})).json();
+  const wrong = await mf.dispatchFetch(`http://worker/api/arcade/rooms/${host.code}/join`, {method:"POST",headers:headers(),body:JSON.stringify({username:"Wrong game",activity:"bowling"})});
+  assert.equal(wrong.status,409);
+  assert.match((await wrong.json()).error,/another activity/);
+  const unchanged = await (await mf.dispatchFetch(`http://worker/api/arcade/rooms/${host.code}/state`, {headers:headers(host.token)})).json();
+  assert.equal(unchanged.room.members.length,1); assert.equal(unchanged.room.version,host.room.version);
+  const correct = await mf.dispatchFetch(`http://worker/api/arcade/rooms/${host.code}/join`, {method:"POST",headers:headers(),body:JSON.stringify({username:"Bob",activity:"typing"})});
+  assert.equal(correct.status,200); assert.equal((await correct.json()).seat,1);
+});
 
 test("independent generic clients create, join, synchronize, chat, and reconnect through Miniflare", async (t) => {
   const mf = createMiniflare();

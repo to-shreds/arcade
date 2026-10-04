@@ -17,7 +17,10 @@
     "turn-based",
     "same-device",
     "online",
-    "cpu"
+    "cpu",
+    "nearby"
   ],
-  "orientation": "any"
+  "orientation": "any",
+  "onlineMode": "competitive",
+  "onlinePlayersMax": 2
 }

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Arcade Trivia</title>
@@ -742,7 +746,7 @@ const Game = (function(){
     let currentMode = '';
     let currentQuestion = null;
     let undoStack = [];
-    let nextTimer = 0;
+    let nextTimer = 0, nextDueAt = 0;
     const SAVE_KEY = 'arcade_trivia_save_v1';
 
     
@@ -805,7 +809,7 @@ const Game = (function(){
         ui.sw.innerText = score.w;
     }
 
-    function renderQuestion(qData){
+    function renderQuestion(qData, savedDisplay = null){
         let opts = qData.options;
         let uniqueOpts = [...new Set(opts)];
         while(uniqueOpts.length < 4) {
@@ -819,12 +823,14 @@ const Game = (function(){
         qData.options = uniqueOpts;
         currentQuestion = { q: qData.q, options: [...qData.options], correct: qData.correct };
         ui.qText.innerText = qData.q;
-        let displayOpts = [...qData.options];
-        shuffle(displayOpts);
+        let displayOpts = Array.isArray(savedDisplay)&&savedDisplay.length===4 ? savedDisplay.map(item=>item.text) : [...qData.options];
+        if(!savedDisplay)shuffle(displayOpts);
         ui.grid.innerHTML = '';
-        displayOpts.forEach(opt => {
+        displayOpts.forEach((opt,index) => {
             const btn = document.createElement('button');
             btn.className = 'ans-btn';
+            if(savedDisplay?.[index]?.correct)btn.classList.add('correct');
+            if(savedDisplay?.[index]?.wrong)btn.classList.add('wrong');
             btn.innerText = opt;
             btn.onclick = () => check(btn, opt, qData.correct);
             ui.grid.appendChild(btn);
@@ -887,7 +893,7 @@ const Game = (function(){
             score.s++;
             updateScore();
             Feedback.show(true);
-            nextTimer=setTimeout(nextQuestion, 1200);
+            nextDueAt=performance.now()+1200;nextTimer=setTimeout(nextQuestion, 1200);
         } else {
             btn.classList.add('wrong');
             score.w++;
@@ -899,7 +905,7 @@ const Game = (function(){
             Array.from(ui.grid.children).forEach(b => {
                 if (b.innerText == correct) b.classList.add('correct');
             });
-            nextTimer=setTimeout(nextQuestion, 2000);
+            nextDueAt=performance.now()+2000;nextTimer=setTimeout(nextQuestion, 2000);
         }
     }
 
@@ -953,11 +959,13 @@ const Game = (function(){
             score: Object.assign({},score),
             currentQuestion: currentQuestion ? JSON.parse(JSON.stringify(currentQuestion)) : null,
             label: ui.qLabel.innerText,
-            isTransitioning
+            isTransitioning,
+            displayOptions:[...ui.grid.children].map(button=>({text:button.innerText,correct:button.classList.contains('correct'),wrong:button.classList.contains('wrong')})),
+            nextRemainingMs:isTransitioning?Math.max(0,nextDueAt-performance.now()):0
         };
     }
 
-    function restoreState(saved){
+    function restoreState(saved,shared=false){
         if(!saved || !saved.currentQuestion || typeof saved.currentMode !== 'string') throw new Error('Invalid Trivia save');
         currentMode=saved.currentMode;
         currentPool=Array.isArray(saved.currentPool)?JSON.parse(JSON.stringify(saved.currentPool)):[];
@@ -966,7 +974,15 @@ const Game = (function(){
         isTransitioning=!!saved.isTransitioning;
         ui.qLabel.innerText=saved.label||currentMode.toUpperCase();
         updateScore();ui.menu.style.display='none';
-        clearTimeout(nextTimer);nextTimer=0;if(isTransitioning)nextQuestion();else renderQuestion(currentQuestion);syncUndo();
+        clearTimeout(nextTimer);nextTimer=0;
+        if(isTransitioning&&!shared)nextQuestion();
+        else{
+          renderQuestion(currentQuestion,saved.displayOptions);
+          if(isTransitioning&&!window.ArcadeSharedActivity?.isSpectator()){
+            const wait=Math.max(0,Math.min(2000,Number(saved.nextRemainingMs)||0));nextDueAt=performance.now()+wait;nextTimer=setTimeout(nextQuestion,wait);
+          }
+        }
+        syncUndo();return true;
     }
 
     function syncUndo(){const button=document.getElementById('trivia-undo');if(button)button.disabled=undoStack.length===0;}
@@ -991,6 +1007,7 @@ window.TriviaAutosave={
     summary:()=>Game.summary(),
     startFresh:()=>Game.fresh()
 };
+window.TriviaSharedAdapter={capture:()=>Game.captureState(),restore:saved=>Game.restoreState(saved,true),startFresh:()=>Game.fresh()};
 
 const Settings = (function(){
     let s = { sound: true, motion: true };

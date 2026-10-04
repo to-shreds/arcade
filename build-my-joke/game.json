@@ -8,7 +8,18 @@
   "multiplayer": true,
   "playersMin": 1,
   "playersMax": 2,
-  "categories": ["creative", "word"],
-  "tags": ["silly", "speech", "same-device"],
-  "orientation": "any"
+  "categories": [
+    "creative",
+    "word"
+  ],
+  "tags": [
+    "silly",
+    "speech",
+    "same-device",
+    "online",
+    "nearby"
+  ],
+  "orientation": "any",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

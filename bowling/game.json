@@ -15,7 +15,11 @@
   "tags": [
     "touch",
     "turn-based",
-    "same-device"
+    "same-device",
+    "online",
+    "nearby"
   ],
-  "orientation": "any"
+  "orientation": "any",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

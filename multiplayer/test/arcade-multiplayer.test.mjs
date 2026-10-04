@@ -500,6 +500,22 @@ function installAudio(window){
   return counters;
 }
 
+test("shared activity control handoffs use the same deduplicated turn alert service", async () => {
+  const catalog = JSON.parse(await readFile(new URL("../../catalog.json", import.meta.url), "utf8"));
+  const env = environment({ framed: false });
+  const api = env.window.ArcadeMultiplayer;
+  for (const item of catalog.items.filter(item => item.onlineMode === "shared")) {
+    const first = genericTurnRoom({ status: "active", turnSeat: 1, turnNumber: 1, version: 1 });
+    first.game = "shared-activity";
+    assert.equal(api.observeRoom(first, item.folder), false, `${item.folder} establishes a silent baseline`);
+    const handoff = { ...genericTurnRoom({ status: "active", turnSeat: 0, turnNumber: 2, version: 2 }), game: "shared-activity" };
+    assert.equal(api.observeRoom(handoff, item.folder), true, `${item.folder} alerts on control handoff`);
+    assert.equal(api.observeRoom(handoff, item.folder), false, `${item.folder} duplicate remains silent`);
+    assert.equal(api.observeRoom({ ...handoff, version: 3 }, item.folder), false, `${item.folder} retained control remains silent`);
+  }
+  env.dom.window.close();
+});
+
 test("authoritative generic ownership edges chime once and retained turns stay silent", async () => {
   const env = environment({ framed: false });
   const audio = installAudio(env.window);

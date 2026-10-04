@@ -2674,6 +2674,7 @@ const FeedbackSys = (function(){
             if(!room || room.game !== 'dots') return false;
             if(!['lobby','active','finished'].includes(room.status)) return false;
             const roomCode = cleanOnlineCode(room.code || online.code);
+            if(online.code && roomCode !== online.code) return false;
             const maxPlayers = Number(room.maxPlayers);
             const members = Array.isArray(room.members) ? room.members : [];
             const occupied = new Set();
@@ -2825,12 +2826,15 @@ const FeedbackSys = (function(){
         }
         async function refreshOnlineRoom(forceHydrate){
             if(!online.code || !online.token) return false;
+            const code=online.code,token=online.token;
             try{
-                const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(online.code) + '/state', {
-                    headers:{'authorization':'Bearer ' + online.token}
+                const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(code) + '/state', {
+                    headers:{'authorization':'Bearer ' + token}
                 });
+                if(online.code !== code || online.token !== token) return false;
                 return applyOnlineRoom(roomFromResponse(body), !!forceHydrate);
             }catch(error){
+                if(online.code !== code || online.token !== token) return false;
                 if(terminalRoomStatus(error)){ finishLeavingOnlineRoom(); return false; }
                 throw error;
             }

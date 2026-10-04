@@ -13,6 +13,7 @@
   var saveTimer = 0;
   var intervalTimer = 0;
   var restoring = false;
+  var externalSession = false;
   var decisionPending = false;
   var sessionEngaged = false;
   var dirty = false;
@@ -248,6 +249,7 @@
     return persist(data);
   }
   function saveNow(){
+    if(externalSession) return Promise.resolve(null);
     clearTimeout(saveTimer);
     saveTimer = 0;
     function runCapture(){
@@ -312,7 +314,7 @@
     goHome();
   }, true);
   function scheduleSave(delay){
-    if(!adapter || restoring || decisionPending || !sessionEngaged) return;
+    if(externalSession || !adapter || restoring || decisionPending || !sessionEngaged) return;
     dirty = true;
     clearTimeout(saveTimer);
     saveTimer = setTimeout(saveNow, typeof delay === 'number' ? delay : 550);
@@ -417,6 +419,7 @@
       }
       currentEntry = entry || null;
       if(entry) setRegistryEntry(entry);
+      if(externalSession){ sessionEngaged = true; return false; }
       if(entry && wantsAutomaticResume()) return restoreEntry(entry, true);
       if(entry){ showPrompt(entry); return true; }
       sessionEngaged = true;
@@ -434,6 +437,12 @@
     clear: function(){ return clearSaved(true); },
     hasSave: function(){ return !!currentEntry; },
     getRegistry: readRegistry,
+    getAdapter: function(){ return adapter; },
+    setExternalSession: function(active){
+      externalSession = active === true;
+      clearTimeout(saveTimer); saveTimer = 0; dirty = false;
+      if(externalSession){ decisionPending = false; if(ui) ui.layer.hidden = true; }
+    },
     getCurrentEntry: function(){ return currentEntry ? clone(currentEntry) : null; }
   };
 })();

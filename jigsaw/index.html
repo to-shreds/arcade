@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <title>Arcade - Emoji Jigsaw</title>
@@ -951,6 +955,7 @@ function sliceIntoPiecesJigsaw(srcCanvas, n, targetSize){
 
         pieces.push({
           r, c,
+          edges:{top,right,bottom,left},
           w: pieceCanvas.width, h: pieceCanvas.height,
           tab,
           canvas: pieceCanvas
@@ -1308,6 +1313,7 @@ function trySnap(piece, el){
       trayOrder: piece.inTray && piece.slot ? Array.from(trayInner.children).indexOf(piece.slot) : -1,
       rot: piece.el ? piece.el.dataset.rot : "0",
       zIndex: piece.el ? parseInt(piece.el.style.zIndex, 10) || 0 : 0,
+      edges:piece.edges,
       image: piece.savedImage || (piece.savedImage = piece.canvas.toDataURL("image/png"))
     };
   }
@@ -1316,8 +1322,8 @@ function trySnap(piece, el){
     return !!(state && Array.isArray(state.pieces) && state.pieces.length && countRemaining() > 0);
   }
 
-  function captureState(){
-    if(!meaningful()) return undefined;
+  function captureState(includeCompleted=false){
+    if(!meaningful()&&!(includeCompleted&&state?.pieces?.length)) return undefined;
     return {
       n: state.n,
       lvl: state.lvl,
@@ -1367,9 +1373,9 @@ function trySnap(piece, el){
     target.style.transform = "none";
   }
 
-  async function restoreState(saved){
+  async function restoreState(saved,includeCompleted=false){
     if(!saved || !Array.isArray(saved.pieces) || !saved.pieces.length) throw new Error("bad save");
-    if(saved.pieces.every(item => item && item.locked)) throw new Error("finished save");
+    if(saved.pieces.every(item => item && item.locked)&&!includeCompleted) throw new Error("finished save");
     boardInner.innerHTML = "";
     trayInner.innerHTML = "";
     const savedTargetSize = Math.max(1, Number(saved.targetSize) || 300);
@@ -1390,15 +1396,24 @@ function trySnap(piece, el){
       z: Math.max(10, parseInt(saved.z, 10) || 10)
     };
     applyTargetFromState();
+    const sharedSource=saved.sharedImage?await imageToCanvas(saved.sharedImage,720,720):null;
     for(let idx=0; idx<saved.pieces.length; idx++){
       const item = saved.pieces[idx];
-      if(!item || typeof item.image !== "string") throw new Error("bad piece");
+      if(!item || (!sharedSource&&typeof item.image!=="string")) throw new Error("bad piece");
       const itemW = Math.max(1, (Number(item.w) || 1) * scale);
       const itemH = Math.max(1, (Number(item.h) || 1) * scale);
-      const canvas = await imageToCanvas(item.image, itemW, itemH);
+      let canvas;
+      if(sharedSource&&item.edges){
+        canvas=document.createElement('canvas');canvas.width=Math.round(itemW);canvas.height=Math.round(itemH);
+        const ctx=canvas.getContext('2d'),tab=(Number(item.tab)||0)*scale,pw=layout.targetSize/state.n,ph=pw;
+        jigsawPath(ctx,pw,ph,tab,item.edges);ctx.save();ctx.clip();
+        const sourceTab=tab*720/layout.targetSize,sourcePiece=720/state.n;
+        ctx.drawImage(sharedSource,item.c*sourcePiece-sourceTab,item.r*sourcePiece-sourceTab,sourcePiece+2*sourceTab,sourcePiece+2*sourceTab,0,0,canvas.width,canvas.height);ctx.restore();
+      }else canvas=await imageToCanvas(item.image,itemW,itemH);
       const piece = {
         r: item.r,
         c: item.c,
+        edges:item.edges,
         w: itemW,
         h: itemH,
         tab: (Number(item.tab) || 0) * scale,
@@ -1634,6 +1649,19 @@ function trySnap(piece, el){
     capture: captureState, restore: restoreState, meaningful, summary: saveSummary,
     migrate: function(saved){ if(saved && !saved.mode) saved.mode = "easy"; return saved; },
     startFresh
+  };
+  window.JigsawSharedAdapter={
+    shareCanvas:false,
+    capture:()=>{
+      const saved=captureState(true);if(!saved)return null;
+      if(saved.pieces.every(item=>item.edges)){
+        saved.sharedImage=makeEmojiCanvas(360,saved.emoji).toDataURL('image/jpeg',.58);
+        saved.pieces=saved.pieces.map(({image,...piece})=>piece);
+      }else saved.pieces=saved.pieces.map((piece,index)=>({...piece,image:state.pieces[index].canvas.toDataURL('image/webp',.4)}));
+      return saved;
+    },
+    captureLocal:()=>captureState(true),restoreLocal:saved=>restoreState(saved,true),
+    restore:saved=>restoreState(saved,true),startFresh
   };
   setMode("easy");
 })();

@@ -8,7 +8,22 @@
   "multiplayer": false,
   "playersMin": 1,
   "playersMax": 1,
-  "categories": ["learning", "puzzle", "word"],
-  "tags": ["regex", "coding", "patterns", "procedural", "touch", "autosave"],
-  "orientation": "any"
+  "categories": [
+    "learning",
+    "puzzle",
+    "word"
+  ],
+  "tags": [
+    "regex",
+    "coding",
+    "patterns",
+    "procedural",
+    "touch",
+    "autosave",
+    "online",
+    "nearby"
+  ],
+  "orientation": "any",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

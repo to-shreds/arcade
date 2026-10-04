@@ -17,11 +17,15 @@
       ],
       "tags": [
         "touch",
-        "turn-based"
+        "turn-based",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "make-10",
-      "launchPath": "make-10/index.html"
+      "launchPath": "make-10/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Balloons",
@@ -39,11 +43,15 @@
       ],
       "tags": [
         "touch",
-        "quick"
+        "quick",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "balloons",
-      "launchPath": "balloons/index.html"
+      "launchPath": "balloons/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Backyard Baseball",
@@ -84,11 +92,15 @@
       ],
       "tags": [
         "touch",
-        "turn-based"
+        "turn-based",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "blackjack",
-      "launchPath": "blackjack/index.html"
+      "launchPath": "blackjack/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Checkers",
@@ -108,11 +120,14 @@
         "touch",
         "turn-based",
         "same-device",
-        "online"
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "checkers",
-      "launchPath": "checkers/index.html"
+      "launchPath": "checkers/index.html",
+      "onlineMode": "competitive",
+      "onlinePlayersMax": 2
     },
     {
       "title": "Chess",
@@ -133,11 +148,14 @@
         "turn-based",
         "same-device",
         "online",
-        "cpu"
+        "cpu",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "chess",
-      "launchPath": "chess/index.html"
+      "launchPath": "chess/index.html",
+      "onlineMode": "competitive",
+      "onlinePlayersMax": 2
     },
     {
       "title": "Arcade Chat",
@@ -156,11 +174,14 @@
       "tags": [
         "online",
         "chat",
-        "keyboard"
+        "keyboard",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "chat-room",
-      "launchPath": "chat-room/index.html"
+      "launchPath": "chat-room/index.html",
+      "onlineMode": "chat",
+      "onlinePlayersMax": 32
     },
     {
       "title": "Time",
@@ -177,11 +198,15 @@
       ],
       "tags": [
         "touch",
-        "calm"
+        "calm",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "time",
-      "launchPath": "time/index.html"
+      "launchPath": "time/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Dots",
@@ -201,11 +226,14 @@
         "touch",
         "turn-based",
         "same-device",
-        "online"
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "dots",
-      "launchPath": "dots/index.html"
+      "launchPath": "dots/index.html",
+      "onlineMode": "competitive",
+      "onlinePlayersMax": 4
     },
     {
       "title": "Hangman",
@@ -223,11 +251,15 @@
       ],
       "tags": [
         "keyboard",
-        "turn-based"
+        "turn-based",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "hangman",
-      "launchPath": "hangman/index.html"
+      "launchPath": "hangman/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Solitaire Parlor",
@@ -250,11 +282,15 @@
         "spider",
         "freecell",
         "pyramid",
-        "autosave"
+        "autosave",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "solitaire",
-      "launchPath": "solitaire/index.html"
+      "launchPath": "solitaire/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Guess Who",
@@ -279,7 +315,9 @@
       ],
       "orientation": "any",
       "folder": "guess-who",
-      "launchPath": "guess-who/index.html"
+      "launchPath": "guess-who/index.html",
+      "onlineMode": "competitive",
+      "onlinePlayersMax": 2
     },
     {
       "title": "Insultinator",
@@ -297,11 +335,15 @@
       ],
       "tags": [
         "keyboard",
-        "speech"
+        "speech",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "insultinator",
-      "launchPath": "insultinator/index.html"
+      "launchPath": "insultinator/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Build My Joke",
@@ -320,11 +362,15 @@
       "tags": [
         "silly",
         "speech",
-        "same-device"
+        "same-device",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "build-my-joke",
-      "launchPath": "build-my-joke/index.html"
+      "launchPath": "build-my-joke/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Emoji Jigsaw",
@@ -341,11 +387,15 @@
       ],
       "tags": [
         "touch",
-        "calm"
+        "calm",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "jigsaw",
-      "launchPath": "jigsaw/index.html"
+      "launchPath": "jigsaw/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Robot Codebreaker",
@@ -364,11 +414,15 @@
       "tags": [
         "logic",
         "symbols",
-        "touch"
+        "touch",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "codebreaking",
-      "launchPath": "codebreaking/index.html"
+      "launchPath": "codebreaking/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Math",
@@ -386,11 +440,15 @@
       ],
       "tags": [
         "touch",
-        "quick"
+        "quick",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "math",
-      "launchPath": "math/index.html"
+      "launchPath": "math/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Picture Spelling",
@@ -409,11 +467,15 @@
       "tags": [
         "keyboard",
         "picture",
-        "calm"
+        "calm",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "spelling",
-      "launchPath": "spelling/index.html"
+      "launchPath": "spelling/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Maze",
@@ -429,11 +491,15 @@
         "puzzle"
       ],
       "tags": [
-        "touch"
+        "touch",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "maze",
-      "launchPath": "maze/index.html"
+      "launchPath": "maze/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Memory",
@@ -453,11 +519,14 @@
         "touch",
         "turn-based",
         "same-device",
-        "online"
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "memory",
-      "launchPath": "memory/index.html"
+      "launchPath": "memory/index.html",
+      "onlineMode": "competitive",
+      "onlinePlayersMax": 4
     },
     {
       "title": "Minesweeper",
@@ -474,11 +543,15 @@
         "strategy"
       ],
       "tags": [
-        "touch"
+        "touch",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "minesweeper",
-      "launchPath": "minesweeper/index.html"
+      "launchPath": "minesweeper/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Mini Golf",
@@ -495,11 +568,15 @@
         "puzzle"
       ],
       "tags": [
-        "touch"
+        "touch",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "mini-golf",
-      "launchPath": "mini-golf/index.html"
+      "launchPath": "mini-golf/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Orb Slicer",
@@ -517,11 +594,15 @@
       ],
       "tags": [
         "touch",
-        "quick"
+        "quick",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "orb-slicer",
-      "launchPath": "orb-slicer/index.html"
+      "launchPath": "orb-slicer/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Two Truths & a Lie",
@@ -540,11 +621,15 @@
       "tags": [
         "facts",
         "choices",
-        "quick"
+        "quick",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "two-truths",
-      "launchPath": "two-truths/index.html"
+      "launchPath": "two-truths/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Paint Lab",
@@ -561,11 +646,15 @@
       ],
       "tags": [
         "touch",
-        "calm"
+        "calm",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "paint-lab",
-      "launchPath": "paint-lab/index.html"
+      "launchPath": "paint-lab/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Patterns",
@@ -583,11 +672,15 @@
       ],
       "tags": [
         "touch",
-        "calm"
+        "calm",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "patterns",
-      "launchPath": "patterns/index.html"
+      "launchPath": "patterns/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Bounce Boxes",
@@ -605,11 +698,15 @@
       ],
       "tags": [
         "touch",
-        "quick"
+        "quick",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "bounce-boxes",
-      "launchPath": "bounce-boxes/index.html"
+      "launchPath": "bounce-boxes/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Shuffleboard",
@@ -628,11 +725,15 @@
       "tags": [
         "touch",
         "turn-based",
-        "same-device"
+        "same-device",
+        "online",
+        "nearby"
       ],
       "orientation": "landscape",
       "folder": "shuffleboard",
-      "launchPath": "shuffleboard/index.html"
+      "launchPath": "shuffleboard/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Simon Says",
@@ -650,11 +751,15 @@
       ],
       "tags": [
         "touch",
-        "quick"
+        "quick",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "simon",
-      "launchPath": "simon/index.html"
+      "launchPath": "simon/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Regex Lab",
@@ -677,11 +782,15 @@
         "patterns",
         "procedural",
         "touch",
-        "autosave"
+        "autosave",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "regex-lab",
-      "launchPath": "regex-lab/index.html"
+      "launchPath": "regex-lab/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Tic Tac Toe",
@@ -701,11 +810,14 @@
         "touch",
         "turn-based",
         "same-device",
-        "online"
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "tic-tac-toe",
-      "launchPath": "tic-tac-toe/index.html"
+      "launchPath": "tic-tac-toe/index.html",
+      "onlineMode": "competitive",
+      "onlinePlayersMax": 2
     },
     {
       "title": "Trail",
@@ -722,11 +834,15 @@
       ],
       "tags": [
         "touch",
-        "calm"
+        "calm",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "trail",
-      "launchPath": "trail/index.html"
+      "launchPath": "trail/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Trivia",
@@ -744,11 +860,15 @@
       ],
       "tags": [
         "touch",
-        "turn-based"
+        "turn-based",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "trivia",
-      "launchPath": "trivia/index.html"
+      "launchPath": "trivia/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Typing",
@@ -765,11 +885,15 @@
       ],
       "tags": [
         "keyboard",
-        "calm"
+        "calm",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "typing",
-      "launchPath": "typing/index.html"
+      "launchPath": "typing/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Contraption Maker",
@@ -787,11 +911,15 @@
       ],
       "tags": [
         "touch",
-        "calm"
+        "calm",
+        "online",
+        "nearby"
       ],
       "orientation": "landscape",
       "folder": "contraption-maker",
-      "launchPath": "contraption-maker/index.html"
+      "launchPath": "contraption-maker/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Mad Libs",
@@ -809,11 +937,15 @@
         "educational"
       ],
       "tags": [
-        "keyboard"
+        "keyboard",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "mad-libs",
-      "launchPath": "mad-libs/index.html"
+      "launchPath": "mad-libs/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Silly Face Lab",
@@ -830,11 +962,15 @@
       ],
       "tags": [
         "touch",
-        "calm"
+        "calm",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "silly-face-lab",
-      "launchPath": "silly-face-lab/index.html"
+      "launchPath": "silly-face-lab/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Sorry! Fire & Ice",
@@ -855,11 +991,14 @@
         "turn-based",
         "same-device",
         "online",
-        "cross-device"
+        "cross-device",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "sorry",
-      "launchPath": "sorry/index.html"
+      "launchPath": "sorry/index.html",
+      "onlineMode": "competitive",
+      "onlinePlayersMax": 4
     },
     {
       "title": "Bug Squish",
@@ -879,11 +1018,15 @@
         "touch",
         "quick",
         "cooperative",
-        "same-device"
+        "same-device",
+        "online",
+        "nearby"
       ],
       "orientation": "landscape",
       "folder": "bug-squish",
-      "launchPath": "bug-squish/index.html"
+      "launchPath": "bug-squish/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Firefighter Frenzy",
@@ -902,11 +1045,15 @@
       "tags": [
         "touch",
         "cooperative",
-        "same-device"
+        "same-device",
+        "online",
+        "nearby"
       ],
       "orientation": "landscape",
       "folder": "firefighter-frenzy",
-      "launchPath": "firefighter-frenzy/index.html"
+      "launchPath": "firefighter-frenzy/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Monster Dentist",
@@ -925,11 +1072,15 @@
       "tags": [
         "touch",
         "cooperative",
-        "same-device"
+        "same-device",
+        "online",
+        "nearby"
       ],
       "orientation": "landscape",
       "folder": "monster-dentist",
-      "launchPath": "monster-dentist/index.html"
+      "launchPath": "monster-dentist/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Music Maker",
@@ -949,11 +1100,15 @@
         "touch",
         "multitouch",
         "voice",
-        "same-device"
+        "same-device",
+        "online",
+        "nearby"
       ],
       "orientation": "landscape",
       "folder": "music-maker",
-      "launchPath": "music-maker/index.html"
+      "launchPath": "music-maker/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Neon Bowling",
@@ -972,11 +1127,15 @@
       "tags": [
         "touch",
         "turn-based",
-        "same-device"
+        "same-device",
+        "online",
+        "nearby"
       ],
       "orientation": "any",
       "folder": "bowling",
-      "launchPath": "bowling/index.html"
+      "launchPath": "bowling/index.html",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8
     },
     {
       "title": "Monopoly",
@@ -997,11 +1156,14 @@
         "turn-based",
         "same-device",
         "online",
-        "saveable"
+        "saveable",
+        "nearby"
       ],
       "orientation": "landscape",
       "folder": "monopoly",
-      "launchPath": "monopoly/index.html"
+      "launchPath": "monopoly/index.html",
+      "onlineMode": "competitive",
+      "onlinePlayersMax": 6
     }
   ],
   "categories": [

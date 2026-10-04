@@ -7,6 +7,14 @@ const rawCache=new Map();
 const bufferCache=new Map();
 const activeSources=[];
 const loopSaveCache=new WeakMap();
+const sharedLoopCache=new WeakMap();
+const sharedNoteEvents=[];
+const heardSharedNotes=new Set();
+const sharedRemoteNotes=new Map();
+const noteSession=Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+let noteSerial=0;
+let sharedMusicEpoch=0;
+let backingStartedAt=0;
 const sides=[...document.querySelectorAll('.player')].map(createSide);
 let audioContext;
 let master;
@@ -62,6 +70,7 @@ function createSide(root){
   side.pitchBox.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{
     side.pitch=button.dataset.pitch;
     side.pitchBox.querySelectorAll('button').forEach(item=>item.classList.toggle('active',item===button));
+    [...side.pads.children].forEach(pad=>{pad.dataset.small=side.instrument==='drums'?pad.textContent:side.pitch;});
     prefetchSelection(side);
   }));
   side.backingSelect.addEventListener('change',()=>setBacking(side.backingSelect.value));
@@ -153,11 +162,15 @@ async function getBuffer(path){
 
 async function startPad(side,pad,event){
   event.preventDefault();
+  if(window.ArcadeSharedActivity&&ArcadeSharedActivity.isSpectator())return;
   try{pad.setPointerCapture(event.pointerId)}catch(e){}
-  const state={pad,source:null,gain:null};
+  const path=samplePath(side,pad.dataset.value);
+  const note={id:noteSession+':'+(++noteSerial),side:side.id,value:pad.dataset.value,path,at:Date.now(),drum:side.instrument==='drums'};
+  sharedNoteEvents.push(note);
+  if(sharedNoteEvents.length>64)sharedNoteEvents.shift();
+  const state={pad,source:null,gain:null,note};
   side.pointers.set(event.pointerId,state);
   pad.classList.add('pressed');
-  const path=samplePath(side,pad.dataset.value);
   try{
     const buffer=await getBuffer(path);
     if(side.pointers.get(event.pointerId)!==state)return;
@@ -191,6 +204,7 @@ function releasePad(side,pointerId){
   const state=side.pointers.get(pointerId);
   if(!state)return;
   side.pointers.delete(pointerId);
+  if(state.note)state.note.endedAt=Date.now();
   state.pad.classList.remove('pressed');
   if(state.source&&side.instrument!=='drums'){
     const now=audioContext.currentTime;
@@ -198,7 +212,7 @@ function releasePad(side,pointerId){
   }
 }
 
-async function setBacking(name){
+async function setBacking(name,startOffset=0){
   backingName=name;
   sides.forEach(side=>side.backingSelect.value=name);
   stopBacking(false);
@@ -213,7 +227,8 @@ async function setBacking(name){
     gain.gain.value=.28;
     source.connect(gain).connect(master);
     source._arcadeGain=gain;
-    source.start();
+    source.start(0,Math.max(0,startOffset)%buffer.duration);
+    backingStartedAt=Date.now()-Math.max(0,startOffset)*1000;
     backingSource=source;
     backingPlaying=true;
     updateBackingUi();
@@ -249,6 +264,7 @@ function updateBackingUi(){
 }
 
 async function ensureMic(side){
+  if(window.ArcadeSharedActivity&&ArcadeSharedActivity.isSpectator())throw new Error('Take control before using the microphone');
   await ensureAudio();
   if(micStream&&micStream.active)return;
   if(micPromise)return micPromise;
@@ -391,7 +407,7 @@ function stopRecording(side,keep){
   stopMicIfIdle();
 }
 
-async function startLoop(side){
+async function startLoop(side,startOffset=0){
   if(!side.loopBuffer||side.loopSource)return;
   await ensureAudio();
   const source=audioContext.createBufferSource();
@@ -399,7 +415,8 @@ async function startLoop(side){
   source.loop=true;
   const chain=await makeVoiceChain(side.effectSelect.value,.48);
   source.connect(chain.input);
-  source.start();
+  source.start(0,Math.max(0,startOffset)%side.loopBuffer.duration);
+  side.loopStartedAt=Date.now()-Math.max(0,startOffset)*1000;
   side.loopSource=source;
   side.loopChain=chain;
   side.loopButton.classList.add('active');
@@ -448,6 +465,8 @@ function pauseMicrophone(){
 }
 
 function pauseAllAudio(){
+  sharedMusicEpoch++;
+  sharedRemoteNotes.clear();
   pauseMicrophone();
   sides.forEach(side=>{
     side.pointers.forEach(state=>state.pad.classList.remove('pressed'));
@@ -535,6 +554,140 @@ function freshMusicMaker(){
   updateBackingUi();
 }
 
+function encodeSharedLoop(buffer){
+  if(!buffer)return null;
+  if(sharedLoopCache.has(buffer))return sharedLoopCache.get(buffer);
+  // Six-second voice loops use a small transport copy; local autosaves retain
+  // the original full-quality recording.
+  const sampleRate=4000,length=Math.min(sampleRate*6,Math.floor(buffer.duration*sampleRate));
+  const source=buffer.getChannelData(0),bytes=new Uint8Array(Math.ceil(length/2));
+  for(let i=0;i<length;i++){
+    const start=Math.floor(i*buffer.sampleRate/sampleRate),end=Math.min(source.length,Math.max(start+1,Math.floor((i+1)*buffer.sampleRate/sampleRate)));
+    let sum=0;for(let j=start;j<end;j++)sum+=source[j];
+    const sample=Math.max(-1,Math.min(1,sum/Math.max(1,end-start)));
+    const packed=Math.round(Math.log1p(15*Math.abs(sample))/Math.log(16)*7)+(sample<0?8:0);
+    bytes[i>>1]|=packed<<((i%2)*4);
+  }
+  const saved={codec:'pcm4',sampleRate,length,data:bytesToBase64(bytes)};
+  sharedLoopCache.set(buffer,saved);return saved;
+}
+
+async function decodeSharedLoop(saved){
+  if(!saved)return null;
+  if(saved.codec!=='pcm4'||saved.sampleRate!==4000||typeof saved.data!=='string'||saved.data.length>16000)throw new Error('Invalid shared voice loop');
+  const bytes=base64ToBytes(saved.data),length=Number(saved.length);
+  if(!Number.isInteger(length)||length<1||length>24000||bytes.length!==Math.ceil(length/2))throw new Error('Invalid shared voice loop');
+  // AudioBuffer requires at least 8kHz, so expand the 4kHz transport samples.
+  const context=await ensureAudio(),buffer=context.createBuffer(1,length*2,8000),samples=buffer.getChannelData(0);
+  for(let i=0;i<length;i++){
+    const packed=(bytes[i>>1]>>((i%2)*4))&15;
+    const sample=Math.expm1((packed&7)/7*Math.log(16))/15*(packed&8?-1:1);
+    samples[i*2]=samples[i*2+1]=sample;
+  }
+  return buffer;
+}
+
+function captureSharedMusic(){
+  const now=Date.now();
+  const heldNotes=sides.flatMap(side=>[...side.pointers.values()].filter(state=>state.note).map(state=>state.note));
+  const recentNotes=new Map(sharedNoteEvents.filter(note=>now-note.at<2500).map(note=>[note.id,note]));
+  heldNotes.forEach(note=>recentNotes.set(note.id,note));
+  return {
+    capturedAt:now,backingName,backingPlaying,backingElapsedMs:backingPlaying?Math.max(0,now-backingStartedAt):0,
+    sides:sides.map(side=>({id:side.id,instrument:side.instrument,pitch:side.pitch,effect:side.effectSelect.value,
+      loop:encodeSharedLoop(side.loopBuffer),loopPlaying:!!side.loopSource,loopElapsedMs:side.loopSource?Math.max(0,now-side.loopStartedAt):0,
+      status:side.voiceStatus.textContent,
+      activeNotes:[...side.pointers.values()].filter(state=>state.note).map(state=>state.note.id)})),
+    notes:[...recentNotes.values()].slice(-64).map(note=>({...note}))
+  };
+}
+
+async function playSharedNote(note,side){
+  const values=note.drum?drums:notes;
+  if(!values.some(item=>item[1]===note.value)||typeof note.path!=='string'||!/^samples\/(piano|xylophone|guitar|bass|synth|bells|drums)\/[a-zA-Z0-9-]+\.wav$/.test(note.path))return;
+  const state={pad:[...side.pads.children].find(pad=>pad.dataset.value===note.value),source:null,gain:null,drum:!!note.drum};
+  sharedRemoteNotes.set(note.id,state);
+  const token=sharedMusicEpoch;
+  try{
+    const buffer=await getBuffer(note.path);
+    if(token!==sharedMusicEpoch||sharedRemoteNotes.get(note.id)!==state)return;
+    const source=audioContext.createBufferSource(),gain=audioContext.createGain();
+    source.buffer=buffer;gain.gain.value=note.drum?.72:.58;source.connect(gain).connect(master);
+    state.source=source;state.gain=gain;trackSource(source,gain);source.start();
+    if((note.endedAt||state.released)&&!note.drum)source.stop(audioContext.currentTime+Math.max(.08,Math.min(.7,((Number(note.endedAt)||note.at+120)-note.at)/1000)));
+    source.addEventListener('ended',()=>{if(sharedRemoteNotes.get(note.id)===state)sharedRemoteNotes.delete(note.id)},{once:true});
+  }catch(_){sharedRemoteNotes.delete(note.id);}
+}
+
+async function restoreSharedMusic(saved,options={}){
+  if(!saved||!Array.isArray(saved.sides)||saved.sides.length!==sides.length)throw new Error('Invalid shared Music Maker state');
+  // The microphone stream is never transferred. Only explicitly recorded loops
+  // and played instrument samples belong to the shared room.
+  pauseMicrophone();
+  const validInstruments=new Set(['piano','xylophone','guitar','bass','synth','bells','drums','voice']);
+  const validPitches=new Set(['low','middle','high']),validEffects=new Set(['normal','chipmunk','monster','robot','alien','echo','tiny','giant']);
+  const elapsed=Math.max(0,Math.min(2500,Date.now()-(Number(saved.capturedAt)||Date.now())))/1000;
+  const active=new Set();
+  for(let i=0;i<sides.length;i++){
+    const side=sides[i],data=saved.sides[i]||{};
+    const instrument=validInstruments.has(data.instrument)?data.instrument:'piano',pitch=validPitches.has(data.pitch)?data.pitch:'middle';
+    const effect=validEffects.has(data.effect)?data.effect:'normal';
+    const redraw=side.instrument!==instrument||side.pitch!==pitch,effectChanged=side.effectSelect.value!==effect;
+    side.instrument=instrument;side.pitch=pitch;side.instrumentSelect.value=instrument;side.effectSelect.value=effect;
+    side.pitchBox.querySelectorAll('button').forEach(button=>button.classList.toggle('active',button.dataset.pitch===pitch));
+    if(redraw){renderSide(side);prefetchSelection(side);}
+    const loopKey=data.loop?data.loop.data:'';
+    if(side.sharedLoopKey!==loopKey){
+      stopLoop(side);side.loopBuffer=await decodeSharedLoop(data.loop);side.sharedLoopKey=loopKey;
+      side.loopButton.disabled=!side.loopBuffer;side.deleteButton.disabled=!side.loopBuffer;
+    }
+    if(effectChanged&&side.loopSource)stopLoop(side);
+    if(data.loopPlaying&&side.loopBuffer&&!side.loopSource)await startLoop(side,Math.max(0,Number(data.loopElapsedMs)||0)/1000+elapsed);
+    else if(!data.loopPlaying&&side.loopSource)stopLoop(side);
+    if(data.loopPlaying)setStatus(side,'Voice loop playing · compact shared audio');
+    else setStatus(side,String(data.status||'Mic is local').slice(0,120));
+    (Array.isArray(data.activeNotes)?data.activeNotes:[]).forEach(id=>active.add(id));
+  }
+  const validBacking=new Set(['none','pop','funk','chill','dance']),name=validBacking.has(saved.backingName)?saved.backingName:'none';
+  if(saved.backingPlaying&&name!=='none'){
+    if(!backingPlaying||backingName!==name)await setBacking(name,Math.max(0,Number(saved.backingElapsedMs)||0)/1000+elapsed);
+  }else{if(backingPlaying)stopBacking();backingName=name;updateBackingUi();}
+  for(const note of (Array.isArray(saved.notes)?saved.notes:[]).slice(-64)){
+    if(!note||typeof note.id!=='string')continue;
+    const side=sides.find(item=>item.id===note.side);if(!side)continue;
+    if(!heardSharedNotes.has(note.id)&&Date.now()-Number(note.at)<2500){heardSharedNotes.add(note.id);playSharedNote(note,side);}
+  }
+  while(heardSharedNotes.size>512)heardSharedNotes.delete(heardSharedNotes.values().next().value);
+  for(const [id,state]of sharedRemoteNotes){
+    if(!active.has(id)){
+      if(!state.drum&&!state.released){state.released=true;if(state.source)try{state.gain.gain.setTargetAtTime(0,audioContext.currentTime,.025);state.source.stop(audioContext.currentTime+.12)}catch(_){}}
+    }
+  }
+  sides.forEach(side=>{
+    const data=saved.sides.find(item=>item.id===side.id)||{},ids=new Set(data.activeNotes||[]);
+    const values=new Set((saved.notes||[]).filter(note=>ids.has(note.id)).map(note=>note.value));
+    [...side.pads.children].forEach(pad=>pad.classList.toggle('pressed',values.has(pad.dataset.value)));
+  });
+  if(!options.spectator){sharedNoteEvents.length=0;sharedMusicEpoch++;}
+  return true;
+}
+
+function captureLocalMusic(){
+  const now=Date.now(),saved=captureMusicMaker();
+  saved.backingElapsedMs=backingPlaying?Math.max(0,now-backingStartedAt):0;
+  saved.sides.forEach((data,i)=>{data.loopPlaying=!!sides[i].loopSource;data.loopElapsedMs=data.loopPlaying?Math.max(0,now-sides[i].loopStartedAt):0;});
+  return saved;
+}
+
+async function restoreLocalMusic(saved){
+  await restoreMusicMaker(saved);
+  if(saved.backingPlaying&&backingName!=='none')await setBacking(backingName,Math.max(0,Number(saved.backingElapsedMs)||0)/1000);
+  for(let i=0;i<sides.length;i++)if(saved.sides[i]?.loopPlaying&&sides[i].loopBuffer)await startLoop(sides[i],Math.max(0,Number(saved.sides[i].loopElapsedMs)||0)/1000);
+  return true;
+}
+
+window.MusicMakerSharedAdapter={capture:captureSharedMusic,restore:restoreSharedMusic,captureLocal:captureLocalMusic,restoreLocal:restoreLocalMusic,startFresh:freshMusicMaker};
+
 window.MusicMakerAutosave={
   id:'music-maker',title:'Music Maker',version:1,capture:captureMusicMaker,restore:restoreMusicMaker,
   meaningful:()=>backingName!=='none'||sides.some(side=>side.instrument!=='piano'||side.pitch!=='middle'||side.effectSelect.value!=='normal'||!!side.loopBuffer),
@@ -544,6 +697,8 @@ window.MusicMakerAutosave={
 
 sides.forEach(prefetchSelection);
 ['pop','funk','chill','dance'].forEach(name=>prefetch(`background/${name}.wav`).catch(()=>{}));
+// Joining a room is a user gesture, so unlock audio while that gesture is live.
+for(const event of ['pointerdown','pointerup','click','touchend'])document.addEventListener(event,()=>{ensureAudio().catch(()=>{})},{capture:true,passive:true});
 window.addEventListener('arcadepause',pauseAllAudio);
 window.addEventListener('pagehide',shutdown,{once:true});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseAllAudio()});

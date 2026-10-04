@@ -14,7 +14,11 @@
   ],
   "tags": [
     "touch",
-    "quick"
+    "quick",
+    "online",
+    "nearby"
   ],
-  "orientation": "any"
+  "orientation": "any",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

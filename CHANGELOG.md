@@ -1,5 +1,48 @@
 # Changelog
 
+## 2.5.0 - 2026-10-03
+
+- Added Internet and Nearby shared rooms to the 34 activities that lacked an
+  online mode. All 43 enabled entries now have an online path: eight competitive
+  games, 34 shared activities, and Arcade Chat. Backyard Baseball stays disabled.
+- Added one-controller shared play with room codes, live accepted checkpoints,
+  visual updates, explicit control passing, offline-controller recovery, and
+  restoration of each browser's local activity when it leaves the room.
+- Added automatic control handoff to Make 10, Blackjack, Shuffleboard, and
+  Bowling when their configured local players match the room roster. Other
+  shared activities use explicit passing. Observers see the controller's moves
+  and animation without running a competing simulation.
+- Bounded and compressed shared checkpoints and canvas previews. Music Maker
+  now shares live note events, backing selections, and compact voice-loop copies
+  while preserving full-quality local recordings and local audio preferences.
+- Added image attachments to Arcade Chat through file selection, clipboard
+  paste, and drag/drop, with adaptive compression, preview/remove, captions,
+  image-only messages, an accessible larger viewer, and reconnect history.
+- Validated chat raster signatures and dimensions, bounded image/history sizes,
+  rejected SVG and external image URLs, and deduplicated retries after a lost
+  HTTP response. Image-only messages retain incoming sounds and notifications.
+- Repaired competitive-room acknowledgement and stale-response races, disabled
+  competing input while an online move is pending, and preserved authoritative
+  state across reconnects and presence-only updates.
+- Made Sorry card/no-move boundaries visible to other players and extended
+  Nearby validation for those phases. Repaired Monopoly validation for animated
+  rolls and chained movement to Jail.
+- Added shared adapters for Simon, Hangman, Jigsaw, Make 10, Trivia, and Music
+  Maker to preserve phase, accepted input, completed states, private drafts,
+  audio, and compact media during observation and control transfer.
+- Repaired narrow portrait and short landscape layouts, controls, boards, and
+  keyboard handling across the Arcade, including Chat, Chess, Make 10, Math,
+  Maze, Time, Monopoly, Sorry, Bowling, and Typing. Added native desktop typing,
+  cursor editing, and complete-emoji deletion regressions.
+- Repositioned shared-play/settings controls to avoid game controls, including
+  final collision fixes in Checkers, Maze, Simon, and Mini Golf.
+- Added repeatable desktop/mobile browser tests against actual Worker
+  HTTP/WebSocket rooms, shared-state and recovery checks, image tests, an
+  all-catalog visual sweep, and CI coverage for local WebRTC without Internet
+  signaling. Browser evidence is retained by CI.
+- Final release validation, refreshed offline snapshot, and deployment checks
+  are recorded in `docs/arcade-stress-test-2.5.0.md`.
+
 ## 2.4.2 - 2026-09-17
 
 - Fixed online Memory so all players see each card as it is flipped, including

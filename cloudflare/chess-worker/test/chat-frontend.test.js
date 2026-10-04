@@ -423,3 +423,77 @@ test("saved Chat resumes keep their authority on transient failure and clear it 
     assert.equal(errors.length, 0, errors.map((error) => error.message).join("\n"));
   } finally { dom.window.close(); }
 });
+
+test("incoming image-only messages render safely, notify once, and support the accessible viewer", async () => {
+  const notifications = [];
+  const fetchImpl = async () => response({ ok: true, code: "ABC234", token, playerId: "p_host", seat: 0, room: room() });
+  const { dom, errors, sockets } = await loadChat(fetchImpl, null, {
+    storage: { arcadeChat_notifications_v1: "1" },
+    install(window) { window.Notification = class { static permission = "granted"; constructor(title, options) { notifications.push({ title, options }); } }; }
+  });
+  try {
+    const { document, KeyboardEvent } = dom.window;
+    document.hasFocus = () => false;
+    document.querySelector("#startName").value = "River"; document.querySelector("#createBtn").click();
+    await new Promise(resolve => dom.window.setTimeout(resolve, 30));
+    const image = { dataUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAAGUlEQVR4nGMUOXGHgVzARLbOUc2jmmmuGQALXwHQpdKmfgAAAABJRU5ErkJggg==", width: 20, height: 12 };
+    const incoming = { id: "m_image", playerId: "p_guest", username: "Sky", text: "", image, createdAt: "2026-09-01T00:02:00.000Z" };
+    const next = room({ revision: 2, chatVersion: 1, chat: [incoming] });
+    sockets[0].emitState(next); sockets[0].emitState(next);
+    assert.equal(document.querySelectorAll(".chatImage").length, 1);
+    assert.equal(document.querySelector(".chatImage").getAttribute("src"), image.dataUrl);
+    assert.equal(notifications.length, 1);
+    assert.equal(notifications[0].options.body, "Shared an image");
+    const button = document.querySelector(".chatImageButton"); button.click();
+    assert.equal(document.querySelector("#imageViewer").classList.contains("hidden"), false);
+    assert.equal(document.querySelector(".app").inert, true);
+    dom.window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+    assert.equal(document.querySelector("#imageViewer").classList.contains("hidden"), true);
+    assert.equal(document.activeElement, button);
+    const invalid = { ...incoming, id: "m_unsafe", image: { ...image, dataUrl: "javascript:alert(1)" } };
+    sockets[0].emitState(room({ revision: 3, chatVersion: 2, chat: [incoming, invalid] }));
+    assert.equal(document.querySelectorAll(".chatImage").length, 1);
+    assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("chat pruning preserves message DOM and incoming messages do not pull readers away from history", async () => {
+  const history = [0,1,2].map(index => ({ id: "history_" + index, playerId: "p_guest", username: "Sky", text: "Message " + index, createdAt: "2026-09-01T00:00:00.000Z" }));
+  const fetchImpl = async () => response({ ok: true, code: "ABC234", token, playerId: "p_host", seat: 0, room: room({ chatVersion: 3, chat: history }) });
+  const { dom, errors, sockets } = await loadChat(fetchImpl);
+  try {
+    const { document } = dom.window;
+    document.querySelector("#startName").value = "River"; document.querySelector("#createBtn").click();
+    await new Promise(resolve => dom.window.setTimeout(resolve, 50));
+    const retained = document.querySelector('[data-message-key="history_1"]'), list = document.querySelector("#messages");
+    Object.defineProperty(list,"scrollHeight",{ get: () => 1000 }); Object.defineProperty(list,"clientHeight",{ get: () => 200 }); list.scrollTop = 100;
+    const incoming = { id: "history_3", playerId: "p_guest", username: "Sky", text: "Newest", createdAt: "2026-09-01T00:02:00.000Z" };
+    sockets[0].emitState(room({ revision: 2, chatVersion: 4, chat: [...history.slice(1), incoming] }));
+    await new Promise(resolve => dom.window.setTimeout(resolve, 30));
+    assert.equal(document.querySelector('[data-message-key="history_1"]'), retained);
+    assert.equal(document.querySelector('[data-message-key="history_0"]'), null);
+    assert.equal(list.scrollTop, 100);
+    assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("a delayed initial chat scroll cannot override a reader's newer scroll position", async () => {
+  const frames = new Map(); let frameId = 0;
+  const history = [{ id: "history_0", playerId: "p_guest", username: "Sky", text: "Earlier", createdAt: "2026-09-01T00:00:00.000Z" }];
+  const fetchImpl = async () => response({ ok: true, code: "ABC234", token, playerId: "p_host", seat: 0, room: room({ chatVersion: 1, chat: history }) });
+  const { dom, errors } = await loadChat(fetchImpl, null, { install(window) {
+    window.requestAnimationFrame = callback => { const id = ++frameId; frames.set(id, callback); return id; };
+    window.cancelAnimationFrame = id => frames.delete(id);
+  } });
+  try {
+    const { document } = dom.window;
+    document.querySelector("#startName").value = "River"; document.querySelector("#createBtn").click();
+    await new Promise(resolve => dom.window.setTimeout(resolve, 30));
+    assert.ok(frames.size > 0, "the initial auto-scroll is deliberately queued");
+    const list = document.querySelector("#messages");
+    Object.defineProperty(list,"scrollHeight",{ get: () => 1000 }); Object.defineProperty(list,"clientHeight",{ get: () => 200 }); list.scrollTop = 100;
+    for (const callback of [...frames.values()]) callback(1000);
+    assert.equal(list.scrollTop, 100, "a reader moved before the delayed frame, so it must not scroll to the bottom");
+    assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});

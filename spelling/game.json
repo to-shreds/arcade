@@ -8,7 +8,18 @@
   "multiplayer": false,
   "playersMin": 1,
   "playersMax": 1,
-  "categories": ["word", "educational"],
-  "tags": ["keyboard", "picture", "calm"],
-  "orientation": "any"
+  "categories": [
+    "word",
+    "educational"
+  ],
+  "tags": [
+    "keyboard",
+    "picture",
+    "calm",
+    "online",
+    "nearby"
+  ],
+  "orientation": "any",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

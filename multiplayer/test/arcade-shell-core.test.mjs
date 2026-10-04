@@ -218,4 +218,8 @@ test("Surprise Me uses actual multiplayer room capacities instead of broad catal
   assert.equal(surpriseGame(catalog.filter(item => item.folder === "dots"), 5), null);
   assert.equal(surpriseGame(catalog, 5, () => 0).folder, "monopoly");
   assert.equal(surpriseGame(catalog, 7), null);
+  const shared = { folder: "paint-lab", enabled: true, onlineMode: "shared", playersMax: 1 };
+  assert.equal(surpriseGame([...catalog, shared], 8).folder, "paint-lab");
+  assert.equal(surpriseGame([{ ...shared, enabled: false }], 2), null);
+  assert.equal(surpriseGame([shared], 9), null);
 });

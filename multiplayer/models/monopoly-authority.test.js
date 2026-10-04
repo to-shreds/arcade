@@ -391,6 +391,51 @@ test("Monopoly accepts the exact animated direct-to-Jail card movement metadata"
   assert.doesNotThrow(() => validateMonopolyTransition(table, table.members[0], action(after, { kind: "resolve-card", deck: "chance", cardId: "c_jail" })));
 });
 
+test("Monopoly publishes exact animated dice paths before arrival without allowing ledger or path fabrication", () => {
+  for (const [jailed, priorDoubles, dice] of [[false, 0, [1, 2]], [false, 1, [3, 3]], [false, 2, [2, 2]], [true, 0, [4, 4]]]) {
+    const before = state();
+    before.players[0].pos = jailed ? 10 : 28;
+    before.players[0].inJail = jailed;
+    before.players[0].jailTurns = jailed ? 2 : 0;
+    before.doublesCount = priorDoubles;
+    const after = structuredClone(before), total = dice[0] + dice[1], triple = !jailed && priorDoubles === 2;
+    after.phase = "moving";
+    after.lastRoll = dice;
+    after.doublesCount = jailed || triple || dice[0] !== dice[1] ? 0 : priorDoubles + 1;
+    after.extraRoll = !jailed && !triple && dice[0] === dice[1];
+    if (jailed) { after.players[0].inJail = false; after.players[0].jailTurns = 0; }
+    after.pendingMove = triple
+      ? { playerId: 0, path: [10], cursor: 0, total: 1, collectGo: false, direction: 1, resolution: "jail", meta: { reason: "Three doubles in one turn. Go directly to Jail!" } }
+      : { playerId: 0, path: Array.from({ length: total }, (_, index) => (before.players[0].pos + index + 1) % 40), cursor: 0, total, collectGo: true, direction: 1, resolution: jailed ? "jailRoll" : "roll", meta: jailed ? {} : { d1: dice[0], d2: dice[1] } };
+    const table = room(before), intent = { kind: "roll", d1: dice[0], d2: dice[1] };
+    assert.doesNotThrow(() => validateMonopolyTransition(table, table.members[0], action(after, intent)));
+    const fabricated = structuredClone(after); fabricated.players[0].cash++;
+    assert.throws(() => validateMonopolyTransition(table, table.members[0], action(fabricated, intent)), /player ledger/);
+    const wrongPath = structuredClone(after); wrongPath.pendingMove.path[0] = 39;
+    assert.throws(() => validateMonopolyTransition(table, table.members[0], action(wrongPath, intent)), /animated roll path/);
+  }
+});
+
+test("Monopoly publishes Go To Jail as a second canonical movement before applying the jail decision", () => {
+  const before = state();
+  before.players[0].pos = 28;
+  before.lastRoll = [1, 1]; before.doublesCount = 1; before.extraRoll = true;
+  before.phase = "moving";
+  before.pendingMove = { playerId: 0, path: [29, 30], cursor: 0, total: 2, collectGo: true, direction: 1, resolution: "roll", meta: { d1: 1, d2: 1 } };
+  const chained = structuredClone(before);
+  chained.players[0].pos = 30;
+  chained.pendingMove = { playerId: 0, path: [10], cursor: 0, total: 1, collectGo: false, direction: 1, resolution: "jail", meta: { reason: "Go directly to Jail!" } };
+  const table = room(before);
+  assert.doesNotThrow(() => validateMonopolyTransition(table, table.members[0], action(chained, { kind: "complete-move", playerId: 0 })));
+  const forged = structuredClone(chained); forged.pendingMove.path[0] = 11;
+  assert.throws(() => validateMonopolyTransition(table, table.members[0], action(forged, { kind: "complete-move", playerId: 0 })), /animated Go To Jail/);
+  const arrived = structuredClone(chained);
+  arrived.players[0].pos = 10; arrived.players[0].inJail = true; arrived.players[0].jailTurns = 0;
+  arrived.pendingMove = null; arrived.phase = "end"; arrived.doublesCount = 0; arrived.extraRoll = false;
+  const chainedTable = room(chained);
+  assert.doesNotThrow(() => validateMonopolyTransition(chainedTable, chainedTable.members[0], action(arrived, { kind: "complete-move", playerId: 0 })));
+});
+
 test("Monopoly completes an animated direct-to-Jail card by clearing a prior doubles roll", () => {
   const before = state();
   before.players[0].pos = 1;

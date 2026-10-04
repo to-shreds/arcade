@@ -1701,6 +1701,15 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 </style>
 
 <style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+<style id="arcade-landscape-playable">
+#g-checkers .ck-top{padding-right:60px!important}
+@media (orientation:landscape) and (max-height:500px){
+#g-checkers .ck-top{flex:0 0 auto!important;min-height:44px!important}
+#g-checkers .ck-wrap{min-height:0!important;justify-content:flex-start!important;padding:5px!important;gap:4px!important}
+#g-checkers .ck-board-wrap{width:min(62vw,calc(100svh - 90px))!important;height:min(62vw,calc(100svh - 90px))!important;flex:0 0 auto!important}
+#g-checkers .ck-sub{font-size:11px!important;line-height:1.2!important}
+}
+</style>
 </head>
 <body>
 
@@ -2510,6 +2519,7 @@ const FeedbackSys = (function(){
             if(!room || room.game !== 'checkers') return false;
             if(!['lobby','active','finished'].includes(room.status)) return false;
             const roomCode = cleanOnlineCode(room.code || online.code);
+            if(online.code && roomCode !== online.code) return false;
             const members = Array.isArray(room.members) ? room.members : [];
             const occupied = new Set();
             if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(roomCode) || Number(room.maxPlayers) !== 2 || members.length > 2) return false;
@@ -2637,10 +2647,13 @@ const FeedbackSys = (function(){
         }
         async function refreshOnlineRoom(forceHydrate){
             if(!online.code || !online.token) return false;
+            const code=online.code,token=online.token;
             try{
-                const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(online.code) + '/state', {headers:{'authorization':'Bearer ' + online.token}});
+                const body = await onlineFetch('/api/arcade/rooms/' + encodeURIComponent(code) + '/state', {headers:{'authorization':'Bearer ' + token}});
+                if(online.code !== code || online.token !== token) return false;
                 return applyOnlineRoom(roomFromResponse(body), !!forceHydrate);
             }catch(error){
+                if(online.code !== code || online.token !== token) return false;
                 if(terminalRoomStatus(error)){ finishLeavingOnlineRoom(); return false; }
                 throw error;
             }
@@ -3480,10 +3493,12 @@ const FeedbackSys = (function(){
 
             if(move){
                 applyMove(move);
-            } else if(!chainLock){
+            } else if(!chainLock && (!selected || selected.r !== rc.r || selected.c !== rc.c)){
                 clearSelection();
             }
 
+            // Releasing on the selected piece is a tap, so leave its legal
+            // destinations visible for the next tap as well as drag-to-move.
             hover = null;
             draw();
         }
@@ -3728,7 +3743,16 @@ const FeedbackSys = (function(){
         canvas.addEventListener('pointerdown', (e) => { e.preventDefault(); pointerDown(e); });
         canvas.addEventListener('pointermove', (e) => { if(dragging){ e.preventDefault(); pointerMove(e); } });
         canvas.addEventListener('pointerup', (e) => { if(dragging){ e.preventDefault(); pointerUp(e); } });
-        canvas.addEventListener('pointercancel', (e) => { if(dragging){ e.preventDefault(); pointerUp(e); } });
+        canvas.addEventListener('pointercancel', (e) => {
+            if(!dragging || e.pointerId !== dragPointerId) return;
+            e.preventDefault();
+            dragging = false;
+            try{ canvas.releasePointerCapture(dragPointerId); }catch(_){}
+            dragPointerId = null;
+            hover = null;
+            if(!chainLock) clearSelection();
+            draw();
+        });
         if(onlineCodeInput) onlineCodeInput.addEventListener('input', function(){
             const next = cleanOnlineCode(onlineCodeInput.value);
             if(onlineCodeInput.value !== next) onlineCodeInput.value = next;

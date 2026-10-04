@@ -54,3 +54,22 @@ jobs:
           node tools/test-shell-navigation.mjs
           node tools/test-android-wrapper.mjs
           node tools/test-offline-runtime.mjs
+
+      - name: Install Chromium browser checks
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Exercise desktop and mobile browsers against actual rooms
+        run: npm run test:browser
+
+      - name: Verify local WebRTC without Internet signaling
+        run: npm run test:nearby-browser
+
+      - name: Retain browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arcade-browser-checks
+          path: test-results/
+          retention-days: 7

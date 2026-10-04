@@ -14,7 +14,11 @@
   ],
   "tags": [
     "touch",
-    "calm"
+    "calm",
+    "online",
+    "nearby"
   ],
-  "orientation": "landscape"
+  "orientation": "landscape",
+  "onlineMode": "shared",
+  "onlinePlayersMax": 8
 }

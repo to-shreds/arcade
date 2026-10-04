@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script src="../multiplayer/shared-room-client.js"></script>
+<script src="../multiplayer/shared-activity.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Arcade</title>
@@ -1376,6 +1380,22 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 </style>
 
 <style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+<style>
+@media (orientation:portrait) and (min-height:500px){
+  #g-clock .keypad{width:min(260px,90vw)!important;max-width:260px!important}
+  #g-clock .kp-btn{min-height:44px!important;padding:9px!important;font-size:20px!important}
+}
+</style>
+<style id="arcade-landscape-playable">
+@media (orientation:landscape) and (max-height:500px){
+#g-clock{flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:22px!important;padding:42px 15px 10px!important}
+#g-clock .clock-face{width:min(260px,calc(100svh - 70px))!important;height:min(260px,calc(100svh - 70px))!important;margin:0!important}
+#g-clock .clock-ui{width:min(300px,40vw)!important;max-height:calc(100svh - 70px)!important;gap:6px!important;overflow:auto!important}
+#g-clock .keypad{width:min(230px,36vw)!important;max-width:230px!important;gap:5px!important;margin:0!important}
+#g-clock .kp-btn{min-height:44px!important;padding:6px!important;font-size:19px!important}
+#g-clock .display-box{font-size:24px!important;padding:5px 12px!important}
+}
+</style>
 </head>
 <body>
 

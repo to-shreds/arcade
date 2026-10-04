@@ -375,3 +375,25 @@ test("Sorry recovers an authoritative turn after the active middle player leaves
   after.phase = "action";
   assert.doesNotThrow(() => validateSorryTransition(game, { playerId: "p2", seat: 2, username: "Jordan", leftAt: null }, stateAction(after, { nextSeat: 2 })));
 });
+
+test("Sorry exposes a no-move drawn card before forfeiting and cannot use that boundary to skip a legal move", () => {
+  const before = baseState(); putCardOnTop(before,"4");
+  const revealed = structuredClone(before);
+  revealed.currentCard = revealed.deck.pop(); revealed.phase = "noMove";
+  assert.doesNotThrow(() => validateSorryTransition(room(before), member(0), stateAction(revealed,{nextSeat:0})));
+  const passed = structuredClone(revealed);
+  passed.discard.push(passed.currentCard); passed.currentCard = null; passed.phase = "draw"; passed.turn = 1;
+  assert.doesNotThrow(() => validateSorryTransition(room(revealed), member(0), stateAction(passed,{nextSeat:1})));
+  const legal = baseState(); putCardOnTop(legal,"1");
+  const forged = structuredClone(legal); forged.currentCard = forged.deck.pop(); forged.phase = "noMove";
+  assert.throws(() => validateSorryTransition(room(legal),member(0),stateAction(forged,{nextSeat:0})),/next legal card/);
+});
+
+
+test("Sorry permits the visible card boundary before an automatic sole legal move", () => {
+  const before=baseState();before.pawns[0].zone="track";before.pawns[0].pos=4;before.pawns[1].zone="home";before.pawns[2].zone="home";putCardOnTop(before,"3");
+  const revealed=structuredClone(before);revealed.currentCard=revealed.deck.pop();revealed.phase="action";
+  assert.doesNotThrow(()=>validateSorryTransition(room(before),member(0),stateAction(revealed,{nextSeat:0})));
+  const moved=structuredClone(revealed);moved.pawns[0].pos=7;moved.moveNo++;moved.discard.push(moved.currentCard);moved.currentCard=null;moved.phase="draw";moved.turn=1;
+  assert.doesNotThrow(()=>validateSorryTransition(room(revealed),member(0),stateAction(moved,{nextSeat:1})));
+});
