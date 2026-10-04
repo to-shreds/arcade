@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.5.0+20261003.1",
-  "generatedAt": "2026-10-04T18:06:07.734Z",
+  "generatedAt": "2026-10-04T18:48:26.596Z",
   "fileCount": 343,
-  "totalBytes": 17616787,
+  "totalBytes": 17617123,
   "files": [
     {
       "path": "apple-touch-icon.png",
@@ -1717,8 +1717,8 @@
     },
     {
       "path": "typing/index.html",
-      "bytes": 10125,
-      "sha256": "33043661edbbc5b655facddb023f7ac86538b47cf4b1ada779676164c8c1de3e"
+      "bytes": 10461,
+      "sha256": "66a11cf719b868aff1fc3873e0c394c275a8a0f43d586c1994228fee162919bd"
     }
   ]
 }

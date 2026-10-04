@@ -26,7 +26,7 @@ body{touch-action:manipulation}
 .emoji-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:5px;max-height:min(210px,31vh);overflow:auto;padding:3px}
 .emoji-grid[hidden],.letter-board[hidden]{display:none!important}
 .emoji-key{min-height:45px;border:1px solid var(--arcade-line);border-radius:11px;background:rgba(255,255,255,.08);font-size:25px}.counter{font-size:12px;color:var(--arcade-muted);font-weight:900;text-align:center;white-space:nowrap}
-@media(max-width:480px){.editor{padding:14px;font-size:clamp(25px,7.4vw,42px)}.keyboard{padding:5px;gap:4px}.key-row{gap:3px}.key{border-radius:9px}.emoji-grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
+@media(max-width:480px){.typing-app .arcade-top{grid-template-columns:auto minmax(0,1fr) auto;column-gap:5px;row-gap:3px}.typing-app .arcade-title{grid-column:2;grid-row:1;font-size:clamp(18px,5.8vw,24px)}.typing-app .arcade-actions{display:contents}.typing-app .counter{grid-column:1/-1;grid-row:2;line-height:1.35}.typing-app #clear{grid-column:3;grid-row:1}.editor{padding:14px;font-size:clamp(25px,7.4vw,42px)}.keyboard{padding:5px;gap:4px}.key-row{gap:3px}.key{border-radius:9px}.emoji-grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
 @media(max-height:540px){.typing-app{gap:4px}.editor{min-height:56px;padding:10px;font-size:clamp(24px,7.5vh,38px)}.keyboard{padding:4px;gap:3px}.key{height:33px;font-size:15px;border-radius:8px}.key-row{gap:3px}.emoji-grid{max-height:112px;grid-template-columns:repeat(10,minmax(0,1fr))}.emoji-key{min-height:34px;font-size:19px}}
 </style>
 </head>

@@ -46,6 +46,8 @@
   Shuffleboard pass control or reload, including visible game-over menus and
   winner announcements on observers.
 - Repaired the Chat sound/notification button spacing in short landscape views.
+- Separated Typing's character count from its title on narrow screens, including
+  long counts, while keeping the keyboard and editing area accessible.
 - Initialized each Nearby data channel once, preventing a duplicate native-open
   callback from disconnecting a newly paired player through replay protection.
 - Added repeatable desktop/mobile browser tests against actual Worker

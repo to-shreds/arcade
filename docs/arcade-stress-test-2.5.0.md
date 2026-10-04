@@ -144,6 +144,9 @@ board, long-duration game, or future browser/OS behavior.
   room reload. Rendered-pixel checks verify the game-over menu and winner
   announcement remain visible to observers.
 - Kept Chat's Sound and Notify controls readable and separate in short landscape.
+- Moved Typing's character count to a separate header row on narrow screens.
+  Four viewport checks verify non-overlapping controls, a 100,000-character
+  count, and working physical/on-screen typing and Clear controls.
 - Made Nearby channel-open initialization idempotent, so an already-open channel
   and its queued native event send one join request without weakening replay
   protection. The transport regression suite now includes this browser race.
@@ -194,7 +197,7 @@ browser. No image-storage or media-relay service was added.
 | Chat actual-browser image flow | Passed desktop, portrait, narrow portrait, and landscape checks with no page errors |
 | Shared adapter and recovery scenarios | Desktop and mobile adapters, 34/34 untouched lobbies, seven recovery cases plus two terminal handoff/reload cases, and six physics control transfers passed |
 | Native input, Home, and wrapper/static checks | Passed; no physical-device claim |
-| Offline manifest and service worker | 343 files / 17,616,787 bytes verified; complete offline download, reload, Paint launch, and Home passed in Chromium |
+| Offline manifest and service worker | 343 files / 17,617,123 bytes verified; complete offline download, reload, Paint launch, and Home passed in Chromium |
 | Production Pages and Worker rollout | Per-commit deployment results are recorded in GitHub Actions and ProjectStatus; optional public-browser smoke runner included |
 | Actual local WebRTC browser pairing | Blocked in this runtime; CI check added |
 | Physical iOS/Android hardware | Not tested |
