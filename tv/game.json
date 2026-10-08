@@ -1,0 +1,14 @@
+{
+  "title": "TV",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "order": 282,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["media", "family"],
+  "tags": ["shows", "movies", "torbox", "internet-required"],
+  "orientation": "any"
+}

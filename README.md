@@ -8,7 +8,46 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
-## Release 2.5.0
+## Release 2.6.0
+
+Two solo entries join the existing 43 online games and activities:
+
+- **Logan and Jenkins**: the reviewed Operation Giggle adventure from
+  `Misc/AdventureGame`, now maintained in `adventure/index.html` here. It keeps
+  the 124-scene story, eight happy endings, exact Back behavior, measured text
+  pages, and optional narration. It works offline after the Arcade copy is
+  prepared. Story recipe history stays local; it does not save an unfinished run.
+- **TV**: a simple alphabetized preset list with Shows and Movies, season and
+  episode choices, fullscreen playback by default, and automatic next episodes.
+  The four original requested series use fixed identities to avoid remakes.
+  The movie presets cover Disney animation, Pixar, Disney animated sequels,
+  Jumanji (1995), and the Night at the Museum films. See `tv/README.md` for the
+  exact catalog scope and playback behavior.
+
+TV reuses the existing TorBox Web Player service for catalog/source preparation
+and direct TorBox playback. Enter the API key in a password field. Optional
+Remember encrypts it in a separate browser vault using a non-extractable device
+key; Forget removes the saved key and ends the TV session. The service holds
+an active key in process memory. Keys are excluded from Arcade rooms, saves,
+exports, source code, and release archives. Browser encryption does not protect
+against malicious code running on the same origin or someone using an unlocked
+browser. TorBox can include account credentials in the owner browser's media
+URL, as it does in the full player.
+
+TV requires Internet and the hosted Arcade at
+<https://to-shreds.github.io/arcade/>. The current TorBox service permits this
+web origin. Downloaded localhost copies and the Android wrapper's local archive
+origin are not authorized by that service; TV offers the hosted Arcade link.
+The existing Android online mode uses the permitted web origin. Nearby's
+no-public-network guarantee is preserved: disconnect Nearby to use TV.
+Fullscreen and autoplay honor browser permissions; a screen-filling player and
+an explicit play button handle browsers that reject those requests.
+
+The 2.5.0 multiplayer behavior, saves, notifications, and retained APKs are
+unchanged. The catalog now has 45 enabled entries, of which 43 have online rooms.
+See [the 2.6.0 checks](docs/arcade-stress-test-2.6.0.md).
+
+## Existing release 2.5.0
 
 All 43 enabled catalog entries can use Internet or Nearby rooms. Eight games
 retain their competitive multiplayer rules, 34 activities use shared controls,
@@ -95,7 +134,7 @@ Internet is not needed during Nearby play. Each browser must first visit the
 Arcade and complete **Make Available Offline** while it has Internet access. A
 device that has never downloaded a website cannot open that site while offline.
 
-Nearby transport is integrated with all 43 enabled catalog entries, using the
+Nearby transport is integrated with the 43 online catalog entries, using the
 online modes described above. Local same-device play and CPU modes remain
 available. Direct links such as `/chess/` also remain usable; without the
 persistent Arcade shell they use Internet multiplayer through Cloudflare.
@@ -277,7 +316,7 @@ The generated manifest must be refreshed whenever deployable web content
 changes:
 
 ```sh
-node tools/generate-offline-manifest.mjs --version 2.5.0+20261003.1
+node tools/generate-offline-manifest.mjs --version 2.6.0+20261008.1
 ```
 
 ## Practical browser limitations

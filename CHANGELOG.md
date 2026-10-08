@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.6.0 - 2026-10-08
+
+- Added Logan and Jenkins: Operation Giggle and made Arcade its canonical
+  maintained source. Reviewed story continuity, branching, Back behavior,
+  narration, mobile pagination, and lifecycle before integrating it.
+- Added TV with fixed alphabetized show/movie presets, season/episode selection,
+  automatic next episodes, fullscreen playback and a screen-filling fallback.
+- Reused the existing TorBox service and isolated browser-encrypted remembered
+  keys from Arcade saves and rooms. Added Forget and clear offline/unsupported
+  origin feedback. TV requires Internet; the story remains fully offline.
+- Preserved the prior 43 online entries and updated the verified offline bundle.
+
+
 ## 2.5.0 - 2026-10-03
 
 - Added Internet and Nearby shared rooms to the 34 activities that lacked an

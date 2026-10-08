@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090d1e">
+  <meta name="referrer" content="no-referrer">
+  <title>TV | Arcade</title>
+  <script src="../arcade-save.js"></script>
+  <link rel="stylesheet" href="../arcade-ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="arcade-shell">
+<main class="arcade-app">
+  <header class="arcade-top">
+    <a class="arcade-btn arcade-home arcade-home-link" id="home" href="../index.html">⌂ Arcade</a>
+    <h1 class="arcade-title">TV</h1>
+    <div class="arcade-actions"><button class="arcade-btn" id="connect" type="button">Connect</button></div>
+  </header>
+  <div class="connection-note" id="connection-note" role="status">Connect your TorBox account to watch.</div>
+  <div class="tv-layout" id="tv-layout">
+    <section class="library arcade-panel" aria-label="Choose a show or movie">
+      <div class="tabs" role="tablist" aria-label="TV library">
+        <button class="arcade-btn gold" id="shows-tab" role="tab" aria-selected="true" aria-controls="titles" type="button">Shows</button>
+        <button class="arcade-btn" id="movies-tab" role="tab" aria-selected="false" aria-controls="titles" type="button">Movies</button>
+      </div>
+      <div class="title-list" id="titles" role="tabpanel" aria-labelledby="shows-tab"></div>
+    </section>
+    <section class="details arcade-panel" id="details" aria-labelledby="selected-title">
+      <button class="arcade-btn list-back" id="list-back" type="button">← All titles</button>
+      <div class="tv-symbol" aria-hidden="true">📺</div>
+      <h2 id="selected-title">What shall we watch?</h2>
+      <p id="selected-year">Choose a show or movie from the list.</p>
+      <div id="episode-fields" hidden>
+        <label for="season">Season</label><select id="season" aria-label="Season"></select>
+        <label for="episode">Episode</label><select id="episode" aria-label="Episode"></select>
+      </div>
+      <button class="arcade-btn gold play-button" id="play" type="button" disabled>▶ Play</button>
+      <p id="detail-status" class="status" role="status" aria-live="polite"></p>
+      <label class="check autoplay-setting"><input id="autoplay" type="checkbox" checked> Play the next episode automatically</label>
+    </section>
+  </div>
+</main>
+
+<dialog id="connection-dialog" aria-labelledby="connection-title">
+  <div class="dialog-head"><h2 id="connection-title">Connect TorBox</h2><button class="arcade-btn" id="connection-close" type="button" aria-label="Close connection settings">✕</button></div>
+  <form id="connection-form">
+    <label for="api-key">TorBox API key</label>
+    <input id="api-key" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Enter your TorBox API key" required>
+    <label class="check"><input id="remember" type="checkbox"> Remember encrypted on this device</label>
+    <button class="arcade-btn gold" id="login" type="submit">Connect</button>
+  </form>
+  <p class="status" id="connection-status" role="status" aria-live="polite"></p>
+  <button class="arcade-btn danger" id="disconnect" type="button">Disconnect &amp; forget key</button>
+  <p class="privacy-note">Remember saves an encrypted key in this browser. The existing TorBox connection service also holds it temporarily in session memory. Disconnect removes the saved key.</p>
+</dialog>
+
+<section class="player" id="player" role="dialog" aria-modal="true" aria-label="TV player" hidden>
+  <header class="player-bar">
+    <button class="arcade-btn" id="player-back" type="button">← Back</button>
+    <strong id="playing-title">TV</strong>
+    <button class="arcade-btn" id="fullscreen" type="button" aria-label="Enter full screen">⛶</button>
+  </header>
+  <div class="screen">
+    <video id="video" controls playsinline preload="metadata" aria-label="Video player"></video>
+    <div class="player-message" id="player-message">
+      <p id="player-status" role="status" aria-live="polite">Opening…</p>
+      <div class="player-message-actions">
+        <button class="arcade-btn gold" id="player-retry" type="button" hidden>Try again</button>
+        <button class="arcade-btn gold" id="tap-play" type="button" hidden>▶ Tap to play</button>
+        <button class="arcade-btn gold" id="prepare" type="button" hidden>Prepare &amp; play</button>
+        <button class="arcade-btn gold" id="next" type="button" hidden>▶ Next episode</button>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="module" src="app.mjs"></script>
+</body>
+</html>

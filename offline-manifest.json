@@ -1,10 +1,30 @@
 {
   "schema": 1,
-  "version": "2.5.0+20261003.1",
-  "generatedAt": "2026-10-04T18:48:26.596Z",
-  "fileCount": 343,
-  "totalBytes": 17617123,
+  "version": "2.6.0+20261008.1",
+  "generatedAt": "2026-10-08T05:56:55.120Z",
+  "fileCount": 356,
+  "totalBytes": 18057228,
   "files": [
+    {
+      "path": "adventure/game.json",
+      "bytes": 312,
+      "sha256": "027babf0b1a7ea34d366848e120d42d122028afd65f9c6fbb09f92dc2c1a39ee"
+    },
+    {
+      "path": "adventure/icon.svg",
+      "bytes": 740,
+      "sha256": "52b12a0b9f3c50bf616e7e0159cbaf8e053b0cf15489259f06bfe6e4f54cbdc3"
+    },
+    {
+      "path": "adventure/index.html",
+      "bytes": 355183,
+      "sha256": "e1ce038c141bca7938953d351a9327c52410922044272d39462326ecd92ad17c"
+    },
+    {
+      "path": "adventure/README.md",
+      "bytes": 3021,
+      "sha256": "4fc0ebe17674c5d6439bdb76ee13bd960a55ce838dcc0d27ce05c450715a3556"
+    },
     {
       "path": "apple-touch-icon.png",
       "bytes": 10459,
@@ -132,8 +152,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 25413,
-      "sha256": "530ab6b578b5dc0f807a29dd9ee3962ae3c0c991a254e72b5cfcb52e12f7bda8"
+      "bytes": 26435,
+      "sha256": "501068df1e887bc896ba39e2a5e627e48f9359cf5e70ec13a93fb39a8a594e1f"
     },
     {
       "path": "chat-room/game.json",
@@ -1617,8 +1637,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27795,
-      "sha256": "6ded43bbc80c0685e17410ddef76d3adc167429da2ae51ac4ee672bcaf05e80e"
+      "bytes": 27787,
+      "sha256": "098020baa656dcebe033af2ad3d53dde732620574306afa55c1010243ccc16dd"
     },
     {
       "path": "tic-tac-toe/game.json",
@@ -1684,6 +1704,51 @@
       "path": "trivia/index.html",
       "bytes": 67746,
       "sha256": "3e0bece0dab0ffd50d9a5947fc02f5f359c77a281fc3acc02e1080954819604d"
+    },
+    {
+      "path": "tv/app.mjs",
+      "bytes": 19103,
+      "sha256": "48171c4d801e450cc647bc2364710865f9fa3a70ea54b54855b4007fd38bc5a2"
+    },
+    {
+      "path": "tv/catalog.mjs",
+      "bytes": 26376,
+      "sha256": "118bb3d3c1dc5fae76f93914d1614bda06c71825b23a02c00c52a0f5d2a3ad46"
+    },
+    {
+      "path": "tv/core.mjs",
+      "bytes": 12395,
+      "sha256": "486e61fec71fa4bd8a944d7f94b9c23a392018aa9a0e27fb4eea68a741d7320e"
+    },
+    {
+      "path": "tv/game.json",
+      "bytes": 309,
+      "sha256": "62e4d9f20275f8c8638738e24f8e6411e7f48198a2caece333b636b19bf51752"
+    },
+    {
+      "path": "tv/icon.svg",
+      "bytes": 716,
+      "sha256": "21826b04a263b8cd9f617c2cf0d9c90bf01e31c45b2f6d2fba1bf6ea650d3fef"
+    },
+    {
+      "path": "tv/index.html",
+      "bytes": 4653,
+      "sha256": "e0bb1fd3871400bd1d90dc0f8fd1aec87eb18c777e8079a3f1e9e23401e5f4c0"
+    },
+    {
+      "path": "tv/README.md",
+      "bytes": 8564,
+      "sha256": "d1f8217f1d6e37ccbfc4e1156634feb2a4fc354b43b8232386e1b38969fa8bee"
+    },
+    {
+      "path": "tv/style.css",
+      "bytes": 5286,
+      "sha256": "993e585759d93d1fef033d8bf2b6158a4591e97b8cb07cb1291bcb45c99d4a14"
+    },
+    {
+      "path": "tv/vault.mjs",
+      "bytes": 2433,
+      "sha256": "62133743c2a4cb20ed722b32c8e87baf32ec3db4adc314024771cb97f1c2509d"
     },
     {
       "path": "two-truths/game.json",

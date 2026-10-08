@@ -7,6 +7,39 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+The 2.6.0 web release adds two solo catalog entries to the previously verified
+2.5.0 release. `adventure/index.html` is now the maintained canonical source for
+Logan and Jenkins: Operation Giggle. `Misc/AdventureGame` is a historical import,
+not a second maintenance target. Preserve its 124-scene graph, eight endings,
+30 decisions per route, exact Back state, age 7-8 prose, measured pagination,
+and narration cancellation. Recipe history is not a progress save.
+
+`tv/` is a minimal preset-only TorBox client. It uses the existing
+`https://torbox-web-player-key.onrender.com` API, exact title identities, and
+browser media playback. Remembered API keys use a TV-specific encrypted
+IndexedDB vault; the backend has the key temporarily in process memory. Never
+put TV keys/session tokens/media URLs into generic Arcade saves, shared rooms,
+logs, archives, or metadata. The owner browser can receive TorBox credentialed
+CDN URLs, as in the full player. TV has no multiplayer adapter or search UI.
+
+The TorBox API permits `https://to-shreds.github.io`. Live requests from
+`https://arcade.local` and localhost were rejected by its CORS policy. TV must
+show the hosted Arcade link for those origins rather than claiming local
+archive playback works. The existing Android online mode uses the allowed
+web origin. Changing the backend allowlist was not part of this release.
+Nearby's no-public-network guard remains intact; disconnect Nearby for TV.
+Fullscreen defaults to the screen-filling player, requests native fullscreen
+within the Play gesture, and retains a tap-to-play fallback for blocked
+browser autoplay. No physical Android/iOS or real TorBox account playback
+verification is claimed for 2.6.0.
+
+The enabled catalog now has 45 entries, including the existing 43 online
+entries. Source and browser checks for the new activities are described in
+`docs/arcade-stress-test-2.6.0.md`; exact publication and artifacts belong in
+ProjectStatus. Existing APKs are retained without rebuild.
+
+## Prior release 2.5.0 baseline
+
 The 2.5.0 web release is implemented in this repository. It adds
 Internet/Nearby shared play to all 34 previously unsupported activities,
 retains the eight competitive multiplayer games, and adds images to Chat.

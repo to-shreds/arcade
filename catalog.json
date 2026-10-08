@@ -948,6 +948,30 @@
       "onlinePlayersMax": 8
     },
     {
+      "title": "Logan and Jenkins",
+      "entry": "index.html",
+      "icon": "icon.svg",
+      "order": 272,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "word",
+        "creative",
+        "family"
+      ],
+      "tags": [
+        "reading",
+        "story",
+        "offline"
+      ],
+      "orientation": "any",
+      "folder": "adventure",
+      "launchPath": "adventure/index.html"
+    },
+    {
       "title": "Silly Face Lab",
       "entry": "index.html",
       "icon": "icon.png",
@@ -971,6 +995,30 @@
       "launchPath": "silly-face-lab/index.html",
       "onlineMode": "shared",
       "onlinePlayersMax": 8
+    },
+    {
+      "title": "TV",
+      "entry": "index.html",
+      "icon": "icon.svg",
+      "order": 282,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "media",
+        "family"
+      ],
+      "tags": [
+        "shows",
+        "movies",
+        "torbox",
+        "internet-required"
+      ],
+      "orientation": "any",
+      "folder": "tv",
+      "launchPath": "tv/index.html"
     },
     {
       "title": "Sorry! Fire & Ice",
@@ -1172,8 +1220,10 @@
     "cards",
     "creative",
     "educational",
+    "family",
     "learning",
     "math",
+    "media",
     "memory",
     "music",
     "puzzle",

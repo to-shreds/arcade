@@ -48,6 +48,9 @@ jobs:
           node tic-tac-toe/test-online.cjs
           node tic-tac-toe/online.browser.test.mjs
 
+      - name: Test Adventure stories and TV client
+        run: node --test adventure/story.test.mjs tv/core.test.mjs
+
       - name: Validate packaged Arcade runtime
         run: |
           node tools/test-native-keyboard.mjs

@@ -1,0 +1,14 @@
+{
+  "title": "Logan and Jenkins",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "order": 272,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["word", "creative", "family"],
+  "tags": ["reading", "story", "offline"],
+  "orientation": "any"
+}

@@ -1,10 +1,13 @@
 {
   "name": "family-arcade-web",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "private": true,
   "scripts": {
-    "test:browser": "node tools/test-shell-browser.mjs && node tools/test-local-ui-browser.mjs && node tools/test-chat-browser.mjs && node tools/test-shared-adapters.mjs && node tools/test-shared-recovery.mjs && node tools/test-shared-lobby.mjs && node tools/test-online-browser.mjs && node tools/test-shared-simulation.mjs",
-    "test:nearby-browser": "node tools/test-nearby-browser.mjs"
+    "test:browser": "npm run test:family-browser && node tools/test-shell-browser.mjs && node tools/test-local-ui-browser.mjs && node tools/test-chat-browser.mjs && node tools/test-shared-adapters.mjs && node tools/test-shared-recovery.mjs && node tools/test-shared-lobby.mjs && node tools/test-online-browser.mjs && node tools/test-shared-simulation.mjs",
+    "test:nearby-browser": "node tools/test-nearby-browser.mjs",
+    "test:family": "npm run test:family-models && npm run test:family-browser",
+    "test:family-models": "node --test adventure/story.test.mjs tv/core.test.mjs",
+    "test:family-browser": "node adventure/browser.test.mjs && node tools/test-family-activities.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"
