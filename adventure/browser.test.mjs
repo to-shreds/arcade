@@ -34,6 +34,7 @@ async function inspectPage(page, viewport) {
       choicesReady: !document.getElementById('choices').classList.contains('waiting'),
     };
   });
+  for (const words of check.pages.pages) assert(words.join(' ').trim().split(/\s+/).length <= 70, 'Each reading page stays within 70 words');
   assert.equal(normalize(check.pages.pages.flat().join(' ')), normalize(check.source.join(' ')), 'Pagination preserves every word in order');
   assert(check.copyHeight > 0, 'Text has usable screen space');
   assert(check.contentHeight <= check.copyHeight + 1, `${check.nodeId} text fits vertically`);
@@ -53,7 +54,7 @@ try {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(`${fixture.base}/adventure/index.html`);
-    await page.waitForFunction(() => Boolean(globalThis.__LOGAN_CYOA_DEBUG__));
+    await page.waitForFunction(() => Boolean(globalThis.__LOGAN_CYOA_DEBUG__?.engine.isReady()));
     let decisions = 0;
     while (true) {
       const before = await page.evaluate(() => __LOGAN_CYOA_DEBUG__.engine.snapshot());
@@ -88,6 +89,7 @@ try {
     await page.screenshot({ path: `test-results/adventure/${viewport.width}x${viewport.height}.png` });
     const oldRecipe = await page.evaluate(() => __LOGAN_CYOA_DEBUG__.engine.snapshot().state.director.recipeSignature);
     await page.locator('#restartButton').click();
+    if (await page.locator('#confirmRestartButton').isVisible()) await page.locator('#confirmRestartButton').click();
     const restarted = await page.evaluate(() => __LOGAN_CYOA_DEBUG__.engine.snapshot());
     assert.equal(restarted.nodeId, 'opening');
     assert.equal(restarted.history.length, 0);
@@ -107,6 +109,7 @@ try {
     globalThis.SpeechSynthesisUtterance = class { constructor(text) { this.text = text; } };
   });
   await speech.goto(`${fixture.base}/adventure/index.html`);
+  await speech.waitForFunction(() => __LOGAN_CYOA_DEBUG__.engine.isReady());
   await speech.locator('#readButton').click();
   assert.equal(await speech.locator('#readButton').getAttribute('aria-pressed'), 'true');
   await speech.evaluate(() => {
@@ -145,10 +148,12 @@ try {
     globalThis.SpeechSynthesisUtterance = undefined;
   });
   await offline.goto(`file://${fileURLToPath(new URL('index.html', import.meta.url))}`);
+  await offline.waitForFunction(() => __LOGAN_CYOA_DEBUG__.engine.isReady());
   assert.equal(await offline.evaluate(() => __LOGAN_CYOA_DEBUG__.engine.snapshot().nodeId), 'opening');
   assert((await offline.locator('#sceneTitle').textContent()).length > 0, 'The first scene has a rendered title');
   assert(await offline.locator('#readButton').isDisabled(), 'Reading works without speech support');
   await offline.locator('#restartButton').click();
+  if (await offline.locator('#confirmRestartButton').isVisible()) await offline.locator('#confirmRestartButton').click();
   assert.equal(await offline.evaluate(() => __LOGAN_CYOA_DEBUG__.engine.snapshot().nodeId), 'opening');
   await offline.close();
   console.log('PASS: directly opened offline HTML, blocked storage, and unavailable speech');

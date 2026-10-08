@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.6.0+20261008.1",
-  "generatedAt": "2026-10-08T05:56:55.120Z",
+  "version": "2.6.1+20261008.1",
+  "generatedAt": "2026-10-08T21:11:14.780Z",
   "fileCount": 356,
-  "totalBytes": 18057228,
+  "totalBytes": 18161617,
   "files": [
     {
       "path": "adventure/game.json",
@@ -17,13 +17,13 @@
     },
     {
       "path": "adventure/index.html",
-      "bytes": 355183,
-      "sha256": "e1ce038c141bca7938953d351a9327c52410922044272d39462326ecd92ad17c"
+      "bytes": 457634,
+      "sha256": "a3349cb1eea7aaf0f211bd04db84362c368e6deb6f44a7bf55e1e2a92e0dbeaf"
     },
     {
       "path": "adventure/README.md",
-      "bytes": 3021,
-      "sha256": "4fc0ebe17674c5d6439bdb76ee13bd960a55ce838dcc0d27ce05c450715a3556"
+      "bytes": 4957,
+      "sha256": "fa76f2131e9e80a25be379d27c4bbeb70f392c79d13f4adef2a16bedd2c7d916"
     },
     {
       "path": "apple-touch-icon.png",
@@ -1637,8 +1637,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27787,
-      "sha256": "098020baa656dcebe033af2ad3d53dde732620574306afa55c1010243ccc16dd"
+      "bytes": 27789,
+      "sha256": "7f2256d377cef1c9c51bcf379155394c8f794eeacd2a1c45c0b87f7931d8b606"
     },
     {
       "path": "tic-tac-toe/game.json",

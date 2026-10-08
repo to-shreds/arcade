@@ -111,6 +111,16 @@
     .tool:active:not(:disabled) { transform: translateY(1px) scale(0.98); }
     .tool:disabled { opacity: 0.38; cursor: default; }
     .tool.stop { color: #ffd2cc; }
+    .save-status { color: var(--muted); font-size: 10px; white-space: nowrap; }
+    .progress-layer { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px; background: rgba(3, 7, 20, .88); }
+    .progress-layer[hidden] { display: none; }
+    .progress-card { width: min(400px, 100%); padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: #13284c; }
+    .progress-card h2 { margin: 0 0 10px; font-size: 24px; }
+    .progress-card p { line-height: 1.4; }
+    .progress-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .progress-actions button { min-height: 44px; flex: 1; }
+    @media (max-width: 420px) { .top-phase { display: none; } }
+
 
     .story-card {
       position: relative;
@@ -362,6 +372,8 @@
       <nav class="tools" aria-label="Adventure controls">
         <button class="tool" id="backButton" type="button" title="Undo the last decision">← Back</button>
         <button class="tool" id="restartButton" type="button" title="Start over">↻ Restart</button>
+        <button class="tool" id="saveButton" type="button" title="Save your place">Save</button>
+        <span class="save-status" id="saveStatus" role="status" aria-live="polite">Starting…</span>
         <button class="tool" id="readButton" type="button" title="Read or stop this scene">🔊 Read</button>
         <button id="stopButton" type="button" hidden tabindex="-1" aria-hidden="true">Stop reading</button>
       </nav>
@@ -384,6 +396,21 @@
 
     <section class="choices" id="choices" aria-label="What should Logan do?"></section>
   </main>
+
+  <div class="progress-layer" id="resumeDialog" hidden>
+    <section class="progress-card" role="dialog" aria-modal="true" aria-labelledby="resumeHeading">
+      <h2 id="resumeHeading">Keep going?</h2>
+      <p id="resumeSummary">Your adventure is saved on this browser.</p>
+      <div class="progress-actions"><button class="tool" id="newAdventureButton" type="button">New Adventure</button><button class="tool" id="continueButton" type="button">Continue</button></div>
+    </section>
+  </div>
+  <div class="progress-layer" id="restartDialog" hidden>
+    <section class="progress-card" role="dialog" aria-modal="true" aria-labelledby="restartHeading">
+      <h2 id="restartHeading">Start a new adventure?</h2>
+      <p>This replaces your saved place. Your old choices will be gone.</p>
+      <div class="progress-actions"><button class="tool" id="cancelRestartButton" type="button">Keep this one</button><button class="tool" id="confirmRestartButton" type="button">Start New</button></div>
+    </section>
+  </div>
 
   <noscript><div class="noscript">This adventure needs JavaScript turned on.</div></noscript>
 
@@ -904,57 +931,40 @@
     function sideAdventurePayoff(state) {
       const before = state.director.connections.afterMission;
       const after = state.director.connections.afterBuild;
-      let first = "";
-      let second = "";
-
+      let first;
+      let second;
       if (before === "side_vacuum_1") {
-        first = state.vacuumDeputy
-          ? "Scarlett still wore her Robot Shark badge, so Jenkins promoted her dustpan to Assistant Celebration Fan."
-          : state.items.includes("emergency ruler hook")
-            ? "The ruler hook from the couch rescue lifted the final mission card into Scarlett's hands."
-            : "The rescued KIND PART card sat beside the surprise, exactly where Logan could see it.";
+        first = state.vacuumDeputy ? "Scarlett kept her dustpan beside the gift. The floor was still clean."
+          : state.items.includes("emergency ruler hook") ? "The saved ruler hook lifted a card out of reach. Jenkins called that planning ahead."
+          : "Logan put the rescued card beside the gift. At least that part had gone to plan.";
       } else if (before === "side_balloon_1") {
-        first = state.balloonDiplomat
-          ? "The purple balloon returned as Scarlett's official indoor weather station, reporting a one-hundred-percent chance of giggles."
-          : state.foundShoes
-            ? "Dad's rescued shoe anchored the balloon ribbon and finally enjoyed a job that made sense."
-            : "The once-suspicious balloon floated above the reveal with its secret writing turned into a cheerful family sign.";
+        first = state.balloonDiplomat ? "Scarlett brought the balloon back. She had kept better track of it than Jenkins."
+          : state.foundShoes ? "Dad had both shoes. He counted that as a successful afternoon."
+          : "The balloon was still there. Logan turned the secret writing away from Scarlett.";
       } else if (before === "side_shoe_radio_1") {
-        first = state.shoeCode
-          ? `The tiny shoe-radio code played the signal "${state.director.signalSound}, ${state.director.signalSound}, ta-da" at the perfect moment.`
-          : state.recruitedDad
-            ? "Dad, Keeper of Little Details, pointed out the butterfly mark they had added just for Scarlett."
-            : "Scarlett spotted the seven-dot butterfly detail and knew Logan had really noticed her picture.";
+        first = state.shoeCode ? `The recorder played their short signal: "${state.director.signalSound}, ${state.director.signalSound}." Jenkins nearly missed it.`
+          : `Scarlett spotted her butterfly in the gift. "You remembered the spots," she said.`;
       } else {
-        first = state.paradeMarshal
-          ? "Scarlett's parade ribbon became Logan's mission medal, and she proudly announced that the Best Parade Helper had done it again."
-          : state.recruitedMom
-            ? "Mom rebuilt the helpful towel arch so the surprise arrived through its own tiny parade."
-            : "The striped spoon mayor led one last slow parade around the finished surprise.";
+        first = state.paradeMarshal ? "Scarlett brought her parade ribbon. Jenkins tried to take a bow and stepped on it."
+          : state.recruitedMom ? "Mom held the towel arch while the gift passed through. Jenkins ducked too late."
+          : "The spoon from the parade lay beside the gift. Jenkins wanted it back before dinner.";
       }
-
       if (after === "side_moonbeam_1") {
-        second = state.moonbeamBadge
-          ? "The silver Night-Shift Star badge caught the light, and Scarlett pinned it on before Jenkins could offer it a chair."
-          : "The moon-moose shadow gave the final cue, looking no more like a moose than it had the first time.";
+        second = state.moonbeamBadge ? "The silver badge caught the light. No moon was needed."
+          : "The shadow gave Logan his cue. Sunlight had done the job.";
       } else if (after === "side_pancake_guard_1") {
-        second = state.pancakeTreaty
-          ? "Pancake Guard Seven stood beside the surprise with his KINDNESS GUARD flag and absolutely no catapult."
-          : callbackHas(state, "invisible salt")
-            ? "Scarlett sprinkled imaginary invisible salt over the celebration, and Jenkins pretended it improved everything."
-            : "The breakfast treaty kept the final delivery clean, calm, and properly guarded.";
+        second = state.pancakeTreaty ? "The snack stayed on its clean plate. Jenkins kept his hands off it."
+          : callbackHas(state, "invisible salt") ? "Scarlett added her pretend salt. Nobody had to clean that up."
+          : "There were no crumbs on the gift. That was a relief.";
       } else if (after === "side_acorn_1") {
-        second = state.acornWitness
-          ? "Sir Oakley returned with his gold visitor dot and received a place of honor beside Scarlett's surprise."
-          : "The caped acorn served as the smallest clue and rolled exactly one inch during the applause.";
+        second = state.acornWitness ? "The acorn with the gold dot sat beside the gift. It stayed put."
+          : "The little acorn rolled once. Logan caught it before Jenkins called it an escape.";
       } else {
-        second = state.laundryPilot
-          ? "Scarlett was crowned Slow-and-Safe Champion, and Doctor Sock waved the checkered sock without knocking over a thing."
-          : state.items.includes("championship clothespin")
-            ? "The championship clothespin held the last wobbly piece through the entire celebration."
-            : "Mom and Dad's route crew reopened the Grand Prix lane for a careful family victory lap.";
+        second = state.laundryPilot ? "Scarlett showed off her race sock. The basket was finally out of the way."
+          : state.items.includes("championship clothespin") ? "The saved clip held the loose edge. Nobody needed to stand there holding it."
+          : "The hall was clear again. Mom could get through with the laundry.";
       }
-      return `${first} ${second}`;
+      return [first, second];
     }
 
     const SIDE_EPISODES = {
@@ -1240,11 +1250,15 @@
       return state.callbacks.some(value => String(value).toLowerCase().includes(needle));
     }
 
+    function displayProjectName(state) {
+      return { crown: "tennis-ball crown", pancake: "pancake prize", portrait: "picture", treasure: "treasure show" }[state.project] || "gift";
+    }
+
     function projectPayoff(state) {
-      if (state.project === "crown") return "The tennis-ball crown bounced, sparkled, and made Scarlett look like the official queen of every couch cushion in the house.";
-      if (state.project === "pancake") return "The pancake trophy stood proudly on its plate, one cheerful crooked piece proving that breakfast could win awards too.";
-      if (state.project === "portrait") return "The monster portrait showed Scarlett as brave, funny, and gloriously important, surrounded by a kingdom that looked suspiciously like her own family.";
-      return "The tiny treasure hunt led straight to the sock-puppet finale, where the last clue announced that Scarlett herself was the treasure.";
+      if (state.project === "crown") return "Scarlett put on the crown and tried not to bounce it.";
+      if (state.project === "pancake") return "Scarlett asked whether she could eat the prize. Logan had expected that.";
+      if (state.project === "portrait") return "Scarlett found herself in the picture and leaned closer to see the details.";
+      return "Scarlett followed the last clue to the sock-puppet show.";
     }
 
     function endingRoute(state, style) {
@@ -2966,6 +2980,843 @@
       }
     }
 
+
+    /* Canonical household prose, 2026-10-08. Branches and effects stay in STORY. */
+const GROUNDED_A = {
+  side_vacuum_1: {
+    title: "The Vacuum Starts",
+    text: [
+      "The vacuum beeped. Jenkins looked at the closet door. One of his plan cards was caught underneath it. Mom was about to clean the family room.",
+      "Scarlett arrived with a dustpan. \"I'll help.\" Jenkins put a foot over the card. That made it much more obvious.",
+      "Logan needed the card before it went into the vacuum. Mom could wait, Scarlett could collect crumbs, or Jenkins could try explaining the problem."
+    ],
+    labels: { "Make Scarlett Chief Dustpan Deputy": "Give Scarlett the dustpan job", "Let Jenkins perform his vacuum translation": "Let Jenkins explain the beep" }
+  },
+  side_vacuum_2: {
+    title: "Under the Couch",
+    text: [
+      "The card slid under the couch. Jenkins reached for it and got his elbow stuck. \"I can touch it,\" he said. \"That is not the same as getting it.\"",
+      (s) => s.vacuumDeputy ? "Scarlett was busy collecting crumbs with her dustpan." : s.momKnows ? "Mom held the vacuum aside. She knew about the surprise and waited." : "Mom watched Jenkins lying on the floor. \"Take your time,\" she said.",
+      "A ruler or tape loop could reach the card. Dad could lift one corner. A sock puppet might keep Scarlett looking somewhere else."
+    ]
+  },
+  side_vacuum_3: {
+    title: "The Missing Card",
+    text: [
+      "The card was back. It said: REMEMBER WHO THE GIFT IS FOR. Jenkins read it. \"Right. Scarlett. I was starting to make it mostly for me.\"",
+      "Mom finished the floor. Scarlett showed Logan three crumbs in her dustpan. Jenkins thanked her and managed a quiet bow.",
+      "Logan could keep the card, give Scarlett a badge, save a ruler hook from the drawer, or let Jenkins celebrate without making more noise."
+    ],
+    labels: { "Keep the card as the team's kindness rule": "Keep the reminder card", "Give Scarlett the Robot Shark Survivor badge": "Give Scarlett a cleaning-helper badge", "Save the ruler hook as emergency equipment": "Save a ruler hook for later", "Celebrate with one silent Jenkins victory dance": "Allow one quiet celebration" }
+  },
+  side_balloon_1: {
+    title: "The Balloon Problem",
+    text: [
+      "A purple balloon drifted out from under the couch. Jenkins had written PART OF THE SURPRISE across it. \"I labeled it so we wouldn't lose track,\" he said.",
+      "Its ribbon was stuck. Dad was looking for a shoe. Scarlett was coming with her blocks.",
+      "Logan could hide the writing, ask Dad about the knot, give Scarlett a balloon game, or see if Jenkins could fix his own problem."
+    ],
+    labels: { "Let Jenkins convince the balloon to cooperate": "Let Jenkins try the knot" }
+  },
+  side_balloon_2: {
+    title: "One Ribbon, Three Problems",
+    text: [
+      "The ribbon was tangled around Dad's shoe, a purple block, and Jenkins's list of gift ideas. Logan looked at Jenkins. \"I was moving several things at once,\" Jenkins said.",
+      (s) => s.balloonDiplomat ? "Scarlett was parking her blocks at the balloon station." : s.dadKnows ? "Dad held the ribbon while Logan checked the loops." : "Scarlett was getting closer. Logan turned the balloon's writing toward the couch.",
+      "He could undo each loop, use the shoe to hold the ribbon, return the block first, or direct Jenkins under the couch."
+    ],
+    labels: { "Guide Jenkins through a couch-cave rescue": "Guide Jenkins under the couch" }
+  },
+  side_balloon_3: {
+    title: "What Surprise?",
+    text: [
+      "Everything came free. Scarlett saw the balloon. \"What surprise?\" she asked. Jenkins held it behind his back. The balloon was wider than his back.",
+      "\"Still working on that,\" Logan said. She waited for a better answer.",
+      "He could say a nice thing was coming, give her a balloon-reporting job, ask Dad to lead a little parade, or let Jenkins start a game. At least the ribbon was no longer tied to a shoe."
+    ],
+    labels: { "Make Scarlett Official Balloon Weather Reporter": "Ask Scarlett to report where the balloon goes" }
+  },
+  side_shoe_radio_1: {
+    title: "Dad's Shoe Is Talking",
+    text: [
+      "\"Logan, look at my...\" said Dad's shoe. Jenkins listened closely. \"You should answer it.\"",
+      "Logan found the little recorder from Scarlett's toy inside. Dad passed the doorway with one slipper on. He was still looking for this shoe.",
+      "Logan could show Dad what he found, play the whole message, ask Scarlett about the toy, or let Jenkins test it once. The shoe itself had nothing useful to add."
+    ],
+    labels: { "Ask Scarlett whether one of her toys is missing a voice": "Ask Scarlett about the missing recorder", "Allow one careful Jenkins shoe-radio test": "Let Jenkins test the recorder once" }
+  },
+  side_shoe_radio_2: {
+    title: "Scarlett's Message",
+    text: [
+      "Logan pressed play. \"Logan, look at my butterfly when you have time. I fixed the wing.\" Scarlett had taped it back together and drawn seven new spots.",
+      "Dad found his other shoe behind a chair. Jenkins checked both shoes for more recordings. There weren't any.",
+      "The recorder needed to go back to Scarlett. First, Logan could record a short code, ask Dad to remember the butterfly, return it now, or get Jenkins to write a reminder."
+    ],
+    labels: { "Record a three-word mission code": "Record a short code for the show", "Let Jenkins make a butterfly reminder card": "Ask Jenkins to draw a butterfly reminder" }
+  },
+  side_shoe_radio_3: {
+    title: "The Repaired Wing",
+    text: [
+      "Scarlett held her butterfly by the window. The tape shone through the wing. \"It works now,\" she said. Logan checked the seven spots. She had clearly spent time on it.",
+      "Dad put on both shoes. Jenkins promised to stop storing things in them. Dad asked him to write that down.",
+      "Logan could use the butterfly in the surprise, ask Dad to remember the details, save a voice code, or give Jenkins the reminder job."
+    ],
+    labels: { "Recruit Dad as Keeper of Little Details": "Ask Dad to remember Scarlett's details", "Trust Jenkins with the butterfly reminder": "Give Jenkins the butterfly reminder job" }
+  },
+  side_block_parade_1: {
+    title: "Scarlett Needs the Rug",
+    text: [
+      "Scarlett brought a block tower, her rabbit, and a spoon into the family room. She was having a parade. Her route crossed the rug where Jenkins had left his plans.",
+      "\"Good storage spot,\" Logan said. \"Very flat,\" said Jenkins.",
+      "Mom suggested a clear path. Logan could change the route, collect cards as he joined in, ask Mom to set up a towel arch, or let Jenkins draw attention by joining the parade."
+    ],
+    labels: { "Ask Mom to open a towel-castle destination": "Ask Mom to make a towel arch", "Let Jenkins become the Official Monster Float": "Let Jenkins join the parade" }
+  },
+  side_block_parade_2: {
+    title: "The Tower Tilts",
+    text: [
+      "The parade passed Mom's towel arch. Jenkins followed with paper cups on his head and a cardboard trumpet. Logan picked up his plan cards along the way.",
+      "One card was still under a cushion. Then the spoon on Scarlett's tower slipped. The top block began to lean.",
+      "Logan could steady it, call a statue stop, let Jenkins catch the spoon, or tell Scarlett how to fix the tower. He needed to move the last card too."
+    ],
+    labels: { "Steady the tower and explain that mayors need seat belts": "Steady the tower with ribbon", "Ask Jenkins to become a furry landing cushion": "Ask Jenkins to catch the spoon" }
+  },
+  side_block_parade_3: {
+    title: "A Ribbon for Logan",
+    text: [
+      "Scarlett handed out prizes at the towel arch. Jenkins won for making the most noise. \"Strong field this year,\" Dad said.",
+      "Logan got a ribbon for helping. Jenkins's cards were safe, and the parade was finished. Scarlett started lining up her blocks for another one.",
+      "Logan could keep the ribbon, make a rule about including her, ask Mom to help with the gift, or borrow Jenkins's trumpet. One short blast would be plenty."
+    ],
+    labels: { "Keep Scarlett's ribbon as a lucky mission medal": "Keep Scarlett's ribbon", "Make inclusion an official team rule": "Agree to keep Scarlett involved", "Recruit Mom as Architect of Helpful Towel Arches": "Ask Mom to help with the surprise", "Permit one extremely tiny cardboard trumpet salute": "Borrow the trumpet after one quiet blast" }
+  },
+  side_moonbeam_1: {
+    title: "The Shadow Gives It Away",
+    text: [
+      (s) => `Sunlight crossed the ${displayProjectName(s)}. Its shadow appeared on the wall, much larger than the thing itself. Scarlett stopped in the hall. "What's that?"`,
+      "Jenkins moved in front of it. Now the wall showed a large Jenkins with something behind him. That wasn't much better.",
+      "Dad was by the blind. Mom had a stack of books. Logan could move the light with a shiny bag, lower the blind, start a guessing game, or ask Jenkins for a better shadow."
+    ],
+    labels: { "Angle the harmless gift bag toward the ceiling": "Use a shiny gift bag to move the light", "Let Jenkins make one improved shadow shape": "Ask Jenkins for a different shadow" }
+  },
+  side_moonbeam_2: {
+    title: "That Is Not a Rabbit",
+    text: [
+      "Jenkins made a rabbit shadow. It looked like a moose. Scarlett laughed and asked for another. \"That was the only one I practiced,\" Jenkins told Logan.",
+      (s) => s.dadKnows ? "Dad kept his hand on the blind and waited for Logan's signal." : "Dad watched the blind, trying to work out why everyone cared about it.",
+      "Logan could lead the shadow game down the hall, let Scarlett try, ask Mom for a book to block the gift, or finish with a silver-paper star."
+    ],
+    labels: { "Lead a shadow-animal march down the hall": "Move the shadow game down the hall", "Finish with a silver star on the ceiling": "Finish with a silver-paper star" }
+  },
+  side_moonbeam_3: {
+    title: "Keep the Useful Bits",
+    text: [
+      "Scarlett went to find her own flashlight. Logan checked the gift. She hadn't seen it. Jenkins took a bow anyway.",
+      "Dad found silver paper by the window. Mom had some string. Jenkins also had a paper cup he'd been calling a moon chair. No one had asked why.",
+      "Logan could make a star badge, keep the hand-shadow signal, wrap a bright edge of the gift, or let Jenkins keep the cup. Then they could finally find a hiding place."
+    ],
+    labels: { "Make Scarlett a silver Night-Shift Star badge": "Make Scarlett a silver star badge", "Let Jenkins keep the official moon chair": "Let Jenkins keep his paper cup" }
+  },
+  side_pancake_guard_1: {
+    title: "Jenkins Made a Guard",
+    text: [
+      (s) => `Before Logan could hide the ${displayProjectName(s)}, Jenkins opened his lunch box. It held a cardboard pancake with a flag. "Security," he said.`,
+      "Mom brought a clean plate. Scarlett called that she smelled food. The cardboard wasn't the food, but the flag said SECRET SURPRISE GUARD.",
+      "Logan could give it a lookout job, put it away, ask Mom to check the setup, or hear Jenkins's rules. Apparently there were rules for cardboard pancakes."
+    ],
+    labels: { "Ask Mom for an official safety inspection": "Ask Mom to check the setup", "Hear Jenkins read the guard's demands": "Hear Jenkins's guard rules" }
+  },
+  side_pancake_guard_2: {
+    title: "The Flag Is the Problem",
+    text: [
+      "Jenkins's rules were short: no throwing food, use a clean plate, clean up crumbs. Mom approved. \"These seem familiar,\" she said.",
+      (s) => s.promisedClean ? "Logan pointed at one crumb and Jenkins's clean-up promise. Jenkins picked it up." : "Jenkins hid a crumb under a cup. Mom handed him a cloth.",
+      "Scarlett was nearly in the room. Logan could fold the secret words out of sight, ask about breakfast fruit, let Mom move the plate, or open a quick pretend cafe."
+    ],
+    labels: { "Fold the flag so it reads KINDNESS GUARD": "Fold away the secret words", "Let Mom carry the covered container to safety": "Ask Mom to move the covered plate" }
+  },
+  side_pancake_guard_3: {
+    title: "Too Much Pretend Salt",
+    text: [
+      "Before Scarlett left, Jenkins offered her pretend soup. She tasted an empty spoon. \"Needs salt.\" He added some. \"Now it's too salty.\" Jenkins put the spoon down.",
+      "Mom helped clear the crumbs. Logan folded the flag so it only showed KINDNESS GUARD. That would give away less than SECRET SURPRISE GUARD.",
+      "He could save the flag, keep the no-throwing rule, use the plate as a tray, or remember Scarlett's salt complaint for the show."
+    ],
+    labels: { "Save the KINDNESS GUARD flag for the finale": "Save the folded flag for the show" }
+  },
+  side_acorn_1: {
+    title: "Where Did He Put It?",
+    text: [
+      (s) => `${s.hasAcorn ? "Logan's acorn" : "An acorn from Jenkins's box"} was missing. Jenkins had tied a paper cape around it. A blue thread led toward Scarlett's collection of stones, leaves, and bottle caps.`,
+      "\"Someone has taken it,\" Jenkins said. Logan looked at his full pockets. \"Or someone has put it somewhere.\"",
+      "He could follow the thread, ask Scarlett, check Jenkins's pockets, or get Mom to help. The gift still needed hiding, so this couldn't take all afternoon."
+    ],
+    labels: { "Ask Scarlett whether she found a caped acorn": "Ask Scarlett about the acorn", "Check Jenkins's many suspicious pockets": "Check Jenkins's full pockets", "Recruit Mom as Judge of Acorn Matters": "Ask Mom to help find the acorn" }
+  },
+  side_acorn_2: {
+    title: "The Pocket Check",
+    text: [
+      "The blue thread passed Scarlett's box and ended at Jenkins's foot. A piece of paper cape was caught in his fur. He checked a pocket. There was the acorn.",
+      (s) => s.momKnows ? "Mom watched him take it out. \"Glad we called in a full search team.\"" : "Mom watched him take it out. Jenkins avoided looking at her.",
+      "Scarlett wanted it for her collection. Logan could lend it briefly, explain that they needed it, offer a bottle cap, or make a visitor pass."
+    ],
+    labels: { "Lend Sir Oakley to the collection for one minute": "Lend her the acorn for one minute", "Say the acorn is needed for a kind project": "Say you need it for a gift", "Make Sir Oakley an official visitor pass": "Make an acorn visitor pass" }
+  },
+  side_acorn_3: {
+    title: "One Gold Dot",
+    text: [
+      "Scarlett added a gold dot to the paper cape. \"Now it looks better.\" Jenkins checked both sides. He couldn't argue with that.",
+      "Logan set the acorn by the gift. Scarlett had gone back to her collection. Mom suggested a small box this time, rather than another Jenkins pocket.",
+      "Logan could make the acorn a guard, use the dot as a clue, promise to bring it back, or ask Mom to hold it until they were ready."
+    ],
+    labels: { "Make Sir Oakley the official surprise guard": "Put the acorn beside the surprise", "Promise Scarlett that Sir Oakley will return": "Promise to bring the acorn back", "Ask Mom to keep the tiny witness safe": "Ask Mom to hold the acorn" }
+  },
+  side_laundry_rally_1: {
+    title: "The Hall Is Closed",
+    text: [
+      (s) => `Logan had to carry the ${displayProjectName(s)} across the hall. Scarlett had parked a laundry basket in the way. "Race starts in ten seconds," she said.`,
+      "Mom said baskets stayed on the floor, nobody rode inside, and nobody pushed fast. Dad offered to be the finish line. He was standing at the start.",
+      "Logan could turn it into careful deliveries, ask Mom to mark a route, give Dad a tunnel job, or send Jenkins ahead with an empty basket."
+    ],
+    labels: { "Recruit Dad as a walking finish-line tunnel": "Ask Dad to make a finish-line tunnel" }
+  },
+  side_laundry_rally_2: {
+    title: "Something Starts to Slip",
+    text: [
+      "Scarlett pushed her empty basket around the towel marker. Jenkins took the turn too wide and stopped at a pillow. \"Traffic,\" he said.",
+      (s) => s.laundryPilot ? "The careful delivery route left Logan a clear path behind Scarlett." : s.momKnows ? "Mom moved a towel so Logan could pass behind her." : s.dadKnows ? "Dad pointed Logan toward the clear doorway." : "While everyone watched Jenkins turn around, Logan started moving the gift.",
+      "One loose piece began to slide. A clean sock could wrap it. A clip could hold it. Dad could carry it, or Logan could call a pit stop."
+    ],
+    labels: { "Call an official Doctor Sock pit stop": "Call a Doctor Sock pit stop" }
+  },
+  side_laundry_rally_3: {
+    title: "A Very Slow Finish",
+    text: [
+      "Scarlett reached the finish line. Dad called it a record. \"For what?\" Logan asked. \"We're still checking.\" Jenkins waved a towel.",
+      "Logan got the gift across the hall while Scarlett parked her basket. Mom set a clean sock and a clothespin on the table. They might come in handy.",
+      "Logan could keep the sock, save the clip, plan a racing award for Scarlett, or ask Mom and Dad to help with the next move."
+    ],
+    labels: { "Keep the clean checkered sock as protective wrapping": "Keep the clean sock for wrapping", "Save the clothespin as an emergency fastener": "Save the clothespin", "Plan to name Scarlett the Slow-and-Safe Champion": "Plan a careful-racing award for Scarlett", "Recruit Mom and Dad as the route crew": "Ask Mom and Dad to help move the gift" }
+  },
+  opening: {
+    title: "Something Is Going On",
+    text: [
+      "Mom was folding clothes. Dad was looking for his shoes. Scarlett was building a block tower. Logan had just picked up his book when something bumped in the hall.",
+      "\"Nobody heard that,\" said Jenkins. Logan had heard it. Jenkins was their furry monster. He was usually nearby when something fell over.",
+      "There were flour marks by the kitchen, a noise upstairs, whispers in the blanket fort, and muddy prints going outside. Logan put his book down."
+    ],
+    labels: { "Investigate the bump near the attic closet": "Check the noise by the upstairs closet", "Check the blanket fort whispering in the living room": "Check the whispers in the blanket fort", "Follow the tiny muddy marks toward the backyard": "Follow the muddy prints outside" }
+  },
+  attic_entry: {
+    title: "Quiet, Apparently",
+    text: [
+      "A green thread was stuck to the upstairs closet handle. Inside, something scraped across the floor. \"Still being quiet,\" Jenkins said, at his usual volume.",
+      "Mom passed the bottom of the stairs with a laundry basket. \"What's happening up there?\" Jenkins called through the door, \"Just the stairs.\"",
+      "Logan could go up carefully, ask to come in, carry the basket as cover, or tell Mom what he'd heard. The stairs had never talked before."
+    ],
+    labels: { "Call, \"Secret Agent Logan requesting entry!\"": "Call, \"Jenkins, can I come in?\"", "Tell Mom the truth: the attic appears to be whispering": "Tell Mom you heard Jenkins upstairs" }
+  },
+  attic_door: {
+    title: "The Door Sign",
+    text: [
+      "The closet sign said JENKINS AND HELPERS ONLY. Under that, Jenkins had added PIZZA DELIVERIES ALSO WELCOME. A tennis ball rolled under the door with ribbon tied around it.",
+      (s) => s.password ? `"Password?" Jenkins asked. Logan had already picked ${s.password}. Jenkins had already forgotten it.` : "\"Password?\" Jenkins asked. \"You haven't given me one,\" Logan said. \"Right. Pick something difficult.\"",
+      "Logan could use Purple Waffle, send the ball back with a note, or say he was checking a pizza delivery."
+    ],
+    labels: { "Whisper, \"Purple Waffle,\" through the keyhole": "Say, \"Purple Waffle,\" through the door", "Announce a surprise pizza inspection": "Ask about the pizza-delivery rule" }
+  },
+  attic_stairs: {
+    title: "The Other Sock",
+    text: [
+      "Scarlett came up the stairs wearing one sock on her foot and one on her hand. \"I can't find my sock.\" Logan pointed at her hand. \"That's Doctor Sock,\" she said.",
+      "Jenkins sneezed behind the door. Scarlett looked up. \"Is he in there?\"",
+      "Logan could give her a downstairs search job, tell her he was checking on Jenkins, ask Mom to help, or let Doctor Sock guard the bottom stair. He needed a moment with Jenkins first."
+    ],
+    labels: { "Make Scarlett Chief Downstairs Sock Inspector": "Ask Scarlett to check downstairs for socks", "Ask Mom to help Scarlett solve the sock emergency": "Ask Mom to help with the missing sock" }
+  },
+  attic_exit: {
+    title: "The Empty Workroom",
+    text: [
+      "The closet held tape, ribbon, tennis balls, and a cardboard tube. Jenkins's cards said MAKE HER LAUGH, ASK LOGAN, and MAYBE PANCAKES.",
+      "A tall box moved. Logan checked inside. It held a note: WRONG BOX. A string ran from it toward the door. Jenkins had pulled the string and left.",
+      "Logan could take tape, ribbon and a ball, or the cardboard tube. He could also leave the tools and follow Jenkins. A meeting would be simpler than this."
+    ],
+    labels: { "Take the tape, which Jenkins calls human magic": "Take the tape", "Take the cardboard whisper tube": "Take the cardboard talking tube" }
+  },
+  kitchen_entry: {
+    title: "Not Breakfast",
+    text: [
+      "The flour prints ended at a pancake with blueberry eyes. A flag in it said NOT EVIDENCE. Jenkins called from the pantry. \"Don't touch the guard.\"",
+      "\"The pancake?\" Logan asked. \"He has a job.\" It wasn't doing much of one.",
+      "The prints continued to the pantry. Logan could read the flag, follow them quietly, announce that he'd caught the pancake, or clean the flour before Mom saw the floor."
+    ],
+    labels: { "Say, \"Pancake Guard Seven has been captured!\"": "Say, \"I've caught your pancake guard\"" }
+  },
+  kitchen_counter: {
+    title: "The Supply List",
+    text: [
+      "Jenkins had drawn a kitchen map. The fridge was labeled COLD FOOD. The blender was labeled LEAVE THIS ALONE. Logan agreed with both.",
+      "His list asked for something round, something shiny, and something funny. The pantry opened an inch. Jenkins checked who was there and shut it again.",
+      "Logan could take a cookie, get tape from the junk drawer, check the crown sketch under a bowl, or ask Jenkins to come out and explain what he actually needed."
+    ],
+    labels: { "Pocket the emergency cookie for later": "Save a cookie for later" }
+  },
+  kitchen_pantry: {
+    title: "Mom Sees the Flour",
+    text: [
+      "Jenkins hid between the cereal boxes. A strainer sat beside him, labeled HELMET. Two spoons and a flag said less about his plan than he seemed to think.",
+      "Mom looked at the flour. Then she looked at the pantry. \"Who is cleaning this?\" Jenkins quietly pushed the broom toward Logan.",
+      "Logan could explain that they were making a surprise, start sweeping, hand Mom the flag, or ask her to give Jenkins a little time. Someone still had to sweep."
+    ],
+    labels: { "Sweep the flour while answering only safe questions": "Sweep the flour and keep the gift secret", "Hand Mom the NOT EVIDENCE flag and let it speak": "Show Mom the NOT EVIDENCE flag" }
+  },
+  kitchen_exit: {
+    title: "Scarlett Wants the Pancake",
+    text: [
+      "Jenkins came out wearing the strainer. \"Well,\" he said. \"You found me.\" He couldn't see Logan until he pushed it above his eyes.",
+      "Scarlett came in. \"Can I eat that pancake?\" Jenkins stepped behind Logan. Most of him was still showing.",
+      "Logan could ask Scarlett to choose a plate, tell her the pancake was for a show, help Jenkins take his helmet out of the room, or stop the running around and demand an answer."
+    ],
+    labels: { "Tell Scarlett the pancake is waiting for an official ceremony": "Tell Scarlett the pancake is for a show", "Help Jenkins slip away while the colander blocks his view": "Help Jenkins leave with his strainer helmet" }
+  },
+  fort_entry: {
+    title: "No Monsters Inside",
+    text: [
+      "Scarlett's fort filled the space by the couch. Her sign asked visitors to bring snacks. A new sign said NO MONSTERS INSIDE. It was in Jenkins's handwriting.",
+      "Inside, Jenkins said, \"Where did I put the tape?\" Scarlett was in the next room playing with her blocks.",
+      "Logan could crawl through the front, find the back flap, send a note through the mail slot, or offer a pretend snack. Jenkins had chosen a bad place for his quiet meeting."
+    ],
+    labels: { "Crawl through the front flap and whisper, \"Fort inspection\"": "Crawl through the front flap", "Circle the fort and look for a secret back entrance": "Check for a back flap" }
+  },
+  fort_inside: {
+    title: "A Very Large Pillow",
+    text: [
+      "A flashlight lit the fort. On the floor were tape, paper stars, and a sock puppet. A green foot stuck out from a pile of blankets.",
+      "\"Jenkins?\" Logan asked. \"Pillow,\" said Jenkins. Logan waited. \"Fine. Jenkins.\"",
+      "A card said MAKE SCARLETT DO THE SQUEAKY LAUGH. Logan knew that laugh. He could take the tape, ask about the card, pick up the sock puppet, or try the password Blankets Have Ears."
+    ],
+    labels: { "Ask Kevin the Pillow for the whole truth": "Ask Jenkins what the card means", "Recruit the sock puppet as a second detective": "Keep the sock puppet to help" }
+  },
+  fort_perimeter: {
+    title: "Scarlett Comes Back",
+    text: [
+      "Logan checked a gap behind the fort. Jenkins was arranging paper cups with drawn-on faces. One had a crown. One said TAPE.",
+      "\"I'm coming back,\" Scarlett called. Jenkins picked up the cups, then put them down. \"I have made no useful decision.\"",
+      "Logan could ask for ten seconds to fix the roof, carry the cups out, set up a sock-puppet guard, or tell Scarlett Jenkins had borrowed her fort. It was her fort, after all."
+    ],
+    labels: { "Tell Scarlett Jenkins borrowed the fort for something kind": "Tell Scarlett Jenkins borrowed the fort for a gift" }
+  },
+  fort_exit: {
+    title: "The Blanket Has Feet",
+    text: [
+      "Jenkins wrapped himself in the blue blanket and shuffled out. Mom was looking for that blanket. \"Can I have it?\" she asked. \"In a minute,\" said the blanket.",
+      (s) => s.hasTape ? "Logan had the tape. Jenkins had somehow attached three paper stars to himself anyway." : "Tape trailed behind Jenkins, picking up paper stars from the floor.",
+      "Logan could give Mom her blanket, guide Jenkins to the hall, explain that they were planning a surprise, or follow the paper stars. Jenkins could probably just walk."
+    ],
+    labels: { "Roll Jenkins gently toward the hallway": "Guide the wrapped-up Jenkins to the hall" }
+  },
+  yard_entry: {
+    title: "Bad Bird Impression",
+    text: [
+      "The muddy prints crossed the patio. A spoon mark ran beside them. Behind the hedge, Jenkins said, \"Caw.\" Logan could see his green feet.",
+      "Dad was untangling the hose. Scarlett had drawn chalk arrows toward the noise. She was investigating too.",
+      "Logan could check the prints, answer Jenkins's bird call, help Dad while watching the hedge, or compare Scarlett's arrows with the trail. None of the birds in the yard seemed interested in helping Jenkins."
+    ],
+    labels: { "Approach the talking hedge with official bird manners": "Answer Jenkins's bird call" }
+  },
+  yard_tracks: {
+    title: "Dad and the Hose",
+    text: [
+      "Jenkins's tracks looped around a chair and ended at Dad. Dad pulled the hose loose and sprayed one shoe. \"At least I found this one,\" he said.",
+      "Logan spotted an acorn with a paper cape under the hose. A note called it SIR OAKLEY. More prints led behind the chair.",
+      "He could take the acorn, help with the hose, tell Dad about Jenkins, or point out the shoe Dad had spent the afternoon wearing."
+    ],
+    labels: { "Take the caped acorn because emergencies are unpredictable": "Keep the acorn with the paper cape" }
+  },
+  yard_bushes: {
+    title: "Jenkins's Outdoor Desk",
+    text: [
+      "Jenkins had put a paper bag in a flowerpot. Its label said FOR SCARLETT. Inside were stones with faces drawn on them. He had clearly worked hard on the smallest one.",
+      "Scarlett's chalk arrow reached the hedge. \"There's something behind here.\" Jenkins held two leaves by his face. Logan could still see him.",
+      "Logan could keep the caped acorn beside the bag, draw a detour, ask Scarlett to wait, or try helping Jenkins with his leaf disguise."
+    ],
+    labels: { "Add a chalk arrow that sends Scarlett toward her blocks": "Draw a chalk detour toward Scarlett's blocks", "Tell Scarlett this clue belongs to Jenkins for now": "Ask Scarlett to wait while you check", "Join Leaf Mode with two more leaves": "Help Jenkins with his leaf disguise" }
+  },
+  yard_exit: {
+    title: "The Bag Was a Mistake",
+    text: [
+      "Jenkins crouched behind the chair with a paper bag on his head. The eyeholes were too high. He tried to stand and got caught in the chair.",
+      "Dad turned the hose off. \"Helpful if you can see,\" he said.",
+      (s) => s.hasAcorn ? "Logan checked the caped acorn in his pocket. Jenkins had named it Sir Oakley." : "A caped acorn rolled by Jenkins's foot. He said its name was Sir Oakley.",
+      "Logan could free Jenkins, ask Dad to guide him, use Scarlett's arrows, or let Jenkins choose the way."
+    ],
+    labels: { "Ask Dad to guide the blind lawn-chair plant inside": "Ask Dad to guide Jenkins inside", "Use Scarlett's chalk arrows to mark a safe escape route": "Use Scarlett's chalk arrows to find the way", "Whisper the password and let Jenkins lead": "Use the password and let Jenkins lead" }
+  },
+  hallway_signal: {
+    title: "The Hamper Moves",
+    text: [
+      (s) => `Logan's search through the ${s.firstSearch || "house"} ended in the hall. A hamper slid sideways and bumped the wall. "Very narrow hall," said Jenkins from inside.`,
+      "Logan lifted the lid. Jenkins was folded up with a spoon and three cups. Getting out seemed like a reasonable next step.",
+      (s) => s.hasCookie ? "Jenkins saw Logan's cookie. \"Good. You brought lunch.\"" : s.password ? `Logan said, "${s.password}." Jenkins nodded. "Yes. Meeting time."` : "Scarlett called from the next room. \"Why is that basket talking?\"",
+      "Logan needed Jenkins in one place long enough to explain."
+    ],
+    labels: { "Wheel Jenkins calmly into the quiet hallway": "Help Jenkins out in the quiet hall", "Make Jenkins explain while he is still stuck": "Ask Jenkins to explain before he gets out", "Use the secret password and offer an official meeting": "Use the password and call a meeting" }
+  },
+  mission_reveal: {
+    title: "The Actual Plan",
+    text: [
+      "Behind the couch, Jenkins showed Logan his cards. One showed Scarlett sharing a crayon. Another showed the pretend soup she had made him. \"Very filling,\" Jenkins said.",
+      "Her paper butterfly had torn that morning. Jenkins wanted to make her a surprise and hear that squeaky laugh again.",
+      "His first plan had too many balloons and a flying pancake. Logan could join now, ask questions, set some rules, or inspect the whole plan before agreeing to anything."
+    ],
+    labels: { "Join immediately as Captain Logan": "Join Jenkins and get started", "Ask Jenkins a few important questions first": "Ask a few questions first" }
+  },
+  join_fast: {
+    title: "Logan Gets a Job",
+    text: [
+      "Jenkins handed Logan a badge: CHIEF GIGGLE OFFICER. Below it, he'd added IN CHARGE OF THINGS JENKINS FORGETS.",
+      "\"That's most things,\" Logan said. Jenkins nodded and did a short dance. The couch stopped him.",
+      "They still needed a gift. First, Logan could split the jobs, plan cookie breaks, agree to keep Scarlett involved, or take Jenkins's paper-cup helmet and start. The helmet did not look useful, but Jenkins had made two."
+    ],
+    labels: { "Accept the emergency helmets and begin immediately": "Take a paper-cup helmet and get started" }
+  },
+  ask_questions: {
+    title: "Three Questions First",
+    text: [
+      "\"Will Scarlett like it? Can we actually build it? Do we need Mom or Dad?\" Logan asked. Jenkins checked his cards. Most of them did not answer those questions.",
+      "Scarlett liked crowns, pancakes, pictures, and stories. That was enough to start with. Flying food was off the list.",
+      "Logan could bring Dad in now, tell Mom a little, keep it between the two of them, or get tape. Jenkins had remembered the badge and forgotten the tools."
+    ],
+    labels: { "Recruit Dad early as Agent Dad": "Ask Dad to help now", "Tell Mom only that a safe surprise is underway": "Tell Mom they're making a surprise", "Get tape before Jenkins gives it a silly name": "Get tape before they start" }
+  },
+  set_rules: {
+    title: "Jenkins Makes a Promise",
+    text: [
+      "\"I promise no mess,\" Jenkins said. A cup fell out of his fur. He picked it up. \"Less mess.\" Logan waited.",
+      "They agreed to ask before using food and clean anything they spilled. Jenkins wrote that down. Writing it down had helped before.",
+      "Logan could tell Mom, promise to include Scarlett if she found them early, plan a cookie break for Jenkins, or take charge of the tape. Someone needed to be in charge of it."
+    ],
+    labels: { "Use the emergency cookie as Jenkins' calm-down button": "Plan a cookie break when Jenkins needs to slow down" }
+  },
+  inspect_plan: {
+    title: "Cross Some Things Out",
+    text: [
+      "Jenkins spread his plan on the rug. One arrow sent a pancake past a lamp. Another sent balloons down the stairs. Logan crossed both out.",
+      "\"You're changing quite a lot,\" Jenkins said. \"Yes,\" said Logan.",
+      "The last line said MAKE SCARLETT A GIFT. They kept that. Logan could save the tape, use a sock puppet, keep the map's exit route, or ask about the arrow labeled MAYBE MOON. Jenkins looked pleased that somebody had asked."
+    ],
+    labels: { "Save a sock puppet labeled ASSISTANT DRAGON": "Keep the sock puppet", "Keep the map arrow labeled RUN as an emergency route": "Save the map's quick exit route" }
+  },
+  project_select: {
+    title: "Pick One Gift",
+    text: [
+      "Jenkins laid out four cards: a tennis-ball crown, a pancake trophy, a big picture of Scarlett, and a treasure hunt ending with puppets.",
+      "\"Could do all four,\" he said. Logan looked at the clock. Dinner was not that far away. \"One.\"",
+      "Each idea needed different tools. Each could go wrong in a different way. Jenkins handed over the spoon he used to point at plans. Logan would choose what they made and where they started."
+    ],
+    labels: { "Build the legendary tennis-ball crown": "Make the tennis-ball crown", "Create the magnificent pancake trophy": "Make the pancake trophy", "Paint Scarlett's giant monster portrait": "Make a big picture of Scarlett", "Plan a tiny treasure hunt and puppet finale": "Make a treasure hunt with a puppet show" }
+  },
+  crown_intro: {
+    title: "The Tennis-Ball Crown",
+    text: [
+      "The crown sketch had six tennis balls, three spoons, and a duck. Logan removed the duck. Then two spoons. Jenkins watched. \"Quite a small crown now.\"",
+      "Scarlett liked bright colors and being in charge of games. A crown might go over well if she could actually wear it.",
+      "They needed balls, a base, ribbon, and tape. Logan could check the garage, look through the upstairs hats, or find the balls that had rolled into the yard."
+    ],
+    labels: { "Search the garage and act completely normal": "Look for balls in the garage", "Explore the attic closet for a perfect crown base": "Look for a hat in the upstairs closet", "Sneak into the backyard and recover the lost tennis balls": "Find the lost balls in the yard" }
+  },
+  crown_garage: {
+    title: "The Garage Basket",
+    text: [
+      (s) => `A basket of tennis balls sat behind a chair, a rake, and ${s.foundShoes ? "an old slipper" : "Dad's missing shoe"}. Tape was on the workbench. Logan checked how to pull the basket out.`,
+      "Jenkins tested the bike pump. It squeaked. He tested it again. Logan gave him a look.",
+      (s) => s.recruitedDad ? "Dad came in, ready to help. He waited for Logan to give him a job." : s.foundShoes ? "Dad's steps came from the hall. He could help if Logan asked." : "Dad came toward the garage, still looking for his other shoe."
+    ],
+    labels: { "Let Jenkins distract Dad with the bicycle pump": "Let Jenkins show Dad the bike pump" }
+  },
+  crown_attic: {
+    title: "The Hat Box",
+    text: [
+      "The upstairs box said FANCY? It held a sunhat, ribbon, and an old toy tiara. Jenkins put on the hat and walked into a coat. Logan turned it around for him.",
+      "Scarlett called from the stairs. Tape and cardboard were in a bin above the coats. Getting it down quietly might be difficult.",
+      (s) => s.hasCookie ? "Logan still had a cookie. Jenkins noticed it and stood very still. It was worth a try." : "Jenkins froze behind the coats. The hat brim stuck out farther than he did."
+    ],
+    labels: { "Wait silently behind the winter coats": "Wait quietly behind the coats", "Use the cookie to keep Jenkins completely still": "Give Jenkins the cookie while you get the bin" }
+  },
+  crown_yard: {
+    title: "Two Lost Balls",
+    text: [
+      "They found two tennis balls under the bush, along with blue ribbon, an acorn, and an old spoon. One ball was caught behind a root.",
+      "Jenkins reached for it wearing a mixing bowl. \"Why the bowl?\" Logan asked. \"Already had it on.\"",
+      "Scarlett came out with her chalk. Logan could ask her to draw a castle, help list the lost things, race to find something yellow, or listen to Jenkins explain why they were under the bush."
+    ]
+  },
+  crown_design: {
+    title: "Choose the Base",
+    text: [
+      "Logan lined up the supplies. Jenkins stood at the end of the row. \"Checking you have everything.\"",
+      (s) => s.supplyRoute === "garage" ? "The garage had supplied plenty of balls and strong tape." : s.supplyRoute === "attic" ? "The closet had supplied a sunhat and bright ribbon." : "The yard had supplied balls and a small acorn for decoration.",
+      "A cardboard band would be light. The sunhat had a wide brim. Jenkins offered his bowl as a stronger base. Logan set a ball on it. The ball slid off. That was useful information."
+    ],
+    labels: { "Turn the floppy sunhat into a giant royal sports crown": "Build the crown on the sunhat", "Use Jenkins’ mixing-bowl helmet as the strongest base": "Try Jenkins's mixing bowl as the base" }
+  },
+  crown_cardboard: {
+    title: "The Cardboard Bends",
+    text: [
+      "Logan curled the cardboard into a band. The tennis balls bent its points downward. Jenkins held one up, then let go. It bent again.",
+      (s) => s.hasTape ? "Their saved tape held the join. The cardboard still needed support." : "Their small scraps of tape held the join, barely. The cardboard needed support too.",
+      (s) => s.hasAcorn ? "The acorn worked as a light decoration. The balls were the problem." : "Jenkins offered a ladle to balance the weight. Logan asked him to put it down while they thought."
+    ],
+    labels: { "Tie ribbon across the top as a hidden support bridge": "Tie ribbon across the top for support", "Try Jenkins’ ladle plan under close supervision": "Try balancing it with Jenkins's ladle" }
+  },
+  crown_sunhat: {
+    title: "A Hat That Tips",
+    text: [
+      "The sunhat bent when Logan added the first tennis ball. He put it on a toy bear to check the fit. The bear tipped over.",
+      "\"Could be the bear,\" Jenkins said. Logan moved the ball. The bear stayed up. \"Could also be the ball.\"",
+      "They could weave ribbon into the brim, hang the balls in loops, add the old tiara, or trim the brim while Logan directed Jenkins. The crown needed to fit Scarlett better than it fit the bear."
+    ],
+    labels: { "Add the old plastic tiara as the centerpiece": "Add the old tiara in the middle" }
+  },
+  crown_bowl: {
+    title: "It Is Still a Bowl",
+    text: [
+      "The balls slid off the mixing bowl. The bowl slid over Jenkins's eyes. Logan took it off. \"Scarlett's head is smaller than yours.\" Jenkins thought about that.",
+      (s) => s.promisedClean ? "One ball knocked over the spoon cup. Jenkins remembered his promise and picked the spoons up." : "One ball knocked over the spoon cup. Logan waited until Jenkins picked the spoons up.",
+      (s) => s.items.includes("mystery spoon") ? "Their yard spoon could be a tall decoration. They still needed a better fit." : "Padding or a cardboard ring might help. They could also stop making a hat and make a crown cape."
+    ],
+    labels: { "Turn it into a royal shoulder cape with a crown on top": "Turn it into a shoulder cape with a crown", "Add a spoon as an enormous royal feather": "Use a spoon as a tall decoration" }
+  },
+  crown_crisis: {
+    title: "A Ball Gets Away",
+    text: [
+      "Jenkins celebrated before Logan finished checking the crown. His elbow hit the table. Logan caught the crown, but a ball rolled toward the door.",
+      (s) => s.recruitedDad ? "Dad asked Scarlett to help check his shoes. She stopped in the hall." : s.momKnows ? "Mom asked Scarlett which cup she wanted for dinner. That bought a little time." : "Scarlett asked why she could hear bouncing. Jenkins reached for the ball and missed.",
+      (s) => s.jenkinsCalm ? "Jenkins remembered to slow down. Logan had time for one fix." : "Logan told Jenkins to stop moving. One loose ball was enough."
+    ],
+    labels: { "Catch the ball with a ribbon loop and make it a swinging jewel": "Catch the ball and hang it from ribbon", "Roll the ball under the door as an ordinary hallway ball": "Roll the loose ball into the hall", "Put the crown on Jenkins and make him freeze as a statue": "Put the crown on Jenkins and tell him to stay still" }
+  },
+  crown_test: {
+    title: "Does It Stay Together?",
+    text: [
+      (s) => `Logan tilted the ${displayProjectName(s)} left and right. Nothing fell off. He tried once more, because Jenkins had said it was finished three times already.`,
+      "Jenkins added a paper badge. Logan moved it so Scarlett could still see the best part of the crown.",
+      "They could tidy the edges, keep one odd Jenkins detail, or practice telling Scarlett she was Chief of Everything. After that, they needed to hide it."
+    ],
+    labels: { "Polish it into the grandest crown possible": "Tidy the edges and check the fit", "Keep one odd Jenkins detail because it makes the crown funnier": "Keep one odd Jenkins detail", "Practice announcing Scarlett as Chief of Everything": "Practice naming Scarlett Chief of Everything" }
+  },
+  pancake_intro: {
+    title: "A Trophy You Can Eat",
+    text: [
+      "Jenkins showed Logan a pancake trophy sketch. It was taller than the fridge. Logan drew a smaller one beside it. \"Less washing up,\" he said. Jenkins accepted that.",
+      "Small pancakes, fruit, and a steady base could make a real trophy. Scarlett could eat it after the show.",
+      "Logan could gather supplies in the kitchen, check the pantry, or ask Mom to help with the hot pan. Someone grown-up would need to handle the cooking."
+    ],
+    labels: { "Search the kitchen while acting completely normal": "Gather supplies in the kitchen", "Explore the pantry and build a quiet ingredient kit": "Check the pantry for supplies", "Tell Mom the plan and ask for safe cooking help": "Ask Mom to help with the hot pan" }
+  },
+  pancake_kitchen: {
+    title: "Dad Asks About Breakfast",
+    text: [
+      "Logan found pancake mix and sprinkles. Jenkins stood behind a paper towel roll. It covered his nose. Dad walked in and looked at the mix.",
+      "\"Breakfast?\" \"Later breakfast,\" Jenkins said. Dad looked at the clock. It was nearly dinner.",
+      "There were strawberries in the fridge and cookies in the jar. Logan could explain the trophy, ask Dad for apple slices while he gathered supplies, let Jenkins answer, or save a cookie to help Jenkins settle down."
+    ],
+    labels: { "Let Jenkins explain everything to Dad": "Let Jenkins answer Dad", "Take a cookie as an emergency Jenkins-calming device": "Save a cookie for a Jenkins break" }
+  },
+  pancake_pantry: {
+    title: "Don't Drop the Cans",
+    text: [
+      "The pantry had pancake mix and paper cups. It also had a tall stack of soup cans. Jenkins brushed it with his elbow. Logan caught the top can.",
+      "\"I've got lunch,\" Jenkins said, holding the rest. Scarlett looked in and asked what they were doing.",
+      "Logan could explain the wobbling stack, ask her to get Dad, rebuild it with the big cans underneath, or hold it still while Jenkins crawled out. The mix would have to wait a moment."
+    ],
+    labels: { "Say you are fixing a wobbly can tower": "Tell Scarlett you're fixing the can stack", "Ask Scarlett to get Dad because Jenkins is holding up lunch": "Ask Scarlett to get Dad before Jenkins drops lunch" }
+  },
+  pancake_mom: {
+    title: "Mom Handles the Pan",
+    text: [
+      "Mom heard the plan and got a small pan. Jenkins suggested syrup as glue. \"Food,\" Mom said. \"Not glue.\" She handed him an apron and kept the pan herself.",
+      "Scarlett passed the doorway. Mom asked her to check whether the stuffed animals were ready for dinner. That could take a while.",
+      "Logan could help with the first batch, draw the trophy, go over the hot-pan rules with Jenkins, or clear a fridge shelf for the finished thing."
+    ],
+    labels: { "Draw a trophy blueprint while Mom warms the pan": "Draw the trophy while Mom heats the pan", "Teach Jenkins three warm-pan safety rules": "Go over the hot-pan rules with Jenkins", "Reserve a refrigerator shelf for the finished trophy": "Clear a fridge shelf for the finished trophy" }
+  }
+};
+
+const GROUNDED_B = {
+  pancake_design: { title: 'The Pancake Plan', text: [
+    (s) => `Logan stirred the batter. Jenkins counted each turn, lost count at six, and wanted to start again. ${s.recruitedMom ? 'Mom showed Logan how to make small pancakes. She would handle the hot pan.' : 'They would need a grown-up at the hot pan. Jenkins offered. Logan meant a different grown-up.'}`,
+    (s) => `${s.hasCookie ? 'The saved cookie might make a useful base, if Jenkins left it alone.' : s.promisedClean ? 'Jenkins wiped up a drop before Logan could point at his clean-up promise.' : 'Jenkins wiped batter off his nose. Nobody asked how it got there.'} Logan had enough batter for a tall stack, a fruit cup, or a spiral shape. He needed to pick one.`
+  ]},
+  pancake_tall: { title: 'Too Many Pancakes', text: [
+    'Logan stacked six little pancakes. Jenkins wanted a seventh. The stack leaned. Jenkins tilted his head to match it. "Looks straight to me." Logan set the plate flat. It still leaned.',
+    (s) => `${s.hasCookie ? 'The cookie could spread the weight at the bottom.' : 'Strawberries could spread the weight at the bottom.'} A food skewer or folded cupcake liners might stop the layers sliding. Before adding another pancake, Logan needed something better than Jenkins watching it fall.`
+  ], labels: { 'Build a wide strawberry base': 'Make a wide strawberry base' }},
+  pancake_fruit: { title: 'The Broken Handle', text: [
+    'Logan put strawberries between two pancakes to make a little cup. Jenkins approved of an award that came with food. Then one pancake handle split down the middle. Jenkins held the two pieces together. "Nobody will notice."',
+    'Logan looked at the gap. Everybody would notice. Fruit slices or folded cupcake liners could make new handles. The broken pieces could become a bow instead. Mom could also cook stronger pieces, but she would learn what they were making.'
+  ]},
+  pancake_spiral: { title: 'A Difficult Shape', text: [
+    'The cooked pancakes were shaped like curled ropes. Logan laid three on the plate. Jenkins reached for one, and a piece broke off. He put it back. "That happened before I got here." Logan had been watching.',
+    'They could overlap the spirals, fill the gaps with fruit, or give the whole thing a face. Jenkins also wanted to name each pancake. Logan could allow that, as long as naming them did not involve eating them.'
+  ], labels: { 'Make a smiling pancake creature holding the award': 'Give the pancakes a face and an award sign' }},
+  pancake_crisis: { title: 'Scarlett Smells Pancakes', text: [
+    '"Are there pancakes?" Scarlett called from the hall. Jenkins stared at the kitchen door. "How did she know?" Logan pointed at the pancakes. The whole kitchen smelled like them.',
+    (s) => `${s.recruitedDad ? 'Dad called it toast. Scarlett did not believe him.' : s.recruitedMom ? 'Mom quietly made room in the fridge.' : 'Jenkins held up an empty plate. That was his entire plan.'} ${s.callbacks.includes('The emergency cookie became structural support') ? 'The cookie base held steady as Logan moved the plate.' : 'Logan checked the plate before moving it.'} There was time to cover the prize or give Scarlett a sample. Not much time.`
+  ], labels: { 'Send Jenkins past her shouting WRONG BREAKFAST': 'Let Jenkins claim it is the wrong breakfast' }},
+  pancake_test: { title: 'One Last Check', text: [
+    (s) => `Logan turned the ${displayProjectName(s)} slowly on its plate. Nothing slid off. Jenkins leaned close to smell it. Logan moved the plate back. "Checking it is not the same as eating it." Jenkins said he knew that.`,
+    'The prize still needed a final touch. A short card would explain the award. They could leave the crooked pancake alone or rehearse a cheer. Jenkins offered to rehearse the eating part. Logan moved the plate farther away.'
+  ], labels: { 'Keep one crooked pancake because it looks cheerful': 'Leave the crooked pancake as it is', 'Practice a breakfast-champion fanfare with Jenkins': 'Practice a short cheer with Jenkins' }},
+  portrait_intro: { title: 'A Picture for Scarlett', text: [
+    'Jenkins showed Logan his sketch of Scarlett. She had three arms. "One is for carrying snacks," he said. Logan decided to draw a new picture. It could be a made-up adventure, but Scarlett should at least look like Scarlett.',
+    'They needed paper, colors, and a few details she would recognize. The craft drawer had supplies. Family photos might give Logan an idea. Leaves and chalk from the yard could work too. Jenkins asked if they were keeping the snack arm.'
+  ], labels: { 'Raid the craft drawer for serious art equipment': 'Get supplies from the craft drawer' }},
+  portrait_crafts: { title: 'The Drawer Will Not Shut', text: [
+    'Logan pulled paper from the craft drawer. A marker rolled behind it, and now the drawer would not shut. Jenkins pushed harder. "Almost fixed." The drawer moved less than before.',
+    'Mom was coming down the hall. Logan could sort the supplies, explain the secret project, or take what they needed while Jenkins held the drawer. A wooden clothespin could hold the paper flat. Jenkins had named it Mr. Pin. Logan had no questions about that.'
+  ], labels: { 'Bring Mr. Pin as official art inspector': 'Use Mr. Pin to hold the paper flat' }},
+  portrait_photos: { title: 'Dad Is Holding It', text: [
+    'In one photo, Scarlett wore her sunglasses upside down. In another, Dad was looking under the couch for something already in his hand. Jenkins studied that one. "Did he find it?" Logan said he hoped so.',
+    'A loose photo slid under the couch as Scarlett walked in. Logan could ask which picture she liked, show her Dad, or send Jenkins after the loose photo. He could also remember the details and put the album away before she asked why they needed it.'
+  ]},
+  portrait_yard: { title: 'Art Supplies Outside', text: [
+    'Logan collected leaves, a fallen petal, and an acorn cap. Jenkins carried the bag. Then he sat on the damp grass by mistake. His muddy hand left a print across the bag. "I meant to sit there."',
+    'Scarlett opened the door. "Why are you wet?" Logan could give her a small job or tell her they were making something colorful. The handprint and acorn cap might make useful stamps. Jenkins wanted to know if the ground was wet on purpose.'
+  ]},
+  portrait_design: { title: 'What Goes in the Picture?', text: [
+    'Logan spread the paper on the table. Jenkins held one corner flat. He was finally doing a job that needed sitting still. He wanted credit for that.',
+    'Scarlett could be a superhero stopping a pillow fight, a monster queen with a couch for a throne, or the captain of a pretend family trip. Logan would use things from their house in each picture. The choice was what Scarlett would be doing, and where Jenkins would fit.'
+  ], labels: { 'Draw Super Scarlett fighting a pillow storm': 'Draw Scarlett stopping a pillow storm', 'Draw Monster Queen Scarlett’s cheerful kingdom': 'Draw Scarlett as queen of the couch', 'Draw the whole family on a ridiculous quest': 'Draw a pretend family trip' }},
+  portrait_hero: { title: 'The Marker Slipped', text: [
+    'Logan drew Scarlett catching flying pillows. Mom and Dad ducked behind the couch. Jenkins asked to be drawn giving advice. "From over here," he said, pointing away from the pillows.',
+    (s) => `Then his marker slipped, leaving a purple line across the page. ${s.callbacks.includes('Logan repaired the craft-drawer avalanche') ? 'Logan had fixed the messy drawer. He could fix this too.' : 'Logan looked at the shape before reaching for another sheet.'} It could become lightning, a zip line, or a title banner. A handprint could add a pillow monster. They did not need to start over.`
+  ]},
+  portrait_monster: { title: 'Paint on the Couch', text: [
+    'In the picture, Scarlett sat on a couch made into a throne. Jenkins drew himself bringing snacks. "I have a job in this one." Then the paper curled into his wet handprint. A purple blob covered half the throne.',
+    (s) => `${s.promisedClean ? 'Jenkins reached for a cloth. Logan stopped him before he wiped wet paint across the page.' : 'Jenkins tried to hide the blob with his hand. That made another blob.'} Logan could turn the mark into a pet, draw a blanket over it, add matching prints, or hide a message beneath a little flap.`
+  ]},
+  portrait_family: { title: 'Too Many Jenkinses', text: [
+    'Logan drew the family in a pretend laundry-basket boat. Scarlett was the captain. Jenkins drew himself six times. "Extra staff." Now there was no room for the island.',
+    (s) => `${s.callbacks.includes('Dad’s puzzled photo became an art reference') ? 'Picture-Dad had the puzzled face from the album.' : s.items.includes('lost button') ? 'The button from under the couch could make a steering wheel.' : 'Jenkins suggested using the wall. Logan pointed at the paper.'} The extra Jenkinses could row. Logan could add a flap for the island, find a button, or leave the boat crowded.`
+  ], labels: { 'Keep it crowded because family adventures are crowded': 'Keep the crowded boat' }},
+  portrait_crisis: { title: 'The Paper Rolled Up', text: [
+    'Logan lifted the book holding one corner. The paper curled into a tube and rolled toward the edge of the table. Jenkins caught it with both arms. His face disappeared behind it. "I still have it."',
+    (s) => `${s.items.includes('yarn') ? 'The yarn from the drawer could tie the roll shut.' : s.usedFort ? 'The fort had a flat space under its rug.' : s.momKnows || s.dadKnows ? 'A parent who knew the plan was nearby.' : 'Jenkins suggested calling it a telescope. It was quite clearly a drawing.'} Scarlett was coming. Logan needed to secure the picture and move it.`
+  ], labels: { 'Tie it with yarn and label it VERY BORING PAPER': 'Tie the roll shut and label it boring paper' }},
+  portrait_test: { title: 'Open It Slowly', text: [
+    (s) => `Logan opened the ${displayProjectName(s)} on the floor. The repairs held. From a few steps back, the marks looked like parts of the drawing. Jenkins pointed out everything he had added, including something Logan had drawn himself.`,
+    'Logan tested rolling it up without losing the loose pieces. A title would tell Scarlett what it was. They could leave the funny details or practice opening it for the show. Jenkins offered to stand farther away this time.'
+  ], labels: { 'Keep every funny flap, stamp, and strange detail': 'Keep the flaps, stamps, and funny details', 'Practice a giant rolling gallery reveal': 'Practice unrolling it for Scarlett' }},
+  treasure_intro: { title: 'A Hunt Around the House', text: [
+    'Jenkins opened a shoe box. Inside were two sock puppets, a spoon with yarn hair, and three blank clue cards. Logan could make a short hunt for Scarlett. The last clue would lead to a puppet show.',
+    'They needed socks, cardboard, and somewhere to hide the stage. The unmatched-sock basket was nearby. Clean boxes could make a theater. Scarlett already had a blanket fort, but they would need to ask before using it. Jenkins had planned to skip that part.'
+  ], labels: { 'Claim the blanket fort as the final theater': 'Check the blanket fort for a stage' }},
+  treasure_socks: { title: 'Dad Wants His Sock', text: [
+    'Jenkins lined up four socks and gave each one a voice. Dad’s black sock asked where its other sock was. Dad stopped in the doorway. "I was going to ask that."',
+    (s) => `${s.recruitedDad ? 'Dad stood in the doorway to block Scarlett’s view.' : 'Scarlett called from the hall, asking what they were doing.'} Logan could ask Dad to do a voice, return his sock, or call it laundry sorting. Jenkins wanted one last loud try. The trouble with his quiet voices was that they were also loud.`
+  ], labels: { 'Let Jenkins conduct one final loud audition': 'Let Jenkins try one last loud puppet voice' }},
+  treasure_recycling: { title: 'A Cereal-Box Theater', text: [
+    'Logan found a clean cereal box and two paper tubes. They could make a small stage and holders for the clues. Jenkins pulled one flap loose. It flew across the room and landed beside Mom.',
+    '"That was meant to stay attached," Logan said. Scarlett was coming down the hall. Logan could tell Mom about the show, call it a cardboard TV, or ask her to cut one window. The loose flap could still become a sign. Jenkins quietly stopped pulling things.'
+  ]},
+  treasure_fort: { title: 'It Is Scarlett’s Fort', text: [
+    'The fort had a pillow wall and a scarf curtain. Jenkins crawled inside to test the stage. Scarlett arrived before he crawled out. "Why are you in my fort?" Jenkins looked at Logan. That part had not been tested.',
+    'Logan could ask to borrow it, build Scarlett a smaller reading spot, or check the roof with her. Jenkins wanted to explain a made-up blanket rule. He already had a speech ready. Logan could decide whether anyone needed to hear it.'
+  ], labels: { 'Let Jenkins explain Blanket Law': 'Let Jenkins explain his made-up blanket rule' }},
+  treasure_story: { title: 'Choose the Puppet Story', text: [
+    'Logan laid three clue cards on the table. Each one needed to point to a place Scarlett knew. The puppets could solve a missing-giggle case, visit pretend planets, or look for a joke in a make-believe kingdom.',
+    'Whatever he picked, the hunt would stay inside the house. Jenkins wanted a clue in the fridge and a clue in the cookie jar. "Those are both snack stops," Logan said. Jenkins said that was why the plan was good.'
+  ], labels: { 'Create a mission to the Moon of Lost Toys': 'Make a pretend space hunt through the house', 'Create a quest for the Kingdom’s Golden Joke': 'Make a pretend kingdom hunt for a joke' }},
+  treasure_detective: { title: 'Do Not Eat the Evidence', text: [
+    'Logan drew a cookie on a clue card and wrote DO NOT EAT. During practice, the card disappeared. Jenkins checked his pockets. Logan checked Jenkins’s mouth. There it was. "It is safer in there." Logan disagreed.',
+    (s) => `${s.hasCookie ? 'The real cookie could replace the drawing, if Logan kept hold of it.' : s.foundShoes ? 'Dad’s recovered shoe could hide the next clue.' : 'A bottle cap or paper cookie could be the missing object.'} They could also add a sock witness. First, the evidence needed somewhere dry to wait.`
+  ], labels: { 'Use a bottle cap as the magical Giggle Button': 'Use a bottle cap as the missing Giggle Button' }},
+  treasure_space: { title: 'The Rocket Keeps Rolling', text: [
+    'Logan made a pretend rocket from a paper tube. Its stops were the fridge, the couch, and the puppet stage. Jenkins made engine noises. Mom asked whether the vacuum was broken.',
+    'The rocket rolled sideways every time Logan set it down. Bottle caps or clothespins could make feet. An egg carton could hold it steady. They could even keep the sideways landing in the show. Jenkins offered a cracker as a foot, then ate it before Logan answered.'
+  ]},
+  treasure_royal: { title: 'The Missing Joke', text: [
+    'In this puppet story, Scarlett was a queen looking for the Golden Joke. Jenkins gave the spoon queen a grand voice. Then she fell over. "She is resting." Logan stood her back up.',
+    'They needed one clue Scarlett could solve and something small for the treasure. A riddle on a paper scroll could work. The acorn might be the prize. Scarlett could supply the joke herself, or the falling spoon could stay in the show. At least that part was easy to repeat.'
+  ], labels: { 'Use the acorn as the Golden Joke treasure': 'Use the acorn as the hunt’s pretend treasure' }},
+  treasure_crisis: { title: 'The Clues Are Out of Order', text: [
+    'Jenkins bowed to an empty room and bumped the table. The clue cards fell. He picked them up and handed them to Logan. Now the first clue led straight to the last clue.',
+    'Scarlett’s footsteps were getting closer. Logan could match the pictures, number the cards, or let her choose the order. A puppet could buy them a minute. Jenkins offered to bow again. Logan moved the cards out of reach before answering. They had enough work to do already.'
+  ]},
+  treasure_test: { title: 'Try the Hunt Once', text: [
+    (s) => `Logan followed the ${displayProjectName(s)} himself. The clues led to the right places, and the stage stayed up. Jenkins watched the curtain instead of watching for Scarlett. Logan reminded him which job mattered first.`,
+    'They could add a note with Scarlett’s name, save her a puppet, or put one last clue over the stage. Jenkins had also prepared a short victory dance. It involved turning around without looking. Logan made him move away from the table.'
+  ], labels: { 'Plan Jenkins’ ridiculous victory dance for the finale': 'Save Jenkins’s dance for the end' }},
+  hide_select: { title: 'Where Can It Wait?', text: [
+    (s) => `The ${displayProjectName(s)} was ready. Scarlett was not meant to see it yet. Jenkins suggested hiding it behind himself. Logan checked. He could still see most of it. They needed an actual place.`,
+    'The fort was nearby, but Scarlett used it. The upstairs closet had boxes. The laundry basket could move without warning. Under the table, somebody might kick it. Logan needed a place where the gift would stay safe until the show. Jenkins offered to stand wider.'
+  ], labels: { 'Use the blanket fort as a cloth castle': 'Hide it in the blanket fort' }},
+  hide_fort: { title: 'Just a Pillow', text: [
+    (s) => `The ${displayProjectName(s)} fit behind a couch cushion in the fort. Jenkins put up a sign: JUST A PILLOW. Logan took it down. Nothing else in the room had a sign saying what it was.`,
+    'The roof sagged at one corner. Scarlett’s rabbit sat by the entrance, and Scarlett might come back for him. Logan could add a cushion wall, fix the roof, or use a puppet guard. Leaving a side tunnel would let Scarlett play without reaching the gift.'
+  ]},
+  hide_attic: { title: 'Behind the Winter Hats', text: [
+    (s) => `Logan found a low shelf behind two game boxes for the ${displayProjectName(s)}. Nothing heavy could fall on it. Jenkins tried on a coat from the hook. The sleeves reached almost to the floor.`,
+    'Scarlett called from the stairs, asking what they were doing. Logan could brace the gift, cover it with hats, or tell Mom which shelf to leave alone. Jenkins offered to pretend he was a coat display. He would have to stop waving first.'
+  ]},
+  hide_laundry: { title: 'The Wrong Laundry Basket', text: [
+    (s) => `Logan covered the ${displayProjectName(s)} in a clean laundry basket. Jenkins wanted to sit on top. Logan moved him aside. Scarlett passed with Dad’s sock on her hand. "Doctor Sock is doing rounds," she said.`,
+    'The towel hid the gift, but the basket still looked like something Mom might carry away. Logan could set up a quick escape, add more towels, give Doctor Sock a hallway job, or leave Mom a small note. Jenkins asked for a checkup.'
+  ]},
+  hide_table: { title: 'Watch Your Feet', text: [
+    (s) => `Logan slid the ${displayProjectName(s)} behind a chair under the dining table. The cloth hid it well. Jenkins crawled in to help and immediately bumped his head. "I found the table."`,
+    (s) => `${s.foundShoes ? 'Dad walked by in both shoes. Jenkins tried to move an old slipper into the hiding place.' : 'Dad walked by in one shoe. The other was under the table beside Jenkins.'} Logan needed to keep feet and chairs away from the gift. He could plan a route, mark the edges, add a screen, or explain enough to Dad.`
+  ]},
+  trouble_fort: { title: 'The Roof Comes Down', text: [
+    (s) => `Scarlett lifted the pillow door. "Mr. Bun is moving in." The roof slipped, covering the ${displayProjectName(s)}. Logan caught one corner. Jenkins caught another and somehow trapped himself under a cushion. "I am holding it."`,
+    (s) => `${s.momKnows || s.dadKnows ? 'A parent who knew the plan waited for Logan’s signal.' : 'Mom and Dad were nearby but had not seen what happened.'} Scarlett crawled toward a loose piece. Logan could make a tunnel game, lift the roof, ask for help, or let Jenkins roll himself free.`
+  ], labels: { 'Let Jenkins roll out wrapped like a monster burrito': 'Let Jenkins roll free of the blanket' }},
+  trouble_attic: { title: 'Mom Needs the Fan', text: [
+    (s) => `Mom needed the fan behind the ${displayProjectName(s)}. Scarlett came upstairs to help. Jenkins moved a hat box, and three hats fell out. One small piece of the gift rolled into the hall. Scarlett went after it.`,
+    'Logan could reach the piece first or trust the game boxes to hold everything while he helped Mom. Making the cleanup into a search might keep Scarlett busy. Jenkins could also take his coat-display act downstairs. Mom looked at the hats. "Excellent timing."'
+  ]},
+  trouble_laundry: { title: 'Mom Picks Up the Basket', text: [
+    (s) => `Mom reached for the basket holding the ${displayProjectName(s)}. Logan caught the handle. A ribbon slid out, followed by a marker. Scarlett reached for the towel. Jenkins held his breath so loudly that Mom looked at him.`,
+    (s) => `A small piece had caught on Dad’s sock. Logan could follow it, start a color-sorting game, or explain the basket to Mom. ${s.hasCookie ? 'The saved cookie might keep Jenkins busy while Logan gathered things.' : 'An apple slice might keep Jenkins busy while Logan gathered things.'} Jenkins looked ready to provide an explanation nobody had requested.`
+  ]},
+  trouble_table: { title: 'Snack Time', text: [
+    (s) => `Dad brought apple slices to the table. Mom brought cups. Scarlett picked the chair beside the ${displayProjectName(s)}. Under the cloth, Jenkins passed Logan a ribbon. Then Dad pulled out a chair and found them both.`,
+    'Scarlett leaned down to look. Logan could ask Dad for help, use the sliding route, or give Scarlett a job sorting the apples. Jenkins proposed inspecting the spoons while Logan moved the gift. Dad waited. "Should I ask, or would that make this take longer?"'
+  ]},
+  scarlett_patrol: { title: 'Scarlett Wants an Answer', text: [
+    (s) => `The ${displayProjectName(s)} was safe again. Scarlett stood in the hall with her rabbit. "Is this for me?" Jenkins stepped behind Logan. His arms stuck out on both sides. Scarlett looked directly at him. "I can see you."`,
+    'Logan could give her part of the truth, start a real game, or ask for an idea without showing the gift. Jenkins could try answering too. He raised one hand. Logan had heard several of his answers already.'
+  ], labels: { 'Create a fun distraction that is also a real family activity': 'Start a quick family game' }},
+  response_truthish: { title: 'Part of the Truth', text: [
+    '"We are making something," Logan said. "You can see it soon." Scarlett asked if it was a robot. Jenkins said no much too quickly. She asked if it was food. Jenkins looked at Logan before answering this time.',
+    'Logan could admit it was for Scarlett and ask her to wait. He could keep the name secret, give her a password for the reveal, or show one harmless supply. Scarlett waited for an answer. Jenkins was finally doing the same.'
+  ]},
+  response_distract: { title: 'Buy a Few Minutes', text: [
+    (s) => `${s.foundShoes ? 'Dad could help Scarlett put on a short shoe parade.' : 'Dad still needed help finding his shoes.'} A puppet interview or a hallway color hunt would also give Logan a few minutes. Jenkins suggested a snack break. He suggested that fairly often.`,
+    'Scarlett wanted something worth doing, not a job that sent her away for no reason. Logan could pick a game and join in before finishing the gift. Jenkins checked whether joining in the snack break was required. He was prepared either way.'
+  ]},
+  response_help: { title: 'Ask Scarlett', text: [
+    '"I need your opinion," Logan told Scarlett. She set down her rabbit. Jenkins started to explain the whole project. Logan handed him the rabbit instead. "Hold this." Jenkins held it with both hands.',
+    (s) => `Scarlett could pick a color, ${s.hasTape ? 'find the tape' : 'find a ribbon'}, or decide whether ${s.hasAcorn ? 'the acorn' : 'a button'} looked like a jewel or a nose. She could also choose a puppet voice. Logan needed one answer without showing her everything yet.`
+  ]},
+  response_jenkins: { title: 'Too Much Information', text: [
+    '"There is no secret present for you," Jenkins told Scarlett. Logan closed his eyes. Scarlett smiled. "I did not ask about a present." Jenkins looked at Logan. "I may have added a detail."',
+    'She still did not know what it was. Logan could stop everyone for ten seconds, make Jenkins try one quiet truth, or let him blame the nearby lamp. A sock puppet could speak for him instead. Scarlett folded her arms and waited to see what came next.'
+  ], labels: { 'Invoke Monster Rule Twenty-Two: never question a lamp': 'Let Jenkins blame the lamp', 'Let Inspector Sock declare the lampshade innocent': 'Let Inspector Sock speak for Jenkins' }},
+  adult_crossroads: { title: 'Who Can Help?', text: [
+    (s) => `The ${displayProjectName(s)} needed one last repair and a safe trip to the reveal. Logan looked at the loose pieces. Jenkins looked at the door. Neither of them had another hand to spare.`,
+    'Mom could check the small parts. Dad could carry things and watch the hall. They could both help, or Logan could keep the last fix between himself and Jenkins. The choice was whose help he needed. Jenkins said he could manage. He was standing on a ribbon.'
+  ], labels: { 'Recruit Mom as practical Mission Control': 'Ask Mom for practical help', 'Brief both parents and form a five-person team': 'Explain the plan to both parents' }},
+  helper_mom: { title: 'Mom Sees the Loose Part', text: [
+    (s) => `Logan showed Mom the ${displayProjectName(s)}. She noticed a loose part before Jenkins finished saying it was ready. "How long has that been loose?" Jenkins looked at the ceiling. "Not a useful amount of time."`,
+    (s) => `${s.promisedClean && s.mess > 0 ? 'Mom pointed out the mess they had promised to clear.' : 'Mom moved a drink away from the work.'} She found a tray and waited for Logan to choose her job. She could inspect the repair, tidy up, keep Scarlett busy, or clear a spot for the show.`
+  ]},
+  helper_dad: { title: 'Dad Is Available', text: [
+    'Dad listened to the plan and nodded. "Agent Dad. Ready." He leaned on the light switch. The room went dark. He switched it back on. Jenkins asked if that was part of the plan. Dad said it was not.',
+    (s) => `${s.foundShoes ? 'They could stage another shoe hunt, even though Dad now had both shoes.' : 'A shoe hunt could keep Scarlett busy.'} Dad could also carry the tray, watch the hall, or check a loose part. Logan needed to give him one job before Jenkins assigned him four.`
+  ], labels: { 'Order a dramatic missing-shoe diversion': 'Ask Dad to start a shoe hunt' }},
+  helper_both: { title: 'One Job Each', text: [
+    (s) => `Mom moved cups away from the ${displayProjectName(s)}. Dad cleared the path to the door. Jenkins tried to clear it too and moved a chair back where Dad had just found it. "I was helping." Dad moved it again.`,
+    'Scarlett could pick music in the next room while they finished. Logan could give everyone a job, keep one of Jenkins’s additions, or let Dad watch the hall while Mom checked the repair. He could hear their ideas first. He still had to choose which ones worked.'
+  ]},
+  helper_solo: { title: 'Just Logan and Jenkins', text: [
+    (s) => `Logan and Jenkins laid the parts of the ${displayProjectName(s)} in a row. Jenkins moved one. Logan put it back. "We are counting first." Jenkins said he had been checking whether Logan noticed. Logan noticed.`,
+    (s) => `They could repair the loose parts, use ${s.hasAcorn ? 'the acorn' : 'a button'} as a replacement, or practice carrying the gift. Jenkins wanted to add one small joke. Logan would need to watch that job. Jenkins’s idea of small had caused problems before.`
+  ]},
+  late_crisis_crown: { title: 'One Ball Comes Loose', text: [
+    'A tennis ball came loose from the crown. Logan caught the frame while Jenkins went after the ball. Jenkins brought it back and held it against the empty spot. "Fixed." It fell again when he let go.',
+    (s) => `${s.hasTape ? 'The saved tape could secure the frame.' : 'Tight ribbon loops could secure the frame.'} They could remove some weight, hang the ball lower, or put the crown on Jenkins while Scarlett passed. ${s.hasAcorn ? 'The acorn could fill the middle.' : 'A small paper shape could fill the middle.'} Logan checked what would hold before letting Jenkins wear it.`
+  ], labels: { 'Remove one heavy ball and make a lighter royal crown': 'Remove one ball to make the crown lighter', 'Hang the runaway ball as a swinging royal jewel': 'Hang the loose ball lower on the crown', 'Put the crown on Jenkins and use him as a royal statue': 'Put the crown on Jenkins while Scarlett passes' }},
+  late_crisis_pancake: { title: 'It Is Leaning Again', text: [
+    'The pancake prize leaned left. Jenkins leaned left too. Logan asked him to hold the tray flat instead. One strawberry rolled toward the edge, and Logan caught it before it reached the floor.',
+    (s) => `${s.promisedClean ? 'Jenkins wiped the syrup off the tray, as promised.' : 'Logan kept the food away from the art supplies.'} ${s.hasCookie ? 'The cookie could make a firm base.' : 'An upside-down bowl could make a firm base.'} They could also serve a smaller prize, keep the wobble in the show, or carry it slowly with Logan giving directions.`
+  ]},
+  late_crisis_portrait: { title: 'The Corner Curls', text: [
+    'A corner of the picture curled over Scarlett’s face. Jenkins pressed it down and moved a moon sticker onto her shoulder. He looked at the result. "She has a moon now." Logan asked him to leave it alone for a minute.',
+    (s) => `${s.hasTape ? 'A hidden loop of tape' : 'A folded paper brace'} could flatten the corner. It could also become a flap with a message. ${s.hasAcorn ? 'The acorn could decorate the picture.' : callbackHas(s, "Scarlett's tiny jewel idea") ? 'Scarlett’s chosen button could decorate the picture.' : 'A button could decorate the picture.'} Logan could keep the moved sticker and give it one short line.`
+  ], labels: { 'Keep the polite moon and give it one tiny speech bubble': 'Give the misplaced moon a speech bubble', "Add the acorn as the portrait's royal jewel": 'Add the acorn to the picture', "Add Scarlett's chosen button as a royal jewel": 'Add the button Scarlett helped choose', "Add a small button as the portrait's royal jewel": 'Add a small button to the picture' }},
+  late_crisis_treasure: { title: 'Check Jenkins’s Back', text: [
+    'Jenkins had hidden the last clue somewhere very safe. He could not remember where. Logan asked him to turn around. The card was stuck to his back. "Nobody would check there," Jenkins said. Logan had just checked there.',
+    (s) => `${s.hasSockPuppet ? 'Inspector Sock could deliver it.' : 'A sock puppet could deliver it.'} They could leave it on Jenkins or replace it with a shoe riddle. ${callbackHas(s, "Scarlett's chosen color") || callbackHas(s, "Scarlett's tiny jewel idea") ? 'Scarlett’s earlier art idea could supply the answer.' : 'Scarlett could choose a color for the answer.'} ${s.password ? `Their password was still "${s.password}."` : 'Logan could add a short password too.'}`
+  ]},
+  reveal_setup: { title: 'Pick the Place', text: [
+    (s) => `The ${displayProjectName(s)} was ready to move. Logan checked the path and the loose pieces. Jenkins checked for Scarlett. He used an actual whisper this time. Logan asked him to keep using that one.`,
+    (s) => `${s.adultPlan === 'both' ? 'Mom and Dad waited for their jobs.' : s.adultPlan === 'Mom' ? 'Mom had made a clear path.' : s.adultPlan === 'Dad' ? 'Dad waited to help carry it.' : 'Logan and Jenkins would handle the move.'} The living room had space. The kitchen had a table. The yard could hold a chalk trail. The fort already had a curtain. Logan needed to choose where to begin.`
+  ], labels: { 'Use the living room for a grand open-space reveal': 'Use the living room', 'Turn the kitchen into a tiny award ceremony': 'Give the award in the kitchen', 'Return to the blanket fort for the final secret': 'Finish in the blanket fort' }},
+  reveal_living: { title: 'Everybody Looks Normal', text: [
+    (s) => `Logan put the ${displayProjectName(s)} behind ${s.usedFort ? 'a blanket from the fort' : 'a blue blanket'}. Jenkins hid behind the couch. His feet did not fit. ${s.hasSockPuppet ? 'Inspector Sock waited on Logan’s hand.' : 'A paper-cup puppet waited beside Logan.'} Everything was ready except for Jenkins’s feet.`,
+    'Scarlett walked in. Dad examined a lamp. Mom held an empty cup. "Are you being weird on purpose?" Scarlett asked. Logan could count down, bring the family together, let Dad announce it, or give Jenkins his cue. Jenkins had been waiting a long time to stand up.'
+  ], labels: { 'Bring Mom and Dad in for a whole-family parade': 'Bring the whole family into the reveal' }},
+  reveal_kitchen: { title: 'Scarlett’s Seat', text: [
+    (s) => `Logan covered the ${displayProjectName(s)} on the kitchen table. Jenkins set out spoons, then asked whether they needed more spoons. They did not. Scarlett sat in the chair with her name on it. "That is my usual chair."`,
+    'Mom waited by the cloth. Dad was trying not to smile. Logan could give a short speech, ask Mom to lift the cover, or lead everyone around the table. If something wobbled, he could make it part of the show. Jenkins was still holding a spoon.'
+  ], labels: { 'March around the table as a five-person award parade': 'Lead everyone around the table' }},
+  reveal_yard: { title: 'Follow the Arrows', text: [
+    'Logan drew chalk arrows across the patio. The last one pointed at a bush. Jenkins crouched behind it. "Can she see me?" he called. Logan told him that being quiet might help.',
+    (s) => `${s.firstSearch === 'backyard' ? 'The trail crossed the place where Logan had found his first clue.' : 'Logan added one fuzzy footprint beside the arrows.'} ${s.hasAcorn ? 'The acorn marked the last stop.' : 'A paper star marked the last stop.'} Scarlett followed the trail. Logan could guide her, use Dad’s shoes for the last clue, give Jenkins his cue, or bring everyone along.`
+  ], labels: { 'Let Jenkins burst from the bush in full Leaf Mode': 'Let Jenkins emerge wearing his leaf disguise' }},
+  reveal_fort: { title: 'Can I Come into My Fort?', text: [
+    (s) => `Logan put the ${displayProjectName(s)} at the back of the fort. The sign said WELCOME, SCARLETT. Jenkins held up the roof. He had picked a job with no easy way to leave.`,
+    'Scarlett stopped at the entrance. "Can I come into my own fort?" Logan could welcome her, start the puppet show, or let her lift the cover herself. The curtain caught on Jenkins’s arm. Logan could also change the plan. Jenkins said he was comfortable. He did not look comfortable.'
+  ], labels: { 'Let Scarlett lift the blanket and discover it one beat early': 'Let Scarlett lift the cover herself' }},
+  ending_perfect: { title: 'Right on Time', text: [
+    (s) => `Logan gave the signal. Scarlett saw the ${displayProjectName(s)}. ${projectPayoff(s)} She looked at the details, then at Logan. "You made all this?" Jenkins lifted a hand. "Some of the damage was mine."`,
+    (s) => `${s.hasAcorn ? 'Scarlett found the acorn among the decorations.' : callbackHas(s, 'shoe') ? 'Dad explained why his shoes had kept appearing in the plan.' : 'Jenkins put down his notes. The work was finished.'} Scarlett hugged Logan and gave the small squeaky laugh they had been waiting for. Jenkins waited until she finished before starting his dance.`
+  ]},
+  ending_chaos: { title: 'Nearly as Planned', text: [
+    (s) => `The ${displayProjectName(s)} stayed still for about four seconds. Jenkins moved too soon. A spoon rolled under Dad’s foot, and Mom caught a loose part. Logan told everyone where to hold it. Scarlett sat down laughing. ${projectPayoff(s)}`,
+    (s) => `${s.promisedClean ? 'Jenkins remembered his promise and picked up the scraps.' : 'Jenkins helped gather the loose pieces.'} "Was that part planned?" Scarlett asked. Logan said no. Jenkins said most of it was. They did not agree on how much most meant. Scarlett asked to see it again.`
+  ]},
+  ending_early: { title: 'Scarlett Finds It First', text: [
+    (s) => `Scarlett lifted the cover before Logan gave the signal. There was the ${displayProjectName(s)}. Jenkins was still hiding in plain sight. "I knew you were making something," she said. Jenkins asked if they could do the reveal again.`,
+    (s) => `${projectPayoff(s)} Logan let Scarlett add the last small detail. Then Dad counted down from three anyway. "Surprise," everybody said to the girl who had already seen it. Scarlett laughed, and Jenkins called that close enough. Logan agreed with him for once.`
+  ]},
+  ending_family: { title: 'Everybody Has a Job', text: [
+    (s) => `Mom cleared the way. Dad welcomed Scarlett. Jenkins carried the ${displayProjectName(s)}, exactly as Logan had told him. Scarlett followed the last clue. ${projectPayoff(s)} "What is the occasion?" she asked. "Tuesday," Dad said.`,
+    'Logan told her it was just for her. She laughed and hugged him. Jenkins asked whether he could have an award for carrying things without dropping them. Mom said he could start by putting the supplies away. He considered that a change to the deal.'
+  ]},
+  ending_agent_dad: { title: 'Dad Makes the Announcement', text: [
+    (s) => `Dad stepped forward. "Scarlett, you have won an award." Jenkins whispered that it was meant to sound more secret. Dad lowered his voice so far that nobody heard the next sentence. Logan brought out the ${displayProjectName(s)}. ${projectPayoff(s)}`,
+    'Scarlett laughed and asked Dad how they had kept it hidden. "Logan made the plan," Dad said. "I stood in the hall." Jenkins gave him a paper badge for that. Scarlett hugged Logan, then asked if Agent Dad was going to keep wearing the badge. Dad said yes.'
+  ]},
+  ending_mom_save: { title: 'Mom Catches It', text: [
+    (s) => `As Logan showed the ${displayProjectName(s)}, one part slipped. Mom caught it without stepping in front of Scarlett. Jenkins stared. "You knew that would happen?" "I saw it moving," Mom said. Logan finished the reveal. ${projectPayoff(s)}`,
+    'Scarlett laughed and hugged Logan. Mom held the loose part until he could put it back. Jenkins said he had almost caught it too. His hands had been in his pockets. Logan handed him a box of supplies to put away. This time, Jenkins caught the box.'
+  ]},
+  ending_jenkins: { title: 'Jenkins Misses His Cue', text: [
+    (s) => `Jenkins was meant to do one small thing. Instead, he ${s.revealLocation === 'backyard' ? 'stepped out of the bush wearing half its leaves' : s.revealLocation === 'blanket fort' ? 'got caught in the curtain' : 'stood up with part of the cover still on him'}. Scarlett started laughing before Logan showed the ${displayProjectName(s)}. Jenkins waited. "Am I finished?"`,
+    (s) => `${projectPayoff(s)} Logan made Jenkins’s mistake part of the introduction. Scarlett hugged Logan and asked Jenkins to do it again. Jenkins wanted to know whether making mistakes was now his job. "You do not need more practice," Logan said.`
+  ]},
+  ending_improvise: { title: 'Skip the Curtain', text: [
+    (s) => `The curtain caught, and the first plan stopped working. Logan looked at Scarlett, then at the ${displayProjectName(s)}. He started a new show. ${s.hasSockPuppet ? 'Inspector Sock introduced it.' : 'Logan made a quick talking puppet with his hand.'} Jenkins supplied noises from behind the stuck cloth.`,
+    (s) => `${s.hasAcorn ? 'The acorn marked the last stop.' : s.hasTape ? 'The saved tape turned the loose cloth into a banner.' : 'A spoon served as the pretend microphone.'} ${projectPayoff(s)} Scarlett laughed. Logan took a bow. Jenkins tried to take one too. He was still attached to the curtain, so his was shorter.`
+  ]}
+};
+
+    const GROUNDED_STORY = { ...GROUNDED_A, ...GROUNDED_B };
+    for (const [id, prose] of Object.entries(GROUNDED_STORY)) {
+      const node = STORY[id];
+      if (!node) throw new Error(`Unknown grounded scene: ${id}`);
+      node.title = prose.title;
+      node.text = prose.text;
+      if (prose.labels) {
+        const relabel = choice => {
+          if (typeof choice.label === "string" && prose.labels[choice.label]) choice.label = prose.labels[choice.label];
+          else if (typeof choice.label === "function") {
+            const oldLabel = choice.label;
+            choice.label = state => { const old = oldLabel(state); return prose.labels[old] || old; };
+          }
+          return choice;
+        };
+        if (Array.isArray(node.choices)) node.choices.forEach(relabel);
+        else {
+          const oldChoices = node.choices;
+          node.choices = state => oldChoices(state).map(relabel);
+        }
+      }
+    }
+
     // Dad has both shoes by this point on every recorder route.
     for (const id of ["side_shoe_radio_2", "side_shoe_radio_3"]) {
       for (const choice of STORY[id].choices) {
@@ -3074,14 +3925,7 @@
     }
 
     function readerText(value) {
-      let text = String(value || "");
-      for (const [pattern, replacement] of READER_WORDS) {
-        text = text.replace(pattern, match => keepCase(match, replacement));
-      }
-      text = text.replace(/\ban (special|huge|normal|great|strange|backup|helpful|short|fancy|safe|big)\b/gi, (match, word) => `${/^[A-Z]/.test(match) ? "A" : "a"} ${word}`);
-      text = text.replace(/;\s*/g, ". ");
-      text = text.replace(/([^.!?]{60,}),\s+(but|so)\s+/gi, (match, first, link) => `${first}. ${link.charAt(0).toUpperCase() + link.slice(1).toLowerCase()} `);
-      return text;
+      return String(value || "");
     }
 
     function visibleChoiceLabel(choice, currentState) {
@@ -3093,16 +3937,7 @@
       const lines = (Array.isArray(source) ? source : [source])
         .map(line => resolve(line, state))
         .filter(line => typeof line === "string" && line.trim());
-      const extra = sceneVariation(node, state);
-      const recurring = recurringVariation(node.id || "", state);
-      const payoff = node.ending ? sideAdventurePayoff(state) : "";
-      const additions = [payoff, extra, recurring].filter(line => typeof line === "string" && line.trim());
-      const insertion = node.ending
-        ? lines.length
-        : node.id === START_NODE
-          ? Math.min(lines.length, 2)
-          : Math.min(lines.length, 1 + deterministicIndex(state, node.id || "unknown", "paragraph-position", 2));
-      lines.splice(insertion, 0, ...additions);
+      if (node.ending) lines.push(...sideAdventurePayoff(state));
       return lines.map(readerText);
     }
 
@@ -3132,7 +3967,10 @@
       }
     }
 
-    let state = newAdventureState();
+    const PROGRESS_STORAGE_KEY = "logan.operationGiggle.progress.v1";
+    const STORY_VERSION = "household-2026-10-08-v1";
+    const MAX_PAGE_WORDS = 70;
+    let state = freshState();
     let currentNodeId = START_NODE;
     let history = [];
     let currentChoices = [];
@@ -3143,6 +3981,12 @@
     let narrationActive = false;
     let narrationToken = 0;
     let resizeFrame = 0;
+    let pageAnchor = 0;
+    let pendingProgress = null;
+    let runActive = false;
+    let bootingProgress = true;
+    let bridgeReady = false;
+    let saveSequence = 0;
     const defer = typeof queueMicrotask === "function" ? queueMicrotask : callback => Promise.resolve().then(callback);
 
     const hasDOM = typeof document !== "undefined";
@@ -3162,7 +4006,16 @@
       restart: document.getElementById("restartButton"),
       read: document.getElementById("readButton"),
       stop: document.getElementById("stopButton"),
-      home: document.getElementById("homeButton")
+      home: document.getElementById("homeButton"),
+      save: document.getElementById("saveButton"),
+      saveStatus: document.getElementById("saveStatus"),
+      resume: document.getElementById("resumeDialog"),
+      resumeSummary: document.getElementById("resumeSummary"),
+      continue: document.getElementById("continueButton"),
+      newAdventure: document.getElementById("newAdventureButton"),
+      restartDialog: document.getElementById("restartDialog"),
+      confirmRestart: document.getElementById("confirmRestartButton"),
+      cancelRestart: document.getElementById("cancelRestartButton")
     } : null;
 
     function stopReading() {
@@ -3178,13 +4031,21 @@
 
     function goHome() {
       stopReading();
-      if (window.ArcadeMultiplayer && typeof ArcadeMultiplayer.goHome === "function") return ArcadeMultiplayer.goHome();
-      if (window.ArcadeSave && typeof ArcadeSave.goHome === "function") return ArcadeSave.goHome();
-      try {
-        if (window.parent !== window && window.parent.ArcadeShell && typeof window.parent.ArcadeShell.goHome === "function") return window.parent.ArcadeShell.goHome();
-      } catch (_) {}
-      if (window.ArcadeNative && typeof ArcadeNative.goHome === "function") return ArcadeNative.goHome();
-      window.location.href = "../index.html";
+      saveProgress();
+      if (window.ArcadeMultiplayer && typeof ArcadeMultiplayer.goHome === "function" && ArcadeMultiplayer.goHome()) return true;
+      const leave = () => {
+        try {
+          if (window.parent !== window && window.parent.ArcadeShell && typeof window.parent.ArcadeShell.goHome === "function") return window.parent.ArcadeShell.goHome();
+        } catch (_) {}
+        if (window.ArcadeNative && typeof ArcadeNative.goHome === "function") return ArcadeNative.goHome();
+        window.location.href = "../index.html";
+      };
+      if (window.ArcadeSave && typeof ArcadeSave.goHome === "function") {
+        const timeout = setTimeout(leave, 1500);
+        Promise.resolve(ArcadeSave.goHome()).then(() => clearTimeout(timeout), () => { clearTimeout(timeout); leave(); });
+        return true;
+      }
+      return leave();
     }
 
     function putParagraphs(container, lines) {
@@ -3204,58 +4065,62 @@
       return dom.measure.scrollHeight <= availableHeight + 1;
     }
 
+    function wordCount(lines) {
+      return lines.reduce((count, line) => count + String(line).trim().split(/\s+/).filter(Boolean).length, 0);
+    }
+
     function paginateLines(lines) {
-      if (!dom.viewport || !dom.pageNav || typeof dom.text.clientHeight !== "number") return [[...lines]];
-
-      dom.pageNav.classList.add("collapsed");
-      dom.viewport.classList.add("single-page");
-      void dom.text.offsetHeight;
-      if (pageFits(lines, dom.text.clientHeight)) return [[...lines]];
-
-      dom.pageNav.classList.remove("collapsed");
-      dom.viewport.classList.remove("single-page");
-      void dom.text.offsetHeight;
-      const availableHeight = Math.max(1, dom.text.clientHeight);
+      if (dom) {
+        dom.pageNav.classList.add("collapsed");
+        dom.viewport.classList.add("single-page");
+        void dom.text.offsetHeight;
+        if (wordCount(lines) <= MAX_PAGE_WORDS && pageFits(lines, dom.text.clientHeight)) return [[...lines]];
+        dom.pageNav.classList.remove("collapsed");
+        dom.viewport.classList.remove("single-page");
+        void dom.text.offsetHeight;
+      }
+      const availableHeight = dom ? Math.max(1, dom.text.clientHeight) : Infinity;
       const pages = [];
       let page = [];
-
+      const fits = candidate => wordCount(candidate) <= MAX_PAGE_WORDS && (!dom || pageFits(candidate, availableHeight));
       for (const line of lines) {
         let words = String(line).trim().split(/\s+/).filter(Boolean);
         while (words.length) {
+          // Keep a short paragraph together when it fits on a fresh page.
+          if (page.length && !fits([...page, words.join(" ")]) && fits([words.join(" ")])) {
+            pages.push(page); page = [];
+          }
           let low = 1;
-          let high = words.length;
+          let high = Math.min(words.length, MAX_PAGE_WORDS - wordCount(page));
           let best = 0;
           while (low <= high) {
             const middle = Math.floor((low + high) / 2);
-            const fragment = words.slice(0, middle).join(" ");
-            if (pageFits([...page, fragment], availableHeight)) {
-              best = middle;
-              low = middle + 1;
-            } else {
-              high = middle - 1;
-            }
+            if (fits([...page, words.slice(0, middle).join(" ")])) { best = middle; low = middle + 1; }
+            else high = middle - 1;
           }
-
-          if (best === words.length) {
-            page.push(words.join(" "));
-            words = [];
-          } else if (best > 0) {
-            page.push(words.slice(0, best).join(" "));
-            pages.push(page);
-            page = [];
-            words = words.slice(best);
-          } else if (page.length) {
-            pages.push(page);
-            page = [];
-          } else {
-            page.push(words.shift());
-            pages.push(page);
-            page = [];
-          }
+          if (best === words.length) { page.push(words.join(" ")); words = []; }
+          else if (best > 0) {
+            // Prefer the end of a sentence over cutting it in half.
+            const sentenceEnd = words.slice(0, best).map((word, i) => /[.!?]["'”’)]*$/.test(word) ? i + 1 : 0).filter(Boolean).pop();
+            if (sentenceEnd && sentenceEnd >= Math.max(8, best * .55)) best = sentenceEnd;
+            page.push(words.slice(0, best).join(" ")); pages.push(page); page = []; words = words.slice(best);
+          } else if (page.length) { pages.push(page); page = []; }
+          else { page.push(words.shift()); pages.push(page); page = []; }
         }
       }
       if (page.length) pages.push(page);
       return pages.length ? pages : [[]];
+    }
+
+    function anchorForPage(index) { return wordCount(storyPages.slice(0, index).flat()); }
+    function pageForAnchor(anchor) {
+      let offset = 0;
+      for (let index = 0; index < storyPages.length; index += 1) {
+        const next = offset + wordCount(storyPages[index]);
+        if (anchor < next || index === storyPages.length - 1) return index;
+        offset = next;
+      }
+      return 0;
     }
 
     function setChoicesReady(ready) {
@@ -3283,7 +4148,9 @@
       if (nextIndex === storyPageIndex) return;
       if (!keepNarration) stopReading();
       storyPageIndex = nextIndex;
+      pageAnchor = anchorForPage(nextIndex);
       renderStoryPage();
+      saveProgress();
     }
 
     function renderChoiceButtons(node) {
@@ -3316,7 +4183,7 @@
       });
     }
 
-    function render() {
+    function render(anchor = 0) {
       const node = STORY[currentNodeId];
       if (!node) throw new Error(`Missing story node: ${currentNodeId}`);
       stopReading();
@@ -3326,8 +4193,9 @@
       dom.title.textContent = resolve(node.title, state);
       renderChoiceButtons(node);
       renderedSceneLines = textLines(node, state);
-      storyPageIndex = 0;
+      pageAnchor = anchor;
       storyPages = paginateLines(renderedSceneLines);
+      storyPageIndex = pageForAnchor(pageAnchor);
       renderStoryPage();
 
       dom.back.disabled = history.length === 0;
@@ -3339,11 +4207,11 @@
 
     function choose(index) {
       const node = STORY[currentNodeId];
-      if (!node || node.ending || choiceLocked || storyPageIndex !== storyPages.length - 1) return;
+      if (!runActive || pendingProgress || !dom.restartDialog.hidden || !node || node.ending || choiceLocked || storyPageIndex !== storyPages.length - 1) return;
       const choice = currentChoices[index];
       if (!choice) return;
       choiceLocked = true;
-      const snapshot = { nodeId: currentNodeId, state: clone(state) };
+      const snapshot = { nodeId: currentNodeId, state: clone(state), pageAnchor };
       try {
         const draft = clone(state);
         applyEffect(draft, choice.effect);
@@ -3362,31 +4230,233 @@
         state = draft;
         currentNodeId = destination;
         render();
+        saveProgress();
       } catch (error) {
         state = clone(snapshot.state);
         currentNodeId = snapshot.nodeId;
         console.error("The choice could not be completed.", error);
-        render();
+        render(snapshot.pageAnchor);
       } finally {
         defer(() => { choiceLocked = false; });
       }
     }
 
     function goBack() {
+      if (!runActive || pendingProgress || !dom.restartDialog.hidden) return;
       const snapshot = history.pop();
       if (!snapshot) return;
       state = clone(snapshot.state);
       currentNodeId = snapshot.nodeId;
-      render();
+      render(snapshot.pageAnchor);
+      saveProgress();
     }
 
-    function restart() {
+    function beginNewAdventure() {
       stopReading();
       state = newAdventureState();
       currentNodeId = START_NODE;
       history = [];
+      pendingProgress = null;
+      runActive = true;
       choiceLocked = false;
-      render();
+      if (bridgeReady && window.ArcadeSave) window.ArcadeSave.setExternalSession(false);
+      if (dom) { dom.resume.hidden = true; dom.restartDialog.hidden = true; render(); }
+      saveProgress();
+    }
+
+    function restart() {
+      stopReading();
+      if (!dom || (!history.length && pageAnchor === 0) || STORY[currentNodeId].ending) return beginNewAdventure();
+      dom.restartDialog.hidden = false;
+      dom.cancelRestart.focus();
+    }
+
+    function captureProgress() {
+      return clone({ schema: 1, storyVersion: STORY_VERSION, savedAt: Date.now(), nodeId: currentNodeId, state, history, pageAnchor });
+    }
+
+    function validPlain(value) {
+      if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+      return Object.keys(value).every(key => !["__proto__", "prototype", "constructor"].includes(key));
+    }
+
+    function sameValue(left, right) {
+      if (typeof left !== typeof right || left === null || right === null) return left === right;
+      if (Array.isArray(left)) return Array.isArray(right) && left.length === right.length && left.every((value, i) => sameValue(value, right[i]));
+      if (typeof left === "object") {
+        if (!validPlain(left) || !validPlain(right)) return false;
+        const keys = Object.keys(left);
+        return keys.length === Object.keys(right).length && keys.every(key => Object.hasOwn(right, key) && sameValue(left[key], right[key]));
+      }
+      return left === right;
+    }
+
+    function validateProgress(value) {
+      try {
+        if (!validPlain(value) || value.schema !== 1 || value.storyVersion !== STORY_VERSION || !Number.isSafeInteger(value.savedAt) || value.savedAt < 0) return null;
+        if (JSON.stringify(value).length > 500000 || !Object.hasOwn(STORY, value.nodeId) || !validPlain(value.state) || !Array.isArray(value.history) || value.history.length > 64) return null;
+        const plan = value.state.director;
+        if (!validPlain(plan) || !validPlain(plan.connections) || !Number.isSafeInteger(plan.seed) || plan.seed < 0 || plan.seed > 4294967295 || !Number.isSafeInteger(plan.runNumber) || plan.runNumber < 1 || plan.runNumber > 1000000000) return null;
+        if (!PRE_PROJECT_EPISODES.includes(plan.connections.afterMission) || !POST_BUILD_EPISODES.includes(plan.connections.afterBuild) || Object.keys(plan.connections).length !== 2) return null;
+        const planKeys = Object.keys(INITIAL_STATE.director);
+        if (Object.keys(plan).length !== planKeys.length || planKeys.some(key => !Object.hasOwn(plan, key))) return null;
+        for (const key of planKeys.filter(key => !["seed", "runNumber", "connections"].includes(key))) if (typeof plan[key] !== "string" || plan[key].length > 512 || !plan[key]) return null;
+        if (!Array.isArray(value.state.storyPath) || value.state.storyPath.length !== value.history.length) return null;
+        let rebuiltState = freshState(plan);
+        let rebuiltId = START_NODE;
+        const rebuiltHistory = [];
+        const validAnchor = (anchor, node, current) => Number.isSafeInteger(anchor) && anchor >= 0 && anchor < Math.max(1, wordCount(textLines(node, current)));
+        for (let step = 0; step < value.state.storyPath.length; step += 1) {
+          const saved = value.history[step];
+          if (!validPlain(saved) || Object.keys(saved).length !== 3 || saved.nodeId !== rebuiltId || !sameValue(saved.state, rebuiltState) || !validAnchor(saved.pageAnchor, STORY[rebuiltId], rebuiltState)) return null;
+          const entry = value.state.storyPath[step];
+          if (typeof entry !== "string") return null;
+          const split = entry.lastIndexOf(":");
+          const from = entry.slice(0, split);
+          const index = Number(entry.slice(split + 1));
+          if (from !== rebuiltId || !Number.isSafeInteger(index) || index < 0 || index > 3 || String(index) !== entry.slice(split + 1)) return null;
+          const choice = availableChoices(STORY[rebuiltId], rebuiltState)[index];
+          if (!choice || STORY[rebuiltId].ending) return null;
+          rebuiltHistory.push({ nodeId: rebuiltId, state: clone(rebuiltState), pageAnchor: saved.pageAnchor });
+          const draft = clone(rebuiltState);
+          applyEffect(draft, choice.effect);
+          if (PRE_PROJECT_FINALS.includes(rebuiltId)) draft.episodeOneOutcome = visibleChoiceLabel(choice, draft);
+          if (POST_BUILD_FINALS.includes(rebuiltId)) draft.episodeTwoOutcome = visibleChoiceLabel(choice, draft);
+          draft.storyPath.push(entry);
+          rebuiltId = connectedDestination(resolve(choice.next, draft), draft);
+          if (!Object.hasOwn(STORY, rebuiltId)) return null;
+          rebuiltState = draft;
+        }
+        if (rebuiltId !== value.nodeId || !sameValue(rebuiltState, value.state) || !validAnchor(value.pageAnchor, STORY[rebuiltId], rebuiltState)) return null;
+        return { schema: 1, storyVersion: STORY_VERSION, savedAt: value.savedAt, nodeId: rebuiltId, state: rebuiltState, history: rebuiltHistory, pageAnchor: value.pageAnchor };
+      } catch (_) { return null; }
+    }
+
+    function showSaveStatus(message) { if (dom) dom.saveStatus.textContent = message; }
+
+    function readLocalProgress() {
+      try {
+        const raw = window.localStorage.getItem(PROGRESS_STORAGE_KEY);
+        if (!raw) return null;
+        if (raw.length > 500000) { showSaveStatus("Save unavailable"); return null; }
+        const parsed = validateProgress(JSON.parse(raw));
+        if (!parsed) showSaveStatus("Save unavailable");
+        return parsed;
+      } catch (_) { return null; }
+    }
+
+    function verifyBridgeSave(expected) {
+      return new Promise(resolve => {
+        let settled = false;
+        const finish = value => { if (!settled) { settled = true; clearTimeout(timer); resolve(value); } };
+        const timer = setTimeout(() => finish(false), 1500);
+        try {
+          const fallback = JSON.parse(window.localStorage.getItem("arcade.autosave.data.v1.adventure") || "null");
+          if (fallback && sameValue(fallback.data, expected)) return finish(true);
+        } catch (_) {}
+        try {
+          const request = window.indexedDB.open("arcade-autosaves", 1);
+          request.onerror = () => finish(false);
+          request.onsuccess = () => {
+            const db = request.result;
+            if (settled || !db.objectStoreNames.contains("saves")) { db.close(); return finish(false); }
+            const read = db.transaction("saves", "readonly").objectStore("saves").get("adventure");
+            read.onsuccess = () => { db.close(); finish(Boolean(read.result && sameValue(read.result.data, expected))); };
+            read.onerror = () => { db.close(); finish(false); };
+          };
+        } catch (_) { finish(false); }
+      });
+    }
+
+    function saveProgress() {
+      if (!hasDOM || !runActive || pendingProgress || bootingProgress) return Promise.resolve(false);
+      const snapshot = captureProgress();
+      const sequence = ++saveSequence;
+      let localSaved = false;
+      try {
+        const encoded = JSON.stringify(snapshot);
+        window.localStorage.setItem(PROGRESS_STORAGE_KEY, encoded);
+        localSaved = window.localStorage.getItem(PROGRESS_STORAGE_KEY) === encoded;
+      } catch (_) {}
+      showSaveStatus(localSaved ? "Saved" : "Saving…");
+      if (!bridgeReady || !window.ArcadeSave) { if (!localSaved) showSaveStatus("Cannot save here"); return Promise.resolve(localSaved); }
+      const sharedSave = new Promise(resolve => {
+        const timeout = setTimeout(() => resolve(null), 1500);
+        Promise.resolve(window.ArcadeSave.saveNow()).then(entry => { clearTimeout(timeout); resolve(entry); }, () => { clearTimeout(timeout); resolve(null); });
+      });
+      return sharedSave.then(entry => entry ? verifyBridgeSave(entry.data) : false).then(bridgeSaved => {
+        if (sequence === saveSequence) showSaveStatus(localSaved || bridgeSaved ? "Saved" : "Cannot save here");
+        return localSaved || bridgeSaved;
+      }, () => { if (sequence === saveSequence) showSaveStatus(localSaved ? "Saved" : "Cannot save here"); return localSaved; });
+    }
+
+    function restoreProgress(value) {
+      const clean = validateProgress(value);
+      if (!clean) throw new Error("This adventure save cannot be loaded.");
+      if (bootingProgress) { if (!pendingProgress || clean.savedAt > pendingProgress.savedAt) pendingProgress = clean; return true; }
+      stopReading();
+      state = clean.state;
+      currentNodeId = clean.nodeId;
+      history = clean.history;
+      pageAnchor = clean.pageAnchor;
+      pendingProgress = null;
+      runActive = true;
+      choiceLocked = false;
+      if (bridgeReady && window.ArcadeSave) window.ArcadeSave.setExternalSession(false);
+      if (dom) { dom.resume.hidden = true; dom.restartDialog.hidden = true; render(pageAnchor); }
+      saveProgress();
+      return true;
+    }
+
+    function offerContinue() {
+      const saved = pendingProgress;
+      if (!saved) return beginNewAdventure();
+      if (bridgeReady && window.ArcadeSave) window.ArcadeSave.setExternalSession(true);
+      dom.resumeSummary.textContent = `${resolve(STORY[saved.nodeId].title, saved.state)}. Your choices and items are saved.`;
+      dom.resume.hidden = false;
+      showSaveStatus("Saved adventure");
+      dom.continue.focus();
+    }
+
+    function initializeProgress() {
+      pendingProgress = readLocalProgress();
+      const finish = () => {
+        if (!bootingProgress) return;
+        bootingProgress = false;
+        if (pendingProgress) {
+          const params = new URLSearchParams(location.search);
+          if (params.get("resume") === "1" || params.get("load") === "1") restoreProgress(pendingProgress);
+          else offerContinue();
+        } else beginNewAdventure();
+      };
+      const registerBridge = () => {
+        if (!window.ArcadeSave || !bootingProgress) return finish();
+        try {
+          window.ArcadeSave.setExternalSession(true);
+          const ready = window.ArcadeSave.register({
+            id: "adventure", title: "Adventure", version: 1,
+            capture: captureProgress,
+            restore: restoreProgress,
+            meaningful: () => runActive && !pendingProgress && !bootingProgress,
+            summary: () => `${resolve(STORY[currentNodeId].title, state)} · ${history.length} choices`,
+            startFresh: beginNewAdventure
+          });
+          const timeout = setTimeout(() => { window.ArcadeSave.setExternalSession(false); finish(); }, 1500);
+          Promise.resolve(ready).then(() => {
+            bridgeReady = true;
+            if (!bootingProgress) return;
+            window.ArcadeSave.setExternalSession(false);
+            return window.ArcadeSave.hasSave() ? window.ArcadeSave.load().catch(() => false) : false;
+          }).then(() => { clearTimeout(timeout); finish(); }, () => { clearTimeout(timeout); window.ArcadeSave.setExternalSession(false); finish(); });
+        } catch (_) { finish(); }
+      };
+      if (window.ArcadeSave) return registerBridge();
+      const script = document.createElement("script");
+      script.src = "../arcade-save.js";
+      const timeout = setTimeout(finish, 1500);
+      script.onload = () => { clearTimeout(timeout); registerBridge(); };
+      script.onerror = () => { clearTimeout(timeout); finish(); };
+      document.head.appendChild(script);
     }
 
     function speakPage(index, token) {
@@ -3434,11 +4504,10 @@
 
     function repaginate() {
       if (!renderedSceneLines.length) return;
-      const wasLast = storyPageIndex === storyPages.length - 1;
-      const oldIndex = storyPageIndex;
       storyPages = paginateLines(renderedSceneLines);
-      storyPageIndex = wasLast ? storyPages.length - 1 : Math.min(oldIndex, storyPages.length - 1);
+      storyPageIndex = pageForAnchor(pageAnchor);
       renderStoryPage();
+      saveProgress();
     }
 
     function nodeTargets(node) {
@@ -3523,7 +4592,7 @@
       STORY, INITIAL_STATE, START_NODE, STORY_CONNECTIONS, PRE_PROJECT_EPISODES, POST_BUILD_EPISODES,
       PRE_PROJECT_FINALS, POST_BUILD_FINALS,
       freshState, testStoryPlan, makeStoryPlan, connectedDestination, availableChoices, applyEffect,
-      nodeTargets, validateStory, textLines, sceneVariation
+      nodeTargets, validateStory, textLines, sceneVariation, validateProgress, paginateLines, MAX_PAGE_WORDS, STORY_VERSION, PROGRESS_STORAGE_KEY
     };
     const debugApi = {
       story: STORY,
@@ -3561,7 +4630,13 @@
         getVisibleChoices: () => currentChoices.map((choice, index) => index),
         pagination: () => clone({ pages: storyPages, pageIndex: storyPageIndex }),
         nextPage: () => showStoryPage(storyPageIndex + 1),
-        previousPage: () => showStoryPage(storyPageIndex - 1)
+        previousPage: () => showStoryPage(storyPageIndex - 1),
+        captureSave: captureProgress,
+        restoreSave: restoreProgress,
+        validateSave: validateProgress,
+        save: saveProgress,
+        pageAnchor: () => pageAnchor,
+        isReady: () => !bootingProgress && runActive
       }
     };
     if (typeof globalThis !== "undefined") {
@@ -3571,6 +4646,11 @@
 
     if (hasDOM) {
       dom.home.addEventListener("click", goHome);
+      dom.save.addEventListener("click", saveProgress);
+      dom.continue.addEventListener("click", () => restoreProgress(pendingProgress));
+      dom.newAdventure.addEventListener("click", () => { stopReading(); dom.restartDialog.hidden = false; dom.cancelRestart.focus(); });
+      dom.confirmRestart.addEventListener("click", beginNewAdventure);
+      dom.cancelRestart.addEventListener("click", () => { dom.restartDialog.hidden = true; (pendingProgress ? dom.continue : dom.restart).focus(); });
       dom.back.addEventListener("click", goBack);
       dom.restart.addEventListener("click", restart);
       dom.read.addEventListener("click", toggleReading);
@@ -3579,6 +4659,18 @@
       if (dom.nextPage) dom.nextPage.addEventListener("click", () => showStoryPage(storyPageIndex + 1));
       document.addEventListener("keydown", event => {
         if (event.ctrlKey || event.metaKey || event.altKey || event.repeat) return;
+        if (pendingProgress || !dom.restartDialog.hidden || bootingProgress) {
+          if (event.key === "Tab" && (pendingProgress || !dom.restartDialog.hidden)) {
+            const dialog = dom.restartDialog.hidden ? dom.resume : dom.restartDialog;
+            const buttons = [...dialog.querySelectorAll("button")].filter(button => !button.disabled);
+            const current = buttons.indexOf(document.activeElement);
+            const next = (current + (event.shiftKey ? -1 : 1) + buttons.length) % buttons.length;
+            event.preventDefault();
+            buttons[next].focus();
+          }
+          if (event.key === "Escape" && !dom.restartDialog.hidden) { event.preventDefault(); dom.cancelRestart.click(); }
+          return;
+        }
         if (event.key === "ArrowLeft" && storyPages.length > 1) {
           event.preventDefault();
           showStoryPage(storyPageIndex - 1);
@@ -3611,17 +4703,20 @@
           repaginate();
         });
       });
-      window.addEventListener("pagehide", stopReading);
+      window.addEventListener("pagehide", () => { stopReading(); saveProgress(); });
+      window.addEventListener("arcadepause", () => { stopReading(); saveProgress(); });
+      document.addEventListener("arcadepause", () => { stopReading(); saveProgress(); });
       document.addEventListener("visibilitychange", () => {
-        if (document.hidden) stopReading();
+        if (document.hidden) { stopReading(); saveProgress(); }
       });
       window.addEventListener("message", event => {
         if (event.source !== window.parent || event.origin !== window.location.origin) return;
-        if (event.data && event.data.scope === "arcade-shell" && event.data.version === 1 && event.data.type === "pause") stopReading();
+        if (event.data && event.data.scope === "arcade-shell" && event.data.version === 1 && event.data.type === "pause") { stopReading(); saveProgress(); }
       });
       const report = validateStory();
       if (!report.ok) console.error("Adventure validation failed", report);
       render();
+      initializeProgress();
     }
   })();
   </script>

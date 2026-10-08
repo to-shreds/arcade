@@ -49,7 +49,7 @@ jobs:
           node tic-tac-toe/online.browser.test.mjs
 
       - name: Test Adventure stories and TV client
-        run: node --test adventure/story.test.mjs tv/core.test.mjs
+        run: node --test adventure/story.test.mjs adventure/save.test.mjs tv/core.test.mjs
 
       - name: Validate packaged Arcade runtime
         run: |

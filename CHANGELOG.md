@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.6.1 - 2026-10-08
+
+- Rewrote all Adventure scenes in simpler, shorter prose with grounded
+  household problems and deadpan dialogue. Preserved the branch graph,
+  inventory effects, 30 decisions per run, and eight endings.
+- Limited reading pages to 70 words while retaining measured screen fit.
+- Added automatic progress saves, Continue/New Adventure, confirmed restarts,
+  exact run/history restore, and Arcade save integration. Storage failures and
+  incompatible/corrupt saves are reported without blocking play.
+- Added source and actual browser save/reload checks and refreshed the complete
+  offline snapshot and downloadable web release.
+
 ## 2.6.0 - 2026-10-08
 
 - Added Logan and Jenkins: Operation Giggle and made Arcade its canonical

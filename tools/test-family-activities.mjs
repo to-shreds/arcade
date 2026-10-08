@@ -97,6 +97,8 @@ async function adventure(viewport, { shell = false } = {}) {
     assert.equal(await page.evaluate(() => ArcadeShell === __familyShellIdentity), true, 'Shell session must survive Adventure Home');
     await page.evaluate(() => ArcadeShell.openGame('adventure'));
     frame = page.frameLocator('#shellGameFrame');
+    await frame.locator('#continueButton').waitFor();
+    await frame.locator('#continueButton').click();
     await frame.locator('#readButton').click();
     const backCancellations = await page.evaluate(() => __familySpeech.cancel);
     await page.goBack();
@@ -104,6 +106,7 @@ async function adventure(viewport, { shell = false } = {}) {
     assert.ok(await page.evaluate(() => __familySpeech.cancel) > backCancellations, 'Browser Back must cancel Adventure narration');
   } else {
     await frame.locator('#restartButton').click();
+    if (await frame.locator('#confirmRestartButton').isVisible()) await frame.locator('#confirmRestartButton').click();
     assert.equal(await frame.locator('#sceneTitle').textContent(), firstTitle, 'Adventure Restart must restore opening scene');
     assert.ok(await page.evaluate(() => __familySpeech.cancel) > cancellations, 'Restart must cancel narration');
   }

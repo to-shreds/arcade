@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
+import { createHash } from 'node:crypto';
 
 const html = await readFile(new URL('./index.html', import.meta.url), 'utf8');
 const storyScript = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script\s*>/gi)]
@@ -42,8 +43,10 @@ function sampledRoutes() {
       for (const line of lines) {
         assert.equal(typeof line, 'string', `Scene text must resolve to a string. ${trace()}`);
         assert.ok(line.trim(), `Scene text must not be empty. ${trace()}`);
+        assert.ok(line.trim().split(/\s+/).length <= 70, `A prose paragraph should stay short. ${trace()}`);
         assert.doesNotMatch(line, /\b(?:undefined|NaN)\b/, `A saved choice must not leave missing values in prose. ${trace()}`);
       }
+      assert.ok(lines.join(' ').trim().split(/\s+/).length <= 170, `A scene should move to its decision without long filler. ${trace()}`);
       if (node.ending) {
         assert.equal(api.availableChoices(node, state).length, 0, `An ending must finish the route. ${trace()}`);
         result.endings.add(id);
@@ -84,14 +87,30 @@ test('the story graph has no missing, unreachable, cyclic, or dead-end scenes', 
   assert.ok(validation.maxDecisions >= validation.minDecisions);
 });
 
-test('the opening introduces Jenkins before his recipe-specific clue', () => {
-  for (let run = 1; run <= 16; run++) {
-    const state = api.freshState(api.testStoryPlan(run));
-    const lines = api.textLines(api.STORY.opening, state);
-    const introduction = lines.findIndex(line => line.includes('Jenkins was in the house'));
-    const clue = lines.findIndex(line => line.includes(state.director.stamp));
-    assert.ok(introduction >= 0 && clue > introduction, 'A clue referring to Jenkins follows his introduction');
-  }
+test('the lighter prose keeps the original branch graph and choice consequences', () => {
+  const encode = value => typeof value === 'function' ? value.toString() : value;
+  const graph = Object.fromEntries(Object.entries(api.STORY).map(([id, node]) => [id, {
+    ending: node.ending, targets: api.nodeTargets(node),
+    choices: Array.isArray(node.choices) ? node.choices.map(choice => ({
+      next: encode(choice.next), when: encode(choice.when), effect: encode(choice.effect)
+    })) : null
+  }]));
+  const fingerprint = createHash('sha256').update(JSON.stringify(graph)).digest('hex');
+  assert.equal(fingerprint, '524381da169bb1923ce459bed342a630cbf5a3a731b79b2110a65c4e793ecf8d',
+    'The rewrite preserves every destination, condition, and inventory/state effect.');
+  const report = api.validateStory();
+  assert.equal(report.nodeCount, 124);
+  assert.equal(report.endingCount, 8);
+  assert.equal(report.minDecisions, 30);
+  assert.equal(report.maxDecisions, 30);
+});
+
+test('the opening introduces the household and Jenkins without a long setup', () => {
+  const state = api.freshState(api.testStoryPlan(1));
+  const text = api.textLines(api.STORY.opening, state).join(' ');
+  for (const name of ['Logan', 'Jenkins', 'Scarlett']) assert.ok(text.includes(name));
+  assert.ok(text.split(/\s+/).length <= 140, 'The opening should get to the choices quickly.');
+  assert.equal(api.availableChoices(api.STORY.opening, state).length, 4);
 });
 
 test('5,000 deterministic adventures render and complete across every scene and ending', () => {

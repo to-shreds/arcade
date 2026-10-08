@@ -8,6 +8,22 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.6.1
+
+Adventure now uses shorter, simpler scenes and dry family humor. Jenkins still
+makes questionable plans, but the trouble comes from lost shoes, stuck drawers,
+spilled supplies, and keeping Scarlett's surprise under wraps. The same 124
+scenes, 30 decisions per run, and eight endings remain.
+
+Reading pages contain at most 70 words and can be shorter to fit the screen.
+Progress saves automatically, including the story recipe, inventory, exact Back
+history, and reading position. Reopening offers Continue or New Adventure.
+The save also participates in Arcade's saved-activity system. If browser
+storage is unavailable, the game says so and keeps working for that session.
+See [the 2.6.1 checks](docs/arcade-stress-test-2.6.1.md).
+
+This release includes the Adventure and TV additions below.
+
 ## Release 2.6.0
 
 Two solo entries join the existing 43 online games and activities:

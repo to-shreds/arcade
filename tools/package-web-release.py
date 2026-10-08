@@ -32,7 +32,7 @@ with zipfile.ZipFile(args.output, 'w', compression=zipfile.ZIP_DEFLATED, compres
     item = zipfile.ZipInfo('START-HERE.txt', date_time=(2026, 10, 8, 0, 0, 0))
     item.compress_type = zipfile.ZIP_DEFLATED
     item.external_attr = 0o100644 << 16
-    archive.writestr(item, 'Family Arcade 2.6.0 web release\n\nExtract this folder and serve it over HTTP or HTTPS. For a local preview:\n  python3 -m http.server 8080\nThen open http://localhost:8080/ in a browser.\n\nInternet rooms use the existing public Arcade Worker. Nearby pairing uses the\nArcade Connect Devices flow. Prepare Make Available Offline before losing\nInternet access. Camera permissions require HTTPS or localhost.\n\nFull source and deployment configuration:\nhttps://github.com/to-shreds/arcade\nLive Arcade:\nhttps://to-shreds.github.io/arcade/\n\nSee README.md and docs/arcade-stress-test-2.6.0.md for supported play and tests. TV requires Internet and a TorBox account.\n')
+    archive.writestr(item, 'Family Arcade 2.6.1 web release\n\nExtract this folder and serve it over HTTP or HTTPS. For a local preview:\n  python3 -m http.server 8080\nThen open http://localhost:8080/ in a browser.\n\nInternet rooms use the existing public Arcade Worker. Nearby pairing uses the\nArcade Connect Devices flow. Prepare Make Available Offline before losing\nInternet access. Camera permissions require HTTPS or localhost.\n\nFull source and deployment configuration:\nhttps://github.com/to-shreds/arcade\nLive Arcade:\nhttps://to-shreds.github.io/arcade/\n\nSee README.md and docs/arcade-stress-test-2.6.1.md for supported play and tests. TV requires Internet and a TorBox account.\n')
 with zipfile.ZipFile(args.output) as archive:
     assert archive.testzip() is None
     for entry in manifest['files']:

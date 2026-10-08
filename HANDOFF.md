@@ -7,12 +7,21 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+Current release 2.6.1 keeps the following 2.6.0 additions and revises Adventure
+with grounded prose, 70-word maximum reading pages, and actual progress saves.
+Preserve all 124 scene IDs, branch conditions, inventory consequences, 30
+choices per complete run, and eight endings. The new progress save is distinct
+from recipe-history storage. It includes the director recipe, state, exact
+Back history, and word anchor; validated versioned restores must not silently
+switch to a different story. Save behavior and checks are described in
+`adventure/README.md` and `docs/arcade-stress-test-2.6.1.md`.
+
 The 2.6.0 web release adds two solo catalog entries to the previously verified
 2.5.0 release. `adventure/index.html` is now the maintained canonical source for
 Logan and Jenkins: Operation Giggle. `Misc/AdventureGame` is a historical import,
 not a second maintenance target. Preserve its 124-scene graph, eight endings,
 30 decisions per route, exact Back state, age 7-8 prose, measured pagination,
-and narration cancellation. Recipe history is not a progress save.
+and narration cancellation. Recipe history remains separate from progress saves.
 
 `tv/` is a minimal preset-only TorBox client. It uses the existing
 `https://torbox-web-player-key.onrender.com` API, exact title identities, and
