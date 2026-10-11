@@ -7,7 +7,24 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
-Current release 2.6.3 fixes Mad Libs capitalization and both story narrators.
+Current release 2.6.4 restores classic Mad Libs word prompts. All 68 themes
+have exactly 12 prompts, 126-150 one-word-template words, 12 short sentences,
+and 18-24 blank occurrences. Every supplied word is used. Preserve the original
+first twelve prompt positions, story order, categories, and fixed thematic cast.
+Avoid asking players to invent the plot, cast, mission, solution, or reward.
+The canonical story bank remains inline DATA in `mad-libs/index.html`.
+
+Autosave adapter version 3 tags `storyFormat`. `legacy-stories-v2.js` preserves
+the real v1 and v2 templates so completed old stories retain their exact words
+and title. Old unfinished entries and Change Words move the first 12 answers
+into the current story, with all old answers retained in `legacyAnswers`.
+New snapshots with twelve answers must explicitly use `storyFormat: 3`.
+The legacy script must be included in offline releases. Intentional story
+selection focuses the first word immediately; save/shared restores skip
+autofocus so they cannot steal focus during editing. Current checks and
+publication belong in ProjectStatus and `docs/arcade-stress-test-2.6.4.md`.
+
+Release 2.6.3 fixes Mad Libs capitalization and both story narrators.
 `mad-libs/word-case.js` formats rendered answers without changing raw save/input
 values. Keep name/place spelling, ordinary descriptions, sentence and quoted
 reply capitalization, and escaping intact. `arcade-speech.js` selects the
@@ -22,14 +39,15 @@ Android audio testing from the browser bridge fixtures.
 The prior CI failure was a Tic Tac Toe browser assertion racing the winning
 board's automatic round reset. Preserve the strict recorded-winning-version,
 board, score, next-round and reload assertions. The transient sameState wait
-was removed only for the final winning move. Current checks and publication
-belong in ProjectStatus and `docs/arcade-stress-test-2.6.3.md`.
+was removed only for the final winning move. The full CI run for source commit `2177b1700650eee68cb582ea24a9daed77027a75`
+completed successfully (run `38156801638`). Its checks are recorded in
+`docs/arcade-stress-test-2.6.3.md`.
 
 Release 2.6.2 adds the requested Mad Libs rewrite to the verified 2.6.1
 release. Preserve the original twelve answer positions and 68 story themes for
-old saves. All 18 answers appear in each story; every sentence has a blank.
-Contextual Ideas cover goals, solutions, rewards and closing lines. Optional
-titles, v1 migration, shared control and real local reloads are tested. See
+old saves. That historical format used 18 answers with thematic role and plot prompts.
+It is retained only for completed old results. Optional titles, v1 migration,
+shared control and real local reloads were tested. See
 `mad-libs/README.md` and `docs/arcade-stress-test-2.6.2.md`.
 
 Release 2.6.1 keeps the following 2.6.0 additions and revises Adventure

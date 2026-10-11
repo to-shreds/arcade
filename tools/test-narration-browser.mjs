@@ -41,8 +41,8 @@ async function speechPage(activity, mode) {
   await page.goto(`${fixture.base}/${activity}/`);
   if (activity === 'mad-libs') {
     await page.waitForFunction(() => !!window.MadLibsAutosave);
-    await page.evaluate(() => MadLibsAutosave.restore({ storyIndex: 0,
-      values: Array.from({ length: 18 }, (_, index) => ['Logan', 'Scarlett'][index % 2]), screen: 'result' }));
+    await page.evaluate(() => MadLibsAutosave.restore({ storyFormat: 3, storyIndex: 0,
+      values: Array.from({ length: 12 }, (_, index) => ['Logan', 'Scarlett'][index % 2]), screen: 'result' }));
   } else await page.waitForFunction(() => __LOGAN_CYOA_DEBUG__.engine.isReady());
   return page;
 }
@@ -82,12 +82,12 @@ try {
     assert.equal(await mad.locator('#speakButton').textContent(), '🔊 Read It Aloud', 'Shell pause resets the reading control');
     assert((await mad.evaluate(() => __speech.stops)) > stops, 'Shell pause cancels the speech engine');
     if (mode === 'native') {
-      await mad.evaluate(() => MadLibsAutosave.restore({ storyIndex: 0, screen: 'result', values: Array(18).fill('X'.repeat(120)) }));
+      await mad.evaluate(() => MadLibsAutosave.restore({ storyFormat: 3, storyIndex: 0, screen: 'result', values: Array(12).fill('X'.repeat(120)) }));
       const before = await mad.evaluate(() => __speech.calls.length);
       await mad.locator('#speakButton').click();
       assert.equal(await mad.evaluate(() => __speech.calls.length), before, 'Old APK cannot silently truncate a long story');
       assert.match(await mad.evaluate(() => __speech.alerts.at(-1)), /2,000 characters/);
-      await mad.evaluate(() => MadLibsAutosave.restore({ storyIndex: 0, screen: 'result', values: Array(18).fill('Logan') }));
+      await mad.evaluate(() => MadLibsAutosave.restore({ storyFormat: 3, storyIndex: 0, screen: 'result', values: Array(12).fill('Logan') }));
       await mad.locator('#speakButton').click();
       await mad.waitForFunction(() => __speech.alerts.at(-1)?.includes('text-to-speech voice'), null, { timeout: 7000 });
       assert.equal(await mad.locator('#speakButton').textContent(), '🔊 Read It Aloud', 'A missing Android voice is reported instead of queuing forever');

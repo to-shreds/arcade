@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.6.4 - 2026-10-11
+
+- Expanded all 68 Mad Libs stories while keeping blanks in every sentence.
+- Replaced character, helper, goal, solution and reward requests with normal
+  parts-of-speech prompts. Each story now uses 12 supplied words.
+- Added versioned story compatibility so completed old stories retain their
+  answers and unfinished stories keep compatible words without treating old
+  mission phrases as adjectives or nouns. Retained capitalization/read-aloud.
+- Prevent restored stories from moving the cursor back to the first word during editing.
+
 ## 2.6.3 - 2026-10-11
 
 - Fixed Mad Libs answer case in the generated story, including sentence and

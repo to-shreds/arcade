@@ -1,23 +1,23 @@
 # Mad Libs
 
-All 68 themes now have shorter plots around familiar activities: lunch, trips,
-parties, school, games, shopping, and getting home. Favorite characters and
-fantasy themes remain, with practical goals and small problems to solve.
+All 68 themes use exactly twelve ordinary word prompts: nouns, verbs,
+adjectives, adverbs, names, places, and familiar categories such as food.
+The story supplies its own characters and plot. Each story has 126-150 words
+with one-word answers, twelve short sentences, and 18-24 blanks. Every answer
+appears, and no sentence is just a long fixed passage.
 
-Each story has 18 answers, including the main character, helper, goal,
-solution, reward, and last line. Every sentence contains a blank, and fixed
-passages stay short. Ideas for the new story choices are specific to the theme;
-Fill Empty keeps words the player has already entered. The title is optional.
-This remains a fill-in-the-blanks game, without a whole-story editor.
+Ideas offer examples for each word category. Fill Empty keeps words already
+entered. The title is optional. Answers are escaped before display, and long
+words wrap on narrow screens.
 
 Story ordering and the original twelve answer positions are unchanged.
-Version 1 saves retain those answers; the six new fields start empty in a
-word-entry save, or receive Ideas when an old completed story is restored.
-Version 2 saves also retain the optional title. Local Arcade autosave and
-shared-room control both include the updated answers and title. Answers are
-escaped before display. Long words wrap on narrow screens.
+Version 3 saves tag their story format. Completed version 1 and 2 saves retain
+their original template, answers, and optional title. Unfinished old entries
+and Change Words move the first twelve answers into the longer current story,
+with all original answers retained as a backup in the save. Shared-room control
+includes the format, answers, and title.
 
-Run `node tools/test-mad-libs.mjs` for story coverage and short-prose checks,
+Run `node tools/test-mad-libs.mjs` for story coverage and prose checks,
 `node tools/test-mad-libs-browser.mjs` for all-story rendering, mobile layout,
 Ideas, editing, escaping and actual reloads, and
 `node tools/test-shared-lobby.mjs --case=mad-libs` for two-browser shared play.

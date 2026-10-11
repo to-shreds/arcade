@@ -8,6 +8,19 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.6.4
+
+Mad Libs restores ordinary word prompts: nouns, adjectives, adverbs and verbs,
+with familiar categories such as names, places, numbers and foods. Each of the
+68 stories is longer, with 12 words to supply and blanks throughout. Players
+no longer have to invent a cast, mission, solution or reward.
+
+Completed older stories and answers remain available through versioned saves.
+Unfinished old stories retain the first twelve words. All original answers
+remain backed up in the save. The capitalization and narration fixes remain.
+See [the Mad Libs notes](mad-libs/README.md) and
+[the 2.6.4 checks](docs/arcade-stress-test-2.6.4.md).
+
 ## Release 2.6.3
 
 Mad Libs now formats ordinary answers in lowercase within sentences, while

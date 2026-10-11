@@ -1,6 +1,6 @@
 {
   "name": "family-arcade-web",
-  "version": "2.6.3",
+  "version": "2.6.4",
   "private": true,
   "scripts": {
     "test:browser": "npm run test:mad-libs && npm run test:narration && npm run test:family-browser && node tools/test-shell-browser.mjs && node tools/test-local-ui-browser.mjs && node tools/test-chat-browser.mjs && node tools/test-shared-adapters.mjs && node tools/test-shared-recovery.mjs && node tools/test-shared-lobby.mjs && node tools/test-online-browser.mjs && node tools/test-shared-simulation.mjs",

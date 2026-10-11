@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.6.3+20261011.1",
-  "generatedAt": "2026-10-11T16:41:20.525Z",
-  "fileCount": 359,
-  "totalBytes": 18222890,
+  "version": "2.6.4+20261011.1",
+  "generatedAt": "2026-10-11T18:31:11.979Z",
+  "fileCount": 360,
+  "totalBytes": 18368828,
   "files": [
     {
       "path": "adventure/game.json",
@@ -367,13 +367,18 @@
     },
     {
       "path": "mad-libs/index.html",
-      "bytes": 195358,
-      "sha256": "a1c270f2c9d1eb138eacedb6f7d76191103d12f6e7e78b6f25a070e5cec6cd3f"
+      "bytes": 162010,
+      "sha256": "6044403af634b3d9a11fb5065f0ced36f7f77958c178e093a5584c1969d4cf62"
+    },
+    {
+      "path": "mad-libs/legacy-stories-v2.js",
+      "bytes": 179356,
+      "sha256": "229b045eb8900abdf522f2593cd5649665ab1ce3ddfe2afccd72540bd792b1c9"
     },
     {
       "path": "mad-libs/README.md",
-      "bytes": 2482,
-      "sha256": "2035c6d735a65965ef1288ff6d5374cbbbe76b1c8eb9030dcaba1735d146f692"
+      "bytes": 2407,
+      "sha256": "9fd8736587378728515d2c2df993ac39f7a1821efba3f8b537e3d63c9776f069"
     },
     {
       "path": "mad-libs/word-case.js",
@@ -1652,8 +1657,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27786,
-      "sha256": "7f8b456753e5e5863ee1efda9498c2f4c2742f929dec5cac1b0d12b45d61b579"
+      "bytes": 27791,
+      "sha256": "87b1771bab8e936e7535329c8566e44b8fab041674f08f41b6723b108636c3e3"
     },
     {
       "path": "tic-tac-toe/game.json",
