@@ -27,6 +27,9 @@ try {
     await page.goto(base);
     await page.waitForFunction(count => document.querySelectorAll('.card').length === count && window.ArcadeShell, available.length);
     assert.equal(await page.locator('.card').count(), available.length);
+    const browseBounds = await page.locator('.browse').boundingBox();
+    const gridBounds = await page.locator('#grid').boundingBox();
+    assert.ok(browseBounds && gridBounds && gridBounds.y >= browseBounds.y + browseBounds.height, 'search and sort stay above the catalog grid');
     assert.equal(await page.locator('.card').filter({ hasText: 'Backyard Baseball' }).count(), 0);
     await page.locator('[data-filter="activity"]').click();
     assert.equal(await page.locator('.card').count(), available.filter(item => item.type === 'activity').length);
@@ -76,8 +79,27 @@ try {
   assert.equal(await offlineFrame.locator('canvas').count() > 0, true);
   await offlinePage.evaluate(() => ArcadeShell.goHome());
   await offlinePage.waitForFunction(() => !document.querySelector('#shellGameFrame'));
+  assert.deepEqual(await offlinePage.evaluate(() => JSON.parse(localStorage.getItem('arcade.recent.v1'))), ['paint-lab']);
+  await offlinePage.reload();
+  await offlinePage.waitForFunction(count => document.querySelectorAll('.card').length === count && window.ArcadeShell, available.length);
+  assert.equal(await offlinePage.locator('#sort').inputValue(), 'alpha');
+  await offlinePage.locator('#sort').selectOption('recent');
+  assert.equal(await offlinePage.locator('.card').count(), 1);
+  assert.equal(await offlinePage.locator('.card[data-arcade-folder="paint-lab"]').count(), 1);
+  await offlinePage.locator('#search').fill('paint');
+  assert.equal(await offlinePage.locator('.card[data-arcade-folder="paint-lab"]').count(), 1);
+  await offlinePage.locator('#search').fill('no-such-arcade-activity');
+  assert.equal(await offlinePage.locator('.card').count(), 0);
+  assert.equal(await offlinePage.locator('#grid .empty').innerText(), 'No matches');
+  await offlinePage.locator('#clearSearch').click();
+  assert.equal(await offlinePage.locator('#search').inputValue(), '');
+  assert.equal(await offlinePage.locator('.card[data-arcade-folder="paint-lab"]').count(), 1);
+  await offlinePage.reload();
+  await offlinePage.waitForFunction(count => document.querySelectorAll('.card').length === count && window.ArcadeShell, available.length);
+  assert.equal(await offlinePage.locator('#sort').inputValue(), 'alpha');
+  assert.equal(await offlinePage.locator('#search').inputValue(), '');
   assert.deepEqual(offlineErrors, []);
-  console.log('PWA: complete verified offline snapshot, offline reload, all catalog tiles, shared activity scripts, Paint canvas, and Home passed.');
+  console.log('PWA: complete verified offline snapshot, offline reload, all catalog tiles, shared activity scripts, Paint canvas, Home, recent history, live search, clear, and alphabetical default passed.');
   await offlineContext.close();
 } catch (error) {
   if (browser) {

@@ -558,6 +558,7 @@ export class ArcadeShellController {
       if(replacingGame || history.state?.arcadeGame) history.replaceState(state, "", url);
       else history.pushState(state, "", url);
     }
+    window.dispatchEvent(new CustomEvent("arcade:game-opened", { detail: { folder: item.folder } }));
     return true;
   }
 
@@ -590,7 +591,12 @@ export class ArcadeShellController {
     }
     const restore = this.launcher;
     this.launcher = null;
-    requestAnimationFrame(() => restore?.focus?.());
+    window.dispatchEvent(new CustomEvent("arcade:game-closed"));
+    requestAnimationFrame(() => {
+      // The refreshed catalog may have replaced or reordered the launch tile.
+      const target = restore?.isConnected ? restore : [...document.querySelectorAll('.card[data-arcade-folder]')].find(card => card.dataset.arcadeFolder === restore?.dataset.arcadeFolder);
+      target?.focus?.();
+    });
     return true;
   }
 

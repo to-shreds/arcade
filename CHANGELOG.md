@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.6.5 - 2026-10-11
+
+- Alphabetized the game and activity menu by default in web and Android.
+- Added live search by name or category, combined with existing menu filters.
+- Added Recently used: the last ten distinct activities opened on this device,
+  newest first, with restart/offline persistence and a session-only fallback
+  when storage is unavailable. Shell links and invitations also count.
+- Preserved Home focus after refreshing or reordering the menu and refreshed
+  the verified offline release. No Android rebuild is required.
+
 ## 2.6.4 - 2026-10-11
 
 - Expanded all 68 Mad Libs stories while keeping blanks in every sentence.

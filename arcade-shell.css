@@ -1,4 +1,4 @@
-.app.arcade-shell-ready{grid-template-rows:auto auto auto minmax(0,1fr)}
+.app.arcade-shell-ready{grid-template-rows:auto auto auto auto minmax(0,1fr)}
 .shell-badge{min-height:36px!important;padding:5px 9px!important;border-radius:999px!important;font-size:11px!important;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
 .shell-badge .dot{width:8px;height:8px;border-radius:50%;background:#64748b;box-shadow:none}
 .shell-badge.connected .dot{background:#72ef80;box-shadow:0 0 10px rgba(114,239,128,.72)}

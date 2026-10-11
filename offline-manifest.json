@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.6.4+20261011.1",
-  "generatedAt": "2026-10-11T18:31:11.979Z",
+  "version": "2.6.5+20261011.1",
+  "generatedAt": "2026-10-11T19:00:20.275Z",
   "fileCount": 360,
-  "totalBytes": 18368828,
+  "totalBytes": 18372840,
   "files": [
     {
       "path": "adventure/game.json",
@@ -37,13 +37,13 @@
     },
     {
       "path": "arcade-shell.css",
-      "bytes": 11649,
-      "sha256": "daab771825efd1e5132c1524d52869dfd7483a3f1906e55949e034846db60137"
+      "bytes": 11654,
+      "sha256": "be0f9468e0842a6dc3a2b03947231bfa53ce4cf8ec80643efdc61cc08b79674a"
     },
     {
       "path": "arcade-shell.js",
-      "bytes": 77942,
-      "sha256": "6ca9bfe7e410b68e14a8decf845ae2be8902dcc1557c11607feb06cb49f42690"
+      "bytes": 78391,
+      "sha256": "7b336b16d095053fb832f5fa282e0b89ac8d718b9997f2851c053998fb18001d"
     },
     {
       "path": "arcade-speech.js",
@@ -322,8 +322,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 12326,
-      "sha256": "429da96159406e7acf02f1e8b7f762e4f795f5c2922870e4274dc8f25c5555cb"
+      "bytes": 15879,
+      "sha256": "54d78f9bc98f8a7cac005621b620c22f76674d608b7db75d11a89fc320bc8048"
     },
     {
       "path": "insultinator/game.json",
@@ -1657,8 +1657,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27791,
-      "sha256": "87b1771bab8e936e7535329c8566e44b8fab041674f08f41b6723b108636c3e3"
+      "bytes": 27796,
+      "sha256": "569455d448494821134fbf1eda2d6ad2fa9e7a7775d4efa18cd16eac542ab6ef"
     },
     {
       "path": "tic-tac-toe/game.json",

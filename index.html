@@ -17,13 +17,14 @@
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);touch-action:manipulation}
 body{background:radial-gradient(circle at 14% 12%,rgba(33,220,255,.13),transparent 32%),radial-gradient(circle at 86% 88%,rgba(255,90,200,.12),transparent 32%),var(--bg)}
-.app{height:100%;display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:8px;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+.app{height:100%;display:grid;grid-template-rows:auto auto auto minmax(0,1fr);gap:8px;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
 header{display:flex;align-items:center;gap:8px;min-width:0}
 h1{margin:0;font-size:clamp(25px,5.4vmin,44px);line-height:1;font-weight:1000;letter-spacing:-1.2px;color:var(--gold);text-shadow:0 0 22px rgba(255,206,58,.25)}
 .count{color:var(--muted);font-weight:800;font-size:12px;white-space:nowrap}
 .updated{color:#dce4ff;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:10px;font-weight:900;white-space:nowrap}
 .head-actions{margin-left:auto;display:flex;gap:6px}
-button,select{min-height:38px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.08);color:#fff;font:inherit;font-weight:900;padding:7px 10px;-webkit-tap-highlight-color:transparent}
+button,select,input{min-height:38px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.08);color:#fff;font:inherit;font-weight:900;padding:7px 10px;-webkit-tap-highlight-color:transparent}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 button:active{transform:scale(.97);background:rgba(255,255,255,.16)}
 .icon-btn{width:42px;padding:0;font-size:20px}
 .filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(92px,1.28fr) minmax(105px,1.5fr);gap:6px;padding-bottom:1px}
@@ -31,6 +32,14 @@ button:active{transform:scale(.97);background:rgba(255,255,255,.16)}
 .filter.active{background:linear-gradient(135deg,var(--cyan),#4277ff);border-color:transparent;color:#071126}
 #category{font-size:12px;width:100%;min-width:0;padding-left:7px;padding-right:4px}
 #category.active{border-color:var(--pink);background:rgba(255,90,200,.16)}
+.browse{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;min-width:0}
+.search-box{position:relative;min-width:0}
+#search{width:100%;min-width:0;font-size:14px;font-weight:700;padding-right:42px}
+#search::placeholder{color:var(--muted);opacity:1}
+#search::-webkit-search-cancel-button{-webkit-appearance:none}
+#clearSearch{position:absolute;right:2px;top:2px;min-height:34px;height:34px;width:34px;border:0;background:transparent;padding:0;font-size:20px}
+#sort{min-width:0;font-size:12px;width:145px;padding-left:7px;padding-right:4px}
+@media(max-width:400px){#search{font-size:12px}#sort{width:120px;font-size:11px}}
 .grid{min-height:0;overflow-y:auto;overscroll-behavior:contain;display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));grid-auto-rows:120px;gap:8px;padding:1px;align-content:start}
 .card{position:relative;min-width:0;border:1px solid var(--line);border-radius:19px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045));color:#fff;display:grid;grid-template-rows:58px minmax(34px,auto);place-items:center;gap:5px;padding:10px 7px 8px;box-shadow:0 8px 20px rgba(0,0,0,.22);overflow:hidden}
 .card:before{content:"";position:absolute;width:78px;height:78px;right:-28px;bottom:-33px;border-radius:50%;background:var(--accent,var(--cyan));opacity:.18;filter:blur(1px)}
@@ -50,7 +59,7 @@ button:active{transform:scale(.97);background:rgba(255,255,255,.16)}
 </head>
 <body>
 <main class="app">
-<header><h1>Arcade</h1><time class="updated" datetime="2026-10-03">Last updated Oct 3, 2026</time><span class="count" id="count"></span><div class="head-actions"><button class="icon-btn" id="reload" aria-label="Reload arcade">↻</button><button class="icon-btn" id="manage" aria-label="Arcade settings">⚙</button></div></header>
+<header><h1>Arcade</h1><time class="updated" datetime="2026-10-11">Last updated Oct 11, 2026</time><span class="count" id="count"></span><div class="head-actions"><button class="icon-btn" id="reload" aria-label="Reload arcade">↻</button><button class="icon-btn" id="manage" aria-label="Arcade settings">⚙</button></div></header>
 <nav class="filters" aria-label="Filters">
 <button class="filter active" data-filter="all">All</button>
 <button class="filter" data-filter="game">Games</button>
@@ -58,6 +67,10 @@ button:active{transform:scale(.97);background:rgba(255,255,255,.16)}
 <button class="filter" id="playerFilter" type="button">Players: Any</button>
 <select id="category" aria-label="Category"><option value="">Categories</option></select>
 </nav>
+<div class="browse">
+<div class="search-box"><input id="search" type="search" aria-label="Search games and activities" placeholder="Search games & activities" autocomplete="off" autocapitalize="none" spellcheck="false"><button id="clearSearch" type="button" aria-label="Clear search" hidden>×</button></div>
+<select id="sort" aria-label="Activity order"><option value="alpha">A–Z</option><option value="recent">Recently used</option></select>
+</div>
 <section class="grid loading" id="grid">Loading…</section>
 </main>
 <script>
@@ -67,11 +80,26 @@ const count=document.getElementById('count');
 const category=document.getElementById('category');
 const filters=[...document.querySelectorAll('.filter')];
 const playerFilter=document.getElementById('playerFilter');
+const search=document.getElementById('search');
+const clearSearch=document.getElementById('clearSearch');
+const sort=document.getElementById('sort');
+const recentKey='arcade.recent.v1';
+const recentLimit=10;
+function cleanRecent(value){return Array.isArray(value)?[...new Set(value.filter(x=>typeof x==='string'&&/^[a-z0-9][a-z0-9._-]*$/i.test(x)))].slice(0,recentLimit):[];}
+function readRecent(){try{return cleanRecent(JSON.parse(localStorage.getItem(recentKey)||'[]'));}catch(_){return [];}}
+let recent=readRecent();
 let items=[];
 let mode='all';
 let playerMode='any';
 let cat='';
 let saves={};
+function recordRecent(folder){
+if(typeof folder!=='string'||!/^[a-z0-9][a-z0-9._-]*$/i.test(folder))return;
+recent=[folder,...recent.filter(x=>x!==folder)].slice(0,recentLimit);
+try{localStorage.setItem(recentKey,JSON.stringify(recent));}catch(_){}
+// Wait until Home to redraw, preserving the launch button's focus target.
+}
+function availableRecent(){return recent.filter(folder=>items.some(item=>item.folder===folder&&item.enabled&&!item.warning));}
 const accents=['#ffce3a','#21dcff','#ff5ac8','#72ef80','#ff6b6b','#9b7cff'];
 function readSaves(){
 try{const parsed=JSON.parse(localStorage.getItem('arcade.autosave.registry.v1')||'{}');return parsed&&typeof parsed==='object'&&!Array.isArray(parsed)?parsed:{};}catch(_){return {};}
@@ -88,22 +116,27 @@ if(mode==='activity'&&item.type!=='activity')return false;
 if(playerMode==='single'&&!(item.playersMin<=1&&item.playersMax>=1))return false;
 if(playerMode==='two'&&Math.max(item.playersMax,item.onlinePlayersMax||0)<2)return false;
 if(cat&&!(item.categories||[]).includes(cat))return false;
+const query=search.value.trim().toLocaleLowerCase('en');
+if(query&&!([item.title,...(item.categories||[])].join(' ').toLocaleLowerCase('en').includes(query)))return false;
 return true;
 }
 function launch(item){
 if(window.ArcadeShell&&typeof ArcadeShell.openGame==='function'){ArcadeShell.openGame(item.folder);return;}
-if(window.ArcadeNative&&typeof ArcadeNative.openGameWithOrientation==='function'){ArcadeNative.openGameWithOrientation(item.launchPath,item.orientation||'any');return;}
-if(window.ArcadeNative&&ArcadeNative.openGame){ArcadeNative.openGame(item.launchPath);return;}
+if(window.ArcadeNative&&typeof ArcadeNative.openGameWithOrientation==='function'){ArcadeNative.openGameWithOrientation(item.launchPath,item.orientation||'any');recordRecent(item.folder);return;}
+if(window.ArcadeNative&&ArcadeNative.openGame){ArcadeNative.openGame(item.launchPath);recordRecent(item.folder);return;}
+recordRecent(item.folder);
 location.href=item.launchPath;
 }
 function render(){
-const shown=items.filter(visible);
+const ordered=sort.value==='recent'?recent.map(folder=>items.find(item=>item.folder===folder)).filter(Boolean):items;
+const shown=ordered.filter(visible);
 count.textContent=shown.length+' available';
+clearSearch.hidden=!search.value;
 grid.className='grid';
 grid.replaceChildren();
-if(!shown.length){const e=document.createElement('div');e.className='empty';e.textContent='No matches';grid.append(e);return;}
+if(!shown.length){const e=document.createElement('div');e.className='empty';e.textContent=sort.value==='recent'&&!availableRecent().length&&!search.value.trim()&&mode==='all'&&playerMode==='any'&&!cat?'No recently used activities yet':'No matches';grid.append(e);return;}
 shown.forEach((item,i)=>{
-const b=document.createElement('button');b.className='card';b.style.setProperty('--accent',accents[i%accents.length]);b.addEventListener('click',()=>launch(item));
+const b=document.createElement('button');b.className='card';b.dataset.arcadeFolder=item.folder;b.style.setProperty('--accent',accents[i%accents.length]);b.addEventListener('click',()=>launch(item));
 const p=document.createElement('span');p.className='players';p.textContent=playerLabel(item)+(item.onlineMode==='shared'?' · Shared':'');p.title=item.onlineMode==='shared'?'Local play or shared online controls for up to '+item.onlinePlayersMax+' people':item.onlineMode==='competitive'?'Local play or online multiplayer':item.onlineMode==='chat'?'Online chat':'';
 if(saves[item.folder]){const s=document.createElement('span');s.className='saved';s.textContent='↺ SAVED';b.append(s);}
 const img=document.createElement('img');img.src=item.folder+'/'+item.icon;img.alt='';img.addEventListener('error',()=>{img.style.display='none'});
@@ -120,11 +153,16 @@ const r=await fetch(source+'?t='+Date.now(),{cache:'no-store'});
 if(!r.ok)throw new Error();
 data=await r.json();
 }catch(_){grid.textContent='Arcade catalog unavailable';return;}
-items=(data.items||[]).slice().sort((a,b)=>(a.order-b.order)||a.title.localeCompare(b.title));
+items=(data.items||[]).slice().sort((a,b)=>a.title.localeCompare(b.title,'en',{sensitivity:'base',numeric:true})||a.folder.localeCompare(b.folder));
 window.ArcadeCatalogItems=items;
 saves=readSaves();
+recent=availableRecent();
+try{localStorage.setItem(recentKey,JSON.stringify(recent));}catch(_){}
 const cats=[...new Set(items.flatMap(x=>x.categories||[]))].sort();
 category.replaceChildren(new Option('Categories',''),...cats.map(x=>new Option(label(x),x)));
+if(!cats.includes(cat))cat='';
+category.value=cat;
+updateFilterUI();
 render();
 requestAnimationFrame(()=>requestAnimationFrame(()=>{
 if(window.ArcadeNative&&typeof ArcadeNative.arcadeReady==='function')ArcadeNative.arcadeReady();
@@ -143,6 +181,12 @@ updateFilterUI();render();
 }));
 playerFilter.addEventListener('click',()=>{playerMode=playerMode==='any'?'single':playerMode==='single'?'two':'any';updateFilterUI();render()});
 category.addEventListener('change',()=>{cat=category.value;updateFilterUI();render()});
+search.addEventListener('input',()=>{render();grid.scrollTop=0;});
+clearSearch.addEventListener('click',()=>{search.value='';render();grid.scrollTop=0;search.focus();});
+sort.addEventListener('change',()=>{render();grid.scrollTop=0;});
+window.addEventListener('arcade:game-opened',event=>recordRecent(event.detail?.folder));
+window.addEventListener('arcade:game-closed',()=>{saves=readSaves();render();});
+window.addEventListener('storage',event=>{if(event.key===recentKey||event.key===null){recent=readRecent();if(items.length)recent=availableRecent();render();}});
 document.getElementById('reload').addEventListener('click',()=>{if(window.ArcadeShell&&typeof ArcadeShell.refresh==='function'){load();ArcadeShell.refresh();return;}if(window.ArcadeNative&&ArcadeNative.reloadArcade)ArcadeNative.reloadArcade();else load()});
 document.getElementById('manage').addEventListener('click',()=>{if(window.ArcadeShell&&typeof ArcadeShell.openSettings==='function'){ArcadeShell.openSettings();return;}if(window.ArcadeNative&&ArcadeNative.openManager)ArcadeNative.openManager()});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){saves=readSaves();render();}});

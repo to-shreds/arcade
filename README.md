@@ -8,6 +8,23 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.6.5
+
+The main menu starts in alphabetical order. Search updates the tiles as you
+type and matches activity names and categories, alongside the existing type,
+player-count and category filters. Clear search with the × button.
+
+Choose **Recently used** from the order menu to see the last ten distinct games
+or activities opened on this device, newest first. History stays in this app or
+browser, survives restarts and works offline. Opening an activity again moves
+it to the top. If storage is unavailable, history works for the current session.
+Search and filters also apply to the recent list.
+
+These changes reach the current Android app through its normal web update;
+an APK reinstall is not needed. Refresh Arcade while online and update its
+offline copy. For a manually selected local folder, extract the updated web
+release into that folder. See [the 2.6.5 checks](docs/arcade-stress-test-2.6.5.md).
+
 ## Release 2.6.4
 
 Mad Libs restores ordinary word prompts: nouns, adjectives, adverbs and verbs,

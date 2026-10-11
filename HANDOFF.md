@@ -7,7 +7,20 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
-Current release 2.6.4 restores classic Mad Libs word prompts. All 68 themes
+Release 2.6.5 adds main-menu live search (title/category), default A-Z order and
+a Recently used view of ten distinct launches, newest first. History uses only
+device/browser localStorage key `arcade.recent.v1`, an ordered array of folder
+IDs; blocked storage falls back to this page's memory. Filters intersect both
+views. Record successful `ArcadeShell.openGame` calls via `arcade:game-opened`,
+including URL/history/invitation launches, and the older native launch fallback.
+`arcade:game-closed` refreshes saves/recent tiles after removing the frame;
+restore focus to the connected launcher or its replacement `data-arcade-folder`
+tile. Do not redraw the launch tile during open and strand the focus target.
+Existing Android 2.4.0 remote-first APKs get the same menu without rebuild.
+See `docs/arcade-stress-test-2.6.5.md` and the canonical ProjectStatus entry for
+verification/publication; all prior activity, save and multiplayer work remains.
+
+Release 2.6.4 restores classic Mad Libs word prompts. All 68 themes
 have exactly 12 prompts, 126-150 one-word-template words, 12 short sentences,
 and 18-24 blank occurrences. Every supplied word is used. Preserve the original
 first twelve prompt positions, story order, categories, and fixed thematic cast.
