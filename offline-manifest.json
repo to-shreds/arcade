@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.6.1+20261008.1",
-  "generatedAt": "2026-10-08T21:11:14.780Z",
-  "fileCount": 356,
-  "totalBytes": 18161617,
+  "version": "2.6.2+20261011.1",
+  "generatedAt": "2026-10-11T14:09:27.930Z",
+  "fileCount": 357,
+  "totalBytes": 18212308,
   "files": [
     {
       "path": "adventure/game.json",
@@ -362,8 +362,13 @@
     },
     {
       "path": "mad-libs/index.html",
-      "bytes": 146467,
-      "sha256": "b249c9c54f9354f8673f516513746955ae0431ab51fe3afc14cd5fe0267b0a06"
+      "bytes": 195831,
+      "sha256": "c290649852c78984cdc64edf2172306f5bf49409537a999faa466f3097765402"
+    },
+    {
+      "path": "mad-libs/README.md",
+      "bytes": 1333,
+      "sha256": "1d1d3facad3b34561bf997354abf501ab2eb3beb64803284bfa446e953dae8fe"
     },
     {
       "path": "make-10/game.json",
@@ -1637,8 +1642,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27789,
-      "sha256": "7f2256d377cef1c9c51bcf379155394c8f794eeacd2a1c45c0b87f7931d8b606"
+      "bytes": 27783,
+      "sha256": "ab8ffb5ba5a6dc07f20b08098e74eb020b5eef986b1f56e7afb7a84358614785"
     },
     {
       "path": "tic-tac-toe/game.json",

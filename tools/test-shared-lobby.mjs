@@ -43,7 +43,7 @@ async function test(activity){
       await until(page,()=>!!window.ArcadeSharedActivity?.getClient()&&!!window.ArcadeSave?.getAdapter());pages.push(page);
     }
     const [host,guest]=pages;
-    if(activity==='mad-libs')assert.deepEqual(await host.evaluate(()=>MadLibsAutosave.capture()),{storyIndex:-1,activeCategory:'all',visibleLimit:18,values:[],screen:'picker'});
+    if(activity==='mad-libs')assert.deepEqual(await host.evaluate(()=>MadLibsAutosave.capture()),{storyIndex:-1,activeCategory:'all',visibleLimit:18,values:[],customTitle:'',screen:'picker'});
     // No game start, preset selection or semantic preparation precedes create/join.
     const created=await host.evaluate(()=>ArcadeSharedActivity.create({username:'Lobby host'}));
     const joined=await guest.evaluate(code=>ArcadeSharedActivity.join({username:'Lobby guest',code}),created.code);
@@ -61,9 +61,10 @@ async function test(activity){
       assert.equal(await guest.evaluate(()=>MadLibsAutosave.capture().storyIndex),-1);
       await guest.locator('.story-card').first().click();
       await guest.locator('#word_0').fill('shared pizza');
+      await guest.locator('#customStoryTitle').fill('Our Pizza Rescue');
       await until(host,()=>MadLibsAutosave.capture().screen==='words'&&MadLibsAutosave.capture().values[0]==='shared pizza');
       await guest.locator('#fillEmptyButton').click();await guest.locator('#makeStoryButton').click();
-      await until(host,()=>MadLibsAutosave.capture().screen==='result'&&document.getElementById('storyOutput').textContent.includes('shared pizza'));
+      await until(host,()=>MadLibsAutosave.capture().screen==='result'&&document.getElementById('storyOutput').textContent.includes('shared pizza')&&document.getElementById('resultTitle').textContent.includes('Our Pizza Rescue'));
     }
     assert.deepEqual(localErrors,[]);
     result={activity,status:'passed',observer,takeover,elapsedMs:Date.now()-started};

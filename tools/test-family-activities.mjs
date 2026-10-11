@@ -404,9 +404,18 @@ async function offlineAdventure() {
   await frame.locator('#storyCard').evaluate(element => Promise.all(element.getAnimations().map(animation => animation.finished.catch(() => {}))));
   await page.screenshot({ path: `${results}/adventure-offline-390x844.png` });
   await frame.locator('#homeButton').click(); await page.waitForFunction(() => !document.querySelector('#shellGameFrame'));
+  await page.evaluate(() => ArcadeShell.openGame('mad-libs'));
+  const mad = page.frameLocator('#shellGameFrame');
+  await mad.locator('.story-card').first().click();
+  await mad.locator('#word_0').fill('our offline pizza');
+  await mad.locator('#fillEmptyButton').click(); await mad.locator('#makeStoryButton').click();
+  assert.ok((await mad.locator('#storyOutput').innerText()).includes('our offline pizza'));
+  await mad.locator('#arcade-home-nav').click();
+  await page.waitForFunction(() => !document.querySelector('#shellGameFrame'));
   assert.deepEqual(errors, []);
+  evidence.push({ activity: 'mad-libs', offline: true, answers: true, home: true, errors, passed: true });
   evidence.push({ activity: 'adventure', offline: true, catalogTiles: 45, choice: true, home: true, errors, passed: true });
-  console.log('Offline PWA: complete verified snapshot, 45 catalog tiles, Adventure launch/story/choice/Home and no JavaScript errors passed.');
+  console.log('Offline PWA: complete verified snapshot, 45 catalog tiles, Adventure and Mad Libs launch/play/Home and no JavaScript errors passed.');
   await context.close();
 }
 

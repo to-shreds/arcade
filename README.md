@@ -8,6 +8,15 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.6.2
+
+All 68 Mad Libs stories now have shorter plots around familiar situations.
+Every sentence has blanks, with less fixed text and choices for the cast, goal,
+solution, reward, and final line. Ideas match each story. Original saved
+answers and shared play remain supported; an optional title is also saved.
+See [the Mad Libs notes](mad-libs/README.md) and
+[the 2.6.2 checks](docs/arcade-stress-test-2.6.2.md).
+
 ## Release 2.6.1
 
 Adventure now uses shorter, simpler scenes and dry family humor. Jenkins still

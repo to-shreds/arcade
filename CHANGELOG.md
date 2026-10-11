@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.6.2 - 2026-10-11
+
+- Rewrote all 68 Mad Libs plots around more familiar situations. Each sentence
+  includes blanks, and fixed prose is about 65% shorter overall.
+- Added six choices per story for characters, goals, fixes, rewards and final
+  lines, with contextual Ideas and an optional title.
+- Preserved old saved answers, tested actual reloads and shared control, and
+  fixed long-answer wrapping on small screens. Refreshed the offline release.
+
 ## 2.6.1 - 2026-10-08
 
 - Rewrote all Adventure scenes in simpler, shorter prose with grounded

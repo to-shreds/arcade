@@ -7,7 +7,14 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
-Current release 2.6.1 keeps the following 2.6.0 additions and revises Adventure
+Current release 2.6.2 adds the requested Mad Libs rewrite to the verified 2.6.1
+release. Preserve the original twelve answer positions and 68 story themes for
+old saves. All 18 answers appear in each story; every sentence has a blank.
+Contextual Ideas cover goals, solutions, rewards and closing lines. Optional
+titles, v1 migration, shared control and real local reloads are tested. See
+`mad-libs/README.md` and `docs/arcade-stress-test-2.6.2.md`.
+
+Release 2.6.1 keeps the following 2.6.0 additions and revises Adventure
 with grounded prose, 70-word maximum reading pages, and actual progress saves.
 Preserve all 124 scene IDs, branch conditions, inventory consequences, 30
 choices per complete run, and eight endings. The new progress save is distinct
