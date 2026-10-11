@@ -8,6 +8,18 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.6.3
+
+Mad Libs now formats ordinary answers in lowercase within sentences, while
+preserving names and places and capitalizing sentence starts. Entered words
+and saved answers retain their original spelling for editing.
+
+Adventure and Mad Libs use the Android wrapper's native text-to-speech engine
+when available, with browser speech synthesis on supported browsers. Stop and
+navigation cancel narration. Existing Android installations can read without
+an APK reinstall. See [the 2.6.3 checks](docs/arcade-stress-test-2.6.3.md)
+for compatibility details and verification limits.
+
 ## Release 2.6.2
 
 All 68 Mad Libs stories now have shorter plots around familiar situations.

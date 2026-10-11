@@ -1,14 +1,15 @@
 {
   "name": "family-arcade-web",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "private": true,
   "scripts": {
-    "test:browser": "npm run test:mad-libs && npm run test:family-browser && node tools/test-shell-browser.mjs && node tools/test-local-ui-browser.mjs && node tools/test-chat-browser.mjs && node tools/test-shared-adapters.mjs && node tools/test-shared-recovery.mjs && node tools/test-shared-lobby.mjs && node tools/test-online-browser.mjs && node tools/test-shared-simulation.mjs",
+    "test:browser": "npm run test:mad-libs && npm run test:narration && npm run test:family-browser && node tools/test-shell-browser.mjs && node tools/test-local-ui-browser.mjs && node tools/test-chat-browser.mjs && node tools/test-shared-adapters.mjs && node tools/test-shared-recovery.mjs && node tools/test-shared-lobby.mjs && node tools/test-online-browser.mjs && node tools/test-shared-simulation.mjs",
     "test:nearby-browser": "node tools/test-nearby-browser.mjs",
     "test:family": "npm run test:family-models && npm run test:family-browser",
     "test:family-models": "node --test adventure/story.test.mjs adventure/save.test.mjs tv/core.test.mjs",
     "test:family-browser": "node adventure/browser.test.mjs && node adventure/save.browser.test.mjs && node tools/test-family-activities.mjs",
-    "test:mad-libs": "node tools/test-mad-libs.mjs && node tools/test-mad-libs-browser.mjs"
+    "test:mad-libs": "node tools/test-mad-libs-case.mjs && node tools/test-mad-libs.mjs && node tools/test-mad-libs-browser.mjs",
+    "test:narration": "node tools/test-narration-browser.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

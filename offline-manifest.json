@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.6.2+20261011.1",
-  "generatedAt": "2026-10-11T14:09:27.930Z",
-  "fileCount": 357,
-  "totalBytes": 18212308,
+  "version": "2.6.3+20261011.1",
+  "generatedAt": "2026-10-11T16:41:20.525Z",
+  "fileCount": 359,
+  "totalBytes": 18222890,
   "files": [
     {
       "path": "adventure/game.json",
@@ -17,13 +17,13 @@
     },
     {
       "path": "adventure/index.html",
-      "bytes": 457634,
-      "sha256": "a3349cb1eea7aaf0f211bd04db84362c368e6deb6f44a7bf55e1e2a92e0dbeaf"
+      "bytes": 457738,
+      "sha256": "1b017978f6f7dc038964ea7d24333af9b06d44c9431b20a9804666d46083ed40"
     },
     {
       "path": "adventure/README.md",
-      "bytes": 4957,
-      "sha256": "fa76f2131e9e80a25be379d27c4bbeb70f392c79d13f4adef2a16bedd2c7d916"
+      "bytes": 5691,
+      "sha256": "de11c7bd124ca01c0510866bde73474dbea901daf05c090f1b17258626326509"
     },
     {
       "path": "apple-touch-icon.png",
@@ -44,6 +44,11 @@
       "path": "arcade-shell.js",
       "bytes": 77942,
       "sha256": "6ca9bfe7e410b68e14a8decf845ae2be8902dcc1557c11607feb06cb49f42690"
+    },
+    {
+      "path": "arcade-speech.js",
+      "bytes": 7609,
+      "sha256": "9d449a26b6d795126d5e1cc41f0b2e7736ff4a4de57454c4c9bf3b837b256225"
     },
     {
       "path": "arcade-ui.css",
@@ -362,13 +367,18 @@
     },
     {
       "path": "mad-libs/index.html",
-      "bytes": 195831,
-      "sha256": "c290649852c78984cdc64edf2172306f5bf49409537a999faa466f3097765402"
+      "bytes": 195358,
+      "sha256": "a1c270f2c9d1eb138eacedb6f7d76191103d12f6e7e78b6f25a070e5cec6cd3f"
     },
     {
       "path": "mad-libs/README.md",
-      "bytes": 1333,
-      "sha256": "1d1d3facad3b34561bf997354abf501ab2eb3beb64803284bfa446e953dae8fe"
+      "bytes": 2482,
+      "sha256": "2035c6d735a65965ef1288ff6d5374cbbbe76b1c8eb9030dcaba1735d146f692"
+    },
+    {
+      "path": "mad-libs/word-case.js",
+      "bytes": 1456,
+      "sha256": "f3de1655db41be0613e60ab65dc410a729bcc9c6c699005ed52afd96e1861e38"
     },
     {
       "path": "make-10/game.json",
@@ -1642,8 +1652,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27783,
-      "sha256": "ab8ffb5ba5a6dc07f20b08098e74eb020b5eef986b1f56e7afb7a84358614785"
+      "bytes": 27786,
+      "sha256": "7f8b456753e5e5863ee1efda9498c2f4c2742f929dec5cac1b0d12b45d61b579"
     },
     {
       "path": "tic-tac-toe/game.json",

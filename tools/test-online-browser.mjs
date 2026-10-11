@@ -177,7 +177,11 @@ if(selected.has('tic-tac-toe'))await run('tic-tac-toe',async({a,b})=>{
       const raced=await Promise.all([action(page,body),action(page,body)]);
       assert.deepEqual(raced.map(result=>result.status).sort(),[200,409],'one concurrent move wins and one stale duplicate is rejected');
     }else await page.locator('#ttt-board .ttt-cell').nth(index).click({force:true});
-    await page.waitForFunction(version=>window.__room.version>version,previous);await sameState(page,page===a?b:a);
+    await page.waitForFunction(version=>window.__room.version>version,previous);
+    // The winning board is transient: either browser may already have received
+    // the automatic next-round reset. Validate that winning version from both
+    // clients' history below instead of waiting for a snapshot that has expired.
+    if(index!==2)await sameState(page,page===a?b:a);
   }
   // The host automatically starts the next round; acknowledge the winning
   // broadcast on both clients instead of racing its short display interval.

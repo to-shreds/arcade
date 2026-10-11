@@ -87,3 +87,15 @@ word anchors across resizing, text preservation,
 measured fit, choices, exact Back, Restart, and narration lifecycle using the
 same browser runtime as the other Arcade tests. Physical device voices still
 depend on the device/browser; gameplay works without speech synthesis.
+
+## Read aloud compatibility (2.6.3)
+
+The shared `../arcade-speech.js` helper supports both browser speech synthesis
+and the existing Android wrapper's native speech bridge. Browser narration
+advances pages using real completion events and reads the choices on the last
+page. The existing APK has no completion callback, so Read speaks the current
+page without requiring reinstall; move to the next page and press Read again.
+Stop remains available until stopped or navigation. All page/scene changes,
+Home, shell pause and hidden-document events cancel narration. Missing native
+voices report an error after a bounded initialization check. Installed Android
+voice output has not been physically tested. Run `npm run test:narration`.

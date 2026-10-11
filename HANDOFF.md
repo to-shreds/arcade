@@ -7,7 +7,25 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
-Current release 2.6.2 adds the requested Mad Libs rewrite to the verified 2.6.1
+Current release 2.6.3 fixes Mad Libs capitalization and both story narrators.
+`mad-libs/word-case.js` formats rendered answers without changing raw save/input
+values. Keep name/place spelling, ordinary descriptions, sentence and quoted
+reply capitalization, and escaping intact. `arcade-speech.js` selects the
+existing Android native bridge or browser speech, retains utterances, and
+cancels on Stop/navigation/hidden shell. Existing APKs require no rebuild.
+Their bridge has no completion events: Adventure reads the current page, and
+Mad Libs speaks a <=2000-character story once while Stop remains available.
+Oversized native text must report the limit instead of silently truncating;
+voice initialization gets a bounded readiness check. Do not infer physical
+Android audio testing from the browser bridge fixtures.
+
+The prior CI failure was a Tic Tac Toe browser assertion racing the winning
+board's automatic round reset. Preserve the strict recorded-winning-version,
+board, score, next-round and reload assertions. The transient sameState wait
+was removed only for the final winning move. Current checks and publication
+belong in ProjectStatus and `docs/arcade-stress-test-2.6.3.md`.
+
+Release 2.6.2 adds the requested Mad Libs rewrite to the verified 2.6.1
 release. Preserve the original twelve answer positions and 68 story themes for
 old saves. All 18 answers appear in each story; every sentence has a blank.
 Contextual Ideas cover goals, solutions, rewards and closing lines. Optional

@@ -116,7 +116,7 @@ try {
     while (__speech.active) { const active = __speech.active; __speech.active = null; active.onend(); }
   });
   const narrated = await speech.evaluate(() => ({ pagination: __LOGAN_CYOA_DEBUG__.engine.pagination(), calls: __speech.calls }));
-  assert.equal(narrated.calls.length, narrated.pagination.pages.length, 'Narration advances through every text page');
+  assert(narrated.calls.length >= narrated.pagination.pages.length, 'Narration advances through every text page in short speech chunks');
   assert.equal(narrated.pagination.pageIndex, narrated.pagination.pages.length - 1);
   assert.equal(await speech.locator('#readButton').getAttribute('aria-pressed'), 'false');
   for (const event of ['pagehide', 'visibilitychange', 'pause']) {

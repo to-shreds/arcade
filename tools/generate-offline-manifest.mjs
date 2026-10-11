@@ -14,6 +14,7 @@ const rootRuntimeFiles = [
   'arcade-shell.css',
   'arcade-shell.js',
   'arcade-save.js',
+  'arcade-speech.js',
   'arcade.png',
   'manifest.webmanifest',
   'pwa-icon-192.png',

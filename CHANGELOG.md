@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.6.3 - 2026-10-11
+
+- Fixed Mad Libs answer case in the generated story, including sentence and
+  quote starts, ordinary character descriptions, and preserved names/places.
+  Raw entered answers and old saves remain intact.
+- Connected Mad Libs and Adventure narration to the existing Android native
+  speech bridge as well as browser speech, with cancellation on Stop/exit.
+- Fixed the Tic Tac Toe browser test's winning-round reset race. Winning
+  board, score, next-round and reconnect assertions remain enforced.
+
 ## 2.6.2 - 2026-10-11
 
 - Rewrote all 68 Mad Libs plots around more familiar situations. Each sentence

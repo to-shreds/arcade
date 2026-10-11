@@ -88,7 +88,7 @@ async function adventure(viewport, { shell = false } = {}) {
   await frame.locator('#readButton').click();
   assert.equal(await frame.locator('#readButton').getAttribute('aria-pressed'), 'true');
   const cancellations = await page.evaluate(() => __familySpeech.cancel);
-  assert.equal(await page.evaluate(() => __familySpeech.speak), 1);
+  assert.ok(await page.evaluate(() => __familySpeech.speak) >= 1);
   if (shell) {
     await page.evaluate(() => { window.__familyShellIdentity = ArcadeShell; });
     await frame.locator('#homeButton').click();

@@ -18,7 +18,7 @@ try{
       const values=data.stories[i].prompts.map((_,n)=>'Answer_'+i+'_'+n);
       await page.evaluate(({i,values})=>MadLibsAutosave.restore({storyIndex:i,values,customTitle:'Our lunch rescue',screen:'result'}),{i,values});
       const text=await page.locator('#storyOutput').innerText();
-      for(const value of values)assert.ok(text.includes(value),data.stories[i].title+' preserves '+value);
+      for(const value of values)assert.ok(text.toLowerCase().includes(value.toLowerCase()),data.stories[i].title+' includes '+value);
       assert.equal(await page.locator('#storyOutput .filled-word').count(),(data.stories[i].template.match(/\{\d+\}/g)||[]).length);
       assert.ok((await page.locator('#resultTitle').innerText()).includes('Our lunch rescue'));
       await page.locator('#editWordsButton').click();
@@ -27,6 +27,22 @@ try{
       await page.locator('#word_14').fill('rescue our lunch');await page.locator('#makeStoryButton').click();
       assert.ok((await page.locator('#storyOutput').innerText()).includes('rescue our lunch'));
     }
+    const caseValues=['Pizza','Huge','Easton','Jump','Toaster','Robots','We Found It','Red','Quickly','Cat','27','Milk','Logan','Your Uncle','Save Dinner','Asked For Help','An Extra Snack','I Want My Lunch'];
+    await page.evaluate(values=>MadLibsAutosave.restore({storyIndex:0,values,screen:'result'}),caseValues);
+    const caseText=await page.locator('#storyOutput').innerText();
+    assert.ok(caseText.startsWith('Logan and your uncle took pizza to the huge Easton.'));
+    assert.ok(caseText.includes('A red cat stole 27 robots and hid behind a toaster.'));
+    assert.ok(caseText.includes('Your uncle asked for help'));
+    assert.ok(caseText.includes('"I want my lunch," said Logan.'));
+    assert.deepEqual((await page.evaluate(()=>MadLibsAutosave.capture())).values,caseValues);
+    const robotIndex=data.stories.findIndex(story=>story.title==='The Robot Babysitter');
+    await page.evaluate(i=>MadLibsAutosave.restore({storyIndex:i,values:Array(18).fill('We Found It'),screen:'result'}),robotIndex);
+    assert.ok((await page.locator('#storyOutput').innerText()).includes('replied, "We found it."'));
+    await page.evaluate(values=>MadLibsAutosave.restore({storyIndex:0,values,screen:'result'}),caseValues);
+    await page.locator('#editWordsButton').click();
+    assert.equal(await page.locator('#word_0').inputValue(),'Pizza');
+    assert.equal(await page.locator('#word_0').getAttribute('autocapitalize'),'none');
+    await page.evaluate(()=>MadLibsAutosave.restore({storyIndex:67,values:Array.from({length:18},(_,n)=>'Answer_67_'+n),screen:'result'}));
     await page.locator('#editWordsButton').click();
     await page.locator('#word_0').fill('<img src=x onerror="throw 1">');
     await page.locator('#word_14').fill('');

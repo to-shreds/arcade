@@ -414,6 +414,7 @@
 
   <noscript><div class="noscript">This adventure needs JavaScript turned on.</div></noscript>
 
+  <script src="../arcade-speech.js"></script>
   <script>
   (() => {
     "use strict";
@@ -4021,7 +4022,7 @@ const GROUNDED_B = {
     function stopReading() {
       narrationToken += 1;
       narrationActive = false;
-      if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel();
+      if (hasDOM && window.ArcadeSpeech) window.ArcadeSpeech.cancel();
       if (dom && dom.read) {
         dom.read.textContent = "🔊 Read";
         dom.read.classList.remove("stop");
@@ -4199,7 +4200,8 @@ const GROUNDED_B = {
       renderStoryPage();
 
       dom.back.disabled = history.length === 0;
-      dom.read.disabled = typeof speechSynthesis === "undefined" || typeof SpeechSynthesisUtterance === "undefined";
+      dom.read.disabled = !window.ArcadeSpeech || !window.ArcadeSpeech.available();
+      dom.read.title = window.ArcadeSpeech && window.ArcadeSpeech.mode() === "native" ? "Read this page aloud" : "Read aloud";
       dom.card.classList.remove("scene-enter");
       void dom.card.offsetWidth;
       dom.card.classList.add("scene-enter");
@@ -4462,29 +4464,26 @@ const GROUNDED_B = {
     function speakPage(index, token) {
       if (!narrationActive || token !== narrationToken) return;
       showStoryPage(index, true);
-      if (typeof speechSynthesis === "undefined" || typeof SpeechSynthesisUtterance === "undefined") return;
+      if (!window.ArcadeSpeech || !window.ArcadeSpeech.available()) return;
       const node = STORY[currentNodeId];
       const isLast = index === storyPages.length - 1;
       const labels = isLast ? availableChoices(node, state).map((choice, i) => `Choice ${i + 1}. ${visibleChoiceLabel(choice, state)}`) : [];
       const script = [index === 0 ? resolve(node.title, state) : "", ...(storyPages[index] || []), ...labels].filter(Boolean).join(" ");
-      try {
-        const speech = new SpeechSynthesisUtterance(script);
-        speech.rate = 0.93;
-        speech.pitch = 1.03;
-        speech.volume = 1;
-        speech.onend = () => {
+      window.ArcadeSpeech.speak(script, {
+        rate: 0.93, pitch: 1.03,
+        onend: () => {
           if (!narrationActive || token !== narrationToken) return;
           if (index < storyPages.length - 1) speakPage(index + 1, token);
           else stopReading();
-        };
-        speech.onerror = () => {
+        },
+        oncancel: () => {
           if (token === narrationToken) stopReading();
-        };
-        speechSynthesis.speak(speech);
-      } catch (error) {
-        console.warn("Read Aloud is not available in this browser.", error);
-        stopReading();
-      }
+        },
+        onerror: () => {
+          if (token === narrationToken) stopReading();
+          window.alert("The voice could not start. Check that a text-to-speech voice is installed, then try again.");
+        }
+      });
     }
 
     function toggleReading() {
@@ -4492,10 +4491,11 @@ const GROUNDED_B = {
         stopReading();
         return;
       }
-      if (typeof speechSynthesis === "undefined" || typeof SpeechSynthesisUtterance === "undefined") return;
+      if (!window.ArcadeSpeech || !window.ArcadeSpeech.available()) return;
       narrationActive = true;
       narrationToken += 1;
       const token = narrationToken;
+      // Older APKs can read this page and stop, but cannot report when speech ends.
       dom.read.textContent = "■ Stop";
       dom.read.classList.add("stop");
       dom.read.setAttribute("aria-pressed", "true");
