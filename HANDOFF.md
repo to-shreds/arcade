@@ -19,6 +19,10 @@ tile. Do not redraw the launch tile during open and strand the focus target.
 Existing Android 2.4.0 remote-first APKs get the same menu without rebuild.
 See `docs/arcade-stress-test-2.6.5.md` and the canonical ProjectStatus entry for
 verification/publication; all prior activity, save and multiplayer work remains.
+Shell events must use `new window.CustomEvent` to preserve the dispatch target's
+realm in both real browsers and jsdom. The final snapshot is
+`2.6.5+20261011.2`; all 187 Worker checks and the final catalog/offline shell
+browser checks passed after that compatibility correction.
 
 Release 2.6.4 restores classic Mad Libs word prompts. All 68 themes
 have exactly 12 prompts, 126-150 one-word-template words, 12 short sentences,

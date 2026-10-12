@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.6.5+20261011.1",
-  "generatedAt": "2026-10-11T19:00:20.275Z",
+  "version": "2.6.5+20261011.2",
+  "generatedAt": "2026-10-11T19:04:50.305Z",
   "fileCount": 360,
-  "totalBytes": 18372840,
+  "totalBytes": 18372854,
   "files": [
     {
       "path": "adventure/game.json",
@@ -42,8 +42,8 @@
     },
     {
       "path": "arcade-shell.js",
-      "bytes": 78391,
-      "sha256": "7b336b16d095053fb832f5fa282e0b89ac8d718b9997f2851c053998fb18001d"
+      "bytes": 78405,
+      "sha256": "431392ef6dfbf747e2e6e975751910c864e12c044492133e5d1eef5fdf1c24a3"
     },
     {
       "path": "arcade-speech.js",
