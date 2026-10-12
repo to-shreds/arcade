@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.7.0 - 2026-10-12
+
+- Added Tank Tactics: destructible flat, hilly or random terrain, chosen tank
+  colors, no wind, adjustable angle and power, and 84 differentiated weapons
+  with matching icons and animated projectile/impact effects.
+- Deal ten distinct random single-use weapons per tank. Damage increases scores;
+  self-hits award the opponent. Higher points after ten shots each wins.
+- Added four optional moves per tank, each up to five tank lengths, without
+  using a shot. Mines and terrain changes remain part of the saved game.
+- Added computer and same-device play, exact local autosaves, and dedicated
+  authoritative Internet/Nearby rooms with reconnects and mutual rematches.
+- Extended the catalog, shell invitations and offline release while preserving
+  the existing activities, saved games, transports and Android wrappers.
+
 ## 2.6.5 - 2026-10-11
 
 - Alphabetized the game and activity menu by default in web and Android.

@@ -1,4 +1,4 @@
-const WORKER_VERSION = '2026-10-11-catalog-search-recent-v1';
+const WORKER_VERSION = '2026-10-12-tank-tactics-v1';
 const SNAPSHOT_PREFIX = 'family-arcade-snapshot-';
 const META_CACHE = 'family-arcade-snapshot-meta';
 const ACTIVE_KEY = new URL('__arcade_active_snapshot__', self.registration.scope).href;

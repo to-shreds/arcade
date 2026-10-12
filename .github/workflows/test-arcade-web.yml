@@ -17,7 +17,7 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Check out Arcade
         uses: actions/checkout@v6
@@ -51,6 +51,9 @@ jobs:
       - name: Test Adventure stories and TV client
         run: node --test adventure/story.test.mjs adventure/save.test.mjs tv/core.test.mjs
 
+      - name: Test Tank Tactics engine and weapon rules
+        run: node --test tanks/engine.test.mjs
+
       - name: Validate packaged Arcade runtime
         run: |
           node tools/test-native-keyboard.mjs
@@ -65,6 +68,9 @@ jobs:
 
       - name: Exercise desktop and mobile browsers against actual rooms
         run: npm run test:browser
+
+      - name: Verify Tank Tactics local saves and competitive rooms
+        run: npm run test:tanks:browser
 
       - name: Retain browser evidence
         if: always()

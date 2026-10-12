@@ -3,6 +3,7 @@ import { GENERIC_GAME_AUTHORITY, authorityForGenericGame, validateGenericGameAct
 import { canonicalizeMonopolyStartRandomness } from "./models/monopoly-authority.js";
 import { MemoryStorage, RoomModel, tokenHash } from "./models/room-model.js";
 import { canonicalizeSorryStart } from "./models/sorry-transition-validator.js";
+import { validateTanksRoomCheckpoint } from "./models/tanks-authority.js";
 
 export const NEARBY_ROOM_SERVICE_VERSION = 1;
 export const NEARBY_CHESS_AUTHORITY_CONTRACT = Object.freeze({
@@ -13,7 +14,7 @@ export const NEARBY_CHESS_AUTHORITY_CONTRACT = Object.freeze({
 export const NEARBY_GENERIC_AUTHORITY_CONTRACT = Object.freeze({
   id: "generic-per-game-authority-v3",
   ruleValidated: true,
-  description: "Per-game Nearby authority: exact legal transitions for Sorry, Monopoly, Memory, Tic Tac Toe, Dots, and Checkers, plus locked identity and canonical chat authority.",
+  description: "Per-game Nearby authority: exact legal transitions for Sorry, Monopoly, Memory, Tic Tac Toe, Dots, Checkers, Guess Who, and Tanks, plus locked identity and canonical chat authority.",
   games: GENERIC_GAME_AUTHORITY
 });
 
@@ -932,6 +933,7 @@ export class NearbyRoomService {
         const loaded = await model.load();
         if (loaded.code !== code || loaded.schema !== 1) throw serviceError(400, "Checkpoint room state does not match its identity");
         if (saved.kind === "arcade") {
+          if (entry.game === "tanks") validateTanksRoomCheckpoint(loaded);
           if (byteLength(loaded.state) > GENERIC_ROOM_LIMITS.MAX_STATE_BYTES || byteLength(loaded.result) > GENERIC_ROOM_LIMITS.MAX_RESULT_BYTES) {
             throw serviceError(413, "Checkpoint room payload exceeds online-parity limits");
           }

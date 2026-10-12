@@ -7,6 +7,47 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+Release 2.7.0 adds Tank Tactics under `tanks/`, the 46th enabled entry. It is a
+competitive two-tank artillery game with 84 differentiated weapons, player
+colors, flat/hilly/random destructible terrain, and no wind. Each tank receives
+ten distinct random consumable weapons and four optional moves of up to five
+tank lengths. Damage only adds points; self-hits award the opponent. Both tanks
+fire all ten shots, remaining mines resolve, and higher points wins.
+
+`tanks/engine.js` and `weapons.js` are the deterministic gameplay source for
+local play and both room authorities. `multiplayer/models/tanks-authority.js`
+accepts only configuration, start, move, fire and mutual-rematch intents. The
+authority chooses the seed/inventory, validates the turn and computes scores
+and terrain. Never accept client snapshots, scores or random seeds. Names stay
+bound to room identities, and each player configures only their own color.
+Tanks room chat is bounded at 16 KiB to leave headroom under Nearby's 64 KiB
+checkpoint cap. The engine's measured largest extreme-shot snapshot was
+21,876 bytes; accepted state and animations remain bounded.
+
+Local saves include the resolved game, mines, aim/weapon choices, difficulty
+and remaining movement. Save before animation so a reload cannot fire twice.
+Network entry preserves the local aim backup and suppresses local autosave;
+leaving restores it before autosave resumes. Transport-specific room keys keep
+Internet and Nearby credentials separate. Unsubmitted lobby choices must survive
+presence, poll and guest-configuration updates. The start button submits the
+host's current draft settings before starting.
+
+The responsive camera preserves physics coordinates and keeps both tanks
+visible. Short landscape uses the available width; high shots have an offscreen
+indicator. Idle scenes do not redraw continuously, the night backdrop is cached,
+and active shots draw at a bounded frame rate. A movement animation has no shot
+record, so its rendering must never dereference a null shot.
+
+The 2.7.0 local checks include 10 engine tests, a 1,512-shot extreme sweep,
+198 Worker/authority checks, nine actual browser cases, all 84 rendered icons,
+full local and Internet games, save/reload, reconnect/rematch, four viewports,
+109 shell/transport checks, 23 family model checks and complete PWA verification.
+The local environment has only loopback and cannot gather a usable Nearby ICE
+candidate. The browser test records that as blocked, not passed. LAN-enabled CI
+must run the real Tanks RTC case. Exact publication/CI readiness belongs in
+ProjectStatus. Snapshot `2.7.0+20261012.1` contains 370 runtime files.
+See `docs/arcade-stress-test-2.7.0.md` and `tanks/README.md`.
+
 Release 2.6.5 adds main-menu live search (title/category), default A-Z order and
 a Recently used view of ten distinct launches, newest first. History uses only
 device/browser localStorage key `arcade.recent.v1`, an ordered array of folder

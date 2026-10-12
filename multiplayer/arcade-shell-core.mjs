@@ -292,7 +292,8 @@ export function surpriseGame(items, playerCount, random = Math.random){
     ["tic-tac-toe", [2, 2]],
     ["dots", [2, 4]],
     ["checkers", [2, 2]],
-    ["guess-who", [2, 2]]
+    ["guess-who", [2, 2]],
+    ["tanks", [2, 2]]
   ]);
   const count = Math.max(2, Math.floor(Number(playerCount) || 2));
   const choices = (Array.isArray(items) ? items : []).filter(item => {

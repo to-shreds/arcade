@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.6.5+20261011.2",
-  "generatedAt": "2026-10-11T19:04:50.305Z",
-  "fileCount": 360,
-  "totalBytes": 18372854,
+  "version": "2.7.0+20261012.1",
+  "generatedAt": "2026-10-12T22:05:52.286Z",
+  "fileCount": 370,
+  "totalBytes": 18529188,
   "files": [
     {
       "path": "adventure/game.json",
@@ -157,8 +157,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 26435,
-      "sha256": "501068df1e887bc896ba39e2a5e627e48f9359cf5e70ec13a93fb39a8a594e1f"
+      "bytes": 27026,
+      "sha256": "eaeb73ce0f1441fe8117af5320f261356564ba8ebafa1e3b8b93c20246d83cdc"
     },
     {
       "path": "chat-room/game.json",
@@ -522,13 +522,13 @@
     },
     {
       "path": "multiplayer/arcade-multiplayer.js",
-      "bytes": 45226,
-      "sha256": "23dc38de3c5af39457fe5541fd8e923e1e4735dc8f0aa90d7cfa1727fc81fc12"
+      "bytes": 45255,
+      "sha256": "be9350ccdfcf20b38c0cddeefec33650da058589b01e384d08ab48b5379cf582"
     },
     {
       "path": "multiplayer/arcade-shell-core.mjs",
-      "bytes": 15291,
-      "sha256": "8b8850b0dda45076487ecaa75fc593f6afae6dc7fa881e942c92cc186550936c"
+      "bytes": 15314,
+      "sha256": "e56d0f6b269778a8a4807c4f56f79989dfad48bac6ac51723407101397740cae"
     },
     {
       "path": "multiplayer/models/chess-engine.js",
@@ -537,13 +537,13 @@
     },
     {
       "path": "multiplayer/models/generic-room-model.js",
-      "bytes": 23701,
-      "sha256": "ade61a74e7516315cac3a7a021b887e8a84d63cd9f10781e15f6ac055fdf2295"
+      "bytes": 24522,
+      "sha256": "476f9f84ad5e8a2e7114aa498be67f078340d4d4e90c7dc931e58be3cda3d732"
     },
     {
       "path": "multiplayer/models/generic-transition-validators.js",
-      "bytes": 4634,
-      "sha256": "65bab56e46774863a7a3e9bd5d3590ddbd8637d24c9bb9c246b72735ac2d4289"
+      "bytes": 4817,
+      "sha256": "3a7f73eed92b0561e59ec7d773d5b17be6ea924659efc7fe55043e8758ba3bb1"
     },
     {
       "path": "multiplayer/models/guess-who-authority.js",
@@ -581,9 +581,14 @@
       "sha256": "855ace20312da6dd2f9dd54651ffe433b49dd8794eddd095f6d57bcf7582a3a2"
     },
     {
+      "path": "multiplayer/models/tanks-authority.js",
+      "bytes": 10557,
+      "sha256": "e7408562393ecc37f2968f3c635152d0eae2764c2694556d4b48cdb571b4ce68"
+    },
+    {
       "path": "multiplayer/nearby-room-service.js",
-      "bytes": 47317,
-      "sha256": "77fcbc82e312a186b04137f404946c2b5613e9f4889d347513dc2a2e5c88627e"
+      "bytes": 47485,
+      "sha256": "b4598c37ca1bff3e0f7e51bb3dc1d47ddd3214a8043fd5f5ebc4a190583f6e78"
     },
     {
       "path": "multiplayer/nearby-session.mjs",
@@ -1657,8 +1662,53 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27796,
-      "sha256": "569455d448494821134fbf1eda2d6ad2fa9e7a7775d4efa18cd16eac542ab6ef"
+      "bytes": 27787,
+      "sha256": "5d323668a701caa4403285e59a3df5c16dc026a359721854597771568424bdfb"
+    },
+    {
+      "path": "tanks/engine.js",
+      "bytes": 35638,
+      "sha256": "e976c8ff0531685d9b4b2e38562f6a06d64a074cdae4b02ee82abae9af1b4403"
+    },
+    {
+      "path": "tanks/game.js",
+      "bytes": 37415,
+      "sha256": "f2a9a249dcdee9f03df730070c22e72927303efaf9b29056daaf84a7df03fbed"
+    },
+    {
+      "path": "tanks/game.json",
+      "bytes": 381,
+      "sha256": "ec234a1290fc1290e7525b4320a27c8c0da4fe832812dd37a85189cd9d49945b"
+    },
+    {
+      "path": "tanks/graphics.js",
+      "bytes": 16834,
+      "sha256": "55c6c0042d862e85c7c6e09b511fd79acf7e43c55cd46f881e3373343c8054d3"
+    },
+    {
+      "path": "tanks/icon.svg",
+      "bytes": 1307,
+      "sha256": "9993c2f18b60c7167bff9b885a28d9860452f36d070ea6cccc6a9b704646fd7b"
+    },
+    {
+      "path": "tanks/index.html",
+      "bytes": 23412,
+      "sha256": "d35c857bda4a0364bcbc649bb5f494f6aae36e2998d5d5a3eb9004079ec23b79"
+    },
+    {
+      "path": "tanks/README.md",
+      "bytes": 2160,
+      "sha256": "8dcee216ad00034392873dbca781d9926712f1b76168f42d80959ee715a04f50"
+    },
+    {
+      "path": "tanks/weapons.js",
+      "bytes": 14614,
+      "sha256": "ef194340bbfa1b4db35924058109b8bf513ea8a8547f5b9a259f2b547f1d240f"
+    },
+    {
+      "path": "tanks/WEAPONS.md",
+      "bytes": 12210,
+      "sha256": "148e1d405a0fda7f3aa0a58ef8ffd9aa3a20fec93646a63f58afa0bc1c16dcd2"
     },
     {
       "path": "tic-tac-toe/game.json",

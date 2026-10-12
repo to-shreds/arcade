@@ -24,6 +24,7 @@
     "hangman": "Hangman",
     "solitaire": "Solitaire Parlor",
     "guess-who": "Guess Who",
+    "tanks": "Tank Tactics",
     "insultinator": "Insultinator",
     "build-my-joke": "Build My Joke",
     "jigsaw": "Emoji Jigsaw",

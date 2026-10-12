@@ -8,6 +8,28 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.7.0
+
+**Tank Tactics** adds a two-tank artillery game with 84 different weapons and
+matching selector icons, projectile trails and impact effects. Choose tank
+colors and flat, hilly or random destructible terrain. There is no wind.
+Each tank receives ten distinct random single-use weapons. Adjust angle and
+power, then fire; each player also has four optional moves of up to five tank
+lengths. Movement keeps the turn and does not use ammunition.
+
+Damage adds points. A self-hit adds points to the other player. Both tanks fire
+all ten weapons, then the higher score wins; equal scores draw. Mines resolve
+before the final score. Play against the computer, with two players on one
+device, or in an Internet/Nearby room. Local games save terrain, ammunition,
+scores and remaining moves; multiplayer rooms retain the accepted game and
+reconnect identity. Room shots are calculated by the shared authority, and
+rematches need both players. Existing turn sounds and desktop alerts apply.
+
+See [the game rules](tanks/README.md), [weapon catalog](tanks/WEAPONS.md) and
+[release checks](docs/arcade-stress-test-2.7.0.md). Refresh Arcade and update its
+offline copy to get the new game. Existing Android wrappers use the same web
+release without an APK rebuild.
+
 ## Release 2.6.5
 
 The main menu starts in alphabetical order. Search updates the tiles as you

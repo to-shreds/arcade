@@ -1,0 +1,16 @@
+{
+  "title": "Tank Tactics",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "order": 87,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 2,
+  "categories": ["action", "strategy"],
+  "tags": ["touch", "turn-based", "online", "nearby", "cpu", "tanks"],
+  "orientation": "any",
+  "onlineMode": "competitive",
+  "onlinePlayersMax": 2
+}
