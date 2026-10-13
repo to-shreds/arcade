@@ -8,6 +8,16 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.7.2
+
+Tank Tactics now has 84 distinct weapon drawings, much stronger terrain
+excavation, visible exposed-earth craters, debris, recoil and improved shot
+animation. The Landscape button prioritizes the battlefield and requests
+fullscreen/rotation when supported; on a narrow phone it is the screen icon.
+Existing saves, scoring rules, multiplayer and the draggable globe remain.
+See [Tank Tactics](tanks/README.md) and the
+[release checks](docs/arcade-stress-test-2.7.2.md) for details and test limits.
+
 ## Release 2.7.1
 
 Drag the multiplayer globe out of the way with your finger or mouse. Its

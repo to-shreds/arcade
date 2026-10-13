@@ -1,6 +1,7 @@
 import { createGame, applyAction, validateGame, chooseCpuAction, WIDTH, HEIGHT, TANK_WIDTH } from './engine.js';
 import { WEAPONS, weaponById } from './weapons.js';
 import { drawBattle, tankSvg, weaponSvg } from './graphics.js';
+import { initBattleView } from './battle-view.js';
 
 const $ = id => document.getElementById(id);
 const mp = window.ArcadeMultiplayer, save = window.ArcadeSave;
@@ -219,7 +220,7 @@ function drawScores(now) {
   if(fraction===1){scoreFrom=game.tanks.map(t=>t.score);scoreStarted=0;}
 }
 function resizeCanvas() {
-  const box=$('arena').getBoundingClientRect(),availableWidth=Math.max(1,box.width-2),availableHeight=Math.max(1,box.height-2),game=currentGame(),span=game?Math.max(...game.tanks.map(t=>t.y))-Math.min(...game.tanks.map(t=>t.y)):0;
+  const box=$('arena').getBoundingClientRect(),availableWidth=Math.max(1,box.width-2),availableHeight=Math.max(1,box.height-2),game=animation?.before||currentGame(),span=game?Math.max(...game.tanks.map(t=>t.y))-Math.min(...game.tanks.map(t=>t.y)):0;
   const viewHeight=Math.round(Math.max(220,Math.min(HEIGHT,Math.max(span+100,WIDTH*availableHeight/availableWidth)))),ratio=WIDTH/viewHeight;
   const width=Math.min(availableWidth,availableHeight*ratio),w=`${Math.max(1,width)}px`,h=`${Math.max(1,width/ratio)}px`;
   camera.height=viewHeight;const mid=game?(Math.min(...game.tanks.map(t=>t.y))+Math.max(...game.tanks.map(t=>t.y)))/2:400;camera.top=Math.round(Math.max(0,Math.min(HEIGHT-viewHeight,mid-viewHeight*.55)));
@@ -244,7 +245,11 @@ function weaponPicker(catalog=false) {
   const game=currentGame();if(!catalog&&!canAct())return;
   const available=catalog?WEAPONS:game.tanks[game.turn].inventory.map(weaponById),grid=node('div','','weapon-grid');grid.id='weaponGrid';
   const renderGrid=filter=>{grid.replaceChildren(...available.filter(w=>!filter||`${w.name} ${w.description} ${w.kind}`.toLowerCase().includes(filter)).map(w=>{
-    const b=node(catalog?'div':'button','','weapon-card');b.dataset.weapon=w.id;b.style.setProperty('--weapon-color',w.color);b.classList.toggle('selected',!catalog&&w.id===aims[game.turn].weaponId);const art=node('div','');art.innerHTML=weaponSvg(w);const details=node('div','','details');details.append(node('strong',w.name),node('small',w.description));b.append(art,details);
+    const b=node(catalog?'div':'button','','weapon-card');b.dataset.weapon=w.id;b.style.setProperty('--weapon-color',w.color);b.classList.toggle('selected',!catalog&&w.id===aims[game.turn].weaponId);const art=node('div','');art.innerHTML=weaponSvg(w);const details=node('div','','details');details.append(node('strong',w.name),node('small',w.description));
+    const stats=node('div','','weapon-stats');
+    const digging=w.kind==='builder'?'Builds terrain':w.craterScale>=1.3||['drill','tunnel','carver'].includes(w.kind)?'Deep digging':w.craterScale<.5?'Light digging':'Carves terrain';
+    for(const text of [`Damage ${w.damage}`,digging,w.count>1?`${w.count} impacts`:w.bounces?`${w.bounces} bounces`:'Single shot'])stats.append(node('span',text));
+    details.append(stats);b.append(art,details);
     if(!catalog){b.type='button';b.onclick=()=>{if(!canAct())return;aims[game.turn].weaponId=w.id;save?.touch(0);closeModal();render();};}return b;
   }));};renderGrid('');const search=document.createElement('input');search.id='weaponSearch';search.placeholder='Find a weapon';search.type='search';search.setAttribute('aria-label','Search weapons');search.oninput=()=>renderGrid(search.value.trim().toLowerCase());
   modal(catalog?`The arsenal · ${WEAPONS.length} weapons`:'Choose your weapon',[node('p',catalog?'Every weapon has its own behavior. Each battle deals ten different single-use weapons to each tank.':'One shot each. Choose a weapon that suits your aim and the terrain.','weapon-description'),search,grid],[],catalog?'arsenal':'weapons');
@@ -295,6 +300,6 @@ window.addEventListener('keydown',event=>{if(!$('setup').hidden||$('modal').open
 Object.defineProperty(window,'TanksGame',{value:Object.freeze({getState:()=>currentGame()?clone(currentGame()):null,getDebug:()=>({mode:session?'network':playMode,animating:!!animation,busy,session:session?{code:session.code,playerId:session.playerId,transport:session.transport}:null,room:room?clone(room):null}),getWeapons:()=>clone(WEAPONS),capture:()=>capture()}),writable:false});
 const query=new URLSearchParams(location.search),joinCode=(query.get('room')||query.get('join')||query.get('code')||'').toUpperCase().slice(0,6);$('joinCode').value=joinCode;if(joinCode||query.get('online')==='1')$('mode').value='network';
 if(joinCode||query.get('online')==='1')save?.setExternalSession(true);
-updateSetup();render();frame=requestAnimationFrame(tick);
+initBattleView(resizeCanvas);updateSetup();render();frame=requestAnimationFrame(tick);
 mp?.onStatus(updateTransport);if(mp)mp.ready().then(updateTransport).catch(()=>message('The Arcade connection is not ready. Local play is available.',true));
 if(save)save.register({id:'tanks',title:'Tank Tactics',version:1,capture,restore,meaningful:()=>!!localGame||save.hasSave(),summary:()=>localGame?`${localGame.tanks[0].name} ${localGame.tanks[0].score} · ${localGame.tanks[1].name} ${localGame.tanks[1].score}. ${localGame.shotsTotal}/20 shots fired.`:'',startFresh:showSetup});

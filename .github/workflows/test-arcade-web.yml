@@ -52,7 +52,7 @@ jobs:
         run: node --test adventure/story.test.mjs adventure/save.test.mjs tv/core.test.mjs
 
       - name: Test Tank Tactics engine and weapon rules
-        run: node --test tanks/engine.test.mjs
+        run: node --test tanks/*.test.mjs
 
       - name: Validate packaged Arcade runtime
         run: |

@@ -7,6 +7,29 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+Release 2.7.2 polishes Tank Tactics without changing the game/save schema or
+weapon IDs. `weapon-art.js` has 84 distinct geometry compositions, not family
+symbols with different badges. `terrain-rules.js` is the shared excavation
+source imported by the engine and used to size visual terrain reveals. Damage
+radius and damage budgets remain unchanged. Deploy the Internet Worker with
+the browser because both authorities must use the updated excavation model.
+
+`battle-view.js` owns only `arcade.tanks.wide.v1`. Fullscreen/rotation requests
+must be user-triggered, rejection-safe and cancellation-safe. Unsupported
+orientation locking falls back to a wide layout and a rotate-phone hint.
+Keep movement distance usable in short landscape and title/actions separate.
+Never store display mode in room state or replace the local game on a toggle.
+
+The new checks include 1,764 extreme weapon cases, twelve complete CPU games,
+a full shared-authority match, geometry uniqueness, genuine old-save restore,
+and six browser layouts. The managed local browser denies navigation, so its
+local visual tests used an inline bundle of the actual modules and a storage
+fixture. Do not call that native persistence or live multiplayer verification.
+`tools/test-tanks-polish-browser.mjs` runs actual modules/native browser reloads
+in CI, including display rejection and cancellation cases. The existing real
+Tanks Internet/Nearby browser suite is retained. Exact CI/publication results
+belong to ProjectStatus and `docs/arcade-stress-test-2.7.2.md`.
+
 Release 2.7.1 makes the shared multiplayer globe draggable with mouse or touch
 and movable with arrow keys. Its normalized position is a local preference
 saved separately per activity under `arcade.shared.launchPosition.<activity>.v1`.

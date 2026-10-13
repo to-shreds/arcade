@@ -1,4 +1,5 @@
 import { WEAPONS, weaponById } from './weapons.js';
+import { excavateTerrain } from './terrain-rules.js';
 
 export const WIDTH = 1000;
 export const HEIGHT = 560;
@@ -108,15 +109,9 @@ function addPath(trace, kind, color, points) {
   trace.duration = Math.max(trace.duration, Math.min(MAX_TICKS, Math.round(last[2]) + 24));
 }
 function crater(state, x, y, radius, scale = 1) {
-  const size = clamp(radius * Math.sqrt(Math.max(.05, scale)), 2, 190);
-  for (let index = Math.max(0, Math.floor((x - size) / STEP)); index <= Math.min(TERRAIN_SAMPLES - 1, Math.ceil((x + size) / STEP)); index++) {
-    const dx = index * STEP - x;
-    if (Math.abs(dx) >= size) continue;
-    const root = Math.sqrt(size * size - dx * dx);
-    // A below-ground blast reaches the surface only if its upper hemisphere does.
-    if (y - root <= state.terrain[index] + 2) state.terrain[index] = round(clamp(Math.max(state.terrain[index], y + root), MIN_GROUND, MAX_GROUND));
-  }
+  excavateTerrain(state.terrain, x, y, radius, scale);
 }
+
 function blast(state, trace, actor, weapon, x, y, damage, radius, tick, kind = 'explosion', options = {}) {
   const color = options.color ?? weapon.color;
   const damageRadius = Math.max(5, radius);

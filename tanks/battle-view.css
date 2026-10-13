@@ -1,0 +1,33 @@
+/* Keep the Arcade palette, but give the battlefield priority in wide view. */
+.arcade-top{grid-template-columns:auto minmax(0,1fr) auto}
+#landscape{display:flex;align-items:center;gap:5px;font-size:11px;white-space:nowrap}
+#landscape svg{width:17px;height:17px;flex:none}
+#landscape[aria-pressed=true]{border-color:var(--arcade-cyan);color:var(--arcade-cyan)}
+#viewNotice{position:fixed;z-index:105;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);width:max-content;max-width:88vw;background:#102842;border:1px solid var(--arcade-cyan);border-radius:12px;padding:12px 16px;box-shadow:0 8px 36px #0009;font-size:13px;text-align:center;pointer-events:none}
+.weapon-card svg{width:56px;height:56px}
+.weapon-stats{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.weapon-stats span{font:700 10px/1.4 system-ui;color:#d5eaff;background:#20314b;border-radius:4px;padding:2px 5px}
+.weapon-card.selected{box-shadow:inset 3px 0 var(--weapon-color)}
+.tanks-wide .arcade-app{width:100%;max-width:none}
+.tanks-wide #loadout{display:none}
+@media(max-width:540px){.arcade-top{gap:6px}.arcade-title{font-size:clamp(17px,5.1vw,25px)}#landscape{padding:5px 9px}#landscape span{display:none}.arcade-actions{gap:3px}}
+@media(orientation:landscape) and (max-height:600px){
+ .arcade-app{padding:5px max(9px,env(safe-area-inset-right)) 5px max(9px,env(safe-area-inset-left));gap:4px}
+ .arcade-top{min-height:29px}.arcade-title{font-size:21px}.arcade-top .arcade-btn{min-height:29px;padding:4px 8px}
+ #controls{padding:7px 9px;grid-template-columns:minmax(130px,1.3fr) minmax(88px,1fr) minmax(88px,1fr) minmax(105px,.85fr) 72px;gap:10px}
+ #weaponIcon svg{width:38px;height:38px}#weapon{height:48px}#fire{height:48px}
+ #moveControl{grid-template-columns:minmax(0,1fr) 65px}#moveAmount{font-size:9px}
+ #arena{min-height:90px;flex:1}#roomBar{min-height:25px}#roomBar .arcade-btn{min-height:25px;padding:3px 7px}
+ .tanks-wide .score-card{padding:3px 9px}.tanks-wide .score-card svg{height:21px}.tanks-wide .score-value{font-size:23px}
+ .tanks-wide #statusBar{min-height:23px;padding:3px 9px}.tanks-wide #subline{display:none}
+ .tanks-wide .score-meta{display:none}.tanks-wide .match-meta{line-height:1.1}.tanks-wide .match-meta br,.tanks-wide #terrainLabel{display:none}
+ .tanks-wide #arenaLabel{font-size:8px;opacity:.6}
+ .modal{width:min(850px,96vw);max-height:94dvh}.weapon-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(orientation:portrait){.tanks-wide #arena{flex:1;aspect-ratio:auto;min-height:160px}.tanks-wide #battlefield{object-fit:contain}}
+@media(max-width:740px) and (orientation:landscape) and (max-height:600px){
+ #controls{grid-template-columns:minmax(118px,1.2fr) minmax(72px,.8fr) minmax(72px,.8fr) 90px 58px;gap:6px}
+ #moveControl{grid-template-columns:minmax(22px,1fr) 58px}#moveControl>input{display:block;min-width:22px}#moveControl>.move-buttons{grid-column:2}
+ #moveAmount{display:none}#moveControl .move-help{font-size:8px}.control-head{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){#landscape,.weapon-card{transition:none}}

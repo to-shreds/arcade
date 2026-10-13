@@ -8,6 +8,7 @@ on:
       - "cloudflare/chess-worker/**"
       - "multiplayer/models/**"
       - "tanks/engine.js"
+      - "tanks/terrain-rules.js"
       - "tanks/weapons.js"
       - ".github/workflows/deploy-arcade-worker.yml"
   workflow_dispatch:

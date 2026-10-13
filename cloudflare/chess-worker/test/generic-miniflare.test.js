@@ -40,6 +40,7 @@ function createMiniflare(compatibilityDate = "2026-08-06") {
       { type: "ESModule", path: new URL("../../../multiplayer/models/tanks-authority.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../tanks/engine.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../tanks/weapons.js", import.meta.url).pathname },
+      { type: "ESModule", path: new URL("../../../tanks/terrain-rules.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/guess-who-data.js", import.meta.url).pathname },
       { type: "ESModule", path: new URL("../../../multiplayer/models/chess-engine.js", import.meta.url).pathname }
     ],

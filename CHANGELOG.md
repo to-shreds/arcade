@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.7.2 - 2026-10-13
+
+- Replaced repeated weapon-family symbols with 84 individually composed drawings;
+  shape uniqueness is tested without labels or color differences.
+- Increased explosion excavation independently of damage, with deeper, wider
+  craters, exposed-earth scars, larger impact effects, debris and recoil.
+- Fixed projectile-trail interpolation and tank support during animation. Added
+  a short power-sensitive aiming guide without giving away the landing point.
+- Added a Landscape/fullscreen button, graceful rotation-lock fallback and a
+  saved local wide-view preference. Keep movement distance available in narrow
+  landscape and prevent header overlap on phones.
+- Preserve existing weapon IDs, scores, ammunition, local saves, authoritative
+  Internet/Nearby rules, all other activities and the movable multiplayer globe.
+
 ## 2.7.1 - 2026-10-13
 
 - Made the multiplayer globe draggable with mouse and touch, with arrow-key
