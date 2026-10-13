@@ -45,7 +45,7 @@ try{
  assert.deepEqual(await page.evaluate(()=>TanksGame.getState()),after);checks.push('native saved-game reload');
  await page.click('#settings');await page.getByRole('button',{name:'Arsenal (84)',exact:true}).click();
  assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),84);
- const svg=await page.locator('#weaponGrid svg').evaluateAll(elements=>elements.map(e=>e.querySelector('g').outerHTML.replace(/color="[^"]*"/,'')));
+ const svg=await page.locator('#weaponGrid svg:not(.terrain-preview)').evaluateAll(elements=>elements.map(e=>e.querySelector('g').outerHTML.replace(/color="[^"]*"/,'')));
  assert.equal(new Set(svg).size,84);
  await page.fill('#weaponSearch','canyon');assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),1);
  assert.equal(await page.locator('#weaponGrid [data-weapon]').getAttribute('data-weapon'),'canyon-cut');

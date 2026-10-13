@@ -1,6 +1,7 @@
 import { WIDTH, HEIGHT, createGame } from './engine.js';
 import { weaponById } from './weapons.js';
-import { blastProfile } from './terrain-rules.js';
+import { blastProfile, terrainAtTick, weaponTerrainProfile, terrainSummary, cutChannel, buildTerrain, excavateTerrain } from './terrain-rules.js';
+export { terrainSummary } from './terrain-rules.js';
 export { weaponSvg } from './weapon-art.js';
 
 const esc = value => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -66,15 +67,29 @@ function drawProjectile(ctx,path,tick,index,viewportTop,displayScale){
 
 function drawEffect(ctx,e,tick,index){
   const age=tick-e.tick,duration=e.duration||({flame:40,earth:25,mine:40,beam:14,lightning:17,wave:40,drill:28,tunnel:28,miss:18}[e.kind]||28);if(age<0||age>duration)return;
-  const f=age/duration,r=Math.max(3,e.radius||16)*(['explosion','earth','drill','tunnel'].includes(e.kind)?1.45:1),c=e.color||'#ffce3a';ctx.save();ctx.globalAlpha=1-f;ctx.fillStyle=c;ctx.strokeStyle=c;ctx.shadowColor=c;ctx.shadowBlur=18;
+  const f=age/duration,r=Math.max(3,e.radius||16),c=e.color||'#ffce3a';ctx.save();ctx.globalAlpha=1-f;ctx.fillStyle=c;ctx.strokeStyle=c;ctx.shadowColor=c;ctx.shadowBlur=18;
   if(e.kind==='beam'||e.kind==='lightning'){
     const end=[e.x2??e.x,e.y2??e.y];ctx.lineWidth=(1-f)*8+1;ctx.beginPath();ctx.moveTo(e.x,e.y);for(let n=1;n<=8;n++){const t=n/8;ctx.lineTo(e.x+(end[0]-e.x)*t+(e.kind==='lightning'&&n<8?(hash(index*311+n+Math.floor(tick/2))*2-1)*15:0),e.y+(end[1]-e.y)*t);}ctx.stroke();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+  }else if(e.kind==='flame'){
+    ctx.shadowBlur=8;
+    for(let n=0;n<7;n++){
+      const x=e.x+(n/6-.5)*r*2,h=(10+hash(n+index)*20)*(1-f);
+      ctx.fillStyle=n%2?'#ffb137':c;ctx.beginPath();ctx.moveTo(x-4,e.y+8);
+      ctx.quadraticCurveTo(x+7,e.y-h/2,x+Math.sin(tick+n)*3,e.y-h);
+      ctx.quadraticCurveTo(x-6,e.y-h/2,x+4,e.y+8);ctx.fill();
+    }
+    ctx.shadowBlur=0;ctx.fillStyle='#53606a';ctx.globalAlpha=(1-f)*.25;
+    for(let n=0;n<4;n++)circle(ctx,e.x+(hash(n+index)-.5)*r,e.y-f*40,4+f*9);
+  }else if(e.kind==='spark'){
+    ctx.shadowBlur=9;ctx.lineWidth=1.5;ctx.strokeStyle=c;
+    for(let n=0;n<8;n++){const a=n*Math.PI/4;line(ctx,[e.x+Math.cos(a)*r*.15,e.y+Math.sin(a)*r*.15],[e.x+Math.cos(a)*r*(.2+f*.55),e.y+Math.sin(a)*r*(.2+f*.55)]);}
+    ctx.fillStyle='#fff';circle(ctx,e.x,e.y,3*(1-f));
   }else if(e.kind==='wave'){
     ctx.lineWidth=4*(1-f)+1;ctx.beginPath();ctx.arc(e.x,e.y,r*(.2+f),Math.PI,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(e.x,e.y,r*(.1+f*.75),Math.PI,Math.PI*2);ctx.stroke();
-  }else if(e.kind==='earth'||e.kind==='drill'||e.kind==='tunnel'){
+  }else if(['earth','drill','tunnel','bore','cut'].includes(e.kind)){
     ctx.shadowBlur=0;for(let n=0;n<14;n++){const a=hash(index*71+n)*Math.PI*2,dist=r*f*(.4+hash(n*991+index));ctx.save();ctx.translate(e.x+Math.cos(a)*dist,e.y+Math.sin(a)*dist+f*f*27);ctx.rotate(a+f*4);ctx.fillStyle=n%3?'#af956d':c;ctx.fillRect(-2,-2,5*(1-f),5*(1-f));ctx.restore();}
     ctx.strokeStyle=c;ctx.lineWidth=2;ctx.beginPath();ctx.arc(e.x,e.y,r*(.2+f),Math.PI,Math.PI*2);ctx.stroke();
-  }else if(e.kind==='mine'){
+  }else if(e.kind==='mine'||e.kind==='mine-arm'){
     ctx.strokeStyle=c;ctx.lineWidth=2;ctx.beginPath();ctx.arc(e.x,e.y,8+f*25,0,Math.PI*2);ctx.stroke();circle(ctx,e.x,e.y-5,5);
   }else if(e.kind==='miss'){
     ctx.shadowBlur=0;ctx.fillStyle='#abc3de';for(let n=0;n<5;n++)circle(ctx,e.x+(hash(n+index)*2-1)*20*f,e.y-f*24+hash(n*17)*8,4*(1-f));
@@ -105,8 +120,16 @@ export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewport
     ctx.translate(Math.sin(animation.tick*2.7)*strength,Math.cos(animation.tick*2.1)*strength*.65);
   }
   let terrain=game.terrain,tanks=game.tanks;const shot=animation?.shot,tick=animation?.tick||0;
-  if(animation?.before&&shot){const events=shot.effects||[];terrain=game.terrain.map((y,i)=>{const old=animation.before.terrain[i],x=i*WIDTH/(game.terrain.length-1);if(old===y)return y;let reveal=shot.duration-12;for(const e of events){if(Math.abs(x-e.x)<Math.max(30,blastProfile(e.radius||40,weaponById(shot.weaponId)?.craterScale||1).width))reveal=Math.min(reveal,e.tick);}const f=Math.max(0,Math.min(1,(tick-reveal)/10));return old+(y-old)*f;});tanks=game.tanks.map((tank,i)=>({...tank,y:Math.min(ground(terrain,tank.x-12),ground(terrain,tank.x),ground(terrain,tank.x+12))}));}
-  if(animation?.move){const move=animation.move,f=Math.min(1,tick/24),x=move.from+(move.to-move.from)*(1-Math.pow(1-f,3));tanks=game.tanks.map((tank,i)=>i===move.actor?{...tank,x,y:Math.min(ground(terrain,x-12),ground(terrain,x),ground(terrain,x+12))}:tank);}
+  if(animation?.before&&shot?.terrainVersion===1){
+    terrain=terrainAtTick(animation.before.terrain,shot.effects,tick);
+    tanks=game.tanks.map(tank=>({...tank,y:Math.min(ground(terrain,tank.x-12),ground(terrain,tank.x),ground(terrain,tank.x+12))}));
+  }
+  if(animation?.before&&shot&&shot.terrainVersion!==1){const events=shot.effects||[];terrain=game.terrain.map((y,i)=>{const old=animation.before.terrain[i],x=i*WIDTH/(game.terrain.length-1);if(old===y)return y;let reveal=shot.duration-12;for(const e of events){if(Math.abs(x-e.x)<Math.max(30,blastProfile(e.radius||40,weaponById(shot.weaponId)?.craterScale||1).width))reveal=Math.min(reveal,e.tick);}const f=Math.max(0,Math.min(1,(tick-reveal)/10));return old+(y-old)*f;});tanks=game.tanks.map((tank,i)=>({...tank,y:Math.min(ground(terrain,tank.x-12),ground(terrain,tank.x),ground(terrain,tank.x+12))}));}
+  if(animation?.move){
+    const move=animation.move,f=Math.min(1,tick/24),x=move.from+(move.to-move.from)*(1-Math.pow(1-f,3));
+    if(move.terrainVersion===1)terrain=terrainAtTick(animation.before.terrain,move.effects,tick);
+    tanks=game.tanks.map((tank,i)=>{const tx=i===move.actor?x:tank.x;return {...tank,x:tx,y:Math.min(ground(terrain,tx-12),ground(terrain,tx),ground(terrain,tx+12))};});
+  }
   const earth=ctx.createLinearGradient(0,250,0,HEIGHT);earth.addColorStop(0,'#557f58');earth.addColorStop(.18,'#354d39');earth.addColorStop(.5,'#263a34');earth.addColorStop(1,'#132c2b');terrainPath(ctx,terrain);ctx.fillStyle=earth;ctx.fill();ctx.save();ctx.clip();ctx.strokeStyle='#64806325';ctx.lineWidth=2;for(let band=0;band<7;band++){ctx.beginPath();for(let x=0;x<=WIDTH;x+=10){const y=340+band*36+9*Math.sin(x/82+band);x?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();}for(let i=0;i<130;i++){ctx.fillStyle=i%3?'#8fac6920':'#040e182b';circle(ctx,hash(i*21)*WIDTH,300+hash(i*32+game.seed)*260,1+hash(i*91)*2);}ctx.restore();
   const initial=originalSurface(game),step=WIDTH/(terrain.length-1);
   // Cut faces show warm strata rather than magically growing new grass.
@@ -120,12 +143,13 @@ export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewport
   }ctx.restore();
   for(let i=1;i<terrain.length;i++){
     const cut=terrain[i]-initial[i]>5||terrain[i-1]-initial[i-1]>5;
-    ctx.strokeStyle=cut?'#e0ac72':'#92bc75';ctx.lineWidth=cut?2.4:3;
+    const scorch=!cut&&(terrain[i]-initial[i]>.2||terrain[i-1]-initial[i-1]>.2);
+    ctx.strokeStyle=cut?'#e0ac72':scorch?'#372c31':'#92bc75';ctx.lineWidth=cut?2.4:3;
     line(ctx,[(i-1)*step,terrain[i-1]],[i*step,terrain[i]]);
   }
 
-  for(const mine of game.mines||[]){ctx.fillStyle=mine.color||'#ff9f43';ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=6;ctx.beginPath();ctx.ellipse(mine.x,mine.y-2,5,3,0,Math.PI,0);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff4b0';circle(ctx,mine.x,mine.y-5,1);}
-  const shooting=!!animation;for(let i=0;i<tanks.length;i++){const tank=tanks[i],a=shot?.actor===i?shot.angle:(aims[i]?.angle??(i?135:45));const recoil=shot?.actor===i&&tick<9?Math.sin(tick/9*Math.PI)*3:0;drawTank(ctx,{...tank,x:tank.x-Math.cos(a*Math.PI/180)*recoil},a,!shooting&&!game.finished&&game.turn===i,time);ctx.font=`700 ${Math.min(32,12/displayScale)}px system-ui`;ctx.textAlign='center';ctx.fillStyle='#eff6ff';ctx.shadowColor='#081529';ctx.shadowBlur=4;ctx.fillText(tank.name,tank.x,tank.y+16/displayScale);ctx.shadowBlur=0;}
+  for(const mine of game.mines||[]){ctx.fillStyle=mine.color||'#ff9f43';ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=6;ctx.beginPath();ctx.ellipse(mine.x,ground(terrain,mine.x)-2,5,3,0,Math.PI,0);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff4b0';circle(ctx,mine.x,ground(terrain,mine.x)-5,1);}
+  const shooting=!!animation;for(let i=0;i<tanks.length;i++){const tank=tanks[i],a=shot?.actor===i?shot.angle:(aims[i]?.angle??(i?135:45));const recoil=shot?.actor===i&&tick>=(shot.launchTick||0)&&tick<(shot.launchTick||0)+9?Math.sin((tick-(shot.launchTick||0))/9*Math.PI)*3:0;drawTank(ctx,{...tank,x:tank.x-Math.cos(a*Math.PI/180)*recoil},a,!shooting&&!game.finished&&game.turn===i,time);ctx.font=`700 ${Math.min(32,12/displayScale)}px system-ui`;ctx.textAlign='center';ctx.fillStyle='#eff6ff';ctx.shadowColor='#081529';ctx.shadowBlur=4;ctx.fillText(tank.name,tank.x,tank.y+16/displayScale);ctx.shadowBlur=0;}
   if(shot){for(let i=0;i<shot.paths.length;i++)drawProjectile(ctx,shot.paths[i],tick,i,viewportTop,displayScale);for(let i=0;i<shot.effects.length;i++)drawEffect(ctx,shot.effects[i],tick,i);}
   if(animation?.move){const move=animation.move;for(let i=0;i<(move.effects||[]).length;i++)drawEffect(ctx,move.effects[i],tick,i);}
   if(!shooting&&!game.finished){
@@ -138,4 +162,21 @@ export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewport
       ctx.globalAlpha=.6-n*.035;ctx.fillStyle='#e2f4ff';circle(ctx,x,y,1.8);
     }ctx.globalAlpha=1;
   }
+}
+
+/** Catalogue cross-section generated by the same rules as the battlefield. */
+export function terrainPreviewSvg(w) {
+  const reference=Array(251).fill(300),terrain=reference.slice(),p=weaponTerrainProfile(w);
+  if(w.kind==='builder')buildTerrain(terrain,reference,500,w.width/2,w.height,w.id==='mountain-maker'?'v':['wall-drop','earth-blanket','sandbar'].includes(w.id)?'flat':'bowl');
+  else if(w.kind==='carver')cutChannel(terrain,reference,450,w.id==='posthole'?450:450+w.reach,p.width,p.depth,p.shape);
+  else if(w.kind==='drill'){cutChannel(terrain,reference,500,500,Math.min(9,p.width/2),w.depth);excavateTerrain(terrain,500,300+w.depth,w.radius,w.craterScale,{...p,connected:true});}
+  else if(w.kind==='tunnel'){cutChannel(terrain,reference,360,360+w.reach,Math.max(4,p.width*.45),w.depth);for(let i=0;i<w.count;i++)excavateTerrain(terrain,360+w.reach*i/Math.max(1,w.count-1),300+w.depth,w.radius,w.craterScale,{...p,connected:true});}
+  else if(['cluster','burst','wave'].includes(w.kind))for(let i=0;i<Math.min(w.count,6);i++)excavateTerrain(terrain,380+i*48,300,w.radius,w.craterScale,p);
+  else excavateTerrain(terrain,500,300+(w.kind==='mine'?w.depth:0),w.radius,w.craterScale,{...p,connected:w.kind==='mine'});
+  // Identical axes for every weapon. Do not make a pinprick look like a canyon
+  // by independently zooming each preview to its own excavation bounds.
+  const lo=55,hi=215,sy=y=>48+(y-300)*.4;
+  const path=terrain.slice(lo,hi+1).map((y,i)=>`${i?'L':'M'}${(i/(hi-lo)*256).toFixed(1)} ${sy(y).toFixed(1)}`).join('');
+  const groundColor=['flame','lightning','beam'].includes(w.kind)?'#b899be':'#dea16c';
+  return `<svg class="terrain-preview" viewBox="0 0 256 116" role="img" aria-label="${esc(terrainSummary(w))}"><path d="${path} L256 116 L0 116Z" fill="#66503b55"/><path d="M0 ${sy(300).toFixed(1)}H256" stroke="#8baba0" stroke-dasharray="4 4"/><path d="${path}" fill="none" stroke="${groundColor}" stroke-width="2"/></svg>`;
 }

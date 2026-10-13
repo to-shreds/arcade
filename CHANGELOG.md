@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.3 - 2026-10-13
+
+- Added explicit weapon-specific excavation profiles instead of a shared scaled crater.
+- Corrected continuous tunnel/carver depth, single-charge drill behavior, beam soil penetration, and delayed mine terrain ownership.
+- Replayed exact per-effect ground changes and simulated burst/cluster shells and branching lightning chronologically.
+- Added same-scale terrain profiles in the weapon picker; fire and electrical effects no longer mimic explosive soil removal.
+- Preserved old saves, all weapon IDs, scores, movement limits, landscape and multiplayer.
+
 ## 2.7.2 - 2026-10-13
 
 - Replaced repeated weapon-family symbols with 84 individually composed drawings;

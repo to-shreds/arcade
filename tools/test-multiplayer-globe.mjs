@@ -10,6 +10,23 @@ async function setup(context,game='paint-lab'){
 async function bounds(page){return page.locator('#shared-launch').boundingBox();}
 async function drag(page,x,y){const b=await bounds(page);await page.mouse.move(b.x+b.width/2,b.y+b.height/2);await page.mouse.down();await page.mouse.move(x,y,{steps:12});await page.mouse.up();}
 async function contained(page){const b=await bounds(page),v=page.viewportSize();assert.ok(b.x>=0&&b.y>=0&&b.x+b.width<=v.width&&b.y+b.height<=v.height,JSON.stringify({b,v}));}
+
+// setViewportSize resolves before the page's resize handlers necessarily run.
+// Verify the saved normalized position, not merely old coordinates still in bounds.
+async function resizeAndSettle(page,viewport){
+ await page.setViewportSize(viewport);
+ await page.waitForFunction(({width,height})=>{
+  if(innerWidth!==width||innerHeight!==height)return false;
+  const el=document.getElementById('shared-launch'),v=visualViewport;
+  const saved=JSON.parse(localStorage.getItem('arcade.shared.launchPosition.paint-lab.v1'));
+  if(!el||!saved)return false;
+  const r=el.getBoundingClientRect(),left=(v?.offsetLeft||0)+8,top=(v?.offsetTop||0)+8;
+  const right=Math.max(left,(v?.offsetLeft||0)+(v?.width||innerWidth)-el.offsetWidth-8);
+  const bottom=Math.max(top,(v?.offsetTop||0)+(v?.height||innerHeight)-el.offsetHeight-8);
+  return Math.abs(r.x-(left+saved.x*(right-left)))<.1&&Math.abs(r.y-(top+saved.y*(bottom-top)))<.1;
+ },viewport,{timeout:5000});
+ await contained(page);
+}
 try{
  const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true});const page=await setup(context);
  await page.locator('#shared-launch').tap();await page.locator('#shared-panel').waitFor({state:'visible'});await page.locator('#shared-close').click();
@@ -17,7 +34,7 @@ try{
  await page.waitForTimeout(1750);assert.deepEqual(await bounds(page),b,'Auto placement cannot undo the drag');
  await page.evaluate(()=>document.body.append(document.createElement('button')));await page.waitForTimeout(100);assert.deepEqual(await bounds(page),b,'Activity changes cannot undo placement');
  await page.reload();await page.locator('#shared-launch').waitFor();assert.deepEqual(await bounds(page),b,'Reload restores position');
- await page.setViewportSize({width:844,height:390});await contained(page);await page.setViewportSize({width:320,height:568});await contained(page);
+ await resizeAndSettle(page,{width:844,height:390});await resizeAndSettle(page,{width:320,height:568});
  await drag(page,-200,-100);await contained(page);b=await bounds(page);assert.equal(b.x,8);assert.equal(b.y,8);
  await page.locator('#shared-launch').focus();await page.keyboard.press('ArrowRight');assert.equal((await bounds(page)).x,20);
  await page.keyboard.press('Enter');await page.locator('#shared-panel').waitFor({state:'visible'});await page.locator('#shared-close').click();

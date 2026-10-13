@@ -9,7 +9,10 @@ Damage is a nominal total budget per shot before distance falloff. Multiple
 projectiles or pulses share that budget. Hitting the other tank adds points to
 the shooter; hitting your own tank adds points to the other player. Scores never
 decrease. Dimensions are world
-pixels; spread is degrees. Terrain excavation is multiplied by craterScale.
+units. Spread describes the family-specific fan or spacing. Terrain excavation
+uses the explicit profiles in `terrain-rules.js`, independently of damage.
+`craterScale` is retained in the catalogue for old mine saves and the legacy
+excavation fallback; it is not the current weapon terrain specification.
 The distance falloff exponent controls whether damage is concentrated at the
 center or spread more gently across a blast.
 

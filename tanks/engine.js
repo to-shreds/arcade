@@ -1,5 +1,5 @@
 import { WEAPONS, weaponById } from './weapons.js';
-import { excavateTerrain } from './terrain-rules.js';
+import { excavateTerrain, weaponTerrainProfile, cutChannel, buildTerrain, terrainPatch } from './terrain-rules.js';
 
 export const WIDTH = 1000;
 export const HEIGHT = 560;
@@ -87,12 +87,12 @@ export function createGame(options = {}) {
 
 function newTrace(state, actor, weapon, angle, power) {
   return { sequence: state.shotsTotal + 1, actor, weaponId: weapon.id, angle, power,
-    scoreGain: [0, 0], paths: [], effects: [], duration: 30 };
+    terrainVersion: 1, scoreGain: [0, 0], paths: [], effects: [], duration: 30 };
 }
 function addEffect(trace, kind, color, x, y, radius, tick, extra = {}) {
   trace.duration = Math.max(trace.duration, Math.min(MAX_TICKS, Math.ceil(tick) + 24));
   if (trace.effects.length < MAX_EFFECTS) trace.effects.push({ kind, color, x: round(x), y: round(y),
-    radius: round(clamp(radius, 1, WIDTH)), tick: Math.round(clamp(tick, 0, MAX_TICKS)), ...extra });
+    radius: round(clamp(radius, 1, WIDTH)), tick: Math.round(clamp(tick, 0, MAX_TICKS - 24)), ...extra });
 }
 function addPath(trace, kind, color, points) {
   if (!points.length) return;
@@ -108,8 +108,17 @@ function addPath(trace, kind, color, points) {
   trace.paths.push({ kind, color, points: compact });
   trace.duration = Math.max(trace.duration, Math.min(MAX_TICKS, Math.round(last[2]) + 24));
 }
-function crater(state, x, y, radius, scale = 1) {
-  excavateTerrain(state.terrain, x, y, radius, scale);
+function crater(state, x, y, radius, scale = 1, profile = null) {
+  excavateTerrain(state.terrain, x, y, radius, scale, profile);
+}
+function terrainEffect(state, trace, weapon, x, y, tick, radius, kind, mutate, extra = {}) {
+  const before = state.terrain.slice();
+  mutate();
+  const patch = terrainPatch(before, state.terrain);
+  addEffect(trace, kind, weapon.color, x, y, radius, tick, {
+    duration: 20, ...(patch ? { terrain: patch, terrainDuration: 6 } : {}), ...extra
+  });
+  settle(state);
 }
 
 function blast(state, trace, actor, weapon, x, y, damage, radius, tick, kind = 'explosion', options = {}) {
@@ -124,21 +133,26 @@ function blast(state, trace, actor, weapon, x, y, damage, radius, tick, kind = '
     state.tanks[scorer].score += gain;
     trace.scoreGain[scorer] += gain;
   }
-  if (options.carve !== false) crater(state, x, y, radius, weapon.craterScale ?? 1);
-  addEffect(trace, kind, color, x, y, radius, tick, { duration: 24 });
+  const before = state.terrain.slice();
+  const profile = options.profile || weaponTerrainProfile(weapon);
+  if (options.carve !== false) crater(state, x, options.terrainY ?? y, radius, weapon.craterScale ?? 1, profile);
+  const patch = terrainPatch(before, state.terrain);
+  addEffect(trace, kind, color, x, y, radius, tick, { duration: 24,
+    groundWidth: options.carve === false ? 0 : profile.width,
+    ...(patch ? { terrain: patch, terrainDuration: 6 } : {}) });
   settle(state);
 }
 function muzzle(state, actor, angle) {
   const tank = state.tanks[actor], radians = angle * Math.PI / 180;
   return { x: tank.x + Math.cos(radians) * 23, y: tank.y - 15 - Math.sin(radians) * 23 };
 }
-function projectile(state, actor, weapon, angle, power, trace, options = {}) {
+function* flight(state, actor, weapon, angle, power, trace, options = {}) {
   const radians = angle * Math.PI / 180;
   const origin = options.origin ?? muzzle(state, actor, angle);
   const speed = 60 + power * 4.4;
   let x = origin.x, y = origin.y, vx = options.vx ?? Math.cos(radians) * speed, vy = options.vy ?? -Math.sin(radians) * speed;
   let bounces = options.bounces ?? 0;
-  const start = options.startTick ?? 0, points = [[x, y, start]], limit = MAX_TICKS - start - 25;
+  const start = options.startTick ?? trace.launchTick ?? 0, points = [[x, y, start]], limit = MAX_TICKS - start - 25;
   for (let step = 1; step <= limit; step++) {
     const previousX = x, previousY = y;
     vy += GRAVITY * DT;
@@ -174,6 +188,7 @@ function projectile(state, actor, weapon, angle, power, trace, options = {}) {
         y -= 5;
         addEffect(trace, 'bounce', weapon.color, x, y, 10, tick);
         points.push([x, y, tick]);
+        yield tick;
         continue;
       }
       points.push([x, y, tick]); addPath(trace, weapon.kind, weapon.color, points);
@@ -183,24 +198,45 @@ function projectile(state, actor, weapon, angle, power, trace, options = {}) {
       points.push([clamp(x, -35, WIDTH + 35), clamp(y, -1800, HEIGHT + 35), tick]); addPath(trace, weapon.kind, weapon.color, points);
       return { x: clamp(x, 0, WIDTH), y: clamp(y, -1800, HEIGHT), vx, vy, tick, missed: true };
     }
+    yield tick;
   }
   addPath(trace, weapon.kind, weapon.color, points);
   return { x: clamp(x, 0, WIDTH), y: clamp(y, -1800, HEIGHT), vx, vy, tick: MAX_TICKS - 25, missed: true };
+}
+function projectile(...args) {
+  const iterator=flight(...args); let result;
+  do { result=iterator.next(); } while(!result.done);
+  return result.value;
+}
+// Advance all airborne shells on the same clock. An earlier hit can change the
+// ground a later shell actually collides with, not a precomputed final surface.
+function volley(state, trace, actor, weapon, shots, damage, radius) {
+  const active=shots.map(o=>({start:o.startTick,iterator:flight(state,actor,weapon,o.angle,o.power,trace,o),done:false}));
+  for(let tick=Math.min(...active.map(a=>a.start));tick<MAX_TICKS && active.some(a=>!a.done);tick++) {
+    for(const a of active) {
+      if(a.done || tick<a.start)continue;
+      const next=a.iterator.next();
+      if(!next.done)continue;
+      a.done=true; const hit=next.value;
+      if(hit.missed)addEffect(trace,'miss',weapon.color,hit.x,hit.y,8,hit.tick);
+      else blast(state,trace,actor,weapon,hit.x,hit.y,damage,radius,hit.tick);
+    }
+  }
 }
 function markedImpact(state, trace, actor, weapon, angle, power, options) {
   const impact = projectile(state, actor, weapon, angle, power, trace, options);
   if (impact.missed) addEffect(trace, 'miss', weapon.color, impact.x, impact.y, 8, impact.tick);
   return impact;
 }
-function triggerMines(state, trace, actor, all = false, age = true) {
+function triggerMines(state, trace, actor, all = false, age = true, startTick = null) {
   const keep = [];
   for (const mine of state.mines) {
     if (age) mine.fuse--;
     mine.y = groundAt(state, mine.x) - 3 + (mine.depth ?? 0);
     const near = state.tanks.some(tank => Math.abs(tank.x - mine.x) <= Math.max(22, mine.radius * .65));
     if (all || mine.fuse <= 0 || near) {
-      const weapon = { color: mine.color, falloff: mine.falloff ?? .8, craterScale: mine.craterScale ?? .7 };
-      blast(state, trace, mine.owner, weapon, mine.x, mine.y, mine.damage, mine.radius, Math.min(MAX_TICKS - 25, trace.duration), 'mine');
+      const weapon = weaponById(mine.weaponId) || { color: mine.color, radius: mine.radius, falloff: mine.falloff ?? .8, craterScale: mine.craterScale ?? .7 };
+      blast(state, trace, mine.owner, weapon, mine.x, mine.y, mine.damage, mine.radius, Math.min(MAX_TICKS - 25, startTick ?? trace.duration), 'explosion', { profile: {...weaponTerrainProfile(weapon), connected: true} });
     } else keep.push(mine);
   }
   state.mines = keep;
@@ -209,7 +245,9 @@ function resolveBeam(state, trace, actor, weapon, angle, power) {
   const origin = muzzle(state, actor, angle), radians = angle * Math.PI / 180;
   const length = (weapon.reach ?? WIDTH) * (.5 + power / 200);
   const dx = Math.cos(radians), dy = -Math.sin(radians), width = weapon.width ?? 12;
-  let end = { ...origin };
+  let end = { ...origin }, soil = 0;
+  const before = state.terrain.slice(), launch = trace.launchTick || 0;
+  const profile = weaponTerrainProfile(weapon);
   const hit = new Set();
   for (let distance = 0; distance <= length; distance += 5) {
     const x = origin.x + dx * distance, y = origin.y + dy * distance;
@@ -225,14 +263,15 @@ function resolveBeam(state, trace, actor, weapon, angle, power) {
         state.tanks[scorer].score += gain; trace.scoreGain[scorer] += gain;
       }
     }
-    if (y >= groundAt(state, x)) {
-      crater(state, x, y, width / 2 + 3, weapon.craterScale ?? 1);
-      if (!weapon.pierce) break;
+    if (y >= groundAt({terrain:before}, x)) {
+      crater(state, x, weapon.id==='cutting-ray'?y:groundAt(state,x), width / 2 + 3, weapon.craterScale ?? 1, {...profile,connected:true});
+      soil += 5;
+      if (weapon.id !== 'cutting-ray' || soil >= 160 * (.5 + power/200)) break;
     }
   }
-  addPath(trace, 'beam', weapon.color, [[origin.x, origin.y, 0], [end.x, end.y, 12]]);
-  addEffect(trace, 'beam', weapon.color, origin.x, origin.y, width / 2, 1, { x2: round(end.x), y2: round(end.y), duration: 18 });
-  addEffect(trace, 'spark', weapon.color, end.x, end.y, width + 8, 12);
+  addPath(trace, 'beam', weapon.color, [[origin.x, origin.y, launch], [end.x, end.y, launch+12]]);
+  addEffect(trace, 'beam', weapon.color, origin.x, origin.y, width / 2, launch+1, { x2: round(end.x), y2: round(end.y), duration: 18 });
+  addEffect(trace, 'spark', weapon.color, end.x, end.y, width + 8, launch+12, { duration:18, terrain: terrainPatch(before,state.terrain) });
   settle(state);
 }
 function resolveWeapon(state, trace, actor, weapon, angle, power) {
@@ -240,24 +279,22 @@ function resolveWeapon(state, trace, actor, weapon, angle, power) {
   const spread = weapon.spread ?? 20, reach = weapon.reach ?? 180, depth = weapon.depth ?? 45;
   if (weapon.kind === 'beam') { resolveBeam(state, trace, actor, weapon, angle, power); return; }
   if (weapon.kind === 'burst') {
-    for (let index = 0; index < count; index++) {
-      const offset = count === 1 ? 0 : (index / (count - 1) - .5) * spread;
-      const impact = markedImpact(state, trace, actor, weapon, clamp(angle + offset, 0, 180), power, { startTick: index * 3 });
-      if (!impact.missed) blast(state, trace, actor, weapon, impact.x, impact.y, damage / count, radius, impact.tick);
-    }
+    volley(state, trace, actor, weapon, Array.from({length:count},(_,index)=>({
+      angle:clamp(angle+(count===1?0:(index/(count-1)-.5)*spread),0,180), power,
+      startTick:(trace.launchTick||0)+index*3
+    })), damage/count, radius);
     return;
   }
   const impact = markedImpact(state, trace, actor, weapon, angle, power, { splitAtApex: weapon.kind === 'cluster', bounces: weapon.kind === 'bounce' ? weapon.bounces : 0 });
   if (impact.missed) return;
   const direction = Math.sign(impact.vx) || (actor === 0 ? 1 : -1);
   if (weapon.kind === 'cluster' && impact.split) {
-    for (let index = 0; index < count; index++) {
-      const offset = count === 1 ? 0 : (index / (count - 1) - .5) * spread * Math.PI / 180;
-      const baseAngle = Math.atan2(impact.vy, impact.vx), speed = Math.hypot(impact.vx, impact.vy) * .72;
-      const child = markedImpact(state, trace, actor, weapon, angle, power, { origin: impact,
-        vx: Math.cos(baseAngle + offset) * speed, vy: Math.sin(baseAngle + offset) * speed + 24, startTick: impact.tick });
-      if (!child.missed) blast(state, trace, actor, weapon, child.x, child.y, damage / count, radius, child.tick);
-    }
+    const baseAngle=Math.atan2(impact.vy,impact.vx), speed=Math.hypot(impact.vx,impact.vy)*.72;
+    volley(state,trace,actor,weapon,Array.from({length:count},(_,index)=>{
+      const offset=(count===1?0:(index/(count-1)-.5)*spread)*Math.PI/180;
+      return {angle,power,origin:impact,vx:Math.cos(baseAngle+offset)*speed,
+        vy:Math.sin(baseAngle+offset)*speed+24,startTick:impact.tick};
+    }),damage/count,radius);
     return;
   }
   if (weapon.kind === 'roller') {
@@ -279,36 +316,41 @@ function resolveWeapon(state, trace, actor, weapon, angle, power) {
     return;
   }
   if (weapon.kind === 'drill') {
-    const drillCount = Math.max(2, count);
-    for (let index = 0; index < drillCount; index++) {
-      const y = clamp(impact.y + depth * index / (drillCount - 1), MIN_GROUND, MAX_GROUND);
-      blast(state, trace, actor, weapon, impact.x, y, damage / drillCount, radius, impact.tick + index * 7, 'drill');
+    const reference=state.terrain.slice(), entry=groundAt(state,impact.x), profile=weaponTerrainProfile(weapon);
+    const points=[[impact.x,impact.y,impact.tick]];
+    // Bore first, explode at the declared depth. Single-charge drills no longer
+    // manufacture a second, unadvertised surface explosion.
+    for(let index=1;index<=count;index++) {
+      const d=depth*index/count, y=Math.min(MAX_GROUND,entry+d), tick=Math.min(MAX_TICKS-25,impact.tick+8+index*Math.max(6,30/count));
+      terrainEffect(state,trace,weapon,impact.x,y,tick-3,Math.min(9,profile.width/2),'bore',()=>
+        cutChannel(state.terrain,reference,impact.x,impact.x,Math.min(9,profile.width/2),d,'flat'));
+      points.push([impact.x,y,tick]);
+      blast(state,trace,actor,weapon,impact.x,y,damage/count,radius,tick,'drill', {profile:{...profile,connected:true}});
     }
-    addPath(trace, 'drill', weapon.color, [[impact.x, impact.y, impact.tick], [impact.x, clamp(impact.y + depth, MIN_GROUND, MAX_GROUND), impact.tick + drillCount * 7]]);
-    return;
+    addPath(trace,'drill',weapon.color,points);return;
   }
   if (weapon.kind === 'tunnel') {
-    const points = [];
-    for (let index = 0; index < count; index++) {
-      const x = clamp(impact.x + direction * reach * index / Math.max(1, count - 1), 3, WIDTH - 3);
-      const oldGround = groundAt(state, x);
-      // Height-map terrain represents a subterranean tunnel by its collapsed surface channel.
-      for (let sample = Math.max(0, Math.floor((x - radius / 2) / STEP)); sample <= Math.min(TERRAIN_SAMPLES - 1, Math.ceil((x + radius / 2) / STEP)); sample++) {
-        const distance = Math.abs(sample * STEP - x);
-        if (distance < radius / 2) state.terrain[sample] = round(clamp(state.terrain[sample] + depth * (1 - distance / (radius / 2)), MIN_GROUND, MAX_GROUND));
-      }
-      const y = clamp(oldGround + depth * (index === 0 ? 0 : 1), MIN_GROUND, MAX_GROUND);
-      points.push([x, y, impact.tick + index * 8]);
-      blast(state, trace, actor, weapon, x, y, damage / count, radius, impact.tick + index * 8, 'tunnel');
+    const reference=state.terrain.slice(), profile=weaponTerrainProfile(weapon), points=[[impact.x,impact.y,impact.tick]];
+    const steps=Math.max(1,Math.ceil(reach/8)); let prior=impact.x, detonated=0;
+    for(let index=0;index<=steps;index++) {
+      const x=clamp(impact.x+direction*reach*index/steps,3,WIDTH-3);
+      const y=Math.min(MAX_GROUND,groundAt({terrain:reference},x)+depth);
+      const tick=Math.min(MAX_TICKS-25,impact.tick+5+index*2);
+      terrainEffect(state,trace,weapon,x,y,tick,Math.max(4,profile.width*.45),'bore',()=>
+        cutChannel(state.terrain,reference,prior,x,Math.max(4,profile.width*.45),depth,'flat'));
+      points.push([x,y,tick]);prior=x;
+      const due=count===1?index===steps:detonated<count && index>=Math.round(detonated*steps/(count-1));
+      if(due){blast(state,trace,actor,weapon,x,y,damage/count,radius,tick,'tunnel',{profile:{...profile,connected:true}});detonated++;}
     }
-    addPath(trace, 'tunnel', weapon.color, points); return;
+    addPath(trace,'tunnel',weapon.color,points);return;
   }
   if (weapon.kind === 'flame') {
+    const reference = state.terrain.slice();
     for (let index = 0; index < count; index++) {
       const part = count === 1 ? .5 : index / (count - 1);
-      const offset = direction * reach * part * .45 + (part - .5) * spread * 1.4;
-      const x = clamp(impact.x + offset, 0, WIDTH), y = groundAt(state, x) - 8;
-      blast(state, trace, actor, weapon, x, y, damage / count, radius, impact.tick + index * 4, 'flame');
+      const offset = direction * (reach * part * .45 + (part - .5) * spread * 1.4);
+      const x = clamp(impact.x + offset, 0, WIDTH), surface = groundAt({terrain:reference}, x), y = surface - 8;
+      blast(state, trace, actor, weapon, x, y, damage / count, radius, impact.tick + index * 4, 'flame', {terrainY:surface});
     }
     return;
   }
@@ -318,63 +360,69 @@ function resolveWeapon(state, trace, actor, weapon, angle, power) {
       if (state.mines.length >= MAX_MINES) {
         blast(state, trace, actor, weapon, x, groundAt(state, x), damage / count, radius, impact.tick + index * 4, 'mine');
       } else {
-        state.mines.push({ id: `${trace.sequence}:${index}`, owner: actor, x, y: round(clamp(groundAt(state, x) - 3 + depth, MIN_GROUND - 5, MAX_GROUND + 30)), damage: round(damage / count), radius,
+        state.mines.push({ weaponId: weapon.id, id: `${trace.sequence}:${index}`, owner: actor, x, y: round(clamp(groundAt(state, x) - 3 + depth, MIN_GROUND - 5, MAX_GROUND + 30)), damage: round(damage / count), radius,
           depth, craterScale: weapon.craterScale, falloff: weapon.falloff, fuse: Math.max(1, Math.round(weapon.fuse ?? 2)), color: weapon.color });
-        addEffect(trace, 'mine', weapon.color, x, groundAt(state, x) - 3, 9, impact.tick + index * 3, { duration: 15 });
+        addEffect(trace, 'mine-arm', weapon.color, x, groundAt(state, x) - 3, 9, impact.tick + index * 3, { duration: 15 });
       }
     }
     return;
   }
   if (weapon.kind === 'builder') {
-    blast(state, trace, actor, weapon, impact.x, impact.y, damage, radius, impact.tick, 'earth', { carve: false });
-    const size = Math.max(6, weapon.width / 2 || radius), height = weapon.height ?? 50;
-    for (let index = 0; index < TERRAIN_SAMPLES; index++) {
-      const distance = Math.abs(index * STEP - impact.x);
-      if (distance < size) state.terrain[index] = round(clamp(state.terrain[index] - height * Math.sqrt(1 - (distance / size) ** 2), MIN_GROUND, MAX_GROUND));
-    }
-    addEffect(trace, 'earth', weapon.color, impact.x, impact.y, size, impact.tick + 10, { height, duration: 28 });
-    settle(state); return;
-  }
-  if (weapon.kind === 'carver') {
-    const width = weapon.width ?? radius, length = Math.min(reach, 400), steps = Math.max(2, Math.ceil(length / 18));
-    for (let index = 0; index < steps; index++) {
-      const x = clamp(impact.x + direction * length * index / (steps - 1), 0, WIDTH), y = groundAt(state, x);
-      blast(state, trace, actor, weapon, x, y, damage / steps, width, impact.tick + index * 2, 'drill', { carve: false });
-      for (let sample = 0; sample < TERRAIN_SAMPLES; sample++) {
-        const distance = Math.abs(sample * STEP - x);
-        if (distance < width) state.terrain[sample] = round(clamp(state.terrain[sample] + depth * (1 - distance / width) / Math.max(1, steps / 2), MIN_GROUND, MAX_GROUND));
-      }
-      settle(state);
-    }
+    blast(state,trace,actor,weapon,impact.x,impact.y,damage,radius,impact.tick,'earth',{carve:false});
+    const reference=state.terrain.slice(), size=Math.max(6,weapon.width/2), height=weapon.height;
+    const shape=weapon.id==='mountain-maker'?'v':['wall-drop','earth-blanket','sandbar'].includes(weapon.id)?'flat':'bowl';
+    terrainEffect(state,trace,weapon,impact.x,groundAt(state,impact.x),impact.tick+8,size,'earth',()=>
+      buildTerrain(state.terrain,reference,impact.x,size,height,shape),{height,duration:28,terrainDuration:18});
     return;
   }
+  if (weapon.kind === 'carver') {
+    const reference=state.terrain.slice(), profile=weaponTerrainProfile(weapon);
+    const length=weapon.id==='posthole'?0:Math.min(reach,400), steps=Math.max(1,Math.ceil(length/12));
+    const points=[[impact.x,impact.y,impact.tick]];let prior=impact.x;
+    for(let index=0;index<=steps;index++) {
+      const x=clamp(impact.x+direction*length*index/steps,0,WIDTH), y=groundAt({terrain:reference},x);
+      const tick=Math.min(MAX_TICKS-25,impact.tick+index*2);
+      blast(state,trace,actor,weapon,x,groundAt(state,x),damage/(steps+1),radius,tick,'cut',{carve:false});
+      // Keep the declared depth even on a very long pass. Overlapping samples
+      // set a target floor; they never multiply or divide the excavation depth.
+      const before=state.terrain.slice();
+      cutChannel(state.terrain,reference,prior,x,profile.width,profile.depth,profile.shape);
+      const e=trace.effects[trace.effects.length-1],patch=terrainPatch(before,state.terrain);
+      if(patch){e.terrain=patch;e.terrainDuration=6;}
+      points.push([x,Math.min(MAX_GROUND,y+profile.depth),tick]);prior=x;settle(state);
+    }
+    addPath(trace,'drill',weapon.color,points);return;
+  }
   if (weapon.kind === 'lightning') {
-    for (let index = 0; index < count; index++) {
-      const x = clamp(impact.x + (count === 1 ? 0 : index / (count - 1) - .5) * spread * 3, 0, WIDTH);
-      const y = groundAt(state, x) - 6;
-      addEffect(trace, 'lightning', weapon.color, x, 0, 8, impact.tick + index * 6, { x2: round(x), y2: round(y), duration: 18 });
-      const chains = Math.round(weapon.chain ?? 0), share = damage / count;
-      blast(state, trace, actor, weapon, x, y, chains ? share * .5 : share, radius, impact.tick + index * 6, 'spark');
-      let prior = { x, y };
-      for (let branch = 1; branch <= chains; branch++) {
-        const chainReach = weapon.reach || chains * 28;
-        const tx = state.tanks[1 - actor].x;
-        const branchDirection = Math.sign(tx - x) || direction;
-        const bx = clamp(x + branchDirection * Math.min(Math.abs(tx - x), chainReach * branch / chains), 0, WIDTH), by = groundAt(state, bx) - 6;
-        const tick = impact.tick + index * 6 + branch * 3;
-        addEffect(trace, 'lightning', weapon.color, prior.x, prior.y, 5, tick, { x2: round(bx), y2: round(by), duration: 12 });
-        blast(state, trace, actor, weapon, bx, by, share * .5 / chains, radius, tick, 'spark');
-        prior = { x: bx, y: by };
+    const reference=state.terrain.slice(), strikes=[];
+    for(let index=0;index<count;index++) {
+      const x=clamp(impact.x+(count===1?0:index/(count-1)-.5)*spread*3,0,WIDTH);
+      const y=groundAt({terrain:reference},x)-6, tick=impact.tick+index*6;
+      const chains=Math.round(weapon.chain||0),share=damage/count;
+      strikes.push({x,y,tick,damage:chains?share*.5:share,from:{x,y:0},width:8});
+      let prior={x,y};
+      for(let branch=1;branch<=chains;branch++) {
+        const tx=state.tanks[1-actor].x,dir=Math.sign(tx-x)||direction;
+        const bx=clamp(x+dir*Math.min(Math.abs(tx-x),(weapon.reach||chains*28)*branch/chains),0,WIDTH);
+        const by=groundAt({terrain:reference},bx)-6;
+        strikes.push({x:bx,y:by,tick:tick+branch*3,damage:share*.5/chains,from:prior,width:5});prior={x:bx,y:by};
       }
+    }
+    // Branches from different bolts overlap in time. Apply both scores and soil
+    // in that order, rather than finishing an entire chain before the next bolt.
+    strikes.sort((a,b)=>a.tick-b.tick);
+    for(const s of strikes) {
+      addEffect(trace,'lightning',weapon.color,s.from.x,s.from.y,s.width,s.tick,{x2:round(s.x),y2:round(s.y),duration:16});
+      blast(state,trace,actor,weapon,s.x,s.y,s.damage,radius,s.tick,'spark',{terrainY:s.y+6});
     }
     return;
   }
   if (weapon.kind === 'wave') {
-    const points = [];
+    const points = [], reference=state.terrain.slice();
     for (let index = 0; index < count; index++) {
-      const x = clamp(impact.x + direction * reach * index / Math.max(1, count - 1), 0, WIDTH), y = groundAt(state, x) - 3;
+      const x = clamp(impact.x + direction * reach * index / Math.max(1, count - 1), 0, WIDTH), y = groundAt({terrain:reference}, x) - 3;
       points.push([x, y, impact.tick + index * 7]);
-      blast(state, trace, actor, weapon, x, y, damage / count, radius, impact.tick + index * 7, 'wave');
+      blast(state, trace, actor, weapon, x, y, damage / count, radius, impact.tick + index * 7, 'wave', {terrainY:y+3});
     }
     addPath(trace, 'wave', weapon.color, points); return;
   }
@@ -394,9 +442,9 @@ export function applyAction(snapshot, action, actor = snapshot?.turn) {
     assert(to >= MIN_X && to <= MAX_X, 'That move goes outside the battlefield.');
     assert(Math.abs(to - other.x) >= TANK_WIDTH * 1.2 && Math.sign(to - other.x) === Math.sign(from - other.x), 'Tanks cannot pass through each other.');
     tank.x = to; tank.movesLeft--; settle(state);
-    const trace = { scoreGain: [0, 0], paths: [], effects: [], duration: 0 };
-    triggerMines(state, trace, actor, false, false);
-    state.lastMove = { actor, from, to, effects: trace.effects, scoreGain: trace.scoreGain };
+    const trace = { terrainVersion: 1, scoreGain: [0, 0], paths: [], effects: [], duration: 0 };
+    triggerMines(state, trace, actor, false, false, 18);
+    state.lastMove = { terrainVersion: 1, actor, from, to, effects: trace.effects, scoreGain: trace.scoreGain };
     return state;
   }
   assert(action.type === 'fire', 'Unknown tank action.');
@@ -406,13 +454,15 @@ export function applyAction(snapshot, action, actor = snapshot?.turn) {
   const weapon = weaponById(action.weaponId), angle = round(action.angle), power = round(action.power);
   const trace = newTrace(state, actor, weapon, angle, power);
   // Existing mines count down once per shot. Newly deployed mines wait for a later shot or movement.
-  triggerMines(state, trace, actor, false, true);
+  triggerMines(state, trace, actor, false, true, 0);
+  trace.launchTick = trace.effects.length ? trace.duration : 0;
   resolveWeapon(state, trace, actor, weapon, angle, power);
   triggerMines(state, trace, actor, false, false);
   tank.inventory.splice(tank.inventory.indexOf(action.weaponId), 1); tank.shots++; state.shotsTotal++;
   state.lastMove = null;
   state.finished = state.shotsTotal === 20;
   if (state.finished) triggerMines(state, trace, actor, true, false);
+  trace.effects.sort((a,b)=>a.tick-b.tick);
   state.lastShot = trace;
   state.turn = 1 - actor;
   if (state.finished) state.winner = state.tanks[0].score === state.tanks[1].score ? null : (state.tanks[0].score > state.tanks[1].score ? 0 : 1);
@@ -424,7 +474,11 @@ function validEffect(effect) {
   assert(/^#[\da-f]{6}$/i.test(effect.color), 'Invalid effect color.');
   for (const key of ['x', 'y', 'radius', 'tick']) assert(finite(effect[key]), 'Invalid effect coordinate.');
   assert(effect.x >= -100 && effect.x <= WIDTH + 100 && effect.y >= -1800 && effect.y <= HEIGHT + 100 && effect.radius >= 1 && effect.radius <= WIDTH && integer(effect.tick) && effect.tick >= 0 && effect.tick <= MAX_TICKS, 'Effect out of bounds.');
-  for (const key of ['x2', 'y2', 'height', 'duration']) if (effect[key] !== undefined) assert(finite(effect[key]) && Math.abs(effect[key]) <= 2000, 'Invalid effect detail.');
+  for (const key of ['x2', 'y2', 'height', 'duration', 'terrainDuration', 'groundWidth']) if (effect[key] !== undefined) assert(finite(effect[key]) && Math.abs(effect[key]) <= 2000, 'Invalid effect detail.');
+  if(effect.terrain != null) {
+    const patch=effect.terrain;
+    assert(Array.isArray(patch) && patch.length>=2 && patch.length<=TERRAIN_SAMPLES+1 && integer(patch[0]) && patch[0]>=0 && patch[0]+patch.length-1<=TERRAIN_SAMPLES && patch.slice(1).every(y=>finite(y)&&y>=MIN_GROUND&&y<=MAX_GROUND),'Invalid terrain animation patch.');
+  }
 }
 export function validateGame(snapshot) {
   assert(snapshot && typeof snapshot === 'object' && !Array.isArray(snapshot), 'Invalid saved game.');
@@ -451,6 +505,7 @@ export function validateGame(snapshot) {
   for (const mine of snapshot.mines) {
     assert(mine && typeof mine.id === 'string' && mine.id.length <= 20 && !mineIds.has(mine.id), 'Invalid mine identifier.'); mineIds.add(mine.id);
     assert((mine.owner === 0 || mine.owner === 1) && finite(mine.x) && mine.x >= 0 && mine.x <= WIDTH && finite(mine.y) && mine.y >= MIN_GROUND - 5 && mine.y <= MAX_GROUND + 30 && finite(mine.damage) && mine.damage > 0 && mine.damage <= 200 && finite(mine.radius) && mine.radius >= 1 && mine.radius <= 200 && integer(mine.fuse) && mine.fuse >= 1 && mine.fuse <= 10 && /^#[\da-f]{6}$/i.test(mine.color), 'Invalid mine.');
+    if(mine.weaponId!==undefined) assert(weaponById(mine.weaponId)?.kind==='mine','Invalid mine weapon.');
     for (const key of ['depth', 'craterScale', 'falloff']) assert(finite(mine[key]) && mine[key] >= 0 && mine[key] <= 200, 'Invalid mine profile.');
   }
   if (snapshot.lastShot !== null) {

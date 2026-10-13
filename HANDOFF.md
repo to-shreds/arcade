@@ -7,6 +7,23 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+Release 2.7.3 replaces the uniform crater heuristic with explicit weapon terrain
+profiles. `terrain-rules.js` controls widths/depths/shapes, nonstacking reference
+channels, builders, and exact chronological patch playback. `terrainVersion: 1`
+on new shot/move traces distinguishes exact patches from legacy animation.
+Keep the game schema and all weapon IDs stable; old trace/mines remain readable.
+New mines optionally store `weaponId` so later shots cannot change their digging
+profile. `flight` is a generator so burst/cluster projectiles advance together
+and collide against the same evolving ground. Branching lightning must also
+resolve in chronological order. Never sort effects without matching physics.
+
+Terrain sketches use one shared scale, show profiles rather than predictions,
+and must not count as weapon icons in the artwork uniqueness test. Fire and
+spark visuals must remain separate from explosive blasts. Tunnels are collapsed
+height-map channels, not enclosed cavities. Whole-Arcade 2.7.2 CI completed
+successfully before this work began. For 2.7.3 verification/publication results
+consult `docs/arcade-stress-test-2.7.3.md` and ProjectStatus.
+
 Release 2.7.2 polishes Tank Tactics without changing the game/save schema or
 weapon IDs. `weapon-art.js` has 84 distinct geometry compositions, not family
 symbols with different badges. `terrain-rules.js` is the shared excavation
