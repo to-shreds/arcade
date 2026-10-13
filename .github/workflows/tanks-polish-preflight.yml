@@ -1,0 +1,119 @@
+name: Tank Tactics 2.7.2 Preflight
+on:
+  push:
+    branches: [work/tanks-polish-2.7.2]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tanks-polish-preflight
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Apply exact locally verified source changes
+        shell: python
+        run: |
+          import base64,gzip,hashlib,json,pathlib
+          root=pathlib.Path('.')
+          parts=''.join((root/f'tools/tanks-polish-payload-{i}.b64').read_text() for i in range(3))
+          data=base64.b64decode(parts,validate=True)
+          assert hashlib.sha256(data).hexdigest()=='073637359db073e8f183c29c089b2f9b6beab86e4c987edf3f61aa84086ec932'
+          recipe=json.loads(gzip.decompress(data))
+          assert recipe['schema']==1 and recipe['base']=='44dfbe0ecfac5f7e37c97d3782a197b698559ae5'
+          allowed={'tanks/engine.js','tanks/graphics.js','tanks/game.js','tanks/index.html','tanks/README.md','sw.js','README.md','CHANGELOG.md','HANDOFF.md','tanks/weapon-art.js','tanks/terrain-rules.js','tanks/battle-view.js','tanks/battle-view.css','tanks/polish.test.mjs','tools/test-tanks-polish-browser.mjs','docs/arcade-stress-test-2.7.2.md'}
+          assert len(recipe['files'])==len(allowed) and {f['path'] for f in recipe['files']}==allowed
+          for f in recipe['files']:
+              p=root/f['path']
+              if f['before'] is None:
+                  assert not p.exists(),str(p)
+                  lines=[]
+              else:
+                  before=p.read_bytes()
+                  assert hashlib.sha256(before).hexdigest()==f['before'],str(p)+' baseline changed'
+                  lines=before.decode('utf-8').splitlines(keepends=True)
+              for start,end,text in reversed(f['edits']):
+                  assert 0<=start<=end<=len(lines),str(p)
+                  lines[start:end]=text.splitlines(keepends=True)
+              after=''.join(lines).encode('utf-8')
+              assert hashlib.sha256(after).hexdigest()==f['after'],str(p)+' result mismatch'
+              p.parent.mkdir(parents=True,exist_ok=True)
+              p.write_bytes(after)
+          print('Verified exact source hashes for',len(allowed),'files')
+      - name: Update release metadata and retain ongoing checks
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const p=JSON.parse(fs.readFileSync('package.json','utf8'));
+          if(p.version!=='2.7.1')throw Error('Unexpected package version');
+          p.version='2.7.2';
+          p.scripts['test:tanks']='node --test tanks/*.test.mjs';
+          p.scripts['test:tanks:browser']='node tools/test-tanks-browser.mjs && node tools/test-tanks-polish-browser.mjs';
+          fs.writeFileSync('package.json',JSON.stringify(p,null,2)+'\n');
+          const lock=JSON.parse(fs.readFileSync('package-lock.json','utf8'));
+          if(lock.version!=='2.7.1'||lock.packages[''].version!=='2.7.1')throw Error('Unexpected lock version');
+          lock.version=lock.packages[''].version='2.7.2';
+          fs.writeFileSync('package-lock.json',JSON.stringify(lock,null,2)+'\n');
+          const ci='.github/workflows/test-arcade-web.yml';
+          const old=fs.readFileSync(ci,'utf8'),needle='node --test tanks/engine.test.mjs';
+          if(old.split(needle).length!==2)throw Error('Changed CI baseline');
+          fs.writeFileSync(ci,old.replace(needle,'node --test tanks/*.test.mjs'));
+          const deploy='.github/workflows/deploy-arcade-worker.yml';
+          const worker=fs.readFileSync(deploy,'utf8'),anchor='      - "tanks/engine.js"';
+          if(worker.split(anchor).length!==2)throw Error('Changed Worker workflow');
+          fs.writeFileSync(deploy,worker.replace(anchor,anchor+'\n      - "tanks/terrain-rules.js"'));
+          JS
+          node tools/generate-offline-manifest.mjs --version 2.7.2+20261013.1
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import {createHash} from 'node:crypto';
+          const p='offline-manifest.json',m=JSON.parse(fs.readFileSync(p,'utf8'));
+          m.generatedAt='2026-10-13T07:53:04.004Z';
+          const text=JSON.stringify(m,null,2)+'\n';fs.writeFileSync(p,text);
+          if(createHash('sha256').update(text).digest('hex')!=='54ed9a3c12c7b5e713ae4a2e4a0c503ca6af0e6fb9bea286f7d85c8b1e073384')throw Error('Offline manifest does not match verified local files');
+          console.log('Verified',m.fileCount,'offline files and manifest hash');
+          JS
+      - name: Install locked dependencies
+        run: |
+          npm ci --prefix cloudflare/chess-worker
+          npm ci
+      - name: Verify engine, room authorities and shared transports
+        run: |
+          npm test --prefix cloudflare/chess-worker
+          node --test multiplayer/test/*.test.mjs
+          npm run test:tanks
+          node tools/test-native-keyboard.mjs
+          node tools/test-shell-navigation.mjs
+          node tools/test-android-wrapper.mjs
+          node tools/test-offline-runtime.mjs
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify real browser saves, Tanks rooms and movable globe
+        run: |
+          npm run test:tanks:browser
+          npm run test:globe
+          npm run test:nearby-browser
+      - name: Save tested source on preparation branch only
+        run: |
+          test "${GITHUB_REF_NAME}" = "work/tanks-polish-2.7.2"
+          rm tools/tanks-polish-payload-{0,1,2}.b64 .github/workflows/tanks-polish-preflight.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tanks/ tools/test-tanks-polish-browser.mjs tools/tanks-polish-payload-*.b64 docs/arcade-stress-test-2.7.2.md sw.js README.md CHANGELOG.md HANDOFF.md package.json package-lock.json offline-manifest.json .github/workflows/
+          git diff --cached --check
+          git commit -m "Verify Tank Tactics artwork, excavation and landscape upgrade"
+          git push origin HEAD:refs/heads/work/tanks-polish-2.7.2
+      - name: Retain verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tanks-polish-preflight
+          path: test-results/
+          retention-days: 7
