@@ -80,6 +80,20 @@ jobs:
           if(createHash('sha256').update(text).digest('hex')!=='54ed9a3c12c7b5e713ae4a2e4a0c503ca6af0e6fb9bea286f7d85c8b1e073384')throw Error('Offline manifest does not match verified local files');
           console.log('Verified',m.fileCount,'offline files and manifest hash');
           JS
+      - name: Include shared terrain rules in explicit Worker fixtures
+        shell: python
+        run: |
+          from pathlib import Path
+          for name in ['generic-miniflare.test.js','miniflare.test.js']:
+              p=Path('cloudflare/chess-worker/test')/name
+              s=p.read_text()
+              line='      { type: "ESModule", path: new URL("../../../tanks/weapons.js", import.meta.url).pathname },'
+              assert s.count(line)==1,str(p)
+              p.write_text(s.replace(line,line+'\n'+line.replace('weapons.js','terrain-rules.js')))
+          for name in ['cloudflare/chess-worker/test/guess-who-worker.test.js','cloudflare/chess-worker/test/tanks-worker.test.js','guess-who/test-server.mjs']:
+              p=Path(name);s=p.read_text();needle="'tanks/weapons.js'"
+              assert s.count(needle)==1,str(p)
+              p.write_text(s.replace(needle,needle+", 'tanks/terrain-rules.js'"))
       - name: Install locked dependencies
         run: |
           npm ci --prefix cloudflare/chess-worker
@@ -106,7 +120,7 @@ jobs:
           rm tools/tanks-polish-payload-{0,1,2}.b64 .github/workflows/tanks-polish-preflight.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tanks/ tools/test-tanks-polish-browser.mjs tools/tanks-polish-payload-*.b64 docs/arcade-stress-test-2.7.2.md sw.js README.md CHANGELOG.md HANDOFF.md package.json package-lock.json offline-manifest.json .github/workflows/
+          git add cloudflare/chess-worker/test/ guess-who/test-server.mjs tanks/ tools/test-tanks-polish-browser.mjs tools/tanks-polish-payload-*.b64 docs/arcade-stress-test-2.7.2.md sw.js README.md CHANGELOG.md HANDOFF.md package.json package-lock.json offline-manifest.json .github/workflows/
           git diff --cached --check
           git commit -m "Verify Tank Tactics artwork, excavation and landscape upgrade"
           git push origin HEAD:refs/heads/work/tanks-polish-2.7.2
