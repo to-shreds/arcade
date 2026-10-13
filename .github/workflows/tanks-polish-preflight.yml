@@ -94,6 +94,14 @@ jobs:
               p=Path(name);s=p.read_text();needle="'tanks/weapons.js'"
               assert s.count(needle)==1,str(p)
               p.write_text(s.replace(needle,needle+", 'tanks/terrain-rules.js'"))
+      - name: Follow the real explicit Continue flow in reload checks
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('tools/test-tanks-polish-browser.mjs')
+          s=p.read_text();needle='await page.reload();'
+          assert s.count(needle)==2
+          p.write_text(s.replace(needle,needle+"await page.click('.arcade-save-primary');"))
       - name: Install locked dependencies
         run: |
           npm ci --prefix cloudflare/chess-worker
