@@ -1,0 +1,113 @@
+name: Tank Tactics 2.7.3 Terrain Preflight
+on:
+  push:
+    branches: [work/tanks-terrain-2.7.3]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tanks-terrain-preflight
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Apply hash-verified source changes
+        shell: python
+        run: |
+          import base64,gzip,hashlib,json,pathlib
+          root=pathlib.Path('.')
+          data=base64.b64decode(''.join((root/f'tools/terrain-preflight-{i}.b64').read_text() for i in range(2)),validate=True)
+          assert hashlib.sha256(data).hexdigest()=='022c8864edccad87e13221c7c55b718b431c62b64571dfdc140d619837511f29'
+          recipe=json.loads(gzip.decompress(data))
+          assert recipe['schema']==1 and recipe['base']=='34e1ea6430c59081042ef5c4160049176f286008'
+          allowed={'tanks/terrain-rules.js','tanks/engine.js','tanks/graphics.js','tanks/game.js','tanks/index.html','tanks/README.md','tanks/WEAPONS.md','sw.js','README.md','CHANGELOG.md','HANDOFF.md','tanks/terrain.test.mjs','tools/test-tanks-terrain-browser.mjs','tools/fixtures/tanks-2.7.2-save.json','docs/arcade-stress-test-2.7.3.md'}
+          assert len(recipe['files'])==len(allowed) and {f['path'] for f in recipe['files']}==allowed
+          for f in recipe['files']:
+              p=root/f['path']
+              if f['before'] is None:
+                  assert not p.exists(),str(p)
+                  lines=[]
+              else:
+                  before=p.read_bytes()
+                  assert hashlib.sha256(before).hexdigest()==f['before'],str(p)+' baseline changed'
+                  lines=before.decode('utf-8').splitlines(keepends=True)
+              for start,end,text in reversed(f['edits']):
+                  assert 0<=start<=end<=len(lines),str(p)
+                  lines[start:end]=text.splitlines(keepends=True)
+              after=''.join(lines).encode('utf-8')
+              assert hashlib.sha256(after).hexdigest()==f['after'],str(p)+' result mismatch'
+              p.parent.mkdir(parents=True,exist_ok=True)
+              p.write_bytes(after)
+          print('Verified exact source hashes for',len(allowed),'files')
+      - name: Retain new checks and update release metadata
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const p=JSON.parse(fs.readFileSync('package.json','utf8'));
+          if(p.version!=='2.7.2')throw Error('Unexpected baseline');
+          p.version='2.7.3';
+          if(p.scripts['test:tanks:browser']!=='node tools/test-tanks-browser.mjs && node tools/test-tanks-polish-browser.mjs')throw Error('Browser script changed');
+          p.scripts['test:tanks:browser']+=' && node tools/test-tanks-terrain-browser.mjs';
+          fs.writeFileSync('package.json',JSON.stringify(p,null,2)+'\n');
+          const lock=JSON.parse(fs.readFileSync('package-lock.json','utf8'));
+          if(lock.version!=='2.7.2'||lock.packages[''].version!=='2.7.2')throw Error('Lock baseline changed');
+          lock.version=lock.packages[''].version='2.7.3';
+          fs.writeFileSync('package-lock.json',JSON.stringify(lock,null,2)+'\n');
+          const file='tools/test-tanks-polish-browser.mjs',text=fs.readFileSync(file,'utf8'),needle="page.locator('#weaponGrid svg')";
+          if(text.split(needle).length!==2)throw Error('Artwork test baseline changed');
+          fs.writeFileSync(file,text.replace(needle,"page.locator('#weaponGrid svg:not(.terrain-preview)')"));
+          JS
+          node tools/generate-offline-manifest.mjs --version 2.7.3+20261013.1
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import {createHash} from 'node:crypto';
+          const p='offline-manifest.json',m=JSON.parse(fs.readFileSync(p,'utf8'));
+          m.generatedAt='2026-10-13T12:55:00.000Z';
+          const text=JSON.stringify(m,null,2)+'\n';fs.writeFileSync(p,text);
+          if(createHash('sha256').update(text).digest('hex')!=='a3536f23e91999926c460766ce2da6e9f8407042f64caa03dbc8d460cb973287')throw Error('Manifest does not match verified runtime');
+          console.log('Verified',m.fileCount,'offline files and manifest hash');
+          JS
+      - name: Install locked dependencies
+        run: |
+          npm ci --prefix cloudflare/chess-worker
+          npm ci
+      - name: Verify engine, saves, authorities and shared transports
+        run: |
+          npm test --prefix cloudflare/chess-worker
+          node --test multiplayer/test/*.test.mjs
+          npm run test:tanks
+          node tools/test-native-keyboard.mjs
+          node tools/test-shell-navigation.mjs
+          node tools/test-android-wrapper.mjs
+          node tools/test-offline-runtime.mjs
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify served browsers, terrain, saves, rooms and Nearby
+        run: |
+          npm run test:tanks:browser
+          npm run test:globe
+          npm run test:nearby-browser
+      - name: Save tested source on preparation branch only
+        run: |
+          test "${GITHUB_REF_NAME}" = "work/tanks-terrain-2.7.3"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tanks/ tools/test-tanks-terrain-browser.mjs tools/fixtures/tanks-2.7.2-save.json tools/test-tanks-polish-browser.mjs docs/arcade-stress-test-2.7.3.md sw.js README.md CHANGELOG.md HANDOFF.md package.json package-lock.json offline-manifest.json
+          git diff --cached --check
+          git commit -m "Verify weapon-specific terrain mechanics and exact impact playback"
+          git rev-parse HEAD HEAD^{tree}
+          git push origin HEAD:refs/heads/work/tanks-terrain-2.7.3
+      - name: Retain verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tanks-terrain-preflight
+          path: test-results/
+          retention-days: 7
