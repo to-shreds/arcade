@@ -1,6 +1,6 @@
 {
   "name": "family-arcade-web",
-  "version": "2.7.2",
+  "version": "2.7.3",
   "private": true,
   "scripts": {
     "test:browser": "npm run test:mad-libs && npm run test:narration && npm run test:family-browser && node tools/test-catalog-browser.mjs && node tools/test-shell-browser.mjs && node tools/test-local-ui-browser.mjs && node tools/test-chat-browser.mjs && node tools/test-shared-adapters.mjs && node tools/test-shared-recovery.mjs && node tools/test-shared-lobby.mjs && node tools/test-online-browser.mjs && node tools/test-shared-simulation.mjs",
@@ -11,7 +11,7 @@
     "test:mad-libs": "node tools/test-mad-libs-case.mjs && node tools/test-mad-libs.mjs && node tools/test-mad-libs-browser.mjs",
     "test:narration": "node tools/test-narration-browser.mjs",
     "test:tanks": "node --test tanks/*.test.mjs",
-    "test:tanks:browser": "node tools/test-tanks-browser.mjs && node tools/test-tanks-polish-browser.mjs",
+    "test:tanks:browser": "node tools/test-tanks-browser.mjs && node tools/test-tanks-polish-browser.mjs && node tools/test-tanks-terrain-browser.mjs",
     "test:globe": "node tools/test-multiplayer-globe.mjs"
   },
   "devDependencies": {

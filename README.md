@@ -8,6 +8,16 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.7.3
+
+Tank Tactics now connects weapon behavior to explicit terrain profiles: narrow
+shafts, continuous trenches, shallow surface effects, deep craters and distinct
+earth-building shapes. Actual terrain changes animate at their own impact times.
+Cluster/burst shells share one simulation clock. Same-scale terrain sketches and
+plain descriptions explain the result before choosing a weapon. Existing IDs,
+saves, landscape mode, multiplayer and all other activities are retained.
+See [Tank Tactics](tanks/README.md) and [checks](docs/arcade-stress-test-2.7.3.md).
+
 ## Release 2.7.2
 
 Tank Tactics now has 84 distinct weapon drawings, much stronger terrain

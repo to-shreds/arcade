@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.7.2+20261013.1",
-  "generatedAt": "2026-10-13T07:53:04.004Z",
+  "version": "2.7.3+20261013.1",
+  "generatedAt": "2026-10-13T12:55:00.000Z",
   "fileCount": 374,
-  "totalBytes": 18553060,
+  "totalBytes": 18567179,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1663,7 +1663,7 @@
     {
       "path": "sw.js",
       "bytes": 27794,
-      "sha256": "7f87ec6db45a8540a965c95c1d308aa393a0aee2eb2d044f44bcef943027a20f"
+      "sha256": "92a81f2ec4403ae6b5e56385d09067ea1a434f08d5f67f93d73788ccf8c32ae4"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1677,13 +1677,13 @@
     },
     {
       "path": "tanks/engine.js",
-      "bytes": 35172,
-      "sha256": "c7cdd6ef37afd68c0d47afb60fc3118feb8df7c24b93eea17c1a828ad033e6f4"
+      "bytes": 38784,
+      "sha256": "54c8591123218fb1263a3952c2c66f0dcd36b1e3a9c86e007998ecb46c9a31c5"
     },
     {
       "path": "tanks/game.js",
-      "bytes": 37937,
-      "sha256": "15516c95d60128112d57f16b3b19285b003771227c2d576629064f3773cc96b6"
+      "bytes": 38537,
+      "sha256": "28283fec0e6e85f75292eafe30af7a548bddf5e5f44aa24b6c3e5d3fe5f1440b"
     },
     {
       "path": "tanks/game.json",
@@ -1692,8 +1692,8 @@
     },
     {
       "path": "tanks/graphics.js",
-      "bytes": 15123,
-      "sha256": "16d879d36b6c316d9c65379293bd9d6ecf004da0a9f2358f9092a4b4d9e09eed"
+      "bytes": 18619,
+      "sha256": "98db225902e93a29dc9778830c2701e3f4a9b03c7a1d77c4f2fbcb6a763fe0a2"
     },
     {
       "path": "tanks/icon.svg",
@@ -1702,18 +1702,18 @@
     },
     {
       "path": "tanks/index.html",
-      "bytes": 23825,
-      "sha256": "5d7f36e29f2d522db89195f578a43518582bb867c4f33b77f6d37a0827095bbd"
+      "bytes": 24081,
+      "sha256": "a0dc3dc1b6f790b7b04a0cf59fb5536b19ce37450685c0cd115280fe7db76a09"
     },
     {
       "path": "tanks/README.md",
-      "bytes": 3228,
-      "sha256": "ccf83b68c327bbd21d10fa5e8a0909eda9609da6f07eef0ef237c46bd221a70b"
+      "bytes": 4485,
+      "sha256": "d1355c73c4c339631e24fc3529a6864ddd515af90ee0926aefb8c73c2c9bc05a"
     },
     {
       "path": "tanks/terrain-rules.js",
-      "bytes": 1198,
-      "sha256": "74007002771a3588e03a527e96575d261d856fb321265f240bac5f9ad52adb0c"
+      "bytes": 5868,
+      "sha256": "0b5865309dbd73c89db4c6e1aa990c54140435f33825bfc0ce32c7e9f61c94b9"
     },
     {
       "path": "tanks/weapon-art.js",
@@ -1727,8 +1727,8 @@
     },
     {
       "path": "tanks/WEAPONS.md",
-      "bytes": 12210,
-      "sha256": "148e1d405a0fda7f3aa0a58ef8ffd9aa3a20fec93646a63f58afa0bc1c16dcd2"
+      "bytes": 12438,
+      "sha256": "edccbbdd67fe84c22f28196b8d6466dabebc48ade3a1468aed7973bd5dedfcd0"
     },
     {
       "path": "tic-tac-toe/game.json",

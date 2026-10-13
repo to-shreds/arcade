@@ -14,7 +14,31 @@ Every tank receives ten distinct randomized weapons. The arsenal contains 84 mec
 
 Use Landscape in the top bar (the screen icon on a narrow phone) to give the battlefield more room. It requests fullscreen and landscape orientation when the browser permits it. Otherwise the wide layout still works: turn the phone sideways. Exit wide returns to the usual layout. This is a device-only preference, not a room setting, and never changes a saved shot or another player's view.
 
-Explosions now excavate a much wider and deeper footprint independently of their damage radius. Precision and surface weapons retain lighter digging; dedicated carvers, drills and tunnels reshape the battlefield substantially. Exposed soil, settling tanks, debris, pressure rings, recoil and a short power-sensitive aiming guide make the changes visible. The guide is only the beginning of the shot, not a guaranteed hit prediction.
+Every weapon now has an explicit terrain profile rather than a scaled version
+of the same crater. Surface Slap and Soft Swell are broad but shallow; Pinpoint
+is tiny; Crater Maker digs deeply. Fire scorches and electricity makes small
+pits. Drills bore before their stated number of charges detonate. Tunnels cut
+continuous collapsed channels, while carvers maintain their specified depth
+regardless of path length or animation step count. Wall Drop builds a flat top;
+Mountain Maker creates a triangular ridge. Cutting Ray bores through soil while
+ordinary beams stop at the first obstruction. Bedrock limits all excavation.
+
+The weapon picker includes same-scale terrain cross-sections and specific
+terrain descriptions. These illustrate profiles, not guaranteed landing points.
+The dashed line is the original surface. Actual craters depend on impact height,
+slope, existing holes, and bedrock. Surface fire and electrical sparks no longer
+reuse the explosive flash and flying-soil effect.
+
+Shot records carry the actual changed ground samples for each effect. Animation
+replays those changes in order; an early blast cannot reveal the final hole
+from a later blast or mine. Bursts and cluster fragments advance on the same
+simulation clock and collide with the terrain that exists at that instant.
+Tanks settle on the ground shown during animation. Mines make no crater when
+planted and retain their own terrain profile for later detonation. Old saves
+remain readable, including mines without the new optional weapon identifier.
+
+Terrain remains a height map. Underground weapons collapse into open channels,
+not enclosed caves or overhangs. This is deliberate and described in the UI.
 
 ## Persistence and authority
 

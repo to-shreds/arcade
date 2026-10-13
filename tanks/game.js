@@ -1,6 +1,6 @@
 import { createGame, applyAction, validateGame, chooseCpuAction, WIDTH, HEIGHT, TANK_WIDTH } from './engine.js';
 import { WEAPONS, weaponById } from './weapons.js';
-import { drawBattle, tankSvg, weaponSvg } from './graphics.js';
+import { drawBattle, tankSvg, weaponSvg, terrainSummary, terrainPreviewSvg } from './graphics.js';
 import { initBattleView } from './battle-view.js';
 
 const $ = id => document.getElementById(id);
@@ -178,7 +178,7 @@ function render() {
     const turnKey=`${game.seed}:${game.turn}:${game.shotsTotal}`;
     if(renderedTurn!==turnKey){renderedTurn=turnKey;const a=aims[game.turn];$('angle').value=$('angleNumber').value=a.angle;$('power').value=$('powerNumber').value=a.power;}
     const tank=game.tanks[game.turn],w=weaponById(aims[game.turn].weaponId);$('weaponName').textContent=w?.name||'Ammunition spent';$('weaponIcon').innerHTML=w?weaponSvg(w):'';$('weapon').style.setProperty('--weapon-color',w?.color||'#21dcff');$('weaponCount').textContent=`${tank.inventory.length} weapon${tank.inventory.length===1?'':'s'} remaining`;$('movesLeft').textContent=`${tank.movesLeft} move${tank.movesLeft===1?'':'s'} remaining`;
-    $('weaponDetail').textContent=w?.description||'All of this tank’s weapons have been fired.';
+    $('weaponDetail').textContent=w ? `${w.description} ${terrainSummary(w)}` : 'All of this tank’s weapons have been fired.';
     $('loadoutWeapons').replaceChildren(...tank.inventory.map(id=>{const weapon=weaponById(id),b=node('button','','loadout-weapon'),art=node('div','');b.type='button';b.dataset.loadoutWeapon=id;b.style.setProperty('--weapon-color',weapon.color);b.classList.toggle('selected',id===aims[game.turn].weaponId);b.setAttribute('aria-label',`Select ${weapon.name}`);art.innerHTML=weaponSvg(weapon);b.append(art,node('span',weapon.name));b.onclick=()=>{if(!canAct())return;aims[game.turn].weaponId=id;save?.touch();render();};return b;}));
     if(animation){$('headline').textContent=animation.shot?`${game.tanks[animation.shot.actor].name} fires ${weaponById(animation.shot.weaponId)?.name||'a shot'}`:`${game.tanks[animation.move.actor].name} is moving`;$('subline').textContent='Watch the battlefield.';}
     else if(game.finished){$('headline').textContent=game.winner===null?'A perfect tie!':`${game.tanks[game.winner].name} wins!`;$('subline').textContent='All twenty shots fired.';}
@@ -247,15 +247,15 @@ function weaponPicker(catalog=false) {
   const renderGrid=filter=>{grid.replaceChildren(...available.filter(w=>!filter||`${w.name} ${w.description} ${w.kind}`.toLowerCase().includes(filter)).map(w=>{
     const b=node(catalog?'div':'button','','weapon-card');b.dataset.weapon=w.id;b.style.setProperty('--weapon-color',w.color);b.classList.toggle('selected',!catalog&&w.id===aims[game.turn].weaponId);const art=node('div','');art.innerHTML=weaponSvg(w);const details=node('div','','details');details.append(node('strong',w.name),node('small',w.description));
     const stats=node('div','','weapon-stats');
-    const digging=w.kind==='builder'?'Builds terrain':w.craterScale>=1.3||['drill','tunnel','carver'].includes(w.kind)?'Deep digging':w.craterScale<.5?'Light digging':'Carves terrain';
+    const digging=({builder:'Builds earth',drill:'Vertical shaft',tunnel:'Collapsed tunnel',carver:'Measured trench',flame:'Scorches surface',lightning:'Small electrical pits',beam:'Cuts or scars soil',wave:'Ground pulses',mine:'Delayed crater'}[w.kind]||'Impact crater');
     for(const text of [`Damage ${w.damage}`,digging,w.count>1?`${w.count} impacts`:w.bounces?`${w.bounces} bounces`:'Single shot'])stats.append(node('span',text));
-    details.append(stats);b.append(art,details);
+    const terrainNote=node('small',terrainSummary(w),'terrain-note');const preview=node('div','','terrain-swatch');preview.innerHTML=terrainPreviewSvg(w);details.append(stats,terrainNote,preview);b.append(art,details);
     if(!catalog){b.type='button';b.onclick=()=>{if(!canAct())return;aims[game.turn].weaponId=w.id;save?.touch(0);closeModal();render();};}return b;
   }));};renderGrid('');const search=document.createElement('input');search.id='weaponSearch';search.placeholder='Find a weapon';search.type='search';search.setAttribute('aria-label','Search weapons');search.oninput=()=>renderGrid(search.value.trim().toLowerCase());
-  modal(catalog?`The arsenal · ${WEAPONS.length} weapons`:'Choose your weapon',[node('p',catalog?'Every weapon has its own behavior. Each battle deals ten different single-use weapons to each tank.':'One shot each. Choose a weapon that suits your aim and the terrain.','weapon-description'),search,grid],[],catalog?'arsenal':'weapons');
+  modal(catalog?`The arsenal · ${WEAPONS.length} weapons`:'Choose your weapon',[node('p',catalog?'Every weapon has its own behavior. Each battle deals ten different single-use weapons to each tank.':'One shot each. Terrain sketches use the same scale: dashed is the original ground, solid is the effect. Spread depends on aim; bedrock limits depth.','weapon-description'),search,grid],[],catalog?'arsenal':'weapons');
 }
 function rules() {
-  const list=document.createElement('ol');list.className='help-list';for(const value of ['Each tank gets ten random, different weapons. Every weapon can be fired once.','Take turns firing. Angle 0° points right, 90° points straight up, and 180° points left. Power controls launch speed.','Damage adds points. Hitting yourself gives points to your opponent. Tanks stay in play until all twenty shots are fired. Highest score wins.','Before firing, you may move left or right. Each tank gets four moves for the whole game, each up to five tank lengths. Moving keeps your turn.','Explosions reshape the terrain. Some weapons roll, bounce, dig, build, fire beams or leave mines. Mines can explode on later turns or when a tank moves close.','Your local battle saves automatically. Multiplayer rooms save your seat so you can reconnect. Returning home keeps your progress.'])list.append(node('li',value));
+  const list=document.createElement('ol');list.className='help-list';for(const value of ['Each tank gets ten random, different weapons. Every weapon can be fired once.','Take turns firing. Angle 0° points right, 90° points straight up, and 180° points left. Power controls launch speed.','Damage adds points. Hitting yourself gives points to your opponent. Tanks stay in play until all twenty shots are fired. Highest score wins.','Before firing, you may move left or right. Each tank gets four moves for the whole game, each up to five tank lengths. Moving keeps your turn.','Terrain previews show the solid resulting ground against the dashed original surface. Dimensions are world units; bedrock limits depth. Tunnels collapse into open trenches, not enclosed caves.', 'Explosions reshape the terrain. Some weapons roll, bounce, dig, build, fire beams or leave mines. Mines can explode on later turns or when a tank moves close.','Your local battle saves automatically. Multiplayer rooms save your seat so you can reconnect. Returning home keeps your progress.'])list.append(node('li',value));
   modal('How to play',[list],[{label:`Browse ${WEAPONS.length} weapons`,style:'primary',run:()=>weaponPicker(true)},{label:'Got it',run:closeModal}],'rules');
 }
 function settings() {
