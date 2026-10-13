@@ -64,6 +64,10 @@ jobs:
           const file='tools/test-tanks-polish-browser.mjs',text=fs.readFileSync(file,'utf8'),needle="page.locator('#weaponGrid svg')";
           if(text.split(needle).length!==2)throw Error('Artwork test baseline changed');
           fs.writeFileSync(file,text.replace(needle,"page.locator('#weaponGrid svg:not(.terrain-preview)')"));
+          const terrainTest='tools/test-tanks-terrain-browser.mjs',terrainText=fs.readFileSync(terrainTest,'utf8');
+          const query="await page.fill('#weaponSearch','road');";
+          if(terrainText.split(query).length!==2)throw Error('Search test baseline changed');
+          fs.writeFileSync(terrainTest,terrainText.replace(query,"await page.fill('#weaponSearch','road grader');"));
           JS
           node tools/generate-offline-manifest.mjs --version 2.7.3+20261013.1
           node --input-type=module <<'JS'
