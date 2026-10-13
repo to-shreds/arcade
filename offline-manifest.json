@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.7.0+20261012.1",
-  "generatedAt": "2026-10-12T22:05:52.286Z",
+  "version": "2.7.1+20261013.1",
+  "generatedAt": "2026-10-13T07:20:29.831Z",
   "fileCount": 370,
-  "totalBytes": 18529188,
+  "totalBytes": 18533533,
   "files": [
     {
       "path": "adventure/game.json",
@@ -612,8 +612,8 @@
     },
     {
       "path": "multiplayer/shared-activity.js",
-      "bytes": 30547,
-      "sha256": "bd26d2055267ad91cd8c7455d224a894b70686b8e509bf44f7cd7c6e999b73d3"
+      "bytes": 34879,
+      "sha256": "78d041eec76cbcdf847b1aaf3c8f2618e0d267f50a26ca90113c43114b0531ea"
     },
     {
       "path": "multiplayer/shared-room-client.js",
@@ -1662,8 +1662,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27787,
-      "sha256": "5d323668a701caa4403285e59a3df5c16dc026a359721854597771568424bdfb"
+      "bytes": 27800,
+      "sha256": "76d924a406d60f661c1496f1764e74a56efc55a3ab3af013f1d85541d79be750"
     },
     {
       "path": "tanks/engine.js",

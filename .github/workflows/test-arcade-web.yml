@@ -69,6 +69,9 @@ jobs:
       - name: Exercise desktop and mobile browsers against actual rooms
         run: npm run test:browser
 
+      - name: Verify movable multiplayer globe
+        run: npm run test:globe
+
       - name: Verify Tank Tactics local saves and competitive rooms
         run: npm run test:tanks:browser
 

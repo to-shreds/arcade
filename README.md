@@ -8,6 +8,14 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.7.1
+
+Drag the multiplayer globe out of the way with your finger or mouse. Its
+position is remembered separately for each activity and kept on screen after
+rotation or resizing. A normal tap still opens multiplayer. Keyboard users
+can focus the globe and move it with arrow keys, then press Enter or Space.
+The automatic placement no longer overrides a position you choose.
+
 ## Release 2.7.0
 
 **Tank Tactics** adds a two-tank artillery game with 84 different weapons and

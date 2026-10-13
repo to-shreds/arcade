@@ -7,6 +7,20 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+Release 2.7.1 makes the shared multiplayer globe draggable with mouse or touch
+and movable with arrow keys. Its normalized position is a local preference
+saved separately per activity under `arcade.shared.launchPosition.<activity>.v1`.
+The existing automatic placement applies until the user chooses a position;
+periodic placement, room updates and DOM changes must never undo that choice.
+Resize and visual-viewport changes clamp it inside the visible screen.
+Dragging suppresses the following click, while ordinary taps and Enter/Space
+still open multiplayer. Cancellation restores the previous position. The
+original storage writer persists only this UI preference even for spectators;
+game-save guards, room checkpoints and control authority remain unchanged.
+`tools/test-multiplayer-globe.mjs` verifies real mouse/touch input, no accidental
+activation, persistence, rotation, bounds, keyboard, cancellation, per-activity
+isolation and blocked storage. All 109 transport/shell tests also pass.
+
 Release 2.7.0 adds Tank Tactics under `tanks/`, the 46th enabled entry. It is a
 competitive two-tank artillery game with 84 differentiated weapons, player
 colors, flat/hilly/random destructible terrain, and no wind. Each tank receives

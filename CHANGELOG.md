@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.1 - 2026-10-13
+
+- Made the multiplayer globe draggable with mouse and touch, with arrow-key
+  movement and normal tap/Enter/Space activation preserved.
+- Remember its position separately per activity, prevent automatic placement
+  from overriding it, and keep it within the visible viewport after resizing
+  or rotation. Preserve room authority and local-save protection.
+
 ## 2.7.0 - 2026-10-12
 
 - Added Tank Tactics: destructible flat, hilly or random terrain, chosen tank

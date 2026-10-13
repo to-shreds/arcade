@@ -17,6 +17,12 @@
   const originalStorageSet = Storage.prototype.setItem, originalStorageRemove = Storage.prototype.removeItem;
   const MAX_RAW = 8 * 1024 * 1024, MAX_WIRE = 50 * 1024;
   const sessionKey = 'arcade_shared_room_' + activity + '_v1';
+  const launchPositionKey = 'arcade.shared.launchPosition.' + activity + '.v1';
+  let launchPosition = null, launchDrag = null, suppressLaunchClick = false;
+  try{
+    const saved = JSON.parse(root.localStorage.getItem(launchPositionKey));
+    if(saved?.schema === 1 && [saved.x,saved.y].every(n=>typeof n==='number'&&Number.isFinite(n)&&n>=0&&n<=1)) launchPosition=saved;
+  }catch(_error){}
   function isController(){ return !!(active && room?.status === 'active' && room.turn?.playerId === client?.session?.playerId); }
   function isSpectator(){ return active && (!isController() || !connected || switching || awaitingAuthority); }
   function isGameCallback(){ return isSpectator(); }
@@ -216,7 +222,7 @@
   }
   function paintUi(){
     if(!launch)return;
-    launch.textContent='🌐';launch.title=active?'Together · '+(room?.code||'…'):'Play together';
+    launch.textContent='🌐';launch.title=(active?'Together · '+(room?.code||'…'):'Play together')+'. Drag to move';
     launch.setAttribute('aria-label',launch.title);
     if(notice){
       const owner=room?.members?.find(member=>member.playerId===room.turn?.playerId);
@@ -240,6 +246,12 @@
   }
   function positionLaunch(){
     if(!launch)return;
+    if(launchDrag)return;
+    if(launchPosition){
+      const b=launchBounds();
+      placeLaunch(b.left+launchPosition.x*(b.right-b.left),b.top+launchPosition.y*(b.bottom-b.top));
+      return;
+    }
     const width=40,height=40,gap=6,W=innerWidth,H=innerHeight;
     const interactive=[...document.querySelectorAll('button,a[href],input,select,textarea,[role="button"],.card,.piece,[data-id],[data-card],[onclick],.footer,.status,[role="status"],[id*="status" i],.topbar,.turnpill,.turnPill,.mz-hint,.si-hint')];
     const readable=[...document.querySelectorAll('span,p,h1,h2,h3,h4,label,small,strong,b,div')].filter(el=>!el.children.length&&el.textContent.trim());
@@ -248,6 +260,65 @@
     for(let y=gap;y<=H-height-gap;y+=height+gap)for(let x=gap;x<=W-width-gap;x+=width+gap)candidates.push([x,y]);
     const free=candidates.find(([x,y])=>!controls.some(b=>x<b.right+3&&x+width>b.left-3&&y<b.bottom+3&&y+height>b.top-3));
     const [x,y]=free||candidates[4];Object.assign(launch.style,{left:x+'px',top:y+'px',right:'auto',bottom:'auto'});
+  }
+  function launchBounds(){
+    const v=root.visualViewport,gap=8,left=(v?.offsetLeft||0)+gap,top=(v?.offsetTop||0)+gap;
+    return {left,top,right:Math.max(left,(v?.offsetLeft||0)+(v?.width||root.innerWidth)-launch.offsetWidth-gap),bottom:Math.max(top,(v?.offsetTop||0)+(v?.height||root.innerHeight)-launch.offsetHeight-gap)};
+  }
+  function placeLaunch(x,y){
+    const b=launchBounds();
+    x=Math.max(b.left,Math.min(b.right,x));y=Math.max(b.top,Math.min(b.bottom,y));
+    Object.assign(launch.style,{left:x+'px',top:y+'px',right:'auto',bottom:'auto'});
+    return {x,y,b};
+  }
+  function saveLaunchPosition(){
+    const r=launch.getBoundingClientRect(),b=launchBounds();
+    launchPosition={schema:1,x:Math.max(0,Math.min(1,(r.left-b.left)/Math.max(1,b.right-b.left))),y:Math.max(0,Math.min(1,(r.top-b.top)/Math.max(1,b.bottom-b.top)))};
+    // This device preference must remain movable even for a shared spectator.
+    // Use the original writer without allowing game saves to bypass their guard.
+    try{originalStorageSet.call(root.localStorage,launchPositionKey,JSON.stringify(launchPosition));}catch(_error){}
+  }
+  function wireLaunchMovement(){
+    launch.setAttribute('aria-description','Drag to move. Arrow keys move this button; Enter or Space opens multiplayer.');
+    launch.addEventListener('pointerdown',event=>{
+      if(launchDrag||event.isPrimary===false||(event.pointerType==='mouse'&&event.button!==0))return;
+      suppressLaunchClick=false;const r=launch.getBoundingClientRect();
+      launchDrag={id:event.pointerId,x:event.clientX,y:event.clientY,left:r.left,top:r.top,moved:false};
+      try{launch.setPointerCapture(event.pointerId);}catch(_error){}
+    });
+    launch.addEventListener('pointermove',event=>{
+      if(!launchDrag||event.pointerId!==launchDrag.id)return;
+      const dx=event.clientX-launchDrag.x,dy=event.clientY-launchDrag.y;
+      if(!launchDrag.moved&&Math.hypot(dx,dy)<6)return;
+      launchDrag.moved=true;launch.classList.add('shared-dragging');
+      placeLaunch(launchDrag.left+dx,launchDrag.top+dy);event.preventDefault();
+    });
+    const finish=(event,cancelled)=>{
+      if(!launchDrag||event.pointerId!==launchDrag.id)return;
+      const drag=launchDrag;launchDrag=null;launch.classList.remove('shared-dragging');
+      if(drag.moved){
+        suppressLaunchClick=true;
+        if(cancelled)positionLaunch();else saveLaunchPosition();
+        later(()=>{suppressLaunchClick=false;},450);
+      }
+      try{if(launch.hasPointerCapture(event.pointerId))launch.releasePointerCapture(event.pointerId);}catch(_error){}
+    };
+    launch.addEventListener('pointerup',event=>finish(event,false));
+    launch.addEventListener('pointercancel',event=>finish(event,true));
+    launch.addEventListener('lostpointercapture',event=>finish(event,true));
+    launch.addEventListener('click',event=>{
+      if(!suppressLaunchClick)return;
+      suppressLaunchClick=false;event.preventDefault();event.stopImmediatePropagation();
+    },true);
+    launch.addEventListener('keydown',event=>{
+      suppressLaunchClick=false;
+      const direction={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[event.key];
+      if(!direction||event.altKey||event.ctrlKey||event.metaKey)return;
+      event.preventDefault();event.stopPropagation();const r=launch.getBoundingClientRect(),step=event.shiftKey?40:12;
+      placeLaunch(r.left+direction[0]*step,r.top+direction[1]*step);saveLaunchPosition();
+    });
+    root.visualViewport?.addEventListener('resize',positionLaunch);
+    root.visualViewport?.addEventListener('scroll',positionLaunch);
   }
   function scheduleLaunchPosition(){
     if(launchPositionTimer)return;
@@ -355,7 +426,8 @@
   function buildUi(){
     const css=document.createElement('style');css.textContent=`
       [data-shared-ui]{font:14px/1.45 system-ui,sans-serif;color:#edf5ff;box-sizing:border-box}
-      #shared-launch{position:fixed;right:8px;bottom:max(8px,env(safe-area-inset-bottom));z-index:2147483000;background:#193c67;border:1px solid #7ab8ed;border-radius:999px;padding:0;width:40px;height:40px;min-height:40px;box-shadow:0 4px 16px #0007;font-size:20px;font-weight:750;touch-action:manipulation}
+      #shared-launch{position:fixed;right:8px;bottom:max(8px,env(safe-area-inset-bottom));z-index:2147483000;background:#193c67;border:1px solid #7ab8ed;border-radius:999px;padding:0;width:40px;height:40px;min-height:40px;box-shadow:0 4px 16px #0007;font-size:20px;font-weight:750;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+      #shared-launch.shared-dragging{cursor:grabbing}
       #shared-panel{position:fixed;inset:0;z-index:2147483100;display:flex;align-items:center;justify-content:center;background:#02091dcc;padding:16px;touch-action:pan-y}
       #shared-panel[hidden],[data-shared-ui] [hidden],[data-shared-canvas][hidden]{display:none!important}
       #shared-card{width:min(100%,460px);max-height:calc(100dvh - 32px);overflow:auto;background:#10213b;border:1px solid #54799f;border-radius:18px;padding:20px;box-shadow:0 12px 50px #0009}
@@ -365,6 +437,7 @@
       #shared-card button:disabled{opacity:.45}#shared-card .shared-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}#shared-card .shared-row>*{flex:1}#shared-close{float:right}#shared-error{color:#ffc4ad}#shared-code-display{font:700 26px ui-monospace,monospace;letter-spacing:.13em}
     `;document.head.appendChild(css);
     launch=document.createElement('button');launch.id='shared-launch';launch.dataset.sharedUi='true';launch.type='button';launch.textContent='Play together';launch.onclick=()=>{panel.hidden=false;paintUi();};document.body.appendChild(launch);
+    wireLaunchMovement();
     panel=document.createElement('div');panel.id='shared-panel';panel.dataset.sharedUi='true';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Play together online');
     panel.innerHTML=`<div id="shared-card"><button id="shared-close" type="button" aria-label="Close shared play">✕</button><h2>Play together</h2><p id="shared-notice"></p><p id="shared-error" role="status"></p><div id="shared-start-area"><label for="shared-name">Your name</label><input id="shared-name" maxlength="24" autocomplete="nickname" placeholder="Your name"><div class="shared-row"><button id="shared-create" type="button">Create room</button><button id="shared-resume" type="button">Rejoin saved room</button></div><label for="shared-code">Room code</label><input id="shared-code" maxlength="6" autocapitalize="characters" autocomplete="off" placeholder="ABC234"><div class="shared-row"><button id="shared-join" type="button">Join room</button></div></div><div id="shared-room-area" hidden><p>Room code: <strong id="shared-code-display"></strong></p><p id="shared-members"></p><label for="shared-seats">Pass controls to</label><select id="shared-seats"></select><div class="shared-row"><button id="shared-pass" type="button">Pass controls</button><button id="shared-claim" type="button" hidden>Take available controls</button></div><div class="shared-row"><button id="shared-leave" type="button">Leave room</button></div></div></div>`;
     document.body.appendChild(panel);notice=document.getElementById('shared-notice');errorNode=document.getElementById('shared-error');seats=document.getElementById('shared-seats');
