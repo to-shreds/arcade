@@ -68,6 +68,28 @@ jobs:
           const query="await page.fill('#weaponSearch','road');";
           if(terrainText.split(query).length!==2)throw Error('Search test baseline changed');
           fs.writeFileSync(terrainTest,terrainText.replace(query,"await page.fill('#weaponSearch','road grader');"));
+          const globe='tools/test-multiplayer-globe.mjs',g=fs.readFileSync(globe,'utf8');
+          const resizeLine='await page.setViewportSize({width:844,height:390});await contained(page);await page.setViewportSize({width:320,height:568});await contained(page);';
+          if(g.split(resizeLine).length!==2)throw Error('Globe test baseline changed');
+          const helper=`
+          // setViewportSize resolves before the page's resize handlers necessarily run.
+          // Verify the saved normalized position, not merely old coordinates still in bounds.
+          async function resizeAndSettle(page,viewport){
+           await page.setViewportSize(viewport);
+           await page.waitForFunction(({width,height})=>{
+            if(innerWidth!==width||innerHeight!==height)return false;
+            const el=document.getElementById('shared-launch'),v=visualViewport;
+            const saved=JSON.parse(localStorage.getItem('arcade.shared.launchPosition.paint-lab.v1'));
+            if(!el||!saved)return false;
+            const r=el.getBoundingClientRect(),left=(v?.offsetLeft||0)+8,top=(v?.offsetTop||0)+8;
+            const right=Math.max(left,(v?.offsetLeft||0)+(v?.width||innerWidth)-el.offsetWidth-8);
+            const bottom=Math.max(top,(v?.offsetTop||0)+(v?.height||innerHeight)-el.offsetHeight-8);
+            return Math.abs(r.x-(left+saved.x*(right-left)))<.1&&Math.abs(r.y-(top+saved.y*(bottom-top)))<.1;
+           },viewport,{timeout:5000});
+           await contained(page);
+          }
+          `;
+          fs.writeFileSync(globe,g.replace('try{\n const context=',helper+'try{\n const context=').replace(resizeLine,'await resizeAndSettle(page,{width:844,height:390});await resizeAndSettle(page,{width:320,height:568});'));
           JS
           node tools/generate-offline-manifest.mjs --version 2.7.3+20261013.1
           node --input-type=module <<'JS'
@@ -103,7 +125,7 @@ jobs:
           test "${GITHUB_REF_NAME}" = "work/tanks-terrain-2.7.3"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tanks/ tools/test-tanks-terrain-browser.mjs tools/fixtures/tanks-2.7.2-save.json tools/test-tanks-polish-browser.mjs docs/arcade-stress-test-2.7.3.md sw.js README.md CHANGELOG.md HANDOFF.md package.json package-lock.json offline-manifest.json
+          git add tanks/ tools/test-tanks-terrain-browser.mjs tools/fixtures/tanks-2.7.2-save.json tools/test-tanks-polish-browser.mjs tools/test-multiplayer-globe.mjs docs/arcade-stress-test-2.7.3.md sw.js README.md CHANGELOG.md HANDOFF.md package.json package-lock.json offline-manifest.json
           git diff --cached --check
           git commit -m "Verify weapon-specific terrain mechanics and exact impact playback"
           git rev-parse HEAD HEAD^{tree}
