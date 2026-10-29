@@ -33,7 +33,7 @@ button,input,select{font:inherit}button:focus-visible,input:focus-visible,select
 #message{font-size:10px;padding:4px 8px}
 #result{padding:6px 10px}
 @media(max-width:760px) and (orientation:portrait){
- .workspace{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:4px;flex:1}
+ .workspace{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:4px;flex:1}
  .board-top{height:25px;margin:0;flex:none}
  .play-panel{display:grid;grid-template-columns:1fr 1fr;gap:4px}
  .rack-panel,#movePreview{grid-column:1/-1}
@@ -56,7 +56,7 @@ button,input,select{font:inherit}button:focus-visible,input:focus-visible,select
  .workspace{grid-template-columns:minmax(0,1fr) minmax(250px,.85fr)}
  .play-panel{gap:4px;overflow:hidden}
  .play-panel>.arcade-panel{padding:5px 8px}
- .board-top{display:none}
+ .board-top{display:flex;height:24px;flex:none;margin:0}
  .rack-tile{max-height:32px;aspect-ratio:1.4;font-size:19px}
  .panel-heading{margin-bottom:3px}
  #previewScore{font-size:16px}

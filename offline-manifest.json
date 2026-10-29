@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.8.1+20261030.1",
-  "generatedAt": "2026-10-29T23:02:49.367Z",
+  "generatedAt": "2026-10-29T23:06:29.594Z",
   "fileCount": 386,
-  "totalBytes": 20101010,
+  "totalBytes": 20101077,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1932,8 +1932,8 @@
     },
     {
       "path": "upwords/style.css",
-      "bytes": 18753,
-      "sha256": "4ab70bd2323b8c5a6b40c7e2fa4c2992f55e67f480c5b129b7581c1e896ab724"
+      "bytes": 18820,
+      "sha256": "3f7bc6f7e25baa1777a22275c77095c2c2abbe6ee58f014640bed12ae66ab017"
     }
   ]
 }

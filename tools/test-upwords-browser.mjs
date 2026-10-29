@@ -349,7 +349,7 @@ try {
     } finally { await screenshot(page, 'last-swap-pass').catch(() => {}); await context.close(); }
   });
 
-  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 568 }, { width: 844, height: 390 }]) {
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }, { width: 390, height: 640 }, { width: 320, height: 568 }, { width: 844, height: 390 }]) {
     await run(`viewport ${viewport.width}x${viewport.height}`, async () => {
       const { page, context } = await pageFor(viewport);
       try {
@@ -360,6 +360,8 @@ try {
           return { width: innerWidth, scrollWidth: document.documentElement.scrollWidth, board: bounds(document.querySelector('#board')), rack: bounds(document.querySelector('#rack')), controls: [...document.querySelectorAll('#play,#undo,#clear,#exchange,#pass,#zoom')].map(element => ({ id: element.id, ...bounds(element) })) };
         });
         assert.ok(geometry.scrollWidth <= geometry.width + 1, 'No horizontal document overflow');
+        assert.ok(geometry.board.top >= 0 && geometry.board.bottom <= viewport.height + 1, 'The whole board fits vertically');
+        assert.ok(await page.locator('.arcade-app').evaluate(e => e.scrollHeight <= e.clientHeight + 1), 'The play screen requires no vertical scrolling');
         assert.ok(geometry.board.width >= 140 && Math.abs(geometry.board.width - geometry.board.height) < 2, 'Board remains square and legible');
         for (const control of geometry.controls) assert.ok(control.width > 0 && control.height >= 24 && control.left >= -1 && control.right <= viewport.width + 1 && control.top >= 0 && control.bottom <= viewport.height + 1, `Control ${control.id} fits the screen`);
         await screenshot(page, `playing-${viewport.width}x${viewport.height}`);

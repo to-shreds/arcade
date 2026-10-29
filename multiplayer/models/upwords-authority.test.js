@@ -252,3 +252,22 @@ test('Nearby uses private per-viewer broadcasts, fixed dictionaries, bounded cha
   assert.equal((await act('alice', 'rematch')).room.status, 'finished');
   assert.equal((await act('bob', 'rematch')).room.status, 'active');
 });
+
+test('old dictionary rooms resume with the expanded list and reject stale clients', async () => {
+  const f = await fixture();
+  const room = await f.model.load();
+  const oldId = 'esdb80-us-1e5b7d3-4c74138a7145-s9fe0dbe2';
+  room.state.dictionaryId = oldId;
+  room.state.game.dictionaryId = oldId;
+  validateUpwordsRoomCheckpoint(room);
+  await f.model.save(room);
+  const owner = await f.turn();
+  await rejectedUnchanged(f.model, () => f.act(owner, 'pass', { dictionaryId: oldId }), 409);
+  const result = await f.act(owner, 'pass');
+  assert.equal(result.state.dictionaryId, DICTIONARY_ID);
+  assert.equal(result.state.game.dictionaryId, DICTIONARY_ID);
+  const stored = await f.model.load();
+  assert.equal(stored.state.game.dictionaryId, DICTIONARY_ID);
+  assert.equal(stored.state.dictionaryId, DICTIONARY_ID);
+  validateUpwordsRoomCheckpoint(stored);
+});
