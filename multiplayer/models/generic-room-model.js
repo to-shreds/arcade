@@ -2,6 +2,7 @@ import { randomToken, tokenHash } from "./room-model.js";
 
 import { createGuessWhoState, applyGuessWhoAction, publicGuessWhoState } from "./guess-who-authority.js";
 import { createTanksState, applyTanksAction, publicTanksState } from "./tanks-authority.js";
+import { createUpwordsState, applyUpwordsAction, publicUpwordsState } from "./upwords-authority.js";
 import { validateSharedCheckpoint, validateSharedActivityAction } from "./shared-activity-validator.js";
 
 const ROOM_KEY = "room";
@@ -17,6 +18,7 @@ const MAX_CHAT_IMAGE_DIMENSION = 1280;
 const MAX_CHAT_HISTORY_BYTES = 48 * 1024;
 // Tanks shots also carry bounded animation paths. Reserve room in Nearby's
 // 64 KiB snapshot for the next shot, even after a long conversation.
+// Upwords uses the same budget for its bounded board and recent move history.
 const MAX_TANKS_CHAT_HISTORY_BYTES = 16 * 1024;
 const MAX_DEPARTED_MEMBERS = 32;
 const CHAT_MIN_INTERVAL_MS = 350;
@@ -28,6 +30,7 @@ export const GAME_TYPES = Object.freeze({
   "shared-activity": Object.freeze({ minPlayers: 1, minSeats: 2, maxSeats: 8 }),
   "guess-who": Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 2 }),
   tanks: Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 2 }),
+  upwords: Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 2 }),
   sorry: Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 4 }),
   monopoly: Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 6 }),
   memory: Object.freeze({ minPlayers: 2, minSeats: 2, maxSeats: 4 }),
@@ -215,6 +218,7 @@ export class GenericRoomModel {
     if (game === "shared-activity") validateSharedCheckpoint(state);
     if (game === "guess-who" && state !== null) throw httpError(400, "Guess Who state is created by the room authority");
     if (game === "tanks" && state !== null) throw httpError(400, "Tanks state is created by the room authority");
+    if (game === "upwords" && state !== null) throw httpError(400, "Upwords state is created by the room authority");
     const token = randomToken();
     const reconnectHash = await tokenHash(token);
     if (await this.load()) throw httpError(409, "Room already exists");
@@ -243,7 +247,7 @@ export class GenericRoomModel {
         chatWindowCount: 0
       }],
       turn: null,
-      state: game === "guess-who" ? createGuessWhoState() : game === "tanks" ? createTanksState() : state,
+      state: game === "guess-who" ? createGuessWhoState() : game === "tanks" ? createTanksState() : game === "upwords" ? createUpwordsState() : state,
       result: null,
       chat: [],
       createdAt: timestamp,
@@ -320,7 +324,7 @@ export class GenericRoomModel {
       members,
       presence: Object.fromEntries(members.map((member) => [member.playerId, member.connected])),
       turn: room.turn,
-      state: room.game === "guess-who" ? publicGuessWhoState(room, viewerPlayerId) : room.game === "tanks" ? publicTanksState(room) : room.state,
+      state: room.game === "guess-who" ? publicGuessWhoState(room, viewerPlayerId) : room.game === "tanks" ? publicTanksState(room) : room.game === "upwords" ? publicUpwordsState(room, viewerPlayerId) : room.state,
       result: room.result,
       chat: room.chat,
       createdAt: room.createdAt,
@@ -390,13 +394,15 @@ export class GenericRoomModel {
       });
       if (room.chat.length > MAX_CHAT_MESSAGES) room.chat.splice(0, room.chat.length - MAX_CHAT_MESSAGES);
       if (room.game === "chat") while (room.chat.length > 1 && jsonBytes(room.chat, "Chat history") > MAX_CHAT_HISTORY_BYTES) room.chat.shift();
-      if (room.game === "tanks") while (room.chat.length > 1 && jsonBytes(room.chat, "Chat history") > MAX_TANKS_CHAT_HISTORY_BYTES) room.chat.shift();
+      if (room.game === "tanks" || room.game === "upwords") while (room.chat.length > 1 && jsonBytes(room.chat, "Chat history") > MAX_TANKS_CHAT_HISTORY_BYTES) room.chat.shift();
     } else {
       if (type !== "leave") requireExactVersion(room, action);
       if (room.game === "guess-who" && type !== "leave") {
         applyGuessWhoAction(room, member, action);
       } else if (room.game === "tanks" && type !== "leave") {
         applyTanksAction(room, member, action);
+      } else if (room.game === "upwords" && type !== "leave") {
+        applyUpwordsAction(room, member, action);
       } else if (type === "start") {
         if (room.game === "chat") throw httpError(409, "Chat rooms are already active");
         if (room.status !== "lobby") throw httpError(409, "Game is not waiting to start");

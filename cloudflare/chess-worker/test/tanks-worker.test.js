@@ -20,7 +20,7 @@ async function miniflare() {
   const root = new URL('../../../', import.meta.url);
   const models = (await readdir(new URL('multiplayer/models/', root))).filter(path => path.endsWith('.js') && !path.endsWith('.test.js')).map(path => `multiplayer/models/${path}`);
   return new Miniflare({ modulesRoot: root.pathname,
-    modules: ['cloudflare/chess-worker/src/index.js', ...models, 'tanks/engine.js', 'tanks/weapons.js', 'tanks/terrain-rules.js'].map(path => ({ type: 'ESModule', path: new URL(path, root).pathname })),
+    modules: ['cloudflare/chess-worker/src/index.js', ...models, 'upwords/engine.js', 'upwords/dictionary.js', 'tanks/engine.js', 'tanks/weapons.js', 'tanks/terrain-rules.js'].map(path => ({ type: 'ESModule', path: new URL(path, root).pathname })),
     compatibilityDate: '2026-08-06', compatibilityFlags: ['nodejs_compat'], bindings: { ALLOWED_ORIGINS: ORIGIN },
     durableObjects: { ARCADE_ROOMS: { className: 'ArcadeRoom', useSQLite: true } } });
 }

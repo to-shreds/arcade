@@ -7,6 +7,25 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+Release 2.8.0 adds Upwords in `upwords/`. Implementation is complete and local
+engine/authority checks pass; real browser preflight and publication are still
+pending at this preparation point. Consult `docs/arcade-stress-test-2.8.0.md`
+and ProjectStatus for final readiness before claiming deployment.
+
+`upwords/engine.js` is the source for local and authoritative play. The fixed
+Arcade English list has 127,350 words and ESDB plural metadata. Keep dictionary
+words, morphology, ID and notices synchronized through the reproducible build.
+Clients send only versioned placement/pass/exchange intent. Opponent racks,
+bag order, seed/RNG and exchanged letters must never enter public room views.
+Nearby authority checkpoints retain private game state for their trusted host.
+
+Local saves retain draft placement indices and visual rack order separately
+from the physical rack. A device handoff must conceal both the rack and draft
+board/preview. Entering a room preserves the local game and suppresses autosave;
+leaving restores it. An older valid action acknowledgment cannot roll back a
+newer socket state or report a false failure. Move dialogs must close when the
+authoritative turn or round changes. Preserve all earlier activities and fixes.
+
 Release 2.7.3 replaces the uniform crater heuristic with explicit weapon terrain
 profiles. `terrain-rules.js` controls widths/depths/shapes, nonstacking reference
 channels, builders, and exact chronological patch playback. `terrainVersion: 1`

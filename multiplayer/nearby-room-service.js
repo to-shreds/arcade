@@ -4,6 +4,7 @@ import { canonicalizeMonopolyStartRandomness } from "./models/monopoly-authority
 import { MemoryStorage, RoomModel, tokenHash } from "./models/room-model.js";
 import { canonicalizeSorryStart } from "./models/sorry-transition-validator.js";
 import { validateTanksRoomCheckpoint } from "./models/tanks-authority.js";
+import { validateUpwordsRoomCheckpoint } from "./models/upwords-authority.js";
 
 export const NEARBY_ROOM_SERVICE_VERSION = 1;
 export const NEARBY_CHESS_AUTHORITY_CONTRACT = Object.freeze({
@@ -934,6 +935,7 @@ export class NearbyRoomService {
         if (loaded.code !== code || loaded.schema !== 1) throw serviceError(400, "Checkpoint room state does not match its identity");
         if (saved.kind === "arcade") {
           if (entry.game === "tanks") validateTanksRoomCheckpoint(loaded);
+          if (entry.game === "upwords") validateUpwordsRoomCheckpoint(loaded);
           if (byteLength(loaded.state) > GENERIC_ROOM_LIMITS.MAX_STATE_BYTES || byteLength(loaded.result) > GENERIC_ROOM_LIMITS.MAX_RESULT_BYTES) {
             throw serviceError(413, "Checkpoint room payload exceeds online-parity limits");
           }

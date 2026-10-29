@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.7.3+20261013.1",
-  "generatedAt": "2026-10-13T12:55:00.000Z",
-  "fileCount": 374,
-  "totalBytes": 18567179,
+  "version": "2.8.0+20261029.1",
+  "generatedAt": "2026-10-29T22:22:03.373Z",
+  "fileCount": 386,
+  "totalBytes": 20094063,
   "files": [
     {
       "path": "adventure/game.json",
@@ -157,8 +157,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 27026,
-      "sha256": "eaeb73ce0f1441fe8117af5320f261356564ba8ebafa1e3b8b93c20246d83cdc"
+      "bytes": 27636,
+      "sha256": "b5754c4eab913797f44990f93e75599d3ee41cad3c81f2b3be2df68f9ee32ec2"
     },
     {
       "path": "chat-room/game.json",
@@ -522,13 +522,13 @@
     },
     {
       "path": "multiplayer/arcade-multiplayer.js",
-      "bytes": 45255,
-      "sha256": "be9350ccdfcf20b38c0cddeefec33650da058589b01e384d08ab48b5379cf582"
+      "bytes": 45281,
+      "sha256": "2e2220eed4baf02afeaa087d50b97b3d06dfb9eb8d290f28d5c913fbde3f740d"
     },
     {
       "path": "multiplayer/arcade-shell-core.mjs",
-      "bytes": 15314,
-      "sha256": "e56d0f6b269778a8a4807c4f56f79989dfad48bac6ac51723407101397740cae"
+      "bytes": 15339,
+      "sha256": "3e48cf39cfbe8bcb1980a8799e5d7cab8f1ef7f6fcacb4b1b9bfa7786c0f3e96"
     },
     {
       "path": "multiplayer/models/chess-engine.js",
@@ -537,13 +537,13 @@
     },
     {
       "path": "multiplayer/models/generic-room-model.js",
-      "bytes": 24522,
-      "sha256": "476f9f84ad5e8a2e7114aa498be67f078340d4d4e90c7dc931e58be3cda3d732"
+      "bytes": 25145,
+      "sha256": "52f13621b6bda7587057b942f33c913619c393ae8469d54e2d2a5ecd9f61d86e"
     },
     {
       "path": "multiplayer/models/generic-transition-validators.js",
-      "bytes": 4817,
-      "sha256": "3a7f73eed92b0561e59ec7d773d5b17be6ea924659efc7fe55043e8758ba3bb1"
+      "bytes": 5014,
+      "sha256": "149f09105be9ef35f98b3e081727f6bafdabe2d13bb977eead50e9fbe3b4703c"
     },
     {
       "path": "multiplayer/models/guess-who-authority.js",
@@ -586,9 +586,14 @@
       "sha256": "e7408562393ecc37f2968f3c635152d0eae2764c2694556d4b48cdb571b4ce68"
     },
     {
+      "path": "multiplayer/models/upwords-authority.js",
+      "bytes": 9920,
+      "sha256": "9cf78b6a8ec5d258b23194174b8fe928a69fd91858d50a4442c5e0aa1b63faf0"
+    },
+    {
       "path": "multiplayer/nearby-room-service.js",
-      "bytes": 47485,
-      "sha256": "b4598c37ca1bff3e0f7e51bb3dc1d47ddd3214a8043fd5f5ebc4a190583f6e78"
+      "bytes": 47643,
+      "sha256": "ec3137df4b3d938af0df26cc4de36e869d669d3a665331dd3a1a5924777b9188"
     },
     {
       "path": "multiplayer/nearby-session.mjs",
@@ -1662,8 +1667,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27794,
-      "sha256": "92a81f2ec4403ae6b5e56385d09067ea1a434f08d5f67f93d73788ccf8c32ae4"
+      "bytes": 27782,
+      "sha256": "5cf7b52e5506767ef703cb724f4f53f9898142edefcd55718e3de5fa1a7748c8"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1874,6 +1879,61 @@
       "path": "typing/index.html",
       "bytes": 10461,
       "sha256": "66a11cf719b868aff1fc3873e0c394c275a8a0f43d586c1994228fee162919bd"
+    },
+    {
+      "path": "upwords/cpu-worker.js",
+      "bytes": 322,
+      "sha256": "4817baa37f95eceb923a1ac35bdb25a894b1453b6fc1f13375669ad0a8969504"
+    },
+    {
+      "path": "upwords/dictionary-source.json",
+      "bytes": 2598,
+      "sha256": "7044e0f828eec8dba1f56fd6c2b975486dca2d44c83ae586a8c5d9e8dd92889f"
+    },
+    {
+      "path": "upwords/dictionary.js",
+      "bytes": 1403751,
+      "sha256": "516d472708052f0c44de9cf0959bb1d9cb90f24c5790040d510b6a938f42adde"
+    },
+    {
+      "path": "upwords/engine.js",
+      "bytes": 30657,
+      "sha256": "bca8ff16a7370471470fcd30a7daa49504958968d5533662d1681580d51554b9"
+    },
+    {
+      "path": "upwords/game.js",
+      "bytes": 45432,
+      "sha256": "9116ef7c7e8536239a56d7a738e95faf0f0552cdf38be7d23b9a969cba68cc89"
+    },
+    {
+      "path": "upwords/game.json",
+      "bytes": 388,
+      "sha256": "721c1c6024a7dc9670eaa56579f1b24de9ac982ba3bbb2c37126e5dde2a8dd7e"
+    },
+    {
+      "path": "upwords/icon.svg",
+      "bytes": 1253,
+      "sha256": "e84c1df4f0fc472c05e3cdf253cd66d646bae7c9f003a786fe4ba87911904090"
+    },
+    {
+      "path": "upwords/index.html",
+      "bytes": 8364,
+      "sha256": "c51debd17c25c20b6ed4f1d3289ca350be57aafbd37e96894b16099b05577a0a"
+    },
+    {
+      "path": "upwords/LICENSE.dictionary.txt",
+      "bytes": 1331,
+      "sha256": "be34ec9ac84800bd84f9ddbfececcf62e227e8a99af63ddd39fee81429dbf9a3"
+    },
+    {
+      "path": "upwords/README.md",
+      "bytes": 5591,
+      "sha256": "0750c07d7acf8e6fd4d7eb8085c695640772ae9efe850e6b0ed3b45f9ec4b24d"
+    },
+    {
+      "path": "upwords/style.css",
+      "bytes": 15650,
+      "sha256": "edd0511efc16b7471c84c88c499c906d1e13fb7e03e845fafdf5a95833da8c6a"
     }
   ]
 }

@@ -10,6 +10,8 @@ on:
       - "tanks/engine.js"
       - "tanks/terrain-rules.js"
       - "tanks/weapons.js"
+      - "upwords/engine.js"
+      - "upwords/dictionary.js"
       - ".github/workflows/deploy-arcade-worker.yml"
   workflow_dispatch:
 

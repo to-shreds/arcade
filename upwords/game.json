@@ -1,0 +1,16 @@
+{
+  "title": "Upwords",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "order": 88,
+  "enabled": true,
+  "type": "game",
+  "multiplayer": true,
+  "playersMin": 1,
+  "playersMax": 2,
+  "categories": ["word", "strategy"],
+  "tags": ["touch", "turn-based", "online", "nearby", "cpu", "upwords", "stacking"],
+  "orientation": "any",
+  "onlineMode": "competitive",
+  "onlinePlayersMax": 2
+}

@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.8.0 - 2026-10-29
+
+- Added Upwords with 10x10 letter stacking, seven-tile racks, all-crossword
+  validation, score previews, Qu and seven-tile bonuses, swaps and passes.
+- Bundled a pinned 127,350-word Arcade English dictionary with listed
+  inflections, reproducible source generation and redistribution notices.
+- Added computer difficulty choices, local pass-and-play with a rack privacy
+  screen, draft-preserving saves, rack shuffle, keyboard input and board zoom.
+- Added authoritative two-player Internet/Nearby rooms with private racks,
+  versioned dictionary checks, reconnects, turn alerts and mutual rematches.
+- Preserved local games across room entry/exit and protected against stale
+  network replies, outdated move dialogs and hidden hotseat draft disclosure.
+- Updated the catalog, offline snapshot, Worker deployment dependencies and
+  engine, client, multiplayer and actual-browser verification.
+
 ## 2.7.3 - 2026-10-13
 
 - Added explicit weapon-specific excavation profiles instead of a shared scaled crater.

@@ -1,6 +1,7 @@
 import * as resolved from "./resolved-transition-validators.js";
 import { SHARED_ACTIVITY_AUTHORITY, validateSharedActivityAction } from "./shared-activity-validator.js";
 import { TANKS_AUTHORITY, validateTanksAction } from "./tanks-authority.js";
+import { UPWORDS_AUTHORITY, validateUpwordsAction } from "./upwords-authority.js";
 
 // Keep the existing completed-turn rules unchanged. Memory additionally shares
 // each face-up card before its completed attempt reaches those rules.
@@ -12,6 +13,7 @@ export const GENERIC_GAME_AUTHORITY = Object.freeze({
   ...resolved.GENERIC_GAME_AUTHORITY,
   "shared-activity": SHARED_ACTIVITY_AUTHORITY,
   tanks: TANKS_AUTHORITY,
+  upwords: UPWORDS_AUTHORITY,
   memory: MEMORY_AUTHORITY
 });
 export function authorityForGenericGame(game) {
@@ -71,6 +73,7 @@ function validateMemoryReveal(room, member, action) {
 }
 export function validateGenericGameAction(room, member, action) {
   if (room?.game === "tanks") return validateTanksAction(room, member, action);
+  if (room?.game === "upwords") return validateUpwordsAction(room, member, action);
   if (room?.game === "shared-activity") return validateSharedActivityAction(room, member, action);
   if (room?.game === "memory" && member && action?.type === "state") {
     return validateMemoryReveal(room, member, action);

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090d1e">
+  <title>Upwords · Arcade</title>
+  <link rel="stylesheet" href="../arcade-ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="arcade-shell">
+<main class="arcade-app">
+  <header class="arcade-top">
+    <button id="home" class="arcade-btn arcade-home" aria-label="Arcade home">🏠<span class="home-label">Arcade</span></button>
+    <h1 class="arcade-title">Upwords</h1>
+    <div class="arcade-actions"><button id="newGame" class="arcade-btn" aria-label="New game">↻</button><button id="help" class="arcade-btn" aria-label="Rules and settings">?</button></div>
+  </header>
+  <div id="roomBar" hidden><span id="connection">Connecting</span><button id="roomCode" class="arcade-btn compact" title="Copy room code"></button><button id="invite" class="arcade-btn compact" hidden>Invite</button><button id="leave" class="arcade-btn compact">Leave</button></div>
+  <section class="scores" aria-label="Player scores">
+    <div id="score0" class="score-card"><span class="player-dot"></span><span id="name0" class="player-name">Player 1</span><strong id="points0">0</strong><small id="tiles0">7 tiles</small></div>
+    <div class="bag-info"><strong id="bagCount">86</strong><span>in bag</span></div>
+    <div id="score1" class="score-card"><span class="player-dot"></span><span id="name1" class="player-name">Computer</span><strong id="points1">0</strong><small id="tiles1">7 tiles</small></div>
+  </section>
+  <div id="turnLine" role="status"><span id="turnDot"></span><strong id="turnText">Build a word. Stack a new idea.</strong><span id="turnNumber"></span></div>
+  <p id="message" role="alert" hidden></p>
+  <section id="result" class="arcade-panel" hidden><div><h2 id="resultTitle"></h2><p id="resultText"></p></div><button id="playAgain" class="arcade-btn gold">Play again</button><span id="rematchNote"></span></section>
+  <div class="workspace">
+    <section class="board-area" aria-label="Playing board">
+      <div class="board-top"><span><b>10 × 10</b> · Stack up to 5</span><button id="zoom" class="arcade-btn compact" aria-label="Enlarge board" aria-pressed="false">＋ Zoom</button></div>
+      <div id="boardViewport"><div id="board" role="grid" aria-label="Upwords board, 10 rows and 10 columns"></div></div>
+      <p id="boardHint">Start across any of the four marked center squares.</p>
+    </section>
+    <aside class="play-panel">
+      <section class="rack-panel arcade-panel">
+        <div class="panel-heading"><h2 id="rackTitle">Your tiles</h2><button id="shuffle" class="text-button" aria-label="Shuffle rack">⇄ Shuffle</button></div>
+        <div id="rack" aria-label="Your letter tiles"></div>
+        <p id="rackHint">Tap a letter, then tap a square. Tap it again to take it back.</p>
+      </section>
+      <section id="movePreview" class="arcade-panel" aria-label="Move preview">
+        <div class="panel-heading"><h2>This move</h2><strong id="previewScore">0 <small>pts</small></strong></div>
+        <div id="previewWords" aria-live="polite">Place your tiles to see every word and its score.</div>
+        <p id="previewNote"></p>
+        <button id="play" class="arcade-btn gold wide" disabled>Play word</button>
+        <div class="move-actions"><button id="undo" class="arcade-btn compact" disabled>Undo</button><button id="clear" class="arcade-btn compact" disabled>Clear</button><button id="exchange" class="arcade-btn compact">Swap 1</button><button id="pass" class="arcade-btn compact">Pass</button></div>
+      </section>
+      <details class="arcade-panel dictionary-panel"><summary>Check a word <span class="offline-badge">OFFLINE</span></summary><form id="wordForm"><label for="wordCheck">English word</label><div class="word-entry"><input id="wordCheck" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. STACK"><button class="arcade-btn compact" type="submit">Check</button></div></form><p id="wordResult" role="status"></p><p id="dictionaryNote"></p></details>
+      <details class="arcade-panel history-panel"><summary>Recent turns</summary><ol id="history"><li>Your first word starts the story.</li></ol></details>
+    </aside>
+  </div>
+</main>
+<section id="setup" class="screen-layer" aria-label="Game setup"><div class="arcade-panel setup-card">
+  <img src="icon.svg" class="setup-art" width="100" height="100" alt="Three letter tiles stacked upwards">
+  <span class="eyebrow">A NEW LEVEL OF WORDPLAY</span><h1>Upwords</h1><p class="setup-intro">Build across. Build up.<br>Turn an ordinary word into your next big move.</p>
+  <div class="setup-fields"><label class="field" for="mode">Play mode<select id="mode"><option value="cpu">Vs. computer</option><option value="hotseat">Two players here</option><option value="network">Multiplayer room</option></select></label><label id="difficultyField" class="field" for="difficulty">Computer skill<select id="difficulty"><option value="easy">Easy</option><option value="normal" selected>Normal</option><option value="hard">Hard</option></select></label></div>
+  <div id="localNames" class="setup-fields"><label class="field" for="nameInput0">Your name<input id="nameInput0" maxlength="24" value="Player 1" autocomplete="nickname"></label><label class="field" for="nameInput1"><span id="secondNameLabel">Computer</span><input id="nameInput1" maxlength="24" value="Computer"></label></div>
+  <button id="localStart" class="arcade-btn gold wide">Let's play</button><button id="continueLocal" class="arcade-btn wide" hidden>Continue current game</button>
+  <div id="networkControls" hidden><div id="setupTransport" class="arcade-pill">Multiplayer · Internet</div><label class="field" for="nickname">Your multiplayer name<input id="nickname" maxlength="24" placeholder="Your name" autocomplete="nickname"></label><button id="create" class="arcade-btn primary wide">Create room</button><div class="join-row"><label class="field" for="joinCode">Room code<input id="joinCode" maxlength="6" placeholder="ABC234" autocomplete="off" autocapitalize="characters" spellcheck="false"></label><button id="join" class="arcade-btn">Join</button></div><button id="resumeRoom" class="arcade-btn gold wide" hidden>Resume saved room</button><p class="small-note">Use your current Arcade Internet or Nearby connection. Your rack is private.</p></div>
+  <p id="setupMessage" role="alert"></p><p class="dictionary-foot">Built-in English dictionary. Every word checked. Works offline.</p><div class="setup-footer"><button id="setupHelp" class="text-button">How to play</button><button id="setupHome" class="text-button">Arcade home</button></div>
+</div></section>
+<section id="lobby" class="screen-layer" aria-label="Multiplayer lobby" hidden><div class="arcade-panel setup-card"><span class="eyebrow">READY TO BUILD?</span><h2>Word by word. Level by level.</h2><p>Share this room code with the other player.</p><button id="lobbyCode" class="room-code" aria-label="Copy room code"></button><div id="lobbyMembers"></div><p id="lobbyDictionary"></p><button id="startRoom" class="arcade-btn gold wide">Start game</button><p id="lobbyNote"></p><div class="setup-footer"><button id="lobbyInvite" class="text-button" hidden>Invite Nearby player</button><button id="lobbyLeave" class="text-button">Leave room</button><button id="lobbyHome" class="text-button">Arcade home</button></div><p id="lobbyMessage" role="alert"></p></div></section>
+<section id="handoff" class="screen-layer" aria-label="Pass the device" hidden><div class="arcade-panel handoff-card"><span class="handoff-icon">↪</span><h2 id="handoffTitle">Pass the device</h2><p>Your tiles stay hidden until you're ready.</p><button id="showRack" class="arcade-btn gold wide">Show my tiles</button><button id="handoffHome" class="text-button">Arcade home</button></div></section>
+<dialog id="modal"><div class="modal-head"><h2 id="modalTitle"></h2><button id="modalClose" class="arcade-btn compact" aria-label="Close dialog">✕</button></div><div id="modalBody"></div><div id="modalActions"></div></dialog>
+<script src="../arcade-save.js"></script>
+<script src="../multiplayer/arcade-multiplayer.js"></script>
+<script type="module" src="game.js"></script>
+</body>
+</html>

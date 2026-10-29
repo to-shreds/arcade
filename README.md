@@ -8,6 +8,22 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.8.0
+
+**Upwords** adds a stacking word game with a 10x10 board, seven-tile racks,
+stacks up to five high, and a preview of every word and its score. Play against
+the computer, pass the device between two players, or use the existing
+Internet/Nearby rooms. Online racks stay private. Local saves retain the board,
+racks, bag, scores and unsubmitted move; room seats can be resumed.
+
+The built-in **Arcade English** dictionary contains 127,350 listed words,
+including inflections, and checks every crossing word without an Internet
+lookup. The same fixed list and rules apply to both players. A word checker is
+available in the game. See [Upwords](upwords/README.md) for rules, dictionary
+provenance and controls, and [release checks](docs/arcade-stress-test-2.8.0.md)
+for verification status. Refresh Arcade and update its offline copy after
+publication. Existing Android wrappers use the web release without a rebuild.
+
 ## Release 2.7.3
 
 Tank Tactics now connects weapon behavior to explicit terrain profiles: narrow

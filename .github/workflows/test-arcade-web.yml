@@ -54,6 +54,9 @@ jobs:
       - name: Test Tank Tactics engine and weapon rules
         run: node --test tanks/*.test.mjs
 
+      - name: Test Upwords rules, dictionary, and client recovery
+        run: npm run test:upwords
+
       - name: Validate packaged Arcade runtime
         run: |
           node tools/test-native-keyboard.mjs
@@ -74,6 +77,9 @@ jobs:
 
       - name: Verify Tank Tactics local saves and competitive rooms
         run: npm run test:tanks:browser
+
+      - name: Verify Upwords saves, private racks, and competitive rooms
+        run: npm run test:upwords:browser
 
       - name: Retain browser evidence
         if: always()
