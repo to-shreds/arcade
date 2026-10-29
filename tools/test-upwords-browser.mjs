@@ -276,6 +276,9 @@ try {
       assert.equal(await page.locator('#play').isDisabled(), false, 'Restored draft is playable');
       await page.locator('#play').click();
       await page.waitForFunction(number => UpwordsGame.getState()?.moveNumber === number + 1, saved.moveNumber);
+      // The resolved turn is saved before the next rack/curtain is rendered.
+      // Model advancement alone can precede the native IndexedDB save finishing.
+      await settled(page);
       assert.equal(await page.locator('#handoff').isVisible(), true, 'Passing the device hides the next rack');
       const concealed = await page.locator('#rack').innerText();
       assert.equal(/[A-Z]/.test(concealed.replace(/Your|tiles/g, '')), false, 'Opponent letters are absent from concealed rack text');
