@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.8.0+20261029.1",
-  "generatedAt": "2026-10-29T22:22:03.373Z",
+  "version": "2.8.1+20261030.1",
+  "generatedAt": "2026-10-29T23:02:49.367Z",
   "fileCount": 386,
-  "totalBytes": 20094063,
+  "totalBytes": 20101010,
   "files": [
     {
       "path": "adventure/game.json",
@@ -587,8 +587,8 @@
     },
     {
       "path": "multiplayer/models/upwords-authority.js",
-      "bytes": 9920,
-      "sha256": "9cf78b6a8ec5d258b23194174b8fe928a69fd91858d50a4442c5e0aa1b63faf0"
+      "bytes": 10096,
+      "sha256": "86cc012f952b5d305d687abf5b88f274fabe4554041f201a2cfdef68f158eed5"
     },
     {
       "path": "multiplayer/nearby-room-service.js",
@@ -1668,7 +1668,7 @@
     {
       "path": "sw.js",
       "bytes": 27782,
-      "sha256": "5cf7b52e5506767ef703cb724f4f53f9898142edefcd55718e3de5fa1a7748c8"
+      "sha256": "1a3123d80b16558ae7557a32f54940e904ce6d88e2b6e72129e10a280b043c4e"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1887,23 +1887,23 @@
     },
     {
       "path": "upwords/dictionary-source.json",
-      "bytes": 2598,
-      "sha256": "7044e0f828eec8dba1f56fd6c2b975486dca2d44c83ae586a8c5d9e8dd92889f"
+      "bytes": 3874,
+      "sha256": "f1149f41039d97af1bf7ae1f1d1a53b171013cd57518b5b660edba166985b011"
     },
     {
       "path": "upwords/dictionary.js",
-      "bytes": 1403751,
-      "sha256": "516d472708052f0c44de9cf0959bb1d9cb90f24c5790040d510b6a938f42adde"
+      "bytes": 1405057,
+      "sha256": "2c7cde06d364239bed069eaef6dd9211892ffa1a9dbdd48c58d65bdfc47e54c0"
     },
     {
       "path": "upwords/engine.js",
-      "bytes": 30657,
-      "sha256": "bca8ff16a7370471470fcd30a7daa49504958968d5533662d1681580d51554b9"
+      "bytes": 30962,
+      "sha256": "41ae8329262873a0189fa0d69ef85a009b33c8b4d2aa372a5b8f5341d6606bce"
     },
     {
       "path": "upwords/game.js",
-      "bytes": 45432,
-      "sha256": "9116ef7c7e8536239a56d7a738e95faf0f0552cdf38be7d23b9a969cba68cc89"
+      "bytes": 45943,
+      "sha256": "8744f1375222f371527b906ffd16e9174124069168911e66fefe0a60e4d887d7"
     },
     {
       "path": "upwords/game.json",
@@ -1927,13 +1927,13 @@
     },
     {
       "path": "upwords/README.md",
-      "bytes": 5591,
-      "sha256": "0750c07d7acf8e6fd4d7eb8085c695640772ae9efe850e6b0ed3b45f9ec4b24d"
+      "bytes": 5861,
+      "sha256": "11dfcf503c94077b6ce44c71c103e7a6da8992d2d4e6e4b4c697202f95e14545"
     },
     {
       "path": "upwords/style.css",
-      "bytes": 15650,
-      "sha256": "edd0511efc16b7471c84c88c499c906d1e13fb7e03e845fafdf5a95833da8c6a"
+      "bytes": 18753,
+      "sha256": "4ab70bd2323b8c5a6b40c7e2fa4c2992f55e67f480c5b129b7581c1e896ab724"
     }
   ]
 }

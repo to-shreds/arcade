@@ -1,4 +1,4 @@
-import { createGame, applyAction, validateGame, publicGame } from '../../upwords/engine.js';
+import { createGame, applyAction, validateGame, publicGame, compatibleDictionary } from '../../upwords/engine.js';
 import { DICTIONARY_ID } from '../../upwords/dictionary.js';
 
 export const UPWORDS_AUTHORITY = Object.freeze({
@@ -23,7 +23,7 @@ export function validateUpwordsAction(room, member, action) {
   const allowed = new Set(['type', 'expectedVersion', 'dictionaryId', ...ACTION_FIELDS[action.type]]);
   requireValue(Object.keys(action).every(key => allowed.has(key)), 400, 'Unsupported Upwords action fields');
   requireValue(typeof action.expectedVersion === 'number' && Number.isInteger(action.expectedVersion) && action.expectedVersion === room.version, 409, 'Room state changed; refresh and try again');
-  requireValue(action.dictionaryId === DICTIONARY_ID && room.state.dictionaryId === DICTIONARY_ID, 409, 'This room uses a different word list. Update Arcade before playing');
+  requireValue(action.dictionaryId === DICTIONARY_ID && compatibleDictionary(room.state.dictionaryId), 409, 'This room uses a different word list. Update Arcade before playing');
   const players = playersIn(room);
   requireValue(players.some(player => player.playerId === member?.playerId && player.seat === member.seat), 401, 'Invalid room player');
   requireValue(players.length === 2 && players[0].seat === 0 && players[1].seat === 1, 409, 'Upwords needs two players');
@@ -79,6 +79,7 @@ export function applyUpwordsAction(room, member, action) {
   try { game = applyAction(state.game, intent, member.seat); validateGame(game); }
   catch (error) { fail(400, error.message || 'Illegal Upwords move'); }
   state.game = game;
+  state.dictionaryId = DICTIONARY_ID;
   if (game.finished) {
     state.phase = 'finished';
     room.status = 'finished';
@@ -96,7 +97,7 @@ export function publicUpwordsState(room, viewerPlayerId = null) {
   const state = room.state;
   const viewer = playersIn(room).find(player => player.playerId === viewerPlayerId);
   return { schema: 1, phase: room.status === 'finished' ? 'finished' : state.phase,
-    round: state.round, starterSeat: state.starterSeat, dictionaryId: state.dictionaryId,
+    round: state.round, starterSeat: state.starterSeat, dictionaryId: compatibleDictionary(state.dictionaryId) ? DICTIONARY_ID : state.dictionaryId,
     game: state.game ? publicGame(state.game, viewer?.seat ?? null) : null,
     rematchVotes: [...state.rematchVotes] };
 }
@@ -104,7 +105,7 @@ export function publicUpwordsState(room, viewerPlayerId = null) {
 export function validateUpwordsRoomCheckpoint(room) {
   const state = room.state;
   requireValue(state && state.schema === 1 && ['lobby', 'playing', 'finished'].includes(state.phase), 400, 'Invalid Upwords checkpoint');
-  requireValue(state.dictionaryId === DICTIONARY_ID, 400, 'This saved Upwords room uses an incompatible word list');
+  requireValue(compatibleDictionary(state.dictionaryId), 400, 'This saved Upwords room uses an incompatible word list');
   requireValue(Number.isInteger(state.round) && state.round >= 0 && state.round <= 1000000 && [0, 1].includes(state.starterSeat), 400, 'Invalid Upwords round');
   requireValue(Array.isArray(room.members) && Array.isArray(state.rematchVotes) && state.rematchVotes.length <= 2 && new Set(state.rematchVotes).size === state.rematchVotes.length && state.rematchVotes.every(id => room.members.some(player => player.playerId === id)), 400, 'Invalid Upwords rematch votes');
   if (room.status === 'lobby') {
@@ -117,7 +118,7 @@ export function validateUpwordsRoomCheckpoint(room) {
   }
   let game;
   try { game = validateGame(state.game); } catch { fail(400, 'Invalid saved Upwords game'); }
-  requireValue(state.round >= 1 && game.starter === state.starterSeat && game.dictionaryId === state.dictionaryId, 400, 'Upwords checkpoint settings do not match its game');
+  requireValue(state.round >= 1 && game.starter === state.starterSeat && compatibleDictionary(state.dictionaryId) && compatibleDictionary(state.game.dictionaryId), 400, 'Upwords checkpoint settings do not match its game');
   requireValue([0, 1].every(seat => room.members.some(player => player.seat === seat && player.username === game.players[seat].name)), 400, 'Upwords checkpoint player identities do not match');
   if (room.status === 'active') {
     const players = playersIn(room), current = players.find(player => player.seat === game.turn);

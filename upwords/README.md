@@ -10,7 +10,7 @@ Choose a tile, then an empty board square or an existing different letter.
 All tiles placed in one turn belong in one row or column. Tap an unplayed tile
 again to take it back, or use Undo/Clear. The preview checks every changed word
 and shows the points before Play commits the turn. Shuffle changes only the
-display order of the rack. Zoom enlarges the board within a scrollable area.
+display order of the rack. The board and move controls fit the viewport. Check a word and Recent turns open as overlays. Zoom optionally enlarges the board within a scrollable area.
 
 The board has 10 rows and 10 columns. Each player holds seven tiles from the
 100-tile bag. Qu is one tile. The opening uses at least two tiles and covers one
@@ -35,9 +35,9 @@ Tile distribution reference: [the licensed Upwords app FAQ](https://www.upwords-
 
 ## Arcade English word list
 
-The game bundles 127,350 words from the English Speller Database (ESDB,
+The game bundles 127,360 words from the English Speller Database (ESDB,
 formerly SCOWL), size 80, American spelling, normal variants. It uses listed
-inflections rather than guessing plurals, tenses or suffixes. The build filters
+inflections rather than guessing plurals, tenses or suffixes. Ten reviewed standalone two-letter words, including UN, supplement the ESDB base; the complete 107-word short-word audit and reference are recorded in the metadata. The build filters
 abbreviations, fragments, capitalized entries, punctuation and spaces. It also
 excludes Moby-only and acronym source rows that admitted unsuitable entries
 despite part-of-speech filtering. Accents use the source's own normalization.

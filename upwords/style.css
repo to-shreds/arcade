@@ -3,3 +3,68 @@ button,input,select{font:inherit}button:focus-visible,input:focus-visible,select
 @media(max-width:760px) and (orientation:portrait){.workspace{display:flex;flex-direction:column;gap:8px;flex:none}.board-top{margin-bottom:6px}#board{width:100%;min-width:0;max-width:550px;gap:3px;padding:6px;border-radius:13px}.cell{font-size:clamp(15px,4.4vw,24px);border-radius:4px}.cell .height{font-size:8px;right:2px;bottom:1px}.board-area{gap:0}#boardHint{margin:4px 0 3px;font-size:10px}.play-panel{display:grid;grid-template-columns:1fr;gap:8px;padding:0}.play-panel>.arcade-panel{padding:11px}.rack-panel{order:0}#movePreview{order:1}.dictionary-panel{order:2}.history-panel{order:3}#rack{max-width:420px;margin:auto;gap:7px;min-height:40px}.rack-tile{aspect-ratio:1;font-size:24px;max-height:57px}#rackHint{margin-top:9px;font-size:10px}.panel-heading{margin-bottom:7px}#previewWords{min-height:20px}.scores{gap:5px;grid-template-columns:minmax(0,1fr) 43px minmax(0,1fr)}.score-card{padding:8px;gap:0 6px}.score-card strong{font-size:24px}.player-name{font-size:11px}.score-card small{font-size:9px}.bag-info strong{font-size:18px}.bag-info span{font-size:9px}.arcade-app{gap:6px}.arcade-top{min-height:38px}.arcade-top .arcade-btn{min-height:35px;font-size:12px;padding:7px 10px}.arcade-title{font-size:30px}#turnLine{font-size:11px;min-height:24px}#turnNumber{font-size:9px}.home-label{display:none}.board-top{font-size:10px}#zoom{min-height:28px;padding:5px 8px;font-size:10px}.setup-card{padding:18px}.setup-art{width:83px;height:83px}.setup-card h1{font-size:43px}.setup-intro{font-size:13px;margin-bottom:15px}.setup-footer{gap:12px}}
 @media(orientation:landscape) and (max-height:650px){.arcade-app{gap:5px;overflow:auto}.arcade-top{min-height:32px}.arcade-title{font-size:25px}.arcade-top .arcade-btn{min-height:29px;padding:5px 10px;font-size:12px}.scores{gap:6px;grid-template-columns:minmax(0,1fr) 43px minmax(0,1fr)}.score-card{padding:5px 10px;border-radius:10px}.score-card strong{font-size:23px}.player-name{font-size:11px}.score-card small{font-size:9px;margin-top:0}.bag-info strong{font-size:17px}.bag-info span{font-size:8px}#turnLine{min-height:21px;font-size:11px}.workspace{grid-template-columns:minmax(240px,1fr) minmax(250px,.85fr);gap:13px;min-height:0;flex:1}.board-top{font-size:9px;margin-bottom:4px}.board-top .arcade-btn{min-height:24px;font-size:9px;padding:4px 7px}#board{min-width:210px;width:min(100%,calc(100dvh - 174px));gap:2px;padding:5px;border-radius:10px}.cell{font-size:clamp(12px,3vh,21px);border-radius:3px}.cell .height{font-size:7px;bottom:1px;right:1px}.cell.center:empty::after{font-size:12px}#boardHint{font-size:9px;margin:2px 0}.play-panel{overflow:auto;padding:1px 3px 8px 0;gap:7px}.play-panel>.arcade-panel{padding:10px}.panel-heading{margin-bottom:6px}.panel-heading h2{font-size:11px}#rack{gap:5px;min-height:30px}.rack-tile{aspect-ratio:1.1;max-height:45px;font-size:20px}#rackHint{font-size:9px;margin-top:7px}#previewWords{min-height:18px;font-size:11px}#previewScore{font-size:21px}#previewNote{margin:4px 0 7px;font-size:10px;min-height:12px}#play{min-height:35px;font-size:12px}.move-actions{margin-top:7px}.move-actions button{min-height:29px;font-size:10px}.setup-card{width:min(620px,100%);padding:15px}.setup-art{width:54px;height:54px;margin-bottom:5px}.setup-card h1{font-size:32px;margin:5px 0 7px}.eyebrow{font-size:8px}.setup-intro{font-size:11px;margin:4px 0 9px}.setup-intro br{display:none}.setup-fields{margin:8px 0}.setup-card input,.setup-card select{padding:7px}.setup-card label.field{font-size:10px;gap:4px}.dictionary-foot{margin-top:10px;font-size:9px}.setup-footer{margin-top:2px}.setup-card>.wide{margin-top:5px;min-height:35px}.screen-layer{padding:10px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Fit the play surface to the visible viewport. Optional details overlay it. */
+.arcade-app{overflow:hidden;gap:5px}
+.arcade-top,.scores,#turnLine,#roomBar,#result,#message{flex-shrink:0}
+.workspace{min-height:0;overflow:hidden}
+.board-area{min-height:0;overflow:hidden}
+#boardViewport{flex:1;min-height:0;display:grid;place-items:center;padding:4px;overflow:hidden}
+#board{width:var(--board-size,250px);height:var(--board-size,250px);min-width:0;aspect-ratio:1;flex:none}
+#boardViewport.zoomed{display:block;overflow:auto}
+#boardViewport.zoomed #board{width:560px;height:560px;min-width:560px}
+.play-panel{overflow:hidden;min-height:0;gap:5px;padding:0}
+.play-panel>.arcade-panel{padding:8px;border-radius:12px}
+.panel-heading{margin-bottom:5px}
+#rackHint,#boardHint{display:none}
+#rack{min-height:0;gap:5px}
+.rack-tile{aspect-ratio:1;max-height:45px}
+#movePreview{min-height:0;display:flex;flex-direction:column}
+#previewWords{min-height:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:10px}
+.word-score{gap:4px;padding:0}
+.word-score strong{font-size:11px;letter-spacing:.5px}
+#previewNote{min-height:0;margin:4px 0;font-size:10px;line-height:1.2}
+#previewScore{font-size:20px}
+#play{min-height:34px;font-size:12px;padding:6px}
+.move-actions{margin-top:5px}
+.move-actions button{min-height:30px;padding:5px 2px}
+.dictionary-panel,.history-panel{flex:none}
+.dictionary-panel[open],.history-panel[open]{position:fixed;z-index:15;inset:auto 12px 12px;max-height:70dvh;overflow:auto;box-shadow:0 0 0 100vmax #050919bd;background:#141a33;padding:16px}
+#message{font-size:10px;padding:4px 8px}
+#result{padding:6px 10px}
+@media(max-width:760px) and (orientation:portrait){
+ .workspace{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:4px;flex:1}
+ .board-top{height:25px;margin:0;flex:none}
+ .play-panel{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+ .rack-panel,#movePreview{grid-column:1/-1}
+ .panel-heading h2{font-size:11px}
+ #rack{max-width:420px;width:100%;gap:6px}
+ .rack-tile{max-height:42px;aspect-ratio:1.15;font-size:22px}
+ #movePreview .panel-heading{position:absolute;right:12px;margin-top:0}
+ #movePreview{position:relative;padding-top:8px}
+ #movePreview .panel-heading h2{display:none}
+ #previewWords{padding-right:60px;min-height:18px;align-items:center}
+ #previewNote{font-size:10px}
+ .scores .score-card{padding:5px 8px}
+ .arcade-top{min-height:34px}
+ #turnLine{min-height:19px}
+ details summary{font-size:10px}
+ .offline-badge{display:none}
+ .cell{font-size:clamp(11px,3.8vw,22px)}
+}
+@media(orientation:landscape) and (max-height:650px){
+ .workspace{grid-template-columns:minmax(0,1fr) minmax(250px,.85fr)}
+ .play-panel{gap:4px;overflow:hidden}
+ .play-panel>.arcade-panel{padding:5px 8px}
+ .board-top{display:none}
+ .rack-tile{max-height:32px;aspect-ratio:1.4;font-size:19px}
+ .panel-heading{margin-bottom:3px}
+ #previewScore{font-size:16px}
+ #previewNote{font-size:9px;margin:2px 0}
+ #play{min-height:28px}
+ .move-actions{margin-top:3px}
+ .move-actions button{min-height:25px}
+ details summary{font-size:10px}
+ .offline-badge{display:none}
+ #turnLine{min-height:16px}
+}

@@ -1,3 +1,8 @@
+# 2.8.1
+
+- Corrected ten omitted two-letter words, including UN, using a reproducible short-word audit. Upgraded existing saves and rooms to the expanded dictionary.
+- Fitted Upwords board, rack and move controls to phone and landscape viewports. Word checker and recent turns open as overlays.
+
 # Changelog
 
 ## 2.8.0 - 2026-10-29

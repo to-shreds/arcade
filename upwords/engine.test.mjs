@@ -307,3 +307,23 @@ test('complete CPU games conserve all tiles, resume exactly, bound history, and 
   assert.ok(largest < 48000, `bounded history keeps a full game below checkpoint cap (${largest})`);
   context.diagnostic(JSON.stringify({ matches, largestSaveBytes: largest }));
 });
+
+test('previous dictionary saves upgrade without changing tiles or scores', () => {
+  const game = createGame({ seed: 42 });
+  const legacy = { ...structuredClone(game), dictionaryId: 'esdb80-us-1e5b7d3-4c74138a7145-s9fe0dbe2' };
+  assert.deepEqual(validateGame(legacy), game);
+  assert.equal(legacy.dictionaryId, 'esdb80-us-1e5b7d3-4c74138a7145-s9fe0dbe2');
+  assert.throws(() => validateGame({ ...game, dictionaryId: 'unknown' }));
+});
+
+test('UN is legal both as an opening and a perpendicular cross word', () => {
+  let game = withRack(createGame({ seed: 42 }), ['U', 'N']);
+  assert.ok(previewMove(game, placements(['U', 'N'], 4, 4)).valid);
+  game = withRack(createGame({ seed: 42 }), ['G', 'U', 'I', 'L', 'T']);
+  game = applyAction(game, { type: 'play', placements: placements(['G', 'U', 'I', 'L', 'T'], 4, 4) });
+  game = withRack(game, ['T', 'O', 'N']);
+  // Screenshot reproduction: TON below GUILT forms GO and UN.
+  const result = previewMove(game, placements(['T', 'O', 'N'], 5, 3));
+  assert.ok(result.valid, result.error);
+  assert.ok(result.words.some(word => word.word === 'UN'));
+});

@@ -457,9 +457,9 @@ function rules() {
     'Swap 1 exchanges one tile and uses your turn. Pass keeps your tiles. The game ends when both players pass consecutively, or a player empties their rack with an empty bag. Each unused rack tile costs 5 points.',
     'Your local game and unplayed move save automatically. Two players sharing one device pass it behind a privacy screen. Internet and Nearby rooms keep the other player’s rack private. Home keeps your room seat; Leave ends your room.'
   ]) list.append(node('li', text));
-  const dictionary = node('p', `${DICTIONARY_INFO.name} has ${DICTIONARY_INFO.wordCount.toLocaleString()} words from the English Speller Database, using American English. It includes listed plurals and other inflections. Entries marked as abbreviations, names or fragments, and entries with spaces or punctuation, are filtered out. This is Arcade’s fixed word list, not an official tournament lexicon.`);
+  const dictionary = node('p', `${DICTIONARY_INFO.name} has ${DICTIONARY_INFO.wordCount.toLocaleString()} words from the English Speller Database, using American English. It includes listed plurals and other inflections. The list includes reviewed two-letter game words, including UN. Abbreviations, names, fragments, spaces and punctuation are filtered out. This is Arcade’s fixed word list, not an official tournament lexicon.`);
   const alerts = mp?.getTurnAlertSettings?.();
-  modal('How to play', [list, node('h3', 'The word list'), dictionary, node('p', 'Check a word below your rack at any time. No Internet lookup is needed. Both players use the same fixed list; a mismatched version asks you to update Arcade.'), node('p', 'Keyboard: choose a board square, use arrow keys to move, and type a rack letter to place it. Q selects Qu. Backspace returns an unplayed tile.')], [
+  modal('How to play', [list, node('h3', 'The word list'), dictionary, node('p', 'Open Check a word at any time. No Internet lookup is needed. Both players use the same fixed list; a mismatched version asks you to update Arcade.'), node('p', 'Keyboard: choose a board square, use arrow keys to move, and type a rack letter to place it. Q selects Qu. Backspace returns an unplayed tile.')], [
     { label: 'Got it', style: 'gold', run: closeModal },
     { label: preferences.sound ? 'Mute tile sounds' : 'Enable tile sounds', run: () => { preferences.sound = !preferences.sound; write('arcade.upwords.sound.v1', preferences.sound); rules(); } },
     { label: alerts?.soundEnabled ? 'Mute turn ding' : 'Enable turn ding', run: () => { mp?.setTurnSoundEnabled(!alerts?.soundEnabled); rules(); } },
@@ -514,3 +514,13 @@ $('joinCode').value = code; if (code || query.get('online') === '1') { $('mode')
 updateSetup(); render();
 mp?.onStatus(updateTransport); if (mp) mp.ready().then(updateTransport).catch(() => message('The Arcade connection is not ready. Local play is available.', true));
 if (save) save.register({ id: 'upwords', title: 'Upwords', version: 1, capture, restore, meaningful: () => !!localGame || save.hasSave(), summary: () => localGame ? `${localGame.players[0].name} ${localGame.players[0].score} · ${localGame.players[1].name} ${localGame.players[1].score}. Turn ${localGame.moveNumber + 1}.` : '', startFresh: showSetup });
+
+// Size the board from its actual allotted space, including room/result banners.
+function fitBoard() {
+  const viewport = $('boardViewport');
+  if (!viewport.clientWidth || !viewport.clientHeight) return;
+  viewport.style.setProperty('--board-size', `${Math.max(1, Math.min(viewport.clientWidth - 8, viewport.clientHeight - 8))}px`);
+}
+if (typeof ResizeObserver !== 'undefined') new ResizeObserver(fitBoard).observe($('boardViewport'));
+window.addEventListener('resize', fitBoard);
+fitBoard();

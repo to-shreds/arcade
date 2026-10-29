@@ -22,6 +22,8 @@ from pathlib import Path
 
 SOURCE_COMMIT = "1e5b7d3a72f47a71da5d28686c1dd4b397178485"
 SOURCE_URL = "https://github.com/en-wl/wordlist"
+SHORT_WORDS = "AA AB AD AE AG AH AI AL AM AN AR AS AT AW AX AY BA BE BI BO BY DA DE DO ED EF EH EL EM EN ER ES ET EW EX FA FE GI GO HA HE HI HM HO ID IF IN IS IT JO KA KI LA LI LO MA ME MI MM MO MU MY NA NE NO NU OD OE OF OH OI OK OM ON OP OR OS OW OX OY PA PE PI PO QI RE SH SI SO TA TE TI TO UH UM UN UP US UT WE WO XI XU YA YE YO ZA".split()
+SHORT_SOURCE = "https://scrabble.merriam.com/2-letter-words"
 QUERY = [
     "word-list", "80", "A", "1",
     "--wo-poses=abbr,s,pre,suf,wp,we,x",
@@ -64,6 +66,8 @@ def build(source):
                     and len(word.replace("qu", "#")) <= 10})
     if not words or len(words) < 50000:
         raise SystemExit(f"Unexpected dictionary size: {len(words)}")
+    # Reviewed standalone short-word senses omitted or misclassified by ESDB.
+    words = sorted(set(words) | set(SHORT_WORDS))
     word_bytes = ("\n".join(words) + "\n").encode("ascii")
     digest = hashlib.sha256(word_bytes).hexdigest()
     # A lone S is forbidden only when it forms a plural. Use source lemma links
@@ -88,6 +92,8 @@ def build(source):
         "source": "English Speller Database (ESDB, formerly SCOWL)",
         "sourceUrl": SOURCE_URL,
         "sourceCommit": SOURCE_COMMIT,
+        "shortWordReference": SHORT_SOURCE,
+        "shortWordAudit": SHORT_WORDS,
         "sourceLicenseUrl": f"{SOURCE_URL}/blob/{SOURCE_COMMIT}/Copyright",
         "size": 80,
         "spelling": "American English",
@@ -112,6 +118,7 @@ def build(source):
             "Exclude Moby-only and acronym-source entries; retain words supported by another permitted source.",
             "Remove diacritics using ESDB's deaccent filter, then accept lowercase ASCII entries only.",
             "Keep words of 2-11 letters fitting 10 squares when QU occupies one square.",
+            "Supplement with reviewed standalone two-letter game words; see shortWordReference and shortWordAudit.",
             "Do not automatically derive plurals, conjugations or new words.",
             "This is Arcade's published word list, not an official Upwords or Scrabble tournament lexicon.",
         ],

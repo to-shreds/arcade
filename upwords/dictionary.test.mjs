@@ -5,12 +5,12 @@ import { readFile } from 'node:fs/promises';
 import { WORDS, isWord, DICTIONARY_ID, DICTIONARY_INFO, PLURAL_S_WORDS, isSimpleSPlural } from './dictionary.js';
 
 const SOURCE_COMMIT = '1e5b7d3a72f47a71da5d28686c1dd4b397178485';
-const WORD_HASH = '4c74138a7145601458d204077391fef59430e4d1a06a29d00cecbe5f0ea32773';
+const WORD_HASH = 'e4bdef7d98f32f5f75989a1f7022df2add8d937d1c8c8c01b781420806642b53';
 const PLURAL_HASH = '9fe0dbe28383c3b3b7b9f7aed6dc23be1d7b897251d4aab7801319e8b0e35b0f';
 const hashList = words => createHash('sha256').update(words.join('\n') + '\n').digest('hex');
 
 test('published dictionary and plural data match the pinned multiplayer identity', () => {
-  assert.equal(WORDS.length, 127350);
+  assert.equal(WORDS.length, 127360);
   assert.equal(PLURAL_S_WORDS.length, 31034);
   assert.equal(hashList(WORDS), WORD_HASH);
   assert.equal(hashList(PLURAL_S_WORDS), PLURAL_HASH);
@@ -18,7 +18,7 @@ test('published dictionary and plural data match the pinned multiplayer identity
   assert.equal(DICTIONARY_INFO.simpleSPluralSha256, PLURAL_HASH);
   assert.equal(DICTIONARY_INFO.wordCount, WORDS.length);
   assert.equal(DICTIONARY_INFO.simpleSPluralCount, PLURAL_S_WORDS.length);
-  assert.equal(DICTIONARY_ID, 'esdb80-us-1e5b7d3-4c74138a7145-s9fe0dbe2');
+  assert.equal(DICTIONARY_ID, 'esdb80-us-1e5b7d3-e4bdef7d98f3-s9fe0dbe2');
   assert.equal(DICTIONARY_INFO.id, DICTIONARY_ID);
 });
 
@@ -99,4 +99,8 @@ test('generated metadata and accompanying license retain exact source attributio
   assert.match(license, /Alan Beale/);
   assert.ok(module.includes(license.trim()), 'The playable module carries the full applicable notice');
   assert.ok(builder.includes(SOURCE_COMMIT) && builder.includes('--check'), 'The pinned data has a reproducible build/check command');
+});
+
+test('all reviewed two-letter game words are playable', () => {
+ for (const word of DICTIONARY_INFO.shortWordAudit) assert.ok(isWord(word), word);
 });

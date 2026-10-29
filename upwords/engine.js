@@ -1,5 +1,8 @@
 import { WORDS, isWord, isSimpleSPlural, DICTIONARY_ID } from './dictionary.js';
 
+// The previous list is a strict subset; old saves can be safely upgraded.
+export const compatibleDictionary = id => id === DICTIONARY_ID || id === 'esdb80-us-1e5b7d3-4c74138a7145-s9fe0dbe2';
+
 export const BOARD_SIZE = 10;
 export const RACK_SIZE = 7;
 export const MAX_HEIGHT = 5;
@@ -87,7 +90,7 @@ function allLines(board) {
   return lines;
 }
 function checkPreviewContext(game, seat) {
-  requireValue(plainObject(game) && game.schema === 1 && game.dictionaryId === DICTIONARY_ID, 'This game uses a different word list. Update Arcade to continue.');
+  requireValue(plainObject(game) && game.schema === 1 && compatibleDictionary(game.dictionaryId), 'This game uses a different word list. Update Arcade to continue.');
   requireValue(seatOK(seat) && seat === game.turn, 'It is the other player’s turn.');
   requireValue(!game.finished, 'This game has finished.');
   requireValue(Array.isArray(game.board) && game.board.length === BOARD_SIZE && game.board.every(row => Array.isArray(row) && row.length === BOARD_SIZE && row.every(cell => Array.isArray(cell) && cell.length <= MAX_HEIGHT && cell.every(tile => TOKENS.has(tile)))), 'The board is invalid.');
@@ -176,7 +179,7 @@ export function applyAction(game, action, seat = game?.turn) {
     requireValue(game.bag.length > 0, 'There are no tiles left to exchange.');
     requireValue(Number.isInteger(action.rackIndex) && action.rackIndex >= 0 && action.rackIndex < game.players[seat].rack.length, 'Choose one tile to exchange.');
   }
-  const after = clone(game), player = after.players[seat];
+  const after = { ...clone(game), dictionaryId: DICTIONARY_ID }, player = after.players[seat];
   const record = { type: action.type, seat, placements: preview?.placements || [], words: preview?.words || [], score: preview?.score || 0, bonus: preview?.bonus || 0, moveNumber: game.moveNumber + 1 };
   if (action.type === 'play') {
     for (const tile of preview.placements) after.board[tile.row][tile.col].push(tile.tile);
@@ -216,7 +219,7 @@ function checkRecord(record, game) {
   else requireValue(record.placements.length === 0 && record.words.length === 0 && record.score === 0 && record.bonus === 0, 'Invalid saved non-play action.');
 }
 function checkCommon(game, publicSeat, isPublic) {
-  requireValue(plainObject(game) && game.schema === 1 && game.dictionaryId === DICTIONARY_ID, 'This save uses a different word list or game format.');
+  requireValue(plainObject(game) && game.schema === 1 && compatibleDictionary(game.dictionaryId), 'This save uses a different word list or game format.');
   requireValue(seatOK(game.starter) && seatOK(game.turn) && validInt(game.moveNumber, 0, 1000000) && game.turn === (game.starter + game.moveNumber) % 2, 'Invalid saved turn.');
   requireValue(validInt(game.passes, 0, 2) && typeof game.finished === 'boolean' && (game.winner === null || seatOK(game.winner)), 'Invalid saved result.');
   requireValue(game.finished ? ['rack-empty', 'passes'].includes(game.endReason) : game.endReason === null && game.winner === null && game.passes < 2, 'Invalid saved lifecycle.');
@@ -313,7 +316,7 @@ export function validateGame(game) {
   requireValue(Array.isArray(game.bag) && game.bag.every(tile => TOKENS.has(tile)), 'Invalid saved tile bag.');
   for (const tile of game.bag) counts[tile]++;
   requireValue(Object.keys(TILE_COUNTS).every(tile => counts[tile] === TILE_COUNTS[tile]), 'The saved letter distribution is invalid.');
-  return clone(game);
+  return { ...clone(game), dictionaryId: DICTIONARY_ID };
 }
 
 function safeRecord(record) {
@@ -326,7 +329,7 @@ function safeRecord(record) {
 }
 export function publicGame(game, seat = null) {
   return {
-    schema: game.schema, dictionaryId: game.dictionaryId, starter: game.starter,
+    schema: game.schema, dictionaryId: DICTIONARY_ID, starter: game.starter,
     board: game.board.map(row => row.map(cell => cell.slice())),
     players: game.players.map((player, index) => ({ name: player.name, score: player.score, rackCount: player.rack.length, ...(seatOK(seat) && seat === index ? { rack: player.rack.slice() } : {}) })),
     bagCount: game.bag.length, turn: game.turn, moveNumber: game.moveNumber, passes: game.passes,
@@ -339,7 +342,7 @@ export function validatePublicGame(game, seat = null) {
   let size; try { size = JSON.stringify(game).length; } catch { throw new Error('Invalid room game.'); }
   requireValue(size <= 48000, 'The room game is too large.');
   checkCommon(game, seatOK(seat) ? seat : null, true);
-  return clone(game);
+  return { ...clone(game), dictionaryId: DICTIONARY_ID };
 }
 
 // Sorted prefix ranges avoid allocating a large object trie on mobile devices.

@@ -229,7 +229,7 @@ try {
     try {
       await localStart(page);
       await page.locator('.dictionary-panel summary').click();
-      for (const [word, valid] of [['CAT', true], ['PLAYED', true], ['XYZNOTWORD', false], ['LONDON', false]]) {
+      for (const [word, valid] of [['UN', true], ['AL', true], ['OK', true], ['CAT', true], ['PLAYED', true], ['XYZNOTWORD', false], ['LONDON', false]]) {
         await page.locator('#wordCheck').fill(word); await page.locator('#wordCheck').press('Enter');
         const result = await page.locator('#wordResult').innerText();
         assert.ok(result.includes(word), 'Dictionary feedback identifies the checked word');
@@ -356,12 +356,12 @@ try {
         await localStart(page);
         const before = await state(page);
         const geometry = await page.evaluate(() => {
-          const bounds = element => { const r = element.getBoundingClientRect(); return { width: r.width, height: r.height, left: r.left, right: r.right }; };
+          const bounds = element => { const r = element.getBoundingClientRect(); return { width: r.width, height: r.height, left: r.left, right: r.right, top: r.top, bottom: r.bottom }; };
           return { width: innerWidth, scrollWidth: document.documentElement.scrollWidth, board: bounds(document.querySelector('#board')), rack: bounds(document.querySelector('#rack')), controls: [...document.querySelectorAll('#play,#undo,#clear,#exchange,#pass,#zoom')].map(element => ({ id: element.id, ...bounds(element) })) };
         });
         assert.ok(geometry.scrollWidth <= geometry.width + 1, 'No horizontal document overflow');
-        assert.ok(geometry.board.width >= (viewport.width > viewport.height && viewport.height < 650 ? 210 : 270) && Math.abs(geometry.board.width - geometry.board.height) < 2, 'Board remains square and legible');
-        for (const control of geometry.controls) assert.ok(control.width > 0 && control.height >= 24 && control.left >= -1 && control.right <= viewport.width + 1, `Control ${control.id} fits the screen`);
+        assert.ok(geometry.board.width >= 140 && Math.abs(geometry.board.width - geometry.board.height) < 2, 'Board remains square and legible');
+        for (const control of geometry.controls) assert.ok(control.width > 0 && control.height >= 24 && control.left >= -1 && control.right <= viewport.width + 1 && control.top >= 0 && control.bottom <= viewport.height + 1, `Control ${control.id} fits the screen`);
         await screenshot(page, `playing-${viewport.width}x${viewport.height}`);
         await page.locator('#zoom').click();
         assert.equal(await page.locator('#zoom').getAttribute('aria-pressed'), 'true');
