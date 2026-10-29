@@ -7,7 +7,7 @@ dictionary, computer and pass-and-play modes, and authoritative Internet/Nearby
 rooms with private racks. Existing game code, saves and transport behavior are
 preserved. The enabled catalog has 47 activities.
 
-## Verified before browser preflight
+## Verified rules, data and authority
 
 - Sixteen engine tests cover independent rule/scoring examples, stacks,
   crosswords, Qu, seven-tile bonuses, plurals, exchanges, passes and deductions.
@@ -26,13 +26,49 @@ preserved. The enabled catalog has 47 activities.
 - All 109 shared multiplayer transport checks pass.
 - The production Worker build passes Wrangler's deployment dry run.
 
-## Pending preflight
+## Real browser preflight
 
-Real browser gameplay, native browser saves/reload, mobile layouts, private
-two-client rooms and actual Nearby RTC must pass the dedicated preflight before
-publication. Local Chromium downloads returned an unavailable-site document
-instead of a browser archive. The separate managed browser cannot reach this
-executor's localhost. Neither limitation is counted as a passed browser check.
+All steps passed in [preflight run 40965998912](https://github.com/to-shreds/arcade/actions/runs/40965998912).
+Tested source: `3f66791c43677902db53089a485c1a25639bf2a5`.
+The final promotion changes only this report and `HANDOFF.md`; every runtime
+file is unchanged from the verified source.
 
-No physical Android/iOS device test is claimed. Final per-commit CI and deployment
-results will be recorded here and in ProjectStatus after verification.
+- All nine Upwords browser scenarios passed with no JavaScript errors. Real
+  rack and board clicks verify word checking, invalid previews, Undo/Clear,
+  shuffle, native IndexedDB save/reload, exact draft restoration, concealed
+  handoffs, a scored stacking move, computer turns, exchanges and end deductions.
+- Desktop 1440x900, portrait 390x844 and 320x568, and landscape 844x390 passed
+  layout, keyboard and zoom checks. Captured screenshots were visually reviewed.
+- Two Internet clients used the real Worker/Durable Object fixture. They
+  received only their own racks, agreed on turns and scores, reconnected,
+  resumed after native reload and restored their separate local draft on exit.
+- Two real Nearby RTC peers played four turns with public networking disabled.
+  Private rack delivery and synchronized authority state passed. This case was
+  executed successfully, not marked blocked or skipped.
+- All 11 catalog browser scenarios passed. The existing persistent shell passed
+  at all four sizes, including launch, Back/Forward, Home, settings and Escape.
+- The browser downloaded a complete verified offline snapshot and reloaded it
+  offline, including catalog tiles, shared scripts, Paint, recent history and
+  search. Snapshot `2.8.0+20261029.1` has 386 files and 20,094,063 bytes; every
+  runtime hash passed.
+
+The first preflight exposed a test timing race: its handoff assertion checked
+the new model before the deliberately awaited native save and screen render
+finished. The corrected test waits for that completion, retaining all privacy
+and exact-turn assertions. No runtime behavior was changed for that correction.
+
+Before preflight, client review also fixed concealed restored drafts, delayed
+acknowledgments after newer room revisions, stale move dialogs, and canceled
+network entry. Focused client regression tests cover those boundaries.
+
+## Publication and practical limits
+
+The previous whole-Arcade run for 2.7.3, [38405115418](https://github.com/to-shreds/arcade/actions/runs/38405115418),
+completed successfully before this release. The canonical ProjectStatus entry
+records the final 2.8.0 main commit, Pages and Worker deployments, downloadable
+archive, and supplementary whole-Arcade run. Do not infer publication from
+the version number alone.
+
+The managed local environment could not download Chromium or expose its
+localhost to the separate browser. Served-browser verification therefore ran
+in GitHub Actions. No physical Android/iOS hardware test is claimed.

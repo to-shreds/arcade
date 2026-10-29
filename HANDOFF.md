@@ -7,10 +7,13 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
-Release 2.8.0 adds Upwords in `upwords/`. Implementation is complete and local
-engine/authority checks pass; real browser preflight and publication are still
-pending at this preparation point. Consult `docs/arcade-stress-test-2.8.0.md`
-and ProjectStatus for final readiness before claiming deployment.
+Release 2.8.0 adds Upwords in `upwords/`, the 47th enabled activity. Dedicated
+preflight run `40965998912` passed all rule, authority, client, real browser,
+catalog and offline-shell checks on `3f66791c43677902db53089a485c1a25639bf2a5`.
+Actual Internet rooms and offline Nearby RTC both passed. The final promotion
+changes only this handoff and the verification report. Consult
+`docs/arcade-stress-test-2.8.0.md` and ProjectStatus for the final main commit,
+deployment results and supplementary whole-Arcade CI status.
 
 `upwords/engine.js` is the source for local and authoritative play. The fixed
 Arcade English list has 127,350 words and ESDB plural metadata. Keep dictionary
