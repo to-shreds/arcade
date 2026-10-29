@@ -17,9 +17,10 @@ list. Unknown dictionary versions remain rejected.
 Upwords now sizes the board from its actual allocated viewport using a resize
 observer. Keep the board, rack and all move buttons visible without scrolling.
 The word checker and history use optional overlays; deliberate Zoom can scroll
-inside the board. Preserve draft privacy and keyboard controls. Dedicated
-browser preflight must pass before publication; final results are recorded in
-ProjectStatus and docs/arcade-stress-test-2.8.1.md.
+inside the board. Preserve draft privacy and keyboard controls. Dedicated browser preflight 40970825545 passed all ten scenarios on
+8bcc5bcf0d0fd601ffbe70916b717a1ca5ff859a, including five viewport sizes and
+real Internet/Nearby peers. Screenshots were visually reviewed. Publication
+results are recorded in ProjectStatus and docs/arcade-stress-test-2.8.1.md.
 
 Release 2.8.0 adds Upwords in `upwords/`, the 47th enabled activity. Dedicated
 preflight run `40965998912` passed all rule, authority, client, real browser,
