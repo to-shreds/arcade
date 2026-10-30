@@ -7,6 +7,13 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+The 2.8.4 menu update was explicitly approved for committing, merging and
+publication. PR #3 is merged as `2d4830f02fc7b1ce53ace7ca5e7c74f7837a15f4`.
+No user-approval step remains for this request. The verified download is already
+saved; do not rebuild it merely for publication. Its 387 runtime files remain
+unchanged by continuation documentation. Final deployment, current CI and
+artifact identities are recorded in ProjectStatus.
+
 Release 2.8.4 removes the floating multiplayer globe from all 34 shared
 activities. `multiplayer/shared-activity.js` explicitly maps native menus and
 adds an Internet / Multiplayer entry. Where no accessible in-game menu existed,
