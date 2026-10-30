@@ -7,6 +7,21 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+Release 2.8.2 gives Upwords more board space with a single compact action row,
+small scores and no persistent rules/empty preview. Turn announcements remain
+available to screen readers and active score styling shows the current player.
+Zoom moved to the header. Rules remain in Help.
+
+`upwords/tile-drag.js` owns mouse/touch/pen gestures; `game.js` owns drop legality.
+Only rack indices and unplayed gold tiles move. Keep physical rack indices,
+private draft/save behavior, authority intents and scores unchanged. A drag
+must remain tied to the same actor, board, rack and draft, and must cancel on
+handoff, turn change, modal, pause, lost capture or viewport change. Never mutate
+a draft during pointer movement or let a compatibility click take back a drop.
+The previous whole-Arcade 2.8.1 run 40971124102 passed both jobs.
+2.8.2 browser verification/publication details belong in ProjectStatus and
+docs/arcade-stress-test-2.8.2.md.
+
 Release 2.8.1 corrects ten omitted standalone two-letter words, including UN.
 The base ESDB list is retained and the reviewed 107-word short-word audit is
 recorded in the generator and dictionary metadata. The old dictionary is a

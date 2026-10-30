@@ -43,9 +43,13 @@ function mapping({ api }) {
   };
 }
 
-async function pageFor(viewport = { width: 1440, height: 900 }) {
+async function pageFor(viewport = { width: 1440, height: 900 }, seed = null) {
   const context = await browser.newContext({ viewport, hasTouch: viewport.width < 500 });
   await context.addInitScript(mapping, { api });
+  if (seed !== null) await context.addInitScript(seed => {
+    const original = crypto.getRandomValues.bind(crypto);
+    crypto.getRandomValues = array => array instanceof Uint32Array && array.length === 1 ? (array[0] = seed, array) : original(array);
+  }, seed);
   const page = await context.newPage();
   page.setDefaultTimeout(15000);
   page.on('pageerror', error => errors.push({ viewport, message: error.message }));
@@ -136,6 +140,26 @@ async function place(page, placements) {
   }
   assert.deepEqual((await debug(page)).placements, placements, 'Clicked rack indices and board squares form the exact draft');
 }
+async function dragTile(page, from, to, input = 'mouse', cancel = false) {
+  const center = async selector => {
+    const rect = await page.locator(selector).boundingBox();
+    assert.ok(rect, `Drag target ${selector} is visible`);
+    return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 };
+  };
+  const start = await center(from), end = await center(to);
+  const cdp = input === 'touch' ? await page.context().newCDPSession(page) : null;
+  const touch = (type, point) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: point ? [{ ...point, id: 1, radiusX: 6, radiusY: 6 }] : [] });
+  if (cdp) await touch('touchStart', start);
+  else { await page.mouse.move(start.x, start.y); await page.mouse.down(); }
+  for (let step = 1; step <= 10; step++) {
+    const point = { x: start.x + (end.x - start.x) * step / 10, y: start.y + (end.y - start.y) * step / 10 };
+    if (cdp) await touch('touchMove', point); else await page.mouse.move(point.x, point.y);
+  }
+  assert.equal(await page.locator('.tile-drag-ghost').count(), 1, 'A real pointer gesture lifts one tile');
+  if (cdp) { await touch(cancel ? 'touchCancel' : 'touchEnd'); await cdp.detach(); }
+  else { if (cancel) await page.keyboard.press('Escape'); await page.mouse.up(); }
+  await page.locator('.tile-drag-ghost').waitFor({ state: 'detached' });
+}
 async function confirmDialog(page, action) {
   if (!await page.locator('#modal').isVisible()) return;
   const buttons = page.locator('#modalActions button');
@@ -145,12 +169,15 @@ async function confirmDialog(page, action) {
   }
   throw new Error(`Expected ${action} confirmation, found: ${await page.locator('#modalActions').innerText()}`);
 }
-async function perform(page, action = null) {
+async function perform(page, action = null, useDrag = false) {
   await showRack(page); await settled(page);
   action ||= await chooseAction(page);
   const before = await state(page);
   if (action.type === 'play') {
-    await place(page, action.placements);
+    if (useDrag) {
+      for (const tile of action.placements) await dragTile(page, `#rack [data-rack-index="${tile.rackIndex}"]`, `#board [data-row="${tile.row}"][data-col="${tile.col}"]`);
+      assert.deepEqual((await debug(page)).placements, action.placements, 'Drag inputs build the exact move intent');
+    } else await place(page, action.placements);
     assert.equal(await page.locator('#play').isDisabled(), false, 'A legal preview enables Play');
     await page.locator('#play').click();
   } else if (action.type === 'exchange') {
@@ -267,7 +294,8 @@ try {
       assert.equal(await page.locator('#handoff').isVisible(), true, 'Restoring a hotseat game requires the privacy handoff');
       assert.equal(await page.locator('#board .placed').count(), 0, 'The saved unplayed word is concealed until the player reveals their rack');
       assert.equal(await page.locator('#rack').innerText().then(text => /[A-Z]/i.test(text)), false, 'Restored rack letters are absent behind the handoff');
-      assert.equal(await page.locator('#previewWords').innerText(), 'Place your tiles to see every word and its score.', 'The saved word is absent from the concealed preview');
+      assert.equal(await page.locator('#previewWords').textContent(), '', 'The saved word is absent from the concealed preview');
+      assert.equal(await page.locator('#draftFeedback').isVisible(), false, 'Empty or concealed previews take no screen space');
       assert.equal(await page.locator('#play').isDisabled(), true, 'A concealed restored draft cannot be submitted');
       await screenshot(page, 'restored-draft-curtain');
       await showRack(page); await settled(page);
@@ -298,6 +326,62 @@ try {
       await screenshot(page, 'hotseat-stacked');
       return { exactReload: true, draftRestored: true, privacyCurtain: true, stackedMove: stack.after.lastMove };
     } finally { await screenshot(page, 'last-hotseat').catch(() => {}); await context.close(); }
+  });
+
+  for (const input of ['mouse', 'touch']) await run(`${input} dragging, cancellation, rearrangement, reload and actual stacking`, async () => {
+    const { page, context } = await pageFor({ width: 390, height: 640 }, 4);
+    const rack = index => `#rack [data-rack-index="${index}"]`, cell = (row, col) => `#board [data-row="${row}"][data-col="${col}"]`;
+    try {
+      await localStart(page);
+      const initial = await state(page), index = initial.players[0].rack.indexOf('QU');
+      assert.ok(index >= 0, 'The physical rack contains Qu and duplicate letters');
+      await dragTile(page, rack(index), cell(4, 4), input);
+      assert.deepEqual((await debug(page)).placements, [{ row: 4, col: 4, rackIndex: index }]);
+      assert.equal((await debug(page)).selected, null, 'The release does not cause an extra selection or take-back');
+      await dragTile(page, cell(4, 4), cell(4, 5), input);
+      const draft = (await debug(page)).placements;
+      assert.deepEqual(draft, [{ row: 4, col: 5, rackIndex: index }]);
+      await dragTile(page, rack(1), cell(4, 5), input);
+      assert.deepEqual((await debug(page)).placements, draft, 'Dropping onto a draft tile preserves both physical tiles');
+      await dragTile(page, rack(2), '#help', input);
+      assert.deepEqual((await debug(page)).placements, draft, 'An outside drop restores the original draft');
+      assert.equal(await page.locator('#modal').isVisible(), false, 'Releasing over Help cannot accidentally click it');
+      await dragTile(page, rack(2), cell(4, 6), input, true);
+      assert.deepEqual((await debug(page)).placements, draft, 'Escape or native touch cancellation leaves the draft intact');
+      if (input === 'touch') {
+        const box = await page.locator(rack(3)).boundingBox();
+        await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
+      } else await page.locator(rack(3)).click();
+      assert.equal((await debug(page)).selected, 3, 'The next real tap after cancellation works');
+      await page.locator(cell(4, 6)).click();
+      await dragTile(page, cell(4, 5), rack(index), input);
+      assert.deepEqual((await debug(page)).placements, [{ row: 4, col: 6, rackIndex: 3 }]);
+      const oldOrder = (await capture(page)).rackOrder;
+      await dragTile(page, rack(0), rack(3), input);
+      const changedOrder = (await capture(page)).rackOrder;
+      assert.notDeepEqual(changedOrder, oldOrder, 'Rack drag changes display order');
+      assert.deepEqual([...changedOrder].sort(), [...oldOrder].sort(), 'Rack drag preserves each physical index exactly once');
+      assert.deepEqual(await state(page), initial, 'No drag consumes tiles, scores, bag entries or turns');
+      const savedDraft = (await debug(page)).placements;
+      await page.evaluate(() => ArcadeSave.saveNow());
+      await page.reload(); await page.waitForFunction(() => !!window.UpwordsGame);
+      await page.locator('.arcade-save-primary').click(); await page.waitForFunction(() => !!UpwordsGame.getState());
+      assert.equal(await page.locator('#handoff').isVisible(), true);
+      assert.equal(await page.locator('#board .placed').count(), 0, 'Reloaded dragged tiles stay concealed');
+      await showRack(page);
+      assert.deepEqual((await debug(page)).placements, savedDraft);
+      assert.deepEqual((await capture(page)).rackOrder, changedOrder, 'Native reload restores dragged rack order');
+      await page.locator('#clear').click();
+      const opening = await openingWithStack(page);
+      assert.equal(opening.type, 'play');
+      await perform(page, opening, true); await showRack(page);
+      const stack = await chooseAction(page, true), before = await state(page);
+      assert.equal(stack.type, 'play');
+      assert.ok(stack.placements.some(p => before.board[p.row][p.col].length > 0));
+      await perform(page, stack, true); await showRack(page);
+      await screenshot(page, `drag-${input}`);
+      return { realPointer: input, quAndDuplicates: true, canceledSafely: true, exactReload: true, stacked: true };
+    } finally { await screenshot(page, `last-drag-${input}`).catch(() => {}); await context.close(); }
   });
 
   await run('computer responds once and returns controls', async () => {
@@ -362,6 +446,11 @@ try {
         assert.ok(geometry.scrollWidth <= geometry.width + 1, 'No horizontal document overflow');
         assert.ok(geometry.board.top >= 0 && geometry.board.bottom <= viewport.height + 1, 'The whole board fits vertically');
         assert.ok(await page.locator('.arcade-app').evaluate(e => e.scrollHeight <= e.clientHeight + 1), 'The play screen requires no vertical scrolling');
+        if (viewport.width < 500) assert.ok(geometry.board.width >= viewport.width - 24, 'Portrait board uses almost the full screen width');
+        assert.equal(await page.locator('#draftFeedback').isVisible(), false, 'No persistent rules or empty preview block');
+        assert.equal(await page.locator('.board-top').count(), 0, 'The rules row does not consume board space');
+        const actionRow = await page.locator('.move-actions').evaluate(e => [...e.children].map(b => b.getBoundingClientRect().top));
+        assert.ok(Math.max(...actionRow) - Math.min(...actionRow) <= 3, 'Play, Swap, Pass, Undo and Clear share one compact row');
         assert.ok(geometry.board.width >= 140 && Math.abs(geometry.board.width - geometry.board.height) < 2, 'Board remains square and legible');
         for (const control of geometry.controls) assert.ok(control.width > 0 && control.height >= 24 && control.left >= -1 && control.right <= viewport.width + 1 && control.top >= 0 && control.bottom <= viewport.height + 1, `Control ${control.id} fits the screen`);
         await screenshot(page, `playing-${viewport.width}x${viewport.height}`);
@@ -406,7 +495,7 @@ try {
         await Promise.all([settled(a), settled(b)]);
         const current = await state(a), player = seats[0] === current.turn ? a : b, observer = player === a ? b : a;
         assert.equal(await observer.locator('#play').isDisabled(), true, 'The other player cannot submit a turn');
-        await perform(player, await chooseAction(player, true));
+        await perform(player, await chooseAction(player, true), true);
         await sameBoard(player, observer);
         scores.push((await state(a)).players.map(value => value.score));
       }

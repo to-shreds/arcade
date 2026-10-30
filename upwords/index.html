@@ -13,7 +13,7 @@
   <header class="arcade-top">
     <button id="home" class="arcade-btn arcade-home" aria-label="Arcade home">🏠<span class="home-label">Arcade</span></button>
     <h1 class="arcade-title">Upwords</h1>
-    <div class="arcade-actions"><button id="newGame" class="arcade-btn" aria-label="New game">↻</button><button id="help" class="arcade-btn" aria-label="Rules and settings">?</button></div>
+    <div class="arcade-actions"><button id="zoom" class="arcade-btn" aria-label="Enlarge board" aria-pressed="false" title="Enlarge board">⤢</button><button id="newGame" class="arcade-btn" aria-label="New game">↻</button><button id="help" class="arcade-btn" aria-label="Rules and settings">?</button></div>
   </header>
   <div id="roomBar" hidden><span id="connection">Connecting</span><button id="roomCode" class="arcade-btn compact" title="Copy room code"></button><button id="invite" class="arcade-btn compact" hidden>Invite</button><button id="leave" class="arcade-btn compact">Leave</button></div>
   <section class="scores" aria-label="Player scores">
@@ -21,27 +21,21 @@
     <div class="bag-info"><strong id="bagCount">86</strong><span>in bag</span></div>
     <div id="score1" class="score-card"><span class="player-dot"></span><span id="name1" class="player-name">Computer</span><strong id="points1">0</strong><small id="tiles1">7 tiles</small></div>
   </section>
-  <div id="turnLine" role="status"><span id="turnDot"></span><strong id="turnText">Build a word. Stack a new idea.</strong><span id="turnNumber"></span></div>
+  <div id="turnLine" class="sr-only" role="status"><span id="turnDot"></span><strong id="turnText">Build a word. Stack a new idea.</strong><span id="turnNumber"></span></div>
   <p id="message" role="alert" hidden></p>
   <section id="result" class="arcade-panel" hidden><div><h2 id="resultTitle"></h2><p id="resultText"></p></div><button id="playAgain" class="arcade-btn gold">Play again</button><span id="rematchNote"></span></section>
   <div class="workspace">
     <section class="board-area" aria-label="Playing board">
-      <div class="board-top"><span><b>10 × 10</b> · Stack up to 5</span><button id="zoom" class="arcade-btn compact" aria-label="Enlarge board" aria-pressed="false">＋ Zoom</button></div>
       <div id="boardViewport"><div id="board" role="grid" aria-label="Upwords board, 10 rows and 10 columns"></div></div>
-      <p id="boardHint">Start across any of the four marked center squares.</p>
     </section>
     <aside class="play-panel">
       <section class="rack-panel arcade-panel">
-        <div class="panel-heading"><h2 id="rackTitle">Your tiles</h2><button id="shuffle" class="text-button" aria-label="Shuffle rack">⇄ Shuffle</button></div>
+        <div class="panel-heading"><h2 id="rackTitle" class="sr-only">Your tiles</h2><button id="shuffle" class="text-button" aria-label="Shuffle rack" title="Shuffle tiles">⇄</button></div>
         <div id="rack" aria-label="Your letter tiles"></div>
-        <p id="rackHint">Tap a letter, then tap a square. Tap it again to take it back.</p>
       </section>
       <section id="movePreview" class="arcade-panel" aria-label="Move preview">
-        <div class="panel-heading"><h2>This move</h2><strong id="previewScore">0 <small>pts</small></strong></div>
-        <div id="previewWords" aria-live="polite">Place your tiles to see every word and its score.</div>
-        <p id="previewNote"></p>
-        <button id="play" class="arcade-btn gold wide" disabled>Play word</button>
-        <div class="move-actions"><button id="undo" class="arcade-btn compact" disabled>Undo</button><button id="clear" class="arcade-btn compact" disabled>Clear</button><button id="exchange" class="arcade-btn compact">Swap 1</button><button id="pass" class="arcade-btn compact">Pass</button></div>
+        <div id="draftFeedback" hidden><div id="previewWords" aria-live="polite"></div><strong id="previewScore"></strong><p id="previewNote" role="status"></p></div>
+        <div class="move-actions"><button id="undo" class="arcade-btn compact" disabled>Undo</button><button id="clear" class="arcade-btn compact" disabled>Clear</button><button id="play" class="arcade-btn gold" disabled>Play</button><button id="exchange" class="arcade-btn compact">Swap</button><button id="pass" class="arcade-btn compact">Pass</button></div>
       </section>
       <details class="arcade-panel dictionary-panel"><summary>Check a word <span class="offline-badge">OFFLINE</span></summary><form id="wordForm"><label for="wordCheck">English word</label><div class="word-entry"><input id="wordCheck" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. STACK"><button class="arcade-btn compact" type="submit">Check</button></div></form><p id="wordResult" role="status"></p><p id="dictionaryNote"></p></details>
       <details class="arcade-panel history-panel"><summary>Recent turns</summary><ol id="history"><li>Your first word starts the story.</li></ol></details>

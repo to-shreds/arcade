@@ -6,11 +6,16 @@ theme, home navigation, saved-game interface and turn alerts.
 
 ## Playing
 
-Choose a tile, then an empty board square or an existing different letter.
+Drag a tile from your rack to an empty board square or a different existing
+letter. You can also tap a tile and then a square. Drag an unplayed gold tile
+to reposition it or return it to the rack. Drag between rack slots to change
+their display order; this never changes the physical rack or consumes a turn.
 All tiles placed in one turn belong in one row or column. Tap an unplayed tile
 again to take it back, or use Undo/Clear. The preview checks every changed word
 and shows the points before Play commits the turn. Shuffle changes only the
-display order of the rack. The board and move controls fit the viewport. Check a word and Recent turns open as overlays. Zoom optionally enlarges the board within a scrollable area.
+display order of the rack. The board and move controls fit the viewport. Scores and actions are compact;
+persistent rules and empty preview text do not take up board space. Rules
+remain under Help, and Zoom is a small header button. Check a word and Recent turns open as overlays. Zoom optionally enlarges the board within a scrollable area.
 
 The board has 10 rows and 10 columns. Each player holds seven tiles from the
 100-tile bag. Qu is one tile. The opening uses at least two tiles and covers one
@@ -94,3 +99,18 @@ checkpoints below the existing Nearby size limit.
 
 Release results and environment limitations belong in
 `docs/arcade-stress-test-2.8.0.md` and the canonical ProjectStatus entry.
+
+## Drag behavior
+
+`tile-drag.js` handles pointer gestures for mouse, touch and pen. A floating
+letter and target highlight follow the gesture. Only rack tiles and unplayed
+gold tiles can move; committed tiles remain fixed. The game applies a drop
+atomically and checks existing draft occupancy, stack height and identical
+letters before changing anything. Invalid or outside drops preserve the draft.
+No scores, bag draws or authoritative moves are generated until Play.
+
+Cancellation, lost capture, Escape, viewport changes, hidden pages, dialogs,
+privacy handoffs and authoritative turn changes clean up a held gesture.
+A gesture is tied to its actor, game position, rack and draft. The compatibility
+click after dragging cannot accidentally take back a placed tile. Taps and
+keyboard input remain available. Save format and multiplayer intent are unchanged.

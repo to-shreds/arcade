@@ -1,3 +1,8 @@
+# 2.8.2
+
+- Enlarged the Upwords board by removing persistent rules and empty preview text, shrinking scores and consolidating Play, Undo, Clear, Swap and Pass into one compact row.
+- Added mouse/touch/pen dragging from rack to board, repositioning unplayed tiles, returning them to the rack, and rearranging the rack. Canceled and invalid drops preserve the draft.
+
 # 2.8.1
 
 - Corrected ten omitted two-letter words, including UN, using a reproducible short-word audit. Upgraded existing saves and rooms to the expanded dictionary.

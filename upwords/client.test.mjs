@@ -330,3 +330,81 @@ test('CPU pause cancels the old worker and ignores its late reply before exactly
   firstWorker.deliver(firstAction); await tick();
   assert.equal(c.state().moveNumber, 2, 'Repeated old worker delivery cannot spend a second turn');
 });
+
+// Exercise the shipped pointer handlers and game callbacks together. Geometry
+// is supplied here; the browser suite additionally uses real mouse/touch input.
+function pointer(c, target, type, x = 50, y = 50, pointerId = 1) {
+  const event = new c.w.MouseEvent(type, { bubbles: true, cancelable: true, button: 0, clientX: x, clientY: y });
+  Object.defineProperties(event, { pointerId: { value: pointerId }, pointerType: { value: 'touch' }, isPrimary: { value: true } });
+  target.dispatchEvent(event);
+}
+function beginDrag(c, source, target) {
+  c.w.document.elementFromPoint = () => target;
+  pointer(c, source, 'pointerdown', 10, 10);
+  pointer(c, c.w.document, 'pointermove');
+}
+function endDrag(c) { pointer(c, c.w.document, 'pointerup'); }
+const rackTile = (c, index) => c.$('rack').querySelector(`[data-rack-index="${index}"]`);
+const boardCell = (c, row, col) => c.$('board').querySelector(`[data-row="${row}"][data-col="${col}"]`);
+
+test('dragging places, moves, returns and reorders physical tiles without submitting a turn', async t => {
+  const c = client(t, backend(t)), saved = localSnapshot(); saved.placements = [];
+  c.saving.adapter.restore(clone(saved)); await c.click('showRack');
+  const game = c.state();
+  beginDrag(c, rackTile(c, 0), boardCell(c, 4, 4));
+  assert.equal(c.w.document.querySelectorAll('.tile-drag-ghost').length, 1);
+  assert.equal(c.debug().placements.length, 0, 'Moving the pointer does not consume a tile');
+  endDrag(c);
+  assert.deepEqual(c.debug().placements, [{ row: 4, col: 4, rackIndex: 0 }]);
+  boardCell(c, 4, 4).dispatchEvent(new c.w.MouseEvent('click', { bubbles: true, detail: 1 }));
+  assert.equal(c.debug().placements.length, 1, 'The compatibility click cannot take the tile back');
+  await tick();
+  beginDrag(c, boardCell(c, 4, 4), boardCell(c, 4, 5)); endDrag(c); await tick();
+  const draft = c.debug().placements;
+  assert.deepEqual(draft, [{ row: 4, col: 5, rackIndex: 0 }]);
+  beginDrag(c, rackTile(c, 1), boardCell(c, 4, 5)); endDrag(c); await tick();
+  assert.deepEqual(c.debug().placements, draft, 'Dropping on another draft tile preserves both tiles');
+  beginDrag(c, rackTile(c, 2), null); endDrag(c); await tick();
+  assert.deepEqual(c.debug().placements, draft, 'Dropping outside the board preserves the draft');
+  beginDrag(c, boardCell(c, 4, 5), rackTile(c, 0)); endDrag(c); await tick();
+  assert.deepEqual(c.debug().placements, [], 'Returning to the rack removes only the draft placement');
+  const beforeOrder = c.capture().rackOrder;
+  beginDrag(c, rackTile(c, 0), rackTile(c, 3)); endDrag(c); await tick();
+  assert.notDeepEqual(c.capture().rackOrder, beforeOrder);
+  assert.deepEqual([...c.capture().rackOrder].sort(), [...beforeOrder].sort());
+  assert.deepEqual(c.state(), game, 'Board, physical rack, bag, scores and turn remain untouched');
+  assert.equal(c.w.document.querySelectorAll('.tile-drag-ghost,.drag-over,.drop-blocked').length, 0);
+});
+
+test('canceled gestures and privacy handoffs cannot drop a tile or leave a ghost behind', async t => {
+  const c = client(t, backend(t)), saved = localSnapshot(); saved.placements = [];
+  c.saving.adapter.restore(clone(saved)); await c.click('showRack');
+  beginDrag(c, rackTile(c, 0), boardCell(c, 4, 4));
+  pointer(c, c.w.document, 'pointercancel'); endDrag(c); await tick();
+  assert.deepEqual(c.debug().placements, []);
+  assert.equal(c.w.document.querySelectorAll('.tile-drag-ghost').length, 0);
+  beginDrag(c, rackTile(c, 1), boardCell(c, 4, 4));
+  c.saving.adapter.restore(clone(saved));
+  assert.equal(c.$('handoff').hidden, false);
+  endDrag(c); await tick();
+  assert.deepEqual(c.debug().placements, []);
+  assert.equal(c.w.document.querySelectorAll('.tile-drag-ghost').length, 0);
+  beginDrag(c, rackTile(c, 1), boardCell(c, 4, 4)); endDrag(c); await tick();
+  assert.deepEqual(c.debug().placements, [], 'A hidden rack cannot start a gesture');
+  await c.click('showRack');
+  beginDrag(c, rackTile(c, 2), boardCell(c, 4, 4)); endDrag(c); await tick();
+  assert.deepEqual(c.debug().placements, [{ row: 4, col: 4, rackIndex: 2 }], 'The next legitimate gesture still works');
+});
+
+test('a new authoritative turn cancels a held drag without submitting or exposing a draft', async t => {
+  const { server, first } = await pair(t);
+  const beforeCalls = server.calls.filter(call => call.body?.type === 'play').length;
+  beginDrag(first, rackTile(first, 0), boardCell(first, 4, 4));
+  await server.directAction(first, 'pass');
+  await wait(() => first.state().moveNumber === 1, 'the authoritative turn changes');
+  endDrag(first); await tick();
+  assert.equal(first.w.document.querySelectorAll('.tile-drag-ghost').length, 0);
+  assert.deepEqual(first.debug().placements, []);
+  assert.equal(server.calls.filter(call => call.body?.type === 'play').length, beforeCalls);
+  assert.equal(rackTile(first, 0).disabled, true);
+});

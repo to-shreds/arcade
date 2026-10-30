@@ -1,4 +1,5 @@
 import { createGame, previewMove, applyAction, validateGame, validatePublicGame, chooseCpuAction } from './engine.js';
+import { installTileDrag } from './tile-drag.js';
 import { isWord, DICTIONARY_ID, DICTIONARY_INFO } from './dictionary.js';
 
 const $ = id => document.getElementById(id);
@@ -16,7 +17,7 @@ let session = null, room = null, busy = false, joining = false, suspended = fals
 let socket = null, reconnectTimer = null, pollTimer = null, retries = 0, refreshing = false;
 let cpuWorker = null, cpuTimer = null, cpuThinking = false, cpuEpoch = 0, modalKind = '', renderedBoardKey = '';
 const preferences = { sound: read('arcade.upwords.sound.v1') !== false };
-let soundContext = null;
+let soundContext = null, tileDrag = null;
 
 function currentGame() { return session ? room?.state?.game || null : localGame; }
 function ownSeat() { return session ? room?.members.find(member => member.playerId === session.playerId)?.seat ?? -1 : localGame?.turn ?? 0; }
@@ -41,7 +42,7 @@ function ownTurn() {
 function canAct() { return ownTurn() && !busy && !joining && !handoffPending && $('setup').hidden; }
 function randomSeed() { const values = new Uint32Array(1); try { crypto.getRandomValues(values); } catch { values[0] = Date.now() >>> 0; } return values[0] || 1; }
 function validName(value, fallback) { return String(value || fallback).trim().replace(/\s+/g, ' ').slice(0, 24) || fallback; }
-function clearDraft() { placements = []; selected = null; rackOrder = []; }
+function clearDraft() { tileDrag?.cancel(); placements = []; selected = null; rackOrder = []; }
 function ensureOrder() {
   const length = visibleRack().length;
   if (rackOrder.length !== length || new Set(rackOrder).size !== length || rackOrder.some(index => !Number.isInteger(index) || index < 0 || index >= length)) rackOrder = Array.from({ length }, (_, index) => index);
@@ -71,6 +72,7 @@ function restore(data) {
   $('setup').hidden = true; render(); scheduleCpu(); return true;
 }
 function showSetup() {
+  tileDrag?.cancel();
   cancelCpu(); closeModal(); $('setup').hidden = false; $('handoff').hidden = true; $('result').hidden = true; message(''); updateSetup();
 }
 async function startLocal() {
@@ -318,6 +320,7 @@ function renderBoard(game) {
   for (let row = 0; row < 10; row++) for (let col = 0; col < 10; col++) {
     const stack = board[row][col], pending = visiblePlacements.find(item => item.row === row && item.col === col), tile = pending ? rack[pending.rackIndex] : stack.at(-1), height = stack.length + (pending ? 1 : 0);
     const cell = node('button', '', 'cell'); cell.type = 'button'; cell.setAttribute('role', 'gridcell'); cell.dataset.row = row; cell.dataset.col = col; cell.dataset.height = height;
+    if (pending) cell.dataset.rackIndex = pending.rackIndex;
     cell.classList.toggle('center', [4, 5].includes(row) && [4, 5].includes(col)); cell.classList.toggle('occupied', !!tile); cell.classList.toggle('placed', !!pending);
     cell.classList.toggle('last-play', !pending && !!game?.lastMove?.placements?.some(item => item.row === row && item.col === col));
     cell.disabled = !active; cell.setAttribute('aria-label', `${String.fromCharCode(65 + col)}${row + 1}, ${tile ? `${tile === 'QU' ? 'Qu' : tile}, height ${height}${pending ? ', unplayed tile' : ''}` : 'empty'}${[4, 5].includes(row) && [4, 5].includes(col) ? ', center square' : ''}`);
@@ -340,7 +343,7 @@ function renderBoard(game) {
 }
 function renderRack(game) {
   ensureOrder(); const rack = visibleRack(), hidden = handoffPending, active = canAct();
-  const focused = document.activeElement?.dataset.rackIndex;
+  const focused = $('rack').contains(document.activeElement) ? document.activeElement?.dataset.rackIndex : undefined;
   $('rack').replaceChildren(...rackOrder.map(index => {
     const tile = rack[index], button = node('button', hidden ? '•' : tile === 'QU' ? 'Qu' : tile, `rack-tile${!hidden && tile === 'QU' ? ' qu' : ''}`);
     button.type = 'button'; button.dataset.rackIndex = index; button.disabled = !active;
@@ -350,21 +353,24 @@ function renderRack(game) {
   }));
   if (focused !== undefined) $('rack').querySelector(`[data-rack-index="${focused}"]`)?.focus({ preventScroll: true });
   $('rackTitle').textContent = hidden ? 'Tiles hidden' : game ? `${game.players[rackSeat()]?.name || 'Your'} tiles` : 'Your tiles';
-  $('rackHint').textContent = hidden ? 'Pass the device, then show your tiles.' : !ownTurn() && game && !game.finished ? 'Your tiles stay here while the other player thinks.' : selected !== null && rack[selected] ? `${rack[selected] === 'QU' ? 'Qu' : rack[selected]} selected. Tap an empty square or stack it on a different letter.` : 'Tap a letter, then tap a square. Tap it again to take it back.';
+
 }
 function renderPreview(game) {
   const visiblePlacements = handoffPending ? [] : placements;
   const preview = game && visiblePlacements.length ? previewMove(game, visiblePlacements, game.turn) : null;
+  $('draftFeedback').hidden = !visiblePlacements.length;
   $('movePreview').classList.toggle('invalid', !!preview && !preview.valid);
   $('previewScore').replaceChildren(document.createTextNode(String(preview?.valid ? preview.score : 0) + ' '), node('small', 'pts'));
   const words = preview?.words || [];
   if (words.length) $('previewWords').replaceChildren(...words.map(word => { const line = node('div', '', `word-score${isWord(word.word) ? '' : ' invalid'}`); line.append(node('strong', word.word), node('span', isWord(word.word) ? `${word.score} pts` : 'Not listed')); return line; }));
-  else $('previewWords').textContent = visiblePlacements.length ? `${visiblePlacements.length} tile${visiblePlacements.length === 1 ? '' : 's'} placed.` : 'Place your tiles to see every word and its score.';
-  $('previewNote').textContent = preview ? preview.valid ? `${preview.bonus ? `Includes a ${preview.bonus}-point seven-tile bonus. ` : ''}All words accepted. Ready to play.` : preview.error : 'Flat words: 2 points per tile. Stacked words: count every tile in the stacks.';
+  else $('previewWords').textContent = visiblePlacements.length ? `${visiblePlacements.length} tile${visiblePlacements.length === 1 ? '' : 's'} placed.` : '';
+  $('previewNote').textContent = preview ? preview.valid ? preview.bonus ? `Includes a ${preview.bonus}-point seven-tile bonus.` : '' : preview.error : '';
   $('play').disabled = !canAct() || !preview?.valid;
-  $('play').textContent = busy ? 'Saving turn…' : preview?.valid ? `Play for ${preview.score} points` : 'Play word';
+  $('play').textContent = busy ? 'Saving…' : preview?.valid ? `Play · ${preview.score}` : 'Play';
+  $('play').setAttribute('aria-label', preview?.valid ? `Play for ${preview.score} points` : 'Play word');
 }
 function render() {
+  tileDrag?.validate();
   const game = currentGame(); renderConnection();
   $('lobby').hidden = !session || room?.status !== 'lobby';
   if (session && room?.status === 'lobby') {
@@ -377,7 +383,6 @@ function render() {
     game.players.forEach((player, index) => { $('name' + index).textContent = player.name; $('points' + index).textContent = player.score; $('tiles' + index).textContent = `${player.rack?.length ?? player.rackCount} tiles`; $('score' + index).classList.toggle('active', !game.finished && game.turn === index); });
     $('bagCount').textContent = bagCount(game); $('turnNumber').textContent = `Turn ${game.moveNumber + 1}`;
     $('turnText').textContent = game.finished ? game.winner === null ? 'A tie! Well played.' : `${game.players[game.winner].name} wins!` : busy ? 'Saving your turn…' : !session && playMode === 'cpu' && game.turn === 1 ? `${game.players[1].name} is thinking…` : session && !ownTurn() ? `${game.players[game.turn].name}'s turn` : `${game.players[game.turn].name}, build your word.`;
-    $('boardHint').textContent = game.board.every(row => row.every(stack => stack.length === 0)) ? 'Start across any of the four marked center squares.' : 'Small numbers show stack height. Gold tiles are your unplayed move.';
   }
   renderBoard(game); renderRack(game); renderPreview(game);
   $('handoff').hidden = !handoffPending || !$('setup').hidden || !!session || game?.finished;
@@ -442,6 +447,7 @@ function pass() {
   modal('Pass your turn?', [node('p', `${currentGame().passes ? 'The other player also passed. Passing now ends the game, with 5 points deducted for each unused tile.' : 'Keep your tiles and let the other player take a turn. If both players pass consecutively, the game ends.'}${placements.length ? ' Your unplayed tiles will return to your rack.' : ''}`)], [{ label: 'Keep playing', run: closeModal }, { label: 'Pass', style: 'gold', id: 'confirmPass', run: async () => { closeModal(); if (session) await action('pass'); else await localAction({ type: 'pass' }); } }], 'pass');
 }
 function modal(title, contents, actions = [], kind = '') {
+  tileDrag?.cancel();
   modalKind = kind; $('modalTitle').textContent = title; $('modalBody').replaceChildren(...contents); $('modalActions').replaceChildren(...actions.map(item => { const button = node('button', item.label, `arcade-btn ${item.style || ''}`); button.type = 'button'; if (item.id) button.id = item.id; button.onclick = item.run; return button; }));
   if (!$('modal').open) $('modal').showModal();
 }
@@ -450,7 +456,7 @@ function rules() {
   const list = node('ul');
   for (const text of [
     'Build words across or down on the 10 × 10 board. Start with at least two tiles across any of the four center squares. Later moves must connect to the board.',
-    'Tap a rack tile, then a square. You may stack on a different letter, up to five tiles high. Place at most one tile on a square per turn and keep all new tiles in a single row or column.',
+    'Drag a rack tile to a square, or tap the tile and square. Drag an unplayed tile to move it or return it to the rack. You may stack on a different letter, up to five tiles high. Place at most one tile on a square per turn and keep all new tiles in a single row or column.',
     'Every word you create or change must be in Arcade English, including crossing words. You must leave at least one letter of every existing word uncovered.',
     'A flat word scores 2 points per tile. If any letter is stacked, count every tile in every stack in that word. Each word scores separately. A Qu tile adds 2 extra points in a flat word; playing all seven tiles adds 20 points.',
     'You cannot simply add S to pluralize an existing word, unless the S also makes a crossing word. You can otherwise extend or change words with valid plays.',
@@ -472,14 +478,69 @@ function confirmNew() {
   modal('Start a new game?', [node('p', 'Your current local game is kept until you start a new one. Starting replaces that saved game.')], [{ label: 'Keep playing', run: closeModal }, { label: 'Game setup', style: 'gold', run: showSetup }], 'new');
 }
 async function home() {
+  tileDrag?.cancel();
   if (joining) generation++;
   persistRoom(); cancelCpu(); suspended = true; stopNetwork(); closeModal(); await save?.saveNow();
   if (window.ArcadeSave && typeof window.ArcadeSave.goHome === 'function') return window.ArcadeSave.goHome();
   if (window.ArcadeMultiplayer && typeof window.ArcadeMultiplayer.goHome === 'function') return window.ArcadeMultiplayer.goHome();
   window.location.href = '../index.html';
 }
-function pause() { if (joining) generation++; persistRoom(); save?.saveNow(); suspended = true; stopNetwork(); cancelCpu(); closeModal(); }
+function pause() { tileDrag?.cancel(); if (joining) generation++; persistRoom(); save?.saveNow(); suspended = true; stopNetwork(); cancelCpu(); closeModal(); }
 function resume() { suspended = false; if (session) { connectSocket(); startPolling(); refresh(); } render(); scheduleCpu(); }
+
+// A gesture is valid only for the same actor, game position and private draft.
+function dragContext() {
+  if (!canAct() || document.hidden || $('modal').open || document.querySelector('.play-panel details[open]')) return null;
+  const game = currentGame();
+  return JSON.stringify([session?.code, session?.playerId, session?.transport, generation,
+    game.turn, game.moveNumber, game.board, visibleRack(), placements, rackOrder]);
+}
+function dropProblem(rackIndex, row, col) {
+  const rack = visibleRack(), stack = currentGame()?.board[row]?.[col];
+  if (!rack[rackIndex] || !stack) return 'Choose a square on the board.';
+  if (placements.some(item => item.row === row && item.col === col && item.rackIndex !== rackIndex)) return 'That square already has an unplayed tile.';
+  if (stack.length >= 5) return 'This stack is already five tiles high.';
+  if (stack.at(-1) === rack[rackIndex]) return 'Choose a different letter. You cannot cover a letter with the same letter.';
+  return '';
+}
+function dropTile(source, target) {
+  if (source.context !== dragContext()) return;
+  const index = placements.findIndex(item => item.rackIndex === source.rackIndex);
+  if (target.kind === 'board') {
+    const problem = dropProblem(source.rackIndex, target.row, target.col);
+    if (problem) { message(problem); return; }
+    const placement = { row: target.row, col: target.col, rackIndex: source.rackIndex };
+    if (index < 0) placements.push(placement); else placements[index] = placement;
+  } else {
+    if (index >= 0) placements.splice(index, 1);
+    ensureOrder();
+    const from = rackOrder.indexOf(source.rackIndex), to = rackOrder.indexOf(target.rackIndex);
+    if (from >= 0 && to >= 0 && from !== to) {
+      rackOrder.splice(from, 1); rackOrder.splice(to, 0, source.rackIndex);
+    }
+  }
+  selected = null; message(''); save?.touch(); render();
+}
+tileDrag = installTileDrag({
+  surface: document.querySelector('.workspace'),
+  sourceFor(target) {
+    const context = dragContext(), element = target.closest?.('#rack .rack-tile, #board .cell.placed');
+    if (!context || !element || element.disabled) return null;
+    const rackIndex = Number(element.dataset.rackIndex), tile = visibleRack()[rackIndex];
+    return tile ? { element, rackIndex, label: tile === 'QU' ? 'Qu' : tile, context } : null;
+  },
+  contextIsCurrent: source => source.context === dragContext(),
+  targetFor(element) {
+    const cell = element.closest('#board .cell');
+    if (cell) return { kind: 'board', row: Number(cell.dataset.row), col: Number(cell.dataset.col), element: cell };
+    const rack = element.closest('#rack');
+    if (rack) return { kind: 'rack', rackIndex: Number(element.closest('.rack-tile')?.dataset.rackIndex), element: rack };
+    return null;
+  },
+  canDrop: (source, target) => source.context === dragContext() && (target.kind === 'rack' || !dropProblem(source.rackIndex, target.row, target.col)),
+  drop: dropTile
+});
+for (const details of document.querySelectorAll('.play-panel details')) details.addEventListener('toggle', () => { if (details.open) tileDrag.cancel(); });
 
 $('localStart').onclick = startLocal; $('continueLocal').onclick = showCurrentLocal; $('mode').onchange = updateSetup;
 $('play').onclick = play; $('undo').onclick = takeBack; $('clear').onclick = clearPlaced; $('shuffle').onclick = shuffle; $('exchange').onclick = exchange; $('pass').onclick = pass;
@@ -494,7 +555,7 @@ $('newGame').onclick = confirmNew; $('help').onclick = $('setupHelp').onclick = 
 $('modal').addEventListener('close', () => { modalKind = ''; });
 $('playAgain').onclick = () => { if (session) action('rematch'); else showSetup(); };
 for (const id of ['home', 'setupHome', 'lobbyHome', 'handoffHome']) $(id).onclick = home;
-$('zoom').onclick = () => { const enlarged = $('boardViewport').classList.toggle('zoomed'); $('zoom').setAttribute('aria-pressed', String(enlarged)); $('zoom').textContent = enlarged ? '− Fit board' : '＋ Zoom'; if (enlarged) { $('boardViewport').scrollLeft = ($('boardViewport').scrollWidth - $('boardViewport').clientWidth) / 2; } };
+$('zoom').onclick = () => { const enlarged = $('boardViewport').classList.toggle('zoomed'); $('zoom').setAttribute('aria-pressed', String(enlarged)); $('zoom').textContent = enlarged ? '⤡' : '⤢'; $('zoom').setAttribute('aria-label', enlarged ? 'Fit board' : 'Enlarge board'); $('zoom').title = enlarged ? 'Fit board' : 'Enlarge board'; if (enlarged) { $('boardViewport').scrollLeft = ($('boardViewport').scrollWidth - $('boardViewport').clientWidth) / 2; } };
 $('wordForm').onsubmit = event => {
   event.preventDefault(); const word = $('wordCheck').value.trim();
   if (!word) { $('wordResult').textContent = 'Enter a word to check.'; return; }
@@ -519,7 +580,7 @@ if (save) save.register({ id: 'upwords', title: 'Upwords', version: 1, capture, 
 function fitBoard() {
   const viewport = $('boardViewport');
   if (!viewport.clientWidth || !viewport.clientHeight) return;
-  viewport.style.setProperty('--board-size', `${Math.max(1, Math.min(viewport.clientWidth - 8, viewport.clientHeight - 8))}px`);
+  viewport.style.setProperty('--board-size', `${Math.max(1, Math.min(viewport.clientWidth - 4, viewport.clientHeight - 4))}px`);
 }
 if (typeof ResizeObserver !== 'undefined') new ResizeObserver(fitBoard).observe($('boardViewport'));
 window.addEventListener('resize', fitBoard);
