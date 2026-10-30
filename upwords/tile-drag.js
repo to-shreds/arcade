@@ -27,9 +27,14 @@ export function installTileDrag({ surface, sourceFor, contextIsCurrent, targetFo
   function validate() {
     if (gesture && !contextIsCurrent(gesture.source)) cancel();
   }
+  // Painting, highlighting and release all use this same visible tile center.
+  // Touch keeps the tile above the finger so its destination remains visible.
+  function tileCenter(event) {
+    return { x: event.clientX, y: event.clientY - (event.pointerType === 'touch' ? 38 : 0) };
+  }
   function locate(event) {
-    // The ghost is pointer-transparent. Hit-test the real pointer, not its offset.
-    const element = doc.elementFromPoint(event.clientX, event.clientY);
+    const point = tileCenter(event);
+    const element = doc.elementFromPoint(point.x, point.y);
     return element && surface.contains(element) ? targetFor(element) : null;
   }
   function move(event) {
@@ -50,8 +55,8 @@ export function installTileDrag({ surface, sourceFor, contextIsCurrent, targetFo
       surface.setPointerCapture?.(event.pointerId);
     }
     event.preventDefault();
-    const offset = event.pointerType === 'touch' ? 62 : 28;
-    gesture.ghost.style.transform = `translate(${event.clientX - 24}px,${event.clientY - offset}px)`;
+    const point = tileCenter(event);
+    gesture.ghost.style.transform = `translate(${point.x - 24}px,${point.y - 24}px)`;
     clearTarget();
     const target = locate(event);
     if (target) {

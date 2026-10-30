@@ -22,7 +22,6 @@
     <div id="score1" class="score-card"><span class="player-dot"></span><span id="name1" class="player-name">Computer</span><strong id="points1">0</strong><small id="tiles1">7 tiles</small></div>
   </section>
   <div id="turnLine" class="sr-only" role="status"><span id="turnDot"></span><strong id="turnText">Build a word. Stack a new idea.</strong><span id="turnNumber"></span></div>
-  <p id="message" role="alert" hidden></p>
   <section id="result" class="arcade-panel" hidden><div><h2 id="resultTitle"></h2><p id="resultText"></p></div><button id="playAgain" class="arcade-btn gold">Play again</button><span id="rematchNote"></span></section>
   <div class="workspace">
     <section class="board-area" aria-label="Playing board">
@@ -34,7 +33,7 @@
         <div id="rack" aria-label="Your letter tiles"></div>
       </section>
       <section id="movePreview" class="arcade-panel" aria-label="Move preview">
-        <div id="draftFeedback" hidden><div id="previewWords" aria-live="polite"></div><strong id="previewScore"></strong><p id="previewNote" role="status"></p></div>
+        <div class="feedback-frame"><p id="message" role="alert" hidden></p><div id="draftFeedback" hidden><div id="previewWords" aria-live="polite"></div><strong id="previewScore"></strong><p id="previewNote" role="status"></p></div></div>
         <div class="move-actions"><button id="undo" class="arcade-btn compact" disabled>Undo</button><button id="clear" class="arcade-btn compact" disabled>Clear</button><button id="play" class="arcade-btn gold" disabled>Play</button><button id="exchange" class="arcade-btn compact">Swap</button><button id="pass" class="arcade-btn compact">Pass</button></div>
       </section>
       <details class="arcade-panel dictionary-panel"><summary>Check a word <span class="offline-badge">OFFLINE</span></summary><form id="wordForm"><label for="wordCheck">English word</label><div class="word-entry"><input id="wordCheck" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. STACK"><button class="arcade-btn compact" type="submit">Check</button></div></form><p id="wordResult" role="status"></p><p id="dictionaryNote"></p></details>

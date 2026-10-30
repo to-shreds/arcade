@@ -7,6 +7,20 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+Release 2.8.3 fixes board movement during preview/error changes and aligns
+hover/release with the floating letter. Keep the feedback frame allocated even
+when empty; preview and global notices share that bounded space. Never let
+their content resize or reposition the board at a fixed viewport. Touch uses
+the visible tile center above the finger for both drawing and hit-testing;
+mouse/pen use the pointer center. Spatial browser checks compare actual board
+rectangles and target highlighting with the painted ghost.
+
+The 2.8.2 supplementary whole-Arcade run 40993738390 passed Nearby but stopped
+in the broad browser stage on an Orb Slicer projectile wait timeout. Its
+Upwords-specific preflight passed. No Orb Slicer source was changed here.
+Record the final 2.8.3 checks/publication in ProjectStatus and
+ docs/arcade-stress-test-2.8.3.md.
+
 Release 2.8.2 gives Upwords more board space with a single compact action row,
 small scores and no persistent rules/empty preview. Turn announcements remain
 available to screen readers and active score styling shows the current player.

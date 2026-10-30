@@ -36,7 +36,8 @@ button,input,select{font:inherit}button:focus-visible,input:focus-visible,select
 #shuffle{grid-column:2;grid-row:1;padding:2px;min-height:34px;font-size:21px}
 .rack-tile{aspect-ratio:1;min-height:32px;max-height:42px;font-size:23px}
 #movePreview{display:block;min-height:0;position:static}
-#draftFeedback{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:2px 8px;margin:0 0 5px}
+.feedback-frame{position:relative;height:44px;flex:none;margin-bottom:3px}
+#draftFeedback{position:absolute;inset:0;overflow:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:2px 8px;margin:0}
 #previewWords{padding:0;min-height:0;display:flex;flex-wrap:wrap;gap:2px 8px;font-size:11px;line-height:1.25}
 .word-score{gap:4px;padding:0}
 .word-score strong{font-size:11px;letter-spacing:.5px}
@@ -51,7 +52,8 @@ button,input,select{font:inherit}button:focus-visible,input:focus-visible,select
 .play-panel details summary{font-size:11px;line-height:1.3}
 .offline-badge{display:none}
 .dictionary-panel[open],.history-panel[open]{position:fixed;z-index:15;inset:auto 12px 12px;max-height:70dvh;overflow:auto;box-shadow:0 0 0 100vmax #050919bd;background:#141a33;padding:16px}
-#message{font-size:11px;padding:4px 8px}
+#message{position:absolute;inset:0;z-index:1;margin:0;overflow:auto;background:#302034;font-size:11px;line-height:1.25;padding:4px 8px}
+.play-panel .rack-panel,.play-panel #movePreview{padding:4px 6px}
 #result{padding:6px 10px}
 /* Drag only real rack tiles and unplayed gold tiles. The rest of a zoomed board can pan. */
 #rack .rack-tile,#board .cell.placed{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab}

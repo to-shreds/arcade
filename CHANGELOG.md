@@ -1,3 +1,8 @@
+# 2.8.3
+
+- Kept the Upwords board fixed while draft previews and error messages change.
+- Matched drag highlighting and release to the visible tile center, including the tile displayed above a touch pointer.
+
 # 2.8.2
 
 - Enlarged the Upwords board by removing persistent rules and empty preview text, shrinking scores and consolidating Play, Undo, Clear, Swap and Pass into one compact row.

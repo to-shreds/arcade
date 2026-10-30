@@ -134,11 +134,24 @@ async function openingWithStack(page) {
   });
 }
 async function place(page, placements) {
+  const boardBefore = await boardBounds(page);
   for (const { row, col, rackIndex } of placements) {
     await page.locator(`#rack [data-rack-index="${rackIndex}"]`).click();
     await page.locator(`#board [data-row="${row}"][data-col="${col}"]`).click();
+    await assertBoardUnchanged(page, boardBefore, 'After a tap placement');
   }
   assert.deepEqual((await debug(page)).placements, placements, 'Clicked rack indices and board squares form the exact draft');
+}
+async function boardBounds(page) {
+  return page.locator('#board').evaluate(element => {
+    const { x, y, width, height } = element.getBoundingClientRect();
+    return { x, y, width, height };
+  });
+}
+async function assertBoardUnchanged(page, expected, label) {
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const actual = await boardBounds(page);
+  for (const key of ['x', 'y', 'width', 'height']) assert.ok(Math.abs(actual[key] - expected[key]) < .1, `${label}: board ${key} stays fixed (${actual[key]} versus ${expected[key]})`);
 }
 async function dragTile(page, from, to, input = 'mouse', cancel = false) {
   const center = async selector => {
@@ -147,18 +160,36 @@ async function dragTile(page, from, to, input = 'mouse', cancel = false) {
     return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 };
   };
   const start = await center(from), end = await center(to);
+  const boardBefore = await boardBounds(page);
   const cdp = input === 'touch' ? await page.context().newCDPSession(page) : null;
   const touch = (type, point) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: point ? [{ ...point, id: 1, radiusX: 6, radiusY: 6 }] : [] });
   if (cdp) await touch('touchStart', start);
   else { await page.mouse.move(start.x, start.y); await page.mouse.down(); }
+  // Lift first, then observe the painted tile's offset. Drive its visible center
+  // to the desired destination, independently of the implementation's constants.
+  const lift = { x: start.x, y: start.y - 10 };
+  if (cdp) await touch('touchMove', lift); else await page.mouse.move(lift.x, lift.y);
+  assert.equal(await page.locator('.tile-drag-ghost').count(), 1, 'A real pointer gesture lifts one tile');
+  const ghost = await page.locator('.tile-drag-ghost').boundingBox();
+  const endPointer = { x: end.x + lift.x - ghost.x - ghost.width / 2, y: end.y + lift.y - ghost.y - ghost.height / 2 };
   for (let step = 1; step <= 10; step++) {
-    const point = { x: start.x + (end.x - start.x) * step / 10, y: start.y + (end.y - start.y) * step / 10 };
+    const point = { x: lift.x + (endPointer.x - lift.x) * step / 10, y: lift.y + (endPointer.y - lift.y) * step / 10 };
     if (cdp) await touch('touchMove', point); else await page.mouse.move(point.x, point.y);
   }
-  assert.equal(await page.locator('.tile-drag-ghost').count(), 1, 'A real pointer gesture lifts one tile');
+  const painted = await page.locator('.tile-drag-ghost').boundingBox();
+  assert.ok(Math.abs(painted.x + painted.width / 2 - end.x) < 1 && Math.abs(painted.y + painted.height / 2 - end.y) < 1, 'The letter appears over the intended destination');
+  const targetIsBoard = to.startsWith('#board');
+  if (targetIsBoard && !cancel) {
+    assert.ok(await page.locator(to).evaluate(e => e.classList.contains('drag-over') || e.classList.contains('drop-blocked')), 'The highlight follows the visible letter');
+    if (cdp) {
+      const fingerCell = await page.evaluate(point => document.elementFromPoint(point.x, point.y)?.closest('#board .cell')?.getAttribute('aria-label'), endPointer);
+      assert.notEqual(fingerCell, await page.locator(to).getAttribute('aria-label'), 'The finger is below the visible destination, not hiding it');
+    }
+  }
   if (cdp) { await touch(cancel ? 'touchCancel' : 'touchEnd'); await cdp.detach(); }
   else { if (cancel) await page.keyboard.press('Escape'); await page.mouse.up(); }
   await page.locator('.tile-drag-ghost').waitFor({ state: 'detached' });
+  await assertBoardUnchanged(page, boardBefore, 'After a drag or cancellation');
 }
 async function confirmDialog(page, action) {
   if (!await page.locator('#modal').isVisible()) return;
@@ -457,6 +488,21 @@ try {
         assert.ok(Math.max(...actionRow) - Math.min(...actionRow) <= 3, 'Play, Swap, Pass, Undo and Clear share one compact row');
         assert.ok(geometry.board.width >= 140 && Math.abs(geometry.board.width - geometry.board.height) < 2, 'Board remains square and legible');
         for (const control of geometry.controls) assert.ok(control.width > 0 && control.height >= 24 && control.left >= -1 && control.right <= viewport.width + 1 && control.top >= 0 && control.bottom <= viewport.height + 1, `Control ${control.id} fits the screen`);
+        const stable = await boardBounds(page);
+        const opening = await openingWithStack(page);
+        if (opening.type === 'play') {
+          await place(page, opening.placements.slice(0, 1));
+          await assertBoardUnchanged(page, stable, 'One-tile error message');
+          await page.locator('#clear').click();
+          await assertBoardUnchanged(page, stable, 'Cleared preview');
+          await place(page, opening.placements);
+          assert.equal(await page.locator('#play').isDisabled(), false);
+          await assertBoardUnchanged(page, stable, 'Valid scored preview');
+          await page.locator('#undo').click();
+          await assertBoardUnchanged(page, stable, 'Undo preview');
+          await page.locator('#clear').click();
+          await assertBoardUnchanged(page, stable, 'Empty preview again');
+        }
         await screenshot(page, `playing-${viewport.width}x${viewport.height}`);
         await page.locator('#zoom').click();
         assert.equal(await page.locator('#zoom').getAttribute('aria-pressed'), 'true');

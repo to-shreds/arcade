@@ -441,3 +441,17 @@ test('dragging cannot move committed tiles, cover an identical letter or exceed 
   endDrag(c); await tick();
   assert.deepEqual(c.state(), before);
 });
+
+test('touch highlighting and release use the visible tile rather than the finger cell', async t => {
+  const c = client(t, backend(t)), saved = localSnapshot(); saved.placements = [];
+  c.saving.adapter.restore(clone(saved)); await c.click('showRack');
+  const above = boardCell(c, 4, 4), underFinger = boardCell(c, 5, 4), points = [];
+  c.w.document.elementFromPoint = (x, y) => { points.push({ x, y }); return y < 30 ? above : underFinger; };
+  pointer(c, rackTile(c, 0), 'pointerdown', 50, 100);
+  pointer(c, c.w.document, 'pointermove', 50, 50);
+  assert.equal(above.classList.contains('drag-over'), true);
+  assert.equal(underFinger.classList.contains('drag-over'), false);
+  pointer(c, c.w.document, 'pointerup', 50, 50); await tick();
+  assert.deepEqual(c.debug().placements, [{ row: 4, col: 4, rackIndex: 0 }]);
+  assert.ok(points.every(point => point.x === 50 && point.y < 30), 'Both hover and release hit-test above the finger');
+});

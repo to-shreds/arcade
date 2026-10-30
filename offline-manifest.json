@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.8.2+20261030.1",
-  "generatedAt": "2026-10-30T02:38:19.594Z",
+  "version": "2.8.3+20261030.1",
+  "generatedAt": "2026-10-30T03:37:01.084Z",
   "fileCount": 387,
-  "totalBytes": 20111151,
+  "totalBytes": 20112390,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1668,7 +1668,7 @@
     {
       "path": "sw.js",
       "bytes": 27782,
-      "sha256": "41ed1dd1d54e8010b864b8da5e7a8dc7a36bbab483170fc832f7121fd9c1ed5a"
+      "sha256": "398d4376eef12142b0640fc0dd460725b30708643f9467a5003a083f00545625"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1917,8 +1917,8 @@
     },
     {
       "path": "upwords/index.html",
-      "bytes": 8058,
-      "sha256": "fed4ce257fc6a68ab59a9954eb6be49186dd8be60995e99200761358580aa8cc"
+      "bytes": 8089,
+      "sha256": "a55315efe7c4a4a47faf497b919d68d703895ed3cd0afae7e3f3f393f6a2c9a0"
     },
     {
       "path": "upwords/LICENSE.dictionary.txt",
@@ -1927,18 +1927,18 @@
     },
     {
       "path": "upwords/README.md",
-      "bytes": 7117,
-      "sha256": "bee30dae25795a4e78a589c4a2587579fcd4ed55c25c5123184b7e13dd4aa877"
+      "bytes": 7866,
+      "sha256": "2ab4f2ecc581dd7c6a7e048976a0030e2528de03b53061347dc88eb137468ed3"
     },
     {
       "path": "upwords/style.css",
-      "bytes": 20511,
-      "sha256": "72d650ce7a2c94ca8d60a7b27883e6a882e865cbfcbcfbaabdb18f0bbaff2031"
+      "bytes": 20781,
+      "sha256": "2cf40509477b64714fdd8792237372c85307948ea0ea8ee70c9c1ff54cb4616b"
     },
     {
       "path": "upwords/tile-drag.js",
-      "bytes": 4474,
-      "sha256": "f39050efccc773e3086cac3003d5e7ac752da8eba9bc19438c1a4cc8e2807dac"
+      "bytes": 4663,
+      "sha256": "f13c909d7c71cf72738989b201649b4e999b3424179cc4ca205b54f9e2d34beb"
     }
   ]
 }

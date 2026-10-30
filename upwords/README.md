@@ -114,3 +114,17 @@ privacy handoffs and authoritative turn changes clean up a held gesture.
 A gesture is tied to its actor, game position, rack and draft. The compatibility
 click after dragging cannot accidentally take back a placed tile. Taps and
 keyboard input remain available. Save format and multiplayer intent are unchanged.
+
+## Stable feedback and drag targeting
+
+A fixed feedback frame above the move buttons keeps preview/error messages out
+of board layout. Hidden feedback leaves that frame allocated, and independent
+notifications use the same frame. At a fixed viewport, placing, moving,
+clearing or rejecting a draft must not change the board's x/y or dimensions.
+Long feedback can scroll within that frame rather than move the board.
+
+The floating tile is centered above a touch pointer. Its painted center is
+also the hover/release hit-test point, so the visible letter, highlighted
+square and committed draft destination agree. Mouse/pen use the pointer center.
+Never revert target selection to the hidden finger position while leaving
+the letter visually offset.
