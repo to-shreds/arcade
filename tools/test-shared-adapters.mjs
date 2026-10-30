@@ -111,8 +111,8 @@ try{
 
   async function connect(host,guest){
     const gesture=process.env.ARCADE_SHARED_MOBILE==='1'?'tap':'click';
-    await host.locator('#shared-launch')[gesture]();await host.locator('#shared-close')[gesture]();
-    await guest.locator('#shared-launch')[gesture]();await guest.locator('#shared-close')[gesture]();
+    await host.evaluate(()=>ArcadeSharedActivity.openPanel());await host.locator('#shared-close')[gesture]();
+    await guest.evaluate(()=>ArcadeSharedActivity.openPanel());await guest.locator('#shared-close')[gesture]();
     const created=await host.evaluate(()=>ArcadeSharedActivity.create({username:'Host'}));
     const joined=await guest.evaluate(code=>ArcadeSharedActivity.join({username:'Guest',code}),created.code);
     await until(guest,()=>ArcadeSharedActivity.getState().active&&ArcadeSharedActivity.getState().appliedSequence>=0);

@@ -75,9 +75,15 @@ try {
   await offlinePage.waitForFunction(count => document.querySelectorAll('.card').length === count && window.ArcadeShell, available.length);
   await offlinePage.evaluate(() => ArcadeShell.openGame('paint-lab'));
   const offlineFrame = offlinePage.frameLocator('#shellGameFrame');
-  await offlineFrame.locator('#shared-launch').waitFor({ state: 'visible' });
+  await offlineFrame.locator('[data-shared-menu-toggle]').waitFor({ state: 'visible' });
+  assert.equal(await offlineFrame.locator('#shared-launch').isVisible(), false);
+  await offlineFrame.locator('[data-shared-menu-toggle]').click();
+  await offlineFrame.locator('#shared-launch').click();
+  await offlineFrame.locator('#shared-panel').waitFor({state:'visible'});
+  await offlineFrame.locator('#shared-close').click();
   assert.equal(await offlineFrame.locator('canvas').count() > 0, true);
-  await offlinePage.evaluate(() => ArcadeShell.goHome());
+  await offlineFrame.locator('[data-shared-menu-toggle]').click();
+  await offlineFrame.locator('#shared-menu-home').click();
   await offlinePage.waitForFunction(() => !document.querySelector('#shellGameFrame'));
   assert.deepEqual(await offlinePage.evaluate(() => JSON.parse(localStorage.getItem('arcade.recent.v1'))), ['paint-lab']);
   await offlinePage.reload();

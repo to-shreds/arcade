@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.8.3+20261030.1",
-  "generatedAt": "2026-10-30T03:41:03.169Z",
+  "version": "2.8.4+20261030.1",
+  "generatedAt": "2026-10-30T04:09:21.419Z",
   "fileCount": 387,
-  "totalBytes": 20112550,
+  "totalBytes": 20115232,
   "files": [
     {
       "path": "adventure/game.json",
@@ -617,8 +617,8 @@
     },
     {
       "path": "multiplayer/shared-activity.js",
-      "bytes": 34879,
-      "sha256": "78d041eec76cbcdf847b1aaf3c8f2618e0d267f50a26ca90113c43114b0531ea"
+      "bytes": 37437,
+      "sha256": "47e017f2716949d90b81545fe0f6856806994a6dc194434601239f9301625a88"
     },
     {
       "path": "multiplayer/shared-room-client.js",
@@ -702,8 +702,8 @@
     },
     {
       "path": "music-maker/index.html",
-      "bytes": 9226,
-      "sha256": "e4b806a99d4301ec6fcd1c0b7997426365989b5ab99b92ebb00b1c6e1d6e669c"
+      "bytes": 9340,
+      "sha256": "377e493097136b46fcd41bc594bc97ead1d64755d5c7d7df749a4e46ef0120d0"
     },
     {
       "path": "music-maker/music-maker.js",
@@ -1667,8 +1667,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27782,
-      "sha256": "398d4376eef12142b0640fc0dd460725b30708643f9467a5003a083f00545625"
+      "bytes": 27792,
+      "sha256": "35f109468671d08d3c952299e8d0832db17cc8c3ec97ef86c9942c9346ab573a"
     },
     {
       "path": "tanks/battle-view.css",

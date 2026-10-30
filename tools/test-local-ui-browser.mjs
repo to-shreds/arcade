@@ -77,7 +77,7 @@ try {
     });
     assert(boxes.titleLeft>=boxes.homeRight&&boxes.titleRight<=viewport.width,'Make10 title clears the Home link at every audited size');
     assert(await make10.evaluate(()=>{
-      const launch=document.getElementById('shared-launch');if(!launch)return true;
+      const launch=document.getElementById('shared-launch');if(!launch||!launch.checkVisibility())return true;
       const a=launch.getBoundingClientRect();
       return [...document.querySelectorAll('#table .card,.footer,.title,.turnpill')].every(el=>{const b=el.getBoundingClientRect();return a.left>=b.right||a.right<=b.left||a.top>=b.bottom||a.bottom<=b.top;});
     }),'Shared-play button leaves Make10 cards, title, mode chip, and footer text uncovered');

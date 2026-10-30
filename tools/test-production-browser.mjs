@@ -3,6 +3,7 @@
 // Navigation only, without creating rooms: PRODUCTION_NAVIGATION_ONLY=1 node tools/test-production-browser.mjs
 // Never added to the default CI suite. No routes, local fixtures or endpoint substitutions.
 import assert from 'node:assert/strict';
+import { openMultiplayerMenu } from './shared-menu-browser.mjs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { chromium, browserLaunchOptions } from './browser-runtime.mjs';
@@ -116,10 +117,10 @@ try {
     try {
       for (const page of pages) await visit(page, 'typing');
       assert.ok(await a.evaluate(() => !!window.ArcadeSharedActivity), 'Published Typing must include the shared activity runtime');
-      await click(a, '#shared-launch'); await a.locator('#shared-name').fill('Smoke Desktop'); await click(a, '#shared-create');
+      await openMultiplayerMenu(a); await a.locator('#shared-name').fill('Smoke Desktop'); await click(a, '#shared-create');
       await until(a, () => ArcadeSharedActivity.getState().active && ArcadeSharedActivity.getState().connected);
       const code = await a.evaluate(() => ArcadeSharedActivity.getState().room.code); await click(a, '#shared-close');
-      await click(b, '#shared-launch'); await b.locator('#shared-name').fill('Smoke Mobile'); await b.locator('#shared-code').fill(code); await click(b, '#shared-join');
+      await openMultiplayerMenu(b); await b.locator('#shared-name').fill('Smoke Mobile'); await b.locator('#shared-code').fill(code); await click(b, '#shared-join');
       await until(b, () => ArcadeSharedActivity.getState().appliedSequence >= 0 && ArcadeSharedActivity.getState().connected); await click(b, '#shared-close');
       assert.equal(await b.evaluate(() => ArcadeSharedActivity.isController()), false);
       const before = await a.evaluate(() => TypingAutosave.capture().text);
@@ -128,13 +129,13 @@ try {
       const text = await a.evaluate(() => TypingAutosave.capture().text);
       await until(b, text => document.querySelector('#editor').textContent === text, text);
       report.checks.push('Actual production shared room create/join and typing edit reaches the mobile observer');
-      await click(a, '#shared-launch'); await click(a, '#shared-pass');
+      await openMultiplayerMenu(a); await click(a, '#shared-pass');
       await until(b, () => ArcadeSharedActivity.isController()); await click(a, '#shared-close');
       await click(b, '[data-key="b"]');
       await until(b, text => TypingAutosave.capture().text !== text, text);
       const edited = await b.evaluate(() => TypingAutosave.capture().text);
       await until(a, edited => document.querySelector('#editor').textContent === edited, edited);
-      await a.reload(); await click(a, '#shared-launch'); await click(a, '#shared-resume');
+      await a.reload(); await openMultiplayerMenu(a); await click(a, '#shared-resume');
       await until(a, edited => ArcadeSharedActivity.getState().connected && document.querySelector('#editor').textContent === edited, edited); await click(a, '#shared-close');
       await screenshots('typing', pages);
       report.checks.push('Mobile takes controls, edits synchronously, and desktop reload/resume preserves the room and text');

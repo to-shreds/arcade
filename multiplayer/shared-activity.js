@@ -12,17 +12,38 @@
   let client = null, panel = null, launch = null, notice = null, errorNode = null, seats = null;
   let adapterOverride = null, restoreChain = Promise.resolve(), captureTimer = 0, tickInterval = 0, captureErrors = 0;
   let nextPublishAt = 0;
-  let launchPositionTimer = 0;
   const frozenFrames = new Map(), pendingFrames = new Map(), frozenTimers = new Map(), paintedFrames = new Map();
   const originalStorageSet = Storage.prototype.setItem, originalStorageRemove = Storage.prototype.removeItem;
   const MAX_RAW = 8 * 1024 * 1024, MAX_WIRE = 50 * 1024;
   const sessionKey = 'arcade_shared_room_' + activity + '_v1';
-  const launchPositionKey = 'arcade.shared.launchPosition.' + activity + '.v1';
-  let launchPosition = null, launchDrag = null, suppressLaunchClick = false;
-  try{
-    const saved = JSON.parse(root.localStorage.getItem(launchPositionKey));
-    if(saved?.schema === 1 && [saved.x,saved.y].every(n=>typeof n==='number'&&Number.isFinite(n)&&n>=0&&n<=1)) launchPosition=saved;
-  }catch(_error){}
+  let menu = null, menuReturnFocus = null, panelReturnFocus = null;
+  const menuEntries = [];
+  // Explicit targets keep a settings panel, start screen or game control from
+  // being mistaken for a navigation menu in another activity.
+  const nativeMenus = {
+    solitaire: ['#gameMenu .modal', '#menuBtn'],
+    jigsaw: ['#menuOverlay .panel', '#menuBtn', '#startOverlay .panel'],
+    codebreaking: ['#start .arcade-dialog', '#menu'],
+    spelling: ['#start .arcade-dialog', '#menu'],
+    'two-truths': ['#start .arcade-dialog', '#menu'],
+    patterns: ['#start .arcade-dialog', '#menu'],
+    'contraption-maker': ['#start .arcade-dialog', '#menu'],
+    'mini-golf': ['#mg-menu', '[onclick="MiniGolf.openMenu()"]'],
+    simon: ['#si-menu', '[onclick="SimonGame.openMenu()"]'],
+    maze: ['#mz-menu', '[onclick="MazeGame.openMenu()"]'],
+    'regex-lab': ['#startOverlay .modal', '#menuBtn'],
+    'bounce-boxes': ['#overlay .menu', '#pauseBtn'],
+    shuffleboard: ['#modalBack .modal', '#btnSettings'],
+    'bug-squish': ['#menuOverlay .panel', '#menuBtn', '#startOverlay .panel'],
+    'firefighter-frenzy': ['#menuOverlay .panel', '#menuBtn', '#startOverlay .panel'],
+    'monster-dentist': ['#menuOverlay .panel', '#menuBtn', '#startOverlay .panel']
+  };
+  const startMenus = {
+    'make-10':'#startOverlay .panel', balloons:'#b-start-screen',
+    blackjack:'#setup-screen', time:'#clock-menu', hangman:'#start-overlay',
+    math:'#math-menu', minesweeper:'#startOverlay .panel',
+    'orb-slicer':'#orb-overlay', trivia:'#cat-menu', bowling:'#setup .setup-card'
+  };
   function isController(){ return !!(active && room?.status === 'active' && room.turn?.playerId === client?.session?.playerId); }
   function isSpectator(){ return active && (!isController() || !connected || switching || awaitingAuthority); }
   function isGameCallback(){ return isSpectator(); }
@@ -83,7 +104,7 @@
   function captureView(){
     const entries = [];
     for(const el of document.querySelectorAll('[id]')){
-      if(el.closest('[data-shared-ui]') || /pass|secret|custom.?word|answer.?input|name.?input/i.test(el.id)) continue;
+      if(el.closest('[data-shared-ui],[data-shared-menu-toggle]') || /pass|secret|custom.?word|answer.?input|name.?input/i.test(el.id)) continue;
       const item = {id:el.id};
       if(!el.children.length && !/^(?:INPUT|TEXTAREA|SELECT|CANVAS|SCRIPT|STYLE|SVG|IMG|AUDIO|VIDEO)$/.test(el.tagName)) item.text = el.textContent.slice(0,2000);
       if(/overlay|menu|start|result|dialog|screen|explain|round|holeOv|favOverlay/i.test(el.id)){
@@ -97,7 +118,7 @@
   function applyView(view){
     for(const item of Array.isArray(view)?view:[]){
       const el = document.getElementById(item.id);
-      if(!el || el.closest('[data-shared-ui]')) continue;
+      if(!el || el.closest('[data-shared-ui],[data-shared-menu-toggle]')) continue;
       if(typeof item.text === 'string' && !el.children.length) el.textContent = item.text;
       if(typeof item.hidden === 'boolean') el.hidden = item.hidden;
       if(typeof item.display === 'string' && /^(?:|none|flex|block|grid|inline|inline-block)$/.test(item.display)) el.style.display = item.display;
@@ -222,8 +243,10 @@
   }
   function paintUi(){
     if(!launch)return;
-    launch.textContent='🌐';launch.title=(active?'Together · '+(room?.code||'…'):'Play together')+'. Drag to move';
-    launch.setAttribute('aria-label',launch.title);
+    for(const entry of menuEntries){
+      entry.textContent=active?'Multiplayer · '+(room?.code||'…'):'Internet / Multiplayer';
+      entry.title=active?'Open your multiplayer room':'Play together using your Arcade connection';
+    }
     if(notice){
       const owner=room?.members?.find(member=>member.playerId===room.turn?.playerId);
       notice.textContent=active?(connected?(isController()?'You have controls. Everyone sees your moves.':(owner?.username||'Another player')+' has controls.'): 'Shared play paused while reconnecting.'): 'One player controls the activity. Everyone sees the same moves. Pass controls to take turns.';
@@ -242,87 +265,106 @@
     const claimButton=document.getElementById('shared-claim');if(claimButton)claimButton.hidden=!active||isController()||!!room?.presence?.[room.turn?.playerId];
     const code=document.getElementById('shared-code-display');if(code)code.textContent=room?.code||'';
     const memberList=document.getElementById('shared-members');if(memberList)memberList.textContent=(room?.members||[]).map((m,i)=>(['make-10','blackjack','shuffleboard','bowling'].includes(activity)?'Player '+(i+1)+': ':'')+m.username+(m.playerId===room.turn?.playerId?' · controls':'')+(m.connected?'':' · offline')).join(' / ');
-    positionLaunch();
   }
-  function positionLaunch(){
-    if(!launch)return;
-    if(launchDrag)return;
-    if(launchPosition){
-      const b=launchBounds();
-      placeLaunch(b.left+launchPosition.x*(b.right-b.left),b.top+launchPosition.y*(b.bottom-b.top));
-      return;
-    }
-    const width=40,height=40,gap=6,W=innerWidth,H=innerHeight;
-    const interactive=[...document.querySelectorAll('button,a[href],input,select,textarea,[role="button"],.card,.piece,[data-id],[data-card],[onclick],.footer,.status,[role="status"],[id*="status" i],.topbar,.turnpill,.turnPill,.mz-hint,.si-hint')];
-    const readable=[...document.querySelectorAll('span,p,h1,h2,h3,h4,label,small,strong,b,div')].filter(el=>!el.children.length&&el.textContent.trim());
-    const controls=[...new Set([...interactive,...readable])].filter(el=>!el.closest('[data-shared-ui]')&&getComputedStyle(el).display!=='none'&&getComputedStyle(el).visibility!=='hidden').map(el=>el.getBoundingClientRect()).filter(b=>b.width&&b.height);
-    const candidates=[[W-width-gap,H-height-gap],[gap,H-height-gap],[W-width-gap,gap],[gap,gap],[W-width-gap,H/2-height/2],[gap,H/2-height/2],[W-width-gap,H*.28],[gap,H*.28],[W-width-gap,H*.72],[gap,H*.72]];
-    for(let y=gap;y<=H-height-gap;y+=height+gap)for(let x=gap;x<=W-width-gap;x+=width+gap)candidates.push([x,y]);
-    const free=candidates.find(([x,y])=>!controls.some(b=>x<b.right+3&&x+width>b.left-3&&y<b.bottom+3&&y+height>b.top-3));
-    const [x,y]=free||candidates[4];Object.assign(launch.style,{left:x+'px',top:y+'px',right:'auto',bottom:'auto'});
+  function focusable(container){
+    return [...container.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),a[href],[tabindex="0"]')]
+      .filter(el=>el.getClientRects().length && getComputedStyle(el).visibility!=='hidden');
   }
-  function launchBounds(){
-    const v=root.visualViewport,gap=8,left=(v?.offsetLeft||0)+gap,top=(v?.offsetTop||0)+gap;
-    return {left,top,right:Math.max(left,(v?.offsetLeft||0)+(v?.width||root.innerWidth)-launch.offsetWidth-gap),bottom:Math.max(top,(v?.offsetTop||0)+(v?.height||root.innerHeight)-launch.offsetHeight-gap)};
-  }
-  function placeLaunch(x,y){
-    const b=launchBounds();
-    x=Math.max(b.left,Math.min(b.right,x));y=Math.max(b.top,Math.min(b.bottom,y));
-    Object.assign(launch.style,{left:x+'px',top:y+'px',right:'auto',bottom:'auto'});
-    return {x,y,b};
-  }
-  function saveLaunchPosition(){
-    const r=launch.getBoundingClientRect(),b=launchBounds();
-    launchPosition={schema:1,x:Math.max(0,Math.min(1,(r.left-b.left)/Math.max(1,b.right-b.left))),y:Math.max(0,Math.min(1,(r.top-b.top)/Math.max(1,b.bottom-b.top)))};
-    // This device preference must remain movable even for a shared spectator.
-    // Use the original writer without allowing game saves to bypass their guard.
-    try{originalStorageSet.call(root.localStorage,launchPositionKey,JSON.stringify(launchPosition));}catch(_error){}
-  }
-  function wireLaunchMovement(){
-    launch.setAttribute('aria-description','Drag to move. Arrow keys move this button; Enter or Space opens multiplayer.');
-    launch.addEventListener('pointerdown',event=>{
-      if(launchDrag||event.isPrimary===false||(event.pointerType==='mouse'&&event.button!==0))return;
-      suppressLaunchClick=false;const r=launch.getBoundingClientRect();
-      launchDrag={id:event.pointerId,x:event.clientX,y:event.clientY,left:r.left,top:r.top,moved:false};
-      try{launch.setPointerCapture(event.pointerId);}catch(_error){}
+  function wireDialog(dialog, close){
+    dialog.addEventListener('click',event=>{if(event.target===dialog)close();});
+    dialog.addEventListener('keydown',event=>{
+      // Letters typed into the room form must not also operate the game.
+      event.stopPropagation();
+      if(event.key==='Escape'){event.preventDefault();close();return;}
+      if(event.key!=='Tab')return;
+      const controls=focusable(dialog),first=controls[0],last=controls.at(-1);
+      if(!first)return;
+      if(event.shiftKey && (document.activeElement===first || !dialog.contains(document.activeElement))){event.preventDefault();last.focus();}
+      else if(!event.shiftKey && (document.activeElement===last || !dialog.contains(document.activeElement))){event.preventDefault();first.focus();}
     });
-    launch.addEventListener('pointermove',event=>{
-      if(!launchDrag||event.pointerId!==launchDrag.id)return;
-      const dx=event.clientX-launchDrag.x,dy=event.clientY-launchDrag.y;
-      if(!launchDrag.moved&&Math.hypot(dx,dy)<6)return;
-      launchDrag.moved=true;launch.classList.add('shared-dragging');
-      placeLaunch(launchDrag.left+dx,launchDrag.top+dy);event.preventDefault();
-    });
-    const finish=(event,cancelled)=>{
-      if(!launchDrag||event.pointerId!==launchDrag.id)return;
-      const drag=launchDrag;launchDrag=null;launch.classList.remove('shared-dragging');
-      if(drag.moved){
-        suppressLaunchClick=true;
-        if(cancelled)positionLaunch();else saveLaunchPosition();
-        later(()=>{suppressLaunchClick=false;},450);
+  }
+  function restoreFocus(target){
+    if(target?.isConnected && target.getClientRects().length)target.focus({preventScroll:true});
+  }
+  function openMenu(trigger){
+    if(!menu)return;
+    menuReturnFocus=trigger||document.activeElement;
+    menu.hidden=false;
+    for(const toggle of document.querySelectorAll('[data-shared-menu-toggle="local"]'))toggle.setAttribute('aria-expanded','true');
+    document.getElementById('shared-menu-resume').focus({preventScroll:true});
+  }
+  function closeMenu(){
+    if(!menu)return;
+    menu.hidden=true;
+    for(const toggle of document.querySelectorAll('[data-shared-menu-toggle="local"]'))toggle.setAttribute('aria-expanded','false');
+    restoreFocus(menuReturnFocus);
+  }
+  function openPanel(trigger){
+    if(!panel)return;
+    // The small navigation menu is local UI, never part of a checkpoint.
+    panelReturnFocus=menu && !menu.hidden ? menuReturnFocus : (trigger||document.activeElement);
+    if(menu && !menu.hidden)closeMenu();
+    panel.hidden=false;paintUi();
+    (active?document.getElementById('shared-close'):document.getElementById('shared-name')).focus({preventScroll:true});
+  }
+  function closePanel(){panel.hidden=true;restoreFocus(panelReturnFocus);}
+  function addMenuEntry(container,primary=false){
+    if(!container)return;
+    const entry=document.createElement('button');
+    entry.type='button';entry.className='shared-menu-action';entry.dataset.sharedUi='true';entry.dataset.sharedOpen='true';
+    if(primary){entry.id='shared-launch';launch=entry;}
+    entry.onclick=()=>openPanel(entry);container.appendChild(entry);menuEntries.push(entry);
+    // Long existing menus scroll inside their own bounds on small screens.
+    container.dataset.sharedMenuContent='true';
+  }
+  function buildMenus(){
+    menu=document.createElement('div');menu.id='shared-menu';menu.dataset.sharedUi='true';menu.hidden=true;
+    menu.setAttribute('role','dialog');menu.setAttribute('aria-modal','true');menu.setAttribute('aria-labelledby','shared-menu-title');
+    menu.innerHTML='<div class="shared-dialog"><h2 id="shared-menu-title">Menu</h2><button id="shared-menu-resume" type="button">Resume activity</button><div id="shared-menu-online"></div><button id="shared-menu-home" type="button">Arcade Home</button></div>';
+    document.body.appendChild(menu);
+    document.getElementById('shared-menu-resume').onclick=closeMenu;
+    document.getElementById('shared-menu-home').onclick=()=>root.ArcadeSave?.goHome?.();
+    wireDialog(menu,closeMenu);
+    const config=nativeMenus[activity],content=config&&document.querySelector(config[0]);
+    const toggles=config?[...document.querySelectorAll(config[1])]:[];
+    const native=content&&toggles.length;
+    addMenuEntry(native?content:document.getElementById('shared-menu-online'),true);
+    if(native){
+      for(const toggle of toggles)toggle.dataset.sharedMenuToggle='native';
+      // A spectator can open navigation without opening or changing the
+      // controller's native setup/pause state.
+      addMenuEntry(document.getElementById('shared-menu-online'));
+      if(config[2])addMenuEntry(document.querySelector(config[2]));
+    }else{
+      const homes=document.querySelectorAll('a.arcade-home-link,.back-btn,#home,#homeBtn,#arcade-home-nav,button.home,button[data-activity-menu]');
+      for(const toggle of homes){
+        if(toggle.closest('.overlay,[role="dialog"]'))continue;
+        toggle.dataset.sharedMenuToggle='local';
+        toggle.setAttribute('aria-label','Activity menu');toggle.setAttribute('title','Activity menu');
+        toggle.setAttribute('aria-haspopup','dialog');toggle.setAttribute('aria-controls','shared-menu');toggle.setAttribute('aria-expanded','false');
+        const label=toggle.querySelector('.label');
+        if(label){toggle.firstChild.textContent='☰ ';label.textContent='Menu';}
+        else toggle.textContent=toggle.matches('#arcade-home-nav,button.home')?'☰':'☰ Menu';
+        if(toggle.tagName==='A'){
+          toggle.setAttribute('role','button');
+          toggle.addEventListener('keydown',event=>{if(event.key===' '){event.preventDefault();toggle.click();}});
+        }
       }
-      try{if(launch.hasPointerCapture(event.pointerId))launch.releasePointerCapture(event.pointerId);}catch(_error){}
+      addMenuEntry(document.querySelector(startMenus[activity]||':not(*)'));
+    }
+    // Window capture precedes legacy Home link navigation on document.
+    const menuGesture=event=>{
+      const toggle=event.target?.closest?.('[data-shared-menu-toggle]');
+      if(!toggle || (toggle.dataset.sharedMenuToggle==='native'&&!isSpectator()))return;
+      if(event.type==='keydown'&&!['Enter',' '].includes(event.key))return;
+      event.preventDefault();event.stopImmediatePropagation();openMenu(toggle);
     };
-    launch.addEventListener('pointerup',event=>finish(event,false));
-    launch.addEventListener('pointercancel',event=>finish(event,true));
-    launch.addEventListener('lostpointercapture',event=>finish(event,true));
-    launch.addEventListener('click',event=>{
-      if(!suppressLaunchClick)return;
-      suppressLaunchClick=false;event.preventDefault();event.stopImmediatePropagation();
-    },true);
-    launch.addEventListener('keydown',event=>{
-      suppressLaunchClick=false;
-      const direction={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[event.key];
-      if(!direction||event.altKey||event.ctrlKey||event.metaKey)return;
-      event.preventDefault();event.stopPropagation();const r=launch.getBoundingClientRect(),step=event.shiftKey?40:12;
-      placeLaunch(r.left+direction[0]*step,r.top+direction[1]*step);saveLaunchPosition();
+    root.addEventListener('click',menuGesture,true);
+    root.addEventListener('keydown',menuGesture,true);
+    document.addEventListener('focusin',event=>{
+      const dialog=!panel.hidden?panel:(!menu.hidden?menu:null);
+      if(dialog&&!dialog.contains(event.target))focusable(dialog)[0]?.focus({preventScroll:true});
     });
-    root.visualViewport?.addEventListener('resize',positionLaunch);
-    root.visualViewport?.addEventListener('scroll',positionLaunch);
-  }
-  function scheduleLaunchPosition(){
-    if(launchPositionTimer)return;
-    launchPositionTimer=later(()=>{launchPositionTimer=0;positionLaunch();},20);
   }
   function publishDelay(transport,wireBytes){
     return transport==='nearby'?Math.max(220,Math.ceil((wireBytes+4096)/(128*1024)*1000)):120;
@@ -426,8 +468,14 @@
   function buildUi(){
     const css=document.createElement('style');css.textContent=`
       [data-shared-ui]{font:14px/1.45 system-ui,sans-serif;color:#edf5ff;box-sizing:border-box}
-      #shared-launch{position:fixed;right:8px;bottom:max(8px,env(safe-area-inset-bottom));z-index:2147483000;background:#193c67;border:1px solid #7ab8ed;border-radius:999px;padding:0;width:40px;height:40px;min-height:40px;box-shadow:0 4px 16px #0007;font-size:20px;font-weight:750;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
-      #shared-launch.shared-dragging{cursor:grabbing}
+      .shared-menu-action{position:static!important;display:block!important;flex:0 0 auto;box-sizing:border-box;width:min(100%,360px);min-height:44px;margin:10px auto;padding:10px 14px;background:#193c67;color:#edf5ff;border:1px solid #7ab8ed;border-radius:12px;font:700 14px/1.3 system-ui,sans-serif;text-align:center;cursor:pointer;touch-action:manipulation}
+      [data-shared-menu-content]{overflow-y:auto;overscroll-behavior:contain;max-height:100%;min-height:0;scroll-padding:12px}
+      #shared-menu{position:fixed;inset:0;z-index:2147483050;display:flex;align-items:center;justify-content:center;background:#02091dcc;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));touch-action:pan-y}
+      #shared-menu[hidden]{display:none!important}
+      .shared-dialog{width:min(100%,360px);max-height:100%;overflow:auto;background:#10213b;border:1px solid #54799f;border-radius:18px;padding:20px;box-shadow:0 12px 50px #0009}
+      .shared-dialog h2{margin:0 0 14px;font-size:21px}
+      .shared-dialog button{display:block;width:100%;min-height:44px;margin:8px 0;background:#244f7b;color:#fff;border:1px solid #709dc0;border-radius:10px;padding:10px 14px;font:inherit;cursor:pointer}
+      [data-shared-ui] button:focus-visible,[data-shared-ui] input:focus-visible,[data-shared-ui] select:focus-visible{outline:3px solid #ffce3a;outline-offset:2px}
       #shared-panel{position:fixed;inset:0;z-index:2147483100;display:flex;align-items:center;justify-content:center;background:#02091dcc;padding:16px;touch-action:pan-y}
       #shared-panel[hidden],[data-shared-ui] [hidden],[data-shared-canvas][hidden]{display:none!important}
       #shared-card{width:min(100%,460px);max-height:calc(100dvh - 32px);overflow:auto;background:#10213b;border:1px solid #54799f;border-radius:18px;padding:20px;box-shadow:0 12px 50px #0009}
@@ -436,15 +484,15 @@
       #shared-card button{min-height:44px;background:#244f7b;color:#fff;border:1px solid #709dc0;border-radius:10px;padding:10px 14px;font:inherit;cursor:pointer}
       #shared-card button:disabled{opacity:.45}#shared-card .shared-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}#shared-card .shared-row>*{flex:1}#shared-close{float:right}#shared-error{color:#ffc4ad}#shared-code-display{font:700 26px ui-monospace,monospace;letter-spacing:.13em}
     `;document.head.appendChild(css);
-    launch=document.createElement('button');launch.id='shared-launch';launch.dataset.sharedUi='true';launch.type='button';launch.textContent='Play together';launch.onclick=()=>{panel.hidden=false;paintUi();};document.body.appendChild(launch);
-    wireLaunchMovement();
-    panel=document.createElement('div');panel.id='shared-panel';panel.dataset.sharedUi='true';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Play together online');
+    panel=document.createElement('div');panel.id='shared-panel';panel.dataset.sharedUi='true';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Internet / Multiplayer');panel.setAttribute('aria-modal','true');
     panel.innerHTML=`<div id="shared-card"><button id="shared-close" type="button" aria-label="Close shared play">✕</button><h2>Play together</h2><p id="shared-notice"></p><p id="shared-error" role="status"></p><div id="shared-start-area"><label for="shared-name">Your name</label><input id="shared-name" maxlength="24" autocomplete="nickname" placeholder="Your name"><div class="shared-row"><button id="shared-create" type="button">Create room</button><button id="shared-resume" type="button">Rejoin saved room</button></div><label for="shared-code">Room code</label><input id="shared-code" maxlength="6" autocapitalize="characters" autocomplete="off" placeholder="ABC234"><div class="shared-row"><button id="shared-join" type="button">Join room</button></div></div><div id="shared-room-area" hidden><p>Room code: <strong id="shared-code-display"></strong></p><p id="shared-members"></p><label for="shared-seats">Pass controls to</label><select id="shared-seats"></select><div class="shared-row"><button id="shared-pass" type="button">Pass controls</button><button id="shared-claim" type="button" hidden>Take available controls</button></div><div class="shared-row"><button id="shared-leave" type="button">Leave room</button></div></div></div>`;
     document.body.appendChild(panel);notice=document.getElementById('shared-notice');errorNode=document.getElementById('shared-error');seats=document.getElementById('shared-seats');
     const name=document.getElementById('shared-name');name.value=root.ArcadeMultiplayer?.preferredUsername?.('')||'';
     const lockedIdentity=root.ArcadeMultiplayer?.getIdentity?.();if(lockedIdentity){name.readOnly=true;name.setAttribute('aria-label','Your locked Nearby name');}
     const run=fn=>async()=>{errorNode.textContent='';try{await fn();paintUi();}catch(error){showError(error);}};
-    document.getElementById('shared-close').onclick=()=>{panel.hidden=true;};
+    document.getElementById('shared-close').onclick=closePanel;
+    wireDialog(panel,closePanel);
+    buildMenus();
     document.getElementById('shared-create').onclick=run(()=>create({username:name.value}));
     document.getElementById('shared-join').onclick=run(()=>join({username:name.value,code:document.getElementById('shared-code').value}));
     document.getElementById('shared-resume').onclick=run(async()=>{await backupLocal();return await client.resume();});
@@ -453,7 +501,7 @@
     document.getElementById('shared-leave').onclick=run(leave);
     if(!client.saved())document.getElementById('shared-resume').hidden=true;
     const invitedCode=new URLSearchParams(location.search).get('room');
-    if(invitedCode){document.getElementById('shared-code').value=client.cleanCode(invitedCode);panel.hidden=false;}
+    if(invitedCode){document.getElementById('shared-code').value=client.cleanCode(invitedCode);openPanel();}
     paintUi();
   }
   function boot(){
@@ -474,7 +522,10 @@
     for(const type of ['pointerdown','pointermove','pointerup','click','dblclick','input','change','keydown','keyup','wheel','touchstart','touchmove','touchend','contextmenu','dragstart','drop']){
       document.addEventListener(type,event=>{
         if(event.target?.closest?.('[data-shared-ui]'))return;
-        if(type==='click'||type==='input'||type==='change')scheduleLaunchPosition();
+        if(event.target?.closest?.('[data-shared-menu-toggle]')){
+          if(isSpectator())event.stopImmediatePropagation();
+          return;
+        }
         if(isSpectator()){
           const home=event.target?.closest?.('a.arcade-home-link,a[href="../index.html"],button[id*="home" i],button[aria-label="Home" i],#homeBtn,#btnHome');
           if(home){
@@ -487,14 +538,12 @@
         else if(active){if(captureTimer)cancelLater(captureTimer);captureTimer=later(publish,35);}
       },{capture:true,passive:false});
     }
-    root.addEventListener('resize',()=>{repositionFrames();positionLaunch();if(isSpectator())client.refresh().catch(showError);});
+    root.addEventListener('resize',()=>{repositionFrames();if(isSpectator())client.refresh().catch(showError);});
     root.addEventListener('scroll',repositionFrames,{capture:true,passive:true});
-    every(positionLaunch,1500);
-    new MutationObserver(changes=>{if(changes.some(change=>!change.target?.closest?.('[data-shared-ui]')))scheduleLaunchPosition();}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','class','style']});
     root.addEventListener('pagehide',()=>{client.disconnect();cancelEvery(tickInterval);});
   }
   root.ArcadeSharedActivity={create,join,pass,leave,publish,isSpectator,isController,
-    openPanel:()=>{if(panel){panel.hidden=false;paintUi();}},
+    openPanel,
     registerAdapter:value=>{adapterOverride=value;},
     getState:()=>({activity,active,connected,controller:isController(),room:clone(room),appliedSequence,statusText}),
     getClient:()=>client,
