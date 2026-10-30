@@ -408,3 +408,36 @@ test('a new authoritative turn cancels a held drag without submitting or exposin
   assert.equal(server.calls.filter(call => call.body?.type === 'play').length, beforeCalls);
   assert.equal(rackTile(first, 0).disabled, true);
 });
+
+test('dragging cannot move committed tiles, cover an identical letter or exceed five levels', async t => {
+  const c = client(t, backend(t));
+  const snapshot = localSnapshot(); snapshot.placements = [];
+  let game = snapshot.game;
+  const forceTile = tile => {
+    const rack = game.players[game.turn].rack;
+    let index = rack.indexOf(tile);
+    if (index >= 0) return index;
+    const from = game.bag.includes(tile) ? game.bag : game.players[1 - game.turn].rack;
+    index = from.indexOf(tile); assert.ok(index >= 0, `The remaining physical tiles include ${tile}`);
+    [rack[0], from[index]] = [from[index], rack[0]];
+    validateGame(game); return 0;
+  };
+  game = applyAction(game, { type: 'play', placements: localSnapshot().placements });
+  for (const tile of ['B', 'C', 'B', 'C']) {
+    const rackIndex = forceTile(tile);
+    game = applyAction(game, { type: 'play', placements: [{ row: 4, col: 3, rackIndex }] });
+  }
+  assert.equal(game.board[4][3].length, 5);
+  const highIndex = forceTile('B'), sameIndex = forceTile('A');
+  snapshot.game = game;
+  c.saving.adapter.restore(clone(snapshot)); await c.click('showRack');
+  const before = c.state();
+  beginDrag(c, rackTile(c, highIndex), boardCell(c, 4, 3)); endDrag(c); await tick();
+  assert.deepEqual(c.debug().placements, []); assert.match(c.$('message').textContent, /five/i);
+  beginDrag(c, rackTile(c, sameIndex), boardCell(c, 4, 4)); endDrag(c); await tick();
+  assert.deepEqual(c.debug().placements, []); assert.match(c.$('message').textContent, /same letter/i);
+  beginDrag(c, boardCell(c, 4, 3), boardCell(c, 5, 3));
+  assert.equal(c.w.document.querySelectorAll('.tile-drag-ghost').length, 0, 'A committed cell never lifts');
+  endDrag(c); await tick();
+  assert.deepEqual(c.state(), before);
+});

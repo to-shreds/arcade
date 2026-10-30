@@ -175,10 +175,14 @@ async function perform(page, action = null, useDrag = false) {
   const before = await state(page);
   if (action.type === 'play') {
     if (useDrag) {
-      for (const tile of action.placements) await dragTile(page, `#rack [data-rack-index="${tile.rackIndex}"]`, `#board [data-row="${tile.row}"][data-col="${tile.col}"]`);
+      for (const tile of action.placements) await dragTile(page, `#rack [data-rack-index="${tile.rackIndex}"]`, `#board [data-row="${tile.row}"][data-col="${tile.col}"]`, typeof useDrag === 'string' ? useDrag : 'mouse');
       assert.deepEqual((await debug(page)).placements, action.placements, 'Drag inputs build the exact move intent');
     } else await place(page, action.placements);
     assert.equal(await page.locator('#play').isDisabled(), false, 'A legal preview enables Play');
+    if (useDrag) {
+      assert.ok(await page.locator('.arcade-app').evaluate(e => e.scrollHeight <= e.clientHeight + 1), 'A dragged move keeps all play controls in the screen');
+      if (typeof useDrag === 'string') await screenshot(page, `drag-${useDrag}-ready`);
+    }
     await page.locator('#play').click();
   } else if (action.type === 'exchange') {
     await page.locator('#exchange').click();
@@ -374,11 +378,11 @@ try {
       await page.locator('#clear').click();
       const opening = await openingWithStack(page);
       assert.equal(opening.type, 'play');
-      await perform(page, opening, true); await showRack(page);
+      await perform(page, opening, input); await showRack(page);
       const stack = await chooseAction(page, true), before = await state(page);
       assert.equal(stack.type, 'play');
       assert.ok(stack.placements.some(p => before.board[p.row][p.col].length > 0));
-      await perform(page, stack, true); await showRack(page);
+      await perform(page, stack, input); await showRack(page);
       await screenshot(page, `drag-${input}`);
       return { realPointer: input, quAndDuplicates: true, canceledSafely: true, exactReload: true, stacked: true };
     } finally { await screenshot(page, `last-drag-${input}`).catch(() => {}); await context.close(); }
