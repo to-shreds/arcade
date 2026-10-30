@@ -19,7 +19,10 @@ must remain tied to the same actor, board, rack and draft, and must cancel on
 handoff, turn change, modal, pause, lost capture or viewport change. Never mutate
 a draft during pointer movement or let a compatibility click take back a drop.
 The previous whole-Arcade 2.8.1 run 40971124102 passed both jobs.
-2.8.2 browser verification/publication details belong in ProjectStatus and
+2.8.2 preflight 40993361208 passed all 12 browser scenarios on
+69c4ff62923b5dfc59227b34b41aac730bde3882, including actual touch stacking.
+All 39 Upwords checks and 208 Worker/model/client checks passed. Screenshots
+were visually reviewed. Final publication details belong in ProjectStatus and
 docs/arcade-stress-test-2.8.2.md.
 
 Release 2.8.1 corrects ten omitted standalone two-letter words, including UN.
