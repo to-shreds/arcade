@@ -18,8 +18,11 @@ rectangles and target highlighting with the painted ghost.
 The 2.8.2 supplementary whole-Arcade run 40993738390 passed Nearby but stopped
 in the broad browser stage on an Orb Slicer projectile wait timeout. Its
 Upwords-specific preflight passed. No Orb Slicer source was changed here.
-Record the final 2.8.3 checks/publication in ProjectStatus and
- docs/arcade-stress-test-2.8.3.md.
+Preflight 40998771225 passed all 12 browser scenarios on
+dfa93ffec01ca729d7a2619101c341b0ab38d922, including actual touch projection
+and fixed board rectangles. All 40 Upwords and 208 Worker/model/client checks
+passed. Final publication belongs in ProjectStatus and
+docs/arcade-stress-test-2.8.3.md.
 
 Release 2.8.2 gives Upwords more board space with a single compact action row,
 small scores and no persistent rules/empty preview. Turn announcements remain
