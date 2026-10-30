@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.8.3+20261030.1",
-  "generatedAt": "2026-10-30T03:37:01.084Z",
+  "generatedAt": "2026-10-30T03:41:03.169Z",
   "fileCount": 387,
-  "totalBytes": 20112390,
+  "totalBytes": 20112550,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1932,8 +1932,8 @@
     },
     {
       "path": "upwords/style.css",
-      "bytes": 20781,
-      "sha256": "2cf40509477b64714fdd8792237372c85307948ea0ea8ee70c9c1ff54cb4616b"
+      "bytes": 20941,
+      "sha256": "d3d40eea414ef50b70173f4f8b21d2f27e6b18dfbbc60df25112a62a2e73b853"
     },
     {
       "path": "upwords/tile-drag.js",

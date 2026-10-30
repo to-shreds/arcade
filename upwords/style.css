@@ -6,7 +6,7 @@ button,input,select{font:inherit}button:focus-visible,input:focus-visible,select
 
 /* Give the board the remaining screen; keep the controls compact. */
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
-.arcade-app{overflow:hidden;gap:4px}
+.arcade-app{position:relative;overflow:hidden;gap:4px}
 .arcade-top,.scores,#roomBar,#result,#message{flex-shrink:0}
 .arcade-top{grid-template-columns:34px minmax(0,1fr) auto;gap:6px;min-height:32px}
 .arcade-title{font-size:27px}
@@ -54,7 +54,7 @@ button,input,select{font:inherit}button:focus-visible,input:focus-visible,select
 .dictionary-panel[open],.history-panel[open]{position:fixed;z-index:15;inset:auto 12px 12px;max-height:70dvh;overflow:auto;box-shadow:0 0 0 100vmax #050919bd;background:#141a33;padding:16px}
 #message{position:absolute;inset:0;z-index:1;margin:0;overflow:auto;background:#302034;font-size:11px;line-height:1.25;padding:4px 8px}
 .play-panel .rack-panel,.play-panel #movePreview{padding:4px 6px}
-#result{padding:6px 10px}
+#result{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(420px,calc(100% - 24px));z-index:12;padding:10px 12px;box-shadow:0 12px 40px #000b}
 /* Drag only real rack tiles and unplayed gold tiles. The rest of a zoomed board can pan. */
 #rack .rack-tile,#board .cell.placed{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab}
 .dragging-tile,.dragging-tile *{cursor:grabbing!important}

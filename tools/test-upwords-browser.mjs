@@ -170,14 +170,16 @@ async function dragTile(page, from, to, input = 'mouse', cancel = false) {
   const lift = { x: start.x, y: start.y - 10 };
   if (cdp) await touch('touchMove', lift); else await page.mouse.move(lift.x, lift.y);
   assert.equal(await page.locator('.tile-drag-ghost').count(), 1, 'A real pointer gesture lifts one tile');
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   const ghost = await page.locator('.tile-drag-ghost').boundingBox();
   const endPointer = { x: end.x + lift.x - ghost.x - ghost.width / 2, y: end.y + lift.y - ghost.y - ghost.height / 2 };
   for (let step = 1; step <= 10; step++) {
     const point = { x: lift.x + (endPointer.x - lift.x) * step / 10, y: lift.y + (endPointer.y - lift.y) * step / 10 };
     if (cdp) await touch('touchMove', point); else await page.mouse.move(point.x, point.y);
   }
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   const painted = await page.locator('.tile-drag-ghost').boundingBox();
-  assert.ok(Math.abs(painted.x + painted.width / 2 - end.x) < 1 && Math.abs(painted.y + painted.height / 2 - end.y) < 1, 'The letter appears over the intended destination');
+  assert.ok(Math.abs(painted.x + painted.width / 2 - end.x) < 1 && Math.abs(painted.y + painted.height / 2 - end.y) < 1, `The letter appears over the intended destination: ${JSON.stringify({ from, to, input, end, endPointer, painted })}`);
   const targetIsBoard = to.startsWith('#board');
   if (targetIsBoard && !cancel) {
     assert.ok(await page.locator(to).evaluate(e => e.classList.contains('drag-over') || e.classList.contains('drop-blocked')), 'The highlight follows the visible letter');
@@ -441,7 +443,7 @@ try {
     const { page, context } = await pageFor();
     try {
       await localStart(page);
-      const initial = await state(page);
+      const initial = await state(page), fixedBoard = await boardBounds(page);
       await page.locator('#exchange').click();
       assert.equal(await page.locator('#confirmExchange').isDisabled(), true, 'A swap requires selecting a rack tile');
       await page.locator('#modal [data-exchange-index="0"]').click();
@@ -458,6 +460,7 @@ try {
       await perform(page, { type: 'pass' });
       const finished = await state(page);
       assert.equal(finished.finished, true);
+      await assertBoardUnchanged(page, fixedBoard, 'End-of-game status');
       assert.equal(finished.endReason, 'passes');
       assert.deepEqual(finished.players.map(player => player.score), [-35, -35], 'Seven unused tiles each deduct exactly 35 points');
       assert.equal(await page.locator('#result').isVisible(), true);
