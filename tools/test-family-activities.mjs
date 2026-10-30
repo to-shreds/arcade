@@ -411,6 +411,7 @@ async function offlineAdventure() {
   await mad.locator('#fillEmptyButton').click(); await mad.locator('#makeStoryButton').click();
   assert.ok((await mad.locator('#storyOutput').innerText()).includes('our offline pizza'));
   await mad.locator('#arcade-home-nav').click();
+  await mad.locator('#shared-menu-home').click();
   await page.waitForFunction(() => !document.querySelector('#shellGameFrame'));
   assert.deepEqual(errors, []);
   evidence.push({ activity: 'mad-libs', offline: true, answers: true, home: true, errors, passed: true });

@@ -8,6 +8,19 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.8.4
+
+Internet / Multiplayer now lives inside each shared activity's menu. Existing
+menus gain an item; activities without a menu use their existing Home control
+to open a compact menu with Resume, multiplayer and Arcade Home. Music Maker's
+portrait rotation screen also exposes the menu. The floating globe is removed.
+
+Room creation, joining, rejoining, passing controls and leaving still use the
+current Arcade Internet or Nearby connection. Observers can open a local menu
+without changing the controller's game. Menu navigation preserves local saves
+and the persistent Arcade shell. See the [release checks](docs/arcade-stress-test-2.8.4.md).
+Refresh Arcade and update its offline copy after publication.
+
 ## Release 2.8.0
 
 **Upwords** adds a stacking word game with a 10x10 board, seven-tile racks,

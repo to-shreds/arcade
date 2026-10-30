@@ -7,6 +7,28 @@ web content is served at <https://to-shreds.github.io/arcade/>. The repository
 controls implementation and release substance; the applicable entry in
 `to-shreds/ProjectStatus` controls readiness and next steps.
 
+Release 2.8.4 removes the floating multiplayer globe from all 34 shared
+activities. `multiplayer/shared-activity.js` explicitly maps native menus and
+adds an Internet / Multiplayer entry. Where no accessible in-game menu existed,
+the original Home control opens local navigation with Resume, multiplayer and
+Arcade Home. Music Maker also has a menu on its portrait rotation screen.
+Native competitive game controls and Adventure/TV are unchanged.
+
+Menu UI and launcher state must stay out of shared checkpoints. Observers open
+local navigation instead of mutating the controller's native menu; only the
+current controller can pass controls or change gameplay. Window capture handles
+menu activation before legacy Home routing. Keep keyboard isolation, focus
+restoration/trapping, invitation auto-open, room/session keys and original save
+guards intact. The obsolete globe positioning timer, mutation observer, drag
+handlers and preference writes are removed. Existing position keys are ignored
+and need no migration or deletion.
+
+`npm run test:menus` verifies all 34 activities at four viewport sizes using
+actual mouse/touch menus. Existing gameplay suites use the supported openPanel
+API so opening a native pause menu does not itself change their game scenarios.
+The production smoke suite uses actual menu navigation. The current verification
+and publication results belong in docs/arcade-stress-test-2.8.4.md and ProjectStatus.
+
 Release 2.8.3 fixes board movement during preview/error changes and aligns
 hover/release with the floating letter. Keep the feedback frame allocated even
 when empty; preview and global notices share that bounded space. Never let

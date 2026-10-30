@@ -1,3 +1,11 @@
+# 2.8.4
+
+- Removed the floating multiplayer globe from all 34 shared games and activities.
+- Added Internet / Multiplayer to existing menus and a compact menu on the existing Home control where no in-game menu existed.
+- Kept multiplayer accessible to observers without changing the controller's setup, pause state or game, including while reconnecting.
+- Added keyboard focus, Escape and Resume handling, and a menu on Music Maker's portrait rotation screen.
+- Preserved Internet/Nearby room routing, saves, competitive games and Upwords board/drag fixes; regenerated the offline snapshot.
+
 # 2.8.3
 
 - Kept the Upwords board fixed while draft previews and error messages change.

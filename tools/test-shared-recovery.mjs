@@ -1,5 +1,7 @@
+import {gunzipSync} from 'node:zlib';
 // Real Worker recovery checks. Fault injection stays inside the test browser.
 import assert from 'node:assert/strict';
+import {openMultiplayerMenu} from './shared-menu-browser.mjs';
 import { spawn } from 'node:child_process';
 import { mkdir,writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
@@ -62,6 +64,34 @@ try{
     await until(guest,()=>TypingAutosave.capture().text==='SHAREDa');
     await guest.evaluate(()=>ArcadeSharedActivity.leave());
     assert.deepEqual(await guest.evaluate(()=>TypingAutosave.capture()),local,'Leaving restores local text, cursor, caps and symbols exactly');
+  });
+
+  await run('Spectator menus stay local and retain multiplayer access',async()=>{
+    for(const game of ['typing','solitaire']){
+      const host=await page(game),guest=await page(game);
+      if(game==='solitaire')await host.locator('#startBtn').click();
+      if(game==='typing'){await guest.locator('#editor').focus();await guest.keyboard.type('PRIVATE LOCAL TEXT');}
+      const backup=await guest.evaluate(()=>ArcadeSave.getAdapter().capture());
+      const comparable=snapshot=>{if(game!=='solitaire')return snapshot;const {elapsed,startedAt,...gameState}=snapshot;return gameState;};
+      await connect(host,guest);
+      const before=await guest.evaluate(()=>ArcadeSave.getAdapter().capture());
+      const menuHidden=game==='solitaire'?await guest.locator('#gameMenu').evaluate(el=>el.hidden):null;
+      await guest.locator('[data-shared-menu-toggle]:visible').first().click();
+      assert.equal(await guest.locator('#shared-menu').isVisible(),true,'Observer can open navigation');
+      if(game==='solitaire')assert.equal(await guest.locator('#gameMenu').evaluate(el=>el.hidden),menuHidden,'Navigation does not reopen the canonical game menu');
+      await delay(300);
+      assert.deepEqual(comparable(await guest.evaluate(()=>ArcadeSave.getAdapter().capture())),comparable(before),'Observer navigation does not mutate the game');
+      const state=await host.evaluate(()=>ArcadeSharedActivity.getState().room.state);
+      const raw=state.codec==='gzip'?gunzipSync(Buffer.from(state.data,'base64')).toString():state.data;
+      assert.equal(JSON.parse(raw).view.some(item=>item.id.startsWith('shared-')),false,'Menu state is excluded from checkpoints');
+      await openMultiplayerMenu(guest);
+      assert.equal(await guest.locator('#shared-pass').isDisabled(),true,'Observer has no pass authority');
+      assert.equal(await guest.locator('#shared-leave').isEnabled(),true,'Leave stays reachable');
+      await guest.locator('#shared-leave').click();
+      await until(guest,()=>!ArcadeSharedActivity.getState().active);
+      assert.deepEqual(comparable(await guest.evaluate(()=>ArcadeSave.getAdapter().capture())),comparable(backup),'Leaving restores private local state');
+      await host.close();await guest.close();
+    }
   });
 
   await run('Bowling owner loss, observer claim, returning owner and single animation',async()=>{
