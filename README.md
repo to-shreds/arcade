@@ -8,6 +8,13 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.8.6
+
+Typing has font size and font face choices, Select All and Copy controls.
+Face Lab uses a size button instead of a slider. Existing text, saved faces,
+shared play and the 2.8.5 menu, clock and kid Trivia fixes remain available.
+See the [release checks](docs/arcade-stress-test-2.8.6.md).
+
 ## Release 2.8.5
 
 Dots has a pause menu with Resume, New Game, Save, Load and Back to Arcade.

@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.8.5+20261107.1",
-  "generatedAt": "2026-11-07T21:44:19.067Z",
+  "version": "2.8.6+20261107.1",
+  "generatedAt": "2026-11-07T21:57:48.983Z",
   "fileCount": 387,
-  "totalBytes": 20134404,
+  "totalBytes": 20145486,
   "files": [
     {
       "path": "adventure/game.json",
@@ -32,8 +32,8 @@
     },
     {
       "path": "arcade-save.js",
-      "bytes": 19766,
-      "sha256": "a0c8a344b2db0b8d8b541d4bdb146b41b792b3bcf7ce2f8faabca31aa38d6819"
+      "bytes": 19783,
+      "sha256": "3e07369368214b8ba653ff57241688874013e79ddeedc88f597c150fba48fb5b"
     },
     {
       "path": "arcade-shell.css",
@@ -322,8 +322,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 15879,
-      "sha256": "54d78f9bc98f8a7cac005621b620c22f76674d608b7db75d11a89fc320bc8048"
+      "bytes": 15878,
+      "sha256": "bfa6259f5749319acaea043b491eefd45aa7ba36c75208c7047f58c074841216"
     },
     {
       "path": "insultinator/game.json",
@@ -522,8 +522,8 @@
     },
     {
       "path": "multiplayer/arcade-multiplayer.js",
-      "bytes": 45281,
-      "sha256": "2e2220eed4baf02afeaa087d50b97b3d06dfb9eb8d290f28d5c913fbde3f740d"
+      "bytes": 45339,
+      "sha256": "eb2263ffbe7a78a30816135bedc6699a7e86e391bd580de957f010b54821831f"
     },
     {
       "path": "multiplayer/arcade-shell-core.mjs",
@@ -1587,8 +1587,8 @@
     },
     {
       "path": "silly-face-lab/index.html",
-      "bytes": 109812,
-      "sha256": "1f3e0d27840484da72cd4a893a94e6c1c5f0b092f6f0f04c9b1b79642f3c39d5"
+      "bytes": 110177,
+      "sha256": "17c74812b70a377422a19c21acbbc5758805954e10f4f17ac5a0b341b75949dc"
     },
     {
       "path": "simon/game.json",
@@ -1667,8 +1667,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27796,
-      "sha256": "54a1661f0eff7dcb445468c08447f7ee25ef98a5090a654f255d02bdbd0942a6"
+      "bytes": 27792,
+      "sha256": "479227b9f9c22333f7971dede6485a8ca35a11e2a668888e07860b769aa76628"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1877,8 +1877,8 @@
     },
     {
       "path": "typing/index.html",
-      "bytes": 10461,
-      "sha256": "66a11cf719b868aff1fc3873e0c394c275a8a0f43d586c1994228fee162919bd"
+      "bytes": 21108,
+      "sha256": "bdf1c189d30ca9839c4249dac659e94db7795a673f0d5ca26ea76e41597f52c0"
     },
     {
       "path": "upwords/cpu-worker.js",

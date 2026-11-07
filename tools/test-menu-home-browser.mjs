@@ -10,6 +10,20 @@ for(const item of catalog.items.filter(item=>item.enabled&&!item.warning)){
 }
 const output=new URL(process.env.ARCADE_MENU_NATIVE_ONLY==='1'?'../test-results/menu-home-native/':'../test-results/menu-home/',import.meta.url);await mkdir(output,{recursive:true});
 const results=[],errors=[];
+async function navigateHome(page,activate){
+  const target=fixture.base+'/index.html',session=await page.context().newCDPSession(page),requests=[];
+  await session.send('Page.enable');
+  const {frameTree}=await session.send('Page.getFrameTree');
+  session.on('Page.frameRequestedNavigation',event=>{if(event.frameId===frameTree.frame.id)requests.push(event.url);});
+  try{
+    await activate();
+    await page.waitForURL(target);
+    await page.locator('header h1').filter({hasText:/^Arcade$/}).waitFor({state:'visible'});
+    await page.locator('#grid [data-arcade-folder]').first().waitFor({state:'visible'});
+    assert.equal(page.url(),target,'Home finishes on the top-level Arcade');
+    assert.deepEqual(requests,[target],'Home requests exactly one navigation to Arcade');
+  }finally{await session.detach();}
+}
 try{
   for(const viewport of [{width:1440,height:900},{width:390,height:844},{width:320,height:568},{width:844,height:390}]){
     const context=await browser.newContext({viewport,hasTouch:viewport.width<500}),gesture=viewport.width<500?'tap':'click';
@@ -26,8 +40,7 @@ try{
           home=page.locator('#shared-menu-home:visible,[data-shared-menu-content]:visible button,[data-shared-menu-content]:visible a').filter({hasText:/back to arcade|arcade home/i}).first();
         }
         await home.scrollIntoViewIfNeeded();
-        await home[gesture]();
-        await page.waitForURL(fixture.base+'/index.html');
+        await navigateHome(page,()=>home[gesture]());
         results.push({name,pass:true});console.log('PASS '+name);
       }catch(error){
         await page.screenshot({path:new URL(item.folder+'-'+viewport.width+'-failure.png',output).pathname}).catch(()=>{});
@@ -40,7 +53,7 @@ try{
       try{
         await nativePage.goto(fixture.base+'/'+game+'/');
         const home=nativePage.locator(selector).filter({hasText:'Back to Arcade'}).first();
-        await home.scrollIntoViewIfNeeded();await home[gesture]();await nativePage.waitForURL(fixture.base+'/index.html');
+        await home.scrollIntoViewIfNeeded();await navigateHome(nativePage,()=>home[gesture]());
         results.push({name,pass:true});console.log('PASS '+name);
       }catch(error){results.push({name,pass:false,error:error.stack});console.error('FAIL '+name+': '+error.message);await nativePage.screenshot({path:new URL(game+'-'+viewport.width+'-failure.png',output).pathname}).catch(()=>{});}
       finally{await nativePage.close();}
@@ -57,9 +70,8 @@ try{
       await page.locator('#dotsPauseResume')[gesture]();
       assert.equal(await page.locator('#dotsPauseMenu').isVisible(),false);
       assert.equal(await page.evaluate(()=>{DotsGame.saveGame();return localStorage.getItem('arcade_dots_save_v1');}),before);
-      await page.locator('#dotsMenuButton')[gesture]();await page.locator('#dotsPauseHome')[gesture]();
-      await page.waitForURL(fixture.base+'/index.html');
-      await page.goto(fixture.base+'/dots/');await page.locator('.dots-menu-home')[gesture]();await page.waitForURL(fixture.base+'/index.html');
+      await page.locator('#dotsMenuButton')[gesture]();await navigateHome(page,()=>page.locator('#dotsPauseHome')[gesture]());
+      await page.goto(fixture.base+'/dots/');await navigateHome(page,()=>page.locator('.dots-menu-home')[gesture]());
       results.push({name,pass:true});console.log('PASS '+name);
     }catch(error){results.push({name,pass:false,error:error.stack});console.error('FAIL '+name+': '+error.message);await page.screenshot({path:new URL('dots-'+viewport.width+'-failure.png',output).pathname}).catch(()=>{});}
     finally{await page.close();}

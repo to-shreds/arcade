@@ -17,7 +17,7 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Check out Arcade
         uses: actions/checkout@v6
@@ -71,6 +71,9 @@ jobs:
 
       - name: Verify Arcade exits, clock geometry and young kid Trivia
         run: npm run test:arcade-fixes
+
+      - name: Verify Typing controls and Face Lab size button
+        run: npm run test:activity-tools
 
       - name: Exercise desktop and mobile browsers against actual rooms
         run: npm run test:browser

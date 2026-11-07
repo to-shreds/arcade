@@ -1,3 +1,10 @@
+# 2.8.6
+
+- Added font size and font face controls, Select All and Copy to Typing.
+- Prevented duplicate direct-page Home navigation while preserving native and persistent-shell routes.
+- Replaced the Face Lab size slider with a size button, preserving existing saved sizes, undo and pinch sizing.
+- Retained the published Dots/menu fixes, centered clock and Young Kid Trivia; refreshed the offline release and Arcade update date.
+
 # 2.8.5
 
 - Added a Dots pause menu with Resume, New Game, Save, Load and Back to Arcade.

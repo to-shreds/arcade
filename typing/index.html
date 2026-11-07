@@ -14,7 +14,14 @@
 <style>
 body{touch-action:manipulation}
 .typing-app{gap:7px}
-.editor{flex:1 1 auto;min-height:88px;position:relative;overflow:auto;padding:clamp(15px,3.6vw,30px);color:#fff;font:800 clamp(27px,6.4vmin,58px)/1.32 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.02em;white-space:pre-wrap;overflow-wrap:anywhere;user-select:none;touch-action:pan-y}
+.editor{flex:1 1 auto;min-height:88px;position:relative;overflow:auto;padding:clamp(15px,3.6vw,30px);color:#fff;font-family:var(--typing-family,system-ui,-apple-system,"Segoe UI",sans-serif);font-size:var(--typing-size,clamp(27px,6.4vmin,58px));font-weight:800;line-height:1.32;letter-spacing:.02em;white-space:pre-wrap;overflow-wrap:anywhere;user-select:text;-webkit-user-select:text;touch-action:pan-y}
+.editor::selection,.editor ::selection{background:#6653b8;color:#fff}
+.typing-tools{flex:0 0 auto;display:grid;grid-template-columns:minmax(120px,1fr) minmax(80px,.6fr) auto auto;align-items:end;gap:6px;padding:8px}
+.typing-tools label{display:flex;flex-direction:column;gap:3px;min-width:0;color:var(--arcade-muted);font-size:11px;font-weight:800}
+.typing-tools select{width:100%;min-width:0;min-height:36px;border:1px solid var(--arcade-line);border-radius:10px;background:#1b2447;color:#fff;font:700 14px/1 system-ui,sans-serif;padding:6px 8px}
+.typing-tools .arcade-btn{min-height:36px;padding:6px 10px;white-space:nowrap}
+.typing-tool-status{grid-column:1/-1;min-height:16px;margin:0;color:var(--arcade-muted);font-size:12px;line-height:1.25;text-align:center}
+.typing-tools button:disabled{opacity:.4}
 .editor.empty:before{content:"Start typing!";color:rgba(255,255,255,.25)}
 .caret{display:inline-block;width:3px;height:.95em;margin:0 1px -2px;background:var(--arcade-gold);border-radius:2px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
@@ -26,13 +33,20 @@ body{touch-action:manipulation}
 .emoji-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:5px;max-height:min(210px,31vh);overflow:auto;padding:3px}
 .emoji-grid[hidden],.letter-board[hidden]{display:none!important}
 .emoji-key{min-height:45px;border:1px solid var(--arcade-line);border-radius:11px;background:rgba(255,255,255,.08);font-size:25px}.counter{font-size:12px;color:var(--arcade-muted);font-weight:900;text-align:center;white-space:nowrap}
-@media(max-width:480px){.typing-app .arcade-top{grid-template-columns:auto minmax(0,1fr) auto;column-gap:5px;row-gap:3px}.typing-app .arcade-title{grid-column:2;grid-row:1;font-size:clamp(18px,5.8vw,24px)}.typing-app .arcade-actions{display:contents}.typing-app .counter{grid-column:1/-1;grid-row:2;line-height:1.35}.typing-app #clear{grid-column:3;grid-row:1}.editor{padding:14px;font-size:clamp(25px,7.4vw,42px)}.keyboard{padding:5px;gap:4px}.key-row{gap:3px}.key{border-radius:9px}.emoji-grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
-@media(max-height:540px){.typing-app{gap:4px}.editor{min-height:56px;padding:10px;font-size:clamp(24px,7.5vh,38px)}.keyboard{padding:4px;gap:3px}.key{height:33px;font-size:15px;border-radius:8px}.key-row{gap:3px}.emoji-grid{max-height:112px;grid-template-columns:repeat(10,minmax(0,1fr))}.emoji-key{min-height:34px;font-size:19px}}
+@media(max-width:480px){.typing-app .arcade-top{grid-template-columns:auto minmax(0,1fr) auto;column-gap:5px;row-gap:3px}.typing-app .arcade-title{grid-column:2;grid-row:1;font-size:clamp(18px,5.8vw,24px)}.typing-app .arcade-actions{display:contents}.typing-app .counter{grid-column:1/-1;grid-row:2;line-height:1.35}.typing-app #clear{grid-column:3;grid-row:1}.typing-tools{grid-template-columns:repeat(2,minmax(0,1fr));padding:6px}.editor{padding:14px;font-size:var(--typing-size,clamp(25px,7.4vw,42px))}.keyboard{padding:5px;gap:4px}.key-row{gap:3px}.key{border-radius:9px}.emoji-grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
+@media(max-height:540px){.typing-app{gap:4px}.typing-tools{padding:4px;gap:4px}.typing-tools label{font-size:10px;gap:2px}.typing-tools select,.typing-tools .arcade-btn{min-height:30px;font-size:12px;padding:4px 7px}.typing-tool-status{font-size:11px;min-height:14px}.editor{min-height:56px;padding:10px;font-size:var(--typing-size,clamp(24px,7.5vh,38px))}.keyboard{padding:4px;gap:3px}.key{height:33px;font-size:15px;border-radius:8px}.key-row{gap:3px}.emoji-grid{max-height:112px;grid-template-columns:repeat(10,minmax(0,1fr))}.emoji-key{min-height:34px;font-size:19px}}
 </style>
 </head>
 <body class="arcade-shell">
 <main class="arcade-app typing-app">
   <header class="arcade-top"><button class="arcade-btn arcade-home" id="home" type="button" aria-label="Back to Arcade">⌂ <span class="label">Arcade</span></button><h1 class="arcade-title">Scarlett's Typing</h1><div class="arcade-actions"><span class="counter" id="counter">0</span><button class="arcade-btn" id="clear" type="button">Clear</button></div></header>
+  <section class="typing-tools arcade-panel" data-shared-ui="true" data-typing-tools aria-label="Text appearance and copy">
+    <label for="font-family">Font<select id="font-family"><option value="system">Simple</option><option value="rounded">Rounded</option><option value="serif">Storybook</option><option value="mono">Typewriter</option></select></label>
+    <label for="font-size">Size<select id="font-size"><option value="auto">Auto</option><option value="24">24</option><option value="32">32</option><option value="40">40</option><option value="56">56</option><option value="72">72</option></select></label>
+    <button class="arcade-btn" id="select-all" type="button" disabled>Select All</button>
+    <button class="arcade-btn gold" id="copy-text" type="button" disabled>Copy</button>
+    <p class="typing-tool-status" id="typing-tool-status" role="status" aria-live="polite"></p>
+  </section>
   <section class="editor arcade-panel empty" id="editor" role="textbox" aria-label="Typing area" aria-multiline="true" tabindex="0"></section>
   <section class="keyboard arcade-panel" aria-label="Arcade keyboard"><div class="letter-board" id="letterBoard"></div><div class="emoji-grid" id="emojiGrid" hidden></div></section>
 </main>
@@ -43,32 +57,113 @@ body{touch-action:manipulation}
   const SYMBOLS=[['1','2','3','4','5','6','7','8','9','0'],['!','?','.',',',"'",'"','-','(',')'],['@','#','$','%','&','+','=','/']];
   const EMOJIS=['😀','😂','😍','🤪','🥳','😎','🤖','👻','💩','🦄','🐶','🐱','🐸','🦖','🐙','🦋','🍕','🍩','🧁','🌈','⭐','🔥','❤️','👍','🎉','⚾','🚀','👽','🤮','🩲','🚽','🧻','🪠','🧀','🍌'];
   const editor=document.getElementById('editor'),board=document.getElementById('letterBoard'),emojiGrid=document.getElementById('emojiGrid'),counter=document.getElementById('counter');
-  let text='',cursor=0,caps=true,symbols=false,emojiOpen=false,clearArmed=0;
+  const familyControl=document.getElementById('font-family'),sizeControl=document.getElementById('font-size'),selectButton=document.getElementById('select-all'),copyButton=document.getElementById('copy-text'),toolStatus=document.getElementById('typing-tool-status');
+  const FONT_FAMILIES={system:'system-ui,-apple-system,"Segoe UI",sans-serif',rounded:'ui-rounded,"Arial Rounded MT Bold","Trebuchet MS",sans-serif',serif:'Georgia,Cambria,"Times New Roman",serif',mono:'ui-monospace,"Cascadia Code","Courier New",monospace'};
+  const FONT_SIZES=['auto','24','32','40','56','72'],PREFERENCE_KEY='arcade.typing.appearance.v1';
+  let text='',cursor=0,caps=true,symbols=false,emojiOpen=false,clearArmed=0,selected=null,selectionAnchor=null,copyRequest=0;
+  let appearance={family:'system',size:'auto'};
+  try{const saved=JSON.parse(localStorage.getItem(PREFERENCE_KEY)||'null');if(saved){if(Object.hasOwn(FONT_FAMILIES,saved.family))appearance.family=saved.family;if(FONT_SIZES.includes(saved.size))appearance.size=saved.size;}}catch(_){}
   const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const isSpectator=()=>!!window.ArcadeSharedActivity?.isSpectator();
   function graphemeStops(value){const out=[0];if(window.Intl&&Intl.Segmenter){const seg=new Intl.Segmenter(undefined,{granularity:'grapheme'});for(const part of seg.segment(value))out.push(part.index+part.segment.length)}else{let n=0;for(const ch of Array.from(value)){n+=ch.length;out.push(n)}}return[...new Set(out)].sort((a,b)=>a-b)}
   function moveCursor(dir){const stops=graphemeStops(text);if(dir<0){for(let i=stops.length-1;i>=0;i--)if(stops[i]<cursor)return stops[i];return 0}for(const stop of stops)if(stop>cursor)return stop;return text.length}
-  function renderText(){cursor=Math.max(0,Math.min(text.length,cursor));editor.innerHTML=esc(text.slice(0,cursor))+'<span class="caret" aria-hidden="true"></span>'+esc(text.slice(cursor));editor.classList.toggle('empty',!text);const count=graphemeStops(text).length-1;counter.textContent=count+(count===1?' character':' characters');editor.scrollTop=editor.scrollHeight}
+  function editorSelection(){
+    const selection=window.getSelection();
+    if(!selection?.rangeCount||!editor.contains(selection.anchorNode)||!editor.contains(selection.focusNode))return null;
+    try{const range=document.createRange();range.selectNodeContents(editor);range.setEnd(selection.anchorNode,selection.anchorOffset);const anchor=range.toString().length;range.selectNodeContents(editor);range.setEnd(selection.focusNode,selection.focusOffset);const focus=range.toString().length;return{start:Math.max(0,Math.min(anchor,focus,text.length)),end:Math.max(0,Math.min(Math.max(anchor,focus),text.length)),anchor,focus};}catch(_){return null;}
+  }
+  function rememberSelection(){const range=editorSelection();if(range&&range.end>range.start)selected=range;return selected;}
+  function textPoint(offset){const walker=document.createTreeWalker(editor,NodeFilter.SHOW_TEXT);let node;while((node=walker.nextNode())){if(offset<=node.length)return{node,offset};offset-=node.length;}return{node:editor,offset:editor.childNodes.length};}
+  function paintSelection(){
+    if(!selected||selected.end<=selected.start)return;
+    const start=textPoint(selected.start),end=textPoint(selected.end),range=document.createRange();range.setStart(start.node,start.offset);range.setEnd(end.node,end.offset);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);
+  }
+  function clearSelection(){selected=null;selectionAnchor=null;const selection=window.getSelection();if(selection?.rangeCount&&editor.contains(selection.anchorNode)&&editor.contains(selection.focusNode))selection.removeAllRanges();}
+  function renderText(preserveSelection=false){
+    const highlight=preserveSelection?selected:null;
+    if(!preserveSelection)toolStatus.textContent='';
+    cursor=Math.max(0,Math.min(text.length,cursor));editor.innerHTML=esc(text.slice(0,cursor))+'<span class="caret" aria-hidden="true"></span>'+esc(text.slice(cursor));editor.classList.toggle('empty',!text);
+    const count=graphemeStops(text).length-1;counter.textContent=count+(count===1?' character':' characters');selectButton.disabled=copyButton.disabled=!text;
+    if(highlight){selected=highlight;paintSelection();}else{selected=null;if(!preserveSelection)selectionAnchor=null;}
+    editor.scrollTop=editor.scrollHeight;
+  }
+  function saveAppearance(){try{if(!window.ArcadeSharedActivity?.getState?.().active)localStorage.setItem(PREFERENCE_KEY,JSON.stringify(appearance));}catch(_){} }
+  function applyAppearance(){familyControl.value=appearance.family;sizeControl.value=appearance.size;editor.style.setProperty('--typing-family',FONT_FAMILIES[appearance.family]);if(appearance.size==='auto')editor.style.removeProperty('--typing-size');else editor.style.setProperty('--typing-size',appearance.size+'px');}
+  function changeAppearance(){rememberSelection();appearance={family:familyControl.value,size:sizeControl.value};applyAppearance();saveAppearance();paintSelection();toolStatus.textContent='';}
+  function selectAll(){if(!text)return;selected={start:0,end:text.length};selectionAnchor=null;editor.focus({preventScroll:true});paintSelection();toolStatus.textContent='All text selected.';}
+  function extendSelection(destination){
+    const native=editorSelection();
+    if(selectionAnchor===null){selectionAnchor=native&&native.end>native.start?native.anchor:cursor;if(native&&native.end>native.start)cursor=native.focus;}
+    cursor=destination==='start'?0:destination==='end'?text.length:moveCursor(destination);
+    selected={start:Math.min(selectionAnchor,cursor),end:Math.max(selectionAnchor,cursor)};
+    if(selected.start===selected.end){const anchor=selectionAnchor;clearSelection();selectionAnchor=anchor;}
+    renderText(true);
+  }
+  async function copyText(){
+    const range=rememberSelection(),value=range?text.slice(range.start,range.end):text,request=++copyRequest;
+    if(!value){toolStatus.textContent='Nothing to copy yet.';return false;}
+    let copied=false;
+    try{if(!navigator.clipboard?.writeText)throw new Error('Clipboard unavailable');await navigator.clipboard.writeText(value);copied=true;}catch(_){
+      const focus=document.activeElement,selection=window.getSelection(),ranges=[];
+      if(selection)for(let index=0;index<selection.rangeCount;index++)ranges.push(selection.getRangeAt(index).cloneRange());
+      const field=document.createElement('textarea');field.value=value;field.setAttribute('data-shared-ui','true');field.setAttribute('aria-label','Text to copy');Object.assign(field.style,{position:'fixed',left:'-9999px',top:'0',opacity:'0'});document.body.appendChild(field);
+      try{field.focus({preventScroll:true});field.select();copied=typeof document.execCommand==='function'&&document.execCommand('copy');}catch(_){}finally{field.remove();focus?.focus?.({preventScroll:true});if(selection){selection.removeAllRanges();for(const saved of ranges)try{selection.addRange(saved);}catch(_){}}}
+    }
+    if(request===copyRequest){if(!copied&&!range)selectAll();toolStatus.textContent=copied?(range?'Selected text copied!':'All text copied!'):'Copy was blocked. Use your device’s Copy command on the selected text.';}
+    return copied;
+  }
   function key(label,value,cls=''){const b=document.createElement('button');b.type='button';b.className='key '+cls;b.textContent=label;b.dataset.key=value;return b}
   function renderKeyboard(){board.replaceChildren();const rows=symbols?SYMBOLS:LETTERS;rows.forEach(chars=>{const row=document.createElement('div');row.className='key-row';chars.forEach(ch=>row.appendChild(key(!symbols&&caps?ch.toUpperCase():ch,ch)));board.appendChild(row)});const tools=document.createElement('div');tools.className='key-row';if(!symbols)tools.appendChild(key('⇧','caps','wide'+(caps?' active':'')));tools.appendChild(key(symbols?'ABC':'123','symbols','wide'));tools.appendChild(key('😀','emoji','wide'+(emojiOpen?' active':'')));tools.appendChild(key('◀','left','wide'));tools.appendChild(key('space','space','space'));tools.appendChild(key('▶','right','wide'));tools.appendChild(key('↵','enter','wide'));tools.appendChild(key('⌫','backspace','wide'));board.appendChild(tools);board.hidden=emojiOpen;emojiGrid.hidden=!emojiOpen}
   function touch(){if(window.ArcadeSave)ArcadeSave.touch(250)}
-  function insert(value){text=text.slice(0,cursor)+value+text.slice(cursor);cursor+=value.length;if(caps&&!symbols&&/\S/.test(value))caps=false;renderText();renderKeyboard();touch()}
-  function press(value){if(value==='caps'){caps=!caps;renderKeyboard();return}if(value==='symbols'){symbols=!symbols;caps=!symbols;emojiOpen=false;renderKeyboard();return}if(value==='emoji'){emojiOpen=!emojiOpen;renderKeyboard();return}if(value==='left'){cursor=moveCursor(-1);renderText();return}if(value==='right'){cursor=moveCursor(1);renderText();return}if(value==='space'){insert(' ');return}if(value==='enter'){insert('\n');caps=true;return}if(value==='backspace'){if(cursor>0){const before=moveCursor(-1);text=text.slice(0,before)+text.slice(cursor);cursor=before;renderText();touch()}return}insert(!symbols&&caps?value.toUpperCase():value)}
+  function deleteSelection(){const range=rememberSelection();if(!range||range.end<=range.start)return false;text=text.slice(0,range.start)+text.slice(range.end);cursor=range.start;clearSelection();return true;}
+  function insert(value){if(isSpectator())return;deleteSelection();text=text.slice(0,cursor)+value+text.slice(cursor);cursor+=value.length;clearSelection();if(caps&&!symbols&&/\S/.test(value))caps=false;renderText();renderKeyboard();touch()}
+  function press(value){
+    if(isSpectator())return;
+    if(value==='caps'){caps=!caps;renderKeyboard();return}if(value==='symbols'){symbols=!symbols;caps=!symbols;emojiOpen=false;renderKeyboard();return}if(value==='emoji'){emojiOpen=!emojiOpen;renderKeyboard();return}
+    if(value==='left'||value==='right'){const range=rememberSelection();cursor=range?(value==='left'?range.start:range.end):moveCursor(value==='left'?-1:1);clearSelection();renderText();return}
+    if(value==='space'){insert(' ');return}if(value==='enter'){insert('\n');caps=true;return}
+    if(value==='backspace'){if(deleteSelection()){renderText();touch();}else if(cursor>0){const before=moveCursor(-1);text=text.slice(0,before)+text.slice(cursor);cursor=before;renderText();touch();}return}
+    insert(!symbols&&caps?value.toUpperCase():value);
+  }
+  board.addEventListener('pointerdown',event=>{if(event.target.closest('.key')){rememberSelection();event.preventDefault();}});
   board.addEventListener('click',e=>{const b=e.target.closest('.key');if(b)press(b.dataset.key)});
+  familyControl.addEventListener('change',changeAppearance);sizeControl.addEventListener('change',changeAppearance);
+  document.querySelector('[data-typing-tools]').addEventListener('pointerdown',()=>rememberSelection());
+  selectButton.addEventListener('click',selectAll);copyButton.addEventListener('click',copyText);
+  document.addEventListener('selectionchange',()=>{const range=editorSelection();if(range&&range.end>range.start)selected=range;else if(range&&document.activeElement===editor){selected=null;selectionAnchor=null;}});
+  window.addEventListener('pointerdown',event=>{if(!event.target.closest?.('#editor,[data-typing-tools],.keyboard')){selected=null;selectionAnchor=null;}},true);
+  window.addEventListener('keydown',event=>{
+    if(event.isComposing||event.altKey||!event.target.closest?.('#editor')||!(event.ctrlKey||event.metaKey))return;
+    if(event.key.toLowerCase()==='a'){event.preventDefault();event.stopImmediatePropagation();selectAll();}
+    else if(event.key.toLowerCase()==='c'){event.preventDefault();event.stopImmediatePropagation();copyText();}
+  },true);
   document.addEventListener('keydown',e=>{
-    if(e.isComposing||e.ctrlKey||e.metaKey||e.altKey||(e.target instanceof Element&&e.target.closest('input,textarea,select,[contenteditable="true"]')))return;
+    if(e.isComposing||e.ctrlKey||e.metaKey||e.altKey||isSpectator()||(e.target instanceof Element&&e.target.closest('input,textarea,select,[contenteditable="true"],[data-typing-tools]')))return;
     if(e.key==='Backspace'){e.preventDefault();press('backspace');return}
-    if(e.key==='Delete'){e.preventDefault();const next=moveCursor(1);text=text.slice(0,cursor)+text.slice(next);renderText();touch();return}
-    if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();press(e.key==='ArrowLeft'?'left':'right');return}
-    if(e.key==='Home'||e.key==='End'){e.preventDefault();cursor=e.key==='Home'?0:text.length;renderText();return}
+    if(e.key==='Delete'){e.preventDefault();if(!deleteSelection()){const next=moveCursor(1);text=text.slice(0,cursor)+text.slice(next);}renderText();touch();return}
+    if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+      e.preventDefault();
+      if(e.shiftKey)extendSelection(e.key==='ArrowLeft'?-1:1);
+      else press(e.key==='ArrowLeft'?'left':'right');return;
+    }
+    if(e.key==='Home'||e.key==='End'){e.preventDefault();if(e.shiftKey)extendSelection(e.key==='Home'?'start':'end');else{cursor=e.key==='Home'?0:text.length;clearSelection();renderText();}return}
     if(e.key==='Enter'){if(e.target.closest('button'))return;e.preventDefault();insert('\n');return}
     if(e.key.length===1){e.preventDefault();insert(e.key)}
   });
-  EMOJIS.forEach(e=>{const b=document.createElement('button');b.type='button';b.className='emoji-key';b.textContent=e;b.addEventListener('click',()=>{insert(e);emojiOpen=false;renderKeyboard()});emojiGrid.appendChild(b)});
-  editor.addEventListener('click',()=>{cursor=text.length;renderText()});
-  document.getElementById('clear').addEventListener('click',e=>{const now=Date.now();if(text&&now>clearArmed){clearArmed=now+1600;e.currentTarget.textContent='Tap again';setTimeout(()=>{if(Date.now()>clearArmed)e.currentTarget.textContent='Clear'},1650);return}text='';cursor=0;caps=true;clearArmed=0;e.currentTarget.textContent='Clear';renderText();renderKeyboard();touch()});
-document.getElementById('home').addEventListener('click',()=>{ArcadeSave.goHome()});
-  window.TypingAutosave={id:'typing',title:"Scarlett's Typing",version:2,capture:()=>({text,cursor,caps,symbols}),restore:s=>{if(!s||typeof s.text!=='string')throw new Error('Invalid typing save');text=s.text.slice(0,100000);const savedCursor=Number(s.cursor);cursor=Math.max(0,Math.min(text.length,Number.isFinite(savedCursor)?savedCursor:text.length));caps=s.caps!==false;symbols=!!s.symbols;emojiOpen=false;renderText();renderKeyboard();return true},meaningful:()=>text.length>0,summary:()=>text.length+(text.length===1?' character':' characters'),migrate:s=>{const migratedText=String(s&&s.text||'').slice(0,100000),savedCursor=Number(s&&s.selectionEnd);return{text:migratedText,cursor:Number.isFinite(savedCursor)?savedCursor:migratedText.length,caps:true,symbols:false}},startFresh:()=>{text='';cursor=0;caps=true;symbols=false;emojiOpen=false;renderText();renderKeyboard()}};
-  renderText();renderKeyboard();
+  EMOJIS.forEach(e=>{const b=document.createElement('button');b.type='button';b.className='emoji-key';b.textContent=e;b.addEventListener('pointerdown',event=>{rememberSelection();event.preventDefault();});b.addEventListener('click',()=>{insert(e);emojiOpen=false;renderKeyboard()});emojiGrid.appendChild(b)});
+  editor.addEventListener('click',()=>{if(isSpectator())return;const range=editorSelection();if(range&&range.end>range.start){selected=range;selectionAnchor=null;return;}cursor=range?range.end:text.length;clearSelection();renderText();});
+  document.getElementById('clear').addEventListener('click',e=>{if(isSpectator())return;const now=Date.now();if(text&&now>clearArmed){clearArmed=now+1600;e.currentTarget.textContent='Tap again';setTimeout(()=>{if(Date.now()>clearArmed)e.currentTarget.textContent='Clear'},1650);return}text='';cursor=0;clearSelection();caps=true;clearArmed=0;e.currentTarget.textContent='Clear';renderText();renderKeyboard();touch()});
+  document.getElementById('home').addEventListener('click',()=>{ArcadeSave.goHome()});
+  window.TypingAutosave={id:'typing',title:"Scarlett's Typing",version:2,capture:()=>({text,cursor,caps,symbols}),restore:(s,context={})=>{
+    if(!s||typeof s.text!=='string')throw new Error('Invalid typing save');
+    const incoming=s.text.slice(0,100000),sameText=incoming===text,savedCursor=Number(s.cursor),nextCursor=Math.max(0,Math.min(incoming.length,Number.isFinite(savedCursor)?savedCursor:incoming.length));
+    const redraw=!sameText||cursor!==nextCursor;
+    if(!sameText)clearSelection();else rememberSelection();
+    text=incoming;cursor=nextCursor;caps=s.caps!==false;symbols=!!s.symbols;emojiOpen=false;
+    if(redraw)renderText(sameText);else{const count=graphemeStops(text).length-1;counter.textContent=count+(count===1?' character':' characters');selectButton.disabled=copyButton.disabled=!text;}
+    renderKeyboard();if(context.online===false)saveAppearance();return true;
+  },meaningful:()=>text.length>0,summary:()=>text.length+(text.length===1?' character':' characters'),migrate:s=>{const migratedText=String(s&&s.text||'').slice(0,100000),savedCursor=Number(s&&s.selectionEnd);return{text:migratedText,cursor:Number.isFinite(savedCursor)?savedCursor:migratedText.length,caps:true,symbols:false}},startFresh:()=>{text='';cursor=0;clearSelection();caps=true;symbols=false;emojiOpen=false;renderText();renderKeyboard();}};
+  applyAppearance();renderText();renderKeyboard();
 })();
 </script>
 <script src="../arcade-save.js"></script><script>ArcadeSave.register(window.TypingAutosave);</script>

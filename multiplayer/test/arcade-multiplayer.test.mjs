@@ -4,6 +4,7 @@ import test from "node:test";
 import { JSDOM, VirtualConsole } from "../../cloudflare/chess-worker/node_modules/jsdom/lib/api.js";
 
 const source = await readFile(new URL("../arcade-multiplayer.js", import.meta.url), "utf8");
+const saveSource = await readFile(new URL("../../arcade-save.js", import.meta.url), "utf8");
 
 function tick(delay = 0){ return new Promise(resolve => setTimeout(resolve, delay)); }
 
@@ -13,11 +14,16 @@ function environment({ framed = true, serviceWorker = false, nearbyMarker = fals
   const nativeSockets = [];
   const serviceWorkerMessages = [];
   const serviceWorkerListeners = new Map();
+  const navigationAttempts = [];
+  const virtualConsole = new VirtualConsole();
+  virtualConsole.on("jsdomError", error => {
+    if(/Not implemented: navigation/.test(error.message)) navigationAttempts.push(error);
+  });
   const dom = new JSDOM("<!doctype html><title>Game</title>", {
     url: `https://to-shreds.github.io/arcade/chess/${nearbyMarker ? "?_arcadeTransport=nearby" : ""}`,
     runScripts: "dangerously",
     pretendToBeVisual: true,
-    virtualConsole: new VirtualConsole()
+    virtualConsole
   });
   const { window } = dom;
   window.Response = Response;
@@ -87,7 +93,7 @@ function environment({ framed = true, serviceWorker = false, nearbyMarker = fals
       result
     });
   }
-  return { dom, window, parent, calls, nativeFetchCalls, nativeSockets, serviceWorkerMessages, serviceWorkerListeners, deliver, last, hello, answerRpc };
+  return { dom, window, parent, calls, nativeFetchCalls, nativeSockets, serviceWorkerMessages, serviceWorkerListeners, navigationAttempts, deliver, last, hello, answerRpc };
 }
 
 test("game iframe declares and reasserts only its own service-worker transport", () => {
@@ -188,7 +194,49 @@ test("an unrelated iframe cannot swallow Home or shell navigation", () => {
   const env = environment();
   assert.equal(env.window.ArcadeMultiplayer.openGame("chess"), false);
   assert.equal(env.window.ArcadeMultiplayer.goHome(), false);
+  assert.equal(env.navigationAttempts.length, 1, "default Home keeps its direct navigation fallback");
   assert.equal(env.calls.some(call => call.message.type === "open-game" || call.message.type === "home"), false);
+  env.dom.window.close();
+});
+
+test("ArcadeSave probes the shell bridge without starting a second direct navigation", async() => {
+  const env = environment({ framed: false });
+  assert.equal(env.window.ArcadeMultiplayer.goHome({ bridgeOnly: true }), false);
+  assert.equal(env.navigationAttempts.length, 0, "a bridge-only probe cannot navigate");
+  env.window.eval(saveSource);
+  await env.window.ArcadeSave.goHome();
+  assert.equal(env.navigationAttempts.length, 1, "direct Home starts exactly one navigation");
+  env.dom.window.close();
+});
+
+test("a bridge-only Home probe preserves ArcadeSave native and parent-shell fallbacks", async() => {
+  const native = environment({ framed: false });
+  let nativeCalls = 0;
+  native.window.ArcadeNative = { goHome(){ nativeCalls++; } };
+  native.window.eval(saveSource);
+  await native.window.ArcadeSave.goHome();
+  assert.equal(nativeCalls, 1, "the native wrapper handles Home once");
+  assert.equal(native.navigationAttempts.length, 0, "native Home does not also navigate the browser");
+  native.dom.window.close();
+
+  const framed = environment();
+  framed.parent.ArcadeShell = { goHome(){} };
+  framed.window.eval(saveSource);
+  await framed.window.ArcadeSave.goHome();
+  const home = framed.calls.find(call => call.message.scope === 'arcade-shell-navigation');
+  assert.ok(home, "a shell without an authenticated multiplayer bridge receives the legacy Home message");
+  assert.equal(home.message.type, 'home');
+  assert.equal(framed.navigationAttempts.length, 0, "parent-shell Home does not load an index inside the game frame");
+  framed.dom.window.close();
+});
+
+test("ArcadeSave uses an authenticated Home bridge without a direct fallback", async() => {
+  const env = environment();
+  env.hello({ nearby: false, connected: 1, status: "Internet" });
+  env.window.eval(saveSource);
+  await env.window.ArcadeSave.goHome();
+  assert.equal(env.calls.filter(call => call.message.type === 'home').length, 1);
+  assert.equal(env.navigationAttempts.length, 0);
   env.dom.window.close();
 });
 

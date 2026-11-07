@@ -933,8 +933,9 @@
     }
   }
 
-  function goHome(){
+  function goHome(options){
     if(bridgeAvailable && post({ type: "home" })) return true;
+    if(options?.bridgeOnly === true) return false;
     root.location.href = "../index.html";
     return false;
   }

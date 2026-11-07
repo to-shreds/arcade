@@ -269,7 +269,7 @@
     // identity. Prefer it so an active room can close its virtual sockets
     // before the persistent shell removes the game frame.
     try{
-      if(window.ArcadeMultiplayer && typeof window.ArcadeMultiplayer.goHome === 'function' && window.ArcadeMultiplayer.goHome()) return true;
+      if(window.ArcadeMultiplayer && typeof window.ArcadeMultiplayer.goHome === 'function' && window.ArcadeMultiplayer.goHome({bridgeOnly:true})) return true;
     }catch(_){}
 
     // Other games use this deliberately tiny navigation message. The shell

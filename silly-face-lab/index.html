@@ -890,7 +890,10 @@
     }
     #selectedPartLabel { color: var(--lab-violet-dark); }
     #sizeValue { color: var(--lab-violet-dark); }
-    input[type=range] { width: 100%; min-height: 31px; accent-color: var(--lab-violet); }
+    .size-cycle-button { width: 100%; min-height: 40px; padding: 6px 10px; border: 1px solid #ded5f5; border-radius: 11px; background: #eee9ff; color: var(--lab-violet-dark); font-family: inherit; font-weight: 900; font-size: .94rem; box-shadow: 0 2px 0 rgba(76, 48, 151, .13); cursor: pointer; touch-action: manipulation; }
+    .size-cycle-button:disabled { opacity: .35; cursor: default; }
+    .size-cycle-button:focus-visible { outline: 3px solid var(--lab-violet); outline-offset: 2px; }
+    @media(max-width:560px){.size-cycle-button{padding:3px;font-size:.78rem;line-height:1.1}.size-cycle-button [aria-hidden]{display:block}}
     .nudge-controls { justify-content: stretch; gap: 4px; }
     .move-btn {
         width: auto;
@@ -1053,8 +1056,8 @@
             <div class="options-strip" id="optionsContainer"></div>
             <div class="bottom-toolbar" id="bottomToolbar">
                 <div class="tool-group">
-                    <span class="tool-label"><span id="sliderLabel">Size</span><span id="sizeValue">100%</span></span>
-                    <input type="range" id="sizeSlider" min="0.5" max="2.5" step="0.1" value="1" aria-label="Selected part size">
+                    <span class="tool-label" id="sizeLabel">Size</span>
+                    <button class="size-cycle-button" id="sizeButton" type="button" aria-labelledby="selectedPartLabel sizeLabel sizeValue" aria-description="Tap to change size. Sizes cycle from 50 to 250 percent."><span aria-hidden="true">↔ </span><span id="sizeValue">100%</span></button>
                 </div>
                 <div class="tool-group">
                     <span class="tool-label"><span id="moveLabel">Move</span><span id="selectedPartLabel">Template</span></span>
@@ -1093,9 +1096,9 @@
             return this;
         };
     }
-    const sizeSlider = document.getElementById('sizeSlider');
-    const sliderLabel = document.getElementById('sliderLabel');
+    const sizeButton = document.getElementById('sizeButton');
     const sizeValue = document.getElementById('sizeValue');
+    const SIZE_STEPS = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5];
 
     let currentTab = null;
     let currentStageId = 'start';
@@ -1504,15 +1507,28 @@
             if(active) {
                 active.size = Math.round(STICKER_BASE_SIZE * v);
                 draw();
-                if(sizeValue) sizeValue.textContent = `${Math.round(v * 100)}%`;
+                syncSizeButton();
             }
             return;
         }
         if(currentTab && currentTab.sizeTarget) {
             state[currentTab.sizeTarget] = v;
             draw();
-            if(sizeValue) sizeValue.textContent = `${Math.round(v * 100)}%`;
+            syncSizeButton();
         }
+    }
+
+    function nextSizeValue() {
+        const current = Number(getCurrentSizeValue()) || 1;
+        return SIZE_STEPS.find(size => size > current + 0.01) || SIZE_STEPS[0];
+    }
+
+    function syncSizeButton() {
+        const enabled = canSizeCurrentThing();
+        const value = Math.round(getCurrentSizeValue() * 100);
+        sizeButton.disabled = !enabled;
+        sizeValue.textContent = enabled ? `${value}%` : '100%';
+        sizeButton.title = enabled ? 'Tap to change size' : 'Choose a part to change its size';
     }
 
     function canMoveCurrentThing() {
@@ -1859,12 +1875,7 @@
 
     function updateToolbar(cat) {
         currentTab = cat;
-        const hasSize = canSizeCurrentThing();
-        const currentSize = getCurrentSizeValue();
-        sizeSlider.disabled = !hasSize;
-        sizeSlider.value = currentSize;
-        sliderLabel.textContent = 'Size';
-        if(sizeValue) sizeValue.textContent = hasSize ? `${Math.round(currentSize * 100)}%` : '—';
+        syncSizeButton();
 
         const canMove = canMoveCurrentThing();
         document.querySelectorAll('.move-btn').forEach(button => { button.disabled = !canMove; });
@@ -1913,19 +1924,11 @@
 
 
     
-    let sliderEditing = false;
-    function beginSliderEdit() {
-        if(!sliderEditing && canSizeCurrentThing() && !sizeSlider.disabled) {
-            pushHistory();
-            sliderEditing = true;
-        }
-    }
-    function endSliderEdit() { sliderEditing = false; }
-    sizeSlider.addEventListener('pointerdown', beginSliderEdit);
-    sizeSlider.addEventListener('keydown', beginSliderEdit);
-    sizeSlider.addEventListener('pointerup', endSliderEdit);
-    sizeSlider.addEventListener('change', endSliderEdit);
-    sizeSlider.oninput = (e) => setCurrentSizeValue(e.target.value);
+    sizeButton.addEventListener('click', () => {
+        if(!canSizeCurrentThing() || sizeButton.disabled) return;
+        pushHistory();
+        setCurrentSizeValue(nextSizeValue());
+    });
 
     function move(x, y) {
         if(currentTab && currentTab.id === 'stickers') {
@@ -2017,7 +2020,6 @@
         const ratio = pinchDistance() / pinchGesture.startDistance;
         const next = Math.max(0.5, Math.min(2.5, pinchGesture.startSize * ratio));
         setCurrentSizeValue(next);
-        sizeSlider.value = String(next);
         evt.preventDefault();
         evt.stopImmediatePropagation();
     }, true);

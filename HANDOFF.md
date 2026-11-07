@@ -1,6 +1,41 @@
 # Arcade continuation handoff
 
-## Current state: 2.8.5
+## Current state: 2.8.6
+
+The November 7 follow-up adds Typing font/size choices, Select All and Copy,
+and replaces the Face Lab size slider with a size button. All 2.8.5 menu,
+clock and picture/voice Trivia changes below remain in this release.
+
+Typing retains its custom keyboard, text/cursor save schema (version 2), native
+composition exclusions and grapheme-aware editing. The local toolbar offers
+Simple, Rounded, Storybook and Typewriter faces, Auto or 24/32/40/56/72 pixel
+sizes, Select All and Copy selected text (or all text when none is selected).
+Native selection, Ctrl+A/C, Shift selection and selection replacement preserve
+text and cursor expectations. Clipboard failure is reported honestly; the
+fallback preserves original text, selection and focus. Appearance preferences
+and selection are local UI, excluded from room checkpoints. In-room preferences
+stay in memory and persist through the existing restore context on leave,
+without weakening shared save guards. Observers can use the local toolbar;
+native partial pointer selection remains subject to existing observer guards.
+
+Face Lab's size button cycles 50%-250% in 25-point steps and wraps. Exact
+older saved sizes and continuous pinch values remain unchanged until tapped.
+Every tap has one undo entry. Stickers, pinch, shared controller permissions,
+canvas observer rendering, handoff and local restoration remain intact.
+
+A direct-page Home path was found to navigate twice: the multiplayer bridge
+fallback navigated and returned false, then ArcadeSave navigated again. The
+bridge-only probe used by ArcadeSave preserves existing default bridge behavior
+and native/parent fallbacks while performing one actual navigation. Keep the
+strict final URL and visible Arcade checks in the browser audit.
+
+`npm run test:activity-tools` covers the two follow-up controls.
+`npm run test:arcade-fixes` retains menu, clock and kid Trivia checks. The new
+release uses snapshot 2.8.6+20261107.1 and an updated visible release date.
+See docs/arcade-stress-test-2.8.6.md and ProjectStatus for final evidence,
+publication and the exact current source/download identities.
+
+## Prior release 2.8.5 benchmark
 
 The November 7 request adds missing Arcade exits, fixes the clock face geometry,
 and adds Young Kid Mode to Trivia. Dots had an old global `.back-btn` rule hiding
