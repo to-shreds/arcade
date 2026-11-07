@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.8.6+20261107.1",
-  "generatedAt": "2026-11-07T21:57:48.983Z",
+  "version": "2.8.7+20261107.1",
+  "generatedAt": "2026-11-07T22:49:50.413Z",
   "fileCount": 387,
-  "totalBytes": 20145486,
+  "totalBytes": 20164370,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1667,8 +1667,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27792,
-      "sha256": "479227b9f9c22333f7971dede6485a8ca35a11e2a668888e07860b769aa76628"
+      "bytes": 27794,
+      "sha256": "20959a6059ce4693bd1c1d57c37b0a7b2b6253a3a6218fb3f8f9f21f4ac26994"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1802,8 +1802,8 @@
     },
     {
       "path": "tv/app.mjs",
-      "bytes": 19103,
-      "sha256": "48171c4d801e450cc647bc2364710865f9fa3a70ea54b54855b4007fd38bc5a2"
+      "bytes": 28414,
+      "sha256": "86e7c26c1502eae9923e432f75516b1d6e78e086acc7c689e2fee1d07187c354"
     },
     {
       "path": "tv/catalog.mjs",
@@ -1812,8 +1812,8 @@
     },
     {
       "path": "tv/core.mjs",
-      "bytes": 12395,
-      "sha256": "486e61fec71fa4bd8a944d7f94b9c23a392018aa9a0e27fb4eea68a741d7320e"
+      "bytes": 18102,
+      "sha256": "e30fbaf49408e7eed5e252b7e9e8e4f6561bef9dd897a5cfb19a64b9c5070be4"
     },
     {
       "path": "tv/game.json",
@@ -1827,18 +1827,18 @@
     },
     {
       "path": "tv/index.html",
-      "bytes": 4653,
-      "sha256": "e0bb1fd3871400bd1d90dc0f8fd1aec87eb18c777e8079a3f1e9e23401e5f4c0"
+      "bytes": 5977,
+      "sha256": "ce8d173948b2d3b336d6bf75922c75f6265f7861d3064d8bd8b5ad77f74c41ff"
     },
     {
       "path": "tv/README.md",
-      "bytes": 8564,
-      "sha256": "d1f8217f1d6e37ccbfc4e1156634feb2a4fc354b43b8232386e1b38969fa8bee"
+      "bytes": 9955,
+      "sha256": "a46a6d9be49038b0b715858d069b8698c5e25621e257022ad839b0ab39d46055"
     },
     {
       "path": "tv/style.css",
-      "bytes": 5286,
-      "sha256": "993e585759d93d1fef033d8bf2b6158a4591e97b8cb07cb1291bcb45c99d4a14"
+      "bytes": 6435,
+      "sha256": "8474ad6d31569e44592a313fae6ce3a1ac1ac3fe726fe29526636b8cb71ab41c"
     },
     {
       "path": "tv/vault.mjs",
