@@ -6,6 +6,12 @@
 - Kept rejected or incompatible saves intact and offered Retry or Start Fresh,
   instead of reporting success and replacing them with a fresh game.
 - Kept legacy games and Chess playable when browser storage is unavailable.
+- Made Chess move history show the selected board position alongside its move
+  controls and list, with layouts for phones and wide screens.
+- Preserved later Chess moves when an attempted move from a past position is
+  illegal; branching now starts only when a legal move is played.
+- Made setup menus scroll on short screens in Make 10, Jigsaw, Memory and
+  Minesweeper so their lower controls remain reachable.
 - Added validation when Nearby restores saved shared-activity rooms, preserving
   the current session when a damaged checkpoint is rejected.
 - Replaced slogans and implementation wording with useful instructions across

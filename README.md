@@ -16,7 +16,9 @@ the swatter. The original squishing game is still available in the same menu.
 
 This release also fixes Solitaire and Regex Lab autosaves and strengthens
 saved-game recovery. Plain instructions replace slogans and technical wording
-across 21 activities. The project-wide checks cover every enabled activity,
+across 21 activities. Chess shows the board together with move history, and
+short-screen setup menus keep their lower controls reachable.
+The project-wide checks cover every enabled activity,
 shared rooms, competitive games, saves, phone layouts and the offline package.
 See the [release checks](docs/arcade-stress-test-2.9.0.md) for exact results and
 the limits of device and account testing.

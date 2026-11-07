@@ -882,6 +882,53 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 }
 </style>
 <style>#setupModal .modalPanel{overflow-y:auto!important}</style>
+<style id="chess-history-layout">
+  #movesModal{padding:10px;max-height:none!important;border-radius:0!important}
+  #movesModal .historyPanel{width:min(1100px,calc(100vw - 20px));height:min(820px,calc(100dvh - 20px));max-height:calc(100dvh - 20px)!important;display:flex;flex-direction:column;overflow:hidden!important;padding:12px!important}
+  #movesModal .modalHead{flex:none;margin-bottom:10px!important;min-height:36px}
+  #historyPosition{margin-top:5px;font-variant-numeric:tabular-nums}
+  .historyLayout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,290px);gap:12px;flex:1;min-height:0;min-width:0}
+  #historyBoardHost{min-width:0;min-height:0;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  #historyBoardHost .board-shell{width:100%;height:100%!important;max-height:100%;flex:none;box-shadow:none}
+  #historyBoardHost #board{flex:none;pointer-events:none;width:var(--history-board-size,210px)!important;height:var(--history-board-size,210px)!important}
+  #historyBoardHost .piece.glyph{font-size:min(74px,calc(var(--history-board-size,210px) * .105))}
+  #historyBoardHost #overlay{display:none!important}
+  .historySidebar{display:flex;flex-direction:column;min-height:0;min-width:0;gap:10px}
+  .historyNav{display:grid;grid-template-columns:repeat(3,minmax(38px,1fr)) minmax(76px,1.6fr);gap:5px}
+  #movesModal .historyNav button,#movesClose{min-height:38px!important;padding:8px!important}
+  #movesModal button:disabled{opacity:.45;cursor:default}
+  #movesModal .sliderWrap{flex:none;gap:6px;min-height:26px}
+  #movesModal .sliderWrap span{min-width:22px;text-align:center;font-variant-numeric:tabular-nums}
+  #movesModal #movesList{max-height:none;flex:1;padding:6px;min-height:0;border:1px solid var(--ui-border);border-radius:12px;background:rgba(0,0,0,.2)}
+  #movesModal .moveRow{padding:5px;gap:5px;margin-bottom:5px;align-items:center}
+  #movesModal .moveNo{width:24px;padding-right:2px}
+  #movesModal .ply{flex-wrap:nowrap;gap:5px}
+  #movesModal .mv{min-height:34px!important;font:900 13px/1.1 system-ui,sans-serif;letter-spacing:0;color:#fff;padding:6px 8px;flex:1}
+  #movesHint{line-height:1.3}
+  @media(max-width:600px) and (orientation:portrait){
+    #movesModal .historyPanel{padding:8px!important}
+    .historyLayout{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(156px,34%);gap:8px}
+    .historySidebar{gap:6px}
+    #movesModal .modalHead{margin-bottom:6px!important;min-height:30px}
+    #movesModal .historyNav button,#movesClose{min-height:34px!important}
+    #movesHint{font-size:11px}
+  }
+  @media(max-height:430px){
+    #movesModal{padding:6px}
+    #movesModal .historyPanel{height:calc(100dvh - 12px);max-height:calc(100dvh - 12px)!important;width:calc(100vw - 12px);padding:8px!important}
+    .historyLayout{grid-template-columns:minmax(0,1fr) minmax(220px,34%);gap:8px}
+    .historySidebar{gap:5px}
+    #movesModal .modalHead{margin-bottom:5px!important;min-height:28px}
+    #movesModal .historyNav button,#movesClose{min-height:30px!important}
+    #historyPosition{margin-top:2px}
+    #movesHint{font-size:10px}
+  }
+  @media(max-width:500px) and (orientation:landscape){
+    .historyLayout{grid-template-columns:minmax(0,1fr) minmax(150px,42%)}
+    .historyNav{grid-template-columns:repeat(2,minmax(0,1fr))}
+    #movesHint{display:none}
+  }
+</style>
 </head>
 <body>
   <button id="menuBtn" class="back-btn" title="Return to the Arcade menu (drag me if I block something)">← MENU</button>
@@ -1007,28 +1054,29 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
   
   <div id="movesModal" class="modal" aria-hidden="true">
-    <div class="modalPanel" role="dialog" aria-modal="true" aria-label="Move list">
+    <div class="modalPanel historyPanel" role="dialog" aria-modal="true" aria-labelledby="movesHeading">
       <div class="modalHead">
-        <div class="modalTitle">Moves</div>
+        <div><div class="modalTitle" id="movesHeading">Moves</div><div class="tiny" id="historyPosition" aria-live="polite"></div></div>
         <button class="ui-btn" id="movesClose" title="Close">Done</button>
       </div>
-      <div class="row" style="gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between; margin-bottom:10px;">
-        <div class="row nowrap" style="gap:8px;">
-          <button class="ui-btn small" id="firstBtn" title="Go to start">⏮</button>
-          <button class="ui-btn small" id="prevBtn" title="Previous move">◀</button>
-          <button class="ui-btn small" id="nextBtn" title="Next move">▶</button>
-          <button class="ui-btn small" id="lastBtn" title="Go to latest">⏭</button>
+      <div class="historyLayout">
+        <div id="historyBoardHost"></div>
+        <div class="historySidebar">
+          <div class="historyNav" aria-label="Browse moves">
+            <button class="ui-btn small" id="firstBtn" title="Go to start" aria-label="Go to start">Start</button>
+            <button class="ui-btn small" id="prevBtn" title="Previous move" aria-label="Previous move">◀</button>
+            <button class="ui-btn small" id="nextBtn" title="Next move" aria-label="Next move">▶</button>
+            <button class="ui-btn small" id="lastBtn" title="Return to the latest position">Latest</button>
+          </div>
+          <div class="sliderWrap">
+            <span class="tiny" id="plyCurrent">0</span>
+            <input id="plySlider" type="range" min="0" max="0" value="0" step="1" aria-label="Move position" />
+            <span class="tiny" id="plyMax">0</span>
+          </div>
+          <div class="tiny" id="movesHint">Choose a move or drag the slider to see its position.</div>
+          <div id="movesList" class="movesList" aria-label="Move list"></div>
         </div>
-        <div class="tiny" id="movesHint" style="opacity:0.85;">Tap a move to jump. Scrub the slider to time-travel.</div>
       </div>
-
-      <div class="sliderWrap" style="margin-bottom:12px;">
-        <span class="tiny" style="min-width:40px;">0</span>
-        <input id="plySlider" type="range" min="0" max="0" value="0" />
-        <span class="tiny" id="plyMax" style="min-width:40px; text-align:right;">0</span>
-      </div>
-
-      <div id="movesList" class="movesList" aria-label="Move list" style="max-height: 46vh;"></div>
     </div>
   </div>
 
@@ -1242,6 +1290,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   let heldSave = null;
   let cpuTimer = 0;
   let cpuEpoch = 0;
+  let historyOpen = false;
+  let historyInertTargets = [];
 
   function cancelCpuWork(){
     cpuEpoch++;
@@ -2108,6 +2158,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   
 const boardEl = $("#board");
 const boardShellEl = $("#boardShell");
+const boardHomeEl = boardShellEl.parentElement;
+const historyBoardHostEl = $("#historyBoardHost");
 const titlebarEl = document.querySelector(".titlebar");
 
 let _boardMax = 0;
@@ -2139,6 +2191,13 @@ function _applyBoardShellHeight(){
 
 function resizeBoard(forceReset=false){
   if(!boardShellEl || !boardEl) return;
+
+  if(historyOpen){
+    const rect = historyBoardHostEl.getBoundingClientRect();
+    const size = Math.max(80, Math.floor(Math.min(rect.width, rect.height) - 14));
+    boardEl.style.setProperty("--history-board-size", size + "px");
+    return;
+  }
 
   const ok = _orientKey();
   if(forceReset || ok !== _lastOrientKey){
@@ -2287,6 +2346,9 @@ const movesEl = $("#movesList");
   }
 
   function renderMoves(){
+    const focusedControl = document.activeElement;
+    const focusedMove = focusedControl && focusedControl.closest("#movesList .mv");
+    const focusedPly = focusedMove && focusedMove.dataset.ply;
     movesEl.innerHTML = "";
     const totalPlies = moves.length;
     const rows = Math.ceil(totalPlies / 2);
@@ -2302,20 +2364,26 @@ const movesEl = $("#movesList");
       const bIndex = i*2 + 1;
 
       if(wIndex < totalPlies){
-        const w = el("div","mv");
+        const w = el("button","mv");
+        w.type = "button";
         w.textContent = moves[wIndex].san || "?";
         w.dataset.ply = String(wIndex+1);
         if(currentPly === wIndex+1) w.classList.add("active");
         w.title = "Jump to after " + w.textContent;
+        w.disabled = settings.mode === "online";
+        if(currentPly === wIndex+1) w.setAttribute("aria-current", "step");
         w.addEventListener("click", ()=> jumpToPly(wIndex+1));
         plyWrap.appendChild(w);
       }
       if(bIndex < totalPlies){
-        const b = el("div","mv");
+        const b = el("button","mv");
+        b.type = "button";
         b.textContent = moves[bIndex].san || "?";
         b.dataset.ply = String(bIndex+1);
         if(currentPly === bIndex+1) b.classList.add("active");
         b.title = "Jump to after " + b.textContent;
+        b.disabled = settings.mode === "online";
+        if(currentPly === bIndex+1) b.setAttribute("aria-current", "step");
         b.addEventListener("click", ()=> jumpToPly(bIndex+1));
         plyWrap.appendChild(b);
       }
@@ -2328,6 +2396,15 @@ const movesEl = $("#movesList");
     plySlider.max = String(totalPlies);
     plyMaxEl.textContent = String(totalPlies);
     plySlider.value = String(currentPly);
+    $("#plyCurrent").textContent = String(currentPly);
+    const liveOnly = settings.mode === "online";
+    $("#firstBtn").disabled = liveOnly || currentPly === 0;
+    $("#prevBtn").disabled = liveOnly || currentPly === 0;
+    $("#nextBtn").disabled = liveOnly || currentPly === totalPlies;
+    $("#lastBtn").disabled = liveOnly || currentPly === totalPlies;
+    plySlider.disabled = liveOnly || totalPlies === 0;
+    $("#historyPosition").textContent = liveOnly ? "Live online position" : currentPly === totalPlies ? "Latest position · " + totalPlies + (totalPlies === 1 ? " move" : " moves") : currentPly === 0 ? "Starting position" : "After " + moves[currentPly-1].san + " · " + currentPly + "/" + totalPlies;
+    $("#movesHint").textContent = liveOnly ? "Online games show the live board. Past positions are available in local games." : "Choose a move or drag the slider to see its position.";
 
     
     const active = movesEl.querySelector(".mv.active");
@@ -2335,8 +2412,14 @@ const movesEl = $("#movesList");
       const rect = active.getBoundingClientRect();
       const host = movesEl.getBoundingClientRect();
       if(rect.top < host.top || rect.bottom > host.bottom){
-        active.scrollIntoView({block:"center", behavior:"smooth"});
+        movesEl.scrollTop += rect.top - host.top - (host.height - rect.height) / 2;
       }
+    }
+    if(focusedPly){
+      const replacement = movesEl.querySelector('[data-ply="' + focusedPly + '"]');
+      if(replacement) replacement.focus({preventScroll:true});
+    }else if(historyOpen && focusedControl && focusedControl.disabled && $("#movesModal").contains(focusedControl)){
+      $("#movesClose").focus({preventScroll:true});
     }
   }
 
@@ -2398,6 +2481,7 @@ const movesEl = $("#movesList");
   }
 
   function isPlayersTurn(){
+    if(historyOpen) return false;
     if(settings.mode === "pvp") return true;
     if(settings.mode === "online") return Boolean(online.room?.ready && online.side === state.turn && online.status === "connected" && !online.actionBusy);
     return state.turn === settings.playerSide;
@@ -2502,12 +2586,6 @@ const movesEl = $("#movesList");
       updateUI(false);
       return;
     }
-    if(currentPly !== moves.length){
-      
-      moves = moves.slice(0, currentPly);
-      states = states.slice(0, currentPly + 1);
-    }
-
     const legal = genLegalMoves();
     const candidates = legal.filter(m=>m.from===from && m.to===to);
     if(candidates.length === 0){
@@ -2534,6 +2612,10 @@ const movesEl = $("#movesList");
     if(settings.mode === "online"){
       sendOnlineMove(mv);
       return;
+    }
+    if(currentPly !== moves.length){
+      moves = moves.slice(0, currentPly);
+      states = states.slice(0, currentPly + 1);
     }
     heldSave = null;
     gameStarted = true;
@@ -2868,6 +2950,7 @@ const movesEl = $("#movesList");
 
   function maybeAutoCpu(){
     if(!gameStarted) return;
+    if(historyOpen) return;
     const setup = document.getElementById("setupModal");
     if(setup && setup.classList.contains("show")) return;
     if(settings.mode !== "cpu") return;
@@ -3149,12 +3232,14 @@ clearSelection();
       toast("Online history is view-only during the live game.");
       return;
     }
+    cancelCpuWork();
     ply = clamp(ply, 0, moves.length);
     currentPly = ply;
     loadSnap(states[ply]);
     clearSelection();
     updateUI(true);
     touchSave(180);
+    if(!historyOpen) maybeAutoCpu();
   }
 
   function undoGameMove(){
@@ -3699,17 +3784,50 @@ clearSelection();
   });
 
   function openMoves(){
+    if(historyOpen) return;
+    cancelCpuWork();
+    if(dragging){
+      try{ dragging.sourceEl.releasePointerCapture(dragging.pointerId); }catch(_){}
+      dragging = null;
+      clearDragClasses();
+    }
+    clearSelection();
+    historyOpen = true;
+    historyBoardHostEl.appendChild(boardShellEl);
+    boardEl.inert = true;
+    historyInertTargets = [document.querySelector(".wrap"), $("#menuBtn"), $("#settingsBtn")].map(target=>({target,wasInert:target.inert}));
+    for(const item of historyInertTargets) item.target.inert = true;
     movesModal.classList.add("show");
     movesModal.setAttribute("aria-hidden","false");
     
-    renderMoves();
+    updateUI(true);
+    scheduleResizeBoard(true);
+    $("#movesClose").focus();
   }
   function closeMoves(){
+    const wasOpen = historyOpen;
+    historyOpen = false;
+    boardHomeEl.appendChild(boardShellEl);
+    boardEl.inert = false;
+    for(const item of historyInertTargets) item.target.inert = item.wasInert;
+    historyInertTargets = [];
     movesModal.classList.remove("show");
     movesModal.setAttribute("aria-hidden","true");
+    scheduleResizeBoard(true);
+    if(wasOpen){ $("#movesBtn").focus(); maybeAutoCpu(); }
   }
   $("#movesBtn").addEventListener("click", openMoves);
   $("#movesClose").addEventListener("click", closeMoves);
+  document.addEventListener("keydown", event=>{
+    if(historyOpen && event.key === "Escape"){ event.preventDefault(); closeMoves(); }
+    if(historyOpen && event.key === "Tab"){
+      const controls = Array.from(movesModal.querySelectorAll("button,input")).filter(control=>!control.disabled && !control.hidden && !historyBoardHostEl.contains(control));
+      const first = controls[0], last = controls[controls.length-1], active = document.activeElement;
+      if(!movesModal.contains(active) || event.shiftKey && active === first || !event.shiftKey && active === last){
+        event.preventDefault(); (event.shiftKey ? last : first).focus();
+      }
+    }
+  });
 
   function syncSetupUI(){
     sideWhiteBtn.classList.toggle("sel", settings.playerSide==="w");

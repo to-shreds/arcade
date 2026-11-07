@@ -16,6 +16,14 @@ for(let n=0;n<80;n++){try{if((await fetch('http://127.0.0.1:8787/guess-who/')).o
 const browser=await chromium.launch(browserLaunchOptions);
 const errors=[],results=[];
 const mapping=()=>{
+  if(location.pathname.includes('/orb-slicer/')){
+    const nativeFrame=window.requestAnimationFrame.bind(window);
+    window.__frameEvidence={callbacks:0,firstAt:null,lastAt:null};
+    window.requestAnimationFrame=callback=>nativeFrame(timestamp=>{
+      const evidence=window.__frameEvidence;evidence.callbacks++;evidence.firstAt??=timestamp;evidence.lastAt=timestamp;
+      callback(timestamp);
+    });
+  }
   window.__rooms=[];window.__room=null;window.__session=null;window.__actions=[];window.__fetches=[];window.__sockets=[];window.__audioStarts=0;const originalAudioStart=window.AudioBufferSourceNode?.prototype.start;if(originalAudioStart)window.AudioBufferSourceNode.prototype.start=function(...args){window.__audioStarts++;return originalAudioStart.apply(this,args);};
   const note=data=>{if(data?.room){window.__room=data.room;window.__rooms.push(data.room);}if(data?.token)window.__session=data;};
   const originalFetch=window.fetch.bind(window);
@@ -100,6 +108,31 @@ const sharedLaunch={
 const sharedActions={
   time:'.clock-keypad .kp-btn, .kp-btn',hangman:'#keyboard [role="button"]',solitaire:'[data-action="draw-klondike"]',codebreaking:'#palette button',math:'.kp-btn',spelling:'#keyboard button',minesweeper:'#grid .cell','mini-golf':'#mg-shoot-btn','two-truths':'#claims button',patterns:'#puzzle button',trivia:'#tr-options button, .ans-btn','build-my-joke':'#random',insultinator:'#btnGenerate',typing:'[data-key="a"]','contraption-maker':'#drop','silly-face-lab':'[aria-label="Make a surprise face"]',bowling:'#roll'
 };
+async function waitForFlyingTarget(page,game,field){
+  const visible=state=>state[field].some(item=>!item.isBomb&&item.y>20&&item.y<state.bounds.h-20);
+  if(game!=='orb-slicer')return page.waitForFunction(({field})=>{
+    const state=ArcadeSave.getAdapter().capture();
+    return state[field].some(item=>!item.isBomb&&item.y>20&&item.y<state.bounds.h-20);
+  },{field});
+  // Orb Slicer advances one tick per rendered frame. A software renderer can
+  // need more wall time to reach its first scheduled spawn. Require ongoing
+  // simulation progress and bound the spawn in ticks, as well as wall time.
+  const started=Date.now();let lastTick=null,firstTick=null,progressedAt=started,latest;
+  while(Date.now()-started<30000){
+    const sample=await page.evaluate(()=>({state:ArcadeSave.getAdapter().capture(),shared:ArcadeSharedActivity.getState(),frames:window.__frameEvidence}));
+    latest=sample;const state=sample.state;
+    assert.ok(sample.shared.active&&sample.shared.connected&&sample.shared.controller,'Orb target wait retains a connected controller');
+    assert.equal(state.gameState,'playing','Orb target wait cannot silently restart a finished game');
+    assert.ok(state.lives>0,'Orb target wait retains a live game');
+    firstTick??=state.gameTime;
+    if(state.gameTime!==lastTick){lastTick=state.gameTime;progressedAt=Date.now();}
+    assert.ok(Date.now()-progressedAt<4000,'Orb simulation must keep advancing while waiting for its first target');
+    if(visible(state)){console.log(`Orb target visible at tick ${state.gameTime} after ${Date.now()-started} ms`);return;}
+    assert.ok(state.gameTime-firstTick<=state.spawnRate+120,'Orb must expose a real target within its first scheduled spawn and flight');
+    await delay(60);
+  }
+  throw new Error('Orb target exceeded wall budget: '+JSON.stringify({gameTime:latest?.state.gameTime,spawnRate:latest?.state.spawnRate,frames:latest?.frames}));
+}
 async function sharedSemantic(game,a,b){
   const before=(await sharedPayload(a)).snapshot;assert.ok(before,'shared activity has a playable snapshot');
   if(sharedActions[game])await visibleClick(a,sharedActions[game]);
@@ -133,7 +166,7 @@ async function sharedSemantic(game,a,b){
   }
   else if(game==='orb-slicer'||game==='balloons'){
     const selector=game==='orb-slicer'?'#orb-canvas':'#c-bal',field=game==='orb-slicer'?'projectiles':'balloons';
-    await a.waitForFunction(({field})=>ArcadeSave.getAdapter().capture()[field].some(item=>!item.isBomb&&item.y>20&&item.y<ArcadeSave.getAdapter().capture().bounds.h-20),{field});const state=await a.evaluate(()=>ArcadeSave.getAdapter().capture()),target=state[field].find(item=>!item.isBomb&&item.y>20&&item.y<state.bounds.h-20),box=await a.locator(selector).boundingBox();
+    await waitForFlyingTarget(a,game,field);const state=await a.evaluate(()=>ArcadeSave.getAdapter().capture()),target=state[field].find(item=>!item.isBomb&&item.y>20&&item.y<state.bounds.h-20),box=await a.locator(selector).boundingBox();
     const x=box.x+target.x*box.width/state.bounds.w,y=box.y+target.y*box.height/state.bounds.h;
     if(game==='orb-slicer'){await a.mouse.move(x-60,y);await a.mouse.down();await a.mouse.move(x+60,y,{steps:4});await a.mouse.up();await a.waitForFunction(()=>ArcadeSave.getAdapter().capture().score>0);}
     else{await a.mouse.click(x,y);await a.waitForFunction(()=>{const s=ArcadeSave.getAdapter().capture();return s.cNorm+s.cUnicorn>0;});}
@@ -161,7 +194,7 @@ async function action(page,body){return page.evaluate(async body=>{const s=windo
 async function security(a,b){await a.waitForFunction(()=>window.__room?.status==='active');await sameState(a,b);const r=await room(a);const result=await action(b,{type:'state',expectedVersion:r.version,state:r.state,nextSeat:0});assert.equal(result.status,403,'off-turn player cannot write the room');const stale=await action(a,{type:'state',expectedVersion:r.version-1,state:r.state,nextSeat:0});assert.equal(stale.status,409,'stale version cannot overwrite the room');}
 async function capture(game,a,b){for(const [kind,page] of [['desktop',a],['mobile',b]]){await page.screenshot({animations:'disabled',timeout:30000,path:fileURLToPath(new URL(`${game}-${kind}.png`,out))});const dimensions=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,view:innerWidth}));if(dimensions.scroll>dimensions.view+1){const geometry=await page.evaluate(()=>[...document.querySelectorAll('*')].map(element=>{const box=element.getBoundingClientRect(),style=getComputedStyle(element);return {tag:element.tagName,id:element.id,class:element.className,x:box.x,right:box.right,width:box.width,clientWidth:element.clientWidth,scrollWidth:element.scrollWidth,display:style.display,boxSizing:style.boxSizing,cssWidth:style.width,padding:style.padding,border:style.border};}).filter(item=>item.width&&item.display!=='none'&&(item.x<-1||item.right>innerWidth+1)));await writeFile(new URL(`${game}-${kind}-overflow.json`,out),JSON.stringify(geometry,null,2));}assert.ok(dimensions.scroll<=dimensions.view+1,`${game} ${kind} horizontal page overflow: ${JSON.stringify(dimensions)}`);}}
 async function resume(page,selector){const before=await room(page);await page.reload();if(selector==='#dotsOnlineResume')await page.locator('#dotsModeOnline').click({force:true});if(selector==='#ck-online-resume')await page.locator('[onclick="CheckersGame.showOnlineSetup()"]').click({force:true});await page.locator(selector).click({force:true});await page.waitForFunction(({code,version})=>window.__room?.code===code&&window.__room?.version>=version,{code:before.code,version:before.version});}
-async function run(game,test){const started=Date.now();const players=await pair(game);try{await test(players);await capture(game,players.a,players.b);assert.equal(errors.filter(e=>e.game===game).length,0,JSON.stringify(errors));results.push({game,pass:true,ms:Date.now()-started});console.log('PASS',game,Date.now()-started,'ms');}catch(error){await writeFile(new URL(`${game}-failure-evidence.json`,out),JSON.stringify(await Promise.all([players.a,players.b].map(page=>page.evaluate(()=>({room:window.__room,actions:window.__actions,fetches:window.__fetches,shared:window.ArcadeSharedActivity?.getState(),text:document.body.innerText})))),null,2)).catch(()=>{});results.push({game,pass:false,error:error.stack,ms:Date.now()-started});console.error('FAIL',game,error.message);for(const [kind,page] of [['desktop',players.a],['mobile',players.b]])await page.screenshot({animations:'disabled',timeout:30000,path:fileURLToPath(new URL(`${game}-failure-${kind}.png`,out))}).catch(()=>{});}finally{await players.close();}}
+async function run(game,test){const started=Date.now();const players=await pair(game);try{await test(players);await capture(game,players.a,players.b);assert.equal(errors.filter(e=>e.game===game).length,0,JSON.stringify(errors));results.push({game,pass:true,ms:Date.now()-started});console.log('PASS',game,Date.now()-started,'ms');}catch(error){await writeFile(new URL(`${game}-failure-evidence.json`,out),JSON.stringify(await Promise.all([players.a,players.b].map(page=>page.evaluate(()=>({room:window.__room,actions:window.__actions,fetches:window.__fetches,shared:window.ArcadeSharedActivity?.getState(),activity:window.ArcadeSave?.getAdapter()?.capture(),frames:window.__frameEvidence,text:document.body.innerText})))),null,2)).catch(()=>{});results.push({game,pass:false,error:error.stack,ms:Date.now()-started});console.error('FAIL',game,error.message);for(const [kind,page] of [['desktop',players.a],['mobile',players.b]])await page.screenshot({animations:'disabled',timeout:30000,path:fileURLToPath(new URL(`${game}-failure-${kind}.png`,out))}).catch(()=>{});}finally{await players.close();}}
 
 try{
 const selected=new Set((process.env.ONLINE_GAMES||'tic-tac-toe,memory,dots,checkers,chess,sorry,monopoly,guess-who,shared').split(','));

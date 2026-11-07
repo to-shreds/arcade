@@ -1,33 +1,57 @@
 # Arcade continuation handoff
 
-## Current work: 2.9.0 project-wide stress test and Picnic Heist
+## Current release work: 2.9.0
 
-Implementation is in progress in this checkout. The canonical starting commit
-was `20758a2240827bb83c4b03c12cb977309a7cb2dd`, release 2.8.7. Its broad
-GitHub run `42422579253` has completed successfully, including Nearby. That
-resolves the older uncertainty about that run without relabeling the historical
-2.8.6 failure as passed.
+Canonical baseline: `20758a2240827bb83c4b03c12cb977309a7cb2dd`, release 2.8.7.
+Its broad GitHub run `42422579253` completed successfully, including Nearby.
+Implementation checkpoint `df6bfef4816a4de24a403a0d43592f36ea80b927` is on
+`work/arcade-2.9.0-stress`. Later Chess/menu/test refinements in this checkout
+must be included before the final review snapshot. Production remains 2.8.7
+until the verified branch is advanced to main.
 
-The new scope covers all 47 enabled catalog entries, shared/competitive rooms,
-save/reload, rotation and denied storage, plain on-screen wording, and a new
-Be the bugs option inside Bug Squish. New game suggestions belong in the final
-report and are not new implementation scope. Preserve old games, local saves,
-Internet/Nearby pinning, controller authority and retained APKs.
+Picnic Heist is Bug Squish's Be the bugs option, with one or two player bugs,
+crumb carrying/deposit, hiding, dash, shields, warning swats and harder rounds.
+`bug-squish/heist.js` owns its simulation. The existing boot/save/shared loop
+owns pause and control authority. Classic input is gated by mode; old mode-less
+v2 saves restore classic. v3 state includes mode and Heist pause, cargo, shields,
+round/timers/effects. New controls must respect hidden state, editable inputs,
+controller guards and private local restoration on room exit.
 
-Confirmed fixes so far: Solitaire and Regex Lab used data-argument callbacks
-where ArcadeSave invokes no-argument callbacks, preventing Arcade autosaves;
-Nearby imported shared-room checkpoints without their existing validator.
-The shared save failure path is also being corrected to preserve rejected saves.
-Picnic Heist uses the existing canvas/pause/save/shared mechanism and keeps
-classic Squish saves compatible. Its new runtime is `bug-squish/heist.js`.
+Solitaire/Regex use no-argument meaningful/summary callbacks. ArcadeSave now
+retains rejected/incompatible saves and blocks replacement until retry or an
+explicit fresh start. Nearby import validates shared checkpoints before changing
+sessions. Thirteen copied legacy settings loaders and Chess tolerate unavailable
+storage. Twenty-one activity pages have plain copy. Make 10, Jigsaw, Memory and
+Minesweeper setup panels now scroll with actual wheel/touch input; Minesweeper's
+panel is bounded by its overlay rather than the whole viewport.
 
-Local browser tests use the installed official Chromium 141 headless shell via
-ARCADE_CHROMIUM. The full Chrome singleton cannot create its socket in this
-sandbox. The headless shell runs without that requirement. Actual local RTC
-still cannot gather a usable interface; keep the real Nearby check on GitHub.
-Do not claim full final verification or publication until the report and
-ProjectStatus are updated after all remaining checks.
+Chess Moves contains the actual existing board, a move list, navigation and a
+slider in a responsive history view. Restore the same board parent and inert
+state on Done/Escape. Browsing is read-only, pending CPU/drag work is cancelled,
+and CPU resumes only on return. Online history retains its live-only authority
+rule. Keep square boards, size-dependent glyphs, visible selected positions,
+keyboard move focus, the zero-move focus trap and exact persisted history.
 
+The local checks include all 47 enabled entries, 196 visual records with a
+corrected lazy-image rerun, 94 rotation/play/storage cases with a focused corrected
+Minesweeper rerun, all 16 native menu-scroll cases, six Heist models plus seven
+browser/room cases, seven Chess layouts and engine/authority/client regressions.
+The retained full browser sweep is finishing. Its Orb Slicer frame-progress wait
+is under isolated investigation; do not label it green prematurely.
+
+The historical Tanks native-load timeout recurred under concurrent rendering.
+The strict isolated repeat passed all 14 weapon families, seven native reloads,
+exact battle/aim/mode equality and six layouts without changed GPU settings.
+Resource starvation is an inference, not a proved cause. Failure diagnostics
+and strict assertions remain. Other full Tanks/Upwords model/browser flows pass.
+
+Local browsers use official Chromium 141 headless shell via ARCADE_CHROMIUM.
+Full Chrome cannot create its singleton socket here. The headless shell works;
+no browser assertions were waived. Actual local RTC cannot gather usable ICE
+candidates and must be verified in GitHub CI. No physical hardware or personal
+TorBox account playback is claimed. See docs/arcade-stress-test-2.9.0.md and
+ProjectStatus for final CI, package and publication results. Suggested new games
+are suggestions only and were not implemented.
 
 ## Current state: 2.8.7 TV update
 

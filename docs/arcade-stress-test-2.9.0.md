@@ -46,6 +46,39 @@ entry remains disabled. The retained Android wrapper is unchanged.
   at 320 by 568 without page errors. Independent visual review covers narrow
   portrait, phone, desktop and short landscape layouts.
 
+## Additional confirmed UI repairs
+
+Chess Moves now includes the actual board and its selected historical position,
+with navigation/list beside it on wide screens and beneath it on phones. Seven
+layouts verify exact positions, native slider and keyboard move selection,
+rotation, save/reload, return to latest, focus trapping and restored normal play.
+CPU browsing cancels pending work and resumes safely; online views keep the
+existing live-only authority rule. Independent review covered zero-move focus,
+small-board glyph fit and stale drag cleanup.
+An illegal move after browsing back previously truncated later history before
+legality was checked. Truncation now happens only when a legal move is played,
+including a completed promotion choice. The regression failed before the fix;
+21 frontend cases and a separate native phone check now preserve the future.
+
+Make 10, Jigsaw, Memory and Minesweeper had genuinely clipped setup controls in
+short landscape. Four scoped CSS fixes allow native panel scrolling; Minesweeper
+also bounds its panel to the shorter board overlay. All 16 wheel/touch cases pass
+at 844 by 390 and 320 by 568, including actual lower-button activation and Home.
+
+The 196-record visual sweep had no page or interaction errors. Three offscreen
+lazy images were incorrectly classified as broken; the corrected four-size shell
+rerun passes. The 94-case stress run initially passed 93 with a Minesweeper
+random-loss replay race in its harness. The corrected focused rerun passes both
+Minesweeper modes, resolving all 94 cases. All 47 denied-storage cases pass.
+These reruns are recorded separately rather than relabeling the first run.
+
+The first online sweep passed 41 of 42 cases. Orb Slicer was healthy but had
+not reached its first spawn at tick 200 within an arbitrary ten-second test
+deadline (88 ticks in the shared run, 152 in isolation). Its bounded wait now
+requires continuing simulation progress, a live connection, correct phase and
+the expected spawn tick budget. Native slicing/scoring, observer pixel checks
+and terminal-state handoffs remain required. Final isolated/CI results follow.
+
 ## Final verification and publication
 
 The review-branch CI and remaining catalog, storage, retained browser and

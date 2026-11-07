@@ -81,6 +81,12 @@ jobs:
       - name: Verify Picnic Heist controls, saves and shared play
         run: npm run test:bug-heist
 
+      - name: Verify visible Chess history browsing
+        run: npm run test:chess-history
+
+      - name: Verify short-screen menu scrolling
+        run: npm run test:short-menus
+
       - name: Stress every enabled activity and its saves
         run: npm run test:project-stress
 

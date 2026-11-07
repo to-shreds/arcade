@@ -71,8 +71,17 @@ async function diagnostics(page) {
       return outsideX&&!canScrollX||outsideY&&!canScrollY;
     }).map(describe);
     const blocked = controls.filter(el => { const r = el.getBoundingClientRect(); if (r.x < 0 || r.y < 0 || r.right > innerWidth || r.bottom > innerHeight) return false; const hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return hit && !el.contains(hit) && !hit.contains(el); }).map(describe);
-    return { title: document.title, viewport: { w: innerWidth, h: innerHeight }, scroll: { w: document.documentElement.scrollWidth, h: document.documentElement.scrollHeight }, outside, unreachable, blocked, canvases, buttons: controls.map(describe), bodyText: document.body.innerText.slice(0, 1800), brokenImages: [...document.images].filter(el => el.getAttribute('src') && visible(el) && (!el.complete || !el.naturalWidth)).map(el => el.src) };
+    // Offscreen loading=lazy images have not necessarily been requested yet.
+    // A completed zero-width image is a real load failure at any position.
+    const inViewport = el => { const r=el.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth; };
+    return { title: document.title, viewport: { w: innerWidth, h: innerHeight }, scroll: { w: document.documentElement.scrollWidth, h: document.documentElement.scrollHeight }, outside, unreachable, blocked, canvases, buttons: controls.map(describe), bodyText: document.body.innerText.slice(0, 1800), brokenImages: [...document.images].filter(el => el.getAttribute('src') && visible(el) && (el.complete ? !el.naturalWidth : inViewport(el))).map(el => el.src) };
   });
+}
+async function settleVisibleImages(page){
+  await page.waitForFunction(()=>[...document.images].filter(el=>{
+    const r=el.getBoundingClientRect(),s=getComputedStyle(el);
+    return el.getAttribute('src')&&r.width>0&&r.height>0&&s.display!=='none'&&s.visibility!=='hidden'&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth;
+  }).every(el=>el.complete),null,{timeout:10000});
 }
 await mkdir(output, { recursive: true });
 let browser;
@@ -93,6 +102,7 @@ try {
         await page.goto(`${base}/${game.launchPath}`, { waitUntil: 'domcontentloaded', timeout: 15000 });
         if(game.folder==='shell')await page.waitForFunction(()=>document.querySelectorAll('#grid .card').length>0&&window.ArcadeShell);
         await page.waitForTimeout(250);
+        await settleVisibleImages(page);
         record.menu = await diagnostics(page);
         if(!args.includes('--no-screenshots'))await page.screenshot({ path: `${output}/${size.name}-${game.folder}-menu.png` });
         if (game.enabled && launch[game.folder]) {
@@ -127,6 +137,7 @@ try {
           record.interactions.push('All filter');
         }
         await page.waitForTimeout(350);
+        await settleVisibleImages(page);
         record.play = await diagnostics(page);
         record.missing.push(...record.play.brokenImages.map(url=>`Broken image ${url}`));
         if(!args.includes('--no-screenshots'))await page.screenshot({ path: `${output}/${size.name}-${game.folder}-play.png` });

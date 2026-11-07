@@ -73,6 +73,8 @@ jobs:
             commands: |
               npm run test:arcade-fixes
               npm run test:activity-tools
+              npm run test:chess-history
+              npm run test:short-menus
               npm run test:menus
               node tools/test-local-ui-browser.mjs
           - suite: shared-and-competitive

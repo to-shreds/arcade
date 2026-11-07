@@ -94,6 +94,101 @@ test("denied browser storage preserves Chess startup, legal play, settings and m
   } finally { dom.window.close(); }
 });
 
+test("Moves keeps the actual board visible while browsing and restores normal play on close", async () => {
+  const { dom, errors } = await loadChess();
+  try {
+    const { document } = dom.window;
+    document.querySelector("#modePvp").click();
+    document.querySelector("#movesBtn").click();
+    for (const shiftKey of [false, true]) {
+      const tab = new dom.window.KeyboardEvent("keydown", {key:"Tab",shiftKey,bubbles:true,cancelable:true});
+      document.dispatchEvent(tab);
+      assert.equal(tab.defaultPrevented, true, "zero-move history wraps directly to Done without hidden game-over controls");
+      assert.equal(document.activeElement.id, "movesClose");
+    }
+    document.querySelector("#movesClose").click();
+    for (const [from, to] of [[12,28], [52,36], [6,21]]) { tapSquare(dom.window, from); tapSquare(dom.window, to); }
+    const saved = dom.window.ArcadeSave.getAdapter().capture();
+    document.querySelector("#movesBtn").click();
+    assert.equal(document.querySelector("#historyBoardHost #board").inert, true);
+    document.querySelector("#firstBtn").click();
+    assert.equal(dom.window.ArcadeSave.getAdapter().capture().currentPly, 0);
+    assert.equal(document.querySelector('#board [data-sq="12"] .piece').textContent, "♙");
+    assert.equal(document.querySelector('#board [data-sq="28"] .piece'), null);
+    document.querySelector('#movesList [data-ply="1"]').click();
+    assert.equal(document.querySelector('#board [data-sq="28"] .piece').textContent, "♙");
+    tapSquare(dom.window, 52); tapSquare(dom.window, 36);
+    assert.equal(dom.window.ArcadeSave.getAdapter().capture().currentPly, 1, "history board cannot play or branch the saved game");
+    document.querySelector("#lastBtn").click();
+    assert.equal(dom.window.ArcadeSave.getAdapter().capture().currentPly, 3);
+    document.querySelector("#movesClose").click();
+    assert.equal(document.querySelector(".board-wrap #board").inert, false);
+    assert.equal(document.querySelector("#movesModal").getAttribute("aria-hidden"), "true");
+    assert.deepEqual(dom.window.ArcadeSave.getAdapter().capture().moves, saved.moves);
+    assert.deepEqual(dom.window.ArcadeSave.getAdapter().capture().states, saved.states);
+    document.querySelector("#movesBtn").click(); document.querySelector("#firstBtn").click(); document.querySelector("#nextBtn").click(); document.querySelector("#movesClose").click();
+    tapSquare(dom.window, 52); tapSquare(dom.window, 20);
+    const rejected = dom.window.ArcadeSave.getAdapter().capture();
+    assert.equal(rejected.currentPly, 1);
+    assert.deepEqual(rejected.moves, saved.moves, "an illegal move from history cannot erase future moves");
+    assert.deepEqual(rejected.states, saved.states, "an illegal move from history cannot erase saved positions");
+    assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("CPU work pauses during Moves browsing and resumes from the latest position on close", async () => {
+  const { dom, errors } = await loadChess();
+  try {
+    const { document } = dom.window;
+    document.querySelector("#modePvp").click(); tapSquare(dom.window, 12); tapSquare(dom.window, 28);
+    const saved = dom.window.ArcadeSave.getAdapter().capture();
+    saved.settings.mode = "cpu"; saved.settings.playerSide = "w"; saved.settings.diff = 1;
+    dom.window.ArcadeSave.getAdapter().restore(saved);
+    document.querySelector("#movesBtn").click();
+    await new Promise(resolve => dom.window.setTimeout(resolve, 220));
+    assert.equal(dom.window.ArcadeSave.getAdapter().capture().moves.length, 1);
+    document.querySelector("#firstBtn").click();
+    await new Promise(resolve => dom.window.setTimeout(resolve, 160));
+    assert.equal(dom.window.ArcadeSave.getAdapter().capture().currentPly, 0);
+    assert.equal(dom.window.ArcadeSave.getAdapter().capture().moves.length, 1);
+    document.querySelector("#lastBtn").click(); document.querySelector("#movesClose").click();
+    await new Promise(resolve => dom.window.setTimeout(resolve, 650));
+    assert.equal(dom.window.ArcadeSave.getAdapter().capture().moves.length, 2, "CPU resumes exactly once after returning to live play");
+    assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
+test("online Moves remains live-only and follows accepted room updates without submitting an action", async () => {
+  const calls = [], current = room("w");
+  current.version = 3; current.game.board[12] = null; current.game.board[28] = "P";
+  current.game.turn = "b"; current.game.moves = [{from:"e2",to:"e4",san:"e4"}];
+  const { dom, errors } = await loadChess(async (url, options) => {
+    calls.push({url:String(url),options});
+    return {ok:true,status:200,async json(){return {ok:true,token:"t".repeat(43),side:"w",room:current};}};
+  });
+  try {
+    const { document } = dom.window;
+    document.querySelector("#onlineCreateBtn").click(); await new Promise(resolve => dom.window.setTimeout(resolve, 30));
+    document.querySelector("#movesBtn").click();
+    assert.equal(document.querySelector("#historyBoardHost #board").inert, true);
+    for (const id of ["firstBtn", "prevBtn", "nextBtn", "lastBtn", "plySlider"]) assert.equal(document.getElementById(id).disabled, true);
+    assert.equal(document.querySelector('#movesList [data-ply="1"]').disabled, true);
+    const before = calls.length;
+    document.querySelector("#firstBtn").click(); document.querySelector('#movesList [data-ply="1"]').click();
+    assert.equal(calls.length, before);
+    assert.equal(document.querySelector('#board [data-sq="28"] .piece').textContent, "♙");
+    const update = structuredClone(current);
+    update.version = 4; update.game.board[52] = null; update.game.board[36] = "p"; update.game.turn = "w";
+    update.game.moves.push({from:"e7",to:"e5",san:"e5"});
+    dom.window.__chessTestSockets[0].emit("message", {data:JSON.stringify({type:"state",room:update})});
+    assert.equal(document.querySelector('#historyBoardHost #board [data-sq="36"] .piece').textContent, "♟");
+    assert.equal(document.querySelector("#historyPosition").textContent, "Live online position");
+    assert.equal(document.querySelectorAll("#movesList .mv").length, 2);
+    assert.equal(calls.length, before, "browsing accepted room state never creates a gameplay action");
+    assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
+
 test("a shell invitation prefills Chess join UI but never starts a room automatically", async () => {
   const calls = [];
   const { dom, errors } = await loadChess(async (...args) => { calls.push(args); throw new Error("unexpected fetch"); }, null, null,

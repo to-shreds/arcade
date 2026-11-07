@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.9.0+20261107.1",
-  "generatedAt": "2026-11-07T23:32:52.990Z",
+  "generatedAt": "2026-11-07T23:46:49.115Z",
   "fileCount": 388,
-  "totalBytes": 20187549,
+  "totalBytes": 20195783,
   "files": [
     {
       "path": "adventure/game.json",
@@ -212,8 +212,8 @@
     },
     {
       "path": "chess/index.html",
-      "bytes": 155205,
-      "sha256": "fdb7f585fd0b5bcaf8a3e3e331dfee1389b3a7cd8d1e117aac34500726f1c959"
+      "bytes": 162599,
+      "sha256": "bfa044754829129f21e501c66a1937cb4ed1502443a985d84cb5f0da01baa671"
     },
     {
       "path": "codebreaking/game.json",
@@ -357,8 +357,8 @@
     },
     {
       "path": "jigsaw/index.html",
-      "bytes": 67797,
-      "sha256": "8598cf063e7ad551f3a14dfe53ad4da4970700b592e9b6b1a61b8f8efdc2e0f1"
+      "bytes": 67993,
+      "sha256": "0b09cbbfbe95cf64c388fd9e1ab83a7057b64a44ebdcc571e101b2769c2ea87e"
     },
     {
       "path": "mad-libs/game.json",
@@ -402,8 +402,8 @@
     },
     {
       "path": "make-10/index.html",
-      "bytes": 64890,
-      "sha256": "f99f81e3bc443b89fe03e597927bf4c6f3b2370ed5c7b120d5b25ece8f65d41a"
+      "bytes": 65086,
+      "sha256": "40076fe4abf21f5e66bbb307baf62e132153ce6596d6b86f1751b1775186edc3"
     },
     {
       "path": "manifest.webmanifest",
@@ -452,8 +452,8 @@
     },
     {
       "path": "memory/index.html",
-      "bytes": 141687,
-      "sha256": "435e98cfc60ba3ba28bfe3c7f8e6374b06b55bcfea2f766b46cacd5c9a36463c"
+      "bytes": 141900,
+      "sha256": "960584246c58a284dd7d915792376785ef754765621afefbf8f97684a8568bf0"
     },
     {
       "path": "memory/online-model.js",
@@ -477,8 +477,8 @@
     },
     {
       "path": "minesweeper/index.html",
-      "bytes": 57516,
-      "sha256": "889ab94676bdcec3deb183dcdc3fb4149131fa376f5a589a39eb5ab438f4fcb4"
+      "bytes": 57751,
+      "sha256": "a719c388c5a93d57899767617c6ebfc621489c594f4035f1fde26e98f22931b4"
     },
     {
       "path": "mini-golf/game.json",

@@ -19,7 +19,9 @@
     "test:activity-tools": "node tools/test-typing-tools-browser.mjs && node tools/test-face-size-browser.mjs",
     "test:tv": "node --test tv/core.test.mjs && node tools/test-tv-startup-browser.mjs && node tools/test-family-activities.mjs --tv-only",
     "test:bug-heist": "node --test bug-squish/heist.test.mjs && node tools/test-bug-heist-browser.mjs",
-    "test:project-stress": "node tools/test-activity-save-contract.mjs && node tools/test-project-stress-browser.mjs"
+    "test:project-stress": "node tools/test-activity-save-contract.mjs && node tools/test-project-stress-browser.mjs",
+    "test:chess-history": "node tools/test-chess-history-browser.mjs",
+    "test:short-menus": "node tools/test-short-menu-scroll-browser.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"
