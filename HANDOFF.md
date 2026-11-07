@@ -2,35 +2,53 @@
 
 ## Current state: 2.8.7 TV update
 
-TV now defaults to a persisted 480p preference and exposes quality controls in
-details and the player. Prefer safe compatible sources before nominal quality;
-show source or measured resolution and never imply transcoding. A quality
-change reuses the video/fullscreen surface and preserves playback position.
+TV defaults to a persisted 480p preference and exposes quality controls in
+details and the player. Safe compatible sources take precedence over nominal
+quality. Actual source or measured resolution is shown; no transcoding is
+implied. Quality changes reuse the video/fullscreen surface and preserve position.
 
-The player reports actual lookup/cache/candidate/file/ticket/loading stages and
-shows buffering without obstructing controls. Bounded account-scoped in-memory
-metadata/source caches and a cancellable 300ms selected-episode prefetch remove
-repeat work. Prefetch never prepares or adds torrents; links stay fresh.
-Keep Actions cancellation and token/revision/epoch guards on every completion.
+Startup reports lookup, cache, candidate, file, playback-link, loading and
+buffering stages. Bounded account-specific metadata/source caches and a
+cancellable 300ms selected-episode prefetch remove repeat checks. Prefetch never
+prepares or adds torrents, and playback links stay fresh. Preserve cancellation
+and token/revision/epoch guards. Successful explicit login clears rejected-copy
+memory so one account's failures cannot affect another.
 
-The screenshot's identity error had two supported failure classes: missing
-detail hashes and actual conflicts. Backend 1.2.11 (main 0713abb6, deploy mirror
-611cf0a5) uses independent proof for omitted hashes and read-only exact-hash
-stale-ID repair. Real conflicting copies remain rejected. TV refreshes sources
-after failed explicit preparation and tries only cached alternatives. Keep
-permanent mismatch/unsupported exclusions separate from transient per-attempt
-failures; explicit Retry must work after an outage.
+Backend 1.2.11 (main 0713abb6, deployment mirror 611cf0a5) repairs the screenshot's
+false identity rejection when a detail hash is omitted, using independent
+hash-and-ID proof. Actual conflicts remain blocked. Exact-hash stale-ID repair
+is read-only and verifies the replacement independently. TV refreshes ready
+sources after failed explicit preparation and only tries cached alternatives.
+Permanent mismatch/unsupported exclusions stay separate from transient
+per-attempt failures, so explicit Retry works after an outage.
 
-The managed workspace disconnected before the last combined test run/package.
-Current TV sources were recovered from the exact recorded successful patches
-against 48e52e48, then staged on work/tv-2.8.7-verification for GitHub-hosted
-syntax, 33 core, 12 focused, 8 existing integration, transport and offline checks.
-Publication readiness, actual CI results, provenance and downloadable artifact
-are controlled by ProjectStatus. Do not treat patch recovery as a byte comparison
-with the unavailable filesystem. The source branch and runner results now
-supply the authoritative continuation state.
+The workspace disconnected before final packaging. Sources were recovered
+deterministically from the recorded successful patches against 48e52e48.
+This is not claimed as an independent byte comparison with the unavailable
+filesystem. GitHub preflight 42422326599 passed on the recovered sources:
+33 TV logic checks, 12 focused browser scenarios, eight existing TV integration
+scenarios, 112 transport/shell tests, 47-activity native keyboard/Home audits,
+offline validation and ZIP CRC/runtime hashes. The seek fixture supports actual
+206 byte ranges and retains the strict position assertion.
 
-All earlier 2.8.6 menu, clock, kid Trivia, Typing and Face changes remain.
+Verified runtime release commit: 681e3db55187e2e98619cef59ec357e397a8d664.
+Pages run 42422477990 succeeded. The runner independently verified the live
+snapshot 2.8.7+20261107.1 and SHA-256/size of the four TV assets and service
+worker. It also fetched the deployed backend /healthz and verified 1.2.11.
+The snapshot has 387 runtime files and 20,164,370 bytes. The 413-entry ZIP is
+available in GitHub release arcade-v2.8.7 with provenance, source commit and
+checksum. ProjectStatus records exact artifact metadata and readiness.
+
+The user's personal TorBox response/key and physical Android playback were
+not available. These tests cover intercepted service responses and synthetic
+media, not personal-account availability. A preferred 480p copy is not guaranteed
+for every title; actual fallback quality is shown.
+
+All prior 2.8.6 menu, clock, Young Kid Trivia, Typing and Face Lab fixes remain.
+The supplementary 2.8.6 broad run 42418533256 failed an unchanged Tank Tactics
+terrain test waiting to click Load Saved; its Nearby job succeeded. Do not call
+that historical full run green or confuse it with the successful TV preflight.
+A supplementary broad run for 2.8.7 is tracked in ProjectStatus separately.
 
 ## Current state: 2.8.6
 
