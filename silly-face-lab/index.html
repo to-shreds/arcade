@@ -1028,7 +1028,7 @@
             <button id="arcade-home-nav" type="button" aria-label="Back to Arcade">⌂</button>
             <div class="brand">
                 <div class="app-title" aria-label="Scarlett's Silly Face Lab">Scarlett's Silly Face Lab</div>
-                <div class="app-subtitle">Mix, move and decorate a wonderfully weird face.</div>
+                <div class="app-subtitle">Make a face. Move the parts and add stickers.</div>
             </div>
             <div class="quick-actions" aria-label="Quick actions">
                 <button class="quick-btn" type="button" onclick="undo()" title="Undo" aria-label="Undo">↶ <span class="quick-label">Undo</span></button>
@@ -1602,7 +1602,7 @@
         state = JSON.parse(JSON.stringify(DEFAULTS));
         draw();
         refreshUI();
-        showToast('Fresh face, ready to create');
+        showToast('New face');
     }
 
     
@@ -1745,7 +1745,7 @@
                 panel.className = 'name-panel';
                 panel.innerHTML = `
                     <div class="name-title">Your creation is ready!</div>
-                    <div class="name-sub">Give it a wonderfully odd name, make one more surprise, or save it as a picture.</div>
+                    <div class="name-sub">Name your face, make another, or save a picture.</div>
                     <div class="name-display" id="nameDisplay" aria-live="polite">Not named yet</div>
                     <div class="finish-actions">
                         <button class="name-btn" id="nameGenBtn" type="button">✨ New Name</button>

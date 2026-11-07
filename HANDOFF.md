@@ -1,5 +1,34 @@
 # Arcade continuation handoff
 
+## Current work: 2.9.0 project-wide stress test and Picnic Heist
+
+Implementation is in progress in this checkout. The canonical starting commit
+was `20758a2240827bb83c4b03c12cb977309a7cb2dd`, release 2.8.7. Its broad
+GitHub run `42422579253` has completed successfully, including Nearby. That
+resolves the older uncertainty about that run without relabeling the historical
+2.8.6 failure as passed.
+
+The new scope covers all 47 enabled catalog entries, shared/competitive rooms,
+save/reload, rotation and denied storage, plain on-screen wording, and a new
+Be the bugs option inside Bug Squish. New game suggestions belong in the final
+report and are not new implementation scope. Preserve old games, local saves,
+Internet/Nearby pinning, controller authority and retained APKs.
+
+Confirmed fixes so far: Solitaire and Regex Lab used data-argument callbacks
+where ArcadeSave invokes no-argument callbacks, preventing Arcade autosaves;
+Nearby imported shared-room checkpoints without their existing validator.
+The shared save failure path is also being corrected to preserve rejected saves.
+Picnic Heist uses the existing canvas/pause/save/shared mechanism and keeps
+classic Squish saves compatible. Its new runtime is `bug-squish/heist.js`.
+
+Local browser tests use the installed official Chromium 141 headless shell via
+ARCADE_CHROMIUM. The full Chrome singleton cannot create its socket in this
+sandbox. The headless shell runs without that requirement. Actual local RTC
+still cannot gather a usable interface; keep the real Nearby check on GitHub.
+Do not claim full final verification or publication until the report and
+ProjectStatus are updated after all remaining checks.
+
+
 ## Current state: 2.8.7 TV update
 
 TV defaults to a persisted 480p preference and exposes quality controls in

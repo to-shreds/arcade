@@ -113,7 +113,7 @@
 <body>
 <main class="app">
   <header>
-    <div class="brand"><div class="brand-mark" aria-hidden="true">♠</div><div><h1>Solitaire Parlor</h1><p>Four classics, one beautiful table</p></div></div>
+    <div class="brand"><div class="brand-mark" aria-hidden="true">♠</div><div><h1>Solitaire Parlor</h1><p>Four solitaire games</p></div></div>
     <div class="stats"><div class="stat"><b id="moveCount">0</b><span>Moves</span></div><div class="stat"><b id="scoreCount">0</b><span>Score</span></div><div class="stat"><b id="clock">0:00</b><span>Time</span></div></div>
     <button class="icon-btn" id="menuBtn" aria-label="Choose a solitaire game">☰</button>
     <button class="icon-btn" id="homeBtn" aria-label="Return to Arcade">⌂</button>
@@ -130,11 +130,11 @@
 
 <div class="overlay" id="gameMenu" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
   <section class="modal">
-    <div class="modal-head"><div><h2 id="menuTitle">Pick your game</h2><p>Every deal is seeded, autosaved, and ready for touch.</p></div><button class="icon-btn" id="closeMenu" aria-label="Close">✕</button></div>
+    <div class="modal-head"><div><h2 id="menuTitle">Pick your game</h2><p>Pick a game. Your progress saves automatically.</p></div><button class="icon-btn" id="closeMenu" aria-label="Close">✕</button></div>
     <div class="variants" id="variantCards">
       <button class="variant-card selected" data-variant="klondike"><span class="emoji">♠️</span><b>Klondike</b><small>The traditional red-on-black classic.</small></button>
       <button class="variant-card" data-variant="spider"><span class="emoji">🕸️</span><b>Spider</b><small>Build same-suit runs from king to ace.</small></button>
-      <button class="variant-card" data-variant="freecell"><span class="emoji">🧠</span><b>FreeCell</b><small>Nearly every deal rewards careful planning.</small></button>
+      <button class="variant-card" data-variant="freecell"><span class="emoji">🧠</span><b>FreeCell</b><small>Use four spare cells to free blocked cards.</small></button>
       <button class="variant-card" data-variant="pyramid"><span class="emoji">🔺</span><b>Pyramid</b><small>Pair exposed cards that total thirteen.</small></button>
     </div>
     <div class="options">
@@ -148,7 +148,7 @@
   </section>
 </div>
 
-<div class="overlay" id="winOverlay" hidden><section class="modal win-card"><div class="win-icon">🏆</div><h2>Beautifully played!</h2><p id="winText">You cleared the table.</p><div class="win-stats"><span id="winMoves"></span><span id="winTime"></span></div><div class="modal-actions" style="justify-content:center"><button class="action big" id="winMenu">Choose game</button><button class="action primary big" id="winNew">Another deal</button></div></section><div class="confetti" id="confetti"></div></div>
+<div class="overlay" id="winOverlay" hidden><section class="modal win-card"><div class="win-icon">🏆</div><h2>You won!</h2><p id="winText">You cleared the table.</p><div class="win-stats"><span id="winMoves"></span><span id="winTime"></span></div><div class="modal-actions" style="justify-content:center"><button class="action big" id="winMenu">Choose game</button><button class="action primary big" id="winNew">Another deal</button></div></section><div class="confetti" id="confetti"></div></div>
 
 <script src="../arcade-save.js"></script>
 <script src="engine.js"></script>
@@ -315,7 +315,7 @@
     if(saved&&E.validateState(saved)){state=saved;const resumedAt=Date.now();(state.history||[]).forEach(h=>{h.elapsed=state.elapsed||0;h.startedAt=resumedAt});state.startedAt=resumedAt;selected=null;render();menu.hidden=true}else{state=E.createGame("klondike",freshSeed(),{drawCount:1});render();updateMenu()}
   }catch(_){state=E.createGame("klondike",freshSeed(),{drawCount:1});render();updateMenu()}
   if(window.ArcadeSave&&ArcadeSave.register){
-    ArcadeSave.register({id:"solitaire",title:"Solitaire Parlor",version:2,capture:()=>{const c=E.clone(state);c.elapsed=elapsed();c.startedAt=Date.now();return c},restore:data=>{if(!E.validateState(data))return false;state=data;const resumedAt=Date.now();(state.history||[]).forEach(h=>{h.elapsed=state.elapsed||0;h.startedAt=resumedAt});state.startedAt=resumedAt;selected=null;menu.hidden=true;render();return true},meaningful:data=>!!data&&data.moves>0,summary:data=>`${names[data.variant]||"Solitaire"} · ${data.moves||0} moves`,startFresh:()=>start("klondike",freshSeed(),{drawCount:1})});
+    ArcadeSave.register({id:"solitaire",title:"Solitaire Parlor",version:2,capture:()=>{const c=E.clone(state);c.elapsed=elapsed();c.startedAt=Date.now();return c},restore:data=>{if(!E.validateState(data))return false;state=data;const resumedAt=Date.now();(state.history||[]).forEach(h=>{h.elapsed=state.elapsed||0;h.startedAt=resumedAt});state.startedAt=resumedAt;selected=null;menu.hidden=true;render();return true},meaningful:()=>!!state&&state.moves>0,summary:()=>`${names[state.variant]||"Solitaire"} · ${state.moves||0} moves`,startFresh:()=>start("klondike",freshSeed(),{drawCount:1})});
   }
   window.__SolitaireApp={getState:()=>state,start,choose,render};
 })();

@@ -345,6 +345,17 @@
   }
   function restoreEntry(entry, showToast){
     if(!compatible(entry)) return Promise.resolve(false);
+    function failedRestore(message){
+      restoring = false;
+      clearTimeout(saveTimer);
+      saveTimer = 0;
+      dirty = false;
+      // Keep the saved progress until the user retries or chooses Start Fresh.
+      // A rejected restore must not let the default game overwrite that save.
+      showPrompt(entry);
+      toast(message);
+      return false;
+    }
     decisionPending = false;
     restoring = true;
     if(ui) ui.layer.hidden = true;
@@ -353,23 +364,21 @@
       try{ data = adapter.migrate(clone(data), entry.version); }
       catch(_){ data = undefined; }
     }
-    if(data === undefined){ restoring = false; toast('This saved game is not compatible.'); return Promise.resolve(false); }
+    if(data === undefined) return Promise.resolve(failedRestore('This saved game is not compatible.'));
     var restored;
     try{ restored = adapter.restore(clone(data)); }
     catch(error){ restored = Promise.reject(error); }
     return Promise.resolve(restored).then(function(result){
+      if(result === false) return failedRestore('Could not load this saved game.');
       restoring = false;
       sessionEngaged = true;
       currentEntry = entry;
       stripResumeQuery();
       if(showToast) toast('Saved progress loaded.');
       scheduleSave(900);
-      return result !== false;
+      return true;
     }).catch(function(){
-      restoring = false;
-      sessionEngaged = true;
-      toast('Could not load this saved game.');
-      return false;
+      return failedRestore('Could not load this saved game.');
     });
   }
 

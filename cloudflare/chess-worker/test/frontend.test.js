@@ -32,7 +32,7 @@ function tapSquare(window, square) {
   }
 }
 
-async function loadChess(fetchImpl = async () => { throw new Error("unexpected fetch"); }, savedSettings = null, savedOnlineSession = null, pageUrl = "https://to-shreds.github.io/arcade/chess/index.html", arcadeMultiplayer = null) {
+async function loadChess(fetchImpl = async () => { throw new Error("unexpected fetch"); }, savedSettings = null, savedOnlineSession = null, pageUrl = "https://to-shreds.github.io/arcade/chess/index.html", arcadeMultiplayer = null, storageDenied = false) {
   const errors = [];
   const virtualConsole = new VirtualConsole();
   virtualConsole.on("jsdomError", (error) => errors.push(error));
@@ -44,6 +44,7 @@ async function loadChess(fetchImpl = async () => { throw new Error("unexpected f
     beforeParse(window) {
       if (savedSettings) window.localStorage.setItem("arcadeChess_settings", savedSettings);
       if (savedOnlineSession) window.localStorage.setItem("arcadeChess_onlineSession_v1", savedOnlineSession);
+      if (storageDenied) for (const method of ["getItem", "setItem", "removeItem"]) window.Storage.prototype[method] = function () { throw new window.DOMException("Storage is unavailable", "SecurityError"); };
       window.fetch = fetchImpl;
       if (arcadeMultiplayer) window.ArcadeMultiplayer = arcadeMultiplayer;
       window.confirm = () => true;
@@ -65,6 +66,33 @@ async function loadChess(fetchImpl = async () => { throw new Error("unexpected f
   await new Promise((resolve) => dom.window.setTimeout(resolve, 20));
   return { dom, errors };
 }
+
+test("denied browser storage preserves Chess startup, legal play, settings and menu dragging", async () => {
+  const { dom, errors } = await loadChess(undefined, null, null, undefined, null, true);
+  try {
+    const { document } = dom.window;
+    assert.equal(document.querySelector("#setupModal").classList.contains("show"), true);
+    assert.equal(document.querySelectorAll("#board .sq").length, 64);
+    document.querySelector("#modePvp").click();
+    tapSquare(dom.window, 12); tapSquare(dom.window, 28);
+    assert.equal(dom.window.ArcadeSave.getAdapter().capture().moves.length, 1);
+    document.querySelector("#settingsBtn").click();
+    const coordinates = document.querySelector("#coordCheck");
+    coordinates.checked = !coordinates.checked;
+    coordinates.dispatchEvent(new dom.window.Event("change", { bubbles: true }));
+    document.querySelector("#prefsBack").click();
+    const menu = document.querySelector("#menuBtn");
+    for (const [type, x, y] of [["pointerdown", 10, 10], ["pointermove", 80, 70], ["pointerup", 80, 70]]) {
+      const event = new dom.window.Event(type, { bubbles: true, cancelable: true });
+      Object.defineProperties(event, { pointerId: { value: 8 }, clientX: { value: x }, clientY: { value: y } });
+      menu.dispatchEvent(event);
+    }
+    assert.equal(menu.style.left, "70px");
+    assert.equal(menu.style.top, "60px");
+    assert.equal(dom.window.ArcadeSave.getAdapter().capture().moves.length, 1);
+    assert.equal(errors.length, 0, errors.map(error => error.message).join("\n"));
+  } finally { dom.window.close(); }
+});
 
 test("a shell invitation prefills Chess join UI but never starts a room automatically", async () => {
   const calls = [];

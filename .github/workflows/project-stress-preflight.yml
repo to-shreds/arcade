@@ -1,0 +1,175 @@
+name: Arcade project stress preflight
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: arcade-project-preflight-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  models-and-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            cloudflare/chess-worker/package-lock.json
+      - name: Install locked dependencies
+        run: |
+          npm ci
+          npm ci --prefix cloudflare/chess-worker
+      - name: Check authority, transport, clients and saved progress
+        run: |
+          npm test --prefix cloudflare/chess-worker
+          node --test multiplayer/test/*.test.mjs
+          node --test sorry/test.cjs checkers/online.test.mjs dots/online.test.mjs
+          node memory/test-online.cjs
+          node memory/online.browser.test.mjs
+          node tic-tac-toe/test-online.cjs
+          node tic-tac-toe/online.browser.test.mjs
+          node solitaire/test.cjs
+          node regex-lab/test.cjs
+          node tools/test-activity-save-contract.mjs
+      - name: Check runtime and native wrapper sources
+        run: |
+          node tools/test-native-keyboard.mjs
+          node tools/test-shell-navigation.mjs
+          node tools/test-android-wrapper.mjs
+          node tools/test-offline-runtime.mjs
+      - name: Retain model and package evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-stress-models-and-package
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  browser:
+    name: Browser ${{ matrix.suite }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - suite: stories-and-tv
+            commands: |
+              npm run test:mad-libs
+              npm run test:narration
+              npm run test:family
+              node tools/test-tv-startup-browser.mjs
+          - suite: menus-and-tools
+            commands: |
+              npm run test:arcade-fixes
+              npm run test:activity-tools
+              npm run test:menus
+              node tools/test-local-ui-browser.mjs
+          - suite: shared-and-competitive
+            commands: |
+              node tools/test-chat-browser.mjs
+              node tools/test-shared-adapters.mjs
+              ARCADE_SHARED_MOBILE=1 node tools/test-shared-adapters.mjs
+              node tools/test-shared-recovery.mjs
+              node tools/test-shared-lobby.mjs
+              node tools/test-online-browser.mjs
+              node tools/test-shared-simulation.mjs
+          - suite: tanks-and-upwords
+            commands: |
+              npm run test:tanks
+              npm run test:upwords
+              npm run test:tanks:browser
+              npm run test:upwords:browser
+          - suite: catalog-and-offline
+            commands: |
+              node tools/test-catalog-browser.mjs
+              node tools/audit-browser.mjs --out=test-results/full-catalog
+              node tools/test-project-stress-browser.mjs
+              node tools/test-shell-browser.mjs
+              node tools/test-family-activities.mjs --offline-only
+          - suite: bug-heist
+            commands: |
+              node --test bug-squish/heist.test.mjs
+              node tools/test-bug-heist-browser.mjs
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            cloudflare/chess-worker/package-lock.json
+      - name: Install locked browser and Worker fixtures
+        run: |
+          npm ci
+          npm ci --prefix cloudflare/chess-worker
+          npx playwright install --with-deps chromium
+      - name: Exercise the complete suite
+        env:
+          ARCADE_PREFLIGHT_COMMANDS: ${{ matrix.commands }}
+          ARCADE_PREFLIGHT_SUITE: ${{ matrix.suite }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import signal
+          import subprocess
+          import time
+
+          output = Path('test-results/preflight')
+          output.mkdir(parents=True, exist_ok=True)
+          results = []
+          for number, command in enumerate(os.environ['ARCADE_PREFLIGHT_COMMANDS'].splitlines(), 1):
+              if not command.strip():
+                  continue
+              started = time.monotonic()
+              log = output / f'{number:02d}.log'
+              print(f'::group::{command}', flush=True)
+              with log.open('w') as stream:
+                  process = subprocess.Popen(command, shell=True, executable='/bin/bash',
+                                             stdout=stream, stderr=subprocess.STDOUT,
+                                             start_new_session=True)
+                  try:
+                      code = process.wait(timeout=1200)
+                  except subprocess.TimeoutExpired:
+                      os.killpg(process.pid, signal.SIGTERM)
+                      try:
+                          process.wait(timeout=15)
+                      except subprocess.TimeoutExpired:
+                          os.killpg(process.pid, signal.SIGKILL)
+                          process.wait()
+                      code = 124
+                  finally:
+                      # A failed test must not leave its room fixture running
+                      # on the next test's ports.
+                      try:
+                          os.killpg(process.pid, signal.SIGTERM)
+                      except ProcessLookupError:
+                          pass
+              print(log.read_text(), flush=True)
+              results.append({'command': command, 'exitCode': code,
+                              'seconds': round(time.monotonic() - started, 2)})
+              (output / 'summary.json').write_text(json.dumps(results, indent=2) + '\n')
+              print('::endgroup::', flush=True)
+          if any(result['exitCode'] for result in results):
+              raise SystemExit('One or more checks failed; see the retained logs and summary.')
+          PY
+      - name: Retain browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-stress-${{ matrix.suite }}
+          path: test-results/
+          retention-days: 7

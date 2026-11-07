@@ -278,6 +278,20 @@ h1{
 .big-btn:active{transform:scale(.985);background:#444;border-color:#777}
 .menu-stack{display:grid;gap:9px;margin-top:14px}
 .menu-stack .big-btn{min-height:52px;font-size:20px}
+.mode-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.mode-choices .ui-btn{white-space:normal;min-height:48px;line-height:1.2}
+.mode-choices .ui-btn[aria-pressed="true"]{border:2px solid var(--ui-accent);background:rgba(0,229,255,.14)}
+#heistPlayers{margin:6px 0 10px}
+#heistControls{position:absolute;inset:0;z-index:12;pointer-events:none}
+#heistControls[hidden],#heistPlayers[hidden],#heistDash[hidden],#heistAgain[hidden]{display:none!important}
+#startOverlay[data-mode="heist"] .hero-art{display:none}
+.overlay,.panel{touch-action:pan-y}
+#startOverlay .big-btn{position:sticky;bottom:0;z-index:3}
+@media(max-height:600px){#startOverlay[data-mode="heist"] #modeNote{display:none}}
+#heistStatus{position:absolute;bottom:10px;left:10px;max-width:calc(100% - 120px);padding:7px 9px;border-radius:12px;background:rgba(17,27,34,.88);color:#fff;font-size:12px;font-weight:800;line-height:1.25}
+#heistDash,#heistAgain{position:absolute;right:10px;bottom:10px;pointer-events:auto;min-height:48px;min-width:100px;background:#283a48;border:2px solid #00e5ff}
+#heistDash:disabled{opacity:.68}
+#heistAgain{right:50%;transform:translateX(50%);bottom:25%;min-width:160px;border-color:#ffd700}
 .menu-note{margin:9px 0 0;text-align:center;color:#bdbdc5;font-size:12px;font-weight:750}
 .player-keys{
   display:flex;
@@ -342,8 +356,9 @@ h1{
     <button id="menuBtn" class="ui-btn compact" type="button" aria-label="Game menu">☰</button>
   </header>
   <main id="stage" aria-label="Bug Squish game area">
-    <canvas id="gameCanvas"></canvas>
+    <canvas id="gameCanvas" tabindex="0" aria-label="Bug Squish play area. In Picnic Heist, drag to steer or use arrow keys or WASD; Space dashes."></canvas>
     <div id="tipBanner" class="tip-banner" aria-live="polite"></div>
+    <div id="heistControls" hidden><div id="heistStatus" aria-live="polite"></div><button id="heistDash" class="ui-btn" type="button">⚡ DASH</button><button id="heistAgain" class="ui-btn" type="button" hidden>TRY AGAIN</button></div>
   </main>
 </div>
 
@@ -354,7 +369,8 @@ h1{
       <h1 id="startTitle">Bug Squish</h1>
       <div class="spacer" aria-hidden="true"></div>
     </div>
-    <div class="tagline">Save the picnic with a glorious two-handed squish-fest.</div>
+    <div class="mode-choices" role="group" aria-label="Choose a game"><button id="squishMode" class="ui-btn" type="button" aria-pressed="true">Squish the bugs</button><button id="heistMode" class="ui-btn" type="button" aria-pressed="false">🐜 Be the bugs</button></div>
+    <div class="tagline" id="modeTagline">Keep hungry bugs away from the picnic.</div>
     <div class="hero-art" aria-hidden="true">
 <svg viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg">
   <defs><pattern id="checks" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#fff2df"/><rect width="20" height="20" fill="#ef6a70"/><rect x="20" y="20" width="20" height="20" fill="#ef6a70"/></pattern></defs>
@@ -373,12 +389,10 @@ h1{
   <g fill="#ffd700"><path d="M117 42l7 14 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2z"/><path d="M402 35l6 12 14 2-10 9 2 14-12-7-12 7 2-14-10-9 14-2z"/></g>
 </svg>
 </div>
-    <div class="instruction-grid">
-      <div class="instruction"><strong>TAP OR SWIPE</strong>Both players can squish different bugs at the same time.</div>
-      <div class="instruction"><strong>COUNT THE DOTS</strong>Every dot is one tap left. Giant centipedes need a whole bunch.</div>
-    </div>
-    <div class="player-keys"><span class="player-key"><span class="player-dot blue"></span>Left player</span><span class="player-key"><span class="player-dot pink"></span>Right player</span></div>
-    <div class="no-lose">Squish them before they gobble the snacks. Food refills every picnic, and nobody loses.</div>
+    <div class="instruction-grid" id="modeInstructions"><div class="instruction"><strong>TAP OR SWIPE</strong>Both players can squish different bugs at the same time.</div><div class="instruction"><strong>COUNT THE DOTS</strong>Each dot takes one tap. Giant centipedes need a whole bunch.</div></div>
+    <div id="heistPlayers" class="mode-choices" role="group" aria-label="Player bugs" hidden><button id="oneBug" class="ui-btn" type="button" aria-pressed="true">1 bug</button><button id="twoBugs" class="ui-btn" type="button" aria-pressed="false">2 bugs together</button></div>
+    <div class="player-keys" id="modeKeys"><span class="player-key"><span class="player-dot blue"></span>Left player</span><span class="player-key"><span class="player-dot pink"></span>Right player</span></div>
+    <div class="no-lose" id="modeNote">Squish them before they gobble the snacks. Food refills every picnic, and nobody loses.</div>
     <button id="startBtn" class="big-btn" type="button">START TOGETHER</button>
   </section>
 </div>
@@ -394,10 +408,11 @@ h1{
     <div class="menu-stack">
       <button id="resumeBtn" class="big-btn" type="button">RESUME</button>
       <button id="restartBtn" class="big-btn" type="button">RESTART GAME</button>
+      <button id="chooseModeBtn" class="big-btn" type="button">CHOOSE GAME</button>
       <button id="soundBtn" class="big-btn" type="button">Sound: On</button>
       <button id="menuBackBtn" class="big-btn" type="button">BACK TO ARCADE</button>
     </div>
-    <div class="menu-note">Progress is shared. There are no individual scores.</div>
+    <div class="menu-note">Work together. Snacks and progress belong to the team.</div>
   </section>
 </div>
 
@@ -569,11 +584,14 @@ function ArcadeBoot(Game){
   ui.menuBtn.addEventListener('click',showMenu);
   ui.resumeBtn.addEventListener('click',hideMenu);
   ui.restartBtn.addEventListener('click',()=>{Game.reset({preview:false});hideMenu();});
+  document.getElementById('chooseModeBtn').addEventListener('click',()=>{
+    gamePaused=true;gameStarted=false;Game.pause();ui.menuOverlay.hidden=true;ui.startOverlay.hidden=false;Game.showSetup();
+  });
   ui.soundBtn.addEventListener('click',()=>{AudioFX.toggle();updateSoundLabel();});
   ui.menuBackBtn.addEventListener('click',goToArcade);
   document.addEventListener('contextmenu',e=>e.preventDefault());
   document.addEventListener('visibilitychange',()=>{
-    if(document.hidden&&gameStarted){gamePaused=true;}
+    if(document.hidden&&gameStarted){gamePaused=true;if(Game.pause)Game.pause();}
     else if(!document.hidden&&gameStarted&&ui.menuOverlay.hidden)showMenu();
   });
   if(Game.attach)Game.attach();
@@ -606,8 +624,9 @@ function ArcadeBoot(Game){
     capture:()=>Game.captureState(),
     restore:state=>{
       resizeCanvas(Game);Game.restoreState(state);
-      ui.startOverlay.hidden=true;ui.menuOverlay.hidden=true;
-      gameStarted=true;gamePaused=false;lastFrame=performance.now();
+      ui.startOverlay.hidden=true;
+      gameStarted=true;gamePaused=state?.mode==='heist'&&!!state.paused;ui.menuOverlay.hidden=!gamePaused;lastFrame=performance.now();
+      if(Game.showSetup)Game.showSetup();
       return true;
     },
     meaningful:()=>gameStarted&&Game.meaningful(),
@@ -617,9 +636,10 @@ function ArcadeBoot(Game){
 }
 
 </script>
+<script src="heist.js"></script>
 <script>
 
-const Game=(()=>{
+const SquishGame=(()=>{
   const E=ArcadeEnv;
   const pointers=new Map();
   const bugColors=['#6748c9','#22a36a','#e95f65','#e09a31','#3d91d6'];
@@ -686,8 +706,8 @@ const Game=(()=>{
     if(pointer){pointer.lastHit=now;pointer.lastX=x;pointer.lastY=y;}
     return true;
   }
-  function onDown(e){if(!E.isStarted()||E.isPaused())return;e.preventDefault();const p=E.pointerPosition(e),side=p.x<E.W/2?0:1;const entry={x:p.x,y:p.y,side,lastHit:0,lastX:p.x,lastY:p.y};pointers.set(e.pointerId,entry);try{canvas.setPointerCapture(e.pointerId);}catch(_e){}tryHit(p.x,p.y,side,performance.now(),entry);}
-  function onMove(e){const entry=pointers.get(e.pointerId);if(!entry)return;e.preventDefault();const p=E.pointerPosition(e),now=performance.now();entry.x=p.x;entry.y=p.y;if(now-entry.lastHit>75&&E.distance(p.x,p.y,entry.lastX,entry.lastY)>10)tryHit(p.x,p.y,entry.side,now,entry);}
+  function onDown(e){if(playMode!=='squish'||!E.isStarted()||E.isPaused())return;e.preventDefault();const p=E.pointerPosition(e),side=p.x<E.W/2?0:1;const entry={x:p.x,y:p.y,side,lastHit:0,lastX:p.x,lastY:p.y};pointers.set(e.pointerId,entry);try{canvas.setPointerCapture(e.pointerId);}catch(_e){}tryHit(p.x,p.y,side,performance.now(),entry);}
+  function onMove(e){if(playMode!=='squish'||!E.isStarted()||E.isPaused())return;const entry=pointers.get(e.pointerId);if(!entry)return;e.preventDefault();const p=E.pointerPosition(e),now=performance.now();entry.x=p.x;entry.y=p.y;if(now-entry.lastHit>75&&E.distance(p.x,p.y,entry.lastX,entry.lastY)>10)tryHit(p.x,p.y,entry.side,now,entry);}
   function release(e){if(!pointers.has(e.pointerId))return;pointers.delete(e.pointerId);try{canvas.releasePointerCapture(e.pointerId);}catch(_e){}}
   function attach(){canvas.addEventListener('pointerdown',onDown);canvas.addEventListener('pointermove',onMove);canvas.addEventListener('pointerup',release);canvas.addEventListener('pointercancel',release);canvas.addEventListener('lostpointercapture',release);}
   function nearestFood(bug){
@@ -826,6 +846,39 @@ const Game=(()=>{
   function forceComplete(){squished=target;E.setHud('PICNIC '+round,'SQUISH '+target+'/'+target+' • FOOD '+foodAlive(),1);finishRound();}
   return{attach,reset,resize,update,draw,captureState,restoreState,meaningful,saveSummary,debug,forceComplete,pause:resetPointers};
 })();
+let playMode='squish',heistPlayers=1;
+const HeistGame=createPicnicHeist(ArcadeEnv,()=>playMode==='heist');
+const Game=(()=>{
+  const active=()=>playMode==='heist'?HeistGame:SquishGame;
+  const byId=id=>document.getElementById(id);
+  function modeUI(){
+    const heist=playMode==='heist';
+    ui.startOverlay.dataset.mode=playMode;
+    byId('squishMode').setAttribute('aria-pressed',String(!heist));byId('heistMode').setAttribute('aria-pressed',String(heist));
+    byId('heistPlayers').hidden=!heist;byId('heistControls').hidden=!heist||!gameStarted;
+    byId('oneBug').setAttribute('aria-pressed',String(heistPlayers===1));byId('twoBugs').setAttribute('aria-pressed',String(heistPlayers===2));
+    byId('modeTagline').textContent=heist?'Picnic Heist: grab the crumbs. Dodge the swatter.':'Keep hungry bugs away from the picnic.';
+    byId('modeInstructions').innerHTML=heist?'<div class="instruction"><strong>GRAB &amp; STASH</strong>Carry up to 3 crumbs, then bring them to the leafy HOME burrow.</div><div class="instruction"><strong>STAY SNEAKY</strong>Red circles warn of a swat. Hide under leaves or dash away. Gold crumbs give a bubble shield.</div>':'<div class="instruction"><strong>TAP OR SWIPE</strong>Both players can squish different bugs at the same time.</div><div class="instruction"><strong>COUNT THE DOTS</strong>Each dot takes one tap. Giant centipedes need a whole bunch.</div>';
+    byId('modeKeys').textContent=heist?(heistPlayers===2?'Drag each bug · P1: WASD + Space · P2: arrows + Shift':'Drag to steer · Arrows or WASD · Space to dash'):'Left player: blue · Right player: pink';
+    byId('modeNote').textContent=heist?'Fill the burrow to reach the next picnic. Getting caught drops your bag.':'Squish them before they gobble the snacks. Food refills every picnic, and nobody loses.';
+    ui.startBtn.textContent=heist?'START THE HEIST':'START TOGETHER';
+    if(heist)HeistGame.syncUI();
+  }
+  function choose(mode){active().pause();playMode=mode;modeUI();active().reset({preview:true});}
+  function attach(){
+    SquishGame.attach();HeistGame.attach();
+    byId('squishMode').addEventListener('click',()=>choose('squish'));byId('heistMode').addEventListener('click',()=>choose('heist'));
+    for(const [id,count] of [['oneBug',1],['twoBugs',2]])byId(id).addEventListener('click',()=>{heistPlayers=count;HeistGame.setPlayers(count);modeUI();HeistGame.reset({preview:true});});
+  }
+  return{
+    attach,showSetup:modeUI,
+    reset:opts=>{active().reset(opts);modeUI();},resize:(w,h)=>{SquishGame.resize(w,h);HeistGame.resize(w,h);},
+    update:(...args)=>active().update(...args),draw:(...args)=>active().draw(...args),pause:()=>active().pause(),
+    captureState:()=>Object.assign({mode:playMode},active().captureState()),
+    restoreState:state=>{active().pause();playMode=state?.mode==='heist'?'heist':'squish';const result=active().restoreState(state);if(playMode==='heist')heistPlayers=state.players===2?2:1;modeUI();return result;},
+    meaningful:()=>active().meaningful(),saveSummary:()=>active().saveSummary(),debug:()=>Object.assign({mode:playMode},active().debug()),forceComplete:()=>active().forceComplete()
+  };
+})();
 ArcadeBoot(Game);
 
 </script>
@@ -834,7 +887,7 @@ ArcadeBoot(Game);
 if(window.ArcadeSave&&window.CoopSaveAdapter){
   const a=window.CoopSaveAdapter;
   ArcadeSave.register({
-    id:'bug-squish',title:'Bug Squish',version:2,
+    id:'bug-squish',title:'Bug Squish',version:3,
     capture:()=>a.capture(),restore:state=>a.restore(state),meaningful:()=>a.meaningful(),
     summary:()=>a.summary(),startFresh:()=>a.startFresh()
   });

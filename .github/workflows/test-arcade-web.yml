@@ -78,6 +78,12 @@ jobs:
       - name: Verify TV quality, status, caching and source recovery
         run: node tools/test-tv-startup-browser.mjs
 
+      - name: Verify Picnic Heist controls, saves and shared play
+        run: npm run test:bug-heist
+
+      - name: Stress every enabled activity and its saves
+        run: npm run test:project-stress
+
       - name: Exercise desktop and mobile browsers against actual rooms
         run: npm run test:browser
 

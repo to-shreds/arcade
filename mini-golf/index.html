@@ -1437,7 +1437,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             <div class="settings-row">
                 <div class="label">
                     <div class="name">High contrast</div>
-                    <div class="desc">Stronger borders + clearer UI. Also syncs Dots contrast.</div>
+                    <div class="desc">Stronger borders and clearer controls.</div>
                 </div>
                 <input id="set-contrast" type="checkbox" />
             </div>
@@ -1559,7 +1559,8 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
             try{ return JSON.parse(raw); }catch(e){ return null; }
         }
         function load(){
-            const raw = localStorage.getItem(KEY);
+            let raw = null;
+            try{ raw = localStorage.getItem(KEY); }catch(_){}
             const obj = raw ? safeParse(raw) : null;
             if(obj && typeof obj === 'object'){
                 s = { ...s, ...obj };

@@ -1067,7 +1067,8 @@ const ArcadeSettings = (function(){
 
   function safeParse(raw){ try{ return JSON.parse(raw); }catch(e){ return null; } }
   function load(){
-    const raw = localStorage.getItem(KEY);
+    let raw = null;
+            try{ raw = localStorage.getItem(KEY); }catch(_){}
     const obj = raw ? safeParse(raw) : null;
     if(obj && typeof obj === 'object') s = { ...s, ...obj };
     apply();

@@ -1,3 +1,19 @@
+# 2.9.0
+
+- Added Picnic Heist under Bug Squish's new Be the bugs option, with one or
+  two bugs, crumb carrying, hiding, warning swats, dash, shields and new picnics.
+- Fixed Solitaire and Regex Lab callbacks that prevented Arcade autosaves.
+- Kept rejected or incompatible saves intact and offered Retry or Start Fresh,
+  instead of reporting success and replacing them with a fresh game.
+- Kept legacy games and Chess playable when browser storage is unavailable.
+- Added validation when Nearby restores saved shared-activity rooms, preserving
+  the current session when a damaged checkpoint is rejected.
+- Replaced slogans and implementation wording with useful instructions across
+  21 activity pages.
+- Expanded browser and model stress checks for all enabled activities, saved
+  progress, control races, room membership changes, full Tank Tactics matches
+  and repeated save/reload cycles.
+
 # 2.8.7
 
 - TV defaults to a 480p preference and remembers quality settings, with actual resolution shown.

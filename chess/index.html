@@ -3828,9 +3828,9 @@ clearSelection();
   let menuDrag = null;
 
   function applyMenuPos(){
-    const saved = localStorage.getItem("arcadeChess_menuPos");
-    if(!saved) return;
     try{
+      const saved = localStorage.getItem("arcadeChess_menuPos");
+      if(!saved) return;
       const p = JSON.parse(saved);
       if(typeof p.x === "number" && typeof p.y === "number"){
         menuBtn.style.left = p.x + "px";
@@ -3875,7 +3875,7 @@ clearSelection();
     menuBtn.style.top = y + "px";
     menuBtn.style.right = "auto";
     menuBtn.style.bottom = "auto";
-    localStorage.setItem("arcadeChess_menuPos", JSON.stringify({x, y}));
+    try{ localStorage.setItem("arcadeChess_menuPos", JSON.stringify({x, y})); }catch(_){}
     e.preventDefault();
   }, {passive:false});
 
@@ -3930,9 +3930,9 @@ clearSelection();
     }catch(_){}
   }
   function loadSettings(){
-    const s = localStorage.getItem("arcadeChess_settings");
-    if(!s) return;
     try{
+      const s = localStorage.getItem("arcadeChess_settings");
+      if(!s) return;
       const o = JSON.parse(s);
       if(o && typeof o === "object"){
         if(o.mode==="pvp" || o.mode==="cpu") settings.mode = o.mode;

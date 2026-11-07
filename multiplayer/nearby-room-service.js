@@ -5,6 +5,7 @@ import { MemoryStorage, RoomModel, tokenHash } from "./models/room-model.js";
 import { canonicalizeSorryStart } from "./models/sorry-transition-validator.js";
 import { validateTanksRoomCheckpoint } from "./models/tanks-authority.js";
 import { validateUpwordsRoomCheckpoint } from "./models/upwords-authority.js";
+import { validateSharedCheckpoint } from "./models/shared-activity-validator.js";
 
 export const NEARBY_ROOM_SERVICE_VERSION = 1;
 export const NEARBY_CHESS_AUTHORITY_CONTRACT = Object.freeze({
@@ -936,6 +937,10 @@ export class NearbyRoomService {
         if (saved.kind === "arcade") {
           if (entry.game === "tanks") validateTanksRoomCheckpoint(loaded);
           if (entry.game === "upwords") validateUpwordsRoomCheckpoint(loaded);
+          if (entry.game === "shared-activity") {
+            try { validateSharedCheckpoint(loaded.state); }
+            catch { throw serviceError(400, "Invalid saved shared activity checkpoint"); }
+          }
           if (byteLength(loaded.state) > GENERIC_ROOM_LIMITS.MAX_STATE_BYTES || byteLength(loaded.result) > GENERIC_ROOM_LIMITS.MAX_RESULT_BYTES) {
             throw serviceError(413, "Checkpoint room payload exceeds online-parity limits");
           }

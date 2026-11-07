@@ -385,6 +385,8 @@ async function vaultAndCancellation() {
 }
 
 async function offlineAdventure() {
+  const catalog = JSON.parse(await readFile(new URL('../catalog.json', import.meta.url)));
+  const catalogTiles = catalog.items.filter(item => item.enabled && !item.warning).length;
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
   const page = await context.newPage(), errors = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -395,7 +397,7 @@ async function offlineAdventure() {
   await page.locator('#offlineBadge').click();
   await page.waitForFunction(() => document.getElementById('offlineBadgeText')?.textContent === 'Offline Ready', null, { timeout: 120000 });
   await context.setOffline(true); await page.reload();
-  await page.waitForFunction(() => !!window.ArcadeShell && document.querySelectorAll('.card').length === 45);
+  await page.waitForFunction(count => !!window.ArcadeShell && document.querySelectorAll('.card').length === count, catalogTiles);
   await page.evaluate(() => ArcadeShell.openGame('adventure'));
   const frame = page.frameLocator('#shellGameFrame');
   await frame.locator('#storyText p').first().waitFor();
@@ -415,8 +417,8 @@ async function offlineAdventure() {
   await page.waitForFunction(() => !document.querySelector('#shellGameFrame'));
   assert.deepEqual(errors, []);
   evidence.push({ activity: 'mad-libs', offline: true, answers: true, home: true, errors, passed: true });
-  evidence.push({ activity: 'adventure', offline: true, catalogTiles: 45, choice: true, home: true, errors, passed: true });
-  console.log('Offline PWA: complete verified snapshot, 45 catalog tiles, Adventure and Mad Libs launch/play/Home and no JavaScript errors passed.');
+  evidence.push({ activity: 'adventure', offline: true, catalogTiles, choice: true, home: true, errors, passed: true });
+  console.log(`Offline PWA: complete verified snapshot, ${catalogTiles} catalog tiles, Adventure and Mad Libs launch/play/Home and no JavaScript errors passed.`);
   await context.close();
 }
 

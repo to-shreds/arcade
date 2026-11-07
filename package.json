@@ -1,6 +1,6 @@
 {
   "name": "family-arcade-web",
-  "version": "2.8.7",
+  "version": "2.9.0",
   "private": true,
   "scripts": {
     "test:browser": "npm run test:mad-libs && npm run test:narration && npm run test:family-browser && node tools/test-catalog-browser.mjs && node tools/test-shell-browser.mjs && node tools/test-local-ui-browser.mjs && node tools/test-chat-browser.mjs && node tools/test-shared-adapters.mjs && node tools/test-shared-recovery.mjs && node tools/test-shared-lobby.mjs && node tools/test-online-browser.mjs && node tools/test-shared-simulation.mjs",
@@ -17,7 +17,9 @@
     "test:menus": "node tools/test-multiplayer-menus.mjs",
     "test:arcade-fixes": "node tools/test-arcade-menu-home.mjs && node tools/test-menu-home-browser.mjs && node tools/test-clock-browser.mjs && node tools/test-trivia-kids-browser.mjs",
     "test:activity-tools": "node tools/test-typing-tools-browser.mjs && node tools/test-face-size-browser.mjs",
-    "test:tv": "node --test tv/core.test.mjs && node tools/test-tv-startup-browser.mjs && node tools/test-family-activities.mjs --tv-only"
+    "test:tv": "node --test tv/core.test.mjs && node tools/test-tv-startup-browser.mjs && node tools/test-family-activities.mjs --tv-only",
+    "test:bug-heist": "node --test bug-squish/heist.test.mjs && node tools/test-bug-heist-browser.mjs",
+    "test:project-stress": "node tools/test-activity-save-contract.mjs && node tools/test-project-stress-browser.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

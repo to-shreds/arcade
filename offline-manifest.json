@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.8.7+20261107.1",
-  "generatedAt": "2026-11-07T22:49:50.413Z",
-  "fileCount": 387,
-  "totalBytes": 20164370,
+  "version": "2.9.0+20261107.1",
+  "generatedAt": "2026-11-07T23:32:52.990Z",
+  "fileCount": 388,
+  "totalBytes": 20187549,
   "files": [
     {
       "path": "adventure/game.json",
@@ -32,8 +32,8 @@
     },
     {
       "path": "arcade-save.js",
-      "bytes": 19783,
-      "sha256": "3e07369368214b8ba653ff57241688874013e79ddeedc88f597c150fba48fb5b"
+      "bytes": 20142,
+      "sha256": "a1f208257dd3d34b781dce29a4e9064e9e0b7bbd04328cea75059e5b9ab5716e"
     },
     {
       "path": "arcade-shell.css",
@@ -72,8 +72,8 @@
     },
     {
       "path": "balloons/index.html",
-      "bytes": 127286,
-      "sha256": "3da46e4e1676c567850f42a9fa26a7e95353c187b5f59b46c4e820959268cec0"
+      "bytes": 127307,
+      "sha256": "7fc4dd1dedd61f76b29675fb17a6b5e5f665a25a49caacd9363ee3a9c4ccceac"
     },
     {
       "path": "blackjack/game.json",
@@ -87,8 +87,8 @@
     },
     {
       "path": "blackjack/index.html",
-      "bytes": 124572,
-      "sha256": "20730a709f78f998895844717ce538df8762444d0a99e13c8077e24e8ec178ac"
+      "bytes": 124611,
+      "sha256": "572e59ac2370ad3af41fee464488b50c77fdbe33f7cebced164800732255dc3f"
     },
     {
       "path": "bounce-boxes/game.json",
@@ -102,8 +102,8 @@
     },
     {
       "path": "bounce-boxes/index.html",
-      "bytes": 80178,
-      "sha256": "7cefd6805ad773f685c9cee741a360d26bbc664cad0fca851ca2fad483d17803"
+      "bytes": 80171,
+      "sha256": "1a0f9b56577e9bf2ed51e864cdcdd3eeb2b1ef179ca87adb864bec7e82b730fd"
     },
     {
       "path": "bowling/game.json",
@@ -126,14 +126,19 @@
       "sha256": "997fcf0c044787db1bf62a90b7bcdb071cf6bd9c9aa28fb3672a9501326b3146"
     },
     {
+      "path": "bug-squish/heist.js",
+      "bytes": 16820,
+      "sha256": "c009ec686fc709bb03589bca2d65db1404f6fc6c8172096eac3fd526100c87bc"
+    },
+    {
       "path": "bug-squish/icon.png",
       "bytes": 17874,
       "sha256": "d68cc2c305c506b95899d5841abb01204384febae6d39b8f6aead3029baf24f0"
     },
     {
       "path": "bug-squish/index.html",
-      "bytes": 41983,
-      "sha256": "129a5492d85e9cd0b06095718afe83efec34ebe1a202f92a2b3f905536a00cd6"
+      "bytes": 47806,
+      "sha256": "8803370b329354553bf3a00e5509d233a3613c4a088195d3f0fe47b1a207c302"
     },
     {
       "path": "build-my-joke/game.json",
@@ -192,8 +197,8 @@
     },
     {
       "path": "checkers/index.html",
-      "bytes": 210738,
-      "sha256": "43f887519ef5be126b68d6eed790bb1382c5927c60886213fea6c1a6bbd972ee"
+      "bytes": 210759,
+      "sha256": "72f1fc83233501cd97b2050feb6103b01c76f22dbbf40f897c61a73d9a9b95a0"
     },
     {
       "path": "chess/game.json",
@@ -207,8 +212,8 @@
     },
     {
       "path": "chess/index.html",
-      "bytes": 155180,
-      "sha256": "abd9990164cd992a25406c1abfa2cac0845533f1debc7eeb77ed4ecfc5ceec21"
+      "bytes": 155205,
+      "sha256": "fdb7f585fd0b5bcaf8a3e3e331dfee1389b3a7cd8d1e117aac34500726f1c959"
     },
     {
       "path": "codebreaking/game.json",
@@ -242,8 +247,8 @@
     },
     {
       "path": "contraption-maker/index.html",
-      "bytes": 37900,
-      "sha256": "60d30d543ea6176046aed0e278929b9ea2dfa977a6230e70d04f7eecdd0c5990"
+      "bytes": 37824,
+      "sha256": "1592466203da3b5231d8ae27cfad78d823b3a911f20706af485414ec1bd022c1"
     },
     {
       "path": "dots/game.json",
@@ -257,8 +262,8 @@
     },
     {
       "path": "dots/index.html",
-      "bytes": 240106,
-      "sha256": "ccf0d5f158b23eca68ea79cf1f8a6b24c42ddd10ccd03f841ad91924ad4c531e"
+      "bytes": 240145,
+      "sha256": "b168f5c2fc9c6cf270c9c29e75113b73b3fb6cae4483e5e3653b517110dbff1a"
     },
     {
       "path": "firefighter-frenzy/game.json",
@@ -317,8 +322,8 @@
     },
     {
       "path": "hangman/index.html",
-      "bytes": 139678,
-      "sha256": "eccc54a645ad3015f09ccea02f666473ff572054f3f54e593bfc6092e1f1b55d"
+      "bytes": 139699,
+      "sha256": "58d97fc428e7d02621d1063c79b3d26b2f44966f9ff01dac5267b41e8194e671"
     },
     {
       "path": "index.html",
@@ -337,8 +342,8 @@
     },
     {
       "path": "insultinator/index.html",
-      "bytes": 62504,
-      "sha256": "2d614b1fe8f9a49540ef782c8c2574cffb5357327e7173b0e773647e3e4a1716"
+      "bytes": 62428,
+      "sha256": "7012c4e0c5654aeced273f24631ca5fb6ec16583edc7b4c07f7ca7c427cff63d"
     },
     {
       "path": "jigsaw/game.json",
@@ -397,8 +402,8 @@
     },
     {
       "path": "make-10/index.html",
-      "bytes": 64944,
-      "sha256": "0d24312cbc32f8926c36e3a255e4d8dfac4ae3cffb0282e4d72a4c628a1fc8ac"
+      "bytes": 64890,
+      "sha256": "f99f81e3bc443b89fe03e597927bf4c6f3b2370ed5c7b120d5b25ece8f65d41a"
     },
     {
       "path": "manifest.webmanifest",
@@ -417,8 +422,8 @@
     },
     {
       "path": "math/index.html",
-      "bytes": 113968,
-      "sha256": "df64077c5fc436a5d5b1263f3a33be8b0155a235526c38176bae5d49596d7fc9"
+      "bytes": 113989,
+      "sha256": "3e41a6085105b6ef28c48e301103f5f3f4b1403c556370c110d6a430cf9a799a"
     },
     {
       "path": "maze/game.json",
@@ -432,8 +437,8 @@
     },
     {
       "path": "maze/index.html",
-      "bytes": 121170,
-      "sha256": "a790f85ee98e692c43093799b777ff57381f6ed58bf663e11943da53970f4d73"
+      "bytes": 121191,
+      "sha256": "43e7bfdf92a45d21ee102f72e7bca7297969e62680a294d36827ac7f16beee50"
     },
     {
       "path": "memory/game.json",
@@ -487,8 +492,8 @@
     },
     {
       "path": "mini-golf/index.html",
-      "bytes": 182033,
-      "sha256": "559b5a4071ef7bc6137f442900339e4afab5812fc78b61b0d21ffc90383b384f"
+      "bytes": 182054,
+      "sha256": "c6f1137068797da830f4a62deef88a16bb0e2ecbbd16fa6759dc552a5977f7db"
     },
     {
       "path": "monopoly/game.json",
@@ -592,8 +597,8 @@
     },
     {
       "path": "multiplayer/nearby-room-service.js",
-      "bytes": 47643,
-      "sha256": "ec3137df4b3d938af0df26cc4de36e869d669d3a665331dd3a1a5924777b9188"
+      "bytes": 47938,
+      "sha256": "5f1f8e1c549e8c0a573568e52bfbe5bff9424376dec076438efae9de2ef62dc6"
     },
     {
       "path": "multiplayer/nearby-session.mjs",
@@ -1487,8 +1492,8 @@
     },
     {
       "path": "orb-slicer/index.html",
-      "bytes": 125109,
-      "sha256": "a91bd0a6e51be561e9dfdcbc8746819df1dfea5d6d89b93ce250c6d922ef3d5b"
+      "bytes": 125130,
+      "sha256": "a70f16a3a371dfe1e39259b595f1da3dd846cdfe61056d092d7f166dd63ae91d"
     },
     {
       "path": "paint-lab/game.json",
@@ -1517,8 +1522,8 @@
     },
     {
       "path": "patterns/index.html",
-      "bytes": 15625,
-      "sha256": "43ab3e2117ec112f7ef5326484e06393a99b5938563e9a803b550a5246109f59"
+      "bytes": 15631,
+      "sha256": "3c0cf45ee7af19fcef63e51223096bcadff6aa011e8c84e0c5ad22c05f430125"
     },
     {
       "path": "pwa-icon-192.png",
@@ -1557,8 +1562,8 @@
     },
     {
       "path": "regex-lab/index.html",
-      "bytes": 32881,
-      "sha256": "31f68f0f902467cde1d882792c3d8e5b8f18446d39157beac84c7258df94f922"
+      "bytes": 32774,
+      "sha256": "78de1ccd061fe8f411bd9f27a33875cd045f692cb96e1b02c93adf351f481b86"
     },
     {
       "path": "shuffleboard/game.json",
@@ -1587,8 +1592,8 @@
     },
     {
       "path": "silly-face-lab/index.html",
-      "bytes": 110177,
-      "sha256": "17c74812b70a377422a19c21acbbc5758805954e10f4f17ac5a0b341b75949dc"
+      "bytes": 110123,
+      "sha256": "f85e76463d95a842e6b35d8b58fef4dfc2276b47c19b92849520482e17f2c4f9"
     },
     {
       "path": "simon/game.json",
@@ -1602,8 +1607,8 @@
     },
     {
       "path": "simon/index.html",
-      "bytes": 116662,
-      "sha256": "569d215b1dd734d3eda25098f1ffdd4748f0cac2df8d99f974c2f4f72ea8c00e"
+      "bytes": 116683,
+      "sha256": "486b88d07a21657a40b5d59848e39c90c928848b70e0bfb31cdfc33d029e72bf"
     },
     {
       "path": "solitaire/engine.js",
@@ -1627,8 +1632,8 @@
     },
     {
       "path": "solitaire/index.html",
-      "bytes": 31366,
-      "sha256": "5ca3e42a95ff98ac19ec525dbfac0ce92f4519fd6aaf1d7da1401abcc481011f"
+      "bytes": 31335,
+      "sha256": "5666fa88c216f1ab231baee52fd975782fd047cebd6dea4805de8db276c54098"
     },
     {
       "path": "sorry/game.json",
@@ -1662,13 +1667,13 @@
     },
     {
       "path": "spelling/index.html",
-      "bytes": 10560,
-      "sha256": "9e8a4b31f49f233e158c000294d060178a2e1ec07da331f1c5dfa6f32945f59b"
+      "bytes": 10539,
+      "sha256": "12af4a45a6881c29bcd2916463b93cb4d535b32573dcee5db586d074cf1b1115"
     },
     {
       "path": "sw.js",
-      "bytes": 27794,
-      "sha256": "20959a6059ce4693bd1c1d57c37b0a7b2b6253a3a6218fb3f8f9f21f4ac26994"
+      "bytes": 27795,
+      "sha256": "5c8d22995f02eca6d897aad22a1bf696ba4046db6f02a7d58e2852fd42a6782d"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1747,8 +1752,8 @@
     },
     {
       "path": "tic-tac-toe/index.html",
-      "bytes": 173071,
-      "sha256": "a964f82e72222dd41b8cc05a2793a420745eae3db491c6b0aff133fd887b5277"
+      "bytes": 173092,
+      "sha256": "77305ad671790c6b1dd2ccf354f604f8a46b56c209c7389a35578ad3d852476d"
     },
     {
       "path": "tic-tac-toe/room-client.js",
@@ -1767,8 +1772,8 @@
     },
     {
       "path": "time/index.html",
-      "bytes": 119253,
-      "sha256": "ccf389d16164c2bff6b43ba635000ef83219ad75cbf18cdad465ce284e9b3cd4"
+      "bytes": 119274,
+      "sha256": "0b1919fe1356d88727ce0bf49ffac8457e44f0799ee8f4af0721ca62173be100"
     },
     {
       "path": "trail/game.json",
@@ -1782,8 +1787,8 @@
     },
     {
       "path": "trail/index.html",
-      "bytes": 132400,
-      "sha256": "c6626e725fff618d1131b9cafe37e8ce4179d8f2b6dde8b27a268c573198ed99"
+      "bytes": 132421,
+      "sha256": "746b86fbab88f5b194e970ca6ce9ee0bb1bee2d7b93efb806f86cb5cdc16d858"
     },
     {
       "path": "trivia/game.json",
@@ -1917,8 +1922,8 @@
     },
     {
       "path": "upwords/index.html",
-      "bytes": 8089,
-      "sha256": "a55315efe7c4a4a47faf497b919d68d703895ed3cd0afae7e3f3f393f6a2c9a0"
+      "bytes": 8056,
+      "sha256": "922ccb5afd3285fde17a7eef9aa913b6d6e8b228ecf92d64fbf0e6335eb7e4d2"
     },
     {
       "path": "upwords/LICENSE.dictionary.txt",
