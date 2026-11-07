@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.8.4+20261030.1",
-  "generatedAt": "2026-10-30T04:09:21.419Z",
+  "version": "2.8.5+20261107.1",
+  "generatedAt": "2026-11-07T21:44:19.067Z",
   "fileCount": 387,
-  "totalBytes": 20115232,
+  "totalBytes": 20134404,
   "files": [
     {
       "path": "adventure/game.json",
@@ -177,8 +177,8 @@
     },
     {
       "path": "chat-room/index.html",
-      "bytes": 48771,
-      "sha256": "5f272fb8025cf79fc218965d1db4a293a2a1474c98111ab10cbe6a4284529904"
+      "bytes": 48978,
+      "sha256": "d350eef9568561b3b2e0f524341e7cf57e6cc5a7f56b95d8e7aecf95ad618f50"
     },
     {
       "path": "checkers/game.json",
@@ -192,8 +192,8 @@
     },
     {
       "path": "checkers/index.html",
-      "bytes": 210736,
-      "sha256": "218f394b24f3a2c7e9d4000cc2dd7163da65d39add8eb84480bf99c8e5e25284"
+      "bytes": 210738,
+      "sha256": "43f887519ef5be126b68d6eed790bb1382c5927c60886213fea6c1a6bbd972ee"
     },
     {
       "path": "chess/game.json",
@@ -207,8 +207,8 @@
     },
     {
       "path": "chess/index.html",
-      "bytes": 154918,
-      "sha256": "e1cd543fe899ac897e17b36bba00d7ac48f1ef3e8f1200649ef58883c9c9c13e"
+      "bytes": 155180,
+      "sha256": "abd9990164cd992a25406c1abfa2cac0845533f1debc7eeb77ed4ecfc5ceec21"
     },
     {
       "path": "codebreaking/game.json",
@@ -257,8 +257,8 @@
     },
     {
       "path": "dots/index.html",
-      "bytes": 234762,
-      "sha256": "96c6c080dacf5ff7b3cc02bf14a4ea8489df778152a679a0e8b044a8faa48b9b"
+      "bytes": 240106,
+      "sha256": "ccf0d5f158b23eca68ea79cf1f8a6b24c42ddd10ccd03f841ad91924ad4c531e"
     },
     {
       "path": "firefighter-frenzy/game.json",
@@ -617,8 +617,8 @@
     },
     {
       "path": "multiplayer/shared-activity.js",
-      "bytes": 37437,
-      "sha256": "47e017f2716949d90b81545fe0f6856806994a6dc194434601239f9301625a88"
+      "bytes": 38371,
+      "sha256": "5e6bdbbf90975031f623ccdf3c0386bdfbc45be3723c1a02d644d309eb2b2ac6"
     },
     {
       "path": "multiplayer/shared-room-client.js",
@@ -1667,8 +1667,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27792,
-      "sha256": "35f109468671d08d3c952299e8d0832db17cc8c3ec97ef86c9942c9346ab573a"
+      "bytes": 27796,
+      "sha256": "54a1661f0eff7dcb445468c08447f7ee25ef98a5090a654f255d02bdbd0942a6"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1747,8 +1747,8 @@
     },
     {
       "path": "tic-tac-toe/index.html",
-      "bytes": 173069,
-      "sha256": "6cdc0697170eea14f8af88317f70c5c1868ef94e2a4e0e3ec3e30fdc7a876954"
+      "bytes": 173071,
+      "sha256": "a964f82e72222dd41b8cc05a2793a420745eae3db491c6b0aff133fd887b5277"
     },
     {
       "path": "tic-tac-toe/room-client.js",
@@ -1767,8 +1767,8 @@
     },
     {
       "path": "time/index.html",
-      "bytes": 118846,
-      "sha256": "a5ba9fef3ee939064b10256cf842d12072194c84365cf9eeb19af24586bea71b"
+      "bytes": 119253,
+      "sha256": "ccf389d16164c2bff6b43ba635000ef83219ad75cbf18cdad465ce284e9b3cd4"
     },
     {
       "path": "trail/game.json",
@@ -1797,8 +1797,8 @@
     },
     {
       "path": "trivia/index.html",
-      "bytes": 67746,
-      "sha256": "3e0bece0dab0ffd50d9a5947fc02f5f359c77a281fc3acc02e1080954819604d"
+      "bytes": 79756,
+      "sha256": "9139cef4cee685fbeff3d210339758644ad374d2eb3ceda764bdaece062a3185"
     },
     {
       "path": "tv/app.mjs",

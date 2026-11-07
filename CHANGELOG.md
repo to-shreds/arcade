@@ -1,3 +1,11 @@
+# 2.8.5
+
+- Added a Dots pause menu with Resume, New Game, Save, Load and Back to Arcade.
+- Added missing Back to Arcade choices in game setup and pause menus, preserving the current game and persistent shell navigation.
+- Matched the clock drawing buffer to the displayed face so it stays centered and correctly sized on phones, rotation and saved-game restores.
+- Added Young Kid Mode to Trivia with 36 spoken picture questions, replay, spoken feedback and a large next-question arrow; no reading is needed to answer.
+- Retained existing trivia categories, saves and Internet/Nearby play, and refreshed the offline release.
+
 # 2.8.4
 
 - Removed the floating multiplayer globe from all 34 shared games and activities.

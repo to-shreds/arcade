@@ -881,6 +881,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 .side .panel{max-height:none!important;overflow:visible!important}
 }
 </style>
+<style>#setupModal .modalPanel{overflow-y:auto!important}</style>
 </head>
 <body>
   <button id="menuBtn" class="back-btn" title="Return to the Arcade menu (drag me if I block something)">← MENU</button>
@@ -958,6 +959,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         <div class="modalTitle" id="setupTitle">Choose a Chess Game</div>
         <button class="ui-btn" id="setupClose" title="Close">Done</button>
       </div>
+      <button class="ui-btn ghost" id="setupHome" type="button" style="width:100%;min-height:44px;margin-bottom:8px">Back to Arcade</button>
       <div id="startPane">
         <div class="startChoices">
           <section class="startCard">
@@ -3685,6 +3687,7 @@ clearSelection();
     maybeAutoCpu();
   }
   $("#setupClose").addEventListener("click", closeSetup);
+  $("#setupHome").addEventListener("click", goToMenu);
   $("#settingsBtn").addEventListener("click", ()=>openSetup("prefs"));
   $("#prefsOpen").addEventListener("click", ()=>showSetupPane("prefs"));
   $("#prefsBack").addEventListener("click", ()=>showSetupPane("start"));

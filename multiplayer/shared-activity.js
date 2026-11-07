@@ -317,6 +317,21 @@
     // Long existing menus scroll inside their own bounds on small screens.
     container.dataset.sharedMenuContent='true';
   }
+  function ensureMenuHome(container){
+    if(!container)return;
+    const existing=[...container.querySelectorAll('button,a')].find(entry=>
+      /(?:back to arcade|arcade home)/i.test(entry.textContent) ||
+      (entry.getAttribute('onclick')==='goToMenu()' && /back to menu/i.test(entry.textContent)));
+    if(existing){
+      if(/back to menu/i.test(existing.textContent))existing.textContent='Back to Arcade';
+      return;
+    }
+    const entry=document.createElement('button');
+    entry.type='button';entry.className='shared-menu-action';entry.dataset.sharedUi='true';
+    entry.dataset.sharedHome='true';entry.textContent='Back to Arcade';
+    entry.onclick=()=>root.ArcadeSave?.goHome?.();
+    container.appendChild(entry);
+  }
   function buildMenus(){
     menu=document.createElement('div');menu.id='shared-menu';menu.dataset.sharedUi='true';menu.hidden=true;
     menu.setAttribute('role','dialog');menu.setAttribute('aria-modal','true');menu.setAttribute('aria-labelledby','shared-menu-title');
@@ -329,12 +344,16 @@
     const toggles=config?[...document.querySelectorAll(config[1])]:[];
     const native=content&&toggles.length;
     addMenuEntry(native?content:document.getElementById('shared-menu-online'),true);
+    ensureMenuHome(native?content:null);
     if(native){
       for(const toggle of toggles)toggle.dataset.sharedMenuToggle='native';
       // A spectator can open navigation without opening or changing the
       // controller's native setup/pause state.
       addMenuEntry(document.getElementById('shared-menu-online'));
-      if(config[2])addMenuEntry(document.querySelector(config[2]));
+      if(config[2]){
+        const startContent=document.querySelector(config[2]);
+        addMenuEntry(startContent);ensureMenuHome(startContent);
+      }
     }else{
       const homes=document.querySelectorAll('a.arcade-home-link,.back-btn,#home,#homeBtn,#arcade-home-nav,button.home,button[data-activity-menu]');
       for(const toggle of homes){
@@ -350,7 +369,8 @@
           toggle.addEventListener('keydown',event=>{if(event.key===' '){event.preventDefault();toggle.click();}});
         }
       }
-      addMenuEntry(document.querySelector(startMenus[activity]||':not(*)'));
+      const startContent=document.querySelector(startMenus[activity]||':not(*)');
+      addMenuEntry(startContent);ensureMenuHome(startContent);
     }
     // Window capture precedes legacy Home link navigation on document.
     const menuGesture=event=>{

@@ -1709,6 +1709,19 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 @media(max-width:560px){#g-dots .top{gap:5px!important;padding:6px!important}#g-dots .top>.row{gap:5px!important}#g-dots #scoreDisp,#g-dots .status-pill{min-height:42px!important;padding:5px 8px!important}#g-dots #scoreDisp{font-size:15px!important}.status-pill #turnText{font-size:18px!important}.status-pill #turnDot{width:19px!important;height:19px!important}#g-dots #statusText{font-size:11px!important}.open-summary{display:none!important}}
 @media(max-height:520px){#g-dots .top{display:grid!important;grid-template-columns:auto 1fr!important;gap:4px 6px!important}#g-dots .top>.row:first-child{grid-column:1/3!important}#g-dots .top>.row:nth-child(2){grid-column:1/3!important;flex-wrap:nowrap!important}#g-dots #scoreDisp,#g-dots .status-pill{min-height:35px!important;padding:4px 7px!important}#g-dots #scoreDisp{font-size:13px!important}.status-pill #turnText{font-size:16px!important}.open-summary{display:none!important}}
 </style>
+<style id="dots-navigation-menu">
+#g-dots #dotsMenuButton{display:inline-flex!important;align-items:center;justify-content:center;touch-action:manipulation!important;cursor:pointer}
+#dotsPauseMenu{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:12px;background:rgba(0,0,0,.94)}
+#dotsPauseMenu[hidden]{display:none!important}
+#dotsPauseMenu .dots-pause-panel{width:min(420px,100%);max-height:calc(100svh - 24px);overflow:auto;padding:20px;border:1px solid #555;border-radius:18px;background:#171b29;text-align:center;box-sizing:border-box}
+#dotsPauseMenu h2{margin:0 0 16px;color:#ffd700;font-size:28px}
+#dotsPauseMenu button{display:block;width:100%;min-height:44px;padding:10px;margin:8px 0;border:1px solid #666;border-radius:12px;background:#333;color:white;font-size:16px;font-weight:900;touch-action:manipulation}
+#dotsPauseMenu button:disabled{opacity:.45}
+#dotsPauseMenu #dotsPauseResume{background:#ffd700;color:#171717;border-color:#ffd700}
+#dotsPauseMenu #dotsPauseNote{font-size:13px;line-height:1.3;color:#ddd;min-height:1.3em}
+#g-dots .dots-menu-home{min-height:36px;padding:7px 14px;border:1px solid #666;border-radius:12px;background:#333;color:#fff;font-weight:900;touch-action:manipulation}
+@media(max-height:450px){#dotsPauseMenu .dots-pause-panel{padding:10px}#dotsPauseMenu h2{font-size:22px;margin-bottom:6px}#dotsPauseMenu button{min-height:35px;margin:5px 0;padding:6px}}
+</style>
 </head>
 <body>
 
@@ -1722,7 +1735,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         <div class="wrap">
             <div class="top">
                 <div class="row">
-                    <button class="back-btn" style="position:static; margin-right:10px;" onclick="goToMenu()">← MENU</button>
+                    <button class="back-btn" id="dotsMenuButton" type="button" style="position:static; margin-right:10px;" onclick="DotsGame.openMenu()" aria-label="Game menu" aria-haspopup="dialog" aria-controls="dotsPauseMenu" aria-expanded="false">☰ MENU</button>
                     <div style="font-weight:bold; font-size:16px;">Dots!</div>
                     <div>
                         <button id="dotsOnlineBadge" hidden title="Tap to copy room code">ROOM <strong id="dotsOnlineBadgeCode"></strong></button>
@@ -1756,6 +1769,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
                     <div class="dots-menu-card">
                         <div class="dots-menu-head">
                             <h1 class="splash-title">DOTS</h1>
+                            <button class="dots-menu-home" type="button" onclick="goToMenu()">Back to Arcade</button>
                             <div class="menu-sub">Pick a mode, choose colors, then pick a grid.</div>
                         </div>
 
@@ -1983,6 +1997,17 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
         </div>
     </div>
 
+<div id="dotsPauseMenu" hidden role="dialog" aria-modal="true" aria-labelledby="dotsPauseTitle">
+    <div class="dots-pause-panel">
+        <h2 id="dotsPauseTitle">Menu</h2>
+        <button id="dotsPauseResume" type="button">Resume</button>
+        <button id="dotsPauseNew" type="button">New Game</button>
+        <button id="dotsPauseSave" type="button">Save Game</button>
+        <button id="dotsPauseLoad" type="button">Load Game</button>
+        <button id="dotsPauseHome" type="button">Back to Arcade</button>
+        <div id="dotsPauseNote" role="status" aria-live="polite"></div>
+    </div>
+</div>
 <script src="../multiplayer/arcade-multiplayer.js"></script>
 <script src="../arcade-save.js"></script>
 <script>
@@ -2396,6 +2421,10 @@ const FeedbackSys = (function(){
         const canvas = document.getElementById("c");
         const ctx = canvas.getContext("2d");
         const boardContainer = document.getElementById("boardContainer");
+        const pauseMenu = document.getElementById('dotsPauseMenu');
+        const pauseResume = document.getElementById('dotsPauseResume');
+        const pauseNote = document.getElementById('dotsPauseNote');
+        let menuReturnFocus = null;
         const statusText = document.getElementById("statusText");
         const turnText = document.getElementById("turnText");
         const playerNameEls = [null,
@@ -3240,6 +3269,7 @@ const FeedbackSys = (function(){
             syncMenuUI();
         }
         function openNewGameMenu(){
+            closePauseMenu(false);
             stopCpu();
             clearTurnSplash();
             stopFinish();
@@ -3250,7 +3280,27 @@ const FeedbackSys = (function(){
             syncMenuUI();
             status(mode === 'online' && online.room ? 'Online room ' + online.code : "Pick a mode, choose colors, then pick a grid");
         }
+        function openPauseMenu(){
+            if(!pauseMenu.hidden)return;
+            menuReturnFocus = document.activeElement;
+            stopCpu();isDrag=false;sel=null;
+            pauseResume.disabled = !HO || menuOverlay.style.display !== 'none';
+            document.getElementById('dotsPauseSave').disabled = mode === 'online' || !HO;
+            document.getElementById('dotsPauseLoad').disabled = mode === 'online';
+            pauseNote.textContent = mode === 'online' ? 'Your online room keeps running.' : '';
+            pauseMenu.hidden = false;
+            document.getElementById('dotsMenuButton').setAttribute('aria-expanded','true');
+            (pauseResume.disabled ? document.getElementById('dotsPauseNew') : pauseResume).focus();
+        }
+        function closePauseMenu(resumeCpu=true){
+            if(pauseMenu.hidden)return;
+            pauseMenu.hidden=true;
+            document.getElementById('dotsMenuButton').setAttribute('aria-expanded','false');
+            if(menuReturnFocus && menuReturnFocus.isConnected)menuReturnFocus.focus({preventScroll:true});
+            if(resumeCpu && menuOverlay.style.display === 'none' && mode === 'cpu' && turn === 2 && claimed !== TOTAL)maybeCpu();
+        }
         async function startGame(rows, cols){
+            closePauseMenu(false);
             if(mode === 'online'){
                 if(!online.room){ setOnlineMessage('Create or join a room first.', true); return false; }
                 if(online.room.status !== 'lobby'){ setOnlineMessage('This room has already started.', true); return false; }
@@ -3744,7 +3794,7 @@ const FeedbackSys = (function(){
             return pickRandom(best.length ? best : moves);
         }
         function cpuStep(){
-            if(currentGameId !== 'dots' || mode !== 'cpu' || turn !== 2 || claimed === TOTAL){ cpuThinking = false; return; }
+            if(!pauseMenu.hidden || currentGameId !== 'dots' || mode !== 'cpu' || turn !== 2 || claimed === TOTAL){ cpuThinking = false; return; }
             const mv = chooseCpuMove(cpuLevel);
             if(!mv){ cpuThinking = false; return; }
             const d1 = { r: mv.r, c: mv.c };
@@ -3756,7 +3806,7 @@ const FeedbackSys = (function(){
         }
         function maybeCpu(){
             stopCpu();
-            if(currentGameId !== 'dots' || mode !== 'cpu' || claimed === TOTAL || turn !== 2) return;
+            if(!pauseMenu.hidden || currentGameId !== 'dots' || mode !== 'cpu' || claimed === TOTAL || turn !== 2) return;
             cpuThinking = true;
             status('CPU thinking…');
             const delay = 240 + cpuLevel * 60;
@@ -3794,6 +3844,7 @@ const FeedbackSys = (function(){
             return {x:ex, y:ey};
         }
         function onDown(ev){
+            if(!pauseMenu.hidden)return;
             if(claimed === TOTAL) return;
             if(mode === 'online' && !onlineCanAct()){
                 status(online.restoreRequired ? 'Restoring the latest room state…' : (online.busy ? 'Sending your move…' : (online.room && online.room.status === 'active' ? ('Waiting for ' + onlineSeatName(online.room.turn && online.room.turn.seat)) : 'Waiting for the room to start')));
@@ -3811,6 +3862,7 @@ const FeedbackSys = (function(){
             sel = hit; status('Drag or Tap Neighbor');
         }
         function onMove(ev){
+            if(!pauseMenu.hidden)return;
             if(mode === 'online' && !onlineCanAct()) return;
             if(mode === 'cpu' && turn === 2) return;
             if(!isDrag || !sel) return;
@@ -3972,6 +4024,24 @@ const FeedbackSys = (function(){
         if(loadBtn) loadBtn.addEventListener('click', loadGame);
         document.getElementById('g-dots').querySelector('#menuBtn').addEventListener('click', openNewGameMenu);
         document.getElementById('g-dots').querySelector('#playAgainBtn').addEventListener('click', openNewGameMenu);
+        pauseResume.addEventListener('click',function(){closePauseMenu();});
+        document.getElementById('dotsPauseNew').addEventListener('click',openNewGameMenu);
+        document.getElementById('dotsPauseSave').addEventListener('click',function(){pauseNote.textContent=saveGame()?'Game saved.':'The game could not be saved.';});
+        document.getElementById('dotsPauseLoad').addEventListener('click',function(){closePauseMenu();loadGame();});
+        document.getElementById('dotsPauseHome').addEventListener('click',goToMenu);
+        document.addEventListener('keydown',function(event){
+            if(pauseMenu.hidden)return;
+            if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();closePauseMenu();return;}
+            if(event.key==='Tab'){
+                const buttons=Array.from(pauseMenu.querySelectorAll('button:not(:disabled)'));
+                const first=buttons[0],last=buttons[buttons.length-1];
+                if(event.shiftKey && document.activeElement===first){event.preventDefault();last.focus();}
+                else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first.focus();}
+            }
+        },true);
+        document.addEventListener('focusin',function(event){
+            if(!pauseMenu.hidden && !pauseMenu.contains(event.target))pauseMenu.querySelector('button:not(:disabled)').focus();
+        });
         if(onlineCodeInput) onlineCodeInput.addEventListener('input', function(){
             const next = cleanOnlineCode(onlineCodeInput.value);
             if(onlineCodeInput.value !== next) onlineCodeInput.value = next;
@@ -3998,7 +4068,7 @@ const FeedbackSys = (function(){
         requestAnimationFrame(draw);
         syncMenuUI();
         registerArcadeSave();
-        return { startGame:startGame, resize:fitCanvas, resume:function(){ requestAnimationFrame(draw); }, pause:pauseGame, toggleContrast:toggleContrast, quit:quit, saveGame:saveGame, loadGame:loadGame, setMode:setMode, setCpuLevel:setCpuLevel, setPlayerCount:setPlayerCount, syncGlobalContrast:syncGlobalContrast, createOnlineRoom:createOnlineRoom, joinOnlineRoom:joinOnlineRoom, resumeOnlineRoom:resumeOnlineRoom, leaveOnlineRoom:leaveOnlineRoom };
+        return { startGame:startGame, openMenu:openPauseMenu, resize:fitCanvas, resume:function(){ requestAnimationFrame(draw); }, pause:pauseGame, toggleContrast:toggleContrast, quit:quit, saveGame:saveGame, loadGame:loadGame, setMode:setMode, setCpuLevel:setCpuLevel, setPlayerCount:setPlayerCount, syncGlobalContrast:syncGlobalContrast, createOnlineRoom:createOnlineRoom, joinOnlineRoom:joinOnlineRoom, resumeOnlineRoom:resumeOnlineRoom, leaveOnlineRoom:leaveOnlineRoom };
     })();
 
 
@@ -4125,7 +4195,6 @@ try{
     }, true);
   }
 
-  try{ installDrag(document.querySelector('.back-btn'), 'menu'); }catch(e){}
   try{ installDrag(document.getElementById('global-settings-btn'), 'settings'); }catch(e){}
 })();
 

@@ -8,6 +8,20 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.8.5
+
+Dots has a pause menu with Resume, New Game, Save, Load and Back to Arcade.
+Game setup and pause menus now include their missing Arcade exits. Clock faces
+use the actual displayed size, including phone layouts and saved-game restores.
+
+Trivia's Young Kid Mode asks simple questions aloud and offers four picture
+answers. Tap the speaker to hear the question again and the large arrow to
+continue after an answer. It includes animals, familiar objects, colors, shapes
+and counts up to four. Sound must be on and a device voice must be available;
+the existing Android wrapper's voice bridge is supported. Existing trivia
+categories, saves and shared play remain available. See the
+[release checks](docs/arcade-stress-test-2.8.5.md).
+
 ## Release 2.8.4
 
 Internet / Multiplayer now lives inside each shared activity's menu. Existing

@@ -77,6 +77,57 @@ test('local Dots modes remain available and no saved room auto-opens', async t=>
     assert.equal(errors.length,0,errors.map(e=>e.message).join('\n'));
 });
 
+test('Dots setup and pause menu expose Home without changing the saved board', async t=>{
+    let homeCalls=0;
+    const {dom,errors}=await loadDots(async()=>{throw new Error('unexpected fetch');},null,{goHome(){homeCalls++;return true;}});
+    t.after(()=>dom.window.close());
+    const w=dom.window,d=w.document;
+    assert.equal(d.querySelector('.dots-menu-home').textContent,'Back to Arcade');
+    await w.DotsGame.startGame(5,5);
+    w.DotsGame.saveGame();
+    const before=w.localStorage.getItem('arcade_dots_save_v1');
+    const toggle=d.querySelector('#dotsMenuButton');toggle.focus();toggle.click();
+    assert.equal(d.querySelector('#dotsPauseMenu').hidden,false);
+    assert.equal(d.activeElement.id,'dotsPauseResume');
+    assert.equal(toggle.getAttribute('aria-expanded'),'true');
+    assert.equal(d.querySelector('#dotsPauseHome').textContent,'Back to Arcade');
+    d.querySelector('#dotsPauseSave').click();
+    assert.equal(w.localStorage.getItem('arcade_dots_save_v1'),before);
+    d.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));
+    assert.equal(d.querySelector('#dotsPauseMenu').hidden,true);
+    assert.equal(d.activeElement,toggle);
+    toggle.click();d.querySelector('#dotsPauseNew').click();
+    assert.equal(d.querySelector('#dotsPauseMenu').hidden,true);
+    assert.equal(d.querySelector('#menuOverlay').style.display,'flex');
+    d.querySelector('.dots-menu-home').click();
+    await new Promise(resolve=>w.setTimeout(resolve,0));
+    assert.equal(homeCalls,1);
+    assert.equal(w.localStorage.getItem('arcade_dots_save_v1'),before);
+    assert.equal(errors.length,0,errors.map(e=>e.message).join('\n'));
+});
+
+test('Dots pause menu freezes a pending CPU move and Resume continues it', async t=>{
+    const {dom,errors}=await loadDots(async()=>{throw new Error('unexpected fetch');});
+    t.after(()=>dom.window.close());
+    const w=dom.window,d=w.document;
+    w.DotsGame.setMode('cpu');await w.DotsGame.startGame(5,5);
+    const canvas=d.querySelector('#c');
+    pointer(w,canvas,'pointerdown',52,52);pointer(w,canvas,'pointerup',52,52);pointer(w,canvas,'pointerdown',127,52);
+    w.DotsGame.saveGame();
+    const before=JSON.parse(w.localStorage.getItem('arcade_dots_save_v1'));
+    assert.equal(before.turn,2);
+    d.querySelector('#dotsMenuButton').click();
+    await new Promise(resolve=>w.setTimeout(resolve,650));
+    w.DotsGame.saveGame();
+    assert.deepEqual(JSON.parse(w.localStorage.getItem('arcade_dots_save_v1')),before);
+    d.querySelector('#dotsPauseResume').click();
+    await new Promise(resolve=>w.setTimeout(resolve,650));
+    w.DotsGame.saveGame();
+    const after=JSON.parse(w.localStorage.getItem('arcade_dots_save_v1'));
+    assert.notDeepEqual(after.HO.concat(after.VO),before.HO.concat(before.VO));
+    assert.equal(errors.length,0,errors.map(e=>e.message).join('\n'));
+});
+
 test('Dots create, host start, 0-based seat gating and remote state apply', async t=>{
     const calls=[];
     let state=null;

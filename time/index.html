@@ -587,7 +587,7 @@ body.reduce-motion.unicorn-mega #g-balloons, body.reduce-motion.unicorn-mega #g-
         #g-clock { background: #2c3e50; flex-direction: column; align-items: center; justify-content: center; }
         #g-clock .clock-face { 
             background: #fff; border-radius: 50%; border: 10px solid #333;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5); margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5); margin-bottom: 20px; flex: 0 0 auto;
         }
         #g-clock .clock-ui { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
         #g-clock .display-box {
@@ -1925,10 +1925,13 @@ const FeedbackSys = (function(){
             const ratio = window.devicePixelRatio || 1;
             const rawSize = Math.min(box.width - 18, box.height - 18);
             const size = Math.min(360, Math.max(260, Number.isFinite(rawSize) ? rawSize : 260));
-            canvas.width = Math.max(1, Math.round(size * ratio));
-            canvas.height = Math.max(1, Math.round(size * ratio));
             canvas.style.width = size + "px";
             canvas.style.height = size + "px";
+            if(!canvas.clientWidth || !canvas.clientHeight) return;
+            const width = Math.max(1, Math.round(canvas.clientWidth * ratio));
+            const height = Math.max(1, Math.round(canvas.clientHeight * ratio));
+            if(canvas.width !== width) canvas.width = width;
+            if(canvas.height !== height) canvas.height = height;
             ctx.setTransform(ratio,0,0,ratio,0,0);
             drawClock();
         }
@@ -2231,6 +2234,9 @@ const FeedbackSys = (function(){
         }
 
         window.addEventListener('resize', ()=>{ if(currentGameId==='clock') resize(); });
+        if(typeof ResizeObserver === 'function') new ResizeObserver(()=>{
+            if(canvas.clientWidth && canvas.clientHeight) resize();
+        }).observe(canvas);
 
         function captureState(){
             return {

@@ -1,6 +1,40 @@
 # Arcade continuation handoff
 
-## Current state
+## Current state: 2.8.5
+
+The November 7 request adds missing Arcade exits, fixes the clock face geometry,
+and adds Young Kid Mode to Trivia. Dots had an old global `.back-btn` rule hiding
+its header Menu. Its explicit visible header now opens Resume, New Game, Save,
+Load and Back to Arcade; CPU work pauses locally while this menu is open, and
+online room state continues normally. The menu is not part of saved game state.
+
+`multiplayer/shared-activity.js` adds missing Back to Arcade controls to native
+setup/pause menus, marks them as local UI and uses ArcadeSave.goHome. Existing
+shared observer navigation, checkpoint exclusions, transport and authority
+remain. Chess and Chat gained setup/lobby exits; Checkers and Tic Tac Toe exits
+use the clear Back to Arcade label. Preserve direct Home controls elsewhere.
+
+`time/index.html` sets the canvas bitmap from actual client dimensions after CSS
+sizing, using device pixel ratio. The face cannot flex-shrink into an oval.
+A zero-size guard and ResizeObserver handle hidden shell restores and reveal.
+Do not return to a separate guessed bitmap size that disagrees with mobile CSS.
+
+Trivia's `kids` mode uses 36 local picture questions, ArcadeSpeech for the
+Android/browser voice, local replay and child-paced next controls. The existing
+save/shared schema and answer identities remain; manual saves now retain the
+full question display order, score, highlights and answered state. Kid questions
+never auto-advance. Normal categories keep their existing automatic advance.
+Speech cancels on menus, keyboard menu activation, mute and navigation. The
+Listen control is local UI while Next remains controller-only. Device voice
+availability is reported honestly; browser/native bridge fixtures are not a
+physical-device audio test.
+
+`npm run test:arcade-fixes` covers all menu exits, Dots, clock rendering and kid
+Trivia. See docs/arcade-stress-test-2.8.5.md for the actual checks. The current
+release is 2.8.5 and the offline snapshot is 2.8.5+20261107.1. ProjectStatus
+records the exact published source, deployment result and download identity.
+
+## Prior release 2.8.4 baseline
 
 The canonical project is `to-shreds/arcade`, default branch `main`. Production
 web content is served at <https://to-shreds.github.io/arcade/>. The repository

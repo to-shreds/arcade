@@ -4,6 +4,7 @@
 <script src="../multiplayer/arcade-multiplayer.js"></script>
 <script src="../multiplayer/shared-room-client.js"></script>
 <script src="../multiplayer/shared-activity.js"></script>
+<script src="../arcade-speech.js"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -413,6 +414,57 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 </style>
 
 <style id="arcade-no-scroll-v7">html,body{width:100%;height:100%;max-width:100%;overflow:hidden!important}body{overscroll-behavior:none!important}</style>
+<style id="trivia-young-kids">
+#cat-menu{gap:8px;padding:12px}
+#cat-menu .cat-grid{gap:8px}
+#cat-menu .cat-btn{padding:14px 10px;min-height:48px}
+#cat-menu .kid-mode-btn{grid-column:1/-1;border-color:#ffd700!important}
+#cat-menu .load-game-btn{max-width:500px;margin-top:0!important}
+.kid-controls[hidden],#kid-audio-status[hidden]{display:none!important}
+.kid-controls{display:flex;justify-content:center;align-items:center;gap:12px;width:min(600px,100%)}
+.kid-controls button{min-width:64px;min-height:52px!important;font-size:30px!important;padding:6px 18px!important}
+.kid-controls svg{display:block;width:30px;height:30px;pointer-events:none}
+.kid-controls button:disabled{opacity:.35;cursor:default}
+#kid-next{background:#ffd700;color:#161616;border-color:#ffd700}
+#kid-audio-status{font-size:12px;text-align:center;color:#ddd;max-width:560px;min-height:16px;margin:0}
+.young-kid-mode{padding:100px 12px max(10px,env(safe-area-inset-bottom));gap:8px}
+.young-kid-mode .hud-bar{position:static;flex:0 0 auto;width:min(600px,100%);padding:7px 12px}
+.young-kid-mode .hud-val{font-size:20px}
+.young-kid-mode .question-box{flex:0 1 auto;min-height:90px!important;width:min(600px,100%)!important;margin:0;padding:10px!important}
+.young-kid-mode .q-category{margin-bottom:5px;font-size:10px}
+.young-kid-mode .q-text{font-size:clamp(18px,4.5vw,27px)}
+.young-kid-mode .answers-grid{width:min(600px,100%);gap:8px}
+.young-kid-mode .ans-btn{min-height:82px;padding:8px;font-size:20px}
+.kid-picture{font:54px/1.15 "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:2px;pointer-events:none}
+.kid-count{font-size:25px;max-width:150px}
+.kid-swatch{display:block;width:52px;height:52px;border:2px solid white;border-radius:50%}
+.kid-shape{display:block;width:54px;height:54px;color:#ffd700}
+.kid-shape.circle{border-radius:50%;background:currentColor}
+.kid-shape.square{background:currentColor}
+.kid-shape.triangle{width:0;height:0;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:52px solid currentColor}
+.kid-shape.star{background:currentColor;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 94%,50% 72%,21% 94%,32% 57%,2% 35%,39% 35%)}
+.kid-answer-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-height:620px){#cat-menu .cat-btn{padding:8px!important;min-height:42px;font-size:15px!important}#cat-menu .cat-btn small{font-size:10px;margin-top:3px}#cat-menu .menu-title{font-size:32px!important}#cat-menu{gap:6px}}
+@media(max-height:500px) and (min-width:521px){
+  #cat-menu .cat-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:650px}
+  #cat-menu .cat-btn{min-height:36px!important;padding:6px!important;font-size:14px!important}
+  #cat-menu .cat-btn small{display:none}
+  #cat-menu .menu-title{font-size:26px!important}
+  .young-kid-mode{padding-top:86px;gap:4px}
+  .young-kid-mode .hud-bar{padding:4px 12px}
+  .young-kid-mode .hud-val{font-size:16px}
+  .young-kid-mode .question-box{min-height:44px!important;padding:5px!important}
+  .young-kid-mode .q-category{display:none}
+  .young-kid-mode .q-text{font-size:18px}
+  .young-kid-mode .answers-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  .young-kid-mode .ans-btn{min-height:62px;padding:5px}
+  .young-kid-mode .kid-picture{font-size:40px}
+  .young-kid-mode .kid-count{font-size:20px}
+  .young-kid-mode .kid-swatch,.young-kid-mode .kid-shape{width:40px;height:40px}
+  .young-kid-mode .kid-shape.triangle{width:0;height:0;border-left-width:23px;border-right-width:23px;border-bottom-width:40px}
+  .kid-controls button{min-height:42px!important;font-size:25px!important}
+}
+</style>
 </head>
 <body>
 
@@ -448,19 +500,25 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
         <div class="answers-grid" id="ans-grid">
             </div>
+        <div class="kid-controls" id="kid-controls" hidden>
+            <button class="ui-btn" id="kid-listen" data-shared-ui="true" onclick="Game.listen()" aria-label="Listen to the question again"><svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h6l7-6v20l-7-6H4z" fill="currentColor" stroke="none"/><path d="M22 11q5 5 0 10m4-14q9 9 0 18"/></svg></button>
+            <button class="ui-btn" id="kid-next" onclick="Game.next()" aria-label="Next question" disabled>➜</button>
+        </div>
+        <p id="kid-audio-status" data-shared-ui="true" role="status" hidden></p>
     </div>
 
     <div id="cat-menu">
         <div class="menu-title">TRIVIA TIME</div>
         <div class="cat-grid">
+            <button class="cat-btn kid-mode-btn" onclick="Game.start('kids')">🧸 Young Kid Mode<small>Listen, then tap a picture. No reading needed.</small></button>
             <button class="cat-btn" onclick="Game.start('science')">🧪 Science<small>Space, Animals, Body</small></button>
             <button class="cat-btn" onclick="Game.start('math')">🧮 Math<small>Numbers, Shapes, Logic</small></button>
             <button class="cat-btn" onclick="Game.start('spelling')">📝 Spelling<small>Sentences & Riddles</small></button>
             <button class="cat-btn" onclick="Game.start('vocab')">📖 Words<small>Definitions & Opposites</small></button>
             <button class="cat-btn" onclick="Game.start('general')">🌍 General<small>World, Movies, Fun</small></button>
-            <button class="cat-btn" onclick="Game.start('all')" style="grid-column: span 2; background: linear-gradient(45deg, #444, #222); border-color:#ffd700;">🎲 MIX IT UP!<small>Anything goes!</small></button>
+            <button class="cat-btn" onclick="Game.start('all')" style="background: linear-gradient(45deg, #444, #222); border-color:#ffd700;">🎲 MIX IT UP!<small>Anything goes!</small></button>
         </div>
-        <button class="cat-btn" style="margin-top:14px; width:100%;" onclick="Game.load()">LOAD SAVED GAME<small>Continue in this browser</small></button>
+        <button class="cat-btn load-game-btn" style="width:100%;" onclick="Game.load()">LOAD SAVED GAME<small>Continue in this browser</small></button>
     </div>
 
     <div id="feedback-overlay">
@@ -739,6 +797,55 @@ const STATIC_DATA = {
     ]
 };
 
+const KID_PICTURES = {
+    Cow:'🐮', Cat:'🐱', Dog:'🐶', Duck:'🦆', Lion:'🦁', Elephant:'🐘', Frog:'🐸', Fish:'🐟',
+    Rabbit:'🐰', Bird:'🐦', Butterfly:'🦋', Bee:'🐝',
+    Apple:'🍎', Banana:'🍌', Carrot:'🥕', Grapes:'🍇', Strawberry:'🍓', Cookie:'🍪',
+    Shoe:'👟', Hat:'🎩', Umbrella:'☂️', Spoon:'🥄', Book:'📖', Ball:'⚽', Toothbrush:'🪥', Bed:'🛏️',
+    Car:'🚗', Train:'🚂', Airplane:'✈️', Boat:'⛵', Sun:'☀️', Moon:'🌙', Snowman:'⛄', Flower:'🌻',
+    Red:{color:'#ed4343'}, Blue:{color:'#3791f4'}, Yellow:{color:'#ffe244'}, Green:{color:'#47c974'},
+    Circle:{shape:'circle'}, Square:{shape:'square'}, Triangle:{shape:'triangle'}, Star:{shape:'star'},
+    'One star':{count:1}, 'Two stars':{count:2}, 'Three stars':{count:3}, 'Four stars':{count:4}
+};
+const KID_DATA = [
+    ['Which animal says moo?', 'Cow', 'Cat', 'Duck', 'Dog'],
+    ['Which animal says meow?', 'Cat', 'Cow', 'Duck', 'Dog'],
+    ['Which animal says woof?', 'Dog', 'Cow', 'Cat', 'Duck'],
+    ['Which animal says quack?', 'Duck', 'Cow', 'Cat', 'Dog'],
+    ['Which animal has a long trunk?', 'Elephant', 'Lion', 'Rabbit', 'Cat'],
+    ['Which animal has a mane?', 'Lion', 'Elephant', 'Frog', 'Fish'],
+    ['Which animal has long ears and hops?', 'Rabbit', 'Cat', 'Fish', 'Elephant'],
+    ['Which animal swims with fins?', 'Fish', 'Rabbit', 'Cat', 'Dog'],
+    ['Which one has feathers?', 'Bird', 'Cat', 'Frog', 'Fish'],
+    ['What does a caterpillar turn into?', 'Butterfly', 'Dog', 'Cow', 'Fish'],
+    ['Which one makes honey?', 'Bee', 'Bird', 'Frog', 'Rabbit'],
+    ['Which fruit is yellow and curved?', 'Banana', 'Apple', 'Grapes', 'Strawberry'],
+    ['Which vegetable is orange?', 'Carrot', 'Banana', 'Grapes', 'Cookie'],
+    ['Which fruit grows in a bunch?', 'Grapes', 'Apple', 'Carrot', 'Cookie'],
+    ['What do you wear on your feet?', 'Shoe', 'Hat', 'Spoon', 'Book'],
+    ['What do you wear on your head?', 'Hat', 'Shoe', 'Spoon', 'Book'],
+    ['What keeps the rain off your head?', 'Umbrella', 'Book', 'Spoon', 'Ball'],
+    ['What do you use to eat soup?', 'Spoon', 'Hat', 'Ball', 'Shoe'],
+    ['What do you use to brush your teeth?', 'Toothbrush', 'Spoon', 'Hat', 'Ball'],
+    ['What do you sleep in?', 'Bed', 'Boat', 'Ball', 'Shoe'],
+    ['Which one flies through the sky?', 'Airplane', 'Car', 'Train', 'Boat'],
+    ['Which one travels on tracks?', 'Train', 'Car', 'Airplane', 'Boat'],
+    ['Which one sails on water?', 'Boat', 'Car', 'Train', 'Airplane'],
+    ['What can you build out of snow?', 'Snowman', 'Flower', 'Sun', 'Moon'],
+    ['Tap the red circle.', 'Red', 'Blue', 'Yellow', 'Green'],
+    ['Tap the blue circle.', 'Blue', 'Red', 'Yellow', 'Green'],
+    ['Tap the yellow circle.', 'Yellow', 'Red', 'Blue', 'Green'],
+    ['Tap the green circle.', 'Green', 'Red', 'Blue', 'Yellow'],
+    ['Which shape is a circle?', 'Circle', 'Square', 'Triangle', 'Star'],
+    ['Which shape is a square?', 'Square', 'Circle', 'Triangle', 'Star'],
+    ['Which shape is a triangle?', 'Triangle', 'Circle', 'Square', 'Star'],
+    ['Which shape is a star?', 'Star', 'Circle', 'Square', 'Triangle'],
+    ['Tap the group with one star.', 'One star', 'Two stars', 'Three stars', 'Four stars'],
+    ['Tap the group with two stars.', 'Two stars', 'One star', 'Three stars', 'Four stars'],
+    ['Tap the group with three stars.', 'Three stars', 'One star', 'Two stars', 'Four stars'],
+    ['Tap the group with four stars.', 'Four stars', 'One star', 'Two stars', 'Three stars']
+];
+
 const Game = (function(){
     let currentPool = [];
     let score = { c: 0, s: 0, w: 0 };
@@ -758,7 +865,11 @@ const Game = (function(){
         grid: document.getElementById('ans-grid'),
         sc: document.getElementById('score-c'),
         ss: document.getElementById('score-s'),
-        sw: document.getElementById('score-w')
+        sw: document.getElementById('score-w'),
+        kidControls: document.getElementById('kid-controls'),
+        kidNext: document.getElementById('kid-next'),
+        kidListen: document.getElementById('kid-listen'),
+        audioStatus: document.getElementById('kid-audio-status')
     };
 
     function shuffle(array) {
@@ -770,10 +881,14 @@ const Game = (function(){
     }
 
     function start(category) {
+        window.ArcadeSpeech?.cancel();Feedback.hide();
         clearTimeout(nextTimer);nextTimer=0;undoStack=[];syncUndo();
         currentMode = category;
         
-        if(category === 'all') {
+        if(category === 'kids') {
+            currentPool = shuffle([...KID_DATA]);
+            ui.qLabel.innerText = 'YOUNG KID MODE';
+        } else if(category === 'all') {
             
             currentPool = [
                 ...STATIC_DATA.science, 
@@ -809,7 +924,47 @@ const Game = (function(){
         ui.sw.innerText = score.w;
     }
 
+    function syncKidUI(){
+        const kids=currentMode==='kids';
+        ui.view.classList.toggle('young-kid-mode',kids);
+        ui.kidControls.hidden=!kids;ui.audioStatus.hidden=!kids;
+        ui.kidNext.disabled=!isTransitioning;
+        ui.kidListen.setAttribute('aria-label',isTransitioning?'Listen to the answer again':'Listen to the question again');
+        if(!kids)ui.audioStatus.textContent='';
+    }
+
+    function answerMessage(){
+        return (ui.grid.querySelector('.wrong')?'Good try! ':'Great job! ')+
+            'The answer is '+String(currentQuestion.correct).toLowerCase()+'. Tap the arrow for the next question.';
+    }
+
+    function listen(){
+        if(currentMode!=='kids'||!currentQuestion)return false;
+        ui.audioStatus.textContent='';
+        if(!Settings.get('sound')){ui.audioStatus.textContent='Turn Sound on in Settings to hear the question.';return false;}
+        if(!window.ArcadeSpeech?.available()){
+            ui.audioStatus.textContent='Read-aloud needs a device voice. A grown-up can read the question.';return false;
+        }
+        return window.ArcadeSpeech.speak(isTransitioning?answerMessage():currentQuestion.q+' Tap a picture.',{
+            rate:0.85,
+            onerror:()=>{ui.audioStatus.textContent='The voice could not play. Tap the speaker to try again.';}
+        });
+    }
+
+    function pictureChoice(button,label){
+        const picture=KID_PICTURES[label];
+        const span=document.createElement('span');span.className='kid-picture';span.setAttribute('aria-hidden','true');
+        if(typeof picture==='string')span.textContent=picture;
+        else if(picture?.color){const swatch=document.createElement('span');swatch.className='kid-swatch';swatch.style.background=picture.color;span.appendChild(swatch);}
+        else if(picture?.shape){const shape=document.createElement('span');shape.className='kid-shape '+picture.shape;span.appendChild(shape);}
+        else if(picture?.count){span.classList.add('kid-count');span.textContent=Array(picture.count).fill('⭐').join(' ');}
+        else span.textContent=label;
+        const text=document.createElement('span');text.className='kid-answer-label';text.textContent=label;
+        button.append(span,text);button.setAttribute('aria-label',label);
+    }
+
     function renderQuestion(qData, savedDisplay = null){
+        syncKidUI();
         let opts = qData.options;
         let uniqueOpts = [...new Set(opts)];
         while(uniqueOpts.length < 4) {
@@ -831,7 +986,9 @@ const Game = (function(){
             btn.className = 'ans-btn';
             if(savedDisplay?.[index]?.correct)btn.classList.add('correct');
             if(savedDisplay?.[index]?.wrong)btn.classList.add('wrong');
-            btn.innerText = opt;
+            btn.dataset.answer=String(opt);
+            if(currentMode==='kids')pictureChoice(btn,opt);
+            else btn.innerText = opt;
             btn.onclick = () => check(btn, opt, qData.correct);
             ui.grid.appendChild(btn);
         });
@@ -868,7 +1025,8 @@ const Game = (function(){
             
             if (currentPool.length === 0) {
                  
-                 if(currentMode === 'spelling') currentPool = [...SPELLING_DATA];
+                 if(currentMode === 'kids') currentPool = [...KID_DATA];
+                 else if(currentMode === 'spelling') currentPool = [...SPELLING_DATA];
                  else currentPool = [...STATIC_DATA[currentMode]];
                  shuffle(currentPool);
             }
@@ -879,6 +1037,7 @@ const Game = (function(){
         
         
         renderQuestion(qData);
+        if(currentMode==='kids')listen();
     }
 
     function check(btn, selected, correct) {
@@ -892,21 +1051,23 @@ const Game = (function(){
             score.c++;
             score.s++;
             updateScore();
-            Feedback.show(true);
-            nextDueAt=performance.now()+1200;nextTimer=setTimeout(nextQuestion, 1200);
+            Feedback.show(true,currentMode==='kids');
+            if(currentMode!=='kids'){nextDueAt=performance.now()+1200;nextTimer=setTimeout(nextQuestion, 1200);}
         } else {
             btn.classList.add('wrong');
             score.w++;
             score.s = 0;
             updateScore();
-            Feedback.show(false);
+            Feedback.show(false,currentMode==='kids');
             
             
             Array.from(ui.grid.children).forEach(b => {
-                if (b.innerText == correct) b.classList.add('correct');
+                if (b.dataset.answer == correct) b.classList.add('correct');
             });
-            nextDueAt=performance.now()+2000;nextTimer=setTimeout(nextQuestion, 2000);
+            if(currentMode!=='kids'){nextDueAt=performance.now()+2000;nextTimer=setTimeout(nextQuestion, 2000);}
         }
+        syncKidUI();
+        if(currentMode==='kids')listen();
     }
 
     function save(){
@@ -914,13 +1075,7 @@ const Game = (function(){
             ui.qText.innerText = 'Start a game first, then tap Save.';
             return;
         }
-        const saved = {
-            currentMode,
-            currentPool,
-            score,
-            currentQuestion,
-            label: ui.qLabel.innerText
-        };
+        const saved = captureState();
         try{
             localStorage.setItem(SAVE_KEY, JSON.stringify(saved));
             ui.qText.innerText = 'Game saved.';
@@ -931,25 +1086,20 @@ const Game = (function(){
     }
 
     function load(){
+        window.ArcadeSpeech?.cancel();Feedback.hide();
         clearTimeout(nextTimer);nextTimer=0;undoStack=[];syncUndo();
         let saved = null;
         try{ saved = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); }catch(e){ saved = null; }
         if(!saved || !saved.currentQuestion){
+            currentMode='';syncKidUI();
             ui.menu.style.display = 'none';
             ui.qLabel.innerText = 'TRIVIA';
             ui.qText.innerText = 'No saved game found.';
             ui.grid.innerHTML = '';
             return;
         }
-        currentMode = saved.currentMode || 'all';
-        currentPool = Array.isArray(saved.currentPool) ? saved.currentPool : [];
-        score = saved.score || { c:0, s:0, w:0 };
-        currentQuestion = saved.currentQuestion;
-        isTransitioning = false;
-        ui.qLabel.innerText = saved.label || currentMode.toUpperCase();
-        updateScore();
-        ui.menu.style.display = 'none';
-        renderQuestion(currentQuestion);
+        restoreState({...saved,currentMode:saved.currentMode||'all'});
+        if(currentMode==='kids')listen();
     }
 
     function captureState(){
@@ -960,13 +1110,14 @@ const Game = (function(){
             currentQuestion: currentQuestion ? JSON.parse(JSON.stringify(currentQuestion)) : null,
             label: ui.qLabel.innerText,
             isTransitioning,
-            displayOptions:[...ui.grid.children].map(button=>({text:button.innerText,correct:button.classList.contains('correct'),wrong:button.classList.contains('wrong')})),
-            nextRemainingMs:isTransitioning?Math.max(0,nextDueAt-performance.now()):0
+            displayOptions:[...ui.grid.children].map(button=>({text:button.dataset.answer??button.innerText,correct:button.classList.contains('correct'),wrong:button.classList.contains('wrong')})),
+            nextRemainingMs:isTransitioning&&currentMode!=='kids'?Math.max(0,nextDueAt-performance.now()):0
         };
     }
 
     function restoreState(saved,shared=false){
         if(!saved || !saved.currentQuestion || typeof saved.currentMode !== 'string') throw new Error('Invalid Trivia save');
+        if(currentMode!==saved.currentMode||currentQuestion?.q!==saved.currentQuestion.q||isTransitioning!==!!saved.isTransitioning){window.ArcadeSpeech?.cancel();ui.audioStatus.textContent='';}
         currentMode=saved.currentMode;
         currentPool=Array.isArray(saved.currentPool)?JSON.parse(JSON.stringify(saved.currentPool)):[];
         score={c:Math.max(0,parseInt(saved.score&&saved.score.c,10)||0),s:Math.max(0,parseInt(saved.score&&saved.score.s,10)||0),w:Math.max(0,parseInt(saved.score&&saved.score.w,10)||0)};
@@ -975,10 +1126,10 @@ const Game = (function(){
         ui.qLabel.innerText=saved.label||currentMode.toUpperCase();
         updateScore();ui.menu.style.display='none';
         clearTimeout(nextTimer);nextTimer=0;
-        if(isTransitioning&&!shared)nextQuestion();
+        if(isTransitioning&&!shared&&currentMode!=='kids')nextQuestion();
         else{
           renderQuestion(currentQuestion,saved.displayOptions);
-          if(isTransitioning&&!window.ArcadeSharedActivity?.isSpectator()){
+          if(isTransitioning&&currentMode!=='kids'&&!window.ArcadeSharedActivity?.isSpectator()){
             const wait=Math.max(0,Math.min(2000,Number(saved.nextRemainingMs)||0));nextDueAt=performance.now()+wait;nextTimer=setTimeout(nextQuestion,wait);
           }
         }
@@ -992,11 +1143,15 @@ const Game = (function(){
     }
 
     function fresh(){
+        window.ArcadeSpeech?.cancel();Feedback.hide();
         clearTimeout(nextTimer);nextTimer=0;undoStack=[];currentPool=[];score={c:0,s:0,w:0};isTransitioning=false;currentMode='';currentQuestion=null;syncUndo();
-        updateScore();ui.qLabel.innerText='TRIVIA';ui.qText.innerText='Choose a category';ui.grid.innerHTML='';ui.menu.style.display='flex';
+        updateScore();syncKidUI();ui.qLabel.innerText='TRIVIA';ui.qText.innerText='Choose a category';ui.grid.innerHTML='';ui.menu.style.display='flex';
     }
 
-    return { start, save, load, undo, captureState, restoreState, fresh, hasGame:()=>!!(currentMode&&currentQuestion), summary:()=>score.c+' right • '+score.w+' wrong' };
+    return { start, save, load, undo, captureState, restoreState, fresh, listen,
+        next:()=>{if(currentMode==='kids'&&isTransitioning){Feedback.hide();nextQuestion();}},
+        audioSettingChanged:()=>{if(!Settings.get('sound'))window.ArcadeSpeech?.cancel();else if(currentMode==='kids')listen();},
+        hasGame:()=>!!(currentMode&&currentQuestion), summary:()=>score.c+' right • '+score.w+' wrong' };
 })();
 
 window.TriviaAutosave={
@@ -1008,13 +1163,20 @@ window.TriviaAutosave={
     startFresh:()=>Game.fresh()
 };
 window.TriviaSharedAdapter={capture:()=>Game.captureState(),restore:saved=>Game.restoreState(saved,true),startFresh:()=>Game.fresh()};
+window.addEventListener('click',event=>{
+    if(event.target?.closest?.('[data-shared-menu-toggle],[data-shared-home],.back-btn'))window.ArcadeSpeech?.cancel();
+},true);
+window.addEventListener('keydown',event=>{
+    if(['Enter',' '].includes(event.key)&&event.target?.closest?.('[data-shared-menu-toggle],[data-shared-home],.back-btn'))window.ArcadeSpeech?.cancel();
+},true);
 
 const Settings = (function(){
     let s = { sound: true, motion: true };
-    function open() { document.getElementById('global-settings-modal').style.display = 'flex'; }
+    function open() { window.ArcadeSpeech?.cancel();document.getElementById('global-settings-modal').style.display = 'flex'; }
     function close() { document.getElementById('global-settings-modal').style.display = 'none'; }
     function toggle(key) {
         s[key] = !s[key];
+        if(key==='sound')Game.audioSettingChanged();
         if(key === 'sound' && FX.ctx && FX.ctx.state === 'running' && !s.sound) FX.ctx.suspend();
         if(key === 'sound' && FX.ctx && FX.ctx.state === 'suspended' && s.sound) FX.ctx.resume();
     }
@@ -1029,10 +1191,10 @@ const Feedback = (function(){
     let particles = [];
     let hideTimer = 0;
 
-    function show(isWin) {
+    function show(isWin,youngKid=false) {
         clearTimeout(hideTimer);
         el.style.display = 'flex';
-        txt.innerText = isWin ? ["AWESOME!", "GREAT!", "SUPER!", "GENIUS!"][Math.floor(Math.random()*4)] : "OOPS!";
+        txt.innerText = youngKid ? (isWin?'⭐':'💛') : (isWin ? ["AWESOME!", "GREAT!", "SUPER!", "GENIUS!"][Math.floor(Math.random()*4)] : "OOPS!");
         txt.style.color = isWin ? "#2ecc71" : "#e74c3c";
         
         if (Settings.get('sound')) FX.play(isWin ? 'win' : 'lose');
