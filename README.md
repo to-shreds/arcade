@@ -8,6 +8,16 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.8.7
+
+TV prefers 480p by default. Quality settings can be changed before or during
+playback, and the selected or measured resolution is shown. Startup now shows
+its actual stage, and the selected episode's source checks are prefetched while
+browsing without starting downloads. Short-lived account-specific checks are
+reused. Failed verification refreshes ready copies and tries another verified
+copy of the same title/episode. See the
+[release checks](docs/arcade-stress-test-2.8.7.md).
+
 ## Release 2.8.6
 
 Typing has font size and font face choices, Select All and Copy controls.

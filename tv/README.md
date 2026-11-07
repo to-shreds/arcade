@@ -36,6 +36,29 @@ As in the current full player, the existing service holds the key temporarily in
 
 The existing backend currently allows the deployed GitHub Pages origin, `https://to-shreds.github.io`. TV runs at the online Arcade. A downloaded/local copy provides an **Open TV in the online Arcade** link instead of trying a forbidden API origin. The Android online mode already uses that hosted origin. TV requires internet and is unavailable while Nearby/offline network isolation is active. The static interface can be included in the offline snapshot, but video is not downloaded for offline viewing. Forget remains available without making external requests.
 
+## Quality and startup
+
+480p is the default preference. Quality can be changed before or during playback;
+the same video surface and position are preserved. Safe compatible copies take
+precedence over nominal resolution. If the preferred resolution is unavailable,
+the nearest playable copy is used and the source/measured quality is shown.
+This chooses existing source files; it does not transcode video.
+
+The player reports finding copies, checking cached availability and candidates,
+matching the video, obtaining the playback link, loading and buffering. Completed
+metadata is reused in memory for ten minutes (20 titles maximum); registered
+source checks for sixty seconds (eight exact targets maximum). These caches are
+account/session-specific, bounded and cleared on connection changes. No API key
+or playback URL is stored in them. The selected episode can be prefetched while
+browsing, but prefetch never prepares or adds a torrent.
+
+After failed explicit preparation, a fresh source/cache check can find another
+ready copy of the same exact title/episode. It never adds another uncached
+torrent automatically. Failed identity/unsupported copies are not reoffered for
+preparation; transient per-attempt failures remain retryable. Backend 1.2.11
+verifies omitted hashes through independent hash-and-ID proof, while real
+conflicts remain blocked.
+
 ## Playback and recovery
 
 Automatic Play and auto-next use only cached, browser-compatible source candidates. Cache preparation checks are bounded to 22 seconds overall and at most eight candidates. Failed media can try at most two alternative ready copies. Unknown availability never silently starts an uncached download.
@@ -62,6 +85,6 @@ Run the independent UI/media integration suite with:
 node tools/test-family-activities.mjs
 ```
 
-The integration fixtures use the actual browser UI and a local synthetic video behind intercepted HTTPS API/media routes. They exercise the client and shell without a real TorBox credential. These fixtures cannot establish live title availability, real TorBox CDN playback, or physical-device fullscreen behavior. No live key was supplied for this implementation. The existing backend's deployed version and deployment constraints are tracked in the canonical TorBox project's handoff; this activity does not deploy or alter that service.
+The integration fixtures use the actual browser UI and a local synthetic video behind intercepted HTTPS API/media routes. They exercise the client and shell without a real TorBox credential. These fixtures cannot establish live title availability, real TorBox CDN playback, or physical-device fullscreen behavior. No live key was supplied for this implementation. Backend 1.2.11 supplies the identity repair used by this release. Its source and deployment constraints are tracked in the canonical TorBox project's handoff; the Arcade frontend remains a separate deployment.
 
 Official TorBox API contract reviewed for this integration: [Main API](https://api-docs.torbox.app/) and [Swagger UI](https://api.torbox.app/docs). The service's existing cached-only creation and token-based download-link behavior agree with those public API contracts. TV calls the existing private control service rather than reviving the full player's previously abandoned direct-browser source rewrite.

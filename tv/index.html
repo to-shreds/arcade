@@ -36,6 +36,7 @@
         <label for="episode">Episode</label><select id="episode" aria-label="Episode"></select>
       </div>
       <button class="arcade-btn gold play-button" id="play" type="button" disabled>▶ Play</button>
+      <button class="arcade-btn quality-settings" id="quality-settings" type="button">Quality: 480p</button>
       <p id="detail-status" class="status" role="status" aria-live="polite"></p>
       <label class="check autoplay-setting"><input id="autoplay" type="checkbox" checked> Play the next episode automatically</label>
     </section>
@@ -55,16 +56,29 @@
   <p class="privacy-note">Remember saves an encrypted key in this browser. The existing TorBox connection service also holds it temporarily in session memory. Disconnect removes the saved key.</p>
 </dialog>
 
+<dialog id="quality-dialog" aria-labelledby="quality-title">
+  <div class="dialog-head"><h2 id="quality-title">Video quality</h2><button class="arcade-btn" id="quality-close" type="button" aria-label="Close quality settings">✕</button></div>
+  <label for="quality">Preferred quality</label>
+  <select id="quality" aria-describedby="quality-help"></select>
+  <p class="status" id="quality-help">We prefer this quality and use the nearest playable copy if needed.</p>
+  <p class="status" id="quality-current" hidden></p>
+  <button class="arcade-btn gold" id="quality-apply" type="button">Apply</button>
+</dialog>
+
 <section class="player" id="player" role="dialog" aria-modal="true" aria-label="TV player" hidden>
   <header class="player-bar">
     <button class="arcade-btn" id="player-back" type="button">← Back</button>
-    <strong id="playing-title">TV</strong>
+    <div class="playing-heading"><strong id="playing-title">TV</strong><small id="playing-quality">480p preferred</small></div>
+    <button class="arcade-btn" id="player-quality" type="button" aria-label="Video quality settings">480p</button>
     <button class="arcade-btn" id="fullscreen" type="button" aria-label="Enter full screen">⛶</button>
   </header>
   <div class="screen">
     <video id="video" controls playsinline preload="metadata" aria-label="Video player"></video>
+    <span class="buffering-status" id="buffering-status" role="status" hidden>Buffering…</span>
     <div class="player-message" id="player-message">
+      <span class="loading-spinner" id="player-spinner" aria-hidden="true"></span>
       <p id="player-status" role="status" aria-live="polite">Opening…</p>
+      <ol class="loading-steps" id="player-steps" aria-label="Playback progress"><li data-step="1">Find copies</li><li data-step="2">Check video</li><li data-step="3">Open link</li><li data-step="4">Load video</li></ol>
       <div class="player-message-actions">
         <button class="arcade-btn gold" id="player-retry" type="button" hidden>Try again</button>
         <button class="arcade-btn gold" id="tap-play" type="button" hidden>▶ Tap to play</button>

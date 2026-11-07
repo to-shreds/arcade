@@ -1,3 +1,11 @@
+# 2.8.7
+
+- TV defaults to a 480p preference and remembers quality settings, with actual resolution shown.
+- Added startup stages, candidate progress, playback-link and buffering messages.
+- Reused short-lived account-specific metadata/source checks and prefetched selected episodes without adding torrents.
+- After failed preparation, refreshed ready copies and tried another verified copy of the same title/episode without adding another uncached torrent.
+- Preserved retry after transient failures and all 2.8.6 game changes; refreshed the offline release.
+
 # 2.8.6
 
 - Added font size and font face controls, Select All and Copy to Typing.

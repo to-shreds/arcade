@@ -1,0 +1,118 @@
+name: Verify and package TV recovery
+on:
+  push:
+    branches: [work/tv-2.8.7-verification]
+permissions:
+  contents: write
+concurrency:
+  group: tv-2.8.7-verification
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      source_commit: ${{ steps.release.outputs.source_commit }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Install locked test tools
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm ci --ignore-scripts --no-audit --no-fund --prefix cloudflare/chess-worker
+          npx playwright install --with-deps chromium
+      - name: Verify TV logic and actual browser flows
+        run: |
+          node --check tv/core.mjs
+          node --check tv/app.mjs
+          node --test tv/core.test.mjs
+          node tools/test-tv-startup-browser.mjs
+          node tools/test-family-activities.mjs --tv-only
+          node --test multiplayer/test/*.test.mjs
+          node tools/test-native-keyboard.mjs
+          node tools/test-shell-navigation.mjs
+      - name: Verify deployed backend
+        run: |
+          node --input-type=module <<'JS'
+          const r = await fetch('https://torbox-web-player-key.onrender.com/healthz', { signal: AbortSignal.timeout(30000) });
+          const body = await r.json();
+          if (!r.ok || body.version !== '1.2.11' || body.ok !== true) throw new Error('Expected live backend 1.2.11');
+          console.log('Verified live backend', body.version);
+          JS
+      - name: Build and record verified offline release
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node tools/generate-offline-manifest.mjs --version 2.8.7+20261107.1
+          node tools/test-offline-runtime.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add offline-manifest.json
+          if ! git diff --cached --quiet; then git commit -m 'Record verified TV 2.8.7 offline snapshot'; fi
+          git push origin HEAD:work/tv-2.8.7-verification
+          python3 tools/package-web-release.py --output "$RUNNER_TEMP/arcade-2.8.7-web.zip" > "$RUNNER_TEMP/arcade-package.json"
+          export ARCADE_RELEASE_COMMIT="$(git rev-parse HEAD)"
+          echo "source_commit=$ARCADE_RELEASE_COMMIT" >> "$GITHUB_OUTPUT"
+          node --input-type=module <<'JS'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          const pkg = JSON.parse(readFileSync(process.env.RUNNER_TEMP + '/arcade-package.json'));
+          const manifest = JSON.parse(readFileSync('offline-manifest.json'));
+          const result = { ...pkg, filename: 'arcade-2.8.7-web.zip', source_commit: process.env.ARCADE_RELEASE_COMMIT, runtime_files: manifest.fileCount, runtime_bytes: manifest.totalBytes, backend_version: '1.2.11', recovered_from_recorded_patches: true, github_run: process.env.GITHUB_RUN_ID };
+          writeFileSync(process.env.RUNNER_TEMP + '/arcade-2.8.7-provenance.json', JSON.stringify(result, null, 2) + '\n');
+          console.log('ARCADE_TV_RESULT=' + JSON.stringify(result));
+          JS
+          gh release create arcade-v2.8.7 "$RUNNER_TEMP/arcade-2.8.7-web.zip" "$RUNNER_TEMP/arcade-2.8.7-provenance.json" --target "$ARCADE_RELEASE_COMMIT" --title 'Arcade 2.8.7' --notes 'TV: default 480p quality settings, staged progress, faster source checks and verified same-title recovery. Packaged only after TV browser, logic, transport and offline checks pass.'
+      - name: Keep test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tv-recovery-verification
+          path: test-results/
+          retention-days: 7
+  verify-live:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.verify.outputs.source_commit }}
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Wait for main publication and verify live runtime hashes
+        run: |
+          node --input-type=module <<'JS'
+          import { readFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          import { setTimeout as delay } from 'node:timers/promises';
+          const manifest = JSON.parse(readFileSync('offline-manifest.json'));
+          const wanted = ['tv/index.html', 'tv/app.mjs', 'tv/core.mjs', 'tv/style.css', 'sw.js'];
+          const base = 'https://to-shreds.github.io/arcade/';
+          for (let attempt = 0; attempt < 70; attempt++) {
+            try {
+              const suffix = '?verify=' + Date.now();
+              const response = await fetch(base + 'offline-manifest.json' + suffix, { signal: AbortSignal.timeout(15000), cache: 'no-store' });
+              const live = await response.json();
+              if (!response.ok || live.version !== manifest.version) throw new Error('Waiting for snapshot ' + manifest.version);
+              for (const path of wanted) {
+                const entry = manifest.files.find(file => file.path === path);
+                const r = await fetch(base + path + suffix, { signal: AbortSignal.timeout(15000), cache: 'no-store' });
+                const bytes = Buffer.from(await r.arrayBuffer());
+                if (!r.ok || bytes.length !== entry.bytes || createHash('sha256').update(bytes).digest('hex') !== entry.sha256) throw new Error('Live runtime has not converged: ' + path);
+              }
+              console.log('VERIFIED_LIVE_TV=' + JSON.stringify({ version: live.version, paths: wanted }));
+              process.exit(0);
+            } catch (error) {
+              console.log('Publication check ' + (attempt + 1) + ': ' + error.message);
+              await delay(6000);
+            }
+          }
+          throw new Error('Live TV publication did not converge before the verification deadline');
+          JS

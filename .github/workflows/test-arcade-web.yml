@@ -75,6 +75,9 @@ jobs:
       - name: Verify Typing controls and Face Lab size button
         run: npm run test:activity-tools
 
+      - name: Verify TV quality, status, caching and source recovery
+        run: node tools/test-tv-startup-browser.mjs
+
       - name: Exercise desktop and mobile browsers against actual rooms
         run: npm run test:browser
 

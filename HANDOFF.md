@@ -1,5 +1,37 @@
 # Arcade continuation handoff
 
+## Current state: 2.8.7 TV update
+
+TV now defaults to a persisted 480p preference and exposes quality controls in
+details and the player. Prefer safe compatible sources before nominal quality;
+show source or measured resolution and never imply transcoding. A quality
+change reuses the video/fullscreen surface and preserves playback position.
+
+The player reports actual lookup/cache/candidate/file/ticket/loading stages and
+shows buffering without obstructing controls. Bounded account-scoped in-memory
+metadata/source caches and a cancellable 300ms selected-episode prefetch remove
+repeat work. Prefetch never prepares or adds torrents; links stay fresh.
+Keep Actions cancellation and token/revision/epoch guards on every completion.
+
+The screenshot's identity error had two supported failure classes: missing
+detail hashes and actual conflicts. Backend 1.2.11 (main 0713abb6, deploy mirror
+611cf0a5) uses independent proof for omitted hashes and read-only exact-hash
+stale-ID repair. Real conflicting copies remain rejected. TV refreshes sources
+after failed explicit preparation and tries only cached alternatives. Keep
+permanent mismatch/unsupported exclusions separate from transient per-attempt
+failures; explicit Retry must work after an outage.
+
+The managed workspace disconnected before the last combined test run/package.
+Current TV sources were recovered from the exact recorded successful patches
+against 48e52e48, then staged on work/tv-2.8.7-verification for GitHub-hosted
+syntax, 33 core, 12 focused, 8 existing integration, transport and offline checks.
+Publication readiness, actual CI results, provenance and downloadable artifact
+are controlled by ProjectStatus. Do not treat patch recovery as a byte comparison
+with the unavailable filesystem. The source branch and runner results now
+supply the authoritative continuation state.
+
+All earlier 2.8.6 menu, clock, kid Trivia, Typing and Face changes remain.
+
 ## Current state: 2.8.6
 
 The November 7 follow-up adds Typing font/size choices, Select All and Copy,
