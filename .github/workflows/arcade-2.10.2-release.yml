@@ -1,0 +1,58 @@
+name: Package Arcade 2.10.2 clock correction
+
+on:
+  push:
+    branches: [work/arcade-2.10.2-release]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: arcade-2.10.2-release
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Install locked test fixtures
+        run: |
+          npm ci
+          npm ci --prefix cloudflare/chess-worker
+          npx playwright install --with-deps chromium
+      - name: Verify Clock and produce checked web archive
+        run: |
+          node -e "if(require('./package.json').version!=='2.10.2')throw Error('Expected Arcade 2.10.2')"
+          node tools/test-clock-browser.mjs
+          node tools/test-activity-save-contract.mjs
+          node tools/test-native-keyboard.mjs
+          node tools/test-android-wrapper.mjs
+          node tools/test-offline-runtime.mjs
+          python3 tools/package-web-release.py --output "$RUNNER_TEMP/arcade-2.10.2-web.zip" > "$RUNNER_TEMP/package.json"
+      - name: Publish verified download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          temp = Path(os.environ['RUNNER_TEMP'])
+          package = json.loads((temp / 'package.json').read_text())
+          manifest = json.loads(Path('offline-manifest.json').read_text())
+          zip_path = temp / 'arcade-2.10.2-web.zip'
+          package.update(filename=zip_path.name, source_commit=os.environ['GITHUB_SHA'],
+                         runtime_files=manifest['fileCount'], runtime_bytes=manifest['totalBytes'],
+                         github_run=os.environ['GITHUB_RUN_ID'],
+                         zip_sha256=hashlib.sha256(zip_path.read_bytes()).hexdigest())
+          (temp / 'arcade-2.10.2-provenance.json').write_text(json.dumps(package, indent=2) + '\n')
+          print('ZIP_SHA256', package['zip_sha256'])
+          print('RUNTIME', package['runtime_files'], package['runtime_bytes'])
+          PY
+          gh release create arcade-v2.10.2 "$RUNNER_TEMP/arcade-2.10.2-web.zip" "$RUNNER_TEMP/arcade-2.10.2-provenance.json" --target "$GITHUB_SHA" --title 'Arcade 2.10.2' --notes 'Corrected the Time Master clock face so it fills and centers in its frame, including high-density Android layouts and canvas context resets. The same release includes every existing Arcade game.'
