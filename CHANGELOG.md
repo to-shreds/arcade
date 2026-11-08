@@ -1,3 +1,11 @@
+# 2.10.2
+
+- Fixed Time Master's shrunken, top-left clock drawing by rendering in the
+  actual canvas backing coordinates even after a graphics-context reset.
+- Enlarged the analog dial on phones and removed competing JS/CSS face sizes.
+- Added real-browser geometry and context-reset checks across phone, desktop,
+  landscape and high-density displays.
+
 # 2.10.1
 
 - Made Trolley Trouble track cards directly selectable and removed duplicate route buttons. Extra choices such as the emergency brake and random draw remain available.

@@ -8,6 +8,14 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.10.2
+
+**Time Master** now keeps the clock dial centered and full-size even when an
+Android WebView resets the canvas drawing context. Phone layouts use a larger
+dial without pushing the answer keypad off-screen. The drawing uses the real
+bitmap dimensions at every render and CSS exclusively controls its screen size.
+Existing modes, touch setting, saves and shared rooms are unchanged.
+
 ## Release 2.10.0
 
 **Train Trouble** puts you in charge of junctions, signals and engines. Its 28

@@ -20,11 +20,15 @@ async function inspectClock(page, label) {
     const ratio = window.devicePixelRatio || 1;
     const ctx = canvas.getContext('2d');
     const center = Array.from(ctx.getImageData(Math.floor(canvas.width / 2), Math.floor(canvas.height / 2), 1, 1).data);
+    const rimY = Math.round(canvas.height * 0.037);
+    const rimX = Math.round(canvas.width * 0.037);
+    const topRim = Array.from(ctx.getImageData(Math.floor(canvas.width / 2), rimY, 1, 1).data);
+    const leftRim = Array.from(ctx.getImageData(rimX, Math.floor(canvas.height / 2), 1, 1).data);
     return {
       width: rect.width, height: rect.height,
       backingWidth: canvas.width, backingHeight: canvas.height,
       contentWidth: canvas.clientWidth, contentHeight: canvas.clientHeight,
-      ratio, center,
+      ratio, center, topRim, leftRim,
       inView: rect.x >= 0 && rect.y >= 0 && rect.right <= innerWidth && rect.bottom <= innerHeight
     };
   });
@@ -32,6 +36,10 @@ async function inspectClock(page, label) {
   assert.equal(result.backingWidth, Math.round(result.contentWidth * result.ratio), `${label}: backing width matches rendered content`);
   assert.equal(result.backingHeight, Math.round(result.contentHeight * result.ratio), `${label}: backing height matches rendered content`);
   assert.ok(result.center[0] < 40 && result.center[1] < 40 && result.center[2] < 40 && result.center[3] === 255, `${label}: hand pivot is at the center of the visible face`);
+  for(const [edge, pixel] of [['top', result.topRim], ['left', result.leftRim]]){
+    assert.ok(pixel[0] < 60 && pixel[1] < 60 && pixel[2] < 60 && pixel[3] === 255,
+      `${label}: the dial reaches the ${edge} edge of its circular frame`);
+  }
   assert.ok(result.inView, `${label}: entire clock is visible`);
   for (const element of await page.locator('.clock-ui:visible button').all()) {
     const rect = await element.boundingBox();
@@ -41,8 +49,8 @@ async function inspectClock(page, label) {
 }
 
 try {
-  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }, { width: 320, height: 568 }, { width: 844, height: 390 }, { width: 568, height: 320 }]) {
-    for (const deviceScaleFactor of [1, 2]) {
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }, { width: 393, height: 873 }, { width: 320, height: 568 }, { width: 844, height: 390 }, { width: 568, height: 320 }]) {
+    for (const deviceScaleFactor of [1, 2, 3]) {
       const context = await browser.newContext({ viewport, deviceScaleFactor, hasTouch: viewport.width < 500 });
       const page = await context.newPage();
       page.setDefaultTimeout(6000);
@@ -57,11 +65,15 @@ try {
           if (deviceScaleFactor === 2 && mode === 3) await page.screenshot({ path: new URL(`clock-${viewport.width}x${viewport.height}.png`, output).pathname });
         }
         await page.evaluate(() => ClockGame.restoreState({ mode: 3, targetH: 12, targetM: 15, userH: 12, userM: 0, input: '', active: true }));
+        // Reproduce a WebView reset of the drawing context without a CSS resize.
+        // The next pointer redraw must fill the dial, not its upper-left corner.
+        await page.locator('#clock-canvas').evaluate(canvas => { canvas.width = canvas.width; });
         const rect = await page.locator('#clock-canvas').boundingBox();
         const x = rect.x + rect.width * .84, y = rect.y + rect.height / 2;
         if (viewport.width < 500) await page.touchscreen.tap(x, y);
         else await page.mouse.click(x, y);
         assert.equal(await page.evaluate(() => ClockGame.captureState().userM), 15, 'Pointer at three o clock sets 15 minutes');
+        await inspectClock(page, 'After drawing with a reset canvas context');
         const before = await page.evaluate(() => ClockGame.captureState());
         await page.setViewportSize({ width: viewport.height, height: viewport.width });
         await inspectClock(page, 'After rotation');
