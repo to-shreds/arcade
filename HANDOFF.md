@@ -1,5 +1,25 @@
 # Arcade continuation handoff
 
+## Current work: 2.10.0 Train Trouble and Robot Workshop
+
+IN PROGRESS from canonical main dc96bfb0a35499f18dfe115edea03cd599fee0cb.
+Controlling agreed scope: docs/arcade-2.10.0-design.md. The user explicitly approved
+building both games after replacing trolley follow-up questions with separate
+factor-varied dilemmas. Preserve the verified 2.9.0 baseline described below.
+
+Work is split between train-trouble/ main railway game, its trolley/content/movie
+assets, robot-workshop/ logic builder, shared integration and independent QA.
+Root owns catalog/version/offline/CI/release work. New shared IDs require both
+browser Nearby and deployed Worker support before publication. Do not claim a
+finished or published 2.10.0 until actual games, tests, assets and release exist.
+
+Movies are actual offline bundled cartoon crash clips with safe occupants. Trolley
+stakes may be serious/off-screen, with disclosed facts and direct consequences;
+never add why/justification quizzes or moral scores. Robot puzzles must validate
+all switch combinations and accept alternate working circuits. Generator seeds,
+state and private local backups must survive saves and shared control transfer.
+
+
 ## Current implementation: 2.9.0, verified
 
 Canonical repository: to-shreds/arcade. Final runtime is the complete review
