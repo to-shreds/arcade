@@ -1,100 +1,120 @@
 # Arcade 2.9.0 verification
 
-Canonical baseline: `20758a2240827bb83c4b03c12cb977309a7cb2dd` (2.8.7).
-All 47 enabled entries remain in the catalog. The disabled Backyard Baseball
-entry remains disabled. The retained Android wrapper is unchanged.
+Baseline: 20758a2240827bb83c4b03c12cb977309a7cb2dd (2.8.7).
+Broad review source: 9fe4b6d6185e71687669e94d7ff06280876079ea.
+Final runtime repair: 409aa89df655b5e2580285861205eca9b7296b46.
+Subsequent release documentation does not alter runtime.
+Snapshot 2.9.0+20261107.1: **388 files, 20,195,799 bytes**.
 
-## Changes
+All 47 enabled entries remain available. Backyard Baseball stays disabled.
+Existing remote-first APKs are retained without rebuild.
 
-- Bug Squish gains Picnic Heist through Be the bugs. One or two bugs carry
-  crumbs home, hide beneath leaves, dodge warning swats, dash and collect gold
-  shields. Filled burrows advance the picnic. Classic squishing and its old
-  mode-less saves remain available.
-- Solitaire and Regex Lab now supply the no-argument callbacks ArcadeSave
-  actually invokes. Meaningful progress and registry summaries work again.
-- ArcadeSave rejects false, rejected or incompatible restores honestly,
-  retains saved bytes and blocks replacement until Retry or Start Fresh.
-- Nearby recovery validates imported shared-room checkpoints before replacing
-  a working session. Damaged saves fail transactionally.
-- Legacy settings and Chess preference access tolerate unavailable storage,
-  allowing play with in-memory defaults.
-- Forty-eight text replacements across 21 activity pages remove slogans,
-  self-praise, release commentary and irrelevant technical settings wording.
-  Intentional stories, jokes, rules and saved formats remain.
+## Fixed and added
 
-## Verification completed before the review snapshot
+- **Picnic Heist:** Bug Squish's Be the bugs option supports one or two bugs,
+  carrying crumbs home, hiding, dash, shields, warning swats, hearts, retry and
+  harder picnics. Classic and old mode-less saves remain compatible.
+- **Visible Chess history:** the actual selected board appears with the move
+  list, buttons and slider. Square boards, readable pieces, focus, CPU pause,
+  drag cleanup, save/reload and online authority are protected. Illegal moves
+  from a past position no longer erase later moves. A branch begins only when
+  a legal move is committed, including completed promotion selection.
+- **Solitaire/Regex saves:** callbacks now match ArcadeSave's no-argument
+  contract, restoring meaningful autosaves, registry listings and summaries.
+- **Rejected saves:** failed or incompatible loads retain saved bytes and block
+  replacement until retry or an explicit fresh start.
+- **Nearby recovery:** imported shared checkpoints are validated before they
+  can replace a working session.
+- **Blocked storage:** settings in 13 legacy activities and Chess fall back
+  safely so storage restrictions cannot prevent startup.
+- **Clipped menus:** Make 10, Jigsaw, Memory and Minesweeper setup panels scroll
+  with actual wheel/touch input. Minesweeper also bounds its panel to the
+  overlay and avoids rendering a grid that has not initialized.
+- **Plain copy:** 48 replacements across 21 pages remove slogans, self-praise,
+  release commentary and irrelevant technical labels. Intentional stories,
+  jokes, rules and save formats remain.
 
-- Worker/authority/client regression: 221 tests passed after Nearby/save fixes.
-  The final Chess storage regression also passed with its 18-test frontend suite.
-- Transport/shell tests: 112 passed. Existing engine/family/client checks,
-  turn-based clients and standalone Solitaire rules passed. Regex Lab tested
-  1,280 procedural challenges and safety cases.
-- Shared-room stress: all 34 activity IDs, 272 seats, 1,054 rejected malformed
-  or racing actions, 238 control passes, 80 join/leave cycles and eight damaged
-  checkpoint cases. Accepted state and credentials remain protected.
-- Tank Tactics stress: 48 complete matches, 960 shots, 338 valid moves and
-  173 rejected moves. Every action preserves the original state, exact saves
-  and the next action after reload. Largest observed save: 23,713 bytes.
-- Actual Solitaire and Regex Lab UI/save-contract regressions reproduced
-  failure before the fix, then passed exact restoration and registry checks.
-- Ten central-save regressions cover all rejected restore paths, retained
-  saved bytes, successful retry, Start Fresh and legacy undefined success.
-- Picnic Heist has six model checks for carrying, deposits, round progression,
-  swats, hiding, shields, dash, two bugs, rotation and bounded long sessions.
-  Focused browser checks exercise controls, legacy saves and actual shared play.
-- Copy review: all 41 inline scripts in edited pages parse; all 21 pages launch
-  at 320 by 568 without page errors. Independent visual review covers narrow
-  portrait, phone, desktop and short landscape layouts.
+New game suggestions were not implemented.
 
-## Additional confirmed UI repairs
+## Verification coverage
 
-Chess Moves now includes the actual board and its selected historical position,
-with navigation/list beside it on wide screens and beneath it on phones. Seven
-layouts verify exact positions, native slider and keyboard move selection,
-rotation, save/reload, return to latest, focus trapping and restored normal play.
-CPU browsing cancels pending work and resumes safely; online views keep the
-existing live-only authority rule. Independent review covered zero-move focus,
-small-board glyph fit and stale drag cleanup.
-An illegal move after browsing back previously truncated later history before
-legality was checked. Truncation now happens only when a legal move is played,
-including a completed promotion choice. The regression failed before the fix;
-21 frontend cases and a separate native phone check now preserve the future.
+| Area | Passed coverage |
+| --- | --- |
+| Worker, authorities, clients, saves | 225 tests on final repair CI |
+| Transport, shell and sessions | 112 tests on final repair CI |
+| Shared stress | 34 activities, 272 seats, 1,054 rejected malformed/racing actions, 238 control passes, 80 join/leave cycles, eight damaged imports |
+| Active catalog | 47 play/rotation/save plus 47 denied-storage cases, 94 total |
+| Visual sweep | 196 page/viewport records, no page/asset/interaction errors |
+| Menus/startup | 16 native wheel/touch cases plus two deterministic preload-resize regressions |
+| Online | 42 retained entries plus separate Tanks/Upwords, Chat, ten recovery cases, 34 untouched lobbies and six physics transfers |
+| Heist | Six models and seven browser/actual-room cases across four layouts, including exact state transfer and private restore |
+| Chess history | 21 frontend tests, seven browser layouts, actual selected positions, slider/keyboard input, focus, rotation, save/reload and future-history preservation |
+| Tanks | 32 engine tests; 48 full stress matches, 960 shots, 338 accepted/173 rejected moves; nine broad browser cases, full polish, 14 weapon families and seven native reloads across six sizes |
+| Upwords | 26 engine/dictionary tests, 14 client tests and 11 browser cases, including private racks, dragging and full Internet/Nearby recovery |
+| Existing controls | 139 menus, 156 native Home cases, 50 clocks, 36 kid Trivia mappings, full Typing tools, six Face Lab cases and 12 TV startup cases |
+| Offline | All 388 files verified, offline reload, 47 tiles, Paint/Home/search/recent, Adventure/Mad Libs and desktop/mobile shared adapters |
+| Other logic | Solitaire rules/deals, 1,280 Regex challenges/safety, Adventure routes/saves, narration and TV fixtures |
 
-Make 10, Jigsaw, Memory and Minesweeper had genuinely clipped setup controls in
-short landscape. Four scoped CSS fixes allow native panel scrolling; Minesweeper
-also bounds its panel to the shorter board overlay. All 16 wheel/touch cases pass
-at 844 by 390 and 320 by 568, including actual lower-button activation and Home.
+Tanks stress verifies unchanged input states, exact saves and deterministic
+continuation after every action. Its largest observed save was 23,713 bytes.
+Heist tests include actual two-finger steering, native keyboard/dash, hiding,
+shields, next-picnic progression, old saves, blocked observers and exact handoff.
 
-The 196-record visual sweep had no page or interaction errors. Three offscreen
-lazy images were incorrectly classified as broken; the corrected four-size shell
-rerun passes. The 94-case stress run initially passed 93 with a Minesweeper
-random-loss replay race in its harness. The corrected focused rerun passes both
-Minesweeper modes, resolving all 94 cases. All 47 denied-storage cases pass.
-These reruns are recorded separately rather than relabeling the first run.
+## CI evidence and repaired failures
 
-The first online sweep passed 41 of 42 cases. Orb Slicer was healthy but had
-not reached its first spawn at tick 200 within an arbitrary ten-second test
-deadline (88 ticks in the shared run, 152 in isolation). Its bounded wait now
-requires continuing simulation progress, a live connection, correct phase and
-the expected spawn tick budget. Native slicing/scoring, observer pixel checks
-and terminal-state handoffs remain required. Final isolated/CI results follow.
+[Broad preflight 42426873524](https://github.com/to-shreds/arcade/actions/runs/42426873524)
+passed six of seven groups: models, Tanks/Upwords, stories/TV, catalog/offline,
+Heist and shared/competitive. Menus/tools exposed a real Minesweeper startup
+race; its other commands passed. Retained run 42426873734 hit the same race.
+Neither original whole run is mislabeled green.
 
-## Final verification and publication
+[Final repair 42427761898](https://github.com/to-shreds/arcade/actions/runs/42427761898)
+**passed** at exact source 409aa89d: 225 model/client/save checks, 112 transport,
+all 18 menu/startup cases, all 94 activity stress cases and complete PWA/offline
+play. A source-difference gate proves that only the Minesweeper runtime guard
+changed after broad review, alongside its regression, manifest and validation
+workflow. All other reviewed runtime files are identical.
 
-The review-branch CI and remaining catalog, storage, retained browser and
-offline-package checks are pending for this snapshot. This section must be
-updated with their exact results before the release is declared ready.
+The startup regression held ArcadeSave's script response, forced an actual
+viewport resize while the document was loading and the grid had no cells,
+and reproduced the renderAll stack before the fix. Desktop/touch cases now
+initialize all 81 cells, accept a native flag and preserve exact state after
+another resize.
 
-## Environment and limits
+Actual Nearby pairing, locked identities, offline Chat, shared controls and a
+guest move passed job 128566930440. Real offline Tanks authority and private-rack
+Upwords peers passed job 128566929672. Independent
+[Guess Who run 42426873662](https://github.com/to-shreds/arcade/actions/runs/42426873662)
+also passed. These are actual runner RTC checks.
 
-Local browser checks use official Chromium 141 headless shell with the locked
-Playwright client. Full Chrome cannot create its singleton socket in this
-sandbox; the headless shell works through the permitted pipe interface.
-No browser assertions were waived because of that setup problem.
+Two harness issues were corrected without dropping functionality: unrequested
+offscreen lazy icons are not broken images, and repeated Minesweeper play
+accounts for its random-loss menu. Fresh CI passed the full 196-record sweep
+and all 94 stress cases.
 
-The local environment cannot gather usable Nearby ICE candidates. Actual
-two-peer Nearby verification belongs to the GitHub runner, not a local pass.
-Browser TV tests use intercepted APIs and synthetic media. Personal TorBox
-account availability, physical Android/iOS hardware, actual device voices,
-native notifications and operating-system clipboard paste were not tested.
-Native wrapper checks cover source and packaging, not a new hardware APK run.
+Orb Slicer's original ten-second test expired before its deliberate tick-200
+spawn. Isolated play produced a real target at tick 209 after 10,275 ms. Its
+bounded wait checks continuing simulation, connection, phase and spawn budget.
+Native slicing/scoring, observer pixels, reconnect/reload and zero-life handoffs
+remain required. Fresh full online CI passed.
+
+The historical Tanks Load Saved timeout recurred under concurrent rendering.
+Strict isolated and CI repeats passed all 14 families, seven reloads and six
+layouts with native clicks and exact battle/aim/mode equality. Resource
+starvation remains an inference, not a proved cause. Original evidence remains.
+
+## Publication and limits
+
+The package builder checks every runtime size/hash and ZIP CRC. Exact published
+source, artifact checksum, provenance and live-file verification are recorded in
+ProjectStatus and GitHub Release metadata. Update an existing offline copy to
+receive the new files.
+
+Local browser tests used official Chromium 141 headless shell; GitHub used its
+installed Chromium. Full Chrome could not create its singleton socket locally;
+the permitted headless shell worked without waiving assertions. Local RTC could
+not gather usable interfaces, so actual RTC verification came from GitHub.
+
+Physical Android/iOS hardware, device voice/notification/OS clipboard behavior
+and personal TorBox-account playback were unavailable. TV uses intercepted APIs
+and synthetic media. Native wrapper checks cover source and packaging.

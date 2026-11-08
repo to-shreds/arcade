@@ -12,6 +12,8 @@
   illegal; branching now starts only when a legal move is played.
 - Made setup menus scroll on short screens in Make 10, Jigsaw, Memory and
   Minesweeper so their lower controls remain reachable.
+- Prevented a Minesweeper startup resize from rendering an uninitialized grid,
+  preserving the initialized board through subsequent rotation.
 - Added validation when Nearby restores saved shared-activity rooms, preserving
   the current session when a damaged checkpoint is rejected.
 - Replaced slogans and implementation wording with useful instructions across
