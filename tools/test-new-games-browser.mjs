@@ -80,8 +80,10 @@ async function run(name,callback){
 async function connect(host,guest){
   const created=await host.evaluate(()=>ArcadeSharedActivity.create({username:'Dispatcher'}));
   const joined=await guest.evaluate(code=>ArcadeSharedActivity.join({username:'Engineer',code}),created.code);
-  await host.waitForFunction(()=>ArcadeSharedActivity.getState().connected&&!ArcadeSharedActivity.isSpectator(),null,{polling:50});
-  await guest.waitForFunction(()=>ArcadeSharedActivity.getState().connected&&ArcadeSharedActivity.getState().appliedSequence>=0,null,{polling:50});
+  // Spectators freeze page RAF and timers. Poll from Node so a not-yet-applied
+  // checkpoint cannot also freeze the browser test's readiness check.
+  await until(host,()=>ArcadeSharedActivity.getState().connected&&!ArcadeSharedActivity.isSpectator(),'Host connects with controller authority');
+  await until(guest,()=>ArcadeSharedActivity.getState().connected&&ArcadeSharedActivity.getState().appliedSequence>=0,'Guest connects and applies its first checkpoint');
   return joined;
 }
 

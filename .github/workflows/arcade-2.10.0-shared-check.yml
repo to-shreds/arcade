@@ -1,0 +1,41 @@
+name: Verify Arcade new-game shared controls
+on:
+  push:
+    branches: [work/arcade-2.10.0-shared-check]
+permissions:
+  contents: read
+jobs:
+  shared-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v6
+        with: {node-version: 22}
+      - name: Prove the verified game sources are unchanged
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          allowed = {'tools/test-new-games-browser.mjs', '.github/workflows/arcade-2.10.0-shared-check.yml'}
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only', 'f55e55ce031b2da65d8a91ed1d3682b71cc6394a', 'HEAD'], text=True).splitlines())
+          assert changed <= allowed, sorted(changed - allowed)
+          print('Verified runtime unchanged; only test synchronization and this read-only workflow differ.')
+          PY
+          node tools/test-offline-runtime.mjs
+      - name: Install locked fixtures
+        run: |
+          npm ci
+          npm ci --prefix cloudflare/chess-worker
+          npx playwright install --with-deps chromium
+      - name: Exercise both real Worker rooms in Chrome
+        env:
+          ARCADE_CHROMIUM: /usr/bin/google-chrome
+          ARCADE_REQUIRE_H264: '1'
+        run: node tools/test-new-games-browser.mjs --rooms-only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: arcade-2.10.0-shared-controls
+          path: test-results/new-games/
+          retention-days: 7
