@@ -17,7 +17,7 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Check out Arcade
         uses: actions/checkout@v6
@@ -54,6 +54,9 @@ jobs:
       - name: Test Tank Tactics engine and weapon rules
         run: node --test tanks/*.test.mjs
 
+      - name: Test train, trolley, circuit and offline movie engines
+        run: npm run test:new-games:models
+
       - name: Test Upwords rules, dictionary, and client recovery
         run: npm run test:upwords
 
@@ -77,6 +80,9 @@ jobs:
 
       - name: Verify TV quality, status, caching and source recovery
         run: node tools/test-tv-startup-browser.mjs
+
+      - name: Verify Train Trouble and Robot Workshop in actual browsers
+        run: npm run test:new-games:browser
 
       - name: Verify Picnic Heist controls, saves and shared play
         run: npm run test:bug-heist

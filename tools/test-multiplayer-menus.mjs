@@ -3,6 +3,7 @@ import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { chromium, browserLaunchOptions } from './browser-runtime.mjs';
 import { startStaticFixture } from './static-fixture.mjs';
 import { openMultiplayerMenu } from './shared-menu-browser.mjs';
+import { SHARED_ACTIVITY_IDS } from '../multiplayer/models/shared-activity-validator.js';
 const fixture=await startStaticFixture();
 const browser=await chromium.launch(browserLaunchOptions);
 const output=new URL('../test-results/multiplayer-menus/',import.meta.url);
@@ -12,8 +13,9 @@ const shared=[];
 for(const item of catalog.items.filter(item=>item.enabled&&!item.warning)){
   if((await readFile(new URL('../'+item.launchPath,import.meta.url),'utf8')).includes('shared-activity.js'))shared.push(item);
 }
-assert.equal(shared.length,34);
+assert.deepEqual(shared.map(item=>item.folder).sort(),[...SHARED_ACTIVITY_IDS].sort(),'Menu coverage matches every cataloged shared activity');
 const start={
+  'robot-workshop':'#startCampaign','train-trouble':'#campaignBtn',
   'make-10':'#startBtn',balloons:'[onclick="BalloonGame.start()"]',blackjack:'[onclick="BJGame.init(2)"]',time:'[onclick="ClockGame.start(1)"]',insultinator:'#pickNice',hangman:'[onclick="HangmanGame.startRandom()"]',solitaire:'#startBtn',jigsaw:'#startBtn',codebreaking:'#play',math:'[onclick="MathGame.start(1)"]',spelling:'#play',maze:'[onclick="MazeGame.start(12,12)"]',minesweeper:'[data-preset="easy"], [data-level="easy"], [data-diff="easy"]','mini-golf':'[onclick="MiniGolf.startOrContinue()"]','orb-slicer':'#orb-ov-btn','two-truths':'#play',patterns:'#play',shuffleboard:'#btnApply',simon:'#si-menu [onclick="SimonGame.start()"]','regex-lab':'#startBtn',trivia:'[onclick="Game.start(\'science\')"]','contraption-maker':'#starter','bug-squish':'#startBtn','firefighter-frenzy':'#startBtn','monster-dentist':'#startBtn',bowling:'#start','mad-libs':'#randomStoryButton','bounce-boxes':'#resumeBtn'
 };
 const results=[],errors=[];
@@ -42,6 +44,7 @@ try{
         const controls=page.locator(start[item.folder]);
         for(const control of await controls.all())if(await control.isVisible()&&await control.isEnabled()){await control[gesture]();break;}
       }
+      if(item.folder==='train-trouble')await page.locator('#job-0')[gesture]();
       assert.equal(await page.locator('#shared-panel').isVisible(),false);
       assert.equal(await page.locator('#shared-menu').isVisible(),false);
       assert.equal(await page.locator('#shared-launch').isVisible(),false,'Multiplayer stays inside the closed menu during play');

@@ -20,7 +20,7 @@ const starts={
  'regex-lab':'#startBtn','tic-tac-toe':'[onclick="TicTacToe.start(\'pvp\')"]',trivia:'[onclick="Game.start(\'science\')"]',
  'contraption-maker':'#starter',sorry:'#startBtn','bug-squish':'#startBtn','firefighter-frenzy':'#startBtn',
  'monster-dentist':'#startBtn',bowling:'#start',monopoly:'#startBtn',insultinator:'#pickNice',
- tanks:'#localStart',upwords:'#localStart'
+ tanks:'#localStart',upwords:'#localStart','robot-workshop':'#startCampaign','train-trouble':'#campaignBtn'
 };
 const actions={
  'make-10':'#hintBtn',blackjack:'[onclick="BJGame.addBet(10)"]',time:'.kp-btn',hangman:'#keyboard [role="button"]',
@@ -29,7 +29,7 @@ const actions={
  'regex-lab':'[data-pick],[data-one]','tic-tac-toe':'.ttt-cell',trivia:'.ans-btn',
  insultinator:'#btnGenerate',typing:'[data-key="a"]','contraption-maker':'#drop',
  'mad-libs':'#randomStoryButton','silly-face-lab':'[aria-label="Make a surprise face"]',bowling:'#roll',
- monopoly:'[data-act="roll"]',tv:'#movies-tab,#shows-tab',tanks:'#fire',upwords:'#shuffle'
+ monopoly:'[data-act="roll"]',tv:'#movies-tab,#shows-tab',tanks:'#fire',upwords:'#shuffle','train-trouble':'#hintBtn'
 };
 async function clickFirst(page,selector,index=0){
  if(!selector)return false;
@@ -41,6 +41,7 @@ async function clickFirst(page,selector,index=0){
 async function act(page,game,record){
  if(['tanks','upwords'].includes(game))await page.locator('#mode').selectOption('hotseat');
  if(starts[game])assert(await clickFirst(page,starts[game]),'Start control is usable');
+ if(game==='train-trouble')assert(await clickFirst(page,'#job-0'),'First dispatch job is usable');
  if(game==='upwords')await clickFirst(page,'#showRack');
  if(game==='guess-who'){
   await page.locator('#nickname').fill('Detective');await page.locator('#joinCode').fill('A');
@@ -97,6 +98,15 @@ async function act(page,game,record){
   await clickFirst(page,'#fillEmptyButton');await clickFirst(page,'#makeStoryButton');record.actions+=2;
  }
  if(game==='blackjack'){await clickFirst(page,'#btn-deal');await page.waitForTimeout(750);record.actions++;}
+ if(game==='robot-workshop'){
+  assert(await clickFirst(page,'.port[data-node="A"][data-kind="out"]'),'Robot input output is reachable');
+  assert(await clickFirst(page,'.port[data-node="O0"][data-port="0"][data-kind="in"]'),'Robot machine input is reachable');
+  assert(await clickFirst(page,'#runBtn'),'Circuit tests are reachable');record.actions+=3;
+ }
+ if(game==='train-trouble'){
+  assert(await clickFirst(page,'#send-t1'),'Engine Send is reachable');
+  assert(await clickFirst(page,'#brake-t1'),'Engine Brake is reachable');record.actions+=2;
+ }
 }
 async function verifySave(page,game,record){
  const info=await page.evaluate(async()=>{
@@ -107,7 +117,7 @@ async function verifySave(page,game,record){
  });
  record.save={adapter:info.adapter,meaningful:info.meaningful,saved:!!info.entry,summary:info.summary};
  if(!info.adapter)return;
- if(['solitaire','regex-lab'].includes(game))assert(info.meaningful,'Played progress is meaningful for autosave');
+ if(['solitaire','regex-lab','train-trouble','robot-workshop'].includes(game))assert(info.meaningful,'Played progress is meaningful for autosave');
  if(info.meaningful&&info.hasSnapshot){
   assert(info.entry,'A meaningful played activity creates an autosave');
   assert(info.summary,'Autosave describes the played activity');

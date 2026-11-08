@@ -96,6 +96,48 @@ test("the Worker forwards activity identity so a mistaken join cannot occupy ano
   assert.equal(correct.status,200); assert.equal((await correct.json()).seat,1);
 });
 
+for (const activity of ["train-trouble", "robot-workshop"]) {
+  test(`the Worker retains ${activity} state over sockets, control passing and reconnect`, async (t) => {
+    const mf = createMiniflare(); t.after(() => mf.dispose());
+    const checkpoint = sequence => {
+      const data = JSON.stringify({ snapshot: { schema: 1, mode: activity === "train-trouble" ? "dispatcher" : "campaign", seed: 8173, paused: true, sequence }, view: [], frames: [] });
+      return { schema: 1, activity, codec: "json", data, decodedBytes: Buffer.byteLength(data), sequence };
+    };
+    const post = (path, body, token) => mf.dispatchFetch("http://worker/api/arcade/rooms" + path, { method: "POST", headers: headers(token), body: JSON.stringify(body) });
+    const created = await post("", { game: "shared-activity", username: "Logan", maxPlayers: 2, state: checkpoint(0) });
+    assert.equal(created.status, 200);
+    const host = await created.json(), path = `/${host.code}`;
+    const wrong = await post(path + "/join", { username: "Other game", activity: activity === "train-trouble" ? "robot-workshop" : "train-trouble" });
+    assert.equal(wrong.status, 409);
+    const joined = await post(path + "/join", { username: "Co-pilot", activity });
+    assert.equal(joined.status, 200);
+    const guest = await joined.json();
+    const started = await post(path + "/actions", { type: "start", state: checkpoint(0), expectedVersion: guest.room.version }, host.token);
+    assert.equal(started.status, 200);
+    const active = await started.json();
+    const response = await mf.dispatchFetch(`http://worker/api/arcade/rooms${path}/ws?token=${guest.token}`, { headers: { Origin: ORIGIN, Upgrade: "websocket" } });
+    assert.equal(response.status, 101);
+    const socket = response.webSocket; socket.accept(); t.after(() => { try { socket.close(); } catch {} });
+    await nextMessage(socket, message => message.type === "state");
+    const offTurn = await post(path + "/actions", { type: "state", state: checkpoint(1), expectedVersion: active.room.version }, guest.token);
+    assert.equal(offTurn.status, 422);
+    const live = nextMessage(socket, message => message.type === "state" && message.room.state.sequence === 1);
+    const passed = await post(path + "/actions", { type: "state", state: checkpoint(1), nextSeat: guest.seat, expectedVersion: active.room.version }, host.token);
+    assert.equal(passed.status, 200);
+    const canonical = (await live).room;
+    assert.deepEqual(canonical.state, checkpoint(1));
+    assert.equal(canonical.turn.playerId, guest.playerId);
+    const updated = await post(path + "/actions", { type: "state", state: checkpoint(2), nextSeat: host.seat, expectedVersion: canonical.version }, guest.token);
+    assert.equal(updated.status, 200);
+    const resumed = await post(path + "/join", { reconnectToken: guest.token, activity });
+    assert.equal(resumed.status, 200);
+    const reconnected = await resumed.json();
+    assert.equal(reconnected.playerId, guest.playerId);
+    assert.deepEqual(reconnected.room.state, checkpoint(2));
+    assert.equal(reconnected.room.turn.playerId, host.playerId);
+  });
+}
+
 test("independent generic clients create, join, synchronize, chat, and reconnect through Miniflare", async (t) => {
   const mf = createMiniflare();
   t.after(() => mf.dispose());

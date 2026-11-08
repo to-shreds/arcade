@@ -55,6 +55,8 @@
     "bug-squish": "Bug Squish",
     "firefighter-frenzy": "Firefighter Frenzy",
     "monster-dentist": "Monster Dentist",
+    "train-trouble": "Train Trouble",
+    "robot-workshop": "Robot Workshop",
     "music-maker": "Music Maker",
     "bowling": "Neon Bowling",
     "monopoly": "Monopoly"

@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.9.0+20261107.1",
-  "generatedAt": "2026-11-07T23:59:23.949Z",
-  "fileCount": 388,
-  "totalBytes": 20195799,
+  "version": "2.10.0+20261107.1",
+  "generatedAt": "2026-11-08T01:03:26.464Z",
+  "fileCount": 415,
+  "totalBytes": 22969818,
   "files": [
     {
       "path": "adventure/game.json",
@@ -162,8 +162,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 27636,
-      "sha256": "b5754c4eab913797f44990f93e75599d3ee41cad3c81f2b3be2df68f9ee32ec2"
+      "bytes": 28874,
+      "sha256": "9371992d56a8a4b1f6ad7f2866f4f4d4e6cf747718c79b4301960f5784ddc58a"
     },
     {
       "path": "chat-room/game.json",
@@ -527,8 +527,8 @@
     },
     {
       "path": "multiplayer/arcade-multiplayer.js",
-      "bytes": 45339,
-      "sha256": "eb2263ffbe7a78a30816135bedc6699a7e86e391bd580de957f010b54821831f"
+      "bytes": 45417,
+      "sha256": "bbacc4a3b1fb8e67ecffa5b5de5aac01f359032d85285484f09001ef572e3d4c"
     },
     {
       "path": "multiplayer/arcade-shell-core.mjs",
@@ -577,8 +577,8 @@
     },
     {
       "path": "multiplayer/models/shared-activity-validator.js",
-      "bytes": 3004,
-      "sha256": "e59e2011ce11ac497e8f469072c21757060521234f1328ed4e57ab4db848127f"
+      "bytes": 3041,
+      "sha256": "c5b97457cbe1ad629b71901d69b3108baf4fe03a4165d80c479f6f022c5a7f33"
     },
     {
       "path": "multiplayer/models/sorry-transition-validator.js",
@@ -622,8 +622,8 @@
     },
     {
       "path": "multiplayer/shared-activity.js",
-      "bytes": 38371,
-      "sha256": "5e6bdbbf90975031f623ccdf3c0386bdfbc45be3723c1a02d644d309eb2b2ac6"
+      "bytes": 38516,
+      "sha256": "f69631b2ab4e176133148fff54e9a9dd3bf800711b36f1447a91606fef0b81ce"
     },
     {
       "path": "multiplayer/shared-room-client.js",
@@ -1566,6 +1566,46 @@
       "sha256": "78de1ccd061fe8f411bd9f27a33875cd045f692cb96e1b02c93adf351f481b86"
     },
     {
+      "path": "robot-workshop/app.mjs",
+      "bytes": 22619,
+      "sha256": "e313798aa8e15bc02bbdfee039e469b81d8b03929007d824132b4c6ce6b13c48"
+    },
+    {
+      "path": "robot-workshop/engine.mjs",
+      "bytes": 14598,
+      "sha256": "046faa290b3390f34d34e303b526bb0c32eb782423fdd417f7649e687a2d9ed5"
+    },
+    {
+      "path": "robot-workshop/game.json",
+      "bytes": 365,
+      "sha256": "eba476f8cfa82af74f4807781cacb5624cce55074dd63f4dffc6b9ca09f3e0ae"
+    },
+    {
+      "path": "robot-workshop/icon.png",
+      "bytes": 26284,
+      "sha256": "20fe475aaae819628a14b9e0be6ba0178adac63d0e0f45a2b0270872bab9992e"
+    },
+    {
+      "path": "robot-workshop/icon.svg",
+      "bytes": 1263,
+      "sha256": "045e2cf5684b236721bbabdc24fddde3649ea9e203188acb81f40da26086609e"
+    },
+    {
+      "path": "robot-workshop/index.html",
+      "bytes": 4033,
+      "sha256": "72a1a9288717b1640d1857748b76ff67930ae98720b474eca14237cd8c59e0ea"
+    },
+    {
+      "path": "robot-workshop/README.md",
+      "bytes": 2189,
+      "sha256": "a1644b9c68459190923bca1845f002185ed0d6a3dfb614ab1f4357d652e59965"
+    },
+    {
+      "path": "robot-workshop/style.css",
+      "bytes": 11864,
+      "sha256": "e0a866cf6897fd57cb1981c27b8b7de1768de4bffb40c20f8f191a117e732d12"
+    },
+    {
       "path": "shuffleboard/game.json",
       "bytes": 418,
       "sha256": "257ed9309a8fca24cae260cbc871a0513fef0366dd5a3307b0f4d781b2c6603b"
@@ -1672,8 +1712,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 27795,
-      "sha256": "5c8d22995f02eca6d897aad22a1bf696ba4046db6f02a7d58e2852fd42a6782d"
+      "bytes": 29039,
+      "sha256": "778413caa25015b16a8217c2bbfd4ec03563cacd18f82c25a1eb4cff799b9095"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1789,6 +1829,101 @@
       "path": "trail/index.html",
       "bytes": 132421,
       "sha256": "746b86fbab88f5b194e970ca6ce9ee0bb1bee2d7b93efb806f86cb5cdc16d858"
+    },
+    {
+      "path": "train-trouble/app.mjs",
+      "bytes": 28700,
+      "sha256": "14b86430f7377164008e965e4873adbd1727ad149266645b82ac245f44debb0e"
+    },
+    {
+      "path": "train-trouble/engine.mjs",
+      "bytes": 13575,
+      "sha256": "b135cf256600148490360792d6a417be39a08ed01cba3d516fc0f0196032863d"
+    },
+    {
+      "path": "train-trouble/game.json",
+      "bytes": 327,
+      "sha256": "f53ecf72458a1267b63024ae7698b02e7d9e52076d04d4aff06715e781e8b79f"
+    },
+    {
+      "path": "train-trouble/icon.png",
+      "bytes": 5801,
+      "sha256": "ea7d30fa999eec6d4247f49a701ac70a3231d96815b1de457c507b7c523e7758"
+    },
+    {
+      "path": "train-trouble/icon.svg",
+      "bytes": 785,
+      "sha256": "c5c3fdff24f03be23240133b151c5f5f0d078cb8eb33dde8a4fd5d7bcf777f79"
+    },
+    {
+      "path": "train-trouble/index.html",
+      "bytes": 7663,
+      "sha256": "80af68e7574870a5768899a2e7300461e22d024d6f2db16f789e41b1b1d80bcc"
+    },
+    {
+      "path": "train-trouble/media/crash-cargo.jpg",
+      "bytes": 70974,
+      "sha256": "38b6b314e55f6c9258b7fbadb6193022fa24adea2b023bd47470716ff0699ec5"
+    },
+    {
+      "path": "train-trouble/media/crash-cargo.mp4",
+      "bytes": 422885,
+      "sha256": "816863ac435d65924672e151a446cd357f5720f43270e6c499503d45157a4599"
+    },
+    {
+      "path": "train-trouble/media/crash-cargo.webm",
+      "bytes": 338342,
+      "sha256": "c5f2ba30805633b9b25b8ab9a811c6acd14bb6b6631ec23a4f005dbbd2cd2e71"
+    },
+    {
+      "path": "train-trouble/media/crash-head-on.jpg",
+      "bytes": 75895,
+      "sha256": "f8bf9c1c0eec17b7e4e6d28cd31b75aa39d85afc5137d3ebab7b29fee1a42a80"
+    },
+    {
+      "path": "train-trouble/media/crash-head-on.mp4",
+      "bytes": 450743,
+      "sha256": "cc763347a2ec7a1c56c27c3a2a07d477862b5274b4d12ffc391e54f89151408f"
+    },
+    {
+      "path": "train-trouble/media/crash-head-on.webm",
+      "bytes": 354370,
+      "sha256": "f4d67012d6bc81da9d7b59756bc5949ecf3dececc00fd72c6ee7cd063a9dab69"
+    },
+    {
+      "path": "train-trouble/media/crash-rear-end.jpg",
+      "bytes": 76789,
+      "sha256": "9cedda573c68d68f57fbd59f883e1a6e21938f2e5874160f286c54c3fea4bb22"
+    },
+    {
+      "path": "train-trouble/media/crash-rear-end.mp4",
+      "bytes": 446408,
+      "sha256": "1becc97046a2e5d266284d9f1840fbd2d7e511dd3259bf30a516c35a349c006d"
+    },
+    {
+      "path": "train-trouble/media/crash-rear-end.webm",
+      "bytes": 350872,
+      "sha256": "f241c71ff001dd395877c8fe4dd71b13ace82825351cd8b14979d1bda35abbb9"
+    },
+    {
+      "path": "train-trouble/media/README.md",
+      "bytes": 1302,
+      "sha256": "af45df5feef41e71d8a60574280283d1645a4b8588ca2b0bacc8504b591fdd44"
+    },
+    {
+      "path": "train-trouble/README.md",
+      "bytes": 3091,
+      "sha256": "3d710870709ab530d8c491728630ae3b7f90055e1999a42f2e6deb2afc6f474e"
+    },
+    {
+      "path": "train-trouble/style.css",
+      "bytes": 10842,
+      "sha256": "4d8b59dea1d4d7ba71063ef69dfd64100043297d6b9d3995a67a97e962300831"
+    },
+    {
+      "path": "train-trouble/trolley.mjs",
+      "bytes": 28698,
+      "sha256": "9d01e5d7bc86f6a01bd119a5e3f475603658da0262cd154501c0492cb2b9567b"
     },
     {
       "path": "trivia/game.json",

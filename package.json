@@ -1,6 +1,6 @@
 {
   "name": "family-arcade-web",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "private": true,
   "scripts": {
     "test:browser": "npm run test:mad-libs && npm run test:narration && npm run test:family-browser && node tools/test-catalog-browser.mjs && node tools/test-shell-browser.mjs && node tools/test-local-ui-browser.mjs && node tools/test-chat-browser.mjs && node tools/test-shared-adapters.mjs && node tools/test-shared-recovery.mjs && node tools/test-shared-lobby.mjs && node tools/test-online-browser.mjs && node tools/test-shared-simulation.mjs",
@@ -21,7 +21,9 @@
     "test:bug-heist": "node --test bug-squish/heist.test.mjs && node tools/test-bug-heist-browser.mjs",
     "test:project-stress": "node tools/test-activity-save-contract.mjs && node tools/test-project-stress-browser.mjs",
     "test:chess-history": "node tools/test-chess-history-browser.mjs",
-    "test:short-menus": "node tools/test-short-menu-scroll-browser.mjs"
+    "test:short-menus": "node tools/test-short-menu-scroll-browser.mjs",
+    "test:new-games:models": "node --test train-trouble/*.test.mjs robot-workshop/*.test.mjs tools/static-response.test.mjs tools/test-cached-movie-range.mjs",
+    "test:new-games:browser": "node tools/test-robot-workshop-browser.mjs && node tools/test-train-trouble-browser.mjs && node tools/test-new-games-browser.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

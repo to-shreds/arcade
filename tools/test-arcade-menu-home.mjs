@@ -1,12 +1,14 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
+import { SHARED_ACTIVITY_IDS } from '../multiplayer/models/shared-activity-validator.js';
 const require=createRequire(import.meta.url);
 const {JSDOM,VirtualConsole}=require('../cloudflare/chess-worker/node_modules/jsdom');
 const root=new URL('../',import.meta.url);
 const catalog=JSON.parse(await readFile(new URL('catalog.json',root),'utf8'));
 const sharedSource=await readFile(new URL('multiplayer/shared-activity.js',root),'utf8');
 let checked=0,menus=0;
+const checkedActivities=[];
 for(const item of catalog.items.filter(item=>item.enabled&&!item.warning)){
   const source=await readFile(new URL(item.launchPath,root),'utf8');
   if(!source.includes('shared-activity.js'))continue;
@@ -38,7 +40,8 @@ for(const item of catalog.items.filter(item=>item.enabled&&!item.warning)){
     }
     assert.deepEqual(errors,[],item.folder+': menu build has no JavaScript errors');
     checked++;
+    checkedActivities.push(item.folder);
   }finally{w.close();}
 }
-assert.equal(checked,34);
+assert.deepEqual(checkedActivities.sort(),[...SHARED_ACTIVITY_IDS].sort(),'Every allowlisted activity has an enabled catalog entry and shared menus');
 console.log(`Verified Back to Arcade in ${menus} shared activity menus across ${checked} activities.`);

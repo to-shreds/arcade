@@ -36,7 +36,9 @@
     shuffleboard: ['#modalBack .modal', '#btnSettings'],
     'bug-squish': ['#menuOverlay .panel', '#menuBtn', '#startOverlay .panel'],
     'firefighter-frenzy': ['#menuOverlay .panel', '#menuBtn', '#startOverlay .panel'],
-    'monster-dentist': ['#menuOverlay .panel', '#menuBtn', '#startOverlay .panel']
+    'monster-dentist': ['#menuOverlay .panel', '#menuBtn', '#startOverlay .panel'],
+    'train-trouble': ['#menuOverlay .menu-card', '#menuBtn', '#startScreen .menu-card'],
+    'robot-workshop': ['#menu .menu-card', '#menuBtn']
   };
   const startMenus = {
     'make-10':'#startOverlay .panel', balloons:'#b-start-screen',

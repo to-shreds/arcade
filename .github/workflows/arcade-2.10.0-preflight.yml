@@ -1,0 +1,89 @@
+name: Verify Arcade trains and logic
+on:
+  push:
+    branches: [work/arcade-2.10.0-verify]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: arcade-2.10.0-preflight
+  cancel-in-progress: true
+jobs:
+  engines:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with: {node-version: 22}
+      - run: npm ci --prefix cloudflare/chess-worker
+      - run: npm test --prefix cloudflare/chess-worker
+      - run: node --test multiplayer/test/*.test.mjs
+      - run: npm run test:new-games:models
+      - run: node tools/test-native-keyboard.mjs && node tools/test-shell-navigation.mjs && node tools/test-android-wrapper.mjs && node tools/test-offline-runtime.mjs
+  browser:
+    name: Browser ${{ matrix.suite }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - suite: new-games
+            commands: |
+              ARCADE_CHROMIUM=/usr/bin/google-chrome ARCADE_REQUIRE_H264=1 npm run test:new-games:browser
+          - suite: menus
+            commands: |
+              node tools/test-multiplayer-menus.mjs
+              node tools/test-menu-home-browser.mjs
+              node tools/test-short-menu-scroll-browser.mjs
+          - suite: catalog-offline
+            commands: |
+              node tools/test-catalog-browser.mjs
+              node tools/test-project-stress-browser.mjs
+              node tools/test-shell-browser.mjs
+              node tools/test-family-activities.mjs --offline-only
+              node tools/test-nearby-browser.mjs
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with: {node-version: 22}
+      - name: Install locked fixtures
+        run: |
+          npm ci
+          npm ci --prefix cloudflare/chess-worker
+          npx playwright install --with-deps chromium
+      - name: Run browser suite
+        env:
+          ARCADE_COMMANDS: ${{ matrix.commands }}
+        run: |
+          python3 - <<'PY'
+          import os, subprocess, sys
+          results = []
+          for command in os.environ['ARCADE_COMMANDS'].splitlines():
+              if not command.strip(): continue
+              print('::group::' + command, flush=True)
+              process = subprocess.Popen(command, shell=True, executable='/bin/bash', start_new_session=True)
+              try: code = process.wait(timeout=1200)
+              except subprocess.TimeoutExpired:
+                  import signal
+                  os.killpg(process.pid, signal.SIGTERM)
+                  try: process.wait(timeout=15)
+                  except subprocess.TimeoutExpired:
+                      os.killpg(process.pid, signal.SIGKILL)
+                      process.wait()
+                  code = 124
+              finally:
+                  import signal
+                  try: os.killpg(process.pid, signal.SIGTERM)
+                  except ProcessLookupError: pass
+              results.append(code)
+              print('::endgroup::', flush=True)
+          sys.exit(any(results))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: arcade-2.10.0-${{ matrix.suite }}
+          path: test-results/
+          retention-days: 7

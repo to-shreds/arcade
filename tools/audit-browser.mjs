@@ -30,6 +30,7 @@ const launch = {
   'tic-tac-toe': '[onclick="TicTacToe.start(\'pvp\')"]', trivia: '[onclick="Game.start(\'science\')"]',
   'contraption-maker': '#starter', sorry: '#startBtn', 'bug-squish': '#startBtn',
   'firefighter-frenzy': '#startBtn', 'monster-dentist': '#startBtn', bowling: '#start', monopoly: '#startBtn',
+  'robot-workshop': '#startCampaign', 'train-trouble': '#campaignBtn',
 };
 const actions = {
   'make-10': '#hintBtn', blackjack: '[onclick="BJGame.addBet(10)"]', time: '.clock-keypad .kp-btn, .kp-btn',
@@ -41,6 +42,7 @@ const actions = {
   trivia: '#tr-options button, .ans-btn', 'build-my-joke': '#random', insultinator: '#btnGenerate',
   typing: '[data-key="a"]', 'contraption-maker': '#drop', 'mad-libs': '#randomStoryButton',
   'silly-face-lab': '[aria-label="Make a surprise face"]', bowling: '#roll', monopoly: '[data-act="roll"]',
+  'robot-workshop': '.port[data-node="A"][data-kind="out"]', 'train-trouble': '#hintBtn',
 };
 async function visibleClick(page, selector) {
   for (const candidate of await page.locator(selector).all()) {
@@ -108,6 +110,10 @@ try {
         if (game.enabled && launch[game.folder]) {
           if (await visibleClick(page, launch[game.folder])) record.interactions.push(`launch: ${launch[game.folder]}`);
           else record.failures.push(`No visible launch control: ${launch[game.folder]}`);
+          if(game.folder==='train-trouble'){
+            if(await visibleClick(page,'#job-0'))record.interactions.push('choose the first dispatch job');
+            else record.failures.push('No visible first dispatch job');
+          }
           await page.waitForTimeout(350);
         }
         if (game.enabled && actions[game.folder]) {
@@ -117,6 +123,15 @@ try {
         }
         if(game.folder==='blackjack') { await visibleClick(page,'#btn-deal'); record.interactions.push('deal after bet'); await page.waitForTimeout(2500); await visibleClick(page,'#btn-stand'); }
         if(game.folder==='mad-libs') { await visibleClick(page,'#fillEmptyButton'); await visibleClick(page,'#makeStoryButton'); record.interactions.push('fill story fields and render story'); }
+        if(game.folder==='robot-workshop') {
+          if(!await visibleClick(page,'.port[data-node="O0"][data-port="0"][data-kind="in"]')||!await visibleClick(page,'#runBtn'))record.failures.push('First circuit cannot be wired and tested');
+          else if(!await page.locator('#success').isVisible())record.failures.push('First circuit did not complete its mission');
+          record.interactions.push('wire the first robot circuit and run every input case');
+        }
+        if(game.folder==='train-trouble') {
+          if(!await visibleClick(page,'#send-t1')||!await visibleClick(page,'#brake-t1'))record.failures.push('Engine cannot be sent and braked');
+          record.interactions.push('plan a route, send and brake the engine');
+        }
         if(game.folder==='music-maker' && ['desktop','landscape'].includes(size.name)) { await visibleClick(page,'[data-player="1"] .pad'); record.interactions.push('music pad'); }
         const canvas = page.locator('canvas').filter({visible:true}).first();
         if (game.enabled && !actions[game.folder] && await canvas.count() && await canvas.isVisible()) {

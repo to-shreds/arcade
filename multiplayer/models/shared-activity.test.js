@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 import { webcrypto } from 'node:crypto';
 import { GenericRoomModel } from './generic-room-model.js';
 import { MemoryStorage } from './room-model.js';
-import { validateSharedCheckpoint, validateSharedActivityAction, SHARED_ACTIVITY_AUTHORITY } from './shared-activity-validator.js';
+import { validateSharedCheckpoint, validateSharedActivityAction, SHARED_ACTIVITY_AUTHORITY, SHARED_ACTIVITY_IDS } from './shared-activity-validator.js';
 import { NearbyRoomService } from '../nearby-room-service.js';
 import { NearbyArcadeSession } from '../nearby-session.mjs';
 import { MemoryNearbyStorage } from '../nearby-storage.mjs';
@@ -62,6 +62,36 @@ test('controller departure transfers controls without abandoning an active share
   const end=await model.act(guest.token,{type:'leave'});
   assert.equal(end.status,'finished');
   await assert.rejects(model.join({username:'Cara'}),e=>e.status===410);
+});
+
+for(const activity of ['train-trouble','robot-workshop'])test(`${activity} retains its checkpoint through controller transfer and rejects the other game`,async()=>{
+  assert.ok(SHARED_ACTIVITY_IDS.includes(activity));
+  const otherActivity=activity==='train-trouble'?'robot-workshop':'train-trouble';
+  const snapshot=sequence=>{
+    const data=JSON.stringify({snapshot:{screen:'play',mode:activity==='train-trouble'?'dispatcher':'campaign',seed:8173,sequence,paused:true},view:[],frames:[]});
+    return{schema:1,activity,codec:'json',data,decodedBytes:Buffer.byteLength(data),sequence};
+  };
+  const model=new GenericRoomModel(new MemoryStorage());
+  const host=await model.create({code:'ABC234',game:'shared-activity',username:'Logan',state:snapshot(0)});
+  const active=await model.act(host.token,{type:'start',state:snapshot(0),expectedVersion:host.room.version});
+  assert.equal(active.game,'shared-activity');
+  const guest=await model.join({username:'Co-pilot',activity});
+  const before=await model.load();
+  await assert.rejects(model.join({username:'Wrong activity',activity:otherActivity}),error=>error.status===409);
+  await assert.rejects(model.act(host.token,{type:'state',state:{...snapshot(1),activity:otherActivity},expectedVersion:guest.room.version}),error=>error.status===422);
+  await assert.rejects(model.act(guest.token,{type:'state',state:snapshot(1),expectedVersion:guest.room.version}),error=>error.status===422);
+  assert.deepEqual(await model.load(),before,'Rejected actions preserve the accepted checkpoint and seat allocation');
+  const transferred=await model.act(host.token,{type:'state',state:snapshot(1),nextSeat:guest.seat,expectedVersion:guest.room.version});
+  assert.deepEqual(transferred.state,snapshot(1));
+  assert.equal(transferred.turn.playerId,guest.playerId);
+  const advanced=await model.act(guest.token,{type:'state',state:snapshot(2),nextSeat:host.seat,expectedVersion:transferred.version});
+  assert.deepEqual(advanced.state,snapshot(2));
+  assert.equal(advanced.turn.playerId,host.playerId);
+  const reconnect=await model.join({reconnectToken:guest.token,activity});
+  assert.deepEqual(reconnect.room.state,snapshot(2),'Retained credentials reconnect to the exact accepted checkpoint');
+  const authority=validateSharedActivityAction(await model.load(),{playerId:host.playerId},{type:'state',state:snapshot(3)});
+  assert.equal(authority,SHARED_ACTIVITY_AUTHORITY);
+  assert.equal(authority.completionVerified,false,'Shared puzzle progress cannot award competitive stars');
 });
 
 test('sustained small and maximum shared checkpoints stay within actual Nearby message and byte guards',async()=>{

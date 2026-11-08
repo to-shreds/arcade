@@ -8,6 +8,29 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.10.0
+
+**Train Trouble** puts you in charge of junctions, signals and engines. Its 28
+jobs build from a first delivery to cargo stops, coupling and workshop visits.
+Fresh tracks generates more checked jobs. Pause, slow time, preview routes or
+ask the game to set one. Finishing jobs earns engine colors. Crashes play short,
+extravagant cartoon movies with visibly safe occupants, bundled for offline use.
+
+Its separate **Trolley Trouble** mode offers 36 choices with changing facts,
+including familiarity, responsibility, uncertainty and serious consequences.
+Every relevant fact appears before the decision. There are no moral scores or
+follow-up questionnaires.
+
+**Robot Workshop** teaches wires and logic gates through 30 machine-building
+missions. Build AND, OR, NOT and XOR circuits by tapping, dragging or using the
+keyboard. Machines respond to the switches, and a complete test checks every
+combination. Equivalent solutions work. Three endless difficulty levels and a
+free workshop offer more building after the campaign.
+
+Both games save progress and use Arcade's existing shared Internet/Nearby
+controls. See the [release checks](docs/arcade-stress-test-2.10.0.md),
+[Train Trouble](train-trouble/README.md) and [Robot Workshop](robot-workshop/README.md).
+
 ## Release 2.9.0
 
 Bug Squish now lets you **Be the bugs** in Picnic Heist. Steer one bug or work

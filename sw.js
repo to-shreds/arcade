@@ -1,4 +1,4 @@
-const WORKER_VERSION = '2026-11-07-project-stress-heist-v1';
+const WORKER_VERSION = '2026-11-07-trains-logic-v1';
 const SNAPSHOT_PREFIX = 'family-arcade-snapshot-';
 const META_CACHE = 'family-arcade-snapshot-meta';
 const ACTIVE_KEY = new URL('__arcade_active_snapshot__', self.registration.scope).href;
@@ -539,7 +539,31 @@ async function cachedSnapshotResponse(request) {
     if (normalized) response = await cache.match(normalized);
   }
   if (!response && request.mode === 'navigate') response = await cache.match(new URL('index.html', self.registration.scope).href);
+  if (response && request.headers?.get('range') && /\.(?:mp4|webm)$/i.test(new URL(request.url).pathname)) {
+    return cachedMovieRange(response, request.headers.get('range'));
+  }
   return response || null;
+}
+
+async function cachedMovieRange(response, range) {
+  const data = await response.arrayBuffer();
+  const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+  let start = 0, end = data.byteLength - 1;
+  if (match && (match[1] || match[2])) {
+    if (!match[1]) start = Math.max(0, data.byteLength - Number(match[2]));
+    else { start = Number(match[1]); if (match[2]) end = Math.min(end, Number(match[2])); }
+  }
+  const headers = new Headers(response.headers);
+  headers.delete('content-encoding');
+  headers.set('accept-ranges', 'bytes');
+  if (!match || !(match[1] || match[2]) || !Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start > end || start >= data.byteLength) {
+    headers.set('content-range', `bytes */${data.byteLength}`); headers.set('content-length', '0');
+    return new Response(null, {status:416, headers});
+  }
+  const part = data.slice(start, end + 1);
+  headers.set('content-range', `bytes ${start}-${end}/${data.byteLength}`);
+  headers.set('content-length', String(part.byteLength));
+  return new Response(part, {status:206, headers});
 }
 
 function unavailableResponse(request) {

@@ -11,7 +11,8 @@ export const SHARED_ACTIVITY_IDS = Object.freeze([
   "maze", "minesweeper", "mini-golf", "orb-slicer", "two-truths", "paint-lab",
   "patterns", "bounce-boxes", "shuffleboard", "simon", "regex-lab", "trail",
   "trivia", "typing", "contraption-maker", "mad-libs", "silly-face-lab",
-  "music-maker", "bowling", "firefighter-frenzy", "bug-squish", "monster-dentist"
+  "music-maker", "bowling", "firefighter-frenzy", "bug-squish", "monster-dentist",
+  "train-trouble", "robot-workshop"
 ]);
 function requireValue(condition, message) {
   if (!condition) throw Object.assign(new Error(message), { status: 422 });

@@ -11,6 +11,7 @@ const server = spawn('python3', ['-m', 'http.server', '8792', '--bind', '127.0.0
 let browser;
 let pages = [];
 const errors = [];
+const activityChecks = [];
 const evidencePath = join(root, 'test-results/nearby-browser/report.json');
 async function writeEvidence(result, failure = null) {
   const peers = await Promise.all(pages.map(async page => {
@@ -48,7 +49,7 @@ async function writeEvidence(result, failure = null) {
     } catch (error) { return { error: error.message }; }
   }));
   await mkdir(join(root, 'test-results/nearby-browser'), { recursive: true });
-  await writeFile(evidencePath, JSON.stringify({ result, failure, errors, peers }, null, 2) + '\n');
+  await writeFile(evidencePath, JSON.stringify({ result, failure, errors, activityChecks, peers }, null, 2) + '\n');
 }
 try {
   for (let attempt = 0; ; attempt++) {
@@ -122,6 +123,31 @@ try {
     });
     assert.deepEqual(state, { connection: 'connected', channel: 'open' });
   }
+  // Load the real activities before disabling Internet access. Their accepted
+  // UI checkpoints then travel through the paired DataChannel and are restored
+  // by the same adapters used by shared play and local saves.
+  const activityPages = [];
+  const selectedActivities = (process.env.NEARBY_SHARED_GAMES || 'train-trouble,robot-workshop').split(',');
+  assert.ok(selectedActivities.length && selectedActivities.every(id => ['train-trouble', 'robot-workshop'].includes(id)));
+  for (const activity of selectedActivities) {
+    const [sender, receiver] = await Promise.all(contexts.map(context => context.newPage()));
+    for (const page of [sender, receiver]) {
+      page.on('pageerror', error => errors.push(`${activity}: ${error.message}`));
+      await page.goto(`${base}/${activity}/`);
+      await page.waitForFunction(() => !!window.ArcadeSave?.getAdapter?.());
+    }
+    if (activity === 'train-trouble') {
+      await sender.locator('#campaignBtn').click(); await sender.locator('#job-0').click();
+      await sender.locator('#hintBtn').click(); await sender.locator('#send-t1').click();
+      await sender.evaluate(() => TrainTrouble.setPaused(true));
+    } else {
+      await sender.locator('#startCampaign').click();
+      await sender.locator('.port[data-node="A"][data-kind="out"]').click();
+      await sender.locator('.port[data-node="O0"][data-port="0"][data-kind="in"]').click();
+    }
+    const snapshot = await sender.evaluate(() => ArcadeSave.getAdapter().capture());
+    activityPages.push({ activity, sender, receiver, snapshot });
+  }
   await Promise.all(contexts.map(context => context.setOffline(true)));
   assert.equal(await host.evaluate(() => testNearby.sendReaction('🎉')), true);
   await guest.waitForFunction(() => reactions.some(value => value.reaction === '🎉'));
@@ -165,10 +191,50 @@ try {
   }, passed.body);
   assert.equal(updated.status, 200);
   await Promise.all(pages.map(page => page.waitForFunction(value => socketMessages.some(message => message.room?.code === value.code && message.room?.version === value.version && JSON.parse(message.room.state.data).snapshot.text === 'After guest move'), { code: shared.body.code, version: updated.body.room.version })));
+  for (const { activity, sender, receiver, snapshot } of activityPages) {
+    const state = (() => {
+      const data = JSON.stringify({ snapshot, view: [], frames: [] });
+      return { schema: 1, activity, codec: 'json', data, decodedBytes: Buffer.byteLength(data), sequence: 1 };
+    })();
+    const created = await host.evaluate(state => requestTestRoomRpc('http', { path: '/api/arcade/rooms', method: 'POST', body: JSON.stringify({ game: 'shared-activity', maxPlayers: 2, state }) }), state);
+    assert.equal(created.status, 200, activity + ' creates an offline room');
+    const started = await host.evaluate(body => requestTestRoomRpc('http', { path: `/api/arcade/rooms/${body.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'start', expectedVersion: body.room.version, state: body.room.state }) }), created.body);
+    assert.equal(started.status, 200);
+    const joined = await guest.evaluate(({ code, activity }) => requestTestRoomRpc('http', { path: `/api/arcade/rooms/${code}/join`, method: 'POST', body: JSON.stringify({ activity }) }), { code: created.body.code, activity });
+    assert.equal(joined.status, 200);
+    for (const [index, page] of pages.entries()) {
+      const token = index ? joined.body.token : created.body.token;
+      const opened = await page.evaluate(value => requestTestRoomRpc('ws-open', { path: `/api/arcade/rooms/${value.code}/ws?token=${value.token}`, socketId: value.socketId }), { code: created.body.code, token, socketId: `${activity}-rtc-${index}` });
+      assert.equal(opened.ok, true);
+    }
+    const passed = await host.evaluate(body => requestTestRoomRpc('http', { path: `/api/arcade/rooms/${body.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'state', expectedVersion: body.room.version, state: body.room.state, nextSeat: body.seat }) }), joined.body);
+    assert.equal(passed.status, 200);
+    assert.equal(passed.body.room.turn.playerId, joined.body.playerId);
+    const initial = JSON.parse(passed.body.room.state.data).snapshot;
+    assert.deepEqual(initial, snapshot, activity + ' passes its exact started checkpoint');
+    assert.notEqual(await receiver.evaluate(saved => ArcadeSave.getAdapter().restore(saved, { spectator: false, controller: true, online: true }), initial), false);
+    assert.deepEqual(await receiver.evaluate(() => ArcadeSave.getAdapter().capture()), initial, activity + ' restores the new controller without resetting');
+    if (activity === 'train-trouble') await receiver.locator('#signalBtn').click();
+    else await receiver.locator('#runBtn').click();
+    const changed = await receiver.evaluate(() => ArcadeSave.getAdapter().capture());
+    assert.notDeepEqual(changed, initial, activity + ' accepts a real new-controller action');
+    const advanced = await guest.evaluate(({ room, snapshot }) => {
+      const data = JSON.stringify({ snapshot, view: [], frames: [] });
+      const state = { ...room.state, data, decodedBytes: new TextEncoder().encode(data).length, sequence: room.state.sequence + 1 };
+      return requestTestRoomRpc('http', { path: `/api/arcade/rooms/${room.code}/actions`, method: 'POST', body: JSON.stringify({ type: 'state', expectedVersion: room.version, state }) });
+    }, { room: passed.body.room, snapshot: changed });
+    assert.equal(advanced.status, 200);
+    await Promise.all(pages.map(page => page.waitForFunction(({ code, version }) => socketMessages.some(message => message.room?.code === code && message.room?.version === version), { code: created.body.code, version: advanced.body.room.version })));
+    assert.deepEqual(JSON.parse(advanced.body.room.state.data).snapshot, changed);
+    assert.notEqual(await sender.evaluate(saved => ArcadeSave.getAdapter().restore(saved, { spectator: true, controller: false, online: true }), changed), false);
+    assert.deepEqual(await sender.evaluate(() => ArcadeSave.getAdapter().capture()), changed, activity + ' restores the observer from the accepted checkpoint');
+    activityChecks.push({ activity, passed: true, checkpointBytes: state.decodedBytes, sequence: advanced.body.room.state.sequence });
+    await sender.close(); await receiver.close();
+  }
   for (const page of pages) assert.equal(await page.evaluate(() => testNearby.snapshot().connected), 2, 'the paired players stay connected throughout offline moves and control transfer');
   assert.deepEqual(errors, []);
   await writeEvidence('passed');
-  console.log('Real Chromium WebRTC: pairing, locked identities, offline reaction/chat, canonical broadcasts, shared room create/join, control transfer, and synchronized guest moves passed without Internet.');
+  console.log('Real Chromium WebRTC: pairing, locked identities, offline reaction/chat, canonical broadcasts, shared room create/join, control transfer, synchronized guest moves, and ' + activityChecks.length + ' real activity adapter round-trips passed without Internet.');
   await Promise.all(pages.map(page => page.evaluate(() => testNearby.leave({ preserveCheckpoint: false }))));
 } catch (error) {
   await writeEvidence('failed', error.stack || error.message).catch(evidenceError => console.error('Nearby evidence could not be saved:', evidenceError.message));

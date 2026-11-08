@@ -1,0 +1,51 @@
+name: Package Arcade 2.10.0
+
+on:
+  push:
+    branches: [work/arcade-2.10.0-release]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: arcade-2.10.0-release
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Verify release source and package
+        run: |
+          npm ci --prefix cloudflare/chess-worker
+          node -e "if(require('./package.json').version!=='2.10.0')throw Error('Expected Arcade 2.10.0')"
+          npm run test:new-games:models
+          node tools/test-activity-save-contract.mjs
+          node tools/test-native-keyboard.mjs
+          node tools/test-shell-navigation.mjs
+          node tools/test-android-wrapper.mjs
+          node tools/test-offline-runtime.mjs
+          python3 tools/package-web-release.py --output "$RUNNER_TEMP/arcade-2.10.0-web.zip" > "$RUNNER_TEMP/package.json"
+      - name: Publish the verified download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          output = Path(os.environ['RUNNER_TEMP'])
+          package = json.loads((output / 'package.json').read_text())
+          manifest = json.loads(Path('offline-manifest.json').read_text())
+          package.update(filename='arcade-2.10.0-web.zip', source_commit=os.environ['GITHUB_SHA'],
+                         runtime_files=manifest['fileCount'], runtime_bytes=manifest['totalBytes'],
+                         github_run=os.environ['GITHUB_RUN_ID'])
+          (output / 'arcade-2.10.0-provenance.json').write_text(json.dumps(package, indent=2) + '\n')
+          print(json.dumps(package))
+          PY
+          gh release create arcade-v2.10.0 "$RUNNER_TEMP/arcade-2.10.0-web.zip" "$RUNNER_TEMP/arcade-2.10.0-provenance.json" --target "$GITHUB_SHA" --title 'Arcade 2.10.0' --notes 'Train Trouble with Trolley Trouble and bundled crash movies, plus Robot Workshop campaign, generated logic puzzles and free building. See the included verification report for results and device-testing limits.'

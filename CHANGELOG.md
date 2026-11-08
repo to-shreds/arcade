@@ -1,3 +1,20 @@
+# 2.10.0
+
+- Added Train Trouble with 28 dispatcher jobs, generated fresh tracks, signals,
+  coupling, repair stops, cargo routes, route assistance and engine paint.
+- Added three bundled cartoon crash movies with sound, Skip and Replay controls,
+  plus MP4 and WebM formats for offline playback across browser codecs.
+- Added Trolley Trouble as a separate mode, with 36 dilemmas that change the
+  facts before each choice and show its consequence without moral scores or
+  follow-up questionnaires.
+- Added Robot Workshop with 30 logic missions, three generated difficulty levels
+  and free building. Tap, drag or use the keyboard to connect AND, OR, NOT and
+  XOR gates; all switch combinations are checked and equivalent circuits pass.
+- Preserved full new-game state, undo, progress and private local saves through
+  reloads and shared Internet/Nearby control transfers.
+- Added correct byte-range responses when seeking cached offline movie files.
+- Expanded activity, menu, Worker, transport and offline checks for 49 activities.
+
 # 2.9.0
 
 - Added Picnic Heist under Bug Squish's new Be the bugs option, with one or

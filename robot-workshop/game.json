@@ -1,0 +1,16 @@
+{
+  "title":"Robot Workshop",
+  "entry":"index.html",
+  "icon":"icon.png",
+  "order":301,
+  "enabled":true,
+  "type":"game",
+  "multiplayer":true,
+  "playersMin":1,
+  "playersMax":2,
+  "categories":["puzzle","learning"],
+  "tags":["logic","circuits","touch","cooperative","online","nearby"],
+  "orientation":"any",
+  "onlineMode":"shared",
+  "onlinePlayersMax":8
+}

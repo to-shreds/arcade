@@ -1269,6 +1269,63 @@
       "launchPath": "monopoly/index.html",
       "onlineMode": "competitive",
       "onlinePlayersMax": 6
+    },
+    {
+      "title": "Train Trouble",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 310,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "arcade",
+        "puzzle"
+      ],
+      "tags": [
+        "touch",
+        "trains",
+        "logic",
+        "choices",
+        "same-device",
+        "online",
+        "nearby"
+      ],
+      "orientation": "any",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8,
+      "folder": "train-trouble",
+      "launchPath": "train-trouble/index.html"
+    },
+    {
+      "title": "Robot Workshop",
+      "entry": "index.html",
+      "icon": "icon.png",
+      "order": 301,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": true,
+      "playersMin": 1,
+      "playersMax": 2,
+      "categories": [
+        "puzzle",
+        "learning"
+      ],
+      "tags": [
+        "logic",
+        "circuits",
+        "touch",
+        "cooperative",
+        "online",
+        "nearby"
+      ],
+      "orientation": "any",
+      "onlineMode": "shared",
+      "onlinePlayersMax": 8,
+      "folder": "robot-workshop",
+      "launchPath": "robot-workshop/index.html"
     }
   ],
   "categories": [

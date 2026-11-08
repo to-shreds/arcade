@@ -6,6 +6,7 @@ import {spawn} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {gunzipSync} from 'node:zlib';
 import {chromium,browserLaunchOptions} from './browser-runtime.mjs';
+import {SHARED_ACTIVITY_IDS} from '../multiplayer/models/shared-activity-validator.js';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const out=new URL('../test-results/online-browser/',import.meta.url);
 await mkdir(out,{recursive:true});
@@ -103,6 +104,7 @@ async function assertSharedGameVisible(game,observer){
 }
 async function drag(page,selector,x1=.4,y1=.5,x2=.6,y2=.55){const box=await page.locator(selector).first().boundingBox();assert.ok(box&&box.width>10);await page.mouse.move(box.x+box.width*x1,box.y+box.height*y1);await page.mouse.down();await page.mouse.move(box.x+box.width*x2,box.y+box.height*y2,{steps:12});await page.mouse.up();}
 const sharedLaunch={
+  'robot-workshop':'#startCampaign','train-trouble':'#campaignBtn',
   'make-10':'#startBtn',balloons:'[onclick="BalloonGame.start()"]',blackjack:'[onclick="BJGame.init(2)"]',time:'[onclick="ClockGame.start(1)"]',insultinator:'#pickNice',hangman:'[onclick="HangmanGame.startRandom()"]',solitaire:'#startBtn',jigsaw:'#startBtn',codebreaking:'#play',math:'[onclick="MathGame.start(1)"]',spelling:'#play',maze:'[onclick="MazeGame.start(12,12)"]',minesweeper:'[data-preset="easy"], [data-level="easy"], [data-diff="easy"]','mini-golf':'[onclick="MiniGolf.startOrContinue()"]','orb-slicer':'#orb-ov-btn','two-truths':'#play',patterns:'#play',shuffleboard:'#btnApply',simon:'#si-menu [onclick="SimonGame.start()"]','regex-lab':'#startBtn',trivia:'[onclick="Game.start(\'science\')"]','contraption-maker':'#starter','bug-squish':'#startBtn','firefighter-frenzy':'#startBtn','monster-dentist':'#startBtn',bowling:'#start','mad-libs':'#randomStoryButton'
 };
 const sharedActions={
@@ -135,7 +137,19 @@ async function waitForFlyingTarget(page,game,field){
 }
 async function sharedSemantic(game,a,b){
   const before=(await sharedPayload(a)).snapshot;assert.ok(before,'shared activity has a playable snapshot');
-  if(sharedActions[game])await visibleClick(a,sharedActions[game]);
+  if(game==='robot-workshop'){
+    await visibleClick(a,'.port[data-node="A"][data-kind="out"]');
+    await visibleClick(a,'.port[data-node="O0"][data-port="0"][data-kind="in"]');
+    await visibleClick(a,'#runBtn');
+    await b.waitForFunction(()=>document.querySelector('#success')?.hidden===false);
+  }
+  else if(game==='train-trouble'){
+    await visibleClick(a,'#hintBtn');
+    await visibleClick(a,'#send-t1');
+    await visibleClick(a,'#brake-t1');
+    await b.waitForFunction(()=>ArcadeSave.getAdapter().capture().rail.moves>0);
+  }
+  else if(sharedActions[game])await visibleClick(a,sharedActions[game]);
   else if(game==='blackjack'){await visibleClick(a,'[onclick="BJGame.addBet(10)"]');await visibleClick(a,'#btn-deal');await b.waitForFunction(()=>document.getElementById('players-area').innerText.includes('10'));}
   else if(game==='mad-libs'){await visibleClick(a,'#fillEmptyButton');await visibleClick(a,'#makeStoryButton');await b.waitForFunction(()=>document.getElementById('storyOutput').textContent.trim().length>20);}
   else if(game==='regex-lab'){await visibleClick(a,'[data-pick]');await visibleClick(a,'#checkAction');await b.waitForFunction(()=>!!document.querySelector('#nextAction'));}
@@ -338,9 +352,11 @@ if(selected.has('guess-who'))await run('guess-who',async({a,b})=>{
   await b.waitForFunction(()=>document.getElementById('headline').textContent.includes('turn'));await b.locator('[data-character="wren"]').click({force:true});await resume(b,'#resume');assert.equal(await b.locator('.person.down').count(),1);
 });
 if(selected.has('shared')){
-const sharedGames=(process.env.SHARED_GAMES||'jigsaw,silly-face-lab,bug-squish,trivia,firefighter-frenzy,maze,paint-lab,spelling,math,orb-slicer,mini-golf,bowling,shuffleboard,music-maker,solitaire,hangman,typing,contraption-maker,minesweeper,regex-lab,time,trail,patterns,insultinator,balloons,build-my-joke,monster-dentist,simon,two-truths,mad-libs,blackjack,codebreaking,make-10,bounce-boxes').split(',');
+const sharedGames=process.env.SHARED_GAMES?process.env.SHARED_GAMES.split(','):[...SHARED_ACTIVITY_IDS];
+assert.ok(sharedGames.length&&sharedGames.every(game=>SHARED_ACTIVITY_IDS.includes(game)),'Online sweep uses supported shared activities');
 for(const game of sharedGames)await run(game,async({a,b})=>{
   const start=sharedLaunch[game];if(start)await visibleClick(a,start);
+  if(game==='train-trouble')await visibleClick(a,'#job-0');
   await a.evaluate(()=>ArcadeSharedActivity.openPanel());await a.locator('#shared-name').fill('Alice');await a.locator('#shared-create').click({force:true});await a.waitForFunction(()=>window.ArcadeSharedActivity?.getState().room?.status==='active');const code=(await room(a)).code;await a.locator('#shared-close').click({force:true});
   await b.evaluate(()=>ArcadeSharedActivity.openPanel());await b.locator('#shared-name').fill('Bob');await b.locator('#shared-code').fill(code);await b.locator('#shared-join').click({force:true});await b.waitForFunction(()=>window.ArcadeSharedActivity?.getState().appliedSequence>=0);await b.locator('#shared-close').click({force:true});
   const guest=await b.evaluate(()=>ArcadeSharedActivity.getState());assert.equal(guest.room.state.activity,game);assert.equal(guest.controller,false);assert.equal(await b.locator('#shared-error').innerText(),'','guest applies host checkpoint');

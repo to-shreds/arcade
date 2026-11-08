@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="../multiplayer/arcade-multiplayer.js"></script>
+  <script src="../multiplayer/shared-room-client.js"></script>
+  <script src="../multiplayer/shared-activity.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090d1e">
+  <title>Arcade! Hooray! - Train Trouble</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../arcade-ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="arcade-shell">
+<main id="app" class="arcade-app">
+  <header class="arcade-top"><button id="menuBtn" class="arcade-btn">☰ Menu</button><h1 class="arcade-title">Train Trouble</h1><button id="homeBtn" class="arcade-btn">Arcade</button></header>
+  <section id="startScreen" class="screen">
+    <div class="menu-card start-card">
+      <div class="yard-art" aria-hidden="true"><span class="smoke">○ ○ ○</span><span class="hero-train">🚂</span><span class="yard-word">YOU RUN<br>THE RAILWAY.</span></div>
+      <h2>Mind the points. Send the trains.</h2>
+      <p>Deliver cargo, rescue wagons, and keep a very small railway out of very big trouble.</p>
+      <div class="mode-buttons"><button id="campaignBtn" class="arcade-btn primary">🚂 Dispatch jobs <small>28 jobs, from first whistle to full yard</small></button><button id="endlessBtn" class="arcade-btn">♾ Fresh tracks <small>A different, checked railway every time</small></button><button id="trolleyBtn" class="arcade-btn trolley-mode">⑂ Trolley Trouble <small>Two tracks. A difficult decision.</small></button></div>
+      <p class="small trolley-note">Trolley Trouble includes people dying off-screen. The choices can be serious; there is no right-answer score.</p>
+      <div class="start-footer"><button id="howBtn" class="arcade-btn">How to dispatch</button><span id="progressLabel"></span><button id="startHomeBtn" class="arcade-btn">Back to Arcade</button></div>
+      <section id="jobsPanel" hidden><h3>Pick a job</h3><div id="jobsGrid" class="jobs-grid"></div></section>
+    </div>
+  </section>
+  <section id="playScreen" class="screen" hidden>
+    <div class="job-bar"><div><strong id="jobTitle"></strong><span id="jobSubtitle"></span></div><div class="clock"><span id="deliveryCount"></span><strong id="clockText">0:00</strong><small id="parText"></small></div></div>
+    <div class="play-layout"><div class="board-wrap"><canvas id="railCanvas" width="800" height="800" tabindex="0" role="img" aria-label="Railway yard. Use the junction buttons beside the board to change tracks."></canvas><div id="boardBadge" class="board-badge" hidden>Paused</div></div>
+    <aside class="dispatch-panel"><div class="toolbar"><button id="pauseBtn" class="arcade-btn">▶ Run</button><button id="speedBtn" class="arcade-btn" aria-pressed="false">½ Slow</button><button id="previewBtn" class="arcade-btn" aria-pressed="true">Route on</button></div><p id="jobTip" class="tip"></p><div id="trainCards" class="train-cards"></div><div id="pointsPanel" class="points-panel"><div class="points-title"><strong id="pointsTitle">Junction 1</strong><button id="signalBtn" class="arcade-btn signal">🟢 Open</button></div><p class="small">Point the arrow toward the next track.</p><div id="routeButtons" class="route-buttons"></div><div id="junctionButtons" class="junction-buttons" aria-label="Select junction"></div></div><p id="eventText" class="event-text" aria-live="polite"></p></aside></div>
+    <div class="bottom-bar"><button id="retryBtn" class="arcade-btn">↺ Retry job</button><button id="hintBtn" class="arcade-btn">Set route for me</button><label class="paint-label">Engine paint <select id="paintSelect" aria-label="Engine paint"></select></label></div>
+  </section>
+  <section id="trolleyScreen" class="screen" hidden><div class="trolley-card"><div class="trolley-heading"><span class="eyebrow">TROLLEY TROUBLE</span><span id="scenarioCount"></span></div><h2 id="scenarioTitle" tabindex="-1"></h2><p id="scenarioStory" class="story"></p><button id="trolleyReadBtn" class="arcade-btn" data-shared-ui>🔊 Read this decision</button><ul id="scenarioFacts" class="fact-list"></ul><canvas id="trolleyCanvas" width="800" height="170" role="img" aria-label="A trolley at a fork, with a main track and a side track. No people are shown."></canvas><div id="trolleyTracks" class="trolley-tracks"></div><div id="trolleyChoices" class="trolley-choices"></div><div id="trolleyOutcome" class="trolley-outcome" hidden><h3>What happened</h3><p id="outcomeText"></p><button id="nextScenarioBtn" class="arcade-btn primary">Next decision →</button></div><div class="trolley-footer"><span>No timer. Take the time you need.</span><button id="trolleyHomeBtn" class="arcade-btn">Choose a mode</button></div></div></section>
+</main>
+<div id="menuOverlay" class="overlay" hidden><div class="menu-card"><h2>Railway paused</h2><button id="resumeBtn" class="arcade-btn primary">Resume</button><button id="saveBtn" class="arcade-btn">Save now</button><button id="loadBtn" class="arcade-btn">Load saved</button><button id="modeBtn" class="arcade-btn">Choose a mode / job</button><button id="menuHowBtn" class="arcade-btn">How to dispatch</button><button id="menuHomeBtn" class="arcade-btn">Back to Arcade</button><p id="saveMessage" class="small" aria-live="polite"></p></div></div>
+<div id="helpOverlay" class="overlay" hidden><div class="menu-card help-card"><h2>A quick railway lesson</h2><ol><li><strong>Pick an engine.</strong> Its card shows its next station and cargo.</li><li><strong>Point the junction arrows.</strong> Tap a numbered junction, then choose its next track. The dashed line previews your selected engine’s route.</li><li><strong>Send the engine.</strong> It follows the arrows. At a station, a red signal, or points facing backward, it stops.</li><li><strong>Mind the other trains.</strong> A signal holds arrivals. Brake stops an engine at its next junction. A long rescued wagon makes its engine slower.</li><li><strong>Collect, repair, deliver.</strong> A wagon couples automatically. Repairs take three seconds, then you send the engine onward.</li></ol><p>Pause and slow speed are always available. Finish for one star, finish without a route hint for another, and beat the timetable for a third. Timetable stars reward running safe routes together. You can retry as often as you like.</p><button id="closeHelpBtn" class="arcade-btn primary">Got it</button></div></div>
+<div id="resultOverlay" class="overlay" hidden><div class="menu-card result-card"><div id="resultStars" class="result-stars">★★★</div><h2 id="resultTitle"></h2><p id="resultText"></p><button id="nextJobBtn" class="arcade-btn primary">Next job →</button><button id="againBtn" class="arcade-btn">Run this job again</button><button id="resultModesBtn" class="arcade-btn">Choose a mode / job</button></div></div>
+<div id="crashOverlay" class="overlay" hidden><div class="menu-card crash-card"><h2>Oh, biscuits.</h2><video id="crashVideo" muted playsinline preload="metadata" aria-label="Cartoon train crash. Everyone gets out safely."><source id="crashSource" type="video/mp4"></video><p id="crashCaption">Everyone is safe. The trains may need a broom.</p><div class="crash-controls"><button id="skipCrashBtn" class="arcade-btn primary">Back to the drawing board</button><button id="replayCrashBtn" class="arcade-btn">Replay the wreck</button></div></div></div>
+<script src="../arcade-save.js"></script>
+<script src="../arcade-speech.js"></script>
+<script type="module" src="app.mjs"></script>
+</body></html>
