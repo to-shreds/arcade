@@ -1,4 +1,4 @@
-const WORKER_VERSION = '2026-11-07-trains-logic-v1';
+const WORKER_VERSION = '2026-11-07-trolley-cards-v1';
 const SNAPSHOT_PREFIX = 'family-arcade-snapshot-';
 const META_CACHE = 'family-arcade-snapshot-meta';
 const ACTIVE_KEY = new URL('__arcade_active_snapshot__', self.registration.scope).href;

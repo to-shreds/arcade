@@ -1,3 +1,10 @@
+# Trolley card update 2.10.1
+
+Track cards now are native choice buttons. Non-route options remain separate.
+Local all36 scenarios/73 branches, keyboard/touch, four layouts, observer gate,
+seven Train groups and offline hash audit pass. Focused CI and publication
+readiness are recorded in ProjectStatus. Existing2.10.0 constraints below apply.
+
 # Arcade continuation handoff
 
 ## Current implementation: 2.10.0, verified

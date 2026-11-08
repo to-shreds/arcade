@@ -58,8 +58,12 @@ function renderRail(){
 function renderTrolley(){
   const scenario=getCurrentScenario(trolley);text('scenarioCount',`${Math.min(trolley.index+1,TROLLEY_SCENARIOS.length)} / ${TROLLEY_SCENARIOS.length}`);text('scenarioTitle',trolley.phase==='complete'?'The last switch, for now.':scenario.title);text('scenarioStory',trolley.phase==='complete'?'You have seen every decision in this set. Start again to see them in a different order.':scenario.story);
   html('scenarioFacts',trolley.phase==='complete'?'':scenario.facts.map(f=>`<li>${esc(f)}</li>`).join(''));
-  html('trolleyTracks',trolley.phase==='complete'?'':scenario.routes.map(r=>`<div class="track-card"><strong>${esc(r.label)}</strong><p>${esc(r.description)}</p></div>`).join(''));
-  html('trolleyChoices',trolley.phase==='choice'?scenario.options.map((o,i)=>`<button id="trolley-choice-${i}" class="arcade-btn" data-choice="${esc(o.id)}">${esc(o.label)}</button>`).join(''):'');
+  html('trolleyTracks',trolley.phase==='complete'?'':scenario.routes.map(r=>{
+    const i=scenario.options.findIndex(o=>o.id===r.label.toLowerCase()),o=scenario.options[i];
+    const content=`<strong>${esc(r.label)}</strong><span class="track-description">${esc(r.description)}</span>${o?`<span class="track-action">${esc(o.label)}</span>`:''}`;
+    return o?`<button type="button" id="trolley-choice-${i}" class="track-card" ${trolley.phase==='choice'?`data-choice="${esc(o.id)}"`:'disabled'}>${content}</button>`:`<div class="track-card">${content}</div>`;
+  }).join(''));
+  html('trolleyChoices',trolley.phase==='choice'?scenario.options.map((o,i)=>['main','side'].includes(o.id)?'':`<button id="trolley-choice-${i}" class="arcade-btn" data-choice="${esc(o.id)}">${esc(o.label)}</button>`).join(''):'');
   show('trolleyOutcome',trolley.phase!=='choice');text('outcomeText',trolley.phase==='complete'?'There is no score to beat. A new fact can change what a choice means.':trolley.history.at(-1)?.outcome||'');text('nextScenarioBtn',trolley.phase==='complete'?'Start another set':'Next decision →');drawTrolley();
 }
 function drawTrolley(){
@@ -152,7 +156,7 @@ $('signalBtn').onclick=()=>mutate(()=>E.toggleSignal(level,rail,selectedNode));$
 for(const id of ['retryBtn','againBtn'])$(id).onclick=()=>mutate(setupLevel);
 $('paintSelect').onchange=e=>mutate(()=>{const p=Number(e.target.value);if(paints[p]&&totalStars()>=paints[p].need)progress.paint=p;});
 $('nextJobBtn').onclick=()=>mutate(nextJob);
-$('trolleyChoices').onclick=e=>{const b=e.target.closest('[data-choice]');if(b)choose(b.dataset.choice);};
+for(const id of ['trolleyTracks','trolleyChoices'])$(id).onclick=e=>{const b=e.target.closest('[data-choice]');if(b&&trolley.phase==='choice'&&!spectator)choose(b.dataset.choice);};
 $('nextScenarioBtn').onclick=()=>{mutate(()=>{window.ArcadeSpeech?.cancel();trolley=trolley.phase==='complete'?createTrolleySession((Date.now()^0xbadc0de)>>>0):nextTrolley(trolley);});$('trolleyScreen').scrollTop=0;$('scenarioTitle').focus({preventScroll:true});};
 $('skipCrashBtn').onclick=()=>mutate(()=>{crashDismissed=true;stopVideo();setupLevel();});
 $('replayCrashBtn').onclick=()=>{if(spectator)return;clipPosition=0;$('crashVideo').currentTime=0;playVideo();touch();};

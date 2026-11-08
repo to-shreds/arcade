@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.10.0+20261107.1",
-  "generatedAt": "2026-11-08T01:05:06.155Z",
+  "version": "2.10.1+20261107.1",
+  "generatedAt": "2026-11-08T01:38:20.407Z",
   "fileCount": 415,
-  "totalBytes": 22969994,
+  "totalBytes": 22970962,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1712,8 +1712,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 29039,
-      "sha256": "778413caa25015b16a8217c2bbfd4ec03563cacd18f82c25a1eb4cff799b9095"
+      "bytes": 29040,
+      "sha256": "0e606cb802d23111e202a9be64bc85ccc477dffe45830dc9a90266e569533aa1"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1832,8 +1832,8 @@
     },
     {
       "path": "train-trouble/app.mjs",
-      "bytes": 28787,
-      "sha256": "a8be19db7e90b33f94f51f5ece1302e39164e811eca139bdce7713188e08daa4"
+      "bytes": 29290,
+      "sha256": "8e3ea0512c3cc57c053615464b8eb9b2cdf08a239b550ee6c1697df7d5a89e54"
     },
     {
       "path": "train-trouble/engine.mjs",
@@ -1917,8 +1917,8 @@
     },
     {
       "path": "train-trouble/style.css",
-      "bytes": 10842,
-      "sha256": "4d8b59dea1d4d7ba71063ef69dfd64100043297d6b9d3995a67a97e962300831"
+      "bytes": 11306,
+      "sha256": "632077eff028bfb68695c8a08e8bae4825af4c9d034908537e3cd5372b40a288"
     },
     {
       "path": "train-trouble/trolley.mjs",

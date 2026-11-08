@@ -1,3 +1,7 @@
+# 2.10.1
+
+- Made Trolley Trouble track cards directly selectable and removed duplicate route buttons. Extra choices such as the emergency brake and random draw remain available.
+
 # 2.10.0
 
 - Added Train Trouble with 28 dispatcher jobs, generated fresh tracks, signals,

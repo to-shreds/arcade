@@ -6,3 +6,5 @@
 #trolleyCanvas{display:block;width:100%;height:auto;max-height:170px;border:1px solid #454b65;border-radius:12px;background:#101a2b;margin:16px 0}#trolleyReadBtn{min-height:36px;font-size:13px}
 
 .board-wrap canvas{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--board-size,100%);height:var(--board-size,100%);max-width:none;max-height:none}
+
+button.track-card{text-align:left;font:inherit;touch-action:manipulation;transition:background .15s,border-color .15s}button.track-card:not(:disabled):hover{background:#263954;border-color:#ffcf47}button.track-card:focus-visible{outline:3px solid #42d8ff;outline-offset:3px}button.track-card:disabled{opacity:1}.track-description,.track-action{display:block;color:#bbcade;font-size:13px;line-height:1.5;margin-top:8px}.track-action{color:#ffdc8c;font-weight:800}

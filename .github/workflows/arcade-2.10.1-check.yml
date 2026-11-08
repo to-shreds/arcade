@@ -1,0 +1,23 @@
+name: Verify trolley choice cards
+on:
+  push:
+    branches: [work/arcade-2.10.1-check]
+permissions:
+  contents: read
+jobs:
+  trolley:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with: {node-version: 22}
+      - run: npm ci && npm ci --prefix cloudflare/chess-worker && npx playwright install --with-deps chromium
+      - run: node --test train-trouble/*.test.mjs
+      - run: node tools/test-offline-runtime.mjs
+      - run: node tools/test-trolley-cards-browser.mjs && node tools/test-train-trouble-browser.mjs && node tools/test-new-games-browser.mjs --rooms-only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trolley-choice-cards
+          path: test-results/
