@@ -1,3 +1,38 @@
+# Time Master clock 2.10.2: mobile geometry repair
+
+Published at https://to-shreds.github.io/arcade/ (runtime merge
+3fec6d366dfd4deb95fd06ed50c8cd9e0e94fe20). Full verified web ZIP:
+https://github.com/to-shreds/arcade/releases/download/arcade-v2.10.2/arcade-2.10.2-web.zip.
+Snapshot 2.10.2+20261108.1, 415 runtime files, 22,971,520 bytes.
+
+Root cause: the previous clock rendering mixed a device-pixel-scaled canvas
+bitmap with CSS-pixel drawing geometry. If the drawing context reset (including
+in Android WebView), the implicit scaling disappeared and left a tiny dial
+drawn in the upper-left of the visible canvas. A separate guessed inline
+canvas size also competed with CSS !important phone rules. Fix: CSS now
+exclusively owns the displayed canvas size, resize() follows its actual client
+dimensions and devicePixelRatio, and drawClock() starts with identity transform
+and computes all geometry from actual backing-store dimensions. Phone clock
+can be up to 298 px without displacing the keypad; landscape is bounded.
+Preserve correct scaled fonts, ticks, pivot, pointer dragging, all three
+modes, saved/restored game state, shared room authority, and CSS-owned
+canvas sizing. Do not reintroduce ctx.setTransform(DPR) with CSS-space
+drawing or independently change inline width/height.
+
+Verified 90 real-browser clock scenarios (six viewports, DPR 1/2/3,
+three modes, pointer/context reset, rotation and hidden restore), all PASS
+in the 2.10.2 release job 42514388444. Save contract, native keyboard,
+Android wrapper source, offline manifest and ZIP packaging checks PASS.
+Main Pages deployment run 42514434917 succeeded. PR Test Arcade Web run
+42513863079 passed its combined clock, menus and young-kid Trivia step;
+its overall result was failure at an unrelated TV seek-preservation assertion,
+with no TV runtime changed in this release. Do not call the whole CI green.
+Physical Android handset rendering has not been independently observed.
+See docs/arcade-stress-test-2.10.2.md and ProjectStatus for exact release
+status. Next action for a reported device problem: refresh the live page and
+update the hash-verified offline copy, then reproduce on the phone before
+changing the drawing geometry again.
+
 # Trolley card update 2.10.1
 
 Track cards now are native choice buttons. Non-route options remain separate.
