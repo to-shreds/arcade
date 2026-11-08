@@ -52,7 +52,7 @@ export const CAMPAIGN=Array.from({length:28},(_,i)=>({index:i,title:jobNames[i]}
 export function createState(level) {
   const switches={},signals={};
   for(const n of Object.values(level.map.nodes)){switches[n.id]=n.links[0];signals[n.id]=false;}
-  return {schema:SCHEMA,levelId:level.id,time:0,status:'ready',switches,signals,trains:level.trains.map(t=>({id:t.id,node:t.start,previous:null,edge:null,held:true,braking:false,brakeRemaining:0,task:0,coupled:false,repair:0,done:false})),deliveries:0,hints:0,crash:null,events:[],moves:0};
+  return {schema:SCHEMA,levelId:level.id,time:0,status:'ready',switches,signals,trains:level.trains.map(t=>({id:t.id,node:t.start,previous:null,edge:null,held:true,braking:false,task:0,coupled:false,repair:0,done:false})),deliveries:0,hints:0,crash:null,events:[],moves:0};
 }
 export function shortestPath(map,start,end,blocked=[]) {
   if(!map.nodes[start]||!map.nodes[end])return null;
@@ -68,7 +68,7 @@ export function position(level,t) {
 function event(s,message){s.events.push({time:Math.round(s.time*10)/10,message});s.events=s.events.slice(-8);}
 export function setSwitch(level,s,node,to){if(!level.map.nodes[node]?.links.includes(to)||s.status==='crashed'||s.status==='won')return false;s.switches[node]=to;s.moves++;return true;}
 export function toggleSignal(level,s,node){if(level.map.nodes[node]?.kind!=='junction'||['crashed','won'].includes(s.status))return false;s.signals[node]=!s.signals[node];s.moves++;return true;}
-export function sendTrain(level,s,id){const t=s.trains.find(t=>t.id===id);if(!t||t.done||t.repair>0||['crashed','won'].includes(s.status))return false;if(t.held&&!t.edge)t.previous=null;t.held=false;t.braking=false;t.brakeRemaining=0;s.status='running';s.moves++;event(s,`${level.trains.find(x=>x.id===id).name} is on the move.`);return true;}
+export function sendTrain(level,s,id){const t=s.trains.find(t=>t.id===id);if(!t||t.done||t.repair>0||['crashed','won'].includes(s.status))return false;if(t.held&&!t.edge)t.previous=null;t.held=false;t.braking=false;s.status='running';s.moves++;event(s,`${level.trains.find(x=>x.id===id).name} is on the move.`);return true;}
 export function brakeTrain(s,id){const t=s.trains.find(t=>t.id===id);if(!t||t.done||['crashed','won'].includes(s.status))return false;t.braking=true;if(!t.edge)t.held=true;s.moves++;return true;}
 export function routeToTask(level,s,id,{countHint=true}={}) {
   const t=s.trains.find(t=>t.id===id),spec=level.trains.find(t=>t.id===id);if(!t||t.done||t.edge||['won','crashed'].includes(s.status))return null;

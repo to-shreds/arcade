@@ -35,9 +35,10 @@ the complete candidate before changing the live game. Rejected saves return
 false. The shared adapter restores every observer checkpoint and explicitly
 gates controller mutations. Only the controller advances railway time.
 
-The bundled H.264 MP4 crash clips work offline, have Skip/Replay controls and
+The bundled H.264 MP4 clips and VP9 WebM fallbacks work offline, have Skip/Replay controls and
 show the occupants safe. A typed Blob fallback supports older archive hosts
-that send the wrong MIME type. Video pauses while hidden or in the menu, and
+that send the wrong MIME type. Logical checkpoints render each observer’s own
+canvas, avoiding screenshot overlays over menus and video. Video pauses while hidden or in the menu, and
 logical clip position resumes on restore or control transfer. Sources and
 generation instructions are in the media documentation.
 

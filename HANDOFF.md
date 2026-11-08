@@ -2,22 +2,44 @@
 
 ## Current work: 2.10.0 Train Trouble and Robot Workshop
 
-IN PROGRESS from canonical main dc96bfb0a35499f18dfe115edea03cd599fee0cb.
-Controlling agreed scope: docs/arcade-2.10.0-design.md. The user explicitly approved
-building both games after replacing trolley follow-up questions with separate
-factor-varied dilemmas. Preserve the verified 2.9.0 baseline described below.
+IN PROGRESS release verification. Canonical published main remains
+2.9.0 dc96bfb0a35499f18dfe115edea03cd599fee0cb. The complete new-game build
+is checkpointed at a71a7cec4e8c314aa5496d44bd51212e4497a4e8 on
+work/arcade-2.10.0-build. Subsequent narrow QA fixes are staged for preflight.
+Controlling agreed scope: docs/arcade-2.10.0-design.md.
 
-Work is split between train-trouble/ main railway game, its trolley/content/movie
-assets, robot-workshop/ logic builder, shared integration and independent QA.
-Root owns catalog/version/offline/CI/release work. New shared IDs require both
-browser Nearby and deployed Worker support before publication. Do not claim a
-finished or published 2.10.0 until actual games, tests, assets and release exist.
+Implemented: Train Trouble's 28 witnessed dispatcher jobs, generated fresh tracks,
+cargo/coupling/repair, brake/signal/route controls, paint unlocks; separate 36-case
+Trolley Trouble with seeded disclosed outcomes; three original 4.5-second crash
+movies in MP4 and WebM; Robot Workshop's 30 lessons, three endless tiers, free
+building, all-input truth checking, alternate solutions, touch/keyboard and undo.
+Both register native menus, transactional full-state saves and shared adapters.
 
-Movies are actual offline bundled cartoon crash clips with safe occupants. Trolley
-stakes may be serious/off-screen, with disclosed facts and direct consequences;
-never add why/justification quizzes or moral scores. Robot puzzles must validate
-all switch combinations and accept alternate working circuits. Generator seeds,
-state and private local backups must survive saves and shared control transfer.
+Local checks passed: 25 new-game/static model tests, 1,200 logic seeds,
+1,000 train seeds, 3,504 trolley decision branches, seven focused Train browser
+groups, six Robot groups, eight independent playability viewports, 229 Worker
+checks, 112 transport checks, 147 multiplayer menus, 36 untouched room lobbies
+and both new-game online room/reconnect/control-pass cases. Offline manifest
+currently covers 415 files, 22,969,994 bytes; its full hash audit passes.
+
+Remaining release gates: final consolidated media/PWA/shared browser test, exact
+source CI including positive RTC with both actual adapters, production Worker
+allowlist deploy, public-file hashes and persistent ZIP/provenance. Local RTC
+cannot gather usable ICE and is not counted as a pass. Local Chromium shell
+cannot decode H.264, so actual local playback uses WebM; branded Chrome in CI
+must independently decode the MP4 files. See docs/arcade-stress-test-2.10.0.md.
+
+Do not break: trolley choices have disclosed facts before the decision, direct
+consequences, no why/justification quizzes and no moral scores. Serious trolley
+outcomes remain off-screen and separate from safe-occupant crash movies. Keep
+all switch combinations in logic validation and accept equivalent circuits.
+Preserve seeds, state, undo, private backups, controller gates and exact logical
+video position through restore/handoff. New games use native canonical redraw,
+not generic canvas image overlays. Cached movie ranges must preserve verified
+full responses in the atomic snapshot. Preserve the 2.9.0 baseline below.
+
+Next action: finish exact-source release verification, then publish/package and
+record artifact metadata. Update this handoff before final ProjectStatus readiness.
 
 
 ## Current implementation: 2.9.0, verified

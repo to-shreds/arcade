@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.10.0+20261107.1",
-  "generatedAt": "2026-11-08T01:03:26.464Z",
+  "generatedAt": "2026-11-08T01:05:06.155Z",
   "fileCount": 415,
-  "totalBytes": 22969818,
+  "totalBytes": 22969994,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1832,13 +1832,13 @@
     },
     {
       "path": "train-trouble/app.mjs",
-      "bytes": 28700,
-      "sha256": "14b86430f7377164008e965e4873adbd1727ad149266645b82ac245f44debb0e"
+      "bytes": 28787,
+      "sha256": "a8be19db7e90b33f94f51f5ece1302e39164e811eca139bdce7713188e08daa4"
     },
     {
       "path": "train-trouble/engine.mjs",
-      "bytes": 13575,
-      "sha256": "b135cf256600148490360792d6a417be39a08ed01cba3d516fc0f0196032863d"
+      "bytes": 13539,
+      "sha256": "f8fed259c22f2b1951a4d0d4c26262622aec74bfcedcc34d64f7232a1f03ad7c"
     },
     {
       "path": "train-trouble/game.json",
@@ -1912,8 +1912,8 @@
     },
     {
       "path": "train-trouble/README.md",
-      "bytes": 3091,
-      "sha256": "3d710870709ab530d8c491728630ae3b7f90055e1999a42f2e6deb2afc6f474e"
+      "bytes": 3216,
+      "sha256": "497ad149b737fc9bb922d33af55d0f44596c4a3dfb7247c5a17dfa01f4ebf8b8"
     },
     {
       "path": "train-trouble/style.css",

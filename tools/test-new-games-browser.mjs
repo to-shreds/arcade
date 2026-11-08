@@ -6,6 +6,7 @@ import {spawn} from 'node:child_process';
 import {mkdir,readdir,writeFile,readFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {isDeepStrictEqual} from 'node:util';
 import {chromium,browserLaunchOptions} from './browser-runtime.mjs';
 import {startStaticFixture} from './static-fixture.mjs';
 
@@ -37,6 +38,7 @@ const filter=args.find(value=>value.startsWith('--case='))?.slice(7).toLowerCase
 const contexts=new Set();
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const capture=page=>page.evaluate(()=>ArcadeSave.getAdapter().capture());
+async function until(page,predicate,label,timeout=15000){const deadline=Date.now()+timeout;while(Date.now()<deadline){if(await page.evaluate(predicate))return;await delay(75);}throw Error(label+'; snapshot '+JSON.stringify(await capture(page))+'; room '+JSON.stringify(await page.evaluate(()=>({status:ArcadeSharedActivity.getState().statusText,connected:ArcadeSharedActivity.getState().connected,controller:ArcadeSharedActivity.isController(),spectator:ArcadeSharedActivity.isSpectator()}))));}
 
 async function fixtureStart(){
   fixture=spawn(process.execPath,[fileURLToPath(import.meta.url),'--serve'],{cwd:root,stdio:['ignore','pipe','pipe']});
@@ -57,11 +59,7 @@ async function pageFor(game,viewport={width:1280,height:800}){
   return {page,context};
 }
 async function equalState(page,expected,label){
-  try{await page.waitForFunction(expected=>{
-    const sorted=value=>value&&typeof value==='object'?(Array.isArray(value)?value.map(sorted):Object.fromEntries(Object.keys(value).sort().map(key=>[key,sorted(value[key])]))):value;
-    return JSON.stringify(sorted(ArcadeSave.getAdapter().capture()))===JSON.stringify(sorted(expected));
-  },expected,{timeout:16000});}
-  catch(error){const actual=await capture(page);assert.deepEqual(actual,expected,label+'; room '+JSON.stringify(await page.evaluate(()=>({status:ArcadeSharedActivity.getState().statusText,connected:ArcadeSharedActivity.getState().connected,sequence:ArcadeSharedActivity.getState().appliedSequence}))));throw error;}
+  const deadline=Date.now()+16000;while(Date.now()<deadline){if(isDeepStrictEqual(await capture(page),expected))return;await delay(75);}
   assert.deepEqual(await capture(page),expected,label);
 }
 async function inViewport(page,selectors){
@@ -82,8 +80,8 @@ async function run(name,callback){
 async function connect(host,guest){
   const created=await host.evaluate(()=>ArcadeSharedActivity.create({username:'Dispatcher'}));
   const joined=await guest.evaluate(code=>ArcadeSharedActivity.join({username:'Engineer',code}),created.code);
-  await host.waitForFunction(()=>ArcadeSharedActivity.getState().connected&&!ArcadeSharedActivity.isSpectator());
-  await guest.waitForFunction(()=>ArcadeSharedActivity.getState().connected&&ArcadeSharedActivity.getState().appliedSequence>=0);
+  await host.waitForFunction(()=>ArcadeSharedActivity.getState().connected&&!ArcadeSharedActivity.isSpectator(),null,{polling:50});
+  await guest.waitForFunction(()=>ArcadeSharedActivity.getState().connected&&ArcadeSharedActivity.getState().appliedSequence>=0,null,{polling:50});
   return joined;
 }
 
@@ -269,6 +267,20 @@ try{
     }
     return {decodedClips:decoded,media:mediaEvidence};
   });
+  if(!roomsOnly)await run('Train PWA: complete snapshot installs and real crash video plays and seeks offline',async()=>{
+    const context=await browser.newContext({viewport:{width:1024,height:768},hasTouch:true});contexts.add(context);const page=await context.newPage();page.on('pageerror',error=>errors.push({game:'train-pwa',message:error.message}));
+    await page.goto(base+'/');await page.waitForFunction(()=>!!window.ArcadeShell);await page.evaluate(()=>navigator.serviceWorker.register('/sw.js',{scope:'/'}));await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:30000});
+    await page.locator('#offlineBadge').click();await page.waitForFunction(()=>document.getElementById('offlineBadgeText')?.textContent==='Offline Ready',null,{timeout:120000});
+    await context.setOffline(true);await page.goto(base+'/train-trouble/index.html');await page.waitForFunction(()=>!!window.TrainTrouble);assert.equal(await page.evaluate(()=>navigator.onLine),false,'The browser network is actually offline');
+    await page.locator('#campaignBtn').click();await page.locator('#job-3').click();const E=await import('../train-trouble/engine.mjs'),level=E.createLevel(3,1),rail=E.createState(level);rail.trains[0].node='j0';rail.trains[1].node='j1';E.setSwitch(level,rail,'j0','j1');E.setSwitch(level,rail,'j1','j0');E.sendTrain(level,rail,'t1');E.sendTrain(level,rail,'t2');for(let n=0;n<120&&rail.status!=='crashed';n++)E.step(level,rail,.1);assert.equal(rail.crash.kind,'head-on');
+    await page.evaluate(rail=>{const saved=TrainTrouble.capture();if(!TrainTrouble.restore({...saved,rail,clipPosition:0,crashDismissed:false}))throw Error('Cached Train could not restore a real collision');},rail);
+    await page.waitForFunction(()=>{const v=document.getElementById('crashVideo');return v.readyState>=2&&v.videoWidth>0&&v.currentTime>.1;},null,{timeout:18000});
+    const media=await page.locator('#crashVideo').evaluate(v=>({source:v.currentSrc,width:v.videoWidth,height:v.videoHeight,duration:v.duration}));assert(media.width>=640&&media.height>=360);assert(media.duration>=3&&media.duration<=6);
+    await page.locator('#crashVideo').evaluate(v=>{v.currentTime=2.7;});await page.waitForFunction(()=>{const v=document.getElementById('crashVideo');return !v.seeking&&v.readyState>=2&&v.currentTime>=2.7;});await page.screenshot({path:resolve(output,'pwa-offline-crash.png')});await page.waitForFunction(()=>document.getElementById('crashVideo').ended,null,{timeout:9000});await page.locator('#replayCrashBtn').click();await page.waitForFunction(()=>{const v=document.getElementById('crashVideo');return !v.ended&&v.currentTime>.1&&v.currentTime<2;});
+    const ranges=await page.evaluate(async()=>{const results=[];for(const extension of ['mp4','webm']){const response=await fetch('media/crash-head-on.'+extension,{headers:{Range:'bytes=0-99'}});results.push({extension,status:response.status,bytes:(await response.arrayBuffer()).byteLength,type:response.headers.get('content-type')});}return results;});
+    for(const result of ranges){assert.equal(result.status,206,'Cached '+result.extension+' supports a byte-range media request');assert.equal(result.bytes,100);assert.match(result.type,/^video\//);}
+    await page.locator('#skipCrashBtn').click();assert.equal((await capture(page)).rail.status,'ready');return {offline:true,fullSnapshot:true,seekAndReplay:true,media,ranges};
+  });
   if(!localOnly)await run('Robot real Worker: observer blocking, local menu, exact handoff and private restore',async()=>{
     const {page:host}=await pageFor('robot-workshop'),{page:guest}=await pageFor('robot-workshop',{width:390,height:844});
     await host.locator('#startCampaign').click();await host.locator('#port-A-out-0').click();await host.locator('#port-O0-in-0').click();await host.locator('#runBtn').click();await host.waitForFunction(()=>RobotWorkshop.getState().won);
@@ -276,20 +288,20 @@ try{
     const joined=await connect(host,guest),shared=await capture(host);await equalState(guest,shared,'Observer applies the exact solved machine');
     await guest.locator('#nextBtn').dispatchEvent('click');await guest.locator('#clearBtn').dispatchEvent('click');await guest.keyboard.press('Control+z');await delay(400);assert.deepEqual(await capture(host),shared,'Observer cannot advance or erase the host machine');assert.deepEqual(await capture(guest),shared,'Observer input cannot mutate its canonical state');
     await guest.locator('#menuBtn').click();assert.equal(await guest.locator('#shared-menu').isVisible(),true,'Observer can open its own navigation');assert.deepEqual(await capture(guest),shared,'Observer menu remains local');await guest.locator('#shared-menu-resume').click();
-    await host.evaluate(seat=>ArcadeSharedActivity.pass(seat),joined.seat);await guest.waitForFunction(()=>ArcadeSharedActivity.isController()&&!ArcadeSharedActivity.isSpectator());assert.equal(await host.evaluate(()=>ArcadeSharedActivity.isController()),false);assert.deepEqual(await capture(guest),shared,'Passing controls preserves solved state exactly');
+    await host.evaluate(seat=>ArcadeSharedActivity.pass(seat),joined.seat);await until(guest,()=>ArcadeSharedActivity.isController()&&!ArcadeSharedActivity.isSpectator(),'Robot guest receives controller authority');assert.equal(await host.evaluate(()=>ArcadeSharedActivity.isController()),false);assert.deepEqual(await capture(guest),shared,'Passing controls preserves solved state exactly');
     await guest.locator('#nextBtn').click();const advanced=await capture(guest);assert.equal(advanced.level,1);await equalState(host,advanced,'The old controller follows the new controller');
     await guest.evaluate(()=>ArcadeSharedActivity.leave());assert.deepEqual(await capture(guest),privateState,'Leaving restores the exact private workshop, including its selected gate');await host.evaluate(()=>ArcadeSharedActivity.leave());
     return {worker:true,observerBlocked:true,localMenu:true,exactHandoff:true,privateRestore:true};
   });
   if(!localOnly)await run('Train real Worker: exact dispatcher/trolley handoff, observer blocking and private restore',async()=>{
     const {page:host}=await pageFor('train-trouble'),{page:guest}=await pageFor('train-trouble',{width:390,height:844});
-    await host.locator('#campaignBtn').click();await host.locator('#job-3').click();await host.locator('#hintBtn').click();await host.locator('#send-t1').click();await host.waitForFunction(()=>TrainTrouble.capture().rail.time>.2);await host.locator('#pauseBtn').click();
+    await host.locator('#campaignBtn').click();await host.locator('#job-3').click();await host.locator('#hintBtn').click();await host.locator('#send-t1').click();await until(host,()=>TrainTrouble.capture().rail.time>.2,'Native host train starts moving');await host.locator('#pauseBtn').click();
     await guest.locator('#campaignBtn').click();await guest.locator('#job-1').click();await guest.locator('#speedBtn').click();const privateState=await capture(guest);
     const joined=await connect(host,guest),shared=await capture(host);await equalState(guest,shared,'The observer restores every paused engine, arrow and timer exactly');
     await guest.locator('#send-t1').dispatchEvent('click');await guest.locator('#hintBtn').dispatchEvent('click');await guest.locator('#railCanvas').focus();await guest.keyboard.press('Space');await delay(300);assert.deepEqual(await capture(host),shared);assert.deepEqual(await capture(guest),shared,'Observer keyboard and pointer actions cannot dispatch or reroute trains');
     await guest.locator('#menuBtn').click();assert.equal(await guest.locator('#shared-menu').isVisible(),true);assert.deepEqual(await capture(guest),shared,'The observer menu remains local');await guest.locator('#shared-menu-resume').click();
     await host.locator('#speedBtn').click();const latest=await capture(host);await equalState(guest,latest,'Dynamic dispatcher controls refresh for an existing observer');
-    await host.evaluate(seat=>ArcadeSharedActivity.pass(seat),joined.seat);await guest.waitForFunction(()=>ArcadeSharedActivity.isController()&&!ArcadeSharedActivity.isSpectator());assert.deepEqual(await capture(guest),latest,'Paused mid-route state transfers exactly');assert.equal(await host.evaluate(()=>ArcadeSharedActivity.isController()),false);
+    await host.evaluate(seat=>ArcadeSharedActivity.pass(seat),joined.seat);await until(guest,()=>ArcadeSharedActivity.isController()&&!ArcadeSharedActivity.isSpectator(),'Train guest receives controller authority');assert.deepEqual(await capture(guest),latest,'Paused mid-route state transfers exactly');assert.equal(await host.evaluate(()=>ArcadeSharedActivity.isController()),false);
     await guest.locator('#menuBtn').click();await guest.locator('#modeBtn').click();await guest.locator('#trolleyBtn').click();const dilemma=await capture(guest);await equalState(host,dilemma,'Changing to trolley mode restores the whole dynamic scenario');assert.equal(await host.locator('#scenarioFacts li').count(),await guest.locator('#scenarioFacts li').count());
     await host.locator('#trolley-choice-0').dispatchEvent('click');await delay(300);assert.equal((await capture(guest)).trolley.phase,'choice','Former controller cannot make the new decision');await guest.locator('#trolley-choice-0').click();const decided=await capture(guest);await equalState(host,decided,'A direct trolley outcome is shared exactly');assert.equal(await host.locator('#trolleyChoices button').count(),0);assert.equal(await host.locator('#outcomeText').textContent(),await guest.locator('#outcomeText').textContent());
     await guest.evaluate(()=>ArcadeSharedActivity.leave());assert.deepEqual(await capture(guest),privateState,'Leaving restores the exact separate private dispatcher job');await host.evaluate(()=>ArcadeSharedActivity.leave());
