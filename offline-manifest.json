@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.10.1+20261107.1",
-  "generatedAt": "2026-11-08T01:38:20.407Z",
+  "version": "2.10.2+20261108.1",
+  "generatedAt": "2026-11-08T19:11:51.188Z",
   "fileCount": 415,
-  "totalBytes": 22970962,
+  "totalBytes": 22971520,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1712,8 +1712,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 29040,
-      "sha256": "0e606cb802d23111e202a9be64bc85ccc477dffe45830dc9a90266e569533aa1"
+      "bytes": 29039,
+      "sha256": "1045d9274562bd0f2eb51a9aac0403fa70e6ef343f0541a515d3925da69215d1"
     },
     {
       "path": "tanks/battle-view.css",
@@ -1812,8 +1812,8 @@
     },
     {
       "path": "time/index.html",
-      "bytes": 119274,
-      "sha256": "0b1919fe1356d88727ce0bf49ffac8457e44f0799ee8f4af0721ca62173be100"
+      "bytes": 119833,
+      "sha256": "5f0415b9d3e564efe9622305d1f31d4ca9c8d6ee08537e059569fd500e36b5bc"
     },
     {
       "path": "trail/game.json",

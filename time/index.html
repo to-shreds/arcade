@@ -585,9 +585,12 @@ body.reduce-motion.unicorn-mega #g-balloons, body.reduce-motion.unicorn-mega #g-
 
         
         #g-clock { background: #2c3e50; flex-direction: column; align-items: center; justify-content: center; }
-        #g-clock .clock-face { 
-            background: #fff; border-radius: 50%; border: 10px solid #333;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5); margin-bottom: 20px; flex: 0 0 auto;
+        #g-clock .clock-face {
+            --clock-size: min(360px, calc(100vw - 28px), max(190px, calc(100svh - 320px)));
+            display: block; width: var(--clock-size); height: var(--clock-size);
+            background: #f6f6f6; border-radius: 50%; border: 8px solid #333;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5); margin-bottom: 12px;
+            flex: 0 0 auto; touch-action: none;
         }
         #g-clock .clock-ui { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
         #g-clock .display-box {
@@ -1364,7 +1367,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   body.make10-game .corner.bottom{right:5px!important;bottom:4px!important}
   body.make10-game .footer{padding:5px 7px!important;font-size:10px!important;border-radius:12px!important}
   #g-clock{justify-content:center!important;gap:6px!important;padding-top:34px!important;padding-bottom:6px!important;box-sizing:border-box!important;overflow:hidden!important}
-  #g-clock .clock-face{width:206px!important;height:206px!important;border-width:6px!important;margin:0 0 6px!important;box-sizing:border-box!important}
+  #g-clock .clock-face{--clock-size:min(298px,calc(100vw - 30px),max(185px,calc(100svh - 310px)));width:var(--clock-size)!important;height:var(--clock-size)!important;border-width:6px!important;margin:0 0 4px!important;box-sizing:border-box!important}
   #g-clock .clock-ui{gap:5px!important;max-height:310px!important;overflow:hidden!important}
   #g-clock .display-box{font-size:22px!important;padding:5px 10px!important;min-width:98px!important;border-radius:8px!important}
   #g-clock .keypad{gap:5px!important;margin-top:4px!important;max-width:190px!important}
@@ -1373,7 +1376,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
   #g-clock .mc-btn{padding:8px!important;font-size:16px!important}
 }
 @media (max-width:360px){
-  #g-clock .clock-face{width:190px!important;height:190px!important}
+  #g-clock .clock-face{--clock-size:min(290px,calc(100vw - 30px),max(185px,calc(100svh - 310px)))}
   #g-clock .keypad{max-width:180px!important}
   #g-clock .kp-btn{padding:7px!important;font-size:15px!important}
 }
@@ -1389,7 +1392,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 <style id="arcade-landscape-playable">
 @media (orientation:landscape) and (max-height:500px){
 #g-clock{flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:22px!important;padding:42px 15px 10px!important}
-#g-clock .clock-face{width:min(260px,calc(100svh - 70px))!important;height:min(260px,calc(100svh - 70px))!important;margin:0!important}
+#g-clock .clock-face{--clock-size:min(260px,calc(100svh - 70px));width:var(--clock-size)!important;height:var(--clock-size)!important;margin:0!important}
 #g-clock .clock-ui{width:min(300px,40vw)!important;max-height:calc(100svh - 70px)!important;gap:6px!important;overflow:auto!important}
 #g-clock .keypad{width:min(230px,36vw)!important;max-width:230px!important;gap:5px!important;margin:0!important}
 #g-clock .kp-btn{min-height:44px!important;padding:6px!important;font-size:19px!important}
@@ -1922,18 +1925,16 @@ const FeedbackSys = (function(){
         }
 
         function resize(){
-            const box = canvas.parentElement.getBoundingClientRect();
+            // CSS owns the size. The backing store follows the actual visible content box.
+            // Never stretch a differently sized clock image into its circular CSS frame.
+            const visibleWidth = canvas.clientWidth;
+            const visibleHeight = canvas.clientHeight;
+            if(!visibleWidth || !visibleHeight) return;
             const ratio = window.devicePixelRatio || 1;
-            const rawSize = Math.min(box.width - 18, box.height - 18);
-            const size = Math.min(360, Math.max(260, Number.isFinite(rawSize) ? rawSize : 260));
-            canvas.style.width = size + "px";
-            canvas.style.height = size + "px";
-            if(!canvas.clientWidth || !canvas.clientHeight) return;
-            const width = Math.max(1, Math.round(canvas.clientWidth * ratio));
-            const height = Math.max(1, Math.round(canvas.clientHeight * ratio));
+            const width = Math.max(1, Math.round(visibleWidth * ratio));
+            const height = Math.max(1, Math.round(visibleHeight * ratio));
             if(canvas.width !== width) canvas.width = width;
             if(canvas.height !== height) canvas.height = height;
-            ctx.setTransform(ratio,0,0,ratio,0,0);
             drawClock();
         }
 
@@ -2167,70 +2168,70 @@ const FeedbackSys = (function(){
         }
 
         function drawClock(){
-            const ratio = window.devicePixelRatio || 1;
-            const w = canvas.clientWidth || canvas.width / ratio;
-            const h = canvas.clientHeight || canvas.height / ratio;
-            const cx = w/2, cy = h/2;
-            const r = Math.min(w,h)/2 - 14;
-            if(r <= 0) return;
+            // The bitmap, not CSS pixels, is the drawing coordinate system.
+            // Canvas resizing or WebView context restoration may reset transforms.
+            // Using backing-store coordinates makes every redraw self-contained.
+            const w = canvas.width;
+            const h = canvas.height;
+            if(w <= 0 || h <= 0) return;
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            const cx = w / 2, cy = h / 2;
+            const r = Math.min(w, h) * 0.463;
 
-            ctx.clearRect(0,0,w,h);
-
+            ctx.clearRect(0, 0, w, h);
+            ctx.lineCap = 'butt';
             ctx.beginPath();
-            ctx.arc(cx, cy, r, 0, Math.PI*2);
-            ctx.fillStyle = "#f6f6f6";
+            ctx.arc(cx, cy, r, 0, Math.PI * 2);
+            ctx.fillStyle = '#f6f6f6';
             ctx.fill();
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = "#222";
+            ctx.lineWidth = r * 0.023;
+            ctx.strokeStyle = '#222';
             ctx.stroke();
 
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = "#222";
-            for(let i=0;i<60;i++){
-                const ang = (i*6-90)*Math.PI/180;
-                const len = (i%5===0) ? r*0.12 : r*0.06;
+            ctx.lineWidth = r * 0.012;
+            for(let i = 0; i < 60; i++){
+                const ang = (i * 6 - 90) * Math.PI / 180;
+                const len = (i % 5 === 0) ? r * 0.12 : r * 0.06;
                 ctx.beginPath();
-                ctx.moveTo(cx + Math.cos(ang)*(r-len), cy + Math.sin(ang)*(r-len));
-                ctx.lineTo(cx + Math.cos(ang)*r,       cy + Math.sin(ang)*r);
+                ctx.moveTo(cx + Math.cos(ang) * (r - len), cy + Math.sin(ang) * (r - len));
+                ctx.lineTo(cx + Math.cos(ang) * r, cy + Math.sin(ang) * r);
                 ctx.stroke();
             }
 
             if(mode !== 2){
-                ctx.fillStyle = "#111";
-                ctx.font = `bold ${Math.max(14, r*0.16)}px system-ui, sans-serif`;
-                ctx.textAlign = "center";
-                ctx.textBaseline = "middle";
-                for(let n=1;n<=12;n++){
-                    const ang = (n*30-90)*Math.PI/180;
-                    ctx.fillText(String(n), cx + Math.cos(ang)*(r*0.78), cy + Math.sin(ang)*(r*0.78));
+                ctx.fillStyle = '#111';
+                ctx.font = 'bold ' + (r * 0.165) + 'px system-ui, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                for(let n = 1; n <= 12; n++){
+                    const ang = (n * 30 - 90) * Math.PI / 180;
+                    ctx.fillText(String(n), cx + Math.cos(ang) * (r * 0.78), cy + Math.sin(ang) * (r * 0.78));
                 }
             }
 
-            const hh = (mode===3) ? userH : targetH;
-            const mm = (mode===3) ? userM : targetM;
-
-            
-            const mAng = (mm*6-90)*Math.PI/180;
-            ctx.lineWidth = 4;
-            ctx.strokeStyle = "#1f6feb";
+            const hh = (mode === 3) ? userH : targetH;
+            const mm = (mode === 3) ? userM : targetM;
+            ctx.lineCap = 'round';
+            const mAng = (mm * 6 - 90) * Math.PI / 180;
+            ctx.lineWidth = r * 0.035;
+            ctx.strokeStyle = '#1f6feb';
             ctx.beginPath();
             ctx.moveTo(cx, cy);
-            ctx.lineTo(cx + Math.cos(mAng)*(r*0.86), cy + Math.sin(mAng)*(r*0.86));
+            ctx.lineTo(cx + Math.cos(mAng) * (r * 0.86), cy + Math.sin(mAng) * (r * 0.86));
             ctx.stroke();
 
-            
-            const hourVal = (hh % 12) + (mm/60);
-            const hAng = (hourVal*30-90)*Math.PI/180;
-            ctx.lineWidth = 6;
-            ctx.strokeStyle = "#111";
+            const hourVal = (hh % 12) + mm / 60;
+            const hAng = (hourVal * 30 - 90) * Math.PI / 180;
+            ctx.lineWidth = r * 0.053;
+            ctx.strokeStyle = '#111';
             ctx.beginPath();
             ctx.moveTo(cx, cy);
-            ctx.lineTo(cx + Math.cos(hAng)*(r*0.60), cy + Math.sin(hAng)*(r*0.60));
+            ctx.lineTo(cx + Math.cos(hAng) * (r * 0.60), cy + Math.sin(hAng) * (r * 0.60));
             ctx.stroke();
 
-            ctx.fillStyle = "#111";
+            ctx.fillStyle = '#111';
             ctx.beginPath();
-            ctx.arc(cx, cy, 6, 0, Math.PI*2);
+            ctx.arc(cx, cy, r * 0.052, 0, Math.PI * 2);
             ctx.fill();
         }
 
