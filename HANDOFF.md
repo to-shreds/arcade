@@ -1,45 +1,41 @@
 # Arcade continuation handoff
 
-## Current work: 2.10.0 Train Trouble and Robot Workshop
+## Current implementation: 2.10.0, verified
 
-IN PROGRESS release verification. Canonical published main remains
-2.9.0 dc96bfb0a35499f18dfe115edea03cd599fee0cb. The complete new-game build
-is checkpointed at a71a7cec4e8c314aa5496d44bd51212e4497a4e8 on
-work/arcade-2.10.0-build. Subsequent narrow QA fixes are staged for preflight.
-Controlling agreed scope: docs/arcade-2.10.0-design.md.
+Runtime source f55e55ce031b2da65d8a91ed1d3682b71cc6394a. Read-only shared-test
+repair 8d96a80793ad6b45150dd5b5b0ac0a1d1c748eef changes no game assets.
+ProjectStatus controls final main/publication, package and readiness. Canonical
+repository remains to-shreds/arcade. Approved scope: docs/arcade-2.10.0-design.md.
+Snapshot 2.10.0+20261107.1: 415 runtime files, 22,969,994 bytes, 49 enabled entries.
 
-Implemented: Train Trouble's 28 witnessed dispatcher jobs, generated fresh tracks,
+Completed: Train Trouble's 28 witnessed dispatcher jobs, generated fresh tracks,
 cargo/coupling/repair, brake/signal/route controls, paint unlocks; separate 36-case
-Trolley Trouble with seeded disclosed outcomes; three original 4.5-second crash
-movies in MP4 and WebM; Robot Workshop's 30 lessons, three endless tiers, free
-building, all-input truth checking, alternate solutions, touch/keyboard and undo.
+Trolley Trouble with seeded disclosed outcomes; three original crash movies in
+MP4 and WebM; Robot Workshop's 30 lessons, three endless tiers, free building,
+all-input truth checking, alternate solutions, touch/keyboard and saved undo.
 Both register native menus, transactional full-state saves and shared adapters.
 
-Local checks passed: 25 new-game/static model tests, 1,200 logic seeds,
-1,000 train seeds, 3,504 trolley decision branches, seven focused Train browser
-groups, six Robot groups, eight independent playability viewports, 229 Worker
-checks, 112 transport checks, 147 multiplayer menus, 36 untouched room lobbies
-and both new-game online room/reconnect/control-pass cases. Offline manifest
-currently covers 415 files, 22,969,994 bytes; its full hash audit passes.
+Verification: preflight42432891781 engines, menus and catalog/offline pass,
+including229 Worker,112 transport,25 new models,147 menus,164 Home,18 short-menu/
+startup checks,98 all-activity stress cases, PWA and real RTC with both new
+adapters. Strict Chrome new-game group passes focused6+7 and20 consolidated
+cases, including actual MP4/WebM and offline video. Its only failure was a
+spectator-frozen test timer. Focused repair42433406509 passes both actual Worker
+flows with Node polling, same predicates/deadlines and a gate proving unchanged
+runtime. Do not call the original whole preflight green. Full detail and device
+limits: docs/arcade-stress-test-2.10.0.md. No user input is required.
 
-Remaining release gates: final consolidated media/PWA/shared browser test, exact
-source CI including positive RTC with both actual adapters, production Worker
-allowlist deploy, public-file hashes and persistent ZIP/provenance. Local RTC
-cannot gather usable ICE and is not counted as a pass. Local Chromium shell
-cannot decode H.264, so actual local playback uses WebM; branded Chrome in CI
-must independently decode the MP4 files. See docs/arcade-stress-test-2.10.0.md.
+Do not break: trolley choices disclose facts before the decision and show direct
+consequences, with no why quizzes or moral scores. Serious outcomes stay off-screen
+and separate from safe-occupant crash movies. Check every input combination and
+accept equivalent logic. Preserve seeds, full state, undo, private backups,
+controller gates and logical clip position on restore/handoff. Use native redraw,
+not generic canvas image overlays. Cached movie ranges preserve verified full
+responses. Keep the 2.9.0 and earlier constraints below. Generated replay does
+not promise infinitely many unique beginner truth functions.
 
-Do not break: trolley choices have disclosed facts before the decision, direct
-consequences, no why/justification quizzes and no moral scores. Serious trolley
-outcomes remain off-screen and separate from safe-occupant crash movies. Keep
-all switch combinations in logic validation and accept equivalent circuits.
-Preserve seeds, state, undo, private backups, controller gates and exact logical
-video position through restore/handoff. New games use native canonical redraw,
-not generic canvas image overlays. Cached movie ranges must preserve verified
-full responses in the atomic snapshot. Preserve the 2.9.0 baseline below.
-
-Next action: finish exact-source release verification, then publish/package and
-record artifact metadata. Update this handoff before final ProjectStatus readiness.
+Next action: use ProjectStatus for final publication/package facts. Reproduce any
+new issue with its exact activity, mode, viewport, save and room state first.
 
 
 ## Current implementation: 2.9.0, verified
