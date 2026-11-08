@@ -39,6 +39,13 @@ The later handoff/report commits have no runtime changes.
   expected previously played position. No TV source file was changed by
   this patch. This is an outstanding separate test issue, not evidence
   that the clock failed, and the full CI must not be called green.
+- Independent all-activity stress preflight
+  [42513863364](https://github.com/to-shreds/arcade/actions/runs/42513863364)
+  passed its model/package, Bug Squish, stories/TV, and Tanks/Upwords jobs.
+  The menus-and-tools job failed one Face Lab 320x568 size-button
+  assertion (1.5 instead of 1.75). Face Lab was not changed by this clock
+  release. Other jobs were still running at this report, so this suite
+  is not represented as fully successful.
 - Main [Pages deployment 42514434917](https://github.com/to-shreds/arcade/actions/runs/42514434917)
   **succeeded**. Device-specific Android rendering has **not** been tested
   on the reporting handset. Other extensive project stress jobs may
