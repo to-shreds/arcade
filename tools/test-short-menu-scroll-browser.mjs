@@ -8,6 +8,43 @@ import {startStaticFixture} from './static-fixture.mjs';
 const fixture=await startStaticFixture(),output=new URL('../test-results/short-menu-scroll/',import.meta.url);
 await mkdir(output,{recursive:true});
 const browser=await chromium.launch(browserLaunchOptions),results=[];
+async function verifyMinesweeperStartup(hasTouch){
+  const context=await browser.newContext({viewport:{width:844,height:390},hasTouch,isMobile:hasTouch});
+  const page=await context.newPage(),errors=[];
+  page.on('pageerror',error=>errors.push({message:error.message,stack:error.stack}));
+  let release;
+  const gate=new Promise(resolve=>{release=resolve;});
+  try{
+    // The activity registers resize before the following external save script.
+    // Hold that response so a real viewport resize runs before window.load.
+    await page.route('**/arcade-save.js',async route=>{await gate;await route.continue();});
+    const navigation=page.goto(fixture.base+'/minesweeper/index.html');
+    await page.waitForFunction(()=>!!window.MinesweeperAutosave);
+    assert.equal(await page.evaluate(()=>MinesweeperAutosave.capture()),undefined,'The board has not been initialized before load');
+    await page.evaluate(()=>{window.__startupResizeCount=0;window.addEventListener('resize',()=>window.__startupResizeCount++);});
+    await page.setViewportSize({width:800,height:360});
+    await page.waitForFunction(()=>window.__startupResizeCount>0);
+    assert.equal(await page.evaluate(()=>document.readyState),'loading','The native resize precedes window.load');
+    assert.deepEqual(errors,[],'An early viewport resize does not render an absent board');
+    release();await navigation;
+    await page.waitForFunction(()=>document.querySelectorAll('#grid .cell').length===81);
+    const before=await page.evaluate(()=>MinesweeperAutosave.capture());
+    assert.equal(before.rows,9);assert.equal(before.cols,9);assert.equal(before.mines,10);
+    // Native input changes one cell. Resizing must retain that exact board.
+    await page.locator('[data-diff="easy"]').click();
+    const cell=await page.locator('#grid .cell').first().boundingBox();
+    await page.mouse.move(cell.x+cell.width/2,cell.y+cell.height/2);await page.mouse.down();
+    await page.waitForFunction(()=>MinesweeperAutosave.capture().grid[0][0].flagged);await page.mouse.up();
+    const played=await page.evaluate(()=>MinesweeperAutosave.capture());
+    assert.equal(played.grid[0][0].flagged,true,'A native long press flags the cell');
+    await page.setViewportSize({width:320,height:568});
+    await page.waitForFunction(()=>window.__startupResizeCount>1);
+    assert.deepEqual(await page.evaluate(()=>MinesweeperAutosave.capture()),played,'Resize preserves every cell, flag, timer and game control value');
+    assert.deepEqual(errors,[]);
+    const name='minesweeper preload resize '+(hasTouch?'touch':'desktop');
+    results.push({name,passed:true,preloadResize:true,retainedBoard:true});console.log('PASS '+name);
+  }finally{release?.();await context.close();}
+}
 async function reachable(target){
   return target.evaluate(el=>{
     const r=el.getBoundingClientRect(),panel=el.closest('#startOverlay .panel'),p=panel.getBoundingClientRect();
@@ -44,11 +81,13 @@ async function activate(page,panel,target,gesture){
   if(await panel.count()&&await panel.isVisible())assert(Math.abs(await panel.evaluate(el=>el.scrollTop)-before)<2,'Ordinary activation does not rescue the layout by programmatic scrolling');
 }
 try{
+  await verifyMinesweeperStartup(false);
+  await verifyMinesweeperStartup(true);
   for(const viewport of [{width:844,height:390},{width:320,height:568}])for(const gesture of ['wheel','touch']){
     const context=await browser.newContext({viewport,hasTouch:gesture==='touch',isMobile:gesture==='touch'});
     for(const game of ['make-10','jigsaw','memory','minesweeper']){
       const page=await context.newPage(),errors=[];page.setDefaultTimeout(6000);
-      page.on('pageerror',error=>errors.push(error.message));page.on('dialog',dialog=>dialog.dismiss());
+      page.on('pageerror',error=>errors.push({message:error.message,stack:error.stack}));page.on('dialog',dialog=>dialog.dismiss());
       const name=game+' '+viewport.width+'x'+viewport.height+' '+gesture;
       try{
         await page.goto(fixture.base+'/'+game+'/index.html');
@@ -76,12 +115,12 @@ try{
         await Promise.all([page.waitForURL(fixture.base+'/index.html'),home[gesture==='touch'?'tap':'click']()]);
         await page.locator('header h1').filter({hasText:/^Arcade$/}).waitFor({state:'visible'});
         assert.deepEqual(errors,[]);results.push({name,passed:true,initial,scrollTopAfterNativeInput:after});console.log('PASS '+name);
-      }catch(error){results.push({name,passed:false,error:error.stack});await page.screenshot({path:new URL(game+'-'+viewport.width+'-'+gesture+'-failure.png',output).pathname}).catch(()=>{});console.error('FAIL '+name+': '+error.message);}
+      }catch(error){results.push({name,passed:false,error:error.stack,pageErrors:errors});await page.screenshot({path:new URL(game+'-'+viewport.width+'-'+gesture+'-failure.png',output).pathname}).catch(()=>{});console.error('FAIL '+name+': '+error.message);if(errors.length)console.error(JSON.stringify(errors,null,2));}
       finally{await page.close();}
     }
     await context.close();
   }
   await writeFile(new URL('results.json',output),JSON.stringify(results,null,2)+'\n');
   assert.equal(results.filter(result=>!result.passed).length,0,'All initial menu controls and exits are reachable');
-  console.log('PASS all '+results.length+' native wheel/touch menu reachability scenarios');
+  console.log('PASS all 16 native wheel/touch menu reachability scenarios and both Minesweeper startup/resize regressions');
 }finally{await browser.close();await fixture.close();}

@@ -1,0 +1,61 @@
+name: Verify Arcade 2.9.0 startup repair
+
+on:
+  push:
+    branches: [work/arcade-2.9.0-final-check]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: arcade-2.9.0-final-check
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Verify the repair is the only runtime change
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only', '9fe4b6d6185e71687669e94d7ff06280876079ea', 'HEAD'], text=True).splitlines())
+          allowed = {'.github/workflows/arcade-2.9.0-final-check.yml', 'minesweeper/index.html',
+                     'offline-manifest.json', 'tools/test-short-menu-scroll-browser.mjs'}
+          assert changed <= allowed, f'Unexpected changes after the full preflight: {changed - allowed}'
+          assert {'minesweeper/index.html', 'tools/test-short-menu-scroll-browser.mjs'} <= changed
+          print('All other tested source files are unchanged from the full preflight.')
+          PY
+      - name: Install locked test tools
+        run: |
+          npm ci
+          npm ci --prefix cloudflare/chess-worker
+          npx playwright install --with-deps chromium
+      - name: Verify models, transport and complete runtime
+        run: |
+          npm test --prefix cloudflare/chess-worker
+          node --test multiplayer/test/*.test.mjs
+          node tools/test-native-keyboard.mjs
+          node tools/test-shell-navigation.mjs
+          node tools/test-android-wrapper.mjs
+          node tools/test-offline-runtime.mjs
+      - name: Verify the startup race and every activity
+        run: |
+          npm run test:short-menus
+          npm run test:project-stress
+          node tools/test-shell-browser.mjs
+          node tools/test-family-activities.mjs --offline-only
+      - name: Retain repair evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arcade-2.9.0-startup-repair
+          path: test-results/
+          retention-days: 7

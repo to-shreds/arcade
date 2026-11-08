@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.9.0+20261107.1",
-  "generatedAt": "2026-11-07T23:46:49.115Z",
+  "generatedAt": "2026-11-07T23:59:23.949Z",
   "fileCount": 388,
-  "totalBytes": 20195783,
+  "totalBytes": 20195799,
   "files": [
     {
       "path": "adventure/game.json",
@@ -477,8 +477,8 @@
     },
     {
       "path": "minesweeper/index.html",
-      "bytes": 57751,
-      "sha256": "a719c388c5a93d57899767617c6ebfc621489c594f4035f1fde26e98f22931b4"
+      "bytes": 57767,
+      "sha256": "e663c5cac01e5a6946624e4ef8cf2170181a2e49791b7969200c9f9c9ef4ebfd"
     },
     {
       "path": "mini-golf/game.json",

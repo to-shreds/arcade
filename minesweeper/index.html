@@ -1447,7 +1447,7 @@ button,.ui-btn,.btn,.btn-large,.secondary,.small,.ck-btn,.ttt-btn,.mz-btn,.mg-bt
 
     window.addEventListener('resize', ()=>{
       applyBoardSize();
-      renderAll();
+      if(grid.length) renderAll();
     });
   </script>
 <script src="../arcade-save.js"></script>
