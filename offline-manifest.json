@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.10.2+20261108.1",
-  "generatedAt": "2026-11-08T19:11:51.188Z",
-  "fileCount": 415,
-  "totalBytes": 22971520,
+  "version": "2.11.0+20261109.1",
+  "generatedAt": "2026-11-09T07:27:28.956Z",
+  "fileCount": 417,
+  "totalBytes": 23050940,
   "files": [
     {
       "path": "adventure/game.json",
@@ -162,8 +162,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 28874,
-      "sha256": "9371992d56a8a4b1f6ad7f2866f4f4d4e6cf747718c79b4301960f5784ddc58a"
+      "bytes": 29399,
+      "sha256": "3050e2e88fbbeef6f79a19f19631000ee69a6e0df7a5ae89aaaab02c4dbdbf6b"
     },
     {
       "path": "chat-room/game.json",
@@ -328,7 +328,7 @@
     {
       "path": "index.html",
       "bytes": 15878,
-      "sha256": "bfa6259f5749319acaea043b491eefd45aa7ba36c75208c7047f58c074841216"
+      "sha256": "5c7ec2386bfca0348b1554b719b99adc0b392e860578ba97c4b408d29d73f3f1"
     },
     {
       "path": "insultinator/game.json",
@@ -1566,6 +1566,16 @@
       "sha256": "78de1ccd061fe8f411bd9f27a33875cd045f692cb96e1b02c93adf351f481b86"
     },
     {
+      "path": "retro-vault/icon.svg",
+      "bytes": 717,
+      "sha256": "6952fad76b9ddd94eb7bce13e9fd8082b2d6aae988f3659d281a0cbc239863dc"
+    },
+    {
+      "path": "retro-vault/index.html",
+      "bytes": 78179,
+      "sha256": "f850e2391f7e38bd8a9a3ea80789c37c4790a08c2512e60426a0aae0b1188ced"
+    },
+    {
       "path": "robot-workshop/app.mjs",
       "bytes": 22619,
       "sha256": "e313798aa8e15bc02bbdfee039e469b81d8b03929007d824132b4c6ce6b13c48"
@@ -1712,8 +1722,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 29039,
-      "sha256": "1045d9274562bd0f2eb51a9aac0403fa70e6ef343f0541a515d3925da69215d1"
+      "bytes": 29038,
+      "sha256": "cfb7e0325c7af9b7fcd4e17887b3520655f8c97954074583e6f984706fd5e392"
     },
     {
       "path": "tanks/battle-view.css",

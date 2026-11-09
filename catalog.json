@@ -1326,6 +1326,31 @@
       "onlinePlayersMax": 8,
       "folder": "robot-workshop",
       "launchPath": "robot-workshop/index.html"
+    },
+    {
+      "title": "Retro Vault",
+      "entry": "index.html",
+      "icon": "icon.svg",
+      "order": 500,
+      "enabled": true,
+      "type": "game",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "arcade",
+        "puzzle"
+      ],
+      "tags": [
+        "touch",
+        "keyboard",
+        "gamepad",
+        "offline",
+        "classic"
+      ],
+      "orientation": "any",
+      "folder": "retro-vault",
+      "launchPath": "retro-vault/index.html"
     }
   ],
   "categories": [
