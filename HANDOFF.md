@@ -1,3 +1,13 @@
+# Retro Vault 2.11.0: classic game expansion
+
+Implemented 26 original classic-inspired games in one self-contained `retro-vault/index.html`, with separate launcher tile `Retro Vault` and matching `retro-vault/icon.svg`. The existing 49 activities, shared/competitive games and Nearby transport are unchanged. Modes: 14 action (Snake, Breakout, Pong, Invaders, Asteroids, Flappy, Frog Crossing, Light Cycles, Meteor Dodge, Highway Dash, Ski Slalom, Star Catcher, Missile Defense, Jetpack) and 12 puzzles (Block Drop, 2048-style Merge, Sokoban, Lights Out, Four in a Row, Reversi, Peg Jump, Sliding Puzzle, Flood Fill, Match 3, Sudoku, Pipe Circuit). These are original JS implementations, not original DOS/Windows game binaries or ROMs.
+
+Input: touch buttons, canvas taps, board swipes, keyboard, browser Gamepad API (D-pad/sticks, mapped A/B, mapped Start pause/resume), vault selection by gamepad and per-game localStorage checkpoints. A settings dialog permits action/menu button remapping. When available, ArcadeSave.goHome preserves shell navigation; direct downloads fall back to the hosted Arcade home. Separate group in catalog, no `shared-activity.js`, no online rooms, and no change to existing 49 activities' multiplayer semantics. The new HTML is self-contained; icon and ArcadeSave external script are optional when opened as a standalone download.
+
+Local Chromium testing used content injection where this environment blocks navigation. All 26 engines passed inputs, 40 ticks and drawing in desktop, portrait, narrow portrait and landscape. Browser tests passed saving/reopening all modes, Sudoku/Flood extra selectors, keyboard, touchscreen 2048 swipe, simulated Gamepad API selection/action/start/disconnect, search/filter and screen geometry. There is no physical Bluetooth controller validation yet. `tools/test-retro-vault.mjs` and an independent GitHub Actions workflow give hosted-origin checks; consult workflow results before calling publication fully verified. Preserve canonical offline manifest with SHA-256 hashes, PWA atomic update behavior and the 2.10.2 Time Master clock fix. Do not treat unrelated existing TV/Face Lab stress failures as resolved.
+
+Next: verify retro GitHub CI and broad regression against this branch; publish only after required tests, update ProjectStatus last.
+
 # Time Master clock 2.10.2: mobile geometry repair
 
 Published at https://to-shreds.github.io/arcade/ (runtime merge

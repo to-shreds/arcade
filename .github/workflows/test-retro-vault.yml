@@ -1,0 +1,31 @@
+name: Test Retro Vault
+on:
+  pull_request:
+    paths:
+      - 'retro-vault/**'
+      - 'catalog.json'
+      - 'offline-manifest.json'
+      - 'tools/test-retro-vault.mjs'
+      - '.github/workflows/test-retro-vault.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'retro-vault/**'
+      - 'catalog.json'
+      - 'offline-manifest.json'
+      - 'tools/test-retro-vault.mjs'
+jobs:
+  retro-vault:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node tools/test-retro-vault.mjs
+      - run: node tools/test-shell-navigation.mjs
+      - run: node tools/test-native-keyboard.mjs
+      - run: node tools/test-offline-runtime.mjs

@@ -1,3 +1,10 @@
+# 2.11.0
+
+- Added Retro Vault: 26 original classic-inspired browser games, including 14 action games and 12 puzzle games. The existing 49 activities remain present.
+- Added Bluetooth/USB gamepad controls through the browser Gamepad API, with vault selection, directional movement, A/B actions, Start pause/resume and user-remappable buttons.
+- Added touch D-pad, action buttons, swipe controls for board games, keyboard equivalents, responsive desktop/mobile play and local saved progress per game.
+- Added offline manifest entries and an independent real-browser retro QA workflow. No proprietary game data, ROMs, or external runtime requests are included.
+
 # 2.10.2
 
 - Fixed Time Master's shrunken, top-left clock drawing by rendering in the
