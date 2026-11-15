@@ -3,24 +3,24 @@
 The current family Arcade includes 50 enabled activities, including Retro Vault.
 Arcade exits now display a recognizable 🏠, without removing their text or
 changing the existing click, save, or navigation handlers. Most activities
-load \`arcade-save.js\`, which decorates initial and dynamically inserted
-return-home buttons. This also covers the old \`← MENU\` / \`Back to Menu\`
-controls whose \`goToMenu()\` action actually leaves for the Arcade. Controls
+load `arcade-save.js`, which decorates initial and dynamically inserted
+return-home buttons. This also covers the old `← MENU` / `Back to Menu`
+controls whose `goToMenu()` action actually leaves for the Arcade. Controls
 that open an activity's own menu instead are explicitly excluded after
-\`data-shared-menu-toggle\` is assigned, preserving their ☰ identity.
+`data-shared-menu-toggle` is assigned, preserving their ☰ identity.
 Arcade Chat's two exits were updated in its standalone HTML; Guess Who already
 had recognizable house symbols. Existing 🏠 icons are not duplicated.
 
-Current offline snapshot: \`2.11.0+20261115.2\`, 417 files, 23,054,706
-runtime bytes; updated \`offline-manifest.json\` SHA-256 and byte counts for
-\`arcade-save.js\`, \`chat-room/index.html\`, and \`sw.js\` (worker
-\`2026-11-15-home-icons-v2\`). Original game engines and checkpoint formats
+Current offline snapshot: `2.11.0+20261115.2`, 417 files, 23,054,706
+runtime bytes; updated `offline-manifest.json` SHA-256 and byte counts for
+`arcade-save.js`, `chat-room/index.html`, and `sw.js` (worker
+`2026-11-15-home-icons-v2`). Original game engines and checkpoint formats
 remain unchanged. Browser regression assertions are in
-\`tools/test-menu-home-browser.mjs\`. A real Chromium fixture passed 10
+`tools/test-menu-home-browser.mjs`. A real Chromium fixture passed 10
 navigation icon and non-home-button cases in each of four layouts
 (390x844, 844x390, 320x568, 1440x900), including dynamic menu insertion,
 icon replacement and menu-toggle reclassification; existing button click
-events were also checked. The full \`arcade-save.js\` passes JavaScript syntax
+events were also checked. The full `arcade-save.js` passes JavaScript syntax
 validation. Source and manifest checks matched the exact post-change asset
 hashes. GitHub Pages published the runtime snapshot, and Retro Vault CI
 passed on the runtime snapshot. Full web CI remains a separate check; the
@@ -31,7 +31,7 @@ Do not break: home symbols must identify navigation to the main Arcade,
 not an internal settings/play menu. Do not intercept or alter the existing
 navigation routes. If a game gains a new navigation pattern, add coverage to
 the shared recognizer or the game's own visible button, then test on a narrow
-phone and in landscape. Next: check the newest \`Test Arcade Web\` run and
+phone and in landscape. Next: check the newest `Test Arcade Web` run and
 refresh the installed/offline Arcade on Scarlett's device to confirm the
 icon is visible in the actual WebView.
 
