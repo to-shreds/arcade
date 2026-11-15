@@ -10,6 +10,9 @@ for(const item of catalog.items.filter(item=>item.enabled&&!item.warning)){
 }
 const output=new URL(process.env.ARCADE_MENU_NATIVE_ONLY==='1'?'../test-results/menu-home-native/':'../test-results/menu-home/',import.meta.url);await mkdir(output,{recursive:true});
 const results=[],errors=[];
+async function expectHouse(home,description){
+  assert.match(await home.innerText(),/🏠|🏡/,description+': Arcade exit shows a recognizable house');
+}
 async function navigateHome(page,activate){
   const target=fixture.base+'/index.html',session=await page.context().newCDPSession(page),requests=[];
   await session.send('Page.enable');
@@ -40,6 +43,7 @@ try{
           home=page.locator('#shared-menu-home:visible,[data-shared-menu-content]:visible button,[data-shared-menu-content]:visible a').filter({hasText:/back to arcade|arcade home/i}).first();
         }
         await home.scrollIntoViewIfNeeded();
+        await expectHouse(home,name);
         await navigateHome(page,()=>home[gesture]());
         results.push({name,pass:true});console.log('PASS '+name);
       }catch(error){
@@ -53,7 +57,10 @@ try{
       try{
         await nativePage.goto(fixture.base+'/'+game+'/');
         const home=nativePage.locator(selector).filter({hasText:'Back to Arcade'}).first();
-        await home.scrollIntoViewIfNeeded();await navigateHome(nativePage,()=>home[gesture]());
+        await home.scrollIntoViewIfNeeded();
+        await expectHouse(home,name);
+        if(game==='chess') await expectHouse(nativePage.locator('#menuBtn'),name+' movable menu button');
+        await navigateHome(nativePage,()=>home[gesture]());
         results.push({name,pass:true});console.log('PASS '+name);
       }catch(error){results.push({name,pass:false,error:error.stack});console.error('FAIL '+name+': '+error.message);await nativePage.screenshot({path:new URL(game+'-'+viewport.width+'-failure.png',output).pathname}).catch(()=>{});}
       finally{await nativePage.close();}
@@ -70,8 +77,12 @@ try{
       await page.locator('#dotsPauseResume')[gesture]();
       assert.equal(await page.locator('#dotsPauseMenu').isVisible(),false);
       assert.equal(await page.evaluate(()=>{DotsGame.saveGame();return localStorage.getItem('arcade_dots_save_v1');}),before);
-      await page.locator('#dotsMenuButton')[gesture]();await navigateHome(page,()=>page.locator('#dotsPauseHome')[gesture]());
-      await page.goto(fixture.base+'/dots/');await navigateHome(page,()=>page.locator('.dots-menu-home')[gesture]());
+      await page.locator('#dotsMenuButton')[gesture]();
+      await expectHouse(page.locator('#dotsPauseHome'),name+' pause');
+      await navigateHome(page,()=>page.locator('#dotsPauseHome')[gesture]());
+      await page.goto(fixture.base+'/dots/');
+      await expectHouse(page.locator('.dots-menu-home'),name+' setup');
+      await navigateHome(page,()=>page.locator('.dots-menu-home')[gesture]());
       results.push({name,pass:true});console.log('PASS '+name);
     }catch(error){results.push({name,pass:false,error:error.stack});console.error('FAIL '+name+': '+error.message);await page.screenshot({path:new URL('dots-'+viewport.width+'-failure.png',output).pathname}).catch(()=>{});}
     finally{await page.close();}
