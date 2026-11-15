@@ -1,3 +1,40 @@
+# Arcade house icons for return-home controls (2026-11-15)
+
+The current family Arcade includes 50 enabled activities, including Retro Vault.
+Arcade exits now display a recognizable 🏠, without removing their text or
+changing the existing click, save, or navigation handlers. Most activities
+load \`arcade-save.js\`, which decorates initial and dynamically inserted
+return-home buttons. This also covers the old \`← MENU\` / \`Back to Menu\`
+controls whose \`goToMenu()\` action actually leaves for the Arcade. Controls
+that open an activity's own menu instead are explicitly excluded after
+\`data-shared-menu-toggle\` is assigned, preserving their ☰ identity.
+Arcade Chat's two exits were updated in its standalone HTML; Guess Who already
+had recognizable house symbols. Existing 🏠 icons are not duplicated.
+
+Current offline snapshot: \`2.11.0+20261115.2\`, 417 files, 23,054,706
+runtime bytes; updated \`offline-manifest.json\` SHA-256 and byte counts for
+\`arcade-save.js\`, \`chat-room/index.html\`, and \`sw.js\` (worker
+\`2026-11-15-home-icons-v2\`). Original game engines and checkpoint formats
+remain unchanged. Browser regression assertions are in
+\`tools/test-menu-home-browser.mjs\`. A real Chromium fixture passed 10
+navigation icon and non-home-button cases in each of four layouts
+(390x844, 844x390, 320x568, 1440x900), including dynamic menu insertion,
+icon replacement and menu-toggle reclassification; existing button click
+events were also checked. The full \`arcade-save.js\` passes JavaScript syntax
+validation. Source and manifest checks matched the exact post-change asset
+hashes. GitHub Pages published the runtime snapshot, and Retro Vault CI
+passed on the runtime snapshot. Full web CI remains a separate check; the
+preexisting web test suite had unrelated failures, and the new house-icon
+assertions must be assessed with that distinction.
+
+Do not break: home symbols must identify navigation to the main Arcade,
+not an internal settings/play menu. Do not intercept or alter the existing
+navigation routes. If a game gains a new navigation pattern, add coverage to
+the shared recognizer or the game's own visible button, then test on a narrow
+phone and in landscape. Next: check the newest \`Test Arcade Web\` run and
+refresh the installed/offline Arcade on Scarlett's device to confirm the
+icon is visible in the actual WebView.
+
 # Retro Vault 2.11.0: classic game expansion
 
 Implemented 26 original classic-inspired games in one self-contained `retro-vault/index.html`, with separate launcher tile `Retro Vault` and matching `retro-vault/icon.svg`. The existing 49 activities, shared/competitive games and Nearby transport are unchanged. Modes: 14 action (Snake, Breakout, Pong, Invaders, Asteroids, Flappy, Frog Crossing, Light Cycles, Meteor Dodge, Highway Dash, Ski Slalom, Star Catcher, Missile Defense, Jetpack) and 12 puzzles (Block Drop, 2048-style Merge, Sokoban, Lights Out, Four in a Row, Reversi, Peg Jump, Sliding Puzzle, Flood Fill, Match 3, Sudoku, Pipe Circuit). These are original JS implementations, not original DOS/Windows game binaries or ROMs.
