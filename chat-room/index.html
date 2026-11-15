@@ -33,7 +33,7 @@
   <div class="stars"></div>
   <div class="app">
     <header>
-      <button id="homeBtn" class="home" aria-label="Back to Arcade">‹</button>
+      <button id="homeBtn" class="home" aria-label="Back to Arcade">🏠</button>
       <div class="brand"><span class="logo">💬</span><div class="brandText"><h1>Arcade Chat</h1><p id="headerSubtitle">Create or join a room</p></div></div>
       <div class="headerRight"><div id="connectionPill" class="pill"><span class="dot"></span><span id="connectionText">Not connected</span></div><button id="soundBtn" class="iconBtn preferenceBtn" type="button" aria-pressed="true" aria-label="Mute message sounds"><span id="soundIcon">🔊</span><span id="soundText">Sound on</span></button><button id="notifyBtn" class="iconBtn preferenceBtn" type="button" aria-pressed="false" aria-label="Enable desktop notifications"><span id="notifyIcon">🔕</span><span id="notifyText">Notify off</span></button><button id="membersBtn" class="iconBtn" aria-label="Show room members">👥</button></div>
     </header>
@@ -53,7 +53,7 @@
       <div class="status" id="multiplayerTransportStatus" aria-live="polite">Internet</div>
       <div class="field" id="startNameField"><label for="startName">Your nickname</label><input id="startName" maxlength="24" autocomplete="nickname" placeholder="Arcade Player"></div>
       <div class="choices"><button id="createBtn" class="primaryBtn">Create room</button><button id="joinOpenBtn" class="secondaryBtn">Join room</button></div>
-      <button id="resumeBtn" class="resumeBtn" hidden>Resume last room</button><button id="startHomeBtn" class="backBtn" type="button">Back to Arcade</button><div id="startStatus" class="status" aria-live="polite"></div>
+      <button id="resumeBtn" class="resumeBtn" hidden>Resume last room</button><button id="startHomeBtn" class="backBtn" type="button">🏠 Back to Arcade</button><div id="startStatus" class="status" aria-live="polite"></div>
     </section>
   </div>
   <div id="joinOverlay" class="overlay hidden"><section class="card"><h2>Join a room</h2><p class="lead">Enter the code exactly as it appears on your friend’s screen.</p><form id="joinForm"><div class="field code"><label for="joinCode">Room code</label><input id="joinCode" maxlength="6" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="ABC234"></div><button id="joinSubmitBtn" class="primaryBtn" style="width:100%" type="submit">Join room</button><button id="joinBackBtn" class="backBtn" type="button">Back</button><div id="joinStatus" class="status" aria-live="polite"></div></form></section></div>
