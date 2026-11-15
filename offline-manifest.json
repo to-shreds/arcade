@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.11.0+20261115.1",
-  "generatedAt": "2026-11-15T22:37:37.489Z",
+  "version": "2.11.0+20261115.2",
+  "generatedAt": "2026-11-15T22:43:45.719Z",
   "fileCount": 417,
-  "totalBytes": 23054496,
+  "totalBytes": 23054706,
   "files": [
     {
       "path": "adventure/game.json",
@@ -32,8 +32,8 @@
     },
     {
       "path": "arcade-save.js",
-      "bytes": 23693,
-      "sha256": "a0701a0ef98ac032f7ab23b98650204bceccc3f6c84418ac88d1fd0b9fcf6d94"
+      "bytes": 23903,
+      "sha256": "c94e9a1943b6250d8e30673ae645f657d6f8d5b9967adf6a18568aa3faa3f50b"
     },
     {
       "path": "arcade-shell.css",
@@ -1723,7 +1723,7 @@
     {
       "path": "sw.js",
       "bytes": 29037,
-      "sha256": "2fb8b3e44f8c40fafc345db514c8eb551888e25cf7d1a15bcae243d67783c4b2"
+      "sha256": "77a90789fd536424ddec1ee8a62111868ef749391ecd963f11e7219358ed4ee3"
     },
     {
       "path": "tanks/battle-view.css",
