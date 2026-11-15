@@ -298,6 +298,82 @@
     return Promise.resolve(saveNow()).catch(function(){ return null; }).then(leaveForArcade);
   }
 
+  // Make every actual Arcade exit recognizable to children who cannot read.
+  // This is UI-only: existing game/menu click handlers and save behavior stay intact.
+  function installArcadeHomePictures(){
+    var selector = 'button,a[href]';
+    function plainLabel(value){
+      return String(value || '').replace(/^\s*(?:[⌂←↩‹«]|🏠|🏡|⬅️?)+\s*/u, '').trim();
+    }
+    function isHome(element){
+      if(element.hasAttribute('data-shared-menu-toggle') ||
+         /^(?:activity|game|pause) menu$/i.test(element.getAttribute('aria-label') || '')) return false;
+      var guidance = [element.getAttribute('aria-label'), element.getAttribute('title')].filter(Boolean).join(' ');
+      if(/(?:back|return|go) to (?:the )?arcade\b|arcade home\b/i.test(guidance)) return true;
+      if(element.matches('.arcade-home-link,.arcade-home,[data-shared-home],#shared-menu-home,#arcade-home-nav')) return true;
+      return /^(?:(?:back|return|go) to (?:the )?arcade(?: home)?|arcade home|arcade)$/i
+        .test(plainLabel(element.textContent));
+    }
+    function decorate(element){
+      if(!element || !element.matches || !element.matches(selector)) return;
+      var icon = element.querySelector(':scope > .arcade-home-picture');
+      if(!isHome(element)){
+        if(icon) icon.remove();
+        return;
+      }
+      if(icon || /🏠|🏡/u.test(element.textContent)) return;
+      // Replace the abstract roof and back-arrow glyphs with a real house.
+      for(var node = element.firstChild; node; node = node.nextSibling){
+        if(node.nodeType !== 3) break;
+        if(!node.nodeValue.trim()) continue;
+        node.nodeValue = node.nodeValue.replace(/^\s*[⌂←↩‹«]+\s*/u, '');
+        break;
+      }
+      var visibleWords = !!plainLabel(element.textContent);
+      icon = document.createElement('span');
+      icon.className = 'arcade-home-picture';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = '🏠';
+      icon.style.cssText = 'display:inline-block;flex-shrink:0;font-size:clamp(17px,1.2em,24px);line-height:1;vertical-align:-.08em;margin-inline-end:' + (visibleWords ? '.25em' : '0');
+      if(!visibleWords && !element.getAttribute('aria-label') && !element.getAttribute('title')){
+        element.setAttribute('aria-label', 'Back to Arcade');
+      }
+      element.prepend(icon);
+    }
+    function scan(root){
+      if(!root) return;
+      if(root.nodeType === 1) decorate(root);
+      if(root.querySelectorAll){
+        root.querySelectorAll(selector).forEach(decorate);
+      }
+    }
+    scan(document);
+    if(typeof MutationObserver === 'function'){
+      var observer = new MutationObserver(function(changes){
+        changes.forEach(function(change){
+          if(change.type === 'attributes'){
+            decorate(change.target);
+            return;
+          }
+          var parent = change.target.nodeType === 1 && change.target.closest && change.target.closest(selector);
+          if(parent) decorate(parent);
+          change.addedNodes.forEach(function(node){
+            if(node.nodeType === 1 && !node.classList.contains('arcade-home-picture')) scan(node);
+          });
+        });
+      });
+      observer.observe(document.documentElement, {
+        subtree:true, childList:true, attributes:true,
+        attributeFilter:['aria-label','title','data-shared-menu-toggle']
+      });
+    }
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', installArcadeHomePictures, {once:true});
+  }else{
+    installArcadeHomePictures();
+  }
+
   // A few older activities use a real link so Home still works without
   // JavaScript. Intercept that shared control when scripts are available and
   // route it through the persistent shell instead of loading a nested index.
