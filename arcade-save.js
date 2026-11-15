@@ -309,7 +309,9 @@
       if(element.hasAttribute('data-shared-menu-toggle') ||
          /^(?:activity|game|pause) menu$/i.test(element.getAttribute('aria-label') || '')) return false;
       var guidance = [element.getAttribute('aria-label'), element.getAttribute('title')].filter(Boolean).join(' ');
-      if(/(?:back|return|go) to (?:the )?arcade\b|arcade home\b/i.test(guidance)) return true;
+      if(/(?:back|return|go) to (?:the )?arcade\b|arcade home\b|arcade menu\b/i.test(guidance)) return true;
+      if(/^(?:menu|back to menu)$/i.test(plainLabel(element.textContent)) &&
+         (element.matches('.back-btn') || /\bgoToMenu\s*\(/.test(element.getAttribute('onclick') || ''))) return true;
       if(element.matches('.arcade-home-link,.arcade-home,[data-shared-home],#shared-menu-home,#arcade-home-nav')) return true;
       return /^(?:(?:back|return|go) to (?:the )?arcade(?: home)?|arcade home|arcade)$/i
         .test(plainLabel(element.textContent));
