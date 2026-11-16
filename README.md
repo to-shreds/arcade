@@ -8,6 +8,20 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.13.6
+
+**Tank Tactics** now makes every weapon launch along a visible gravity-driven
+arc. All twelve energy weapons that formerly fired instant straight rays now
+lob glowing payloads; their special effects happen on landing. Their original
+IDs, individual ranges, and distinct impact/terrain characteristics remain.
+Aiming previews and CPU opponents use the same arcing physics.
+
+Individual damage numbers drift upward in 8.4 seconds instead of 2.1 seconds,
+and continue moving even when the next turn begins. All 132 weapons, full
+battlefield HUD, saved matches and multiplayer remain supported. Comic Library
+large-file support, Monster Forge, and the rest of Arcade remain unchanged.
+See [Tank verification](docs/arcade-stress-test-2.13.6.md).
+
 ## Release 2.13.5
 
 **Comic Library** no longer rejects CBZ and PDF files at 150 MB or

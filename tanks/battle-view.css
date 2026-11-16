@@ -163,7 +163,7 @@
   color:#ffe58c;-webkit-text-stroke:1.3px #08182c;
   text-shadow:0 2px 2px #050e1c,0 0 13px #0009;
   transform:translate(-50%,-50%);
-  animation:tank-damage-rise 2100ms cubic-bezier(.12,.35,.2,1) forwards
+  animation:tank-damage-rise 8400ms cubic-bezier(.12,.35,.2,1) forwards
 }
 @keyframes tank-damage-rise{
   0%{transform:translate(-50%,-50%);opacity:1}

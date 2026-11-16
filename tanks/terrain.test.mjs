@@ -55,9 +55,9 @@ test('wall has a flat top; mountain has a sloped top; build events restore exact
  const [,wall]=shoot('wall-drop'),[,mountain]=shoot('mountain-maker');assert.ok(wall.terrain.filter(v=>v===295).length>=6);assert.ok(mountain.terrain.filter(v=>v===310).length<=1);
  for(const w of WEAPONS.filter(w=>w.kind==='builder')){const [s,n]=shoot(w.id);assert.ok(n.terrain.some(v=>v<400));assert.ok(n.terrain.every(v=>v<=400));replay(s,n);}
 });
-test('cutting ray bores into a ridge where other beams stop',()=>{
+test('arcing cutting charge carves a longer ridge trench than the precision energy orb',()=>{
  function ridge(id){const s=armed(id);for(let i=80;i<140;i++)s.terrain[i]=300;return [s,applyAction(s,{type:'fire',weaponId:id,angle:0,power:100})];}
- const [s,cut]=ridge('cutting-ray'),[a,laser]=ridge('laser-pencil');replay(s,cut);replay(a,laser);assert.ok(cut.terrain.filter((v,i)=>v>s.terrain[i]).length>laser.terrain.filter((v,i)=>v>a.terrain[i]).length+15);
+ const [s,cut]=ridge('cutting-ray'),[a,laser]=ridge('laser-pencil');replay(s,cut);replay(a,laser);assert.ok(cut.lastShot.paths[0].points.length>2);assert.ok(cut.lastShot.effects.some(e=>e.kind==='cut'&&e.tick>cut.lastShot.paths[0].points.at(-1)[2]));assert.ok(cut.terrain.filter((v,i)=>v>s.terrain[i]).length>laser.terrain.filter((v,i)=>v>a.terrain[i]).length+15);
 });
 test('no airburst excavation and terrain patch corruption fails closed',()=>{
  const t=Array(251).fill(400);excavateTerrain(t,500,100,65,1,weaponTerrainProfile(weaponById('surface-slap')));assert.ok(t.every(v=>v===400));

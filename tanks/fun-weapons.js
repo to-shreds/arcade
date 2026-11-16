@@ -16,7 +16,7 @@ const themes = [
  ['pencil-drill','Pencil Drill','drill','A spinning pencil bores a narrow hole into the ground.','✏️',{damage:92,radius:18,depth:112,count:1}],
  ['eraser-sweep','Eraser Sweep','carver','An enormous eraser scrapes a wide shallow trench.','🧽',{damage:71,radius:32,width:52,depth:17,reach:155}],
  ['paper-plane-squadron','Paper Plane Squadron','cluster','Four paper airplanes separate and dive at the ground.','✈️',{damage:83,radius:18,count:4,spread:74}],
- ['ruler-zap','Ruler Zap','beam','A ruler-straight flash reaches far across the battlefield.','📏',{damage:91,radius:9,width:7,reach:820,craterScale:.2}],
+ ['ruler-zap','Ruler Zap','beam','A charged ruler disc follows an arc and lands with a sharp flash.','📏',{damage:91,radius:9,width:7,reach:820,craterScale:.2}],
  ['stapler-double-tap','Stapler Double-Tap','burst','Two heavy metallic staples slam down in quick succession.','📎',{damage:91,radius:23,count:2,spread:12}],
  ['backpack-bonk','Backpack Bonk','ballistic','A flying schoolbag delivers a heavy, concentrated bonk.','🎒',{damage:96,radius:26,craterScale:.9}]
 ]],
@@ -39,7 +39,7 @@ const themes = [
 ['backyard','#86efac',[
  ['mud-pie-mortar','Mud Pie Mortar','ballistic','A splattery mud pie flies through the air.','🥧',{damage:76,radius:42,craterScale:.65}],
  ['sprinkler-spray','Sprinkler Spray','flame','A wild sprinkler scatters tiny jets across the grass.','💦',{damage:79,radius:13,count:11,spread:86,reach:165,craterScale:.1}],
- ['garden-hose-jet','Garden Hose Jet','beam','A narrow jet of water shoots into the distance.','🚿',{damage:78,radius:12,width:14,reach:520,craterScale:.3}],
+ ['garden-hose-jet','Garden Hose Jet','beam','A fat water droplet arcs into a concentrated splash on landing.','🚿',{damage:78,radius:12,width:14,reach:520,craterScale:.3}],
  ['lawn-gnome-drop','Lawn Gnome Drop','ballistic','A tiny garden gnome makes a surprisingly big entrance.','🧙',{damage:87,radius:28,craterScale:.85}],
  ['leaf-blower-blast','Leaf-Blower Blast','wave','A whoosh of flying leaves sweeps along the ground.','🍃',{damage:77,radius:28,count:8,reach:255,craterScale:.15}],
  ['rake-ripper','Rake Ripper','carver','The rake scrapes a narrow, long trench.','🧹',{damage:85,radius:17,width:22,depth:32,reach:220}]
@@ -57,15 +57,15 @@ const themes = [
  ['burpquake','Burpquake','wave','Giant green belch waves rumble along the ground.','💨',{damage:88,radius:30,count:4,reach:230,craterScale:.35}],
  ['stink-bomb','Stink Bomb','mine','This smelly surprise waits for someone to get close.','🤢',{damage:87,radius:41,fuse:3,count:1}],
  ['rotten-egg-rain','Rotten Egg Rain','cluster','Eight rotten eggs splat across the battlefield.','🥚',{damage:83,radius:17,count:8,spread:90}],
- ['toothpaste-tsunami','Toothpaste Tsunami','beam','An enormous minty stripe blasts straight ahead.','🪥',{damage:77,radius:23,width:36,reach:425,craterScale:.2}],
+ ['toothpaste-tsunami','Toothpaste Tsunami','beam','A minty toothpaste blob arcs over the hills and splashes on impact.','🪥',{damage:77,radius:23,width:36,reach:425,craterScale:.2}],
  ['slime-slap','Slime Slap','builder','A sticky blob builds a slippery-looking mound.','🟢',{damage:64,radius:44,height:47,width:145,build:1}]
 ]],
 ['science','#93c5fd',[
  ['soda-geyser','Soda Geyser','burst','A shaken soda launches eight fizzy bursts.','🥤',{damage:83,radius:17,count:8,spread:44}],
- ['magnet-mayhem','Magnet Mayhem','beam','A magnetic-looking beam zaps along a straight path.','🧲',{damage:88,radius:18,width:20,reach:570,craterScale:.35}],
- ['bubble-ray','Bubble Ray','beam','A broad glowing ray leaves a trail of bubbly sparks.','🫧',{damage:74,radius:25,width:46,reach:340,craterScale:.12}],
+ ['magnet-mayhem','Magnet Mayhem','beam','An arcing magnetic charge lands with a crackling burst.','🧲',{damage:88,radius:18,width:20,reach:570,craterScale:.35}],
+ ['bubble-ray','Bubble Ray','beam','An arcing bubble capsule lands and pops in a broad bubbly flash.','🫧',{damage:74,radius:25,width:46,reach:340,craterScale:.12}],
  ['marshmallow-meltdown','Marshmallow Meltdown','flame','A rain of toasty marshmallow blobs spreads in a fan.','🍡',{damage:82,radius:18,count:6,spread:45,reach:210,craterScale:.2}],
- ['robot-finger','Robot Finger','beam','A precise robot finger fires a long electric beam.','🤖',{damage:96,radius:10,width:5,reach:900,craterScale:.25}],
+ ['robot-finger','Robot Finger','beam','A glowing robot fingertip follows an arc before a precise electrical burst.','🤖',{damage:96,radius:10,width:5,reach:900,craterScale:.25}],
  ['tornado-in-a-jar','Tornado-in-a-Jar','wave','A swirling science experiment launches a train of pulses.','🌪️',{damage:83,radius:19,count:9,reach:300,craterScale:.55}]
 ]]
 ];

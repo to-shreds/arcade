@@ -73,12 +73,12 @@ const families = [
     ['fault-line', 'Fault Line', 'Seven medium blasts cut a deep, long fault.', '#ede9fe', {damage: 84, radius: 23, count: 7, depth: 90, reach: 280, craterScale: 1.3}],
   ]],
   ['beam', [
-    ['laser-pencil', 'Laser Pencil', 'A thin straight beam reaches across the battlefield.', '#67e8f9', {damage: 94, radius: 8, width: 4, reach: 1100, craterScale: .2}],
-    ['light-bar', 'Light Bar', 'A broad straight beam trades range for width.', '#22d3ee', {damage: 82, radius: 17, width: 28, reach: 420, craterScale: .4}],
-    ['plasma-lance', 'Plasma Lance', 'A medium-width beam reaches most of the battlefield.', '#06b6d4', {damage: 90, radius: 13, width: 12, reach: 850, craterScale: .65}],
-    ['flashlight', 'Flashlight', 'A very wide short beam sweeps a nearby area.', '#0891b2', {damage: 70, radius: 25, width: 58, reach: 180, craterScale: .2}],
-    ['cutting-ray', 'Cutting Ray', 'A narrow medium-range beam cuts deeply into terrain.', '#0e7490', {damage: 85, radius: 10, width: 7, reach: 630, craterScale: 1.6}],
-    ['sun-column', 'Sun Column', 'A wide beam reaches halfway across the battlefield.', '#cffafe', {damage: 78, radius: 22, width: 40, reach: 570, craterScale: .75}],
+    ['laser-pencil', 'Laser Pencil', 'A pinpoint energy orb arcs through the air, then bursts at the landing point.', '#67e8f9', {damage: 94, radius: 8, width: 4, reach: 1100, craterScale: .2}],
+    ['light-bar', 'Light Bar', 'A broad glowing payload follows an arc and bursts into a wide flash.', '#22d3ee', {damage: 82, radius: 17, width: 28, reach: 420, craterScale: .4}],
+    ['plasma-lance', 'Plasma Lance', 'A spinning plasma charge arcs into a focused hot impact.', '#06b6d4', {damage: 90, radius: 13, width: 12, reach: 850, craterScale: .65}],
+    ['flashlight', 'Flashlight', 'A chunky light capsule arcs into a nearby broad flash.', '#0891b2', {damage: 70, radius: 25, width: 58, reach: 180, craterScale: .2}],
+    ['cutting-ray', 'Cutting Ray', 'An arcing cutting charge lands and carves a deep trench along the ground.', '#0e7490', {damage: 85, radius: 10, width: 7, reach: 630, craterScale: 1.6}],
+    ['sun-column', 'Sun Column', 'A bright ball of sunshine follows an arc and erupts in a wide impact.', '#cffafe', {damage: 78, radius: 22, width: 40, reach: 570, craterScale: .75}],
   ]],
   ['flame', [
     ['pilot-light', 'Pilot Light', 'Three fire impacts form a tight short fan.', '#fecaca', {damage: 94, radius: 17, count: 3, spread: 10, reach: 95, craterScale: .25}],
@@ -206,7 +206,7 @@ const CLASSIC_REMIX = {
   ],
   "flashlight": [
     "World's Biggest Flashlight",
-    "The world's least subtle flashlight sweeps a broad nearby area.",
+    "The world's least subtle flashlight lobs a brilliant glowing ball into a broad flash.",
     "science",
     "🔦"
   ],

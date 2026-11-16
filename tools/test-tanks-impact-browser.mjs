@@ -160,11 +160,15 @@ try{
  const number=page.locator('#damageFloats .damage-number').first();
  await number.waitFor({state:'visible'});
  const first=await number.boundingBox();
- const typeSize=await number.evaluate(el=>parseFloat(getComputedStyle(el).fontSize));
- assert.ok(typeSize>=17,'The damage number must remain readable even in portrait');
- await page.waitForTimeout(320);
+ const metrics=await number.evaluate(el=>({font:parseFloat(getComputedStyle(el).fontSize),
+   duration:parseFloat(getComputedStyle(el).animationDuration)}));
+ assert.ok(metrics.font>=17,'The damage number must remain readable even in portrait');
+ assert.equal(metrics.duration,8.4,'Damage numbers should rise at one-quarter of their previous speed');
+ await page.waitForTimeout(400);
  const second=await number.boundingBox();
- assert.ok(second&&second.y<first.y-7,'Each scored value rises toward the actual screen ceiling');
+ assert.ok(second&&second.y<first.y-1,'Each scored value still rises toward the screen ceiling');
+ await page.waitForTimeout(1900);
+ assert.ok(await number.count(),'The slow number persists past the previous 2.1-second lifetime');
  await page.screenshot({path:path.join(out,'damage-floating-to-screen-top.png')});
  checks.push('Readable damage number rises toward the whole screen ceiling');
  for(const [width,height] of [[320,568],[390,844],[844,390],[1280,800]]){
@@ -184,6 +188,30 @@ try{
    await page.screenshot({path:path.join(out,'full-stage-'+width+'x'+height+'.png')});
  }
  checks.push('Entire ground profile visible; HUD floats above the stage on four layouts');
+ await page.evaluate(async()=>{
+   const {createGame}=await import('./engine.js');
+   const state=createGame({seed:1199,terrainType:'flat'});
+   if(!state.tanks[0].inventory.includes('laser-pencil'))state.tanks[0].inventory[0]='laser-pencil';
+   ArcadeSave.getAdapter().restore({schema:1,mode:'hotseat',difficulty:'normal',game:state,
+     aims:[{angle:45,power:30,weaponId:'laser-pencil'}]});
+ });
+ await page.locator('#fire').click();
+ await page.waitForFunction(()=>TanksGame.getState()?.shotsTotal===1
+   &&TanksGame.getState()?.lastShot?.weaponId==='laser-pencil');
+ const energy=await page.evaluate(()=>{
+   const shot=TanksGame.getState().lastShot,p=shot.paths[0].points;
+   return {paths:shot.paths.map(x=>x.kind),count:p.length,
+     first:p[0],middle:p[Math.floor(p.length/2)],last:p.at(-1),
+     directRay:shot.effects.some(x=>x.kind==='beam')};
+ });
+ assert.equal(energy.paths[0],'beam');
+ assert.ok(energy.count>8,'Energy weapon has visible ballistic samples');
+ assert.equal(energy.directRay,false,'Energy weapons cannot fire straight muzzle beams');
+ const span=(energy.middle[0]-energy.first[0])/(energy.last[0]-energy.first[0]);
+ const bow=energy.middle[1]-energy.first[1]-(energy.last[1]-energy.first[1])*span;
+ assert.ok(bow< -20,'The fired energy projectile bends significantly upward: '+bow);
+ await page.screenshot({path:path.join(out,'arcing-energy-projectile.png')});
+ checks.push('Energy weapon launches a genuine visible ballistic arc, never a direct ray');
  assert.deepEqual(errors,[]);
  await writeFile(path.join(out,'report.json'),JSON.stringify({pass:true,checks,errors},null,2)+'\n');
  console.log('PASS Tank impact browser:',checks.join('; '));

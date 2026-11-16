@@ -185,10 +185,18 @@ function muzzle(state, actor, angle) {
   const tank = state.tanks[actor], radians = angle * Math.PI / 180;
   return { x: tank.x + Math.cos(radians) * 23, y: tank.y - 15 - Math.sin(radians) * 23 };
 }
+// Keep the former ray weapons' distinct effective ranges while every
+// initial projectile follows the same gravity-controlled ballistic rules.
+export function launchSpeed(weapon, power) {
+  const base = 60 + power * 4.4;
+  return weapon?.kind === 'beam'
+    ? base * clamp(Math.sqrt((weapon.reach ?? 650) / 650), .5, 1.35)
+    : base;
+}
 function* flight(state, actor, weapon, angle, power, trace, options = {}) {
   const radians = angle * Math.PI / 180;
   const origin = options.origin ?? muzzle(state, actor, angle);
-  const speed = 60 + power * 4.4;
+  const speed = launchSpeed(weapon, power);
   let x = origin.x, y = origin.y, vx = options.vx ?? Math.cos(radians) * speed, vy = options.vy ?? -Math.sin(radians) * speed;
   let bounces = options.bounces ?? 0;
   const start = options.startTick ?? trace.launchTick ?? 0, points = [[x, y, start]], limit = MAX_TICKS - start - 25;
@@ -280,52 +288,33 @@ function triggerMines(state, trace, actor, all = false, age = true, startTick = 
   }
   state.mines = keep;
 }
-function resolveBeam(state, trace, actor, weapon, angle, power) {
-  const origin = muzzle(state, actor, angle), radians = angle * Math.PI / 180;
-  const length = (weapon.reach ?? WIDTH) * (.5 + power / 200);
-  const dx = Math.cos(radians), dy = -Math.sin(radians), width = weapon.width ?? 12;
-  let end = { ...origin }, soil = 0;
-  const before = state.terrain.slice(), launch = trace.launchTick || 0;
+// All energy weapons launch under gravity. Their different widths and
+// terrain profiles define the burst AFTER the shell lands, never a direct ray.
+function resolveArcBeam(state, trace, actor, weapon, angle, power) {
+  const impact = markedImpact(state, trace, actor, weapon, angle, power, {});
+  if (impact.missed) return;
   const profile = weaponTerrainProfile(weapon);
-  const hit = new Set(), beamHits = [];
-  for (let distance = 0; distance <= length; distance += 5) {
-    const x = origin.x + dx * distance, y = origin.y + dy * distance;
-    if (x < 0 || x > WIDTH || y < -HEIGHT || y > HEIGHT) break;
-    end = { x, y };
-    for (let target = 0; target < 2; target++) {
-      if (target === actor && distance < 30) continue;
-      const center = tankCenter(state.tanks[target]);
-      if (!hit.has(target) && Math.hypot(center.x - x, center.y - y) < width / 2 + 17) {
-        hit.add(target);
-        const scorer = target === actor ? 1 - actor : actor;
-        const gain = Math.round(weapon.damage);
-        state.tanks[scorer].score += gain; trace.scoreGain[scorer] += gain;
-        beamHits.push([target, gain, x]);
-      }
-    }
-    if (y >= groundAt({terrain:before}, x)) {
-      crater(state, x, weapon.id==='cutting-ray'?y:groundAt(state,x), width / 2 + 3, weapon.craterScale ?? 1, {...profile,connected:true});
-      soil += 5;
-      if (weapon.id !== 'cutting-ray' || soil >= 160 * (.5 + power/200)) break;
-    }
+  const radius = Math.max(weapon.radius ?? 8, (weapon.width ?? 8) * .48);
+  blast(state, trace, actor, weapon, impact.x, impact.y, weapon.damage, radius,
+    impact.tick, 'spark', {profile: {...profile, connected: true}});
+  // The cutting payload carves a trench AFTER the lobbed shell lands,
+  // not along a straight line of fire from the muzzle.
+  if (weapon.id === 'cutting-ray') {
+    const direction = Math.sign(impact.vx) || (actor === 0 ? 1 : -1);
+    const length = 160 * (.5 + power / 200);
+    const reference = state.terrain.slice();
+    const finish = clamp(impact.x + direction * length, 0, WIDTH);
+    const surface = groundAt(state, impact.x);
+    terrainEffect(state, trace, weapon, impact.x, surface, impact.tick + 4,
+      Math.max(7, profile.width), 'cut', () =>
+        cutChannel(state.terrain, reference, impact.x, finish,
+          Math.max(5, profile.width), profile.depth, 'flat'));
   }
-  settle(state);
-  const pushes = [];
-  if (trace.effects.length < MAX_EFFECTS - 1) for (const [target, gain, impactX] of beamHits) {
-    const push = knockTank(state, actor, target, weapon, impactX, gain);
-    if (push) pushes.push(push);
-  }
-  addPath(trace, 'beam', weapon.color, [[origin.x, origin.y, launch], [end.x, end.y, launch+12]]);
-  addEffect(trace, 'beam', weapon.color, origin.x, origin.y, width / 2, launch+1, {
-    x2: round(end.x), y2: round(end.y), duration: 18, ...(pushes.length ? {pushes} : {}),
-    ...(beamHits.length ? {damageHits: beamHits.map(([target,gain])=>[target,gain])} : {})
-  });
-  addEffect(trace, 'spark', weapon.color, end.x, end.y, width + 8, launch+12, { duration:18, terrain: terrainPatch(before,state.terrain) });
 }
 function resolveWeapon(state, trace, actor, weapon, angle, power) {
   const count = clamp(Math.round(weapon.count ?? 1), 1, 16), damage = weapon.damage ?? 60, radius = weapon.radius ?? 35;
   const spread = weapon.spread ?? 20, reach = weapon.reach ?? 180, depth = weapon.depth ?? 45;
-  if (weapon.kind === 'beam') { resolveBeam(state, trace, actor, weapon, angle, power); return; }
+  if (weapon.kind === 'beam') { resolveArcBeam(state, trace, actor, weapon, angle, power); return; }
   if (weapon.kind === 'burst') {
     volley(state, trace, actor, weapon, Array.from({length:count},(_,index)=>({
       angle:clamp(angle+(count===1?0:(index/(count-1)-.5)*spread),0,180), power,
@@ -447,7 +436,7 @@ function resolveWeapon(state, trace, actor, weapon, angle, power) {
       const x=clamp(impact.x+(count===1?0:index/(count-1)-.5)*spread*3,0,WIDTH);
       const y=groundAt({terrain:reference},x)-6, tick=impact.tick+index*6;
       const chains=Math.round(weapon.chain||0),share=damage/count;
-      strikes.push({x,y,tick,damage:chains?share*.5:share,from:{x,y:0},width:8});
+      strikes.push({x,y,tick,damage:chains?share*.5:share,from:{x:impact.x,y:impact.y-35},width:8});
       let prior={x,y};
       for(let branch=1;branch<=chains;branch++) {
         const tx=state.tanks[1-actor].x,dir=Math.sign(tx-x)||direction;
@@ -631,7 +620,7 @@ function predictLanding(state, actor, angle, power, weapon) {
       { origin: impact, vx: impact.vx * .72, vy: impact.vy * .72 + 24, startTick: impact.tick });
     return impact;
   }
-  const radians = angle * Math.PI / 180, origin = muzzle(state, actor, angle), speed = 60 + power * 4.4;
+  const radians = angle * Math.PI / 180, origin = muzzle(state, actor, angle), speed = launchSpeed(weapon, power);
   let x = origin.x, y = origin.y, vx = Math.cos(radians) * speed, vy = -Math.sin(radians) * speed;
   for (let step = 0; step < 310; step++) {
     vy += GRAVITY * DT; x += vx * DT; y += vy * DT;
@@ -652,22 +641,16 @@ export function chooseCpuAction(snapshot, difficulty = 'normal') {
   const shortlist = [];
   for (const weapon of inventory) {
     const candidates = [];
-    if (weapon.kind === 'beam') {
-      const own = tankCenter(state.tanks[actor]);
-      const raw = Math.atan2(own.y - target.y, target.x - own.x) * 180 / Math.PI;
-      const direct = target.x >= own.x ? clamp(raw, 0, 90) : clamp(raw < 0 ? raw + 360 : raw, 90, 180);
-      for (const offset of [-2, 0, 2]) candidates.push({ weapon, angle: clamp(direct + offset, 0, 180), power: 100, cost: Math.abs(offset) + Math.max(0, Math.abs(target.x - own.x) - weapon.reach) });
-    } else {
-      const direction = target.x > state.tanks[actor].x ? 1 : -1;
-      const groundAdvance = ['roller', 'wave', 'tunnel', 'carver'].includes(weapon.kind) ? weapon.reach * .5 : weapon.kind === 'flame' ? weapon.reach * .2 : 0;
-      const aimedX = clamp(target.x - direction * groundAdvance, 10, WIDTH - 10);
-      for (let aimed = 2; aimed <= 86; aimed += increment) {
-        const angle = direction > 0 ? aimed : 180 - aimed;
-        for (let power = 10; power <= 100; power += increment) {
-          const impact = predictLanding(state, actor, angle, power, weapon);
-          const cost = Math.hypot(impact.x - aimedX, impact.y - target.y) + (impact.missed ? 250 : 0);
-          candidates.push({ weapon, angle, power, cost });
-        }
+    // The same arcing trajectory predictor is used for every weapon family.
+    const direction = target.x > state.tanks[actor].x ? 1 : -1;
+    const groundAdvance = ['roller', 'wave', 'tunnel', 'carver'].includes(weapon.kind) ? weapon.reach * .5 : weapon.kind === 'flame' ? weapon.reach * .2 : 0;
+    const aimedX = clamp(target.x - direction * groundAdvance, 10, WIDTH - 10);
+    for (let aimed = 2; aimed <= 86; aimed += increment) {
+      const angle = direction > 0 ? aimed : 180 - aimed;
+      for (let power = 10; power <= 100; power += increment) {
+        const impact = predictLanding(state, actor, angle, power, weapon);
+        const cost = Math.hypot(impact.x - aimedX, impact.y - target.y) + (impact.missed ? 250 : 0);
+        candidates.push({ weapon, angle, power, cost });
       }
     }
     candidates.sort((left, right) => left.cost - right.cost || left.angle - right.angle || left.power - right.power);
