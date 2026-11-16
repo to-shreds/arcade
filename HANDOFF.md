@@ -1,3 +1,39 @@
+# Tank Tactics 2.13.4: full battlefield and floating hit numbers (2026-11-16)
+
+Merged source `98bc4dd3bb5ddff81743a61e41e66595141d0664`, PR #10. The 2.13.4 Tank update is in main;
+publication and packaged archive are verified separately.
+
+Authoritative changes: movement is clamped to the closest legal boundary
+and charged only on actual displacement; per-hit positive damage records
+are added to effect traces, including blast, beam and mines; cosmetic
+damage numbers float toward the top of the complete screen; and scores,
+controls and status are translucent overlays over a full-screen stage.
+The camera accounts for all terrain samples and retains proportional
+geometry. The permanent weapon loadout was removed from the battlefield,
+but the in-match weapon chooser remains available.
+
+Preserve: all 132 weapons and original IDs, shot/scoring rules, knockback,
+four deliberate moves, old saves, multiplayer Worker, Arcade Home helper,
+Comic Library CBZ picker fix, Monster Forge 2, Retro Vault and other games.
+The `damageHits` array is optional for legacy saved traces and must
+remain bounded and validated. Overlay numbers are cosmetic; do not
+change authoritative scores for visual reasons. The camera must show
+both horizontal terrain ends on narrow phones.
+
+Verification: [Tank browser preflight run 43959852413](https://github.com/to-shreds/arcade/actions/runs/43959852413)
+passed the dedicated Tanks/Upwords group and model/package checks on
+the combined latest source. [Full report](docs/arcade-stress-test-2.13.4.md).
+Production GitHub Pages and multiplayer Worker deploy on merge; confirm
+their successful run states. Physical low-end Android tablet confirmation
+is still outstanding.
+
+Next steps: verify release ZIP contents against the 437-entry
+SHA-256 manifest; upload the exact ZIP to ChatGPT Library; persist the
+verified release state to ProjectStatus after source HANDOFF update.
+Do not overwrite concurrent Comic Library or Monster Forge edits.
+
+---
+
 # Comic Library 2.13.3: Android CBZ picker repair (2026-11-16)
 
 Canonical: `to-shreds/arcade` main; merged change PR #13,
