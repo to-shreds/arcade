@@ -8,6 +8,17 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.13.1
+
+**Comic Library** adds a CBZ and PDF bookshelf to Arcade. It discovers public
+books in `to-shreds/Misc/cbz` and opens locally selected CBZ and PDF files.
+Both formats share full-screen page navigation, pinch zoom, fit page/width,
+vertical reading, optional two-page landscape layout, bookmarks, last-page
+resume, and per-book optional offline copies. Progress and saved books stay
+on the device. The reader bundles its JSZip and PDF.js engines, does not upload
+local books, and introduces no changes to shared games or multiplayer.
+See [Comic Library](comic-reader/README.md) for use and limitations.
+
 ## Release 2.13.0
 
 **Monster Forge** adds a full-screen creature-creation activity for Logan,
