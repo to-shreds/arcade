@@ -25,6 +25,7 @@ jobs:
         run: |
           node --test tools/test-comic-library-core.mjs
           node tools/test-comic-library-browser.mjs
+          node tools/test-shell-navigation.mjs
       - name: Update offline manifest in release branch
         if: startsWith(github.ref, 'refs/heads/work/comic-library-')
         run: |

@@ -48,7 +48,7 @@ for (const item of enabled) {
   const programmaticSource = removeSafeAnchorFallbacks(gameSource);
   for (const match of programmaticSource.matchAll(/\.\.\/index\.html/g)) {
     const nearbyCode = programmaticSource.slice(Math.max(0, match.index - 900), match.index + 180);
-    if (!/(?:ArcadeMultiplayer|ArcadeSave)\.goHome/.test(nearbyCode)) {
+    if (!/ArcadeMultiplayer\.goHome/.test(nearbyCode)) {
       failures.push(`${item.folder}: unguarded programmatic navigation to ../index.html`);
     }
   }

@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.13.2+20261116.1",
-  "generatedAt": "2026-11-16T05:46:34.465Z",
+  "generatedAt": "2026-11-16T05:49:25.388Z",
   "fileCount": 436,
-  "totalBytes": 24688665,
+  "totalBytes": 24688584,
   "files": [
     {
       "path": "adventure/game.json",
@@ -252,8 +252,8 @@
     },
     {
       "path": "comic-reader/index.html",
-      "bytes": 5109,
-      "sha256": "0eb3398e0a6ad9e9fc0fb7cbfa758f8fc1210b6055a879062bc01dcc061b01fa"
+      "bytes": 5151,
+      "sha256": "bff02dcc5c2e4b150ada3480ca1e73e9951f939714293b4aab298635af817f9f"
     },
     {
       "path": "comic-reader/reader.css",
@@ -262,8 +262,8 @@
     },
     {
       "path": "comic-reader/reader.js",
-      "bytes": 33999,
-      "sha256": "1e333222c49dfd75a6fc0f152451e80c91bade83d12b1de8e9f6dcbe617b7662"
+      "bytes": 33876,
+      "sha256": "dbbd8efc8b87ac03d4a6d5b4859d9650d702738fc6a857d3b9ee498cc109f58c"
     },
     {
       "path": "comic-reader/README.md",
