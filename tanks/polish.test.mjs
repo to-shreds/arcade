@@ -31,7 +31,10 @@ test('direct-hit damage, self-hit scoring and tank settling remain valid',()=>{
  const a=applyAction(g,{type:'fire',weaponId:'cannonball',angle:0,power:25});
  assert.ok(a.tanks[0].score>0);assert.equal(a.tanks[1].score,0);validateGame(a);
  const s=applyAction(armed('cannonball'),{type:'fire',weaponId:'cannonball',angle:90,power:1});
- assert.ok(s.tanks[1].score>0);assert.equal(s.tanks[0].score,0);assert.ok(s.tanks[0].y>400);
+ assert.ok(s.tanks[1].score>0);assert.equal(s.tanks[0].score,0);
+ assert.ok(s.terrain.some(y=>y>400),'The self-hit still digs the ground');
+ const support=Math.min(groundAt(s,s.tanks[0].x-12),groundAt(s,s.tanks[0].x),groundAt(s,s.tanks[0].x+12));
+ assert.ok(Math.abs(s.tanks[0].y-support)<.06,'The thrown tank settles onto the modified ground');
  assert.deepEqual(validateGame(JSON.parse(JSON.stringify(s))),s);
 });
 test('1,764 weapon/terrain/aim combinations stay deterministic and resumable',()=>{
