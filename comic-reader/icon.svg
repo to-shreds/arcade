@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="t">
+<title id="t">Comic Library</title>
+<defs><linearGradient id="back" x2="1" y2="1"><stop stop-color="#13365d"/><stop offset="1" stop-color="#44295c"/></linearGradient><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#f5faff"/><stop offset="1" stop-color="#e3e7f0"/></linearGradient></defs>
+<rect width="256" height="256" rx="49" fill="#101a34"/>
+<rect x="25" y="17" width="206" height="225" rx="29" fill="url(#back)"/>
+<path d="M63 39h121c11 0 20 9 20 20v150H83c-11 0-20 7-20 17z" fill="#21dcff"/>
+<path d="M67 47h123v151H67z" fill="url(#paper)"/>
+<path d="M70 55 186 55 142 112 70 145Z" fill="#4e6fbd"/>
+<path d="m70 146 71-34 44 48v35H70z" fill="#a951c2"/>
+<path d="m78 186 107-26v35H78z" fill="#ffce3a"/>
+<path d="m141 113 44 47M70 145l71-33m-63 74 108-26" stroke="#121830" stroke-width="6"/>
+<path d="M59 211c-1-9 6-16 16-16h137v20H79c-6 0-11 5-11 11" fill="none" stroke="#e4f5ff" stroke-width="9" stroke-linecap="round"/>
+<path d="M172 31h51v47l-25-10-26 10z" fill="#ffce3a"/>
+</svg>

@@ -1,0 +1,39 @@
+name: Comic Library checks
+on:
+  push:
+    branches:
+      - main
+      - 'work/comic-library-*'
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  reader:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Install locked dependencies and Chromium
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Reader unit and actual-browser integration tests
+        run: |
+          node --test tools/test-comic-library-core.mjs
+          node tools/test-comic-library-browser.mjs
+      - name: Update offline manifest in release branch
+        if: startsWith(github.ref, 'refs/heads/work/comic-library-')
+        run: |
+          node tools/generate-offline-manifest.mjs --version '2.13.1+20261116.1'
+          node tools/test-offline-runtime.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add offline-manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Regenerate verified Comic Library offline manifest'
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi

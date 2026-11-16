@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#090d1e">
+<title>Comic Library | Arcade</title>
+<link rel="stylesheet" href="../arcade-ui.css">
+<link rel="stylesheet" href="reader.css">
+</head>
+<body>
+<main id="shelf" class="screen" aria-label="Comic library">
+  <header class="topbar">
+    <button id="arcadeHome" class="icon-action" type="button" aria-label="Back to Arcade" title="Back to Arcade"><svg class="house" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Arcade</span></button>
+    <h1>Comic Library</h1>
+    <button id="refresh" type="button" class="icon-action" title="Refresh GitHub library" aria-label="Refresh library">↻</button>
+  </header>
+  <section class="shelf-tools">
+    <button id="chooseFile" class="primary" type="button">Open CBZ or PDF</button>
+    <input id="filePicker" type="file" accept=".cbz,.pdf,application/pdf,application/vnd.comicbook+zip" hidden aria-label="Choose a comic file">
+    <input id="search" type="search" placeholder="Find a comic" aria-label="Search books" autocomplete="off">
+  </section>
+  <div id="libraryStatus" class="status" role="status" aria-live="polite">Loading GitHub library…</div>
+  <section id="books" class="book-grid" aria-label="Available books"></section>
+  <footer class="shelf-foot">GitHub library: <span class="path">to-shreds/Misc/cbz</span> · CBZ and PDF</footer>
+</main>
+<main id="reader" class="screen" hidden aria-label="Comic reader">
+  <header id="readerHeader" class="topbar reader-head">
+    <button id="backShelf" type="button" aria-label="Back to bookshelf">‹ Library</button>
+    <h2 id="readerTitle">Comic</h2>
+    <button id="menuBtn" type="button" aria-label="Reading options">☰</button>
+  </header>
+  <div id="stage" role="group" aria-label="Comic page. Tap sides to turn pages; tap the center for controls.">
+    <div id="pages" class="pages"></div>
+    <div id="continuous" class="continuous" hidden></div>
+    <div id="readingStatus" class="reader-status" role="status" aria-live="polite" hidden></div>
+  </div>
+  <footer id="readerFooter" class="reader-foot">
+    <button id="prevPage" type="button" aria-label="Previous page">‹</button>
+    <input id="pageSlider" type="range" min="1" max="1" value="1" aria-label="Go to page">
+    <button id="pageCounter" type="button" aria-label="Go to page number">1 / 1</button>
+    <button id="nextPage" type="button" aria-label="Next page">›</button>
+  </footer>
+</main>
+<div id="modal" class="modal" hidden>
+  <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+    <header><h2 id="dialogTitle">Reading options</h2><button id="closeMenu" type="button" aria-label="Close options">✕</button></header>
+    <div class="settings-grid">
+      <label for="fitMode">Page size</label><select id="fitMode"><option value="page">Fit whole page</option><option value="width">Fit width</option></select>
+      <label for="readingMode">Layout</label><select id="readingMode"><option value="single">One page</option><option value="continuous">Scroll vertically</option><option value="spread">Two pages in landscape</option></select>
+      <label for="direction">Direction</label><select id="direction"><option value="ltr">Left to right</option><option value="rtl">Right to left</option></select>
+    </div>
+    <div class="menu-actions">
+      <button id="bookmarkBtn" type="button">Bookmark this page</button>
+      <button id="showBookmarks" type="button">Bookmarks</button>
+      <button id="keepOffline" type="button">Keep offline</button>
+      <button id="removeOffline" type="button" hidden>Remove saved copy</button>
+      <button id="menuLibrary" type="button">Bookshelf</button>
+      <button id="menuHome" type="button"><svg class="house" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg> Back to Arcade</button>
+    </div>
+    <p id="menuStatus" class="small-status" role="status"></p>
+  </section>
+</div>
+<div id="bookmarkModal" class="modal" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="bookmarksTitle"><header><h2 id="bookmarksTitle">Bookmarks</h2><button id="closeBookmarks" type="button" aria-label="Close bookmarks">✕</button></header><section id="bookmarksList" class="bookmark-list"></section></section></div>
+<div id="pageModal" class="modal" hidden><section class="dialog compact" role="dialog" aria-modal="true" aria-labelledby="pageModalTitle"><h2 id="pageModalTitle">Go to page</h2><form id="pageForm"><input id="pageInput" type="number" min="1" step="1" required aria-label="Page number"><button type="submit" class="primary">Go</button><button id="closePageInput" type="button">Cancel</button></form></section></div>
+<script src="vendor/jszip.min.js"></script>
+<script src="vendor/pdf.min.js"></script>
+<script type="module" src="reader.js"></script>
+</body>
+</html>

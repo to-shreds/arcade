@@ -1,0 +1,14 @@
+{
+  "title": "Comic Library",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "order": 410,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["reading", "creative"],
+  "tags": ["touch", "comics", "cbz", "pdf", "offline", "books"],
+  "orientation": "any"
+}
