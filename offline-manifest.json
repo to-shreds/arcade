@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.12.1+20261115.1",
-  "generatedAt": "2026-11-16T03:28:51.490Z",
+  "generatedAt": "2026-11-16T03:39:47.175Z",
   "fileCount": 420,
-  "totalBytes": 23099094,
+  "totalBytes": 23099181,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1747,8 +1747,8 @@
     },
     {
       "path": "tanks/game.js",
-      "bytes": 40113,
-      "sha256": "8a45847684602863acb790b5a8664a2847b6f552177106b723d2049fa029e8a6"
+      "bytes": 40200,
+      "sha256": "b230059dee434aa6f5358e4c47cfc89d9ade26f9eefc2f76737fb0fd8e17d36c"
     },
     {
       "path": "tanks/game.json",

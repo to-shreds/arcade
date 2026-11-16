@@ -285,8 +285,8 @@ function updatePrecisionButtons() {
     ['angle',0,180,allowed],['power',1,100,allowed],['moveDistance',1,5,movable]
   ]) {
     const value=Number($(id).value);
-    $(id+'Minus').disabled=!canChange||value<=low;
-    $(id+'Plus').disabled=!canChange||value>=high;
+    $((id==='moveDistance'?'move':id)+'Minus').disabled=!canChange||value<=low;
+    $((id==='moveDistance'?'move':id)+'Plus').disabled=!canChange||value>=high;
   }
 }
 function stepSlider(id,delta) {
@@ -322,7 +322,7 @@ $('terrain').onchange=updateSetup;for(const id of ['color0','color1'])$(id).onin
 $('create').onclick=()=>enter('create');$('join').onclick=()=>enter('join');$('resumeRoom').onclick=()=>enter('resume');$('joinCode').oninput=()=>{$('joinCode').value=$('joinCode').value.toUpperCase().replace(/[^A-Z0-9]/g,'');};$('joinCode').onkeydown=e=>{if(e.key==='Enter')enter('join');};
 $('configureRoom').onclick=()=>action('configure',{color:$('lobbyColor').value,...(room?.hostPlayerId===session?.playerId?{terrainType:$('lobbyTerrain').value}:{})});$('startRoom').onclick=async()=>{if(await action('configure',{color:$('lobbyColor').value,terrainType:$('lobbyTerrain').value}))await action('start');};
 $('weapon').onclick=()=>weaponPicker();$('fire').onclick=fire;$('moveLeft').onclick=()=>move(-1);$('moveRight').onclick=()=>move(1);$('moveDistance').oninput=updateMoveDistance;
-for(const id of ['angle','power','moveDistance'])for(const [suffix,step] of [['Minus',-1],['Plus',1]])$(id+suffix).onclick=()=>stepSlider(id,step);
+for(const id of ['angle','power','moveDistance'])for(const [suffix,step] of [['Minus',-1],['Plus',1]])$((id==='moveDistance'?'move':id)+suffix).onclick=()=>stepSlider(id,step);
 for(const kind of ['angle','power']){for(const id of [kind,kind+'Number'])$(id).oninput=()=>aimInput(kind,id);}
 $('newGame').onclick=confirmNew;$('settings').onclick=settings;$('setupHelp').onclick=rules;$('modalClose').onclick=closeModal;$('modal').addEventListener('close',()=>{modalKind='';});
 $('playAgain').onclick=()=>{if(session)action('rematch');else showSetup();};$('leave').onclick=()=>modal('Leave this room?',[node('p','Leaving ends the current battle for both players and removes your saved seat. Returning to Arcade with Home keeps your room available instead.')],[{label:'Stay',run:closeModal},{label:'Leave room',style:'danger',run:async()=>{await leaveRoom();closeModal();}}],'leave');
