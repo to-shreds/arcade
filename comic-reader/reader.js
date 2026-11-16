@@ -65,11 +65,8 @@ function status(message, error = false) { UI.libraryStatus.textContent = message
 function readerStatus(message) { UI.readingStatus.textContent = message || ''; UI.readingStatus.hidden = !message; }
 function menuStatus(message) { UI.menuStatus.textContent = message || ''; }
 function home() {
-  if (window.parent !== window) {
-    try { if (typeof parent.ArcadeShell?.goHome === 'function') { parent.ArcadeShell.goHome(); return; } } catch (_) {}
-  }
-  if (typeof window.ArcadeSave?.goHome === 'function') { window.ArcadeSave.goHome(); return; }
-  window.location.href = '../index.html';
+  // The shared helper preserves the persistent Arcade shell, saves and native fallback.
+  if (typeof window.ArcadeSave?.goHome === 'function') window.ArcadeSave.goHome();
 }
 function openModal(modal) { closeModals(); activeModal = modal; modal.hidden = false; }
 function closeModals() { for (const modal of [UI.modal, UI.bookmarkModal, UI.pageModal]) modal.hidden = true; activeModal = null; }
