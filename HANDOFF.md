@@ -1,5 +1,21 @@
 # Tank Tactics 2.13.4: full battlefield and floating hit numbers (2026-11-16)
 
+
+**Release verified:** runtime merge `98bc4dd3bb5ddff81743a61e41e66595141d0664`;
+Pages 43960652900 and Worker 43960653609 succeeded.
+Portable release [Arcade v2.13.4](https://github.com/to-shreds/arcade/releases/tag/arcade-v2.13.4)
+was built by successful workflow 43960958476 and independently verified
+against provenance SHA-256 `b35b5b98a8f67d49fa9e28b847b79f54a8593530290c50967e64f907c424a0f2`.
+ZIP: 16,002,353 bytes; manifest `2.13.4+20261116.1`, 437 validated
+runtime files, 24,730,449 runtime bytes. The identical archive was
+uploaded to and verified accessible in ChatGPT File Library at
+`/Arcade/arcade-2.13.4-web.zip`.
+The combined project-stress Tanks/Upwords browser job and model/package
+checks passed. Broad unrelated browser groups remained in progress
+when this release record was written; do not claim the full suite green
+without a final result. Low-cost physical tablets remain untested.
+
+
 Merged source `98bc4dd3bb5ddff81743a61e41e66595141d0664`, PR #10. The 2.13.4 Tank update is in main;
 publication and packaged archive are verified separately.
 
@@ -27,9 +43,8 @@ Production GitHub Pages and multiplayer Worker deploy on merge; confirm
 their successful run states. Physical low-end Android tablet confirmation
 is still outstanding.
 
-Next steps: verify release ZIP contents against the 437-entry
-SHA-256 manifest; upload the exact ZIP to ChatGPT Library; persist the
-verified release state to ProjectStatus after source HANDOFF update.
+Next steps: verify actual low-cost Android tablet performance and
+control ergonomics, and inspect any unrelated broad CI failures.
 Do not overwrite concurrent Comic Library or Monster Forge edits.
 
 ---
