@@ -55,7 +55,7 @@ test('cutting charge keeps its distinctive trench AFTER a visible arc',()=>{
 test('hard CPU aims lobbed energy rounds rather than line-of-sight shots',()=>{
   const state=createGame({seed:881,terrainType:'flat'});
   state.tanks[1].x=210;state.tanks[1].y=400;
-  state.tanks[0].inventory=WEAPONS.filter(w=>w.kind==='beam'&&!w.funNew).map(w=>w.id);
+  state.tanks[0].inventory=WEAPONS.filter(w=>w.kind==='beam').slice(0,10).map(w=>w.id);
   const action=chooseCpuAction(state,'hard');
   assert.deepEqual(action,chooseCpuAction(state,'hard'));
   const after=applyAction(state,action);
