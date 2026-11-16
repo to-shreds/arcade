@@ -1,3 +1,33 @@
+# Monster Forge 2.0, Arcade 2.13.2 (2026-11-16)
+
+Source: monster-forge/ in this repository. This release adds 50
+illustrated anatomical pieces and six fully editable starter creatures.
+Existing saved v1 parts retain their original artwork through the
+per-piece artVersion field. New pieces have recognizable teeth, claws,
+feathers, wing membranes, suckers, joints, tails and robotic details.
+The blank drawing canvas remains available. Larger cropped previews
+and a separate selected-part panel make size, color, rotation, copy,
+flip, mirror-copy and layering accessible without browsing past parts.
+
+Also repaired: incremental live stroke rendering, geometry-based
+picking, collection fallback preservation beyond fifty saves, safety
+when saving before switching creatures, and 1800x1200 PNG export.
+Preserve old storage keys, creature IDs, artVersion=1 rendering,
+all existing games, Comic Library and multiplayer behavior.
+
+Verification: tools/test-monster-forge-browser.mjs passed actual
+Chromium checks at 320x568, 390x844, 832x384 and 1280x800; all 50
+insertions; six starters; mouse/touch drawing; part transforms;
+old-save artwork; IndexedDB collection and autosave reload; fallback
+save failure protection; PNG dimensions; effects and shell Home.
+Shell navigation and Comic Library core/browser regressions passed.
+The offline manifest and complete ZIP are generated and validated.
+No all-project green or physical Android tablet testing is claimed.
+Next: play it on the children's tablets and report any device issue.
+ProjectStatus records publication and final artifact fingerprints.
+
+---
+
 # Comic Library 2.13.1: CBZ/PDF reader (2026-11-16)
 
 Canonical source: `to-shreds/arcade` main, `comic-reader/`.

@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.13.1+20261116.1",
-  "generatedAt": "2026-11-16T05:36:35.714Z",
-  "fileCount": 436,
-  "totalBytes": 24676360,
+  "version": "2.13.2+20261116.1",
+  "generatedAt": "2026-11-16T06:31:04.836Z",
+  "fileCount": 437,
+  "totalBytes": 24718142,
   "files": [
     {
       "path": "adventure/game.json",
@@ -577,8 +577,8 @@
     },
     {
       "path": "monster-forge/game.js",
-      "bytes": 45673,
-      "sha256": "19295812d983d497c3999dd4965e20148c86ccb986a5964b76aa53ce523bf2c6"
+      "bytes": 53131,
+      "sha256": "8c359faca3ad2ad3da77bd2d08823c36192c66a97d6b8b564ae459a0fb47f22f"
     },
     {
       "path": "monster-forge/game.json",
@@ -592,18 +592,23 @@
     },
     {
       "path": "monster-forge/index.html",
-      "bytes": 7354,
-      "sha256": "2134c879bc202f727a985668f9559005426c252da05e5e0ca65d02d8fe42ca7e"
+      "bytes": 8735,
+      "sha256": "5f543ada5979766b4a9382c56031c7617cbf91472922b7e176652f40fa847f24"
+    },
+    {
+      "path": "monster-forge/parts.js",
+      "bytes": 26878,
+      "sha256": "1b057d8fd4cb07bf5a221503d9313ce2fc5a43f9c09573a8f6cdaf382a26b881"
     },
     {
       "path": "monster-forge/README.md",
-      "bytes": 1650,
-      "sha256": "09b7b1dedd289ca7d255993cf30b022b82f4af7e85f59580f984331ed2820c01"
+      "bytes": 3014,
+      "sha256": "320903bc946856c5933df7215dae71691a25be80d936361a452b9e912f120cd8"
     },
     {
       "path": "monster-forge/style.css",
-      "bytes": 11592,
-      "sha256": "992320a3b8239bbbb2add5305e15fc154dce1ad0be289ba797e7cd526b2034a5"
+      "bytes": 16293,
+      "sha256": "9138781bf84d5b917e1ef0a6c34acfea0dfdde6f216a72172a69a20809bb1f38"
     },
     {
       "path": "multiplayer/arcade-multiplayer.js",
@@ -1803,7 +1808,7 @@
     {
       "path": "sw.js",
       "bytes": 29040,
-      "sha256": "e8a9a2d1f01b7a9f8e99f1c3dd212ed2d0db64f368df19a6753b3482db1aedc0"
+      "sha256": "6161e46fb06fc2cdb47627b42ad0ade906eac0cc7cbda569f59c35dcb8f9c129"
     },
     {
       "path": "tanks/battle-view.css",
