@@ -8,6 +8,20 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.13.0
+
+**Monster Forge** adds a full-screen creature-creation activity for Logan,
+distinct from Silly Face Lab. Draw on a canvas with brush colors, optional
+mirrored strokes and filled areas. Add, drag, rotate, resize, recolor and
+layer 33 monster parts, or generate a surprise starting creature.
+Use seven illustrated habitats and 36 drawing challenges, then name and save
+creatures to a local collection. Evolve them into new variants or animate
+them in a test chamber with roar, flames, slime, stomp and dance.
+The activity is self-contained and uses Arcade's standard draft autosave,
+with its monster collection stored locally in IndexedDB (or a smaller-capacity
+localStorage fallback). The source is in [monster-forge](monster-forge/).
+This release changes no existing game rules, saves, or multiplayer services.
+
 ## Release 2.12.1
 
 **Tank Tactics** no longer asks players which weapon collection to use.

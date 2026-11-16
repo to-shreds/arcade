@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.12.1+20261115.1",
-  "generatedAt": "2026-11-16T03:39:47.175Z",
-  "fileCount": 420,
-  "totalBytes": 23099181,
+  "version": "2.13.0+20261116.1",
+  "generatedAt": "2026-11-16T05:08:14.684Z",
+  "fileCount": 426,
+  "totalBytes": 23167021,
   "files": [
     {
       "path": "adventure/game.json",
@@ -162,8 +162,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 29399,
-      "sha256": "3050e2e88fbbeef6f79a19f19631000ee69a6e0df7a5ae89aaaab02c4dbdbf6b"
+      "bytes": 29919,
+      "sha256": "ac185f360b61912b20176ce32d6408240f3d0ad003542ec58f179c1cf02a6777"
     },
     {
       "path": "chat-room/game.json",
@@ -327,8 +327,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 15878,
-      "sha256": "5c7ec2386bfca0348b1554b719b99adc0b392e860578ba97c4b408d29d73f3f1"
+      "bytes": 15879,
+      "sha256": "d95976641f9c1d9ef78d544effb5db9b53e1f798b868df8b265ed98c0878349d"
     },
     {
       "path": "insultinator/game.json",
@@ -524,6 +524,36 @@
       "path": "monster-dentist/index.html",
       "bytes": 58928,
       "sha256": "ec6ab41312418b1e1ece0d2df331f2f1ec67042425c24682b8b2fa72cba13e14"
+    },
+    {
+      "path": "monster-forge/game.js",
+      "bytes": 45646,
+      "sha256": "220793591f5ce5a7c87fd16d42ef76cff415dc85d50cdbdc603a58caab41e416"
+    },
+    {
+      "path": "monster-forge/game.json",
+      "bytes": 318,
+      "sha256": "d8fecac03bef80469bbc5890b79009771ea8674aec3f1f0233cd1440f30ac065"
+    },
+    {
+      "path": "monster-forge/icon.svg",
+      "bytes": 769,
+      "sha256": "d0cdc4de7f70ea3abca465e0d6147e9dbd659c1150441c1610b1a66e7e168925"
+    },
+    {
+      "path": "monster-forge/index.html",
+      "bytes": 7354,
+      "sha256": "2134c879bc202f727a985668f9559005426c252da05e5e0ca65d02d8fe42ca7e"
+    },
+    {
+      "path": "monster-forge/README.md",
+      "bytes": 1650,
+      "sha256": "09b7b1dedd289ca7d255993cf30b022b82f4af7e85f59580f984331ed2820c01"
+    },
+    {
+      "path": "monster-forge/style.css",
+      "bytes": 11592,
+      "sha256": "992320a3b8239bbbb2add5305e15fc154dce1ad0be289ba797e7cd526b2034a5"
     },
     {
       "path": "multiplayer/arcade-multiplayer.js",
@@ -1722,8 +1752,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 29050,
-      "sha256": "7c7607556b3841feff7116b0a2c1efc2c6efd946a815438a688321e7959d22c7"
+      "bytes": 29040,
+      "sha256": "d62f6a1597fc8de4c35708fa72238a3088ae7ee069e57baeb5abfce4d7433dc8"
     },
     {
       "path": "tanks/battle-view.css",

@@ -1351,6 +1351,30 @@
       "orientation": "any",
       "folder": "retro-vault",
       "launchPath": "retro-vault/index.html"
+    },
+    {
+      "title": "Monster Forge",
+      "entry": "index.html",
+      "icon": "icon.svg",
+      "order": 285,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "creative"
+      ],
+      "tags": [
+        "touch",
+        "drawing",
+        "monsters",
+        "offline",
+        "saveable"
+      ],
+      "orientation": "any",
+      "folder": "monster-forge",
+      "launchPath": "monster-forge/index.html"
     }
   ],
   "categories": [

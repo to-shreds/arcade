@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#090d1e">
+<title>Monster Forge | Arcade</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+ <header class="top">
+  <button id="menuBtn" class="iconbtn" type="button" aria-label="Open menu">☰</button>
+  <div class="brand"><strong>MONSTER FORGE</strong><small id="miniStatus">Your monster workshop</small></div>
+  <button id="saveBtn" class="accent small" type="button">Save monster</button>
+  <button id="homeBtn" class="iconbtn home" type="button" aria-label="Back to Arcade" title="Back to Arcade"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8M5.5 10v11h13V10M10 21v-7h4v7"/></svg></button>
+ </header>
+ <nav class="modes" aria-label="Editing tools">
+  <button type="button" data-tool="draw" class="selected"><span>✎</span> Draw</button>
+  <button type="button" data-tool="build"><span>✦</span> Parts</button>
+  <button type="button" data-tool="move"><span>✥</span> Move</button>
+  <button type="button" data-tool="erase"><span>⌫</span> Erase</button>
+  <button type="button" data-tool="fill"><span>◉</span> Color</button>
+  <button type="button" data-tool="scene"><span>◈</span> World</button>
+ </nav>
+ <main class="workspace">
+  <section class="canvas-shell" aria-label="Monster drawing canvas">
+   <div class="canvas-top"><span id="sceneLabel">Blank canvas</span><span id="modeHint">Draw with your finger or mouse</span></div>
+   <svg id="art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid meet" aria-label="Monster artboard" role="img"></svg>
+   <div class="canvas-info"><span id="artCount">Nothing here yet</span><span>Draw anywhere • Choose parts to build</span></div>
+  </section>
+  <aside class="tools" id="tools">
+   <div class="panel-title"><strong id="panelTitle">Drawing tools</strong><span id="panelTip">Make it yours</span></div>
+   <section class="panel-page" id="drawPanel">
+    <div class="section-label">Color</div>
+    <div class="colors" id="colors"></div>
+    <div class="custom-color"><label for="customColor">Custom color</label><input id="customColor" type="color" value="#8b5cf6" aria-label="Choose brush color"></div>
+    <div class="section-label">Brush size <output id="brushOut">10</output></div>
+    <input id="brushSize" type="range" min="2" max="45" value="10">
+    <div class="compact-actions"><button id="symmetryBtn" type="button" aria-pressed="false">⇆ Symmetry: off</button><button id="shapeBtn" type="button" aria-pressed="false">⬟ Fill shapes: off</button></div>
+    <p class="tip">Draw freehand, or turn on filled shapes to color whole areas. Symmetry mirrors your lines down the middle.</p>
+   </section>
+   <section class="panel-page" id="buildPanel" hidden>
+    <div class="category-tabs" id="partTabs"></div><div class="compact-color" title="Color of the next part"><span>Part color</span><div id="partColors" class="part-colors"></div><input id="partCustomColor" type="color" value="#9b7cff" aria-label="Choose part color"></div>
+    <div class="part-grid" id="parts"></div>
+    <div class="part-edit" id="partEdit" hidden>
+     <div class="section-label">Selected part</div>
+     <div class="compact-actions"><button id="smallerBtn" type="button">− Smaller</button><button id="biggerBtn" type="button">+ Bigger</button></div>
+     <div class="compact-actions"><button id="leftBtn" type="button">↶ Turn</button><button id="rightBtn" type="button">↷ Turn</button><button id="mirrorBtn" type="button">⇆ Copy</button></div>
+     <div class="compact-actions"><button id="frontBtn" type="button">↑ Front</button><button id="backBtn" type="button">↓ Back</button><button id="deleteBtn" class="danger" type="button">Delete</button></div>
+    </div>
+   </section>
+   <section class="panel-page" id="scenePanel" hidden>
+    <div class="section-label">Where does it live?</div><div class="scenes" id="scenes"></div>
+    <div class="section-label">Feeling stuck?</div>
+    <button id="challengeBtn" type="button" class="wide">🎲 New monster challenge</button>
+    <p id="challengeText" class="challenge">Try a drawing challenge, or just create anything.</p>
+    <button id="randomBtn" type="button" class="wide accent">✦ Surprise me: Monster DNA</button>
+   </section>
+  </aside>
+ </main>
+ <footer class="bottom">
+  <div class="quick"><button id="undoBtn" type="button" title="Undo" aria-label="Undo" disabled>↶ Undo</button><button id="redoBtn" type="button" title="Redo" aria-label="Redo" disabled>↷ Redo</button></div>
+  <div class="quick primary-actions"><button id="evolveBtn" type="button">↝ Evolve</button><button id="collectionBtn" type="button">▦ Collection</button><button id="labBtn" class="accent" type="button">▶ Test chamber</button></div>
+ </footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="modal" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><h2 id="modalTitle"></h2><div id="modalBody"></div><div id="modalActions" class="dialog-actions"></div></div></div>
+<div id="menu" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="menuTitle"><div class="modal-card menu-card"><h2 id="menuTitle">Monster Forge</h2><p>Draw strange creatures. Make them move. Save every monster.</p><button id="resumeBtn" class="accent" type="button">Continue creating</button><button id="newBtn" type="button">New blank monster</button><button id="menuDNA" type="button">Generate random monster</button><button id="menuCollection" type="button">My monster collection</button><button id="menuHelp" type="button">How to play</button><button id="menuHome" type="button">⌂ Back to Arcade</button></div></div>
+<div id="collection" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="collectionTitle"><div class="modal-card gallery-card"><div class="modal-header"><h2 id="collectionTitle">My Monsters</h2><button id="closeCollection" type="button">✕ Close</button></div><p id="collectionInfo">Saved on this device. Tap one to open it.</p><div class="gallery" id="gallery"></div></div></div>
+<div id="lab" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="labTitle"><div class="modal-card lab-card"><div class="modal-header"><h2 id="labTitle">Monster Test Chamber</h2><button id="closeLab" type="button">✕ Back to Forge</button></div><div class="lab-viewport"><svg id="liveArt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Your moving monster"></svg></div><div class="lab-buttons"><button data-effect="roar" type="button">♬ Roar</button><button data-effect="fire" type="button">🔥 Fire!</button><button data-effect="slime" type="button">● Slime!</button><button data-effect="shake" type="button">✷ Stomp!</button><button data-effect="dance" type="button">♫ Dance!</button></div><p>Every monster moves differently. Give it a try!</p></div></div>
+<script src="game.js"></script>
+<script src="../arcade-save.js"></script>
+<script>if(window.ArcadeSave) ArcadeSave.register(window.MonsterForgeAutosave);</script>
+</body></html>

@@ -1,3 +1,28 @@
+# Monster Forge v1, Arcade 2.13.0 (2026-11-16)
+
+Source: `to-shreds/arcade` main, `monster-forge/` directory.
+The new creative activity is drawing-first and independent of Silly Face Lab.
+It has freehand drawing, 33 draggable/rotatable/resizable parts, fill and
+symmetry tools, seven backdrops, 36 prompts, randomized Monster DNA,
+local IndexedDB collection, Arcade draft autosaves, metadata, evolutionary
+copies, PNG export and an animated test chamber. The Home house icon
+calls `ArcadeSave.goHome()` and works in the Arcade shell.
+Catalog, versioned offline manifest and service-worker version are updated.
+No modification was made to other games, worker authority, saves or controls.
+
+Focused browser checks: mouse/touch drawing, symmetry, undo/redo, parts,
+gallery save/reopen, evolution, PNG export, effects, and responsive
+320x568, 390x844, 832x384 and 1280x800 views; no JS errors.
+Static JS syntax and package integrity verified. Real physical Android
+tablets, database persistence across an actual WebView restart, and broad
+unrelated regression CI were not directly tested in this environment.
+Future work: physical-device feedback, more parts, and optional richer
+part rigging if useful. Preserve Monster Forge's namespaced collection and
+avoid deleting existing user creations. Source package is in the ChatGPT
+File Library under `/Arcade/Monster-Forge-v1.zip`.
+
+---
+
 # Tank Tactics 2.12.1: knockback and precise controls (2026-11-15/16)
 
 Canonical repository: `to-shreds/arcade`, main runtime merge
