@@ -2,7 +2,7 @@ name: Build and verify Monster Forge 2
 on:
   push:
     branches: [work/monster-forge-v2]
-    paths: ['tools/forge-v2-*.b64', '.github/workflows/forge-v2-bootstrap.yml']
+    paths: ['tools/forge-v2-*', '.github/workflows/forge-v2-bootstrap.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -30,8 +30,12 @@ jobs:
           f=p('tools/test-monster-forge-browser.mjs');s=f.read_text()
           assert 'assert(m.items.length>=8);' in s
           s=s.replace('assert(m.items.length>=8);','assert.equal(m.items.length,await page.evaluate(id=>ForgeParts.recipe(id).items.length,id));')
+          needle="assert.equal((await snap(page)).name,'Saved dragon');"
+          assert needle in s
+          s=s.replace(needle,"await page.waitForFunction(()=>MonsterForgeAutosave.capture().monster.name==='Saved dragon'&&document.getElementById('collection').hidden);"+needle)
           f.write_text(s)
-          print('Applied verified source; every starter is checked against its exact recipe')
+          if p('tools/forge-v2-fixes.py').exists():subprocess.run(['python3','tools/forge-v2-fixes.py'],check=True)
+          print('Applied verified source and explicit asynchronous test waits')
           PY
       - name: Install browser dependencies
         run: npm ci && npx playwright install chromium
@@ -93,7 +97,7 @@ jobs:
 
           '''
           readme.write_text(text[:pos]+intro+text[pos:])
-          for f in p('tools').glob('forge-v2-*.b64'):f.unlink()
+          for f in p('tools').glob('forge-v2-*'):f.unlink()
           p('.github/workflows/forge-v2-bootstrap.yml').unlink()
           PY
           node tools/generate-offline-manifest.mjs --version 2.13.2+20261116.1
@@ -102,7 +106,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add monster-forge tools/test-monster-forge-browser.mjs 'tools/forge-v2-*.b64' .github/workflows HANDOFF.md README.md sw.js offline-manifest.json
+          git add monster-forge tools/test-monster-forge-browser.mjs 'tools/forge-v2-*' .github/workflows HANDOFF.md README.md sw.js offline-manifest.json
           git commit -m 'Improve Monster Forge with illustrated anatomy, editable starters and verified save compatibility'
           git push origin HEAD:work/monster-forge-v2
       - name: Package complete Arcade and standalone HTML
