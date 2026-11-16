@@ -1,3 +1,61 @@
+# Comic Library 2.13.1: CBZ/PDF reader (2026-11-16)
+
+Canonical source: `to-shreds/arcade` main, `comic-reader/`.
+Live: https://to-shreds.github.io/arcade/comic-reader/
+Merge PRs #9 and #11; corrected reader runtime merge
+`2cb90a836629b43e10fce1ab7cee66f2ad470a50`.
+`to-shreds/Misc/cbz` now exists (public, with README); uploading
+`.cbz` or `.pdf` on its main branch automatically populates the bookshelf.
+Local files use the existing Android WebView/browser file chooser.
+The Activity is `Comic Library`, with a house icon and shell-preserving
+`ArcadeSave.goHome()`, and does not use the multiplayer Worker.
+
+Reader features: GitHub browsing/refresh/search, local CBZ/PDF selection,
+naturally sorted nested CBZ image pages, lazy PDF.js rendering, swipe/tap
+page turns, keyboard navigation, pinch zoom/drag, fit page/width,
+continuous vertical or landscape two-page mode, direction setting,
+page slider, bookmarks and per-book last-page resume. GitHub comics are
+downloaded only when opened, and optional offline copies are stored in
+local IndexedDB. Local files are not uploaded. The PDF.js 3.2.146 and
+JSZip 3.10.2 scripts and PDF.js worker are bundled with the offline
+Arcade runtime. Explicit ZIP conversion is not part of this feature.
+The GitHub Contents API is unauthenticated, so rate limits and public
+file size limits apply; no GitHub personal token is needed.
+
+Verification: 3 core tests and focused real-Chromium browser tests,
+including real PDF.js rendering, local CBZ/PDF, nested page numbering,
+bookmarks, last-page progress, IndexedDB offline saving, GitHub-library
+mock, 320x568, 390x844, 844x390 and desktop layouts. The first CI
+run identified a fast navigation race, repaired before PR #9. Broader
+`test-shell-navigation` later identified a direct Home fallback,
+repaired in PR #11. The corrected focused workflow run
+43811283473 passed, including shell-navigation regression test,
+offline manifest, packaging. No hardware Android tablet or browser
+long-duration storage-quota test performed. Broad Arcade Web
+regression tests have previously had unrelated failures; check their
+current results before claiming a fully green project.
+
+Offline manifest: `2.13.1+20261116.1`, 436 hashed runtime files,
+24,676,360 bytes. Final repaired complete ZIP, internally verified
+against all manifest sizes and hashes:
+`/Arcade/Arcade-2.13.1-Comic-Library.zip` in ChatGPT File Library,
+15,976,562 bytes, SHA-256:
+`e1d487946e6ce6a2e638c9ed087b652ad25c46289832800d9c25c0d153149ba6`.
+Its Library copy was overwritten and verified present. The unpacked
+source and README are under `/Arcade/Comic Library/`.
+
+Do not break: existing Arcade catalog, saved activities, Worker,
+local-only content isolation, shell navigation, service-worker
+offline manifest/atomic update, or previous games. On future edits,
+run `node --test tools/test-comic-library-core.mjs`,
+`node tools/test-comic-library-browser.mjs`,
+`node tools/test-shell-navigation.mjs`, and manifest/archive
+verification. Next action: verify reading a representative large
+GitHub CBZ and PDF on a real inexpensive Android tablet; adjust only
+if a reproducible device-specific issue appears.
+
+---
+
 # Monster Forge v1, Arcade 2.13.0 (2026-11-16)
 
 Source: `to-shreds/arcade` main, `monster-forge/` directory.
