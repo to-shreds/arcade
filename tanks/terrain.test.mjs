@@ -63,7 +63,7 @@ test('no airburst excavation and terrain patch corruption fails closed',()=>{
  const t=Array(251).fill(400);excavateTerrain(t,500,100,65,1,weaponTerrainProfile(weaponById('surface-slap')));assert.ok(t.every(v=>v===400));
  const [,n]=shoot('cannonball');for(const bad of [[251,400],[-1,400],[0,NaN],[0,999],['0',400],[0]]){const c=structuredClone(n);c.lastShot.effects[0].terrain=bad;assert.throws(()=>validateGame(c),/terrain animation/);}
 });
-test('all 84 weapons have matching terrain summaries and self-contained preview graphics',()=>{for(const w of WEAPONS){assert.ok(terrainSummary(w).length>20);const svg=terrainPreviewSvg(w);assert.ok(svg.startsWith('<svg'));assert.ok(!svg.includes('NaN'));assert.ok(svg.includes('stroke-dasharray'));}});
+test('all 132 weapons have matching terrain summaries and self-contained preview graphics',()=>{for(const w of WEAPONS){assert.ok(terrainSummary(w).length>20);const svg=terrainPreviewSvg(w);assert.ok(svg.startsWith('<svg'));assert.ok(!svg.includes('NaN'));assert.ok(svg.includes('stroke-dasharray'));}});
 test('complete CPU games retain exact saves, damage scoring, limits and playback on both seats',()=>{
  let largest=0;
  for(let seed=1;seed<=15;seed++){

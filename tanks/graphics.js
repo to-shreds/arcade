@@ -50,7 +50,159 @@ function drawTank(ctx,tank,angle,active,time){
   ctx.restore();
 }
 
-function drawProjectile(ctx,path,tick,index,viewportTop,displayScale){
+
+/** Decorative effects are reconstructed from weapon metadata and shot time.
+ * They never touch terrain, scores, randomness, or shared multiplayer state. */
+const COMIC_WORDS = Object.freeze({
+ 'cannonball':'BONK!', 'big-bang':'BADA-BOOM!', 'surface-slap':'HIGH FIVE!',
+ 'pancake-plop':'PLOP!', 'backpack-bonk':'BONK!', 'stapler-double-tap':'KA-CHUNK!',
+ 'rubber-duck-bounce':'SQUEAK!', 'jack-in-the-box':'POP!', 'bowling-ball-blitz':'STRIKE!',
+ 'soccer-ball-skip':'GOAL!', 'hockey-puck-slider':'SLIDE!', 'mud-pie-mortar':'SPLAT!',
+ 'toaster-trouble':'DING!', 'pillow-puff':'POOF!', 'snot-rocket':'SPLAT!',
+ 'burpquake':'BUUUURP!', 'stink-bomb':'PEW!', 'rotten-egg-rain':'YUCK!',
+ 'soda-geyser':'FIZZ!', 'robot-finger':'BEEP!', 'dragon-breath':'PHEW!',
+ 'wigglequake':'WIGGLE!', 'mountain-maker':'TA-DA!'
+});
+function drawPlayfulProjectile(ctx,weapon,index,tick,heading) {
+  if(!weapon?.playful)return;
+  ctx.save();ctx.shadowBlur=0;
+  // The drawn mechanical projectile remains underneath as a font-independent fallback.
+  if(Math.abs(heading)>Math.PI/2)ctx.rotate(Math.PI);
+  ctx.fillStyle='#0a1428';ctx.strokeStyle='#f8fafccc';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.ellipse(0,0,10,9,0,0,Math.PI*2);ctx.fill();ctx.stroke();
+  ctx.font='19px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff';
+  ctx.fillText(weapon.symbol||'★',0,0);
+  ctx.restore();
+}
+function drawPlayfulAftermath(ctx,e,tick,index,weapon) {
+  if(!weapon?.playful)return;
+  const age=tick-e.tick,duration=e.duration||24;
+  if(age<0||age>duration)return;
+  const f=age/duration,theme=weapon.theme||'toy',r=Math.max(6,Math.min(70,e.radius||18));
+  ctx.save();ctx.shadowBlur=0;ctx.globalAlpha=Math.max(0,1-f);
+  const colors=theme==='gross'?['#d9f99d','#65a30d','#bef264']:
+    theme==='food'?['#fda4af','#fcd34d','#fb923c']:
+    theme==='school'?['#fef08a','#93c5fd','#f8fafc']:
+    theme==='sports'?['#fff','#67e8f9','#fb7185']:
+    theme==='backyard'?['#86efac','#bbf7d0','#7dd3fc']:
+    theme==='house'?['#fda4af','#fff','#c4b5fd']:
+    theme==='science'?['#a5f3fc','#e0f2fe','#818cf8']:
+    ['#f9a8d4','#fde047','#c4b5fd'];
+  const partCount=weapon.count>=8?4:7;
+  for(let n=0;n<partCount;n++){
+    const a=(hash(index*37+n*17+weapon.id.length)*1.8+.6)*Math.PI;
+    const dist=r*(.2+f*1.25)*(0.6+hash(n*19+index));
+    const x=e.x+Math.cos(a)*dist,y=e.y+Math.sin(a)*dist+f*f*24;
+    ctx.fillStyle=colors[n%colors.length];
+    if(theme==='food'||theme==='gross'||theme==='house'){
+      ctx.beginPath();ctx.ellipse(x,y,Math.max(.4,3.7*(1-f)),Math.max(.4,2.5*(1-f)),a,0,Math.PI*2);ctx.fill();
+    }else if(theme==='science'){
+      ctx.strokeStyle=colors[n%colors.length];ctx.lineWidth=Math.max(.5,1.4*(1-f));
+      ctx.beginPath();ctx.arc(x,y,Math.max(1,4*(1-f)),0,Math.PI*2);ctx.stroke();
+    }else{
+      ctx.save();ctx.translate(x,y);ctx.rotate(a+f*4);
+      ctx.fillRect(-2,-2,Math.max(.4,5*(1-f)),Math.max(.4,3*(1-f)));ctx.restore();
+    }
+  }
+  const word=COMIC_WORDS[weapon.id];
+  // Avoid twenty repeated captions during large cluster volleys.
+  if(word && index<4 && f<.75 && (weapon.count||1)<=7){
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font='900 14px system-ui,sans-serif';ctx.lineWidth=3;
+    const lift=20+f*18;
+    ctx.strokeStyle='#0b1225';ctx.fillStyle=theme==='gross'?'#d9f99d':'#fff';
+    ctx.strokeText(word,e.x,e.y-lift);ctx.fillText(word,e.x,e.y-lift);
+  }
+  ctx.restore();
+}
+/** Different mechanical signatures for every original family and variant.
+ * Physical excavation stays in engine.js; only visible impact marks vary here. */
+function drawWeaponSignature(ctx,e,tick,index,weapon) {
+  if(!weapon||e.kind==='miss')return;
+  const age=tick-e.tick,duration=e.duration||24;
+  if(age<0||age>duration)return;
+  const f=age/duration,v=(weapon.iconVariant||0)%6,kind=weapon.kind;
+  const r=Math.max(5,Math.min(66,e.radius||18)),phase=(index+v)*1.12;
+  ctx.save();ctx.shadowBlur=0;ctx.globalAlpha=(1-f)*.75;
+  ctx.strokeStyle=weapon.color||'#fff';ctx.fillStyle=weapon.color||'#fff';
+  ctx.lineWidth=Math.max(.7,2.5*(1-f));
+  const n=3+v;
+  if(['ballistic','cluster','burst'].includes(kind)){
+    // Pinpricks, radial shockwaves, scattered fragments, and broad airbursts
+    // have visibly different radial signatures.
+    for(let i=0;i<n;i++){
+      const a=i*Math.PI*2/n+phase,near=r*(.25+f*(.55+(v%3)*.15));
+      if(v===0){line(ctx,[e.x+Math.cos(a)*near*.7,e.y+Math.sin(a)*near*.7],[e.x+Math.cos(a)*near,e.y+Math.sin(a)*near]);}
+      else if(v===1||v===4){ctx.beginPath();ctx.ellipse(e.x+Math.cos(a)*near,e.y+Math.sin(a)*near,2+(v%2),1.4, a,0,Math.PI*2);ctx.stroke();}
+      else {ctx.fillRect(e.x+Math.cos(a)*near-1.3,e.y+Math.sin(a)*near-1.3,2.6,2.6);}
+    }
+  }else if(kind==='bounce'||kind==='roller'){
+    for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2+phase+tick*.06;
+      const x=e.x+Math.cos(a)*r*(.24+f*.6),y=e.y+Math.sin(a)*r*.25;
+      ctx.beginPath();ctx.arc(x,y,Math.max(.5,3*(1-f)),0,Math.PI*2);ctx.stroke();
+    }
+    ctx.beginPath();ctx.ellipse(e.x,e.y,r*(.3+f*.6),Math.max(2,r*.13),0,0,Math.PI*2);ctx.stroke();
+  }else if(kind==='drill'||kind==='tunnel'){
+    for(let i=0;i<n;i++){
+      const d=(i+1)*Math.max(4,r*.6)/(n+1),x=e.x+Math.sin(tick*.14+i*2+v)*Math.min(8,r*.25);
+      line(ctx,[x-4,e.y-d],[x+4,e.y-d-3]);
+    }
+  }else if(kind==='beam'){
+    if(Number.isFinite(e.x2)&&Number.isFinite(e.y2)){
+      const dx=e.x2-e.x,dy=e.y2-e.y,len=Math.max(1,Math.hypot(dx,dy)),nx=-dy/len,ny=dx/len;
+      const spacing=1.5+v*.8;
+      for(const sign of [-1,1])line(ctx,[e.x+nx*spacing*sign,e.y+ny*spacing*sign],[e.x2+nx*spacing*sign,e.y2+ny*spacing*sign]);
+    }else{ctx.beginPath();ctx.arc(e.x,e.y,r*(.2+f*.5),0,Math.PI*2);ctx.stroke();}
+  }else if(kind==='flame'){
+    for(let i=0;i<n;i++){
+      const x=e.x+(i-(n-1)/2)*r*1.25/n,y=e.y-8-f*r*(.5+(i%3)*.2);
+      ctx.beginPath();ctx.moveTo(x-2,e.y);ctx.quadraticCurveTo(x-5,y+8,x,y);
+      ctx.quadraticCurveTo(x+5,y+7,x+3,e.y);ctx.stroke();
+    }
+  }else if(kind==='mine'){
+    const R=r*(.2+f*.65);
+    for(let i=0;i<n;i++){const a=i*2*Math.PI/n+phase;
+      line(ctx,[e.x+Math.cos(a)*R,e.y+Math.sin(a)*R],[e.x+Math.cos(a)*(R+4),e.y+Math.sin(a)*(R+4)]);
+    }
+  }else if(kind==='builder'){
+    for(let i=0;i<n;i++){
+      const x=e.x+(i-(n-1)/2)*r*1.2/n,y=e.y-f*r*.4;
+      ctx.fillRect(x,y,Math.max(2,4+(v%3)*2),Math.max(1.5,3*(1-f)));
+    }
+  }else if(kind==='carver'){
+    for(let i=0;i<n;i++){
+      const x=e.x+(i-(n-1)/2)*r*1.4/n;
+      line(ctx,[x,e.y-r*.06],[x-4*(1-f),e.y+r*.2]);
+    }
+  }else if(kind==='lightning'){
+    for(let i=0;i<n;i++){
+      const a=i*2*Math.PI/n+phase,l=r*(.3+f*.5);
+      const x=e.x+Math.cos(a)*l,y=e.y+Math.sin(a)*l;
+      line(ctx,[e.x+Math.cos(a)*r*.1,e.y+Math.sin(a)*r*.1],[x-3,y-5]);
+      line(ctx,[x-3,y-5],[x,y]);
+    }
+  }else if(kind==='wave'){
+    for(let i=0;i<Math.min(n,5);i++){
+      ctx.beginPath();ctx.ellipse(e.x,e.y,r*(.22+f*(.55+i*.08)),Math.max(2,r*.09+i),0,Math.PI,Math.PI*2);ctx.stroke();
+    }
+  }
+  ctx.restore();
+}
+function drawClassicProjectileMark(ctx,weapon,tick){
+ if(!weapon||weapon.playful)return;
+ const v=weapon.iconVariant||0;
+ ctx.save();ctx.shadowBlur=0;ctx.strokeStyle='#fff9';ctx.lineWidth=1.2;
+ if(v===0){line(ctx,[-2,-3],[2,3]);}
+ else if(v===1){ctx.beginPath();ctx.arc(0,0,4,0,Math.PI*2);ctx.stroke();}
+ else if(v===2){for(const y of [-3,0,3])line(ctx,[-4,y],[2,y]);}
+ else if(v===3){ctx.beginPath();ctx.moveTo(4,-4);ctx.lineTo(-2,0);ctx.lineTo(4,4);ctx.stroke();}
+ else if(v===4){line(ctx,[-3,-4],[2,4]);line(ctx,[-3,4],[2,-4]);}
+ else {for(const x of [-3,2]){ctx.beginPath();ctx.arc(x,0,1.5,0,Math.PI*2);ctx.stroke();}}
+ ctx.restore();
+}
+
+function drawProjectile(ctx,path,tick,index,viewportTop,displayScale,weapon){
   const p=path.points;if(!p?.length||tick<p[0][2]||tick>p[p.length-1][2]+3)return;
   let at=p[0],previous=p[0];ctx.save();ctx.lineWidth=2;ctx.strokeStyle=path.color||'#ffce3a';ctx.globalAlpha=.5;ctx.beginPath();
   const start=Math.max(0,p.findIndex(q=>q[2]>=tick-15)-1);previous=p[start];at=previous;let heading=0;ctx.moveTo(previous[0],previous[1]);
@@ -62,14 +214,23 @@ function drawProjectile(ctx,path,tick,index,viewportTop,displayScale){
   else if(path.kind==='drill'||path.kind==='tunnel'){ctx.beginPath();ctx.moveTo(7,0);ctx.lineTo(-5,-4);ctx.lineTo(-5,4);ctx.closePath();ctx.fill();ctx.strokeStyle='#fff8';ctx.lineWidth=1;line(ctx,[-4,-3],[0,3]);}
   else if(path.kind==='roller'||path.kind==='bounce'||path.kind==='wave'){circle(ctx,0,0,5);ctx.fillStyle='#fff';circle(ctx,-1,-1,1.7);}
   else {ctx.beginPath();ctx.moveTo(6,0);ctx.lineTo(-3,-3);ctx.lineTo(-6,0);ctx.lineTo(-3,3);ctx.closePath();ctx.fill();ctx.fillStyle='#ffcf72';circle(ctx,-7,0,2+hash(index+tick|0)*2);}
+  drawPlayfulProjectile(ctx,weapon,index,tick,heading);
+  drawClassicProjectileMark(ctx,weapon,tick);
   ctx.restore();
 }
 
-function drawEffect(ctx,e,tick,index){
+function drawEffect(ctx,e,tick,index,weapon){
   const age=tick-e.tick,duration=e.duration||({flame:40,earth:25,mine:40,beam:14,lightning:17,wave:40,drill:28,tunnel:28,miss:18}[e.kind]||28);if(age<0||age>duration)return;
   const f=age/duration,r=Math.max(3,e.radius||16),c=e.color||'#ffce3a';ctx.save();ctx.globalAlpha=1-f;ctx.fillStyle=c;ctx.strokeStyle=c;ctx.shadowColor=c;ctx.shadowBlur=18;
   if(e.kind==='beam'||e.kind==='lightning'){
     const end=[e.x2??e.x,e.y2??e.y];ctx.lineWidth=(1-f)*8+1;ctx.beginPath();ctx.moveTo(e.x,e.y);for(let n=1;n<=8;n++){const t=n/8;ctx.lineTo(e.x+(end[0]-e.x)*t+(e.kind==='lightning'&&n<8?(hash(index*311+n+Math.floor(tick/2))*2-1)*15:0),e.y+(end[1]-e.y)*t);}ctx.stroke();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+  }else if(e.kind==='flame' && ['sprinkler-spray','garden-hose-jet'].includes(weapon?.id)){
+    ctx.shadowBlur=0;
+    for(let n=0;n<9;n++){
+      const a=Math.PI+(n/8)*Math.PI,dist=r*(.2+f*.9);
+      ctx.fillStyle=n%2?'#93c5fd':'#e0f2fe';
+      ctx.beginPath();ctx.ellipse(e.x+Math.cos(a)*dist,e.y+Math.sin(a)*dist+f*18,2.5*(1-f)+.3,4*(1-f)+.3,a,0,Math.PI*2);ctx.fill();
+    }
   }else if(e.kind==='flame'){
     ctx.shadowBlur=8;
     for(let n=0;n<7;n++){
@@ -109,6 +270,8 @@ function drawEffect(ctx,e,tick,index){
     for(let n=0;n<15;n++){const a=hash(index*87+n)*Math.PI*2,dist=r*(.2+f)*(1+hash(n*99));ctx.fillStyle=n%2?c:'#ffd67a';circle(ctx,e.x+Math.cos(a)*dist,e.y+Math.sin(a)*dist+f*f*25,Math.max(.3,3*(1-f)));}
     ctx.shadowBlur=0;ctx.fillStyle='#647286';ctx.globalAlpha=(1-f)*.4;for(let n=0;n<5;n++)circle(ctx,e.x+(hash(n+index)*2-1)*r*f,e.y-12-f*38+hash(n*8)*12,6+f*r*.4);
   }ctx.restore();
+  drawWeaponSignature(ctx,e,tick,index,weapon);
+  drawPlayfulAftermath(ctx,e,tick,index,weapon);
 }
 
 export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewportTop=0,displayScale=1}={}) {
@@ -148,10 +311,11 @@ export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewport
     line(ctx,[(i-1)*step,terrain[i-1]],[i*step,terrain[i]]);
   }
 
-  for(const mine of game.mines||[]){ctx.fillStyle=mine.color||'#ff9f43';ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=6;ctx.beginPath();ctx.ellipse(mine.x,ground(terrain,mine.x)-2,5,3,0,Math.PI,0);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff4b0';circle(ctx,mine.x,ground(terrain,mine.x)-5,1);}
+  for(const mine of game.mines||[]){ctx.fillStyle=mine.color||'#ff9f43';ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=6;ctx.beginPath();ctx.ellipse(mine.x,ground(terrain,mine.x)-2,5,3,0,Math.PI,0);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#fff4b0';circle(ctx,mine.x,ground(terrain,mine.x)-5,1);
+    const mw=weaponById(mine.weaponId);if(mw?.playful){ctx.font='12px "Segoe UI Emoji","Noto Color Emoji",sans-serif';ctx.textAlign='center';ctx.fillText(mw.symbol,mine.x,ground(terrain,mine.x)-9);}}
   const shooting=!!animation;for(let i=0;i<tanks.length;i++){const tank=tanks[i],a=shot?.actor===i?shot.angle:(aims[i]?.angle??(i?135:45));const recoil=shot?.actor===i&&tick>=(shot.launchTick||0)&&tick<(shot.launchTick||0)+9?Math.sin((tick-(shot.launchTick||0))/9*Math.PI)*3:0;drawTank(ctx,{...tank,x:tank.x-Math.cos(a*Math.PI/180)*recoil},a,!shooting&&!game.finished&&game.turn===i,time);ctx.font=`700 ${Math.min(32,12/displayScale)}px system-ui`;ctx.textAlign='center';ctx.fillStyle='#eff6ff';ctx.shadowColor='#081529';ctx.shadowBlur=4;ctx.fillText(tank.name,tank.x,tank.y+16/displayScale);ctx.shadowBlur=0;}
-  if(shot){for(let i=0;i<shot.paths.length;i++)drawProjectile(ctx,shot.paths[i],tick,i,viewportTop,displayScale);for(let i=0;i<shot.effects.length;i++)drawEffect(ctx,shot.effects[i],tick,i);}
-  if(animation?.move){const move=animation.move;for(let i=0;i<(move.effects||[]).length;i++)drawEffect(ctx,move.effects[i],tick,i);}
+  if(shot){const w=weaponById(shot.weaponId);for(let i=0;i<shot.paths.length;i++)drawProjectile(ctx,shot.paths[i],tick,i,viewportTop,displayScale,w);for(let i=0;i<shot.effects.length;i++)drawEffect(ctx,shot.effects[i],tick,i,weaponById(shot.effects[i].weaponId)||w);}
+  if(animation?.move){const move=animation.move;for(let i=0;i<(move.effects||[]).length;i++)drawEffect(ctx,move.effects[i],tick,i,weaponById(move.effects[i].weaponId));}
   if(!shooting&&!game.finished){
     const tank=tanks[game.turn],aim=aims[game.turn]||{},a=(aim.angle??45)*Math.PI/180;
     const speed=60+(aim.power??55)*4.4,beam=weaponById(aim.weaponId)?.kind==='beam';

@@ -72,6 +72,7 @@ export function createGame(options = {}) {
   const starter = options.starter ?? 0;
   assert(starter === 0 || starter === 1, 'Invalid starting player.');
   const seed = seedNumber(options.seed);
+  const weaponMix = ['all','classic','silly'].includes(options.weaponMix) ? options.weaponMix : 'all';
   const state = { schema: 1, seed, rng: seed, starter, terrainType: type, terrain: [], tanks: [], turn: starter,
     shotsTotal: 0, finished: false, winner: null, mines: [], lastShot: null, lastMove: null };
   terrain(state, type);
@@ -79,7 +80,13 @@ export function createGame(options = {}) {
     const name = String(options.names?.[index] ?? `Player ${index + 1}`).trim().slice(0, 30) || `Player ${index + 1}`;
     const color = /^#[\da-f]{6}$/i.test(options.colors?.[index] ?? '') ? options.colors[index].toLowerCase() : COLORS[index];
     state.tanks.push({ x: index === 0 ? 130 : 870, y: 0, name, color, score: 0, movesLeft: 4,
-      inventory: shuffle(state, WEAPONS.map(weapon => weapon.id)).slice(0, 10), shots: 0 });
+      inventory: weaponMix === 'silly'
+        ? shuffle(state, [
+            ...shuffle(state, WEAPONS.filter(weapon => weapon.funNew).map(weapon => weapon.id)).slice(0, 7),
+            ...shuffle(state, WEAPONS.filter(weapon => !weapon.funNew).map(weapon => weapon.id)).slice(0, 3)
+          ])
+        : shuffle(state, WEAPONS.filter(weapon => weaponMix !== 'classic' || !weapon.funNew).map(weapon => weapon.id)).slice(0, 10),
+      shots: 0 });
   }
   settle(state);
   return state;
@@ -116,7 +123,8 @@ function terrainEffect(state, trace, weapon, x, y, tick, radius, kind, mutate, e
   mutate();
   const patch = terrainPatch(before, state.terrain);
   addEffect(trace, kind, weapon.color, x, y, radius, tick, {
-    duration: 20, ...(patch ? { terrain: patch, terrainDuration: 6 } : {}), ...extra
+    duration: 20, ...(weapon.id ? {weaponId:weapon.id} : {}),
+    ...(patch ? { terrain: patch, terrainDuration: 6 } : {}), ...extra
   });
   settle(state);
 }
@@ -139,6 +147,7 @@ function blast(state, trace, actor, weapon, x, y, damage, radius, tick, kind = '
   const patch = terrainPatch(before, state.terrain);
   addEffect(trace, kind, color, x, y, radius, tick, { duration: 24,
     groundWidth: options.carve === false ? 0 : profile.width,
+    ...(weapon.id ? {weaponId: weapon.id} : {}),
     ...(patch ? { terrain: patch, terrainDuration: 6 } : {}) });
   settle(state);
 }
@@ -470,6 +479,7 @@ export function applyAction(snapshot, action, actor = snapshot?.turn) {
 }
 
 function validEffect(effect) {
+  if(effect?.weaponId !== undefined)assert(!!weaponById(effect.weaponId),'Invalid effect weapon.');
   assert(effect && typeof effect === 'object' && typeof effect.kind === 'string' && effect.kind.length <= 20, 'Invalid effect.');
   assert(/^#[\da-f]{6}$/i.test(effect.color), 'Invalid effect color.');
   for (const key of ['x', 'y', 'radius', 'tick']) assert(finite(effect[key]), 'Invalid effect coordinate.');

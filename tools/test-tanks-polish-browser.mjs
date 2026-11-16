@@ -43,13 +43,13 @@ try{
  await page.evaluate(()=>ArcadeSave.saveNow());await page.reload();await page.click('.arcade-save-primary');
  await page.waitForFunction(()=>TanksGame.getState()?.shotsTotal===1);
  assert.deepEqual(await page.evaluate(()=>TanksGame.getState()),after);checks.push('native saved-game reload');
- await page.click('#settings');await page.getByRole('button',{name:'Arsenal (84)',exact:true}).click();
- assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),84);
+ await page.click('#settings');await page.getByRole('button',{name:'Arsenal (132)',exact:true}).click();
+ assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),132);
  const svg=await page.locator('#weaponGrid svg:not(.terrain-preview)').evaluateAll(elements=>elements.map(e=>e.querySelector('g').outerHTML.replace(/color="[^"]*"/,'')));
- assert.equal(new Set(svg).size,84);
+ assert.equal(new Set(svg).size,132);
  await page.fill('#weaponSearch','canyon');assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),1);
  assert.equal(await page.locator('#weaponGrid [data-weapon]').getAttribute('data-weapon'),'canyon-cut');
- await page.click('#modalClose');checks.push('84 distinct artworks and arsenal search');
+ await page.click('#modalClose');checks.push('132 distinct artworks and arsenal search');
  for(const [width,height] of [[412,915],[360,740],[915,412],[740,360],[667,375],[1280,800]]){
   await page.setViewportSize({width,height});await page.waitForTimeout(180);
   const layout=await page.evaluate(()=>{
@@ -85,6 +85,15 @@ try{
   await page.click('#fire');await page.waitForFunction(n=>TanksGame.getState().shotsTotal===n+1&&!TanksGame.getDebug().animating,shot);
  }
  assert.equal(await page.evaluate(()=>TanksGame.getState().finished),true);checks.push('complete twenty-shot UI match');
+ await page.goto(`${base}/tanks/range.html`);
+ await page.waitForFunction(() => document.querySelectorAll('#weapon option').length === 132);
+ assert.equal(await page.locator('#weapon option').count(),132);
+ await page.selectOption('#weapon','rubber-duck-bounce');
+ await page.click('#fire');
+ await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('Rubber Duck Bounce'));
+ assert.equal(await page.locator('#fire').isDisabled(),false);
+ await page.click('#reset');assert.match(await page.locator('#status').textContent(),/Terrain reset/);
+ checks.push('132-weapon Test Range fires and resets in reduced-motion mode');
  assert.deepEqual(errors,[]);
  await writeFile(path.join(out,'report.json'),JSON.stringify({pass:true,checks,errors},null,2)+'\n');
  console.log('PASS Tank Tactics polish:',checks.join('; '));

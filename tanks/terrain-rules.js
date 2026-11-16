@@ -26,6 +26,10 @@ export function blastProfile(radius, scale = 1) {
   return { width: clamp(radius * 1.8 * Math.sqrt(s), 3, 200), depth: clamp(radius * 1.9 * Math.pow(s, .8), 2, 185), shape: 'bowl' };
 }
 export function weaponTerrainProfile(weapon) {
+  // New playful weapons declare profiles explicitly; original 84 retain theirs.
+  const custom = weapon?.terrainProfile;
+  if (custom && Number.isFinite(custom.width) && Number.isFinite(custom.depth))
+    return {width:custom.width,depth:custom.depth,shape:custom.shape||'bowl'};
   const row = PROFILES[weapon?.kind]?.[weapon.iconVariant];
   return row ? {width:row[0], depth:row[1], shape:row[2] || 'bowl'} : blastProfile(weapon?.radius || 24, weapon?.craterScale ?? 1);
 }

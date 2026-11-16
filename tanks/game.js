@@ -15,9 +15,9 @@ let localGame = null, playMode = 'cpu', difficulty = 'normal', aims = [{angle:45
 let session = null, room = null, busy = false, joining = false, generation = 0;
 let socket = null, reconnectTimer = null, pollTimer = null, cpuTimer = null, retries = 0, refreshing = false, suspended = false;
 let animation = null, frame = 0, renderedTurn = '', scoreFrom = [0,0], scoreStarted = 0, soundContext = null, canvasDirty = true, lastDraw = 0, localAimsBackup = null;
-let preferences = { sound:true, speed:'normal' }, modalKind = '', lobbyDraftKey = '', camera = {height:HEIGHT,top:0}, chosenOwnColor = false;
+let preferences = { sound:true, speed:'normal', arsenal:'all' }, modalKind = '', lobbyDraftKey = '', camera = {height:HEIGHT,top:0}, chosenOwnColor = false;
 const prefs = read('arcade.tanks.preferences.v1');
-if (prefs && typeof prefs === 'object') preferences = {sound:prefs.sound !== false,speed:['normal','fast'].includes(prefs.speed)?prefs.speed:'normal'};
+if (prefs && typeof prefs === 'object') preferences = {sound:prefs.sound !== false,speed:['normal','fast'].includes(prefs.speed)?prefs.speed:'normal',arsenal:['all','classic','silly'].includes(prefs.arsenal)?prefs.arsenal:'all'};
 
 function currentGame() { return session ? room?.state?.game || null : localGame; }
 function roomKey(transport) { return `arcade.tanks.room.${transport}.v1`; }
@@ -48,16 +48,20 @@ function showSetup() { clearTimeout(cpuTimer);stopAnimation();closeModal();$('se
 async function startLocal() {
   if(session||busy||joining)return;
   playMode=$('mode').value==='hotseat'?'hotseat':'cpu';difficulty=$('difficulty').value;
-  localGame=createGame({seed:seed(),terrainType:$('terrain').value,names:[validName($('nameInput0').value,'Player 1'),validName($('nameInput1').value,playMode==='cpu'?'Computer':'Player 2')],colors:[$('color0').value,$('color1').value],starter:0});
+  localGame=createGame({seed:seed(),terrainType:$('terrain').value,weaponMix:preferences.arsenal,names:[validName($('nameInput0').value,'Player 1'),validName($('nameInput1').value,playMode==='cpu'?'Computer':'Player 2')],colors:[$('color0').value,$('color1').value],starter:0});
   aims=[{angle:45,power:55,weaponId:localGame.tanks[0].inventory[0]},{angle:135,power:55,weaponId:localGame.tanks[1].inventory[0]}];
   stopAnimation();scoreFrom=[0,0];scoreStarted=0;renderedTurn='';$('setup').hidden=true;save?.setExternalSession(false);render();await save?.saveNow();scheduleCpu();
 }
 
 function setScoreAnimation(before,after) { scoreFrom=before?.tanks.map(t=>t.score)||after.tanks.map(t=>t.score);scoreStarted=performance.now(); }
-function sound(kind='fire') {
+function sound(kind='fire',weaponId=null) {
   if(!preferences.sound)return;
   try { const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)return;soundContext ||= new Audio();soundContext.resume().catch(()=>{});const now=soundContext.currentTime;
-    const osc=soundContext.createOscillator(), gain=soundContext.createGain();osc.type=kind==='fire'?'sawtooth':'triangle';osc.frequency.setValueAtTime(kind==='fire'?130:220,now);osc.frequency.exponentialRampToValueAtTime(kind==='fire'?35:70,now+.18);gain.gain.setValueAtTime(.04,now);gain.gain.exponentialRampToValueAtTime(.0001,now+.22);osc.connect(gain);gain.connect(soundContext.destination);osc.start(now);osc.stop(now+.25);
+    const osc=soundContext.createOscillator(), gain=soundContext.createGain();
+    const w=weaponById(weaponId);const theme=w?.theme;
+    const start=theme==='gross'?82:theme==='toy'?360:theme==='food'?270:theme==='school'?290:theme==='sports'?210:theme==='science'?440:kind==='fire'?130:220;
+    osc.type=theme==='toy'||theme==='science'?'sine':theme==='gross'?'sawtooth':kind==='fire'?'sawtooth':'triangle';
+    osc.frequency.setValueAtTime(start,now);osc.frequency.exponentialRampToValueAtTime(Math.max(35,start*(theme==='toy'?1.7:.32)),now+.18);gain.gain.setValueAtTime(.04,now);gain.gain.exponentialRampToValueAtTime(.0001,now+.22);osc.connect(gain);gain.connect(soundContext.destination);osc.start(now);osc.stop(now+.25);
   }catch{}
 }
 function stopAnimation() { animation=null; }
@@ -67,7 +71,7 @@ function animate(before,after,kind='fire') {
   const shot=kind==='fire'?after.lastShot:null, move=kind==='move'?after.lastMove:null;
   if(!shot&&!move){render();scheduleCpu();return;}
   const duration=shot?Math.min(preferences.speed==='fast'?1400:4200,Math.max(900,shot.duration*1000/30/(preferences.speed==='fast'?2:1))):650;
-  animation={before,shot,move,started:performance.now(),duration,tick:0,impactPlayed:false};scoreFrom=before.tanks.map(t=>t.score);scoreStarted=0;sound(kind);render();
+  animation={before,shot,move,started:performance.now(),duration,tick:0,impactPlayed:false};scoreFrom=before.tanks.map(t=>t.score);scoreStarted=0;sound(kind,shot?.weaponId);render();
 }
 async function localAction(intent, cpu=false) {
   if(busy||animation||!localGame||localGame.finished||session||(!cpu&&!canAct())||(cpu&&(playMode!=='cpu'||localGame.turn!==1)))return;
@@ -164,7 +168,8 @@ function updateTransport() {
 }
 
 function updateSetup() {
-  const network=$('mode').value==='network',cpu=$('mode').value==='cpu';$('networkControls').hidden=!network;$('localStart').hidden=network;$('secondPlayer').hidden=network;$('difficultyField').hidden=!cpu;$('secondNameLabel').textContent=cpu?'Computer':'Second player';
+  $('arsenal').value=preferences.arsenal;
+  const network=$('mode').value==='network',cpu=$('mode').value==='cpu';$('networkControls').hidden=!network;$('localStart').hidden=network;$('secondPlayer').hidden=network;$('difficultyField').hidden=!cpu;$('arsenalField').hidden=network;$('secondNameLabel').textContent=cpu?'Computer':'Second player';
   if(cpu&&$('nameInput1').value==='Player 2')$('nameInput1').value='Computer';if(!cpu&&$('nameInput1').value==='Computer')$('nameInput1').value='Player 2';
   $('setupArt').innerHTML=tankSvg($('color0').value)+`<span>VS</span>`+tankSvg($('color1').value,-1);updateTransport();
 }
@@ -231,7 +236,7 @@ function tick(now) {
   frame=requestAnimationFrame(tick);const game=currentGame();if(!game||suspended||document.hidden)return;
   if(animation){const fraction=Math.min(1,(now-animation.started)/animation.duration);animation.tick=animation.shot?fraction*animation.shot.duration:fraction*30;
     const effectTick=animation.shot?.effects.find(e=>e.kind==='explosion'||e.kind==='flame')?.tick;
-    if(!animation.impactPlayed&&(effectTick===undefined?fraction>.65:animation.tick>=effectTick)){animation.impactPlayed=true;sound('impact');scoreStarted=now;}
+    if(!animation.impactPlayed&&(effectTick===undefined?fraction>.65:animation.tick>=effectTick)){animation.impactPlayed=true;sound('impact',animation.shot?.weaponId);scoreStarted=now;}
     if(fraction===1){if(!scoreStarted)scoreStarted=now;animation=null;render();scheduleCpu();}
   }
   if(canvasDirty||(animation&&now-lastDraw>=30)){drawBattle($('battlefield'),game,{aims,animation,time:now,viewportTop:camera.top,displayScale:Math.max(.2,$('battlefield').clientWidth/WIDTH)});lastDraw=now;canvasDirty=false;}drawScores(now);
@@ -244,15 +249,23 @@ function modal(title,body,actions=[],kind='') {
 function weaponPicker(catalog=false) {
   const game=currentGame();if(!catalog&&!canAct())return;
   const available=catalog?WEAPONS:game.tanks[game.turn].inventory.map(weaponById),grid=node('div','','weapon-grid');grid.id='weaponGrid';
-  const renderGrid=filter=>{grid.replaceChildren(...available.filter(w=>!filter||`${w.name} ${w.description} ${w.kind}`.toLowerCase().includes(filter)).map(w=>{
+  let category='all';
+  const renderGrid=filter=>{grid.replaceChildren(...available.filter(w=>
+    (category==='all'||(category==='funny'?!!w.playful:!w.funNew))&&
+    (!filter||`${w.name} ${w.description} ${w.kind} ${w.theme||''}`.toLowerCase().includes(filter))
+  ).map(w=>{
     const b=node(catalog?'div':'button','','weapon-card');b.dataset.weapon=w.id;b.style.setProperty('--weapon-color',w.color);b.classList.toggle('selected',!catalog&&w.id===aims[game.turn].weaponId);const art=node('div','');art.innerHTML=weaponSvg(w);const details=node('div','','details');details.append(node('strong',w.name),node('small',w.description));
     const stats=node('div','','weapon-stats');
     const digging=({builder:'Builds earth',drill:'Vertical shaft',tunnel:'Collapsed tunnel',carver:'Measured trench',flame:'Scorches surface',lightning:'Small electrical pits',beam:'Cuts or scars soil',wave:'Ground pulses',mine:'Delayed crater'}[w.kind]||'Impact crater');
     for(const text of [`Damage ${w.damage}`,digging,w.count>1?`${w.count} impacts`:w.bounces?`${w.bounces} bounces`:'Single shot'])stats.append(node('span',text));
     const terrainNote=node('small',terrainSummary(w),'terrain-note');const preview=node('div','','terrain-swatch');preview.innerHTML=terrainPreviewSvg(w);details.append(stats,terrainNote,preview);b.append(art,details);
     if(!catalog){b.type='button';b.onclick=()=>{if(!canAct())return;aims[game.turn].weaponId=w.id;save?.touch(0);closeModal();render();};}return b;
-  }));};renderGrid('');const search=document.createElement('input');search.id='weaponSearch';search.placeholder='Find a weapon';search.type='search';search.setAttribute('aria-label','Search weapons');search.oninput=()=>renderGrid(search.value.trim().toLowerCase());
-  modal(catalog?`The arsenal · ${WEAPONS.length} weapons`:'Choose your weapon',[node('p',catalog?'Every weapon has its own behavior. Each battle deals ten different single-use weapons to each tank.':'One shot each. Terrain sketches use the same scale: dashed is the original ground, solid is the effect. Spread depends on aim; bedrock limits depth.','weapon-description'),search,grid],[],catalog?'arsenal':'weapons');
+    }));};renderGrid('');
+  const categorySelect=document.createElement('select');categorySelect.setAttribute('aria-label','Weapon category');
+  categorySelect.innerHTML='<option value="all">All weapons</option><option value="funny">Funny weapons</option><option value="original">Original 84</option>';
+  categorySelect.onchange=()=>{category=categorySelect.value;renderGrid(search.value.trim().toLowerCase());};
+  const search=document.createElement('input');search.id='weaponSearch';search.placeholder='Find a weapon';search.type='search';search.setAttribute('aria-label','Search weapons');search.oninput=()=>renderGrid(search.value.trim().toLowerCase());
+  modal(catalog?`The arsenal · ${WEAPONS.length} weapons`:'Choose your weapon',[node('p',catalog?'Every weapon has its own behavior. Each battle deals ten different single-use weapons to each tank.':'One shot each. Terrain sketches use the same scale: dashed is the original ground, solid is the effect. Spread depends on aim; bedrock limits depth.','weapon-description'),categorySelect,search,grid],[],catalog?'arsenal':'weapons');
 }
 function rules() {
   const list=document.createElement('ol');list.className='help-list';for(const value of ['Each tank gets ten random, different weapons. Every weapon can be fired once.','Take turns firing. Angle 0° points right, 90° points straight up, and 180° points left. Power controls launch speed.','Damage adds points. Hitting yourself gives points to your opponent. Tanks stay in play until all twenty shots are fired. Highest score wins.','Before firing, you may move left or right. Each tank gets four moves for the whole game, each up to five tank lengths. Moving keeps your turn.','Terrain previews show the solid resulting ground against the dashed original surface. Dimensions are world units; bedrock limits depth. Tunnels collapse into open trenches, not enclosed caves.', 'Explosions reshape the terrain. Some weapons roll, bounce, dig, build, fire beams or leave mines. Mines can explode on later turns or when a tank moves close.','Your local battle saves automatically. Multiplayer rooms save your seat so you can reconnect. Returning home keeps your progress.'])list.append(node('li',value));
@@ -261,7 +274,7 @@ function rules() {
 function settings() {
   const switches=node('div','','settings-toggles');const soundLabel=node('label',''),input=document.createElement('input');input.type='checkbox';input.checked=preferences.sound;input.onchange=()=>{preferences.sound=input.checked;write('arcade.tanks.preferences.v1',preferences);};soundLabel.append(input,node('span','Battle sounds'));
   const speedLabel=node('label','Animation speed'),speed=document.createElement('select');speed.innerHTML='<option value="normal">Normal</option><option value="fast">Fast</option>';speed.value=preferences.speed;speed.onchange=()=>{preferences.speed=speed.value;write('arcade.tanks.preferences.v1',preferences);};speedLabel.append(speed);switches.append(soundLabel,speedLabel);
-  const alert=mp?.getTurnAlertSettings();modal('Settings',[switches,node('p','Local progress saves automatically after every action. Your shot is saved before its animation, so a reload resumes at the next turn.'),node('p',`Multiplayer turn sound is ${alert?.soundEnabled?'on':'off'}. Desktop turn notifications use your browser notification setting.`)],[{label:'How to play',run:rules},{label:`Arsenal (${WEAPONS.length})`,run:()=>weaponPicker(true)},{label:alert?.soundEnabled?'Mute turn sound':'Enable turn sound',run:()=>{mp?.setTurnSoundEnabled(!alert?.soundEnabled);settings();}},{label:'Enable notifications',run:async()=>{await mp?.requestTurnNotifications();closeModal();}}],'settings');
+  const alert=mp?.getTurnAlertSettings();modal('Settings',[switches,node('p','Local progress saves automatically after every action. Your shot is saved before its animation, so a reload resumes at the next turn.'),node('p',`Multiplayer turn sound is ${alert?.soundEnabled?'on':'off'}. Desktop turn notifications use your browser notification setting.`)],[{label:'How to play',run:rules},{label:`Arsenal (${WEAPONS.length})`,run:()=>weaponPicker(true)},{label:'Test Range',run:()=>{window.location.href='range.html';}},{label:alert?.soundEnabled?'Mute turn sound':'Enable turn sound',run:()=>{mp?.setTurnSoundEnabled(!alert?.soundEnabled);settings();}},{label:'Enable notifications',run:async()=>{await mp?.requestTurnNotifications();closeModal();}}],'settings');
 }
 function confirmNew() {
   if(session){message('Use the room rematch button after this battle, or Leave to start a different game.');return;}
@@ -280,7 +293,10 @@ async function home() {
   window.location.href='../index.html';
 }
 
-$('localStart').onclick=startLocal;$('mode').onchange=updateSetup;$('terrain').onchange=updateSetup;for(const id of ['color0','color1'])$(id).oninput=()=>{if(id==='color0')chosenOwnColor=true;updateSetup();};
+$('localStart').onclick=startLocal;$('mode').onchange=updateSetup;
+$('arsenal').value=preferences.arsenal;$('arsenal').onchange=()=>{
+  preferences.arsenal=$('arsenal').value;write('arcade.tanks.preferences.v1',preferences);
+};$('terrain').onchange=updateSetup;for(const id of ['color0','color1'])$(id).oninput=()=>{if(id==='color0')chosenOwnColor=true;updateSetup();};
 $('create').onclick=()=>enter('create');$('join').onclick=()=>enter('join');$('resumeRoom').onclick=()=>enter('resume');$('joinCode').oninput=()=>{$('joinCode').value=$('joinCode').value.toUpperCase().replace(/[^A-Z0-9]/g,'');};$('joinCode').onkeydown=e=>{if(e.key==='Enter')enter('join');};
 $('configureRoom').onclick=()=>action('configure',{color:$('lobbyColor').value,...(room?.hostPlayerId===session?.playerId?{terrainType:$('lobbyTerrain').value}:{})});$('startRoom').onclick=async()=>{if(await action('configure',{color:$('lobbyColor').value,terrainType:$('lobbyTerrain').value}))await action('start');};
 $('weapon').onclick=()=>weaponPicker();$('fire').onclick=fire;$('moveLeft').onclick=()=>move(-1);$('moveRight').onclick=()=>move(1);$('moveDistance').oninput=()=>{$('moveAmount').textContent=`${$('moveDistance').value} tank length${$('moveDistance').value==='1'?'':'s'}`;};

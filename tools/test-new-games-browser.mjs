@@ -19,7 +19,7 @@ if(args.includes('--serve')){
   const models=(await readdir(resolve(root,'multiplayer/models'))).filter(name=>name.endsWith('.js')&&!name.endsWith('.test.js')).map(name=>'multiplayer/models/'+name);
   const mf=new Miniflare({
     modulesRoot:root,
-    modules:['cloudflare/chess-worker/src/index.js',...models,'upwords/engine.js','upwords/dictionary.js','tanks/engine.js','tanks/weapons.js','tanks/terrain-rules.js'].map(path=>({type:'ESModule',path:resolve(root,path)})),
+    modules:['cloudflare/chess-worker/src/index.js',...models,'upwords/engine.js','upwords/dictionary.js','tanks/engine.js','tanks/weapons.js', 'tanks/fun-weapons.js','tanks/terrain-rules.js'].map(path=>({type:'ESModule',path:resolve(root,path)})),
     compatibilityDate:'2026-08-06',compatibilityFlags:['nodejs_compat'],port:0,host:'127.0.0.1',
     bindings:{ALLOWED_ORIGINS:site.base},
     durableObjects:{CHESS_ROOMS:{className:'ChessRoom',useSQLite:true},ARCADE_ROOMS:{className:'ArcadeRoom',useSQLite:true}}

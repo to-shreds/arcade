@@ -1,6 +1,6 @@
 # Tank weapon catalogue
 
-84 weapons use 14 simulation mechanisms. Every weapon has a stable saved-game ID,
+132 weapons use 14 simulation mechanisms (84 classics plus 48 playful additions). Every weapon has a stable saved-game ID,
 a readable description, a color, and a procedural icon variant. Each mechanism's
 six weapons differ in gameplay parameters; there are no mechanically identical
 recolored entries.
@@ -179,3 +179,20 @@ variant, color, size, and count, so all artwork works offline.
 | Soft Swell | Three very broad pulses leave only shallow craters. | damage 76; count 3; reach 150px; radius 48px; craterScale 0.25× |
 | Rapid Ripple | Twelve tiny pulses race across a very long ground path. | damage 80; count 12; reach 440px; radius 9px; craterScale 0.45× |
 
+
+## Playful additions (48)
+
+Eight kid-friendly collections introduce six new weapons apiece, while the original 84 remain available by default. All additions use the existing 14 deterministic physics families. The authoritative catalogue, numerical parameters, and per-weapon terrain profiles are in `fun-weapons.js`; the names and effects here summarize the groups.
+
+| Collection | New weapons |
+| --- | --- |
+| Food Fight | Meatball Meteor, Spaghetti Storm, Pancake Plop, Pickle Ricochet, Cereal Shower, Ice Cream Mountain |
+| School Chaos | Pencil Drill, Eraser Sweep, Paper Plane Squadron, Ruler Zap, Stapler Double-Tap, Backpack Bonk |
+| Toy Box Trouble | Rubber Duck Bounce, Brick Avalanche, Wind-up Racer, Jack-in-the-Box, Domino Disaster, Yo-Yo Laser |
+| Sports Gone Wrong | Bowling Ball Blitz, Soccer Ball Skip, Tennis Ball Barrage, Dodgeball Deluge, Hockey Puck Slider, Home Run Howitzer |
+| Backyard Madness | Mud Pie Mortar, Sprinkler Spray, Garden Hose Jet, Lawn Gnome Drop, Leaf-Blower Blast, Rake Ripper |
+| Household Havoc | Sock Avalanche, Vacuum Trench, Toaster Trouble, Pillow Puff, Bubble Bath Bombs, Runaway Suitcase |
+| Gross-Out Arsenal | Snot Rocket, Burpquake, Stink Bomb, Rotten Egg Rain, Toothpaste Tsunami, Slime Slap |
+| Weird Science | Soda Geyser, Magnet Mayhem, Bubble Ray, Marshmallow Meltdown, Robot Finger, Tornado-in-a-Jar |
+
+26 existing weapons have playful display names and illustrated effects, but preserve their original IDs, damage, trajectories, and terrain profiles. The unique on-screen effects are cosmetic and never affect authoritative scores.

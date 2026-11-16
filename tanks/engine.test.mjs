@@ -9,8 +9,8 @@ function armed(weapon, options = {}) {
   if (!inventory.includes(weapon.id)) inventory[0] = weapon.id;
   return game;
 }
-test('84 distinct mechanics profiles, IDs and matching procedural graphics', () => {
-  assert.ok(WEAPONS.length >= 80);
+test('132 distinct weapon profiles, IDs and matching procedural graphics', () => {
+  assert.equal(WEAPONS.length, 132);
   assert.equal(new Set(WEAPONS.map(w => w.id)).size, WEAPONS.length);
   const signatures = WEAPONS.map(({ id, name, description, color, icon, iconVariant, ...mechanics }) => JSON.stringify(mechanics));
   assert.equal(new Set(signatures).size, WEAPONS.length);
@@ -138,7 +138,7 @@ test('hard CPU aims straight beams at an available direct target', () => {
   game.terrain.fill(400);
   game.tanks.forEach(tank => { tank.y = 400; });
   game.tanks[1].x = 210;
-  game.tanks[0].inventory = WEAPONS.filter(weapon => weapon.kind === 'beam').map(weapon => weapon.id);
+  game.tanks[0].inventory = WEAPONS.filter(weapon => weapon.kind === 'beam' && !weapon.funNew).map(weapon => weapon.id);
   const action = chooseCpuAction(game, 'hard');
   assert.ok(action.angle <= 2);
   const after = applyAction(game, action);
