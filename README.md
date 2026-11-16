@@ -8,6 +8,18 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.13.5
+
+**Comic Library** no longer rejects CBZ and PDF files at 150 MB or
+CBZ archives exceeding 750 MB of total expanded images. A ZIP64-capable
+random-access reader now opens CBZ files by extracting only selected pages;
+PDF.js reads Blob byte ranges instead of copying the entire PDF into memory.
+Larger-than-GitHub-limit books can be uploaded as consecutive raw 24 MiB
+parts to `Misc/cbz` and appear as one volume in the bookshelf. The
+included `split-book.py` helper produces the parts. Existing bookmarks,
+offline files, Android picker, Arcade menus, Tank Tactics 2.13.4 and all
+other game saves remain intact. See `comic-reader/README.md`.
+
 ## Release 2.13.4
 
 **Tank Tactics** now stops overlong movement at the battlefield edge or the other
