@@ -8,6 +8,22 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.12.0
+
+**Tank Tactics** now has 132 weapons. New matches use the whole arsenal by
+default, with 48 food, school, toy, sports, backyard, household, gross-out and
+science additions. Twenty-six originals have more playful names and visuals
+without changing their damage or saved identities. Different shells, beams,
+rollers, drills, mines, waves, builders and carvers get matching Canvas
+projectiles, impacts and debris. The game retains its existing competitive
+rules, autosaves, online rooms and offline support.
+
+The Tank Tactics setup also offers Original 84 and Extra Silly for local
+matches. The separate [Test Range](tanks/range.html) lets players try any
+weapon without ammunition or turn limits. The [weapon catalogue](tanks/WEAPONS.md)
+and [2.12.0 verification report](docs/arcade-stress-test-2.12.0.md) explain
+the mechanics and test results.
+
 ## Release 2.10.2
 
 **Time Master** now keeps the clock dial centered and full-size even when an

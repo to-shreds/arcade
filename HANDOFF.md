@@ -1,3 +1,51 @@
+# Tank Tactics 2.12.0: playable, playful 132-weapon arsenal (2026-11-15/16)
+
+Canonical source: `to-shreds/arcade` main, runtime merge
+`e89c35d4ad8d185148c1b19a3c3a4b09e4cef2a5` from PR #7.
+Live game: https://to-shreds.github.io/arcade/tanks/.
+GitHub Pages deployment 43793967953 and Arcade Worker deployment 43793968401
+both passed. Offline snapshot `2.12.0+20261115.1` has 420 files,
+23,090,029 runtime bytes, and a SHA-256 manifest verified in CI.
+
+Implemented: the original 84 stable weapon IDs plus 48 new themed weapons
+from `tanks/fun-weapons.js`; all 132 are the default for new games and
+Internet/Nearby rooms. Exactly 26 classics have more playful display names
+and visuals without altered original scoring, damage or excavation physics.
+New weapons carry explicit terrain profiles, individual SVG pictograms,
+Canvas projectile/impact signatures and light synthesized themed audio.
+Additional signatures distinguish all older families and their variants.
+Local setup has Original 84 and Extra Silly (seven new plus three classics);
+these options never alter existing saves or authoritative room rules.
+`tanks/range.html` is an isolated, unlimited-ammunition Test Range.
+The existing Arcade Home house icons and Retro Vault stay intact.
+
+Verification: the latest 132-weapon engine and 84-icon compatibility tests
+passed, along with the dedicated Tanks browser/terrain/polish suite in
+project-stress run 43792746365. That run covers real Internet/Nearby peers,
+hotseat/CPU play, exact saves and reloads, six layouts and offline packaging.
+Direct module sweeps included 264 deterministic shots and 528 drawing samples.
+The model/transport, menus, stories/TV, shared multiplayer, Heist, Retro
+Vault and Guess Who checks passed. The consolidated Test Arcade Web run
+43792746309 passed its Tank/Worker/packaging steps but its first attempt
+failed a separate Train PWA `navigator.onLine` assertion after turning
+Chromium offline; its retried result and the long full-catalog group belong
+in the [verification report](docs/arcade-stress-test-2.12.0.md).
+Do not call the whole suite green without a successful result.
+
+Do not break: never change the 84 original weapon IDs, save schema,
+turn/scoring rules, deterministic terrain timing, mine ownership or room
+authority. Client/Worker must ship `tanks/fun-weapons.js` together;
+explicit Miniflare test module lists must include it. Preserve the
+hash-verified offline manifest, reduced-motion behavior, distinct
+return-to-Arcade house icons, and existing 50 activity entries.
+The new visual effects are cosmetic: only `engine.js` and
+`terrain-rules.js` determine terrain and points.
+
+Next: produce/verify the portable 2.12.0 ZIP from the exact manifest, record
+the Library copy and release asset in ProjectStatus, check any outstanding
+CI results, and confirm performance on a physical low-end Android tablet.
+Current GitHub/browser verification cannot substitute for that device check.
+
 # Arcade house icons for return-home controls (2026-11-15)
 
 The current family Arcade includes 50 enabled activities, including Retro Vault.

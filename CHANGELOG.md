@@ -1,3 +1,13 @@
+# 2.12.0
+
+- Expanded Tank Tactics from 84 to 132 weapons. All 132 are included by default in new games and multiplayer matches.
+- Added 48 kid-friendly weapons in eight collections: food, school, toys, sports, backyard, household, gross-out and science.
+- Made 26 original weapons more playful with new display names, icons, descriptions and effects while retaining their saved-game IDs, damage and trajectories.
+- Added weapon-specific and family-specific Canvas projectile/impact signatures, lightweight themed particles, varied synthesized sounds and distinct terrain profiles for the 48 additions.
+- Added a Test Range with unlimited practice shots and Reset Terrain, plus optional Original 84 and Extra Silly mixes for new local matches.
+- Preserved save and room formats, engine determinism, existing 84 weapons' mechanics, and the 2.11.0 Arcade house icons and Retro Vault.
+- Validated 132 weapon drawings, deterministic terrain and scoring, genuine saves, mobile/desktop layouts, Internet/Nearby play and offline manifest checks. See [2.12.0 test report](docs/arcade-stress-test-2.12.0.md).
+
 # 2.11.0
 
 - Added Retro Vault: 26 original classic-inspired browser games, including 14 action games and 12 puzzle games. The existing 49 activities remain present.
