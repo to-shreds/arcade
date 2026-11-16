@@ -1,3 +1,47 @@
+# Comic Library 2.13.3: Android CBZ picker repair (2026-11-16)
+
+Canonical: `to-shreds/arcade` main; merged change PR #13,
+`0891a74f2c7802b401cb394c8c312032e04f72e1`.
+When a local CBZ was selected in Android's file manager, the file was
+grayed out before browser JavaScript could receive it, while PDFs
+remained selectable. Cause: the HTML file input's `accept` types
+included an uncommon CBZ MIME type and PDF types, which Android's
+document provider can resolve as a PDF-only filter. The targeted fix
+removed only `accept` from Comic Library's local picker. File names
+are still checked by the existing `supportedFile` validator for
+case-insensitive `.cbz` or `.pdf` after selection, with a clear error
+for unsupported files. No Android native code change or APK rebuild is
+required for the hosted Arcade. All existing ZIP/PDF reader logic,
+bookmarks, offline IndexedDB, Home, Monster Forge 2.0, and other
+activities are unchanged.
+
+Verification: branch Comic Library workflow 43818246022 succeeded,
+including actual Chromium file chooser invocation and unsupported
+`.txt` rejection, real CBZ and PDF page rendering at 320x568,
+390x844, 844x390 and desktop sizes, bookmark and offline restore,
+unit checks and Arcade shell navigation. Complete portable release
+`2.13.3+20261116.1`, with 437 runtime files and 24,718,233 runtime
+bytes, was verified for all entries against its manifest.
+ZIP SHA-256:
+`e657cc9976df7a1c666187461ae4896d50e881d78dbe31a61f431b2dc4d0fb5b`.
+Exact ZIP in verified ChatGPT File Library path
+`/Arcade/Arcade-2.13.3-CBZ-Picker.zip` (15,994,763 bytes).
+Source GitHub folder `to-shreds/Misc/cbz` remains public.
+Normal GitHub browser uploads are limited to 25 MiB per file; Git
+pushes support up to 100 MiB per file. GitHub Contents API cannot serve
+files larger than 100 MiB. This reader does not yet handle Git LFS
+pointer assets. For large comics consider a separate asset host, rather
+than silently assuming LFS works with the current reader.
+
+Not yet hardware-verified: the Android system file-picker behavior
+with the user's specific tablet/phone. Test opening a local CBZ and
+then a PDF directly in the hosted Arcade after refreshing offline
+content. If the CBZ is still grayed out, investigate the system picker
+and Android WebView's `FileChooserParams.createIntent` output using the
+real device; do not change CBZ decompression logic without a repro.
+
+---
+
 # Monster Forge 2.0, Arcade 2.13.2 (2026-11-16)
 
 Source: monster-forge/ in this repository. This release adds 50
