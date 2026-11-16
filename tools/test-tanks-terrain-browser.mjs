@@ -55,7 +55,7 @@ try{
  }
  const saved=await page.evaluate(()=>TanksGame.getState());await reloadSaved(saved,'earthquake');
  await page.click('#settings');await page.getByRole('button',{name:'Arsenal (132)',exact:true}).click();assert.equal(await page.locator('.terrain-preview').count(),132);
- await page.fill('#weaponSearch','road grader');assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),1);assert.ok((await page.locator('.terrain-note').textContent()).includes('16'));
+ await page.fill('#weaponSearch','lunch tray');assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),1);assert.equal(await page.locator('#weaponGrid [data-weapon]').getAttribute('data-weapon'),'road-grader');assert.ok((await page.locator('.terrain-note').textContent()).includes('16'));
  await page.screenshot({path:path.join(out,'road-grader-profile.png')});await page.click('#modalClose');
  for(const [width,height] of [[412,915],[360,740],[915,412],[740,360],[667,375],[1280,800]]){
   await page.setViewportSize({width,height});await page.waitForTimeout(100);const r=await page.locator('#fire').boundingBox();assert.ok(r.x>=0&&r.y>=0&&r.x+r.width<=width+1&&r.y+r.height<=height+1);await reloadSaved(saved,`${width}x${height}`);await page.screenshot({path:path.join(out,`${width}x${height}.png`)});
