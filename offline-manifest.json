@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.13.0+20261116.1",
-  "generatedAt": "2026-11-16T05:08:14.684Z",
-  "fileCount": 426,
-  "totalBytes": 23167048,
+  "version": "2.13.1+20261116.1",
+  "generatedAt": "2026-11-16T05:31:01.886Z",
+  "fileCount": 436,
+  "totalBytes": 24676441,
   "files": [
     {
       "path": "adventure/game.json",
@@ -162,8 +162,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 29919,
-      "sha256": "cd607c60afe8b72d42eb4780dca29db038c6fdd816a50a0e65cd525fd780985e"
+      "bytes": 30462,
+      "sha256": "9a77044b666abfe7fa1867d12f59f03aef81ab835b5edab7596b9e4dbc336328"
     },
     {
       "path": "chat-room/game.json",
@@ -234,6 +234,56 @@
       "path": "codebreaking/index.html",
       "bytes": 13272,
       "sha256": "c278a3d3133bb7296988395d04e5abac72168e5748afb87fc4e681c34285388c"
+    },
+    {
+      "path": "comic-reader/core.mjs",
+      "bytes": 2703,
+      "sha256": "8045a7ee00e0907d3b06294e46d044e9a34859dcc9652dab7ce3d41bbfa0101f"
+    },
+    {
+      "path": "comic-reader/game.json",
+      "bytes": 326,
+      "sha256": "cde41b0e41dbe32696e39bebef8449f28d8d24eb39dc88fee49e9b34de0934a3"
+    },
+    {
+      "path": "comic-reader/icon.svg",
+      "bytes": 1091,
+      "sha256": "816ce73033d169d1e34292bc15ffb8b9d4bb80fae4dc04291393317036a881bd"
+    },
+    {
+      "path": "comic-reader/index.html",
+      "bytes": 5109,
+      "sha256": "0eb3398e0a6ad9e9fc0fb7cbfa758f8fc1210b6055a879062bc01dcc061b01fa"
+    },
+    {
+      "path": "comic-reader/reader.css",
+      "bytes": 7806,
+      "sha256": "227ad2827023e248b732f95e5ac425dbff5f7366abb2864b7af3d028e999fa80"
+    },
+    {
+      "path": "comic-reader/reader.js",
+      "bytes": 33999,
+      "sha256": "1e333222c49dfd75a6fc0f152451e80c91bade83d12b1de8e9f6dcbe617b7662"
+    },
+    {
+      "path": "comic-reader/README.md",
+      "bytes": 2216,
+      "sha256": "d2348cc57bfe44994adde09a5db665e05091efd8a1efb5ee2b1076d925f93849"
+    },
+    {
+      "path": "comic-reader/vendor/jszip.min.js",
+      "bytes": 97781,
+      "sha256": "7f839b2d4688b845c105ebf5d2f9803075f91ea0fe72bdaac176c3a04dd3d2c1"
+    },
+    {
+      "path": "comic-reader/vendor/pdf.min.js",
+      "bytes": 282922,
+      "sha256": "7662af706ecbf4ae9ba0f4f4ea50636617646c31d6c67aeca2338b1805a11c07"
+    },
+    {
+      "path": "comic-reader/vendor/pdf.worker.min.js",
+      "bytes": 1074897,
+      "sha256": "4efa4f25d5f14e309922fb568e3b653ebc53cdb0d60b85bdefd22b30cb0a7a22"
     },
     {
       "path": "contraption-maker/game.json",
@@ -1753,7 +1803,7 @@
     {
       "path": "sw.js",
       "bytes": 29040,
-      "sha256": "8d39bb980a33b1787044c21013858f13a34d200681b9206c979ac5592ec62f25"
+      "sha256": "e8a9a2d1f01b7a9f8e99f1c3dd212ed2d0db64f368df19a6753b3482db1aedc0"
     },
     {
       "path": "tanks/battle-view.css",
