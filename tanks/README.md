@@ -8,19 +8,25 @@ Choose computer play, two players on one device, or a multiplayer room. Select c
 
 Select a weapon, set an angle from 0 to 180 degrees and power from 1 to 100, then fire. Zero degrees aims right, 90 up, and 180 left. Each tank also has four optional moves per game, each up to five tank lengths. Moving does not pass the turn.
 
-Every tank receives ten distinct randomized weapons. The arsenal contains 84 mechanically different weapons across shells, clusters, bursts, bouncers, rollers, drills, tunnels, beams, fire, mines, terrain builders, terrain carvers, lightning and waves. Each has individually composed SVG artwork, a description, and matching projectile or impact animation. Icons remain distinct without their color or label. No image files or external artwork services are needed.
+Every tank receives ten distinct randomized weapons. The default arsenal contains all 132 weapons (84 original and 48 new playful additions) across shells, clusters, bursts, bouncers, rollers, drills, tunnels, beams, fire, mines, terrain builders, terrain carvers, lightning and waves. Each weapon has its own offline icon and behavior profile. The 48 new additions cover food fights, school, toys, sports, backyard, home, gross-out fun and science; 26 originals also have playful names and effects without changing their physics. There are no external artwork dependencies.
+
+## Arsenal selection and Test Range
+
+New local matches default to **All 132**, with options for the original 84 or an Extra silly mix of seven new weapons and three classics per player. Internet and Nearby games always use the complete arsenal so both peers agree on the same authoritative rules. The selection only affects future matches; it does not rewrite existing saves.
+
+The Test Range is available at `tanks/range.html` and through the game setup and settings. It is an isolated, repeatable practice field without ammunition limits. It never replaces a saved battle or submits multiplayer actions. Reset terrain restores the original practice landscape.
 
 ## Landscape and impacts
 
 Use Landscape in the top bar (the screen icon on a narrow phone) to give the battlefield more room. It requests fullscreen and landscape orientation when the browser permits it. Otherwise the wide layout still works: turn the phone sideways. Exit wide returns to the usual layout. This is a device-only preference, not a room setting, and never changes a saved shot or another player's view.
 
 Every weapon now has an explicit terrain profile rather than a scaled version
-of the same crater. Surface Slap and Soft Swell are broad but shallow; Pinpoint
+of the same crater. Giant High-Five (formerly Surface Slap) and Jelly Belly Wave (formerly Soft Swell) are broad but shallow; Pinpoint
 is tiny; Crater Maker digs deeply. Fire scorches and electricity makes small
 pits. Drills bore before their stated number of charges detonate. Tunnels cut
 continuous collapsed channels, while carvers maintain their specified depth
 regardless of path length or animation step count. Wall Drop builds a flat top;
-Mountain Maker creates a triangular ridge. Cutting Ray bores through soil while
+Mountain-in-a-Box (formerly Mountain Maker) creates a triangular ridge. Cutting Ray bores through soil while
 ordinary beams stop at the first obstruction. Bedrock limits all excavation.
 
 The weapon picker includes same-scale terrain cross-sections and specific
@@ -46,4 +52,4 @@ Local progress is stored through `ArcadeSave`, including resolved terrain, inven
 
 Multiplayer stores only the room reconnection credentials under a transport-specific browser key. Room state is authoritative and never replaces the local autosave. Only the room host can choose lobby terrain or start the battle. Each player selects their own color. Both players must request a rematch, which alternates the starting player.
 
-`engine.js` is the shared deterministic simulation. `weapons.js` is the stable weapon catalogue. `terrain-rules.js` is the shared excavation model. `weapon-art.js` supplies all 84 SVG drawings and `graphics.js` handles canvas visuals. `battle-view.js` owns the local-only display preference. `game.js` owns UI, local autosave and the versioned room client. The read-only `window.TanksGame` hook returns cloned state and debug snapshots for automated verification.
+`engine.js` is the shared deterministic simulation. `weapons.js` retains the stable 84 original IDs and includes the 48 additions from `fun-weapons.js`. `terrain-rules.js` is the shared excavation model. `weapon-art.js` supplies all 132 offline SVG drawings and `graphics.js` handles canvas visuals. `battle-view.js` owns the local-only display preference. `game.js` owns UI, local autosave and the versioned room client. The read-only `window.TanksGame` hook returns cloned state and debug snapshots for automated verification.

@@ -1,3 +1,4 @@
+import { FUN_WEAPONS } from './fun-weapons.js';
 /** Individually composed, offline SVG artwork. IDs are the saved catalogue IDs.
  * Each silhouette remains different without its label, tint or badge. */
 const path = d => `<path d="${d}" fill="none"/>`;
@@ -97,6 +98,31 @@ const art = {
   'soft-swell': solid('M7 46Q16 13 36 28 25 22 24 38 38 55 56 40V56H7Z')+path('M11 49Q20 43 27 49T44 49T56 49'),
   'rapid-ripple': path('M5 21Q9 7 14 21T23 21T32 21T41 21T50 21T59 21M5 36Q9 22 14 36T23 36T32 36T41 36T50 36T59 36M5 51Q9 37 14 51T23 51T32 51T41 51T50 51T59 51'),
 };
+// Each playful weapon has its own offline pictogram over a distinct vector body.
+ // System emoji are optional decoration; the geometric icon remains visible.
+for (const [index, weapon] of FUN_WEAPONS.entries()) {
+  const size = 16 + (index % 4) * 2;
+  const left = 12 + (index % 5);
+  const cy = 32 + (index % 3) * 2;
+  const body = weapon.kind === 'beam'
+    ? solid(`M7 42L46 14 56 22 25 54Z`)
+    : weapon.kind === 'drill'
+    ? solid('M22 9H42V35L32 57 22 35Z')
+    : weapon.kind === 'roller' || weapon.kind === 'bounce'
+    ? wheel(32,33,22)
+    : weapon.kind === 'builder'
+    ? solid('M6 52Q9 20 32 18T58 52Z')
+    : weapon.kind === 'carver'
+    ? path('M7 20H20V49H44V20H57')
+    : weapon.kind === 'wave'
+    ? path('M6 44Q13 14 20 44T34 44T48 44T62 44')
+    : weapon.kind === 'mine'
+    ? clock(32,34,20)
+    : weapon.kind === 'cluster' || weapon.kind === 'burst'
+    ? [0,1,2,3].map(i=>ball(15+i*11,16+(i%2)*24,5+i%3)).join('')
+    : star(32,34,23);
+  art[weapon.id] = body + `<circle cx="${32}" cy="${cy}" r="${size}" fill="#101b33" stroke="currentColor" stroke-width="1.3"/><text x="32" y="${cy+7}" font-size="23" text-anchor="middle" stroke="none" fill="white" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,sans-serif">${weapon.symbol}</text><path d="M${left} 57H${55-index%5}" stroke="currentColor" stroke-width="2"/>`;
+}
 export const WEAPON_ART_IDS = Object.freeze(Object.keys(art));
 const cache = new Map();
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -108,7 +134,7 @@ export function weaponSvg(weapon) {
   const key = `${weapon.id}:${c}:${weapon.name}`;
   if (!cache.has(key)) {
     if (cache.size > 168) cache.clear();
-    cache.set(key, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" data-weapon-art="${esc(weapon.id)}"><title>${esc(weapon.name)}</title><rect x="1" y="1" width="62" height="62" rx="12" fill="#101b33" stroke="${c}" stroke-opacity=".65"/><g color="${c}" stroke="#e1efff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${shape}</g></svg>`);
+    cache.set(key, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" data-weapon-art="${esc(weapon.id)}"><title>${esc(weapon.name)}</title><rect x="1" y="1" width="62" height="62" rx="12" fill="#101b33" stroke="${c}" stroke-opacity=".65"/><g color="${c}" stroke="#e1efff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${shape}${weapon.playful && !weapon.funNew ? `<text x="50" y="17" font-size="15" text-anchor="middle" stroke="none" font-family="Segoe UI Emoji,Noto Color Emoji,sans-serif">${esc(weapon.symbol)}</text>` : ''}</g></svg>`);
   }
   return cache.get(key);
 }

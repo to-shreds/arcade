@@ -6,10 +6,10 @@ import {WEAPON_ART_IDS,weaponSvg} from './weapon-art.js';
 import {excavateTerrain,blastProfile} from './terrain-rules.js';
 import {createTanksState,applyTanksAction} from '../multiplayer/models/tanks-authority.js';
 const armed=(id,terrainType='flat')=>{const g=createGame({seed:12345,terrainType});if(!g.tanks[0].inventory.includes(id))g.tanks[0].inventory[0]=id;return g;};
-test('all 84 drawings have different geometry without color, name, or badge',()=>{
- assert.equal(WEAPONS.length,84);assert.deepEqual(new Set(WEAPON_ART_IDS),new Set(WEAPONS.map(w=>w.id)));
+test('all 132 drawings have different geometry without color, name, or badge',()=>{
+ assert.equal(WEAPONS.length,132);assert.deepEqual(new Set(WEAPON_ART_IDS),new Set(WEAPONS.map(w=>w.id)));
  const shapes=WEAPONS.map(w=>weaponSvg(w).split('<g color=')[1].replace(/^"[^"]+"/,''));
- assert.equal(new Set(shapes).size,84);assert.throws(()=>weaponSvg({id:'unknown'}),/Missing/);
+ assert.equal(new Set(shapes).size,132);assert.throws(()=>weaponSvg({id:'unknown'}),/Missing/);
  assert.ok(!weaponSvg({...WEAPONS[0],name:'<script>x</script>',color:'red" onload="bad'}).includes('<script>'));
 });
 test('ordinary impacts cut broad deep craters; digging stays separate from damage',()=>{

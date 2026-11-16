@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090d1e">
+<title>Tank Tactics Test Range · Arcade</title>
+<link rel="stylesheet" href="../arcade-ui.css">
+<style>
+body{margin:0;background:#090d1e;color:#f1f5f9;font-family:system-ui,sans-serif}
+.range-shell{max-width:1120px;margin:auto;padding:12px;display:grid;gap:12px}
+.range-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.range-header h1{font-size:clamp(20px,5vw,28px);margin:0}
+.range-header nav{display:flex;gap:8px;flex-wrap:wrap}
+.range-canvas{width:100%;height:auto;display:block;border:1px solid #64748b;border-radius:12px;background:#07172f;touch-action:pan-y}
+.range-controls{display:grid;grid-template-columns:minmax(160px,1.3fr) minmax(80px,.6fr) minmax(80px,.6fr);gap:10px;align-items:end}
+.range-controls label{display:grid;gap:5px;font-weight:700;font-size:13px;color:#bfd6ec}
+.range-controls select,.range-controls input{width:100%;min-width:0;box-sizing:border-box;border-radius:9px;border:1px solid #5a7895;padding:9px;background:#121f39;color:#fff}
+.range-actions{display:flex;gap:10px;flex-wrap:wrap}
+.range-actions button{flex:1;min-width:105px}
+.range-status{min-height:1.5em;font-size:14px;color:#c8d5e6}
+.range-weapon{display:flex;align-items:center;gap:12px}
+.range-weapon svg{height:56px;width:56px;flex:none}
+.range-weapon p{margin:3px 0;font-size:13px;color:#bfd6ec}
+@media(max-width:550px){.range-controls{grid-template-columns:1fr 1fr}.range-controls label:first-child{grid-column:1/-1}.range-shell{padding:8px}}
+</style></head>
+<body><main class="range-shell">
+<header class="range-header"><h1>Tank Tactics · Test Range</h1>
+<nav><a class="arcade-btn" href="index.html">Back to battle</a><a class="arcade-btn gold" href="../index.html">🏠 Arcade home</a></nav></header>
+<section class="arcade-panel"><p>Try every weapon without turns or ammunition limits. Fire as often as you want. Reset the landscape whenever you like.</p>
+<div class="range-weapon" id="weaponInfo" aria-live="polite"></div></section>
+<canvas id="field" class="range-canvas" width="1000" height="560" aria-label="Practice battlefield"></canvas>
+<section class="arcade-panel"><div class="range-controls">
+<label for="weapon">Weapon<select id="weapon"></select></label>
+<label for="angle">Angle <span id="angleOut">45°</span><input type="range" id="angle" min="0" max="180" value="45"></label>
+<label for="power">Power <span id="powerOut">55%</span><input type="range" id="power" min="1" max="100" value="55"></label>
+</div><div class="range-actions"><button class="arcade-btn gold" id="fire">FIRE</button><button class="arcade-btn" id="reset">Reset terrain</button></div><div class="range-status" id="status" role="status"></div></section>
+</main><script type="module" src="range.js"></script></body></html>

@@ -7,6 +7,8 @@
  * and projectile/effect dimensions, never external assets or random artwork.
  * Stable IDs are serialized in games and must not be changed casually.
  */
+import { FUN_WEAPONS } from './fun-weapons.js';
+
 const DEFAULTS = Object.freeze({
   damage: 60, radius: 24, count: 1, spread: 0, depth: 0, bounces: 0,
   reach: 0, width: 8, height: 0, fuse: 0, chain: 0, build: 0,
@@ -128,12 +130,180 @@ const families = [
   ]],
 ];
 
-export const WEAPONS = Object.freeze(families.flatMap(([kind, entries]) =>
-  entries.map(([id, name, description, color, stats], iconVariant) => Object.freeze({
-    ...DEFAULTS, id, name, description, color, kind, icon: kind, iconVariant,
-    ...stats,
-  }))
-));
+// Playful originals remain mechanically identical: stable IDs, damage, and saved-game data.
+const CLASSIC_REMIX = {
+  "cannonball": [
+    "Cannon-BONK",
+    "A sturdy shell that announces its arrival with an enormous bonk.",
+    "toy",
+    "💥"
+  ],
+  "big-bang": [
+    "Big Bada-Boom",
+    "An enormous noisy blast with wide, gentle damage falloff.",
+    "toy",
+    "💥"
+  ],
+  "surface-slap": [
+    "Giant High-Five",
+    "A giant invisible high-five slaps across the ground without much digging.",
+    "toy",
+    "✋"
+  ],
+  "six-pack": [
+    "Six Pack of Surprises",
+    "Six little surprises scatter over a medium-sized landing area.",
+    "toy",
+    "🎁"
+  ],
+  "confetti-cannon": [
+    "Confetti Cannon",
+    "A dozen tiny shells put on a very loud confetti show.",
+    "toy",
+    "🎉"
+  ],
+  "rubber-comet": [
+    "Bouncy Doom Ball",
+    "A squishy-looking comet bounces four times before it makes a deep crater.",
+    "toy",
+    "🏀"
+  ],
+  "five-alive": [
+    "Five Bounces of Doom",
+    "Five tiny rebounds end with one concentrated pop.",
+    "toy",
+    "🪀"
+  ],
+  "breadcrumb-bombs": [
+    "Breadcrumb Bombs",
+    "A runaway bread roll leaves five crumbly explosions in its wake.",
+    "food",
+    "🍞"
+  ],
+  "runaway-marble": [
+    "Runaway Marble",
+    "A runaway shiny marble sprinkles nine little surprises along its path.",
+    "toy",
+    "🔵"
+  ],
+  "spiral-drill": [
+    "Crazy Straw Drill",
+    "A spinning crazy straw burrows deeply, firing five charges.",
+    "school",
+    "🥤"
+  ],
+  "mole-run": [
+    "Mole's Day Out",
+    "A very busy underground mole leaves two explosive surprises.",
+    "backyard",
+    "🐾"
+  ],
+  "subway": [
+    "Subway Express",
+    "Five booms mark the route of a very enthusiastic underground train.",
+    "toy",
+    "🚇"
+  ],
+  "flashlight": [
+    "World's Biggest Flashlight",
+    "The world's least subtle flashlight sweeps a broad nearby area.",
+    "science",
+    "🔦"
+  ],
+  "pilot-light": [
+    "Birthday Candle",
+    "Three birthday-candle flames make a little surprise party.",
+    "food",
+    "🕯️"
+  ],
+  "campfire": [
+    "Campfire Surprise",
+    "Seven flames turn a cozy campfire into an unexpected event.",
+    "backyard",
+    "🔥"
+  ],
+  "dragon-breath": [
+    "Dragon's Bad Breath",
+    "A dragon really should have brushed its teeth before this five-flame blast.",
+    "gross",
+    "🐉"
+  ],
+  "popcorn-mines": [
+    "Popcorn Mines",
+    "Nine tiny charges go pop-pop-pop across a very wide strip.",
+    "food",
+    "🍿"
+  ],
+  "dirt-dumpling": [
+    "Dirt Dumpling",
+    "A large earth dumpling drops in and builds a tall narrow mound.",
+    "food",
+    "🥟"
+  ],
+  "sandbar": [
+    "Sandcastle Surprise",
+    "A generous shovel of sand makes a low wide mound.",
+    "backyard",
+    "🏖️"
+  ],
+  "mountain-maker": [
+    "Mountain-in-a-Box",
+    "Unpack a whole mountain in one extremely impractical delivery.",
+    "toy",
+    "⛰️"
+  ],
+  "posthole": [
+    "Super Hole Punch",
+    "A giant office hole punch digs a narrow deep shaft.",
+    "school",
+    "🕳️"
+  ],
+  "road-grader": [
+    "Lunch Tray Scraper",
+    "An oversized lunch tray scrapes a very long shallow channel.",
+    "school",
+    "🍽️"
+  ],
+  "forked-bolt": [
+    "Lightning Fork",
+    "A giant electric fork sends three lightning branches to dinner.",
+    "science",
+    "🍴"
+  ],
+  "ground-current": [
+    "Sock Shuffle",
+    "The most powerful socks-on-carpet static shock ever.",
+    "house",
+    "🧦"
+  ],
+  "soft-swell": [
+    "Jelly Belly Wave",
+    "Three huge jiggly pulses travel along the ground.",
+    "food",
+    "🍮"
+  ],
+  "rapid-ripple": [
+    "Wigglequake",
+    "A dozen little ripples wiggle rapidly across the ground.",
+    "toy",
+    "🪱"
+  ]
+};
+const legacy = families.flatMap(([kind, entries]) =>
+  entries.map(([id, name, description, color, stats], iconVariant) => {
+    const remix = CLASSIC_REMIX[id];
+    return Object.freeze({
+      ...DEFAULTS, id, name: remix?.[0] || name, description: remix?.[1] || description,
+      color, kind, icon: kind, iconVariant, ...stats,
+      ...(remix ? {theme: remix[2], symbol: remix[3], playful:true} : {}),
+    });
+  })
+);
+export const ORIGINAL_WEAPON_COUNT = legacy.length;
+export const WEAPONS = Object.freeze([
+  ...legacy,
+  ...FUN_WEAPONS.map(weapon => Object.freeze({...DEFAULTS, ...weapon, funNew:true})),
+]);
 
 const byId = new Map(WEAPONS.map(weapon => [weapon.id, weapon]));
 
