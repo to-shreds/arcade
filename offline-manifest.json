@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.13.2+20261116.1",
-  "generatedAt": "2026-11-16T05:34:45.720Z",
+  "generatedAt": "2026-11-16T05:46:34.465Z",
   "fileCount": 436,
-  "totalBytes": 24686922,
+  "totalBytes": 24688665,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1807,8 +1807,8 @@
     },
     {
       "path": "tanks/battle-view.css",
-      "bytes": 7831,
-      "sha256": "d6323ef714d50b6f11d0b70df7f40a61f662ead17b74c59c1da6585395b7dc10"
+      "bytes": 8600,
+      "sha256": "a430bf571998af0de976aff9e01fef43487dcf00ca579fe3ed00618cabbd088c"
     },
     {
       "path": "tanks/battle-view.js",
@@ -1827,8 +1827,8 @@
     },
     {
       "path": "tanks/game.js",
-      "bytes": 42826,
-      "sha256": "5fb9ac6572c4f7769615f16995a9da11d9722c303654d8fa68ca5e82db21b16c"
+      "bytes": 43752,
+      "sha256": "f831825058b6097eae2545aa4253fe5b059308dc882ba81b1ff813efe8a0b063"
     },
     {
       "path": "tanks/game.json",
@@ -1847,8 +1847,8 @@
     },
     {
       "path": "tanks/index.html",
-      "bytes": 26793,
-      "sha256": "70ed06c725cdd8c3e3ce3bddcf1677a726bc6c65f1eee288772307ebbd940f0c"
+      "bytes": 26841,
+      "sha256": "fb9db338716738034558d94ddd20a0fa059d0cbae21a65e6d913b85337256e7b"
     },
     {
       "path": "tanks/range.html",

@@ -157,7 +157,16 @@ try{
  });
  assert.ok(dmg.events.some(([target,amount])=>target===1&&amount>=40));
  assert.ok(dmg.amounts.some(amount=>dmg.events.some(hit=>hit[1]===amount)));
- checks.push('Damage number appears for the precise engine-scored impact');
+ const number=page.locator('#damageFloats .damage-number').first();
+ await number.waitFor({state:'visible'});
+ const first=await number.boundingBox();
+ const typeSize=await number.evaluate(el=>parseFloat(getComputedStyle(el).fontSize));
+ assert.ok(typeSize>=17,'The damage number must remain readable even in portrait');
+ await page.waitForTimeout(320);
+ const second=await number.boundingBox();
+ assert.ok(second&&second.y<first.y-7,'Each scored value rises toward the actual screen ceiling');
+ await page.screenshot({path:path.join(out,'damage-floating-to-screen-top.png')});
+ checks.push('Readable damage number rises toward the whole screen ceiling');
  for(const [width,height] of [[320,568],[390,844],[844,390],[1280,800]]){
    await page.setViewportSize({width,height});await page.waitForTimeout(180);
    const fit=await page.evaluate(()=>{

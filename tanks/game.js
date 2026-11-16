@@ -65,7 +65,25 @@ function sound(kind='fire',weaponId=null) {
     osc.frequency.setValueAtTime(start,now);osc.frequency.exponentialRampToValueAtTime(Math.max(35,start*(theme==='toy'?1.7:.32)),now+.18);gain.gain.setValueAtTime(.04,now);gain.gain.exponentialRampToValueAtTime(.0001,now+.22);osc.connect(gain);gain.connect(soundContext.destination);osc.start(now);osc.stop(now+.25);
   }catch{}
 }
-function stopAnimation() { animation=null; floatingDamage=[]; }
+function stopAnimation() {
+  animation=null;floatingDamage=[];
+  $('damageFloats')?.replaceChildren();
+}
+function showDamageNumber(item) {
+  const layer=$('damageFloats'),stage=$('arena')?.getBoundingClientRect();
+  const field=$('battlefield')?.getBoundingClientRect();
+  if(!layer||!stage||!field?.width||!field?.height)return;
+  const x=field.left-stage.left+item.x/WIDTH*field.width+item.offset;
+  const y=field.top-stage.top+(item.y-camera.top)/camera.height*field.height;
+  const span=node('span','+'+item.amount,'damage-number'+(item.reduced?' reduced':''));
+  span.style.left=Math.max(12,Math.min(stage.width-12,x))+'px';
+  span.style.top=Math.max(16,Math.min(stage.height-16,y))+'px';
+  span.style.setProperty('--rise',Math.max(44,y-10)+'px');
+  layer.append(span);
+  const discard=()=>span.remove();
+  if(!item.reduced)span.addEventListener('animationend',discard,{once:true});
+  setTimeout(discard,item.reduced?1100:2200);
+}
 function collectDamageNumbers(playback, now, instant=false) {
   if(!playback?.before)return;
   const trace=playback.shot||playback.move;
@@ -82,11 +100,13 @@ function collectDamageNumbers(playback, now, instant=false) {
         : playback.before.tanks[seat].x;
       const impact=tankImpactAtTick(initialX,seat,effects,Math.max(-1,effect.tick-.01));
       const ground=groundAt({terrain},impact.x);
-      floatingDamage.push({
-        x:impact.x,y:Math.min(ground-32,HEIGHT-34),amount,
-        color:seat===0?'#ffe589':'#fff0a4',
-        offset:((i+seat*3)%5-2)*11, born:now, reduced:instant
-      });
+      const item={
+        x:effect.pushes?.find(p=>p[0]===seat)?.[1]??impact.x,
+        y:Math.min(ground-32,HEIGHT-34),amount,
+        offset:((i+seat*3)%5-2)*18,born:now,reduced:instant
+      };
+      floatingDamage.push(item);
+      showDamageNumber(item);
     }
   }
   // Only the last few seconds of visible events need Canvas work.
@@ -105,7 +125,7 @@ function animate(before,after,kind='fire') {
   const shot=kind==='fire'?after.lastShot:null, move=kind==='move'?after.lastMove:null;
   if(!shot&&!move){render();scheduleCpu();return;}
   const duration=shot?Math.min(preferences.speed==='fast'?1400:4200,Math.max(900,shot.duration*1000/30/(preferences.speed==='fast'?2:1))):650;
-  floatingDamage=[];animation={before,shot,move,started:performance.now(),duration,tick:0,impactPlayed:false,numberSeen:new Set()};scoreFrom=before.tanks.map(t=>t.score);scoreStarted=0;sound(kind,shot?.weaponId);render();
+  floatingDamage=[];$('damageFloats').replaceChildren();animation={before,shot,move,started:performance.now(),duration,tick:0,impactPlayed:false,numberSeen:new Set()};scoreFrom=before.tanks.map(t=>t.score);scoreStarted=0;sound(kind,shot?.weaponId);render();
 }
 async function localAction(intent, cpu=false) {
   if(busy||animation||!localGame||localGame.finished||session||(!cpu&&!canAct())||(cpu&&(playMode!=='cpu'||localGame.turn!==1)))return;
@@ -296,9 +316,9 @@ function tick(now) {
     if(fraction===1){if(!scoreStarted)scoreStarted=now;animation=null;render();scheduleCpu();}
   }
   floatingDamage=floatingDamage.filter(item=>now-item.born<(item.reduced?1100:2100));
-  if(canvasDirty||((animation||floatingDamage.length)&&now-lastDraw>=30)){
+  if(canvasDirty||(animation&&now-lastDraw>=30)){
     drawBattle($('battlefield'),game,{aims,animation,time:now,viewportTop:camera.top,
-      floatingDamage,displayScale:Math.max(.2,$('battlefield').clientWidth/WIDTH)});
+      displayScale:Math.max(.2,$('battlefield').clientWidth/WIDTH)});
     lastDraw=now;canvasDirty=false;
   }drawScores(now);
 }
