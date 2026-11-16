@@ -77,6 +77,14 @@ try {
    page.on('pageerror',e=>errors.push(`${viewport.width}x${viewport.height}: ${e.message}`));
    await page.goto(url);
    await page.waitForFunction(()=>document.querySelectorAll('#books .book').length===2);
+   // Android's document provider may not recognize the CBZ MIME type. Never filter at OS level.
+   assert.equal(await page.locator('#filePicker').getAttribute('accept'),null,'show CBZ files as selectable in Android');
+   const chooserPromise=page.waitForEvent('filechooser');
+   await page.locator('#chooseFile').click();
+   const chooser=await chooserPromise;
+   await chooser.setFiles({name:'Ignore-me.txt',mimeType:'text/plain',buffer:Buffer.from('not a comic')});
+   await page.waitForFunction(()=>document.querySelector('#libraryStatus').textContent.includes('Please select a CBZ or PDF'));
+   assert.equal(await page.locator('#reader').isHidden(),true,'non-comics remain blocked in JavaScript');
    assert.ok(await page.locator('body').evaluate(el=>el.scrollWidth<=innerWidth+1),'no body overflow');
    await page.getByRole('button',{name:'Open Sample',exact:false}).first().click();
    await page.waitForFunction(()=>document.querySelector('#pageCounter').textContent==='1 / 3'&&document.querySelector('#pages img')?.naturalWidth>0);

@@ -8,6 +8,15 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.13.3
+
+**Comic Library** now opens the Android file picker without a restrictive MIME
+filter, allowing local CBZ files to be selected even if Android does not
+recognize their file type. The reader still checks CBZ/PDF extensions after
+selection and rejects unrelated files. Existing PDF behavior, reading progress,
+offline copies and games are unchanged. Browser checks now exercise the actual
+Open File button and verify invalid files are rejected.
+
 ## Release 2.13.2
 
 Monster Forge now has 50 illustrated parts and six editable starter
