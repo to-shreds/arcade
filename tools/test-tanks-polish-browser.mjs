@@ -29,6 +29,7 @@ try{
  await context.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort());
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
  await page.goto(`${base}/tanks/`);await page.waitForFunction(()=>window.TanksGame&&window.ArcadeSave?.getAdapter());
+ assert.equal(await page.locator('#arsenal').count(),0,'No selectable arsenal pool in setup');
  await page.selectOption('#mode','hotseat');await page.click('#localStart');
  await page.waitForFunction(()=>!!TanksGame.getState());
  await page.evaluate(async()=>{
@@ -43,18 +44,40 @@ try{
  await page.evaluate(()=>ArcadeSave.saveNow());await page.reload();await page.click('.arcade-save-primary');
  await page.waitForFunction(()=>TanksGame.getState()?.shotsTotal===1);
  assert.deepEqual(await page.evaluate(()=>TanksGame.getState()),after);checks.push('native saved-game reload');
- await page.click('#settings');await page.getByRole('button',{name:'Arsenal (132)',exact:true}).click();
- assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),132);
- const svg=await page.locator('#weaponGrid svg:not(.terrain-preview)').evaluateAll(elements=>elements.map(e=>e.querySelector('g').outerHTML.replace(/color="[^"]*"/,'')));
- assert.equal(new Set(svg).size,132);
- await page.fill('#weaponSearch','canyon');assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),1);
- assert.equal(await page.locator('#weaponGrid [data-weapon]').getAttribute('data-weapon'),'canyon-cut');
- await page.click('#modalClose');checks.push('132 distinct artworks and arsenal search');
+ await page.click('#settings');
+ assert.equal(await page.getByRole('button',{name:'Arsenal (132)',exact:true}).count(),0,'Settings do not offer weapon pool choices');
+ await page.click('#modalClose');
+ const catalogue=await page.evaluate(async()=>{
+   const {WEAPONS}=await import('./weapons.js'),{weaponSvg}=await import('./weapon-art.js');
+   return WEAPONS.map(w=>weaponSvg(w).split('<g color=')[1].replace(/^"[^"]+"/,''));
+ });
+ assert.equal(catalogue.length,132);
+ assert.equal(new Set(catalogue).size,132);
+ await page.click('#weapon');
+ assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),10,'Choose from current ten shots only');
+ await page.click('#modalClose');
+ checks.push('No weapon pool settings, 132 individual weapon icons, normal per-turn selection');
+ const aim0=Number(await page.inputValue('#angle'));
+ await page.click('#angleMinus');assert.equal(Number(await page.inputValue('#angle')),aim0-1);
+ assert.equal(Number(await page.inputValue('#angleNumber')),aim0-1);
+ await page.click('#anglePlus');assert.equal(Number(await page.inputValue('#angle')),aim0);
+ const power0=Number(await page.inputValue('#power'));
+ await page.click('#powerPlus');assert.equal(Number(await page.inputValue('#powerNumber')),power0+1);
+ await page.click('#powerMinus');assert.equal(Number(await page.inputValue('#power')),power0);
+ await page.click('#moveMinus');assert.equal(await page.inputValue('#moveDistance'),'4');
+ assert.match(await page.locator('#moveAmount').textContent(),/4 tank lengths/);
+ await page.click('#movePlus');assert.equal(await page.inputValue('#moveDistance'),'5');
+ assert.equal(await page.locator('#movePlus').isDisabled(),true);
+ await page.locator('#angle').evaluate(el=>{el.value='0';el.dispatchEvent(new Event('input',{bubbles:true}));});
+ assert.equal(await page.locator('#angleMinus').isDisabled(),true);
+ await page.click('#anglePlus');assert.equal(await page.inputValue('#angleNumber'),'1');
+ await page.locator('#angle').evaluate((el,v)=>{el.value=String(v);el.dispatchEvent(new Event('input',{bubbles:true}));},aim0);
+ checks.push('one-unit angle, power and movement arrows update live numbers and respect boundaries');
  for(const [width,height] of [[412,915],[360,740],[915,412],[740,360],[667,375],[1280,800]]){
   await page.setViewportSize({width,height});await page.waitForTimeout(180);
   const layout=await page.evaluate(()=>{
    const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return{x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};
-   return{overflow:document.documentElement.scrollWidth>innerWidth+2,title:rect('.arcade-title'),actions:rect('.arcade-actions'),boxes:['#home','#landscape','#arena','#weapon','#angle','#power','#moveDistance','#moveLeft','#moveRight','#fire'].map(rect)};
+   return{overflow:document.documentElement.scrollWidth>innerWidth+2,title:rect('.arcade-title'),actions:rect('.arcade-actions'),boxes:['#home','#landscape','#arena','#weapon','#angle','#power','#moveDistance','#angleMinus','#anglePlus','#powerMinus','#powerPlus','#moveMinus','#movePlus','#moveLeft','#moveRight','#fire'].map(rect)};
   });
   assert.equal(layout.overflow,false);assert.ok(layout.title.right<=layout.actions.x+1);
   for(const r of layout.boxes)assert.ok(r.width>0&&r.height>0&&r.x>=-1&&r.right<=width+1&&r.y>=-1&&r.bottom<=height+1,JSON.stringify({width,height,r}));

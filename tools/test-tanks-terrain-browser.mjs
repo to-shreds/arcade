@@ -54,13 +54,23 @@ try{
   assert.equal(verified.same,true,id);assert.equal(verified.exact,true,id);checks.push(id);
  }
  const saved=await page.evaluate(()=>TanksGame.getState());await reloadSaved(saved,'earthquake');
- await page.click('#settings');await page.getByRole('button',{name:'Arsenal (132)',exact:true}).click();assert.equal(await page.locator('.terrain-preview').count(),132);
- await page.fill('#weaponSearch','lunch tray');assert.equal(await page.locator('#weaponGrid [data-weapon]').count(),1);assert.equal(await page.locator('#weaponGrid [data-weapon]').getAttribute('data-weapon'),'road-grader');assert.ok((await page.locator('.terrain-note').textContent()).includes('16'));
- await page.screenshot({path:path.join(out,'road-grader-profile.png')});await page.click('#modalClose');
+ const previewAudit=await page.evaluate(async()=>{
+   const {WEAPONS,weaponById}=await import('./weapons.js');
+   const {terrainPreviewSvg,terrainSummary}=await import('./graphics.js');
+   const all=WEAPONS.map(w=>terrainPreviewSvg(w));
+   return {count:all.length,valid:all.every(svg=>svg.includes('viewBox="0 0 256 116"')&&!svg.includes('NaN')),
+     roadGrader:terrainSummary(weaponById('road-grader'))};
+ });
+ assert.equal(previewAudit.count,132);
+ assert.equal(previewAudit.valid,true);
+ assert.match(previewAudit.roadGrader,/16/);
+ await page.click('#settings');assert.equal(await page.getByRole('button',{name:'Arsenal (132)',exact:true}).count(),0);
+ await page.click('#modalClose');
+ await page.screenshot({path:path.join(out,'terrain-preview-verified.png')});
  for(const [width,height] of [[412,915],[360,740],[915,412],[740,360],[667,375],[1280,800]]){
   await page.setViewportSize({width,height});await page.waitForTimeout(100);const r=await page.locator('#fire').boundingBox();assert.ok(r.x>=0&&r.y>=0&&r.x+r.width<=width+1&&r.y+r.height<=height+1);await reloadSaved(saved,`${width}x${height}`);await page.screenshot({path:path.join(out,`${width}x${height}.png`)});
  }
- assert.deepEqual(errors,[]);await writeFile(path.join(out,'report.json'),JSON.stringify({pass:true,checks,nativeReload:true,nativeReloads:7,errors},null,2)+'\n');console.log('PASS terrain browser: 14 families, same-scale previews, exact trace rendering, seven exact native reloads, arsenal search and six layouts');
+ assert.deepEqual(errors,[]);await writeFile(path.join(out,'report.json'),JSON.stringify({pass:true,checks,nativeReload:true,nativeReloads:7,errors},null,2)+'\n');console.log('PASS terrain browser: 14 families, same-scale previews, exact trace rendering, seven exact native reloads, 132 terrain preview audit and six layouts');
 }catch(error){
  const failure={error:error.stack,checks,errors};
  if(page&&!page.isClosed()){

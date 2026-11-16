@@ -38,7 +38,7 @@ function circle(ctx,x,y,r){ctx.beginPath();ctx.arc(x,y,Math.max(.1,r),0,Math.PI*
 function line(ctx,a,b){ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke();}
 
 function drawTank(ctx,tank,angle,active,time){
-  ctx.save();ctx.translate(tank.x,tank.y-3);
+  ctx.save();ctx.translate(tank.x,tank.y-3);ctx.rotate(tank.tilt||0);
   if(active){ctx.fillStyle='#ffffff10';ctx.beginPath();ctx.ellipse(0,2,29,6,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle=tank.color+'80';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(0,3,26,6,0,0,Math.PI*2);ctx.stroke();}
   ctx.fillStyle='#050b15';ctx.strokeStyle='#97a9b8';ctx.lineWidth=1.5;ctx.beginPath();ctx.roundRect(-18,-7,36,10,5);ctx.fill();ctx.stroke();
   ctx.fillStyle='#516880';for(let i=-12;i<=12;i+=8){circle(ctx,i,-2,2.7);ctx.fillStyle='#516880';}
@@ -274,6 +274,35 @@ function drawEffect(ctx,e,tick,index,weapon){
   drawPlayfulAftermath(ctx,e,tick,index,weapon);
 }
 
+/** Recreate authoritative knockback without simulating physics a second time.
+ * Optional pushes support keeps snapshots from before this release playable.
+ * Interpolation finishes before the next blow, preventing cross-impact jumps.
+ */
+export function tankImpactAtTick(initialX, seat, effects, tick) {
+  const events = [];
+  for (const effect of effects || []) for (const push of effect.pushes || []) {
+    if (push[0] === seat) events.push({tick:effect.tick, push});
+  }
+  let x = initialX, hop = 0, tilt = 0;
+  for (let index = 0; index < events.length; index++) {
+    const event = events[index];
+    if (tick < event.tick) break;
+    const next = events[index + 1];
+    const span = Math.max(1, Math.min(10, next ? next.tick - event.tick : 10));
+    const t = Math.max(0, Math.min(1, (tick-event.tick)/span));
+    const ease = t*t*(3-2*t);
+    const [,from,to,height] = event.push;
+    x = from + (to-from)*ease;
+    hop = 4*height*t*(1-t);
+    tilt = Math.sign(to-from)*.18*Math.sin(Math.PI*t);
+  }
+  return {x,hop,tilt};
+}
+function tankOnGround(tank, terrain, position) {
+  const {x,hop,tilt} = position;
+  return {...tank,x,y:Math.min(ground(terrain,x-12),ground(terrain,x),ground(terrain,x+12))-hop,hop,tilt};
+}
+
 export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewportTop=0,displayScale=1}={}) {
   const ctx=canvas.getContext('2d');if(!ctx||!game)return;ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,WIDTH,canvas.height);ctx.translate(0,-viewportTop);
   ctx.drawImage(backdrop(canvas,game.seed),0,0);
@@ -285,13 +314,23 @@ export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewport
   let terrain=game.terrain,tanks=game.tanks;const shot=animation?.shot,tick=animation?.tick||0;
   if(animation?.before&&shot?.terrainVersion===1){
     terrain=terrainAtTick(animation.before.terrain,shot.effects,tick);
-    tanks=game.tanks.map(tank=>({...tank,y:Math.min(ground(terrain,tank.x-12),ground(terrain,tank.x),ground(terrain,tank.x+12))}));
+    tanks=game.tanks.map((tank,i)=>tankOnGround(tank,terrain,
+      tankImpactAtTick(animation.before.tanks[i].x,i,shot.effects,tick)));
   }
   if(animation?.before&&shot&&shot.terrainVersion!==1){const events=shot.effects||[];terrain=game.terrain.map((y,i)=>{const old=animation.before.terrain[i],x=i*WIDTH/(game.terrain.length-1);if(old===y)return y;let reveal=shot.duration-12;for(const e of events){if(Math.abs(x-e.x)<Math.max(30,blastProfile(e.radius||40,weaponById(shot.weaponId)?.craterScale||1).width))reveal=Math.min(reveal,e.tick);}const f=Math.max(0,Math.min(1,(tick-reveal)/10));return old+(y-old)*f;});tanks=game.tanks.map((tank,i)=>({...tank,y:Math.min(ground(terrain,tank.x-12),ground(terrain,tank.x),ground(terrain,tank.x+12))}));}
   if(animation?.move){
-    const move=animation.move,f=Math.min(1,tick/24),x=move.from+(move.to-move.from)*(1-Math.pow(1-f,3));
+    const move=animation.move;
+    // An armed mine fires at tick 18; finish the voluntary movement before
+    // its separate blast can physically throw the moving tank.
+    const firstMineTick=move.effects?.find(e=>e.kind==='explosion')?.tick;
+    const travelTicks=firstMineTick===undefined?24:Math.max(1,Math.min(24,firstMineTick));
+    const f=Math.min(1,tick/travelTicks),requested=move.intendedTo??move.to;
+    const travelling=move.from+(requested-move.from)*(1-Math.pow(1-f,3));
     if(move.terrainVersion===1)terrain=terrainAtTick(animation.before.terrain,move.effects,tick);
-    tanks=game.tanks.map((tank,i)=>{const tx=i===move.actor?x:tank.x;return {...tank,x:tx,y:Math.min(ground(terrain,tx-12),ground(terrain,tx),ground(terrain,tx+12))};});
+    tanks=game.tanks.map((tank,i)=>{
+      const initial=i===move.actor?travelling:animation.before.tanks[i].x;
+      return tankOnGround(tank,terrain,tankImpactAtTick(initial,i,move.effects,tick));
+    });
   }
   const earth=ctx.createLinearGradient(0,250,0,HEIGHT);earth.addColorStop(0,'#557f58');earth.addColorStop(.18,'#354d39');earth.addColorStop(.5,'#263a34');earth.addColorStop(1,'#132c2b');terrainPath(ctx,terrain);ctx.fillStyle=earth;ctx.fill();ctx.save();ctx.clip();ctx.strokeStyle='#64806325';ctx.lineWidth=2;for(let band=0;band<7;band++){ctx.beginPath();for(let x=0;x<=WIDTH;x+=10){const y=340+band*36+9*Math.sin(x/82+band);x?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.stroke();}for(let i=0;i<130;i++){ctx.fillStyle=i%3?'#8fac6920':'#040e182b';circle(ctx,hash(i*21)*WIDTH,300+hash(i*32+game.seed)*260,1+hash(i*91)*2);}ctx.restore();
   const initial=originalSurface(game),step=WIDTH/(terrain.length-1);

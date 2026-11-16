@@ -45,6 +45,32 @@ function supportAt(state, x) {
   return round(Math.min(groundAt(state, x - TANK_WIDTH * .4), groundAt(state, x), groundAt(state, x + TANK_WIDTH * .4)));
 }
 function settle(state) { for (const tank of state.tanks) tank.y = supportAt(state, tank.x); }
+// A hit can move a tank, not merely change the score. This is authoritative
+// game state, resolved in the same deterministic order as explosions and mines.
+// The temporary hop is a rendering detail; saved tanks always rest on terrain.
+const IMPULSE = Object.freeze({
+  ballistic: 1, cluster: .95, burst: .95, bounce: 1.4,
+  roller: 1.3, drill: .85, tunnel: .75, beam: .44,
+  flame: .25, mine: 1.2, builder: .5, carver: .62,
+  lightning: .42, wave: 1.12
+});
+function knockTank(state, actor, target, weapon, hitX, gain) {
+  const force = gain * (IMPULSE[weapon?.kind] ?? 1);
+  if (force < 33) return null; // small hits and grazing blows do not throw tanks
+  const tank = state.tanks[target], other = state.tanks[1 - target];
+  const direction = Math.abs(tank.x - hitX) >= 4
+    ? Math.sign(tank.x - hitX) : (actor === 0 ? 1 : -1);
+  const distance = Math.min(75, Math.round((force - 26) * .72));
+  const minimum = target === 0 ? MIN_X : other.x + TANK_WIDTH * 1.2;
+  const maximum = target === 0 ? other.x - TANK_WIDTH * 1.2 : MAX_X;
+  const from = tank.x, to = round(clamp(from + direction * distance, minimum, maximum));
+  if (Math.abs(to - from) < 2) return null;
+  tank.x = to;
+  tank.y = supportAt(state, to);
+  const hop = round(clamp(8 + force * .27, 12, 42));
+  return [target, from, to, hop];
+}
+
 function tankCenter(tank) { return { x: tank.x, y: tank.y - 12 }; }
 function terrain(state, type) {
   const phase = random(state) * Math.PI * 2;
@@ -72,7 +98,6 @@ export function createGame(options = {}) {
   const starter = options.starter ?? 0;
   assert(starter === 0 || starter === 1, 'Invalid starting player.');
   const seed = seedNumber(options.seed);
-  const weaponMix = ['all','classic','silly'].includes(options.weaponMix) ? options.weaponMix : 'all';
   const state = { schema: 1, seed, rng: seed, starter, terrainType: type, terrain: [], tanks: [], turn: starter,
     shotsTotal: 0, finished: false, winner: null, mines: [], lastShot: null, lastMove: null };
   terrain(state, type);
@@ -80,12 +105,7 @@ export function createGame(options = {}) {
     const name = String(options.names?.[index] ?? `Player ${index + 1}`).trim().slice(0, 30) || `Player ${index + 1}`;
     const color = /^#[\da-f]{6}$/i.test(options.colors?.[index] ?? '') ? options.colors[index].toLowerCase() : COLORS[index];
     state.tanks.push({ x: index === 0 ? 130 : 870, y: 0, name, color, score: 0, movesLeft: 4,
-      inventory: weaponMix === 'silly'
-        ? shuffle(state, [
-            ...shuffle(state, WEAPONS.filter(weapon => weapon.funNew).map(weapon => weapon.id)).slice(0, 7),
-            ...shuffle(state, WEAPONS.filter(weapon => !weapon.funNew).map(weapon => weapon.id)).slice(0, 3)
-          ])
-        : shuffle(state, WEAPONS.filter(weapon => weaponMix !== 'classic' || !weapon.funNew).map(weapon => weapon.id)).slice(0, 10),
+      inventory: shuffle(state, WEAPONS.map(weapon => weapon.id)).slice(0, 10),
       shots: 0 });
   }
   settle(state);
@@ -132,6 +152,7 @@ function terrainEffect(state, trace, weapon, x, y, tick, radius, kind, mutate, e
 function blast(state, trace, actor, weapon, x, y, damage, radius, tick, kind = 'explosion', options = {}) {
   const color = options.color ?? weapon.color;
   const damageRadius = Math.max(5, radius);
+  const scored = [];
   for (let target = 0; target < 2; target++) {
     const center = tankCenter(state.tanks[target]);
     const distance = Math.max(0, Math.hypot(center.x - x, center.y - y) - TANK_WIDTH * .42);
@@ -140,16 +161,24 @@ function blast(state, trace, actor, weapon, x, y, damage, radius, tick, kind = '
     const scorer = target === actor ? 1 - actor : actor;
     state.tanks[scorer].score += gain;
     trace.scoreGain[scorer] += gain;
+    if (gain > 0) scored.push([target, gain]);
   }
   const before = state.terrain.slice();
   const profile = options.profile || weaponTerrainProfile(weapon);
   if (options.carve !== false) crater(state, x, options.terrainY ?? y, radius, weapon.craterScale ?? 1, profile);
   const patch = terrainPatch(before, state.terrain);
+  settle(state);
+  const pushes = [];
+  // Do not move tanks if the bounded trace cannot record the matching animation.
+  if (trace.effects.length < MAX_EFFECTS) for (const [target, gain] of scored) {
+    const push = knockTank(state, actor, target, weapon, x, gain);
+    if (push) pushes.push(push);
+  }
   addEffect(trace, kind, color, x, y, radius, tick, { duration: 24,
     groundWidth: options.carve === false ? 0 : profile.width,
     ...(weapon.id ? {weaponId: weapon.id} : {}),
+    ...(pushes.length ? { pushes } : {}),
     ...(patch ? { terrain: patch, terrainDuration: 6 } : {}) });
-  settle(state);
 }
 function muzzle(state, actor, angle) {
   const tank = state.tanks[actor], radians = angle * Math.PI / 180;
@@ -257,7 +286,7 @@ function resolveBeam(state, trace, actor, weapon, angle, power) {
   let end = { ...origin }, soil = 0;
   const before = state.terrain.slice(), launch = trace.launchTick || 0;
   const profile = weaponTerrainProfile(weapon);
-  const hit = new Set();
+  const hit = new Set(), beamHits = [];
   for (let distance = 0; distance <= length; distance += 5) {
     const x = origin.x + dx * distance, y = origin.y + dy * distance;
     if (x < 0 || x > WIDTH || y < -HEIGHT || y > HEIGHT) break;
@@ -270,6 +299,7 @@ function resolveBeam(state, trace, actor, weapon, angle, power) {
         const scorer = target === actor ? 1 - actor : actor;
         const gain = Math.round(weapon.damage);
         state.tanks[scorer].score += gain; trace.scoreGain[scorer] += gain;
+        beamHits.push([target, gain, x]);
       }
     }
     if (y >= groundAt({terrain:before}, x)) {
@@ -278,10 +308,17 @@ function resolveBeam(state, trace, actor, weapon, angle, power) {
       if (weapon.id !== 'cutting-ray' || soil >= 160 * (.5 + power/200)) break;
     }
   }
-  addPath(trace, 'beam', weapon.color, [[origin.x, origin.y, launch], [end.x, end.y, launch+12]]);
-  addEffect(trace, 'beam', weapon.color, origin.x, origin.y, width / 2, launch+1, { x2: round(end.x), y2: round(end.y), duration: 18 });
-  addEffect(trace, 'spark', weapon.color, end.x, end.y, width + 8, launch+12, { duration:18, terrain: terrainPatch(before,state.terrain) });
   settle(state);
+  const pushes = [];
+  if (trace.effects.length < MAX_EFFECTS - 1) for (const [target, gain, impactX] of beamHits) {
+    const push = knockTank(state, actor, target, weapon, impactX, gain);
+    if (push) pushes.push(push);
+  }
+  addPath(trace, 'beam', weapon.color, [[origin.x, origin.y, launch], [end.x, end.y, launch+12]]);
+  addEffect(trace, 'beam', weapon.color, origin.x, origin.y, width / 2, launch+1, {
+    x2: round(end.x), y2: round(end.y), duration: 18, ...(pushes.length ? {pushes} : {})
+  });
+  addEffect(trace, 'spark', weapon.color, end.x, end.y, width + 8, launch+12, { duration:18, terrain: terrainPatch(before,state.terrain) });
 }
 function resolveWeapon(state, trace, actor, weapon, angle, power) {
   const count = clamp(Math.round(weapon.count ?? 1), 1, 16), damage = weapon.damage ?? 60, radius = weapon.radius ?? 35;
@@ -453,7 +490,9 @@ export function applyAction(snapshot, action, actor = snapshot?.turn) {
     tank.x = to; tank.movesLeft--; settle(state);
     const trace = { terrainVersion: 1, scoreGain: [0, 0], paths: [], effects: [], duration: 0 };
     triggerMines(state, trace, actor, false, false, 18);
-    state.lastMove = { terrainVersion: 1, actor, from, to, effects: trace.effects, scoreGain: trace.scoreGain };
+    state.lastMove = { terrainVersion: 1, actor, from, to: tank.x,
+      ...(tank.x !== to ? {intendedTo:to} : {}),
+      effects: trace.effects, scoreGain: trace.scoreGain };
     return state;
   }
   assert(action.type === 'fire', 'Unknown tank action.');
@@ -485,6 +524,20 @@ function validEffect(effect) {
   for (const key of ['x', 'y', 'radius', 'tick']) assert(finite(effect[key]), 'Invalid effect coordinate.');
   assert(effect.x >= -100 && effect.x <= WIDTH + 100 && effect.y >= -1800 && effect.y <= HEIGHT + 100 && effect.radius >= 1 && effect.radius <= WIDTH && integer(effect.tick) && effect.tick >= 0 && effect.tick <= MAX_TICKS, 'Effect out of bounds.');
   for (const key of ['x2', 'y2', 'height', 'duration', 'terrainDuration', 'groundWidth']) if (effect[key] !== undefined) assert(finite(effect[key]) && Math.abs(effect[key]) <= 2000, 'Invalid effect detail.');
+  if (effect.pushes !== undefined) {
+    assert(Array.isArray(effect.pushes) && effect.pushes.length >= 1 && effect.pushes.length <= 2, 'Invalid tank impact count.');
+    const seats = new Set();
+    for (const push of effect.pushes) {
+      assert(Array.isArray(push) && push.length === 4 &&
+        (push[0] === 0 || push[0] === 1) && !seats.has(push[0]) &&
+        finite(push[1]) && finite(push[2]) && finite(push[3]) &&
+        push[1] >= MIN_X && push[1] <= MAX_X &&
+        push[2] >= MIN_X && push[2] <= MAX_X &&
+        Math.abs(push[2]-push[1]) >= 2 && Math.abs(push[2]-push[1]) <= 75 &&
+        push[3] >= 12 && push[3] <= 42, 'Invalid tank impact displacement.');
+      seats.add(push[0]);
+    }
+  }
   if(effect.terrain != null) {
     const patch=effect.terrain;
     assert(Array.isArray(patch) && patch.length>=2 && patch.length<=TERRAIN_SAMPLES+1 && integer(patch[0]) && patch[0]>=0 && patch[0]+patch.length-1<=TERRAIN_SAMPLES && patch.slice(1).every(y=>finite(y)&&y>=MIN_GROUND&&y<=MAX_GROUND),'Invalid terrain animation patch.');
@@ -539,7 +592,10 @@ export function validateGame(snapshot) {
   } else assert(snapshot.shotsTotal === 0, 'Missing shot record.');
   if (snapshot.lastMove !== null) {
     const move = snapshot.lastMove;
-    assert(move && (move.actor === 0 || move.actor === 1) && move.actor === snapshot.turn && finite(move.from) && move.from >= MIN_X && move.from <= MAX_X && finite(move.to) && move.to === snapshot.tanks[move.actor].x && Math.abs(move.to - move.from) >= 1 && Math.abs(move.to - move.from) <= MAX_MOVE && Array.isArray(move.effects) && move.effects.length <= MAX_EFFECTS && Array.isArray(move.scoreGain) && move.scoreGain.length === 2 && move.scoreGain.every((gain, index) => integer(gain) && gain >= 0 && gain <= snapshot.tanks[index].score), 'Invalid movement record.');
+    assert(move && (move.actor === 0 || move.actor === 1) && move.actor === snapshot.turn && finite(move.from) && move.from >= MIN_X && move.from <= MAX_X && finite(move.to) && move.to === snapshot.tanks[move.actor].x && finite(move.intendedTo ?? move.to) && (move.intendedTo ?? move.to) >= MIN_X && (move.intendedTo ?? move.to) <= MAX_X &&
+      Math.abs((move.intendedTo ?? move.to) - move.from) >= 1 &&
+      Math.abs((move.intendedTo ?? move.to) - move.from) <= MAX_MOVE &&
+      (move.intendedTo === undefined || Math.abs(move.to - move.intendedTo) <= 75) && Array.isArray(move.effects) && move.effects.length <= MAX_EFFECTS && Array.isArray(move.scoreGain) && move.scoreGain.length === 2 && move.scoreGain.every((gain, index) => integer(gain) && gain >= 0 && gain <= snapshot.tanks[index].score), 'Invalid movement record.');
     for (const effect of move.effects) validEffect(effect);
   }
   assert(JSON.stringify(snapshot).length <= 65536, 'Saved game is too large.');

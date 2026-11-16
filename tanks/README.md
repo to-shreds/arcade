@@ -12,9 +12,26 @@ Every tank receives ten distinct randomized weapons. The default arsenal contain
 
 ## Arsenal selection and Test Range
 
-New local matches default to **All 132**, with options for the original 84 or an Extra silly mix of seven new weapons and three classics per player. Internet and Nearby games always use the complete arsenal so both peers agree on the same authoritative rules. The selection only affects future matches; it does not rewrite existing saves.
+Every new match, including local, computer, Internet and Nearby, draws from all **132 weapons**. There is no weapon-pool setting. Older saved matches keep the ammunition they already received, including matches originally made with a different pool. Each tank still receives ten different randomized weapons.
 
 The Test Range is available at `tanks/range.html` and through the game setup and settings. It is an isolated, repeatable practice field without ammunition limits. It never replaces a saved battle or submits multiplayer actions. Reset terrain restores the original practice landscape.
+
+## Knockback and precision controls
+
+Large kinetic hits can now knock tanks horizontally and briefly throw them
+into the air. They settle on the actual changed ground when the animation
+finishes. Smaller hits usually leave them in place. The blast direction,
+weapon type and actual damage determine the shove, limited to 75 world
+units per impact. Tanks cannot pass each other or leave the battlefield.
+These shifts are part of deterministic game state, not visual-only motion,
+and do not consume the player's four deliberate moves. A mine detonating
+during a deliberate move can also knock the moving tank away.
+
+Angle, power and movement distance have one-step left/right buttons next to
+the original sliders. Angle adjusts in one-degree steps (0–180), power in
+one-percent steps (1–100), and move distance in single tank lengths (1–5).
+The original slider, numeric entry and keyboard controls remain available.
+Buttons disable at endpoints and whenever it is not the player's turn.
 
 ## Landscape and impacts
 
@@ -35,7 +52,10 @@ The dashed line is the original surface. Actual craters depend on impact height,
 slope, existing holes, and bedrock. Surface fire and electrical sparks no longer
 reuse the explosive flash and flying-soil effect.
 
-Shot records carry the actual changed ground samples for each effect. Animation
+Shot records carry the exact changed ground samples and, for stronger hits,
+the displacement and hop height for each affected tank. Older saves without
+impact motion continue to load unchanged. Shot records carry the actual
+chronological ground samples for each effect. Animation
 replays those changes in order; an early blast cannot reveal the final hole
 from a later blast or mine. Bursts and cluster fragments advance on the same
 simulation clock and collide with the terrain that exists at that instant.

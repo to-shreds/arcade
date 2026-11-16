@@ -267,14 +267,18 @@ try {
   await run('complete weapon arsenal has individual rendered graphics', async () => {
     const { page, context } = await pageFor();
     try {
-      await localStart(page); await page.locator('#settings').click();
-      await page.getByRole('button', { name: /arsenal/i }).click();
-      await page.waitForFunction(() => document.querySelectorAll('#weaponGrid [data-weapon]').length >= 80);
+      await localStart(page);
+      assert.equal(await page.locator('#arsenal').count(), 0, 'Weapon pool selection is removed');
       const catalog = await page.evaluate(async () => {
-        const result = [];
-        for (const button of document.querySelectorAll('#weaponGrid [data-weapon]')) {
-          const svg = button.querySelector('svg');
-          if (!svg) { result.push({ id: button.dataset.weapon, graphic: false }); continue; }
+        const {WEAPONS} = await import('./weapons.js');
+        const {weaponSvg} = await import('./weapon-art.js');
+        const result = [],gallery=document.createElement('div');
+        gallery.style.cssText='display:grid;grid-template-columns:repeat(12,64px);gap:4px';
+        for (const weapon of WEAPONS) {
+          const icon=document.createElement('div');icon.innerHTML=weaponSvg(weapon);
+          const svg=icon.querySelector('svg');
+          if (!svg) { result.push({ id: weapon.id, graphic: false }); continue; }
+          gallery.append(icon);
           const markup = new XMLSerializer().serializeToString(svg);
           const image = new Image(); image.src = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(markup)))}`; await image.decode();
           const canvas = document.createElement('canvas'); canvas.width = canvas.height = 64;
@@ -283,14 +287,17 @@ try {
           const paintedPixels = [...pixels].filter((_, index) => index % 4 === 3 && pixels[index] > 0).length;
           const bytes = new Uint8Array(await crypto.subtle.digest('SHA-256', pixels));
           const hash = [...bytes].map(value => value.toString(16).padStart(2, '0')).join('');
-          result.push({ id: button.dataset.weapon, name: button.querySelector('strong')?.textContent, description: button.querySelector('small')?.textContent, graphic: true, paintedPixels, hash });
+          result.push({ id: weapon.id, name: weapon.name, description: weapon.description, graphic: true, paintedPixels, hash });
         }
+        gallery.id='test-arsenal-gallery';
+        document.body.append(gallery);
         return result;
       });
-      assert.ok(catalog.length >= 80); assert.equal(new Set(catalog.map(weapon => weapon.id)).size, catalog.length);
+      assert.equal(catalog.length,132); assert.equal(new Set(catalog.map(weapon => weapon.id)).size, catalog.length);
       for (const weapon of catalog) assert.ok(weapon.graphic && weapon.paintedPixels > 100 && weapon.name && weapon.description?.length > 12, `${weapon.id} has a real graphic, name and usable description`);
-      assert.ok(new Set(catalog.map(weapon => weapon.hash)).size >= 80, 'At least 80 weapon icons actually render differently');
+      assert.ok(new Set(catalog.map(weapon => weapon.hash)).size >= 120, 'At least 80 weapon icons actually render differently');
       await snapshot(page, 'arsenal');
+      await page.evaluate(()=>document.querySelector('#test-arsenal-gallery')?.remove());
       return { count: catalog.length, uniqueRenderedIcons: new Set(catalog.map(weapon => weapon.hash)).size, weapons: catalog };
     } finally { await snapshot(page, 'last-arsenal').catch(() => {}); await context.close(); }
   });

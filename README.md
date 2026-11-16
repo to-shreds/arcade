@@ -8,6 +8,17 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.12.1
+
+**Tank Tactics** no longer asks players which weapon collection to use.
+Every new match draws ten random weapons per player from all 132.
+Strong explosions and other impacts can throw a tank sideways and make it
+bounce; the resulting position matters for future turns and is preserved
+in saves and multiplayer. Small impacts generally do not move tanks.
+One-step arrow buttons next to angle, power and movement sliders make
+precise aiming easier on mobile devices, without replacing the sliders
+or the numeric angle/power inputs.
+
 ## Release 2.12.0
 
 **Tank Tactics** now has 132 weapons. New matches use the whole arsenal by

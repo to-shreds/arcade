@@ -15,9 +15,9 @@ let localGame = null, playMode = 'cpu', difficulty = 'normal', aims = [{angle:45
 let session = null, room = null, busy = false, joining = false, generation = 0;
 let socket = null, reconnectTimer = null, pollTimer = null, cpuTimer = null, retries = 0, refreshing = false, suspended = false;
 let animation = null, frame = 0, renderedTurn = '', scoreFrom = [0,0], scoreStarted = 0, soundContext = null, canvasDirty = true, lastDraw = 0, localAimsBackup = null;
-let preferences = { sound:true, speed:'normal', arsenal:'all' }, modalKind = '', lobbyDraftKey = '', camera = {height:HEIGHT,top:0}, chosenOwnColor = false;
+let preferences = { sound:true, speed:'normal' }, modalKind = '', lobbyDraftKey = '', camera = {height:HEIGHT,top:0}, chosenOwnColor = false;
 const prefs = read('arcade.tanks.preferences.v1');
-if (prefs && typeof prefs === 'object') preferences = {sound:prefs.sound !== false,speed:['normal','fast'].includes(prefs.speed)?prefs.speed:'normal',arsenal:['all','classic','silly'].includes(prefs.arsenal)?prefs.arsenal:'all'};
+if (prefs && typeof prefs === 'object') preferences = {sound:prefs.sound !== false,speed:['normal','fast'].includes(prefs.speed)?prefs.speed:'normal'};
 
 function currentGame() { return session ? room?.state?.game || null : localGame; }
 function roomKey(transport) { return `arcade.tanks.room.${transport}.v1`; }
@@ -48,7 +48,7 @@ function showSetup() { clearTimeout(cpuTimer);stopAnimation();closeModal();$('se
 async function startLocal() {
   if(session||busy||joining)return;
   playMode=$('mode').value==='hotseat'?'hotseat':'cpu';difficulty=$('difficulty').value;
-  localGame=createGame({seed:seed(),terrainType:$('terrain').value,weaponMix:preferences.arsenal,names:[validName($('nameInput0').value,'Player 1'),validName($('nameInput1').value,playMode==='cpu'?'Computer':'Player 2')],colors:[$('color0').value,$('color1').value],starter:0});
+  localGame=createGame({seed:seed(),terrainType:$('terrain').value,names:[validName($('nameInput0').value,'Player 1'),validName($('nameInput1').value,playMode==='cpu'?'Computer':'Player 2')],colors:[$('color0').value,$('color1').value],starter:0});
   aims=[{angle:45,power:55,weaponId:localGame.tanks[0].inventory[0]},{angle:135,power:55,weaponId:localGame.tanks[1].inventory[0]}];
   stopAnimation();scoreFrom=[0,0];scoreStarted=0;renderedTurn='';$('setup').hidden=true;save?.setExternalSession(false);render();await save?.saveNow();scheduleCpu();
 }
@@ -168,8 +168,7 @@ function updateTransport() {
 }
 
 function updateSetup() {
-  $('arsenal').value=preferences.arsenal;
-  const network=$('mode').value==='network',cpu=$('mode').value==='cpu';$('networkControls').hidden=!network;$('localStart').hidden=network;$('secondPlayer').hidden=network;$('difficultyField').hidden=!cpu;$('arsenalField').hidden=network;$('secondNameLabel').textContent=cpu?'Computer':'Second player';
+  const network=$('mode').value==='network',cpu=$('mode').value==='cpu';$('networkControls').hidden=!network;$('localStart').hidden=network;$('secondPlayer').hidden=network;$('difficultyField').hidden=!cpu;$('secondNameLabel').textContent=cpu?'Computer':'Second player';
   if(cpu&&$('nameInput1').value==='Player 2')$('nameInput1').value='Computer';if(!cpu&&$('nameInput1').value==='Computer')$('nameInput1').value='Player 2';
   $('setupArt').innerHTML=tankSvg($('color0').value)+`<span>VS</span>`+tankSvg($('color1').value,-1);updateTransport();
 }
@@ -215,6 +214,7 @@ function renderResult() {
 function updateButtons() {
   const game=currentGame(),allowed=canAct();for(const id of ['weapon','angle','angleNumber','power','powerNumber','fire'])$(id).disabled=!allowed;
   const movable=allowed&&game.tanks[game.turn].movesLeft>0;for(const id of ['moveDistance','moveLeft','moveRight'])$(id).disabled=!movable;
+  updatePrecisionButtons();
   $('create').disabled=$('join').disabled=$('resumeRoom').disabled=joining||busy||!!session;$('nickname').disabled=$('joinCode').disabled=joining;$('localStart').disabled=busy||joining||!!session;$('leave').disabled=busy;$('configureRoom').disabled=busy;$('lobbyColor').disabled=busy;$('newGame').disabled=busy||joining;
   if(modalKind==='weapons')for(const button of $('modalBody').querySelectorAll('[data-weapon]'))button.disabled=!allowed;
   for(const button of $('loadoutWeapons').querySelectorAll('button'))button.disabled=!allowed;
@@ -249,10 +249,8 @@ function modal(title,body,actions=[],kind='') {
 function weaponPicker(catalog=false) {
   const game=currentGame();if(!catalog&&!canAct())return;
   const available=catalog?WEAPONS:game.tanks[game.turn].inventory.map(weaponById),grid=node('div','','weapon-grid');grid.id='weaponGrid';
-  let category='all';
   const renderGrid=filter=>{grid.replaceChildren(...available.filter(w=>
-    (category==='all'||(category==='funny'?!!w.playful:!w.funNew))&&
-    (!filter||`${w.name} ${w.description} ${w.kind} ${w.theme||''}`.toLowerCase().includes(filter))
+    !filter||`${w.name} ${w.description} ${w.kind} ${w.theme||''}`.toLowerCase().includes(filter)
   ).map(w=>{
     const b=node(catalog?'div':'button','','weapon-card');b.dataset.weapon=w.id;b.style.setProperty('--weapon-color',w.color);b.classList.toggle('selected',!catalog&&w.id===aims[game.turn].weaponId);const art=node('div','');art.innerHTML=weaponSvg(w);const details=node('div','','details');details.append(node('strong',w.name),node('small',w.description));
     const stats=node('div','','weapon-stats');
@@ -261,11 +259,8 @@ function weaponPicker(catalog=false) {
     const terrainNote=node('small',terrainSummary(w),'terrain-note');const preview=node('div','','terrain-swatch');preview.innerHTML=terrainPreviewSvg(w);details.append(stats,terrainNote,preview);b.append(art,details);
     if(!catalog){b.type='button';b.onclick=()=>{if(!canAct())return;aims[game.turn].weaponId=w.id;save?.touch(0);closeModal();render();};}return b;
     }));};renderGrid('');
-  const categorySelect=document.createElement('select');categorySelect.setAttribute('aria-label','Weapon category');
-  categorySelect.innerHTML='<option value="all">All weapons</option><option value="funny">Funny weapons</option><option value="original">Original 84</option>';
-  categorySelect.onchange=()=>{category=categorySelect.value;renderGrid(search.value.trim().toLowerCase());};
   const search=document.createElement('input');search.id='weaponSearch';search.placeholder='Find a weapon';search.type='search';search.setAttribute('aria-label','Search weapons');search.oninput=()=>renderGrid(search.value.trim().toLowerCase());
-  modal(catalog?`The arsenal · ${WEAPONS.length} weapons`:'Choose your weapon',[node('p',catalog?'Every weapon has its own behavior. Each battle deals ten different single-use weapons to each tank.':'One shot each. Terrain sketches use the same scale: dashed is the original ground, solid is the effect. Spread depends on aim; bedrock limits depth.','weapon-description'),categorySelect,search,grid],[],catalog?'arsenal':'weapons');
+  modal(catalog?`The arsenal · ${WEAPONS.length} weapons`:'Choose your weapon',[node('p',catalog?'Every weapon has its own behavior. Each battle deals ten different single-use weapons to each tank.':'One shot each. Terrain sketches use the same scale: dashed is the original ground, solid is the effect. Spread depends on aim; bedrock limits depth.','weapon-description'),search,grid],[],catalog?'arsenal':'weapons');
 }
 function rules() {
   const list=document.createElement('ol');list.className='help-list';for(const value of ['Each tank gets ten random, different weapons. Every weapon can be fired once.','Take turns firing. Angle 0° points right, 90° points straight up, and 180° points left. Power controls launch speed.','Damage adds points. Hitting yourself gives points to your opponent. Tanks stay in play until all twenty shots are fired. Highest score wins.','Before firing, you may move left or right. Each tank gets four moves for the whole game, each up to five tank lengths. Moving keeps your turn.','Terrain previews show the solid resulting ground against the dashed original surface. Dimensions are world units; bedrock limits depth. Tunnels collapse into open trenches, not enclosed caves.', 'Explosions reshape the terrain. Some weapons roll, bounce, dig, build, fire beams or leave mines. Mines can explode on later turns or when a tank moves close.','Your local battle saves automatically. Multiplayer rooms save your seat so you can reconnect. Returning home keeps your progress.'])list.append(node('li',value));
@@ -274,15 +269,44 @@ function rules() {
 function settings() {
   const switches=node('div','','settings-toggles');const soundLabel=node('label',''),input=document.createElement('input');input.type='checkbox';input.checked=preferences.sound;input.onchange=()=>{preferences.sound=input.checked;write('arcade.tanks.preferences.v1',preferences);};soundLabel.append(input,node('span','Battle sounds'));
   const speedLabel=node('label','Animation speed'),speed=document.createElement('select');speed.innerHTML='<option value="normal">Normal</option><option value="fast">Fast</option>';speed.value=preferences.speed;speed.onchange=()=>{preferences.speed=speed.value;write('arcade.tanks.preferences.v1',preferences);};speedLabel.append(speed);switches.append(soundLabel,speedLabel);
-  const alert=mp?.getTurnAlertSettings();modal('Settings',[switches,node('p','Local progress saves automatically after every action. Your shot is saved before its animation, so a reload resumes at the next turn.'),node('p',`Multiplayer turn sound is ${alert?.soundEnabled?'on':'off'}. Desktop turn notifications use your browser notification setting.`)],[{label:'How to play',run:rules},{label:`Arsenal (${WEAPONS.length})`,run:()=>weaponPicker(true)},{label:'Test Range',run:()=>{window.location.href='range.html';}},{label:alert?.soundEnabled?'Mute turn sound':'Enable turn sound',run:()=>{mp?.setTurnSoundEnabled(!alert?.soundEnabled);settings();}},{label:'Enable notifications',run:async()=>{await mp?.requestTurnNotifications();closeModal();}}],'settings');
+  const alert=mp?.getTurnAlertSettings();modal('Settings',[switches,node('p','Local progress saves automatically after every action. Your shot is saved before its animation, so a reload resumes at the next turn.'),node('p',`Multiplayer turn sound is ${alert?.soundEnabled?'on':'off'}. Desktop turn notifications use your browser notification setting.`)],[{label:'How to play',run:rules},{label:'Test Range',run:()=>{window.location.href='range.html';}},{label:alert?.soundEnabled?'Mute turn sound':'Enable turn sound',run:()=>{mp?.setTurnSoundEnabled(!alert?.soundEnabled);settings();}},{label:'Enable notifications',run:async()=>{await mp?.requestTurnNotifications();closeModal();}}],'settings');
 }
 function confirmNew() {
   if(session){message('Use the room rematch button after this battle, or Leave to start a different game.');return;}
   if(!localGame||localGame.finished){showSetup();return;}
   modal('Start a new battle?',[node('p','The next battle will replace this saved local battle when you press Start battle.')],[{label:'Keep playing',run:closeModal},{label:'Game setup',style:'gold',run:showSetup}],'new');
 }
+
+/** Precise, one-unit touchscreen adjustments for all three sliders. */
+function updatePrecisionButtons() {
+  const allowed=canAct(),game=currentGame();
+  const movable=allowed&&!!game&&game.tanks[game.turn].movesLeft>0;
+  for(const [id,low,high,canChange] of [
+    ['angle',0,180,allowed],['power',1,100,allowed],['moveDistance',1,5,movable]
+  ]) {
+    const value=Number($(id).value);
+    $((id==='moveDistance'?'move':id)+'Minus').disabled=!canChange||value<=low;
+    $((id==='moveDistance'?'move':id)+'Plus').disabled=!canChange||value>=high;
+  }
+}
+function stepSlider(id,delta) {
+  if(!canAct())return;
+  if(id==='moveDistance'&&currentGame().tanks[currentGame().turn].movesLeft<=0)return;
+  const slider=$(id),low=Number(slider.min),high=Number(slider.max);
+  const next=Math.max(low,Math.min(high,Number(slider.value)+delta));
+  if(next===Number(slider.value))return;
+  slider.value=String(next);
+  if(id==='moveDistance')updateMoveDistance();
+  else aimInput(id,id);
+}
+function updateMoveDistance() {
+  const n=Number($('moveDistance').value);
+  $('moveAmount').textContent=n+' tank length'+(n===1?'':'s');
+  updatePrecisionButtons();
+}
+
 function aimInput(kind,source) {
-  const game=currentGame();if(!canAct())return;const min=kind==='angle'?0:1,max=kind==='angle'?180:100;const n=Number($(source).value);if(!Number.isFinite(n))return;const value=Math.max(min,Math.min(max,Math.round(n)));aims[game.turn][kind]=value;$(kind).value=$(kind+'Number').value=value;canvasDirty=true;save?.touch();
+  const game=currentGame();if(!canAct())return;const min=kind==='angle'?0:1,max=kind==='angle'?180:100;const n=Number($(source).value);if(!Number.isFinite(n))return;const value=Math.max(min,Math.min(max,Math.round(n)));aims[game.turn][kind]=value;$(kind).value=$(kind+'Number').value=value;canvasDirty=true;save?.touch();updatePrecisionButtons();
 }
 async function fire() {if(!canAct())return;const game=currentGame(),a=aims[game.turn],intent={type:'fire',weaponId:a.weaponId,angle:a.angle,power:a.power};if(session)await action('fire',{weaponId:intent.weaponId,angle:intent.angle,power:intent.power});else await localAction(intent);}
 async function move(sign) {if(!canAct())return;const distance=Number($('moveDistance').value)*TANK_WIDTH*sign;if(session)await action('move',{distance});else await localAction({type:'move',distance});}
@@ -294,12 +318,11 @@ async function home() {
 }
 
 $('localStart').onclick=startLocal;$('mode').onchange=updateSetup;
-$('arsenal').value=preferences.arsenal;$('arsenal').onchange=()=>{
-  preferences.arsenal=$('arsenal').value;write('arcade.tanks.preferences.v1',preferences);
-};$('terrain').onchange=updateSetup;for(const id of ['color0','color1'])$(id).oninput=()=>{if(id==='color0')chosenOwnColor=true;updateSetup();};
+$('terrain').onchange=updateSetup;for(const id of ['color0','color1'])$(id).oninput=()=>{if(id==='color0')chosenOwnColor=true;updateSetup();};
 $('create').onclick=()=>enter('create');$('join').onclick=()=>enter('join');$('resumeRoom').onclick=()=>enter('resume');$('joinCode').oninput=()=>{$('joinCode').value=$('joinCode').value.toUpperCase().replace(/[^A-Z0-9]/g,'');};$('joinCode').onkeydown=e=>{if(e.key==='Enter')enter('join');};
 $('configureRoom').onclick=()=>action('configure',{color:$('lobbyColor').value,...(room?.hostPlayerId===session?.playerId?{terrainType:$('lobbyTerrain').value}:{})});$('startRoom').onclick=async()=>{if(await action('configure',{color:$('lobbyColor').value,terrainType:$('lobbyTerrain').value}))await action('start');};
-$('weapon').onclick=()=>weaponPicker();$('fire').onclick=fire;$('moveLeft').onclick=()=>move(-1);$('moveRight').onclick=()=>move(1);$('moveDistance').oninput=()=>{$('moveAmount').textContent=`${$('moveDistance').value} tank length${$('moveDistance').value==='1'?'':'s'}`;};
+$('weapon').onclick=()=>weaponPicker();$('fire').onclick=fire;$('moveLeft').onclick=()=>move(-1);$('moveRight').onclick=()=>move(1);$('moveDistance').oninput=updateMoveDistance;
+for(const id of ['angle','power','moveDistance'])for(const [suffix,step] of [['Minus',-1],['Plus',1]])$((id==='moveDistance'?'move':id)+suffix).onclick=()=>stepSlider(id,step);
 for(const kind of ['angle','power']){for(const id of [kind,kind+'Number'])$(id).oninput=()=>aimInput(kind,id);}
 $('newGame').onclick=confirmNew;$('settings').onclick=settings;$('setupHelp').onclick=rules;$('modalClose').onclick=closeModal;$('modal').addEventListener('close',()=>{modalKind='';});
 $('playAgain').onclick=()=>{if(session)action('rematch');else showSetup();};$('leave').onclick=()=>modal('Leave this room?',[node('p','Leaving ends the current battle for both players and removes your saved seat. Returning to Arcade with Home keeps your room available instead.')],[{label:'Stay',run:closeModal},{label:'Leave room',style:'danger',run:async()=>{await leaveRoom();closeModal();}}],'leave');
