@@ -1,0 +1,145 @@
+name: Build and verify Monster Forge 2
+on:
+  push:
+    branches: [work/monster-forge-v2]
+    paths: ['tools/forge-v2-*.b64', '.github/workflows/forge-v2-bootstrap.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: work/monster-forge-v2
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Verify and apply reviewed source patch
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, lzma, pathlib, subprocess
+          p=pathlib.Path
+          data=base64.b64decode(''.join(p(f'tools/forge-v2-{i}.b64').read_text() for i in range(4)))
+          assert hashlib.sha256(data).hexdigest()=='1f756457556f768c127382f16888eab0b6faaa04a0c442c401fd1acc2cf1fee3'
+          patch=lzma.decompress(data)
+          subprocess.run(['git','apply','--check','-'],input=patch,check=True)
+          subprocess.run(['git','apply','-'],input=patch,check=True)
+          print('Applied verified Monster Forge source patch')
+          PY
+      - name: Install browser dependencies
+        run: npm ci && npx playwright install --with-deps chromium
+      - name: Test all monster parts, touch, saves, exports and navigation
+        run: |
+          node --check monster-forge/game.js
+          node --check monster-forge/parts.js
+          node tools/test-monster-forge-browser.mjs
+          node tools/test-shell-navigation.mjs
+          node --test tools/test-comic-library-core.mjs
+          node tools/test-comic-library-browser.mjs
+      - name: Document verified release and refresh offline snapshot
+        run: |
+          python3 - <<'PY'
+          import pathlib,re,json
+          p=pathlib.Path
+          report=json.loads(p('test-results/monster-forge/report.json').read_text())
+          assert report['passed'] is True
+          sw=p('sw.js');sw.write_text(re.sub(r"const WORKER_VERSION = '[^']+';", "const WORKER_VERSION = '2026-11-16-monster-forge-v2';",sw.read_text(),count=1))
+          note='''# Monster Forge 2.0, Arcade 2.13.2 (2026-11-16)
+
+          Source: monster-forge/ in this repository. This release replaces the
+          abstract new-part art with 50 illustrated anatomical pieces and six
+          fully editable creature starters. Existing saved v1 pieces retain the
+          original artwork through per-piece artVersion compatibility.
+          New parts include recognizable dragon and dinosaur heads, skulls,
+          feathered and membrane wings, talons, jointed insect limbs, suckered
+          tentacles, tails, armor and a robot torso. The drawing canvas remains
+          available without choosing a template. Parts have larger cropped
+          previews and a separate selected-part inspector for color, size,
+          rotation, copy, flip, mirror-copy and layering.
+
+          Also repaired: live stroke rendering without whole-board redraw,
+          geometry-based selection, collection fallback preservation beyond
+          fifty monsters, save-before-switch safety, and 1800x1200 PNG export.
+          Keep original storage keys, creature IDs, artVersion=1 rendering,
+          existing games, Comic Library, and all multiplayer behavior intact.
+
+          Verification: tools/test-monster-forge-browser.mjs passed real Chromium
+          checks at 320x568, 390x844, 832x384 and 1280x800, all 50 inserts,
+          six starters, mouse/touch drawing, transforms, old-save rendering,
+          IndexedDB collection and Arcade autosave reload, failed-save safety,
+          PNG download dimensions, effects and shell Home. Existing navigation
+          and Comic Library core/browser tests also passed. The manifest and
+          portable ZIP are generated and verified in this release workflow.
+          This is focused verification, not an all-project green claim; no
+          physical Android tablet or long-duration storage quota test occurred.
+
+          Next: play the new editor on the children's tablets; report a concrete
+          device issue before changing unrelated activities. ProjectStatus has
+          publication state and final artifact fingerprints.
+
+          ---
+
+          '''
+          note='\n'.join(line[10:] if line.startswith('          ') else line for line in note.split('\n'))
+          hand=p('HANDOFF.md');hand.write_text(note+hand.read_text())
+          readme=p('README.md');text=readme.read_text();pos=text.find('## Release ')
+          intro='''## Release 2.13.2
+
+          Monster Forge now has 50 illustrated parts and six editable starter
+          creatures, with larger previews, simpler part editing and smoother
+          drawing. Existing monsters retain their original art. New anatomy can
+          be mixed freely or drawn over, then saved and exported at 1800x1200.
+          See monster-forge/README.md for controls and compatibility details.
+
+          '''
+          intro='\n'.join(line[10:] if line.startswith('          ') else line for line in intro.split('\n'))
+          readme.write_text(text[:pos]+intro+text[pos:])
+          for f in p('tools').glob('forge-v2-*.b64'):f.unlink()
+          p('.github/workflows/forge-v2-bootstrap.yml').unlink()
+          PY
+          node tools/generate-offline-manifest.mjs --version 2.13.2+20261116.1
+          node tools/test-offline-runtime.mjs
+      - name: Commit verified changes on work branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add monster-forge tools/test-monster-forge-browser.mjs tools/forge-v2-*.b64 .github/workflows HANDOFF.md README.md sw.js offline-manifest.json
+          git commit -m 'Improve Monster Forge with illustrated anatomy, editable starters and verified save compatibility'
+          git push origin HEAD:work/monster-forge-v2
+      - name: Package complete Arcade and standalone HTML
+        run: |
+          python3 tools/package-web-release.py --output "$RUNNER_TEMP/Arcade-2.13.2-Monster-Forge.zip"
+          python3 - <<'PY'
+          import pathlib,os,zipfile,hashlib,json,re
+          p=pathlib.Path;out=p(os.environ['RUNNER_TEMP']);root=p('.')
+          html=p('monster-forge/index.html').read_text()
+          html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+p('monster-forge/style.css').read_text()+'</style>')
+          for name in ['parts.js','game.js','../arcade-save.js']:
+              code=(p('monster-forge')/name).read_text()
+              html=html.replace('<script src="'+name+'"></script>','<script>'+code+'</script>')
+          html=html.replace('<head>','<head><script>window.MONSTER_FORGE_STANDALONE=true;</script>')
+          assert not re.search(r'<(?:script|link)\b[^>]*(?:src|href)="(?:parts\.js|game\.js|style\.css|\.\./arcade-save\.js)"',html)
+          (out/'Monster-Forge-2.0.html').write_text(html)
+          with zipfile.ZipFile(out/'Monster-Forge-2.0-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for f in sorted(p('monster-forge').glob('*')):
+                  if f.is_file():z.write(f,str(f))
+          records=[]
+          for name in ['Arcade-2.13.2-Monster-Forge.zip','Monster-Forge-2.0.html','Monster-Forge-2.0-source.zip']:
+              b=(out/name).read_bytes();records.append(dict(name=name,bytes=len(b),sha256=hashlib.sha256(b).hexdigest()))
+          (out/'Monster-Forge-2.0-artifacts.json').write_text(json.dumps(records,indent=2)+'\n')
+          print(json.dumps(records,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: monster-forge-v2-results
+          path: |
+            test-results/monster-forge/
+            ${{ runner.temp }}/Arcade-2.13.2-Monster-Forge.zip
+            ${{ runner.temp }}/Monster-Forge-2.0.html
+            ${{ runner.temp }}/Monster-Forge-2.0-source.zip
+            ${{ runner.temp }}/Monster-Forge-2.0-artifacts.json
+          retention-days: 7
