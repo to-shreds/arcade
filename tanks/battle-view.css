@@ -31,3 +31,126 @@
  #moveAmount{display:none}#moveControl .move-help{font-size:8px}.control-head{font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){#landscape,.weapon-card{transition:none}}
+
+/* 2.13.1 Battlefield HUD: every panel floats over a single uninterrupted
+ * stage. The Canvas is always proportionally fitted and never cropped on X. */
+.arcade-app{
+  position:relative;display:block;isolation:isolate;
+  width:100%;max-width:none;height:100dvh;min-height:0;overflow:hidden;
+  padding:0;margin:0;
+}
+#arena{
+  position:absolute;inset:0;width:100%;height:100%;min-height:0;max-height:none;
+  overflow:hidden;border:0;border-radius:0;display:block;
+  background:
+    radial-gradient(ellipse at 50% 25%,rgba(66,130,166,.19),transparent 65%),
+    linear-gradient(180deg,#071426 0%,#173450 43%,#35483c 75%,#19312d 100%);
+}
+#battlefield{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  flex:none;display:block;max-width:none;max-height:none;object-fit:fill;
+  box-shadow:0 0 0 1px #a8c9c620,0 0 32px #020b1529;
+  touch-action:none;
+}
+#arenaLabel,#arenaHint{display:none}
+.arcade-top{
+  position:absolute;z-index:12;
+  top:max(5px,env(safe-area-inset-top));left:max(7px,env(safe-area-inset-left));right:max(7px,env(safe-area-inset-right));
+  min-height:38px;padding:3px 8px;gap:6px;
+  background:#091b36aa;border:1px solid #aecbeb38;border-radius:12px;
+  backdrop-filter:blur(8px);box-shadow:0 4px 18px #06102033;
+}
+.arcade-title{font-size:clamp(16px,3vmin,24px)}
+.arcade-top .arcade-btn{min-height:32px;padding:5px 8px;font-size:11px}
+.scores{
+  position:absolute;z-index:11;
+  top:calc(max(5px,env(safe-area-inset-top)) + 47px);
+  left:50%;transform:translateX(-50%);
+  width:min(480px,calc(100% - 18px));gap:7px;
+}
+.score-card{
+  padding:5px 8px;border-radius:10px;min-height:40px;
+  background:#0a1c34c7;backdrop-filter:blur(7px);
+}
+.score-card svg{width:34px;height:23px}
+.score-name{font-size:11px}
+.score-meta{font-size:9px}
+.score-value{font-size:21px}
+.match-meta{font-size:9px;color:#eaf3ff}
+.match-meta strong{font-size:12px}
+#statusBar{
+  position:absolute;z-index:11;
+  top:calc(max(5px,env(safe-area-inset-top)) + 100px);
+  left:50%;transform:translateX(-50%);
+  width:min(360px,calc(100% - 26px));min-height:27px;
+  padding:4px 8px;gap:5px;
+  border:1px solid #aecbeb30;background:#091b36bf;
+  box-shadow:none;backdrop-filter:blur(6px);border-radius:9px;
+}
+#headline{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#subline{display:none}
+#roomBar{
+  position:absolute;z-index:12;
+  top:calc(max(5px,env(safe-area-inset-top)) + 134px);
+  left:50%;transform:translateX(-50%);
+  width:min(480px,calc(100% - 18px));
+  background:#081c36cf;border:1px solid #adc7e242;
+  border-radius:8px;padding:3px 7px;
+}
+#roomBar .arcade-btn{min-height:26px}
+#message{
+  position:absolute;z-index:13;top:calc(max(5px,env(safe-area-inset-top)) + 172px);
+  left:50%;transform:translateX(-50%);
+  width:max-content;max-width:calc(100% - 20px);
+  pointer-events:none;box-shadow:0 4px 14px #050d2070;
+}
+#controls{
+  position:absolute;z-index:12;
+  left:50%;bottom:max(7px,env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  width:min(1180px,calc(100% - 14px));min-height:0;
+  margin:0;padding:8px 10px;border-radius:15px;gap:7px;
+  background:#08172bd4;border-color:#acc8e65c;
+  box-shadow:0 6px 26px #03091566;backdrop-filter:blur(10px);
+}
+#loadout{display:none!important}
+#lobby,#result{position:fixed;inset:0;z-index:35}
+#lobby{background:#030d20e9}
+#result{background:#030d20d9}
+@media(orientation:portrait) and (max-width:600px){
+  #arena{height:100%;aspect-ratio:auto;min-height:0}
+  #battlefield{max-height:none;max-width:none;width:auto;height:auto}
+  #controls{padding:7px 8px}
+}
+@media(orientation:landscape) and (max-height:600px){
+  .arcade-top{min-height:29px;padding:2px 6px}
+  .arcade-title{font-size:16px}
+  .scores{
+    top:calc(max(5px,env(safe-area-inset-top)) + 37px);
+    width:min(385px,calc(100% - 130px));
+    gap:5px
+  }
+  .score-card{min-height:31px;padding:3px 6px}
+  .score-meta,.score-card svg{display:none}
+  .score-value{font-size:18px}
+  .match-meta{line-height:1.1}
+  .match-meta br,#terrainLabel{display:none}
+  #statusBar{display:none}
+  #roomBar{top:calc(max(5px,env(safe-area-inset-top)) + 74px);min-height:26px}
+  #message{top:calc(max(5px,env(safe-area-inset-top)) + 100px)}
+  #controls{padding:5px 7px;gap:5px;bottom:max(4px,env(safe-area-inset-bottom))}
+  #weapon{height:41px;min-height:41px}
+  #fire{height:41px}
+  #moveControl .move-help{display:none}
+}
+@media(max-width:540px) and (orientation:portrait){
+  .arcade-title{font-size:16px}
+  .arcade-top{min-height:37px}
+  .score-card{min-height:42px;padding:5px 6px}
+  .score-value{font-size:20px}
+  .score-card svg{display:none}
+  #statusBar{top:calc(max(5px,env(safe-area-inset-top)) + 99px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .arcade-top,.score-card,#controls{backdrop-filter:none}
+}

@@ -8,6 +8,17 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.13.2
+
+**Tank Tactics** stops an overlong move at the battlefield edge or the other
+tank rather than rejecting the whole move. Each scoring impact produces
+its own rising point number, including beams, mines and multiple hits.
+The battlefield fills the screen behind compact translucent controls and
+score displays. The camera fits the complete terrain profile rather than
+cropping based only on tank positions. All 132 weapons, knockback, precise
+sliders, saves, multiplayer, Comic Library and Monster Forge are preserved.
+See [verification](docs/arcade-stress-test-2.13.2.md).
+
 ## Release 2.13.1
 
 **Comic Library** adds a CBZ and PDF bookshelf to Arcade. It discovers public

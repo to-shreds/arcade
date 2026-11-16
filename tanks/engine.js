@@ -178,6 +178,7 @@ function blast(state, trace, actor, weapon, x, y, damage, radius, tick, kind = '
     groundWidth: options.carve === false ? 0 : profile.width,
     ...(weapon.id ? {weaponId: weapon.id} : {}),
     ...(pushes.length ? { pushes } : {}),
+    ...(scored.length ? { damageHits: scored } : {}),
     ...(patch ? { terrain: patch, terrainDuration: 6 } : {}) });
 }
 function muzzle(state, actor, angle) {
@@ -316,7 +317,8 @@ function resolveBeam(state, trace, actor, weapon, angle, power) {
   }
   addPath(trace, 'beam', weapon.color, [[origin.x, origin.y, launch], [end.x, end.y, launch+12]]);
   addEffect(trace, 'beam', weapon.color, origin.x, origin.y, width / 2, launch+1, {
-    x2: round(end.x), y2: round(end.y), duration: 18, ...(pushes.length ? {pushes} : {})
+    x2: round(end.x), y2: round(end.y), duration: 18, ...(pushes.length ? {pushes} : {}),
+    ...(beamHits.length ? {damageHits: beamHits.map(([target,gain])=>[target,gain])} : {})
   });
   addEffect(trace, 'spark', weapon.color, end.x, end.y, width + 8, launch+12, { duration:18, terrain: terrainPatch(before,state.terrain) });
 }
@@ -484,9 +486,13 @@ export function applyAction(snapshot, action, actor = snapshot?.turn) {
   if (action.type === 'move') {
     assert(finite(action.distance) && Math.abs(action.distance) >= 1 && Math.abs(action.distance) <= MAX_MOVE, 'Move between 1 and 150 units.');
     assert(tank.movesLeft > 0, 'No moves remain.');
-    const from = tank.x, to = round(from + action.distance), other = state.tanks[1 - actor];
-    assert(to >= MIN_X && to <= MAX_X, 'That move goes outside the battlefield.');
-    assert(Math.abs(to - other.x) >= TANK_WIDTH * 1.2 && Math.sign(to - other.x) === Math.sign(from - other.x), 'Tanks cannot pass through each other.');
+    const from = tank.x, other = state.tanks[1 - actor];
+    // Stop at the nearest boundary or opposing tank rather than rejecting
+    // an otherwise valid move. Exactly one move is spent if we travel.
+    const left = actor === 0 ? MIN_X : other.x + TANK_WIDTH * 1.2;
+    const right = actor === 0 ? other.x - TANK_WIDTH * 1.2 : MAX_X;
+    const to = round(clamp(from + action.distance, left, right));
+    assert(Math.abs(to - from) >= 1, 'Your tank is already at the edge in that direction.');
     tank.x = to; tank.movesLeft--; settle(state);
     const trace = { terrainVersion: 1, scoreGain: [0, 0], paths: [], effects: [], duration: 0 };
     triggerMines(state, trace, actor, false, false, 18);
@@ -524,6 +530,15 @@ function validEffect(effect) {
   for (const key of ['x', 'y', 'radius', 'tick']) assert(finite(effect[key]), 'Invalid effect coordinate.');
   assert(effect.x >= -100 && effect.x <= WIDTH + 100 && effect.y >= -1800 && effect.y <= HEIGHT + 100 && effect.radius >= 1 && effect.radius <= WIDTH && integer(effect.tick) && effect.tick >= 0 && effect.tick <= MAX_TICKS, 'Effect out of bounds.');
   for (const key of ['x2', 'y2', 'height', 'duration', 'terrainDuration', 'groundWidth']) if (effect[key] !== undefined) assert(finite(effect[key]) && Math.abs(effect[key]) <= 2000, 'Invalid effect detail.');
+  if (effect.damageHits !== undefined) {
+    assert(Array.isArray(effect.damageHits) && effect.damageHits.length >= 1 && effect.damageHits.length <= 2, 'Invalid individual damage hit.');
+    const targets = new Set();
+    for (const hit of effect.damageHits) {
+      assert(Array.isArray(hit) && hit.length === 2 && (hit[0] === 0 || hit[0] === 1) &&
+        !targets.has(hit[0]) && integer(hit[1]) && hit[1] > 0 && hit[1] <= 1000000, 'Invalid individual damage hit.');
+      targets.add(hit[0]);
+    }
+  }
   if (effect.pushes !== undefined) {
     assert(Array.isArray(effect.pushes) && effect.pushes.length >= 1 && effect.pushes.length <= 2, 'Invalid tank impact count.');
     const seats = new Set();

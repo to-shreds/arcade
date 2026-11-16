@@ -1,3 +1,18 @@
+# 2.13.2
+
+- Tank Tactics movement now stops safely at the battlefield edge or opposing tank, spending one move only if the tank actually travels.
+- Added validated per-impact scoring events and individual damage numbers that rise to the top of the visible battlefield. Multi-hit attacks, beams, self-hits, delayed mines and reduced motion are handled.
+- Moved the battlefield into a full-screen stage with floating scores, controls and status. Removed the permanent loadout display while retaining the ordinary weapon picker. Camera framing now includes all 251 terrain samples, not just both tanks.
+- Preserved 132 weapons, impact knockback, saved games, online/Nearby play, Retro Vault, Monster Forge, Comic Library and the rest of Arcade. Expanded engine, layout and browser regression tests.
+
+# 2.13.1
+
+- Added Comic Library CBZ/PDF bookshelf, GitHub book discovery, local files, bookmarking, zoom, page navigation and offline copies.
+
+# 2.13.0
+
+- Added Monster Forge, a drawing-first monster lab with parts, habitats, gallery, evolution and animated test chamber.
+
 # 2.12.1
 
 - Removed selectable weapon-pool modes. Every new Tank Tactics match now randomly draws ten weapons for each player from the complete 132-weapon catalogue.

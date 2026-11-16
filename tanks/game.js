@@ -1,6 +1,7 @@
-import { createGame, applyAction, validateGame, chooseCpuAction, WIDTH, HEIGHT, TANK_WIDTH } from './engine.js';
+import { createGame, applyAction, validateGame, chooseCpuAction, groundAt, WIDTH, HEIGHT, TANK_WIDTH } from './engine.js';
+import { terrainAtTick } from './terrain-rules.js';
 import { WEAPONS, weaponById } from './weapons.js';
-import { drawBattle, tankSvg, weaponSvg, terrainSummary, terrainPreviewSvg } from './graphics.js';
+import { drawBattle, tankSvg, weaponSvg, terrainSummary, terrainPreviewSvg, tankImpactAtTick } from './graphics.js';
 import { initBattleView } from './battle-view.js';
 
 const $ = id => document.getElementById(id);
@@ -14,7 +15,7 @@ const write = (key, value) => { try { localStorage.setItem(key, JSON.stringify(v
 let localGame = null, playMode = 'cpu', difficulty = 'normal', aims = [{angle:45,power:55,weaponId:null},{angle:135,power:55,weaponId:null}];
 let session = null, room = null, busy = false, joining = false, generation = 0;
 let socket = null, reconnectTimer = null, pollTimer = null, cpuTimer = null, retries = 0, refreshing = false, suspended = false;
-let animation = null, frame = 0, renderedTurn = '', scoreFrom = [0,0], scoreStarted = 0, soundContext = null, canvasDirty = true, lastDraw = 0, localAimsBackup = null;
+let animation = null, floatingDamage = [], frame = 0, renderedTurn = '', scoreFrom = [0,0], scoreStarted = 0, soundContext = null, canvasDirty = true, lastDraw = 0, localAimsBackup = null;
 let preferences = { sound:true, speed:'normal' }, modalKind = '', lobbyDraftKey = '', camera = {height:HEIGHT,top:0}, chosenOwnColor = false;
 const prefs = read('arcade.tanks.preferences.v1');
 if (prefs && typeof prefs === 'object') preferences = {sound:prefs.sound !== false,speed:['normal','fast'].includes(prefs.speed)?prefs.speed:'normal'};
@@ -64,14 +65,47 @@ function sound(kind='fire',weaponId=null) {
     osc.frequency.setValueAtTime(start,now);osc.frequency.exponentialRampToValueAtTime(Math.max(35,start*(theme==='toy'?1.7:.32)),now+.18);gain.gain.setValueAtTime(.04,now);gain.gain.exponentialRampToValueAtTime(.0001,now+.22);osc.connect(gain);gain.connect(soundContext.destination);osc.start(now);osc.stop(now+.25);
   }catch{}
 }
-function stopAnimation() { animation=null; }
+function stopAnimation() { animation=null; floatingDamage=[]; }
+function collectDamageNumbers(playback, now, instant=false) {
+  if(!playback?.before)return;
+  const trace=playback.shot||playback.move;
+  const effects=trace?.effects||[];
+  playback.numberSeen ||= new Set();
+  for(let i=0;i<effects.length;i++){
+    const effect=effects[i];
+    if(!effect.damageHits?.length||playback.numberSeen.has(i)||(!instant&&playback.tick<effect.tick))continue;
+    playback.numberSeen.add(i);
+    const terrain=terrainAtTick(playback.before.terrain,effects,effect.tick);
+    for(const [seat,amount] of effect.damageHits){
+      const initialX=playback.move && seat===playback.move.actor
+        ? (playback.move.intendedTo??playback.move.to)
+        : playback.before.tanks[seat].x;
+      const impact=tankImpactAtTick(initialX,seat,effects,Math.max(-1,effect.tick-.01));
+      const ground=groundAt({terrain},impact.x);
+      floatingDamage.push({
+        x:impact.x,y:Math.min(ground-32,HEIGHT-34),amount,
+        color:seat===0?'#ffe589':'#fff0a4',
+        offset:((i+seat*3)%5-2)*11, born:now, reduced:instant
+      });
+    }
+  }
+  // Only the last few seconds of visible events need Canvas work.
+  if(floatingDamage.length>64)floatingDamage=floatingDamage.slice(-64);
+}
 function animate(before,after,kind='fire') {
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduced||document.hidden||suspended){stopAnimation();setScoreAnimation(before,after);render();scheduleCpu();return;}
+  if(reduced||document.hidden||suspended){
+    stopAnimation();
+    if(reduced&&!document.hidden&&!suspended){
+      collectDamageNumbers({before,shot:kind==='fire'?after.lastShot:null,
+        move:kind==='move'?after.lastMove:null},performance.now(),true);
+    }
+    setScoreAnimation(before,after);render();scheduleCpu();return;
+  }
   const shot=kind==='fire'?after.lastShot:null, move=kind==='move'?after.lastMove:null;
   if(!shot&&!move){render();scheduleCpu();return;}
   const duration=shot?Math.min(preferences.speed==='fast'?1400:4200,Math.max(900,shot.duration*1000/30/(preferences.speed==='fast'?2:1))):650;
-  animation={before,shot,move,started:performance.now(),duration,tick:0,impactPlayed:false};scoreFrom=before.tanks.map(t=>t.score);scoreStarted=0;sound(kind,shot?.weaponId);render();
+  floatingDamage=[];animation={before,shot,move,started:performance.now(),duration,tick:0,impactPlayed:false,numberSeen:new Set()};scoreFrom=before.tanks.map(t=>t.score);scoreStarted=0;sound(kind,shot?.weaponId);render();
 }
 async function localAction(intent, cpu=false) {
   if(busy||animation||!localGame||localGame.finished||session||(!cpu&&!canAct())||(cpu&&(playMode!=='cpu'||localGame.turn!==1)))return;
@@ -225,21 +259,48 @@ function drawScores(now) {
   if(fraction===1){scoreFrom=game.tanks.map(t=>t.score);scoreStarted=0;}
 }
 function resizeCanvas() {
-  const box=$('arena').getBoundingClientRect(),availableWidth=Math.max(1,box.width-2),availableHeight=Math.max(1,box.height-2),game=animation?.before||currentGame(),span=game?Math.max(...game.tanks.map(t=>t.y))-Math.min(...game.tanks.map(t=>t.y)):0;
-  const viewHeight=Math.round(Math.max(220,Math.min(HEIGHT,Math.max(span+100,WIDTH*availableHeight/availableWidth)))),ratio=WIDTH/viewHeight;
-  const width=Math.min(availableWidth,availableHeight*ratio),w=`${Math.max(1,width)}px`,h=`${Math.max(1,width/ratio)}px`;
-  camera.height=viewHeight;const mid=game?(Math.min(...game.tanks.map(t=>t.y))+Math.max(...game.tanks.map(t=>t.y)))/2:400;camera.top=Math.round(Math.max(0,Math.min(HEIGHT-viewHeight,mid-viewHeight*.55)));
-  if($('battlefield').height!==viewHeight)$('battlefield').height=viewHeight;if($('battlefield').style.width!==w)$('battlefield').style.width=w;if($('battlefield').style.height!==h)$('battlefield').style.height=h;
+  const arena=$('arena'),rect=arena.getBoundingClientRect();
+  const stageWidth=Math.max(1,rect.width),stageHeight=Math.max(1,rect.height);
+  const state=currentGame(),before=animation?.before;
+  const terrains=[state?.terrain,before?.terrain].filter(Boolean);
+  // Fit the complete ground profile, not merely the heights of the tanks.
+  const lowest=terrains.length?Math.max(...terrains.flat()):480;
+  const highest=terrains.length?Math.min(...terrains.flat()):300;
+  const portrait=stageHeight>stageWidth;
+  const minimum=portrait?460:stageHeight<530?340:430;
+  const viewHeight=Math.round(Math.min(HEIGHT,Math.max(minimum,lowest-highest+115)));
+  const midpoint=(highest+lowest)/2-20;
+  camera.height=viewHeight;
+  camera.top=Math.round(Math.max(0,Math.min(HEIGHT-viewHeight,midpoint-viewHeight/2)));
+  const topElements=['.arcade-top','.scores','#statusBar','#roomBar']
+    .map(sel=>document.querySelector(sel)).filter(el=>el&&!el.hidden&&getComputedStyle(el).display!=='none');
+  const top=Math.max(rect.top+10,...topElements.map(el=>el.getBoundingClientRect().bottom+6));
+  const controls=$('controls').getBoundingClientRect();
+  const bottom=Math.min(rect.bottom-10,controls.top-7);
+  const availableHeight=Math.max(72,bottom-top);
+  const width=Math.min(Math.max(1,stageWidth-16),availableHeight*WIDTH/viewHeight);
+  const height=width*viewHeight/WIDTH;
+  const canvas=$('battlefield');
+  const x=stageWidth/2,y=Math.max(0,(top+bottom)/2-rect.top);
+  if(canvas.height!==viewHeight)canvas.height=viewHeight;
+  canvas.style.width=`${width}px`;canvas.style.height=`${height}px`;
+  canvas.style.left=`${x}px`;canvas.style.top=`${y}px`;
   canvasDirty=true;
 }
 function tick(now) {
   frame=requestAnimationFrame(tick);const game=currentGame();if(!game||suspended||document.hidden)return;
   if(animation){const fraction=Math.min(1,(now-animation.started)/animation.duration);animation.tick=animation.shot?fraction*animation.shot.duration:fraction*30;
+    collectDamageNumbers(animation,now);
     const effectTick=animation.shot?.effects.find(e=>e.kind==='explosion'||e.kind==='flame')?.tick;
     if(!animation.impactPlayed&&(effectTick===undefined?fraction>.65:animation.tick>=effectTick)){animation.impactPlayed=true;sound('impact',animation.shot?.weaponId);scoreStarted=now;}
     if(fraction===1){if(!scoreStarted)scoreStarted=now;animation=null;render();scheduleCpu();}
   }
-  if(canvasDirty||(animation&&now-lastDraw>=30)){drawBattle($('battlefield'),game,{aims,animation,time:now,viewportTop:camera.top,displayScale:Math.max(.2,$('battlefield').clientWidth/WIDTH)});lastDraw=now;canvasDirty=false;}drawScores(now);
+  floatingDamage=floatingDamage.filter(item=>now-item.born<(item.reduced?1100:2100));
+  if(canvasDirty||((animation||floatingDamage.length)&&now-lastDraw>=30)){
+    drawBattle($('battlefield'),game,{aims,animation,time:now,viewportTop:camera.top,
+      floatingDamage,displayScale:Math.max(.2,$('battlefield').clientWidth/WIDTH)});
+    lastDraw=now;canvasDirty=false;
+  }drawScores(now);
 }
 
 function closeModal() { if($('modal').open)$('modal').close();modalKind=''; }
@@ -336,7 +397,7 @@ window.addEventListener('arcaderesume',()=>{suspended=false;if(session){connectS
 document.addEventListener('visibilitychange',()=>{if(document.hidden){save?.saveNow();clearTimeout(cpuTimer);stopAnimation();}else if(!suspended){if(session){connectSocket();refresh();}render();scheduleCpu();}});
 window.addEventListener('keydown',event=>{if(!$('setup').hidden||$('modal').open||event.target.closest('input,select,textarea,button'))return;if(event.key===' '&&canAct()){event.preventDefault();fire();}else if(event.key==='ArrowLeft'&&canAct()){event.preventDefault();aims[currentGame().turn].angle=Math.min(180,aims[currentGame().turn].angle+1);renderedTurn='';render();save?.touch();}else if(event.key==='ArrowRight'&&canAct()){event.preventDefault();aims[currentGame().turn].angle=Math.max(0,aims[currentGame().turn].angle-1);renderedTurn='';render();save?.touch();}});
 
-Object.defineProperty(window,'TanksGame',{value:Object.freeze({getState:()=>currentGame()?clone(currentGame()):null,getDebug:()=>({mode:session?'network':playMode,animating:!!animation,busy,session:session?{code:session.code,playerId:session.playerId,transport:session.transport}:null,room:room?clone(room):null}),getWeapons:()=>clone(WEAPONS),capture:()=>capture()}),writable:false});
+Object.defineProperty(window,'TanksGame',{value:Object.freeze({getState:()=>currentGame()?clone(currentGame()):null,getDebug:()=>({mode:session?'network':playMode,animating:!!animation,busy,camera:{top:camera.top,height:camera.height},damageNumbers:floatingDamage.map(d=>({x:d.x,y:d.y,amount:d.amount,ageMs:Math.max(0,performance.now()-d.born)})),session:session?{code:session.code,playerId:session.playerId,transport:session.transport}:null,room:room?clone(room):null}),getWeapons:()=>clone(WEAPONS),capture:()=>capture()}),writable:false});
 const query=new URLSearchParams(location.search),joinCode=(query.get('room')||query.get('join')||query.get('code')||'').toUpperCase().slice(0,6);$('joinCode').value=joinCode;if(joinCode||query.get('online')==='1')$('mode').value='network';
 if(joinCode||query.get('online')==='1')save?.setExternalSession(true);
 initBattleView(resizeCanvas);updateSetup();render();frame=requestAnimationFrame(tick);

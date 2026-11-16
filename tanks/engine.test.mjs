@@ -59,9 +59,13 @@ test('every weapon resolves deterministic graphics, finite terrain, and a small 
     }
   }
 });
-test('moves remain in turn, consume exactly four successful actions, reject crossing/edges', () => {
+test('moves remain in turn, consume exactly four successful actions, and stop at boundaries', () => {
   let game = createGame({ seed: 27, terrainType: 'flat' });
-  assert.throws(() => applyAction(game, { type: 'move', distance: -MAX_MOVE }), /outside/);
+  const toEdge=applyAction(game, { type: 'move', distance: -MAX_MOVE });
+  assert.equal(toEdge.tanks[0].x,45);
+  assert.equal(toEdge.tanks[0].movesLeft,3);
+  assert.equal(toEdge.lastMove.to,45);
+  assert.throws(()=>applyAction(toEdge,{type:'move',distance:-50}),/already at the edge/);
   assert.equal(game.tanks[0].movesLeft, 4);
   for (let index = 0; index < 4; index++) {
     game = applyAction(game, { type: 'move', distance: index % 2 ? -50 : 50 });
@@ -74,7 +78,9 @@ test('moves remain in turn, consume exactly four successful actions, reject cros
   assert.throws(() => applyAction(createGame(), { type: 'move', distance: 151 }), /150/);
   const close = createGame({ terrainType: 'flat' });
   close.tanks[0].x = 700;
-  assert.throws(() => applyAction(close, { type: 'move', distance: 150 }), /pass/);
+  const blocked=applyAction(close,{type:'move',distance:150});
+  assert.equal(blocked.tanks[0].x,close.tanks[1].x-36);
+  assert.equal(blocked.tanks[0].movesLeft,3);
 });
 test('all twenty shots finish, points are monotonic, save/resume and CPU are deterministic', () => {
   for (let seed = 1; seed <= 8; seed++) {

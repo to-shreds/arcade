@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.13.1+20261116.1",
-  "generatedAt": "2026-11-16T05:31:01.886Z",
+  "version": "2.13.2+20261116.1",
+  "generatedAt": "2026-11-16T05:34:45.720Z",
   "fileCount": 436,
-  "totalBytes": 24676441,
+  "totalBytes": 24686922,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1802,13 +1802,13 @@
     },
     {
       "path": "sw.js",
-      "bytes": 29040,
-      "sha256": "e8a9a2d1f01b7a9f8e99f1c3dd212ed2d0db64f368df19a6753b3482db1aedc0"
+      "bytes": 29047,
+      "sha256": "3a22f38f9bc6dace492f00d7bb4fe34ebca84c3a74b3bc25c3ca20c357afe03e"
     },
     {
       "path": "tanks/battle-view.css",
-      "bytes": 3083,
-      "sha256": "59e7576b3cb32f6f00fd2d1f2695d192e808d175632679b9e75c394d37575d99"
+      "bytes": 7831,
+      "sha256": "d6323ef714d50b6f11d0b70df7f40a61f662ead17b74c59c1da6585395b7dc10"
     },
     {
       "path": "tanks/battle-view.js",
@@ -1817,8 +1817,8 @@
     },
     {
       "path": "tanks/engine.js",
-      "bytes": 42053,
-      "sha256": "184e88a9940eceaed85e259e4f3f8805f213c003ccc3f7fcaf5b946976112528"
+      "bytes": 42873,
+      "sha256": "069e8517da4426e85de7d6af1d61cb189f4a22c72466a10861986dac618a949e"
     },
     {
       "path": "tanks/fun-weapons.js",
@@ -1827,8 +1827,8 @@
     },
     {
       "path": "tanks/game.js",
-      "bytes": 40200,
-      "sha256": "b230059dee434aa6f5358e4c47cfc89d9ade26f9eefc2f76737fb0fd8e17d36c"
+      "bytes": 42826,
+      "sha256": "5fb9ac6572c4f7769615f16995a9da11d9722c303654d8fa68ca5e82db21b16c"
     },
     {
       "path": "tanks/game.json",
@@ -1837,8 +1837,8 @@
     },
     {
       "path": "tanks/graphics.js",
-      "bytes": 28897,
-      "sha256": "86189797daf70758925039befd04eb409e870c8c575d3eb9490211c039823288"
+      "bytes": 29939,
+      "sha256": "43be5dc3f4a467b0580f087a18b4784c3421606961c402c3f7439ef4f6c0f34a"
     },
     {
       "path": "tanks/icon.svg",
@@ -1862,8 +1862,8 @@
     },
     {
       "path": "tanks/README.md",
-      "bytes": 6568,
-      "sha256": "c725b0a853c2dbebd19d68dbc99c3b8e51e85afa449195efcac032224858d7ce"
+      "bytes": 7806,
+      "sha256": "3afd5a4f940dbdfd4225fdba518c1db3b8895c84ad08bd137ea1a05a5f85e029"
     },
     {
       "path": "tanks/terrain-rules.js",

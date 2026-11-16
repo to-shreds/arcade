@@ -6,7 +6,7 @@ An original artillery game for Arcade. Two tanks fire ten single-use weapons eac
 
 Choose computer play, two players on one device, or a multiplayer room. Select colors and flat, hilly, or random terrain. Internet and Nearby rooms use the current Arcade transport, the same room codes, invitations and turn notifications as Arcade's other competitive games.
 
-Select a weapon, set an angle from 0 to 180 degrees and power from 1 to 100, then fire. Zero degrees aims right, 90 up, and 180 left. Each tank also has four optional moves per game, each up to five tank lengths. Moving does not pass the turn.
+Select a weapon, set an angle from 0 to 180 degrees and power from 1 to 100, then fire. Zero degrees aims right, 90 up, and 180 left. Each tank also has four optional moves per game, each up to five tank lengths. Moving does not pass the turn. If a move would exceed the battlefield boundary or reach the opposing tank, the tank travels as far as it safely can and stops. An attempted move when already at that boundary does not consume a move.
 
 Every tank receives ten distinct randomized weapons. The default arsenal contains all 132 weapons (84 original and 48 new playful additions) across shells, clusters, bursts, bouncers, rollers, drills, tunnels, beams, fire, mines, terrain builders, terrain carvers, lightning and waves. Each weapon has its own offline icon and behavior profile. The 48 new additions cover food fights, school, toys, sports, backyard, home, gross-out fun and science; 26 originals also have playful names and effects without changing their physics. There are no external artwork dependencies.
 
@@ -15,6 +15,25 @@ Every tank receives ten distinct randomized weapons. The default arsenal contain
 Every new match, including local, computer, Internet and Nearby, draws from all **132 weapons**. There is no weapon-pool setting. Older saved matches keep the ammunition they already received, including matches originally made with a different pool. Each tank still receives ten different randomized weapons.
 
 The Test Range is available at `tanks/range.html` and through the game setup and settings. It is an isolated, repeatable practice field without ammunition limits. It never replaces a saved battle or submits multiplayer actions. Reset terrain restores the original practice landscape.
+
+## Full battlefield HUD and impact damage numbers
+
+The battlefield fills the game screen, with translucent score and
+control docks floating over the stage. The full horizontal terrain
+profile, including both ends and the highest/deepest ground changes,
+stays within the Canvas viewport. On narrow portrait screens the full
+playfield is proportionally smaller rather than cutting off either
+tank or stretching sprites. The ten-weapon selection is in the normal
+weapon picker instead of a permanent loadout panel.
+
+Each individual impact that scores points has an optional validated
+`damageHits` event in the authoritative saved trace, with the struck
+tank and exact point amount. Each hit emits its own rising `+N`
+number above the struck tank. Numbers travel toward the visible sky
+boundary for roughly two seconds, stagger when hits overlap and fade
+out without pausing the battle. With reduced motion, they show briefly
+without traveling. Delayed mines and self-hits work the same way.
+Old saves with no per-hit entries remain valid.
 
 ## Knockback and precision controls
 
