@@ -24,13 +24,14 @@ passed, along with the dedicated Tanks browser/terrain/polish suite in
 project-stress run 43792746365. That run covers real Internet/Nearby peers,
 hotseat/CPU play, exact saves and reloads, six layouts and offline packaging.
 Direct module sweeps included 264 deterministic shots and 528 drawing samples.
-The model/transport, menus, stories/TV, shared multiplayer, Heist, Retro
-Vault and Guess Who checks passed. The consolidated Test Arcade Web run
-43792746309 passed its Tank/Worker/packaging steps but its first attempt
-failed a separate Train PWA `navigator.onLine` assertion after turning
-Chromium offline; its retried result and the long full-catalog group belong
-in the [verification report](docs/arcade-stress-test-2.12.0.md).
-Do not call the whole suite green without a successful result.
+The full project-stress run 43792746365 passed every group, including
+model/transport, Tank/Upwords, menus/tools, catalog/offline, stories/TV,
+shared multiplayer, and Heist. Retro Vault and Guess Who also passed.
+The separate consolidated Test Arcade Web run 43792746309 passed its
+Tank/Worker/packaging steps but failed on both attempts at a Train PWA
+`navigator.onLine` assertion after Chromium offline emulation.
+Do not describe that entire web workflow as green. See the
+[verification report](docs/arcade-stress-test-2.12.0.md).
 
 Do not break: never change the 84 original weapon IDs, save schema,
 turn/scoring rules, deterministic terrain timing, mine ownership or room
@@ -41,10 +42,15 @@ return-to-Arcade house icons, and existing 50 activity entries.
 The new visual effects are cosmetic: only `engine.js` and
 `terrain-rules.js` determine terrain and points.
 
-Next: produce/verify the portable 2.12.0 ZIP from the exact manifest, record
-the Library copy and release asset in ProjectStatus, check any outstanding
-CI results, and confirm performance on a physical low-end Android tablet.
-Current GitHub/browser verification cannot substitute for that device check.
+The portable 2.12.0 ZIP was published and independently verified:
+https://github.com/to-shreds/arcade/releases/download/arcade-v2.12.0/arcade-2.12.0-web.zip
+(15,528,643 bytes, SHA-256 7c0e09cadb074acacf76439ba4d8c21adae6430348a71c8409d9b42a92f59057).
+Its Library copy was uploaded and verified at
+`/Arcade/arcade-2.12.0-web.zip`. Release packaging workflow
+43794329130 passed; the ZIP checks all 420 runtime-file hashes.
+ProjectStatus records final readiness and links. Future device-specific work
+should verify performance on a physical low-end Android tablet; the browser
+emulator cannot substitute for that device check.
 
 # Arcade house icons for return-home controls (2026-11-15)
 
