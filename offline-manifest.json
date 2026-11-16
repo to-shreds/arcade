@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.13.1+20261116.1",
-  "generatedAt": "2026-11-16T06:37:09.366Z",
+  "version": "2.13.3+20261116.1",
+  "generatedAt": "2026-11-16T06:40:23.146Z",
   "fileCount": 437,
-  "totalBytes": 24718142,
+  "totalBytes": 24718233,
   "files": [
     {
       "path": "adventure/game.json",
@@ -252,8 +252,8 @@
     },
     {
       "path": "comic-reader/index.html",
-      "bytes": 5151,
-      "sha256": "bff02dcc5c2e4b150ada3480ca1e73e9951f939714293b4aab298635af817f9f"
+      "bytes": 5086,
+      "sha256": "ba6203e2880c5c18a222c228b7cd69d5491fc352027ab7fb2ae25369c8a1bcca"
     },
     {
       "path": "comic-reader/reader.css",
@@ -267,8 +267,8 @@
     },
     {
       "path": "comic-reader/README.md",
-      "bytes": 2216,
-      "sha256": "d2348cc57bfe44994adde09a5db665e05091efd8a1efb5ee2b1076d925f93849"
+      "bytes": 2369,
+      "sha256": "d3f6b4a6e8ba412d00f975008cefbbdce8bcde62fc021a189f6aade4caeb170b"
     },
     {
       "path": "comic-reader/vendor/jszip.min.js",
@@ -1807,8 +1807,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 29040,
-      "sha256": "6161e46fb06fc2cdb47627b42ad0ade906eac0cc7cbda569f59c35dcb8f9c129"
+      "bytes": 29043,
+      "sha256": "9ad8bb4358fb5f04524351cd9a5d0490da834411534aa10a21eb11c6b6d109df"
     },
     {
       "path": "tanks/battle-view.css",
