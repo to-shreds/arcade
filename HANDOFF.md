@@ -1,3 +1,62 @@
+# Tank Tactics 2.12.1: knockback and precise controls (2026-11-15/16)
+
+Canonical repository: `to-shreds/arcade`, main runtime merge
+`0368c43a38a03ee7626234332a1ba34dac087892` from PR #8. Live game:
+https://to-shreds.github.io/arcade/tanks/.
+The GitHub Pages run 43800413593 and multiplayer Worker run 43800414181
+both completed successfully. The verified offline manifest version is
+`2.12.1+20261115.1`, with 420 runtime files and 23,099,181 bytes.
+
+Implemented: every new CPU, hotseat, Internet and Nearby Tank battle draws
+10 distinct randomized weapons per player from the full 132-weapon roster.
+The old Classic and Extra Silly selectors and local saved mix preference are
+ignored/removed; no pool selection appears in setup or Settings. The normal
+selection among the player's ten remaining weapons is preserved.
+
+The authoritative Tank engine now moves tank x-position when sufficiently
+strong hits land, including during armed mine explosions on a voluntary move.
+Weapon-family impulse changes the force, small hits have no displacement,
+and each shove is capped at 75 world units. Tanks cannot leave the playfield
+or cross one another, and always settle onto current terrain. Knockback
+does not use any of the four optional player moves. Each changed position
+and its visual hop height is recorded in the bounded effect trace. Canvas
+replays the position, hop and tilt; scored damage is unchanged. Old saves
+without knockback fields still validate and load unchanged.
+
+Both sides of angle, power and movement sliders have one-unit step buttons,
+respectively 1 degree, 1 percent and 1 tank length. Existing sliders,
+number boxes, movement left/right actions and keyboard behavior remain.
+End stops and disabled-turn controls are enforced. In-match weapon picker,
+Test Range, local saves, room credentials, 132 original icons, shared menus,
+Retro Vault and other Arcade features remain.
+
+Verification: the focused project-stress Tanks/Upwords browser group in
+run 43799933209 succeeded; it covers real Internet and Nearby rooms,
+CPU and local matches, 132 icon raster checks, terrain replay, 20-shot
+games, local save/reload, full viewport geometry, arrow controls and mines.
+The new tanks-impact browser report explicitly passed knockback replay,
+steppers, saved displaced position, move-triggered mines and four layouts,
+with zero JS errors. Tank engine/model tests passed, as did model/package,
+Nearby, Bug Squish and stories/TV subgroups. Retro Vault and production
+Pages/Worker deployments passed. Broader browser suites have separate
+statuses; do not claim them green until confirmed. See
+`docs/arcade-stress-test-2.12.1.md`.
+
+Do not break: original weapon IDs, saves and old match inventory, damage
+points, height-map terrain, deterministic physics, authoritative room
+control, bounded checkpoint size and offline content hash verification.
+Both client and Worker must ship `tanks/engine.js` together. Affected
+module files: `tanks/engine.js`, `graphics.js`, `game.js`,
+`index.html`, and the updated test files. The precision arrows are
+`angleMinus/Plus`, `powerMinus/Plus`, and `moveMinus/Plus`;
+the JS binds the last two using the `move` prefix, not `moveDistance`.
+
+Next action: confirm the portable web ZIP and provenance hash, upload the ZIP
+to the ChatGPT Library, and confirm behavior on the children's actual tablet
+when available. The CI browser coverage does not prove physical-tablet
+performance. If there is a future reported regression, reproduce it
+against the exact current game state and viewport before changing physics.
+
 # Tank Tactics 2.12.0: playable, playful 132-weapon arsenal (2026-11-15/16)
 
 Canonical source: `to-shreds/arcade` main, runtime merge
