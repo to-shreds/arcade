@@ -1,3 +1,10 @@
+# 2.12.1
+
+- Removed selectable weapon-pool modes. Every new Tank Tactics match now randomly draws ten weapons for each player from the complete 132-weapon catalogue.
+- Added deterministic impact knockback. Strong hits can push a tank and briefly bounce it into the air; the final position changes gameplay, remains inside battlefield boundaries, and survives saves and multiplayer sync.
+- Added precise left/right step buttons beside angle, power and movement-distance sliders, with 1-degree, 1-percent and 1-tank-length steps. Original sliders and number inputs remain.
+- Preserved legacy saved ammunition, the four player-controlled moves, scores, mine ownership and the other Arcade games. Expanded tests cover motion, boundaries, old saves, UI controls, mobile layout and real multiplayer.
+
 # 2.12.0
 
 - Expanded Tank Tactics from 84 to 132 weapons. All 132 are included by default in new games and multiplayer matches.

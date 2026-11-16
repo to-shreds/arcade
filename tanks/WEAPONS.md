@@ -182,7 +182,7 @@ variant, color, size, and count, so all artwork works offline.
 
 ## Playful additions (48)
 
-Eight kid-friendly collections introduce six new weapons apiece, while the original 84 remain available by default. All additions use the existing 14 deterministic physics families. The authoritative catalogue, numerical parameters, and per-weapon terrain profiles are in `fun-weapons.js`; the names and effects here summarize the groups.
+Eight kid-friendly collections introduce six new weapons apiece. All 132 weapons are always eligible for randomized inventories. All additions use the existing 14 deterministic physics families. The authoritative catalogue, numerical parameters, and per-weapon terrain profiles are in `fun-weapons.js`; the names and effects here summarize the groups.
 
 | Collection | New weapons |
 | --- | --- |
@@ -196,3 +196,20 @@ Eight kid-friendly collections introduce six new weapons apiece, while the origi
 | Weird Science | Soda Geyser, Magnet Mayhem, Bubble Ray, Marshmallow Meltdown, Robot Finger, Tornado-in-a-Jar |
 
 26 existing weapons have playful display names and illustrated effects, but preserve their original IDs, damage, trajectories, and terrain profiles. The unique on-screen effects are cosmetic and never affect authoritative scores.
+
+## Impact knockback (2.12.1)
+
+Tank Tactics now adds authoritative horizontal movement from sufficiently
+strong hits. The strength threshold depends on the hit's scored damage and
+the weapon family. Kinetic shells, bouncers, rollers and mines push harder
+than beams, fire or light electrical contact. The per-impact displacement is
+capped at 75 world units. Tanks cannot cross one another or leave the
+playfield, and they settle onto the modified height-map terrain. This
+movement never deducts one of the four optional player-controlled moves.
+
+Each effect may contain a bounded `pushes` array of
+`[tankIndex, fromX, toX, hopHeight]` entries so old and new saves, CPU,
+Internet and Nearby can replay the same action. The temporary hop and tilt
+are drawn in Canvas; only horizontal position and terrain height are
+authoritative physics. There is no selectable arsenal mix in setup or
+Settings; new matches always sample all 132 weapons.

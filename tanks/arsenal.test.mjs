@@ -29,20 +29,28 @@ test('the expanded arsenal has 48 distinct playful additions and 26 playful clas
   assert.ok(profile.width>=3 && profile.depth>=0 && Number.isFinite(profile.depth),w.id);
  }
 });
-test('all is the default, classic excludes new weapons, extra silly deals seven new per tank',()=>{
+test('all new matches use all 132 weapons with no selectable weapon pool',()=>{
  for(const seed of [1,4,500,8888]){
   const defaults=createGame({seed});
-  assert.deepEqual(defaults,createGame({seed,weaponMix:'all'}));
-  for(const tank of defaults.tanks){assert.equal(tank.inventory.length,10);assert.equal(new Set(tank.inventory).size,10);}
-  const classic=createGame({seed,weaponMix:'classic'});
-  for(const tank of classic.tanks)assert.equal(tank.inventory.filter(id=>weaponById(id).funNew).length,0);
-  const silly=createGame({seed,weaponMix:'silly'});
-  for(const tank of silly.tanks){
-    assert.equal(tank.inventory.filter(id=>weaponById(id).funNew).length,7);
-    assert.equal(new Set(tank.inventory).size,10);
+  for(const obsoleteMix of ['all','classic','silly']){
+    assert.deepEqual(defaults,createGame({seed,weaponMix:obsoleteMix}),
+      'Old mix preferences cannot change the universal arsenal');
   }
-  validateGame(defaults);validateGame(classic);validateGame(silly);
+  for(const tank of defaults.tanks){
+    assert.equal(tank.inventory.length,10);
+    assert.equal(new Set(tank.inventory).size,10);
+    assert.ok(tank.inventory.every(id=>WEAPONS.some(w=>w.id===id)));
+  }
+  validateGame(defaults);
  }
+ // Both original and new weapons must be available in the actual random pool.
+ let newSeen=0,classicSeen=0;
+ for(let seed=1;seed<=64;seed++){
+  for(const tank of createGame({seed}).tanks)for(const id of tank.inventory){
+    if(weaponById(id).funNew)newSeen++;else classicSeen++;
+  }
+ }
+ assert.ok(newSeen>0&&classicSeen>0);
 });
 test('every additional weapon fires deterministically and replays the exact terrain',()=>{
  for(const weapon of FUN_WEAPONS){
