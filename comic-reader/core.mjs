@@ -1,9 +1,9 @@
 export const REPO = 'to-shreds/Misc';
 export const DIRECTORY = 'cbz';
 export const GITHUB_API = 'https://api.github.com/repos/to-shreds/Misc/contents/cbz?ref=main';
-export const MAX_FILE_BYTES = 150 * 1024 * 1024;
-export const MAX_IMAGE_BYTES = 40 * 1024 * 1024;
-export const MAX_UNCOMPRESSED_BYTES = 750 * 1024 * 1024;
+// The archive itself is not size-limited. ZIP metadata and pages are read on demand.
+// A per-image safeguard prevents an invalid ZIP entry from exhausting mobile RAM.
+export const MAX_IMAGE_BYTES = 256 * 1024 * 1024;
 
 export const supportedFile = name => /\.(cbz|pdf)$/i.test(String(name || ''));
 export const extensionOf = name => (/\.([^.]+)$/.exec(String(name || ''))?.[1] || '').toLowerCase();
@@ -15,12 +15,12 @@ export function naturalCompare(a, b) {
 }
 export function imageEntries(files) {
   const images = Object.values(files || {}).filter(file => {
-    if (!file || file.dir) return false;
-    const path = String(file.name || '').replace(/\\/g, '/');
+    if (!file || file.dir || file.directory) return false;
+    const path = String(file.name || file.filename || '').replace(/\\/g, '/');
     const parts = path.split('/');
     return !parts.some(p => !p || p.startsWith('.') || p === '__MACOSX') && /\.(jpe?g|png|webp|gif|avif)$/i.test(path);
   });
-  images.sort((a, b) => naturalCompare(a.name, b.name));
+  images.sort((a, b) => naturalCompare(a.name || a.filename, b.name || b.filename));
   return images;
 }
 export function githubBook(item) {
@@ -31,6 +31,37 @@ export function githubBook(item) {
     kind: extensionOf(item.name), source: 'github', url: item.download_url,
     size: Number(item.size) || 0, sha: item.sha || '' };
 }
+/** Group contiguous, ordinary GitHub raw files named Book.cbz.001, .002, etc.
+ * A split is byte-for-byte, NOT a 7z multi-volume archive. Each part remains
+ * under GitHub's upload limit. The reconstructed Blob is ZIP-compatible. */
+export function githubLibrary(items) {
+  const regular=[], splitGroups=new Map();
+  for (const item of Array.isArray(items) ? items : []) {
+    const book=githubBook(item);
+    if (book) {regular.push(book);continue;}
+    if (!item || item.type!=='file' || typeof item.name!=='string') continue;
+    const match=/^(.+\.(cbz|pdf))\.(\d{3,})$/i.exec(item.name);
+    if (!match) continue;
+    if (typeof item.path!=='string' || item.path!==`cbz/${item.name}` ||
+      typeof item.download_url!=='string' ||
+      !item.download_url.startsWith('https://raw.githubusercontent.com/to-shreds/Misc/')) continue;
+    const base=match[1], groupKey=base.toLowerCase(), sequence=Number(match[3]);
+    if (!Number.isSafeInteger(sequence) || !Number.isSafeInteger(item.size) || item.size<0) continue;
+    const group=splitGroups.get(groupKey)||{name:base,segments:[]};
+    group.segments.push({number:sequence,url:item.download_url,size:item.size,sha:item.sha||''});
+    splitGroups.set(groupKey,group);
+  }
+  for (const group of splitGroups.values()) {
+    const parts=group.segments.sort((a,b)=>a.number-b.number);
+    if (parts.length < 2 || (parts[0].number!==0 && parts[0].number!==1) ||
+      parts.some((entry,i)=>i>0 && entry.number!==parts[0].number+i)) continue;
+    regular.push({id:`gh:cbz/${group.name}`,name:group.name,title:displayTitle(group.name),
+      kind:extensionOf(group.name),source:'github',parts,
+      size:parts.reduce((sum,p)=>sum+p.size,0),sha:parts.map(p=>p.sha).join(':')});
+  }
+  return regular;
+}
+
 export function localBook(file) {
   if (!file || !supportedFile(file.name)) return null;
   return { id: `local:${file.name}:${file.size}:${file.lastModified || 0}`,

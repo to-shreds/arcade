@@ -1,6 +1,6 @@
 import {
-  GITHUB_API, MAX_FILE_BYTES, MAX_IMAGE_BYTES, MAX_UNCOMPRESSED_BYTES,
-  supportedFile, extensionOf, naturalCompare, imageEntries, githubBook, localBook,
+  GITHUB_API, MAX_IMAGE_BYTES,
+  supportedFile, extensionOf, naturalCompare, imageEntries, githubLibrary, localBook,
   spreadStart, nextPage, previousPage, formatSize
 } from './core.mjs';
 
@@ -33,6 +33,8 @@ let activeBook = null;
 let activeBlob = null;
 let pdfDocument = null;
 let cbzEntries = null;
+let cbzReader = null;
+let pdfRangeTransport = null;
 let count = 0;
 let page = 0;
 let documentGeneration = 0;
@@ -199,7 +201,7 @@ async function refreshLibrary() {
     if (!response.ok) throw new Error(response.status === 403 ? 'GitHub temporarily refused the listing (possibly an API rate limit).' : `GitHub returned HTTP ${response.status}.`);
     const result = await response.json();
     if (!Array.isArray(result)) throw new Error('GitHub did not return a directory listing.');
-    books = [...books.filter(b => b.source === 'local'), ...result.map(githubBook).filter(Boolean)];
+    books = [...books.filter(b => b.source === 'local'), ...githubLibrary(result)];
     const n = books.filter(b => b.source === 'github').length;
     status(`${n} book${n===1?'':'s'} available on GitHub${metadata.size ? ' · Offline copies are available below' : ''}.`);
   } catch(e) {
@@ -209,57 +211,79 @@ async function refreshLibrary() {
 }
 async function readRemote(book) {
   currentDownload = new AbortController();
-  if (!book.url) throw new Error('This GitHub file has no usable download address.');
-  const response = await fetch(book.url, {signal:currentDownload.signal});
-  if (!response.ok) throw new Error(`Download failed (HTTP ${response.status}).`);
-  const total = Number(response.headers.get('content-length') || book.size || 0);
-  if (total > MAX_FILE_BYTES) throw new Error('This file is too large to open on this device (150 MB limit).');
+  const signal=currentDownload.signal;
+  const urls=book.parts?.length ? book.parts.map(part=>part.url) : [book.url];
+  if (urls.some(url=>typeof url!=='string' || !url.startsWith('https://raw.githubusercontent.com/to-shreds/Misc/'))) {
+    throw new Error('This GitHub book has no trusted download address.');
+  }
   const mime = book.kind === 'pdf' ? 'application/pdf' : 'application/zip';
-  if (!response.body?.getReader) {
-    const blob = await response.blob();
-    if (blob.size > MAX_FILE_BYTES) throw new Error('File is too large.');
-    return blob;
+  const blobs=[];let complete=0;
+  for(let i=0;i<urls.length;i++) {
+    const response=await fetch(urls[i],{signal,cache:'no-store'});
+    if(!response.ok)throw new Error(`Download failed (HTTP ${response.status}).`);
+    const expected=Number(response.headers.get('content-length')||book.parts?.[i]?.size||book.size||0);
+    let received=0;
+    let blob;
+    if(response.body && typeof TransformStream==='function') {
+      const progressStream=response.body.pipeThrough(new TransformStream({
+        transform(chunk,controller) {
+          received+=chunk.byteLength;
+          const loaded=complete+received;
+          readerStatus(`Downloading ${book.title}: ${book.size ? Math.round(100*loaded/book.size)+'%' : formatSize(loaded)}${urls.length>1 ? ` · Part ${i+1}/${urls.length}`:''}`);
+          controller.enqueue(chunk);
+        }
+      }),{signal});
+      blob=await new Response(progressStream).blob();
+    } else blob=await response.blob();
+    if(expected && blob.size!==expected)throw new Error(`Part ${i+1} was incomplete. Please retry.`);
+    complete+=blob.size;
+    blobs.push(blob);
   }
-  const reader = response.body.getReader(), chunks=[];
-  let received=0;
-  while (true) {
-    const {done,value} = await reader.read(); if(done) break;
-    received += value.byteLength;
-    if(received > MAX_FILE_BYTES) { await reader.cancel(); throw new Error('File exceeds the 150 MB limit.'); }
-    chunks.push(value);
-    const display = total ? `${Math.round(received*100/total)}%` : formatSize(received);
-    readerStatus(`Downloading ${book.title}\n${display}`);
-  }
-  return new Blob(chunks,{type:mime});
+  return blobs.length===1?blobs[0]:new Blob(blobs,{type:mime});
+}
+
+// PDF.js reads only the requested byte ranges from a Blob instead of
+// duplicating the complete PDF into a giant Uint8Array before parsing.
+function pdfBlobTransport(blob) {
+  const Transport=window.pdfjsLib?.PDFDataRangeTransport;
+  if(!Transport)throw new Error('PDF range support is unavailable. Refresh the Arcade.');
+  return new class extends Transport {
+    constructor(){super(blob.size);this.cancelled=false;}
+    requestDataRange(begin,end){
+      blob.slice(begin,end).arrayBuffer().then(bytes=>{
+        if(!this.cancelled)this.onDataRange(begin,new Uint8Array(bytes));
+      }).catch(()=>{});
+    }
+    abort(){this.cancelled=true;}
+  }();
 }
 async function parseBook(blob, kind, generation) {
-  if (blob.size > MAX_FILE_BYTES) throw new Error('Book exceeds the 150 MB limit.');
   if (kind === 'pdf') {
     if (!window.pdfjsLib) throw new Error('PDF reader could not load. Try refreshing the Arcade.');
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('vendor/pdf.worker.min.js',import.meta.url).href;
-    const bytes = await blob.arrayBuffer();
-    const task = window.pdfjsLib.getDocument({ data:new Uint8Array(bytes), isEvalSupported:false, enableScripting:false });
+    const transport=pdfBlobTransport(blob);pdfRangeTransport=transport;
+    const task = window.pdfjsLib.getDocument({range:transport,disableAutoFetch:true,disableStream:true,
+      isEvalSupported:false,enableScripting:false});
     const result = await task.promise;
     if (generation !== documentGeneration) { await result.destroy(); return; }
     pdfDocument = result;
-    count = pdfDocument.numPages;
+    count = result.numPages;
   } else {
-    if (!window.JSZip) throw new Error('CBZ reader could not load. Try refreshing the Arcade.');
-    const zip = await window.JSZip.loadAsync(blob);
-    const entries = imageEntries(zip.files);
+    if (!window.zip?.ZipReader || !window.zip?.BlobReader) throw new Error('CBZ reader could not load. Refresh the Arcade.');
+    const zip=window.zip;
+    const archive=new zip.ZipReader(new zip.BlobReader(blob),{useWebWorkers:false});
+    cbzReader=archive;
+    const entries=imageEntries(await archive.getEntries());
     if (generation !== documentGeneration) return;
-    cbzEntries = entries;
-    if (!cbzEntries.length) throw new Error('This CBZ contains no supported image pages.');
-    let total=0;
-    for (const entry of cbzEntries) {
-      const size = Number(entry._data?.uncompressedSize || 0);
-      if (size > MAX_IMAGE_BYTES) throw new Error(`Image ${entry.name} exceeds the 40 MB image limit.`);
-      total += size;
-      if (total > MAX_UNCOMPRESSED_BYTES) throw new Error('This CBZ expands beyond the 750 MB safety limit.');
+    cbzEntries=entries;
+    if(!entries.length)throw new Error('This CBZ contains no supported image pages.');
+    for(const entry of entries) {
+      if (Number(entry.uncompressedSize)>MAX_IMAGE_BYTES)
+        throw new Error(`Page ${entry.filename} expands beyond the per-image safety threshold.`);
     }
-    count = cbzEntries.length;
+    count = entries.length;
   }
-  if (!count || count > 2000) throw new Error('The book has an invalid or unsupported page count.');
+  if (!count || count>100000) throw new Error('The book has an invalid page count.');
 }
 function releasePages() {
   for (const item of pageCache.values()) URL.revokeObjectURL(item.url);
@@ -268,10 +292,13 @@ function releasePages() {
 async function releaseDocument() {
   if (observer) { observer.disconnect(); observer=null; }
   const oldPdf=pdfDocument; pdfDocument=null;
+  const oldZip=cbzReader;cbzReader=null;
+  if(pdfRangeTransport){pdfRangeTransport.abort();pdfRangeTransport=null;}
   releasePages();
   cbzEntries=null; count=0;
   UI.pages.replaceChildren(); UI.continuous.replaceChildren();
   if (oldPdf) { try { await oldPdf.destroy(); } catch (_) {} }
+  if (oldZip) { try { await oldZip.close(); } catch (_) {} }
 }
 async function closeBook() {
   if (!activeBook) { shelf(); return; }
@@ -309,9 +336,10 @@ async function pageUrl(index) {
     let blob;
     if (cbzEntries) {
       const entry=cbzEntries[index];
-      const data = await entry.async('uint8array');
-      if(data.byteLength > MAX_IMAGE_BYTES) throw new Error('Image is too large.');
-      blob = new Blob([data],{type:mediaType(entry.name)});
+      // zip.js seeks to this page's compressed bytes and inflates only this page.
+      blob = await entry.getData(new window.zip.BlobWriter(mediaType(entry.filename)),
+        {useWebWorkers:false,checkSignature:true});
+      if(blob.size>MAX_IMAGE_BYTES)throw new Error('The selected page is too large for safe rendering.');
     } else if(pdfDocument) {
       const pdfPage = await pdfDocument.getPage(index+1);
       const base = pdfPage.getViewport({scale:1});
@@ -587,7 +615,6 @@ function bind() {
     const file=UI.filePicker.files?.[0];UI.filePicker.value='';
     if(!file)return;
     if(!supportedFile(file.name)){status('Please select a CBZ or PDF file.',true);return;}
-    if(file.size>MAX_FILE_BYTES){status('File is over the 150 MB reader limit.',true);return;}
     const book=localBook(file);
     books=[book,...books.filter(b=>b.id!==book.id)];
     await openBook(book);

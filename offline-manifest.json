@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.13.4+20261116.1",
-  "generatedAt": "2026-11-16T21:24:22.149Z",
-  "fileCount": 437,
-  "totalBytes": 24730449,
+  "version": "2.13.5+20261116.1",
+  "generatedAt": "2026-11-16T21:40:38.024Z",
+  "fileCount": 439,
+  "totalBytes": 24844361,
   "files": [
     {
       "path": "adventure/game.json",
@@ -237,8 +237,8 @@
     },
     {
       "path": "comic-reader/core.mjs",
-      "bytes": 2703,
-      "sha256": "8045a7ee00e0907d3b06294e46d044e9a34859dcc9652dab7ce3d41bbfa0101f"
+      "bytes": 4582,
+      "sha256": "ecde8d1d33bc0cbfb274c6895b6af8fdbddb0d5640a305a64b887151ca1d6fec"
     },
     {
       "path": "comic-reader/game.json",
@@ -252,8 +252,8 @@
     },
     {
       "path": "comic-reader/index.html",
-      "bytes": 5086,
-      "sha256": "ba6203e2880c5c18a222c228b7cd69d5491fc352027ab7fb2ae25369c8a1bcca"
+      "bytes": 5089,
+      "sha256": "85af822bbccac40f1260ec0667b7753ea20adc2c5035700f69a9fa85c65e4fcd"
     },
     {
       "path": "comic-reader/reader.css",
@@ -262,13 +262,18 @@
     },
     {
       "path": "comic-reader/reader.js",
-      "bytes": 33876,
-      "sha256": "dbbd8efc8b87ac03d4a6d5b4859d9650d702738fc6a857d3b9ee498cc109f58c"
+      "bytes": 35016,
+      "sha256": "d5a44f8701fd75c771a4dfa90e8c4e931a53c615e9e8e8a6bb88a52b6257a779"
     },
     {
       "path": "comic-reader/README.md",
-      "bytes": 2369,
-      "sha256": "d3f6b4a6e8ba412d00f975008cefbbdce8bcde62fc021a189f6aade4caeb170b"
+      "bytes": 3235,
+      "sha256": "fbc606f216b729505312ecfd36fc578781f69fe5d9b54496b47cbda68c3d98ff"
+    },
+    {
+      "path": "comic-reader/split-book.py",
+      "bytes": 2237,
+      "sha256": "55008170f31e2ec404079df2f974eeda3aa42b6491774ec62bd834aacba73ba3"
     },
     {
       "path": "comic-reader/vendor/jszip.min.js",
@@ -284,6 +289,11 @@
       "path": "comic-reader/vendor/pdf.worker.min.js",
       "bytes": 1074897,
       "sha256": "4efa4f25d5f14e309922fb568e3b653ebc53cdb0d60b85bdefd22b30cb0a7a22"
+    },
+    {
+      "path": "comic-reader/vendor/zip-core.min.js",
+      "bytes": 107785,
+      "sha256": "e9ac7bba4f42253414278cd1d85ff0fd3b2dc80e06de021c57d9c4173d4b9d9e"
     },
     {
       "path": "contraption-maker/game.json",
@@ -1807,8 +1817,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 29042,
-      "sha256": "7462e7893cf25130c1fb5ad1e877120b802e6488f25f75f90ba6e384ea47354b"
+      "bytes": 29044,
+      "sha256": "2ab8b3868ad13b9ebda417ac179e9fab5275a6c0dc01adfd3e8f9a039405ca94"
     },
     {
       "path": "tanks/battle-view.css",

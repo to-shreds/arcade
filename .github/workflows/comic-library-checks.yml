@@ -25,11 +25,13 @@ jobs:
         run: |
           node --test tools/test-comic-library-core.mjs
           node tools/test-comic-library-browser.mjs
+          node --test tools/test-comic-library-large-core.mjs
+          node tools/test-comic-library-large-browser.mjs
           node tools/test-shell-navigation.mjs
       - name: Update offline manifest in release branch
         if: startsWith(github.ref, 'refs/heads/work/comic-library-')
         run: |
-          node tools/generate-offline-manifest.mjs --version '2.13.3+20261116.1'
+          node tools/generate-offline-manifest.mjs --version '2.13.5+20261116.1'
           node tools/test-offline-runtime.mjs
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -41,11 +43,11 @@ jobs:
       - name: Package complete offline Arcade web release
         if: startsWith(github.ref, 'refs/heads/work/comic-library-')
         run: |
-          python3 tools/package-web-release.py --output "$RUNNER_TEMP/arcade-2.13.3-web.zip"
+          python3 tools/package-web-release.py --output "$RUNNER_TEMP/arcade-2.13.5-web.zip"
       - name: Save downloadable Arcade package
         if: startsWith(github.ref, 'refs/heads/work/comic-library-')
         uses: actions/upload-artifact@v4
         with:
-          name: arcade-2.13.3-cbz-picker-web
-          path: ${{ runner.temp }}/arcade-2.13.3-web.zip
+          name: arcade-2.13.5-large-books-web
+          path: ${{ runner.temp }}/arcade-2.13.5-web.zip
           retention-days: 7
