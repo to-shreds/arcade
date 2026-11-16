@@ -270,17 +270,19 @@ function releasePages() {
 }
 async function releaseDocument() {
   if (observer) { observer.disconnect(); observer=null; }
+  const oldPdf=pdfDocument; pdfDocument=null;
   releasePages();
-  if (pdfDocument) { try { await pdfDocument.destroy(); } catch (_) {} pdfDocument=null; }
   cbzEntries=null; count=0;
   UI.pages.replaceChildren(); UI.continuous.replaceChildren();
+  if (oldPdf) { try { await oldPdf.destroy(); } catch (_) {} }
 }
 async function closeBook() {
   if (!activeBook) { shelf(); return; }
-  ++documentGeneration; ++displayGeneration;
+  const closingGeneration=++documentGeneration; ++displayGeneration;
   if (currentDownload) { currentDownload.abort(); currentDownload=null; }
   recordProgress(); activeBook=null; activeBlob=null;
-  await releaseDocument(); shelf();
+  await releaseDocument();
+  if (closingGeneration===documentGeneration) shelf();
 }
 function mediaType(name) {
   switch(extensionOf(name)) { case 'png':return 'image/png'; case 'webp':return 'image/webp'; case 'gif':return 'image/gif'; case 'avif':return 'image/avif'; default:return 'image/jpeg'; }

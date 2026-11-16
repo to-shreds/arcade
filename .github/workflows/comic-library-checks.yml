@@ -37,3 +37,14 @@ jobs:
             git commit -m 'Regenerate verified Comic Library offline manifest'
             git push origin HEAD:${GITHUB_REF_NAME}
           fi
+      - name: Package complete offline Arcade web release
+        if: startsWith(github.ref, 'refs/heads/work/comic-library-')
+        run: |
+          python3 tools/package-web-release.py --output "$RUNNER_TEMP/arcade-2.13.1-web.zip"
+      - name: Save downloadable Arcade package
+        if: startsWith(github.ref, 'refs/heads/work/comic-library-')
+        uses: actions/upload-artifact@v4
+        with:
+          name: arcade-2.13.1-comic-library-web
+          path: ${{ runner.temp }}/arcade-2.13.1-web.zip
+          retention-days: 7
