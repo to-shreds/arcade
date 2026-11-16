@@ -1,0 +1,32 @@
+name: Monster Forge checks
+on:
+  push:
+    branches: [main]
+    paths: ['monster-forge/**', 'tools/test-monster-forge-browser.mjs', '.github/workflows/monster-forge-checks.yml']
+  pull_request:
+    paths: ['monster-forge/**', 'tools/test-monster-forge-browser.mjs', '.github/workflows/monster-forge-checks.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - run: npm ci && npx playwright install --with-deps chromium
+      - run: |
+          node --check monster-forge/game.js
+          node --check monster-forge/parts.js
+          node tools/test-monster-forge-browser.mjs
+          node tools/test-shell-navigation.mjs
+          node tools/test-offline-runtime.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: monster-forge-evidence
+          path: test-results/monster-forge/
+          retention-days: 7
