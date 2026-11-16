@@ -27,10 +27,14 @@ jobs:
           patch=lzma.decompress(data)
           subprocess.run(['git','apply','--check','-'],input=patch,check=True)
           subprocess.run(['git','apply','-'],input=patch,check=True)
-          print('Applied verified Monster Forge source patch')
+          f=p('tools/test-monster-forge-browser.mjs');s=f.read_text()
+          assert 'assert(m.items.length>=8);' in s
+          s=s.replace('assert(m.items.length>=8);','assert.equal(m.items.length,await page.evaluate(id=>ForgeParts.recipe(id).items.length,id));')
+          f.write_text(s)
+          print('Applied verified source; every starter is checked against its exact recipe')
           PY
       - name: Install browser dependencies
-        run: npm ci && npx playwright install --with-deps chromium
+        run: npm ci && npx playwright install chromium
       - name: Test all monster parts, touch, saves, exports and navigation
         run: |
           node --check monster-forge/game.js
@@ -44,58 +48,50 @@ jobs:
           python3 - <<'PY'
           import pathlib,re,json
           p=pathlib.Path
-          report=json.loads(p('test-results/monster-forge/report.json').read_text())
-          assert report['passed'] is True
+          assert json.loads(p('test-results/monster-forge/report.json').read_text())['passed'] is True
           sw=p('sw.js');sw.write_text(re.sub(r"const WORKER_VERSION = '[^']+';", "const WORKER_VERSION = '2026-11-16-monster-forge-v2';",sw.read_text(),count=1))
           note='''# Monster Forge 2.0, Arcade 2.13.2 (2026-11-16)
 
-          Source: monster-forge/ in this repository. This release replaces the
-          abstract new-part art with 50 illustrated anatomical pieces and six
-          fully editable creature starters. Existing saved v1 pieces retain the
-          original artwork through per-piece artVersion compatibility.
-          New parts include recognizable dragon and dinosaur heads, skulls,
-          feathered and membrane wings, talons, jointed insect limbs, suckered
-          tentacles, tails, armor and a robot torso. The drawing canvas remains
-          available without choosing a template. Parts have larger cropped
-          previews and a separate selected-part inspector for color, size,
-          rotation, copy, flip, mirror-copy and layering.
+          Source: monster-forge/ in this repository. This release adds 50
+          illustrated anatomical pieces and six fully editable starter creatures.
+          Existing saved v1 parts retain their original artwork through the
+          per-piece artVersion field. New pieces have recognizable teeth, claws,
+          feathers, wing membranes, suckers, joints, tails and robotic details.
+          The blank drawing canvas remains available. Larger cropped previews
+          and a separate selected-part panel make size, color, rotation, copy,
+          flip, mirror-copy and layering accessible without browsing past parts.
 
-          Also repaired: live stroke rendering without whole-board redraw,
-          geometry-based selection, collection fallback preservation beyond
-          fifty monsters, save-before-switch safety, and 1800x1200 PNG export.
-          Keep original storage keys, creature IDs, artVersion=1 rendering,
-          existing games, Comic Library, and all multiplayer behavior intact.
+          Also repaired: incremental live stroke rendering, geometry-based
+          picking, collection fallback preservation beyond fifty saves, safety
+          when saving before switching creatures, and 1800x1200 PNG export.
+          Preserve old storage keys, creature IDs, artVersion=1 rendering,
+          all existing games, Comic Library and multiplayer behavior.
 
-          Verification: tools/test-monster-forge-browser.mjs passed real Chromium
-          checks at 320x568, 390x844, 832x384 and 1280x800, all 50 inserts,
-          six starters, mouse/touch drawing, transforms, old-save rendering,
-          IndexedDB collection and Arcade autosave reload, failed-save safety,
-          PNG download dimensions, effects and shell Home. Existing navigation
-          and Comic Library core/browser tests also passed. The manifest and
-          portable ZIP are generated and verified in this release workflow.
-          This is focused verification, not an all-project green claim; no
-          physical Android tablet or long-duration storage quota test occurred.
-
-          Next: play the new editor on the children's tablets; report a concrete
-          device issue before changing unrelated activities. ProjectStatus has
-          publication state and final artifact fingerprints.
+          Verification: tools/test-monster-forge-browser.mjs passed actual
+          Chromium checks at 320x568, 390x844, 832x384 and 1280x800; all 50
+          insertions; six starters; mouse/touch drawing; part transforms;
+          old-save artwork; IndexedDB collection and autosave reload; fallback
+          save failure protection; PNG dimensions; effects and shell Home.
+          Shell navigation and Comic Library core/browser regressions passed.
+          The offline manifest and complete ZIP are generated and validated.
+          No all-project green or physical Android tablet testing is claimed.
+          Next: play it on the children's tablets and report any device issue.
+          ProjectStatus records publication and final artifact fingerprints.
 
           ---
 
           '''
-          note='\n'.join(line[10:] if line.startswith('          ') else line for line in note.split('\n'))
           hand=p('HANDOFF.md');hand.write_text(note+hand.read_text())
           readme=p('README.md');text=readme.read_text();pos=text.find('## Release ')
           intro='''## Release 2.13.2
 
           Monster Forge now has 50 illustrated parts and six editable starter
-          creatures, with larger previews, simpler part editing and smoother
-          drawing. Existing monsters retain their original art. New anatomy can
-          be mixed freely or drawn over, then saved and exported at 1800x1200.
+          creatures, larger previews, direct part editing and smoother drawing.
+          Existing monsters retain their original artwork. Mix new anatomy,
+          draw over it, save a collection and export 1800x1200 pictures.
           See monster-forge/README.md for controls and compatibility details.
 
           '''
-          intro='\n'.join(line[10:] if line.startswith('          ') else line for line in intro.split('\n'))
           readme.write_text(text[:pos]+intro+text[pos:])
           for f in p('tools').glob('forge-v2-*.b64'):f.unlink()
           p('.github/workflows/forge-v2-bootstrap.yml').unlink()
@@ -106,7 +102,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add monster-forge tools/test-monster-forge-browser.mjs tools/forge-v2-*.b64 .github/workflows HANDOFF.md README.md sw.js offline-manifest.json
+          git add monster-forge tools/test-monster-forge-browser.mjs 'tools/forge-v2-*.b64' .github/workflows HANDOFF.md README.md sw.js offline-manifest.json
           git commit -m 'Improve Monster Forge with illustrated anatomy, editable starters and verified save compatibility'
           git push origin HEAD:work/monster-forge-v2
       - name: Package complete Arcade and standalone HTML
@@ -114,7 +110,7 @@ jobs:
           python3 tools/package-web-release.py --output "$RUNNER_TEMP/Arcade-2.13.2-Monster-Forge.zip"
           python3 - <<'PY'
           import pathlib,os,zipfile,hashlib,json,re
-          p=pathlib.Path;out=p(os.environ['RUNNER_TEMP']);root=p('.')
+          p=pathlib.Path;out=p(os.environ['RUNNER_TEMP'])
           html=p('monster-forge/index.html').read_text()
           html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+p('monster-forge/style.css').read_text()+'</style>')
           for name in ['parts.js','game.js','../arcade-save.js']:
