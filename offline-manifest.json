@@ -163,7 +163,7 @@
     {
       "path": "catalog.json",
       "bytes": 29919,
-      "sha256": "ac185f360b61912b20176ce32d6408240f3d0ad003542ec58f179c1cf02a6777"
+      "sha256": "cd607c60afe8b72d42eb4780dca29db038c6fdd816a50a0e65cd525fd780985e"
     },
     {
       "path": "chat-room/game.json",
@@ -328,7 +328,7 @@
     {
       "path": "index.html",
       "bytes": 15879,
-      "sha256": "d95976641f9c1d9ef78d544effb5db9b53e1f798b868df8b265ed98c0878349d"
+      "sha256": "911551c152f4ff4d7a96894387b020da1bf8fcd327e6e21bb80d40026728cab0"
     },
     {
       "path": "insultinator/game.json",
@@ -1753,7 +1753,7 @@
     {
       "path": "sw.js",
       "bytes": 29040,
-      "sha256": "d62f6a1597fc8de4c35708fa72238a3088ae7ee069e57baeb5abfce4d7433dc8"
+      "sha256": "8d39bb980a33b1787044c21013858f13a34d200681b9206c979ac5592ec62f25"
     },
     {
       "path": "tanks/battle-view.css",
