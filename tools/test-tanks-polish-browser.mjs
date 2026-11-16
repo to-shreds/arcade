@@ -86,7 +86,7 @@ try{
  }
  assert.equal(await page.evaluate(()=>TanksGame.getState().finished),true);checks.push('complete twenty-shot UI match');
  await page.goto(`${base}/tanks/range.html`);
- await page.waitForSelector('#weapon option');
+ await page.waitForFunction(() => document.querySelectorAll('#weapon option').length === 132);
  assert.equal(await page.locator('#weapon option').count(),132);
  await page.selectOption('#weapon','rubber-duck-bounce');
  await page.click('#fire');
