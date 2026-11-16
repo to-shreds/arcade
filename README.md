@@ -8,6 +8,14 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.13.2
+
+Monster Forge now has 50 illustrated parts and six editable starter
+creatures, larger previews, direct part editing and smoother drawing.
+Existing monsters retain their original artwork. Mix new anatomy,
+draw over it, save a collection and export 1800x1200 pictures.
+See monster-forge/README.md for controls and compatibility details.
+
 ## Release 2.13.1
 
 **Comic Library** adds a CBZ and PDF bookshelf to Arcade. It discovers public

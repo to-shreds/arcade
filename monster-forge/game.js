@@ -4,7 +4,7 @@ const NS='http://www.w3.org/2000/svg', W=900,H=600;
 const $=id=>document.getElementById(id);
 const palette=['#18253b','#ffffff','#e84756','#ffce3a','#ff8b32','#72e985','#21dcff','#6b86ff','#9b7cff','#ff5ac8','#b47747','#7a98ab','#373446','#f7cbb1'];
 const sceneNames={blank:'Sketchbook',swamp:'Swamp',lava:'Volcano',cave:'Cave',space:'Alien planet',city:'City',sea:'Underwater'};
-const catalog={
+const originalCatalog={
   Bodies:[['blob','Blob'],['fuzzy','Fuzzy'],['slime','Slime'],['rock','Rock'],['serpent','Serpent'],['shell','Shell']],
   Eyes:[['eye','Eye'],['cyclops','Big eye'],['stalk','Eye stalk'],['sleepy','Sleepy eye'],['manyeyes','Many eyes']],
   Mouths:[['fangs','Fangs'],['grin','Grin'],['beak','Beak'],['jaw','Big jaws']],
@@ -12,10 +12,11 @@ const catalog={
   Limbs:[['claw','Claw'],['tentacle','Tentacle'],['foot','Big foot'],['fin','Fin'],['wing','Wings'],['batwing','Bat wing'],['tail','Tail'],['stinger','Stinger']],
   Extras:[['spots','Spots'],['scales','Scales'],['flames','Flames'],['bolt','Lightning'],['gear','Robot gear'],['cloud','Spooky mist']]
 };
+const catalog=Object.fromEntries(ForgeParts.categories.map(cat=>[cat,Object.values(ForgeParts.parts).filter(p=>p.category===cat).map(p=>[p.id,p.label])]));
 const partLabels=Object.fromEntries(Object.values(catalog).flat());
-const bigParts=new Set(['blob','fuzzy','slime','rock','serpent','shell']);
-const eyes=new Set(['eye','cyclops','stalk','sleepy','manyeyes']);
-const wings=new Set(['wing','batwing','fin']);
+const bigParts=new Set(['blob','fuzzy','slime','rock','serpent','shell','dragonbody','robotbody']);
+const eyes=new Set(['eye','cyclops','stalk','sleepy','manyeyes','reptileeye']);
+const wings=new Set(['wing','batwing','fin','insectwing']);
 const tentacles=new Set(['tentacle','tail','antenna','stinger']);
 const challenges=[
 'Invent a monster that lives inside a volcano.',
@@ -65,8 +66,9 @@ const colorOk=s=>typeof s==='string'&&/^#[a-f0-9]{6}$/i.test(s);
 const escapeText=s=>String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const idOk=s=>typeof s==='string'&&/^mf-[a-z0-9-]{5,45}$/i.test(s);
 const neutral=()=>({uid:uid(),name:'',scene:'blank',habitat:'Unknown',food:'Anything',power:'None (yet)',danger:3,challenge:'',items:[],updatedAt:Date.now()});
-let monster=neutral(),activeTool='draw',partCategory='Bodies',selectedId=null,ink='#9b7cff',width=10,symmetry=false,filled=false;
+let monster=neutral(),activeTool='draw',partCategory='Bodies',selectedId=null,ink='#18253b',width=10,symmetry=false,filled=false;
 let undo=[],redo=[],pointer=null,toastTimer=0,lastChallenge=-1,live=false,animationFrame=0,particles=[],effectUntil=0,danceUntil=0,audio=null;
+let partTint=null,templateBusy=false;
 const MAX_HISTORY=45,MAX_POINTS=1300,MAX_ITEMS=1000;
 function safeModel(raw){
  if(!raw||typeof raw!=='object'||!Array.isArray(raw.items))return null;
@@ -78,7 +80,7 @@ function safeModel(raw){
  clean.updatedAt=clamp(raw.updatedAt,0,9e15);
  for(const item of raw.items.slice(0,MAX_ITEMS)){
    if(item&&item.kind==='part'&&Object.hasOwn(partLabels,item.type)){
-    clean.items.push({kind:'part',id:String(item.id||uid()).slice(0,55),type:item.type,x:clamp(item.x,-160,1060),y:clamp(item.y,-160,760),scale:clamp(item.scale,.18,5),rot:clamp(item.rot,-720,720),flip:item.flip===-1?-1:1,color:colorOk(item.color)?item.color:'#9b7cff'});
+    clean.items.push({kind:'part',id:String(item.id||uid()).slice(0,55),type:item.type,x:clamp(item.x,-160,1060),y:clamp(item.y,-160,760),scale:clamp(item.scale,.18,5),rot:clamp(item.rot,-720,720),flip:item.flip===-1?-1:1,color:colorOk(item.color)?item.color:'#9b7cff',artVersion:item.artVersion===2?2:1});
    }else if(item&&(item.kind==='stroke'||item.kind==='shape')&&Array.isArray(item.points)){
     const pts=item.points.slice(0,MAX_POINTS).filter(p=>p&&Number.isFinite(+p.x)&&Number.isFinite(+p.y)).map(p=>({x:clamp(p.x,-30,930),y:clamp(p.y,-30,630)}));
     if(pts.length)clean.items.push({kind:item.kind,id:String(item.id||uid()).slice(0,55),points:pts,color:colorOk(item.color)?item.color:'#18253b',size:clamp(item.size,2,90)});
@@ -95,7 +97,7 @@ function toast(message){$('toast').textContent=message;$('toast').classList.add(
 function rgb(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16))}
 function tint(hex,n){const values=rgb(hex).map(v=>clamp(Math.round(v+n*255),0,255));return '#'+values.map(v=>v.toString(16).padStart(2,'0')).join('')}
 function strokeBox(body,col,width=3){return `<g stroke="#1b223a" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round">${body}</g>`}
-function partShape(t,c){
+function legacyPartShape(t,c){
  const light=tint(c,.23),dark=tint(c,-.16),white='#fffdf5',black='#1b223a';
  const p=(d,fill=c,more='')=>`<path d="${d}" fill="${fill}" ${more}/>`;
  const e=(x,y,rx,ry)=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${white}"/><ellipse cx="${x+rx*.17}" cy="${y+ry*.07}" rx="${rx*.47}" ry="${ry*.52}" fill="${black}"/><circle cx="${x+rx*.31}" cy="${y-ry*.15}" r="${rx*.2}" fill="white" stroke="none"/>`;
@@ -136,6 +138,7 @@ function partShape(t,c){
  default:return `<circle r="40" fill="${c}"/>`;
  }
 }
+function partShape(t,c,version=2){return version===1?legacyPartShape(t,c):ForgeParts.art(t,c);}
 function background(scene){
  const svg={
  blank:'<rect width="900" height="600" fill="#efe8d8"/><path d="M0 100H900M0 200H900M0 300H900M0 400H900M0 500H900M100 0V600M200 0V600M300 0V600M400 0V600M500 0V600M600 0V600M700 0V600M800 0V600" fill="none" stroke="#afa9a1" stroke-opacity=".13" stroke-width="1.5"/>',
@@ -151,22 +154,67 @@ function pointsPath(pts,close){if(!pts.length)return '';if(pts.length===1){const
 function drawItem(item,interactive=false){
  if(item.kind==='part'){
  const flipped=item.scale*item.flip;
- return `<g class="part-element" data-id="${escapeText(item.id)}" transform="translate(${item.x} ${item.y}) rotate(${item.rot}) scale(${flipped} ${item.scale})"><g class="anim" data-type="${item.type}">${partShape(item.type,item.color)}</g>${interactive&&selectedId===item.id?'<circle class="selection" r="130"/>':''}</g>`;
+ return `<g class="part-element" data-id="${escapeText(item.id)}" transform="translate(${item.x} ${item.y}) rotate(${item.rot}) scale(${flipped} ${item.scale})"><g class="anim" data-type="${item.type}">${partShape(item.type,item.color,item.artVersion||1)}</g>${interactive&&selectedId===item.id?selectionMarkup(item):''}</g>`;
  }
  const path=pointsPath(item.points,item.kind==='shape');let b=`<path data-id="${escapeText(item.id)}" d="${path}" fill="${item.kind==='shape'?item.color:'none'}" stroke="${item.color}" stroke-width="${item.size}" stroke-linecap="round" stroke-linejoin="round"/>`;
  if(interactive&&selectedId===item.id){const p=item.points[Math.floor(item.points.length/2)];b+=`<circle class="selection" cx="${p.x}" cy="${p.y}" r="20"/>`;}return b;
 }
 function boardMarkup(itemList=monster.items,scene=monster.scene,interactive=false){return background(scene)+`<g id="creature">${itemList.map(i=>drawItem(i,interactive)).join('')}</g>`+(interactive&&symmetry&&activeTool==='draw'?'<path class="guide" d="M450 0V600"/>':'')}
-function render(){$('art').innerHTML=boardMarkup(monster.items,monster.scene,true);$('partEdit').hidden=!monster.items.some(i=>i.kind==='part'&&i.id===selectedId);renderSwatches();renderScenes();updateCounts();updateHistory()}
-function updatePanel(){document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('selected',b.dataset.tool===activeTool));$('drawPanel').hidden=!['draw','fill'].includes(activeTool);$('buildPanel').hidden=!['build','move','erase'].includes(activeTool);$('scenePanel').hidden=activeTool!=='scene';$('panelTitle').textContent=activeTool==='draw'?'Drawing tools':activeTool==='scene'?'Monster worlds':activeTool==='fill'?'Recolor parts':'Creature parts';$('panelTip').textContent=activeTool==='move'?'Drag any part':activeTool==='erase'?'Tap to erase':activeTool==='fill'?'Tap a part to color':activeTool==='build'?'Choose a part':'Make it yours';$('modeHint').textContent={draw:'Draw with your finger or mouse',build:'Tap a part, then drag it',move:'Drag parts anywhere',erase:'Tap or swipe over things to erase',fill:'Tap a part to recolor it',scene:'Pick a different world'}[activeTool];render()}
+function selectionMarkup(item){
+ const b=item.artVersion===2?ForgeParts.parts[item.type].bounds:[-125,-130,250,260];
+ return `<rect class="selection" x="${b[0]-5}" y="${b[1]-5}" width="${b[2]+10}" height="${b[3]+10}" rx="10"/>`;
+}
+function render(){
+ $('art').innerHTML=boardMarkup(monster.items,monster.scene,true);
+ $('emptyHint').hidden=monster.items.length>0;
+ const p=selected();$('partEdit').hidden=!p;$('selectionEmpty').hidden=!!p;
+ $('selectedName').textContent=p?partLabels[p.type]:'Choose a part on the canvas';
+ $('selectedPreview').innerHTML=p?`<svg viewBox="${p.artVersion===2?ForgeParts.parts[p.type].viewBox:'-140 -140 280 280'}">${partShape(p.type,p.color,p.artVersion||1)}</svg>`:'';
+ if(p){$('editCustomColor').value=p.color;$('partSize').textContent=Math.round(p.scale*100)+'%';}
+ renderSwatches();renderScenes();updateCounts();updateHistory();
+}
+function updatePanel(){
+ document.querySelectorAll('[data-tool]').forEach(b=>{b.classList.toggle('selected',b.dataset.tool===activeTool);b.setAttribute('aria-pressed',String(b.dataset.tool===activeTool));});
+ $('drawPanel').hidden=!['draw','fill'].includes(activeTool);
+ $('buildPanel').hidden=activeTool!=='build';$('movePanel').hidden=activeTool!=='move';
+ $('erasePanel').hidden=activeTool!=='erase';$('scenePanel').hidden=activeTool!=='scene';
+ $('panelTitle').textContent={draw:'Drawing tools',build:'Creature parts',move:'Edit a part',erase:'Eraser',fill:'Recolor',scene:'Monster worlds'}[activeTool];
+ $('panelTip').textContent={draw:'Make it yours',build:Object.keys(partLabels).length+' illustrated parts',move:'Tap, then change',erase:'Undo is always here',fill:'Keep the details',scene:'Give it a home'}[activeTool];
+ $('modeHint').textContent={draw:'Draw with your finger or mouse',build:'Choose a piece to add',move:'Drag the selected piece',erase:'Tap or swipe to remove pieces',fill:'Tap a part to recolor it',scene:'Choose a habitat'}[activeTool];
+ $('brushControls').hidden=activeTool==='fill';$('colorTip').textContent=activeTool==='fill'?'Choose a color, then tap a part. Teeth, eyes, and fine details keep their own colors.':'Sketch freely, or turn on filled shapes. Symmetry mirrors your lines.';
+ if(activeTool==='build')renderParts();render();
+}
 function setTool(t){if(!['draw','build','move','erase','fill','scene'].includes(t))return;activeTool=t;updatePanel()}
-function renderSwatches(){const html=palette.map(c=>`<button type="button" class="swatch ${ink.toLowerCase()===c.toLowerCase()?'active':''}" style="background:${c}" data-color="${c}" aria-label="Choose color ${c}"></button>`).join('');$('colors').innerHTML=html;$('partColors').innerHTML=html}
+function renderSwatches(){
+ const html=(current)=>palette.map(c=>`<button type="button" class="swatch ${current?.toLowerCase()===c.toLowerCase()?'active':''}" style="background:${c}" data-color="${c}" aria-label="Choose color ${c}"></button>`).join('');
+ $('colors').innerHTML=html(ink);$('partColors').innerHTML=html(partTint);$('editColors').innerHTML=html(selected()?.color);
+ $('naturalColors').classList.toggle('selected',partTint===null);
+}
 function renderScenes(){$('scenes').innerHTML=Object.entries(sceneNames).map(([id,label])=>`<button type="button" data-scene="${id}" class="${monster.scene===id?'active':''}">${label}</button>`).join('')}
-function renderParts(){const tabs=$('partTabs');tabs.innerHTML=Object.keys(catalog).map(k=>`<button type="button" data-category="${k}" class="${k===partCategory?'selected':''}">${k}</button>`).join('');$('parts').innerHTML=catalog[partCategory].map(([type,label])=>`<button type="button" data-part="${type}" title="Add ${label}"><svg viewBox="-140 -140 280 280" aria-hidden="true">${partShape(type,ink)}</svg><span>${label}</span></button>`).join('')}
-function selectColor(c){if(!colorOk(c))return;ink=c;$('customColor').value=c;renderSwatches();$('partCustomColor').value=c;if(activeTool==='build')renderParts();const item=monster.items.find(i=>i.id===selectedId);if(item&&item.kind==='part'&&activeTool==='fill'){remember();item.color=c;change();render()}}
-function addPart(type,x=450,y=300,scale=null){if(!partLabels[type])return;if(monster.items.length>=MAX_ITEMS)return toast('This monster is full of parts!');remember();let item={kind:'part',id:uid(),type,x,y,scale:scale??(bigParts.has(type)?1.1:.58),rot:0,flip:1,color:ink};monster.items.push(item);selectedId=item.id;setTool('move');change();render();toast('Drag the part to move it')}
+function renderParts(){
+ $('partTabs').innerHTML=Object.keys(catalog).map(k=>`<button type="button" data-category="${k}" aria-pressed="${k===partCategory}" class="${k===partCategory?'selected':''}">${k}</button>`).join('');
+ $('parts').innerHTML=catalog[partCategory].map(([type,label])=>{const p=ForgeParts.parts[type];return `<button type="button" data-part="${type}" title="Add ${label}" aria-label="Add ${label}"><svg viewBox="${p.viewBox}" aria-hidden="true">${partShape(type,partTint||p.color)}</svg><span>${label}</span></button>`}).join('');
+}
+function selectColor(c){if(!colorOk(c))return;ink=c;$('customColor').value=c;renderSwatches();if(activeTool==='fill'){const item=selected();if(item){remember();item.color=c;change();render();}}}
+function selectPartColor(c){if(!colorOk(c))return;partTint=c;$('partCustomColor').value=c;renderParts();renderSwatches();}
+function recolorSelected(c){if(!colorOk(c))return;mutatePart(p=>p.color=c);}
+function addPart(type,x=null,y=null,scale=null){
+ const spec=ForgeParts.parts[type];if(!spec)return;
+ if(monster.items.length>=MAX_ITEMS)return toast('This monster is full of parts.');
+ remember();const body=monster.items.find(i=>i.kind==='part'&&bigParts.has(i.type));
+ const anatomy=['Bodies','Heads','Limbs','Wings','Tails'].includes(spec.category);
+ let item={kind:'part',id:uid(),type,x:x??spec.x,y:y??spec.y,scale:scale??spec.scale,rot:0,flip:1,color:partTint||(body&&anatomy?body.color:spec.color),artVersion:2};
+ const existing=monster.items.filter(i=>i.kind==='part'&&i.type===type);
+ if(x===null&&existing.length)item.x=clamp(item.x+(existing.length%3)*23,100,800);
+ if(['Bodies','Wings','Tails'].includes(spec.category)){
+  const front=monster.items.findIndex(i=>i.kind==='part'&&(spec.category==='Bodies'?['Heads','Eyes','Mouths','Extras'].includes(ForgeParts.parts[i.type]?.category):bigParts.has(i.type)));
+  if(front>=0)monster.items.splice(front,0,item);else monster.items.push(item);
+ }else monster.items.push(item);
+ selectedId=item.id;setTool('move');change();render();
+ toast(spec.label+' added. Drag it into place.');
+}
 function selected(){return monster.items.find(i=>i.id===selectedId&&i.kind==='part')}
-function mutatePart(fn){const part=selected();if(!part)return toast('Tap a part first');remember();fn(part);render();change()}
+function mutatePart(fn){const part=selected();if(!part)return toast('Tap a part first');remember();fn(part);part.rot=((part.rot+180)%360+360)%360-180;part.scale=clamp(part.scale,.18,5);render();change()}
 function mirrorPart(){const part=selected();if(!part)return toast('Tap a part first');if(monster.items.length>=MAX_ITEMS)return;remember();const n=clone(part);n.id=uid();n.x=W-part.x;n.rot=-part.rot;n.flip=-part.flip;monster.items.push(n);selectedId=n.id;render();change()}
 function removeSelected(){if(!selectedId)return toast('Tap a part first');remember();monster.items=monster.items.filter(i=>i.id!==selectedId);selectedId=null;render();change()}
 function offsetPart(delta){let i=monster.items.findIndex(p=>p.id===selectedId);if(i<0)return;const dest=clamp(i+delta,0,monster.items.length-1);if(dest===i)return;remember();const [p]=monster.items.splice(i,1);monster.items.splice(dest,0,p);render();change()}
@@ -182,30 +230,82 @@ function hit(item,x,y){
  if(Math.hypot(x-a.x-t*ax,y-a.y-t*ay)<Math.max(13,item.size*.75))return true;
  }return pts.length===1&&Math.hypot(x-pts[0].x,y-pts[0].y)<Math.max(13,item.size);
 }
-function hitTop(x,y){for(let i=monster.items.length-1;i>=0;i--){if(hit(monster.items[i],x,y))return monster.items[i]}return null}
+function hitTop(x,y){
+ const art=$('art'),screen=art.getScreenCTM();if(!screen)return null;
+ const point=art.createSVGPoint();point.x=x;point.y=y;const onScreen=point.matrixTransform(screen);
+ const groups=[...art.querySelectorAll('.part-element')];
+ for(let i=monster.items.length-1;i>=0;i--){const item=monster.items[i];
+  if(item.kind!=='part'){if(hit(item,x,y))return item;continue;}
+  const g=groups.find(el=>el.dataset.id===item.id);if(!g)continue;
+  for(const shape of g.querySelectorAll('.anim path,.anim ellipse,.anim circle,.anim rect,.anim polygon')){
+   const matrix=shape.getScreenCTM();if(!matrix)continue;
+   try{const local=onScreen.matrixTransform(matrix.inverse());const style=getComputedStyle(shape);
+    if((style.fill!=='none'&&shape.isPointInFill(local))||(style.stroke!=='none'&&shape.isPointInStroke(local)))return item;
+   }catch(_){}
+  }
+ }
+ return null;
+}
 function locationOf(e){const rect=$('art').getBoundingClientRect();const ar=W/H,rr=rect.width/rect.height;let left=0,top=0,cw=rect.width,ch=rect.height;if(rr>ar){cw=rect.height*ar;left=(rect.width-cw)/2}else{ch=rect.width/ar;top=(rect.height-ch)/2}const dx=e.clientX-rect.left-left,dy=e.clientY-rect.top-top;return {x:clamp(dx*W/cw,0,W),y:clamp(dy*H/ch,0,H),inside:dx>=0&&dx<=cw&&dy>=0&&dy<=ch}}
-function startPointer(e){if(e.button!==0&&e.pointerType==='mouse')return;if($('modal').hidden===false||$('lab').hidden===false)return;const {x,y,inside}=locationOf(e);if(!inside)return;let h=hitTop(x,y);let action='none';if(activeTool==='draw'){
+function startPointer(e){if(e.button!==0&&e.pointerType==='mouse')return;if($('modal').hidden===false||$('lab').hidden===false)return;if(pointer)return;const {x,y,inside}=locationOf(e);if(!inside)return;let h=hitTop(x,y);let action='none';if(activeTool==='draw'){
  if(monster.items.length>=MAX_ITEMS){toast('Try finishing this monster before adding more');return}
- remember();const obj={kind:filled?'shape':'stroke',id:uid(),points:[{x,y}],size:width,color:ink};monster.items.push(obj);pointer={pointerId:e.pointerId,action:'draw',obj,mirror:symmetry,ox:x,oy:y};action='draw';
+ remember();const obj={kind:filled?'shape':'stroke',id:uid(),points:[{x,y}],size:width,color:ink};monster.items.push(obj);pointer={pointerId:e.pointerId,action:'draw',obj,mirror:symmetry,ox:x,oy:y};action='draw';$('art').innerHTML=boardMarkup(monster.items,monster.scene,true);
  }else if(activeTool==='erase'){if(h){remember();monster.items=monster.items.filter(i=>i.id!==h.id);selectedId=null;pointer={pointerId:e.pointerId,action:'erase',removed:new Set([h.id])};action='erase';render();change()}}
  else if(activeTool==='fill'){if(h&&h.kind==='part'){remember();h.color=ink;selectedId=h.id;render();change();action='fill'}else toast('Color works on creature parts. Use filled shapes for drawing.')}
- else if(activeTool==='move'||activeTool==='build'){selectedId=h?.id||null;if(h&&h.kind==='part'){remember();pointer={pointerId:e.pointerId,action:'move',id:h.id,dx:h.x-x,dy:h.y-y};action='move'}render()}
+ else if(activeTool==='move'||activeTool==='build'){selectedId=h?.id||null;if(h&&h.kind==='part'){remember();pointer={pointerId:e.pointerId,action:'move',id:h.id,dx:h.x-x,dy:h.y-y};action='move';if(activeTool==='build')setTool('move')}render()}
  if(action==='draw'||action==='move'||action==='erase'){try{$('art').setPointerCapture(e.pointerId)}catch(_){}e.preventDefault()}
 }
 function movePointer(e){if(!pointer||pointer.pointerId!==e.pointerId)return;const {x,y}=locationOf(e);if(pointer.action==='draw'){
- const pts=pointer.obj.points;if(pts.length>=MAX_POINTS)return;const last=pts[pts.length-1];if(Math.hypot(x-last.x,y-last.y)<2.5)return;pts.push({x,y});$('art').innerHTML=boardMarkup(monster.items,monster.scene,true);
- }else if(pointer.action==='move'){const p=monster.items.find(i=>i.id===pointer.id);if(p){p.x=clamp(x+pointer.dx,-160,1060);p.y=clamp(y+pointer.dy,-160,760);$('art').innerHTML=boardMarkup(monster.items,monster.scene,true)}}
+ const pts=pointer.obj.points;if(pts.length>=MAX_POINTS)return;const last=pts[pts.length-1];if(Math.hypot(x-last.x,y-last.y)<2.5)return;pts.push({x,y});const shape=[...$('art').querySelectorAll('path[data-id]')].find(n=>n.dataset.id===pointer.obj.id);if(shape)shape.setAttribute('d',pointsPath(pts,pointer.obj.kind==='shape'));
+ }else if(pointer.action==='move'){const p=monster.items.find(i=>i.id===pointer.id);if(p){p.x=clamp(x+pointer.dx,-160,1060);p.y=clamp(y+pointer.dy,-160,760);const node=[...$('art').querySelectorAll('.part-element')].find(n=>n.dataset.id===p.id);if(node)node.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${p.rot}) scale(${p.scale*p.flip} ${p.scale})`)}}
  else if(pointer.action==='erase'){const h=hitTop(x,y);if(h&&!pointer.removed.has(h.id)){pointer.removed.add(h.id);monster.items=monster.items.filter(i=>i.id!==h.id);render()}}e.preventDefault()}
 function endPointer(e){if(!pointer||pointer.pointerId!==e.pointerId)return;const p=pointer;pointer=null;
  if(p.action==='draw'){
  if(p.obj.points.length===1)p.obj.points.push({...p.obj.points[0]});
  if(p.mirror&&monster.items.length<MAX_ITEMS){monster.items.push({...clone(p.obj),id:uid(),points:p.obj.points.map(v=>({x:W-v.x,y:v.y}))})}
  }render();change();try{$('art').releasePointerCapture(e.pointerId)}catch(_){}}
-function randomItem(type,x,y,scale,col,rot=0,flip=1){return {kind:'part',id:uid(),type,x,y,scale,rot,color:col,flip}}
-function randomDNA(){if(monster.items.length&&!(window.confirm('Replace the current monster with a surprise creature?')))return;remember();const colors=['#72e985','#9b7cff','#ff8b32','#21dcff','#ff5ac8','#6b86ff','#e84756'];const c=colors[Math.floor(Math.random()*colors.length)],pick=a=>a[Math.floor(Math.random()*a.length)];monster=neutral();monster.name=pick(['Glorp','Grizzle','Bloop','The Wobbler','Crunchfang','Muckzilla','Snork']);monster.scene=pick(Object.keys(sceneNames));monster.items.push(randomItem(pick(['blob','fuzzy','slime','rock','serpent','shell']),450,320,1.35,c));const n=1+Math.floor(Math.random()*4);for(let i=0;i<n;i++)monster.items.push(randomItem(pick(['eye','stalk','sleepy']),450+(i-(n-1)/2)*90,260+Math.random()*50,.56,pick(colors)));monster.items.push(randomItem(pick(['fangs','grin','jaw','beak']),450,390,.64,pick(colors)));const limb=pick(['claw','tentacle','wing','batwing','foot']);monster.items.unshift(randomItem(limb,300,380,.85,pick(colors),-35,-1),randomItem(limb,600,380,.85,pick(colors),35));monster.items.push(randomItem(pick(['horns','spikes','antenna','antlers']),450,170,.72,pick(colors)));selectedId=null;setTool('move');render();change();toast('A strange new monster appeared!')}
+function randomItem(type,x,y,scale,col,rot=0,flip=1){return {kind:'part',id:uid(),type,x,y,scale,rot,color:col,flip,artVersion:2}}
+function starterMarkup(id){const r=ForgeParts.recipe(id);return `<button type="button" class="starter-card" data-starter="${id}" aria-label="Start ${r.name}"><svg viewBox="85 0 730 590" aria-hidden="true">${r.items.map(i=>drawItem({...i,id:'preview-'+id})).join('')}</svg><strong>${r.name}</strong></button>`;}
+function openStarters(){
+ selectMenu(false);openModal('Choose a starting creature',`<p>Every piece is editable. Change its parts, move things around, or draw right on it.</p><div class="starter-grid">${ForgeParts.starterIds.map(starterMarkup).join('')}</div>`,[{text:'Back to drawing',action:closeModal}]);
+ $('modalBody').querySelectorAll('[data-starter]').forEach(b=>b.onclick=()=>beginRecipe(b.dataset.starter));
+}
+function beginRecipe(id,options={}){
+ if(templateBusy)return;
+ const apply=async()=>{
+  if(templateBusy)return;templateBusy=true;
+  try{
+   if(monster.items.length){const saved=await saveCurrent({silent:true});if(!saved){toast('Could not save the current monster. Nothing was replaced.');return;}}
+   remember();const r=ForgeParts.recipe(id,options);monster=neutral();monster.name=r.name;monster.scene=r.scene;
+   monster.items=r.items.map(i=>({...i,id:uid()}));monster.habitat={swamp:'Swamp',cave:'Cave',sea:'Underwater',city:'Unknown'}[r.scene]||'Unknown';
+   selectedId=null;partTint=null;partCategory='Heads';closeOverlays();setTool('move');render();change();toast('Your creature is ready to change.');
+  }finally{templateBusy=false;}
+ };
+ if(monster.items.length){openModal('Start a new creature?',`<p>Your current monster will be saved in <b>Collection</b> first. Its drawing and parts will stay intact.</p>`,[{text:'Cancel',action:closeModal},{text:'Save and start',class:'accent',action:apply}]);}
+ else return apply();
+}
+function randomDNA(){
+ const sets=[['#6eaf9f','#dbbb7b','#a4cbb8'],['#b68096','#e8b478','#cdb0c7'],['#7898bb','#e9c66d','#aec9d0'],['#b49b71','#d6cca4','#7faa97'],['#9282b2','#ddb178','#bdc4d7']];
+ const id=ForgeParts.starterIds[Math.floor(Math.random()*ForgeParts.starterIds.length)];
+ const eyes=id==='dragon'?['eye','reptileeye']:id==='beast'?['eye','sleepy']:id==='kraken'||id==='slime'?['cyclops']:['eye','reptileeye'];
+ beginRecipe(id,{colors:sets[Math.floor(Math.random()*sets.length)],eyes:eyes[Math.floor(Math.random()*eyes.length)]});
+}
 function nextChallenge(){let n=Math.floor(Math.random()*challenges.length);if(n===lastChallenge)n=(n+1)%challenges.length;lastChallenge=n;remember();monster.challenge=challenges[n];render();change();toast('New challenge ready!')}
 function newMonster(confirmFirst=true){if(confirmFirst&&monster.items.length&&!window.confirm('Start a blank monster? Your current drawing will stay only if you saved it to the collection.'))return;monster=neutral();undo=[];redo=[];selectedId=null;setTool('draw');closeOverlays();render();change();toast('New monster canvas ready')}
-function evolve(){if(!monster.items.length)return toast('Make a monster first!');saveCurrent({silent:true}).then(ok=>{if(!ok)return;remember();const old=monster;monster=clone(old);monster.uid=uid();monster.name=(old.name||'Mystery Creature').slice(0,46)+' II';monster.updatedAt=Date.now();const parts=monster.items.filter(i=>i.kind==='part');const mutations=['horns','spikes','wing','tentacle','stalk','claw','tail','flames'];const c=palette[Math.floor(Math.random()*(palette.length-1))+1];for(let i=0;i<Math.min(3,parts.length);i++){const p=parts[Math.floor(Math.random()*parts.length)];p.scale=clamp(p.scale*(1.18+Math.random()*.3),.18,5);p.color=Math.random()<.65?c:p.color;p.rot+=Math.round((Math.random()-.5)*35)}monster.items.push(randomItem(mutations[Math.floor(Math.random()*mutations.length)],570,185,.7,c,25));undo=[];redo=[];selectedId=null;setTool('move');render();change();toast('Evolution complete. Your original was saved!')})}
+function evolve(){
+ if(!monster.items.length)return toast('Make a monster first.');
+ if(templateBusy)return;templateBusy=true;
+ saveCurrent({silent:true}).then(ok=>{
+  if(!ok)return;const old=monster;remember();monster=clone(old);monster.uid=uid();monster.name=(old.name||'Mystery Creature').slice(0,46)+' II';
+  const body=monster.items.find(p=>p.kind==='part'&&bigParts.has(p.type));const col=body?.color||'#79ab9a';
+  const choices=['batwing','tail','horns','antenna','ramhorn'];const type=choices[Math.floor(Math.random()*choices.length)];
+  const p=ForgeParts.parts[type];const count=['batwing','ramhorn'].includes(type)?2:1;
+  if(monster.items.length+count>MAX_ITEMS){monster=old;toast('This monster is full. Remove a few parts before evolving.');return;}
+  const item=randomItem(type,p.x,p.y,p.scale,col);monster.items.unshift(item);
+  if(count===2)monster.items.unshift({...clone(item),id:uid(),x:W-item.x,flip:-1});
+  undo=[];redo=[];selectedId=null;setTool('move');render();change();toast('New form created. Your original is in Collection.');
+ }).finally(()=>{templateBusy=false;});
+}
 function closeOverlays(){['menu','modal','collection','lab'].forEach(id=>$(id).hidden=true);stopLab()}
 function openModal(title,body,buttons){$('modalTitle').textContent=title;$('modalBody').innerHTML=body;const actions=$('modalActions');actions.innerHTML='';buttons.forEach(o=>{const b=document.createElement('button');b.textContent=o.text;b.className=o.class||'';b.addEventListener('click',o.action);actions.append(b)});$('modal').hidden=false}
 function closeModal(){$('modal').hidden=true}
@@ -215,26 +315,43 @@ monster.name=$('field-name').value.trim().slice(0,55)||'Unnamed Monster';monster
 }}]);setTimeout(()=>$('field-name')?.focus(),50)}
 function selectMenu(open){$('menu').hidden=!open}
 function openCollection(){selectMenu(false);$('collection').hidden=false;renderCollection()}
-function openHelp(){selectMenu(false);openModal('How to make a monster',`<p><b>Draw:</b> Sketch with your finger, mouse, or stylus. Turn on symmetry or filled shapes to try new styles.</p><p><b>Parts:</b> Tap to add bodies, eyes, claws, wings, tails, and other bits. Drag a part, then resize or rotate it.</p><p><b>Move, Erase, Color:</b> Move parts, remove strokes or parts, or paint assembled pieces. Undo and redo work here too.</p><p><b>World:</b> Choose a habitat, get a challenge, or use Monster DNA for a surprise.</p><p><b>Test Chamber:</b> Wake up your creature and see what happens. Save to your collection and evolve it into a new species!</p><p>Everything is stored on this device. Use the PNG button in the collection to save an image.</p>`,[{text:'Got it',class:'accent',action:closeModal}])}
+function openHelp(){selectMenu(false);openModal('How to make a monster',`<p><b>Draw:</b> Sketch with your finger, mouse, or stylus. Turn on symmetry or filled shapes to try new styles.</p><p><b>Creatures:</b> Start with one of six editable creatures, or draw from scratch.</p><p><b>Parts:</b> Choose illustrated bodies, heads, eyes, claws, wings, or tails. Add a part, drag it into place, then use Move to resize, turn, flip, copy, or recolor it.</p><p><b>Move, Erase, Color:</b> Move parts, remove strokes or parts, or paint assembled pieces. Undo and redo work here too.</p><p><b>World:</b> Choose a habitat, get a challenge, or use Monster DNA for a surprise.</p><p><b>Test Chamber:</b> Wake up your creature and see what happens. Save to your collection and evolve it into a new species!</p><p>Everything is stored on this device. Use the PNG button in the collection to save an image.</p>`,[{text:'Got it',class:'accent',action:closeModal}])}
 const DB='arcade-monster-forge-v1';
 function openDB(){return new Promise((resolve,reject)=>{if(!('indexedDB' in window))return reject(Error('No database'));const r=indexedDB.open(DB,1);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains('monsters'))r.result.createObjectStore('monsters',{keyPath:'uid'})};r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error||Error('Database unavailable'));})}
 function transaction(mode,method,value){return openDB().then(db=>new Promise((resolve,reject)=>{let tx,req,result;try{tx=db.transaction('monsters',mode);req=tx.objectStore('monsters')[method](...(value===undefined?[]:[value]));}catch(error){db.close();reject(error);return}req.onsuccess=()=>{result=req.result};req.onerror=()=>{};tx.oncomplete=()=>{db.close();resolve(result)};tx.onerror=()=>{db.close();reject(tx.error||Error('Save failed'))};tx.onabort=()=>{db.close();reject(tx.error||Error('Save aborted'))}}))}
-function fallbackList(){try{return JSON.parse(localStorage.getItem('monsterforge.collection.v1')||'[]')}catch(_){return []}}
-function listStored(){return transaction('readonly','getAll').catch(()=>[]).then(a=>{const items=new Map();for(const item of [...a,...fallbackList()])if(item&&item.uid)items.set(item.uid,item);return [...items.values()].map(safeModel).filter(Boolean).sort((a,b)=>b.updatedAt-a.updatedAt)})}
-function storePut(m){return transaction('readwrite','put',m).catch(()=>{const arr=fallbackList().filter(x=>x.uid!==m.uid);arr.unshift(m);if(arr.length>50)arr.length=50;localStorage.setItem('monsterforge.collection.v1',JSON.stringify(arr))})}
-function storeDelete(id){return transaction('readwrite','delete',id).catch(()=>{const arr=fallbackList().filter(x=>x.uid!==id);localStorage.setItem('monsterforge.collection.v1',JSON.stringify(arr))})}
+function fallbackList(){try{const value=JSON.parse(localStorage.getItem('monsterforge.collection.v1')||'[]');return Array.isArray(value)?value:[]}catch(_){return []}}
+function listStored(){return transaction('readonly','getAll').catch(()=>[]).then(a=>{const items=new Map();for(const item of [...a,...fallbackList()])if(item&&item.uid&&(!items.has(item.uid)||Number(item.updatedAt||0)>Number(items.get(item.uid).updatedAt||0)))items.set(item.uid,item);return [...items.values()].map(safeModel).filter(Boolean).sort((a,b)=>b.updatedAt-a.updatedAt)})}
+function storePut(m){return transaction('readwrite','put',m).then(()=>{try{const arr=fallbackList().filter(x=>x.uid!==m.uid);localStorage.setItem('monsterforge.collection.v1',JSON.stringify(arr));}catch(_){}}).catch(()=>{const arr=fallbackList().filter(x=>x.uid!==m.uid);arr.unshift(m);localStorage.setItem('monsterforge.collection.v1',JSON.stringify(arr));})}
+async function storeDelete(id){
+ let dbError=null;try{await transaction('readwrite','delete',id);}catch(error){dbError=error;}
+ const old=fallbackList(),arr=old.filter(x=>x.uid!==id);
+ if(old.length!==arr.length)localStorage.setItem('monsterforge.collection.v1',JSON.stringify(arr));
+ if(dbError&&old.length===arr.length)throw dbError;
+}
 async function saveCurrent({silent=false}={}){if(!monster.items.length){if(!silent)toast('Draw something first!');return false;}try{if(!monster.name)monster.name='Unnamed Monster';monster.updatedAt=Date.now();await storePut(clone(monster));if(window.ArcadeSave)await ArcadeSave.saveNow();else change();updateCounts();if(!silent)toast('Saved!');return true}catch(error){toast('Could not save. Check device storage.');return false}}
-async function renderCollection(){const g=$('gallery');g.innerHTML='<div class="empty-gallery">Opening the monster vault...</div>';let stored;try{stored=await listStored()}catch(_){g.textContent='The monster vault could not open.';return}g.replaceChildren();$('collectionInfo').textContent=`${stored.length} saved monster${stored.length===1?'':'s'} on this device. Tap Open to keep editing.`;if(!stored.length){g.innerHTML='<div class="empty-gallery">No saved monsters yet. Draw one, then press Save monster!</div>';return}for(const m of stored){const tile=document.createElement('div');tile.className='monster-tile';const prev=document.createElement('div');prev.className='thumb';prev.innerHTML=`<svg xmlns="${NS}" viewBox="0 0 900 600">${boardMarkup(m.items,m.scene)}</svg>`;tile.append(prev);const label=document.createElement('strong');label.textContent=m.name||'Unnamed Monster';tile.append(label);const actions=document.createElement('div');actions.className='tile-actions';const open=document.createElement('button');open.textContent='Open';open.onclick=()=>{monster=clone(m);undo=[];redo=[];selectedId=null;$('collection').hidden=true;setTool('move');render();change();toast('Monster loaded!')};const png=document.createElement('button');png.textContent='PNG';png.title='Download picture';png.onclick=()=>exportPNG(m);const del=document.createElement('button');del.textContent='✕';del.title='Delete monster';del.className='remove danger';del.onclick=()=>{openModal('Delete this monster?',`<p>Delete <b>${escapeText(m.name||'this monster')}</b> from your collection? This cannot be undone.</p>`,[{text:'Cancel',action:closeModal},{text:'Delete',class:'danger',action:async()=>{closeModal();await storeDelete(m.uid);renderCollection();toast('Monster deleted')}}])};actions.append(open,png,del);tile.append(actions);g.append(tile)}}
-function exportPNG(m=monster){const svg=`<svg xmlns="${NS}" width="1200" height="800" viewBox="0 0 900 600">${boardMarkup(m.items,m.scene)}</svg>`;const blob=new Blob([svg],{type:'image/svg+xml'}),url=URL.createObjectURL(blob),img=new Image();img.onload=()=>{try{const can=document.createElement('canvas');can.width=1200;can.height=800;const ctx=can.getContext('2d');ctx.drawImage(img,0,0,1200,800);const a=document.createElement('a');a.download=(m.name||'monster').replace(/[^\w-]+/g,'-').slice(0,45)+'.png';a.href=can.toDataURL('image/png');document.body.append(a);a.click();a.remove();toast('Picture exported!')}catch(_){toast('Could not export picture in this browser')}finally{URL.revokeObjectURL(url)}};img.onerror=()=>{URL.revokeObjectURL(url);toast('Could not make picture')};img.src=url}
+async function renderCollection(){const g=$('gallery');g.innerHTML='<div class="empty-gallery">Opening the monster vault...</div>';let stored;try{stored=await listStored()}catch(_){g.textContent='The monster vault could not open.';return}g.replaceChildren();$('collectionInfo').textContent=`${stored.length} saved monster${stored.length===1?'':'s'} on this device. Tap Open to keep editing.`;if(!stored.length){g.innerHTML='<div class="empty-gallery">No saved monsters yet. Draw one, then press Save monster!</div>';return}for(const m of stored){const tile=document.createElement('div');tile.className='monster-tile';const prev=document.createElement('div');prev.className='thumb';prev.innerHTML=`<svg xmlns="${NS}" viewBox="0 0 900 600">${boardMarkup(m.items,m.scene)}</svg>`;tile.append(prev);const label=document.createElement('strong');label.textContent=m.name||'Unnamed Monster';tile.append(label);const actions=document.createElement('div');actions.className='tile-actions';const open=document.createElement('button');open.textContent='Open';open.onclick=async()=>{if(monster.items.length&&monster.uid!==m.uid&&!(await saveCurrent({silent:true})))return;monster=clone(m);undo=[];redo=[];selectedId=null;$('collection').hidden=true;setTool('move');render();change();toast('Monster loaded!')};const png=document.createElement('button');png.textContent='PNG';png.title='Download picture';png.onclick=()=>exportPNG(m);const del=document.createElement('button');del.textContent='✕';del.title='Delete monster';del.className='remove danger';del.onclick=()=>{openModal('Delete this monster?',`<p>Delete <b>${escapeText(m.name||'this monster')}</b> from your collection? This cannot be undone.</p>`,[{text:'Cancel',action:closeModal},{text:'Delete',class:'danger',action:async()=>{closeModal();try{await storeDelete(m.uid);renderCollection();toast('Monster deleted')}catch(_){toast('Could not delete. Your saved monster was kept.')}}}])};actions.append(open,png,del);tile.append(actions);g.append(tile)}}
+function exportPNG(m=monster){const svg=`<svg xmlns="${NS}" width="1800" height="1200" viewBox="0 0 900 600">${boardMarkup(m.items,m.scene)}</svg>`;const blob=new Blob([svg],{type:'image/svg+xml'}),url=URL.createObjectURL(blob),img=new Image();img.onload=()=>{try{const can=document.createElement('canvas');can.width=1800;can.height=1200;const ctx=can.getContext('2d');ctx.drawImage(img,0,0,1800,1200);const a=document.createElement('a');a.download=(m.name||'monster').replace(/[^\w-]+/g,'-').slice(0,45)+'.png';a.href=can.toDataURL('image/png');document.body.append(a);a.click();a.remove();toast('Picture exported!')}catch(_){toast('Could not export picture in this browser')}finally{URL.revokeObjectURL(url)}};img.onerror=()=>{URL.revokeObjectURL(url);toast('Could not make picture')};img.src=url}
 function startLab(){if(!monster.items.length)return toast('Make a creature first!');$('lab').hidden=false;live=true;const svg=$('liveArt');svg.innerHTML=background(monster.scene)+`<g id="liveRoot"><g id="liveCreature">${monster.items.map(i=>drawItem(i)).join('')}</g></g><g id="fxLayer"></g>`;particles=[];effectUntil=0;danceUntil=0;animationFrame=requestAnimationFrame(animate)}
 function stopLab(){live=false;if(animationFrame)cancelAnimationFrame(animationFrame);animationFrame=0;particles=[]}
-function animate(t){if(!live)return;const root=$('liveRoot'),characters=$('liveCreature'),fx=$('fxLayer');if(!root)return;const a=t*.001,delta=t<effectUntil?(Math.sin(t*.13)*10):0,dance=t<danceUntil;const bounce=(dance?12:5)*Math.sin(a*(dance?12:3.3));root.setAttribute('transform',`translate(${delta.toFixed(1)} ${bounce.toFixed(1)})`);characters.querySelectorAll('.anim').forEach((g,i)=>{const typ=g.dataset.type||'',wave=Math.sin(a*4.7+i*1.6);let transform='';if(wings.has(typ))transform=`rotate(${wave*19}) scale(1 ${.85+wave*.16})`;else if(tentacles.has(typ))transform=`rotate(${wave*10})`;else if(eyes.has(typ))transform=`scale(1 ${Math.sin(a*.72+i)>.993?.1:1})`;else if(bigParts.has(typ))transform=`scale(${1+wave*.012} ${1-wave*.012})`;g.setAttribute('transform',transform)});if(particles.length){particles=particles.filter(p=>{const age=(t-p.t)/1000;if(age>p.life){p.el.remove();return false}const x=p.x+p.dx*age,y=p.y+p.dy*age+p.gravity*age*age; p.el.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${Math.max(.05,1-age/p.life).toFixed(2)})`);p.el.setAttribute('opacity',Math.max(0,1-age/p.life).toFixed(2));return true})}animationFrame=requestAnimationFrame(animate)}
+function animate(t){if(!live)return;const root=$('liveRoot'),characters=$('liveCreature'),fx=$('fxLayer');if(!root)return;const reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;const a=t*.001,delta=!reduced&&t<effectUntil?(Math.sin(t*.13)*10):0,dance=t<danceUntil;const bounce=(reduced?0:dance?12:5)*Math.sin(a*(dance?12:3.3));root.setAttribute('transform',`translate(${delta.toFixed(1)} ${bounce.toFixed(1)})`);characters.querySelectorAll('.anim').forEach((g,i)=>{const typ=g.dataset.type||'',wave=Math.sin(a*4.7+i*1.6);let transform='';if(!reduced&&wings.has(typ))transform=`rotate(${wave*19}) scale(1 ${.85+wave*.16})`;else if(!reduced&&tentacles.has(typ))transform=`rotate(${wave*10})`;else if(eyes.has(typ))transform=`scale(1 ${Math.sin(a*.72+i)>.993?.1:1})`;else if(!reduced&&bigParts.has(typ))transform=`scale(${1+wave*.012} ${1-wave*.012})`;g.setAttribute('transform',transform)});if(particles.length){particles=particles.filter(p=>{const age=(t-p.t)/1000;if(age>p.life){p.el.remove();return false}const x=p.x+p.dx*age,y=p.y+p.dy*age+p.gravity*age*age; p.el.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${Math.max(.05,1-age/p.life).toFixed(2)})`);p.el.setAttribute('opacity',Math.max(0,1-age/p.life).toFixed(2));return true})}animationFrame=requestAnimationFrame(animate)}
 function note(f,duration=180,volume=.08,type='sawtooth'){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!audio)audio=new AC();if(audio.state==='suspended')audio.resume();let o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.setValueAtTime(f,audio.currentTime);o.frequency.exponentialRampToValueAtTime(Math.max(35,f*.5),audio.currentTime+duration/1000);g.gain.setValueAtTime(volume,audio.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+duration/1000);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+duration/1000)}catch(_){}}
 function particle(x,y,dx,dy,col,t,life=1.4,r=12,gravity=0){const el=document.createElementNS(NS,'circle');el.setAttribute('r',r);el.setAttribute('fill',col);$('fxLayer').appendChild(el);particles.push({el,x,y,dx,dy,t,life,gravity});if(particles.length>95){particles.shift().el.remove()}}
-function effect(kind){if(!live)return;const t=performance.now();if(kind==='roar'){effectUntil=t+750;note(115,500,.15,'sawtooth');note(65,640,.11,'square');for(let i=0;i<18;i++){const a=i*6.28/18;particle(455,295,Math.cos(a)*175,Math.sin(a)*160,i%2?'#ffce3a':'#fff',t,1.2,10)}}else if(kind==='fire'){note(250,480,.08,'sawtooth');for(let i=0;i<34;i++)particle(535,304,180+Math.random()*250,(Math.random()-.5)*160,i%3===0?'#ffdf54':i%3===1?'#ff5e32':'#ff9b27',t,1.15,Math.random()*15+7,-23)}else if(kind==='slime'){note(400,210,.08,'triangle');for(let i=0;i<29;i++)particle(520,300,150+Math.random()*170,(Math.random()-.5)*250,i%2?'#68ee72':'#b2ff67',t,1.4,Math.random()*13+6,180)}else if(kind==='shake'){effectUntil=t+850;note(90,350,.18,'square');for(let i=0;i<25;i++)particle(450,518,(Math.random()-.5)*420,-Math.random()*250,'#afbad7',t,1.25,Math.random()*11+5,140)}else if(kind==='dance'){danceUntil=t+4800;for(let i=0;i<7;i++)setTimeout(()=>{if(live)note(220+Math.floor(i%4)*75,170,.055,'sine')},i*260);toast('Monster dance party!')}}
-function goHome(){stopLab();if(window.ArcadeSave)return ArcadeSave.goHome();try{if(window.parent!==window&&window.parent.ArcadeShell?.goHome){window.parent.postMessage({scope:'arcade-shell-navigation',version:1,type:'home'},window.location.origin);return}}catch(_){}window.location.assign(new URL('..',window.location.href).href)}
-function wire(){document.querySelectorAll('[data-tool]').forEach(b=>b.addEventListener('click',()=>setTool(b.dataset.tool)));$('menuBtn').onclick=()=>selectMenu(true);$('resumeBtn').onclick=()=>selectMenu(false);$('menuHome').onclick=goHome;$('homeBtn').onclick=goHome;$('menuHelp').onclick=openHelp;$('menuCollection').onclick=openCollection;$('menuDNA').onclick=()=>{selectMenu(false);randomDNA()};$('saveBtn').onclick=saveDialog;$('newBtn').onclick=()=>newMonster();$('undoBtn').onclick=()=>historyStep(undo,redo);$('redoBtn').onclick=()=>historyStep(redo,undo);$('brushSize').oninput=e=>{width=clamp(e.target.value,2,45);$('brushOut').textContent=width};$('customColor').oninput=e=>selectColor(e.target.value);$('colors').onclick=e=>{const c=e.target.closest('[data-color]');if(c)selectColor(c.dataset.color)};$('partColors').onclick=e=>{const c=e.target.closest('[data-color]');if(c)selectColor(c.dataset.color)};$('partCustomColor').oninput=e=>selectColor(e.target.value);$('symmetryBtn').onclick=()=>{symmetry=!symmetry;$('symmetryBtn').textContent='⇆ Symmetry: '+(symmetry?'on':'off');$('symmetryBtn').classList.toggle('active',symmetry);$('symmetryBtn').setAttribute('aria-pressed',String(symmetry));render()};$('shapeBtn').onclick=()=>{filled=!filled;$('shapeBtn').textContent='⬟ Fill shapes: '+(filled?'on':'off');$('shapeBtn').classList.toggle('active',filled);$('shapeBtn').setAttribute('aria-pressed',String(filled));toast(filled?'Draw a closed outline to fill its inside':'Freehand brush ready')};$('partTabs').onclick=e=>{const b=e.target.closest('[data-category]');if(b){partCategory=b.dataset.category;renderParts()}};$('parts').onclick=e=>{const b=e.target.closest('[data-part]');if(b)addPart(b.dataset.part)};$('smallerBtn').onclick=()=>mutatePart(p=>p.scale=clamp(p.scale*.85,.18,5));$('biggerBtn').onclick=()=>mutatePart(p=>p.scale=clamp(p.scale*1.18,.18,5));$('leftBtn').onclick=()=>mutatePart(p=>p.rot-=15);$('rightBtn').onclick=()=>mutatePart(p=>p.rot+=15);$('mirrorBtn').onclick=mirrorPart;$('deleteBtn').onclick=removeSelected;$('frontBtn').onclick=()=>offsetPart(1);$('backBtn').onclick=()=>offsetPart(-1);$('scenes').onclick=e=>{const b=e.target.closest('[data-scene]');if(b&&monster.scene!==b.dataset.scene){remember();monster.scene=b.dataset.scene;render();change()}};$('challengeBtn').onclick=nextChallenge;$('randomBtn').onclick=randomDNA;$('evolveBtn').onclick=evolve;$('collectionBtn').onclick=openCollection;$('closeCollection').onclick=()=>$('collection').hidden=true;$('labBtn').onclick=startLab;$('closeLab').onclick=()=>{$('lab').hidden=true;stopLab()};document.querySelectorAll('[data-effect]').forEach(b=>b.onclick=()=>effect(b.dataset.effect));$('art').addEventListener('pointerdown',startPointer);$('art').addEventListener('pointermove',movePointer);$('art').addEventListener('pointerup',endPointer);$('art').addEventListener('pointercancel',endPointer);document.addEventListener('keydown',e=>{if(!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)){if(e.key==='Escape'){closeOverlays();return}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();if(e.shiftKey)historyStep(redo,undo);else historyStep(undo,redo)}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();historyStep(redo,undo)}}});document.addEventListener('visibilitychange',()=>{if(document.hidden)stopLab()});}
+function effect(kind){if(!live)return;const mouth=[...monster.items].reverse().find(p=>p.kind==='part'&&catalog.Mouths.some(([id])=>id===p.type));const mx=mouth?.x??450,my=mouth?.y??300;const t=performance.now();if(kind==='roar'){effectUntil=t+750;note(115,500,.15,'sawtooth');note(65,640,.11,'square');for(let i=0;i<18;i++){const a=i*6.28/18;particle(mx,my,Math.cos(a)*175,Math.sin(a)*160,i%2?'#ffce3a':'#fff',t,1.2,10)}}else if(kind==='fire'){note(250,480,.08,'sawtooth');for(let i=0;i<34;i++)particle(mx+25,my,180+Math.random()*250,(Math.random()-.5)*160,i%3===0?'#ffdf54':i%3===1?'#ff5e32':'#ff9b27',t,1.15,Math.random()*15+7,-23)}else if(kind==='slime'){note(400,210,.08,'triangle');for(let i=0;i<29;i++)particle(mx+20,my,150+Math.random()*170,(Math.random()-.5)*250,i%2?'#68ee72':'#b2ff67',t,1.4,Math.random()*13+6,180)}else if(kind==='shake'){effectUntil=t+850;note(90,350,.18,'square');for(let i=0;i<25;i++)particle(450,518,(Math.random()-.5)*420,-Math.random()*250,'#afbad7',t,1.25,Math.random()*11+5,140)}else if(kind==='dance'){danceUntil=t+4800;for(let i=0;i<7;i++)setTimeout(()=>{if(live)note(220+Math.floor(i%4)*75,170,.055,'sine')},i*260);toast('Monster dance party!')}}
+function goHome(){stopLab();if(window.MONSTER_FORGE_STANDALONE){return openModal('Back to Arcade', '<p>This is the standalone copy of Monster Forge. Open the online Arcade?</p>',[{text:'Keep creating',action:closeModal},{text:'Open Arcade',class:'accent',action:()=>{window.location.href='https://to-shreds.github.io/arcade/';}}]);}if(window.ArcadeSave)return ArcadeSave.goHome();try{if(window.parent!==window&&window.parent.ArcadeShell?.goHome){window.parent.postMessage({scope:'arcade-shell-navigation',version:1,type:'home'},window.location.origin);return}}catch(_){}window.location.assign(new URL('..',window.location.href).href)}
+function wire(){document.querySelectorAll('[data-tool]').forEach(b=>b.addEventListener('click',()=>setTool(b.dataset.tool)));$('menuBtn').onclick=()=>selectMenu(true);$('resumeBtn').onclick=()=>selectMenu(false);$('menuHome').onclick=goHome;$('homeBtn').onclick=goHome;$('menuHelp').onclick=openHelp;$('menuCollection').onclick=openCollection;$('menuDNA').onclick=()=>{selectMenu(false);randomDNA()};$('saveBtn').onclick=saveDialog;$('newBtn').onclick=()=>newMonster();$('undoBtn').onclick=()=>historyStep(undo,redo);$('redoBtn').onclick=()=>historyStep(redo,undo);$('brushSize').oninput=e=>{width=clamp(e.target.value,2,45);$('brushOut').textContent=width};$('customColor').oninput=e=>selectColor(e.target.value);$('colors').onclick=e=>{const c=e.target.closest('[data-color]');if(c)selectColor(c.dataset.color)};$('partColors').onclick=e=>{const c=e.target.closest('[data-color]');if(c)selectColor(c.dataset.color)};$('partCustomColor').oninput=e=>selectColor(e.target.value);$('symmetryBtn').onclick=()=>{symmetry=!symmetry;$('symmetryBtn').textContent='⇆ Symmetry: '+(symmetry?'on':'off');$('symmetryBtn').classList.toggle('active',symmetry);$('symmetryBtn').setAttribute('aria-pressed',String(symmetry));render()};$('shapeBtn').onclick=()=>{filled=!filled;$('shapeBtn').textContent='⬟ Fill shapes: '+(filled?'on':'off');$('shapeBtn').classList.toggle('active',filled);$('shapeBtn').setAttribute('aria-pressed',String(filled));toast(filled?'Draw a closed outline to fill its inside':'Freehand brush ready')};$('partTabs').onclick=e=>{const b=e.target.closest('[data-category]');if(b){partCategory=b.dataset.category;renderParts()}};$('parts').onclick=e=>{const b=e.target.closest('[data-part]');if(b)addPart(b.dataset.part)};$('smallerBtn').onclick=()=>mutatePart(p=>p.scale=clamp(p.scale*.85,.18,5));$('biggerBtn').onclick=()=>mutatePart(p=>p.scale=clamp(p.scale*1.18,.18,5));$('leftBtn').onclick=()=>mutatePart(p=>p.rot-=15);$('rightBtn').onclick=()=>mutatePart(p=>p.rot+=15);$('mirrorBtn').onclick=mirrorPart;$('deleteBtn').onclick=removeSelected;$('frontBtn').onclick=()=>offsetPart(1);$('backBtn').onclick=()=>offsetPart(-1);$('scenes').onclick=e=>{const b=e.target.closest('[data-scene]');if(b&&monster.scene!==b.dataset.scene){remember();monster.scene=b.dataset.scene;render();change()}};$('challengeBtn').onclick=nextChallenge;$('randomBtn').onclick=randomDNA;$('evolveBtn').onclick=evolve;$('collectionBtn').onclick=openCollection;$('closeCollection').onclick=()=>$('collection').hidden=true;$('labBtn').onclick=startLab;$('closeLab').onclick=()=>{$('lab').hidden=true;stopLab()};document.querySelectorAll('[data-effect]').forEach(b=>b.onclick=()=>effect(b.dataset.effect));$('art').addEventListener('pointerdown',startPointer);$('art').addEventListener('pointermove',movePointer);$('art').addEventListener('pointerup',endPointer);$('art').addEventListener('pointercancel',endPointer);document.addEventListener('keydown',e=>{if(!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)){if(e.key==='Escape'){closeOverlays();return}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();if(e.shiftKey)historyStep(redo,undo);else historyStep(undo,redo)}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();historyStep(redo,undo)}}});document.addEventListener('visibilitychange',()=>{if(document.hidden)stopLab();else if(!$('lab').hidden)startLab();});}
 window.MonsterForgeAutosave={id:'monster-forge',title:'Monster Forge',version:1,meaningful:()=>monster.items.length>0,capture:()=>({monster:clone(monster)}),summary:()=>`${monster.name||'Untitled monster'} · ${monster.items.length} pieces`,restore:raw=>{const m=safeModel(raw?.monster);if(!m)return false;monster=m;undo=[];redo=[];selectedId=null;render();return true},startFresh:()=>{monster=neutral();undo=[];redo=[];selectedId=null;render()}};
-wire();renderSwatches();renderParts();renderScenes();updatePanel();updateCounts();
+function wireUpgrade(){
+ $('starterBtn').onclick=openStarters;$('emptyStarter').onclick=openStarters;$('menuStarters').onclick=openStarters;
+ $('morePartsBtn').onclick=()=>setTool('build');$('exportBtn').onclick=()=>{selectMenu(false);if(monster.items.length)exportPNG();else toast('Make a monster first.');};
+ $('flipBtn').onclick=()=>mutatePart(p=>p.flip*=-1);
+ $('copyBtn').onclick=()=>{const p=selected();if(!p)return;if(monster.items.length>=MAX_ITEMS)return;remember();const n={...clone(p),id:uid(),x:clamp(p.x+35,-160,1060),y:clamp(p.y+15,-160,760)};monster.items.push(n);selectedId=n.id;render();change();};
+ $('partColors').onclick=e=>{const b=e.target.closest('[data-color]');if(b)selectPartColor(b.dataset.color);};
+ $('partCustomColor').oninput=e=>selectPartColor(e.target.value);
+ $('naturalColors').onclick=()=>{partTint=null;renderParts();renderSwatches();};
+ $('editColors').onclick=e=>{const b=e.target.closest('[data-color]');if(b)recolorSelected(b.dataset.color);};
+ $('editCustomColor').onchange=e=>recolorSelected(e.target.value);
+ $('customColor').value=ink;
+}
+wire();wireUpgrade();renderSwatches();renderParts();renderScenes();updatePanel();updateCounts();
 try{if(!window.ArcadeSave){const m=safeModel(JSON.parse(localStorage.getItem('monsterforge.draft.v1')||'null'));if(m){monster=m;render()}}}catch(_){}
 })();
