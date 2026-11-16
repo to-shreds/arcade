@@ -1,3 +1,10 @@
+# 2.13.6
+
+- All 12 energy (beam-family) weapons now fire visible gravity-affected arcing projectiles instead of instantaneous straight rays. Their ranges still affect arc launch speed, and the impacts keep distinctive damage, sparks, and excavation. Cutting Ray now carves its trench only after the projectile lands.
+- Aiming dots and computer targeting use exactly the same arcing flight model as actual shots. Electrical aftershocks use curved visuals; old direct-ray save records remain readable.
+- Individual floating score labels rise four times more slowly: 8.4 seconds instead of 2.1. They are not erased by the next shot and remain capped for mobile performance. Reduced-motion labels still appear briefly without movement.
+- Preserve all 132 weapons and stable IDs, scoring, knockback, saves, full-screen terrain HUD, Multiplayer, Comic Library, Monster Forge, and offline support.
+
 # 2.13.4
 
 - Tank movement stops at the safe edge of the battlefield or opposing tank, consuming a move only if actual movement occurs.

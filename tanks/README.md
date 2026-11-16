@@ -16,6 +16,23 @@ Every new match, including local, computer, Internet and Nearby, draws from all 
 
 The Test Range is available at `tanks/range.html` and through the game setup and settings. It is an isolated, repeatable practice field without ammunition limits. It never replaces a saved battle or submits multiplayer actions. Reset terrain restores the original practice landscape.
 
+## Four-times-slower damage floats and arc-only firing
+
+Scoring numbers now drift toward the screen ceiling over 8.4 seconds,
+four times the earlier 2.1-second duration. They stay visible when a
+new turn begins and have a bounded 64-number overlay; reduced-motion
+players still receive a brief stationary damage value.
+
+Every fired weapon now launches a visible gravity-controlled arc. This
+includes all twelve historical energy (beam-family) weapons, which are
+still present with the same IDs and distinct damage, launch speeds and
+terrain effects. Their old instant muzzle beams are gone. The energy
+round bursts on impact, and the Cutting Ray carves its special slot
+after the payload lands. A roller, drill, tunnel, surface wave or
+lightning aftershock may continue along the ground after the initial
+arc. The aiming dots now use the same gravity and speed as the real
+shot, and the computer no longer uses direct-ray targeting.
+
 ## Full battlefield HUD and impact damage numbers
 
 The battlefield fills the game screen, with translucent score and
@@ -63,7 +80,7 @@ pits. Drills bore before their stated number of charges detonate. Tunnels cut
 continuous collapsed channels, while carvers maintain their specified depth
 regardless of path length or animation step count. Wall Drop builds a flat top;
 Mountain-in-a-Box (formerly Mountain Maker) creates a triangular ridge. Cutting Ray bores through soil while
-ordinary beams stop at the first obstruction. Bedrock limits all excavation.
+arcing energy payloads burst where their shells land. Bedrock limits all excavation.
 
 The weapon picker includes same-scale terrain cross-sections and specific
 terrain descriptions. These illustrate profiles, not guaranteed landing points.

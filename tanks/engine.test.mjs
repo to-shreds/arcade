@@ -138,7 +138,7 @@ test('mines persist with fuse until later shots, preserve ownership and resume e
   for (let index = 0; index < 2; index++) game = applyAction(game, { type: 'fire', weaponId: game.tanks[game.turn].inventory[0], angle: 90, power: 1 });
   assert.ok(!game.mines.some(mine => mine.id.startsWith('1:')));
 });
-test('hard CPU aims straight beams at an available direct target', () => {
+test('hard CPU aims arcing energy payloads at an available target', () => {
   let game = createGame({ seed: 881, terrainType: 'flat' });
   for (let index = 0; index < 8; index++) game = applyAction(game, { type: 'fire', weaponId: game.tanks[game.turn].inventory[0], angle: 90, power: 1 });
   game.terrain.fill(400);
@@ -146,9 +146,12 @@ test('hard CPU aims straight beams at an available direct target', () => {
   game.tanks[1].x = 210;
   game.tanks[0].inventory = WEAPONS.filter(weapon => weapon.kind === 'beam' && !weapon.funNew).map(weapon => weapon.id);
   const action = chooseCpuAction(game, 'hard');
-  assert.ok(action.angle <= 2);
   const after = applyAction(game, action);
-  assert.ok(after.lastShot.scoreGain[0] >= 90);
+  assert.ok(after.lastShot.scoreGain[0] >= 80, 'Energy rounds still score when aimed by the computer');
+  assert.ok(after.lastShot.paths.some(path=>path.kind==='beam'&&path.points.length>=3),
+    'The energy shot uses real projectile flight instead of a two-point direct ray');
+  assert.ok(!after.lastShot.effects.some(effect=>effect.kind==='beam'),
+    'No instant ray is emitted from the tank');
 });
 test('invalid saves and actions are rejected before they alter play', () => {
   const base = createGame({ seed: 99 });

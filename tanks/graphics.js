@@ -1,4 +1,4 @@
-import { WIDTH, HEIGHT, createGame } from './engine.js';
+import { WIDTH, HEIGHT, createGame, launchSpeed } from './engine.js';
 import { weaponById } from './weapons.js';
 import { blastProfile, terrainAtTick, weaponTerrainProfile, terrainSummary, cutChannel, buildTerrain, excavateTerrain } from './terrain-rules.js';
 export { terrainSummary } from './terrain-rules.js';
@@ -209,7 +209,12 @@ function drawProjectile(ctx,path,tick,index,viewportTop,displayScale,weapon){
   for(let i=start+1;i<p.length;i++){heading=Math.atan2(p[i][1]-previous[1],p[i][0]-previous[0]);if(p[i][2]>tick){const f=(tick-previous[2])/Math.max(1,p[i][2]-previous[2]);at=[previous[0]+(p[i][0]-previous[0])*f,previous[1]+(p[i][1]-previous[1])*f,tick];ctx.lineTo(at[0],at[1]);break;}ctx.lineTo(p[i][0],p[i][1]);previous=at=p[i];}ctx.stroke();ctx.globalAlpha=1;
   if(at[1]<viewportTop+10){ctx.fillStyle=path.color||'#ffce3a';ctx.beginPath();ctx.moveTo(at[0],viewportTop+10);ctx.lineTo(at[0]-5,viewportTop+20);ctx.lineTo(at[0]+5,viewportTop+20);ctx.closePath();ctx.fill();ctx.font=`700 ${Math.min(28,11/displayScale)}px system-ui`;ctx.textAlign='center';ctx.fillText('IN FLIGHT',at[0],viewportTop+20+14/displayScale);ctx.restore();return;}
   ctx.translate(at[0],at[1]);ctx.rotate(heading);ctx.fillStyle=path.color||'#ffce3a';ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=13;
-  if(path.kind==='beam'||path.kind==='lightning'){ctx.lineWidth=4;ctx.strokeStyle='#fff';line(ctx,[-18,0],[6,0]);}
+  if(path.kind==='beam'||path.kind==='lightning'){
+    // Energy shells are luminous balls in midair, never straight muzzle rays.
+    ctx.fillStyle=path.color||'#a5eaff';circle(ctx,0,0,6);
+    ctx.fillStyle='#fff';circle(ctx,-1,-1,2.5);
+    ctx.strokeStyle='#fff9';ctx.lineWidth=1.3;ctx.beginPath();ctx.arc(0,0,9,0,Math.PI*2);ctx.stroke();
+  }
   else if(path.kind==='flame'){ctx.beginPath();ctx.moveTo(6,0);ctx.quadraticCurveTo(-2,-7,-15,0);ctx.quadraticCurveTo(-2,7,6,0);ctx.fill();ctx.fillStyle='#fff4b0';circle(ctx,0,0,3);}
   else if(path.kind==='drill'||path.kind==='tunnel'){ctx.beginPath();ctx.moveTo(7,0);ctx.lineTo(-5,-4);ctx.lineTo(-5,4);ctx.closePath();ctx.fill();ctx.strokeStyle='#fff8';ctx.lineWidth=1;line(ctx,[-4,-3],[0,3]);}
   else if(path.kind==='roller'||path.kind==='bounce'||path.kind==='wave'){circle(ctx,0,0,5);ctx.fillStyle='#fff';circle(ctx,-1,-1,1.7);}
@@ -223,7 +228,13 @@ function drawEffect(ctx,e,tick,index,weapon){
   const age=tick-e.tick,duration=e.duration||({flame:40,earth:25,mine:40,beam:14,lightning:17,wave:40,drill:28,tunnel:28,miss:18}[e.kind]||28);if(age<0||age>duration)return;
   const f=age/duration,r=Math.max(3,e.radius||16),c=e.color||'#ffce3a';ctx.save();ctx.globalAlpha=1-f;ctx.fillStyle=c;ctx.strokeStyle=c;ctx.shadowColor=c;ctx.shadowBlur=18;
   if(e.kind==='beam'||e.kind==='lightning'){
-    const end=[e.x2??e.x,e.y2??e.y];ctx.lineWidth=(1-f)*8+1;ctx.beginPath();ctx.moveTo(e.x,e.y);for(let n=1;n<=8;n++){const t=n/8;ctx.lineTo(e.x+(end[0]-e.x)*t+(e.kind==='lightning'&&n<8?(hash(index*311+n+Math.floor(tick/2))*2-1)*15:0),e.y+(end[1]-e.y)*t);}ctx.stroke();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+    // Curved aftershock for new lightning and backwards-compatible old beams.
+    const x=e.x2??e.x,y=e.y2??e.y;
+    const curve=Math.max(18,Math.min(90,Math.hypot(x-e.x,y-e.y)*.38));
+    const cx=(e.x+x)/2,cy=Math.min(e.y,y)-curve;
+    ctx.lineWidth=(1-f)*8+1;ctx.beginPath();ctx.moveTo(e.x,e.y);
+    ctx.quadraticCurveTo(cx,cy,x,y);ctx.stroke();
+    ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
   }else if(e.kind==='flame' && ['sprinkler-spray','garden-hose-jet'].includes(weapon?.id)){
     ctx.shadowBlur=0;
     for(let n=0;n<9;n++){
@@ -377,10 +388,10 @@ export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewport
   }
   if(!shooting&&!game.finished){
     const tank=tanks[game.turn],aim=aims[game.turn]||{},a=(aim.angle??45)*Math.PI/180;
-    const speed=60+(aim.power??55)*4.4,beam=weaponById(aim.weaponId)?.kind==='beam';
+    const speed=launchSpeed(weaponById(aim.weaponId),aim.power??55);
     const ox=tank.x+Math.cos(a)*23,oy=tank.y-15-Math.sin(a)*23;
     for(let n=1;n<=12;n++){
-      const t=n*.035,x=ox+Math.cos(a)*speed*t,y=oy-Math.sin(a)*speed*t+(beam?0:55*t*t);
+      const t=n*.035,x=ox+Math.cos(a)*speed*t,y=oy-Math.sin(a)*speed*t+55*t*t;
       if(x<0||x>WIDTH||y>=ground(terrain,x))break;
       ctx.globalAlpha=.6-n*.035;ctx.fillStyle='#e2f4ff';circle(ctx,x,y,1.8);
     }ctx.globalAlpha=1;

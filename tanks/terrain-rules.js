@@ -96,7 +96,7 @@ export function terrainSummary(w) {
   if(w.kind==='carver')return `${w.id==='posthole'?'Vertical hole':`Continuous trench ${w.reach} long`}: up to ${p.depth} deep.`;
   if(w.kind==='flame')return `Surface fire: ${p.depth}-unit scorch, not an explosive crater.`;
   if(w.kind==='lightning')return `Electrical damage with tiny ${p.depth}-unit ground pits.`;
-  if(w.kind==='beam')return w.id==='cutting-ray'?'Cuts a narrow slot through up to 160 units of soil at full power.':'Stops at terrain; leaves a small surface scar.';
+  if(w.kind==='beam')return w.id==='cutting-ray'?'Arcing cutter lands, then carves a narrow slot up to 160 units long.':'Arcing energy payload; localized surface impact instead of a straight ray.';
   if(w.kind==='mine')return `No crater when planted. ${w.fuse}-turn fuse or proximity trigger; then a ${span}-wide crater.`;
   return `${span}-wide, up to ${p.depth}-deep ${p.shape==='flat'?'shallow cut':'crater'} per impact${w.kind==='wave'?'; pulses follow the ground':''}.`;
 }

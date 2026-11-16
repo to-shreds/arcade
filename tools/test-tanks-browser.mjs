@@ -102,15 +102,13 @@ async function fastAnimations(page) {
 function aimAtOpponent(game, weapon = null) {
   const actor = game.turn, tank = game.tanks[actor], target = game.tanks[1 - actor];
   const direction = target.x >= tank.x ? 1 : -1;
-  if (weapon?.kind === 'beam') {
-    const rightAngle = Math.atan2(tank.y - target.y, Math.abs(target.x - tank.x)) * 180 / Math.PI;
-    return { angle: Math.max(0, Math.min(180, Math.round(direction > 0 ? rightAngle : 180 - rightAngle))), power: 100 };
-  }
   const angle = 38, radians = angle * Math.PI / 180;
   const distance = Math.max(20, Math.abs(target.x - tank.x) - 26 * Math.cos(radians));
   const rise = target.y - tank.y + 26 * Math.sin(radians);
   const speed = Math.sqrt(110 * distance ** 2 / Math.max(10, 2 * Math.cos(radians) ** 2 * (rise + distance * Math.tan(radians))));
-  return { angle: direction > 0 ? angle : 180 - angle, power: Math.max(1, Math.min(100, Math.round((speed - 60) / 4.4))) };
+  const energyScale=weapon?.kind==='beam' ? Math.max(.5,Math.min(1.35,Math.sqrt((weapon.reach??650)/650))) : 1;
+  return { angle: direction > 0 ? angle : 180 - angle,
+    power: Math.max(1,Math.min(100,Math.round((speed/energyScale-60)/4.4))) };
 }
 async function roomAction(page, action) {
   return page.evaluate(async ({ api, action }) => {

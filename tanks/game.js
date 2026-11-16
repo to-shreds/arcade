@@ -80,9 +80,10 @@ function showDamageNumber(item) {
   span.style.top=Math.max(16,Math.min(stage.height-16,y))+'px';
   span.style.setProperty('--rise',Math.max(44,y-10)+'px');
   layer.append(span);
+  while(layer.childElementCount>64)layer.firstElementChild.remove();
   const discard=()=>span.remove();
   if(!item.reduced)span.addEventListener('animationend',discard,{once:true});
-  setTimeout(discard,item.reduced?1100:2200);
+  setTimeout(discard,item.reduced?1100:8500);
 }
 function collectDamageNumbers(playback, now, instant=false) {
   if(!playback?.before)return;
@@ -125,7 +126,8 @@ function animate(before,after,kind='fire') {
   const shot=kind==='fire'?after.lastShot:null, move=kind==='move'?after.lastMove:null;
   if(!shot&&!move){render();scheduleCpu();return;}
   const duration=shot?Math.min(preferences.speed==='fast'?1400:4200,Math.max(900,shot.duration*1000/30/(preferences.speed==='fast'?2:1))):650;
-  floatingDamage=[];$('damageFloats').replaceChildren();animation={before,shot,move,started:performance.now(),duration,tick:0,impactPlayed:false,numberSeen:new Set()};scoreFrom=before.tanks.map(t=>t.score);scoreStarted=0;sound(kind,shot?.weaponId);render();
+  // Older damage numbers keep drifting when the next turn begins.
+  animation={before,shot,move,started:performance.now(),duration,tick:0,impactPlayed:false,numberSeen:new Set()};scoreFrom=before.tanks.map(t=>t.score);scoreStarted=0;sound(kind,shot?.weaponId);render();
 }
 async function localAction(intent, cpu=false) {
   if(busy||animation||!localGame||localGame.finished||session||(!cpu&&!canAct())||(cpu&&(playMode!=='cpu'||localGame.turn!==1)))return;
@@ -315,7 +317,7 @@ function tick(now) {
     if(!animation.impactPlayed&&(effectTick===undefined?fraction>.65:animation.tick>=effectTick)){animation.impactPlayed=true;sound('impact',animation.shot?.weaponId);scoreStarted=now;}
     if(fraction===1){if(!scoreStarted)scoreStarted=now;animation=null;render();scheduleCpu();}
   }
-  floatingDamage=floatingDamage.filter(item=>now-item.born<(item.reduced?1100:2100));
+  floatingDamage=floatingDamage.filter(item=>now-item.born<(item.reduced?1100:8400));
   if(canvasDirty||(animation&&now-lastDraw>=30)){
     drawBattle($('battlefield'),game,{aims,animation,time:now,viewportTop:camera.top,
       displayScale:Math.max(.2,$('battlefield').clientWidth/WIDTH)});
