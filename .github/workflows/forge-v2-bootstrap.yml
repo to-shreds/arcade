@@ -25,8 +25,9 @@ jobs:
           data=base64.b64decode(''.join(p(f'tools/forge-v2-{i}.b64').read_text() for i in range(4)))
           assert hashlib.sha256(data).hexdigest()=='1f756457556f768c127382f16888eab0b6faaa04a0c442c401fd1acc2cf1fee3'
           patch=lzma.decompress(data)
-          subprocess.run(['git','apply','--check','-'],input=patch,check=True)
-          subprocess.run(['git','apply','-'],input=patch,check=True)
+          exclude='--exclude=.github/workflows/monster-forge-checks.yml'
+          subprocess.run(['git','apply',exclude,'--check','-'],input=patch,check=True)
+          subprocess.run(['git','apply',exclude,'-'],input=patch,check=True)
           f=p('tools/test-monster-forge-browser.mjs');s=f.read_text()
           assert 'assert(m.items.length>=8);' in s
           s=s.replace('assert(m.items.length>=8);','assert.equal(m.items.length,await page.evaluate(id=>ForgeParts.recipe(id).items.length,id));')
@@ -34,8 +35,7 @@ jobs:
           assert needle in s
           s=s.replace(needle,"await page.waitForFunction(()=>MonsterForgeAutosave.capture().monster.name==='Saved dragon'&&document.getElementById('collection').hidden);"+needle)
           f.write_text(s)
-          if p('tools/forge-v2-fixes.py').exists():subprocess.run(['python3','tools/forge-v2-fixes.py'],check=True)
-          print('Applied verified source and explicit asynchronous test waits')
+          print('Applied verified runtime source without changing workflow permissions')
           PY
       - name: Install browser dependencies
         run: npm ci && npx playwright install chromium
@@ -98,15 +98,15 @@ jobs:
           '''
           readme.write_text(text[:pos]+intro+text[pos:])
           for f in p('tools').glob('forge-v2-*'):f.unlink()
-          p('.github/workflows/forge-v2-bootstrap.yml').unlink()
           PY
           node tools/generate-offline-manifest.mjs --version 2.13.2+20261116.1
           node tools/test-offline-runtime.mjs
-      - name: Commit verified changes on work branch
+      - name: Commit verified runtime changes on work branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add monster-forge tools/test-monster-forge-browser.mjs 'tools/forge-v2-*' .github/workflows HANDOFF.md README.md sw.js offline-manifest.json
+          git diff --exit-code -- .github/workflows
+          git add monster-forge tools/test-monster-forge-browser.mjs 'tools/forge-v2-*' HANDOFF.md README.md sw.js offline-manifest.json
           git commit -m 'Improve Monster Forge with illustrated anatomy, editable starters and verified save compatibility'
           git push origin HEAD:work/monster-forge-v2
       - name: Package complete Arcade and standalone HTML
