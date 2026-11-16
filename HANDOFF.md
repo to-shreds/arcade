@@ -1,3 +1,70 @@
+# Comic Library 2.13.5: large CBZ/PDF books without a total file cap (2026-11-16)
+
+Canonical source: `to-shreds/arcade` main, `comic-reader/`.
+PR #14 runtime merge `b28e1d449c5381e276ff41f3847af2a1eca84a23`.
+Live: https://to-shreds.github.io/arcade/comic-reader/
+GitHub bookshelf: https://github.com/to-shreds/Misc/tree/main/cbz
+
+Issue: Comic Library 2.13.3 hard-rejected files over 150 MiB, CBZ archives
+exceeding 750 MiB total uncompressed images, and books above 2,000 pages;
+JSZip loaded entire archives and PDF.js copied whole documents into
+Uint8Array. Those ceilings were arbitrary and made large comics unusable.
+
+Implementation: the 150 MiB and 750 MiB total restrictions are removed;
+CBZ reading uses bundled zip.js 2.25.0 ZipReader/BlobReader with ZIP64
+and per-page BlobWriter extraction rather than whole-file inflation.
+PDF.js uses its Blob-backed PDFDataRangeTransport and demand-based
+requestDataRange reads (no eager complete Uint8Array). Browser downloads
+use streamed Blobs, and image URLs remain bounded to twelve pages.
+An individual decompressed image is guarded at 256 MiB to prevent
+malicious ZIP bombs; this is not a total book limit. Offline saves
+remain subject to the device's actual browser storage quotas.
+
+For GitHub books over 100 MiB: `comic-reader/split-book.py` cuts
+the original CBZ or PDF into 24 MiB *raw byte* parts named
+`Title.cbz.001`, `Title.cbz.002`, etc. Parts uploaded into public
+`Misc/cbz` are grouped automatically into a single bookshelf item
+and reassembled into a composite Blob when opened. Missing middle
+parts invalidate the group; downloaded parts are verified against
+declared sizes. The updated Misc/cbz/README.md documents it.
+Do not use 7-Zip multi-volume compression; keep the original bytes.
+GitHub Releases allow individual assets under 2 GiB but are not
+auto-listed through this directory; this update does not claim otherwise.
+Standard repo website uploads: 25 MiB per file, git pushes: 100 MiB.
+
+Verification: targeted GitHub Actions Comic Library workflow
+43962371808 succeeded on branch. Tests included actual CBZ and
+PDF.js browser rendering, ZIP entries with nested paths, local CBZ
+over 160 MiB (sparse ZIP fixture), file selection, GitHub grouping,
+large book unit tests, bookmarking, offline storage and shell Home.
+Main deployment workflow 43962723355 succeeded; main Comic
+Library run 43962727112 and Retro Vault run 43962727121 succeeded.
+Broad web suite 43962727126 was still in progress at handoff time,
+so do not report comprehensive project-wide success or actual
+physical Android tablet verification.
+
+Verified complete offline ZIP (all 439 entries matched individual
+manifest SHA-256/length): `/Arcade/Arcade-2.13.5-Large-Books.zip`
+in ChatGPT File Library. 16,044,732 bytes;
+SHA-256 `dca6e2641e40c4c4f01373aef24af52213bbed550fbeeb18529415ba3d6a5e85`.
+Manifest: `2.13.5+20261116.1`, 439 runtime files,
+24,844,361 bytes. Library upload and listing verified.
+
+Do not break Tank Tactics 2.13.4 full-stage terrain/knockback,
+its save and multiplayer authority, Monster Forge v2 artwork and
+saved creatures, previous Comic Library bookmarks and IndexedDB,
+the Android unfiltered file picker, Home navigation, or atomic
+offline-manifest hashes. On future edits run
+`node --test tools/test-comic-library-core.mjs tools/test-comic-library-large-core.mjs`,
+`node tools/test-comic-library-browser.mjs`,
+`node tools/test-comic-library-large-browser.mjs`, and
+`node tools/test-shell-navigation.mjs`. Next action: test an actual
+multi-hundred-MiB local CBZ and a multipart GitHub CBZ on the user's
+Android device. Investigate device-specific memory/quotas only with
+a reproducible failed file; do not reimpose a whole-book cap.
+
+---
+
 # Tank Tactics 2.13.4: full battlefield and floating hit numbers (2026-11-16)
 
 
