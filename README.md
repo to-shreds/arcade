@@ -8,16 +8,32 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.13.4
+
+**Tank Tactics** now stops overlong movement at the battlefield edge or the other
+tank, rather than discarding the requested move. Each scoring impact produces
+its own floating damage number, including cluster hits and mines. The entire
+terrain fits inside a battlefield-first full-screen stage, while translucent
+score and control overlays keep the controls accessible. The 132 weapons,
+knockback, precise aim steppers, multiplayer saves, Comic Library and Monster
+Forge stay intact. See [verification](docs/arcade-stress-test-2.13.4.md).
+
+## Release 2.13.3
+
+**Comic Library** now opens the Android file picker without a restrictive MIME
+filter, allowing local CBZ files to be selected even if Android does not
+recognize their file type. The reader still checks CBZ/PDF extensions after
+selection and rejects unrelated files. Existing PDF behavior, reading progress,
+offline copies and games are unchanged. Browser checks now exercise the actual
+Open File button and verify invalid files are rejected.
+
 ## Release 2.13.2
 
-**Tank Tactics** stops an overlong move at the battlefield edge or the other
-tank rather than rejecting the whole move. Each scoring impact produces
-its own rising point number, including beams, mines and multiple hits.
-The battlefield fills the screen behind compact translucent controls and
-score displays. The camera fits the complete terrain profile rather than
-cropping based only on tank positions. All 132 weapons, knockback, precise
-sliders, saves, multiplayer, Comic Library and Monster Forge are preserved.
-See [verification](docs/arcade-stress-test-2.13.2.md).
+Monster Forge now has 50 illustrated parts and six editable starter
+creatures, larger previews, direct part editing and smoother drawing.
+Existing monsters retain their original artwork. Mix new anatomy,
+draw over it, save a collection and export 1800x1200 pictures.
+See monster-forge/README.md for controls and compatibility details.
 
 ## Release 2.13.1
 
