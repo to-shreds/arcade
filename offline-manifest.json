@@ -3,7 +3,7 @@
   "version": "2.13.0+20261116.1",
   "generatedAt": "2026-11-16T05:08:14.684Z",
   "fileCount": 426,
-  "totalBytes": 23167021,
+  "totalBytes": 23167048,
   "files": [
     {
       "path": "adventure/game.json",
@@ -527,8 +527,8 @@
     },
     {
       "path": "monster-forge/game.js",
-      "bytes": 45646,
-      "sha256": "220793591f5ce5a7c87fd16d42ef76cff415dc85d50cdbdc603a58caab41e416"
+      "bytes": 45673,
+      "sha256": "19295812d983d497c3999dd4965e20148c86ccb986a5964b76aa53ce523bf2c6"
     },
     {
       "path": "monster-forge/game.json",
