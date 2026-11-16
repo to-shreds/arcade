@@ -303,7 +303,7 @@ function tankOnGround(tank, terrain, position) {
   return {...tank,x,y:Math.min(ground(terrain,x-12),ground(terrain,x),ground(terrain,x+12))-hop,hop,tilt};
 }
 
-export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewportTop=0,displayScale=1}={}) {
+export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewportTop=0,displayScale=1,floatingDamage=[]}={}) {
   const ctx=canvas.getContext('2d');if(!ctx||!game)return;ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,WIDTH,canvas.height);ctx.translate(0,-viewportTop);
   ctx.drawImage(backdrop(canvas,game.seed),0,0);
   if(animation?.shot){
@@ -355,6 +355,26 @@ export function drawBattle(canvas, game, {aims=[],animation=null,time=0,viewport
   const shooting=!!animation;for(let i=0;i<tanks.length;i++){const tank=tanks[i],a=shot?.actor===i?shot.angle:(aims[i]?.angle??(i?135:45));const recoil=shot?.actor===i&&tick>=(shot.launchTick||0)&&tick<(shot.launchTick||0)+9?Math.sin((tick-(shot.launchTick||0))/9*Math.PI)*3:0;drawTank(ctx,{...tank,x:tank.x-Math.cos(a*Math.PI/180)*recoil},a,!shooting&&!game.finished&&game.turn===i,time);ctx.font=`700 ${Math.min(32,12/displayScale)}px system-ui`;ctx.textAlign='center';ctx.fillStyle='#eff6ff';ctx.shadowColor='#081529';ctx.shadowBlur=4;ctx.fillText(tank.name,tank.x,tank.y+16/displayScale);ctx.shadowBlur=0;}
   if(shot){const w=weaponById(shot.weaponId);for(let i=0;i<shot.paths.length;i++)drawProjectile(ctx,shot.paths[i],tick,i,viewportTop,displayScale,w);for(let i=0;i<shot.effects.length;i++)drawEffect(ctx,shot.effects[i],tick,i,weaponById(shot.effects[i].weaponId)||w);}
   if(animation?.move){const move=animation.move;for(let i=0;i<(move.effects||[]).length;i++)drawEffect(ctx,move.effects[i],tick,i,weaponById(move.effects[i].weaponId));}
+  // Each score event is a separate lightweight number. Numbers keep rising
+  // after the shot ends; they never alter points or block the next turn.
+  for (const item of floatingDamage) {
+    const lifetime=item.reduced?1100:2100;
+    const progress=Math.max(0,Math.min(1,(time-item.born)/lifetime));
+    if(progress>=1)continue;
+    const ceiling=viewportTop+17;
+    const travel=Math.max(55,item.y-ceiling);
+    const rise=item.reduced?0:1-Math.pow(1-progress,1.15);
+    const y=item.y-travel*rise;
+    const x=Math.max(18,Math.min(WIDTH-18,item.x+(item.offset||0)*(1-progress*.35)));
+    ctx.save();
+    ctx.globalAlpha=progress>.78?(1-progress)/.22:1;
+    ctx.font='900 26px system-ui,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.lineJoin='round';ctx.lineWidth=5;ctx.strokeStyle='#07152b';
+    ctx.shadowColor='#061020';ctx.shadowBlur=5;
+    ctx.strokeText('+'+item.amount,x,y);
+    ctx.shadowBlur=0;ctx.fillStyle=item.color||'#ffe28b';
+    ctx.fillText('+'+item.amount,x,y);ctx.restore();
+  }
   if(!shooting&&!game.finished){
     const tank=tanks[game.turn],aim=aims[game.turn]||{},a=(aim.angle??45)*Math.PI/180;
     const speed=60+(aim.power??55)*4.4,beam=weaponById(aim.weaponId)?.kind==='beam';

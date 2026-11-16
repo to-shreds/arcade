@@ -8,6 +8,16 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.13.4
+
+**Tank Tactics** now stops overlong movement at the battlefield edge or the other
+tank, rather than discarding the requested move. Each scoring impact produces
+its own floating damage number, including cluster hits and mines. The entire
+terrain fits inside a battlefield-first full-screen stage, while translucent
+score and control overlays keep the controls accessible. The 132 weapons,
+knockback, precise aim steppers, multiplayer saves, Comic Library and Monster
+Forge stay intact. See [verification](docs/arcade-stress-test-2.13.4.md).
+
 ## Release 2.13.3
 
 **Comic Library** now opens the Android file picker without a restrictive MIME

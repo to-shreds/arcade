@@ -25,9 +25,9 @@ test('48 mixed movement and firing matches preserve exact resumable state at eve
         const before = JSON.stringify(game);
         try { step({ type: 'move', distance }); moves++; }
         catch (error) {
-          // Only bounds/crossing rejection is valid. Any failure after applying
-          // an accepted move must still fail this test.
-          assert.match(error.message, /outside the battlefield|cannot pass through/);
+          // Movement already blocked at an edge is rejected without a charge.
+          // Any failure after a valid move still fails this test.
+          assert.match(error.message, /already at the edge|outside the battlefield|cannot pass through/);
           assert.equal(JSON.stringify(game), before, 'Rejected movement preserves the working checkpoint');
           rejectedMoves++;
         }

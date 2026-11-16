@@ -124,6 +124,66 @@ try{
   await page.screenshot({path:path.join(out,'impact-'+width+'x'+height+'.png')});
  }
  checks.push('All six precision arrows visible and usable in four phone/desktop layouts');
+ // Edge clamping is an actual move, not a rejected request or a spent turn.
+ await page.evaluate(async()=>{
+   const {createGame}=await import('./engine.js');
+   const game=createGame({seed:887,terrainType:'flat'});
+   ArcadeSave.getAdapter().restore({schema:1,mode:'hotseat',difficulty:'normal',game,
+     aims:[{angle:45,power:55,weaponId:game.tanks[0].inventory[0]}]});
+ });
+ await page.locator('#moveDistance').evaluate(el=>{el.value='5';el.dispatchEvent(new Event('input',{bubbles:true}));});
+ await page.locator('#moveLeft').click();
+ await page.waitForFunction(()=>TanksGame.getState()?.lastMove?.to===45);
+ assert.equal(await page.evaluate(()=>TanksGame.getState().tanks[0].movesLeft),3);
+ await page.waitForFunction(()=>!TanksGame.getDebug().animating);
+ await page.locator('#moveLeft').click();
+ await page.waitForFunction(()=>document.getElementById('message').textContent.includes('already at the edge'));
+ assert.equal(await page.evaluate(()=>TanksGame.getState().tanks[0].movesLeft),3);
+ checks.push('Out-of-bounds movement stops at the boundary; no extra charge when already there');
+ // Draw each scoring hit independently and continue after its projectile disappears.
+ await page.evaluate(async()=>{
+   const {createGame}=await import('./engine.js');
+   const state=createGame({seed:345,terrainType:'flat'});
+   state.tanks[1].x=210;state.tanks[1].y=400;
+   if(!state.tanks[0].inventory.includes('cannonball'))state.tanks[0].inventory[0]='cannonball';
+   ArcadeSave.getAdapter().restore({schema:1,mode:'hotseat',difficulty:'normal',game:state,
+     aims:[{angle:0,power:25,weaponId:'cannonball'}]});
+ });
+ await page.locator('#fire').click();
+ await page.waitForFunction(()=>TanksGame.getDebug().damageNumbers.length>0,null,{timeout:10000});
+ const dmg=await page.evaluate(()=>{
+   const st=TanksGame.getState(),nums=TanksGame.getDebug().damageNumbers;
+   return {amounts:nums.map(n=>n.amount),events:st.lastShot.effects.flatMap(e=>e.damageHits||[]),ages:nums.map(n=>n.ageMs)};
+ });
+ assert.ok(dmg.events.some(([target,amount])=>target===1&&amount>=40));
+ assert.ok(dmg.amounts.some(amount=>dmg.events.some(hit=>hit[1]===amount)));
+ const number=page.locator('#damageFloats .damage-number').first();
+ await number.waitFor({state:'visible'});
+ const first=await number.boundingBox();
+ const typeSize=await number.evaluate(el=>parseFloat(getComputedStyle(el).fontSize));
+ assert.ok(typeSize>=17,'The damage number must remain readable even in portrait');
+ await page.waitForTimeout(320);
+ const second=await number.boundingBox();
+ assert.ok(second&&second.y<first.y-7,'Each scored value rises toward the actual screen ceiling');
+ await page.screenshot({path:path.join(out,'damage-floating-to-screen-top.png')});
+ checks.push('Readable damage number rises toward the whole screen ceiling');
+ for(const [width,height] of [[320,568],[390,844],[844,390],[1280,800]]){
+   await page.setViewportSize({width,height});await page.waitForTimeout(180);
+   const fit=await page.evaluate(()=>{
+     const state=TanksGame.getState(),debug=TanksGame.getDebug();
+     const get=id=>{const b=document.querySelector(id).getBoundingClientRect();return {left:b.left,right:b.right,top:b.top,bottom:b.bottom,width:b.width,height:b.height};};
+     return {arena:get('#arena'),canvas:get('#battlefield'),controls:get('#controls'),scores:get('.scores'),camera:debug.camera,minY:Math.min(...state.terrain),maxY:Math.max(...state.terrain),overflow:document.documentElement.scrollWidth>innerWidth+1};
+   });
+   assert.equal(fit.overflow,false,JSON.stringify({width,height,fit}));
+   assert.ok(fit.arena.width>=width-1&&fit.arena.height>=height-1,'Full-screen stage: '+width+'x'+height);
+   assert.ok(fit.canvas.left>=-1&&fit.canvas.right<=width+1,'Both terrain ends are visible');
+   assert.ok(fit.canvas.top>=fit.scores.bottom-4,'Canvas below upper HUD');
+   assert.ok(fit.canvas.bottom<=fit.controls.top+4,'Canvas above lower HUD');
+   assert.ok(fit.camera.top<=fit.minY&&fit.camera.top+fit.camera.height>=fit.maxY,
+     'Every ground sample fits within camera bounds');
+   await page.screenshot({path:path.join(out,'full-stage-'+width+'x'+height+'.png')});
+ }
+ checks.push('Entire ground profile visible; HUD floats above the stage on four layouts');
  assert.deepEqual(errors,[]);
  await writeFile(path.join(out,'report.json'),JSON.stringify({pass:true,checks,errors},null,2)+'\n');
  console.log('PASS Tank impact browser:',checks.join('; '));

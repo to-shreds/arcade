@@ -1,3 +1,10 @@
+# 2.13.4
+
+- Tank movement stops at the safe edge of the battlefield or opposing tank, consuming a move only if actual movement occurs.
+- Record each scoring hit and display a floating point value rising toward the screen ceiling, including cluster impacts, beams, mines and self-hits.
+- Battlefield occupies the full screen, with compact translucent overlays and no permanent weapon loadout panel. Camera fits the full terrain without stretching it.
+- Preserve 132 weapons, knockback, precise sliders, multiplayer, existing saves, Monster Forge, Comic Library and offline support.
+
 # 2.12.1
 
 - Removed selectable weapon-pool modes. Every new Tank Tactics match now randomly draws ten weapons for each player from the complete 132-weapon catalogue.
