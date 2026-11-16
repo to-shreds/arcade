@@ -49,6 +49,11 @@ function fire(){
  try{
   const after=applyAction(before,{type:'fire',weaponId:selected().id,angle:Number($('angle').value),power:Number($('power').value)});
   practice=after;
+  if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){
+   animation=null;fireButton.disabled=false;
+   $('status').textContent=`${selected().name} fired. ${after.lastShot.scoreGain[0]} practice points on the target.`;
+   render();return;
+  }
   fireButton.disabled=true;
   const gain=after.lastShot.scoreGain[0];
   $('status').textContent=`${selected().name} fired. ${gain} practice points on the target.`;

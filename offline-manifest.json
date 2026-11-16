@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "version": "2.12.0+20261115.1",
-  "generatedAt": "2026-11-16T02:10:00.594Z",
+  "generatedAt": "2026-11-16T02:13:26.170Z",
   "fileCount": 420,
-  "totalBytes": 23085462,
+  "totalBytes": 23085720,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1777,8 +1777,8 @@
     },
     {
       "path": "tanks/range.js",
-      "bytes": 3685,
-      "sha256": "588dac0906b8ba441895b7e6319af90b977df7e07402f1103a37246e66f33bf6"
+      "bytes": 3943,
+      "sha256": "00ecde776a661346ca361c7360be7990dfb4f2560772735e9f5e1a679892c384"
     },
     {
       "path": "tanks/README.md",
