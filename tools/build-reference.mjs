@@ -175,7 +175,8 @@ wordRecords.forEach((word, index) => {
   if (!exact.has(normalize(word.headword))) exact.set(normalize(word.headword), index);
 });
 wordRecords.forEach((word, index) => {
-  for (const form of word.forms) if (forms.get(form)?.size === 1) {
+  // A spelling claimed by a draft must not hide an approved lookup.
+  for (const form of word.forms) if (forms.get(form)?.intersection(publishedTerms).size === 1) {
     if (!exact.has(form)) exact.set(form, index);
     if (!exact.has(normalize(form))) exact.set(normalize(form), index);
   }
