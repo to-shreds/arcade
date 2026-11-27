@@ -40,16 +40,27 @@ async function done(page, message) {
   assert.equal(new URL(page.url()).pathname, '/mouse-lab/', 'training input cannot navigate outside the exercise');
 }
 
-async function center(locator) {
-  await locator.scrollIntoViewIfNeeded();
+async function center(locator, { scroll = true } = {}) {
+  if (scroll) await locator.scrollIntoViewIfNeeded();
   const bounds = await locator.boundingBox();
   assert(bounds);
   return { x: bounds.x + bounds.width / 2, y: bounds.y + bounds.height / 2 };
 }
 
+async function sortDragPoints(page, from, to) {
+  // Scrolling the destination after measuring the tile can move the start point onto another tile.
+  await page.locator('.sort-board').scrollIntoViewIfNeeded();
+  const start = await center(from, { scroll: false });
+  const end = await center(to, { scroll: false });
+  for (const [locator, point] of [[from, start], [to, end]]) {
+    assert(await locator.evaluate((element, { x, y }) => element.contains(document.elementFromPoint(x, y)), point),
+      'Drag endpoint should hit its intended element after scrolling');
+  }
+  return { start, end };
+}
+
 async function drag(page, from, to) {
-  const start = await center(from);
-  const end = await center(to);
+  const { start, end } = await sortDragPoints(page, from, to);
   await page.mouse.move(start.x, start.y);
   await page.mouse.down();
   await page.mouse.move(end.x, end.y, { steps: 12 });
@@ -206,8 +217,11 @@ try {
 
   await lesson(phone, 'Drag and drop', 'tap');
   const cdp = await mobile.newCDPSession(phone);
-  const apple = await center(phone.getByRole('button', { name: 'Apple', exact: true }));
-  const fruit = await center(phone.locator('.folder-drop[data-folder="Fruit"]'));
+  const { start: apple, end: fruit } = await sortDragPoints(
+    phone,
+    phone.getByRole('button', { name: 'Apple', exact: true }),
+    phone.locator('.folder-drop[data-folder="Fruit"]')
+  );
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [apple] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [fruit] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
