@@ -1,3 +1,19 @@
+# Arcade Encyclopedia expansion, 2.14.1 preview (2026-11-27)
+
+The offline reference collection now ships **1,006 independently approved articles across 41 subjects**, **780 headwords**, **917 senses**, and **3,019 curated question links**. This pass added 879 articles and 509 headwords. All approved articles and definitions are included in the offline web and Windows preview builds. The controlling source is the canonical Arcade [draft PR #16](https://github.com/to-shreds/arcade/pull/16) and verified runtime commit `e3b38a059277f927c176d3304075c4aa596c9c50`. The public Pages release is 2.13.6. See [ProjectStatus](https://github.com/to-shreds/ProjectStatus/blob/main/projects/arcade/STATUS.md) for exact artifact identities and current Windows and web check results.
+
+## Content and verification
+
+- The corpus includes 116 country profiles, a substantially larger animal and fossil collection, space missions and technology, health and genetics basics, world and U.S. history, math and logic, food and farming, and articles in the arts and literature. The eleven new editable batches are `04` through `14` in `reference/editorial/`. The [coverage ledger](reference/editorial/coverage.json) distinguishes counts by subject, safety and term flags, and source records. There are 1,063 provenance records, zero broken question targets, no draft entries, no marked term gaps, and no reading-length warnings. Retain the reviewed prose and use edit history for future corrections.
+- Preview manifest `2.14.1+20261127.1` covers 528 verified runtime files and 27,151,057 bytes. The full expanded reference uses 2,217,105 bytes of runtime assets. The build tools reproduce the corpus and validate every mark and link. The new browser test opens an added architecture article and its definition offline, and confirms the shared definition of “character” contains both literary and computing senses. Chromium passed three reference viewports, the fresh offline install, corruption rejection and retry, and eleven catalog scenarios. [Verification report](docs/arcade-stress-test-2.14.1.md).
+- Windows packages include the larger corpus in the same child-mode snapshot policy with 19 chosen activities. The embedded asset check, cross-build and 139 portable assertions passed. The public artifact ledger tracks Windows runner evidence separately from the distributed cross-build. Perform the physical Windows and Android acceptance checks before expanding platform claims.
+
+## Next unfinished inventory
+
+The 1,000-article milestone is reached. The first 5,000-headword milestone needs 4,220 additional headwords. Relative to the broader 10,000-article, 25,000-headword, and roughly 50,000-question targets, the remaining counts are 8,994 articles, 24,220 headwords, and about 46,981 links. Expand ecosystem profiles, regional cultures and languages, technological history, and underrepresented species. Add proper terms and natural question aliases with each group. Use sources and independent editorial review before regenerating packs. Keep stable IDs, source-only provenance, child-mode resource isolation, and atomic offline verification.
+
+---
+
 # Arcade expansion preview, 2.14.0 (2026-11-27)
 
 The Encyclopedia, Dictionary, Mouse Lab, and Windows source are in the canonical Arcade repository on `work/arcade-reference-windows`, under [draft PR #16](https://github.com/to-shreds/arcade/pull/16). The verified runtime and Windows workflow source is commit `46052038210b47330d91d2e236f614370d676ac1`. The production branch and Pages remain on the established 2.13.6 baseline. The new scope is **IN PROGRESS**. The approved pilot is usable in the verified web preview. The directly authored collection, Windows UI verification, and full input audit still need expansion. Use [ProjectStatus](https://github.com/to-shreds/ProjectStatus/blob/main/projects/arcade/STATUS.md) for current artifact identities and readiness.

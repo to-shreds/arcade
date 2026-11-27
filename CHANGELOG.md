@@ -1,3 +1,12 @@
+# 2.14.1 preview
+
+- Added 879 independently reviewed Encyclopedia articles and 2,637 related
+  questions. The full offline collection has 1,006 articles in 41 subjects.
+- Added 509 dictionary headwords used by the expanded collection. The shared
+  lexicon now has 780 headwords and 917 senses.
+- Verified search, reading, linked definitions and corrupted-update recovery
+  using the expanded offline files.
+
 # 2.14.0 preview
 
 - Added offline Encyclopedia and Dictionary with a shared search index,

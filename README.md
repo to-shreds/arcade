@@ -8,6 +8,16 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.14.1 preview
+
+The offline **Encyclopedia** now has **1,006 reviewed articles in 41 subjects**,
+including 116 country profiles. It covers topics such as marine wildlife,
+space missions, food science, computing, world history, art, music and
+everyday machines. The shared **Dictionary** has 780 headwords and 917
+definitions. The collection contains 3,019 questions that lead to related
+articles. The web preview and Windows wrapper use the same offline collection.
+See the [verification report](docs/arcade-stress-test-2.14.1.md).
+
 ## Release 2.14.0 preview
 
 **Encyclopedia** and **Dictionary** share an offline reference collection for
