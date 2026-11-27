@@ -60,20 +60,30 @@ for (const [query, target] of [
   ['what causes a volcanos', 'volcanoes'],
   ['what is an element in chemistry', 'elements'],
   ['What is a bat?', 'bats'],
-  ['Can sound travel through space?', 'sound']
+  ['Can sound travel through space?', 'sound'],
+  ['What is a tide pool?', 'tide-pools'],
+  ['How does the zipper slider work?', 'zippers'],
+  ['What is the international date line?', 'international-date-line'],
+  ['Add fractions with different denominators', 'math-add-unlike-fractions']
 ]) {
   assert.ok((await library.searchArticles(query)).some(hit => hit.id === target), query);
 }
 for (const query of ['How do cell phones know your location?', 'Is there trees on Neptune?', 'How do I hurt myself?']) {
   assert.deepEqual(await library.searchArticles(query), [], query);
 }
-for (const [query, headword] of [['alveoli', 'alveolus'], ['feet', 'foot'], ['mice', 'mouse'], ['heard', 'hear'], ['re-', 're-']]) {
+for (const [query, headword] of [
+  ['alveoli', 'alveolus'], ['feet', 'foot'], ['mice', 'mouse'], ['heard', 'hear'], ['re-', 're-'],
+  ['borrowed', 'borrow'], ['hesitated', 'hesitate'], ['roots', 'root'], ['plant roots', 'plant root']
+]) {
   assert.equal((await library.findWord(query))?.headword, headword, query);
 }
 assert.equal((await library.searchWords('orbitng'))[0]?.headword, 'orbit');
+assert.equal((await library.searchWords('hesistate'))[0]?.headword, 'hesitate');
 for (const [word, senses] of [['bat', 3], ['charge', 5], ['cell', 4]]) {
   assert.equal((await library.findWord(word)).senses.length, senses);
 }
+assert.ok((await library.findWord('bit')).senses.some(sense => sense.partOfSpeech === 'verb' && /bite/.test(sense.definition)));
+assert.ok((await library.findWord('saw')).senses.some(sense => sense.partOfSpeech === 'verb' && /see/.test(sense.definition)));
 samples.sort((a, b) => a - b);
 console.log(JSON.stringify({...counts, checkedAliases: aliasCount, loadedPacks: requests.size,
   aliasSearchP95Ms: Number(samples[Math.floor(samples.length * 0.95)]?.toFixed(3)),

@@ -1,0 +1,587 @@
+[
+  {
+    "id": "maps-topo",
+    "title": "What is a topographic map?",
+    "url": "https://www.usgs.gov/faqs/what-a-topographic-map",
+    "publisher": "U.S. Geological Survey",
+    "scope": "Contours as lines of equal elevations and their use in showing slopes and landforms.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-book",
+    "title": "USGS Maps Booklet",
+    "url": "https://pubs.usgs.gov/gip/usgsmaps/usgsmaps.html",
+    "publisher": "U.S. Geological Survey",
+    "scope": "Map scales, map distance versus ground distance, symbols, and topographic maps of different scales.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-symbols",
+    "title": "US Topo Cartographic Specifications: Map Symbol Guide",
+    "url": "https://www.usgs.gov/ngp-standards-and-specifications/us-topo-map-symbol-guide",
+    "publisher": "U.S. Geological Survey",
+    "scope": "Different shapes and colors show roads, streams, contours, labels and other features.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-compass",
+    "title": "Finding Your Way With Map and Compass",
+    "url": "https://www.usgs.gov/educational-resources/finding-your-way-map-and-compass",
+    "publisher": "U.S. Geological Survey",
+    "scope": "Orienting a map with ground features and a compass, and the importance of checking its north mark.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-grid",
+    "title": "Grid References",
+    "url": "https://www.ordnancesurvey.co.uk/mapzone/map-skills/grid-references",
+    "publisher": "Ordnance Survey",
+    "scope": "How grids help locate a feature within a square on a map.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-time",
+    "title": "Z-time (Coordinated Universal Time)",
+    "url": "https://www.noaa.gov/jetstream/time",
+    "publisher": "National Oceanic and Atmospheric Administration",
+    "scope": "Earth rotation and time zones, local adjustments to time-zone boundaries and crossing the Date Line.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-offsets",
+    "title": "Half Hour and 45-Minute Time Zones",
+    "url": "https://www.timeanddate.com/time/time-zones-interesting.html",
+    "publisher": "Time and Date AS",
+    "scope": "Time-zone adjustments that are not whole hours.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-dateline",
+    "title": "What is the international date line?",
+    "url": "https://oceanservice.noaa.gov/facts/international-date-line.html",
+    "publisher": "NOAA National Ocean Service",
+    "scope": "Location, bends and the calendar-date changes that happen when crossing it.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-longitude",
+    "title": "What is longitude?",
+    "url": "https://oceanservice.noaa.gov/facts/longitude.html",
+    "publisher": "NOAA National Ocean Service",
+    "scope": "The use of meridians and degrees east and west, Greenwich as the zero reference, and the antimeridian at 180 degrees.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-peninsula",
+    "title": "Peninsula",
+    "url": "https://education.nationalgeographic.org/resource/peninsula/",
+    "publisher": "National Geographic Society",
+    "scope": "Physical shape and Florida as an example of a peninsula.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-isthmus",
+    "title": "Isthmus",
+    "url": "https://education.nationalgeographic.org/resource/isthmus/",
+    "publisher": "National Geographic Society",
+    "scope": "Narrow land links, the Isthmus of Panama, and the shorter shipping route created by the canal.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-archipelago",
+    "title": "What is an archipelago?",
+    "url": "https://oceanservice.noaa.gov/facts/archipelago.html",
+    "publisher": "NOAA National Ocean Service",
+    "scope": "Island chains and groups with volcanic and other origins.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-strait",
+    "title": "Strait",
+    "url": "https://education.nationalgeographic.org/resource/strait/",
+    "publisher": "National Geographic Society",
+    "scope": "Straits as natural passageways and the Strait of Gibraltar as an example connecting two large bodies of water.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-plateau",
+    "title": "The Colorado Plateau",
+    "url": "https://home.nps.gov/articles/the-colorado-plateau.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "High tablelands, valleys cut through them and the Grand Canyon as an example.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-watershed",
+    "title": "Watersheds and Drainage Basins",
+    "url": "https://www.usgs.gov/water-science-school/science/watersheds-and-drainage-basins",
+    "publisher": "U.S. Geological Survey",
+    "scope": "Tributaries, the drainage area for a stream, and ridges separating watersheds.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-continental",
+    "title": "Water Quality in Rocky Mountain National Park",
+    "url": "https://www.nps.gov/romo/learn/nature/waterquality.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "The Continental Divide and different water flow on the Colorado River and Mississippi watershed sides in the park.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-greatlakes",
+    "title": "The Great Lakes",
+    "url": "https://www.noaa.gov/general-counsel/gc-international-section/great-lakes",
+    "publisher": "National Oceanic and Atmospheric Administration",
+    "scope": "Connected freshwater lakes, location on the United States and Canada border, and route to the Atlantic via the St. Lawrence Seaway.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-epa",
+    "title": "Physical Features of the Great Lakes",
+    "url": "https://www.epa.gov/greatlakes/physical-features-great-lakes",
+    "publisher": "U.S. Environmental Protection Agency",
+    "scope": "Names, locations and shorelines of the five lakes.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "maps-port",
+    "title": "Port Infrastructure Development Program",
+    "url": "https://www.maritime.dot.gov/ports/port-infrastructure-development-program",
+    "publisher": "U.S. Maritime Administration",
+    "scope": "Ports as points where goods transfer among ships, trains and trucks.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-oldfaithful",
+    "title": "Predicting Geysers: Old Faithful",
+    "url": "https://www.nps.gov/features/yell/ofvec/exhibits/eruption/prediction/predict8.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "The connection between how long an eruption lasted and when the next Old Faithful eruption is expected.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-yellowstone",
+    "title": "Yellowstone’s Geologic Significance",
+    "url": "https://home.nps.gov/yell/learn/nature/geology.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "The heat under Yellowstone and the park’s geysers.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-yosemite",
+    "title": "Yosemite Geology",
+    "url": "https://www.nps.gov/yose/learn/nature/geology.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Glacial erosion, U-shaped valleys, granite, and the landmarks of Yosemite Valley.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-arches",
+    "title": "Arches at Arches National Park",
+    "url": "https://www.nps.gov/arch/learn/nature/arches.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Natural sandstone arches, how openings develop, and how the rock weathers.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-mammoth",
+    "title": "How Mammoth Cave Formed",
+    "url": "https://home.nps.gov/maca/learn/nature/how-mammoth-cave-formed.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Dissolved gases in water, limestone dissolution, and the cave’s passage levels.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-everglades",
+    "title": "Meet Everglades Stop 1",
+    "url": "https://www.nps.gov/places/meet-everglades-stop-1.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Slow movement of freshwater in broad sheets across flat land in South Florida.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-everglades-slough",
+    "title": "Ecosystems: Freshwater Slough",
+    "url": "https://www.nps.gov/ever/learn/nature/freshwaterslough.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Flood duration, sloughs, and freshwater reaching Florida Bay.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-crater",
+    "title": "Crater Lake",
+    "url": "https://www.nps.gov/crla/learn/nature/crater-lake.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Mount Mazama’s collapse, caldera, water supply, color, and Wizard Island.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-devils",
+    "title": "How the Tower Formed",
+    "url": "https://www.nps.gov/deto/learn/nature/tower-formation.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Cooling and cracking of igneous rock, tower exposure, and uncertainty about original formation.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-devils-boulders",
+    "title": "Devils Tower Boulder Field",
+    "url": "https://www.nps.gov/places/deto-boulderfield.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Broken stones and columns at the foot of Devils Tower.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-whitesands",
+    "title": "Geology of White Sands",
+    "url": "https://home.nps.gov/whsa/learn/geology-of-white-sands.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Gypsum brought into the basin, crystallization, and wind movement of sand dunes.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-gypsum",
+    "title": "Gypsum",
+    "url": "https://www.nps.gov/whsa/learn/gypsum.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Gypsum solubility and crystal growth when water evaporates.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-hoh",
+    "title": "Hoh Rain Forest Area Brochure",
+    "url": "https://www.nps.gov/olym/planyourvisit/hoh-rain-forest-area-brochure.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Cool summers, mild winters, rain, and large trees in the Hoh watershed.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-temperate",
+    "title": "Temperate Rain Forests",
+    "url": "https://www.nps.gov/olym/learn/nature/temperate-rain-forests.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Coastal rain forests and their trees, mosses, and ferns.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-plitvice",
+    "title": "Plitvice Lakes National Park",
+    "url": "https://whc.unesco.org/en/list/98/",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Natural travertine barriers, lakes and waterfalls formed by water and dissolved minerals.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-causeway",
+    "title": "Giant’s Causeway and Causeway Coast",
+    "url": "https://whc.unesco.org/en/list/369/",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Basalt rock columns, their six-sided forms, lava flows, and the site’s shore setting.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-cappadocia",
+    "title": "Göreme National Park and the Rock Sites of Cappadocia",
+    "url": "https://whc.unesco.org/en/list/357/",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Volcanic landscape worn into pinnacles, cave dwellings, tunnels, rock-hewn churches, and paintings.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-lalibela",
+    "title": "Rock-Hewn Churches, Lalibela",
+    "url": "https://whc.unesco.org/en/list/18",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Carved churches, surrounding trenches, linked passageways, and Biete Ghiorgis’s cross shape.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-mont",
+    "title": "Mont-Saint-Michel and its Bay",
+    "url": "https://whc.unesco.org/en/list/80",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "The rocky rise, abbey and village, and the role of the large tidal range in the bay.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-quebec",
+    "title": "Historic District of Old Québec",
+    "url": "https://whc.unesco.org/en/list/300/",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Upper Town on a cliff, walls and gates, and Lower Town around the old port.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-borobudur",
+    "title": "Borobudur Temple Compounds",
+    "url": "https://whc.unesco.org/en/list/592",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Terraces, carved walls, stupas, Buddha figures, and the layout of the temple on Java.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-mesaverde",
+    "title": "Mesa Verde National Park",
+    "url": "https://whc.unesco.org/en/list/27",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Ancestral Pueblo buildings including stone cliff dwellings and mesa-top settlements.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-venice",
+    "title": "Venice and its Lagoon",
+    "url": "https://whc.unesco.org/en/list/394",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Northeastern Italian lagoon, many islands, canals, paths, and the Grand Canal.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-rapanui",
+    "title": "Rapa Nui National Park",
+    "url": "https://whc.unesco.org/en/list/715/",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Chilean island, Rapa Nui culture, stone moai, platforms, and sites where moai were quarried.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-sydney",
+    "title": "Sydney Opera House",
+    "url": "https://whc.unesco.org/en/list/166/",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Shelled roofs over public halls, and the building’s harbor location on a peninsula.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-sphere",
+    "title": "The Spherical Solution",
+    "url": "https://www.sydneyoperahouse.com/our-story/the-spherical-solution",
+    "publisher": "Sydney Opera House",
+    "scope": "Engineering approach that took the final roof shapes from curved sections of a sphere.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-singapore",
+    "title": "Singapore Botanic Gardens",
+    "url": "https://whc.unesco.org/en/list/1483/",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "Tropical botanic garden’s living collections, research and public education.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-world-heritage",
+    "title": "World Heritage",
+    "url": "https://whc.unesco.org/en/about",
+    "publisher": "UNESCO World Heritage Centre",
+    "scope": "International World Heritage Convention, protection, cultural and natural properties, and state nominations.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-seas",
+    "title": "Seas, Trees, and Economies: Lesson 10",
+    "url": "https://www.stlouisfed.org/-/media/project/frbstl/stlouisfed/education/curriculum/pdf/seas_trees_econ_lesson10.pdf",
+    "publisher": "Federal Reserve Bank of St. Louis",
+    "scope": "Goods and services, consumers, producers, and other economic resources.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-scarcity",
+    "title": "Scarcity and Opportunity Cost",
+    "url": "https://www.federalreserveeducation.org/teaching-resources/economics/scarcity/scarcity",
+    "publisher": "Federal Reserve Education",
+    "scope": "How limited resources lead to choices and a next-best use given up.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-budget",
+    "title": "Analyzing Budgets",
+    "url": "https://www.consumerfinance.gov/consumer-tools/educator-tools/youth-financial-education/teach/activities/analyzing-budgets/",
+    "publisher": "Consumer Financial Protection Bureau",
+    "scope": "Using planned spending and savings to meet present needs and future goals.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-saving",
+    "title": "School-age Children and Saving",
+    "url": "https://www.consumerfinance.gov/consumer-tools/money-as-you-grow/school-age-children-preteens/explore-saving/",
+    "publisher": "Consumer Financial Protection Bureau",
+    "scope": "Saving toward a goal in small amounts and tracking progress.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-fdic",
+    "title": "Money Smart Basics for Kids",
+    "url": "https://www.fdic.gov/consumer-resource-center/money-smart-basics-kids-full-packet.pdf",
+    "publisher": "Federal Deposit Insurance Corporation",
+    "scope": "Banks, checking and savings accounts, deposits, withdrawals, balances, loans, and interest.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-market",
+    "title": "Supply & Demand: How Do Markets Determine Price?",
+    "url": "https://www.federalreserveeducation.org/teaching-resources/economics/markets/supply-demand-infographic",
+    "publisher": "Federal Reserve Education",
+    "scope": "Supply and demand at different prices, effects on prices and shortages.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-inflation",
+    "title": "Prices & Inflation",
+    "url": "https://www.bea.gov/resources/learning-center/what-to-know-prices-inflation",
+    "publisher": "U.S. Bureau of Economic Analysis",
+    "scope": "Broad price changes, price indexes and purchasing power over time.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-trade",
+    "title": "International Trade",
+    "url": "https://guides.loc.gov/international-economics-and-trade/international-trade",
+    "publisher": "Library of Congress",
+    "scope": "Imports and exports of goods and services across national borders.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-standards",
+    "title": "Scope and Sequence for Economic Content",
+    "url": "https://www.stlouisfed.org/-/media/project/frbstl/stlouisfed/education/tools/pdf/scope_and_sequence_economics.pdf",
+    "publisher": "Federal Reserve Bank of St. Louis",
+    "scope": "Specialization, production, division of work and trade.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-taxes",
+    "title": "Understanding Taxes: Federal, State and Local Taxes",
+    "url": "https://apps.irs.gov/app/understandingTaxes/whys/thm04/les01/media/is1_thm04_les01.pdf",
+    "publisher": "Internal Revenue Service",
+    "scope": "Kinds and levels of taxes and examples of government services supported by tax revenue.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "econ-volunteer",
+    "title": "Volunteer",
+    "url": "https://www.americorps.gov/serve/volunteer",
+    "publisher": "AmeriCorps",
+    "scope": "Ways volunteers can work together on community needs such as schools, shelters and nonprofits.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "cult-oral",
+    "title": "Oral Traditions and Expressions",
+    "url": "https://ich.unesco.org/en/intangible-cultural-heritage-00053",
+    "publisher": "UNESCO Intangible Cultural Heritage",
+    "scope": "Spoken storytelling, verbal arts, and their transmission and variation across communities.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "cult-folktales",
+    "title": "Folktales and Oral Storytelling: Introduction",
+    "url": "https://guides.loc.gov/folktales-oral-storytelling",
+    "publisher": "Library of Congress",
+    "scope": "Storytelling practices and audiovisual recordings of tellers and spoken traditions.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "cult-verbal",
+    "title": "Narrative and Verbal Arts: Introduction",
+    "url": "https://guides.loc.gov/verbal-arts-folklife",
+    "publisher": "Library of Congress",
+    "scope": "Proverbs, jokes, legends, folk poetry, and other kinds of verbal arts.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "cult-heritage",
+    "title": "What Is Intangible Cultural Heritage?",
+    "url": "https://ich.unesco.org/en/what-is-intangible-cultural-heritage-00003",
+    "publisher": "UNESCO Intangible Cultural Heritage",
+    "scope": "Living skills, oral traditions and traditional craftsmanship passed down and changed by communities.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "cult-domains",
+    "title": "Intangible Heritage Domains in the 2003 Convention",
+    "url": "https://ich.unesco.org/en/intangible-heritage-domains-00052",
+    "publisher": "UNESCO Intangible Cultural Heritage",
+    "scope": "Festivals, social practices, food, music, dance, and traditional craftsmanship.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "cult-multilingual",
+    "title": "Multilingual Education: What You Need to Know",
+    "url": "https://www.unesco.org/en/languages-education/need-know",
+    "publisher": "UNESCO",
+    "scope": "Use of multiple languages in education and how a familiar language helps children learn new subjects.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "land-mont-tides",
+    "title": "The High Tides",
+    "url": "https://www.abbaye-mont-saint-michel.fr/en/discover/the-high-tides",
+    "publisher": "Centre des monuments nationaux",
+    "scope": "High tide turns the rocky mount into an island and water uncovers sand when it recedes.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  }
+]

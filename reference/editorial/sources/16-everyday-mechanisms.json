@@ -1,0 +1,488 @@
+[
+  {
+    "id": "mechanism-dishwasher",
+    "title": "Dishwasher Quick Start Guide",
+    "url": "https://www.whirlpool.com/content/dam/global/documents/202501/reference-sheet-w11361770-revb.pdf",
+    "publisher": "Whirlpool",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Racks, spray-arm clearance, normal operation and dishwasher water and energy use."
+  },
+  {
+    "id": "mechanism-washer",
+    "title": "How Does a Washing Machine Work?",
+    "url": "https://www.whirlpool.com/blog/washers-and-dryers/how-does-a-washing-machine-work.html",
+    "publisher": "Whirlpool",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Washer functions, agitation or tumbling, rinse, drain and spin."
+  },
+  {
+    "id": "mechanism-dryer",
+    "title": "How Does a Clothes Dryer Work?",
+    "url": "https://www.whirlpool.com/blog/washers-and-dryers/how-does-a-dryer-work.html",
+    "publisher": "Whirlpool",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Airflow, heating, tumbling, venting, moisture sensors and lint screening."
+  },
+  {
+    "id": "mechanism-heat-pump-dryer",
+    "title": "Heat Pump Dryers",
+    "url": "https://www.energystar.gov/products/clothes_dryers/heat-pump-dryer",
+    "publisher": "U.S. Environmental Protection Agency, ENERGY STAR",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Air circulation, moisture removal, water collection or drainage, and heat recovery."
+  },
+  {
+    "id": "mechanism-evaporation",
+    "title": "Evaporation, Condensation, and the Water Cycle",
+    "url": "https://www.cpp.edu/respect/resources/documents_5th/gr5.wc_content_background.pdf",
+    "publisher": "California State Polytechnic University, Pomona",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Evaporation, influence of wind and humidity, wet clothing and drying."
+  },
+  {
+    "id": "mechanism-cooling",
+    "title": "Energy Saver 101: Home Cooling",
+    "url": "https://www.energy.gov/downloads/energy-saver-101-home-cooling-infographic",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Circulating fans, wind-chill effect, body cooling and air conditioning."
+  },
+  {
+    "id": "mechanism-filters",
+    "title": "Air Cleaners and Air Filters in the Home",
+    "url": "https://www.epa.gov/indoor-air-quality-iaq/air-cleaners-and-air-filters-home",
+    "publisher": "U.S. Environmental Protection Agency",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Particle filters, portable air cleaners, and what filtration cannot remove."
+  },
+  {
+    "id": "mechanism-vacuum",
+    "title": "Filtration at Dyson",
+    "url": "https://www.dyson.com/discover/innovation/behind-the-invention/filtration-at-dyson",
+    "publisher": "Dyson",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Vacuum airflow, cyclone separation, and filter roles."
+  },
+  {
+    "id": "mechanism-smoke",
+    "title": "How Do Smoke Detectors Work?",
+    "url": "https://www.nist.gov/how-do-you-measure-it/how-do-smoke-detectors-work",
+    "publisher": "National Institute of Standards and Technology",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "How smoke scatters light in a photoelectric detector, ionization detectors and alarm function."
+  },
+  {
+    "id": "mechanism-thermostat",
+    "title": "HVAC Programmable Thermostats",
+    "url": "https://bsesc.energy.gov/energy-basics/hvac-programmable-thermostats",
+    "publisher": "U.S. Department of Energy, Building Science Education",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Thermostat control of heating and cooling systems and scheduled temperature settings."
+  },
+  {
+    "id": "mechanism-fridge",
+    "title": "Refrigerators Final Rule Technical Support Document",
+    "url": "https://www1.eere.energy.gov/buildings/appliance_standards/pdfs/refrig_finalrule_tsd.pdf",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Section 3.3.1.1 on refrigeration, heat transfer, evaporation and compression."
+  },
+  {
+    "id": "mechanism-microwave",
+    "title": "Microwave Ovens",
+    "url": "https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens",
+    "publisher": "U.S. Food and Drug Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Microwave production, interaction with food and metals, heat spread and door protections."
+  },
+  {
+    "id": "mechanism-pressure",
+    "title": "Phase Transitions",
+    "url": "https://pressbooks-dev.oer.hawaii.edu/chemistry/chapter/phase-transitions/",
+    "publisher": "University of Hawaiʻi Pressbooks",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Relationship between pressure, boiling point and cooking temperatures."
+  },
+  {
+    "id": "mechanism-vacuum-bottle",
+    "title": "National Register of Historic Places Inventory, Thermos Company Historic District",
+    "url": "https://npgallery.nps.gov/NRHP/GetAsset/NRHP/88003091_text",
+    "publisher": "National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Development and operation of insulated vacuum bottles, and two-way reduction of heat transfer."
+  },
+  {
+    "id": "mechanism-zipper",
+    "title": "History of the Zipper",
+    "url": "https://ykkamericas.com/history-of-the-zipper/",
+    "publisher": "YKK Americas",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Interlocking rows of teeth and development of the separable fastener."
+  },
+  {
+    "id": "mechanism-hook-loop",
+    "title": "Hook and Loop",
+    "url": "https://www.velcro.com/hook-and-loop/",
+    "publisher": "Velcro Companies",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Tiny hooks and loops, reusable engagement and types of fastening."
+  },
+  {
+    "id": "mechanism-stapler",
+    "title": "Stapler Having a Clinching Mechanism",
+    "url": "https://patents.google.com/patent/US5516025A/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Typical stapler drive and anvil, including the bending of staple legs."
+  },
+  {
+    "id": "mechanism-pencil",
+    "title": "Mechanical Pencil",
+    "url": "https://patents.google.com/patent/US5004362A/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Push-type mechanical pencil chuck that grips and advances the lead."
+  },
+  {
+    "id": "mechanism-sharpener",
+    "title": "Pencil Sharpener",
+    "url": "https://patents.google.com/patent/US2254772A/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Crank-driven pencil sharpener with rotating cutter elements."
+  },
+  {
+    "id": "mechanism-ballpoint",
+    "title": "Pen, Ball Point, AG-7, Apollo",
+    "url": "https://www.si.edu/object/pen-ball-point-ag-7-apollo%3Anasm_A19700109000",
+    "publisher": "Smithsonian National Air and Space Museum",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Ink transfer through the pen’s tip ball and a pressurized space pen example."
+  },
+  {
+    "id": "mechanism-click-pen",
+    "title": "Writing Instrument With Projecting and Retracting Mechanism",
+    "url": "https://patents.google.com/patent/US3955893A/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "An example of a writing pen whose internal cam alternates between an extended and a retracted cartridge."
+  },
+  {
+    "id": "mechanism-tape",
+    "title": "Hand Held Tape Dispenser",
+    "url": "https://patents.google.com/patent/US20030085250A1/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Tape is unwound from a roll and cut with a serrated edge."
+  },
+  {
+    "id": "mechanism-suction",
+    "title": "Balloon and Cup Attraction",
+    "url": "https://www.scienceworld.ca/resource/balloon-and-cup-attraction-windbag/",
+    "publisher": "Science World",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Air pressure difference as an explanation for a sealed cup staying attached."
+  },
+  {
+    "id": "mechanism-simple-machines",
+    "title": "Simple Machines",
+    "url": "https://openstax.org/books/physics/pages/9-3-simple-machines",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Levers, wedges, pulley force direction, mechanical advantage and tradeoffs."
+  },
+  {
+    "id": "mechanism-clothespin",
+    "title": "Clothespin",
+    "url": "https://patents.google.com/patent/US2591596A/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "A two-piece clothespin with spring and grip."
+  },
+  {
+    "id": "mechanism-toilet",
+    "title": "How a Toilet Flushes",
+    "url": "https://assist.kohler.com/en/toilets-and-seats/How-a-Toilet-Flushes",
+    "publisher": "Kohler",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Fill valve, flush valve, tank water and the siphoning action of common toilets."
+  },
+  {
+    "id": "mechanism-wicking",
+    "title": "Capillary Action and Water",
+    "url": "https://www.usgs.gov/water-science-school/science/capillary-action-and-water",
+    "publisher": "U.S. Geological Survey",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Water moving in narrow gaps, and the example of paper towel fibers."
+  },
+  {
+    "id": "mechanism-bicycle-drive",
+    "title": "The Safety Bicycle and Beyond",
+    "url": "https://www.si.edu/spotlight/si-bikes/si-bikes-safety",
+    "publisher": "Smithsonian Institution",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Chain-driven rear wheel, arrangements of wheels, and bicycle gears."
+  },
+  {
+    "id": "mechanism-freewheel",
+    "title": "Bicycle Rear Hub Drive Mechanism",
+    "url": "https://patents.google.com/patent/US12454150B2/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Power transfer in one direction and bicycle wheels continuing to turn when pedaling stops."
+  },
+  {
+    "id": "mechanism-bicycle-brake",
+    "title": "How Your Hydraulic Disc Brakes Work",
+    "url": "https://www.bicycling.com/repair/a20019608/how-your-hydraulic-disc-brakes-work/",
+    "publisher": "Bicycling",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Hydraulic disc brakes, common rim brakes, pads and calipers."
+  },
+  {
+    "id": "mechanism-pump",
+    "title": "Hand Pump with Air Storage Tank",
+    "url": "https://patents.google.com/patent/US20180340524A1/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "An illustration of bicycle-pump operation with a piston, pressure and one-way valve."
+  },
+  {
+    "id": "mechanism-differential",
+    "title": "Differentials",
+    "url": "https://www.eaton.com/us/en-us/products/differentials-traction-control.html",
+    "publisher": "Eaton",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Differentials transmit power while allowing wheels to turn independently."
+  },
+  {
+    "id": "mechanism-regeneration",
+    "title": "Hybrid Electric Vehicles",
+    "url": "https://afdc.energy.gov/vehicles/electric-basics-hev",
+    "publisher": "U.S. Department of Energy, Alternative Fuels Data Center",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Using the motor as a generator to collect some braking energy and store it in the battery."
+  },
+  {
+    "id": "mechanism-crumple",
+    "title": "Vehicle Size and Weight",
+    "url": "https://www.iihs.org/research-areas/vehicle-size-and-weight",
+    "publisher": "Insurance Institute for Highway Safety",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "The part of the vehicle in front of the passenger area can deform and absorb impact energy."
+  },
+  {
+    "id": "mechanism-track",
+    "title": "Track",
+    "url": "https://www.networkrail.co.uk/our-work/looking-after-the-railway/track/",
+    "publisher": "Network Rail",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Steel rails, rail supports, ballast support, track geometry and track maintenance."
+  },
+  {
+    "id": "mechanism-train-wheel",
+    "title": "U.S. Transit Track Restraining Rail Study, Volume I",
+    "url": "https://railroads.dot.gov/sites/fra.dot.gov/files/fra_net/16126/1981_U%20S%20TRANSIT%20TRACK%20RESTRAINING%20RAIL%20VOLUME%20I%20-%20STUD.PDF",
+    "publisher": "U.S. Department of Transportation, Federal Railroad Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Tapered wheels, rolling radii on curves, and the role of wheel flanges and rails."
+  },
+  {
+    "id": "mechanism-grade-crossing",
+    "title": "Highway-Rail Grade Crossings Overview",
+    "url": "https://railroads.dot.gov/program-areas/highway-rail-grade-crossing/highway-rail-grade-crossings-overview",
+    "publisher": "Federal Railroad Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Crossings where the road and tracks meet, signs, bells, gates and lights."
+  },
+  {
+    "id": "mechanism-ferry",
+    "title": "Anacortes and San Juan Islands Walk-On Maximization Study",
+    "url": "https://wsdot.wa.gov/sites/default/files/2024-01/WSF-Anacortes-San-Juan-Islands-Walk-On-Maximization-Study-December2023.pdf",
+    "publisher": "Washington State Department of Transportation",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Vehicle decks and ferry boarding arrangements for cars and foot passengers."
+  },
+  {
+    "id": "mechanism-tug",
+    "title": "Inventory of Air Emissions 2023",
+    "url": "https://kentico.portoflosangeles.org/getmedia/3fad9979-f2cb-4b3d-bf82-687434cbd628/2023-Air-Emissions-Inventory",
+    "publisher": "Port of Los Angeles",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Harbor tug activity, including pushing or towing vessels and assisting with ship movement."
+  },
+  {
+    "id": "mechanism-containers",
+    "title": "Inland Container Shipping Guidelines",
+    "url": "https://www.portofrotterdam.com/sites/default/files/2021-06/inland-container-shipping-guidelines.pdf",
+    "publisher": "Port of Rotterdam",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Transfer of shipping containers between vessels, trains and trucks, using terminal cranes."
+  },
+  {
+    "id": "mechanism-landing-gear",
+    "title": "Pilot’s Handbook of Aeronautical Knowledge",
+    "url": "https://www.faa.gov/sites/faa.gov/files/2022-03/pilot_handbook.pdf",
+    "publisher": "Federal Aviation Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Fixed and retractable landing gear, shock absorption, wheels and other landing-gear layouts."
+  },
+  {
+    "id": "mechanism-airplane-braking",
+    "title": "Airplane Flying Handbook, Transition to Jet-Powered Airplanes",
+    "url": "https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/airplane_handbook/17_afh_ch16.pdf",
+    "publisher": "Federal Aviation Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Landing roll, spoilers, thrust reversers and wheel braking in jet aircraft."
+  },
+  {
+    "id": "mechanism-doorbell",
+    "title": "Doorbell Device with Current Determination and Configuration Feature",
+    "url": "https://patents.google.com/patent/CA3247395A1/en",
+    "publisher": "Canadian Intellectual Property Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Description of a traditional electromechanical chime, including the electromagnet and clapper."
+  },
+  {
+    "id": "mechanism-optical-mouse",
+    "title": "Pointing Device with Adaptive Illumination Level",
+    "url": "https://patents.google.com/patent/US20050110776A1/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "How an optical mouse uses light and successive images to measure movement."
+  },
+  {
+    "id": "mechanism-spray-bottle",
+    "title": "Trigger Spray Valve Body with Pass Through Filling Path",
+    "url": "https://patents.google.com/patent/US20190054487A1/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Trigger-driven piston, liquid drawn from the container, valve and delivery nozzle."
+  },
+  {
+    "id": "mechanism-tape-measure",
+    "title": "Compact Tape Measure Retraction Mechanism",
+    "url": "https://patents.google.com/patent/US11460283B1/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Tape spool, wound springs and retraction in a tape measure."
+  },
+  {
+    "id": "mechanism-sewing",
+    "title": "The Willcox & Gibbs High-Speed Lockstitch Machine",
+    "url": "https://www.sil.si.edu/DigitalCollections/Trade-Literature/Sewing-Machines/pdf/sil10-227.pdf",
+    "publisher": "Smithsonian Libraries and Archives, Trade Literature Collection",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "A lockstitch sewing machine, its upper thread, bobbin, shuttle and feed mechanism."
+  },
+  {
+    "id": "mechanism-sewing-example",
+    "title": "1946 Experimental Sewing Machine, Malcolm Parks for Singer",
+    "url": "https://www.si.edu/object/1946-experimental-sewing-machine-malcolm-parks-singer%3Anmah_1155252",
+    "publisher": "Smithsonian Institution, National Museum of American History",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "A museum example of a machine that makes lockstitches using an oscillating shuttle and a bobbin."
+  },
+  {
+    "id": "mechanism-rice-cooker",
+    "title": "Method and Device for Controlling Heating Temperature of Electric Rice Cooker",
+    "url": "https://patents.google.com/patent/US10653264B2/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "One rice cooker’s temperature sensing and control during different cooking stages."
+  },
+  {
+    "id": "mechanism-can-opener",
+    "title": "Can Opener",
+    "url": "https://patents.google.com/patent/US7353607B2/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Description of a common hand can opener, its pivoted handles, traction wheel and cutter."
+  },
+  {
+    "id": "mechanism-bottle-opener",
+    "title": "Bottle-Cap Remover",
+    "url": "https://patents.google.com/patent/US1628715A/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Hand tool lifting a crown cap around a bearing point."
+  },
+  {
+    "id": "mechanism-tongs",
+    "title": "Enhanced Tongs",
+    "url": "https://patents.google.com/patent/US20160278579A1/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Kitchen tongs with two arms, a pivot, a spring and gripping ends."
+  },
+  {
+    "id": "mechanism-ice-tray",
+    "title": "Ice Cube Tray",
+    "url": "https://patents.google.com/patent/US20050151050A1/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "A flexible tray partly deforming to release ice."
+  },
+  {
+    "id": "mechanism-door-closer",
+    "title": "Door Closer",
+    "url": "https://patents.google.com/patent/US7464437B2/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Automatic closing with a spring, while oil flows through narrow paths to control speed."
+  }
+]

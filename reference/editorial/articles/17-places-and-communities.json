@@ -1,0 +1,2314 @@
+[
+  {
+    "id": "map-scale",
+    "title": "How can you measure a real distance on a map?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A map scale tells how much real distance a length on the map stands for. If one centimeter stands for one kilometer, a straight line three centimeters long stands for three kilometers. Many maps have a little marked bar that you can use like a ruler. A trail that twists around hills can be much longer than the straight line between its start and finish.",
+    "aliases": [
+      "what is a map scale",
+      "read the map scale bar",
+      "distance on a map"
+    ],
+    "facts": [
+      "If a copy makes a whole map larger or smaller, the printed scale bar changes along with it and still gives the right distance."
+    ],
+    "terms": [
+      "scale",
+      "map scale"
+    ],
+    "questions": [
+      {
+        "text": "How can a flat map show hills?",
+        "target": "topographic-maps"
+      },
+      {
+        "text": "What does the key on a map explain?",
+        "target": "map-legend"
+      },
+      {
+        "text": "Why can a world map stretch some places?",
+        "target": "map-projection"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-book"
+    ]
+  },
+  {
+    "id": "map-legend",
+    "title": "What does a map legend tell you?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A map legend is a guide to the marks and colors on a map. A blue line might show a stream, while a different line might show a road or a border. The same symbol can mean different things on two kinds of maps, so check the legend before guessing. A useful map marks just the features that help its reader, such as trails on a park map.",
+    "aliases": [
+      "what is a map key",
+      "symbols on a map",
+      "map legend for kids"
+    ],
+    "facts": [
+      "A map legend is often called a key."
+    ],
+    "terms": [
+      "map legend"
+    ],
+    "questions": [
+      {
+        "text": "How do you tell how far apart places are on a map?",
+        "target": "map-scale"
+      },
+      {
+        "text": "What can brown lines on some maps show?",
+        "target": "contour-lines"
+      },
+      {
+        "text": "What kinds of details does a topographic map show?",
+        "target": "topographic-maps"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-symbols",
+      "maps-book"
+    ]
+  },
+  {
+    "id": "topographic-maps",
+    "title": "How can a flat map show hills and valleys?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A topographic map shows the shape of land along with features such as rivers and roads. Many use contour lines, which trace places at the same height. Picture taking an overhead photo of a stack of paper rings of different sizes. Each ring stands for a different height on a hill. The drawn rings are flat, but together they give you clues about the hill’s shape.",
+    "aliases": [
+      "what is a topographic map",
+      "topo map",
+      "what can a topo map show"
+    ],
+    "facts": [
+      "Topographic maps can show different levels of detail, depending on the area and the map’s scale."
+    ],
+    "terms": [
+      "scale",
+      "topographic map",
+      "contour line"
+    ],
+    "questions": [
+      {
+        "text": "What does a single contour line tell you?",
+        "target": "contour-lines"
+      },
+      {
+        "text": "How do you measure distance on a map?",
+        "target": "map-scale"
+      },
+      {
+        "text": "How can ice carve a U-shaped valley?",
+        "target": "glacial-valleys"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-topo",
+      "maps-book"
+    ]
+  },
+  {
+    "id": "contour-lines",
+    "title": "How can contour lines show whether a slope is steep?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A contour line connects spots that are all at the same height. Think of climbing a hill. You cross each new line when you reach another marked height. Where the lines sit close together, you gain height in a short distance, so the slope is steep. Where those same steps in height are spread far apart, the slope is gentler. Closed rings can help show the shape of a hill.",
+    "aliases": [
+      "contours close together",
+      "read contour lines",
+      "contour line slope"
+    ],
+    "facts": [
+      "A map may tell you the difference in height between one normal contour and the next."
+    ],
+    "terms": [
+      "contour line"
+    ],
+    "questions": [
+      {
+        "text": "What is a topographic map?",
+        "target": "topographic-maps"
+      },
+      {
+        "text": "Where can you find out what map marks mean?",
+        "target": "map-legend"
+      },
+      {
+        "text": "What does altitude measure?",
+        "target": "altitude"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-topo",
+      "maps-book"
+    ]
+  },
+  {
+    "id": "map-orientation",
+    "title": "Why do walkers turn a map to match the ground?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Imagine that a straight road on a map points right, but when you look up, that same stretch of road points straight ahead. You can turn the map so the lines point in the same direction. Now a park on the left side of the road on the map will be on your left as you walk that way. The north arrow or a compass can help when you know which way north is.",
+    "aliases": [
+      "how to orient a map",
+      "which way is north on a map",
+      "using map and compass"
+    ],
+    "facts": [
+      "Check the north mark because north does not have to be at the top of a map."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does a magnetic compass point?",
+        "target": "magnetic-compasses"
+      },
+      {
+        "text": "What do the marks on a map mean?",
+        "target": "map-legend"
+      },
+      {
+        "text": "What kind of map shows the shape of land?",
+        "target": "topographic-maps"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-compass"
+    ]
+  },
+  {
+    "id": "time-zones",
+    "title": "Why do clocks show different times in different places?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Earth spins about once a day. When the Sun is high over one part of Earth, another part can be dark. Many places set their clocks so that noon is roughly around the bright middle of their day. They do this by using time zones, or areas that agree on a clock time. Borders of those zones can bend so that neighbors use the same clock.",
+    "aliases": [
+      "why do time zones exist",
+      "how time zones work",
+      "why clocks show different times"
+    ],
+    "facts": [
+      "Some places differ from nearby zones by half an hour, and clock rules can change from place to place."
+    ],
+    "terms": [
+      "time zone"
+    ],
+    "questions": [
+      {
+        "text": "Where can crossing a line change the date?",
+        "target": "international-date-line"
+      },
+      {
+        "text": "How do you tell how far east or west a place is?",
+        "target": "longitude"
+      },
+      {
+        "text": "Why do flat maps show some parts of Earth stretched out?",
+        "target": "map-projection"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-time",
+      "maps-offsets"
+    ]
+  },
+  {
+    "id": "international-date-line",
+    "title": "How can crossing a line change the date?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The International Date Line runs through the Pacific Ocean. It is a line people use to keep track of which date it is around the world. When a traveler crosses it heading west, the date moves one day ahead. In the opposite direction, the date moves one day back. The line bends in places so people on nearby islands can use the same date.",
+    "aliases": [
+      "what is the international date line",
+      "why date line bends",
+      "gain a day flying west"
+    ],
+    "facts": [
+      "The Date Line runs roughly along the line marking 180 degrees of longitude."
+    ],
+    "terms": [
+      "longitude"
+    ],
+    "questions": [
+      {
+        "text": "Why do different places use different clock times?",
+        "target": "time-zones"
+      },
+      {
+        "text": "Where does the world start counting longitude?",
+        "target": "prime-meridian"
+      },
+      {
+        "text": "What are the lines running from pole to pole called?",
+        "target": "longitude"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-dateline",
+      "maps-time"
+    ]
+  },
+  {
+    "id": "prime-meridian",
+    "title": "What is the prime meridian?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A meridian is an imagined line between the North Pole and South Pole. The prime meridian is the line given the number zero so people can measure how far east or west places are. It runs through the Greenwich area of London in the United Kingdom. The zero line plays a role like the first mark on a ruler, although the measurements here are made in degrees.",
+    "aliases": [
+      "where is zero longitude",
+      "what is greenwich meridian",
+      "zero degrees east west"
+    ],
+    "facts": [
+      "The line on the opposite side of Earth is at 180 degrees longitude."
+    ],
+    "terms": [
+      "longitude"
+    ],
+    "questions": [
+      {
+        "text": "How do degrees of longitude tell you where a place is?",
+        "target": "longitude"
+      },
+      {
+        "text": "Which line helps us measure north and south?",
+        "target": "equator"
+      },
+      {
+        "text": "How can travelers cross into a different date?",
+        "target": "international-date-line"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-longitude"
+    ]
+  },
+  {
+    "id": "map-grids",
+    "title": "How does a letter-and-number grid help you find a place?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A map grid divides a map into little squares. A row or column of letters and a row or column of numbers can give each square a name, such as B3. To find B3, follow the band marked B until you reach the band numbered 3. The grid gets you to the right area so you can look for the exact park, street, or building.",
+    "aliases": [
+      "how do map grids work",
+      "map grid square",
+      "what does B3 mean on a map"
+    ],
+    "facts": [
+      "A letter-and-number grid helps you search one map. Latitude and longitude can tell people where to look anywhere on Earth."
+    ],
+    "terms": [
+      "latitude",
+      "longitude"
+    ],
+    "questions": [
+      {
+        "text": "How can you recognize a park or road symbol?",
+        "target": "map-legend"
+      },
+      {
+        "text": "How can you measure the length of a road on the map?",
+        "target": "map-scale"
+      },
+      {
+        "text": "How does a globe grid mark how far north a place is?",
+        "target": "latitude"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-book",
+      "maps-longitude",
+      "maps-grid"
+    ]
+  },
+  {
+    "id": "peninsulas",
+    "title": "When is a piece of land called a peninsula?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A peninsula sticks out into water but stays joined to a larger piece of land. Most of Florida reaches out between the Atlantic Ocean and the Gulf of Mexico, and a road can take you there without crossing either sea. Peninsulas come in different sizes. On a map, you can look for the place where water runs along the edges and a solid stretch of land still connects to the rest.",
+    "aliases": [
+      "what is a peninsula",
+      "is a peninsula an island",
+      "florida peninsula"
+    ],
+    "facts": [
+      "A peninsula is still connected to other land, while an island is surrounded by water."
+    ],
+    "terms": [
+      "peninsula"
+    ],
+    "questions": [
+      {
+        "text": "What do we call a narrow piece of land joining two larger ones?",
+        "target": "isthmuses"
+      },
+      {
+        "text": "What do we call a whole group of islands?",
+        "target": "archipelagos"
+      },
+      {
+        "text": "Which large lakes sit near the U.S. and Canada border?",
+        "target": "great-lakes-overview"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-peninsula"
+    ]
+  },
+  {
+    "id": "isthmuses",
+    "title": "What is an isthmus?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "An isthmus is a narrow piece of land that connects two larger pieces of land, with water on both sides. Look for the narrow spot of Panama between the wider lands of North and South America. That land was a barrier for boats that needed to get from one ocean to the other. People built a canal across it so ships could take a shorter route.",
+    "aliases": [
+      "narrow strip of land connecting two land areas",
+      "isthmus of panama",
+      "isthmus versus peninsula"
+    ],
+    "facts": [
+      "A trail across an isthmus follows land. A strait is a passage through water."
+    ],
+    "terms": [
+      "isthmus"
+    ],
+    "questions": [
+      {
+        "text": "How did the Panama Canal change a ship’s journey?",
+        "target": "panama-canal-history"
+      },
+      {
+        "text": "How can a piece of land stick out into water and still meet the mainland?",
+        "target": "peninsulas"
+      },
+      {
+        "text": "How does a canal lock move a boat up or down?",
+        "target": "canal-locks"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-isthmus"
+    ]
+  },
+  {
+    "id": "archipelagos",
+    "title": "What is an archipelago?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "An archipelago is a group of islands. Some groups make a long chain and others look like scattered dots on a map. Islands in a chain can be peaks of volcanoes that rose above the water. A group of islands can also have another beginning, such as coral growing in shallow water over time. Islands in the same group may differ in size, shape, and wildlife.",
+    "aliases": [
+      "group or chain of islands",
+      "how island chains form",
+      "what is an island group"
+    ],
+    "facts": [
+      "The Galápagos Islands are an archipelago in the Pacific Ocean."
+    ],
+    "terms": [
+      "archipelago"
+    ],
+    "questions": [
+      {
+        "text": "What makes the Galápagos Islands special?",
+        "target": "galapagos-islands"
+      },
+      {
+        "text": "What is different about a peninsula?",
+        "target": "peninsulas"
+      },
+      {
+        "text": "How do small animals build coral reefs?",
+        "target": "coral-reefs"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-archipelago"
+    ]
+  },
+  {
+    "id": "straits",
+    "title": "What is a strait?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A strait is a narrow stretch of water that links two larger bodies of water. It lies between pieces of land. For example, the Strait of Gibraltar links the Atlantic Ocean and the Mediterranean Sea. A strait can matter to people who move goods by ship because it may offer a short way from one sea into another. Most straits are natural passages.",
+    "aliases": [
+      "what is a narrow passage of water called",
+      "strait of gibraltar",
+      "strait versus canal"
+    ],
+    "facts": [
+      "A canal is a waterway people make or change to let water or boats pass. A strait generally forms naturally."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What do you call a narrow strip of land between two bodies of water?",
+        "target": "isthmuses"
+      },
+      {
+        "text": "How did a human-made passage change ocean travel?",
+        "target": "panama-canal-history"
+      },
+      {
+        "text": "Why are some coastal cities ports?",
+        "target": "maps-ports"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-strait"
+    ]
+  },
+  {
+    "id": "plateaus",
+    "title": "What makes a plateau different from a mountain peak?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A plateau is a high area of land with a broad, fairly level top. A single sharp mountain peak comes to a much smaller point. Rivers can cut deep valleys across a plateau over a long time, leaving level parts of land high on either side. As you look across one of those valleys, the high land on both sides may look almost like one tabletop cut into pieces.",
+    "aliases": [
+      "plateau landform",
+      "high flat land",
+      "what is a plateau"
+    ],
+    "facts": [
+      "The Colorado Plateau is a large high region that includes the Grand Canyon."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How did the Grand Canyon become so deep?",
+        "target": "grand-canyon"
+      },
+      {
+        "text": "How can water slowly carve solid rock?",
+        "target": "river-canyons"
+      },
+      {
+        "text": "What shapes rise from a plateau in Türkiye?",
+        "target": "cappadocia-rock-sites"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-plateau"
+    ]
+  },
+  {
+    "id": "drainage-divides",
+    "title": "Where does water go on the two sides of the Rocky Mountain divide?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "In Rocky Mountain National Park, the high ridge known as the Continental Divide sends rain and melted snow along very different routes. Streams on the west side of the ridge feed the Colorado River. Streams on the east side join rivers that eventually reach the Mississippi. Two drops can land close together near the top of the ridge, then join streams that take them far apart as they flow downhill.",
+    "aliases": [
+      "rocky mountain continental divide",
+      "watershed divide in colorado",
+      "which way does rainwater flow in rocky mountain national park"
+    ],
+    "facts": [
+      "A drainage divide is high ground that separates land where water flows into different rivers or lakes."
+    ],
+    "terms": [
+      "watershed",
+      "drainage divide"
+    ],
+    "questions": [
+      {
+        "text": "How can you tell where the streams of one watershed lead?",
+        "target": "watersheds"
+      },
+      {
+        "text": "How can several streams join one river?",
+        "target": "tributary-streams"
+      },
+      {
+        "text": "How can a map help you see high ground and valleys?",
+        "target": "topographic-maps"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-watershed",
+      "maps-continental"
+    ]
+  },
+  {
+    "id": "tributary-streams",
+    "title": "Why do little streams join larger rivers?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A tributary is a stream or river that flows into a bigger stream or river. As water runs downhill, small streams often meet and make a larger flow. Look at a river map and you may see a pattern like the branches of a tree. Some little branches join bigger branches, and the bigger ones meet the main river. The land that drains to a common place is called a watershed.",
+    "aliases": [
+      "what is a tributary",
+      "stream going into a river",
+      "what is a stream junction"
+    ],
+    "facts": [
+      "Where two streams meet, water can continue downstream in one channel."
+    ],
+    "terms": [
+      "watershed"
+    ],
+    "questions": [
+      {
+        "text": "How can the shape of land send water into two different rivers?",
+        "target": "drainage-divides"
+      },
+      {
+        "text": "Why can a river spread beyond its channel?",
+        "target": "floodplains"
+      },
+      {
+        "text": "Which huge river system crosses much of northern South America?",
+        "target": "amazon-river"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-watershed"
+    ]
+  },
+  {
+    "id": "great-lakes-overview",
+    "title": "Which lakes make up the Great Lakes?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Superior, Michigan, Huron, Erie, and Ontario are the five Great Lakes in North America. They are huge bodies of fresh water, and water moves between them through connected rivers and waterways. Four of the five touch both the United States and Canada. Lake Michigan lies entirely within the United States. The linked waterway lets some ships travel inland from the Atlantic through the St. Lawrence Seaway.",
+    "aliases": [
+      "name the five great lakes",
+      "great lakes connected",
+      "great lakes united states canada"
+    ],
+    "facts": [
+      "The Great Lakes hold fresh water, even though someone standing on a shore may not see across them."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can water in a large lake help make snow?",
+        "target": "lake-effect-snow"
+      },
+      {
+        "text": "Why did people build a canal across New York?",
+        "target": "erie-canal"
+      },
+      {
+        "text": "How do inland water routes help some cities become ports?",
+        "target": "maps-ports"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-greatlakes",
+      "maps-epa"
+    ]
+  },
+  {
+    "id": "maps-ports",
+    "title": "What makes a city a port?",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "A port is a place where boats or ships can stop to load or unload people or goods. Some ports are along the ocean and others sit beside rivers or lakes. Many ships tie up at a dock, where workers can lift boxes or roll goods onto land. Trains and trucks may carry those goods farther from the water. A city can grow near a port because many people work and trade there.",
+    "aliases": [
+      "where ships load and unload",
+      "what is a port city",
+      "port and harbor"
+    ],
+    "facts": [
+      "The Great Lakes and the St. Lawrence Seaway connect ports far inland with the Atlantic Ocean."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Which lakes are linked to the Atlantic Ocean?",
+        "target": "great-lakes-overview"
+      },
+      {
+        "text": "What is the difference between goods sent away and goods brought in?",
+        "target": "trade-imports-exports"
+      },
+      {
+        "text": "What is a narrow water passage between seas?",
+        "target": "straits"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-greatlakes",
+      "maps-port"
+    ]
+  },
+  {
+    "id": "old-faithful",
+    "title": "What makes Old Faithful famous?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Old Faithful is a geyser in Yellowstone National Park. Water under the ground gets very hot, and steam and water rush out when enough pressure builds. The time between bursts changes, but people can often predict the next one from what happened in the last burst. That useful pattern is what makes it worth waiting to see. The geyser does not need a pump or anyone to turn it on.",
+    "aliases": [
+      "old faithful geyser",
+      "yellowstone eruption old faithful",
+      "how does old faithful work"
+    ],
+    "facts": [
+      "Old Faithful is one of many geysers in Yellowstone National Park."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What happens under a geyser between bursts?",
+        "target": "geyser-plumbing"
+      },
+      {
+        "text": "Why did people protect Yellowstone as a park?",
+        "target": "yellowstone"
+      },
+      {
+        "text": "How can a volcano help make a lake?",
+        "target": "crater-lake-oregon"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-oldfaithful",
+      "land-yellowstone"
+    ]
+  },
+  {
+    "id": "yosemite-valley",
+    "title": "What shaped Yosemite Valley?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Yosemite Valley in California has huge granite cliffs, including El Capitan. Granite is a hard rock that formed when melted rock cooled deep underground. Later, glaciers moved through the valley. The heavy ice scraped rock and carried pieces away, helping make the valley wide and steep sided. As the ice melted, it left a valley with tall walls and streams that spill over the cliffs as waterfalls.",
+    "aliases": [
+      "how was yosemite valley formed",
+      "el capitan yosemite valley",
+      "granite cliffs california"
+    ],
+    "facts": [
+      "You can see the valley’s wide U shape from above in some parts of Yosemite."
+    ],
+    "terms": [
+      "glacier"
+    ],
+    "questions": [
+      {
+        "text": "Why does a valley carved by ice often have a U shape?",
+        "target": "glacial-valleys"
+      },
+      {
+        "text": "How can melted rock turn into solid stone?",
+        "target": "igneous-rock"
+      },
+      {
+        "text": "How can a map show a deep valley?",
+        "target": "topographic-maps"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-yosemite"
+    ]
+  },
+  {
+    "id": "arches-national-park",
+    "title": "Why are there so many rock arches in Arches National Park?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "In eastern Utah, Arches National Park has many openings through red sandstone. Sandstone is made of grains that have stuck together into rock. Here, cracks and softer parts of the rock give water routes to work through. As pieces loosen and wear away, some openings grow. A hard rim can stay above a hole for a long time, making a natural arch. Arches can also break as the rock keeps changing.",
+    "aliases": [
+      "natural arches utah",
+      "delicate arch and other sandstone arches",
+      "arches national park geology"
+    ],
+    "facts": [
+      "The famous Delicate Arch is one of many natural stone openings in the park."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can a hole slowly become a natural arch?",
+        "target": "natural-stone-arches"
+      },
+      {
+        "text": "How can sand turn into solid rock?",
+        "target": "sedimentary-rock"
+      },
+      {
+        "text": "What is a plateau?",
+        "target": "plateaus"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-arches"
+    ]
+  },
+  {
+    "id": "mammoth-cave",
+    "title": "How did Mammoth Cave get so many tunnels?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "In Mammoth Cave in Kentucky, layers of limestone contain a maze of passages. Rain picks up gases from the air and soil, making water that can slowly dissolve limestone. It slips through tiny cracks and makes some of them larger. Changes in where water can flow over time can leave tunnels on different levels. Many passages above the present underground streams are dry enough for people to walk through.",
+    "aliases": [
+      "mammoth cave passages",
+      "how did mammoth cave form",
+      "where is mammoth cave"
+    ],
+    "facts": [
+      "Limestone and moving water helped make the cave. Its name describes its huge size."
+    ],
+    "terms": [
+      "limestone"
+    ],
+    "questions": [
+      {
+        "text": "How can shells and mud become limestone?",
+        "target": "limestone"
+      },
+      {
+        "text": "What guides water into different streams?",
+        "target": "drainage-divides"
+      },
+      {
+        "text": "How did water make natural dams in Croatia?",
+        "target": "plitvice-lakes"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-mammoth"
+    ]
+  },
+  {
+    "id": "everglades-national-park",
+    "title": "Why are the Everglades called a river of grass?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "In South Florida, fresh water can move slowly across flat land in a broad, shallow sheet. Sawgrass and other plants grow up through it, so parts of the wetland can look more like a prairie than a narrow river. The amount of water changes with the seasons. Farther south, fresh water mixes with salt water. Where water comes from and how long it stays help shape which plants and animals can live there.",
+    "aliases": [
+      "everglades florida river of grass",
+      "everglades sheet flow",
+      "why is everglades water shallow"
+    ],
+    "facts": [
+      "Wetland channels called sloughs usually stay flooded longer than slightly higher ground nearby."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Why does high water sometimes spread across flat land?",
+        "target": "floodplains"
+      },
+      {
+        "text": "Why do some coastal trees grow roots above the ground?",
+        "target": "mangrove-forest"
+      },
+      {
+        "text": "How can small streams join a bigger river?",
+        "target": "tributary-streams"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-everglades",
+      "land-everglades-slough"
+    ]
+  },
+  {
+    "id": "crater-lake-oregon",
+    "title": "How did a volcano help form Crater Lake?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Crater Lake in Oregon fills a deep bowl where a great volcano once stood. After an enormous eruption, the inside of Mount Mazama could no longer hold up the rock above it. Part of the mountain collapsed, making a basin called a caldera. Rain and melting snow later collected in the basin. There is no large river flowing in, and the lake can look deep blue when the sky is clear.",
+    "aliases": [
+      "crater lake oregon how it formed",
+      "mount mazama collapse",
+      "crater lake caldera"
+    ],
+    "facts": [
+      "Wizard Island formed from volcanic activity after the large collapse."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Why do volcanoes erupt?",
+        "target": "volcanoes"
+      },
+      {
+        "text": "How can heat underground send up a geyser?",
+        "target": "old-faithful"
+      },
+      {
+        "text": "What guides where water flows on a hill?",
+        "target": "drainage-divides"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-crater"
+    ]
+  },
+  {
+    "id": "devils-tower",
+    "title": "Why does Devils Tower look like a bundle of stone pillars?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Devils Tower rises above nearby land in Wyoming. When melted rock underground cooled long ago, it shrank and cracked. The cracks separated the hard rock into tall columns, many with several flat sides. Softer rock around it wore away over many years, leaving the columns standing above the ground. Scientists agree about much of that story, but are still studying exactly how the original melted rock reached its place.",
+    "aliases": [
+      "devils tower rock columns",
+      "what made devils tower",
+      "devils tower wyoming cracks"
+    ],
+    "facts": [
+      "The rocks piled at the base include pieces that broke from the tower."
+    ],
+    "terms": [
+      "erosion"
+    ],
+    "questions": [
+      {
+        "text": "How does melted rock become solid?",
+        "target": "igneous-rock"
+      },
+      {
+        "text": "Where can you walk near flat-topped stone columns?",
+        "target": "giants-causeway"
+      },
+      {
+        "text": "How can the land change as rock wears away?",
+        "target": "erosion"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-devils",
+      "land-devils-boulders"
+    ]
+  },
+  {
+    "id": "white-sands-dunes",
+    "title": "Why are the dunes at White Sands so white?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "White Sands in New Mexico has dunes made mostly from gypsum, a light-colored mineral. Water can dissolve gypsum in nearby mountains, carry it down, and leave crystals behind as the water dries. The crystals break into smaller grains. Wind moves piles of those grains, giving the dunes their rippling shapes. It is unusual to find so much gypsum as sand because water can dissolve it again.",
+    "aliases": [
+      "white sands national park white color",
+      "gypsum dunes new mexico",
+      "why is white sands sand white"
+    ],
+    "facts": [
+      "Wind can change the position of a dune and draw small ripples on top of it."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What is a mineral?",
+        "target": "minerals"
+      },
+      {
+        "text": "How can wind and water carry pieces of rock?",
+        "target": "erosion"
+      },
+      {
+        "text": "How can minerals left by water build natural dams?",
+        "target": "plitvice-lakes"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-whitesands",
+      "land-gypsum"
+    ]
+  },
+  {
+    "id": "hoh-rain-forest",
+    "title": "Why does the Hoh River valley grow such tall trees?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Moist air from the Pacific rises against Washington’s Olympic Mountains. As the air rises and cools, it can drop a great deal of rain on the Hoh River valley. Parts of the valley can receive about twelve feet of rain and other moisture in a year. Mild winters and cool summers help keep the woods damp. Tall Sitka spruce and western hemlock trees rise above the river valley, while ferns and moss grow below. Moss can even hang from branches far above the forest floor.",
+    "aliases": [
+      "hoh rainforest washington olympic",
+      "temperate rain forest washington",
+      "why does hoh rainforest get so wet"
+    ],
+    "facts": [
+      "The Hoh Rain Forest is named for the river that runs through the valley."
+    ],
+    "terms": [
+      "peninsula"
+    ],
+    "questions": [
+      {
+        "text": "Where else can mild weather and plenty of rain grow this kind of forest?",
+        "target": "temperate-rainforests"
+      },
+      {
+        "text": "How can moss grow without true roots?",
+        "target": "mosses"
+      },
+      {
+        "text": "What makes a piece of land a peninsula?",
+        "target": "peninsulas"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-hoh",
+      "land-temperate"
+    ]
+  },
+  {
+    "id": "plitvice-lakes",
+    "title": "How did water build natural dams at Plitvice Lakes?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "At Plitvice Lakes in Croatia, water runs from lake to lake over a series of waterfalls. It picks up dissolved minerals when it flows over and through some kinds of rock. Farther along, it can leave those minerals behind. Over many years, deposits of a rock called travertine grew into barriers that hold back water. Each barrier acts rather like a dam, making some water spill over it into the next lake.",
+    "aliases": [
+      "plitvice croatia lakes natural dams",
+      "plitvice lakes waterfalls",
+      "how plitvice lakes formed"
+    ],
+    "facts": [
+      "The barriers can keep changing as streams deposit minerals and wear away rock."
+    ],
+    "terms": [
+      "limestone"
+    ],
+    "questions": [
+      {
+        "text": "How can limestone form from material in water?",
+        "target": "limestone"
+      },
+      {
+        "text": "What happened where water dissolved rock instead?",
+        "target": "mammoth-cave"
+      },
+      {
+        "text": "Where can minerals left by water become sand dunes?",
+        "target": "white-sands-dunes"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-plitvice"
+    ]
+  },
+  {
+    "id": "giants-causeway",
+    "title": "Why does the Giant’s Causeway look paved with stone tiles?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "On the coast of Northern Ireland, thousands of rock columns meet the sea at the Giant’s Causeway. Long ago, lava flowed over the land, cooled, and shrank. Cracks spread through the cooling rock, leaving columns with flat sides. Many tops have six sides, so from above they can look like a floor built from large tiles. The columns are made of basalt, a dark volcanic rock.",
+    "aliases": [
+      "giants causeway basalt columns",
+      "giants causeway northern ireland",
+      "how did giant causeway form"
+    ],
+    "facts": [
+      "The Giants in the landmark’s name belong to stories told about the place, while the rock preserves a record of volcanic activity."
+    ],
+    "terms": [
+      "lava"
+    ],
+    "questions": [
+      {
+        "text": "Where else did cooling melted rock make columns?",
+        "target": "devils-tower"
+      },
+      {
+        "text": "How does lava cool into rock?",
+        "target": "igneous-rock"
+      },
+      {
+        "text": "Where does lava come from?",
+        "target": "volcanoes"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-causeway"
+    ]
+  },
+  {
+    "id": "cappadocia-rock-sites",
+    "title": "How did people make rooms in Cappadocia’s rocks?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "In Cappadocia in Türkiye, tall rock shapes rise from valleys and hills. Wind and water helped wear away layers of material from old volcanic eruptions, leaving some high pillars. In places the rock was soft enough for people to dig into, so they carved rooms, churches, and even routes below ground. This saved them from having to carry in all the stones for walls. Some rooms still hold paintings.",
+    "aliases": [
+      "cappadocia cave homes",
+      "goreme fairy chimneys",
+      "why people carved rock in cappadocia"
+    ],
+    "facts": [
+      "Many tall pillars in Cappadocia are nicknamed fairy chimneys because of their shape."
+    ],
+    "terms": [
+      "erosion",
+      "plateau"
+    ],
+    "questions": [
+      {
+        "text": "Where did people carve large fronts for buildings into cliffs?",
+        "target": "petra"
+      },
+      {
+        "text": "How were churches carved down into rock?",
+        "target": "lalibela-churches"
+      },
+      {
+        "text": "What is a wide area of high, fairly flat land called?",
+        "target": "plateaus"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-cappadocia"
+    ]
+  },
+  {
+    "id": "lalibela-churches",
+    "title": "Why do some churches at Lalibela sit below ground level?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "In Lalibela in Ethiopia, builders cut churches from rock instead of stacking up separate stones. For some of them, they removed rock from around the walls, leaving the outside in place, then cut rooms inside. The roof of a deeply cut church can come close to the level of the ground around it. Paths, trenches, and tunnels connect different parts of the site. People still use these churches for worship.",
+    "aliases": [
+      "lalibela rock churches",
+      "ethiopian churches carved from stone",
+      "rock hewn churches lalibela"
+    ],
+    "facts": [
+      "One church, Biete Ghiorgis, has a shape like a cross when seen from above."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Where did people carve rooms and tunnels into softer stone?",
+        "target": "cappadocia-rock-sites"
+      },
+      {
+        "text": "How were parts of ancient Petra cut into cliffs?",
+        "target": "petra"
+      },
+      {
+        "text": "Where in Africa is Ethiopia?",
+        "target": "ethiopia"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-lalibela"
+    ]
+  },
+  {
+    "id": "mont-saint-michel",
+    "title": "Why does Mont-Saint-Michel sometimes look like an island?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Mont-Saint-Michel is a rocky rise in a bay in France, with a village and a large abbey on it. At low tide, the water can move far out over the bay, leaving wide stretches of sand and mud exposed. At high tide, water spreads across that flat area and can surround the rock. The land is always there, but the moving edge of the sea changes what you see.",
+    "aliases": [
+      "mont saint michel tides",
+      "rocky island abbey france",
+      "how tides surround mont saint michel"
+    ],
+    "facts": [
+      "The abbey sits high above the houses on the rock."
+    ],
+    "terms": [
+      "tide"
+    ],
+    "questions": [
+      {
+        "text": "What makes ocean tides rise and fall?",
+        "target": "tides"
+      },
+      {
+        "text": "How can a map show the width of a bay?",
+        "target": "map-scale"
+      },
+      {
+        "text": "Where is France in Europe?",
+        "target": "france"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-mont",
+      "land-mont-tides"
+    ]
+  },
+  {
+    "id": "old-quebec-walls",
+    "title": "Why are there stone walls around Old Québec?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "The older part of Québec City in Canada stands beside the St. Lawrence River. Some buildings stand on higher ground and others are below them near the river. People built walls and gates around the upper part long ago to help defend the place. Much of that wall survives, so you can still see how the fort and town fit together. Gateways connect the old streets with the rest of the city.",
+    "aliases": [
+      "old quebec walls canada",
+      "fortified quebec city",
+      "why does quebec have walls"
+    ],
+    "facts": [
+      "Much of the lower town grew near the water, where people could reach ships."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Why do people build ports near water routes?",
+        "target": "maps-ports"
+      },
+      {
+        "text": "How do inland lakes reach the sea by the way of the St. Lawrence?",
+        "target": "great-lakes-overview"
+      },
+      {
+        "text": "Where is Canada on a world map?",
+        "target": "canada"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-quebec"
+    ]
+  },
+  {
+    "id": "borobudur-temple",
+    "title": "Why was Borobudur built in rising terraces?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Borobudur is a large Buddhist temple on the island of Java in Indonesia. It is built in a series of terraces, or wide steps with room to walk along them. Some walkways pass walls carved with scenes. Higher up, rounded terraces hold bell-shaped stone structures called stupas. People can follow the paths around a level before going up. The arrangement is part of how the temple shows ideas about a spiritual journey.",
+    "aliases": [
+      "borobudur temple java indonesia",
+      "borobudur stone panels and stupas",
+      "borobudur steps"
+    ],
+    "facts": [
+      "Some of the higher stone structures have openings that let light in around a Buddha figure."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What makes the temple at Angkor Wat unusual?",
+        "target": "angkor-wat"
+      },
+      {
+        "text": "Where is Indonesia and what is unusual about its land?",
+        "target": "indonesia"
+      },
+      {
+        "text": "How is a sculpture different from a drawing?",
+        "target": "sculpture-shapes"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-borobudur"
+    ]
+  },
+  {
+    "id": "mesa-verde-cliff-homes",
+    "title": "Why are some Mesa Verde homes tucked under cliffs?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "At Mesa Verde in what is now Colorado, Ancestral Pueblo people built homes in openings under overhanging cliffs. A natural rock roof covered some of the living space, so builders could put up stone walls underneath it. Large sites held many rooms and open areas where people could gather. The cliff homes were one part of a bigger landscape where communities farmed and built other kinds of homes, including ones on flatter ground above.",
+    "aliases": [
+      "mesa verde cliff dwellings",
+      "ancestral pueblo people cliff palace",
+      "what is mesa verde"
+    ],
+    "facts": [
+      "Cliff Palace is a well-known group of rooms built into one large sheltered opening."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can layers of sand harden into rock?",
+        "target": "sedimentary-rock"
+      },
+      {
+        "text": "What is a large high piece of land with a fairly flat top?",
+        "target": "plateaus"
+      },
+      {
+        "text": "How can people keep a community’s stories across generations?",
+        "target": "oral-traditions"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-mesaverde"
+    ]
+  },
+  {
+    "id": "venice-canals",
+    "title": "Why are some Venice streets made of water?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Venice in northeastern Italy grew across many low islands in a lagoon, a partly sheltered area of water near the sea. Waterways between the islands serve as long routes for boats. Bridges let people walk between many of the islands, and footpaths run beside some canals. A boat can reach docks and doorways beside the water, while people on foot follow a different set of routes through the same city.",
+    "aliases": [
+      "venice italy why so many canals",
+      "venice islands bridges",
+      "how do people travel in venice"
+    ],
+    "facts": [
+      "The Grand Canal is one of the main waterways through Venice."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What do you call a group of islands?",
+        "target": "archipelagos"
+      },
+      {
+        "text": "How do boats bring people and goods to land?",
+        "target": "maps-ports"
+      },
+      {
+        "text": "Where is Italy in Europe?",
+        "target": "italy"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-venice"
+    ]
+  },
+  {
+    "id": "rapa-nui-moai",
+    "title": "Who carved the big stone figures on Rapa Nui?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Rapa Nui is a Chilean island far out in the Pacific Ocean. Its Indigenous Rapa Nui people carved large stone figures known as moai. Some figures stand on raised platforms, and others remain near the place where people cut them from volcanic rock. The figures show that the island’s stoneworkers created and moved very large objects with tools and methods that people still study. The Rapa Nui people and culture continue today.",
+    "aliases": [
+      "easter island statues",
+      "rapa nui moai",
+      "who made the moai"
+    ],
+    "facts": [
+      "The figures generally show much more than a head, even when the rest is hard to see above ground."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How is a sculpture different from a drawing?",
+        "target": "sculpture-shapes"
+      },
+      {
+        "text": "How can people pass stories down across generations?",
+        "target": "oral-traditions"
+      },
+      {
+        "text": "Where is Chile on a map?",
+        "target": "chile"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-rapanui"
+    ]
+  },
+  {
+    "id": "sydney-opera-house",
+    "title": "What shapes make the Sydney Opera House easy to recognize?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "The Sydney Opera House stands beside the harbor in Sydney, Australia. Its light-colored roofs look like pieces of shells, and some people think they look like sails. Under the roofs are halls where people can hear music and watch shows. To make the roof design possible to build, the shapes were worked out as pieces of a sphere, like sections cut from the surface of a big ball.",
+    "aliases": [
+      "what do sydney opera house roofs look like",
+      "sydney opera house sails",
+      "sydney opera house shape"
+    ],
+    "facts": [
+      "The building is on a point of land that reaches into Sydney Harbour."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What makes a sphere different from a circle?",
+        "target": "spheres"
+      },
+      {
+        "text": "What do we call land that sticks out into water?",
+        "target": "peninsulas"
+      },
+      {
+        "text": "Where is Sydney’s country on a world map?",
+        "target": "australia"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-sydney",
+      "land-sphere"
+    ]
+  },
+  {
+    "id": "singapore-botanic-gardens",
+    "title": "What happens in the Singapore Botanic Gardens?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "In Singapore’s Botanic Gardens, visitors walk among plants while workers grow, label, study, and care for them. A botanic garden keeps living plants together so researchers and visitors can compare how they grow. In Singapore’s tropical weather, the garden grows many kinds of orchids. It has also been a place to study useful plants. Looking after a living collection takes regular work as plants grow, move, or need new space.",
+    "aliases": [
+      "singapore botanic gardens plants",
+      "how botanic gardens study plants",
+      "singapore gardens unesco"
+    ],
+    "facts": [
+      "Some plants at the gardens are grown for study and others help visitors see the variety of plant life."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How do people store seeds to help plants survive?",
+        "target": "seed-banks"
+      },
+      {
+        "text": "How does pollen move from plant to plant?",
+        "target": "pollination"
+      },
+      {
+        "text": "Where is Singapore?",
+        "target": "singapore"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-singapore"
+    ]
+  },
+  {
+    "id": "goods-and-services",
+    "title": "What is the difference between goods and services?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "Goods are things people use, buy, or trade, such as a pencil, a loaf of bread, or a bicycle. A service is work someone does for others, such as cutting hair, fixing a bike, or driving a bus. One trip to a store can include both: a baker might sell you a cake and charge a separate amount to have it delivered. The cake is a good, and delivering it is a service.",
+    "aliases": [
+      "goods versus services",
+      "what is a good in economics",
+      "goods and services examples"
+    ],
+    "facts": [
+      "One person or business can provide goods, services, or both."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Who makes goods and who uses them?",
+        "target": "producers-consumers"
+      },
+      {
+        "text": "How can you make a plan for what to buy?",
+        "target": "household-budget"
+      },
+      {
+        "text": "Which services can governments provide?",
+        "target": "community-public-services"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-seas"
+    ]
+  },
+  {
+    "id": "producers-consumers",
+    "title": "Who are producers and consumers?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "A producer makes a good or supplies a service. A person who uses a good or service is a consumer. A grower who sells apples is a producer, and someone who eats an apple is a consumer. The same person can be both at different times. A baker makes bread for customers and may ride a bus to work. At the bakery the baker is producing bread, and on the bus the baker is using a ride.",
+    "aliases": [
+      "what is a producer or consumer in economics",
+      "who makes and buys things",
+      "producer consumer examples"
+    ],
+    "facts": [
+      "A business can buy goods or services to help make something else."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Which purchases are things and which are work people do?",
+        "target": "goods-and-services"
+      },
+      {
+        "text": "Why do people share the steps of making something?",
+        "target": "specialization-and-trade"
+      },
+      {
+        "text": "What do we call things sold to another country?",
+        "target": "trade-imports-exports"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-seas"
+    ]
+  },
+  {
+    "id": "scarcity-and-choices",
+    "title": "What does scarcity have to do with making choices?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "Scarcity means that the resources available cannot cover every use people want for them. Think of a class with enough paper for one large banner or for several paper airplanes. Using the paper for the banner leaves less for airplanes. Time can be scarce too. There may be time for one game before lunch, even when the class has lots of games. Scarcity means people have to choose what to do first or what to leave out.",
+    "aliases": [
+      "what is scarcity",
+      "why are resources limited",
+      "economics scarcity example"
+    ],
+    "facts": [
+      "Something can be scarce even if there is a fair amount of it, because people want to use more than they have."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What did you give up when you chose one thing over another?",
+        "target": "opportunity-cost"
+      },
+      {
+        "text": "How does a budget help when money is limited?",
+        "target": "household-budget"
+      },
+      {
+        "text": "How can changes in what is available affect prices?",
+        "target": "supply-and-demand"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-scarcity"
+    ]
+  },
+  {
+    "id": "opportunity-cost",
+    "title": "What do you give up when you choose one thing?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "If you have enough tickets for either one ride or a snack, choosing the ride means giving up the snack. The snack is your opportunity cost if it was the next choice you would have made. An opportunity cost can involve time too. Spending your one free hour on a game could mean missing a chance to finish a drawing. Thinking about the next best choice can help you decide what matters more to you.",
+    "aliases": [
+      "opportunity cost for kids",
+      "what is opportunity cost",
+      "why all choices can have a cost"
+    ],
+    "facts": [
+      "Your opportunity cost is the next best choice you give up."
+    ],
+    "terms": [
+      "opportunity cost"
+    ],
+    "questions": [
+      {
+        "text": "Why can people use the same thing for only some of what they want?",
+        "target": "scarcity-and-choices"
+      },
+      {
+        "text": "How can setting money aside help with a later choice?",
+        "target": "saving-for-a-goal"
+      },
+      {
+        "text": "How can you plan for more than one purchase?",
+        "target": "household-budget"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-scarcity"
+    ]
+  },
+  {
+    "id": "household-budget",
+    "title": "How does a budget help you plan?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "A budget is a plan for using money. Imagine you expect to have twelve dollars this month. You might plan to use five for a craft, save four, and leave three for a later choice. If the plan calls for spending more than you have, you can look for something to change or wait for more money. A household can use the same idea to plan for regular bills and things that come up from time to time.",
+    "aliases": [
+      "what is a budget",
+      "making a budget for kids",
+      "plan spending and saving"
+    ],
+    "facts": [
+      "A budget can include money to save as well as money you plan to spend right away."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does a savings goal work?",
+        "target": "saving-for-a-goal"
+      },
+      {
+        "text": "What did you give up by choosing to buy one thing?",
+        "target": "opportunity-cost"
+      },
+      {
+        "text": "What are some services a town may put into its own budget?",
+        "target": "community-public-services"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-budget"
+    ]
+  },
+  {
+    "id": "saving-for-a-goal",
+    "title": "How can saving a little at a time help you reach a goal?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "Saving means setting aside money you can use later. Imagine a model kit costs fifteen dollars and you have five now. If you add two dollars at a time, you need five more additions to reach your goal. Keeping track shows how close you are and helps you decide whether to spend some of the money on something else. People can also save for a need that they cannot plan for in advance.",
+    "aliases": [
+      "saving for a goal",
+      "how can children learn saving",
+      "why save money for later"
+    ],
+    "facts": [
+      "A clear target and a way to track progress can make a savings plan easier to follow."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can saving fit into a plan for using money?",
+        "target": "household-budget"
+      },
+      {
+        "text": "Where might a person keep savings?",
+        "target": "bank-accounts"
+      },
+      {
+        "text": "What choice do you give up when you save instead of spending?",
+        "target": "opportunity-cost"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-saving",
+      "econ-budget"
+    ]
+  },
+  {
+    "id": "bank-accounts",
+    "title": "What does a bank do with an account?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "A bank account is a record of money a bank is holding for a person or group. Putting money into the account is called a deposit. Taking money out is a withdrawal. Some accounts help people pay for everyday purchases, and others are meant to hold money people want to save. The amount shown after money moves in and out is the balance. Banks also lend money, which borrowers agree to pay back.",
+    "aliases": [
+      "what is a bank account",
+      "checking and savings for kids",
+      "bank deposits and withdrawals"
+    ],
+    "facts": [
+      "People can put money in or take it out without needing to use the exact same paper bills each time."
+    ],
+    "terms": [
+      "bank account"
+    ],
+    "questions": [
+      {
+        "text": "How can you set money aside for something later?",
+        "target": "saving-for-a-goal"
+      },
+      {
+        "text": "What happens when you borrow money and promise to return it?",
+        "target": "borrowing-and-loans"
+      },
+      {
+        "text": "How can a bank pay people for keeping money in some accounts?",
+        "target": "interest-on-money"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-fdic"
+    ]
+  },
+  {
+    "id": "borrowing-and-loans",
+    "title": "How does borrowing money work?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "A loan is money someone lends you under an agreement that you will pay it back. Imagine borrowing five dollars to buy art paper, knowing you can return the five next week. Some loans also charge interest, which is extra money for getting to use the borrowed money now. A loan agreement says when payments are due and how much they will be. The money gives you a choice today and a payment to make later.",
+    "aliases": [
+      "what is a loan",
+      "what does borrow mean for money",
+      "loan repayment for kids"
+    ],
+    "facts": [
+      "The amount you borrow at the start is called the principal."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Why can a borrower have to pay extra money?",
+        "target": "interest-on-money"
+      },
+      {
+        "text": "How can payments fit into a plan for using money?",
+        "target": "household-budget"
+      },
+      {
+        "text": "What does a bank account keep track of?",
+        "target": "bank-accounts"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-fdic"
+    ]
+  },
+  {
+    "id": "interest-on-money",
+    "title": "Why can interest make an amount of money grow?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "Interest is extra money paid for using someone else’s money. A bank may pay you interest to hold money in a savings account. If you borrow money, you may pay interest to the lender. For example, in a simple made-up loan, a borrower receives ten dollars and pays back eleven. The extra dollar is interest. How much interest is paid depends on the agreement, the amount of money, and how long someone uses the money.",
+    "aliases": [
+      "what is interest in banking",
+      "interest paid or earned",
+      "loan interest and savings interest"
+    ],
+    "facts": [
+      "Interest can add to savings or increase what a borrower has to pay back."
+    ],
+    "terms": [
+      "savings account"
+    ],
+    "questions": [
+      {
+        "text": "Why do people make a plan for paying back a loan?",
+        "target": "borrowing-and-loans"
+      },
+      {
+        "text": "What is the difference between an account and the bills in your hand?",
+        "target": "bank-accounts"
+      },
+      {
+        "text": "How can saving prepare you to buy something later?",
+        "target": "saving-for-a-goal"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-fdic"
+    ]
+  },
+  {
+    "id": "supply-and-demand",
+    "title": "How can supply and demand affect a price?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "Supply has to do with how much sellers are willing to offer at different prices. Demand has to do with how much buyers are willing and able to buy at different prices. Imagine a market where one stall has five baskets of berries and lots of shoppers want them. The berries might sell at a higher price than they would when many stalls have lots of berries for sale. Other things such as the cost of growing and bringing berries to market can matter too.",
+    "aliases": [
+      "why do prices change supply demand",
+      "what is supply and demand",
+      "why does a popular item cost more"
+    ],
+    "facts": [
+      "A shortage means buyers want more of a thing than sellers are offering at the current price."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Who are the people offering and using goods?",
+        "target": "producers-consumers"
+      },
+      {
+        "text": "How is a rise in lots of prices different from a rise in one price?",
+        "target": "inflation-prices"
+      },
+      {
+        "text": "Why can limited amounts make people choose?",
+        "target": "scarcity-and-choices"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-market"
+    ]
+  },
+  {
+    "id": "inflation-prices",
+    "title": "What does inflation do to what money can buy?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "Inflation means prices for many ordinary goods and services are rising overall. If the price of a pack of crayons goes up while most other prices stay the same, that one change alone tells us little about inflation. People who measure it look at prices for a wide group of things. When those prices rise overall, the same amount of money usually buys less than it did before, even if some prices fall.",
+    "aliases": [
+      "what is inflation for kids",
+      "why money buys less",
+      "general rise in prices"
+    ],
+    "facts": [
+      "People who measure inflation compare a group of prices at different times."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Why do people use money to buy things?",
+        "target": "money"
+      },
+      {
+        "text": "Why might one product’s price change?",
+        "target": "supply-and-demand"
+      },
+      {
+        "text": "How can you update a plan when things cost more?",
+        "target": "household-budget"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-inflation"
+    ]
+  },
+  {
+    "id": "trade-imports-exports",
+    "title": "What is the difference between an import and an export?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "When people sell something from one country to someone in another, the sale is an export for the country it comes from. It is an import for the country that buys it. Imagine a store in one country buys pots from a maker abroad. The pots are imports at the store and exports where they were made. Trade can also involve services, such as hiring a person in another country to help design a book.",
+    "aliases": [
+      "imports vs exports",
+      "what does a country import",
+      "what is international trade"
+    ],
+    "facts": [
+      "The same thing can be called an import or an export depending on whose side of the sale you are looking at."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does a port move some goods from ship to land?",
+        "target": "maps-ports"
+      },
+      {
+        "text": "What does it mean to buy a service?",
+        "target": "goods-and-services"
+      },
+      {
+        "text": "Why can people trade when they each make something different?",
+        "target": "specialization-and-trade"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-trade"
+    ]
+  },
+  {
+    "id": "specialization-and-trade",
+    "title": "Why do people divide up the work of making something?",
+    "category": "economics",
+    "priority": 1,
+    "answer": "Imagine making costumes for a class play. One person measures the cloth, one cuts out the shapes, and another stitches them together. If each person practices one job, they can often do it well and do more of it. This way of focusing on part of the work is called specialization. It can help groups make more things together. The group still needs each person’s work, so the steps have to fit one another.",
+    "aliases": [
+      "specialization division of labor",
+      "why workers have different jobs",
+      "making things with different skills"
+    ],
+    "facts": [
+      "Specialization can happen between people, businesses, or places that focus on different kinds of work."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What do we call someone who makes a good?",
+        "target": "producers-consumers"
+      },
+      {
+        "text": "How can people sell what they make to buyers in another country?",
+        "target": "trade-imports-exports"
+      },
+      {
+        "text": "What kind of work can someone sell as a service?",
+        "target": "goods-and-services"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-standards"
+    ]
+  },
+  {
+    "id": "community-public-services",
+    "title": "Which services can a town provide together?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "People in a town share some services, such as roads, parks, and fire protection. A local government can organize those services for many people at once instead of each household trying to provide its own. Government can use money from taxes to help pay for the workers, equipment, and supplies involved. Different towns arrange services in different ways, and some share a service with nearby places. People can take part in discussions about which services need more support.",
+    "aliases": [
+      "public services for kids",
+      "why towns provide parks and roads",
+      "what do local governments pay for"
+    ],
+    "facts": [
+      "Public services can help people who need a service only once in a while, such as when a fire crew is called."
+    ],
+    "terms": [
+      "public service"
+    ],
+    "questions": [
+      {
+        "text": "Why do governments collect taxes?",
+        "target": "taxes-and-towns"
+      },
+      {
+        "text": "How can people give time to help their neighbors?",
+        "target": "volunteering-community"
+      },
+      {
+        "text": "Why are things and services different kinds of purchases?",
+        "target": "goods-and-services"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-taxes"
+    ]
+  },
+  {
+    "id": "taxes-and-towns",
+    "title": "Why do governments collect taxes?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "Taxes are payments that governments require under their laws. Governments use taxes as one way to pay for things they provide, such as some roads and public parks. They can collect different kinds of taxes, including on some purchases, on income, or on property. Which taxes apply depends on where people live or work and what the rules are. Governments use budgets to decide how to spend the money they collect.",
+    "aliases": [
+      "what are taxes for kids",
+      "what does tax money pay for",
+      "why pay taxes"
+    ],
+    "facts": [
+      "Taxes can be collected by different levels of government, such as a country, state, or town."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What can a town pay for to help many people?",
+        "target": "community-public-services"
+      },
+      {
+        "text": "How does a budget plan what will be paid for?",
+        "target": "household-budget"
+      },
+      {
+        "text": "How do volunteers support some projects by giving time?",
+        "target": "volunteering-community"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-taxes"
+    ]
+  },
+  {
+    "id": "volunteering-community",
+    "title": "How can a volunteer help a community?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "A volunteer chooses to give time to help with a group or project, usually without a paycheck. Volunteers might pick up litter in a park, sort books for a sale, or pack supplies for people who need them. A volunteer often works alongside a group that knows what help is needed. People can choose a project that suits their skills or lets them learn something new. Even a short job can be useful when many people pitch in.",
+    "aliases": [
+      "what does volunteer mean",
+      "why people volunteer",
+      "how volunteers help neighbors"
+    ],
+    "facts": [
+      "Some groups offer activities where children can volunteer with a parent, teacher, or other trusted adult."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What kinds of shared work can towns pay workers to do?",
+        "target": "community-public-services"
+      },
+      {
+        "text": "What is an example of a service someone can provide?",
+        "target": "goods-and-services"
+      },
+      {
+        "text": "How can volunteers help look for wildlife in a park?",
+        "target": "bioblitz-nature-count"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-volunteer"
+    ]
+  },
+  {
+    "id": "oral-traditions",
+    "title": "How can people keep stories without writing them down?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "People can pass on a story by telling it to someone who will tell it again. A repeated line, tune, or pattern can help a listener remember the next part. Families and communities pass along memories, poems, riddles, and other things this way. A teller may change some words to fit a new audience while keeping the main idea. Recordings and notes can help people share what a particular storyteller said.",
+    "aliases": [
+      "what is oral tradition",
+      "passing down stories by speaking",
+      "oral history stories for kids"
+    ],
+    "facts": [
+      "A story passed from speaker to listener can have more than one version."
+    ],
+    "terms": [
+      "oral tradition"
+    ],
+    "questions": [
+      {
+        "text": "How can a few words stand for a bigger idea?",
+        "target": "proverbs"
+      },
+      {
+        "text": "Why do old tales sometimes use animals that talk?",
+        "target": "fables"
+      },
+      {
+        "text": "What kinds of traditions can people learn from each other?",
+        "target": "living-heritage"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "cult-oral",
+      "cult-folktales"
+    ]
+  },
+  {
+    "id": "proverbs",
+    "title": "How does a proverb say a lot in a few words?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "A proverb is a short saying that people repeat to share an idea or some advice. For example, “Many hands make light work” tells us that a big job can feel easier when more people help. The saying talks about hands because it gives people a simple picture to remember. People may use a proverb at different times, and what counts as good advice can depend on what is happening.",
+    "aliases": [
+      "what is a proverb",
+      "short sayings with meanings",
+      "common proverb for kids"
+    ],
+    "facts": [
+      "A proverb usually has a meaning people in a group recognize when they hear it."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How do spoken sayings travel from one generation to the next?",
+        "target": "oral-traditions"
+      },
+      {
+        "text": "How can a whole story with animals teach a lesson?",
+        "target": "fables"
+      },
+      {
+        "text": "Why do people use different words for the same thing?",
+        "target": "language-dialects"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "cult-verbal",
+      "cult-oral"
+    ]
+  },
+  {
+    "id": "traditional-crafts",
+    "title": "How do people learn a traditional craft?",
+    "category": "inventions",
+    "priority": 1,
+    "answer": "Someone learning a traditional craft can watch a person who already knows the work, try a step, and ask what to change. A basket maker might show a learner which plants bend without snapping. A potter can feel when clay is ready to shape and help others learn that feeling. Tools and finished objects can give clues, but practice and time with people who know the craft can keep the skills going.",
+    "aliases": [
+      "traditional skills making things",
+      "how craft skills pass down",
+      "traditional craftsmanship for kids"
+    ],
+    "facts": [
+      "A skill can stay part of a tradition even when people use it to make new designs."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What kinds of skills can be a living tradition?",
+        "target": "living-heritage"
+      },
+      {
+        "text": "How can people pass on words and stories as well as hand skills?",
+        "target": "oral-traditions"
+      },
+      {
+        "text": "What work helps museums preserve objects?",
+        "target": "museums"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "cult-heritage"
+    ]
+  },
+  {
+    "id": "community-festivals",
+    "title": "Why do communities hold festivals?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "A festival is a time when people take part in shared events. A community might celebrate a season, honor an important date, or share food, music, and stories. Some festivals happen in one building or neighborhood and others spread through a whole town. Children can learn songs or dances by watching people who already know them. The events can change over time when people bring new ideas or move to new places.",
+    "aliases": [
+      "why do people hold festivals",
+      "community festivals",
+      "celebrating stories and traditions"
+    ],
+    "facts": [
+      "A festival can bring together several traditions, such as a parade, a meal, and a way of making music."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What makes a tradition something people keep practicing?",
+        "target": "living-heritage"
+      },
+      {
+        "text": "How does someone learn to make things in a traditional way?",
+        "target": "traditional-crafts"
+      },
+      {
+        "text": "How do groups share stories when they might use different words each time?",
+        "target": "oral-traditions"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "cult-domains"
+    ]
+  },
+  {
+    "id": "multilingual-learning",
+    "title": "How can people learn in more than one language?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "Some children speak one language at home and learn another in school or when they play with friends. Some classrooms use two or more languages to help students learn. For example, a student might first discuss an idea about plants in a language they know well, then learn the names for the parts of a plant in another language. Both can help the student explain the same idea in different settings.",
+    "aliases": [
+      "what does multilingual mean",
+      "learning in more than one language",
+      "using two languages in school"
+    ],
+    "facts": [
+      "People can know different words in the languages they use because they speak them in different places."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Why can people who speak one language sound different?",
+        "target": "language-dialects"
+      },
+      {
+        "text": "How can languages be related to one another?",
+        "target": "language-families"
+      },
+      {
+        "text": "How do stories and sayings help people use a language together?",
+        "target": "oral-traditions"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "cult-multilingual"
+    ]
+  },
+  {
+    "id": "living-heritage",
+    "title": "What makes a tradition living heritage?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Living heritage includes things people learn from others and still practice, like telling stories, playing a style of music, or making baskets in a special way. A museum can save a basket, but the skill of making that kind of basket stays alive when people keep doing it and teach it. Traditions can change as new people learn them and find their own ways to use what they learned.",
+    "aliases": [
+      "what is living heritage",
+      "intangible cultural heritage for children",
+      "what are examples of traditions"
+    ],
+    "facts": [
+      "People may call these skills and activities intangible cultural heritage because their meaning cannot be held like an object."
+    ],
+    "terms": [
+      "living heritage"
+    ],
+    "questions": [
+      {
+        "text": "How can a craft maker pass on a skill?",
+        "target": "traditional-crafts"
+      },
+      {
+        "text": "Why do groups hold festivals that carry traditions forward?",
+        "target": "community-festivals"
+      },
+      {
+        "text": "What can make a place worth preserving too?",
+        "target": "world-heritage-places"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "cult-heritage"
+    ]
+  },
+  {
+    "id": "world-heritage-places",
+    "title": "What makes a place a World Heritage Site?",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Some places hold clues about Earth or human history that people across the world can learn from. Countries can propose special places for an international list kept through UNESCO. A place on that list may be a building, a city, a natural area, or a mix. Protecting it can mean keeping an old structure safe, looking after land and water, or planning how people can visit without damaging the place.",
+    "aliases": [
+      "what is a unesco world heritage site",
+      "world heritage places meaning",
+      "why preserve a world heritage site"
+    ],
+    "facts": [
+      "A named World Heritage Site can be important both for its natural features and for its role in people’s lives."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How did minerals in water help form the lakes in one protected area?",
+        "target": "plitvice-lakes"
+      },
+      {
+        "text": "Where can people see homes built under cliffs?",
+        "target": "mesa-verde-cliff-homes"
+      },
+      {
+        "text": "How can a skill or story be part of someone’s heritage?",
+        "target": "living-heritage"
+      }
+    ],
+    "sections": [],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "land-world-heritage"
+    ]
+  }
+]

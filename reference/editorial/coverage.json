@@ -1,16 +1,16 @@
 {
   "inventory": {
-    "articles": 1006,
-    "headwords": 780,
-    "senses": 917,
-    "questions": 3019,
+    "articles": 1224,
+    "headwords": 2168,
+    "senses": 3328,
+    "questions": 3674,
     "quizzes": 13
   },
   "approved": {
-    "articles": 1006,
-    "headwords": 780,
-    "senses": 917,
-    "questions": 3019,
+    "articles": 1224,
+    "headwords": 2168,
+    "senses": 3328,
+    "questions": 3674,
     "quizzes": 13
   },
   "taxonomy": {
@@ -26,8 +26,8 @@
     },
     "earth-science": {
       "label": "Earth science",
-      "articles": 28,
-      "approved": 28
+      "articles": 29,
+      "approved": 29
     },
     "weather-and-climate": {
       "label": "Weather & climate",
@@ -41,8 +41,8 @@
     },
     "physics": {
       "label": "Physics",
-      "articles": 24,
-      "approved": 24
+      "articles": 25,
+      "approved": 25
     },
     "chemistry": {
       "label": "Chemistry",
@@ -51,13 +51,13 @@
     },
     "animals": {
       "label": "Animals",
-      "articles": 22,
-      "approved": 22
+      "articles": 32,
+      "approved": 32
     },
     "plants": {
       "label": "Plants",
-      "articles": 35,
-      "approved": 35
+      "articles": 37,
+      "approved": 37
     },
     "paleontology": {
       "label": "Fossils & evolution",
@@ -66,8 +66,8 @@
     },
     "ecosystems": {
       "label": "Ecosystems",
-      "articles": 0,
-      "approved": 0
+      "articles": 44,
+      "approved": 44
     },
     "fungi-microbes": {
       "label": "Fungi & microbes",
@@ -76,8 +76,8 @@
     },
     "conservation": {
       "label": "Conservation",
-      "articles": 8,
-      "approved": 8
+      "articles": 18,
+      "approved": 18
     },
     "human-body": {
       "label": "Human body",
@@ -96,8 +96,8 @@
     },
     "math": {
       "label": "Math",
-      "articles": 41,
-      "approved": 41
+      "articles": 74,
+      "approved": 74
     },
     "logic": {
       "label": "Logic & patterns",
@@ -106,8 +106,8 @@
     },
     "computing": {
       "label": "Computing",
-      "articles": 42,
-      "approved": 42
+      "articles": 43,
+      "approved": 43
     },
     "digital-safety": {
       "label": "Digital safety",
@@ -116,23 +116,23 @@
     },
     "engineering": {
       "label": "Engineering",
-      "articles": 34,
-      "approved": 34
+      "articles": 47,
+      "approved": 47
     },
     "vehicles": {
       "label": "Vehicles & transportation",
-      "articles": 11,
-      "approved": 11
-    },
-    "infrastructure": {
-      "label": "Infrastructure",
       "articles": 21,
       "approved": 21
     },
+    "infrastructure": {
+      "label": "Infrastructure",
+      "articles": 25,
+      "approved": 25
+    },
     "maps-geography": {
       "label": "Maps & geography",
-      "articles": 13,
-      "approved": 13
+      "articles": 31,
+      "approved": 31
     },
     "countries": {
       "label": "Countries",
@@ -141,8 +141,8 @@
     },
     "landmarks": {
       "label": "Landmarks",
-      "articles": 6,
-      "approved": 6
+      "articles": 28,
+      "approved": 28
     },
     "ancient-history": {
       "label": "Ancient history",
@@ -151,8 +151,8 @@
     },
     "world-history": {
       "label": "World history",
-      "articles": 26,
-      "approved": 26
+      "articles": 28,
+      "approved": 28
     },
     "us-history": {
       "label": "U.S. history",
@@ -161,13 +161,13 @@
     },
     "government-civics": {
       "label": "Government & civics",
-      "articles": 23,
-      "approved": 23
+      "articles": 26,
+      "approved": 26
     },
     "language-writing": {
       "label": "Language & writing",
-      "articles": 22,
-      "approved": 22
+      "articles": 25,
+      "approved": 25
     },
     "visual-arts": {
       "label": "Visual arts",
@@ -206,8 +206,8 @@
     },
     "economics": {
       "label": "Economics",
-      "articles": 3,
-      "approved": 3
+      "articles": 16,
+      "approved": 16
     },
     "libraries-museums": {
       "label": "Libraries & museums",
@@ -216,16 +216,16 @@
     },
     "inventions": {
       "label": "Inventions & occupations",
-      "articles": 6,
-      "approved": 6
+      "articles": 18,
+      "approved": 18
     },
     "everyday-science": {
       "label": "Everyday science",
-      "articles": 15,
-      "approved": 15
+      "articles": 31,
+      "approved": 31
     }
   },
-  "sourceCount": 1063,
+  "sourceCount": 1290,
   "termGaps": [],
   "safetyFlags": [
     "ancient-greece",
@@ -254,7 +254,10 @@
     "us-civil-war",
     "word abolish",
     "word armistice",
-    "word pilgrimage"
+    "word bite",
+    "word ghost",
+    "word pilgrimage",
+    "word treat"
   ],
   "readingLengthWarnings": [],
   "ambiguousForms": []

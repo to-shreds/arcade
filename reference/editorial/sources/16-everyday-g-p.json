@@ -1,0 +1,65 @@
+[
+  {
+    "id": "lex-2026-gallon",
+    "title": "Handbook 44: General Tables of Units of Measurement",
+    "publisher": "National Institute of Standards and Technology",
+    "url": "https://www.nist.gov/system/files/documents/2024/01/14/NIST%20HB%2044%202024%20Appendix%20C%20General%20Tables%20of%20Units%20of%20Measurement.pdf",
+    "accessed": "2026-11-27",
+    "scope": "U.S. customary liquid volume: four quarts in a U.S. gallon.",
+    "reuse": "Unit relationship only. Original definition and example."
+  },
+  {
+    "id": "lex-2026-lay-lie",
+    "title": "Lay or lie?",
+    "publisher": "Cambridge University Press & Assessment",
+    "url": "https://dictionary.cambridge.org/us/grammar/british-grammar/lay-or-lie",
+    "accessed": "2026-11-27",
+    "scope": "Common senses, intransitive versus transitive usage, and irregular forms of lay and lie.",
+    "reuse": "Sense and word-form verification only. Original wording and examples."
+  },
+  {
+    "id": "lex-2026-minute",
+    "title": "How to pronounce minute in English",
+    "publisher": "Cambridge University Press & Assessment",
+    "url": "https://dictionary.cambridge.org/us/pronunciation/english/minute",
+    "accessed": "2026-11-27",
+    "scope": "U.S. pronunciation and stress of the time noun and the adjective for something very small.",
+    "reuse": "Pronunciation verification only. Original stress guide, definitions and examples."
+  },
+  {
+    "id": "lex-2026-present",
+    "title": "How to pronounce present in English",
+    "publisher": "Cambridge University Press & Assessment",
+    "url": "https://dictionary.cambridge.org/us/pronunciation/english/present",
+    "accessed": "2026-11-27",
+    "scope": "U.S. pronunciation and stress of the noun, adjective and verb.",
+    "reuse": "Pronunciation verification only. Original stress guide, definitions and examples."
+  },
+  {
+    "id": "lex-2026-insect",
+    "title": "What Is an Insect?",
+    "publisher": "Smithsonian National Museum of Natural History",
+    "url": "https://naturalhistory.si.edu/education/teaching-resources/life-science/what-insect",
+    "accessed": "2026-11-27",
+    "scope": "Typical adult insect body plan and difference from spiders.",
+    "reuse": "Anatomical facts only. Original definition and example."
+  },
+  {
+    "id": "lex-2026-particle",
+    "title": "DOE Explains...Protons",
+    "publisher": "U.S. Department of Energy",
+    "url": "https://www.energy.gov/science/doe-explainsprotons",
+    "accessed": "2026-11-27",
+    "scope": "A proton is a particle found in the nucleus of an atom.",
+    "reuse": "Scientific fact only. Original definitions and examples."
+  },
+  {
+    "id": "lex-2026-momentum",
+    "title": "Physics 8.1: Linear Momentum, Force, and Impulse",
+    "publisher": "OpenStax",
+    "url": "https://openstax.org/books/physics/pages/8-1-linear-momentum-force-and-impulse",
+    "accessed": "2026-11-27",
+    "scope": "How mass, speed, and direction determine linear momentum.",
+    "reuse": "Scientific relationship only. Original definitions and examples."
+  }
+]

@@ -1,0 +1,2166 @@
+[
+  {
+    "id": "dishwashers",
+    "title": "How does a dishwasher reach the dishes on both racks?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A dishwasher sends water through small holes in spray arms. The jets help spin the arms, sweeping water across the plates, bowls, and cups. Detergent helps lift food and grease while the spray carries them away. After washing, the machine drains the used water and sprays cleaner water to rinse the dishes. A big pan in the wrong spot can block an arm or shield a dish from the jets.",
+    "aliases": [
+      "dishwasher",
+      "how dishwasher spray arms work",
+      "how dishwashers clean"
+    ],
+    "sections": [],
+    "facts": [
+      "Dishwasher racks have gaps so water can pass between the dishes."
+    ],
+    "terms": [
+      "detergent"
+    ],
+    "questions": [
+      {
+        "text": "How does soap help water carry grease away?",
+        "target": "soap-and-grease"
+      },
+      {
+        "text": "How does a washing machine move soapy water through clothes?",
+        "target": "washing-machines"
+      },
+      {
+        "text": "What happens to dirty water after it goes down a drain?",
+        "target": "wastewater-treatment"
+      }
+    ],
+    "sources": [
+      "mechanism-dishwasher"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "washing-machines",
+    "title": "What happens inside a washing machine?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A washing machine helps water and detergent reach the dirt in fabric. In some machines a drum rolls the clothes over and over. In others a moving part in the middle swishes clothes through the water. The washer drains the dirty water and rinses the clothes with cleaner water. Near the end, it spins the clothes quickly to get out much of the water before drying.",
+    "aliases": [
+      "washing machine",
+      "how does a washer work",
+      "washer rinse cycle"
+    ],
+    "sections": [],
+    "facts": [
+      "Some washers open at the front, while others open at the top."
+    ],
+    "terms": [
+      "detergent"
+    ],
+    "questions": [
+      {
+        "text": "Why does a washer spin so fast at the end?",
+        "target": "washing-machine-spin"
+      },
+      {
+        "text": "How does a dryer finish getting water out of the clothes?",
+        "target": "tumble-dryers"
+      },
+      {
+        "text": "How do water jets clean a stack of plates?",
+        "target": "dishwashers"
+      }
+    ],
+    "sources": [
+      "mechanism-washer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "washing-machine-spin",
+    "title": "Why does spinning clothes get water out of them?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "Look at the drum of many washing machines and you can see lots of little holes. The spinning drum carries the clothes around with it. Much of the water that can move through the cloth slips out through the holes into a tub around the drum. The machine pumps that water out. The clothes still feel damp because some water stays between the tiny threads of the fabric.",
+    "aliases": [
+      "spin cycle",
+      "why a washing machine spins fast",
+      "spin drying clothes",
+      "why do washing machines spin",
+      "why does the washer spin at the end"
+    ],
+    "sections": [],
+    "facts": [
+      "Clothes can come out of a fast spin much lighter than they were when soaked.",
+      "This part of a wash is called the spin cycle."
+    ],
+    "terms": [
+      "spin cycle"
+    ],
+    "questions": [
+      {
+        "text": "How does warm air get the rest of the water out?",
+        "target": "tumble-dryers"
+      },
+      {
+        "text": "What makes the washing machine move clothes before the spin?",
+        "target": "washing-machines"
+      },
+      {
+        "text": "Why does wet clothing dry in moving air?",
+        "target": "line-drying"
+      }
+    ],
+    "sources": [
+      "mechanism-washer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tumble-dryers",
+    "title": "How does a clothes dryer get water out of wet clothes?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A tumble dryer turns a big drum so wet clothes keep lifting and falling. This spreads them out and brings moving air to many parts of the cloth. Warm air helps liquid water in the fabric change into water vapor. Some dryers send the damp air outdoors through a vent. Other dryers collect the water inside the machine or send it down a drain.",
+    "aliases": [
+      "clothes dryer",
+      "tumble dryer",
+      "what does dryer air do"
+    ],
+    "sections": [],
+    "facts": [
+      "A dryer’s lint filter catches small bits of fiber that came loose from clothes."
+    ],
+    "terms": [
+      "water vapor"
+    ],
+    "questions": [
+      {
+        "text": "How can a dryer reuse the same warm air?",
+        "target": "heat-pump-dryers"
+      },
+      {
+        "text": "Why do clothes dry on a windy day?",
+        "target": "line-drying"
+      },
+      {
+        "text": "How does the washer get water out before the clothes go in?",
+        "target": "washing-machine-spin"
+      }
+    ],
+    "sources": [
+      "mechanism-dryer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "heat-pump-dryers",
+    "title": "How can a clothes dryer reuse its warm air?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A heat pump dryer sends warmed air through wet clothes to pick up water vapor. It then cools the damp air until some of the vapor turns into liquid water. That water goes to a tank or drain. The dryer warms the air again and sends it back to the clothes. This loop lets the machine reuse air and much of its warmth.",
+    "aliases": [
+      "heat pump dryer",
+      "ventless dryer water",
+      "dryer that collects water"
+    ],
+    "sections": [],
+    "facts": [
+      "Many heat pump dryers do not need a vent to the outdoors."
+    ],
+    "terms": [
+      "heat pump",
+      "water vapor"
+    ],
+    "questions": [
+      {
+        "text": "How does a heat pump move heat from one place to another?",
+        "target": "heat-pumps"
+      },
+      {
+        "text": "What happens to damp air in a dryer with a vent?",
+        "target": "tumble-dryers"
+      },
+      {
+        "text": "Where else does a machine use a loop to move heat?",
+        "target": "refrigerators"
+      }
+    ],
+    "sources": [
+      "mechanism-heat-pump-dryer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "line-drying",
+    "title": "Why does a breeze dry clothes on a line?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "Water in a wet shirt can turn into water vapor and spread into the air. That change is called evaporation. Without much movement, the air close to the shirt can grow damp. A breeze carries some of that damp air away and brings other air to the fabric. A shirt spread out on a line also has more wet surface open to the air than one left in a heap.",
+    "aliases": [
+      "line drying",
+      "clothes dry on a clothesline",
+      "wind dries laundry",
+      "washing line drying",
+      "why do clothes dry on a line"
+    ],
+    "sections": [],
+    "facts": [
+      "Drying may be slower when the air already holds a lot of water vapor."
+    ],
+    "terms": [
+      "evaporation",
+      "water vapor"
+    ],
+    "questions": [
+      {
+        "text": "What role does moving air play in a clothes dryer?",
+        "target": "tumble-dryers"
+      },
+      {
+        "text": "Why does moving air feel cool on skin?",
+        "target": "electric-fans"
+      },
+      {
+        "text": "How does evaporation help water travel through nature?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "mechanism-evaporation"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "electric-fans",
+    "title": "Why does a fan make you feel cooler?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A fan pushes air past your skin. The moving air can carry away heat when it is cooler than your skin. It also helps sweat dry faster. As sweat changes from liquid to vapor, it takes heat from your skin. In a closed room, a fan mainly moves the air already there. The breeze can make people feel cooler without lowering the room’s temperature.",
+    "aliases": [
+      "fan cool down",
+      "ceiling fans",
+      "why a fan feels cool"
+    ],
+    "sections": [],
+    "facts": [
+      "A fan can help moving air reach your skin even on a still day."
+    ],
+    "terms": [
+      "heat",
+      "evaporation"
+    ],
+    "questions": [
+      {
+        "text": "Why does the wind help dry laundry?",
+        "target": "line-drying"
+      },
+      {
+        "text": "How can an appliance clean particles out of moving air?",
+        "target": "home-air-filters"
+      },
+      {
+        "text": "How does moving air carry heat in nature?",
+        "target": "heat-convection"
+      }
+    ],
+    "sources": [
+      "mechanism-cooling",
+      "mechanism-evaporation"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "home-air-filters",
+    "title": "What can an air cleaner catch?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A portable air cleaner often has a fan that pulls room air through a filter and pushes the air back out. The filter gives dust and other floating bits lots of surfaces to bump into and stick to. Different filters can catch different particles. A filter that catches pollen or dust may let gases pass through, so air coming out of an air cleaner can still contain things the filter missed.",
+    "aliases": [
+      "air cleaner",
+      "air purifier filter",
+      "home air filter"
+    ],
+    "sections": [],
+    "facts": [
+      "A filter slowly collects material, so many models need a new filter after a while."
+    ],
+    "terms": [
+      "particle",
+      "air cleaner"
+    ],
+    "questions": [
+      {
+        "text": "How does a vacuum cleaner keep dirt out of the air it blows out?",
+        "target": "vacuum-cleaners"
+      },
+      {
+        "text": "How does a smoke alarm respond to tiny bits in the air?",
+        "target": "photoelectric-smoke-alarms"
+      },
+      {
+        "text": "Why can moving air make you feel cooler?",
+        "target": "electric-fans"
+      }
+    ],
+    "sources": [
+      "mechanism-filters"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "vacuum-cleaners",
+    "title": "Where does dirt go inside a vacuum cleaner?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A vacuum cleaner uses a fast fan to move air from the hose or floor head toward an outlet. Air in the room rushes into the opening and carries loose dirt with it. In some vacuums, a bag catches most of the dirt. In others, spinning air throws heavier bits into a bin. Filters help catch smaller bits before the air goes back into the room.",
+    "aliases": [
+      "vacuum cleaner",
+      "how a vacuum sucks up dirt",
+      "vacuum cleaner filter"
+    ],
+    "sections": [],
+    "facts": [
+      "Many vacuum cleaners use more than one kind of filter."
+    ],
+    "terms": [
+      "air pressure",
+      "vacuum cleaner"
+    ],
+    "questions": [
+      {
+        "text": "Why does a suction cup stick when air can’t get under it?",
+        "target": "suction-cups"
+      },
+      {
+        "text": "What does a filter catch in an air cleaner?",
+        "target": "home-air-filters"
+      },
+      {
+        "text": "How can air push when you can’t see it?",
+        "target": "air-pressure"
+      }
+    ],
+    "sources": [
+      "mechanism-vacuum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "photoelectric-smoke-alarms",
+    "title": "How can a smoke alarm see smoke?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Some smoke alarms use a small light source inside their case. In clear air, the light shines past a sensor without hitting it. When tiny pieces of smoke drift in, they scatter some of the light in new directions. Some light then reaches the sensor. The alarm turns that change into a loud sound that people can hear from another part of the home.",
+    "aliases": [
+      "smoke detector light",
+      "how a smoke alarm works",
+      "photoelectric smoke detector"
+    ],
+    "sections": [],
+    "facts": [
+      "There is more than one kind of smoke alarm, and some types sense smoke without using light."
+    ],
+    "terms": [
+      "sensor",
+      "smoke alarm"
+    ],
+    "questions": [
+      {
+        "text": "How can light travel in different directions after it hits something?",
+        "target": "light"
+      },
+      {
+        "text": "How can a filter collect floating bits from air?",
+        "target": "home-air-filters"
+      },
+      {
+        "text": "How does a thermostat use a sensor to control a machine?",
+        "target": "thermostats"
+      }
+    ],
+    "sources": [
+      "mechanism-smoke"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "thermostats",
+    "title": "How does a thermostat know when to stop heating?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A thermostat compares the temperature it measures with the temperature people have set. When the room grows cooler than the setting, the thermostat can tell a heater to start. Once the room has warmed enough, it tells it to stop. A thermostat can also control a cooling machine. The thermostat acts like a helper that checks the room again and again, even while people are asleep.",
+    "aliases": [
+      "thermostat",
+      "how home heat turns on",
+      "temperature control"
+    ],
+    "sections": [],
+    "facts": [
+      "A programmable thermostat can change the setting at different times of day."
+    ],
+    "terms": [
+      "temperature",
+      "sensor"
+    ],
+    "questions": [
+      {
+        "text": "How does a refrigerator move heat out of its cold space?",
+        "target": "refrigerators"
+      },
+      {
+        "text": "How can a smoke alarm sense a change in the air?",
+        "target": "photoelectric-smoke-alarms"
+      },
+      {
+        "text": "Does a fan make the whole room colder?",
+        "target": "electric-fans"
+      }
+    ],
+    "sources": [
+      "mechanism-thermostat"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "refrigerators",
+    "title": "How does a refrigerator move heat out of its cold space?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A refrigerator uses a fluid that flows through tubes in a loop. In the cold part of the loop, some of the fluid turns into gas and takes in heat from inside the refrigerator. A pump then squeezes the gas. It can give off heat and turn back into liquid as it flows through tubes outside the cold space. The loop repeats to keep moving heat out.",
+    "aliases": [
+      "refrigerator",
+      "fridge cooling",
+      "how a refrigerator works",
+      "why does my fridge get cold",
+      "why is a fridge cold inside"
+    ],
+    "sections": [],
+    "facts": [
+      "Air near a refrigerator’s outside coils can feel warm because the machine releases heat there."
+    ],
+    "terms": [
+      "heat",
+      "evaporation"
+    ],
+    "questions": [
+      {
+        "text": "How does a heat pump use a similar loop to move warmth?",
+        "target": "heat-pumps"
+      },
+      {
+        "text": "How can a bottle slow down changes in temperature?",
+        "target": "vacuum-bottles"
+      },
+      {
+        "text": "How can a dryer collect water from damp air?",
+        "target": "heat-pump-dryers"
+      }
+    ],
+    "sources": [
+      "mechanism-fridge"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "microwave-ovens",
+    "title": "How does a microwave oven heat food?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A microwave oven makes a kind of wave that carries energy into food. It can make certain molecules in the food, including water molecules, move in ways that warm the food. That warmth can also spread from one part of the food to another. Waves and food do not always line up the same way inside the oven, so some spots may heat faster than others.",
+    "aliases": [
+      "microwave oven",
+      "how microwaves heat food",
+      "microwave cooking"
+    ],
+    "sections": [],
+    "facts": [
+      "Many microwave ovens rotate the dish to help the food warm more evenly."
+    ],
+    "terms": [
+      "molecule",
+      "energy"
+    ],
+    "questions": [
+      {
+        "text": "How can heat spread from a warmer spot to a cooler one?",
+        "target": "heat-conduction"
+      },
+      {
+        "text": "What makes water boil?",
+        "target": "boiling-water"
+      },
+      {
+        "text": "Why can a new air pressure make water boil at a different temperature?",
+        "target": "pressure-cookers"
+      }
+    ],
+    "sources": [
+      "mechanism-microwave"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pressure-cookers",
+    "title": "Why does a pressure cooker cook food faster?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "In an open pot, water boils when its bubbles can push against the air above it. A pressure cooker traps much of the steam under a tight lid. The trapped steam raises the pressure, so the water can get hotter before it boils. Food in the cooker is then surrounded by hotter water or steam than it could usually meet in an open pot.",
+    "aliases": [
+      "pressure cooker",
+      "pressure and boiling temperature",
+      "cooking under pressure",
+      "why does a pressure cooker work",
+      "how does a pressure cooker work"
+    ],
+    "sections": [],
+    "facts": [
+      "The same rule also helps explain why water often boils at a lower temperature high in the mountains."
+    ],
+    "terms": [
+      "air pressure",
+      "steam",
+      "pressure cooker"
+    ],
+    "questions": [
+      {
+        "text": "Why do bubbles rise when water boils?",
+        "target": "boiling-water"
+      },
+      {
+        "text": "How does a microwave oven get heat into food?",
+        "target": "microwave-ovens"
+      },
+      {
+        "text": "How can air and other gases push against surfaces?",
+        "target": "air-pressure"
+      }
+    ],
+    "sources": [
+      "mechanism-pressure"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "vacuum-bottles",
+    "title": "How does an insulated bottle keep a drink warm or cold?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "An insulated bottle often has two walls with very little air in the space between them. With so little air there, heat has a harder time moving through the gap. A lid also slows the movement of warm or cool air in and out of the bottle. If you put in a warm drink, it loses heat more slowly. A cold drink gains heat more slowly for the same reason.",
+    "aliases": [
+      "vacuum bottle",
+      "thermos",
+      "how an insulated bottle works",
+      "why does my thermos keep water cold",
+      "why does a thermos keep water hot"
+    ],
+    "sections": [],
+    "facts": [
+      "The word vacuum in vacuum bottle means a space with very little matter in it."
+    ],
+    "terms": [
+      "heat",
+      "vacuum",
+      "vacuum bottle"
+    ],
+    "questions": [
+      {
+        "text": "How can heat travel through a solid spoon?",
+        "target": "heat-conduction"
+      },
+      {
+        "text": "How does a refrigerator actively move heat out?",
+        "target": "refrigerators"
+      },
+      {
+        "text": "Can heat travel across a space even without air?",
+        "target": "heat-radiation"
+      }
+    ],
+    "sources": [
+      "mechanism-vacuum-bottle"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "zippers",
+    "title": "How does a zipper join two rows of teeth?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "A zipper has two rows of shaped teeth and a part called a slider. When the slider moves one way, it guides the rows together so the teeth catch beside each other. Moving it back guides the teeth apart again. The slider does the work a little at a time as it travels. There is no need to snap the whole row together at once.",
+    "aliases": [
+      "zipper",
+      "how does the zipper slider work",
+      "zip fastener"
+    ],
+    "sections": [],
+    "facts": [
+      "Some zippers use metal teeth and others use plastic teeth or a shaped coil."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What other fastener sticks because of many tiny catches?",
+        "target": "hook-and-loop-fasteners"
+      },
+      {
+        "text": "What makes the ends of a staple hold paper together?",
+        "target": "staplers"
+      },
+      {
+        "text": "How can pulling a piece of tape across an edge cut it?",
+        "target": "tape-dispensers"
+      }
+    ],
+    "sources": [
+      "mechanism-zipper"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hook-and-loop-fasteners",
+    "title": "What makes hook-and-loop fasteners stick together?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "One side of a hook-and-loop fastener has many tiny hooks. The soft side has small loops. When you press the two sides together, some hooks catch loops and hold the strips close. Peeling from one end pulls the hooks free a few at a time, which is easier than trying to pull the whole strip apart at once. The same fastener can then close again.",
+    "aliases": [
+      "velcro",
+      "hook and loop",
+      "fastener hooks loops",
+      "how does velcro work",
+      "what makes velcro stick"
+    ],
+    "sections": [],
+    "facts": [
+      "The soft and rough sides can both collect lint or bits of thread."
+    ],
+    "terms": [
+      "hook-and-loop fastener"
+    ],
+    "questions": [
+      {
+        "text": "How does a zipper lock two long edges together?",
+        "target": "zippers"
+      },
+      {
+        "text": "How does a suction cup hold on without tiny hooks?",
+        "target": "suction-cups"
+      },
+      {
+        "text": "Why can a staple hold pages after it bends?",
+        "target": "staplers"
+      }
+    ],
+    "sources": [
+      "mechanism-hook-loop"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "staplers",
+    "title": "Why do the ends of a staple bend under the paper?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "When you press a stapler, a flat piece pushes one staple down through the paper. Its two legs meet small grooves in a hard plate underneath. These grooves guide the legs inward as they bend. The bent metal now sits across the underside of the pages, with the top of the staple above them. The pages stay together because the bent legs are in the way.",
+    "aliases": [
+      "stapler",
+      "how a stapler bends staples",
+      "stapler anvil"
+    ],
+    "sections": [],
+    "facts": [
+      "The plate under the staple is called an anvil, a name also used for a support people hammer metal against."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How do the teeth of a zipper stay joined?",
+        "target": "zippers"
+      },
+      {
+        "text": "How does a small moving jaw hold a pencil’s writing stick?",
+        "target": "mechanical-pencils"
+      },
+      {
+        "text": "Why does a tape dispenser have a row of pointed teeth?",
+        "target": "tape-dispensers"
+      }
+    ],
+    "sources": [
+      "mechanism-stapler"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mechanical-pencils",
+    "title": "How does a mechanical pencil feed out more graphite?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "In many mechanical pencils, small jaws grip a thin stick of graphite, the material that leaves the gray mark. Pressing the button shifts the jaws and moves the stick forward a little. The jaws let go briefly as they move back, then grab the stick again to steady it for writing. Several short clicks can bring out more writing material without shaving away any wood.",
+    "aliases": [
+      "mechanical pencil",
+      "how click pencils work",
+      "pencil lead feed"
+    ],
+    "sections": [],
+    "facts": [
+      "People often call the writing stick pencil lead, but its dark mark comes from graphite."
+    ],
+    "terms": [
+      "graphite",
+      "mechanical pencil"
+    ],
+    "questions": [
+      {
+        "text": "How does a crank sharpener cut wood away from a pencil?",
+        "target": "crank-pencil-sharpeners"
+      },
+      {
+        "text": "How does ink get from a ballpoint pen onto paper?",
+        "target": "ballpoint-pens"
+      },
+      {
+        "text": "Why does one click extend a pen tip and the next hide it?",
+        "target": "click-pens"
+      }
+    ],
+    "sources": [
+      "mechanism-pencil"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "crank-pencil-sharpeners",
+    "title": "What turns inside a crank pencil sharpener?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "A crank pencil sharpener has small cutters inside that roll around the tip of the pencil when you turn the handle. The cutters shave away thin pieces of wood and shape the dark part in the middle into a point. The pencil can stay still in the opening while the cutters move. The little chips fall into a tray so they don’t cover the desk.",
+    "aliases": [
+      "crank pencil sharpener",
+      "wall pencil sharpener blades",
+      "pencil sharpener cutters"
+    ],
+    "sections": [],
+    "facts": [
+      "Some hand sharpeners use one fixed blade and ask you to turn the pencil instead."
+    ],
+    "terms": [
+      "graphite"
+    ],
+    "questions": [
+      {
+        "text": "How does a mechanical pencil stay useful without sharpening?",
+        "target": "mechanical-pencils"
+      },
+      {
+        "text": "How can an axle carry a turning motion from one part to another?",
+        "target": "wheel-and-axle"
+      },
+      {
+        "text": "How does a pen use a turning ball to draw a line?",
+        "target": "ballpoint-pens"
+      }
+    ],
+    "sources": [
+      "mechanism-sharpener"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ballpoint-pens",
+    "title": "Why does a ballpoint pen have a tiny ball?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "The end of a ballpoint pen holds a tiny ball that can roll but cannot fall out. Inside the pen, ink wets the inner side of the ball. As the tip moves across paper, the ball rolls. That brings a fresh bit of ink from inside the pen to its outside, where it leaves a mark. The writer supplies the motion by moving the tip.",
+    "aliases": [
+      "ballpoint pen",
+      "pen ball rolls ink",
+      "how pens write"
+    ],
+    "sections": [],
+    "facts": [
+      "Some pens made for space use gas pressure to keep ink moving toward the ball."
+    ],
+    "terms": [
+      "ink",
+      "ballpoint pen"
+    ],
+    "questions": [
+      {
+        "text": "How can a click pen move the whole tip safely inside?",
+        "target": "click-pens"
+      },
+      {
+        "text": "How does a mechanical pencil move its writing material forward?",
+        "target": "mechanical-pencils"
+      },
+      {
+        "text": "Why can a cutter roll around a pencil to sharpen it?",
+        "target": "crank-pencil-sharpeners"
+      }
+    ],
+    "sources": [
+      "mechanism-ballpoint"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "click-pens",
+    "title": "Why does one pen click extend the tip and the next hide it?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "A retractable pen has a moving ink tube, a spring, and a small guide inside the case. In one design, a part catches on a raised step in the guide and holds the pen tip out. The next press moves the part to another place in the guide. The spring can then pull or push the tip back inside, depending on how the pieces are arranged.",
+    "aliases": [
+      "retractable pen",
+      "click pen",
+      "how click pens work"
+    ],
+    "sections": [],
+    "facts": [
+      "The shaped guide in many moving devices is called a cam."
+    ],
+    "terms": [
+      "spring"
+    ],
+    "questions": [
+      {
+        "text": "How does the ball at a pen tip put ink on the paper?",
+        "target": "ballpoint-pens"
+      },
+      {
+        "text": "Why does a mechanical pencil move only a short bit each click?",
+        "target": "mechanical-pencils"
+      },
+      {
+        "text": "How can a ratchet catch and stop a piece from moving back?",
+        "target": "ratchets"
+      }
+    ],
+    "sources": [
+      "mechanism-click-pen"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tape-dispensers",
+    "title": "Why does a tape dispenser have little teeth?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "A tape dispenser lets the roll turn as you pull tape away from it. The cutting edge has a row of small points. When tape presses against the points, each tip puts force on a very small area and starts a little cut. As the tape pulls against the edge, those cuts meet. The tape comes off the roll at the length you pulled.",
+    "aliases": [
+      "tape dispenser",
+      "tape dispenser teeth",
+      "how tape tears"
+    ],
+    "sections": [],
+    "facts": [
+      "Some dispensers have a flat spot that holds the loose end until the next use."
+    ],
+    "terms": [
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "How does a wedge push material apart?",
+        "target": "wedges"
+      },
+      {
+        "text": "What makes scissors cut with two edges?",
+        "target": "scissors-cutting"
+      },
+      {
+        "text": "Why do staple ends fold over when they hit a plate?",
+        "target": "staplers"
+      }
+    ],
+    "sources": [
+      "mechanism-tape"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "suction-cups",
+    "title": "Why does a suction cup stick to a smooth window?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "Pressing a suction cup flat against a smooth surface pushes out much of the air underneath it. When the cup tries to spring back, the tight edge keeps most air from flowing back in. The air outside now pushes harder than the thin air in the space under the cup. The difference in those pushes holds the cup against the window.",
+    "aliases": [
+      "suction cup",
+      "suction cup on glass",
+      "how suction cups stick"
+    ],
+    "sections": [],
+    "facts": [
+      "If air leaks in along the edge, the cup can come loose without anyone pulling it."
+    ],
+    "terms": [
+      "air pressure",
+      "suction cup"
+    ],
+    "questions": [
+      {
+        "text": "How does a vacuum cleaner get air to rush up its hose?",
+        "target": "vacuum-cleaners"
+      },
+      {
+        "text": "How can air push without being seen?",
+        "target": "air-pressure"
+      },
+      {
+        "text": "What kind of fastener catches tiny loops instead of using air?",
+        "target": "hook-and-loop-fasteners"
+      }
+    ],
+    "sources": [
+      "mechanism-suction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "scissors-cutting",
+    "title": "How can scissors cut with two moving edges?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "Each half of a pair of scissors has a handle at one end and a blade at the other. Both halves turn around the same small pin. Closing the handles makes the sharp edges pass close beside each other. They push the paper in opposite directions along a short line, so it splits cleanly there. The point where the blades meet moves along as the handles close.",
+    "aliases": [
+      "scissors",
+      "why scissors cut paper",
+      "two scissor blades"
+    ],
+    "sections": [],
+    "facts": [
+      "On many scissors, using the part of the blade near the pin gives you more cutting force."
+    ],
+    "terms": [
+      "lever"
+    ],
+    "questions": [
+      {
+        "text": "How can a wedge start a split in a material?",
+        "target": "wedges"
+      },
+      {
+        "text": "Why does a longer wrench handle help turn a nut?",
+        "target": "wrenches"
+      },
+      {
+        "text": "What makes the points on a tape dispenser cut tape?",
+        "target": "tape-dispensers"
+      }
+    ],
+    "sources": [
+      "mechanism-simple-machines"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wrenches",
+    "title": "Why does a longer wrench handle make turning easier?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A wrench grabs the sides of a nut so it can turn it. If you push near the far end of a long handle, your push has more turning effect than the same push close to the nut. Your hand also has to travel farther for the same amount of turn. Many simple machines give you that kind of trade: a smaller push used over a longer distance.",
+    "aliases": [
+      "wrench",
+      "wrench handle length",
+      "why a long spanner helps"
+    ],
+    "sections": [],
+    "facts": [
+      "The center of the nut is the center of the wrench’s turn."
+    ],
+    "terms": [
+      "lever"
+    ],
+    "questions": [
+      {
+        "text": "How does a lever trade movement for force?",
+        "target": "levers"
+      },
+      {
+        "text": "Where is the turning pin in a pair of scissors?",
+        "target": "scissors-cutting"
+      },
+      {
+        "text": "How can a spring help two parts of a clip hold clothes?",
+        "target": "spring-clothespins"
+      }
+    ],
+    "sources": [
+      "mechanism-simple-machines"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "spring-clothespins",
+    "title": "Why do clothespins snap shut when you let go?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A common clothespin has two arms held together by a bent piece of springy wire. The part of the wire in the middle lets the arms turn a little. When you squeeze the back ends together, the front ends move apart. The spring is bent more than usual while you squeeze. When you let go, it pushes the front ends shut around the clothes and the line.",
+    "aliases": [
+      "clothespin",
+      "washing peg",
+      "how spring clips close"
+    ],
+    "sections": [],
+    "facts": [
+      "A clothespin has two places to move: the ends you squeeze and the ends that hold the clothes."
+    ],
+    "terms": [
+      "lever"
+    ],
+    "questions": [
+      {
+        "text": "What does a breeze do to a wet shirt pinned on a line?",
+        "target": "line-drying"
+      },
+      {
+        "text": "Why do scissors turn at a point between their handles and blades?",
+        "target": "scissors-cutting"
+      },
+      {
+        "text": "How can a spring move a pen tip?",
+        "target": "click-pens"
+      }
+    ],
+    "sources": [
+      "mechanism-clothespin"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "flagpole-pulleys",
+    "title": "How can you raise a flag by pulling down?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "On many flagpoles, a rope travels over a small wheel at the top. The wheel guides the rope as it moves around it. If you pull one side down, the other side goes up and can carry the flag with it. The wheel changes the direction of your pull, so you can stay on the ground to raise something far above your head.",
+    "aliases": [
+      "flagpole rope",
+      "flag pulley",
+      "how flags go up a pole"
+    ],
+    "sections": [],
+    "facts": [
+      "One fixed pulley can change the direction of a pull without making the load much lighter."
+    ],
+    "terms": [
+      "pulley"
+    ],
+    "questions": [
+      {
+        "text": "How do cranes use moving wheels to lift a load?",
+        "target": "cranes"
+      },
+      {
+        "text": "How does a wheel and axle turn as a pair?",
+        "target": "wheel-and-axle"
+      },
+      {
+        "text": "Why is a long wrench handle useful when turning something?",
+        "target": "wrenches"
+      }
+    ],
+    "sources": [
+      "mechanism-simple-machines"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "toilet-flushing",
+    "title": "How does a toilet flush and fill again?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "In many toilets, pressing the handle lets water rush from a tank into the bowl. The fast flow can fill a curved passage and start drawing water from the bowl down the drain. Air gets into the passage and stops that draw as the bowl empties. Fresh water then fills part of the bowl again. A valve lets water enter the tank until it reaches its usual level.",
+    "aliases": [
+      "toilet flush",
+      "toilet siphon",
+      "where water goes in a toilet"
+    ],
+    "sections": [],
+    "facts": [
+      "The water left in the bowl helps keep air from the drain from moving into the room."
+    ],
+    "terms": [
+      "valve"
+    ],
+    "questions": [
+      {
+        "text": "Where does used water go after a drain carries it away?",
+        "target": "wastewater-treatment"
+      },
+      {
+        "text": "How can a water tower help push water through pipes?",
+        "target": "water-towers"
+      },
+      {
+        "text": "How does a dishwasher direct water into different parts of the machine?",
+        "target": "dishwashers"
+      }
+    ],
+    "sources": [
+      "mechanism-toilet"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "paper-towel-wicking",
+    "title": "Why does a paper towel pull up water?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A paper towel is made of many small fibers with narrow spaces between them. Water sticks to the fibers and to other water molecules. When one edge of the paper touches a spill, water spreads into those spaces and pulls more water along with it. It can even climb up part of the towel. A smooth sheet of plastic does not have the same tiny pathways.",
+    "aliases": [
+      "paper towel absorbs water",
+      "water climbs into towel",
+      "paper capillary action"
+    ],
+    "sections": [],
+    "facts": [
+      "A paper towel can get wet above the edge where it first touched the water."
+    ],
+    "terms": [
+      "molecule"
+    ],
+    "questions": [
+      {
+        "text": "How does water stick together in a drop?",
+        "target": "surface-tension-water"
+      },
+      {
+        "text": "How do wood fibers become paper?",
+        "target": "paper-making"
+      },
+      {
+        "text": "How can a breeze help water leave a wet towel?",
+        "target": "line-drying"
+      }
+    ],
+    "sources": [
+      "mechanism-wicking"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bike-chain-drive",
+    "title": "How does a bicycle chain carry your push to the back wheel?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "When you press a bicycle pedal, you turn a ring with teeth near your feet. The teeth catch the links of the chain and pull it around. At the back of the bike, the chain catches the teeth of another wheel. Turning this wheel can turn the back tire against the ground. The chain carries motion between the pedals and the rear wheel even though they sit apart.",
+    "aliases": [
+      "bike chain drive",
+      "why a bike chain has links",
+      "bicycle pedals and chain"
+    ],
+    "sections": [],
+    "facts": [
+      "A chain bends around a toothed wheel because its links can turn a little where they join."
+    ],
+    "terms": [
+      "gear"
+    ],
+    "questions": [
+      {
+        "text": "What changes when a bicycle shifts gears?",
+        "target": "bicycle-gears"
+      },
+      {
+        "text": "How can the back wheel keep going when the pedals stop?",
+        "target": "bicycle-freewheels"
+      },
+      {
+        "text": "How can you slow a bicycle by squeezing a lever?",
+        "target": "bicycle-braking"
+      }
+    ],
+    "sources": [
+      "mechanism-bicycle-drive"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bicycle-freewheels",
+    "title": "Why can a bicycle coast while its pedals stay still?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "Many bicycles have a part that lets power move one way from the pedals to the back wheel. It catches when you pedal forward, so the chain can drive the wheel. When you stop pedaling and the wheel keeps rolling, the catching parts can slide past each other instead. The tire can keep turning while the chain and pedals pause. This is why you can coast downhill.",
+    "aliases": [
+      "bike coasting",
+      "freewheel bicycle",
+      "bike pedals still wheels turning"
+    ],
+    "sections": [],
+    "facts": [
+      "Some bikes make a clicking sound when the back wheel turns faster than pedaling drives it."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does a chain move the back wheel while you pedal?",
+        "target": "bike-chain-drive"
+      },
+      {
+        "text": "What is a ratchet, and why does it catch in one direction?",
+        "target": "ratchets"
+      },
+      {
+        "text": "What can help a bicycle slow down after coasting?",
+        "target": "bicycle-braking"
+      }
+    ],
+    "sources": [
+      "mechanism-freewheel"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bicycle-braking",
+    "title": "What happens when you squeeze a bicycle brake lever?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "On many bicycles, squeezing a handlebar lever pulls a cable or pushes fluid through a tube. At the wheel, this makes two pads press against a moving surface. The surface might be the rim of the wheel or a metal disc fixed near its center. The rubbing slows the wheel and turns some of its energy into heat. Taking pressure off the lever lets the pads move away again.",
+    "aliases": [
+      "bike brakes",
+      "bicycle brake pads",
+      "how bicycle brake lever works"
+    ],
+    "sections": [],
+    "facts": [
+      "A disc brake grips a disc that turns with the wheel."
+    ],
+    "terms": [
+      "lever",
+      "friction"
+    ],
+    "questions": [
+      {
+        "text": "What is friction, and why does it help things grip?",
+        "target": "friction"
+      },
+      {
+        "text": "How does a car sometimes use braking to charge a battery?",
+        "target": "regenerative-brakes"
+      },
+      {
+        "text": "What part lets a bicycle wheel roll while the pedals pause?",
+        "target": "bicycle-freewheels"
+      }
+    ],
+    "sources": [
+      "mechanism-bicycle-brake"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bicycle-air-pumps",
+    "title": "How does a bicycle pump make air go into a tire?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A bicycle pump has a moving piece called a piston that fits inside a tube. Pushing the handle moves the piston and squeezes the air in front of it. When this air pushes harder than the air in the tire, it can flow into the tire. A valve at the tire helps stop the air from coming right back out between pushes.",
+    "aliases": [
+      "bike air pump",
+      "bicycle pump piston",
+      "how a bicycle tire fills"
+    ],
+    "sections": [],
+    "facts": [
+      "Some bicycle pumps have a gauge that shows the air pressure."
+    ],
+    "terms": [
+      "air pressure",
+      "valve",
+      "bicycle pump"
+    ],
+    "questions": [
+      {
+        "text": "What makes invisible air push outward on a tire?",
+        "target": "air-pressure"
+      },
+      {
+        "text": "How does a suction cup use a difference in air pressure?",
+        "target": "suction-cups"
+      },
+      {
+        "text": "How can pressure in a closed cooker change boiling water?",
+        "target": "pressure-cookers"
+      }
+    ],
+    "sources": [
+      "mechanism-pump"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "car-differentials",
+    "title": "How can two car wheels turn at different speeds on a bend?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "When a car goes around a bend, the wheels on the outside follow a wider path than the wheels on the inside. They cover more ground during the same time. A part called a differential lets a powered pair of wheels turn at different speeds while both can receive power. Without that freedom, the tires would have to slide or scrub much more each time the car turned.",
+    "aliases": [
+      "car differential",
+      "why outside car wheels go faster",
+      "differential gears"
+    ],
+    "sections": [],
+    "facts": [
+      "The speed difference between the inside and outside wheels is easier to picture on a tight turn."
+    ],
+    "terms": [
+      "gear"
+    ],
+    "questions": [
+      {
+        "text": "How do train wheels help follow a curved track?",
+        "target": "train-wheel-shape"
+      },
+      {
+        "text": "How do gears change the way something turns?",
+        "target": "gears"
+      },
+      {
+        "text": "What is friction, and why does it help things grip?",
+        "target": "friction"
+      }
+    ],
+    "sources": [
+      "mechanism-differential"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "regenerative-brakes",
+    "title": "How does regenerative braking save energy as a car slows?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "Some electric and hybrid vehicles use their motor to help slow the wheels. The turning wheels drive the motor like a generator, which makes electricity from motion. The vehicle can store some of that electrical energy in its battery and use it later. Some energy still escapes as heat and other losses. Many vehicles also use brakes with rubbing pads when more stopping force is needed.",
+    "aliases": [
+      "regenerative braking",
+      "electric car brakes charge battery",
+      "energy from slowing down",
+      "How can an electric car save energy while slowing down?"
+    ],
+    "sections": [],
+    "facts": [
+      "Regenerative braking is the name for collecting some of a vehicle’s energy as it slows."
+    ],
+    "terms": [
+      "battery",
+      "energy",
+      "regenerative braking"
+    ],
+    "questions": [
+      {
+        "text": "How does a generator turn movement into electricity?",
+        "target": "electric-generators"
+      },
+      {
+        "text": "In what other ways can a car’s brakes slow a wheel?",
+        "target": "car-brakes"
+      },
+      {
+        "text": "What happens to energy when bicycle brake pads rub a wheel?",
+        "target": "bicycle-braking"
+      }
+    ],
+    "sources": [
+      "mechanism-regeneration"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "car-crumple-zones",
+    "title": "Why are parts of a car designed to bend in a crash?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "When a moving car hits something, its motion can stop very quickly. Parts at the front or back can be made to bend and fold in a planned way. Bending the metal and other materials takes some of the energy and lets the change in speed happen across a little more distance and time. The space for passengers is designed to hold its shape better.",
+    "aliases": [
+      "crumple zone",
+      "why cars crumple",
+      "how front of car absorbs energy"
+    ],
+    "sections": [],
+    "facts": [
+      "A crumple zone and a seat belt do different jobs, but both can help protect people inside a car."
+    ],
+    "terms": [
+      "energy",
+      "crumple zone"
+    ],
+    "questions": [
+      {
+        "text": "How does a seat belt slow a person when a car stops?",
+        "target": "seat-belts"
+      },
+      {
+        "text": "How can a car slow down using an electric motor?",
+        "target": "regenerative-brakes"
+      },
+      {
+        "text": "What can the landing gear do when a plane meets the ground?",
+        "target": "airplane-landing-gear"
+      }
+    ],
+    "sources": [
+      "mechanism-crumple"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "train-track-ballast",
+    "title": "Why are there loose stones under many train tracks?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Many railroad tracks rest on short supports laid across the track, called ties or sleepers. The ties sit in a bed of broken stone called ballast. The stone helps spread the weight of a train and hold the ties in place. Spaces between pieces of stone also give rainwater somewhere to flow. Workers check and reshape the bed so the tracks keep their planned height and angle.",
+    "aliases": [
+      "railroad ballast",
+      "why train tracks have gravel",
+      "stones under train rails"
+    ],
+    "sections": [],
+    "facts": [
+      "Some tracks use a solid supporting base instead of a bed of loose stone."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How do the shapes of the train wheels and the rails work together?",
+        "target": "train-wheel-shape"
+      },
+      {
+        "text": "How can moving rails let a train take another track?",
+        "target": "rail-switches"
+      },
+      {
+        "text": "What are the gates for where a road crosses a railroad?",
+        "target": "rail-grade-crossings"
+      }
+    ],
+    "sources": [
+      "mechanism-track"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "train-wheel-shape",
+    "title": "How do train wheels follow a curve in the tracks?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "Many train wheels become a little narrower in diameter toward their outside edge. On a curve, a wheel and its partner can shift sideways on the rails. The outside wheel can then roll on a part with a slightly bigger diameter. It travels farther in one turn, helping the pair follow the bend. A raised lip on each wheel can also help keep it on the track.",
+    "aliases": [
+      "train wheel cone",
+      "train wheel flanges",
+      "why train wheels taper",
+      "why are train wheels tapered",
+      "how do trains go around curves"
+    ],
+    "sections": [],
+    "facts": [
+      "The raised edge of a train wheel is known as a flange."
+    ],
+    "terms": [
+      "axle"
+    ],
+    "questions": [
+      {
+        "text": "How can a car’s wheels take different paths around a bend?",
+        "target": "car-differentials"
+      },
+      {
+        "text": "Why do rocks help hold the train tracks in place?",
+        "target": "train-track-ballast"
+      },
+      {
+        "text": "How does a moving wheel carry an axle around with it?",
+        "target": "wheel-and-axle"
+      }
+    ],
+    "sources": [
+      "mechanism-train-wheel"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rail-grade-crossings",
+    "title": "How does a road crossing warn that a train is coming?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "At some crossings, a road and railway meet without a bridge between them. A busy crossing may have flashing lights, bells, and gates that move down when a train approaches. The warnings tell people on the road to wait while the train uses the crossing. Some crossings have signs instead of moving gates, so the signs are important even when you do not hear a bell.",
+    "aliases": [
+      "railroad crossing gates",
+      "rail crossing flashing lights",
+      "train crossing road"
+    ],
+    "sections": [],
+    "facts": [
+      "The large X-shaped railroad crossing sign is often called a crossbuck in the United States."
+    ],
+    "terms": [
+      "railroad crossing"
+    ],
+    "questions": [
+      {
+        "text": "What do railroad signals tell a train crew?",
+        "target": "railway-signals"
+      },
+      {
+        "text": "How does a traffic signal know a car is waiting?",
+        "target": "traffic-light-sensors"
+      },
+      {
+        "text": "How can a train take one track instead of the one beside it?",
+        "target": "rail-switches"
+      }
+    ],
+    "sources": [
+      "mechanism-grade-crossing"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "car-ferries",
+    "title": "How can a ferry carry cars across water?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "A car ferry has a deck built to carry cars while the boat moves. Some car decks are open to the air. At the shore, a ramp joins the dock and the ferry. Workers guide vehicles onto the deck and leave room for them to get back out. A ferry can connect places separated by a bay or river. It turns the water into part of the route.",
+    "aliases": [
+      "car ferry",
+      "drive onto ferry",
+      "why ferries carry cars",
+      "how does a car ferry work",
+      "why can cars drive onto a boat"
+    ],
+    "sections": [],
+    "facts": [
+      "Some ferries carry passengers on foot as well as people traveling with vehicles."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can a loaded ship stay afloat?",
+        "target": "floating-ships"
+      },
+      {
+        "text": "Why might a large ship use a small tug near a dock?",
+        "target": "harbor-tugboats"
+      },
+      {
+        "text": "How can a boat move between two different water levels?",
+        "target": "canal-locks"
+      }
+    ],
+    "sources": [
+      "mechanism-ferry"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "harbor-tugboats",
+    "title": "How does a small tug help move a big ship?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "A cargo ship can travel far across the open sea, but moving it sideways near a dock can be hard. One or more tugboats can help by pushing against its side or pulling through a strong line. Each tug adds a push or pull in a chosen direction. That helps the crew guide the bigger ship through a crowded place or turn it at low speed.",
+    "aliases": [
+      "tugboat",
+      "harbor tug",
+      "how tugboats dock ships",
+      "how do tugboats work",
+      "why do ships need tugboats"
+    ],
+    "sections": [],
+    "facts": [
+      "A tug that pushes against a ship often has thick bumpers along the part that touches it."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Why can a heavy cargo ship float in the first place?",
+        "target": "floating-ships"
+      },
+      {
+        "text": "How do crates travel between cargo ships and land?",
+        "target": "container-port-cranes"
+      },
+      {
+        "text": "How does an airplane’s propeller push air to move it forward?",
+        "target": "propellers"
+      }
+    ],
+    "sources": [
+      "mechanism-tug"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "container-port-cranes",
+    "title": "How do shipping containers move from a ship to land?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Large boxes called shipping containers can ride on a ship, railroad car, or truck. At a port, a tall crane can lift a box from the ship, carry it over the dock, and lower it onto a waiting area or vehicle. Since the box stays closed during the move, workers can send many small goods onward together instead of transferring each item separately.",
+    "aliases": [
+      "port container crane",
+      "shipping containers at a port",
+      "how a container ship is unloaded"
+    ],
+    "sections": [],
+    "facts": [
+      "Containers often come in standard sizes so builders can plan how to stack and move them."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does a crane hold and raise a heavy load?",
+        "target": "cranes"
+      },
+      {
+        "text": "How can tugboats help a container ship get to the dock?",
+        "target": "harbor-tugboats"
+      },
+      {
+        "text": "How can a ferry take an entire car instead of one box?",
+        "target": "car-ferries"
+      }
+    ],
+    "sources": [
+      "mechanism-containers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "airplane-landing-gear",
+    "title": "What helps an airplane land without a hard slam?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "Many airplanes land on wheels held by parts called landing gear. The gear carries the plane’s weight against the ground and lets the plane roll during takeoff and landing. Many designs have parts that compress or flex when the wheels touch down. They help soften the sudden push from the ground. Some airplanes fold their landing gear inside after takeoff so less air pushes against it in flight.",
+    "aliases": [
+      "airplane landing gear",
+      "airplane wheels landing",
+      "airplane landing gear struts",
+      "why do planes have wheels",
+      "why does a plane pull up its wheels"
+    ],
+    "sections": [],
+    "facts": [
+      "Small planes can have gear that stays outside the whole time."
+    ],
+    "terms": [
+      "drag",
+      "landing gear"
+    ],
+    "questions": [
+      {
+        "text": "What can a jet do to slow down after touching the runway?",
+        "target": "airplane-landing-brakes"
+      },
+      {
+        "text": "What do the large runway numbers tell pilots?",
+        "target": "runway-markings"
+      },
+      {
+        "text": "How does a car use bending parts to spread out a sudden change in speed?",
+        "target": "car-crumple-zones"
+      }
+    ],
+    "sources": [
+      "mechanism-landing-gear"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "airplane-landing-brakes",
+    "title": "How does a jet airplane slow down on a runway?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "A passenger jet may use several things to slow down on the runway. Brakes act on some wheels as they roll. Panels called spoilers can rise on the wings and reduce lift, so the wheels press harder on the ground and the brakes can work better. On some jets, the engines can also direct some of their flow forward to push against the plane’s motion.",
+    "aliases": [
+      "jet airplanes stop after landing",
+      "airplane wheel brakes",
+      "landing spoilers and reverse thrust"
+    ],
+    "sections": [],
+    "facts": [
+      "A wing’s spoilers can also add air resistance when they stand up in the flow."
+    ],
+    "terms": [
+      "drag",
+      "friction"
+    ],
+    "questions": [
+      {
+        "text": "Why does an airplane’s landing gear help cushion touchdown?",
+        "target": "airplane-landing-gear"
+      },
+      {
+        "text": "How do wings support an airplane in the air?",
+        "target": "flight-lift"
+      },
+      {
+        "text": "How does a bike use rubbing to slow its wheels?",
+        "target": "bicycle-braking"
+      }
+    ],
+    "sources": [
+      "mechanism-airplane-braking"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "electric-doorbell-chimes",
+    "title": "How can a push button make a bell ring across the room?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A doorbell button can send electricity along a wire to a chime. In one kind of chime, the electricity moves through a coil of wire that acts like a magnet. The magnet moves a little metal bar or hammer. The hammer taps a plate to make it shake and ring. The ringing plate can be far away from the button you pressed.",
+    "aliases": [
+      "doorbell chime",
+      "how does a doorbell ring",
+      "electric doorbell bell strike"
+    ],
+    "sections": [],
+    "facts": [
+      "Some doorbells play sounds through a speaker instead of striking a metal plate."
+    ],
+    "terms": [
+      "electromagnet"
+    ],
+    "questions": [
+      {
+        "text": "Why does a coil of wire act like a magnet when electricity flows?",
+        "target": "electromagnets"
+      },
+      {
+        "text": "How can a piece of metal make a sound when it shakes?",
+        "target": "sound"
+      },
+      {
+        "text": "Why can an alarm make a noise when its sensor sees smoke?",
+        "target": "photoelectric-smoke-alarms"
+      }
+    ],
+    "sources": [
+      "mechanism-doorbell"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "optical-computer-mice",
+    "title": "How does a computer mouse tell which way it moved?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "An optical mouse shines light onto the surface beneath it. A tiny sensor makes images of that small patch again and again. A chip compares the images to see which way little marks and shadows have shifted. It sends the change to the computer, which moves the pointer. A surface with a visible pattern often gives the mouse more clues than smooth, clear glass.",
+    "aliases": [
+      "optical computer mouse",
+      "mouse sensor under mouse",
+      "computer mouse light",
+      "why can my computer mouse work on a desk",
+      "how can a mouse make the cursor move"
+    ],
+    "sections": [],
+    "facts": [
+      "An optical mouse can notice movement even when your hand slides it only a short way."
+    ],
+    "terms": [
+      "sensor"
+    ],
+    "questions": [
+      {
+        "text": "How can a smoke alarm make use of light hitting a sensor?",
+        "target": "photoelectric-smoke-alarms"
+      },
+      {
+        "text": "Why does a bright surface sometimes send light straight back?",
+        "target": "mirrors"
+      },
+      {
+        "text": "What does a sensor do when a car stops over a traffic detector?",
+        "target": "traffic-light-sensors"
+      }
+    ],
+    "sources": [
+      "mechanism-optical-mouse"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "trigger-spray-bottles",
+    "title": "Why does squeezing a spray bottle make a mist?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A trigger spray bottle has a small pump under the handle. The trigger moves a part inside the pump and pushes liquid toward a small opening called a nozzle. The stream can break into many little drops as it comes out. When you let go, the pump draws in more liquid through a tube. Small valves help keep it moving in the right direction.",
+    "aliases": [
+      "trigger spray bottle",
+      "how spray bottle nozzle works",
+      "spray bottle pump"
+    ],
+    "sections": [],
+    "facts": [
+      "The tube in many spray bottles reaches close to the bottom of the container."
+    ],
+    "terms": [
+      "valve"
+    ],
+    "questions": [
+      {
+        "text": "How does a valve keep air from leaving a bicycle tire?",
+        "target": "bicycle-air-pumps"
+      },
+      {
+        "text": "How does a dishwasher send water through little holes?",
+        "target": "dishwashers"
+      },
+      {
+        "text": "Why do tiny drops of water hold together?",
+        "target": "surface-tension-water"
+      }
+    ],
+    "sources": [
+      "mechanism-spray-bottle"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "retracting-tape-measures",
+    "title": "Why does a tape measure roll itself back up?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Pulling a tape measure out makes the inner roll turn and changes the shape of a spring hidden inside. The spring stores some of the energy from your pull. When the tape can move back in, the spring turns the roll in the other direction and winds the tape back onto it. Many tape measures have a switch that holds the tape out while you read a number.",
+    "aliases": [
+      "retracting tape measure",
+      "how tape measures rewind",
+      "tape measure spring",
+      "why does my tape measure roll up",
+      "what pulls a tape measure back in"
+    ],
+    "sections": [],
+    "facts": [
+      "The tape bends around the roll but stays much straighter when you draw it out."
+    ],
+    "terms": [
+      "energy",
+      "tape measure"
+    ],
+    "questions": [
+      {
+        "text": "Where else does a spring move something back when a button is pressed?",
+        "target": "click-pens"
+      },
+      {
+        "text": "How can a spring make a clothespin close around a clothesline?",
+        "target": "spring-clothespins"
+      },
+      {
+        "text": "How does a turning roll help feed out sticky tape?",
+        "target": "tape-dispensers"
+      }
+    ],
+    "sources": [
+      "mechanism-tape-measure"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lockstitch-sewing-machines",
+    "title": "How does a sewing machine join two threads to make a stitch?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "A common sewing machine uses one thread from above and another from a small spool below the cloth. The needle carries the upper thread down and then starts back up, leaving a loop. A part under the cloth catches that loop and passes it around the lower spool, linking the two threads. The upper thread pulls tight and the cloth shifts a little before the next stitch.",
+    "aliases": [
+      "sewing machine stitches",
+      "bobbin and needle",
+      "how a lockstitch works"
+    ],
+    "sections": [],
+    "facts": [
+      "The small spool under the cloth is called a bobbin."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How are yarns combined to make woven cloth?",
+        "target": "textile-fibers"
+      },
+      {
+        "text": "How can a little loop help two longer strips stay together?",
+        "target": "hook-and-loop-fasteners"
+      },
+      {
+        "text": "How does a spring clip keep hold of a piece of cloth?",
+        "target": "spring-clothespins"
+      }
+    ],
+    "sources": [
+      "mechanism-sewing",
+      "mechanism-sewing-example"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rice-cooker-sensors",
+    "title": "How does a rice cooker notice when the water is nearly gone?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A rice cooker can watch the temperature of its pot. While water is boiling, it takes in a lot of heat as some of it turns to steam. As the rice takes up water and steam escapes, there is less free water left. The bottom of the pot can then get hotter more quickly. The cooker can use that change to lower the heat or stop cooking.",
+    "aliases": [
+      "rice cooker how it knows when done",
+      "rice cooker heat sensor",
+      "rice cooker boiling water"
+    ],
+    "sections": [],
+    "facts": [
+      "An electric rice cooker can use more than one temperature sensor to track cooking."
+    ],
+    "terms": [
+      "sensor",
+      "temperature"
+    ],
+    "questions": [
+      {
+        "text": "What makes the bubbles in boiling water?",
+        "target": "boiling-water"
+      },
+      {
+        "text": "How does a thermostat react when a room warms up?",
+        "target": "thermostats"
+      },
+      {
+        "text": "Why can trapping steam raise the temperature at which water boils?",
+        "target": "pressure-cookers"
+      }
+    ],
+    "sources": [
+      "mechanism-rice-cooker",
+      "mechanism-pressure"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rotary-can-openers",
+    "title": "How does a can opener run its little cutting wheel around a can?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "A hand can opener can have two small wheels near each other. The rough wheel grips the rim of the can. The sharp wheel reaches the part it will cut. Turning the handle moves the rough wheel, which helps feed the can past the sharp one. The cut follows the rim as the can moves. Designs differ in where they cut and what edge they leave.",
+    "aliases": [
+      "rotary can opener",
+      "can opener wheels",
+      "how a can opener works"
+    ],
+    "sections": [],
+    "facts": [
+      "On many hand openers, squeezing two handles brings the wheels together around the rim."
+    ],
+    "terms": [
+      "wheel and axle"
+    ],
+    "questions": [
+      {
+        "text": "How does a long handle give a wrench more turning effect?",
+        "target": "wrenches"
+      },
+      {
+        "text": "What makes a little sharp edge split paper or tape?",
+        "target": "tape-dispensers"
+      },
+      {
+        "text": "How does a lever lift one side of a bottle cap?",
+        "target": "crown-cap-openers"
+      }
+    ],
+    "sources": [
+      "mechanism-can-opener"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "crown-cap-openers",
+    "title": "Why can a bottle opener lift a cap with a small push?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "A metal crown cap has bent edges that grip the bottle’s rim. A bottle opener can slip an edge under one side of the cap while another part of the opener rests against it. When the handle moves, the opener turns around its resting point and lifts part of the cap. The bend frees enough of the edge for the cap to come away.",
+    "aliases": [
+      "bottle opener lever",
+      "how does bottle opener open cap",
+      "crown cap opener"
+    ],
+    "sections": [],
+    "facts": [
+      "A crown cap is named for its ring of small ridges around the edge."
+    ],
+    "terms": [
+      "lever"
+    ],
+    "questions": [
+      {
+        "text": "How can the two moving arms of a simple tool make a stronger grip?",
+        "target": "spring-clothespins"
+      },
+      {
+        "text": "How does a can opener move its cutter along a rim?",
+        "target": "rotary-can-openers"
+      },
+      {
+        "text": "What is the center of the turn when a wrench moves a nut?",
+        "target": "wrenches"
+      }
+    ],
+    "sources": [
+      "mechanism-bottle-opener",
+      "mechanism-simple-machines"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "kitchen-tongs",
+    "title": "How do kitchen tongs pinch food without touching it with your hands?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A common pair of kitchen tongs has two long arms joined at one end. The ends far from the join can grip a piece of food. Squeezing the handles brings those gripping ends together. When you loosen your hand, a spring can open the arms again. The long arms mean you can reach something in a pan while keeping your hand farther from the hot surface.",
+    "aliases": [
+      "how tongs work",
+      "tongs spring",
+      "kitchen tongs squeeze"
+    ],
+    "sections": [],
+    "facts": [
+      "Some tongs have rounded gripping ends, while others have ridges that help hold slippery food."
+    ],
+    "terms": [
+      "lever"
+    ],
+    "questions": [
+      {
+        "text": "Why does a clothespin spring push its gripping ends together?",
+        "target": "spring-clothespins"
+      },
+      {
+        "text": "What lets the halves of scissors turn together?",
+        "target": "scissors-cutting"
+      },
+      {
+        "text": "How can a lever change where a push is felt?",
+        "target": "levers"
+      }
+    ],
+    "sources": [
+      "mechanism-tongs"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "flexible-ice-trays",
+    "title": "Why does twisting an ice tray make the cubes come out?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "Water freezes inside the little pockets of an ice tray and takes their shape. In a flexible tray, a gentle twist changes the shape of those pockets a little. The solid cubes cannot bend to match the new shape the way the tray does. Some of their contact with the tray breaks, so the cubes can drop out when the tray is turned over.",
+    "aliases": [
+      "how ice cube tray works",
+      "twist ice tray release",
+      "flexible ice tray"
+    ],
+    "sections": [],
+    "facts": [
+      "A soft-bottomed tray can also bend at the bottom of just one pocket to release a cube."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What makes water change from liquid to solid?",
+        "target": "states-of-matter"
+      },
+      {
+        "text": "How does a refrigerator move heat away from cold food?",
+        "target": "refrigerators"
+      },
+      {
+        "text": "How can a springy material change shape and then move back?",
+        "target": "spring-clothespins"
+      }
+    ],
+    "sources": [
+      "mechanism-ice-tray"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hydraulic-door-closers",
+    "title": "Why do some doors close slowly on their own?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Some doors have a little box and an arm that move together as the door opens. Opening the door presses on a spring inside the box. The spring pushes back to close the door. In many designs, closing also makes oil move through a narrow opening inside the box. The slow-moving oil helps keep the arm from letting the door swing shut all at once.",
+    "aliases": [
+      "hydraulic door closer",
+      "door closer spring",
+      "why door closes slowly"
+    ],
+    "sections": [],
+    "facts": [
+      "A closer combines a part that moves the door with another part that slows the motion down."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can a machine use pressure in a liquid to move something?",
+        "target": "hydraulic-machines"
+      },
+      {
+        "text": "What parts help a plane’s landing gear soften a sudden push?",
+        "target": "airplane-landing-gear"
+      },
+      {
+        "text": "How does a spring help something else return to its starting position?",
+        "target": "retracting-tape-measures"
+      }
+    ],
+    "sources": [
+      "mechanism-door-closer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

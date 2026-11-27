@@ -8,7 +8,16 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
-## Release 2.14.1 preview
+## Release 2.14.2
+
+The offline **Encyclopedia** has **1,224 reviewed articles**, including a new
+Ecosystems category and more on familiar machines, places, and math. The shared
+**Dictionary** has **2,168 headwords**, with common vocabulary and phrases as
+well as terms from articles. Both activities are available from Arcade Home on
+the web and in the existing Android app. See the
+[verification report](docs/arcade-stress-test-2.14.2.md).
+
+## Release 2.14.1
 
 The offline **Encyclopedia** now has **1,006 reviewed articles in 41 subjects**,
 including 116 country profiles. It covers topics such as marine wildlife,

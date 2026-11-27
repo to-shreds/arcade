@@ -2,7 +2,7 @@
   {
     "headword": "plant root",
     "forms": [
-      "roots"
+      "plant roots"
     ],
     "senses": [
       {
@@ -11,7 +11,7 @@
         "example": "The carrot’s leaves grew above the soil, and its plant root grew below."
       }
     ],
-    "revision": 1,
+    "revision": 2,
     "review": "approved",
     "sources": [
       "mat-osu-plant-outer"

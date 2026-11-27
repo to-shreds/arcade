@@ -1,4 +1,20 @@
-# Arcade Encyclopedia expansion, live 2.14.1 (2026-11-27)
+# Arcade reference expansion, 2.14.2 (2026-11-27)
+
+The reviewed corpus has **1,224 articles across 42 subjects**, **2,168 unique headwords**, **3,328 senses**, and **3,674 follow-up questions**. The first expansion toward the approved **4,000 articles and 10,000 headwords** adds 218 articles, 1,388 headwords and 655 links. The first dedicated Ecosystems entries are here, alongside familiar mechanisms, geography, landmarks, economics, civics and math. The dictionary emphasizes everyday reading and school vocabulary. See the [verification report](docs/arcade-stress-test-2.14.2.md) and [ProjectStatus](https://github.com/to-shreds/ProjectStatus/blob/main/projects/arcade/STATUS.md) for readiness and delivery.
+
+## Verified and deployable
+
+- Editors wrote original prose in Work and a different reviewer read each batch. The editable records are in `reference/editorial/` batches 15–19. Coverage has 1,290 provenance records, zero drafts, missing marked terms, invalid question links, ambiguity warnings or length warnings. Opened and rechecked the three new contextual flags for ordinary definitions. Keep these safety checks, stable IDs and sources separate from the child runtime.
+- Manifest `2.14.2+20261127.1` is **536 files and 28,412,941 bytes**. Only content packs change within the manifest's runtime files. Deterministic rebuild, all published records, 3,552 aliases, lexical tests, Android source and 55 Home routes passed. Chromium passed three input layouts, a fresh offline install and corrupted-update recovery. Checked offline reading of the new fraction article, its linked glossary term and follow-up, and lookup for “borrowed” and “fair.”
+- The existing Android app reads the hosted Arcade release and can update its offline copy. Use **Arcade Settings → Manage Games → Refresh Online** when the old edition is showing. The separately distributed Windows preview remains 2.14.1. Physical lower-end Android and Windows acceptance checks remain open.
+
+## Continuation
+
+The approved milestone still needs **2,776 articles and 7,832 headwords**. Write additional reviewed clusters on wildlife close to home, structures and sounds, libraries and languages, and common words still missing from school and everyday reading. Expand each cluster with questions that lead to meaningful distinct answers, and count new headwords separately from new senses and forms. Publish each verified batch to the ordinary web and Android activities. Keep the standard web and Android catalog, existing saves, offline hash verification and Windows child-policy isolation. Track warm and cold searches with real typo queries at larger counts and physical Android when available. See the [editorial workflow](reference/editorial/README.md) and the [governing specification](docs/WORK-HANDOFF-ENCYCLOPEDIA-WINDOWS.md).
+
+---
+
+# Prior Arcade Encyclopedia release, 2.14.1 (2026-11-27)
 
 The offline reference collection ships **1,006 independently approved articles across 41 subjects**, **780 headwords**, **917 senses**, and **3,019 curated question links**. This pass added 879 articles and 509 headwords. All approved articles and definitions are included in the live Arcade, its offline update, and the Windows preview. [PR #16](https://github.com/to-shreds/arcade/pull/16) merged to `main` at `dc5bb66db7acfb6e4d893ef015168d17e646397f`, and [Pages run 46074533481](https://github.com/to-shreds/arcade/actions/runs/46074533481) deployed 2.14.1. See [ProjectStatus](https://github.com/to-shreds/ProjectStatus/blob/main/projects/arcade/STATUS.md) for exact artifact identities and remaining checks.
 

@@ -1,0 +1,341 @@
+[
+  {
+    "headword": "heat pump",
+    "pronunciation": "HEET pump",
+    "forms": [
+      "heat pumps"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A machine that uses energy to move heat from one place to another.",
+        "example": "A heat pump can move warmth from the outdoors into a house."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-heat-pump-dryer",
+      "mechanism-fridge"
+    ]
+  },
+  {
+    "headword": "wheel and axle",
+    "pronunciation": "WEEL and AK-suhl",
+    "forms": [
+      "wheels and axles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A simple machine made of a wheel fixed to a rod so the two turn together.",
+        "example": "The round doorknob acts like a wheel that turns a much narrower rod inside the door."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-simple-machines"
+    ]
+  },
+  {
+    "headword": "spin cycle",
+    "pronunciation": "SPIN SYE-kuhl",
+    "forms": [
+      "spin cycles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The part of a wash when the machine spins clothes fast to remove much of the water.",
+        "example": "The towels still felt damp after the spin cycle."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-washer"
+    ]
+  },
+  {
+    "headword": "air cleaner",
+    "pronunciation": "AIR KLEE-ner",
+    "forms": [
+      "air cleaners"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A machine that helps take dust and other unwanted bits out of the air.",
+        "example": "A small air cleaner pulled air through a filter and blew it back into the room."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-filters"
+    ]
+  },
+  {
+    "headword": "vacuum cleaner",
+    "pronunciation": "VAK-yoom KLEE-ner",
+    "forms": [
+      "vacuum cleaners"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A machine that uses moving air to pick up loose dirt and collect it in a bag or bin.",
+        "example": "The vacuum cleaner picked up crumbs from the rug."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-vacuum"
+    ]
+  },
+  {
+    "headword": "smoke alarm",
+    "pronunciation": "SMOHK uh-LARM",
+    "forms": [
+      "smoke alarms"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A device that gives a loud warning when it detects smoke.",
+        "example": "The smoke alarm can make a sound even if no one is near it."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-smoke"
+    ]
+  },
+  {
+    "headword": "pressure cooker",
+    "pronunciation": "PRESH-er KOOK-er",
+    "forms": [
+      "pressure cookers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A pot that traps steam under a tight lid so food can cook at a higher temperature.",
+        "example": "The pressure cooker trapped steam while dinner cooked."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-pressure"
+    ]
+  },
+  {
+    "headword": "vacuum bottle",
+    "pronunciation": "VAK-yoom BAH-tuhl",
+    "forms": [
+      "vacuum bottles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A bottle with very little matter between two walls to slow the flow of heat into or out of it.",
+        "example": "The cold water in our vacuum bottle was still cold at lunchtime."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-vacuum-bottle"
+    ]
+  },
+  {
+    "headword": "hook-and-loop fastener",
+    "pronunciation": "HOOK and LOOP FASS-uh-ner",
+    "forms": [
+      "hook-and-loop fasteners"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A fastener made of two surfaces that hold together when tiny hooks on one side catch loops on the other.",
+        "example": "A hook-and-loop fastener held the flap of the bag closed."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-hook-loop"
+    ]
+  },
+  {
+    "headword": "mechanical pencil",
+    "pronunciation": "muh-KAN-ih-kuhl PEN-suhl",
+    "forms": [
+      "mechanical pencils"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A pencil that moves a slim stick of writing material toward its point so it can keep writing without being sharpened.",
+        "example": "Lena clicked her mechanical pencil to bring out more of the writing stick."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-pencil"
+    ]
+  },
+  {
+    "headword": "ballpoint pen",
+    "pronunciation": "BAWL-point PEN",
+    "forms": [
+      "ballpoint pens"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A pen with a little rolling ball at its tip that carries ink to the paper.",
+        "example": "My ballpoint pen made a blue line when I dragged its tip across the page."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-ballpoint"
+    ]
+  },
+  {
+    "headword": "suction cup",
+    "pronunciation": "SUK-shuhn KUP",
+    "forms": [
+      "suction cups"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A flexible cup that holds to a surface because air or water pushes harder on its outside than on the area under it.",
+        "example": "The suction cup held a little hook on the smooth glass."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-suction"
+    ]
+  },
+  {
+    "headword": "crumple zone",
+    "pronunciation": "KRUM-puhl zohn",
+    "forms": [
+      "crumple zones"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A part of a vehicle made to bend in a crash to help protect the people inside.",
+        "example": "A car can have a crumple zone near its front end."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-crumple"
+    ]
+  },
+  {
+    "headword": "railroad crossing",
+    "pronunciation": "RAYL-rohd KRAW-sing",
+    "forms": [
+      "railroad crossings"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A place where a road or path crosses train tracks at the same level.",
+        "example": "The gates came down at the railroad crossing before the train passed."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-grade-crossing"
+    ]
+  },
+  {
+    "headword": "landing gear",
+    "pronunciation": "LAN-ding geer",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The parts of an aircraft that support it while it is on the ground or another landing surface.",
+        "example": "The plane lowered its landing gear before its wheels touched the runway."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-landing-gear"
+    ]
+  },
+  {
+    "headword": "tape measure",
+    "pronunciation": "TAYP MEZH-er",
+    "forms": [
+      "tape measures"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A flexible strip with marked lengths for finding how long or wide something is.",
+        "example": "He checked how wide the desk was with a tape measure."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-tape-measure"
+    ]
+  },
+  {
+    "headword": "bicycle pump",
+    "pronunciation": "BYE-sih-kuhl PUMP",
+    "forms": [
+      "bicycle pumps"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A pump that pushes air into a bicycle tire.",
+        "example": "A bicycle pump put more air into the back tire."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-pump"
+    ]
+  },
+  {
+    "headword": "regenerative braking",
+    "pronunciation": "rih-JEN-er-uh-tiv BRAY-king",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way of slowing a vehicle and collecting part of its motion energy for later use.",
+        "example": "The electric car used regenerative braking to send some energy to its battery."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mechanism-regeneration"
+    ]
+  }
+]

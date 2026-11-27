@@ -240,8 +240,22 @@ try {
     await lookup(frame, 'character');
     await title(frame, 'character').waitFor();
     assert.equal(await frame.locator('.definition-senses li').count(), 2);
+    await lookup(frame, 'borrowed');
+    await title(frame, 'borrow').waitFor();
+    await lookup(frame, 'fair');
+    await title(frame, 'fair').waitFor();
+    assert.ok(await frame.locator('.definition-senses li').count() >= 2, 'fair includes multiple everyday meanings');
     await frame.getByRole('link', { name: 'Back to Arcade', exact: true }).click();
     await offline.locator('#shellGameFrame').waitFor({ state: 'detached' });
+    await offline.locator('[data-arcade-folder="encyclopedia"]').click();
+    await lookup(frame, 'add fractions with different denominators');
+    await frame.getByRole('button', { name: /^How do you add fractions with different bottom numbers/ }).click();
+    await title(frame, 'How do you add fractions with different bottom numbers?').waitFor();
+    await control(frame, 'Define common denominator').click();
+    await title(frame.getByRole('dialog'), 'common denominator').waitFor();
+    await control(frame.getByRole('dialog'), 'Close').click();
+    await control(frame, 'How can I find the smallest positive multiple the two bottom numbers share?').click();
+    await title(frame, 'What is the least common multiple?').waitFor();
     await offlineContext.close();
     console.log('PASS reference PWA: verified offline install, network cut, new and existing articles, shared definitions and Arcade Home');
   }

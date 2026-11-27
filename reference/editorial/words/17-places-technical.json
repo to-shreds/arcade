@@ -1,0 +1,232 @@
+[
+  {
+    "headword": "map scale",
+    "pronunciation": "MAP skayl",
+    "forms": [
+      "map scales"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A guide that compares a distance on a map with a distance on the ground.",
+        "example": "The map scale shows that one mark on the ruler stands for one mile."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-book"
+    ]
+  },
+  {
+    "headword": "map legend",
+    "pronunciation": "MAP LEJ-und",
+    "forms": [
+      "map legends",
+      "map key",
+      "map keys"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The part of a map that explains what the colors, lines, and pictures on it stand for.",
+        "example": "We checked the map legend to learn which blue line showed a stream."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-symbols"
+    ]
+  },
+  {
+    "headword": "topographic map",
+    "pronunciation": "top-uh-GRAF-ik MAP",
+    "forms": [
+      "topographic maps",
+      "topo map",
+      "topo maps"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A map that shows the shapes and heights of the land, along with places and features on it.",
+        "example": "The walkers used a topographic map to find the steepest hill."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-topo"
+    ]
+  },
+  {
+    "headword": "contour line",
+    "pronunciation": "KON-toor line",
+    "forms": [
+      "contour lines"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A line on a map that joins places at the same height.",
+        "example": "One contour line curved all the way around the hill."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-topo"
+    ]
+  },
+  {
+    "headword": "time zone",
+    "pronunciation": "TIME zohn",
+    "forms": [
+      "time zones"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An area whose clocks follow the same rules for local time.",
+        "example": "The town across the border was in a different time zone."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-time"
+    ]
+  },
+  {
+    "headword": "drainage divide",
+    "pronunciation": "DRAY-nij dih-VIDE",
+    "forms": [
+      "drainage divides"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A line of high ground that separates areas where water flows toward different streams, lakes, or other places.",
+        "example": "Rain ran toward different creeks on the two sides of the drainage divide."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "maps-watershed"
+    ]
+  },
+  {
+    "headword": "opportunity cost",
+    "pronunciation": "op-er-TOO-nuh-tee kost",
+    "forms": [
+      "opportunity costs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The next best choice you miss because you choose something else.",
+        "example": "My opportunity cost of choosing a train ride was missing the boat tour."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-scarcity"
+    ]
+  },
+  {
+    "headword": "bank account",
+    "pronunciation": "BANK uh-KOWNT",
+    "forms": [
+      "bank accounts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A record of money a person or group keeps at a bank.",
+        "example": "We checked how much money was in the bank account before paying the bill."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-fdic"
+    ]
+  },
+  {
+    "headword": "savings account",
+    "pronunciation": "SAY-vingz uh-KOWNT",
+    "forms": [
+      "savings accounts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A bank account meant for keeping money to use later.",
+        "example": "She put money from her yard sale into a savings account."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-fdic"
+    ]
+  },
+  {
+    "headword": "public service",
+    "pronunciation": "PUB-lik SUR-vis",
+    "forms": [
+      "public services"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Work or help provided for people by a government or another group acting for it.",
+        "example": "Fire protection is a public service our town helps pay for."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "econ-taxes"
+    ]
+  },
+  {
+    "headword": "oral tradition",
+    "pronunciation": "OR-ul truh-DISH-un",
+    "forms": [
+      "oral traditions"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A story, song, saying, or other practice passed on by speaking, singing, or listening.",
+        "example": "Grandma learned the song from her parents as part of her family’s oral tradition."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "cult-oral"
+    ]
+  },
+  {
+    "headword": "living heritage",
+    "pronunciation": "LIV-ing HAIR-ih-tij",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Skills, knowledge, and practices that people learn from earlier generations and keep using.",
+        "example": "Teaching the next group of dancers kept the village’s living heritage going."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "cult-heritage"
+    ]
+  }
+]

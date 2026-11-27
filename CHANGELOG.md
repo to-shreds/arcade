@@ -1,4 +1,13 @@
-# 2.14.1 preview
+# 2.14.2
+
+- Added 218 Encyclopedia articles on habitats, wildlife, everyday machines,
+  geography, landmarks, community life, and hands-on math. Browse the new
+  Ecosystems category or follow questions between related articles.
+- Added 1,388 Dictionary headwords, including everyday vocabulary, common
+  phrases, and terms taught by the new articles. Look up forms such as
+  “borrowed” and “hesitated” alongside the main entries.
+
+# 2.14.1
 
 - Added 879 independently reviewed Encyclopedia articles and 2,637 related
   questions. The full offline collection has 1,006 articles in 41 subjects.
