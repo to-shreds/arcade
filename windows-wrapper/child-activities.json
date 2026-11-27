@@ -1,0 +1,15 @@
+{
+  "activities": [
+    "adventure", "balloons", "build-my-joke", "codebreaking", "dictionary",
+    "encyclopedia", "make-10", "math", "maze", "minesweeper", "mouse-lab",
+    "patterns", "regex-lab", "simon", "spelling", "time", "trivia", "two-truths", "typing"
+  ],
+  "commonAssets": [
+    "arcade-save.js", "arcade-speech.js", "arcade-ui.css", "arcade.png"
+  ],
+  "offlineScriptReplacements": [
+    "multiplayer/arcade-multiplayer.js",
+    "multiplayer/shared-activity.js",
+    "multiplayer/shared-room-client.js"
+  ]
+}
