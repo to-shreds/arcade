@@ -1,4 +1,21 @@
-# Arcade reference expansion, 2.14.2 (2026-11-27)
+# Arcade reference expansion, 2.14.3 (2026-11-27)
+
+The approved corpus has **1,359 articles across 42 subjects**, **3,031 unique headwords**, **4,681 senses**, and **4,079 follow-up questions**. Release 2.14.3 adds 135 articles, 863 headwords and 405 links. Across releases 2.14.2 and 2.14.3 the additions are **353 articles, 2,251 headwords, and 1,060 links**. The target currently approved is **4,000 articles and 10,000 headwords**, with verified interim releases published to the normal web and Android Arcade. See [ProjectStatus](https://github.com/to-shreds/ProjectStatus/blob/main/projects/arcade/STATUS.md) for the latest deployment and artifact hashes.
+
+## Verified content and implementation
+
+- The new editable batches are 20–23 in `reference/editorial/`. They cover 42 structures and sound articles, 50 on writing systems, libraries and museums, 43 on wildlife near home, and three everyday vocabulary groups. The approved records are original Work-authored material, separately reviewed for accuracy, age, question fit, word senses and examples. Verified sources are stored in the adult-only editorial register. Coverage records 1,487 source anchors and no outstanding drafts, missing marked terms, broken question targets, ambiguous lookup forms or reading-length warnings.
+- Keep ordinary inflections discoverable even when a new headword has the same spelling. “Roots” now resolves to the fuller “root,” “plant roots” to “plant root,” and “ground” includes the past of “grind.” Similar cross-senses preserve “bit,” “saw,” “rose,” “thought,” “opening,” and “icing.” Check exact indexes during each new batch. Unpublished word forms cannot hide approved lookups.
+- The 541-file manifest `2.14.3+20261127.1` is 29,180,891 bytes. Deterministic build, exhaustive corpus, 3,957 aliases, 11 catalog cases, all 55 Home routes and the Android wrapper source passed. Actual Chromium offline navigation can open the new call-number article and its inline definition. The corrupted-update test preserves the last working snapshot and bookmark. [Verification report](docs/arcade-stress-test-2.14.3.md).
+- The existing Android app loads the hosted catalog. If needed, select **Arcade Settings → Manage Games → Refresh Online**. The previous Windows x64 preview is still 2.14.1. Physical Android and Windows acceptance remain open. Preserve standard Home behavior, all existing game saves and multiplayer, the native Android bridge, and Windows resource isolation.
+
+## Next unfinished inventory
+
+**2,641 articles and 6,969 headwords** remain to the approved milestone. A convenient interim checkpoint of 2,000 articles and 5,000 headwords needs 641 articles and 1,969 headwords. Continue with omitted regional and U.S. places, named animal behaviors and plants, everyday services and jobs, public infrastructure, and additional technology and history profiles. Use missing common school, story and conversation words as the next dictionary priority. Add technical terms with the articles that use them. Maintain distinct answered questions and editorial counts. Keep repeatable cold/warm typo tests and grow the corpus in verified releases. Start from main and the [editorial inventory workflow](reference/editorial/README.md). [Original specification](docs/WORK-HANDOFF-ENCYCLOPEDIA-WINDOWS.md).
+
+---
+
+# Prior Arcade reference release, 2.14.2 (2026-11-27)
 
 The reviewed corpus has **1,224 articles across 42 subjects**, **2,168 unique headwords**, **3,328 senses**, and **3,674 follow-up questions**. The first expansion toward the approved **4,000 articles and 10,000 headwords** adds 218 articles, 1,388 headwords and 655 links. The first dedicated Ecosystems entries are here, alongside familiar mechanisms, geography, landmarks, economics, civics and math. The dictionary emphasizes everyday reading and school vocabulary. See the [verification report](docs/arcade-stress-test-2.14.2.md) and [ProjectStatus](https://github.com/to-shreds/ProjectStatus/blob/main/projects/arcade/STATUS.md) for readiness and delivery.
 

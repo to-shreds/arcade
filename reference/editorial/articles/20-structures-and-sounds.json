@@ -1,0 +1,1575 @@
+[
+  {
+    "id": "sound-pitch",
+    "title": "Why do some sounds seem high and others low?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "A sound can seem high or low to your ears. That quality is called pitch. When a simple sound has more vibrations each second, its pitch is higher. When it has fewer vibrations each second, its pitch is lower. Think about a whistle and the low note from a large drum. Their pitches can be quite different even if neither sound seems louder to you.",
+    "aliases": [
+      "sound pitch",
+      "how high and low notes work",
+      "frequency and pitch"
+    ],
+    "sections": [],
+    "facts": [
+      "The number of times a motion repeats each second is called its frequency."
+    ],
+    "terms": [
+      "pitch"
+    ],
+    "questions": [
+      {
+        "text": "How is a stronger sound wave different from a higher note?",
+        "target": "sound-loudness"
+      },
+      {
+        "text": "How does a guitar player make a string play a higher note?",
+        "target": "guitar-sound"
+      },
+      {
+        "text": "Why does a moving sound sometimes seem to change pitch?",
+        "target": "sound-doppler-shift"
+      }
+    ],
+    "sources": [
+      "structures-sound-waves"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sound-loudness",
+    "title": "What happens to a sound wave when a sound gets stronger?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "A sound wave in air makes the air pressure rise and fall a little. The size of those changes is part of what makes a sound seem loud or quiet. If you tap a drum softly, its skin makes small motions. If you tap it harder, the skin can move farther each time it shakes. That can send stronger waves out to your ears.",
+    "aliases": [
+      "sound wave amplitude",
+      "how loudness works",
+      "why sounds get louder"
+    ],
+    "sections": [],
+    "facts": [
+      "Loudness describes how strong a sound seems to a listener."
+    ],
+    "terms": [
+      "air pressure"
+    ],
+    "questions": [
+      {
+        "text": "What makes a sound have a higher or lower pitch?",
+        "target": "sound-pitch"
+      },
+      {
+        "text": "How do small movements in a speaker make a sound wave?",
+        "target": "loudspeaker-cones"
+      },
+      {
+        "text": "How do musicians write instructions for a quiet or loud part?",
+        "target": "music-dynamics"
+      }
+    ],
+    "sources": [
+      "structures-sound-levels"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sound-through-water",
+    "title": "Does sound travel faster in water or in air?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "Sound can travel through water because its tiny parts can push on each other. It can also travel through air. Under ordinary conditions, a sound wave moves through water much faster than it moves through air. That speed does not make notes higher by itself. A source that vibrates at the same rate can send out waves with the same number of vibrations each second in both places.",
+    "aliases": [
+      "speed of sound in water",
+      "sound speed underwater",
+      "water sound vs air"
+    ],
+    "sections": [],
+    "facts": [
+      "Sound speed changes with the material and can also change as a material warms or cools."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does a sound wave pass through a row of air particles?",
+        "target": "sound"
+      },
+      {
+        "text": "Why can’t a sound wave cross a true vacuum?",
+        "target": "sound-in-a-vacuum"
+      },
+      {
+        "text": "How do ships use sound to find things underwater?",
+        "target": "sonar"
+      }
+    ],
+    "sources": [
+      "structures-sound-waves"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sound-in-a-vacuum",
+    "title": "Why can’t you hear a bell through empty space?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "A bell makes sound by shaking the material around it. In a room, the bell moves nearby air, and that movement can spread as a sound wave. A true vacuum has no matter to carry this kind of motion. A bell could still shake there, but it could not send an airborne sound to another person across the empty space. A solid touching the bell could carry vibrations along a different path.",
+    "aliases": [
+      "sound in space",
+      "why can’t sound travel through a vacuum",
+      "does sound travel in space"
+    ],
+    "sections": [],
+    "facts": [
+      "Astronauts can talk through radios because radio signals can travel through space without air."
+    ],
+    "terms": [
+      "vacuum"
+    ],
+    "questions": [
+      {
+        "text": "How can sound travel through liquid water?",
+        "target": "sound-through-water"
+      },
+      {
+        "text": "How do a speaker’s movements make waves in the air?",
+        "target": "loudspeaker-cones"
+      },
+      {
+        "text": "What other kinds of waves can travel without air?",
+        "target": "light-spectrum"
+      }
+    ],
+    "sources": [
+      "structures-sound-vacuum",
+      "structures-sound-waves"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sound-doppler-shift",
+    "title": "Why does a passing siren seem to change its note?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "When a siren moves toward you, each new part of its sound wave starts a little closer to you than the one before. The changes in air pressure reach your ears more often, making the pitch seem higher. Once the siren moves away from you, the wave changes reach you farther apart in time and the pitch seems lower. The siren can keep making the same note the whole time.",
+    "aliases": [
+      "doppler effect sound",
+      "why a siren changes pitch going past",
+      "passing train horn pitch"
+    ],
+    "sections": [],
+    "facts": [
+      "The change you hear as the siren passes is one example of the Doppler effect."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does the number of vibrations each second affect pitch?",
+        "target": "sound-pitch"
+      },
+      {
+        "text": "Why can sound move faster through one material than another?",
+        "target": "sound-through-water"
+      },
+      {
+        "text": "What can two ears notice about a sound arriving from the side?",
+        "target": "finding-sound-direction"
+      }
+    ],
+    "sources": [
+      "structures-sound-doppler"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "room-reverberation",
+    "title": "Why does a voice seem to linger in a big empty room?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "After you clap in a hard, empty room, sound can bounce from its walls, ceiling and floor. The bounces take different paths back to your ears. If many arrive close together, you may hear them blend into a short tail of sound after the clap. This is called reverberation. A long tail can make one word run into the next when people talk in a space with hard surfaces.",
+    "aliases": [
+      "reverberation for kids",
+      "why voice rings in an empty room",
+      "why gym sounds echoey"
+    ],
+    "sections": [],
+    "facts": [
+      "An echo that arrives much later may sound like a clear copy instead of a blended tail."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "When does a bounced sound come back as a separate echo?",
+        "target": "echoes"
+      },
+      {
+        "text": "What can soft materials do to bounces in a room?",
+        "target": "indoor-sound-absorption"
+      },
+      {
+        "text": "How can a wall help keep sound from reaching a room next door?",
+        "target": "sound-blocking-walls"
+      }
+    ],
+    "sources": [
+      "structures-sound-room"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "indoor-sound-absorption",
+    "title": "Why can a rug make a room sound less echoey?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A hard floor reflects much of the sound that reaches it. A rug gives some of the moving air a tangle of fibers and small gaps to pass through. Some of the wave’s energy spreads into tiny motions and heat instead of coming back as another strong sound. Covering part of a hard surface can shorten the tail you hear after a clap.",
+    "aliases": [
+      "why carpet makes a room quieter",
+      "sound absorbing materials in room",
+      "how rugs reduce room echo"
+    ],
+    "sections": [],
+    "facts": [
+      "Soft curtains and padded seats can also absorb part of a room’s sound."
+    ],
+    "terms": [
+      "energy"
+    ],
+    "questions": [
+      {
+        "text": "What makes sound linger after the source stops?",
+        "target": "room-reverberation"
+      },
+      {
+        "text": "How can a wall reduce sound passing between rooms?",
+        "target": "sound-blocking-walls"
+      },
+      {
+        "text": "Why can a distant wall send a clear echo back?",
+        "target": "echoes"
+      }
+    ],
+    "sources": [
+      "structures-sound-room"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sound-blocking-walls",
+    "title": "How can a wall make a sound harder to hear next door?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Sound can reach another room by passing through a wall, shaking part of the building, or slipping through gaps. A solid barrier can reflect some sound, and layers can make it harder for a vibration to pass all the way through. Closing air gaps can matter too. Soft surfaces inside a room help quiet its echoes, but sound between rooms also depends on the barrier itself.",
+    "aliases": [
+      "sound between rooms",
+      "sound insulation walls",
+      "block noise from next room"
+    ],
+    "sections": [],
+    "facts": [
+      "A small opening can let sound travel around an otherwise useful barrier."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What makes sound bounce many times in an empty space?",
+        "target": "room-reverberation"
+      },
+      {
+        "text": "How does a rug absorb some of the sound in a room?",
+        "target": "indoor-sound-absorption"
+      },
+      {
+        "text": "How can closing gaps make it harder for air to enter a room?",
+        "target": "door-weatherstripping"
+      }
+    ],
+    "sources": [
+      "structures-sound-room",
+      "structures-sound-insulation"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "finding-sound-direction",
+    "title": "How can two ears help you tell where a sound came from?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "A sound off to one side can reach the closer ear slightly before it reaches the farther one. Your head can also make that sound weaker by the time it reaches the far ear. Your brain compares the clues from the two sides. The shapes of the outside parts of your ears give other clues, especially to sounds from above or below.",
+    "aliases": [
+      "how ears tell where a sound came from",
+      "sound direction in two ears",
+      "locating a sound"
+    ],
+    "sections": [],
+    "facts": [
+      "Turning your head can change the clues from each ear and help you decide where to look."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How do the parts inside an ear turn vibrations into signals?",
+        "target": "hearing"
+      },
+      {
+        "text": "Why can a moving sound source seem to change notes?",
+        "target": "sound-doppler-shift"
+      },
+      {
+        "text": "Why can sound linger after it bounces inside a room?",
+        "target": "room-reverberation"
+      }
+    ],
+    "sources": [
+      "structures-sound-location"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "loudspeaker-cones",
+    "title": "How does a speaker turn electric signals into sound?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "In a common loudspeaker, an electric signal passes through a coil of wire near a magnet. Their pushes and pulls make the coil move. A wide part called a cone moves with it. As the cone goes forward and back, it nudges the nearby air and sends out changes in pressure. Those changes can reach your ears as speech, music, or another sound.",
+    "aliases": [
+      "speaker cone works",
+      "how loudspeaker makes sound",
+      "speaker magnet and coil"
+    ],
+    "sections": [],
+    "facts": [
+      "Some loudspeakers use more than one moving part to play different ranges of notes."
+    ],
+    "terms": [
+      "magnet",
+      "air pressure",
+      "speaker cone"
+    ],
+    "questions": [
+      {
+        "text": "How can a microphone use sound to make an electric signal?",
+        "target": "dynamic-microphones"
+      },
+      {
+        "text": "What part of a sound wave can affect how strong it seems?",
+        "target": "sound-loudness"
+      },
+      {
+        "text": "How does electricity in a wire make a magnetic field?",
+        "target": "electromagnets"
+      }
+    ],
+    "sources": [
+      "structures-sound-speaker"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dynamic-microphones",
+    "title": "How can a microphone turn sound into an electric signal?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "In one common type of microphone, sound waves make a thin cover move back and forth. The cover carries a small coil of wire close to a magnet. As the coil moves, it makes a changing electric signal. The signal follows the movements caused by the sound. A recorder can store that information, or a speaker can use it to make a new sound.",
+    "aliases": [
+      "dynamic microphone",
+      "microphone coil and magnet",
+      "how a microphone records sound"
+    ],
+    "sections": [],
+    "facts": [
+      "A thin part that moves in response to sound is often called a diaphragm."
+    ],
+    "terms": [
+      "magnet",
+      "dynamic microphone"
+    ],
+    "questions": [
+      {
+        "text": "How does a speaker change a signal back into sound?",
+        "target": "loudspeaker-cones"
+      },
+      {
+        "text": "How did an early machine keep a record of a sound as tiny marks?",
+        "target": "early-phonograph-recording"
+      },
+      {
+        "text": "How do sound waves get the air close to a microphone moving?",
+        "target": "sound"
+      }
+    ],
+    "sources": [
+      "structures-sound-microphone"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "early-phonograph-recording",
+    "title": "How did an early phonograph save and play back a voice?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "In an early phonograph, a sound made a thin part move back and forth. It carried a small point that made marks on foil wrapped around a turning cylinder. During playback, a point followed the marks and made a thin part move again. That movement made nearby air vibrate so someone could hear a rough copy of the sound that had been saved.",
+    "aliases": [
+      "edison talking machine",
+      "how the phonograph recorded sound",
+      "tinfoil sound recording"
+    ],
+    "sections": [],
+    "facts": [
+      "Thomas Edison demonstrated a tinfoil phonograph in the 1870s."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can a microphone turn a voice into an electric signal?",
+        "target": "dynamic-microphones"
+      },
+      {
+        "text": "How does a loudspeaker make a recorded voice heard?",
+        "target": "loudspeaker-cones"
+      },
+      {
+        "text": "How can many sound waves reach you after you stop speaking?",
+        "target": "room-reverberation"
+      }
+    ],
+    "sources": [
+      "structures-sound-record"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tuning-fork-sound",
+    "title": "Why does a tuning fork make the same note each time?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "A tuning fork has two metal arms called prongs. A small tap sets them moving, and they bend back and forth very quickly. Their size, shape and material help set how fast they move. A stronger tap can make their motion larger, but the fork usually keeps nearly the same pitch. Musicians can use a fork’s steady note as a guide for tuning another sound.",
+    "aliases": [
+      "tuning fork legs vibrate",
+      "why a tuning fork has one pitch",
+      "tuning fork sound"
+    ],
+    "sections": [],
+    "facts": [
+      "The note gets quieter as the motion of the prongs dies away."
+    ],
+    "terms": [
+      "tuning fork"
+    ],
+    "questions": [
+      {
+        "text": "How does the speed of a vibration make a note seem higher?",
+        "target": "sound-pitch"
+      },
+      {
+        "text": "How can one moving object help another start to shake?",
+        "target": "matching-vibrations"
+      },
+      {
+        "text": "Why can larger vibrations make a stronger sound wave?",
+        "target": "sound-loudness"
+      }
+    ],
+    "sources": [
+      "structures-sound-fork",
+      "structures-sound-waves"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "matching-vibrations",
+    "title": "Why can one shaking object make another start to shake?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "Think about pushing a swing. If the pushes come at the right moments, the motion can grow. Sound waves can also give small repeated pushes to something nearby. When those pushes match a rate the object moves at easily, they can build up a larger motion. This is called resonance. One tuning fork can sometimes set another fork shaking if the two are made to play the same note.",
+    "aliases": [
+      "sound resonance",
+      "two tuning forks shake",
+      "resonance for kids"
+    ],
+    "sections": [],
+    "facts": [
+      "An object can have more than one motion that it makes easily."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does a tuning fork make its own steady note?",
+        "target": "tuning-fork-sound"
+      },
+      {
+        "text": "What gives a sound its high or low pitch?",
+        "target": "sound-pitch"
+      },
+      {
+        "text": "How does a reed help the air inside a saxophone shake?",
+        "target": "saxophone-reeds"
+      }
+    ],
+    "sources": [
+      "structures-sound-fork"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "noise-canceling-headphones",
+    "title": "How can headphones quiet some sounds by making another sound?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Some headphones use a tiny microphone to listen to outside noise. A circuit then tells the headphone speaker to make a matching sound whose pressure changes go the other way. When one wave raises the pressure, the other can lower it. If they meet in the right way near your ear, part of the noise gets weaker. Steady background noises are usually easier to reduce than sudden ones.",
+    "aliases": [
+      "noise cancelling headphones how work",
+      "why noise cancellation works",
+      "opposite sound in headphones"
+    ],
+    "sections": [],
+    "facts": [
+      "Parts that fit around your ear can also block some outside sound without making a new wave."
+    ],
+    "terms": [
+      "air pressure",
+      "noise cancellation"
+    ],
+    "questions": [
+      {
+        "text": "How does a microphone sense changes in air pressure?",
+        "target": "dynamic-microphones"
+      },
+      {
+        "text": "How can a loudspeaker move air back and forth?",
+        "target": "loudspeaker-cones"
+      },
+      {
+        "text": "How can quieting echoes in a room work without a speaker?",
+        "target": "indoor-sound-absorption"
+      }
+    ],
+    "sources": [
+      "structures-sound-noise-cancel"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "saxophone-reeds",
+    "title": "What makes the first vibration inside a saxophone?",
+    "category": "music",
+    "priority": 2,
+    "answer": "A saxophone player blows air through a small gap next to a thin strip called a reed. The reed bends and springs back many times each second, changing the flow of air into the instrument. The air inside the tube vibrates and helps keep the reed moving. Pressing keys can close some holes and open others, changing which air motions fit best inside the tube. That changes the note people hear.",
+    "aliases": [
+      "saxophone reed",
+      "why saxophone is a woodwind",
+      "how a saxophone makes a note"
+    ],
+    "sections": [],
+    "facts": [
+      "Even though most saxophones have metal bodies, they belong to the woodwind family."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does a clarinet use one reed to make a note?",
+        "target": "clarinet-sound"
+      },
+      {
+        "text": "How does a harmonica have different reeds for blowing and drawing air?",
+        "target": "harmonica-reeds"
+      },
+      {
+        "text": "How can another vibration help an object keep shaking?",
+        "target": "matching-vibrations"
+      }
+    ],
+    "sources": [
+      "structures-sound-sax",
+      "structures-sound-sax-body"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pipe-organ-pipes",
+    "title": "How can a pipe organ play low and high notes at once?",
+    "category": "music",
+    "priority": 2,
+    "answer": "A pipe organ sends air into pipes when the musician presses keys. Air vibrates in the open space inside each pipe. Longer pipes in a similar group usually make lower notes, while shorter ones make higher notes. Each key can open a route for air to reach a pipe, so holding down several keys can make several pipes sound at the same time.",
+    "aliases": [
+      "how pipe organ works",
+      "why organ pipes have different lengths",
+      "air in a pipe organ"
+    ],
+    "sections": [],
+    "facts": [
+      "Many organs can choose between groups of pipes with different sounds."
+    ],
+    "terms": [
+      "pipe organ"
+    ],
+    "questions": [
+      {
+        "text": "How does vibration rate help determine a note’s pitch?",
+        "target": "sound-pitch"
+      },
+      {
+        "text": "How does an ordinary flute make vibrating air inside a tube?",
+        "target": "flute-sound"
+      },
+      {
+        "text": "What changes when two or more musical notes are heard together?",
+        "target": "melody-harmony"
+      }
+    ],
+    "sources": [
+      "structures-sound-organ",
+      "structures-sound-organ-length"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "snare-drum-wires",
+    "title": "What makes a snare drum buzz when you play it?",
+    "category": "music",
+    "priority": 2,
+    "answer": "A snare drum has a stretched head on top and another thin head underneath. A tap sets the top head moving and can make the lower one move too. Thin wires sit against the lower head. They shake against it and add their quick rattle to the sound of the drum. If the wires are moved away from the head, much of that rattle goes away.",
+    "aliases": [
+      "snare drum wires",
+      "why a snare drum rattles",
+      "snare head and wires"
+    ],
+    "sections": [],
+    "facts": [
+      "The wires are called snares."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How do players tune the stretched head of a timpani?",
+        "target": "timpani-drums"
+      },
+      {
+        "text": "How can a cymbal’s metal body make a ringing sound?",
+        "target": "cymbal-ringing"
+      },
+      {
+        "text": "Why does a stronger drum tap make a stronger wave?",
+        "target": "sound-loudness"
+      }
+    ],
+    "sources": [
+      "structures-sound-snare"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "harmonica-reeds",
+    "title": "How can one hole in a harmonica play two notes?",
+    "category": "music",
+    "priority": 2,
+    "answer": "A hole in many harmonicas leads to a small air passage with two thin strips called reeds. When you blow through the hole, the air usually sets one reed vibrating. When you draw air back through the same passage, the other reed can vibrate. The reeds are made to shake at different rates, so breathing in and blowing out can play different notes without moving to another hole.",
+    "aliases": [
+      "harmonica blow draw notes",
+      "why breathing in changes harmonica sound",
+      "harmonica reeds"
+    ],
+    "sections": [],
+    "facts": [
+      "Some harmonicas use other layouts, but the blow and draw arrangement is common."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does a saxophone make a reed vibrate?",
+        "target": "saxophone-reeds"
+      },
+      {
+        "text": "What makes one reed’s note higher than another?",
+        "target": "sound-pitch"
+      },
+      {
+        "text": "How can a tiny fast movement make waves in air?",
+        "target": "sound"
+      }
+    ],
+    "sources": [
+      "structures-sound-harmonica"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cymbal-ringing",
+    "title": "Why does a cymbal keep ringing after one tap?",
+    "category": "music",
+    "priority": 2,
+    "answer": "After a cymbal is tapped, its thin metal can keep bending and springing back for a short time. There are many ways parts of the metal can move together. Several motions happen at the same time and add different parts to the sound. The cymbal grows quieter as its motion fades. Its thickness, shape and size can all change how long the ringing lasts.",
+    "aliases": [
+      "how cymbals ring",
+      "cymbal vibration",
+      "why cymbals sound different from drums"
+    ],
+    "sections": [],
+    "facts": [
+      "The small raised part in the middle of many cymbals is called the bell."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What gives a snare drum its rattle?",
+        "target": "snare-drum-wires"
+      },
+      {
+        "text": "How can a tuning fork keep moving for a while after a tap?",
+        "target": "tuning-fork-sound"
+      },
+      {
+        "text": "Why can a room make a brief sound seem to last longer?",
+        "target": "room-reverberation"
+      }
+    ],
+    "sources": [
+      "structures-sound-cymbal",
+      "structures-sound-fork"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cement-and-concrete",
+    "title": "Is cement the same thing as concrete?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Cement is one ingredient in concrete. When you mix cement with water, it makes a paste. Add pieces of sand, gravel, or crushed stone, and the paste can fill the gaps and coat the pieces. The paste hardens and holds those pieces in a solid mass we call concrete. The mixture can fill a shape before it gets hard, which is useful for making steps, paths, or building parts.",
+    "aliases": [
+      "cement vs concrete",
+      "what is concrete made of",
+      "difference cement concrete"
+    ],
+    "sections": [],
+    "facts": [
+      "The sand and larger bits of stone in concrete are often called aggregate."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Why does concrete get harder if it stays moist enough as it sets?",
+        "target": "concrete-curing"
+      },
+      {
+        "text": "Why can steel bars help a concrete beam carry a heavier load?",
+        "target": "reinforced-concrete"
+      },
+      {
+        "text": "Why do bricklayers use mortar between separate bricks?",
+        "target": "brick-mortar"
+      }
+    ],
+    "sources": [
+      "structures-sound-concrete"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "concrete-curing",
+    "title": "Why does concrete need time and moisture to get strong?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "When water and cement mix, parts of the cement react with the water. Over time, the reaction makes new solid material that helps lock the mixture together. The reaction needs water, so very early drying can get in the way of stronger concrete. Builders call the time spent protecting the young concrete while it hardens curing. How long it takes depends on the mixture and conditions.",
+    "aliases": [
+      "how wet concrete hardens",
+      "concrete curing",
+      "why water hardens cement"
+    ],
+    "sections": [],
+    "facts": [
+      "Concrete can continue gaining strength after it feels hard at the surface."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What is the difference between cement and concrete?",
+        "target": "cement-and-concrete"
+      },
+      {
+        "text": "How does the movement of water into a towel differ from a reaction with water?",
+        "target": "paper-towel-wicking"
+      },
+      {
+        "text": "What can steel add to hardened concrete?",
+        "target": "reinforced-concrete"
+      }
+    ],
+    "sources": [
+      "structures-sound-hydration"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "reinforced-concrete",
+    "title": "Why are there steel bars inside some concrete?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Concrete handles strong squeezes well, but it can crack more easily where a load pulls it apart. Builders can put steel rods inside a concrete beam or slab when they make it. The rods help carry pulling forces, while the concrete can carry much of the squeezing force. The two materials share the job. Steel bars made for this use are often called rebar.",
+    "aliases": [
+      "rebar in concrete",
+      "why reinforce concrete",
+      "steel rods inside concrete"
+    ],
+    "sections": [],
+    "facts": [
+      "Reinforcing bars often have a rough pattern that helps them grip the concrete."
+    ],
+    "terms": [
+      "reinforced concrete"
+    ],
+    "questions": [
+      {
+        "text": "Where do a beam’s top and bottom feel different forces?",
+        "target": "loaded-beams"
+      },
+      {
+        "text": "How does cement help hold pieces of stone together?",
+        "target": "cement-and-concrete"
+      },
+      {
+        "text": "How does a bridge frame use triangles to carry loads?",
+        "target": "truss-bridges"
+      }
+    ],
+    "sources": [
+      "structures-sound-concrete-reinforcement",
+      "structures-sound-beams"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "loaded-beams",
+    "title": "How can the top and bottom of a bending beam feel different forces?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Picture a straight bar resting on two supports, with a load pushing down in the middle. The bar bends a little. Along the top near the middle, parts of the bar are pressed together. Along the bottom, they are pulled farther apart. Both changes can happen in the same bar. That matters when people choose materials for a floor or bridge that needs to carry a load.",
+    "aliases": [
+      "tension and compression in a beam",
+      "beam bends when loaded",
+      "why beams bend in the middle"
+    ],
+    "sections": [],
+    "facts": [
+      "A squeeze is called compression, and a pull that stretches a material can cause tension."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can steel rods help a concrete beam take a pulling force?",
+        "target": "reinforced-concrete"
+      },
+      {
+        "text": "How does an arch carry a load into the ground beside it?",
+        "target": "arch-bridges"
+      },
+      {
+        "text": "Why can a truss use small pieces to build a stiff frame?",
+        "target": "truss-bridges"
+      }
+    ],
+    "sources": [
+      "structures-sound-beams"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "staggered-brick-bond",
+    "title": "Why do the gaps between bricks often make a zigzag pattern?",
+    "category": "architecture",
+    "priority": 2,
+    "answer": "Look at two rows in many brick walls. The end of one brick is over the middle of a brick below it. That overlap means the upright joints in several rows do not line up to make one long seam. When a load reaches one brick, the arrangement can help share part of it with the bricks around it. Builders use more than one pattern of overlap.",
+    "aliases": [
+      "brick running bond",
+      "offset bricks in wall",
+      "why bricks stagger"
+    ],
+    "sections": [],
+    "facts": [
+      "A common pattern that shifts each row by half a brick is called running bond."
+    ],
+    "terms": [
+      "running bond"
+    ],
+    "questions": [
+      {
+        "text": "What goes in the joints between bricks?",
+        "target": "brick-mortar"
+      },
+      {
+        "text": "How can supports spread a wall’s load over the ground?",
+        "target": "spread-footing-foundations"
+      },
+      {
+        "text": "How can dried earth become part of a wall?",
+        "target": "adobe-architecture"
+      }
+    ],
+    "sources": [
+      "structures-sound-brick"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "brick-mortar",
+    "title": "Why is there mortar between bricks?",
+    "category": "architecture",
+    "priority": 2,
+    "answer": "Bricks can have tiny differences in size and shape. A soft layer of mortar fills space between them while a wall is being built. It gives each brick more contact with the row below and holds the pieces where the builder set them after it hardens. The layer also fills paths where wind or rain could otherwise enter between the blocks.",
+    "aliases": [
+      "mortar between bricks",
+      "why brick joints need mortar",
+      "brick mortar mix"
+    ],
+    "sections": [],
+    "facts": [
+      "Mortar joints can be shaped slightly differently, even on walls made of the same kind of brick."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Why do bricks often overlap the ends of the ones below them?",
+        "target": "staggered-brick-bond"
+      },
+      {
+        "text": "What does cement do in a concrete mixture?",
+        "target": "cement-and-concrete"
+      },
+      {
+        "text": "Why do some walls need to resist a sideways push from dirt?",
+        "target": "earth-retaining-walls"
+      }
+    ],
+    "sources": [
+      "structures-sound-brick"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "spread-footing-foundations",
+    "title": "Why is part of a building’s foundation often wider than its wall?",
+    "category": "architecture",
+    "priority": 2,
+    "answer": "A footing is a support near the bottom of a building or bridge. A spread footing can be wider than the wall or post above it. It lets the same weight press on a larger patch of ground. Compare a person in a wide snowshoe with the same person in a narrow boot. The wider contact spreads the push, so it can help reduce pressure on any small spot.",
+    "aliases": [
+      "spread footing foundation",
+      "why foundation footing is wide",
+      "building footing spreads load"
+    ],
+    "sections": [],
+    "facts": [
+      "A shallow footing needs ground underneath that can carry the load placed on it."
+    ],
+    "terms": [
+      "spread footing"
+    ],
+    "questions": [
+      {
+        "text": "How can a building reach stronger ground farther down?",
+        "target": "deep-foundation-piles"
+      },
+      {
+        "text": "Why does dirt pile up against a retaining wall?",
+        "target": "earth-retaining-walls"
+      },
+      {
+        "text": "How does a beam take a load between two supports?",
+        "target": "loaded-beams"
+      }
+    ],
+    "sources": [
+      "structures-sound-foundations",
+      "structures-sound-bridge-supports"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "deep-foundation-piles",
+    "title": "Why do some large buildings stand on long supports hidden underground?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "The ground close to the surface may be too soft to support a heavy structure. Long supports below it can help carry the structure’s weight. Some are driven into the ground. Others are formed in deep holes. A long support can pass load to strong soil or rock near its end, to the ground along its sides, or both. You can see only the structure above once it is built.",
+    "aliases": [
+      "pile foundation",
+      "why buildings need piers deep underground",
+      "support building piles"
+    ],
+    "sections": [],
+    "facts": [
+      "Bridges as well as buildings can use deep foundations."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can a wide footing carry a load when the ground is strong near the top?",
+        "target": "spread-footing-foundations"
+      },
+      {
+        "text": "What material can use both steel and hardened concrete to carry forces?",
+        "target": "reinforced-concrete"
+      },
+      {
+        "text": "Why do the top and bottom of a loaded beam feel different forces?",
+        "target": "loaded-beams"
+      }
+    ],
+    "sources": [
+      "structures-sound-foundations",
+      "structures-sound-bridge-supports"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "earth-retaining-walls",
+    "title": "Why does a wall holding back soil need a strong base?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A retaining wall keeps soil on one side higher than the ground on the other side. The soil presses sideways, even though its weight pulls down. The wall has to pass those forces into parts that can hold it in place. A wide base or other supports can help the wall resist sliding or tipping. Different walls carry those pushes in different ways.",
+    "aliases": [
+      "retaining wall holding dirt",
+      "why build a retaining wall on a slope",
+      "earth pressure against wall"
+    ],
+    "sections": [],
+    "facts": [
+      "A retaining wall can make room for a path beside a hillside."
+    ],
+    "terms": [
+      "retaining wall"
+    ],
+    "questions": [
+      {
+        "text": "How can a foundation footing spread a force into the ground?",
+        "target": "spread-footing-foundations"
+      },
+      {
+        "text": "What do storm drains do with rainwater at street level?",
+        "target": "storm-drains"
+      },
+      {
+        "text": "Why does a wall made from separate bricks need joints?",
+        "target": "brick-mortar"
+      }
+    ],
+    "sources": [
+      "structures-sound-retaining-walls"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bridge-expansion-joints",
+    "title": "Why do some bridges have gaps or metal strips across the roadway?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Many materials get a little longer when they warm up and shorter when they cool. On a long bridge, a small change in each part can add up to noticeable movement. Some bridges have a joint between parts of the roadway that can open or close a little. It still gives wheels a way to cross while making room for the moving bridge parts.",
+    "aliases": [
+      "bridge expansion joints",
+      "why bridge has a gap across road",
+      "road bridge metal strips expands"
+    ],
+    "sections": [],
+    "facts": [
+      "A bridge joint may use metal fingers or a flexible seal, depending on its design."
+    ],
+    "terms": [
+      "expansion joint"
+    ],
+    "questions": [
+      {
+        "text": "How do a bridge’s tower and cables share the load?",
+        "target": "cable-stayed-bridges"
+      },
+      {
+        "text": "Why can a beam carry a load even while it bends slightly?",
+        "target": "loaded-beams"
+      },
+      {
+        "text": "How does a movable bridge make room for boats?",
+        "target": "opening-drawbridges"
+      }
+    ],
+    "sources": [
+      "structures-sound-expansion-joints"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cable-stayed-bridges",
+    "title": "Why do some bridge cables fan out from a tower?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "On a cable-stayed bridge, strong cables run from the tower to points on the roadway below. The cables pull on the roadway and help hold it up. They also pull on the tower, which carries their forces down to its supports. Look from the side and you might see the cables spread like a fan, with several ends reaching different parts of the roadway.",
+    "aliases": [
+      "cable stayed bridge",
+      "diagonal bridge cables",
+      "bridge cables attach directly to tower"
+    ],
+    "sections": [],
+    "facts": [
+      "The angled cables on a cable-stayed bridge are called stays."
+    ],
+    "terms": [
+      "cable-stayed bridge"
+    ],
+    "questions": [
+      {
+        "text": "How is a suspension bridge supported by its long hanging cables?",
+        "target": "suspension-bridges"
+      },
+      {
+        "text": "Why can a bridge use long supports far down in the ground?",
+        "target": "deep-foundation-piles"
+      },
+      {
+        "text": "Why do some bridges need a roadway joint that can move a little?",
+        "target": "bridge-expansion-joints"
+      }
+    ],
+    "sources": [
+      "structures-sound-cable-stayed"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "opening-drawbridges",
+    "title": "How can a road bridge open so a boat can pass?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A low bridge can carry cars across a river but get in the way of a tall boat. Some movable bridges tilt part of the road up so the boat can pass. Others slide, swing aside, or lift a stretch of road straight up. Before the bridge moves, people on the road must wait on either side. The bridge can close after the boat is clear.",
+    "aliases": [
+      "drawbridge lifts road",
+      "how bascule bridge opens",
+      "why bridges lift for boats"
+    ],
+    "sections": [],
+    "facts": [
+      "A bridge with a roadway that tips up around a turning point is often called a bascule bridge."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can a canal lock move a boat to another water level?",
+        "target": "canal-locks"
+      },
+      {
+        "text": "How can a hinge let a door turn while it stays attached?",
+        "target": "door-hinge-pins"
+      },
+      {
+        "text": "Why do cables in a cable-stayed bridge run diagonally?",
+        "target": "cable-stayed-bridges"
+      }
+    ],
+    "sources": [
+      "structures-sound-movable-bridges"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "home-heat-insulation",
+    "title": "How does insulation slow heat moving through a wall?",
+    "category": "architecture",
+    "priority": 2,
+    "answer": "Heat tends to move from warmer places to cooler ones. Insulation inside a wall or roof makes that movement harder. Some kinds use fibers or foam with many little spaces that hold air nearly still. When air cannot move freely through the spaces, it carries less heat around. Insulated walls can slow the loss of heat in winter and the entry of heat on a hot day.",
+    "aliases": [
+      "wall insulation holds warm air",
+      "how house insulation works",
+      "why walls need insulation"
+    ],
+    "sections": [],
+    "facts": [
+      "Insulation can work less well if large gaps let air pass around it."
+    ],
+    "terms": [
+      "heat"
+    ],
+    "questions": [
+      {
+        "text": "How does moving air carry heat through a room?",
+        "target": "heat-convection"
+      },
+      {
+        "text": "Why can glass with a sealed gap slow heat moving through a window?",
+        "target": "double-pane-windows"
+      },
+      {
+        "text": "Why does sealing gaps around a door make a room less drafty?",
+        "target": "door-weatherstripping"
+      }
+    ],
+    "sources": [
+      "structures-sound-heat-flow"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "double-pane-windows",
+    "title": "Why do many windows have two layers of glass?",
+    "category": "architecture",
+    "priority": 2,
+    "answer": "A double-pane window has two sheets of glass with a sealed space between them. The space may hold dry air or another gas. This arrangement slows heat moving between the room and the outdoors compared with a single sheet of the same kind of glass. Light can still pass through so people can see out. Some windows use another layer or a special coating to slow heat transfer further.",
+    "aliases": [
+      "double pane window",
+      "why windows use double glazing",
+      "gas gap between window glass"
+    ],
+    "sections": [],
+    "facts": [
+      "Argon is one gas that may be sealed between sheets of glass."
+    ],
+    "terms": [
+      "heat",
+      "double-pane window"
+    ],
+    "questions": [
+      {
+        "text": "How does insulation slow heat moving through a wall?",
+        "target": "home-heat-insulation"
+      },
+      {
+        "text": "Why does a bottle with a nearly empty gap keep drinks warm or cold?",
+        "target": "vacuum-bottles"
+      },
+      {
+        "text": "How does heat move through a solid such as a spoon?",
+        "target": "heat-conduction"
+      }
+    ],
+    "sources": [
+      "structures-sound-window-glass"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "door-weatherstripping",
+    "title": "Why does a soft strip around a door stop drafts?",
+    "category": "architecture",
+    "priority": 2,
+    "answer": "Small spaces around a closed door can let air move between a room and the outdoors. A soft strip can press against those spaces when the door shuts. That makes it harder for air to squeeze through the opening. The strip still lets the door move when someone opens it. This type of seal can work around windows as well as doors.",
+    "aliases": [
+      "door weatherstrip",
+      "why weatherstripping stops draft",
+      "seal gap exterior door"
+    ],
+    "sections": [],
+    "facts": [
+      "The soft sealing strips are often called weatherstripping."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can a sealed space between window panes slow heat transfer?",
+        "target": "double-pane-windows"
+      },
+      {
+        "text": "Why do small gaps matter when people try to keep sound out of a room?",
+        "target": "sound-blocking-walls"
+      },
+      {
+        "text": "How does insulation help a house keep its warmth?",
+        "target": "home-heat-insulation"
+      }
+    ],
+    "sources": [
+      "structures-sound-weatherstripping",
+      "structures-sound-heat-flow"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "roof-gutters",
+    "title": "Where do gutters take rain that lands on a roof?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Rain hitting a roof can run toward its lower edge. A gutter is a channel that catches some of the water there. The gutter guides the flow toward an opening and down a pipe called a downspout. Moving the water away helps keep it from spilling in one place beside the building. Some systems lead to a drain or send water to a safe place on the ground.",
+    "aliases": [
+      "roof gutter drains",
+      "gutter and downspout",
+      "rainwater roof into gutter"
+    ],
+    "sections": [],
+    "facts": [
+      "A downspout is the pipe that carries water from the roof gutter toward the ground."
+    ],
+    "terms": [
+      "roof gutter"
+    ],
+    "questions": [
+      {
+        "text": "How can overlapping shingles guide rain toward a roof’s edge?",
+        "target": "overlapping-roof-shingles"
+      },
+      {
+        "text": "Where can rain go after it reaches a street?",
+        "target": "storm-drains"
+      },
+      {
+        "text": "How can a path let rain go down through its surface?",
+        "target": "permeable-pavement"
+      }
+    ],
+    "sources": [
+      "structures-sound-roof-drains"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "overlapping-roof-shingles",
+    "title": "Why do roof shingles sit partly on top of one another?",
+    "category": "architecture",
+    "priority": 2,
+    "answer": "Shingles are pieces that cover the surface of many sloping roofs. The lower edge of a piece sits over part of the piece below it. Rain going down the roof can then move from the top of one shingle onto the top of the next. The overlap helps keep water from reaching gaps. The rows guide water toward the outside edge of the roof.",
+    "aliases": [
+      "roof shingles overlap",
+      "how shingles shed rain",
+      "why roof tiles overlap"
+    ],
+    "sections": [],
+    "facts": [
+      "Historical roofs can have wooden shingles, while shingles for other buildings can use different materials."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Where can a gutter guide water that rolls off a roof?",
+        "target": "roof-gutters"
+      },
+      {
+        "text": "Why do many builders stagger the gaps between rows of bricks?",
+        "target": "staggered-brick-bond"
+      },
+      {
+        "text": "How does the ground shape decide where rain flows after it lands?",
+        "target": "watersheds"
+      }
+    ],
+    "sources": [
+      "structures-sound-shingles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "gentle-access-ramps",
+    "title": "Why can a longer ramp be easier to go up?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A ramp connects a lower place to a higher one with a sloping surface. If two ramps reach the same height, the longer one can climb more gradually. A person using a wheelchair can often roll up a gentle ramp more easily than a steep one. Some ramps include a flat space where someone can stop or turn before going on to the next section.",
+    "aliases": [
+      "wheelchair ramp slope",
+      "why accessible ramps are gentle",
+      "how ramps help wheels reach a curb"
+    ],
+    "sections": [],
+    "facts": [
+      "Small curb ramps can help people roll between a sidewalk and a street crossing."
+    ],
+    "terms": [
+      "curb ramp"
+    ],
+    "questions": [
+      {
+        "text": "How does a sloping surface trade a longer route for a smaller push?",
+        "target": "inclined-planes"
+      },
+      {
+        "text": "What is another way people can move up a level without using stairs?",
+        "target": "elevators"
+      },
+      {
+        "text": "How do workers make the ground level beside a hillside?",
+        "target": "earth-retaining-walls"
+      }
+    ],
+    "sources": [
+      "structures-sound-ramps"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "permeable-pavement",
+    "title": "How can rain go down through a paved surface?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Many paved surfaces send water running sideways. A permeable pavement has small holes in its material or narrow open spaces between its pieces. These let some water move down through the surface to the layers below. A layer of loose stone can hold some of that water for a while. Depending on the design, the water can then soak into the soil or be carried away by a drain.",
+    "aliases": [
+      "permeable pavement rain",
+      "sidewalk that soaks up rain",
+      "how porous pavement works"
+    ],
+    "sections": [],
+    "facts": [
+      "Some parking areas and walking paths use blocks with spaces that let water pass between them."
+    ],
+    "terms": [
+      "permeable pavement"
+    ],
+    "questions": [
+      {
+        "text": "Where does water go when a street sends it to a drain?",
+        "target": "storm-drains"
+      },
+      {
+        "text": "How can a low garden give rain a place to collect and soak in?",
+        "target": "rain-gardens"
+      },
+      {
+        "text": "Why do small spaces between fibers give water a path through a towel?",
+        "target": "paper-towel-wicking"
+      }
+    ],
+    "sources": [
+      "structures-sound-permeable"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sink-drain-traps",
+    "title": "Why is there a curved pipe below many sinks?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A curved pipe below a sink can keep a little water after the rest of the water has drained. The water fills the low bend. Air from farther along the drain cannot easily get through this water, so the bent pipe helps keep drain smells away from the room. The next time water enters the sink, some pushes through and leaves fresh water in the bend.",
+    "aliases": [
+      "sink drain trap",
+      "why p trap has water",
+      "curved pipe under sink"
+    ],
+    "sections": [],
+    "facts": [
+      "The curved part that holds this water is called a trap."
+    ],
+    "terms": [
+      "drain trap"
+    ],
+    "questions": [
+      {
+        "text": "Why does a toilet bowl keep some water after it flushes?",
+        "target": "toilet-flushing"
+      },
+      {
+        "text": "What happens to used water after it reaches the sewer?",
+        "target": "wastewater-treatment"
+      },
+      {
+        "text": "How does a faucet tip mix air and water before the water reaches the sink?",
+        "target": "faucet-aerators"
+      }
+    ],
+    "sources": [
+      "structures-sound-trap"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "faucet-aerators",
+    "title": "Why does water from a faucet sometimes look white and bubbly?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "Some faucet tips have a piece that brings small amounts of air into flowing water. Many tiny bubbles scatter light, so the stream can look pale or cloudy as it comes out. The bubbles can make the stream feel fuller even when the faucet is passing less water. The bubbles usually leave quickly when the water sits still in a glass.",
+    "aliases": [
+      "how faucet aerator mixes air",
+      "bubbly tap water as it comes out",
+      "screen at tip of faucet"
+    ],
+    "sections": [],
+    "facts": [
+      "The part that mixes air into the flowing water is called an aerator."
+    ],
+    "terms": [
+      "faucet aerator"
+    ],
+    "questions": [
+      {
+        "text": "Why does a water bubble hold together for a little while?",
+        "target": "soap-bubbles"
+      },
+      {
+        "text": "How does a pipe bend under a sink help keep drain smells out?",
+        "target": "sink-drain-traps"
+      },
+      {
+        "text": "How does an alarm use tiny pieces in air to scatter light toward a sensor?",
+        "target": "photoelectric-smoke-alarms"
+      }
+    ],
+    "sources": [
+      "structures-sound-aerator"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "door-hinge-pins",
+    "title": "How does a hinge let a door turn without falling away?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "One flat part of a common hinge attaches to the door, and another attaches to the frame. Little rounded sections on the two parts fit between one another. A pin goes through all of them in a line. Both parts can turn around that pin, so the door can swing without the parts pulling apart sideways. More than one hinge can help carry a tall door.",
+    "aliases": [
+      "door hinge pin",
+      "why door hinge has metal loops",
+      "how door hinges work"
+    ],
+    "sections": [],
+    "facts": [
+      "The small rounded sections that fit around the pin are often called knuckles."
+    ],
+    "terms": [
+      "hinge pin"
+    ],
+    "questions": [
+      {
+        "text": "How can a spring and oil help some doors close slowly?",
+        "target": "hydraulic-door-closers"
+      },
+      {
+        "text": "Why do scissors have a pin where their two halves cross?",
+        "target": "scissors-cutting"
+      },
+      {
+        "text": "How does a drawbridge raise a piece of road around a turning point?",
+        "target": "opening-drawbridges"
+      }
+    ],
+    "sources": [
+      "structures-sound-hinge"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

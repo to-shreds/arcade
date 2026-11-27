@@ -1,0 +1,74 @@
+[
+  {
+    "id": "lex-next-noaa-hurricane",
+    "title": "What is a hurricane?",
+    "publisher": "NOAA National Ocean Service",
+    "url": "https://oceanservice.noaa.gov/facts/hurricane.html",
+    "accessed": "2026-11-27",
+    "scope": "The sustained wind threshold and ocean basins for use of hurricane.",
+    "reuse": "Weather facts only. Original wording and example."
+  },
+  {
+    "id": "lex-next-medline-hiccups",
+    "title": "Hiccups",
+    "publisher": "U.S. National Library of Medicine",
+    "url": "https://medlineplus.gov/hiccups.html",
+    "accessed": "2026-11-27",
+    "scope": "The diaphragm and vocal cords in the hiccup reflex.",
+    "reuse": "Bodily facts only. Original wording and example."
+  },
+  {
+    "id": "lex-next-nist-length",
+    "title": "NIST Handbook 44: General Tables of Units of Measurement",
+    "publisher": "National Institute of Standards and Technology",
+    "url": "https://www.nist.gov/system/files/documents/2023/07/21/2023%20NIST%20Handbook%2044%20july%207-17-2023.pdf",
+    "accessed": "2026-11-27",
+    "scope": "Inches per foot and feet per mile.",
+    "reuse": "Unit relationships only. Original wording and examples."
+  },
+  {
+    "id": "lex-next-openstax-phase-changes",
+    "title": "13.5 Phase Changes",
+    "publisher": "OpenStax",
+    "url": "https://openstax.org/books/college-physics/pages/13-5-phase-changes",
+    "accessed": "2026-11-27",
+    "scope": "Ice’s melting point at normal air pressure and its dependence on pressure.",
+    "reuse": "Physical relationship only. Original wording and example."
+  },
+  {
+    "id": "lex-next-smithsonian-panda",
+    "title": "Giant Panda FAQs",
+    "publisher": "Smithsonian’s National Zoo and Conservation Biology Institute",
+    "url": "https://nationalzoo.si.edu/animals/giant-panda-faqs",
+    "accessed": "2026-11-27",
+    "scope": "Distinguishes giant pandas from red pandas.",
+    "reuse": "Animal identification facts only. Original wording and example."
+  },
+  {
+    "id": "lex-next-mint-penny",
+    "title": "Penny",
+    "publisher": "U.S. Mint",
+    "url": "https://www.usmint.gov/learn/coins-and-medals/circulating-coins/penny",
+    "accessed": "2026-11-27",
+    "scope": "U.S. penny as one-cent coin.",
+    "reuse": "Currency unit fact only. Original wording and example."
+  },
+  {
+    "id": "lex-next-royal-mint-penny",
+    "title": "Shillings to pounds converter",
+    "publisher": "Bank of England",
+    "url": "https://www.bankofengland.co.uk/education/education-resources/shillings-to-pounds-converter",
+    "accessed": "2026-11-27",
+    "scope": "The current pound is divided into one hundred pence.",
+    "reuse": "Currency terminology only. Original wording and example."
+  },
+  {
+    "id": "lex-next-usda-honey",
+    "title": "Commercial Item Description: Honey",
+    "publisher": "U.S. Department of Agriculture, Agricultural Marketing Service",
+    "url": "https://www.ams.usda.gov/sites/default/files/media/AA20380_Honey.pdf",
+    "accessed": "2026-11-27",
+    "scope": "Nectar honey and honeydew honey types.",
+    "reuse": "Category and origin only. Original wording and example."
+  }
+]

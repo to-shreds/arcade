@@ -1,3 +1,10 @@
+# 2.14.3
+
+- Added 135 Encyclopedia articles on familiar wildlife, how buildings work,
+  sound, instruments, writing systems, libraries and museums.
+- Added 863 Dictionary headwords, including more everyday words and linked
+  terms from the new topics. The total is now 1,359 articles and 3,031 headwords.
+
 # 2.14.2
 
 - Added 218 Encyclopedia articles on habitats, wildlife, everyday machines,

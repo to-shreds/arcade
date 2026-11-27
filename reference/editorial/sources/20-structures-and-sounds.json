@@ -1,0 +1,362 @@
+[
+  {
+    "id": "structures-sound-waves",
+    "title": "Speed of Sound, Frequency, and Wavelength",
+    "url": "https://openstax.org/books/physics/pages/14-1-speed-of-sound-frequency-and-wavelength",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Pressure waves in matter, frequency and pitch, speed of sound in air, water and solids."
+  },
+  {
+    "id": "structures-sound-levels",
+    "title": "Sound Intensity and Sound Level",
+    "url": "https://openstax.org/books/physics/pages/14-2-sound-intensity-and-sound-level",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Pressure-wave amplitudes and intensity, decibel scale, and human loudness perception."
+  },
+  {
+    "id": "structures-sound-doppler",
+    "title": "Doppler Effect and Sonic Booms",
+    "url": "https://openstax.org/books/physics/pages/14-3-doppler-effect-and-sonic-booms",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Effect of moving sound source on crest spacing, received frequency and perceived pitch."
+  },
+  {
+    "id": "structures-sound-vacuum",
+    "title": "Space Physics in Everyday Objects and Activities",
+    "url": "https://science.gsfc.nasa.gov/attic/cosmicopia.gsfc.nasa.gov/qa_sp_ev.html",
+    "publisher": "NASA Goddard Space Flight Center",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Sound in space and vibrations that cannot travel as airborne waves in a vacuum."
+  },
+  {
+    "id": "structures-sound-room",
+    "title": "Music and Technology, Session 18, Room Acoustics and Reverberation",
+    "url": "https://ocw.mit.edu/courses/21m-380-music-and-technology-recording-techniques-and-audio-production-fall-2016/d315c75efb01cb76ca897958570bab87_MIT21M_380F16_ses18_note.pdf",
+    "publisher": "Massachusetts Institute of Technology OpenCourseWare",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Room reflections and reverberation, sound-absorbing materials and the contrast with blocking sound transfer."
+  },
+  {
+    "id": "structures-sound-insulation",
+    "title": "Occupational Noise Exposure, Exposure and Controls",
+    "url": "https://www.osha.gov/noise/exposure-controls",
+    "publisher": "U.S. Occupational Safety and Health Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Noise-reduction enclosures, barriers and isolation from vibration."
+  },
+  {
+    "id": "structures-sound-record",
+    "title": "Replaying Sound, Thomas Edison",
+    "url": "https://www.americanhistory.si.edu/documentsgallery/exhibitions/hear-my-voice/4.html",
+    "publisher": "Smithsonian National Museum of American History",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Early phonograph recording and playback through stylus vibrations and impressions in foil."
+  },
+  {
+    "id": "structures-sound-microphone",
+    "title": "Mic Basics, What Are Transducers?",
+    "url": "https://www.shure.com/en-US/insights/mic-basics-transducers",
+    "publisher": "Shure",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Dynamic microphones, sound-driven diaphragm motion and a coil that moves relative to a magnet."
+  },
+  {
+    "id": "structures-sound-speaker",
+    "title": "Physics 208, Lab 6, The Biot–Savart Law",
+    "url": "https://www.physics.udel.edu/~bnikolic/teaching/phys208/lab/lab6.pdf",
+    "publisher": "University of Delaware Department of Physics and Astronomy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Speaker cone, voice coil, magnetic forces and conversion of electrical signals into mechanical motion and sound."
+  },
+  {
+    "id": "structures-sound-location",
+    "title": "How and Why Does Spatial-Hearing Ability Differ Among Listeners?",
+    "url": "https://tile.loc.gov/storage-services/master/gdc/gdcebookspublic/20/20/40/52/72/2020405272/2020405272.pdf",
+    "publisher": "Frontiers in Neuroscience, archived by the Library of Congress",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "How arrival-time, loudness and outer-ear shape provide clues to the location of a sound source."
+  },
+  {
+    "id": "structures-sound-fork",
+    "title": "Physics High School Lab Manual, Teacher Edition",
+    "url": "https://assets.openstax.org/oscms-prodcms/media/documents/TEACHER_HA_Physics_Lab_Manual_Full.pdf",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Tuning-fork motion, natural frequency and examples of mechanical resonance."
+  },
+  {
+    "id": "structures-sound-noise-cancel",
+    "title": "What Is Noise-Cancellation and What Can I Expect?",
+    "url": "https://www.sony.com/electronics/support/articles/00203389",
+    "publisher": "Sony",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Microphones that sense outside noise, opposing sound, and why cancellation is better for steady noises."
+  },
+  {
+    "id": "structures-sound-sax",
+    "title": "The Structure of the Saxophone, What Is the Reed?",
+    "url": "https://www.yamaha.com/en/musical_instrument_guide/saxophone/mechanism/mechanism002.html",
+    "publisher": "Yamaha",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "A saxophone’s mouthpiece reed and sound production."
+  },
+  {
+    "id": "structures-sound-sax-body",
+    "title": "Introduction to Saxophone Acoustics",
+    "url": "https://www.phys.unsw.edu.au/jw/saxacoustics.html",
+    "publisher": "University of New South Wales",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Vibrating reeds, air column, tapered tube and tone holes."
+  },
+  {
+    "id": "structures-sound-organ",
+    "title": "The Structure of the Pipe Organ, Sliders and Wind-Chest",
+    "url": "https://www.yamaha.com/en/musical_instrument_guide/pipeorgan/mechanism/mechanism002.html",
+    "publisher": "Yamaha",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Wind-chest and mechanisms that let airflow reach pipes in groups."
+  },
+  {
+    "id": "structures-sound-organ-length",
+    "title": "Pipe Organ, Delay Between Play and Sound",
+    "url": "https://www.yamaha.com/en/musical_instrument_guide/pipeorgan/trivia/trivia005.html",
+    "publisher": "Yamaha",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Vibration of air columns and typical relationships between pipe size and pitch."
+  },
+  {
+    "id": "structures-sound-snare",
+    "title": "Guide to Choosing a Drum Set",
+    "url": "https://www.yamaha.com/US/houseofworship/downloadables/How-to-Choose-Guides/Yamaha-Guide-to-Choosing-a-Drum-Set.pdf",
+    "publisher": "Yamaha",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Coiled snare wires against the lower drumhead and their effect on drum sound."
+  },
+  {
+    "id": "structures-sound-harmonica",
+    "title": "Harmonica Terminology, Bending and Overblowing",
+    "url": "https://my.hohner.de/t/harmonica-terminology-3-bending-overblowing/1377",
+    "publisher": "HOHNER",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Blow and draw reeds in harmonica air channels, and their different pitches."
+  },
+  {
+    "id": "structures-sound-cymbal",
+    "title": "What Makes Cymbals Sound Different?",
+    "url": "https://zildjian.com/pages/frequently-asked-questions",
+    "publisher": "Zildjian",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Cymbal shape, thickness, ringing character, bell size and overtone differences."
+  },
+  {
+    "id": "structures-sound-concrete",
+    "title": "Cement and Concrete FAQ",
+    "url": "https://www.cement.org/cement-concrete/cement-concrete-faq/",
+    "publisher": "American Cement Association",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Cement as an ingredient, paste made with water, and aggregate in concrete."
+  },
+  {
+    "id": "structures-sound-hydration",
+    "title": "Applications of Cement",
+    "url": "https://www.cement.org/cement-concrete/applications-of-cement/",
+    "publisher": "American Cement Association",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Hydration of cement and the effects of curing, warmth and moisture on hardening."
+  },
+  {
+    "id": "structures-sound-concrete-reinforcement",
+    "title": "Reinforced Concrete Design",
+    "url": "https://engineering.purdue.edu/CCE/Academics/Undergraduate/Courses/CourseInfo/CCE473-Reinforced-Concrete-Design",
+    "publisher": "Purdue University, Lyles School of Civil and Construction Engineering",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Reinforcing steel and its use in concrete beams, slabs, and columns."
+  },
+  {
+    "id": "structures-sound-beams",
+    "title": "Building Bridges, The Basics",
+    "url": "https://mesa.ucop.edu/wp-content/uploads/2017/11/2.6-Bridge-Building-Bridges-The-Basics.pdf",
+    "publisher": "University of California MESA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Beam, arch and suspension bridge examples, with compression and tension in a loaded beam."
+  },
+  {
+    "id": "structures-sound-brick",
+    "title": "Guide Specifications for Brick Masonry, Part 3",
+    "url": "https://www.gobrick.com/media/file/11b-guide-specifications-for-brick-masonry-part-3.pdf",
+    "publisher": "Brick Industry Association",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Running bond, overlapping masonry patterns and mortar in horizontal and vertical joints."
+  },
+  {
+    "id": "structures-sound-foundations",
+    "title": "Structural Foundations",
+    "url": "https://www.fhwa.dot.gov/engineering/geotech/foundations/",
+    "publisher": "Federal Highway Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Shallow and deep foundations, driven piles and drilled shafts."
+  },
+  {
+    "id": "structures-sound-bridge-supports",
+    "title": "Aquatic Organism Passage at Highway Crossings, An Implementation Guide",
+    "url": "https://www.fhwa.dot.gov/engineering/hydraulics/pubs/hif24054.pdf",
+    "publisher": "Federal Highway Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Bridge deck loads carried by abutments, spread footings, piles, and drilled shafts."
+  },
+  {
+    "id": "structures-sound-retaining-walls",
+    "title": "Soils and Foundations, Volume II",
+    "url": "https://www.fhwa.dot.gov/engineering/geotech/pubs/nhi06089.pdf",
+    "publisher": "Federal Highway Administration National Highway Institute",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Lateral pressure of soil against retaining walls and passage of force into the foundation."
+  },
+  {
+    "id": "structures-sound-expansion-joints",
+    "title": "LRFD for Highway Bridge Superstructures, Reference Manual",
+    "url": "https://www.fhwa.dot.gov/bridge/pubs/nhi15047.pdf",
+    "publisher": "Federal Highway Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Bridge deck joints and the movement caused by changing temperatures."
+  },
+  {
+    "id": "structures-sound-cable-stayed",
+    "title": "Wind-Induced Vibration of Stay Cables",
+    "url": "https://www.fhwa.dot.gov/publications/research/infrastructure/bridge/05083/05083.pdf",
+    "publisher": "Federal Highway Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "A cable-stayed bridge deck and stays connecting a tower and deck."
+  },
+  {
+    "id": "structures-sound-movable-bridges",
+    "title": "Movable Bridges",
+    "url": "https://www.nyc.gov/html/dot/html/infrastructure/movable-bridges.shtml",
+    "publisher": "New York City Department of Transportation",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Swing, lift, retractile and bascule bridges and examples."
+  },
+  {
+    "id": "structures-sound-heat-flow",
+    "title": "Building Envelope, Building Science Intro, Heat Flow",
+    "url": "https://bsesc.energy.gov/energy-basics/building-envelope-building-science-intro-heat-flow",
+    "publisher": "U.S. Department of Energy Building Science Education",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Heat flow and insulation in buildings, gaps and the effects of moving air."
+  },
+  {
+    "id": "structures-sound-window-glass",
+    "title": "High-Performance Window Systems, Glass",
+    "url": "https://bsesc.energy.gov/energy-basics/high-performance-window-systems-glass",
+    "publisher": "U.S. Department of Energy Building Science Education",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Multiple glass layers, a trapped gas space and coatings to reduce heat transfer."
+  },
+  {
+    "id": "structures-sound-weatherstripping",
+    "title": "Whole-House Weatherization",
+    "url": "https://www.energy.gov/cmei/scep/wap/whole-house-weatherization",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Weatherstripping and other treatments of doors and windows to reduce air leakage."
+  },
+  {
+    "id": "structures-sound-roof-drains",
+    "title": "Foundation Drain, Gutters, Downspouts",
+    "url": "https://bsesc.energy.gov/energy-basics/foundation-drain-gutters-downspouts",
+    "publisher": "U.S. Department of Energy Building Science Education",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Gutters collecting water and downspouts directing rain away from a foundation."
+  },
+  {
+    "id": "structures-sound-shingles",
+    "title": "Preservation Brief 19, The Repair and Replacement of Historic Wooden Shingle Roofs",
+    "url": "https://www.nps.gov/orgs/1739/upload/preservation-brief-19-wood-shingle-roofs.pdf",
+    "publisher": "National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Traditional wooden shingles, layered roofs and overlapping installation patterns."
+  },
+  {
+    "id": "structures-sound-ramps",
+    "title": "Guide to the ADA Accessibility Standards, Ramps and Curb Ramps",
+    "url": "https://www.access-board.gov/ada/guides/chapter-4-ramps-and-curb-ramps/",
+    "publisher": "U.S. Access Board",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Slope and landings of ramps, and curb ramps connecting levels on accessible routes."
+  },
+  {
+    "id": "structures-sound-permeable",
+    "title": "Green Streets Handbook",
+    "url": "https://www.epa.gov/sites/default/files/2021-04/documents/green_streets_design_manual_feb_2021_web_res_small_508.pdf",
+    "publisher": "U.S. Environmental Protection Agency",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Permeable pavement, openings in the surface, and stone layers that temporarily store water."
+  },
+  {
+    "id": "structures-sound-trap",
+    "title": "Chapter 10, Traps, Interceptors and Separators",
+    "url": "https://codes.iccsafe.org/content/get-pdf/7844/CHAPTER10.html",
+    "publisher": "International Code Council",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Water seals in drain traps for plumbing fixtures."
+  },
+  {
+    "id": "structures-sound-aerator",
+    "title": "WaterSense Labeled High-Efficiency Lavatory Faucet Specification, Frequently Asked Questions",
+    "url": "https://19january2017snapshot.epa.gov/www3/watersense/docs/ws_faq_faucet508.pdf",
+    "publisher": "U.S. Environmental Protection Agency",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Aerators and other faucet accessories, mixing air and limiting water flow."
+  },
+  {
+    "id": "structures-sound-hinge",
+    "title": "Hinge",
+    "url": "https://patents.google.com/patent/US2937399A/en",
+    "publisher": "U.S. Patent and Trademark Office, via Google Patents",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Interleaved knuckles on hinge leaves, aligned openings, and a shared pivot pin."
+  }
+]

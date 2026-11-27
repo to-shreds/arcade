@@ -64,7 +64,10 @@ for (const [query, target] of [
   ['What is a tide pool?', 'tide-pools'],
   ['How does the zipper slider work?', 'zippers'],
   ['What is the international date line?', 'international-date-line'],
-  ['Add fractions with different denominators', 'math-add-unlike-fractions']
+  ['Add fractions with different denominators', 'math-add-unlike-fractions'],
+  ['what is a call number', 'library-call-numbers'],
+  ['how do organ pipes have different lengths', 'pipe-organ-pipes'],
+  ['why does a grey squirrel bury acorns', 'eastern-gray-squirrel']
 ]) {
   assert.ok((await library.searchArticles(query)).some(hit => hit.id === target), query);
 }
@@ -84,6 +87,7 @@ for (const [word, senses] of [['bat', 3], ['charge', 5], ['cell', 4]]) {
 }
 assert.ok((await library.findWord('bit')).senses.some(sense => sense.partOfSpeech === 'verb' && /bite/.test(sense.definition)));
 assert.ok((await library.findWord('saw')).senses.some(sense => sense.partOfSpeech === 'verb' && /see/.test(sense.definition)));
+assert.ok((await library.findWord('ground')).senses.some(sense => sense.partOfSpeech === 'verb' && /grind/.test(sense.definition)));
 samples.sort((a, b) => a - b);
 console.log(JSON.stringify({...counts, checkedAliases: aliasCount, loadedPacks: requests.size,
   aliasSearchP95Ms: Number(samples[Math.floor(samples.length * 0.95)]?.toFixed(3)),

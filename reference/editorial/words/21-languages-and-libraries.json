@@ -1,0 +1,154 @@
+[
+  {
+    "headword": "call number",
+    "pronunciation": "KAWL NUM-bur",
+    "forms": [
+      "call numbers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Letters or numbers that tell you where an item belongs in a library collection.",
+        "example": "I wrote down the call number before I went to find the book on its shelf."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "lib-call"
+    ]
+  },
+  {
+    "headword": "interlibrary loan",
+    "pronunciation": "in-ter-LYE-brair-ee LOHN",
+    "forms": [
+      "interlibrary loans"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way one library borrows a book or other item from another library so a reader can use it.",
+        "example": "The librarian arranged an interlibrary loan for a book about local birds."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "lib-loc-ill"
+    ]
+  },
+  {
+    "headword": "digital copy",
+    "pronunciation": "DIJ-ih-tul KOP-ee",
+    "forms": [
+      "digital copies"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A version of something such as a book or picture that is kept in a form a computer can store or show.",
+        "example": "I read a digital copy of the old letter because the paper was too fragile to touch."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "lib-digitize"
+    ]
+  },
+  {
+    "headword": "optical character recognition",
+    "pronunciation": "OP-tih-kul KAIR-ik-ter rek-ug-NISH-un",
+    "forms": [
+      "ocr"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A process in which a computer looks at pictures of writing and works out which letters and words they show.",
+        "example": "Optical character recognition let me search an old newspaper for a name."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "lib-ocr"
+    ]
+  },
+  {
+    "headword": "vowel point",
+    "pronunciation": "VOW-ul point",
+    "forms": [
+      "vowel points"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small mark placed near a letter in some writing systems to show a vowel sound.",
+        "example": "The book for new readers showed the vowel point below the Hebrew letter."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "lib-hebrew"
+    ]
+  },
+  {
+    "headword": "finding aid",
+    "pronunciation": "FINE-ding ayd",
+    "forms": [
+      "finding aids"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A guide that describes a group of records and helps a person decide where to look in it.",
+        "example": "The finding aid showed which box held the letters from Boston."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "lib-finding"
+    ]
+  },
+  {
+    "headword": "type specimen",
+    "pronunciation": "TYPE SPESS-ih-mun",
+    "forms": [
+      "type specimens"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A preserved example linked to the scientific name of a group of living things, often a species.",
+        "example": "A scientist compared the plant to the type specimen kept in a herbarium."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "lib-type"
+    ]
+  },
+  {
+    "headword": "fossil cast",
+    "pronunciation": "FOSS-ul kast",
+    "forms": [
+      "fossil casts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A copy made to match the shape of a fossil.",
+        "example": "The museum’s fossil cast showed the dinosaur’s sharp teeth in great detail."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "lib-fossilcast"
+    ]
+  }
+]

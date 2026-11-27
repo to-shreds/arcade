@@ -1,16 +1,16 @@
 {
   "inventory": {
-    "articles": 1224,
-    "headwords": 2168,
-    "senses": 3328,
-    "questions": 3674,
+    "articles": 1359,
+    "headwords": 3031,
+    "senses": 4681,
+    "questions": 4079,
     "quizzes": 13
   },
   "approved": {
-    "articles": 1224,
-    "headwords": 2168,
-    "senses": 3328,
-    "questions": 3674,
+    "articles": 1359,
+    "headwords": 3031,
+    "senses": 4681,
+    "questions": 4079,
     "quizzes": 13
   },
   "taxonomy": {
@@ -41,18 +41,18 @@
     },
     "physics": {
       "label": "Physics",
-      "articles": 25,
-      "approved": 25
+      "articles": 33,
+      "approved": 33
     },
     "chemistry": {
       "label": "Chemistry",
-      "articles": 26,
-      "approved": 26
+      "articles": 27,
+      "approved": 27
     },
     "animals": {
       "label": "Animals",
-      "articles": 32,
-      "approved": 32
+      "articles": 75,
+      "approved": 75
     },
     "plants": {
       "label": "Plants",
@@ -81,8 +81,8 @@
     },
     "human-body": {
       "label": "Human body",
-      "articles": 47,
-      "approved": 47
+      "articles": 48,
+      "approved": 48
     },
     "health-nutrition": {
       "label": "Health & nutrition",
@@ -106,8 +106,8 @@
     },
     "computing": {
       "label": "Computing",
-      "articles": 43,
-      "approved": 43
+      "articles": 45,
+      "approved": 45
     },
     "digital-safety": {
       "label": "Digital safety",
@@ -116,8 +116,8 @@
     },
     "engineering": {
       "label": "Engineering",
-      "articles": 47,
-      "approved": 47
+      "articles": 55,
+      "approved": 55
     },
     "vehicles": {
       "label": "Vehicles & transportation",
@@ -126,8 +126,8 @@
     },
     "infrastructure": {
       "label": "Infrastructure",
-      "articles": 25,
-      "approved": 25
+      "articles": 32,
+      "approved": 32
     },
     "maps-geography": {
       "label": "Maps & geography",
@@ -166,8 +166,8 @@
     },
     "language-writing": {
       "label": "Language & writing",
-      "articles": 25,
-      "approved": 25
+      "articles": 41,
+      "approved": 41
     },
     "visual-arts": {
       "label": "Visual arts",
@@ -176,8 +176,8 @@
     },
     "music": {
       "label": "Music",
-      "articles": 23,
-      "approved": 23
+      "articles": 28,
+      "approved": 28
     },
     "literature": {
       "label": "Literature",
@@ -186,8 +186,8 @@
     },
     "architecture": {
       "label": "Architecture",
-      "articles": 17,
-      "approved": 17
+      "articles": 24,
+      "approved": 24
     },
     "sports": {
       "label": "Sports",
@@ -211,21 +211,21 @@
     },
     "libraries-museums": {
       "label": "Libraries & museums",
-      "articles": 3,
-      "approved": 3
+      "articles": 35,
+      "approved": 35
     },
     "inventions": {
       "label": "Inventions & occupations",
-      "articles": 18,
-      "approved": 18
+      "articles": 20,
+      "approved": 20
     },
     "everyday-science": {
       "label": "Everyday science",
-      "articles": 31,
-      "approved": 31
+      "articles": 34,
+      "approved": 34
     }
   },
-  "sourceCount": 1290,
+  "sourceCount": 1487,
   "termGaps": [],
   "safetyFlags": [
     "ancient-greece",
@@ -255,9 +255,17 @@
     "word abolish",
     "word armistice",
     "word bite",
+    "word bruise",
+    "word dinosaur",
     "word ghost",
+    "word glow",
+    "word grief",
+    "word injury",
+    "word orphan",
     "word pilgrimage",
-    "word treat"
+    "word scrape",
+    "word treat",
+    "word twin"
   ],
   "readingLengthWarnings": [],
   "ambiguousForms": []

@@ -1,0 +1,560 @@
+[
+  {
+    "id": "lib-euro",
+    "title": "The Unicode Standard, Chapter 7: Europe-I",
+    "url": "https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-7/",
+    "publisher": "Unicode Consortium",
+    "scope": "Greek alphabet, Cyrillic letters, Armenian punctuation above vowels, and Georgian Mkhedruli and Mtavruli case and headline usage.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-hebrew",
+    "title": "The Unicode Standard, Chapter 9: Middle East-I",
+    "url": "https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-9/",
+    "publisher": "Unicode Consortium",
+    "scope": "Hebrew writing direction and use and placement of vowel points.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-indic",
+    "title": "The Unicode Standard, Chapter 12: South and Central Asia-I",
+    "url": "https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-12/",
+    "publisher": "Unicode Consortium",
+    "scope": "Writing of inherent vowels, placement of added vowel signs, joined consonants, and Devanagari and Bangla script users.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-central",
+    "title": "The Unicode Standard, Chapter 13: South and Central Asia-II",
+    "url": "https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-13/",
+    "publisher": "Unicode Consortium",
+    "scope": "Traditional Mongolian script, vertical lines going left to right, and how joining forms vary.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-seasia",
+    "title": "The Unicode Standard, Chapter 16: Southeast Asia",
+    "url": "https://unicode.org/versions/Unicode17.0.0/core-spec/chapter-16/",
+    "publisher": "Unicode Consortium",
+    "scope": "Thai script structure, placement of vowels around consonant signs, and tone marks.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-directions",
+    "title": "The Unicode Standard, Chapter 6: Writing Systems and Punctuation",
+    "url": "https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-6/",
+    "publisher": "Unicode Consortium",
+    "scope": "Common writing directions, vertical layout differences, and varieties of scripts and marks.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-viet",
+    "title": "Basic Vietnamese",
+    "url": "https://openbooks.lib.msu.edu/vietnamese/open/download?type=pdf",
+    "publisher": "Michigan State University Libraries",
+    "scope": "Vietnamese vowel letters, pitch across syllables, and tones with and without a printed tone mark.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-cyrillic",
+    "title": "Russian Romanization Table",
+    "url": "https://www.loc.gov/catdir/cpso/romanization/russian.pdf",
+    "publisher": "Library of Congress and American Library Association",
+    "scope": "Roman-letter equivalents of Russian Cyrillic letters, including Re as R.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-greek-pi",
+    "title": "What Is Pi?",
+    "url": "https://www.nasa.gov/learning-resources/what-is-pi/",
+    "publisher": "NASA",
+    "scope": "Use of the Greek letter pi for the constant ratio of a circle’s circumference to its diameter.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-hawaiian",
+    "title": "Hawaiian Language Considerations",
+    "url": "https://www.hawaii.edu/offices/communications/standards/hawaiian-language-considerations/",
+    "publisher": "University of Hawaiʻi System",
+    "scope": "Hawaiian typography and proper uses of ʻokina and kahakō for sound and meaning.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-roman",
+    "title": "ALA-LC Romanization Tables",
+    "url": "https://catdir.loc.gov/catdir/cpso/roman.html",
+    "publisher": "Library of Congress",
+    "scope": "Tables of conventions giving Latin-script spellings for many scripts in library catalog records.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-pinyin",
+    "title": "International Standard: Romanizing Chinese materials",
+    "url": "https://www.loc.gov/loc/lcib/0011/pinyin.html",
+    "publisher": "Library of Congress",
+    "scope": "Pinyin as a standard sound-based romanization for Chinese in libraries.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-pinyin-table",
+    "title": "Chinese Romanization Table",
+    "url": "https://www.loc.gov/catdir/cpso/romanization/chinese3.pdf",
+    "publisher": "Library of Congress and American Library Association",
+    "scope": "Use of Pinyin and examples of romanizing words, names and titles.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-translate",
+    "title": "What Is Localization? A Handy Glossary for Language Clients",
+    "url": "https://www.atanet.org/client-assistance/blog-localization-glossary-language-services-clients/",
+    "publisher": "American Translators Association",
+    "scope": "Difference between written translation and interpreting spoken or signed language.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-asl",
+    "title": "What Is American Sign Language?",
+    "url": "https://www.nidcd.nih.gov/health/american-sign-language",
+    "publisher": "National Institute on Deafness and Other Communication Disorders",
+    "scope": "Fingerspelling English words, signs and ASL grammar, and language differences.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-unicode",
+    "title": "What Is Unicode?",
+    "url": "https://unicode.org/standard/WhatIsUnicode.html",
+    "publisher": "Unicode Consortium",
+    "scope": "The role of common number codes so people can exchange text accurately.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-fonts",
+    "title": "FAQ: Fonts and Keyboards",
+    "url": "https://www.unicode.org/faq/font_keyboard.html",
+    "publisher": "Unicode Consortium",
+    "scope": "Character code versus glyph, font support, and how unsupported characters can display as boxes.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-cardcatalog",
+    "title": "About the Main Card Catalog",
+    "url": "https://www.loc.gov/research-centers/main/main-card-catalog/",
+    "publisher": "Library of Congress",
+    "scope": "How library records show details such as authors, titles, dates, and call numbers on cards.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-call",
+    "title": "What's a call number and how do I use it?",
+    "url": "https://ask.loc.gov/faq/396298",
+    "publisher": "Library of Congress",
+    "scope": "Locating a book with a call number, and different classification practices.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-shelf",
+    "title": "Fundamentals of Library of Congress Classification",
+    "url": "https://www.loc.gov/catworkshop/courses/fundamentalslcc/pdf/classify-instr-manual.pdf",
+    "publisher": "Library of Congress",
+    "scope": "Using classification and item numbers for order on shelves.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-renew",
+    "title": "How do I renew my books, DVDs, CDs and other items?",
+    "url": "https://libanswers.nypl.org/faq/361375",
+    "publisher": "New York Public Library",
+    "scope": "Library card account and how a loan may be renewed when it is not requested by others.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-bookcards",
+    "title": "How can I check out e-books?",
+    "url": "https://libanswers.nypl.org/faq/391087",
+    "publisher": "New York Public Library",
+    "scope": "Borrowing digital books with a library card or account.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-holds",
+    "title": "How can I have a book sent to my local branch?",
+    "url": "https://libanswers.nypl.org/faq/364154",
+    "publisher": "New York Public Library",
+    "scope": "Requesting a library copy, choosing pickup branch, and the time to collect it.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-ill",
+    "title": "Request an Item",
+    "url": "https://www.ala.org/support/request-item",
+    "publisher": "American Library Association",
+    "scope": "Requesting a hold and seeking interlibrary loan when an item is unavailable locally.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-loc-ill",
+    "title": "Interlibrary Loan",
+    "url": "https://www.loc.gov/research-centers/services/interlibrary-loan/",
+    "publisher": "Library of Congress",
+    "scope": "Materials lent between institutions and restrictions, including materials that cannot travel.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-bookmobile",
+    "title": "Bookmobiles",
+    "url": "https://libguides.ala.org/bookmobiles",
+    "publisher": "American Library Association",
+    "scope": "Public library services offered by mobile libraries in varied communities.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-isbn",
+    "title": "What Is an ISBN?",
+    "url": "https://www.isbn-international.org/content/what-isbn/10",
+    "publisher": "International ISBN Agency",
+    "scope": "International Standard Book Number, formats, editions, and purpose of identification.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-index",
+    "title": "Using Nonfiction Text Features",
+    "url": "https://www.scholastic.com/content/dam/scholastic/educators/discussion-guides/exploring-nonfiction-guide.pdf",
+    "publisher": "Scholastic",
+    "scope": "An alphabetic index and page references contrasted with the uses of a table of contents.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-scan",
+    "title": "Preservation Guidelines for Digitizing Library Materials",
+    "url": "https://www.loc.gov/preservation/care/scan.html",
+    "publisher": "Library of Congress",
+    "scope": "Protecting pages, bindings and covers during digitization and using equipment to limit exposure and wear.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-digitize",
+    "title": "Preservation Actions for Collection Digitization",
+    "url": "https://guides.loc.gov/digitization-preparation",
+    "publisher": "Library of Congress",
+    "scope": "Digitizing images of books, text and photographs, and reviewing condition and image quality.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-ocr",
+    "title": "Chronicling America: Download and View Files",
+    "url": "https://guides.loc.gov/chronicling-america/download-and-view",
+    "publisher": "Library of Congress",
+    "scope": "Making machine-readable text from newspaper page images, and the distinction between uncorrected text and image.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-preserve",
+    "title": "Preserving Your Books: Storing Your Books",
+    "url": "https://guides.loc.gov/preserving-your-books/storing",
+    "publisher": "Library of Congress",
+    "scope": "Light, physical support, careful storage and damage to covers or paper.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-medieval",
+    "title": "Making a Medieval Manuscript, from Raw Materials to Illuminated Masterpiece",
+    "url": "https://www.getty.edu/news/making-a-medieval-manuscript-from-raw-materials-to-illuminated-masterpiece/",
+    "publisher": "J. Paul Getty Museum",
+    "scope": "Parchment preparation, manuscript decoration with gold and pigment, and sewing pages into bindings.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-binding",
+    "title": "Recommended Formats Statement: Textual Works",
+    "url": "https://loc.gov/preservation/resources/rfs/text.html",
+    "publisher": "Library of Congress",
+    "scope": "Sewn and adhesive page attachment and different formats of book binding.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-codex",
+    "title": "Codex: Art and Architecture Thesaurus",
+    "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=AND&note=&subjectid=300224200",
+    "publisher": "Getty Research Institute",
+    "scope": "Codex as a booklike set of bound leaves with writing on both sides.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-nls",
+    "title": "National Library Service for the Blind and Print Disabled: Frequently Asked Questions",
+    "url": "https://www.loc.gov/nls/who-we-are/faq/",
+    "publisher": "Library of Congress",
+    "scope": "Access to audio books, players and braille formats for eligible readers.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-finding",
+    "title": "Finding Aid",
+    "url": "https://www.archives.gov/records-mgmt/accessioning/finding-aid",
+    "publisher": "U.S. National Archives",
+    "scope": "Describing archive transfers and finding records with folder title lists and other forms of guide.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-archive",
+    "title": "Preservation Guidelines for Vendors Handling Records and Historical Materials",
+    "url": "https://www.archives.gov/preservation/technical/vendor-training.html",
+    "publisher": "U.S. National Archives",
+    "scope": "Keeping archival records in original order and returning them to their folders after copying.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-primary",
+    "title": "Getting Started with Primary Sources",
+    "url": "https://www.loc.gov/programs/teachers/getting-started-with-primary-sources/",
+    "publisher": "Library of Congress",
+    "scope": "Original evidence, comparison of sources, and distinguishing secondary discussion from original records.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-primary2",
+    "title": "What is a primary source?",
+    "url": "https://ask.loc.gov/faq/303148",
+    "publisher": "Library of Congress",
+    "scope": "Primary sources as original evidence, firsthand accounts, and the difference between evidence and interpretation.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-secondary",
+    "title": "Using the Library of Congress Online: Secondary Sources",
+    "url": "https://guides.loc.gov/student-resources/secondary-sources",
+    "publisher": "Library of Congress",
+    "scope": "What secondary sources can interpret and how they help readers find primary sources.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-oral-records",
+    "title": "Oral History and Social History",
+    "url": "https://www.loc.gov/classroom-materials/oral-history-and-social-history/",
+    "publisher": "Library of Congress",
+    "scope": "Interviewing people to record memories and compare perspectives with other documents.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-analysis",
+    "title": "Teacher’s Guides and Analysis Tool",
+    "url": "https://www.loc.gov/programs/teachers/getting-started-with-primary-sources/guides/",
+    "publisher": "Library of Congress",
+    "scope": "Asking questions about a photograph, caption, dates, people pictured, and where information came from.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-museum-records",
+    "title": "Museum Handbook, Part II: Museum Records",
+    "url": "https://www.nps.gov/subjects/museums/mh2.htm",
+    "publisher": "U.S. National Park Service",
+    "scope": "Cataloging, numbering, photography and tracking collection objects and loans.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-museum-manual",
+    "title": "Museum Handbook, Part II: Museum Records Manual",
+    "url": "https://www.nps.gov/Museum/publications/MHII/MHII.pdf",
+    "publisher": "U.S. National Park Service",
+    "scope": "Object identification, location documentation, measurement, and collection photography.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-exhibit-guide",
+    "title": "Guide to Interpretive Writing for Exhibitions",
+    "url": "https://exhibits.si.edu/wp-content/uploads/2021/09/SI-Guide-to-Interpretive-Writing-for-Exhibitions.pdf",
+    "publisher": "Smithsonian Institution",
+    "scope": "Labels as short pieces of writing that visitors can understand and connect with the thing shown.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-storage",
+    "title": "Handling of Collections in Storage",
+    "url": "https://mci.si.edu/sites/default/files/unesco-chph-handlingofcollectionsinstorage-english.pdf",
+    "publisher": "UNESCO",
+    "scope": "Museum storage, physical supports, dust protection, and safe placement of collection objects.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-museum-climate",
+    "title": "General Preservation Guidelines",
+    "url": "https://www.americanhistory.si.edu/sites/default/files/file-uploader/NMAH_General_Preservation_Guidelines.pdf",
+    "publisher": "Smithsonian National Museum of American History",
+    "scope": "Museum conditions, light monitoring, object exposure, display limits and storage.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-museum-conserve",
+    "title": "Preventive Conservation",
+    "url": "https://mci.si.edu/preventive-conservation",
+    "publisher": "Smithsonian Museum Conservation Institute",
+    "scope": "Ways to limit and monitor risks to museum collections.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-condition",
+    "title": "Museum Handbook: Using Museum Collections in Exhibits",
+    "url": "https://home.nps.gov/subjects/museums/upload/MHIII_Ch7_UsingObjectsinExhibits.pdf",
+    "publisher": "U.S. National Park Service",
+    "scope": "Object photography, condition reports, and observations before and after exhibits.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-museum-loan",
+    "title": "Museum Handbook: Outgoing Loans",
+    "url": "https://www.nps.gov/subjects/museums/upload/MHII_Ch5_OutgoingLoans.pdf",
+    "publisher": "U.S. National Park Service",
+    "scope": "Return arrangements, object packing and condition reports as part of collection loans.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-fossillab",
+    "title": "FossiLab",
+    "url": "https://naturalhistory.si.edu/exhibits/david-h-koch-hall-fossils-deep-time/fossilab",
+    "publisher": "Smithsonian National Museum of Natural History",
+    "scope": "Fossil preparation and the use of casts and original fossils for different purposes.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-fossilcast",
+    "title": "Natural History at Home: What Is a Fossil?",
+    "url": "https://naturalhistory.si.edu/events/family-programs/webinar-natural-history-home-what-fossil",
+    "publisher": "Smithsonian National Museum of Natural History",
+    "scope": "Examples of fossil casts and labels distinguishing casts and original pieces.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-fossilprep",
+    "title": "Fossil Preparation with Myria Perez",
+    "url": "https://naturalhistory.si.edu/education/teaching-resources/paleontology/webinar-expert-online-fossil-preparation-myria-perez",
+    "publisher": "Smithsonian National Museum of Natural History",
+    "scope": "Tools to free fossils, careful preparation of fragile specimens, and supporting them afterwards.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-herbarium",
+    "title": "A Guide to Collecting Plant Specimens for the US National Herbarium",
+    "url": "https://naturalhistory.si.edu/research/botany/news/plant-press/guide-collecting-plant-specimens-us-national-herbarium",
+    "publisher": "Smithsonian National Museum of Natural History",
+    "scope": "Dried and pressed plants, herbarium sheets, and labels describing date, place and features.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-type",
+    "title": "What Are Type Specimens?",
+    "url": "https://collections.nmnh.si.edu/whataretypes.html",
+    "publisher": "Smithsonian National Museum of Natural History",
+    "scope": "Types as name-bearing specimens or series of specimens used as scientific reference points.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-specimens",
+    "title": "Collecting Natural History",
+    "url": "https://naturalhistory.si.edu/education/teaching-resources/anthropology-and-social-studies/collecting-natural-history",
+    "publisher": "Smithsonian National Museum of Natural History",
+    "scope": "Why natural history museums keep specimens, how collections support comparison, and types.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-infrared",
+    "title": "Infrared and Ultraviolet Imaging",
+    "url": "https://mci.si.edu/infrared-and-ultraviolet-imaging",
+    "publisher": "Smithsonian Museum Conservation Institute",
+    "scope": "Infrared as a way to see some details through paint, including earlier sketch lines and hidden changes.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-hebrew-learners",
+    "title": "The Hebrew Alphabet",
+    "url": "https://mena-languages.northwestern.edu/language-learning/languages-with-different-scripts/hebrew-alphabet.html",
+    "publisher": "Northwestern University",
+    "scope": "Use of vowel marks to assist Hebrew learners and usual omission from everyday text.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-pinyin-tones",
+    "title": "Beginners’ Chinese: Tones",
+    "url": "https://www.open.edu/openlearn/languages/beginners-chinese-taster-course/content-section-3.3",
+    "publisher": "The Open University",
+    "scope": "Pitch patterns in Mandarin, how Pinyin marks tone above vowels, and unmarked neutral tone.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-missing-glyph",
+    "title": "FAQ: Display of Unsupported Characters",
+    "url": "https://www.unicode.org/faq/unsup_char.html",
+    "publisher": "Unicode Consortium",
+    "scope": "A visible placeholder can stand in for a character lacking a displayable glyph.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "lib-japanese-direction",
+    "title": "Requirements of Japanese Text Layout",
+    "url": "https://www.w3.org/2007/02/japanese-layout/docs/aligned/japanese-layout-requirements-en.html",
+    "publisher": "World Wide Web Consortium",
+    "scope": "Vertical text lines go top to bottom, and advance from right column to left.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  }
+]

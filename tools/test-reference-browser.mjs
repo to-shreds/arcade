@@ -256,6 +256,11 @@ try {
     await control(frame.getByRole('dialog'), 'Close').click();
     await control(frame, 'How can I find the smallest positive multiple the two bottom numbers share?').click();
     await title(frame, 'What is the least common multiple?').waitFor();
+    await lookup(frame, 'what is a call number');
+    await frame.getByRole('button', { name: /^How does a call number show where a library book goes/ }).click();
+    await title(frame, 'How does a call number show where a library book goes?').waitFor();
+    await control(frame, 'Define call number').click();
+    await title(frame.getByRole('dialog'), 'call number').waitFor();
     await offlineContext.close();
     console.log('PASS reference PWA: verified offline install, network cut, new and existing articles, shared definitions and Arcade Home');
   }

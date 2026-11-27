@@ -1,0 +1,340 @@
+[
+  {
+    "headword": "dynamic microphone",
+    "pronunciation": "dye-NAM-ik MYE-kruh-fohn",
+    "forms": [
+      "dynamic microphones"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A microphone that uses a moving coil of wire or thin metal ribbon near a magnet to turn sound into an electrical signal.",
+        "example": "We spoke into a dynamic microphone to record the announcement."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-microphone"
+    ]
+  },
+  {
+    "headword": "speaker cone",
+    "pronunciation": "SPEE-ker kohn",
+    "forms": [
+      "speaker cones"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A wide moving part inside many speakers that pushes on the air to make sound.",
+        "example": "The speaker cone moved in and out as the music played."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-speaker"
+    ]
+  },
+  {
+    "headword": "tuning fork",
+    "pronunciation": "TOO-ning fork",
+    "forms": [
+      "tuning forks"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A two-pronged metal tool that vibrates at a steady rate to give a reference note.",
+        "example": "The teacher tapped a tuning fork before the choir began."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-fork"
+    ]
+  },
+  {
+    "headword": "noise cancellation",
+    "pronunciation": "NOYZ kan-suh-LAY-shuhn",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Reducing a sound by making waves that partly cancel its pressure changes.",
+        "example": "The headphones used noise cancellation to make the motor hum harder to hear."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-noise-cancel"
+    ]
+  },
+  {
+    "headword": "pipe organ",
+    "pronunciation": "PYPE OR-guhn",
+    "forms": [
+      "pipe organs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A musical instrument with keys that control the flow of air into pipes of different sizes.",
+        "example": "The player pressed three pipe organ keys and heard three notes together."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-organ",
+      "structures-sound-organ-length"
+    ]
+  },
+  {
+    "headword": "reinforced concrete",
+    "pronunciation": "ree-in-FORST KAHN-kreet",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Concrete with other material inside, often steel rods, that helps it hold together under a load.",
+        "example": "Reinforced concrete helped the bridge deck carry passing buses."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-concrete-reinforcement"
+    ]
+  },
+  {
+    "headword": "running bond",
+    "pronunciation": "RUN-ing BOND",
+    "forms": [
+      "running bonds"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way to lay bricks in rows so the end of a brick sits over part of a brick below it instead of above another end.",
+        "example": "The running bond made a repeating pattern on the school wall."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-brick"
+    ]
+  },
+  {
+    "headword": "spread footing",
+    "pronunciation": "SPRED FOOT-ing",
+    "forms": [
+      "spread footings"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A wide base under a wall or post that spreads its load over more ground.",
+        "example": "The column stood on a spread footing wider than the column itself."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-foundations",
+      "structures-sound-bridge-supports"
+    ]
+  },
+  {
+    "headword": "retaining wall",
+    "pronunciation": "rih-TAYN-ing WAWL",
+    "forms": [
+      "retaining walls"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A wall that holds back soil so one side can be higher than the other.",
+        "example": "A retaining wall kept the garden soil above the walking path."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-retaining-walls"
+    ]
+  },
+  {
+    "headword": "expansion joint",
+    "pronunciation": "ik-SPAN-shuhn JOYNT",
+    "forms": [
+      "expansion joints"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A place between parts that leaves room for them to move as they get bigger or smaller.",
+        "example": "An expansion joint let the road deck shift a little in warm weather."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-expansion-joints"
+    ]
+  },
+  {
+    "headword": "cable-stayed bridge",
+    "pronunciation": "KAY-buhl stayd BRIJ",
+    "forms": [
+      "cable-stayed bridges"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A bridge with cables running directly between its towers and points along the roadway or path.",
+        "example": "The cables of the cable-stayed bridge spread out like fans."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-cable-stayed"
+    ]
+  },
+  {
+    "headword": "double-pane window",
+    "pronunciation": "DUH-buhl payn WIN-doh",
+    "forms": [
+      "double-pane windows"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A window with two sheets of glass and a sealed space between them.",
+        "example": "A double-pane window helped slow the movement of heat out of the room."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-window-glass"
+    ]
+  },
+  {
+    "headword": "roof gutter",
+    "pronunciation": "ROOF GUT-er",
+    "forms": [
+      "roof gutters"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A channel that catches rain running off an edge of a roof and guides it toward a drain or pipe.",
+        "example": "The roof gutter caught water that slid down the shingles."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-roof-drains"
+    ]
+  },
+  {
+    "headword": "curb ramp",
+    "pronunciation": "KURB ramp",
+    "forms": [
+      "curb ramps"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A short slope that joins a sidewalk and a street where there would otherwise be a step.",
+        "example": "We rolled our wagon down the curb ramp at the corner."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-ramps"
+    ]
+  },
+  {
+    "headword": "permeable pavement",
+    "pronunciation": "PUR-mee-uh-buhl PAYV-muhnt",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A paved surface with openings that let some water move down through it.",
+        "example": "Rain sank through the permeable pavement beside the library."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-permeable"
+    ]
+  },
+  {
+    "headword": "drain trap",
+    "pronunciation": "DRAYN trap",
+    "forms": [
+      "drain traps"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A curved part of a drain that holds water to block air and smells from farther down the pipe.",
+        "example": "A drain trap under the sink held a small amount of water."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-trap"
+    ]
+  },
+  {
+    "headword": "faucet aerator",
+    "pronunciation": "FAW-sit AIR-ay-ter",
+    "forms": [
+      "faucet aerators"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A piece at the end of a faucet that mixes air into the stream of water.",
+        "example": "The faucet aerator made the running water look bubbly."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-aerator"
+    ]
+  },
+  {
+    "headword": "hinge pin",
+    "pronunciation": "HINJ pin",
+    "forms": [
+      "hinge pins"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A rod that goes through parts of a hinge so they can turn around it together.",
+        "example": "The door swung around its hinge pins each time we opened it."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "structures-sound-hinge"
+    ]
+  }
+]
