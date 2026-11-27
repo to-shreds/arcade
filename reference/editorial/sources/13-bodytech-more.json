@@ -1,0 +1,164 @@
+[
+  {
+    "id": "bt-tissues",
+    "title": "Types of Tissues",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-1-types-of-tissues",
+    "scope": "Tissues as organized groups of cells, four main tissue types and roles.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-reflexes",
+    "title": "Motor Responses",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/14-3-motor-responses",
+    "scope": "Reflexes, spinal signals and muscle response.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-pulse",
+    "title": "Pulse",
+    "publisher": "MedlinePlus Medical Encyclopedia, National Library of Medicine",
+    "url": "https://www.medlineplus.gov/ency/article/003399.htm",
+    "scope": "Arterial pulse, the heartbeat and common sites where a person can feel it.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-teeth-eruption",
+    "title": "Eruption Charts",
+    "publisher": "American Dental Association, MouthHealthy",
+    "url": "https://www.mouthhealthy.org/all-topics-a-z/eruption-charts",
+    "scope": "Ordinary timing and count of first and permanent teeth and types of teeth.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-vision-biology",
+    "title": "Vision",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/biology-2e/pages/36-5-vision",
+    "scope": "Rods and cones, sensitivity to low light, color and visual processing.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-depth-vision",
+    "title": "Vision, Psychology 2e",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/psychology-2e/pages/5-3-vision",
+    "scope": "Binocular depth cues, two viewpoints, relative size and overlapping objects.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-web-caching",
+    "title": "HTTP Caching",
+    "publisher": "MDN Web Docs, Mozilla",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching",
+    "scope": "How browsers and other caches temporarily keep replies for reuse.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-alt-text",
+    "title": "Images Tutorial",
+    "publisher": "World Wide Web Consortium Web Accessibility Initiative",
+    "url": "https://www.w3.org/WAI/tutorials/images/",
+    "scope": "Text alternatives for meaningful images and the role of context.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-captions",
+    "title": "Captions/Subtitles",
+    "publisher": "World Wide Web Consortium Web Accessibility Initiative",
+    "url": "https://www.w3.org/WAI/media/av/captions/",
+    "scope": "Captions for speech and other sound important to understanding.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-access-tech",
+    "title": "Perception: Hearing, Feeling and Seeing",
+    "publisher": "World Wide Web Consortium Web Accessibility Initiative",
+    "url": "https://www.w3.org/WAI/people-use-web/tools-techniques/perception/",
+    "scope": "How screen readers, audio and braille communicate screen content.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-barcodes",
+    "title": "What is a barcode?",
+    "publisher": "GS1 Global Office",
+    "url": "https://support.gs1.org/support/solutions/articles/43000734193-what-is-a-barcode-",
+    "scope": "Patterns that carry identifiers and can be read by a scanner.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-qr",
+    "title": "What is a QR Code?",
+    "publisher": "GS1 Global Office",
+    "url": "https://support.gs1.org/support/solutions/articles/43000734473-what-is-a-qr-code-",
+    "scope": "Two-dimensional code format and what it can store.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-spreadsheet",
+    "title": "Spreadsheets",
+    "publisher": "NC State University",
+    "url": "https://e115.engr.ncsu.edu/spreadsheets/",
+    "scope": "Cells, rows, columns, data and formulas in common spreadsheets.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-database",
+    "title": "Introduction to SQL: Formatting Spreadsheets as Data Tables",
+    "publisher": "University of California, Santa Barbara Library",
+    "url": "https://carpentry.library.ucsb.edu/2021-11-04-ucsb-sql-online/01-format-data/",
+    "scope": "Tabular records, fields and arranging information to ask a database questions.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-metadata",
+    "title": "Recommended Formats Statement: Still Image Works",
+    "publisher": "Library of Congress",
+    "url": "https://www.loc.gov/preservation/resources/rfs/stillimg.html",
+    "scope": "Picture-file properties and descriptive information stored with an image.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-loose-tooth",
+    "title": "Removing a Loose Tooth",
+    "publisher": "American Dental Association, MouthHealthy",
+    "url": "https://www.mouthhealthy.org/dental-care/removing-a-loose-tooth",
+    "scope": "Primary tooth loosening as roots change and replacement teeth come in.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-more-tooth-roots",
+    "title": "When Do Children Start Losing Their Baby Teeth?",
+    "url": "https://www.healthychildren.org/english/healthy-living/oral-health/Pages/When-Children-Begin-to-Lose-their-Baby-Teeth.aspx",
+    "publisher": "American Academy of Pediatrics",
+    "scope": "Primary tooth root resorption and loosened teeth.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "bt-more-goosebumps",
+    "title": "What goosebumps are for",
+    "url": "https://www.nih.gov/news-events/nih-research-matters/what-goosebumps-are",
+    "publisher": "National Institutes of Health",
+    "scope": "Hair follicle muscles lifting hairs and the response to cold in humans and thick-furred animals.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  }
+]

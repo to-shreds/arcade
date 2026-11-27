@@ -1,0 +1,1109 @@
+[
+  {
+    "id": "geo-factbook-united-kingdom",
+    "title": "United Kingdom | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/uk.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "United Kingdom: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-ireland",
+    "title": "Ireland | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/ei.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Ireland: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-portugal",
+    "title": "Portugal | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/po.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Portugal: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-spain",
+    "title": "Spain | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/sp.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Spain: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-germany",
+    "title": "Germany | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/gm.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Germany: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-netherlands",
+    "title": "Netherlands | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/nl.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Netherlands: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-belgium",
+    "title": "Belgium | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/be.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Belgium: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-luxembourg",
+    "title": "Luxembourg | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/lu.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Luxembourg: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-switzerland",
+    "title": "Switzerland | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/sz.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Switzerland: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-austria",
+    "title": "Austria | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/au.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Austria: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-italy",
+    "title": "Italy | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/it.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Italy: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-malta",
+    "title": "Malta | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/mt.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Malta: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-greece",
+    "title": "Greece | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/gr.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Greece: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-denmark",
+    "title": "Denmark | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/da.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Denmark: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-norway",
+    "title": "Norway | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/no.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Norway: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-sweden",
+    "title": "Sweden | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/sw.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Sweden: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-finland",
+    "title": "Finland | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/fi.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Finland: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-iceland",
+    "title": "Iceland | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/ic.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Iceland: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-poland",
+    "title": "Poland | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/pl.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Poland: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-czechia",
+    "title": "Czechia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/ez.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Czechia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-slovakia",
+    "title": "Slovakia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/lo.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Slovakia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-hungary",
+    "title": "Hungary | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/hu.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Hungary: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-slovenia",
+    "title": "Slovenia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/si.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Slovenia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-croatia",
+    "title": "Croatia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/hr.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Croatia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-romania",
+    "title": "Romania | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/ro.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Romania: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-bulgaria",
+    "title": "Bulgaria | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/bu.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Bulgaria: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-estonia",
+    "title": "Estonia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/en.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Estonia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-latvia",
+    "title": "Latvia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/lg.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Latvia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-lithuania",
+    "title": "Lithuania | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/europe/lh.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Lithuania: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-argentina",
+    "title": "Argentina | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/ar.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Argentina: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-chile",
+    "title": "Chile | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/ci.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Chile: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-uruguay",
+    "title": "Uruguay | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/uy.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Uruguay: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-paraguay",
+    "title": "Paraguay | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/pa.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Paraguay: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-bolivia",
+    "title": "Bolivia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/bl.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Bolivia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-peru",
+    "title": "Peru | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/pe.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Peru: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-ecuador",
+    "title": "Ecuador | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/ec.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Ecuador: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-colombia",
+    "title": "Colombia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/co.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Colombia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-venezuela",
+    "title": "Venezuela | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/ve.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Venezuela: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-guyana",
+    "title": "Guyana | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/gy.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Guyana: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-suriname",
+    "title": "Suriname | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-america/ns.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Suriname: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-panama",
+    "title": "Panama | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/pm.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Panama: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-costa-rica",
+    "title": "Costa Rica | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/cs.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Costa Rica: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-nicaragua",
+    "title": "Nicaragua | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/nu.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Nicaragua: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-honduras",
+    "title": "Honduras | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/ho.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Honduras: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-el-salvador",
+    "title": "El Salvador | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/es.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "El Salvador: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-guatemala",
+    "title": "Guatemala | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/gt.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Guatemala: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-belize",
+    "title": "Belize | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/bh.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Belize: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-cuba",
+    "title": "Cuba | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/cu.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Cuba: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-jamaica",
+    "title": "Jamaica | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/jm.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Jamaica: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-haiti",
+    "title": "Haiti | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/ha.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Haiti: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-dominican-republic",
+    "title": "The Dominican | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/dr.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Dominican Republic: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-bahamas",
+    "title": "The Bahamas | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/bf.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "The Bahamas: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-trinidad-and-tobago",
+    "title": "Trinidad and Tobago | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-america-n-caribbean/td.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Trinidad and Tobago: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-china",
+    "title": "China | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/ch.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "China: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-mongolia",
+    "title": "Mongolia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/mg.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Mongolia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-north-korea",
+    "title": "North Korea | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/kn.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "North Korea: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-south-korea",
+    "title": "South Korea | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/ks.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "South Korea: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-nepal",
+    "title": "Nepal | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-asia/np.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Nepal: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-bhutan",
+    "title": "Bhutan | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-asia/bt.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Bhutan: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-bangladesh",
+    "title": "Bangladesh | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-asia/bg.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Bangladesh: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-pakistan",
+    "title": "Pakistan | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-asia/pk.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Pakistan: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-sri-lanka",
+    "title": "Sri Lanka | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-asia/ce.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Sri Lanka: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-maldives",
+    "title": "Maldives | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/south-asia/mv.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Maldives: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-thailand",
+    "title": "Thailand | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/th.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Thailand: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-vietnam",
+    "title": "Vietnam | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/vm.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Vietnam: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-laos",
+    "title": "Laos | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/la.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Laos: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-cambodia",
+    "title": "Cambodia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/cb.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Cambodia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-myanmar",
+    "title": "Burma | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/bm.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Myanmar: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-malaysia",
+    "title": "Malaysia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/my.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Malaysia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-singapore",
+    "title": "Singapore | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/sn.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Singapore: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-philippines",
+    "title": "Philippines | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/rp.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Philippines: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-indonesia",
+    "title": "Indonesia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/id.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Indonesia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-brunei",
+    "title": "Brunei | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/bx.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Brunei: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-timor-leste",
+    "title": "Timor-Leste | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/east-n-southeast-asia/tt.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Timor-Leste: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-kazakhstan",
+    "title": "Kazakhstan | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-asia/kz.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Kazakhstan: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-kyrgyzstan",
+    "title": "Kyrgyzstan | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-asia/kg.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Kyrgyzstan: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-uzbekistan",
+    "title": "Uzbekistan | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-asia/uz.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Uzbekistan: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-tajikistan",
+    "title": "Tajikistan | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-asia/ti.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Tajikistan: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-turkmenistan",
+    "title": "Turkmenistan | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/central-asia/tx.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Turkmenistan: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-morocco",
+    "title": "Morocco | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/mo.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Morocco: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-algeria",
+    "title": "Algeria | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/ag.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Algeria: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-tunisia",
+    "title": "Tunisia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/ts.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Tunisia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-ethiopia",
+    "title": "Ethiopia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/et.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Ethiopia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-sudan",
+    "title": "Sudan | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/su.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Sudan: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-south-sudan",
+    "title": "South Sudan | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/od.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "South Sudan: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-uganda",
+    "title": "Uganda | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/ug.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Uganda: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-tanzania",
+    "title": "Tanzania | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/tz.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Tanzania: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-malawi",
+    "title": "Malawi | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/mi.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Malawi: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-mozambique",
+    "title": "Mozambique | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/mz.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Mozambique: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-zambia",
+    "title": "Zambia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/za.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Zambia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-zimbabwe",
+    "title": "Zimbabwe | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/zi.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Zimbabwe: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-botswana",
+    "title": "Botswana | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/bc.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Botswana: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-namibia",
+    "title": "Namibia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/wa.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Namibia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-south-africa",
+    "title": "South Africa | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/sf.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "South Africa: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-lesotho",
+    "title": "Lesotho | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/lt.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Lesotho: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-madagascar",
+    "title": "Madagascar | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/ma.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Madagascar: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-nigeria",
+    "title": "Nigeria | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/ni.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Nigeria: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-niger",
+    "title": "Niger | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/ng.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Niger: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-mali",
+    "title": "Mali | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/ml.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Mali: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-senegal",
+    "title": "Senegal | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/sg.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Senegal: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-gambia",
+    "title": "The Gambia | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/ga.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "The Gambia: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-ghana",
+    "title": "Ghana | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/africa/gh.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Ghana: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-new-zealand",
+    "title": "New Zealand | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/australia-oceania/nz.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "New Zealand: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-fiji",
+    "title": "Fiji | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/australia-oceania/fj.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Fiji: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-samoa",
+    "title": "Samoa | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/australia-oceania/ws.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Samoa: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-factbook-tonga",
+    "title": "Tonga | The World Factbook",
+    "url": "https://github.com/factbook/factbook.json/blob/144d6977b2b01ac1cbd220de754c0a005616760b/australia-oceania/tn.json",
+    "publisher": "Central Intelligence Agency; factbook/factbook.json mirror",
+    "accessed": "2026-11-27",
+    "reuse": "Public-domain U.S. government facts via CC0-licensed structured mirror; original prose.",
+    "scope": "Tonga: country location, geography, borders, terrain, capital and geographic context."
+  },
+  {
+    "id": "geo-nps-altitude",
+    "title": "Safety at Chiricahua National Monument",
+    "url": "https://www.nps.gov/chir/planyourvisit/safety.htm",
+    "publisher": "National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "At higher elevations the air supplies less oxygen per breath."
+  },
+  {
+    "id": "geo-scdnr-andes",
+    "title": "Landforms: Andes Mountains",
+    "url": "https://www.dnr.sc.gov/geology/pdfs/education/Landforms.pdf",
+    "publisher": "South Carolina Department of Natural Resources",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Range location and extent, sections, plate motion, ocean trench and ongoing rise of the Andes."
+  },
+  {
+    "id": "geo-usgs-himalayas",
+    "title": "Tectonic Summaries of Magnitude 7 and Greater Earthquakes from 2000 to 2015",
+    "url": "https://pubs.usgs.gov/of/2016/1192/ofr20161192.pdf",
+    "publisher": "U.S. Geological Survey",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Continental collision involving the India and Eurasia plates and the resulting mountain ranges."
+  },
+  {
+    "id": "geo-bbc-sahara",
+    "title": "Africa: Overview of physical geography",
+    "url": "https://teach.files.bbci.co.uk/teach/geography/africa/transcript_1_overview_of_physical_geography.pdf",
+    "publisher": "BBC Teach",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Extent of the Sahara and its sand dunes, rocky terrain, and desert geography."
+  },
+  {
+    "id": "geo-nasa-amazon",
+    "title": "Mouth of the Amazon",
+    "url": "https://science.nasa.gov/earth/earth-observatory/mouth-of-the-amazon-1161/",
+    "publisher": "NASA Earth Observatory",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Amazon headwaters, west-to-east course, flow of fresh water, and outlet into the Atlantic Ocean. The source’s river-length ranking is not reused."
+  },
+  {
+    "id": "geo-natgeo-nile",
+    "title": "Nile River",
+    "url": "https://education.nationalgeographic.org/resource/nile-river/",
+    "publisher": "National Geographic Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Nile basin, tributaries, northward route and delta on the Mediterranean. The source’s river-length ranking is not reused."
+  },
+  {
+    "id": "geo-unesco-galapagos",
+    "title": "Galápagos Islands",
+    "url": "https://whc.unesco.org/en/list/1/",
+    "publisher": "UNESCO World Heritage Centre",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Location, volcanic formation, isolation, animals, and Darwin’s observations."
+  },
+  {
+    "id": "geo-unesco-baikal",
+    "title": "Lake Baikal",
+    "url": "https://whc.unesco.org/en/list/754/",
+    "publisher": "UNESCO World Heritage Centre",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Location, depth, freshwater habitat, and unusual wildlife."
+  },
+  {
+    "id": "geo-nps-grand-canyon",
+    "title": "Geology of Grand Canyon National Park",
+    "url": "https://www.nps.gov/grca/learn/nature/grca-geology.htm",
+    "publisher": "National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Colorado River erosion, ages of exposed rocks, and widening of the canyon."
+  },
+  {
+    "id": "geo-bas-antarctica",
+    "title": "Antarctic factsheet and geographical statistics",
+    "url": "https://www.bas.ac.uk/about/education-and-schools/antarctic-factsheet/",
+    "publisher": "British Antarctic Survey",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Antarctica’s land, ice sheet, comparison with Arctic sea ice, and polar extremes."
+  },
+  {
+    "id": "geo-nga-caribbean",
+    "title": "Sailing Directions (Enroute), Caribbean Sea",
+    "url": "https://msi.nga.mil/api/publications/download?key=16694492%2FSFH00000%2FPub140bk.pdf",
+    "publisher": "National Geospatial-Intelligence Agency",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Caribbean basin, adjacent coasts, Atlantic connections, and island groups."
+  },
+  {
+    "id": "geo-unesco-victoria-falls",
+    "title": "Mosi-oa-Tunya / Victoria Falls",
+    "url": "https://whc.unesco.org/en/list/509/",
+    "publisher": "UNESCO World Heritage Centre",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Falls on the Zambezi between Zambia and Zimbabwe, mist, seasonal flow and gorges."
+  },
+  {
+    "id": "geo-unesco-kilimanjaro",
+    "title": "Kilimanjaro National Park",
+    "url": "https://whc.unesco.org/en/list/403/",
+    "publisher": "UNESCO World Heritage Centre",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Africa’s highest mountain, its volcanic origins, and changing terrain and habitats with altitude."
+  },
+  {
+    "id": "geo-reef-authority",
+    "title": "Great Barrier Reef fast facts",
+    "url": "https://www.gbrmpa.gov.au/reef-authority-newsroom",
+    "publisher": "Great Barrier Reef Marine Park Authority",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Extent, geographic location, and many individual reefs of the Great Barrier Reef system."
+  },
+  {
+    "id": "geo-unesco-valletta",
+    "title": "City of Valletta",
+    "url": "https://whc.unesco.org/en/list/131/",
+    "publisher": "UNESCO World Heritage Centre",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Valletta’s location on a narrow hilly area between natural harbors."
+  },
+  {
+    "id": "geo-nasa-baikal-rift",
+    "title": "Devastating Fires Burn in Siberia",
+    "url": "https://www.nasa.gov/image-article/devastating-fires-burn-siberia/",
+    "publisher": "National Aeronautics and Space Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Lake Baikal is a rift lake formed by the movement of tectonic plates. No wildfire details are reused."
+  },
+  {
+    "id": "geo-mrc-tonle-sap",
+    "title": "Flow Frameworks",
+    "url": "https://pmfm.mrcmekong.org/about-pmfm/flow-frameworks/",
+    "publisher": "Mekong River Commission",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Wet-season reverse flow from the Mekong toward Tonle Sap and seasonal changes in the lake."
+  }
+]

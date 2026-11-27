@@ -1,0 +1,245 @@
+[
+  {
+    "id": "mach-more-battery",
+    "title": "DOE explains batteries",
+    "url": "https://www.energy.gov/science/doe-explainsbatteries",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Chemical energy, electrolyte and electricity through a circuit."
+  },
+  {
+    "id": "mach-more-circuits",
+    "title": "Resistors in series and parallel",
+    "url": "https://openstax.org/books/college-physics-ap-courses/pages/21-1-resistors-in-series-and-parallel",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Single-path and branched circuits, current and voltage."
+  },
+  {
+    "id": "mach-more-static",
+    "title": "Static electricity and charge",
+    "url": "https://openstax.org/books/college-physics/pages/18-1-static-electricity-and-charge-conservation-of-charge",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Transfer of electrons by rubbing and attraction from separated charge."
+  },
+  {
+    "id": "mach-more-electromagnets",
+    "title": "Ferromagnets and electromagnets",
+    "url": "https://openstax.org/books/college-physics-ap-courses/pages/22-2-ferromagnets-and-electromagnets",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Magnetic fields from currents, coils and ferromagnetic cores."
+  },
+  {
+    "id": "mach-more-transformers",
+    "title": "Transformers",
+    "url": "https://openstax.org/books/college-physics-2e/pages/23-7-transformers",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Induction between coils, alternating current and voltage change."
+  },
+  {
+    "id": "mach-more-breakers",
+    "title": "Considerations for installation of smoke alarms on residential branch circuits",
+    "url": "https://www.cpsc.gov/s3fs-public/pdfs/blk_pdf_acfismoke.pdf",
+    "publisher": "U.S. Consumer Product Safety Commission",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Causes of excess current, fuses and protections from an opened circuit."
+  },
+  {
+    "id": "mach-more-led",
+    "title": "Energy savings potential of light-emitting diodes in niche lighting applications",
+    "url": "https://www.energy.gov/documents/energysavingslightemittingdiodesnichelightingappspdf",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Visible light efficiency and excess heat in LEDs."
+  },
+  {
+    "id": "mach-more-led-semiconductor",
+    "title": "Gaining control of spin in optoelectronics",
+    "url": "https://www.energy.gov/science/bes/articles/gaining-control-of-spin-optoelectronics",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Semiconductor layers in LEDs."
+  },
+  {
+    "id": "mach-more-toaster",
+    "title": "What hath toast wrought?",
+    "url": "https://www.americanhistory.si.edu/explore/exhibitions/object-project/online/household-hits/toaster",
+    "publisher": "Smithsonian National Museum of American History",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Electric heating on both sides and the pop-up toaster."
+  },
+  {
+    "id": "mach-more-resistor",
+    "title": "Energy Education: Resistor",
+    "url": "https://energyeducation.ca/encyclopedia/Resistor",
+    "publisher": "University of Calgary",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Heat produced by electric current in resistors, including toasters."
+  },
+  {
+    "id": "mach-more-induction",
+    "title": "Test procedures for conventional cooking products with induction heating",
+    "url": "https://www1.eere.energy.gov/buildings/appliance_standards/pdfs/cooking_products_tp_nopr.pdf",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Coil, changing magnetic field and current in an induction pan."
+  },
+  {
+    "id": "mach-more-capacitor",
+    "title": "Capacitors in series and parallel",
+    "url": "https://openstax.org/books/college-physics/pages/19-6-capacitors-in-series-and-parallel",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Charge stored on plates and capacitors temporarily supplying energy."
+  },
+  {
+    "id": "mach-more-clocks",
+    "title": "Timekeeping and clocks FAQs",
+    "url": "https://www.nist.gov/pml/time-and-frequency-division/timekeeping-and-clocks-faqs",
+    "publisher": "U.S. National Institute of Standards and Technology",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Quartz oscillation and counting repetitions in clocks."
+  },
+  {
+    "id": "mach-more-flaps",
+    "title": "Animated flaps and slats",
+    "url": "https://www.grc.nasa.gov/www/k-12/airplane/aflap.html",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Moving wing sections and the effects on lift, drag, and low-speed flight."
+  },
+  {
+    "id": "mach-more-axes",
+    "title": "Aircraft rotations",
+    "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/aircraft-rotations/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Pitch, yaw, roll and aircraft control surfaces."
+  },
+  {
+    "id": "mach-more-runways",
+    "title": "Aeronautical Information Manual, March 2024",
+    "url": "https://www.faa.gov/Air_traffic/Publications/media/AIM-Basic-w-Chg1-and-Chg2-dtd-3-21-24.pdf",
+    "publisher": "U.S. Federal Aviation Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Runway designations, center lines, thresholds and airport markings."
+  },
+  {
+    "id": "mach-more-air-traffic",
+    "title": "Traffic management overview",
+    "url": "https://www.faa.gov/nextgen/programs/weather/tfm_support/overview",
+    "publisher": "U.S. Federal Aviation Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Traffic separation, flight flow and controller coordination."
+  },
+  {
+    "id": "mach-more-air-towers",
+    "title": "Air traffic controller workforce plan 2019–2028",
+    "url": "https://www.faa.gov/sites/faa.gov/files/2021-11/2018-ABA-200-CWP_2019_Report_508.pdf",
+    "publisher": "U.S. Federal Aviation Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Tower controller work and aircraft movement on and near airports."
+  },
+  {
+    "id": "mach-more-traffic-lights",
+    "title": "Traffic signal program handbook",
+    "url": "https://ops.fhwa.dot.gov/publications/fhwahop23041/fhwahop23041.pdf",
+    "publisher": "U.S. Federal Highway Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Detection and signal controllers, including inductive loops."
+  },
+  {
+    "id": "mach-more-roundabouts",
+    "title": "Roundabouts",
+    "url": "https://highways.dot.gov/safety/proven-safety-countermeasures/roundabouts",
+    "publisher": "U.S. Federal Highway Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Central island, curves, lower speeds and reduced conflict points."
+  },
+  {
+    "id": "mach-more-stormwater",
+    "title": "Sources and solutions: Stormwater",
+    "url": "https://www.epa.gov/nutrientpollution/sources-and-solutions-stormwater",
+    "publisher": "U.S. Environmental Protection Agency",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Hard surfaces producing runoff and routing to drains and water bodies."
+  },
+  {
+    "id": "mach-more-rain-gardens",
+    "title": "Semi-arid green infrastructure toolbox: Rain gardens",
+    "url": "https://www.epa.gov/system/files/documents/2022-04/green-infrastructure-toolbox_raingardens.pdf",
+    "publisher": "U.S. Environmental Protection Agency",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Rain garden shape, runoff, vegetation and filtration through soil."
+  },
+  {
+    "id": "mach-more-train-signals",
+    "title": "Higher reliability and capacity train control",
+    "url": "https://railroads.dot.gov/sites/fra.dot.gov/files/2022-08/Higher%20Reliaility%20and%20Capacity%20Train%20Control-A.pdf",
+    "publisher": "U.S. Federal Railroad Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Signal blocks, train detection and separation."
+  },
+  {
+    "id": "mach-more-printing",
+    "title": "Additive manufacturing FAQs",
+    "url": "https://www.nist.gov/additive-manufacturing/additive-manufacturing-faqs",
+    "publisher": "U.S. National Institute of Standards and Technology",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Slicing a digital model and fabrication one layer at a time."
+  },
+  {
+    "id": "mach-more-doors",
+    "title": "Activation and presence sensor factsheet",
+    "url": "https://dormakaba.rokka.io/original/e6efe5/1527185692_FINAL_DX336-012_Motion_Presence_Sensor_FactSheet_5-18_LO.pdf",
+    "publisher": "Dormakaba",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Motion detectors and presence sensors used in sliding automatic doors."
+  },
+  {
+    "id": "mach-more-barcodes",
+    "title": "How do GS1 GTINs and barcodes work?",
+    "url": "https://support.gs1.org/support/solutions/articles/43000734095-how-do-gs1-gtins-and-barcodes-work-/",
+    "publisher": "GS1",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Information stored in a standardized product code."
+  },
+  {
+    "id": "mach-more-bar-pattern",
+    "title": "Forensics barcodes presentation",
+    "url": "https://www.nist.gov/system/files/documents/forensics/shannanwilliams.pdf",
+    "publisher": "U.S. National Institute of Standards and Technology",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Linear bar and space patterns, including UPC."
+  }
+]

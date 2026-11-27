@@ -1,0 +1,4147 @@
+[
+  {
+    "id": "io",
+    "title": "Io, Jupiter’s volcanic moon",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Io is a moon of Jupiter with hundreds of volcanoes. Some send gas and dust high above its surface. The energy comes from gravity: Jupiter pulls harder on the side of Io that is closer, stretching the moon a little. Nearby moons help keep Io’s path from becoming a perfect circle, so that stretching changes as it moves. This repeated squeezing warms the rock inside, a little like bending a strip of material back and forth.",
+    "aliases": [
+      "jupiter moon io",
+      "volcanoes on io"
+    ],
+    "sections": [],
+    "facts": [
+      "Io is the most volcanically active world in the solar system."
+    ],
+    "terms": [
+      "gravity",
+      "magma"
+    ],
+    "questions": [
+      {
+        "text": "What lies beneath the icy shell of a neighboring moon?",
+        "target": "europa"
+      },
+      {
+        "text": "What can erupt from a volcano on Earth?",
+        "target": "volcanoes"
+      },
+      {
+        "text": "Which giant planet pulls on Io?",
+        "target": "jupiter"
+      }
+    ],
+    "sources": [
+      "mach-io"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "europa",
+    "title": "Europa’s hidden ocean",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Europa looks like an ice-covered ball scratched with long lines. Scientists think much of the ice sits above a global ocean of salty water. They have not seen the water directly. Measurements from passing spacecraft and the way the icy surface is arranged help them work out what may be underneath. The pulls from Jupiter and other moons bend Europa slightly, which can make heat inside the moon even though its surface is very cold.",
+    "aliases": [
+      "jupiter moon europa",
+      "ocean under europa ice"
+    ],
+    "sections": [],
+    "facts": [
+      "No life has been found on Europa."
+    ],
+    "terms": [
+      "ocean",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "text": "Which other icy moon sends material from its ocean into space?",
+        "target": "enceladus"
+      },
+      {
+        "text": "What happens when the bending warms a more rocky moon?",
+        "target": "io"
+      },
+      {
+        "text": "How does water move around in Earth’s ocean?",
+        "target": "ocean-currents"
+      }
+    ],
+    "sources": [
+      "mach-europa"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ganymede",
+    "title": "Ganymede, the largest moon",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Ganymede goes around Jupiter and is the largest moon in our solar system. It is wider than the planet Mercury, although it has much less mass. Its surface has dark patches with many craters and brighter areas scored by grooves. Ganymede also makes its own magnetic field. That is unusual for a moon. Scientists think there may be a deep salty ocean between layers of ice far beneath the surface.",
+    "aliases": [
+      "jupiter moon ganymede",
+      "biggest moon in solar system"
+    ],
+    "sections": [],
+    "facts": [
+      "A moon can be wider than a planet because those names describe what the objects orbit."
+    ],
+    "terms": [
+      "magnetic field",
+      "mass"
+    ],
+    "questions": [
+      {
+        "text": "How does the small planet Mercury compare with this moon?",
+        "target": "mercury"
+      },
+      {
+        "text": "How can a magnetic field affect things nearby?",
+        "target": "magnets"
+      },
+      {
+        "text": "Which neighboring moon has more old impact marks?",
+        "target": "callisto"
+      }
+    ],
+    "sources": [
+      "mach-ganymede"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "callisto",
+    "title": "Callisto’s crater-covered surface",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Pictures of Jupiter’s moon Callisto show round marks almost everywhere. Rocks and pieces of ice struck the surface long ago, leaving wide bowls called craters. A surface with so many surviving craters has probably changed less than one where later activity erased the marks. Callisto is the farthest from Jupiter of the four large moons Galileo observed. Spacecraft measurements suggest it may have a salty ocean under the frozen crust.",
+    "aliases": [
+      "jupiter moon callisto",
+      "very cratered moon"
+    ],
+    "sections": [],
+    "facts": [
+      "The crater basin Valhalla has many rings around it."
+    ],
+    "terms": [
+      "crater"
+    ],
+    "questions": [
+      {
+        "text": "What kinds of objects leave impact craters?",
+        "target": "asteroids"
+      },
+      {
+        "text": "Which big moon of Jupiter keeps remaking parts of its surface?",
+        "target": "io"
+      },
+      {
+        "text": "Which moon beside Callisto is even larger?",
+        "target": "ganymede"
+      }
+    ],
+    "sources": [
+      "mach-callisto"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "titan",
+    "title": "Titan, a moon with lakes",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Titan is Saturn’s biggest moon. It has a thick atmosphere made mostly of nitrogen. Clouds and rain carry liquid around on Titan, but its surface is far too cold for ordinary liquid water. The rain and the lakes there contain methane and other substances that remain liquid in that cold. Water ice takes the place of much of the rock we see on Earth. A small spacecraft landed through Titan’s orange haze in 2005.",
+    "aliases": [
+      "saturn moon titan",
+      "methane lakes on titan"
+    ],
+    "sections": [],
+    "facts": [
+      "Titan has rivers and lakes made of liquids other than water."
+    ],
+    "terms": [
+      "methane",
+      "atmosphere"
+    ],
+    "questions": [
+      {
+        "text": "How does water travel between air and land on Earth?",
+        "target": "water-cycle"
+      },
+      {
+        "text": "Which planet would fill much of the sky from Titan?",
+        "target": "saturn"
+      },
+      {
+        "text": "How does another Saturn moon bring hidden water up to space?",
+        "target": "enceladus"
+      }
+    ],
+    "sources": [
+      "mach-titan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "enceladus",
+    "title": "Enceladus, the moon that sprays ice",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Ice covers the small moon Enceladus, but a salty ocean lies deep beneath it. Near the south pole, cracks release jets of water vapor and ice grains. Some grains fall back and coat the ground, and others escape into space. NASA’s Cassini spacecraft flew through the jets and measured their contents. That let scientists study some material from the moon’s interior without having to land and drill through the shell of ice.",
+    "aliases": [
+      "saturn moon enceladus",
+      "icy jets on enceladus"
+    ],
+    "sections": [],
+    "facts": [
+      "The jets supply ice grains to one of Saturn’s rings."
+    ],
+    "terms": [
+      "water vapor",
+      "flyby"
+    ],
+    "questions": [
+      {
+        "text": "What hints tell us an ocean may lie beneath Europa?",
+        "target": "europa"
+      },
+      {
+        "text": "Which other moon of Saturn has liquid on its surface?",
+        "target": "titan"
+      },
+      {
+        "text": "What else makes Saturn easy to spot in pictures?",
+        "target": "saturn"
+      }
+    ],
+    "sources": [
+      "mach-enceladus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "triton",
+    "title": "Triton, the moon that orbits backward",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Triton, Neptune’s biggest moon, goes around Neptune in the opposite direction from the way the planet spins. This makes scientists think Neptune may have caught Triton after it had orbited the Sun on its own. Triton’s surface is extremely cold, and part of its ice is frozen nitrogen. When Voyager 2 flew past in 1989, it photographed dark material rising in plumes that stretched into long streaks across the bright ground.",
+    "aliases": [
+      "neptune moon triton",
+      "triton backward orbit"
+    ],
+    "sections": [],
+    "facts": [
+      "The same face of Triton generally points toward Neptune throughout its orbit."
+    ],
+    "terms": [
+      "orbit",
+      "nitrogen",
+      "flyby"
+    ],
+    "questions": [
+      {
+        "text": "What kind of planet captured Triton?",
+        "target": "neptune"
+      },
+      {
+        "text": "Where do many small icy worlds circle the Sun?",
+        "target": "kuiper-belt"
+      },
+      {
+        "text": "Which mission photographed Triton up close?",
+        "target": "voyager-spacecraft"
+      }
+    ],
+    "sources": [
+      "mach-triton"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "miranda",
+    "title": "Miranda’s cliffs and grooves",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Miranda is one of the larger moons of Uranus, though it measures less than 500 kilometers across. Some parts of it have lots of round craters. Other parts are wrinkled into ridges and valleys that look as though different pieces of land were stitched together. Voyager 2 photographed these strange patterns as it passed Uranus. Scientists use the pictures to ask how the moon changed inside and underneath its icy surface.",
+    "aliases": [
+      "uranus moon miranda",
+      "cliffs on miranda"
+    ],
+    "sections": [],
+    "facts": [
+      "The first close pictures of Miranda came from Voyager 2 in 1986."
+    ],
+    "terms": [
+      "crater",
+      "flyby"
+    ],
+    "questions": [
+      {
+        "text": "Why does Miranda’s planet seem tipped on its side?",
+        "target": "uranus"
+      },
+      {
+        "text": "Which moon shows a very different landscape made mostly of craters?",
+        "target": "callisto"
+      },
+      {
+        "text": "What other worlds did Voyager 2 visit?",
+        "target": "voyager-spacecraft"
+      }
+    ],
+    "sources": [
+      "mach-uranus-moons",
+      "mach-voyager"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mars-moons",
+    "title": "Phobos and Deimos, the moons of Mars",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Phobos and Deimos are the two moons of Mars. They are both much smaller than Earth’s Moon and are shaped more like lumpy rocks than balls. Phobos is the bigger one and circles much closer to Mars. It moves around so quickly that from the ground it can appear to come up in the west and go down in the east. Deimos takes a little over a day to make one trip around Mars.",
+    "aliases": [
+      "mars moons",
+      "phobos and deimos",
+      "two moons of mars"
+    ],
+    "sections": [],
+    "facts": [
+      "Phobos has a large crater called Stickney."
+    ],
+    "terms": [
+      "crater",
+      "orbit"
+    ],
+    "questions": [
+      {
+        "text": "What would the ground under the two moons look like?",
+        "target": "mars"
+      },
+      {
+        "text": "How can impacts change a moon’s surface?",
+        "target": "callisto"
+      },
+      {
+        "text": "What keeps even very small moons from drifting away?",
+        "target": "gravity"
+      }
+    ],
+    "sources": [
+      "mach-mars-moons"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ceres",
+    "title": "Ceres, a dwarf planet in the asteroid belt",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Between Mars and Jupiter lies the asteroid belt. Among all its rocky bodies is Ceres, a round world much larger than its neighbors. Its own gravity helped pull it into a nearly round shape, but it shares its path around the Sun with many other objects. Ceres is a dwarf planet. Images from the Dawn spacecraft show pale patches in a big crater. Scientists found that these patches contain salts left by liquid rising from below.",
+    "aliases": [
+      "dwarf planet ceres",
+      "whats the biggest asteroid belt object"
+    ],
+    "sections": [],
+    "facts": [
+      "Ceres was first spotted in 1801."
+    ],
+    "terms": [
+      "dwarf planet",
+      "crater"
+    ],
+    "questions": [
+      {
+        "text": "What are the much smaller neighbors of Ceres like?",
+        "target": "asteroids"
+      },
+      {
+        "text": "Why do two objects in very different places have the same name for their type?",
+        "target": "pluto"
+      },
+      {
+        "text": "Which planet orbits just inside the asteroid belt?",
+        "target": "mars"
+      }
+    ],
+    "sources": [
+      "mach-ceres"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "kuiper-belt",
+    "title": "The Kuiper Belt beyond Neptune",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Beyond Neptune is a broad ring-shaped region called the Kuiper Belt. Countless bodies of ice and rock go around the Sun there. They are bits of the material left when the planets formed. Pluto is one of the largest known objects in the belt. After flying past Pluto, the New Horizons spacecraft passed a much smaller body named Arrokoth, which looks like two flattened snowballs joined together. Most objects in the belt have never been photographed so closely.",
+    "aliases": [
+      "icy objects beyond neptune",
+      "kuiper belt objects"
+    ],
+    "sections": [],
+    "facts": [
+      "Arrokoth’s two lobes were probably joined gently in the early solar system."
+    ],
+    "terms": [
+      "dwarf planet",
+      "flyby"
+    ],
+    "questions": [
+      {
+        "text": "How did Pluto become the best-known world in this region?",
+        "target": "pluto"
+      },
+      {
+        "text": "Which planet lies just inside much of the belt?",
+        "target": "neptune"
+      },
+      {
+        "text": "What happens when some icy bodies get close to the Sun?",
+        "target": "comets"
+      }
+    ],
+    "sources": [
+      "mach-kuiper"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "apollo-11",
+    "title": "Apollo 11, the first Moon landing",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "In July 1969, three people traveled to the Moon on Apollo 11. Neil Armstrong and Buzz Aldrin rode a small lander called Eagle down to the surface. Michael Collins stayed in their main spacecraft, Columbia, circling overhead. Armstrong and Aldrin took pictures, collected rocks and left instruments behind. They lifted off in the upper part of Eagle and joined Collins again. The three then flew back to Earth and landed in the Pacific Ocean.",
+    "aliases": [
+      "first humans on the moon",
+      "neil armstrong buzz aldrin moon landing"
+    ],
+    "sections": [],
+    "facts": [
+      "Armstrong was the first person to step onto the Moon."
+    ],
+    "terms": [
+      "orbit",
+      "crater"
+    ],
+    "questions": [
+      {
+        "text": "How did the astronauts breathe and move outside Eagle?",
+        "target": "spacesuits"
+      },
+      {
+        "text": "How do explorers collect samples on Mars without a person to pick them up?",
+        "target": "mars-perseverance"
+      },
+      {
+        "text": "Why does the Moon change shape in our sky?",
+        "target": "moon-phases"
+      }
+    ],
+    "sources": [
+      "mach-apollo"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "space-station",
+    "title": "Life aboard the International Space Station",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "The International Space Station is a science laboratory moving around Earth. Rockets carried its rooms and large pieces up one at a time. Crews watch Earth below them and do experiments with plants, liquids and materials. The station gets electricity from sunlight falling on large solar panels. Inside, almost everything has to be held in place because it can float. Crew members exercise regularly because their muscles and bones do less work in orbit.",
+    "aliases": [
+      "iss",
+      "international space station",
+      "space station laboratory"
+    ],
+    "sections": [],
+    "facts": [
+      "The first pieces of the station were launched and joined in 1998."
+    ],
+    "terms": [
+      "orbit",
+      "microgravity"
+    ],
+    "questions": [
+      {
+        "text": "Why do people and their tools float inside the station?",
+        "target": "why-astronauts-float"
+      },
+      {
+        "text": "What do astronauts wear when repairs take them outside?",
+        "target": "spacesuits"
+      },
+      {
+        "text": "How can sunlight supply electricity aboard a spacecraft?",
+        "target": "solar-panels"
+      }
+    ],
+    "sources": [
+      "mach-iss"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "why-astronauts-float",
+    "title": "Why do astronauts float in orbit?",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "Earth’s gravity pulls on an orbiting astronaut and the spacecraft around them. Both are falling toward Earth, but both are traveling sideways so fast that Earth’s curved surface keeps dropping away beneath them. Because the astronaut and the cabin are falling together, the floor hardly pushes on their feet. A loose pencil stays nearby for the same reason. The feeling can be like a short drop on a ride, except it lasts while the craft keeps orbiting.",
+    "aliases": [
+      "why do astronauts float",
+      "zero gravity in space",
+      "microgravity"
+    ],
+    "sections": [],
+    "facts": [
+      "Gravity keeps the space station in orbit, even while people inside feel weightless."
+    ],
+    "terms": [
+      "gravity",
+      "orbit",
+      "microgravity"
+    ],
+    "questions": [
+      {
+        "text": "How do people work in a laboratory where things float?",
+        "target": "space-station"
+      },
+      {
+        "text": "What pulls the station toward Earth?",
+        "target": "gravity"
+      },
+      {
+        "text": "What else can keep falling around Earth for years?",
+        "target": "artificial-satellites"
+      }
+    ],
+    "sources": [
+      "mach-microgravity"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "spacesuits",
+    "title": "How a spacesuit keeps an astronaut alive",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "Outside a spacecraft there is almost no air. A spacesuit for spacewalks is like a tiny spacecraft that moves with a person. It holds air pressure against the body, supplies oxygen and removes used gases. Layers protect the astronaut, and water moving through small tubes in clothing helps carry away heat. A hard helmet lets the astronaut see, while a movable shade cuts down on bright sunlight. Special joints allow the arms and legs to bend.",
+    "aliases": [
+      "space suit oxygen",
+      "spacewalk suit",
+      "astronaut suit"
+    ],
+    "sections": [],
+    "facts": [
+      "A backpack can carry the suit’s life-support equipment."
+    ],
+    "terms": [
+      "oxygen",
+      "pressurized"
+    ],
+    "questions": [
+      {
+        "text": "Which mission first used suits to walk on the Moon?",
+        "target": "apollo-11"
+      },
+      {
+        "text": "Where do crews use suits to work outside an orbiting laboratory?",
+        "target": "space-station"
+      },
+      {
+        "text": "Why does the body need an air supply?",
+        "target": "lungs"
+      }
+    ],
+    "sources": [
+      "mach-spacesuit"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hubble-telescope",
+    "title": "The Hubble Space Telescope",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "Hubble carries a polished mirror and cameras as it circles Earth. The mirror gathers light and brings it together so instruments can record very faint objects. Being in space means it looks through much less air than telescopes on the ground. That removes much of the blurring and lets its instruments detect some kinds of light that air blocks. Astronauts visited Hubble to fix parts and install better cameras while it was still in orbit.",
+    "aliases": [
+      "hubble telescope",
+      "why is hubble in space"
+    ],
+    "sections": [],
+    "facts": [
+      "Hubble can observe visible light as well as some ultraviolet and infrared light."
+    ],
+    "terms": [
+      "orbit",
+      "infrared light"
+    ],
+    "questions": [
+      {
+        "text": "Why does Webb use a very large sunshield?",
+        "target": "webb-telescope"
+      },
+      {
+        "text": "What are the huge star systems that telescopes photograph?",
+        "target": "galaxies"
+      },
+      {
+        "text": "How can light be brought to a focus by curved glass?",
+        "target": "lens-refraction"
+      }
+    ],
+    "sources": [
+      "mach-hubble"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "webb-telescope",
+    "title": "The James Webb Space Telescope",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "Webb is a space telescope made to study infrared light. That light is invisible to our eyes, but Webb can record it. Infrared light helps it look through some clouds of dust where stars are forming. Its main mirror is made from 18 pieces that unfolded after launch. A great shield with five layers keeps much of the warmth from the Sun, Earth and Moon away from the instruments, so the telescope can detect faint signals.",
+    "aliases": [
+      "jwst",
+      "webb telescope mirror",
+      "why webb is gold"
+    ],
+    "sections": [],
+    "facts": [
+      "The mirror has a thin layer of gold that reflects infrared light well."
+    ],
+    "terms": [
+      "infrared light",
+      "signal"
+    ],
+    "questions": [
+      {
+        "text": "Why was Hubble also placed above Earth’s air?",
+        "target": "hubble-telescope"
+      },
+      {
+        "text": "What can telescopes learn about worlds around other stars?",
+        "target": "exoplanets"
+      },
+      {
+        "text": "How can light carry warmth through empty space?",
+        "target": "heat-radiation"
+      }
+    ],
+    "sources": [
+      "mach-webb"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "voyager-spacecraft",
+    "title": "Voyager 1 and Voyager 2",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "Voyager 1 and Voyager 2 left Earth in 1977 to study the outer planets. The spacecraft flew close enough to take detailed pictures without landing. Together they visited Jupiter, Saturn, Uranus and Neptune, although only Voyager 2 went to the last two. A carefully planned path let a close pass by one planet change a spacecraft’s speed and direction. Each carries a Golden Record with sounds, music and pictures from Earth.",
+    "aliases": [
+      "voyager probes",
+      "golden record spacecraft"
+    ],
+    "sections": [],
+    "facts": [
+      "Voyager 2 remains the only spacecraft to have flown close to Uranus and Neptune as of 2026."
+    ],
+    "terms": [
+      "flyby",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "text": "What strange features did Voyager 2 see on Neptune’s largest moon?",
+        "target": "triton"
+      },
+      {
+        "text": "What patterns did it photograph near Uranus?",
+        "target": "miranda"
+      },
+      {
+        "text": "How can a passing planet change a spacecraft’s course?",
+        "target": "orbital-gravity-assist"
+      }
+    ],
+    "sources": [
+      "mach-voyager"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mars-perseverance",
+    "title": "Perseverance, a robot geologist on Mars",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "Perseverance is a car-sized robot that landed in Jezero Crater in 2021. That place has a fan of rock left where a river once carried material into a lake. The rover studies those rocks for clues about the old lake and whether there could have been tiny living things long ago. Cameras help it choose objects to study. A drill can take a narrow cylinder of rock, which the rover seals in a metal tube.",
+    "aliases": [
+      "perseverance rover",
+      "mars sample tubes",
+      "jezero crater"
+    ],
+    "sections": [],
+    "facts": [
+      "Collecting a promising rock sample is different from proving that life was ever there."
+    ],
+    "terms": [
+      "crater",
+      "geologist"
+    ],
+    "questions": [
+      {
+        "text": "What made Mars different when liquid water flowed across parts of it?",
+        "target": "mars"
+      },
+      {
+        "text": "What clues can layers of rock hold?",
+        "target": "rocks"
+      },
+      {
+        "text": "How did people collect rock samples before a Mars rover tried it?",
+        "target": "apollo-11"
+      }
+    ],
+    "sources": [
+      "mach-perseverance"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "exoplanets",
+    "title": "Exoplanets, worlds around other stars",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "A planet beyond our solar system is called an exoplanet. Many circle stars much like our planets circle the Sun. A faraway planet is often too faint to see next to its bright star. One way to find it is to measure a tiny dip in the starlight when the planet crosses in front of the star. Repeated dips can show how long the planet takes to go around once. Other methods measure movement of the star itself.",
+    "aliases": [
+      "what are exoplanets",
+      "how do we find exoplanets"
+    ],
+    "sections": [],
+    "facts": [
+      "A dip in light is one clue, so scientists look for other ways to check it."
+    ],
+    "terms": [
+      "exoplanet",
+      "orbit"
+    ],
+    "questions": [
+      {
+        "text": "Which space telescope can study light from some atmospheres?",
+        "target": "webb-telescope"
+      },
+      {
+        "text": "How are planets arranged near our own star?",
+        "target": "solar-system"
+      },
+      {
+        "text": "Why can an orbiting planet make its star wobble?",
+        "target": "gravity"
+      }
+    ],
+    "sources": [
+      "mach-exoplanet"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "milky-way",
+    "title": "Where are we in the Milky Way?",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "The Sun is one star in a huge disk of stars called the Milky Way. If you could look down on that disk from well above it, you would see a long bar of stars in the middle and spiral arms curving around it. Our solar system sits far outside the bar in a smaller branch called the Orion Spur. As the planets circle the Sun, that whole solar system also travels around the center of the galaxy.",
+    "aliases": [
+      "where are we in the milky way",
+      "our home galaxy",
+      "milky way spiral arms"
+    ],
+    "sections": [],
+    "facts": [
+      "The Sun’s path around the galaxy is much longer than any planet’s orbit around the Sun."
+    ],
+    "terms": [
+      "galaxy",
+      "orbit"
+    ],
+    "questions": [
+      {
+        "text": "Do other galaxies all have this shape?",
+        "target": "galaxies"
+      },
+      {
+        "text": "How do planets move within our tiny part of the Milky Way?",
+        "target": "solar-system"
+      },
+      {
+        "text": "How do astronomers describe such enormous distances?",
+        "target": "light-year"
+      }
+    ],
+    "sources": [
+      "mach-milky-way"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "light-year",
+    "title": "A light-year measures distance",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Light travels so quickly that in one second it can cover about 300,000 kilometers in empty space. But stars are so far apart that even light takes years to move between them. A light-year is the distance light travels in a whole year. When we see a star four light-years away, our eyes are receiving light that left it about four years ago. Looking deeper into space often means seeing farther back in time.",
+    "aliases": [
+      "what is a light year",
+      "how far does light travel in one year"
+    ],
+    "sections": [],
+    "facts": [
+      "One light-year is about 9.5 trillion kilometers."
+    ],
+    "terms": [
+      "light-year"
+    ],
+    "questions": [
+      {
+        "text": "Where do the stars closest to Earth fit into our galaxy?",
+        "target": "milky-way"
+      },
+      {
+        "text": "How does light travel to our eyes?",
+        "target": "light"
+      },
+      {
+        "text": "Which telescope records light from very distant galaxies?",
+        "target": "webb-telescope"
+      }
+    ],
+    "sources": [
+      "mach-light-year"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "artificial-satellites",
+    "title": "What artificial satellites do",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "An artificial satellite is an object people built and put into orbit. Some satellites collect pictures showing where clouds are growing, where wildfires have spread or how much ice covers the ground. Others pass radio messages between distant places. A satellite can watch an area repeatedly, making changes easier to spot. It needs the right sideways speed to stay in orbit. It usually gets power from sunlight and sends its measurements back to ground stations.",
+    "aliases": [
+      "man made satellites",
+      "weather and communication satellites"
+    ],
+    "sections": [],
+    "facts": [
+      "The Moon is a natural satellite because it orbits Earth and people did not build it."
+    ],
+    "terms": [
+      "orbit",
+      "signal"
+    ],
+    "questions": [
+      {
+        "text": "How does falling sideways fast enough make an orbit?",
+        "target": "why-astronauts-float"
+      },
+      {
+        "text": "How do spacecraft make electricity from sunlight?",
+        "target": "solar-panels"
+      },
+      {
+        "text": "What can astronauts study from a laboratory in orbit?",
+        "target": "space-station"
+      }
+    ],
+    "sources": [
+      "mach-satellite"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "orbital-gravity-assist",
+    "title": "How spacecraft borrow speed from planets",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "Passing near a moving planet can change the path of a spacecraft. The planet’s gravity bends the spacecraft’s path as it flies past. Seen from the Sun, the spacecraft may leave faster or slower than it arrived, depending on which way it went past the planet. The planet’s motion changes by a tiny amount in return, too small to notice. Mission planners use these carefully chosen flybys to reach destinations that would otherwise need more fuel.",
+    "aliases": [
+      "gravity assist",
+      "slingshot in space"
+    ],
+    "sections": [],
+    "facts": [
+      "A gravity assist can change direction as well as speed."
+    ],
+    "terms": [
+      "flyby",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "text": "Which pair of explorers used planet flybys to cross the outer solar system?",
+        "target": "voyager-spacecraft"
+      },
+      {
+        "text": "Which massive planet has helped send many spacecraft farther outward?",
+        "target": "jupiter"
+      },
+      {
+        "text": "How is flying past a world different from circling it repeatedly?",
+        "target": "artificial-satellites"
+      }
+    ],
+    "sources": [
+      "mach-orbital-assist",
+      "mach-voyager"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "black-holes",
+    "title": "Why light cannot escape a black hole",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "A black hole is a place where so much mass is packed into a small region that, past a certain boundary, nothing can get back out. This boundary is the event horizon. It traps even light, so a black hole itself does not shine. Astronomers can study one by tracking nearby stars, or by detecting light from hot gas outside the boundary. A black hole does not scoop up everything around it. Faraway things can orbit it.",
+    "aliases": [
+      "black hole",
+      "what is an event horizon"
+    ],
+    "sections": [],
+    "facts": [
+      "Some black holes form after a massive star runs out of fuel and its center collapses."
+    ],
+    "terms": [
+      "mass",
+      "gravity",
+      "event horizon"
+    ],
+    "questions": [
+      {
+        "text": "What makes objects pull on one another in the first place?",
+        "target": "gravity"
+      },
+      {
+        "text": "Where are many of the heaviest black holes found?",
+        "target": "galaxies"
+      },
+      {
+        "text": "How can light from near a black hole tell us about the distant past?",
+        "target": "light-year"
+      }
+    ],
+    "sources": [
+      "mach-black-holes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lens-refraction",
+    "title": "How curved lenses bend light",
+    "category": "physics",
+    "priority": 2,
+    "answer": "A straw looks bent in water because light from it changes direction when it crosses from water into air at an angle. This is called refraction. A lens uses curved surfaces to bend light in a chosen way. A magnifying glass is thicker in the middle, so it can bring rays of light together. A lens that is thinner in the middle can spread rays out. Different lenses help cameras, microscopes and eyeglasses make clearer pictures.",
+    "aliases": [
+      "how lenses work",
+      "why does a straw look bent in water",
+      "convex and concave lenses"
+    ],
+    "sections": [],
+    "facts": [
+      "Light also changes speed when it goes from air into water or glass."
+    ],
+    "terms": [
+      "refraction",
+      "light"
+    ],
+    "questions": [
+      {
+        "text": "What happens when raindrops bend different colors by different amounts?",
+        "target": "rainbows"
+      },
+      {
+        "text": "How is bouncing off a surface different from bending through one?",
+        "target": "mirrors"
+      },
+      {
+        "text": "How can a clear thread carry light around a corner?",
+        "target": "fiber-optics"
+      }
+    ],
+    "sources": [
+      "mach-optics"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mirrors",
+    "title": "Why mirrors show a clear image",
+    "category": "physics",
+    "priority": 2,
+    "answer": "Ordinary walls bounce light in many directions. A smooth mirror sends much of that light in a more orderly way. Each ray bounces out at the same angle it came in, measured from a line sticking straight out of the mirror. Your brain traces the light backward and sees an image that seems to be behind the surface. A curved mirror changes the directions of rays and can make an image look larger or smaller.",
+    "aliases": [
+      "how mirrors work",
+      "mirror reflection",
+      "why does glass reflect"
+    ],
+    "sections": [],
+    "facts": [
+      "Many mirrors use a very thin coating of metal behind a flat piece of glass."
+    ],
+    "terms": [
+      "reflection",
+      "light"
+    ],
+    "questions": [
+      {
+        "text": "How does a lens change a ray without bouncing it back?",
+        "target": "lens-refraction"
+      },
+      {
+        "text": "Which telescope uses a wide mirror to gather faint light?",
+        "target": "webb-telescope"
+      },
+      {
+        "text": "Can sound bounce the way light does?",
+        "target": "echoes"
+      }
+    ],
+    "sources": [
+      "mach-optics",
+      "mach-webb"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fiber-optics",
+    "title": "How fiber optics guide a flash of light",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A fiber-optic cable contains thin threads of glass or plastic. Light travels down a thread because its core and the layer around it bend light differently. Rays entering at the right angle bounce back inside the core and keep moving forward. A device can send a pattern of quick flashes through the fiber. At the other end, a detector changes those flashes into electrical signals. Many messages can travel in a cable at once.",
+    "aliases": [
+      "fiber optic cable",
+      "internet through glass",
+      "glass fibers carry light"
+    ],
+    "sections": [],
+    "facts": [
+      "Doctors and engineers also use fibers to send light into hard-to-reach places."
+    ],
+    "terms": [
+      "fiber optic",
+      "signal"
+    ],
+    "questions": [
+      {
+        "text": "What happens to light where two clear materials meet?",
+        "target": "lens-refraction"
+      },
+      {
+        "text": "Why does an orderly bounce preserve useful light?",
+        "target": "mirrors"
+      },
+      {
+        "text": "How can changing light patterns carry numbers or words?",
+        "target": "binary"
+      }
+    ],
+    "sources": [
+      "mach-optics"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "heat-conduction",
+    "title": "Why a spoon handle gets warm",
+    "category": "physics",
+    "priority": 2,
+    "answer": "Put a metal spoon in something warm and, after a while, you may feel the handle warm up too. The warm end gives energy to nearby parts of the metal. Energy spreads along the spoon even while the spoon itself stays in place. This kind of heat transfer is called conduction. Wood is much poorer at carrying heat than many metals. That is why cooking tools often have wood or plastic handles.",
+    "aliases": [
+      "conduction heat",
+      "heat through metal",
+      "heat transfer by touching"
+    ],
+    "sections": [],
+    "facts": [
+      "Heat moves from warmer regions toward cooler regions when they can exchange energy."
+    ],
+    "terms": [
+      "conduction",
+      "energy"
+    ],
+    "questions": [
+      {
+        "text": "What changes when warm material is able to flow?",
+        "target": "heat-convection"
+      },
+      {
+        "text": "How can heat reach a place across empty space?",
+        "target": "heat-radiation"
+      },
+      {
+        "text": "What are solid materials made of?",
+        "target": "atoms"
+      }
+    ],
+    "sources": [
+      "mach-conduction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "heat-convection",
+    "title": "How moving air and water carry heat",
+    "category": "physics",
+    "priority": 2,
+    "answer": "When a heater warms nearby air, that air often spreads out and becomes less dense. Cooler, denser air pushes it upward and moves into its place. This can set up a moving loop that carries warmth from one part of a room to another. Water can carry heat in a similar way. Heat transfer by the movement of a gas or liquid is called convection. Fans and pumps can also move warm air or water around.",
+    "aliases": [
+      "convection heat",
+      "why warm air rises",
+      "how warm water circulates"
+    ],
+    "sections": [],
+    "facts": [
+      "Convection involves flowing material, while conduction can transfer heat through a solid that stays in place."
+    ],
+    "terms": [
+      "convection",
+      "density"
+    ],
+    "questions": [
+      {
+        "text": "How can heat move through a spoon without moving the whole spoon?",
+        "target": "heat-conduction"
+      },
+      {
+        "text": "What happens when rising moist air cools?",
+        "target": "clouds"
+      },
+      {
+        "text": "How can moving water carry warmth over long distances?",
+        "target": "ocean-currents"
+      }
+    ],
+    "sources": [
+      "mach-conduction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "heat-radiation",
+    "title": "How sunlight warms Earth through empty space",
+    "category": "physics",
+    "priority": 2,
+    "answer": "The space between Earth and the Sun is mostly empty, so air cannot carry the Sun’s heat all the way here. Energy travels through space as radiation, including visible light and infrared light. The ground and ocean absorb some of this energy and warm up. Warm things also give off radiation. For instance, near a campfire you can feel warmth on the side of your face that is pointed toward it, even when cooler air is moving past.",
+    "aliases": [
+      "heat radiation",
+      "heat across vacuum",
+      "infrared heat"
+    ],
+    "sections": [],
+    "facts": [
+      "Human eyes cannot see infrared light, but special cameras can record it."
+    ],
+    "terms": [
+      "radiation",
+      "infrared light"
+    ],
+    "questions": [
+      {
+        "text": "How can moving air also carry warmth near a fire?",
+        "target": "heat-convection"
+      },
+      {
+        "text": "Why does Webb shield its instruments from nearby warmth?",
+        "target": "webb-telescope"
+      },
+      {
+        "text": "How does the Sun produce the energy it sends into space?",
+        "target": "sun"
+      }
+    ],
+    "sources": [
+      "mach-radiation",
+      "mach-spectrum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "solar-panels",
+    "title": "How solar panels make electricity",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A solar panel is made of smaller units called cells. When light reaches a cell, it can give energy to electrons inside the material. The cell is built so that some of the moved electrons can flow through a wire and power something. Several cells linked together can supply more power than one small cell. Panels produce less on cloudy days or in shade. Spacecraft use them where enough sunlight reaches them.",
+    "aliases": [
+      "solar cells",
+      "how do solar panels work",
+      "photovoltaic panels"
+    ],
+    "sections": [],
+    "facts": [
+      "A solar cell can make electricity from light without a wheel or other moving part."
+    ],
+    "terms": [
+      "photovoltaic cell",
+      "electron"
+    ],
+    "questions": [
+      {
+        "text": "Why does electricity need a path to flow through a device?",
+        "target": "electric-circuits"
+      },
+      {
+        "text": "What large laboratory uses sunlight for electricity while circling Earth?",
+        "target": "space-station"
+      },
+      {
+        "text": "How can moving air make electricity by a different method?",
+        "target": "wind-turbines"
+      }
+    ],
+    "sources": [
+      "mach-solar-electric"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wind-turbines",
+    "title": "How wind turbines make electricity",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A wind turbine turns moving air into electricity. When wind moves past the shaped blades, the difference in air pressure around them pushes them around. Their motion spins a shaft connected to a generator. Some machines change the speed with gears and others connect directly. Larger turbines often turn to face the wind and adjust their blades as the wind changes. The machines can stop when the wind is too weak or too strong.",
+    "aliases": [
+      "wind power",
+      "how do windmills make electricity"
+    ],
+    "sections": [],
+    "facts": [
+      "A windmill may use rotating blades to do mechanical work, such as grinding grain, without generating electricity."
+    ],
+    "terms": [
+      "turbine",
+      "generator"
+    ],
+    "questions": [
+      {
+        "text": "What can turn similar blades underwater?",
+        "target": "hydroelectric-power"
+      },
+      {
+        "text": "How does a spinning generator make electricity?",
+        "target": "electric-generators"
+      },
+      {
+        "text": "Which power source can make electricity without spinning anything?",
+        "target": "solar-panels"
+      }
+    ],
+    "sources": [
+      "mach-wind-electric"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hydroelectric-power",
+    "title": "How flowing water makes electricity",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Water falling downhill can push blades around a wheel called a turbine. The turbine turns a generator, which sends electricity into wires. At some dams, a reservoir holds water at a higher level before it runs through a pipe to the turbine. Other stations use the flow of a river with much less stored water. Engineers consider what a dam will do to fish and the river around it as well as how much electricity it can make.",
+    "aliases": [
+      "water turbine",
+      "how does hydropower work",
+      "electricity from a dam"
+    ],
+    "sections": [],
+    "facts": [
+      "Pumped storage can move water uphill when electricity is plentiful and let it flow back later."
+    ],
+    "terms": [
+      "turbine",
+      "generator"
+    ],
+    "questions": [
+      {
+        "text": "Can moving air turn another kind of turbine?",
+        "target": "wind-turbines"
+      },
+      {
+        "text": "What turns the spinning motion into an electric current?",
+        "target": "electric-generators"
+      },
+      {
+        "text": "Why are dams built for more than one purpose?",
+        "target": "dams"
+      }
+    ],
+    "sources": [
+      "mach-hydroelectric"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "geothermal-power",
+    "title": "Energy from heat inside Earth",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Earth stays warm inside, and in some places there is hot water or steam deep underground. Wells can bring that heat to the surface. Sometimes hot water can go straight into a heating system. In some power plants, steam turns a turbine that drives an electric generator. In others, the hot water warms a second liquid that turns to gas more easily. The second gas then drives the turbine while the underground water stays apart from it.",
+    "aliases": [
+      "geothermal energy",
+      "geothermal power plant",
+      "underground heat"
+    ],
+    "sections": [],
+    "facts": [
+      "Some hot springs give a natural clue that heat from underground is close to the surface."
+    ],
+    "terms": [
+      "geothermal energy",
+      "turbine"
+    ],
+    "questions": [
+      {
+        "text": "Where else can we see evidence of Earth’s hot interior?",
+        "target": "volcanoes"
+      },
+      {
+        "text": "How can flowing water spin a turbine without being heated first?",
+        "target": "hydroelectric-power"
+      },
+      {
+        "text": "What happens when a liquid becomes a gas?",
+        "target": "states-of-matter"
+      }
+    ],
+    "sources": [
+      "mach-geothermal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "heat-pumps",
+    "title": "How a heat pump moves warmth",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A heat pump moves heat using a liquid that easily changes into a gas. The fluid absorbs heat as it becomes gas in one part of the machine. A powered pump squeezes the gas, making it hotter. In another part, the gas gives heat away and becomes liquid again. The cycle repeats. A refrigerator uses a similar cycle to take heat from the food compartment and let it out into the room.",
+    "aliases": [
+      "heat pump heating cooling",
+      "how does a refrigerator move heat"
+    ],
+    "sections": [],
+    "facts": [
+      "Some heat pumps can switch which side absorbs heat, so the same system can cool or warm a room."
+    ],
+    "terms": [
+      "conduction",
+      "states of matter"
+    ],
+    "questions": [
+      {
+        "text": "How can heat move from food into a cold metal coil?",
+        "target": "heat-conduction"
+      },
+      {
+        "text": "How can fans help move warmth between a machine and a room?",
+        "target": "heat-convection"
+      },
+      {
+        "text": "What are liquids and gases made of?",
+        "target": "states-of-matter"
+      }
+    ],
+    "sources": [
+      "mach-heat-pump"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sonar",
+    "title": "How ships use sound to map the seafloor",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A ship can send a short sound into the water and wait for an echo from the bottom. Sound travels at a speed that researchers can estimate from the water’s conditions. A longer wait means the sound traveled farther. The sound made a round trip, so only half that distance is the depth. Some tools send many beams at once and record them separately, helping scientists map a strip of seafloor as the ship moves.",
+    "aliases": [
+      "sonar",
+      "ocean depth using sound",
+      "how ships find the bottom"
+    ],
+    "sections": [],
+    "facts": [
+      "The name sonar comes from “sound navigation and ranging.”"
+    ],
+    "terms": [
+      "sonar",
+      "echo"
+    ],
+    "questions": [
+      {
+        "text": "Why can sound return after it hits a surface?",
+        "target": "echoes"
+      },
+      {
+        "text": "How does a bat use echoes to find its way?",
+        "target": "bats"
+      },
+      {
+        "text": "What kind of wave travels along the surface instead of as an echo deep under it?",
+        "target": "ocean-waves"
+      }
+    ],
+    "sources": [
+      "mach-sonar"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "echoes",
+    "title": "Where an echo comes from",
+    "category": "physics",
+    "priority": 2,
+    "answer": "An echo is a sound you hear after it bounces off a surface and returns. At the edge of a canyon, a shout can travel to a cliff and back. Sound takes time to travel, so returning sound from far away arrives after the original shout. Inside a small room, many nearby surfaces reflect sounds so quickly that the returns blend together. Soft walls often absorb more sound than bare hard ones.",
+    "aliases": [
+      "what is an echo",
+      "how are echoes made"
+    ],
+    "sections": [],
+    "facts": [
+      "A distant echo has to make a two-way trip from the source to the reflecting surface and back."
+    ],
+    "terms": [
+      "echo",
+      "sound"
+    ],
+    "questions": [
+      {
+        "text": "How can a ship use the time of an echo to measure depth?",
+        "target": "sonar"
+      },
+      {
+        "text": "What animal listens for echoes to locate moving insects?",
+        "target": "bats"
+      },
+      {
+        "text": "Can a reflected ray of light produce another kind of image?",
+        "target": "mirrors"
+      }
+    ],
+    "sources": [
+      "mach-sonar"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "light-spectrum",
+    "title": "The kinds of light our eyes cannot see",
+    "category": "physics",
+    "priority": 2,
+    "answer": "Visible light is only a small part of a large family of waves. At one end, radio waves have much longer spaces between their peaks than visible light. At the other end, ultraviolet light and X-rays have shorter spaces. A radio can detect waves your eyes miss, while a camera made for infrared light can show patterns of warmth. All these waves travel at the same speed in empty space, even though their wavelengths differ.",
+    "aliases": [
+      "electromagnetic spectrum",
+      "radio waves infrared ultraviolet",
+      "invisible light"
+    ],
+    "sections": [],
+    "facts": [
+      "Visible light ranges in color from red through violet."
+    ],
+    "terms": [
+      "radiation",
+      "infrared light"
+    ],
+    "questions": [
+      {
+        "text": "How can sunlight separate into the colors we can see?",
+        "target": "rainbows"
+      },
+      {
+        "text": "How does an infrared telescope collect light our eyes cannot see?",
+        "target": "webb-telescope"
+      },
+      {
+        "text": "What sort of radiation carries warmth to Earth?",
+        "target": "heat-radiation"
+      }
+    ],
+    "sources": [
+      "mach-spectrum",
+      "mach-light-year"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "action-reaction-forces",
+    "title": "Why a push comes with a push back",
+    "category": "physics",
+    "priority": 2,
+    "answer": "If you push your hands against a wall, the wall pushes back on your hands just as hard. Every push or pull between two objects works in both directions. On a rolling chair, you can press gently against a wall and move away from it. Your chair moves because wheels make it easier to roll, even though the wall is also receiving a push. A spacecraft can move by pushing gas one way so the gas pushes it the other way.",
+    "aliases": [
+      "newtons third law",
+      "action and reaction forces",
+      "how rockets take off"
+    ],
+    "sections": [],
+    "facts": [
+      "The two forces in a pair act on different objects, so they do not cancel on one object."
+    ],
+    "terms": [
+      "force",
+      "mass"
+    ],
+    "questions": [
+      {
+        "text": "How does an exchange between two bodies work when they never touch?",
+        "target": "orbital-gravity-assist"
+      },
+      {
+        "text": "Why do people who are falling together feel little push from the floor?",
+        "target": "why-astronauts-float"
+      },
+      {
+        "text": "How did sections of the station leave Earth and reach orbit?",
+        "target": "space-station"
+      }
+    ],
+    "sources": [
+      "mach-action-reaction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "electric-generators",
+    "title": "How a generator makes electric current",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "In many generators, a magnet moves past loops of wire, or the wire moves inside a magnetic field. The changing field can cause electric charges to move through the wire. The generator does not make energy out of nothing. Something has to turn it, like flowing water, a jet of steam or moving air. It changes some of the energy of that motion into electrical energy that can travel along wires.",
+    "aliases": [
+      "electric generator",
+      "electricity from a spinning wheel",
+      "magnets make electricity"
+    ],
+    "sections": [],
+    "facts": [
+      "A bicycle dynamo makes electricity as the wheel turns."
+    ],
+    "terms": [
+      "generator",
+      "magnetic field"
+    ],
+    "questions": [
+      {
+        "text": "What can spin a generator using the wind?",
+        "target": "wind-turbines"
+      },
+      {
+        "text": "What turns a generator inside a dam?",
+        "target": "hydroelectric-power"
+      },
+      {
+        "text": "How can electricity make motion instead of coming from motion?",
+        "target": "electric-motors"
+      }
+    ],
+    "sources": [
+      "mach-electricity"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "electric-motors",
+    "title": "How electric motors make things move",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "An electric motor makes a part turn. When electricity flows through a coil of wire, the wire makes a magnetic field. Its pushes and pulls interact with another magnetic field. The motor is arranged so the pushes keep helping the moving part turn, instead of holding it in one position. That turning can spin fan blades, drive the wheels of a model train or move the drum inside a washing machine.",
+    "aliases": [
+      "electric motor",
+      "how a fan spins",
+      "electricity into movement"
+    ],
+    "sections": [],
+    "facts": [
+      "Some motors use permanent magnets, and some use electromagnets for both fields."
+    ],
+    "terms": [
+      "motor",
+      "magnetic field"
+    ],
+    "questions": [
+      {
+        "text": "How can the motion of a similar machine produce electricity?",
+        "target": "electric-generators"
+      },
+      {
+        "text": "How do magnetic poles push or pull each other?",
+        "target": "magnets"
+      },
+      {
+        "text": "How does an electric car use a motor to drive?",
+        "target": "electric-vehicles"
+      }
+    ],
+    "sources": [
+      "mach-motor"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dams",
+    "title": "How dams hold and release water",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A dam is a barrier built across a valley or a river. Water gathers behind it in a reservoir. People can release water when fields or towns need it or send it through turbines to make electricity. During heavy rain, some dams hold back part of a flood for a short time. A spillway lets extra water go around or over the dam safely. Dams can also change where fish travel and where sediment collects.",
+    "aliases": [
+      "dams and reservoirs",
+      "why do people build dams",
+      "spillway"
+    ],
+    "sections": [],
+    "facts": [
+      "A reservoir can store water between wet and dry seasons."
+    ],
+    "terms": [
+      "reservoir",
+      "sediment"
+    ],
+    "questions": [
+      {
+        "text": "How does falling water make electricity at some dams?",
+        "target": "hydroelectric-power"
+      },
+      {
+        "text": "How can boats get past a place where water stands at different heights?",
+        "target": "canal-locks"
+      },
+      {
+        "text": "What happens to bits of rock that flowing water can lift and carry?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "mach-dams"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "canal-locks",
+    "title": "How canal locks raise and lower boats",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A lock is a short section of water with gates at both ends. A boat enters while the lock’s water matches the level outside the open gate. Once inside, the gate shuts. Water flows in from the higher side or drains to the lower side, and the floating boat moves up or down with it. When the water matches the next part of the canal, the other gate can open and the boat moves on.",
+    "aliases": [
+      "canal lock boat lift",
+      "how does a ship go uphill"
+    ],
+    "sections": [],
+    "facts": [
+      "A boat keeps floating throughout the change in height."
+    ],
+    "terms": [
+      "buoyancy"
+    ],
+    "questions": [
+      {
+        "text": "Why can water stand at different heights on two sides of a dam?",
+        "target": "dams"
+      },
+      {
+        "text": "What holds a heavy ship up as the lock fills?",
+        "target": "floating-ships"
+      },
+      {
+        "text": "How did Roman builders move water without pumping it uphill?",
+        "target": "roman-aqueducts"
+      }
+    ],
+    "sources": [
+      "mach-locks"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "drinking-water-treatment",
+    "title": "How drinking water gets cleaned",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Water from a river or lake can carry dirt and tiny living things. A treatment plant can add substances that help tiny bits of dirt clump together. Heavy clumps settle, and the water then goes through filters that catch more particles. Disinfection uses methods such as chlorine or ultraviolet light to kill or inactivate many germs. The exact steps depend on the source and the quality of the water. Pipes carry the cleaned water to buildings.",
+    "aliases": [
+      "water treatment plants",
+      "where does tap water get cleaned"
+    ],
+    "sections": [],
+    "facts": [
+      "Very clear water can still contain things too small to see."
+    ],
+    "terms": [
+      "filter",
+      "sediment"
+    ],
+    "questions": [
+      {
+        "text": "How does treated water reach taps with enough pressure?",
+        "target": "water-towers"
+      },
+      {
+        "text": "What happens to water after it goes down a sink?",
+        "target": "wastewater-treatment"
+      },
+      {
+        "text": "How did water get to a river or lake first?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "mach-drinking"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "water-towers",
+    "title": "Why water towers are so tall",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A water tower holds a tank high above the ground. Pumps fill the tank when they can, and gravity helps push its stored water down into the town’s pipes. Putting the water higher raises the pressure at a lower tap, much like lifting one end of a hose full of water can make it flow out of the other. The tank can help meet short periods of heavy use, such as when many showers are running together.",
+    "aliases": [
+      "how does a water tower work",
+      "why are water tanks raised"
+    ],
+    "sections": [],
+    "facts": [
+      "A town may use more than one tank where the land has very different heights."
+    ],
+    "terms": [
+      "gravity",
+      "reservoir"
+    ],
+    "questions": [
+      {
+        "text": "What happens before water is pumped into many towers?",
+        "target": "drinking-water-treatment"
+      },
+      {
+        "text": "How did builders use a gentle slope for water long ago?",
+        "target": "roman-aqueducts"
+      },
+      {
+        "text": "Where can a town store much larger supplies of water?",
+        "target": "dams"
+      }
+    ],
+    "sources": [
+      "mach-towers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wastewater-treatment",
+    "title": "Where water goes after it runs down the drain",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Water that leaves sinks or toilets can move through sewer pipes to a treatment plant. Screens catch big pieces of trash first. In tanks, some smaller solid pieces settle while other material floats and can be removed. In another stage, tiny living things help break down much of the waste still mixed into the water. Plants may remove more material and disinfect the water before returning it to a river or using it again.",
+    "aliases": [
+      "sewage treatment",
+      "what happens when you flush a toilet",
+      "wastewater plant"
+    ],
+    "sections": [],
+    "facts": [
+      "The settled mixture left from treatment is often called sludge."
+    ],
+    "terms": [
+      "filter",
+      "sediment"
+    ],
+    "questions": [
+      {
+        "text": "How is making river water safe to drink a separate job?",
+        "target": "drinking-water-treatment"
+      },
+      {
+        "text": "Where can treated water go once it returns to a river?",
+        "target": "water-cycle"
+      },
+      {
+        "text": "Why do rivers need oxygen for plants, animals and microbes?",
+        "target": "ecosystems"
+      }
+    ],
+    "sources": [
+      "mach-wastewater"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "suspension-bridges",
+    "title": "How a suspension bridge hangs from cables",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "On a suspension bridge, smaller vertical lines hang the roadway from large curved cables. Towers support the high points of those cables. Strong connections in the ground hold the cables at the ends, otherwise the weight of the roadway would pull them inward. The towers carry much of the load down to their foundations. This arrangement lets builders cross a wide area without planting a row of supports in the middle of rivers or shipping lanes.",
+    "aliases": [
+      "suspension bridge cables",
+      "why large bridges have towers"
+    ],
+    "sections": [],
+    "facts": [
+      "The cables mainly experience pulling forces rather than being squeezed."
+    ],
+    "terms": [
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "How can a curved bridge carry a load without hanging from cables?",
+        "target": "arch-bridges"
+      },
+      {
+        "text": "How can triangles keep a bridge from bending too much?",
+        "target": "truss-bridges"
+      },
+      {
+        "text": "What makes the roadway weigh anything in the first place?",
+        "target": "gravity"
+      }
+    ],
+    "sources": [
+      "mach-bridges"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "arch-bridges",
+    "title": "How an arch bridge carries weight",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "An arch bridge uses a curved shape to carry loads toward the ground at each end. The stones in a traditional arch lean on one another, so the weight mainly squeezes them together. The curve also pushes outward at both ends. Strong supports on those sides have to keep the feet of the arch from spreading. Builders once used this shape to carry roads and water channels over valleys, often placing many arches in a row.",
+    "aliases": [
+      "arch bridge",
+      "how stone arches support weight"
+    ],
+    "sections": [],
+    "facts": [
+      "Stone handles squeezing much better than being pulled apart."
+    ],
+    "terms": [
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "What ancient water system used rows of arches?",
+        "target": "roman-aqueducts"
+      },
+      {
+        "text": "Which bridge supports its road by hanging it from cables?",
+        "target": "suspension-bridges"
+      },
+      {
+        "text": "Why do other bridges use straight bars instead of curved stones?",
+        "target": "truss-bridges"
+      }
+    ],
+    "sources": [
+      "mach-bridges"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "truss-bridges",
+    "title": "Why bridge frames are full of triangles",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A rectangular frame can lean sideways if its joints are free to turn. Add a diagonal bar, and you split the frame into two triangles. Three sides of fixed lengths hold one triangle shape, so they resist that sideways change. A truss bridge joins many triangles in a frame. When a car drives across it, some bars are squeezed and some are pulled. The bars spread the car’s load to the bridge’s supports.",
+    "aliases": [
+      "truss bridge",
+      "why bridges use triangles"
+    ],
+    "sections": [],
+    "facts": [
+      "A truss needs strong joints as well as strong bars."
+    ],
+    "terms": [
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "How does another bridge shape carry loads mostly by squeezing?",
+        "target": "arch-bridges"
+      },
+      {
+        "text": "How do cables and towers carry the load of a long bridge?",
+        "target": "suspension-bridges"
+      },
+      {
+        "text": "Why can where you apply a force matter as much as the force itself?",
+        "target": "levers"
+      }
+    ],
+    "sources": [
+      "mach-bridges"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tunnel-boring",
+    "title": "How a machine digs a tunnel",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "One way to dig a tunnel is with a round machine that cuts through earth or rock as it advances. Its head breaks the material into small pieces. Belts, pipes or special carts remove the pieces. The fresh tunnel often needs support, so workers or equipment place walls or pipes behind the cutter as it moves. Machines for wet, loose ground can also press against the digging face to keep soil and water from rushing in.",
+    "aliases": [
+      "tunnel boring machine",
+      "how subway tunnels are made",
+      "underground pipe tunnel"
+    ],
+    "sections": [],
+    "facts": [
+      "Builders choose different tools for hard rock and for soft wet soil."
+    ],
+    "terms": [
+      "rock",
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "What moves huge pieces of ground over longer times?",
+        "target": "tectonic-plates"
+      },
+      {
+        "text": "What kind of travel uses large tunnels beneath some cities?",
+        "target": "subway-trains"
+      },
+      {
+        "text": "Why might a city need smaller tunnels and pipes for used water?",
+        "target": "wastewater-treatment"
+      }
+    ],
+    "sources": [
+      "mach-tunnels"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "electricity-grid",
+    "title": "How electricity gets to your home",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Power plants and other sources make electricity in many places. The power grid links these sources to towns, cities and buildings. Thick wires carry power a long way, often at high voltage to reduce energy lost along the way. Along that route, transformers lower the voltage for smaller local wires and for use in homes. Grid operators try to match the supply of electricity with what people are using at each moment.",
+    "aliases": [
+      "electrical grid",
+      "power lines and substations"
+    ],
+    "sections": [],
+    "facts": [
+      "A substation helps put power onto different lines or changes the voltage to serve a local area."
+    ],
+    "terms": [
+      "voltage",
+      "generator"
+    ],
+    "questions": [
+      {
+        "text": "What makes the current that can travel through power lines?",
+        "target": "electric-generators"
+      },
+      {
+        "text": "How can some buildings make part of their own electricity?",
+        "target": "solar-panels"
+      },
+      {
+        "text": "How does a closed path let a lamp use electrical energy?",
+        "target": "electric-circuits"
+      }
+    ],
+    "sources": [
+      "mach-grid"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "electric-vehicles",
+    "title": "How an electric car moves and recharges",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "An electric car stores energy in a large battery. An electric motor turns the wheels to make the car move. When the driver slows down, some cars can use the turning wheels to drive that same motor like a generator. That changes some of the car’s motion back into electrical energy the battery can store. The car still needs to be plugged in regularly because some of the energy is transferred to the air and other surroundings as warmth and cannot all be recovered.",
+    "aliases": [
+      "electric cars vehicles",
+      "regenerative braking",
+      "battery car motor"
+    ],
+    "sections": [],
+    "facts": [
+      "Regenerative braking cannot recover all the energy that the car used to get moving."
+    ],
+    "terms": [
+      "motor",
+      "generator"
+    ],
+    "questions": [
+      {
+        "text": "What makes the motor turn in the first place?",
+        "target": "electric-motors"
+      },
+      {
+        "text": "How can the moving wheels sometimes send electricity back?",
+        "target": "electric-generators"
+      },
+      {
+        "text": "Where does the energy from a charging station come from?",
+        "target": "electricity-grid"
+      }
+    ],
+    "sources": [
+      "mach-ev"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "steam-locomotives",
+    "title": "How steam turned a locomotive’s wheels",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "A steam locomotive carries a boiler that heats water until it becomes steam. Pressure builds as the steam is kept inside. When admitted into a cylinder, the steam pushes a piston along the cylinder. Rods link that back-and-forth movement to turning wheels, a bit like your leg moves down on a bicycle pedal to turn it. The locomotive has to carry or stop for both fuel and water to keep that work going.",
+    "aliases": [
+      "steam locomotive",
+      "how steam trains worked"
+    ],
+    "sections": [],
+    "facts": [
+      "The big rods beside the wheels are part of the machine that transmits the piston’s push."
+    ],
+    "terms": [
+      "piston",
+      "energy"
+    ],
+    "questions": [
+      {
+        "text": "What changes when liquid water becomes steam?",
+        "target": "states-of-matter"
+      },
+      {
+        "text": "How can steam from underground move a different kind of machine?",
+        "target": "geothermal-power"
+      },
+      {
+        "text": "How can two tracks lead a train in different directions?",
+        "target": "rail-switches"
+      }
+    ],
+    "sources": [
+      "mach-steam"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "flight-lift",
+    "title": "How wings hold up an airplane",
+    "category": "physics",
+    "priority": 2,
+    "answer": "A wing moving through air changes how the air moves over and under its surface. In flight, the wing pushes some air downward. The air pushes the wing upward in return. Air generally presses harder underneath than on top while a wing is making upward lift. The pilot can change speed or the angle of the wing to change this force. For steady, level flight, lift must balance the aircraft’s weight.",
+    "aliases": [
+      "why airplanes fly",
+      "how wings make lift",
+      "airplane lift and weight"
+    ],
+    "sections": [],
+    "facts": [
+      "In steady, powered flight, thrust balances the backward force of air resistance."
+    ],
+    "terms": [
+      "lift",
+      "thrust",
+      "drag"
+    ],
+    "questions": [
+      {
+        "text": "Why does pushing air down give the wing a push up?",
+        "target": "action-reaction-forces"
+      },
+      {
+        "text": "How can a wing work without an engine on the aircraft?",
+        "target": "gliders"
+      },
+      {
+        "text": "How can moving a wing around in circles produce lift?",
+        "target": "helicopters"
+      }
+    ],
+    "sources": [
+      "mach-wing",
+      "mach-flight"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "gliders",
+    "title": "How gliders fly without an engine",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "A glider has wings but no engine to keep it moving forward. After a launch or a tow, the glider normally loses height as it moves through still air. That sinking motion helps keep its speed so the wings can keep making lift. It can stay up much longer if the pilot finds air that is rising. Warm air rising from the ground or wind flowing up a hill can carry a glider higher.",
+    "aliases": [
+      "sailplanes",
+      "why does a glider stay up",
+      "airplane without motor"
+    ],
+    "sections": [],
+    "facts": [
+      "A glider’s long wings help it cover a lot of distance for the height it loses."
+    ],
+    "terms": [
+      "lift",
+      "drag"
+    ],
+    "questions": [
+      {
+        "text": "Why do a glider’s wings still work without an engine?",
+        "target": "flight-lift"
+      },
+      {
+        "text": "What makes pockets of warm air rise over sunlit ground?",
+        "target": "heat-convection"
+      },
+      {
+        "text": "How did early airplane designers learn by flying gliders?",
+        "target": "wright-flyer"
+      }
+    ],
+    "sources": [
+      "mach-gliders"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wright-flyer",
+    "title": "How the Wright brothers learned to fly",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "Orville and Wilbur Wright tested gliders to learn how to balance an aircraft and turn it. They also made a wind tunnel to try different wing shapes before they built their powered Flyer. In December 1903, near Kitty Hawk, North Carolina, Orville flew it first. The brothers took turns through four flights that day. Being able to steer mattered as much as being able to lift off, since an airplane has to stay under control in moving air.",
+    "aliases": [
+      "first powered airplane",
+      "1903 wright flyer",
+      "orville wilbur flight"
+    ],
+    "sections": [],
+    "facts": [
+      "The Wright brothers had worked repairing and making bicycles in Dayton, Ohio."
+    ],
+    "terms": [
+      "lift",
+      "thrust"
+    ],
+    "questions": [
+      {
+        "text": "Why were the Wright brothers’ unpowered tests worth doing first?",
+        "target": "gliders"
+      },
+      {
+        "text": "What did they need a good wing shape to do?",
+        "target": "flight-lift"
+      },
+      {
+        "text": "How did the Flyer get a push forward from its engine?",
+        "target": "propellers"
+      }
+    ],
+    "sources": [
+      "mach-wright",
+      "mach-propellers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "propellers",
+    "title": "How propellers push through air",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Each blade of a spinning propeller acts like a small wing. Its slanted shape changes the pressure around it and pushes air backward. The air pushes the propeller and the aircraft forward. The outer part of a blade moves faster around the circle than the inner part, so blades are often twisted to have different angles along their length. A similar kind of propeller can push water instead of air to move a boat.",
+    "aliases": [
+      "propeller thrust",
+      "how a propeller moves a plane"
+    ],
+    "sections": [],
+    "facts": [
+      "The push that drives an aircraft forward is called thrust."
+    ],
+    "terms": [
+      "thrust",
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "How is the blade similar to a wing that holds up a plane?",
+        "target": "flight-lift"
+      },
+      {
+        "text": "What happens if the spinning blades push mostly downward?",
+        "target": "helicopters"
+      },
+      {
+        "text": "How can an aircraft push air back using a hot flow?",
+        "target": "jet-engines"
+      }
+    ],
+    "sources": [
+      "mach-propellers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "helicopters",
+    "title": "How helicopters hover and turn",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "A helicopter’s main rotor spins long blades through the air. Each blade pushes air down and receives an upward push. The aircraft can hover when this upward force balances its weight. Changing the angle of the blades during each turn lets the pilot tip the main push and move in a chosen direction. Many helicopters also have a small tail rotor that keeps the body from turning the other way as the main rotor spins.",
+    "aliases": [
+      "helicopter rotor",
+      "why helicopters hover",
+      "tail rotor purpose"
+    ],
+    "sections": [],
+    "facts": [
+      "Some helicopters use two main rotors turning in opposite directions instead of a tail rotor."
+    ],
+    "terms": [
+      "rotor",
+      "lift"
+    ],
+    "questions": [
+      {
+        "text": "How does a propeller use the same idea to push forward?",
+        "target": "propellers"
+      },
+      {
+        "text": "What produces the upward push on an ordinary aircraft wing?",
+        "target": "flight-lift"
+      },
+      {
+        "text": "Why would rotating blades try to turn the cabin in the other direction?",
+        "target": "action-reaction-forces"
+      }
+    ],
+    "sources": [
+      "mach-helicopter",
+      "mach-action-reaction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "jet-engines",
+    "title": "How a jet engine pushes a plane forward",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "One kind of jet engine pulls air in and squeezes it through a row of spinning blades. Fuel burns in the crowded air and heats it. The hot gas expands so fast that it can turn another set of blades, called a turbine. The turbine keeps the front blades turning. Gas released at high speed from the rear can push the airplane forward. Many airliner engines also drive a big fan that moves air around the hottest part of the engine.",
+    "aliases": [
+      "jet engine",
+      "how a jet moves air",
+      "jet compressor and turbine"
+    ],
+    "sections": [],
+    "facts": [
+      "Air, not just the burning fuel, carries much of the energy and push out of the back."
+    ],
+    "terms": [
+      "turbine",
+      "thrust"
+    ],
+    "questions": [
+      {
+        "text": "Why does shooting gas backward push the plane ahead?",
+        "target": "action-reaction-forces"
+      },
+      {
+        "text": "How can spinning blades move a plane without sending air through a hot engine?",
+        "target": "propellers"
+      },
+      {
+        "text": "Why must a plane keep moving forward to make enough lift?",
+        "target": "flight-lift"
+      }
+    ],
+    "sources": [
+      "mach-jet"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "floating-ships",
+    "title": "Why steel ships can float",
+    "category": "physics",
+    "priority": 2,
+    "answer": "A steel nail sinks, but a ship made of steel can float because the hull takes up much more space than the steel alone. The wide hull keeps water out of air-filled spaces. When the ship sits in water, it pushes some water aside. The water pushes upward by the weight of the water moved out of its place. A floating ship settles until that upward push balances the weight of the whole ship and its cargo.",
+    "aliases": [
+      "why do heavy boats float",
+      "buoyancy and displacement"
+    ],
+    "sections": [],
+    "facts": [
+      "A loaded ship floats lower because it needs to push more water aside."
+    ],
+    "terms": [
+      "buoyancy",
+      "density"
+    ],
+    "questions": [
+      {
+        "text": "How can a vessel choose to float or dive?",
+        "target": "submarines"
+      },
+      {
+        "text": "Why does a boat rise when a lock chamber fills?",
+        "target": "canal-locks"
+      },
+      {
+        "text": "How can a huge object have a lower average density than water?",
+        "target": "density"
+      }
+    ],
+    "sources": [
+      "mach-floating"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "submarines",
+    "title": "How submarines dive and rise",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "A submarine floats when water pushes upward as strongly as gravity pulls it downward. To dive, it lets seawater enter some tanks, replacing air. Its mass rises while its outer size stays about the same. It then sinks lower. To return to the surface, it can push water out of those tanks with air, becoming lighter again. When moving under water, a submarine can also use small movable fins to help control its depth.",
+    "aliases": [
+      "submarine ballast tanks",
+      "why do submarines sink and float"
+    ],
+    "sections": [],
+    "facts": [
+      "Air and water are used to adjust the submarine’s overall density."
+    ],
+    "terms": [
+      "ballast tank",
+      "mass",
+      "buoyancy"
+    ],
+    "questions": [
+      {
+        "text": "What keeps an ordinary ship from sinking?",
+        "target": "floating-ships"
+      },
+      {
+        "text": "How does air inside a vessel affect its average density?",
+        "target": "density"
+      },
+      {
+        "text": "How can echoes tell a crew about things under water?",
+        "target": "sonar"
+      }
+    ],
+    "sources": [
+      "mach-floating"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rail-switches",
+    "title": "How trains change tracks without steering",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Train wheels follow metal rails, so a driver cannot turn a train the way a driver steers a car. At a junction, two short, tapered rails can move a little sideways. In one position they guide the wheels along the main track. In the other they make a smooth path into the branching track. Signals help manage which trains can use that part of the railway. The track arrangement has to be ready before the first wheels reach it.",
+    "aliases": [
+      "railway switching points",
+      "railroad switch",
+      "train track junction"
+    ],
+    "sections": [],
+    "facts": [
+      "The moving parts that guide the wheels are called switch points."
+    ],
+    "terms": [
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "Why does a subway system also need track junctions?",
+        "target": "subway-trains"
+      },
+      {
+        "text": "How did older trains get the power to turn the wheels that follow the rails?",
+        "target": "steam-locomotives"
+      },
+      {
+        "text": "Why do very fast trains usually run on specially designed tracks?",
+        "target": "high-speed-rail"
+      }
+    ],
+    "sources": [
+      "mach-rail-switch"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "subway-trains",
+    "title": "How a subway carries people across a city",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "A subway runs trains frequently between stations where many people want to travel. Tunnels let the railway go below busy streets, but some sections may run outside or on bridges. Many subway trains have electric motors that draw power from a separate rail or overhead wires. Stations and switches create a network, so riding sometimes means changing trains. Signals and schedule plans help maintain space between trains, even when several run along the same track.",
+    "aliases": [
+      "subway metro trains",
+      "underground passenger trains"
+    ],
+    "sections": [],
+    "facts": [
+      "The London Underground and New York City Subway are examples of city rail systems."
+    ],
+    "terms": [
+      "motor",
+      "voltage"
+    ],
+    "questions": [
+      {
+        "text": "How can a machine dig a passage underneath a city?",
+        "target": "tunnel-boring"
+      },
+      {
+        "text": "How does one train follow a different route from another?",
+        "target": "rail-switches"
+      },
+      {
+        "text": "How does a rail line get electricity from a large power system?",
+        "target": "electricity-grid"
+      }
+    ],
+    "sources": [
+      "mach-subway"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "high-speed-rail",
+    "title": "Why high-speed trains need special tracks",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "Fast passenger trains such as Japan’s Shinkansen use carefully built routes. Gentle curves help keep the sideways pull small at speed. Dedicated tracks can keep slower trains and road crossings out of the way. Each train still has to push through air, so a smooth shape helps limit drag. Timetables, signals and automatic train controls help keep enough space between trains. The result is rapid travel between cities with many people riding on one train.",
+    "aliases": [
+      "bullet trains",
+      "shinkansen",
+      "high speed rail design"
+    ],
+    "sections": [],
+    "facts": [
+      "Japan’s first Shinkansen route began regular service in 1964."
+    ],
+    "terms": [
+      "drag",
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "Why are slower trains with more stops useful in a city?",
+        "target": "subway-trains"
+      },
+      {
+        "text": "What is another way to let a fast train travel along a guideway?",
+        "target": "maglev-trains"
+      },
+      {
+        "text": "How does a train choose a branch when its wheels cannot steer?",
+        "target": "rail-switches"
+      }
+    ],
+    "sources": [
+      "mach-fast-rail"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "maglev-trains",
+    "title": "How a train can float over its guideway",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "A maglev train uses magnets to lift and guide it instead of ordinary wheels doing all the work. Some designs carry magnets on the train that interact with electric coils along the track. These magnetic forces can keep a gap under the train while other coils push or pull it along. With less rubbing between train and guideway, there is less contact friction. The air still pushes against it, and the whole system needs a specially built route.",
+    "aliases": [
+      "maglev train",
+      "magnetic levitation trains"
+    ],
+    "sections": [],
+    "facts": [
+      "Some maglev trains still use wheels at low speeds."
+    ],
+    "terms": [
+      "magnetic field",
+      "friction"
+    ],
+    "questions": [
+      {
+        "text": "How do magnets push or pull when they never touch?",
+        "target": "magnets"
+      },
+      {
+        "text": "How do fast trains with ordinary wheels reduce drag?",
+        "target": "high-speed-rail"
+      },
+      {
+        "text": "What happens when changing magnetic forces make a part turn rather than travel along a track?",
+        "target": "electric-motors"
+      }
+    ],
+    "sources": [
+      "mach-maglev"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "friction",
+    "title": "Why friction helps us walk",
+    "category": "physics",
+    "priority": 2,
+    "answer": "When you step forward, your shoe presses backward on the ground for a moment. Friction is the force between the shoe and ground that helps keep the shoe from sliding. That grip lets the ground push you forward. On slippery ice, there may not be enough friction to get that same push. Friction also slows a book sliding on a desk and lets a pencil leave a mark as its tip rubs across paper.",
+    "aliases": [
+      "what is friction",
+      "friction between shoes and ground",
+      "why is ice slippery"
+    ],
+    "sections": [],
+    "facts": [
+      "Friction can act before any sliding takes place."
+    ],
+    "terms": [
+      "friction",
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "How can a backward push on the ground move a walker forward?",
+        "target": "action-reaction-forces"
+      },
+      {
+        "text": "Why do machines often need a way to reduce friction?",
+        "target": "ball-bearings"
+      },
+      {
+        "text": "Why does a brake need friction to slow a vehicle?",
+        "target": "car-brakes"
+      }
+    ],
+    "sources": [
+      "mach-friction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bicycle-gears",
+    "title": "Why bicycles have different gears",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A bicycle chain moves between toothed wheels called sprockets. A low gear makes your feet turn the pedals more times for each turn of the rear wheel. That gives you a larger turning force at the wheel for the same push on the pedals, which helps on a hill. A high gear moves the bike farther with each turn of the pedals, but each pedal stroke can feel harder. Changing gears trades distance per turn for turning force.",
+    "aliases": [
+      "bike gears",
+      "why is low gear easier uphill"
+    ],
+    "sections": [],
+    "facts": [
+      "The smallest sprocket at the pedals and a large one at the back make a low gear."
+    ],
+    "terms": [
+      "sprocket",
+      "gear"
+    ],
+    "questions": [
+      {
+        "text": "How can teeth pass motion from one wheel to another without a chain?",
+        "target": "gears"
+      },
+      {
+        "text": "What keeps the rear tire from sliding backward on a hill?",
+        "target": "friction"
+      },
+      {
+        "text": "What simple machine do the wheels and their rods make?",
+        "target": "wheel-and-axle"
+      }
+    ],
+    "sources": [
+      "mach-cycling-gears"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "gears",
+    "title": "What happens when gears mesh",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A gear has teeth arranged around its edge. When it touches another gear, each tooth fits in a gap and pushes the other gear around. Two outer toothed wheels touching this way turn in opposite directions. If one wheel has twice as many teeth as the other, it takes twice as long to make a full turn. Builders use different gear sizes to trade speed for turning force, or to send motion through a machine.",
+    "aliases": [
+      "toothed gears",
+      "gear direction and speed"
+    ],
+    "sections": [],
+    "facts": [
+      "Teeth let a pair of gears carry motion without the slipping that smooth wheels could have."
+    ],
+    "terms": [
+      "gear",
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "How does a chain pass motion between two wheels that never touch?",
+        "target": "bicycle-gears"
+      },
+      {
+        "text": "How can teeth also prevent backward motion?",
+        "target": "ratchets"
+      },
+      {
+        "text": "What might turn the first gear in an electric toy?",
+        "target": "electric-motors"
+      }
+    ],
+    "sources": [
+      "mach-gears"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ratchets",
+    "title": "How a ratchet clicks in one direction",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A ratchet has a row of teeth and a piece that catches against them. On each tooth, one face is sloped. As the wheel turns the allowed way, the small catch slides up the slope, falls into the next gap and often clicks. Turning the other way pushes the catch against the steep side of a tooth. That blocks the wheel. A ratchet wrench uses this idea so the handle can return to the starting angle between pushes.",
+    "aliases": [
+      "ratchet and pawl",
+      "how ratchet wrenches work"
+    ],
+    "sections": [],
+    "facts": [
+      "The little catch is often called a pawl."
+    ],
+    "terms": [
+      "gear",
+      "wedge"
+    ],
+    "questions": [
+      {
+        "text": "How can teeth send motion forward rather than hold it back?",
+        "target": "gears"
+      },
+      {
+        "text": "Why does turning a threaded part make it move in or out?",
+        "target": "screws"
+      },
+      {
+        "text": "What might hold a lifted load in place when the motor pauses?",
+        "target": "cranes"
+      }
+    ],
+    "sources": [
+      "mach-ratchet"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ball-bearings",
+    "title": "Why tiny rolling balls help wheels turn",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "In a machine, a wheel sometimes has to turn while a nearby part stays still. If their surfaces slide directly against each other, they can waste energy as heat and gradually wear down. A ball bearing gives them a row of small balls to roll over instead. The balls fit into grooves and spread the load around the ring. This supports the spinning part while letting it turn with a smaller amount of friction.",
+    "aliases": [
+      "ball bearings",
+      "why bearings reduce friction"
+    ],
+    "sections": [],
+    "facts": [
+      "Bearings can also use little rollers instead of balls to support a load."
+    ],
+    "terms": [
+      "ball bearing",
+      "friction"
+    ],
+    "questions": [
+      {
+        "text": "What parts of a bike wheel turn while the axle supports them?",
+        "target": "wheel-and-axle"
+      },
+      {
+        "text": "Why does replacing sliding with rolling often help a machine move?",
+        "target": "friction"
+      },
+      {
+        "text": "Where can heat go after rubbing warms metal?",
+        "target": "heat-conduction"
+      }
+    ],
+    "sources": [
+      "mach-bearings"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wheel-and-axle",
+    "title": "How a wheel and axle work together",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A wheel and axle can turn as one piece even though the wheel is wider than the axle. A door knob is a good example. Pushing near the knob’s edge gives your hand a longer path to travel than the smaller axle in the middle. This makes the axle easier to turn than if you had twisted it directly. Wheels can also turn around a fixed axle, as they do in many carts, making it easier to move a load.",
+    "aliases": [
+      "wheel and axle simple machine",
+      "door knob wheel axle"
+    ],
+    "sections": [],
+    "facts": [
+      "Steering wheels and crank handles use the larger distance from the middle to give the turning force more effect."
+    ],
+    "terms": [
+      "axle",
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "Why is it easier to push a lever far from its pivot?",
+        "target": "levers"
+      },
+      {
+        "text": "How can a turning wheel make another wheel move faster or slower?",
+        "target": "gears"
+      },
+      {
+        "text": "How can bearings let a wheel turn around a fixed axle?",
+        "target": "ball-bearings"
+      }
+    ],
+    "sources": [
+      "mach-simple-machines"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "screws",
+    "title": "Why a screw moves forward when turned",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A screw has a spiral ridge called a thread around it. Turning the screw is like moving along a ramp that has been wrapped around a rod. After one full turn, the screw moves forward by a short distance. Because your hand or screwdriver turns through a longer distance, it can make a larger push along the screw’s length. A bottle cap can also have threads, allowing it to move down against a seal as you twist it.",
+    "aliases": [
+      "screw thread",
+      "screw simple machine",
+      "spiral ramp"
+    ],
+    "sections": [],
+    "facts": [
+      "Closely spaced threads move a screw a shorter way with each turn."
+    ],
+    "terms": [
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "How can a sloping surface move two things apart?",
+        "target": "wedges"
+      },
+      {
+        "text": "How do threads differ from teeth that are not a spiral?",
+        "target": "gears"
+      },
+      {
+        "text": "How can a wide handle make turning easier?",
+        "target": "wheel-and-axle"
+      }
+    ],
+    "sources": [
+      "mach-simple-machines"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wedges",
+    "title": "How a wedge pushes things apart",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A wedge is thick at one end and tapers toward the other. As its narrow end moves into a gap, its sloping sides force the two surfaces apart. This changes a forward push into sideways pushes. A doorstop is a wedge that slides under the door until it presses tightly against both floor and door. Because of that pressure, each surface grips it better, so it helps hold the door in place.",
+    "aliases": [
+      "wedge simple machine",
+      "why does a doorstop work"
+    ],
+    "sections": [],
+    "facts": [
+      "The thin edge of a wedge can fit where the thicker part cannot."
+    ],
+    "terms": [
+      "wedge",
+      "friction"
+    ],
+    "questions": [
+      {
+        "text": "What simple machine uses a ramp wrapped around a cylinder?",
+        "target": "screws"
+      },
+      {
+        "text": "What keeps a pressed wedge from sliding out easily?",
+        "target": "friction"
+      },
+      {
+        "text": "How do sloping surfaces help move a load another way?",
+        "target": "inclined-planes"
+      }
+    ],
+    "sources": [
+      "mach-simple-machines"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "inclined-planes",
+    "title": "Why a ramp makes lifting easier",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A ramp gives you a longer path to a higher place. If you lifted a box straight up, you would have to support its full weight while lifting. If you move it along a gentle ramp, the ramp supports part of the weight and you can use a smaller push over a longer distance. You still have to give the box enough energy to reach the same height, and rubbing against the ramp sometimes makes the job harder.",
+    "aliases": [
+      "inclined plane",
+      "why do ramps work",
+      "ramp simple machine"
+    ],
+    "sections": [],
+    "facts": [
+      "A gentler ramp takes a longer path to reach the same height."
+    ],
+    "terms": [
+      "gravity",
+      "friction"
+    ],
+    "questions": [
+      {
+        "text": "How can a short ramp shape do a different job when the ramp itself moves?",
+        "target": "wedges"
+      },
+      {
+        "text": "How does a ramp shape fit around a screw?",
+        "target": "screws"
+      },
+      {
+        "text": "How can a hanging rope make a lifting job easier?",
+        "target": "pulleys"
+      }
+    ],
+    "sources": [
+      "mach-simple-machines"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hydraulic-machines",
+    "title": "How liquid can push up a heavy machine",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "When you squeeze liquid in a closed set of tubes, the extra pressure is passed to other connected parts. A small push on a narrow piston makes a pressure change that is passed to a wide piston. The pressure acts across the wider area, creating a larger total push there. For that larger push, the wide piston moves less distance than the narrow one. Some lifts use this trade to raise cars so workers can look underneath.",
+    "aliases": [
+      "hydraulic lift",
+      "what are hydraulics",
+      "how do hydraulics work"
+    ],
+    "sections": [],
+    "facts": [
+      "Hydraulic systems often use oil instead of water."
+    ],
+    "terms": [
+      "hydraulics",
+      "piston"
+    ],
+    "questions": [
+      {
+        "text": "Why do cars send pressure through a liquid to the wheels?",
+        "target": "car-brakes"
+      },
+      {
+        "text": "What can a pulley lift by moving a rope a longer distance?",
+        "target": "pulleys"
+      },
+      {
+        "text": "How does water pressure affect a very different kind of structure?",
+        "target": "dams"
+      }
+    ],
+    "sources": [
+      "mach-hydraulics"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "car-brakes",
+    "title": "Why brakes press against a spinning wheel",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "In many cars, pressing the brake pedal pushes liquid through narrow tubes or controls a system that does. At a wheel, the pressure makes brake pads press on a spinning metal disc. Friction pushes against the disc’s motion, slowing the wheel. Some of the car’s stored motion energy becomes warmth in the brakes. The tires also have to grip the road, which is why stopping is harder when the road is covered in ice.",
+    "aliases": [
+      "car brakes",
+      "how do disc brakes work",
+      "brake fluid"
+    ],
+    "sections": [],
+    "facts": [
+      "Electric cars can also use their motors to slow down and recover some energy."
+    ],
+    "terms": [
+      "friction",
+      "hydraulics"
+    ],
+    "questions": [
+      {
+        "text": "How does a pressure change reach brakes at different wheels?",
+        "target": "hydraulic-machines"
+      },
+      {
+        "text": "How can a motor recover part of the motion energy?",
+        "target": "electric-vehicles"
+      },
+      {
+        "text": "Why does heat spread through a warm metal disc?",
+        "target": "heat-conduction"
+      }
+    ],
+    "sources": [
+      "mach-hydraulics",
+      "mach-friction",
+      "mach-ev"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "elevators",
+    "title": "How an elevator goes up and down",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Many elevators hang the car from strong ropes or belts over a powered wheel. A counterweight hangs on the opposite side and helps balance the car’s weight. That way the motor does not need to lift the full weight of the car by itself. Guide rails keep the car moving along the same path. The machine can stop the car level with a floor, and modern elevators have brakes and other protective systems.",
+    "aliases": [
+      "elevator counterweights",
+      "how lifts work",
+      "why elevator has cables"
+    ],
+    "sections": [],
+    "facts": [
+      "Some elevators are raised by a hydraulic piston instead of a moving rope and counterweight."
+    ],
+    "terms": [
+      "counterweight",
+      "motor"
+    ],
+    "questions": [
+      {
+        "text": "How can a piston lift a load from below?",
+        "target": "hydraulic-machines"
+      },
+      {
+        "text": "How can a turning wheel guide a lifting rope?",
+        "target": "pulleys"
+      },
+      {
+        "text": "How does a moving staircase carry people continuously between levels?",
+        "target": "escalators"
+      }
+    ],
+    "sources": [
+      "mach-elevators",
+      "mach-cranes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "escalators",
+    "title": "How escalator steps go flat at the top",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "An escalator runs a loop of steps around on a long chain. The visible steps ride upward or downward on wheels set in tracks. The tracks change their height relative to one another so the steps stay level where you stand but flatten together at the ends. After sliding under the landing, the steps loop around and travel back underneath. A second moving loop gives people a handrail that travels alongside them.",
+    "aliases": [
+      "escalator chain and stairs",
+      "how do escalators work"
+    ],
+    "sections": [],
+    "facts": [
+      "An escalator and a moving walkway both use a returning loop hidden beneath the visible path."
+    ],
+    "terms": [
+      "axle",
+      "gear"
+    ],
+    "questions": [
+      {
+        "text": "How does an elevator move a whole room between floors?",
+        "target": "elevators"
+      },
+      {
+        "text": "How can the wheels under a loaded step turn smoothly?",
+        "target": "ball-bearings"
+      },
+      {
+        "text": "What parts can transfer power from a motor to a chain?",
+        "target": "gears"
+      }
+    ],
+    "sources": [
+      "mach-escalators"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cranes",
+    "title": "How a tower crane lifts a heavy load",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A tower crane lifts a load by winding a cable onto a drum. Near the hook, several lengths of cable may share the weight with a group of pulleys. The motor must move more cable, but each length takes a smaller share of the pull. A long horizontal arm can move the hook closer to or farther from the tower. Heavy counterweights on the opposite side help balance the turning force from the load.",
+    "aliases": [
+      "tower crane",
+      "why cranes have pulleys and counterweights"
+    ],
+    "sections": [],
+    "facts": [
+      "Even with counterweights, a crane can safely lift less weight when its hook is farther from the tower."
+    ],
+    "terms": [
+      "counterweight",
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "Why does a set of pulleys need a longer length of cable?",
+        "target": "pulleys"
+      },
+      {
+        "text": "Why does the same force turn something harder at a greater distance from its pivot?",
+        "target": "levers"
+      },
+      {
+        "text": "How does where the load sits affect tipping?",
+        "target": "balance-center-of-mass"
+      }
+    ],
+    "sources": [
+      "mach-cranes",
+      "mach-stability"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "balance-center-of-mass",
+    "title": "Why staying over your feet helps you balance",
+    "category": "physics",
+    "priority": 2,
+    "answer": "Imagine a straight line drawn downward from the place where your weight is balanced. When that line falls between your feet, your body can often stay steady. Lean far enough for it to go beyond your feet and you may have to take a step. Objects can tip for the same reason. A tall box with a heavy top is easier to tip than a box with the same weight packed near the bottom.",
+    "aliases": [
+      "center of mass balance",
+      "why does a tall pile tip over"
+    ],
+    "sections": [],
+    "facts": [
+      "Widening the space between your feet often makes balancing easier."
+    ],
+    "terms": [
+      "center of mass",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "text": "How can a counterweight keep a loaded crane from tipping?",
+        "target": "cranes"
+      },
+      {
+        "text": "Why does where a force acts affect the way something turns?",
+        "target": "levers"
+      },
+      {
+        "text": "What makes floating objects need to balance as well as float?",
+        "target": "floating-ships"
+      }
+    ],
+    "sources": [
+      "mach-stability"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pendulums",
+    "title": "Why pendulums swing back and forth",
+    "category": "physics",
+    "priority": 2,
+    "answer": "A pendulum is a weight hanging from a string or rod that can move side to side. If the weight is lifted and released, gravity pulls it toward the lowest point. It is still moving at the bottom, so it swings up the other side and then turns around again. With small swings, the time for a round trip depends mostly on the length. A clock can use nearly equal swings to count time.",
+    "aliases": [
+      "pendulum swing",
+      "how a pendulum clock works"
+    ],
+    "sections": [],
+    "facts": [
+      "A longer pendulum swings more slowly than a shorter one under the same conditions."
+    ],
+    "terms": [
+      "pendulum",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "text": "How does energy change between the top and bottom of the swing?",
+        "target": "energy"
+      },
+      {
+        "text": "Why does a swinging pendulum lose height if nothing keeps it moving?",
+        "target": "friction"
+      },
+      {
+        "text": "What is different when a standing object can tip instead of swing from a hook?",
+        "target": "balance-center-of-mass"
+      }
+    ],
+    "sources": [
+      "mach-pendulum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "magnetic-compasses",
+    "title": "How a magnetic compass points a direction",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "A compass has a magnetic needle that can turn with little friction. Earth has a magnetic field that gives the needle a direction. The end marked north generally points close to geographic north in many places, but the exact direction depends on where you stand. Maps can give a correction for this difference. A magnet or a piece of iron held nearby can also pull the needle away from where it would otherwise point.",
+    "aliases": [
+      "compass needle",
+      "why does a compass point north"
+    ],
+    "sections": [],
+    "facts": [
+      "The angle between local compass north and geographic north is called magnetic declination."
+    ],
+    "terms": [
+      "magnetic field",
+      "magnetic declination"
+    ],
+    "questions": [
+      {
+        "text": "How can two magnets change each other’s direction?",
+        "target": "magnets"
+      },
+      {
+        "text": "How do we describe a place’s position measured north or south?",
+        "target": "latitude"
+      },
+      {
+        "text": "What icy moon also makes a magnetic field of its own?",
+        "target": "ganymede"
+      }
+    ],
+    "sources": [
+      "mach-compass"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "seat-belts",
+    "title": "Why a seat belt makes stopping safer",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "When a moving car slows suddenly, the people inside are still moving forward until a force slows them too. A seat belt connects the rider to the vehicle so they slow down along with the car. A broad belt helps spread the force across stronger parts of the body. Many belt reels allow easy movement during normal riding but lock when pulled rapidly. Air bags add help in some crashes, while the belt still has an important job.",
+    "aliases": [
+      "seatbelt inertia",
+      "how seat belts protect passengers"
+    ],
+    "sections": [],
+    "facts": [
+      "A seat belt acts on a person, while the brakes mainly act on the vehicle."
+    ],
+    "terms": [
+      "force",
+      "friction"
+    ],
+    "questions": [
+      {
+        "text": "What slows the car’s wheels before the belt slows the rider?",
+        "target": "car-brakes"
+      },
+      {
+        "text": "What happens when the belt pushes back on a person?",
+        "target": "action-reaction-forces"
+      },
+      {
+        "text": "Where does the energy of a moving object go as it comes to a stop?",
+        "target": "energy"
+      }
+    ],
+    "sources": [
+      "mach-seatbelts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lunar-eclipses",
+    "title": "Why the Moon can turn red during an eclipse",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "A lunar eclipse happens when Earth passes between the Sun and the full Moon so that the Moon moves through Earth’s shadow. In a total eclipse, most direct sunlight is blocked from reaching it. Some sunlight still bends through the air around Earth’s edge. The air scatters much of the blue light out of this path, leaving red and orange light to reach the Moon. We see that light reflect back.",
+    "aliases": [
+      "moon eclipse",
+      "blood moon",
+      "earth shadow on the moon"
+    ],
+    "sections": [],
+    "facts": [
+      "Most full moons miss Earth’s shadow because the Moon’s path is slightly tilted."
+    ],
+    "terms": [
+      "eclipse",
+      "reflection"
+    ],
+    "questions": [
+      {
+        "text": "What is different when the Moon casts a shadow on Earth?",
+        "target": "solar-eclipses"
+      },
+      {
+        "text": "Why is a crescent Moon not caused by Earth’s shadow?",
+        "target": "moon-phases"
+      },
+      {
+        "text": "How can light change direction going from one material into another?",
+        "target": "lens-refraction"
+      }
+    ],
+    "sources": [
+      "mach-lunar-eclipse"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "moon-same-face",
+    "title": "Why the Moon keeps the same face toward Earth",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "The Moon spins once during each trip around Earth. Because the two motions take the same time, nearly the same side stays pointed toward us. Imagine walking in a circle around a table while always facing the person in the middle. Your body turns once even though that person keeps seeing your front. The Moon’s far side is not always dark. Sunlight falls on different parts of the Moon during each month.",
+    "aliases": [
+      "does the moon rotate",
+      "near side and far side of moon",
+      "tidally locked moon"
+    ],
+    "sections": [],
+    "facts": [
+      "A far-side photograph shows places people cannot see directly from Earth."
+    ],
+    "terms": [
+      "synchronous rotation",
+      "orbit"
+    ],
+    "questions": [
+      {
+        "text": "Why does the visible side look different on different nights?",
+        "target": "moon-phases"
+      },
+      {
+        "text": "What are the dark patches most familiar to people on Earth?",
+        "target": "moon-maria"
+      },
+      {
+        "text": "Which other moon keeps nearly one face pointed at its planet?",
+        "target": "triton"
+      }
+    ],
+    "sources": [
+      "mach-moon-rotation",
+      "mach-moon-facts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "moon-maria",
+    "title": "What are the Moon’s dark patches?",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "The large dark patches you see on the Moon are plains made of solid rock. Long ago, huge impacts made low basins, and later lava filled some of them. When the lava cooled it left broad areas of darker rock, often smoother than the high, bright land around them. Early people looking through telescopes called the areas seas. The old name remains even though close views and rock samples show what the patches are really made of.",
+    "aliases": [
+      "dark patches on the moon",
+      "lunar maria",
+      "ancient moon lava"
+    ],
+    "sections": [],
+    "facts": [
+      "The Apollo 11 landing site was on a dark plain named the Sea of Tranquility."
+    ],
+    "terms": [
+      "crater",
+      "rock"
+    ],
+    "questions": [
+      {
+        "text": "Who first collected rocks from a dark lunar plain?",
+        "target": "apollo-11"
+      },
+      {
+        "text": "What forms when lava cools and hardens on Earth?",
+        "target": "volcanoes"
+      },
+      {
+        "text": "Why are the near-side dark patches so familiar to us?",
+        "target": "moon-same-face"
+      }
+    ],
+    "sources": [
+      "mach-lunar-maria",
+      "mach-moon-facts",
+      "mach-apollo"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "meteor-showers",
+    "title": "Why many meteors can appear on one night",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "A meteor is the bright streak we see when a small piece of material enters Earth’s air very fast. At certain times of year, Earth crosses trails of dust left by comets. Many bits enter the air on the same night, making a meteor shower. They may seem to spread out from one spot in the sky, even though they travel on nearly parallel paths. It is like looking along straight rows of trees that seem to meet in the distance.",
+    "aliases": [
+      "meteor shower",
+      "shooting stars in groups",
+      "where do perseids come from"
+    ],
+    "sections": [],
+    "facts": [
+      "A shower often returns around the same dates because Earth passes the trail on its yearly trip around the Sun."
+    ],
+    "terms": [
+      "meteor",
+      "comet"
+    ],
+    "questions": [
+      {
+        "text": "What happens if a piece is big enough to reach the ground?",
+        "target": "meteorites"
+      },
+      {
+        "text": "How do comets leave loose dust behind?",
+        "target": "comets"
+      },
+      {
+        "text": "Where else can small objects that enter our air come from?",
+        "target": "asteroids"
+      }
+    ],
+    "sources": [
+      "mach-meteors"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "meteorites",
+    "title": "Which pieces of space rock reach the ground?",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Many bits of space rock heat up during their fast trip into Earth’s air. They can make a streak of light called a meteor. Most small pieces break apart or are used up high overhead. If a fragment reaches the ground, the remaining object is called a meteorite. In a museum, you may see a meteorite with a dark crust on the outside. Its inside can tell scientists what the original object contained.",
+    "aliases": [
+      "meteorite",
+      "meteor versus meteorite",
+      "rock that fell from space"
+    ],
+    "sections": [],
+    "facts": [
+      "Some meteorites found on Earth originally came from the Moon or Mars."
+    ],
+    "terms": [
+      "meteorite",
+      "meteor"
+    ],
+    "questions": [
+      {
+        "text": "Why do many smaller bits sometimes arrive together?",
+        "target": "meteor-showers"
+      },
+      {
+        "text": "Where do many rocky bodies circle the Sun?",
+        "target": "ceres"
+      },
+      {
+        "text": "Why collect a sample directly from an asteroid if rocks already fall here?",
+        "target": "osiris-rex"
+      }
+    ],
+    "sources": [
+      "mach-meteors"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "solar-wind",
+    "title": "What blows outward from the Sun?",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "The Sun’s very hot outer atmosphere sends a flow of tiny particles into space. This flow is called the solar wind, but it is not a wind made of ordinary air like the wind on Earth. The particles carry electric charges and interact with magnetic fields. Earth’s magnetic field changes the paths of many of them. The solar wind spreads beyond the planets, forming a large region where the Sun’s influence is important.",
+    "aliases": [
+      "solar wind particles",
+      "is there wind in space"
+    ],
+    "sections": [],
+    "facts": [
+      "The Voyager spacecraft have traveled beyond the main bubble formed by the solar wind."
+    ],
+    "terms": [
+      "solar wind",
+      "magnetic field"
+    ],
+    "questions": [
+      {
+        "text": "How can this flow help make northern lights?",
+        "target": "auroras"
+      },
+      {
+        "text": "How did a spacecraft study the wind closer to its beginning?",
+        "target": "parker-solar-probe"
+      },
+      {
+        "text": "Which explorers traveled outside the Sun’s particle bubble?",
+        "target": "voyager-spacecraft"
+      }
+    ],
+    "sources": [
+      "mach-sun",
+      "mach-voyager"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "auroras",
+    "title": "How the northern and southern lights glow",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "An aurora can look like a glowing ribbon moving across a dark sky. Far above the ground, fast particles give energy to oxygen and nitrogen in Earth’s atmosphere. The gases then give off some of that energy as visible light. Earth’s magnetic field helps guide many of the particles toward regions near the two poles. That is why auroras are common at high latitudes. Larger disturbances can sometimes make them visible farther from the poles.",
+    "aliases": [
+      "aurora borealis",
+      "aurora australis",
+      "northern lights"
+    ],
+    "sections": [],
+    "facts": [
+      "Oxygen can make green and red light, while nitrogen can contribute blue or purple colors."
+    ],
+    "terms": [
+      "aurora",
+      "magnetic field"
+    ],
+    "questions": [
+      {
+        "text": "What does the Sun send toward Earth?",
+        "target": "solar-wind"
+      },
+      {
+        "text": "Why do we see only some kinds of light?",
+        "target": "light-spectrum"
+      },
+      {
+        "text": "How can Earth’s magnetic field affect a tool on the ground?",
+        "target": "magnetic-compasses"
+      }
+    ],
+    "sources": [
+      "mach-auroras"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sunspots",
+    "title": "Why dark spots appear on the Sun",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Some parts of the Sun are held by strong magnetic fields. Those fields can reduce the motion that normally carries heat up from below. A cooler area may then appear darker than the hotter material next to it. These dark-looking areas are called sunspots. A sunspot is still hot and gives off a lot of light. The number and locations of sunspots change over time as the Sun’s magnetic activity changes.",
+    "aliases": [
+      "sunspots",
+      "cool dark spots sun"
+    ],
+    "sections": [],
+    "facts": [
+      "A dark-looking sunspot would still shine brightly against empty space."
+    ],
+    "terms": [
+      "magnetic field",
+      "heat",
+      "star"
+    ],
+    "questions": [
+      {
+        "text": "Where does the Sun get the energy that moves out toward its surface?",
+        "target": "sun"
+      },
+      {
+        "text": "How can activity at the Sun affect conditions far away?",
+        "target": "solar-wind"
+      },
+      {
+        "text": "What spacecraft can get close to the Sun’s outer atmosphere?",
+        "target": "parker-solar-probe"
+      }
+    ],
+    "sources": [
+      "mach-sun"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "blue-sky",
+    "title": "Why a clear daytime sky looks blue",
+    "category": "physics",
+    "priority": 2,
+    "answer": "Sunlight contains many colors. As it passes through the atmosphere, tiny molecules of gas send some of its light in new directions. The gas scatters blue light more strongly than red light, sending blue light toward your eyes from many directions. If there were no air to scatter the light, most of the sky away from the Sun would look dark, as it does from the surface of the Moon.",
+    "aliases": [
+      "why is the sky blue",
+      "air scatters blue light"
+    ],
+    "sections": [],
+    "facts": [
+      "The effect that sends light in different directions is called scattering."
+    ],
+    "terms": [
+      "molecule",
+      "atmosphere"
+    ],
+    "questions": [
+      {
+        "text": "Why can the longest path through air leave sunlight looking red?",
+        "target": "red-sunsets"
+      },
+      {
+        "text": "How do water drops separate colors in a different way?",
+        "target": "rainbows"
+      },
+      {
+        "text": "Where does blue fit in the family of light waves?",
+        "target": "light-spectrum"
+      }
+    ],
+    "sources": [
+      "mach-blue-sky"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "red-sunsets",
+    "title": "Why sunsets can turn red or orange",
+    "category": "physics",
+    "priority": 2,
+    "answer": "At sunset, the Sun is low on the horizon. Its light travels a longer, slanted path through the lower atmosphere than it did at midday. Along that path, much of the blue light is scattered away from the original beam. More red and orange light remains in the light reaching your eyes from near the Sun. Thin clouds can catch that reddish light after the ground is in shadow, so they sometimes glow even when daylight is fading.",
+    "aliases": [
+      "why is sunset red",
+      "orange sunsets",
+      "light through more air"
+    ],
+    "sections": [],
+    "facts": [
+      "Sunrise can show similar colors for the same reason."
+    ],
+    "terms": [
+      "atmosphere",
+      "light"
+    ],
+    "questions": [
+      {
+        "text": "Why does scattered blue light fill much of the sky when the Sun is high?",
+        "target": "blue-sky"
+      },
+      {
+        "text": "When can the light passing around Earth make the Moon look red?",
+        "target": "lunar-eclipses"
+      },
+      {
+        "text": "What are the floating drops and crystals that catch sunset colors?",
+        "target": "clouds"
+      }
+    ],
+    "sources": [
+      "mach-blue-sky",
+      "mach-lunar-eclipse"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "nebulae",
+    "title": "What is a nebula?",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "A nebula is a great cloud in space, made of gas, dust or both. Some clouds contain pockets where gravity draws material together until a new star can form. Other clouds are material a star has blown off or thrown out. A nearby star may light up part of a cloud. Dust in front of bright stars can also make a nebula look like a dark patch, even though there is material in that patch.",
+    "aliases": [
+      "nebula",
+      "clouds of space dust and gas",
+      "stellar nursery"
+    ],
+    "sections": [],
+    "facts": [
+      "A nebula can be both a place where stars start and a sign that stars have changed."
+    ],
+    "terms": [
+      "nebula",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "text": "How can a star send some of its outer material back to space?",
+        "target": "red-giants"
+      },
+      {
+        "text": "What kind of explosion leaves a spreading cloud behind?",
+        "target": "supernovae"
+      },
+      {
+        "text": "How can infrared light help us see into dusty places?",
+        "target": "webb-telescope"
+      }
+    ],
+    "sources": [
+      "mach-nebulae",
+      "mach-star-types"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "red-giants",
+    "title": "How a star grows into a red giant",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "A star like the Sun spends much of its life joining hydrogen in its center to make helium and give off energy. Eventually its center runs low on hydrogen. The star’s inner parts change, and its outer layers expand far beyond their old size. Those outer layers become cooler and can look red or orange, even though the star may give off more light overall. Astronomers call this larger stage a red giant.",
+    "aliases": [
+      "red giant star",
+      "future of the sun",
+      "why stars swell"
+    ],
+    "sections": [],
+    "facts": [
+      "Our Sun is expected to become a red giant billions of years from now."
+    ],
+    "terms": [
+      "star",
+      "hydrogen"
+    ],
+    "questions": [
+      {
+        "text": "How does the Sun make energy at the stage it is in now?",
+        "target": "sun"
+      },
+      {
+        "text": "What is left behind when a Sun-like star sheds its outer layers?",
+        "target": "white-dwarfs"
+      },
+      {
+        "text": "What kind of cloud can lost outer layers form?",
+        "target": "nebulae"
+      }
+    ],
+    "sources": [
+      "mach-star-types",
+      "mach-nebulae"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "white-dwarfs",
+    "title": "What remains when a Sun-like star sheds its outer layers?",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "When a star close to the Sun’s size reaches its final stages, it can send its outer layers drifting away. The very dense center left behind is called a white dwarf. It can have a lot of mass even though it is about the size of Earth. It does not rely on ordinary star fusion to keep glowing. Instead it slowly cools, like something once hot that takes a very long time to lose its warmth.",
+    "aliases": [
+      "white dwarf star",
+      "solar system future star remnant"
+    ],
+    "sections": [],
+    "facts": [
+      "A cloud around a newly exposed white dwarf can glow when lit by the hot remnant."
+    ],
+    "terms": [
+      "white dwarf",
+      "mass"
+    ],
+    "questions": [
+      {
+        "text": "What happens to the star before its center is exposed?",
+        "target": "red-giants"
+      },
+      {
+        "text": "What much smaller remnant can a more massive star leave?",
+        "target": "neutron-stars"
+      },
+      {
+        "text": "How can warmth leave a hot object in otherwise empty space?",
+        "target": "heat-radiation"
+      }
+    ],
+    "sources": [
+      "mach-star-types",
+      "mach-nebulae"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "neutron-stars",
+    "title": "How a whole star can leave a city-sized object",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "When some massive stars run out of fuel, their centers squeeze down and the outer material blows away. If the collapsed center survives without becoming a black hole, it may become a neutron star. It can pack more mass than the Sun into a space about as wide as a large city. A neutron star can spin rapidly and send out beams. If a beam sweeps over Earth, instruments may record very regular pulses.",
+    "aliases": [
+      "neutron star",
+      "pulsar",
+      "dense stellar remnant"
+    ],
+    "sections": [],
+    "facts": [
+      "A neutron star detected by such repeating pulses is called a pulsar."
+    ],
+    "terms": [
+      "neutron star",
+      "mass"
+    ],
+    "questions": [
+      {
+        "text": "What makes the outer layers explode into space?",
+        "target": "supernovae"
+      },
+      {
+        "text": "What can happen if a collapsing star’s remnant cannot hold itself up?",
+        "target": "black-holes"
+      },
+      {
+        "text": "What smaller kind of star can leave an Earth-sized remnant?",
+        "target": "white-dwarfs"
+      }
+    ],
+    "sources": [
+      "mach-star-types",
+      "mach-supernovae"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "supernovae",
+    "title": "What makes a star explode as a supernova?",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "A supernova is an explosion that can make a star suddenly extremely bright. One kind happens when a very massive star’s center collapses and a blast sends much of the rest of the star outward. Another kind involves a white dwarf in a pair of stars. The spreading gas can carry material from inside the star into space, where it may eventually mix with clouds that form new stars and planets.",
+    "aliases": [
+      "supernova",
+      "exploding star",
+      "does the sun become supernova"
+    ],
+    "sections": [],
+    "facts": [
+      "The Sun is not massive enough to explode by the first process."
+    ],
+    "terms": [
+      "supernova",
+      "white dwarf"
+    ],
+    "questions": [
+      {
+        "text": "What can remain at the center after some explosions?",
+        "target": "neutron-stars"
+      },
+      {
+        "text": "How can the spreading gas become a cloud that telescopes can see?",
+        "target": "nebulae"
+      },
+      {
+        "text": "What ending is more likely for a star like our Sun?",
+        "target": "red-giants"
+      }
+    ],
+    "sources": [
+      "mach-supernovae",
+      "mach-star-types"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "parker-solar-probe",
+    "title": "Why a spacecraft flew through the Sun’s outer atmosphere",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "The Parker Solar Probe was built to study the Sun from closer than any earlier spacecraft. Its wide heat shield stays pointed toward the Sun, keeping much of the direct radiation off the instruments behind it. Sensors measure particles and magnetic fields in the Sun’s outer atmosphere. This helps scientists investigate how material flowing away becomes the solar wind. The spacecraft visits the hot region and then continues along its curved orbit.",
+    "aliases": [
+      "parker solar probe",
+      "spacecraft close to the sun",
+      "NASA corona probe"
+    ],
+    "sections": [],
+    "facts": [
+      "The probe first passed through the Sun’s outer atmosphere, called the corona, in 2021."
+    ],
+    "terms": [
+      "solar wind",
+      "radiation"
+    ],
+    "questions": [
+      {
+        "text": "What is the moving material the spacecraft studies?",
+        "target": "solar-wind"
+      },
+      {
+        "text": "What happens when magnetic fields affect temperatures on the visible Sun?",
+        "target": "sunspots"
+      },
+      {
+        "text": "Why is a shield helpful even between a spacecraft and a distant hot object?",
+        "target": "heat-radiation"
+      }
+    ],
+    "sources": [
+      "mach-parker",
+      "mach-sun"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "osiris-rex",
+    "title": "How a spacecraft brought asteroid rocks to Earth",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "The OSIRIS-REx mission sent a spacecraft to the asteroid Bennu. It studied the surface from nearby before choosing a sampling spot. The spacecraft lowered an arm until its collector briefly touched the ground. A short burst of gas stirred loose material into the collector, and the spacecraft moved away again. It placed the sample in a capsule, which later landed on Earth. Scientists can study each little piece with laboratory instruments.",
+    "aliases": [
+      "osiris rex",
+      "bennu asteroid sample",
+      "sample return from bennu"
+    ],
+    "sections": [],
+    "facts": [
+      "The sample capsule landed in Utah in 2023."
+    ],
+    "terms": [
+      "asteroid",
+      "nitrogen"
+    ],
+    "questions": [
+      {
+        "text": "What sorts of materials can make up asteroids?",
+        "target": "asteroids"
+      },
+      {
+        "text": "How do rocks arrive on Earth without being collected by a spacecraft?",
+        "target": "meteorites"
+      },
+      {
+        "text": "How can rocks be carefully sealed on another world first?",
+        "target": "mars-perseverance"
+      }
+    ],
+    "sources": [
+      "mach-bennu"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ingenuity-mars-helicopter",
+    "title": "How Ingenuity flew in the thin air of Mars",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "The small helicopter Ingenuity rode to Mars under the Perseverance rover. The air on Mars is much thinner than on Earth, so there are fewer gas molecules for rotor blades to push against. Ingenuity used large, light blades that spun very quickly for its size. Its first flights showed that a powered craft could take off, steer and land on another planet. It later flew ahead to photograph ground that might matter to the rover crew.",
+    "aliases": [
+      "mars helicopter",
+      "ingenuity",
+      "first aircraft on mars"
+    ],
+    "sections": [],
+    "facts": [
+      "Ingenuity completed 72 flights on Mars."
+    ],
+    "terms": [
+      "rotor",
+      "lift"
+    ],
+    "questions": [
+      {
+        "text": "How does a helicopter on Earth push itself upward?",
+        "target": "helicopters"
+      },
+      {
+        "text": "Which rover delivered the helicopter and used some of its views?",
+        "target": "mars-perseverance"
+      },
+      {
+        "text": "Why does a moving blade need air to produce lift?",
+        "target": "flight-lift"
+      }
+    ],
+    "sources": [
+      "mach-ingenuity"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "solstices-equinoxes",
+    "title": "Why some days are longer than others",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Earth’s axis is tilted as our planet travels around the Sun. Around the June solstice, the north half leans most toward the Sun and has its longest days. The south half has its shortest days. Around each equinox, neither half leans toward the Sun, so days and nights are nearly the same length in many places. Later in the year, the north half tilts away while the south half enjoys its longest days.",
+    "aliases": [
+      "solstice and equinox",
+      "longest and shortest days",
+      "when day and night similar"
+    ],
+    "sections": [],
+    "facts": [
+      "The solstices generally occur in June and December, and the equinoxes in March and September."
+    ],
+    "terms": [
+      "solstice",
+      "equinox"
+    ],
+    "questions": [
+      {
+        "text": "How does a change in the Sun’s angle affect temperatures?",
+        "target": "seasons"
+      },
+      {
+        "text": "Why does how far north or south you live change your summer daylight?",
+        "target": "latitude"
+      },
+      {
+        "text": "How can an orbiting satellite record the changing daylight pattern from space?",
+        "target": "artificial-satellites"
+      }
+    ],
+    "sources": [
+      "mach-solstices"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "oort-cloud",
+    "title": "Where very long-traveling comets may come from",
+    "category": "astronomy",
+    "priority": 2,
+    "answer": "Some comets pass the Sun once and may take thousands of years to return. Scientists think many begin in a vast outer region called the Oort Cloud. It may surround the solar system roughly like a ball-shaped shell rather than a flat belt. Small ice-rich bodies there are too far away and dark for us to see well. A tiny tug from a passing star or the gravity of the galaxy can send one toward the Sun.",
+    "aliases": [
+      "oort cloud",
+      "long period comets",
+      "distant shell around the sun"
+    ],
+    "sections": [],
+    "facts": [
+      "Astronomers inferred the Oort Cloud from the paths of comets instead of seeing a whole cloud directly."
+    ],
+    "terms": [
+      "comet",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "text": "How is a belt of nearby icy worlds shaped differently?",
+        "target": "kuiper-belt"
+      },
+      {
+        "text": "What happens to the ice after a comet warms near the Sun?",
+        "target": "comets"
+      },
+      {
+        "text": "Where does this proposed cloud fit around the planets?",
+        "target": "solar-system"
+      }
+    ],
+    "sources": [
+      "mach-oort"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "radio-telescopes",
+    "title": "How a telescope can listen for radio waves",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A radio telescope gathers radio waves from space. Many use a large curved metal dish that sends incoming waves toward a receiver, the way a mirror can bring visible light to a focus. An instrument changes the received waves into measurements. Scientists use them to study clouds of gas and places outside the range of ordinary cameras. A single receiver is often less useful for fine details than measurements combined from many widely separated dishes.",
+    "aliases": [
+      "radio telescope",
+      "giant radio dish",
+      "radio astronomy"
+    ],
+    "sections": [],
+    "facts": [
+      "Radio waves and visible light are both types of electromagnetic radiation."
+    ],
+    "terms": [
+      "radiation",
+      "reflection"
+    ],
+    "questions": [
+      {
+        "text": "How do radio waves differ from light our eyes can see?",
+        "target": "light-spectrum"
+      },
+      {
+        "text": "How does a telescope observe another kind of invisible light?",
+        "target": "webb-telescope"
+      },
+      {
+        "text": "Why can a curved reflective surface bring rays together?",
+        "target": "mirrors"
+      }
+    ],
+    "sources": [
+      "mach-radio-telescope",
+      "mach-spectrum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "satellite-navigation",
+    "title": "How a phone can find its position using satellites",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "Navigation satellites broadcast radio signals that say where the satellites are and when the signals left. A receiver compares the signal times. Because the signal travels at a known speed, its travel time helps the receiver estimate its distance from each satellite. Measurements from several satellites let the receiver work out its position, much like finding the crossing point of circles on a map. The satellites do not need a message back from the receiver.",
+    "aliases": [
+      "how gps works",
+      "gps location satellite",
+      "navigation radio time"
+    ],
+    "sections": [],
+    "facts": [
+      "A typical GPS receiver uses at least four satellites to solve for position and correct its own clock."
+    ],
+    "terms": [
+      "signal",
+      "orbit"
+    ],
+    "questions": [
+      {
+        "text": "What other jobs can satellites do while circling Earth?",
+        "target": "artificial-satellites"
+      },
+      {
+        "text": "How can numbers tell where a place is east or west?",
+        "target": "longitude"
+      },
+      {
+        "text": "How does time help us describe distances far beyond Earth?",
+        "target": "light-year"
+      }
+    ],
+    "sources": [
+      "mach-gps"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "weather-satellites",
+    "title": "How weather satellites watch moving storms",
+    "category": "space-exploration",
+    "priority": 2,
+    "answer": "Weather satellites photograph Earth and measure kinds of light our eyes cannot see. A satellite high above the equator can go around once each day in the same direction as Earth turns. It appears to stay over one region, taking many pictures of a storm as it moves. Other satellites circle closer to Earth and pass near the poles. As Earth turns beneath them, those satellites can see different strips of the planet.",
+    "aliases": [
+      "weather satellite",
+      "GOES JPSS",
+      "satellite pictures of clouds"
+    ],
+    "sections": [],
+    "facts": [
+      "Infrared measurements help show clouds and temperature patterns even at night."
+    ],
+    "terms": [
+      "orbit",
+      "infrared light"
+    ],
+    "questions": [
+      {
+        "text": "What storm changes are easier to spot with repeated pictures?",
+        "target": "hurricanes"
+      },
+      {
+        "text": "How can satellites have useful jobs besides forecasting weather?",
+        "target": "artificial-satellites"
+      },
+      {
+        "text": "What makes the clouds seen in satellite images?",
+        "target": "clouds"
+      }
+    ],
+    "sources": [
+      "mach-weather-satellite"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

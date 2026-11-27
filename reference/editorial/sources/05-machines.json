@@ -1,0 +1,839 @@
+[
+  {
+    "id": "mach-io",
+    "title": "Io facts",
+    "url": "https://science.nasa.gov/jupiter/jupiter-moons/io/facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Volcanism, tidal heating and orbital relationships."
+  },
+  {
+    "id": "mach-europa",
+    "title": "Europa facts",
+    "url": "https://science.nasa.gov/jupiter/jupiter-moons/europa/europa-facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Ice features and evidence for an ocean."
+  },
+  {
+    "id": "mach-ganymede",
+    "title": "Ganymede",
+    "url": "https://science.nasa.gov/jupiter/jupiter-moons/ganymede/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Size, icy surface and magnetic field."
+  },
+  {
+    "id": "mach-callisto",
+    "title": "Callisto facts",
+    "url": "https://science.nasa.gov/jupiter/jupiter-moons/callisto/facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Cratered surface, distance and possible interior ocean."
+  },
+  {
+    "id": "mach-titan",
+    "title": "Titan facts",
+    "url": "https://science.nasa.gov/saturn/moons/titan/facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Nitrogen atmosphere, methane weather and lakes, and water ice."
+  },
+  {
+    "id": "mach-enceladus",
+    "title": "Enceladus",
+    "url": "https://science.nasa.gov/saturn/moons/enceladus/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Jets of ice and water vapor, ocean and evidence from Cassini."
+  },
+  {
+    "id": "mach-triton",
+    "title": "Triton",
+    "url": "https://science.nasa.gov/neptune/moons/triton/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Orbit, ice, geysers and Voyager 2 observations."
+  },
+  {
+    "id": "mach-uranus-moons",
+    "title": "Uranus moons facts",
+    "url": "https://science.nasa.gov/uranus/moons/facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Miranda terrain, size and Voyager 2 observations."
+  },
+  {
+    "id": "mach-mars-moons",
+    "title": "Mars moons",
+    "url": "https://science.nasa.gov/mars/moons/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Phobos and Deimos shape, rocky surface and orbits."
+  },
+  {
+    "id": "mach-ceres",
+    "title": "Ceres facts",
+    "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Ceres location, size and bright material."
+  },
+  {
+    "id": "mach-kuiper",
+    "title": "Kuiper Belt facts",
+    "url": "https://science.nasa.gov/solar-system/kuiper-belt/facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Icy bodies beyond Neptune and New Horizons flybys."
+  },
+  {
+    "id": "mach-apollo",
+    "title": "Apollo 11 mission overview",
+    "url": "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a11/a11ov.html",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "First crewed Moon landing, crew roles and return."
+  },
+  {
+    "id": "mach-iss",
+    "title": "International Space Station reference",
+    "url": "https://www.nasa.gov/reference/international-space-station/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Assembly in orbit, conditions, crew and research."
+  },
+  {
+    "id": "mach-microgravity",
+    "title": "DIVER teacher guide",
+    "url": "https://www1.grc.nasa.gov/wp-content/uploads/DIVER-guide-20220909.pdf",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Free fall, orbit and why astronauts float."
+  },
+  {
+    "id": "mach-spacesuit",
+    "title": "Spacewalk spacesuit basics",
+    "url": "https://www.nasa.gov/centers-and-facilities/johnson/spacewalk-spacesuit-basics/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Pressure, cooling, breathing and vision in spacewalk suits."
+  },
+  {
+    "id": "mach-hubble",
+    "title": "Hubble design",
+    "url": "https://science.nasa.gov/mission/hubble/observatory/design/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Mirror, operation above the atmosphere and maintenance."
+  },
+  {
+    "id": "mach-webb",
+    "title": "Webb telescope overview",
+    "url": "https://science.nasa.gov/mission/webb/science-overview/science-explainers/telescope-overview/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Infrared observations, segmented mirror, sunshield."
+  },
+  {
+    "id": "mach-voyager",
+    "title": "Voyager mission",
+    "url": "https://science.nasa.gov/mission/voyager/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Outer planet flybys and Golden Record."
+  },
+  {
+    "id": "mach-perseverance",
+    "title": "Mars 2020 Perseverance rover",
+    "url": "https://science.nasa.gov/mission/mars-2020-perseverance/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Jezero sediments and collection of Martian rock cores."
+  },
+  {
+    "id": "mach-exoplanet",
+    "title": "What is an exoplanet?",
+    "url": "https://science.nasa.gov/exoplanets/what-is-an-exoplanet/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Other planetary systems and transit and wobble detection."
+  },
+  {
+    "id": "mach-action-reaction",
+    "title": "The law of action and reaction",
+    "url": "https://www.nasa.gov/stem-content/the-law-of-action-and-reaction-newtons-third-law/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Paired forces and rocket motion."
+  },
+  {
+    "id": "mach-milky-way",
+    "title": "Solar system facts",
+    "url": "https://science.nasa.gov/solar-system/solar-system-facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Our solar system’s place in the Milky Way and its spiral shape."
+  },
+  {
+    "id": "mach-light-year",
+    "title": "What is a light-year?",
+    "url": "https://science.nasa.gov/exoplanets/what-is-a-light-year/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Light travel distance and looking back in time."
+  },
+  {
+    "id": "mach-satellite",
+    "title": "What is a satellite?",
+    "url": "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-a-satellite-2/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Definition, natural and artificial satellites, and uses."
+  },
+  {
+    "id": "mach-orbital-assist",
+    "title": "Gravity assists",
+    "url": "https://science.nasa.gov/mission/cassini/gravity-assists/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Three-body effect and exchange with an orbiting body."
+  },
+  {
+    "id": "mach-optics",
+    "title": "Introduction to geometric optics",
+    "url": "https://openstax.org/books/college-physics/pages/25-introduction-to-geometric-optics",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Reflection, refraction, lenses and fiber optics."
+  },
+  {
+    "id": "mach-conduction",
+    "title": "Heat transfer by conduction",
+    "url": "https://scied.ucar.edu/learning-zone/earth-system/conduction",
+    "publisher": "UCAR Center for Science Education",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Particle contact, thermal conduction and other types of heat transfer."
+  },
+  {
+    "id": "mach-radiation",
+    "title": "College physics: radiation",
+    "url": "https://openstax.org/books/college-physics/pages/14-7-radiation",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Transfer of energy through radiation, infrared and temperature."
+  },
+  {
+    "id": "mach-solar-electric",
+    "title": "Photovoltaics and electricity",
+    "url": "https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php",
+    "publisher": "U.S. Energy Information Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Photovoltaic effect, cells and arrays."
+  },
+  {
+    "id": "mach-wind-electric",
+    "title": "Electricity generation from wind",
+    "url": "https://www.eia.gov/energyexplained/wind/electricity-generation-from-wind.php",
+    "publisher": "U.S. Energy Information Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Wind turbine operation and generator."
+  },
+  {
+    "id": "mach-hydroelectric",
+    "title": "Hydropower explained",
+    "url": "https://www.eia.gov/energyexplained/hydropower/",
+    "publisher": "U.S. Energy Information Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Conversion of moving water’s energy, turbines and dams."
+  },
+  {
+    "id": "mach-geothermal",
+    "title": "Geothermal explained",
+    "url": "https://www.eia.gov/energyexplained/geothermal/",
+    "publisher": "U.S. Energy Information Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Heat inside Earth and electricity or direct heating."
+  },
+  {
+    "id": "mach-black-holes",
+    "title": "Hubble science: black holes",
+    "url": "https://science.nasa.gov/mission/hubble/science/universe-uncovered/hubble-black-holes/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Event horizon and indirect observations."
+  },
+  {
+    "id": "mach-spectrum",
+    "title": "The electromagnetic spectrum",
+    "url": "https://science.nasa.gov/asset/webb/the-electromagnetic-spectrum/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Kinds of light, visible wavelengths and infrared."
+  },
+  {
+    "id": "mach-heat-pump",
+    "title": "Energy renovations HVAC guide",
+    "url": "https://www1.eere.energy.gov/buildings/publications/pdfs/building_america/hvac_guide.pdf",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Refrigeration cycles and moving heat."
+  },
+  {
+    "id": "mach-sonar",
+    "title": "Collecting and visualizing deep-sea data",
+    "url": "https://oceanexplorer.noaa.gov/static/explainers/data.html",
+    "publisher": "NOAA Ocean Exploration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Echo depth measurement and seafloor mapping."
+  },
+  {
+    "id": "mach-electricity",
+    "title": "How electricity is generated",
+    "url": "https://www.eia.gov/energyexplained/electricity/how-electricity-is-generated.php",
+    "publisher": "U.S. Energy Information Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Moving magnets or wires making electric current and common sources of mechanical motion."
+  },
+  {
+    "id": "mach-dams",
+    "title": "Dams and public safety",
+    "url": "https://www.usbr.gov/tsc/techreferences/mands/mands-pdfs/AZ1130.pdf",
+    "publisher": "U.S. Bureau of Reclamation",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Dam uses, spillways and water management."
+  },
+  {
+    "id": "mach-drinking",
+    "title": "How water treatment works",
+    "url": "https://www.cdc.gov/drinking-water/about/how-water-treatment-works.html",
+    "publisher": "Centers for Disease Control and Prevention",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Conventional settling, filtration and disinfection of drinking water."
+  },
+  {
+    "id": "mach-towers",
+    "title": "How to conduct a sanitary survey of drinking water systems",
+    "url": "https://www.epa.gov/sites/default/files/2019-08/documents/sanitary_survey_learners_guide_508_8.27.19.pdf",
+    "publisher": "U.S. Environmental Protection Agency",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Elevated water storage, pressure and changing demand."
+  },
+  {
+    "id": "mach-wastewater",
+    "title": "Wastewater treatment water use",
+    "url": "https://www.usgs.gov/water-science-school/science/wastewater-treatment-water-use",
+    "publisher": "U.S. Geological Survey",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Primary settling and secondary biological treatment."
+  },
+  {
+    "id": "mach-locks",
+    "title": "Lock and Dam No. 10",
+    "url": "https://www.mvp.usace.army.mil/Portals/57/docs/Public%20Affairs/Brochure/Navigation/2022_LD10_Brochure_Web.pdf?ver=2F0lAyVwQdwa1p2_AbuoJA%3D%3D",
+    "publisher": "U.S. Army Corps of Engineers",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Filling a lock, raising and lowering boats, and gates."
+  },
+  {
+    "id": "mach-bridges",
+    "title": "Bridging the gaps",
+    "url": "https://www.teachengineering.org/lessons/cub_brid_lesson01",
+    "publisher": "TeachEngineering",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Beam, arch and suspension bridge structures and load paths."
+  },
+  {
+    "id": "mach-tunnels",
+    "title": "Tampa wastewater upgrade features major microtunnel project",
+    "url": "https://www.asce.org/publications-and-news/civil-engineering-source/civil-engineering-magazine/article/2023/09/tampa-wastewater-upgrade-features-major-microtunnel-project/",
+    "publisher": "American Society of Civil Engineers",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Powered excavation, jacking and tunnel support."
+  },
+  {
+    "id": "mach-motor",
+    "title": "Energy savings potential and opportunities for high-efficiency electric motors",
+    "url": "https://www.energy.gov/sites/prod/files/2014/02/f8/Motor%20Energy%20Savings%20Potential%20Report%202013-12-4.pdf",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Magnetic motor operation and regenerative alternatives."
+  },
+  {
+    "id": "mach-ev",
+    "title": "Alternative Fuels Data Center electricity basics",
+    "url": "https://afdc.energy.gov/fuels/electricity-basics",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Battery, motor and regenerative braking in electric vehicles."
+  },
+  {
+    "id": "mach-grid",
+    "title": "United States Electricity Industry Primer",
+    "url": "https://www.energy.gov/sites/prod/files/2015/12/f28/united-states-electricity-industry-primer.pdf",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Power transmission, transformers, substations and local distribution."
+  },
+  {
+    "id": "mach-flight",
+    "title": "Airplane cruise and balanced forces",
+    "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/airplane-cruise-balanced-forces/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "The four main forces on a flying airplane."
+  },
+  {
+    "id": "mach-wing",
+    "title": "Bernoulli and Newton",
+    "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/bernoulli-and-newton/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Wing pressure, flow turning and lift."
+  },
+  {
+    "id": "mach-gliders",
+    "title": "Gliders",
+    "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/gliders/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Unpowered flight, rising air and glider flight controls."
+  },
+  {
+    "id": "mach-wright",
+    "title": "Wright Brothers Negatives, about the collection",
+    "url": "https://www.loc.gov/collections/wright-brothers-negatives/about-this-collection/",
+    "publisher": "Library of Congress",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "The Wrights’ first powered flights, glider experiments and historic photographs."
+  },
+  {
+    "id": "mach-steam",
+    "title": "Locomotive Technology Tour",
+    "url": "https://www.nps.gov/stea/planyourvisit/tour31.htm",
+    "publisher": "U.S. National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Boiler, pistons, mechanical parts and operation of steam locomotives."
+  },
+  {
+    "id": "mach-helicopter",
+    "title": "How does a helicopter move forward during flight?",
+    "url": "https://howthingsfly.si.edu/ask-an-explainer/how-does-helicopter-move-forward-during-flight",
+    "publisher": "Smithsonian National Air and Space Museum",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Rotor force, blade pitch and control of helicopter direction."
+  },
+  {
+    "id": "mach-jet",
+    "title": "Compressor-turbine matching",
+    "url": "https://www.grc.nasa.gov/www/k-12/VirtualAero/BottleRocket/airplane/ctmatch.html",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Compressor, burning fuel, turbine and jet exhaust."
+  },
+  {
+    "id": "mach-propellers",
+    "title": "Propellers",
+    "url": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/propellers/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Pressure difference across blades, accelerated air and thrust."
+  },
+  {
+    "id": "mach-floating",
+    "title": "Curious questions about boats and ships",
+    "url": "https://www.navsea.navy.mil/Portals/103/Documents/Outreach/Curious%20Questions.pdf",
+    "publisher": "Naval Sea Systems Command",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Displaced water, steel hulls and submarines’ ballast tanks."
+  },
+  {
+    "id": "mach-rail-switch",
+    "title": "Why do passenger trains run through switches in the rail yard?",
+    "url": "https://railroads.dot.gov/sites/fra.dot.gov/files/fra_net/19035/RTS.pdf",
+    "publisher": "U.S. Federal Railroad Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Movable points and rail switch operating principles."
+  },
+  {
+    "id": "mach-subway",
+    "title": "20-Year Needs Assessment report and appendix",
+    "url": "https://future.mta.info/documents/20-YearNeedsAssessment_ReportandAppendix.pdf",
+    "publisher": "Metropolitan Transportation Authority",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Subway tunnels, track, stations, signals and third-rail power."
+  },
+  {
+    "id": "mach-fast-rail",
+    "title": "Central Japan Railway guide 2025",
+    "url": "https://global.jr-central.co.jp/en/company/data-book/_pdf/2025.pdf",
+    "publisher": "Central Japan Railway Company",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Shinkansen high-speed rail, dedicated tracks and train design."
+  },
+  {
+    "id": "mach-maglev",
+    "title": "How maglev works",
+    "url": "https://www.energy.gov/articles/how-maglev-works",
+    "publisher": "U.S. Department of Energy",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Magnetic levitation, guidance and train propulsion."
+  },
+  {
+    "id": "mach-simple-machines",
+    "title": "Engineering simple machines",
+    "url": "https://www.teachengineering.org/lessons/cub_simple_lesson01",
+    "publisher": "TeachEngineering",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Wheel and axle, ramp, wedge, screw, lever and pulleys."
+  },
+  {
+    "id": "mach-cycling-gears",
+    "title": "Science of cycling: gear ratios",
+    "url": "https://dev-annex.exploratorium.edu/cycling/gears2.html",
+    "publisher": "Exploratorium",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Relationship of sprocket sizes to the number of wheel turns."
+  },
+  {
+    "id": "mach-friction",
+    "title": "College Physics: friction section summary",
+    "url": "https://openstax.org/books/college-physics/pages/5-section-summary",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Static and kinetic friction."
+  },
+  {
+    "id": "mach-hydraulics",
+    "title": "Pascal’s principle",
+    "url": "https://openstax.org/books/college-physics-ap-courses-2e/pages/11-5-pascals-principle",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Pressure change in a confined fluid, force and hydraulic brakes."
+  },
+  {
+    "id": "mach-elevators",
+    "title": "High-rise elevator safety systems",
+    "url": "https://www.otis.com/tools-resources/high-rise-safety-systems",
+    "publisher": "Otis",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Traction, counterweight, motor and brakes."
+  },
+  {
+    "id": "mach-escalators",
+    "title": "Escalators and autowalks planning guide",
+    "url": "https://www.kone.us/Images/KONE-Escalator-AutoWalk-Planning-Guide_tcm25-18783.pdf",
+    "publisher": "KONE",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Tracks, step chains, steps and moving handrails."
+  },
+  {
+    "id": "mach-bearings",
+    "title": "Bearing basics",
+    "url": "https://www.skf.com/group/products/rolling-bearings/principles-of-rolling-bearing-selection/general-bearing-knowledge/bearing-basics",
+    "publisher": "SKF",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Rolling contact, friction and load support."
+  },
+  {
+    "id": "mach-gears",
+    "title": "Applied science and math, basic machines",
+    "url": "https://www.ece.gov.nt.ca/sites/ece/files/resources/asm_-_science_module_1.pdf",
+    "publisher": "Government of Northwest Territories",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Meshing gears, drivers, tooth count and gear ratios."
+  },
+  {
+    "id": "mach-ratchet",
+    "title": "Machines and mechanisms teacher’s notes",
+    "url": "https://assets.education.lego.com/_/downloads/MachinesAndMechanisms_ISPM_1.0_en-US.pdf",
+    "publisher": "LEGO Education",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Ratchet wheel, pawl and one-direction motion."
+  },
+  {
+    "id": "mach-seatbelts",
+    "title": "Questions and answers about safety belts",
+    "url": "https://static.nhtsa.gov/odi/inv/2020/INRD-PE20011-10390.pdf",
+    "publisher": "U.S. National Highway Traffic Safety Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Restraints allow occupants to slow down with a car and distribute forces."
+  },
+  {
+    "id": "mach-pendulum",
+    "title": "College physics: the simple pendulum",
+    "url": "https://openstax.org/books/college-physics/pages/16-4-the-simple-pendulum",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Gravity, length and small-angle pendulum motion."
+  },
+  {
+    "id": "mach-stability",
+    "title": "College physics: stability",
+    "url": "https://openstax.org/books/college-physics/pages/9-3-stability",
+    "publisher": "OpenStax, Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Center of gravity, support area and tipping."
+  },
+  {
+    "id": "mach-compass",
+    "title": "Frequently asked questions about geomagnetism",
+    "url": "https://www.ncei.noaa.gov/products/geomagnetism-frequently-asked-questions",
+    "publisher": "NOAA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Magnetic compass direction and declination."
+  },
+  {
+    "id": "mach-cranes",
+    "title": "Simple machines",
+    "url": "https://www.teachengineering.org/popular-topics/simple-machines",
+    "publisher": "TeachEngineering",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Cranes, hoisting and pulley force tradeoffs."
+  },
+  {
+    "id": "mach-lunar-eclipse",
+    "title": "Eclipses and the Moon",
+    "url": "https://science.nasa.gov/moon/eclipses/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Lunar eclipse geometry, timing and red light through Earth’s air."
+  },
+  {
+    "id": "mach-moon-rotation",
+    "title": "The Moon’s rotation",
+    "url": "https://science.nasa.gov/resource/the-moons-rotation/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Synchronous rotation, visible near side and hidden far side."
+  },
+  {
+    "id": "mach-moon-facts",
+    "title": "Moon facts",
+    "url": "https://science.nasa.gov/moon/facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Lunar surface, early lava flows and preserved impact craters."
+  },
+  {
+    "id": "mach-lunar-maria",
+    "title": "Moon water and ices",
+    "url": "https://science.nasa.gov/moon/moon-water-and-ices/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Lunar maria, basalt and the history of the name."
+  },
+  {
+    "id": "mach-meteors",
+    "title": "Meteors and meteorites",
+    "url": "https://science.nasa.gov/solar-system/meteors-meteorites/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Meteoroids, meteors, meteorites and shower debris."
+  },
+  {
+    "id": "mach-sun",
+    "title": "Sun facts",
+    "url": "https://science.nasa.gov/sun/facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Solar wind, magnetic activity and sunspots."
+  },
+  {
+    "id": "mach-auroras",
+    "title": "Auroras",
+    "url": "https://science.nasa.gov/sun/auroras/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Solar and terrestrial magnetic interactions and glowing atmospheric gas."
+  },
+  {
+    "id": "mach-blue-sky",
+    "title": "Why is the sky blue?",
+    "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Scattering of sunlight and differences at sunset."
+  },
+  {
+    "id": "mach-star-types",
+    "title": "Types of stars",
+    "url": "https://science.nasa.gov/universe/stars/types/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Stellar evolution, red giants, white dwarfs and neutron stars."
+  },
+  {
+    "id": "mach-nebulae",
+    "title": "Decoding nebulae",
+    "url": "https://science.nasa.gov/universe/stories/quick-reads/decoding-nebulae/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Gas and dust where stars form and after stars change or end."
+  },
+  {
+    "id": "mach-parker",
+    "title": "Parker Solar Probe mission",
+    "url": "https://science.nasa.gov/mission/parker-solar-probe/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Flying through the corona, studying solar wind and heat protection."
+  },
+  {
+    "id": "mach-bennu",
+    "title": "OSIRIS-REx mission to Bennu",
+    "url": "https://science.nasa.gov/mission/osiris-rex/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Bennu sample collection and Earth return."
+  },
+  {
+    "id": "mach-ingenuity",
+    "title": "Ingenuity Mars Helicopter by the numbers",
+    "url": "https://science.nasa.gov/resource/ingenuity-mars-helicopter-by-the-numbers/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "First powered controlled flight on another world, thin air, 72 flights."
+  },
+  {
+    "id": "mach-solstices",
+    "title": "Seeing equinoxes and solstices from space",
+    "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Solstice and equinox sunlight patterns caused by Earth’s tilt."
+  },
+  {
+    "id": "mach-oort",
+    "title": "Oort Cloud facts",
+    "url": "https://science.nasa.gov/solar-system/oort-cloud/facts/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "The hypothesized Oort Cloud and long-period comets."
+  },
+  {
+    "id": "mach-radio-telescope",
+    "title": "So what is a radio telescope?",
+    "url": "https://www.gb.nrao.edu/GBTopsdocs/primer/so_what_s_a_radio_telescope.htme",
+    "publisher": "National Radio Astronomy Observatory",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Collecting radio waves with dish antennas and instruments."
+  },
+  {
+    "id": "mach-gps",
+    "title": "How GPS works",
+    "url": "https://www.gps.gov/sites/default/files/2025-08/Educational_Poster.pdf",
+    "publisher": "GPS.gov",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Timing, one-way signals and location from multiple satellites."
+  },
+  {
+    "id": "mach-weather-satellite",
+    "title": "Satellite imagery FAQ",
+    "url": "https://www.ospo.noaa.gov/products/imagery/faq/index.html",
+    "publisher": "NOAA Office of Satellite and Product Operations",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Geostationary and polar satellite observations of weather."
+  },
+  {
+    "id": "mach-supernovae",
+    "title": "Our high-energy universe",
+    "url": "https://science.nasa.gov/wp-content/uploads/2024/04/our-high-energy-universe.pdf",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "reuse": "Facts used only, with original wording.",
+    "scope": "Two main supernova mechanisms and stellar remnants."
+  }
+]

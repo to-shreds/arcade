@@ -1,0 +1,2096 @@
+[
+  {
+    "headword": "skeleton",
+    "forms": [
+      "skeletons"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The hard frame of bones that supports a person or animal.",
+        "example": "An X-ray can show part of your skeleton."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-skeletal"
+    ]
+  },
+  {
+    "headword": "cartilage",
+    "forms": [
+      "cartilages"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tough, bendy body material found in places such as your ears and joints.",
+        "example": "Cartilage covers the ends of the bones at many joints."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-joints"
+    ]
+  },
+  {
+    "headword": "bone marrow",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Soft tissue inside certain bones. One kind makes new blood cells.",
+        "example": "The red bone marrow in some bones makes blood cells."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-bone"
+    ]
+  },
+  {
+    "headword": "joint",
+    "forms": [
+      "joints"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A place where bones meet.",
+        "example": "Your elbow is a joint that lets your arm bend."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-joints"
+    ]
+  },
+  {
+    "headword": "ligament",
+    "forms": [
+      "ligaments"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A strong band of body tissue that helps join bones and guide motion at a joint.",
+        "example": "A ligament helps keep the bones of the knee steady."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-joints"
+    ]
+  },
+  {
+    "headword": "vertebra",
+    "forms": [
+      "vertebrae"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the bones that form the spine.",
+        "example": "Each vertebra helps protect the spinal cord."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-spine"
+    ]
+  },
+  {
+    "headword": "skull",
+    "forms": [
+      "skulls"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The group of bones that shapes the head and surrounds the brain.",
+        "example": "The skull protects the brain."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-skull"
+    ]
+  },
+  {
+    "headword": "rib cage",
+    "forms": [
+      "rib cages"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Curved bones and nearby cartilage that surround the chest and protect parts inside it.",
+        "example": "My rib cage moves when I take a deep breath."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-ribs"
+    ]
+  },
+  {
+    "headword": "red blood cell",
+    "forms": [
+      "red blood cells"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A cell in the blood that carries oxygen to the body.",
+        "example": "A red blood cell changes shape to pass through a narrow tube."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-red-blood"
+    ]
+  },
+  {
+    "headword": "white blood cell",
+    "forms": [
+      "white blood cells"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A cell that helps protect the body and respond to things such as germs.",
+        "example": "Different white blood cells do different protection jobs."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-white-blood"
+    ]
+  },
+  {
+    "headword": "plasma",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The main liquid part of your blood, in which cells and other things travel.",
+        "example": "Water and dissolved nutrients are carried in plasma."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-blood"
+    ]
+  },
+  {
+    "headword": "platelet",
+    "forms": [
+      "platelets"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tiny piece of a cell that travels in blood and helps stop bleeding.",
+        "example": "Platelets collect at the spot where a vessel is damaged."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-white-blood"
+    ]
+  },
+  {
+    "headword": "hemoglobin",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A material in red blood cells that can pick up oxygen and let it go again.",
+        "example": "Hemoglobin gives red blood cells their color."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-red-blood"
+    ]
+  },
+  {
+    "headword": "clot",
+    "forms": [
+      "clots"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A lump that forms when pieces and materials in blood stick together.",
+        "example": "A clot may close a small cut."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-clot"
+    ]
+  },
+  {
+    "headword": "blood vessel",
+    "forms": [
+      "blood vessels"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tube inside an animal that carries blood.",
+        "example": "Blood moving through a blood vessel brings supplies to cells."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-vessels"
+    ]
+  },
+  {
+    "headword": "artery",
+    "forms": [
+      "arteries"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tube that carries blood away from the heart.",
+        "example": "Blood leaves the heart in an artery."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-vessels"
+    ]
+  },
+  {
+    "headword": "vein",
+    "forms": [
+      "veins"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tube that carries blood back toward the heart.",
+        "example": "A vein in my leg brings blood toward my heart."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-vessels"
+    ]
+  },
+  {
+    "headword": "capillary",
+    "forms": [
+      "capillaries"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tiny tube where materials can pass between blood and nearby tissue.",
+        "example": "The red blood cell passes through a narrow capillary."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-vessels"
+    ]
+  },
+  {
+    "headword": "organ",
+    "forms": [
+      "organs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A body part made of tissues that work together to do one or more jobs.",
+        "example": "The heart is an organ that pumps blood."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-skin-roles"
+    ]
+  },
+  {
+    "headword": "skin",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The thin, living cover on the outside of the body.",
+        "example": "Skin lets me feel the bumps on this leaf."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-skin"
+    ]
+  },
+  {
+    "headword": "keratin",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tough material your body makes for parts such as hair, nails, and the outer layer of skin.",
+        "example": "Your fingernails contain keratin."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-hair-nails"
+    ]
+  },
+  {
+    "headword": "follicle",
+    "forms": [
+      "follicles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tiny pocket in the body, such as the kind in skin where a hair begins.",
+        "example": "Each hair starts to grow inside a follicle."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-hair-nails"
+    ]
+  },
+  {
+    "headword": "liver",
+    "forms": [
+      "livers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An organ that sorts and changes some things brought by the blood and makes a liquid that helps digest fats.",
+        "example": "The liver makes bile which can reach the small intestine."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-accessory-digestion"
+    ]
+  },
+  {
+    "headword": "bile",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A liquid made by the liver that helps the body digest fats.",
+        "example": "Bile helps spread fat into small droplets."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-accessory-digestion"
+    ]
+  },
+  {
+    "headword": "gallbladder",
+    "forms": [
+      "gallbladders"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small pouch under the liver that stores some bile.",
+        "example": "During digestion, the gallbladder releases bile into a tube."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-accessory-digestion"
+    ]
+  },
+  {
+    "headword": "pancreas",
+    "forms": [
+      "pancreases"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An organ behind the stomach that makes helpers for digestion and sends messages such as insulin into the blood.",
+        "example": "The pancreas helps the small intestine break food down."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-accessory-digestion"
+    ]
+  },
+  {
+    "headword": "enzyme",
+    "forms": [
+      "enzymes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tiny biological helper that speeds up a change, such as breaking food into smaller pieces.",
+        "example": "An enzyme in saliva starts breaking down some starch from bread."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-accessory-digestion"
+    ]
+  },
+  {
+    "headword": "hormone",
+    "forms": [
+      "hormones"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A chemical message made in your body that changes what some cells do.",
+        "example": "A hormone can tell cells to let sugar in from the blood."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-pituitary"
+    ]
+  },
+  {
+    "headword": "thyroid",
+    "forms": [
+      "thyroids"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A gland near the front of the neck that makes messages that help set how fast your body uses energy.",
+        "example": "The thyroid releases hormones into the blood."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-thyroid"
+    ]
+  },
+  {
+    "headword": "pituitary gland",
+    "forms": [
+      "pituitary glands"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small gland below the brain that makes and releases messages used by other parts of the body.",
+        "example": "One message from the pituitary gland reaches the thyroid."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-pituitary"
+    ]
+  },
+  {
+    "headword": "retina",
+    "forms": [
+      "retinas"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The light-sensitive layer lining the back of the eye.",
+        "example": "Light lands on the retina and some of its cells send signals."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-eye"
+    ]
+  },
+  {
+    "headword": "pupil",
+    "forms": [
+      "pupils"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The round opening that lets light into an eye.",
+        "example": "My pupil becomes smaller in bright light."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-eye"
+    ]
+  },
+  {
+    "headword": "iris",
+    "forms": [
+      "irises"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The colored ring in an eye that changes the size of the opening in its center.",
+        "example": "Her iris is brown."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-eye"
+    ]
+  },
+  {
+    "headword": "optic nerve",
+    "forms": [
+      "optic nerves"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The bundle of nerve fibers that carries signals from an eye to the brain.",
+        "example": "Signals about the picture leave the eye through the optic nerve."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-eye"
+    ]
+  },
+  {
+    "headword": "tear duct",
+    "forms": [
+      "tear ducts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A little passage that takes tears from near an eye toward the nose.",
+        "example": "Tears can drain through a tear duct."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-tears"
+    ]
+  },
+  {
+    "headword": "tear film",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The thin coat of tears that covers the front of an open eye.",
+        "example": "Blinking spreads the tear film."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-tears"
+    ]
+  },
+  {
+    "headword": "taste bud",
+    "forms": [
+      "taste buds"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small group of cells that helps you sense tastes.",
+        "example": "A taste bud can help send a message when sugar touches your tongue."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-taste"
+    ]
+  },
+  {
+    "headword": "receptor",
+    "forms": [
+      "receptors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A part of a cell or a nerve that notices a change and helps the body respond to it.",
+        "example": "A receptor can sense a light touch."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-sensory"
+    ]
+  },
+  {
+    "headword": "inner ear",
+    "forms": [
+      "inner ears"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The part of the ear farthest from the outside that contains organs for hearing and balance.",
+        "example": "The inner ear sends clues about head movement to the brain."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-sensory"
+    ]
+  },
+  {
+    "headword": "carbohydrate",
+    "forms": [
+      "carbohydrates"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A type of material that includes sugars, starches, and many kinds of fiber.",
+        "example": "Oatmeal contains more than one kind of carbohydrate."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-nutrition"
+    ]
+  },
+  {
+    "headword": "starch",
+    "forms": [
+      "starches"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A long chain of sugar units found in foods such as rice, flour, or potatoes.",
+        "example": "Starch in the potato can be broken into smaller sugars."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-nutrition"
+    ]
+  },
+  {
+    "headword": "protein",
+    "forms": [
+      "proteins"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A material built from small parts called amino acids. Different proteins have different jobs in living things.",
+        "example": "One protein in my blood carries oxygen."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-nutrition",
+      "bt-gene"
+    ]
+  },
+  {
+    "headword": "amino acid",
+    "forms": [
+      "amino acids"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the small pieces a living body can join together to make a protein.",
+        "example": "A long chain can contain many copies of the same amino acid."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-nutrition"
+    ]
+  },
+  {
+    "headword": "fiber",
+    "forms": [
+      "fibers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Parts of plant food that your own digestive juices break down only a little or not at all.",
+        "example": "An apple can provide dietary fiber."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-fiber"
+    ]
+  },
+  {
+    "headword": "whole grain",
+    "forms": [
+      "whole grains"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A grain used with all of its main parts, including the outside and the part that can grow.",
+        "example": "Whole grain can still be whole when it is ground into flour."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-whole-grains"
+    ]
+  },
+  {
+    "headword": "legume",
+    "forms": [
+      "legumes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A plant in the pea family or a food seed from such a plant.",
+        "example": "A lentil is a legume you can cook."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-legumes"
+    ]
+  },
+  {
+    "headword": "vitamin",
+    "forms": [
+      "vitamins"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A substance from food or another source that your body needs in small quantities for its usual work.",
+        "example": "Different vegetables can supply different vitamins."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-nutrition"
+    ]
+  },
+  {
+    "headword": "calcium",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An element that is part of strong bones and teeth and helps nerves and muscles do their jobs.",
+        "example": "The nutrition label shows that the yogurt provides calcium."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-calcium"
+    ]
+  },
+  {
+    "headword": "iron",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An element that can be a metal and is also needed in tiny forms by the body to help carry oxygen.",
+        "example": "The beans in my lunch provide some iron."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-iron"
+    ]
+  },
+  {
+    "headword": "hydration",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "How well the body has enough water to do its jobs.",
+        "example": "Drinking water as needed helps with hydration."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-water"
+    ]
+  },
+  {
+    "headword": "nutrition label",
+    "forms": [
+      "nutrition labels"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Information on packaged food about the amount of energy and certain nutrients it contains.",
+        "example": "I read the nutrition label to find out how much fiber is listed."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-food-label"
+    ]
+  },
+  {
+    "headword": "serving size",
+    "forms": [
+      "serving sizes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The stated amount of food or drink used to work out the numbers on a food label.",
+        "example": "The serving size printed on the label is half a cup."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-label-serving"
+    ]
+  },
+  {
+    "headword": "enamel",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The hard outer coat on the part of a tooth above the gums.",
+        "example": "Enamel protects a tooth when I chew."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-tooth-decay"
+    ]
+  },
+  {
+    "headword": "cavity",
+    "forms": [
+      "cavities"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A hollow space or, in a tooth, a hole caused by decay.",
+        "example": "A dentist can check for a cavity."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-tooth-decay"
+    ]
+  },
+  {
+    "headword": "dna",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The long material carrying inherited information that many cells keep and use.",
+        "example": "The cell holds much of its DNA in a nucleus."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-dna"
+    ]
+  },
+  {
+    "headword": "cell membrane",
+    "forms": [
+      "cell membranes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A thin layer around a cell that helps control what goes in and out.",
+        "example": "The cell membrane separates the watery inside from its surroundings."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-cell"
+    ]
+  },
+  {
+    "headword": "nucleus",
+    "forms": [
+      "nuclei"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A central part of many cells that holds most of their DNA.",
+        "example": "Chromosomes fit inside the nucleus."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-cell"
+    ]
+  },
+  {
+    "headword": "chromosome",
+    "forms": [
+      "chromosomes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A long piece of DNA and the proteins that help it fit inside a cell.",
+        "example": "A body cell usually has more than one chromosome."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-chromosomes"
+    ]
+  },
+  {
+    "headword": "gene",
+    "forms": [
+      "genes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A stretch of DNA whose information a cell can use for a particular job.",
+        "example": "One gene can tell a cell how to make a protein."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-gene"
+    ]
+  },
+  {
+    "headword": "genome",
+    "forms": [
+      "genomes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "All the inherited information in a living thing.",
+        "example": "A plant’s genome contains directions for lots of different jobs."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-genome"
+    ]
+  },
+  {
+    "headword": "allele",
+    "forms": [
+      "alleles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the versions of DNA that can occur at a particular place.",
+        "example": "Two siblings may inherit a different allele at the same place in their DNA."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-variation"
+    ]
+  },
+  {
+    "headword": "trait",
+    "forms": [
+      "traits"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A feature of a living thing that can be noticed or measured.",
+        "example": "The color of a flower is a trait."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-trait"
+    ]
+  },
+  {
+    "headword": "inherit",
+    "forms": [
+      "inherits",
+      "inherited",
+      "inheriting"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "verb",
+        "definition": "To get a feature or piece of genetic information from biological parents.",
+        "example": "Children inherit different mixes of DNA."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-gene"
+    ]
+  },
+  {
+    "headword": "height",
+    "forms": [
+      "heights"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The distance from the bottom of something to its top, or how tall a person or object is.",
+        "example": "We measured the height of the plant from the soil to its top leaf."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-height"
+    ]
+  },
+  {
+    "headword": "mitosis",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way a cell sorts copies of its chromosomes into two groups before it splits into two cells.",
+        "example": "Cells use mitosis as fresh skin grows."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-cell-divide"
+    ]
+  },
+  {
+    "headword": "identical twin",
+    "forms": [
+      "identical twins"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of two babies who began from the same fertilized egg and usually have very similar DNA.",
+        "example": "An identical twin can have likes and interests that differ from the other twin’s."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-twins"
+    ]
+  },
+  {
+    "headword": "base pair",
+    "forms": [
+      "base pairs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Two pieces that fit together as one rung on the ladder shape of DNA.",
+        "example": "Each base pair connects the two sides of DNA."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-bases"
+    ]
+  },
+  {
+    "headword": "mitochondrion",
+    "forms": [
+      "mitochondria"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small cell part that helps make energy from food available for the cell to use.",
+        "example": "A working muscle cell uses the energy its mitochondria help supply."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-cell"
+    ]
+  },
+  {
+    "headword": "brain",
+    "forms": [
+      "brains"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The organ inside your head that takes in signals and helps control the body.",
+        "example": "Your brain helps you remember what you learned yesterday."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "nih-brain"
+    ]
+  },
+  {
+    "headword": "hardware",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The physical parts of a computer or other device that you could touch.",
+        "example": "The screen is part of the tablet’s hardware."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-hardware"
+    ]
+  },
+  {
+    "headword": "processor",
+    "forms": [
+      "processors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A chip or group of parts that follows instructions to do the work of a computer.",
+        "example": "The processor can quickly work out how to move the shapes on the screen."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-hardware"
+    ]
+  },
+  {
+    "headword": "software",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The programs and other instructions a computer uses to do its work.",
+        "example": "Drawing software can turn my finger movements into a colored line."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-computer-parts"
+    ]
+  },
+  {
+    "headword": "program",
+    "forms": [
+      "programs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A group of instructions a computer can follow.",
+        "example": "A program adds up how many points I earned."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-programming"
+    ]
+  },
+  {
+    "headword": "ram",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Fast working memory that holds information a computer is using right now.",
+        "example": "When you restart, the computer can put the apps it needs back into RAM."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-hardware"
+    ]
+  },
+  {
+    "headword": "storage",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A part or place that keeps information for the computer to use later.",
+        "example": "The picture was saved in storage and still appeared after I restarted."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-hardware"
+    ]
+  },
+  {
+    "headword": "operating system",
+    "forms": [
+      "operating systems"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A collection of programs that helps apps and physical computer parts work together.",
+        "example": "The operating system tells different apps how to use the speaker."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-os"
+    ]
+  },
+  {
+    "headword": "file",
+    "forms": [
+      "files"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A named group of information kept on a computer.",
+        "example": "I saved my picture as a file."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-files"
+    ]
+  },
+  {
+    "headword": "folder",
+    "forms": [
+      "folders"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A named place that holds files or other folders on a computer.",
+        "example": "I put both drawings in a folder called Art."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-files"
+    ]
+  },
+  {
+    "headword": "file extension",
+    "forms": [
+      "file extensions"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A short ending after a dot in a filename, often used to show the type of file.",
+        "example": "The file extension .jpg often shows that a file holds a picture."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-files"
+    ]
+  },
+  {
+    "headword": "pixel",
+    "forms": [
+      "pixels"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the tiny color points in a digital picture or display.",
+        "example": "A pixel in the sky part of the picture can be blue."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-pixels"
+    ]
+  },
+  {
+    "headword": "image resolution",
+    "forms": [
+      "image resolutions"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The amount of picture detail a grid can store, often described by how many pixels it has across and down.",
+        "example": "The image resolution is 300 pixels across and 200 pixels tall."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-pixels"
+    ]
+  },
+  {
+    "headword": "rgb",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way of describing colors by how much red, green, and blue light they use.",
+        "example": "A screen can combine RGB light to show yellow."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-rgb"
+    ]
+  },
+  {
+    "headword": "vector image",
+    "forms": [
+      "vector images"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A saved picture described as shapes and lines that can be drawn again at different sizes.",
+        "example": "The vector image of a circle stayed smooth when we made it bigger."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-svg"
+    ]
+  },
+  {
+    "headword": "unicode",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A shared set of numbers that stand for text characters people use around the world.",
+        "example": "Unicode helps different phones agree on which letter to show."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-unicode"
+    ]
+  },
+  {
+    "headword": "sample",
+    "forms": [
+      "samples"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small part or measurement taken from something larger.",
+        "example": "A microphone recording can hold many sound samples from each second."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-audio"
+    ]
+  },
+  {
+    "headword": "compression",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way to store or send information in less space than it took before.",
+        "example": "Compression made my photo file smaller."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-compression"
+    ]
+  },
+  {
+    "headword": "network",
+    "forms": [
+      "networks"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A collection of devices linked so they can share information.",
+        "example": "Our classroom computers can connect to a network and share a printer."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-internet"
+    ]
+  },
+  {
+    "headword": "packet",
+    "forms": [
+      "packets"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small piece of a network message together with information that helps move it.",
+        "example": "A longer message can travel in many packets."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-internet"
+    ]
+  },
+  {
+    "headword": "internet",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The worldwide system that connects many networks and lets computers exchange information.",
+        "example": "I can use the internet to send a message to someone far away."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-internet"
+    ]
+  },
+  {
+    "headword": "world wide web",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A large collection of linked pages and other resources that people can open over the internet.",
+        "example": "The browser helped me find a page on the World Wide Web."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-www"
+    ]
+  },
+  {
+    "headword": "browser",
+    "forms": [
+      "browsers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An app that requests and shows web pages.",
+        "example": "I opened a library website in my browser."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-browser"
+    ]
+  },
+  {
+    "headword": "web server",
+    "forms": [
+      "web servers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Equipment and software that answers requests for web pages or other information.",
+        "example": "A web server sent the browser a copy of the page."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-server"
+    ]
+  },
+  {
+    "headword": "url",
+    "forms": [
+      "urls"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A web address that tells a browser how and where to ask for something.",
+        "example": "The URL leads to a different page on the same site."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-url"
+    ]
+  },
+  {
+    "headword": "domain name",
+    "forms": [
+      "domain names"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A readable name used to identify a place or group of places on a network.",
+        "example": "Two pages on the site can share a domain name."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-url"
+    ]
+  },
+  {
+    "headword": "wi-fi",
+    "forms": [
+      "wifi"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way for devices close enough to each other to join a network using radio signals.",
+        "example": "I joined the school’s Wi-Fi network."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-wifi"
+    ]
+  },
+  {
+    "headword": "router",
+    "forms": [
+      "routers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A device or program that passes packets toward other computer networks.",
+        "example": "A router can send a message from our home network toward the internet."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-internet"
+    ]
+  },
+  {
+    "headword": "search engine",
+    "forms": [
+      "search engines"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A program or service that looks through a list of information to find matches for your question.",
+        "example": "I asked a search engine for pages about parrots."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-web-search"
+    ]
+  },
+  {
+    "headword": "index",
+    "forms": [
+      "indexes",
+      "indices"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An organized set of clues that helps someone or something find information quickly.",
+        "example": "The search engine checked an index for pages about boats."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-web-search"
+    ]
+  },
+  {
+    "headword": "backup",
+    "forms": [
+      "backups"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An extra copy kept in case you lose the one you use.",
+        "example": "The backup had my school project after the laptop stopped working."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-backup"
+    ]
+  },
+  {
+    "headword": "sensor",
+    "forms": [
+      "sensors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A device that notices or measures something, such as warmth, pressure, or motion.",
+        "example": "The sensor told the robot that it had bumped the wall."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-sensors"
+    ]
+  },
+  {
+    "headword": "bug",
+    "forms": [
+      "bugs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An error in software or computer equipment that makes it work differently from how it should.",
+        "example": "A bug made the game jump back to the start."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-debugging"
+    ]
+  },
+  {
+    "headword": "debug",
+    "forms": [
+      "debugs",
+      "debugged",
+      "debugging"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "verb",
+        "definition": "To find and fix problems in a program or another system.",
+        "example": "We stopped to debug the instructions when the score went the wrong way."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-debugging"
+    ]
+  },
+  {
+    "headword": "variable",
+    "forms": [
+      "variables"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "In programming, a name used to keep track of a value a program needs.",
+        "example": "The program keeps the team’s score in a variable."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-programming"
+    ]
+  },
+  {
+    "headword": "function",
+    "forms": [
+      "functions"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "In programming, a group of steps a program can use as one unit, often by calling it by name.",
+        "example": "One function draws a star where the player taps."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-programming"
+    ]
+  },
+  {
+    "headword": "conditional",
+    "forms": [
+      "conditionals"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "In a program, instructions that are used only if a particular test has the right result.",
+        "example": "The game uses a conditional to check whether I reached the end."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-flow"
+    ]
+  },
+  {
+    "headword": "loop",
+    "forms": [
+      "loops"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "In programming, a group of steps that can run repeatedly.",
+        "example": "A loop tells the game to move the bird a small distance again and again."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-flow"
+    ]
+  },
+  {
+    "headword": "boolean",
+    "forms": [
+      "booleans"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "adjective",
+        "definition": "Having to do with the two values true and false, or rules that use those values.",
+        "example": "A Boolean question could ask whether the light is on."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-logic"
+    ]
+  },
+  {
+    "headword": "truth table",
+    "forms": [
+      "truth tables"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A chart that lists the result of a logic rule for each possible set of true and false choices.",
+        "example": "The truth table shows when the alarm button should turn on a sign."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-logic"
+    ]
+  },
+  {
+    "headword": "sorting",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Putting things into a useful order or groups, such as from smallest to largest.",
+        "example": "Sorting the cards made it easier to find the number I wanted."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-sorting"
+    ]
+  },
+  {
+    "headword": "binary search",
+    "forms": [
+      "binary searches"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way to look in a sorted list by checking the middle and deciding which half to keep looking in.",
+        "example": "The program uses binary search to find a number in a sorted row."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-search-algorithms"
+    ]
+  },
+  {
+    "headword": "personal information",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Details that can help identify a person or tell where to find them.",
+        "example": "The name of your school can be personal information."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-ftc-kids"
+    ]
+  },
+  {
+    "headword": "privacy",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The ability to choose which parts of your life or information other people can see.",
+        "example": "I asked an adult to help change the game’s privacy setting."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-ftc-kids"
+    ]
+  },
+  {
+    "headword": "permission",
+    "forms": [
+      "permissions"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The right to do something or use something that someone else can allow.",
+        "example": "The app needs permission to use the camera."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-ftc-phone"
+    ]
+  },
+  {
+    "headword": "two-factor authentication",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way to sign in that checks two different kinds of proof that you are allowed to use the account.",
+        "example": "My family turned on two-factor authentication for an account."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-mfa"
+    ]
+  },
+  {
+    "headword": "update",
+    "forms": [
+      "updates"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A newer form of software that can make changes or fix problems.",
+        "example": "An update fixed the app that kept closing."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-ftc-device"
+    ]
+  },
+  {
+    "headword": "cyberbullying",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Using digital devices or online services to bully someone, such as by sending cruel or embarrassing messages.",
+        "example": "I showed a grown-up what had happened so we could report the cyberbullying."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-cyberbully"
+    ]
+  },
+  {
+    "headword": "advertisement",
+    "forms": [
+      "advertisements"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A message designed to get people interested in a product, service, or idea.",
+        "example": "An advertisement for extra characters appeared during the game."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-ftc-ads"
+    ]
+  },
+  {
+    "headword": "in-app purchase",
+    "forms": [
+      "in-app purchases"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Something you pay for from inside a game or other app.",
+        "example": "We check with an adult before making an in-app purchase."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-ftc-purchases"
+    ]
+  },
+  {
+    "headword": "device lock",
+    "forms": [
+      "device locks"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A feature that asks for proof that you are allowed to use a device before it opens.",
+        "example": "I put on the device lock before I left the tablet on the table."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-ftc-safety"
+    ]
+  }
+]

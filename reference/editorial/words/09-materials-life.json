@@ -1,0 +1,1121 @@
+[
+  {
+    "headword": "plant root",
+    "forms": [
+      "roots"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The part of a plant that anchors it and takes in water and minerals. Roots often grow below ground.",
+        "example": "The carrot’s leaves grew above the soil, and its plant root grew below."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-osu-plant-outer"
+    ]
+  },
+  {
+    "headword": "stem",
+    "forms": [
+      "stems"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The part of a plant that holds up leaves, flowers, or other parts and carries materials between them.",
+        "example": "A sunflower has a tall stem."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-osu-plant-outer"
+    ]
+  },
+  {
+    "headword": "leaf vein",
+    "forms": [
+      "leaf veins"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small passage in a leaf that carries water or sugars through it.",
+        "example": "Tiny veins spread outward from the middle of the leaf."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-osu-plant-inner"
+    ]
+  },
+  {
+    "headword": "xylem",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Plant tissue that carries water and minerals from the roots toward the leaves.",
+        "example": "The tree’s xylem carried water into branches above the roof."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-osu-plant-inner"
+    ]
+  },
+  {
+    "headword": "phloem",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Plant tissue that carries sugars from where a plant makes or releases them to parts that need them.",
+        "example": "The leaf sent sugars down the phloem to growing roots."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-osu-plant-inner"
+    ]
+  },
+  {
+    "headword": "stoma",
+    "forms": [
+      "stomata"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tiny opening in a plant surface. Water vapor and gases move through it.",
+        "example": "A microscope showed each stoma on the underside of the leaf."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-osu-plant-inner"
+    ]
+  },
+  {
+    "headword": "transpiration",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The release of water vapor from a plant, mostly through its leaves.",
+        "example": "Transpiration added water vapor to the air around the tree."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-usgs-transpiration"
+    ]
+  },
+  {
+    "headword": "petal",
+    "forms": [
+      "petals"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A part of a flower that is often brightly colored and surrounds the pollen-making or seed-making parts.",
+        "example": "Five yellow petals surrounded the center of the flower."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-ncsu-botany"
+    ]
+  },
+  {
+    "headword": "fruit",
+    "forms": [
+      "fruits"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The part that develops from a flowering plant’s ovary and usually contains seeds.",
+        "example": "A cucumber is a fruit even when you use it in a salad."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-ncsu-botany"
+    ]
+  },
+  {
+    "headword": "germinate",
+    "forms": [
+      "germinates",
+      "germinated",
+      "germinating"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "verb",
+        "definition": "To start growing from a seed or spore.",
+        "example": "A root appeared as the bean seed began to germinate."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-ncsu-botany"
+    ]
+  },
+  {
+    "headword": "bulb",
+    "forms": [
+      "bulbs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A short plant stem with thick layers that store food, often found underground.",
+        "example": "A tulip bulb can grow a fresh shoot in spring."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-bulbs"
+    ]
+  },
+  {
+    "headword": "tuber",
+    "forms": [
+      "tubers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A swollen part of a plant that stores food and can grow new shoots in some plants.",
+        "example": "A potato is a tuber on an underground stem."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-bulbs"
+    ]
+  },
+  {
+    "headword": "rhizome",
+    "forms": [
+      "rhizomes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A plant stem that grows sideways, usually under or along the ground.",
+        "example": "New shoots grew at points on the iris rhizome."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-bulbs"
+    ]
+  },
+  {
+    "headword": "runner",
+    "forms": [
+      "runners"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A stem that creeps away from a parent plant and can make new plants along the way.",
+        "example": "The strawberry’s runner reached over the edge of the pot."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-ncsu-botany"
+    ]
+  },
+  {
+    "headword": "evergreen",
+    "forms": [
+      "evergreens"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A plant that keeps some green leaves throughout the year.",
+        "example": "The spruce is an evergreen, so its branches looked green in January."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-fall"
+    ]
+  },
+  {
+    "headword": "deciduous",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "adjective",
+        "definition": "Describes a tree or shrub that drops most of its leaves for part of each year.",
+        "example": "The deciduous maple was bare in winter."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-fall"
+    ]
+  },
+  {
+    "headword": "spore",
+    "forms": [
+      "spores"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tiny cell that can grow into a new living thing in suitable conditions.",
+        "example": "A fern released spores from spots under its leaves."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-ferns"
+    ]
+  },
+  {
+    "headword": "carnivorous",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "adjective",
+        "definition": "Adapted to get food or nutrients by eating animals.",
+        "example": "A carnivorous plant can catch a fly in a modified leaf."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-kew-carnivory"
+    ]
+  },
+  {
+    "headword": "fungus",
+    "forms": [
+      "fungi",
+      "funguses"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A living thing such as a mushroom, mold or yeast that gets food by absorbing it from other material.",
+        "example": "The fungus absorbed food from a fallen log."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-usfs-fungi"
+    ]
+  },
+  {
+    "headword": "mycelium",
+    "forms": [
+      "mycelia"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The spreading network of fine threads that makes up much of a fungus.",
+        "example": "Hidden mycelium grew through the damp wood."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-usfs-fungi"
+    ]
+  },
+  {
+    "headword": "decomposer",
+    "forms": [
+      "decomposers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A living thing that breaks dead material into simpler substances.",
+        "example": "A fungus can act as a decomposer after a branch falls."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-usfs-decay"
+    ]
+  },
+  {
+    "headword": "lichen",
+    "forms": [
+      "lichens"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A partnership in which a fungus grows with an alga or a tiny organism that can make sugars from light.",
+        "example": "The gray lichen grew on the fence post."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-usfs-lichens"
+    ]
+  },
+  {
+    "headword": "mycorrhiza",
+    "forms": [
+      "mycorrhizae",
+      "mycorrhizas"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A close partnership where a fungus grows with a plant’s roots.",
+        "example": "The mycorrhiza helped the young tree get minerals from the soil."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-usfs-mycorrhizae"
+    ]
+  },
+  {
+    "headword": "mixture",
+    "forms": [
+      "mixtures"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Two or more kinds of material together that can still keep their own properties.",
+        "example": "Trail mix is a mixture of different foods."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-matter"
+    ]
+  },
+  {
+    "headword": "solution",
+    "forms": [
+      "solutions"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An even mixture formed when one substance dissolves in another.",
+        "example": "Stirring salt into water made a salt solution."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-solubles",
+      "mat-acs-solutions"
+    ]
+  },
+  {
+    "headword": "dissolve",
+    "forms": [
+      "dissolves",
+      "dissolved",
+      "dissolving"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "verb",
+        "definition": "To spread through another material in particles so small that you no longer see the separate pieces.",
+        "example": "The sugar began to dissolve in the water."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-acs-solutions"
+    ]
+  },
+  {
+    "headword": "solubility",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The amount of one substance that can dissolve in a certain amount of another under given conditions.",
+        "example": "Heat can change the solubility of sugar in water."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-solubles"
+    ]
+  },
+  {
+    "headword": "saturated",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "adjective",
+        "definition": "Describes a mixture that already holds as much of a dissolved substance as it can under its current conditions.",
+        "example": "More salt stayed on the bottom after the water was saturated with salt."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-solubles"
+    ]
+  },
+  {
+    "headword": "compound",
+    "forms": [
+      "compounds"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A substance made of atoms from at least two different elements chemically joined in a fixed proportion.",
+        "example": "Water is a compound of hydrogen and oxygen."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-matter"
+    ]
+  },
+  {
+    "headword": "crystal",
+    "forms": [
+      "crystals"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A solid with particles arranged in a pattern that repeats throughout it.",
+        "example": "Under a magnifier, a crystal of table salt looked like a tiny cube."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-crystals"
+    ]
+  },
+  {
+    "headword": "surface tension",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A pulling effect at the surface of a liquid that makes its surface tend to shrink.",
+        "example": "Surface tension helped pull a drop of rain into a rounded shape."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-acs-tension"
+    ]
+  },
+  {
+    "headword": "emulsion",
+    "forms": [
+      "emulsions"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A mixture that holds tiny drops of one liquid spread through another liquid.",
+        "example": "Shaking the jar formed an emulsion of drops of oil in water."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-acs-oil"
+    ]
+  },
+  {
+    "headword": "chemical reaction",
+    "forms": [
+      "chemical reactions"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A change in which substances turn into other substances as atoms rearrange.",
+        "example": "Tiny gas bubbles marked a chemical reaction in the batter."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-acs-reaction"
+    ]
+  },
+  {
+    "headword": "ph",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A scale used to describe how acidic or basic a water-based liquid is.",
+        "example": "The colored strip helped us compare the pH of two drinks."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-ph"
+    ]
+  },
+  {
+    "headword": "indicator",
+    "forms": [
+      "indicators"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "In chemistry, a substance that shows something about a liquid, often by changing color.",
+        "example": "A pH indicator can change from purple to pink in an acidic drink."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-acs-indicator"
+    ]
+  },
+  {
+    "headword": "corrosion",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Damage to a material after it reacts with substances around it, such as air or moisture.",
+        "example": "A coat of paint can protect a steel bridge from corrosion."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-rust"
+    ]
+  },
+  {
+    "headword": "alloy",
+    "forms": [
+      "alloys"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A material containing a metal mixed with one or more other elements.",
+        "example": "Brass is an alloy that contains copper and zinc."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-rice-alloys"
+    ]
+  },
+  {
+    "headword": "ceramic",
+    "forms": [
+      "ceramics"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A hard material, such as fired clay, usually made from minerals and set by heat.",
+        "example": "The ceramic in the cup started as soft clay."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-us-ceramics"
+    ]
+  },
+  {
+    "headword": "polymer",
+    "forms": [
+      "polymers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A material made of very long molecules built from many smaller pieces joined in chains or networks.",
+        "example": "Cellulose, which helps plants stay strong, is a natural polymer."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-purdue-materials"
+    ]
+  },
+  {
+    "headword": "textile fiber",
+    "forms": [
+      "textile fibers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A thin thread or strand that can be used to make cloth, paper or rope.",
+        "example": "The sweater was made with fibers from sheep’s wool."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-gwu-fibers"
+    ]
+  },
+  {
+    "headword": "pulp",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A wet mixture of little fibers used to make paper.",
+        "example": "The paper machine squeezed water out of the pulp."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-oksu-paper"
+    ]
+  },
+  {
+    "headword": "graphite",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A soft form of carbon in which flat layers of atoms can slip past one another.",
+        "example": "A pencil point leaves some graphite on the page as it moves."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-carbon-toledo"
+    ]
+  },
+  {
+    "headword": "pectin",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A substance plants make that can help a fruit mixture become thick and soft.",
+        "example": "Pectin helped the jelly keep its shape on the spoon."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-fruitspreads"
+    ]
+  },
+  {
+    "headword": "cullet",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Broken or crushed glass gathered for use when making new glass.",
+        "example": "The glass plant mixed clean cullet with sand and its other supplies."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-epa-cullet"
+    ]
+  },
+  {
+    "headword": "yeast",
+    "forms": [
+      "yeasts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A kind of tiny fungus. Bread yeast can use sugars and release carbon dioxide gas.",
+        "example": "Yeast made bubbles that swelled the bread dough."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-exploratorium-bread"
+    ]
+  },
+  {
+    "headword": "fermentation",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way some living things get energy by changing sugars into other substances.",
+        "example": "During fermentation, tiny gas bubbles appeared in the bread dough."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-exploratorium-bread",
+      "mat-king-yeast"
+    ]
+  },
+  {
+    "headword": "graft",
+    "forms": [
+      "grafts",
+      "grafted",
+      "grafting"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "verb",
+        "definition": "To join a piece cut from one plant to a part of another plant so that they grow together.",
+        "example": "The orchard worker grafted a branch from an apple tree onto another tree’s roots."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-apples"
+    ]
+  },
+  {
+    "headword": "orchard",
+    "forms": [
+      "orchards"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A place where many trees are grown for fruit or nuts.",
+        "example": "We picked several kinds of apples in the orchard."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-apples"
+    ]
+  },
+  {
+    "headword": "grain",
+    "forms": [
+      "grains"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small hard seed or fruit from a crop such as corn, wheat, oats or rice.",
+        "example": "The cook stirred the grains of rice in the pot."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-usda-grains"
+    ]
+  },
+  {
+    "headword": "bran",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The outer layers of a grain that may be taken off when it is milled.",
+        "example": "Brown rice still has bran around its lighter center."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-ers-rice",
+      "mat-usda-grains"
+    ]
+  },
+  {
+    "headword": "compost",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A dark mixture formed after scraps from plants and other living things break down.",
+        "example": "The finished compost was mixed with soil near the flowers."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-epa-compost"
+    ]
+  },
+  {
+    "headword": "mulch",
+    "forms": [
+      "mulches",
+      "mulched",
+      "mulching"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A covering such as straw or wood chips laid over soil to help hold water or limit weeds.",
+        "example": "The mulch shaded the soil around the plants."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-mulch"
+    ]
+  },
+  {
+    "headword": "trellis",
+    "forms": [
+      "trellises"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A frame that a climbing plant can grow on.",
+        "example": "Pea plants climbed the trellis by the fence."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-trellis"
+    ]
+  },
+  {
+    "headword": "tendril",
+    "forms": [
+      "tendrils"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A slender part of a climbing plant that can curl around something and hold on.",
+        "example": "A pea tendril curled around the string."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-peas"
+    ]
+  },
+  {
+    "headword": "whey",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The liquid left when the soft solid parts of milk separate during cheese making.",
+        "example": "The whey drained away, leaving thick curds behind."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-csu-cheese"
+    ]
+  },
+  {
+    "headword": "curd",
+    "forms": [
+      "curds"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A soft lump of milk solids that can form when milk proteins gather together.",
+        "example": "The cheese maker gathered the curds into a mold."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-csu-cheese"
+    ]
+  },
+  {
+    "headword": "sap",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Water with dissolved materials that moves through plants, including the sugar-rich liquid collected from some maple trees.",
+        "example": "Maple sap dripped into the line leading from the tree."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-psu-maple"
+    ]
+  },
+  {
+    "headword": "acorn",
+    "forms": [
+      "acorns"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The nut of an oak tree. An acorn has a hard shell and a little cap.",
+        "example": "An oak seedling grew where a jay had hidden an acorn."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-usfs-oak"
+    ]
+  },
+  {
+    "headword": "clove",
+    "forms": [
+      "cloves"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the separate parts packed together in a garlic bulb.",
+        "example": "The cook peeled a clove of garlic."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-garlic"
+    ]
+  },
+  {
+    "headword": "phototropism",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Growth that bends a plant part toward or away from light.",
+        "example": "Phototropism turned a seedling’s stem toward the window."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-tropisms"
+    ]
+  },
+  {
+    "headword": "gravitropism",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Plant growth that changes direction in response to gravity.",
+        "example": "Through gravitropism, a root bent downward after the seed changed position."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-tropisms"
+    ]
+  },
+  {
+    "headword": "boiling point",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The temperature at which a liquid starts boiling at a particular pressure.",
+        "example": "The boiling point of water is lower on a high mountain."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-openstax-boiling"
+    ]
+  },
+  {
+    "headword": "freezing point",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The temperature at which a liquid forms solid crystals under given conditions.",
+        "example": "Dissolved salt lowered the freezing point of the water."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-umn-deice"
+    ]
+  },
+  {
+    "headword": "veneer",
+    "forms": [
+      "veneers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A thin sheet of wood that can be glued onto something or pressed together with other sheets.",
+        "example": "The plywood had a smooth veneer on its top layer."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mat-usfs-woodcomposite"
+    ]
+  }
+]

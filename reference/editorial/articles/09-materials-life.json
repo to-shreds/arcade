@@ -1,0 +1,4858 @@
+[
+  {
+    "id": "plant-roots",
+    "title": "What do plant roots do?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A plant’s roots reach into soil or another place where the plant grows. They help hold the plant steady when wind pushes on the leaves. Many roots also soak up water and minerals. The plant moves those supplies to other parts, including new shoots. A carrot has a thick main root that stores food. Grass often has a spreading bunch of thinner roots. A plant can have important parts below the ground even when you only see leaves above it.",
+    "aliases": [
+      "why do plants have roots",
+      "how roots help a plant"
+    ],
+    "sections": [],
+    "facts": [
+      "Many roots have tiny root hairs that help take in water."
+    ],
+    "terms": [
+      "plant root",
+      "mineral",
+      "stem"
+    ],
+    "questions": [
+      {
+        "target": "plant-stems",
+        "text": "Where does water go after it enters the roots?"
+      },
+      {
+        "target": "mycorrhizal-fungi",
+        "text": "What living partners can help roots get minerals?"
+      },
+      {
+        "target": "potato-tubers",
+        "text": "Is an underground potato a root or a stem?"
+      }
+    ],
+    "sources": [
+      "mat-osu-plant-outer",
+      "mat-osu-plant-inner"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plant-stems",
+    "title": "Why do plants have stems?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A stem holds plant parts in places where they can do their jobs. A tall stem can lift leaves toward the light. It can also raise flowers where insects or wind can reach them. Inside many stems, tiny passageways carry water and sugars. Stems can be soft, like the stem of a bean plant, or hard and woody, like a tree trunk. Some run sideways instead of growing up. Others are hidden underground and store food.",
+    "aliases": [
+      "what a stem is for",
+      "how plant stems work"
+    ],
+    "sections": [],
+    "facts": [
+      "A tree trunk is a type of stem."
+    ],
+    "terms": [
+      "stem",
+      "xylem",
+      "phloem"
+    ],
+    "questions": [
+      {
+        "target": "plant-roots",
+        "text": "Where does most of a plant’s water enter?"
+      },
+      {
+        "target": "plant-xylem",
+        "text": "Which part of the stem carries water up?"
+      },
+      {
+        "target": "strawberry-runners",
+        "text": "What happens when a stem grows sideways across the ground?"
+      }
+    ],
+    "sources": [
+      "mat-osu-plant-outer",
+      "mat-osu-plant-inner"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plant-leaves",
+    "title": "How do leaves help a plant grow?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Leaves give many plants a wide surface to catch sunlight. A green leaf uses light, water and a gas from the air to make sugars. That process is called photosynthesis. The lines you see on many leaves are veins. They bring water in and help move sugars where the plant can use them. Leaves also have tiny openings, often on the lower side. Gases and water vapor can move through those openings even when the leaf looks still.",
+    "aliases": [
+      "what leaves do",
+      "leaf veins and sunlight"
+    ],
+    "sections": [],
+    "facts": [
+      "Some plants have leaves divided into little parts called leaflets."
+    ],
+    "terms": [
+      "leaf vein",
+      "photosynthesis",
+      "stoma"
+    ],
+    "questions": [
+      {
+        "target": "photosynthesis",
+        "text": "How does the plant turn light and air into sugar?"
+      },
+      {
+        "target": "plant-transpiration",
+        "text": "How can water leave a plant through its leaves?"
+      },
+      {
+        "target": "fall-leaf-colors",
+        "text": "Why do some leaves turn yellow before they fall?"
+      }
+    ],
+    "sources": [
+      "mat-osu-plant-outer",
+      "mat-osu-plant-inner"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plant-xylem",
+    "title": "How does water reach the top of a tree?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "When water leaves a tree’s leaves as vapor, it helps pull more water upward. Water molecules tend to cling to one another. This lets the pull travel down columns of water inside tiny tubes. The tubes are part of a water-carrying tissue called xylem. Water from the soil enters the roots and helps refill those columns. The whole path can reach from the fine tips of roots to leaves at the very top of a tree.",
+    "aliases": [
+      "xylem",
+      "how water moves up plants"
+    ],
+    "sections": [],
+    "facts": [
+      "Water can travel through a path of connected xylem cells."
+    ],
+    "terms": [
+      "xylem",
+      "transpiration"
+    ],
+    "questions": [
+      {
+        "target": "plant-transpiration",
+        "text": "How does water vapor leave the leaf?"
+      },
+      {
+        "target": "plant-phloem",
+        "text": "Which tissue carries sugars from leaves to growing parts?"
+      },
+      {
+        "target": "giant-sequoias",
+        "text": "How wide can the trunk of a giant tree grow?"
+      }
+    ],
+    "sources": [
+      "mat-osu-plant-inner",
+      "mat-usgs-transpiration"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plant-phloem",
+    "title": "How does a plant send sugar to its roots?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A leaf might make more sugar than it needs right away. The plant can send some of that sugar to other places through a tissue called phloem. A growing root or fruit might use the sugar, or a plant part might store it. The direction depends on where sugars are ready to move and where they are needed. Later, sugar released from a storage part can travel to a new shoot, even before that shoot has many leaves.",
+    "aliases": [
+      "phloem",
+      "sugar movement in plants"
+    ],
+    "sections": [],
+    "facts": [
+      "Growing roots and fruits can receive sugars through phloem."
+    ],
+    "terms": [
+      "phloem",
+      "photosynthesis"
+    ],
+    "questions": [
+      {
+        "target": "photosynthesis",
+        "text": "Where does most of the sugar in a leafy plant come from?"
+      },
+      {
+        "target": "plant-xylem",
+        "text": "Which tissue carries water up from the roots?"
+      },
+      {
+        "target": "plant-fruit",
+        "text": "Which plant parts often receive sugars as they grow?"
+      }
+    ],
+    "sources": [
+      "mat-osu-plant-inner",
+      "mat-ncsu-botany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plant-transpiration",
+    "title": "Why do plants release water vapor?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Water from damp cells inside a leaf can turn into vapor. That vapor escapes through small openings called stomata. The process is called transpiration. Humid air already holds a lot of water vapor, so the loss is often slower in humid air than in dry air. A steady loss of water through leaves helps move more water up through the plant. If water is scarce, closing the openings can slow the loss and help the plant hold on to water.",
+    "aliases": [
+      "transpiration in plants",
+      "do plants sweat"
+    ],
+    "sections": [],
+    "facts": [
+      "Plants can change how wide their stomata open."
+    ],
+    "terms": [
+      "transpiration",
+      "stoma",
+      "xylem"
+    ],
+    "questions": [
+      {
+        "target": "plant-xylem",
+        "text": "How does water loss near the top of a plant help pull water upward?"
+      },
+      {
+        "target": "water-cycle",
+        "text": "Where else does water vapor come from?"
+      },
+      {
+        "target": "plant-roots",
+        "text": "How does a plant replace the water it loses?"
+      }
+    ],
+    "sources": [
+      "mat-usgs-transpiration",
+      "mat-osu-plant-inner"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "flower-parts",
+    "title": "What is inside a flower?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Colorful petals are the most obvious parts of many flowers. Look closer and you may see small structures that make pollen or collect it. In many flowers, the pollen makers are called stamens. A sticky surface called a stigma can catch grains of pollen. Below it, part of the flower can grow into a fruit with seeds. Some kinds of flowers have all these parts together. Other kinds put pollen-making and seed-making parts in different flowers.",
+    "aliases": [
+      "flower anatomy",
+      "why flowers have petals",
+      "stamen and pistil"
+    ],
+    "sections": [],
+    "facts": [
+      "The stamens are the pollen-making parts of many flowers."
+    ],
+    "terms": [
+      "petal",
+      "flower",
+      "pollen",
+      "pollination"
+    ],
+    "questions": [
+      {
+        "target": "pollination",
+        "text": "How does pollen get from one flower to another?"
+      },
+      {
+        "target": "plant-fruit",
+        "text": "What happens to a flower’s ovary as a fruit grows?"
+      },
+      {
+        "target": "seed-germination",
+        "text": "How does a seed start to grow by itself?"
+      }
+    ],
+    "sources": [
+      "mat-ncsu-botany",
+      "mat-usfs-pollinators"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plant-fruit",
+    "title": "Why is a tomato a fruit?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "In a tomato flower, a small part where seeds can develop, called the ovary grows into the tomato. That makes a tomato a fruit in botany, the study of plants. It has seeds inside, just as a peach or a grape does. A cucumber and a pea pod count as fruits for the same reason. People who cook often group these foods with vegetables because of how they taste and how we use them. Both groupings can be useful.",
+    "aliases": [
+      "is a tomato a fruit or vegetable",
+      "botanical fruit",
+      "cucumber fruit"
+    ],
+    "sections": [],
+    "facts": [
+      "Peas grow inside pods, which are fruits in botany."
+    ],
+    "terms": [
+      "fruit",
+      "seed",
+      "flower"
+    ],
+    "questions": [
+      {
+        "target": "flower-parts",
+        "text": "Which part of a flower grows into a fruit?"
+      },
+      {
+        "target": "seed-travel",
+        "text": "How can a juicy fruit help seeds reach a new place?"
+      },
+      {
+        "target": "pollination",
+        "text": "How does pollen reach the flowers on fruit trees?"
+      }
+    ],
+    "sources": [
+      "mat-ncsu-botany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "seed-germination",
+    "title": "How does a seed wake up and grow?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A dry seed can hold a tiny plant and its food supply for a long time. When conditions fit what that kind of plant needs, the seed takes in water and swells. A little root often breaks through the seed coat first. A shoot can then grow in another direction and reach the light. Early on, the young plant uses food stored in the seed. After green leaves open, the plant can make more of its own sugar.",
+    "aliases": [
+      "germination",
+      "sprouting beans",
+      "why seeds need water"
+    ],
+    "sections": [],
+    "facts": [
+      "For many kinds of seeds, the root begins growing before the shoot."
+    ],
+    "terms": [
+      "germinate",
+      "seed",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "seeds",
+        "text": "What is hidden inside a seed before it sprouts?"
+      },
+      {
+        "target": "plant-roots",
+        "text": "How does a new root keep the seedling supplied with water?"
+      },
+      {
+        "target": "plant-leaves",
+        "text": "What changes once a young plant has green leaves?"
+      }
+    ],
+    "sources": [
+      "mat-ncsu-botany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "seed-travel",
+    "title": "How do seeds get far from the parent plant?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A seed often has a better chance to find space and light if it lands away from its parent. A dandelion makes tiny dry fruits that float in the breeze on little parachutes. A burr can hitch a ride by hooking onto fur or a sock. Other plants hide seeds inside sweet fruit. An animal can eat the fruit, go somewhere else and leave some seeds behind. Some seeds also travel by floating in water or rolling down a slope.",
+    "aliases": [
+      "seed dispersal",
+      "wind carried seeds",
+      "how plants spread"
+    ],
+    "sections": [],
+    "facts": [
+      "The little parachute on a dandelion helps the fruit carry its seed in the wind."
+    ],
+    "terms": [
+      "seed",
+      "fruit",
+      "adaptation"
+    ],
+    "questions": [
+      {
+        "target": "plant-fruit",
+        "text": "Why can a soft fruit help its seeds travel with an animal?"
+      },
+      {
+        "target": "seed-germination",
+        "text": "What happens if one of the seeds lands in a good place to grow?"
+      },
+      {
+        "target": "strawberry-runners",
+        "text": "How can a plant spread nearby without moving seeds?"
+      }
+    ],
+    "sources": [
+      "mat-ncsu-botany",
+      "mat-openstax-seeds"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "flower-bulbs",
+    "title": "What is hidden inside a tulip bulb?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A tulip bulb packs together a short stem, a new bud and thick layers that hold food. Most of this rests underground when the plant has no green top. When conditions are right, a shoot can rise and use that stored food. Roots can grow from the small hard base. An onion is another kind of bulb. Its fleshy rings are easier to see than the tightly packed layers of a tulip bulb, but their storage job is much the same.",
+    "aliases": [
+      "plant bulbs",
+      "how onion and tulip bulbs work"
+    ],
+    "sections": [],
+    "facts": [
+      "An onion’s thick layers are mostly storage leaves."
+    ],
+    "terms": [
+      "bulb",
+      "stem",
+      "flower"
+    ],
+    "questions": [
+      {
+        "target": "potato-tubers",
+        "text": "How is a potato different from a layered bulb?"
+      },
+      {
+        "target": "plant-leaves",
+        "text": "How does a plant refill its food supply once leaves open?"
+      },
+      {
+        "target": "plant-rhizomes",
+        "text": "What kind of underground stem can grow sideways?"
+      }
+    ],
+    "sources": [
+      "mat-umn-bulbs",
+      "mat-ncsu-botany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "potato-tubers",
+    "title": "What are the eyes on a potato?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "The eyes on a potato are places where buds can grow. Each bud can start a shoot if the potato has suitable conditions. A potato is a tuber, a thick storage part that develops on an underground stem. It holds food the plant made earlier. Because it is a stem part, a potato can make new shoots at several points. The thick part of a sweet potato may look similar from the outside, but it is a storage root.",
+    "aliases": [
+      "potato eyes",
+      "potato buds",
+      "what is a tuber",
+      "is a potato a root"
+    ],
+    "sections": [],
+    "facts": [
+      "A sweet potato and a regular potato store food in different parts of the plant."
+    ],
+    "terms": [
+      "tuber",
+      "stem",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "plant-roots",
+        "text": "What does a true root do?"
+      },
+      {
+        "target": "flower-bulbs",
+        "text": "How does a tulip store food in a different way?"
+      },
+      {
+        "target": "plant-rhizomes",
+        "text": "How else can a stem grow underground?"
+      }
+    ],
+    "sources": [
+      "mat-umn-bulbs",
+      "mat-osu-plant-outer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plant-rhizomes",
+    "title": "How does a plant spread by underground stems?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A rhizome is a stem that grows sideways, often just below the ground. Roots can grow down from it. New leafy shoots can grow up at points along the stem. That is one way irises fill more space over time. The old and new shoots can stay connected through the rhizome even when only their tops are visible. A rhizome can also store food, giving a new shoot a supply before it grows enough leaves to make its own.",
+    "aliases": [
+      "rhizome",
+      "how iris grows",
+      "what kind of plant part is ginger"
+    ],
+    "sections": [],
+    "facts": [
+      "The part of a ginger plant sold as “ginger root” is actually a rhizome."
+    ],
+    "terms": [
+      "rhizome",
+      "stem"
+    ],
+    "questions": [
+      {
+        "target": "strawberry-runners",
+        "text": "What kind of stem spreads across the top of the ground?"
+      },
+      {
+        "target": "potato-tubers",
+        "text": "Which swollen stem can store food and sprout from eyes?"
+      },
+      {
+        "target": "plant-stems",
+        "text": "What makes a plant part a stem even when it is underground?"
+      }
+    ],
+    "sources": [
+      "mat-umn-bulbs",
+      "mat-ncsu-botany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "strawberry-runners",
+    "title": "How does a strawberry plant make a runner?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A strawberry plant can stretch a long, thin stem across the soil. The stem is called a runner. At places along it, a little copy of the plant can grow leaves and reach down with new roots. At first the tiny plant is joined to the older one. Once its roots and leaves can do enough work, it can survive on its own. This lets one strawberry plant make several nearby plants even in a season when it makes few seeds.",
+    "aliases": [
+      "strawberry plants spread",
+      "stolons",
+      "little strawberry plants on a stem"
+    ],
+    "sections": [],
+    "facts": [
+      "A stem that runs along the ground to make new plants can also be called a stolon."
+    ],
+    "terms": [
+      "runner",
+      "stem",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "plant-rhizomes",
+        "text": "Which sideways-growing stems are usually found underground?"
+      },
+      {
+        "target": "seed-travel",
+        "text": "What other ways can plants spread to new places?"
+      },
+      {
+        "target": "plant-roots",
+        "text": "What can a new strawberry plant do after it grows its own roots?"
+      }
+    ],
+    "sources": [
+      "mat-ncsu-botany",
+      "mat-osu-plant-outer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fall-leaf-colors",
+    "title": "Why do leaves change color in fall?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A summer maple leaf looks green because it has a lot of a substance called chlorophyll. In fall, as days get shorter, the leaf makes less chlorophyll and the green color fades. Other colors that were harder to see can now show through. They include some yellow and orange colors. Some leaves make additional red or purple coloring in fall. Different kinds of trees can turn different colors, and light and temperature can help change how bright the colors look.",
+    "aliases": [
+      "autumn leaves",
+      "why leaves turn red",
+      "chlorophyll and fall"
+    ],
+    "sections": [],
+    "facts": [
+      "Yellow or orange colors can already be present before a green leaf changes color."
+    ],
+    "terms": [
+      "chlorophyll",
+      "deciduous",
+      "photosynthesis"
+    ],
+    "questions": [
+      {
+        "target": "plant-leaves",
+        "text": "What is chlorophyll helping a green leaf do in summer?"
+      },
+      {
+        "target": "evergreen-leaves",
+        "text": "How do some trees stay green all winter?"
+      },
+      {
+        "target": "plant-phloem",
+        "text": "How can a tree move some sugars away from a leaf?"
+      }
+    ],
+    "sources": [
+      "mat-umn-fall"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "evergreen-leaves",
+    "title": "How do evergreen trees stay green all year?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Evergreen plants keep some green leaves throughout the year. That does not mean that each leaf lasts forever. An evergreen tree can shed older leaves as it grows replacements, rather than dropping most leaves at once. Many pines and spruces have narrow needles with a coating that helps limit water loss. Some other evergreens have wide, flat leaves. The trick is keeping living leaves through winter or a dry season, whatever shape those leaves happen to be.",
+    "aliases": [
+      "why do evergreens keep needles",
+      "evergreen winter leaves"
+    ],
+    "sections": [],
+    "facts": [
+      "Some plants with broad, flat leaves are evergreen too."
+    ],
+    "terms": [
+      "evergreen",
+      "deciduous",
+      "photosynthesis"
+    ],
+    "questions": [
+      {
+        "target": "fall-leaf-colors",
+        "text": "Why do some other trees lose green leaves in fall?"
+      },
+      {
+        "target": "pine-cones",
+        "text": "Where does a pine tree grow its seeds?"
+      },
+      {
+        "target": "coast-redwoods",
+        "text": "Which evergreen trees grow especially tall near the Pacific coast?"
+      }
+    ],
+    "sources": [
+      "mat-umn-fall",
+      "mat-ncsu-botany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pine-cones",
+    "title": "What are pine cones for?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Pine trees make cones as part of making seeds. Small pollen cones release pollen into the air. A larger seed cone has scales, the stiff plates you can see on a pine cone. Seeds grow where they are protected by those scales. In some species, a cone opens when it dries, and the seeds can fall or blow away. A pine tree does not make a fruit around its seeds, which is one way it differs from a tomato plant.",
+    "aliases": [
+      "pine cone seeds",
+      "male and female pine cones",
+      "conifer cones"
+    ],
+    "sections": [],
+    "facts": [
+      "A pine has small pollen cones as well as larger seed cones."
+    ],
+    "terms": [
+      "seed",
+      "pollen",
+      "evergreen"
+    ],
+    "questions": [
+      {
+        "target": "pollination",
+        "text": "How does pollen travel even when a plant has no petals?"
+      },
+      {
+        "target": "giant-sequoias",
+        "text": "How can a small cone come from a gigantic tree?"
+      },
+      {
+        "target": "plant-fruit",
+        "text": "How do flowering plants cover their seeds differently?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-seeds"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mosses",
+    "title": "How can moss grow without true roots?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Mosses are small plants that often make soft green mats. Instead of true roots, many have tiny threads that hold the plant in place. Moisture can reach much of a moss plant right through the outside. You may find moss where the ground or a rock stays damp, though some kinds can dry out and start growing again when wet. Moss can spread using spores. These may leave a little case that stands above the green mat.",
+    "aliases": [
+      "what is moss",
+      "moss roots",
+      "how moss spreads"
+    ],
+    "sections": [],
+    "facts": [
+      "A moss can grow a spore case at the tip of a slender stalk."
+    ],
+    "terms": [
+      "spore",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "plant-roots",
+        "text": "How do the true roots of many larger plants carry out different jobs?"
+      },
+      {
+        "target": "ferns",
+        "text": "Which plants have true roots but still make spores?"
+      },
+      {
+        "target": "lichens",
+        "text": "What flat or crusty growth on a rock might be a lichen instead of moss?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-bryophytes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ferns",
+    "title": "Why do some ferns have dots under their leaves?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Turn over a mature leaf on some ferns and you may see rows of round brown spots. The spots are groups of tiny cases that hold spores. When spores are ready, those cases release them, and air can carry them away. In a suitable place, a spore can start a small separate stage of the fern’s life. Later a new leafy fern can grow. Ferns have roots, stems and leaves, yet they make no flowers or seeds.",
+    "aliases": [
+      "fern spores",
+      "dots on fern",
+      "how ferns reproduce"
+    ],
+    "sections": [],
+    "facts": [
+      "A fern leaf is also called a frond."
+    ],
+    "terms": [
+      "spore",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "mosses",
+        "text": "Which smaller plants also spread through spores?"
+      },
+      {
+        "target": "seed-germination",
+        "text": "How does starting from a seed differ from growing from a spore?"
+      },
+      {
+        "target": "plant-leaves",
+        "text": "What does the green surface of a fern frond do with sunlight?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-ferns"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "giant-sequoias",
+    "title": "How big can a giant sequoia get?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A giant sequoia builds a trunk wide enough to make people standing beside it look tiny. It is famous for the amount of wood in that trunk. The General Sherman Tree is the largest known living single-stem tree by trunk volume. A few other kinds of trees grow taller, but they do not have trunks with as much wood. Wild giant sequoias grow in groves on the western side of California’s Sierra Nevada. Their seeds are much smaller than the huge trees they can become.",
+    "aliases": [
+      "giant sequoia trees",
+      "biggest tree by volume",
+      "General Sherman"
+    ],
+    "sections": [],
+    "facts": [
+      "The General Sherman Tree is a giant sequoia in Sequoia National Park."
+    ],
+    "terms": [
+      "xylem",
+      "seed"
+    ],
+    "questions": [
+      {
+        "target": "coast-redwoods",
+        "text": "Which related tree often grows much taller?"
+      },
+      {
+        "target": "pine-cones",
+        "text": "How do woody cones hold small seeds?"
+      },
+      {
+        "target": "plant-xylem",
+        "text": "How can water reach leaves so far above the roots?"
+      }
+    ],
+    "sources": [
+      "mat-nps-redwoods"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "coast-redwoods",
+    "title": "Why are coast redwoods famous?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Coast redwoods are the tallest living trees known. They grow naturally along a narrow stretch of the Pacific coast in California and a small part of Oregon. Winter rain and summer fog help keep their forests moist. A redwood may rise far above the plants at its foot, yet its cones are fairly small. A redwood’s height tells you one thing about its size. A giant sequoia’s wider trunk often contains more wood even when the giant sequoia is shorter.",
+    "aliases": [
+      "tall redwoods",
+      "redwood fog",
+      "how tall are redwoods"
+    ],
+    "sections": [],
+    "facts": [
+      "Coast redwood and giant sequoia are two different kinds of trees."
+    ],
+    "terms": [
+      "evergreen",
+      "xylem"
+    ],
+    "questions": [
+      {
+        "target": "giant-sequoias",
+        "text": "Why does “largest tree” sometimes refer to a different tree?"
+      },
+      {
+        "target": "plant-xylem",
+        "text": "What helps water travel all the way up a redwood?"
+      },
+      {
+        "target": "evergreen-leaves",
+        "text": "What does it mean for a tree to be evergreen?"
+      }
+    ],
+    "sources": [
+      "mat-nps-redwoods"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "venus-flytraps",
+    "title": "How does a Venus flytrap catch a fly?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A Venus flytrap has hinged leaves with tiny hairs on their inside surfaces. When a small insect moves around and brushes the right hairs within a short time, a leaf can snap closed. The plant can get helpful nutrients from the trapped animal. It lives in places where some nutrients are hard to get from the ground. Its green parts still use sunlight to make sugars, as the leaves of other green plants do. Catching animals helps the plant meet a different need.",
+    "aliases": [
+      "Venus fly trap",
+      "how do flytraps work",
+      "plant that snaps"
+    ],
+    "sections": [],
+    "facts": [
+      "Wild Venus flytraps are native to a small part of North and South Carolina."
+    ],
+    "terms": [
+      "carnivorous",
+      "nutrient",
+      "photosynthesis"
+    ],
+    "questions": [
+      {
+        "target": "pitcher-plants",
+        "text": "What different shape can a plant use to trap insects?"
+      },
+      {
+        "target": "photosynthesis",
+        "text": "Where does a flytrap get much of the energy it uses?"
+      },
+      {
+        "target": "plant-roots",
+        "text": "How do most plants get minerals from soil?"
+      }
+    ],
+    "sources": [
+      "mat-kew-flytrap",
+      "mat-kew-carnivory"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pitcher-plants",
+    "title": "How does a pitcher plant catch insects?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Some pitcher plants make hollow leaves shaped like deep cups. An insect can slip inside and find it hard to climb out. The plant gains nutrients as the captured food breaks down. In a purple pitcher plant, rain can collect in the leaf and tiny living things may help break down the material inside. This can help a plant in a wet place where its roots cannot find a large supply of certain nutrients. The pitcher is a special kind of leaf.",
+    "aliases": [
+      "plants with cup leaves",
+      "what is a pitcher plant",
+      "purple pitcher plant"
+    ],
+    "sections": [],
+    "facts": [
+      "Some pitcher plants have leaves that collect rainwater."
+    ],
+    "terms": [
+      "carnivorous",
+      "nutrient",
+      "photosynthesis"
+    ],
+    "questions": [
+      {
+        "target": "venus-flytraps",
+        "text": "Which plant can snap a leaf shut?"
+      },
+      {
+        "target": "plant-leaves",
+        "text": "How does a leaf usually help a plant make sugar?"
+      },
+      {
+        "target": "plant-roots",
+        "text": "What normal job do roots perform in most plants?"
+      }
+    ],
+    "sources": [
+      "mat-kew-pitcher",
+      "mat-kew-carnivory"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mushrooms",
+    "title": "What part of a fungus is a mushroom?",
+    "category": "fungi-microbes",
+    "priority": 2,
+    "answer": "A mushroom can be the visible part of a fungus that makes and releases spores. Much of the same fungus may be growing as fine threads in soil, leaves or wood. Those hidden threads collect food and can keep growing even when no mushroom is in sight. A mushroom pushes some of the fungus above the material where it lives. That can give its tiny spores a better chance of reaching the air and traveling to another spot.",
+    "aliases": [
+      "how a mushroom grows",
+      "mushroom spores",
+      "are mushrooms plants"
+    ],
+    "sections": [],
+    "facts": [
+      "Many mushroom species have gills or pores where spores form."
+    ],
+    "terms": [
+      "fungus",
+      "spore",
+      "mycelium"
+    ],
+    "questions": [
+      {
+        "target": "fungal-mycelium",
+        "text": "How much of a fungus can be hidden under a mushroom?"
+      },
+      {
+        "target": "fungal-decomposers",
+        "text": "How do some mushrooms get food from dead wood?"
+      },
+      {
+        "target": "ferns",
+        "text": "Which plants also use spores instead of seeds?"
+      }
+    ],
+    "sources": [
+      "mat-usfs-fungi"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fungal-mycelium",
+    "title": "Where is most of a fungus hiding?",
+    "category": "fungi-microbes",
+    "priority": 2,
+    "answer": "A fungus often grows as a net of tiny branching threads. The whole net is called mycelium. A branch can grow along the inside of a fallen stick or weave through spaces between pieces of soil. The threads can take in food after the fungus releases substances that break larger materials into smaller pieces. If a fungus makes a mushroom, the threads may stay in place after the mushroom dries out. Then a new mushroom can appear later.",
+    "aliases": [
+      "what is mycelium",
+      "fungus threads",
+      "hyphae"
+    ],
+    "sections": [],
+    "facts": [
+      "Many fungi have threads too thin to see well without a microscope."
+    ],
+    "terms": [
+      "mycelium",
+      "fungus"
+    ],
+    "questions": [
+      {
+        "target": "mushrooms",
+        "text": "What part of a fungus is easy to spot above the soil?"
+      },
+      {
+        "target": "fungal-decomposers",
+        "text": "How can those threads get food out of a log?"
+      },
+      {
+        "target": "mycorrhizal-fungi",
+        "text": "What happens when fungal threads grow around living roots?"
+      }
+    ],
+    "sources": [
+      "mat-usfs-fungi"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fungal-decomposers",
+    "title": "How do fungi help a fallen log break down?",
+    "category": "fungi-microbes",
+    "priority": 2,
+    "answer": "A fallen branch still has food materials locked inside its tough wood. Some fungi grow into the branch and release substances that break the wood down. They absorb some of the smaller pieces for food. In time, the wood can become soft or crumble. Some of its materials return to the soil or air in other forms. This work makes fungi important decomposers. A forest can keep using materials from old growth even as living trees add whole new branches and leaves.",
+    "aliases": [
+      "wood decay",
+      "fungi that break down wood",
+      "why logs rot"
+    ],
+    "sections": [],
+    "facts": [
+      "Not all fungi take apart wood in the same way."
+    ],
+    "terms": [
+      "decomposer",
+      "fungus",
+      "mycelium"
+    ],
+    "questions": [
+      {
+        "target": "fungal-mycelium",
+        "text": "What part of a fungus grows into tiny spaces in wood?"
+      },
+      {
+        "target": "soil-organic-matter",
+        "text": "Where can some broken-down plant material go?"
+      },
+      {
+        "target": "ecosystems",
+        "text": "Why do both living things and their surroundings matter in a forest?"
+      }
+    ],
+    "sources": [
+      "mat-usfs-decay",
+      "mat-usfs-fungi"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lichens",
+    "title": "Why can lichens grow on bare rocks?",
+    "category": "fungi-microbes",
+    "priority": 2,
+    "answer": "A lichen grows when a fungus lives closely with a partner that can make sugars using light. That partner can be a kind of alga or a kind of tiny living thing called a cyanobacterium. The fungus makes most of the sheltering body you see. Its partner helps supply food. Together they can grow on surfaces like rock, wood or tree bark. A lichen does not need to have plant roots reaching down into a pocket of soil.",
+    "aliases": [
+      "what is a lichen",
+      "lichen on a tree",
+      "lichen or moss"
+    ],
+    "sections": [],
+    "facts": [
+      "Lichens can have shapes like thin crusts, flat leaves or tiny branches."
+    ],
+    "terms": [
+      "lichen",
+      "fungus",
+      "photosynthesis"
+    ],
+    "questions": [
+      {
+        "target": "mycorrhizal-fungi",
+        "text": "What other kind of partnership can a fungus form?"
+      },
+      {
+        "target": "mosses",
+        "text": "How is a green mat of moss different from a lichen?"
+      },
+      {
+        "target": "photosynthesis",
+        "text": "How does the partner that catches sunlight make sugars?"
+      }
+    ],
+    "sources": [
+      "mat-usfs-lichens"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mycorrhizal-fungi",
+    "title": "How can a fungus help a plant root?",
+    "category": "fungi-microbes",
+    "priority": 2,
+    "answer": "Some fungi grow right against plant roots or inside parts of the roots. Their thin threads can reach more ground than the root could cover by itself. The fungus can pass useful minerals or water to the plant. The plant can share some of the food materials it makes using sunlight. This partnership is called a mycorrhiza. If you look at a whole tree from above ground, you may never notice the many tiny partnerships helping it below the surface.",
+    "aliases": [
+      "root fungi partnership",
+      "mycorrhizae",
+      "plant root helpers"
+    ],
+    "sections": [],
+    "facts": [
+      "A plant and its fungal partners can share materials in both directions."
+    ],
+    "terms": [
+      "mycorrhiza",
+      "fungus",
+      "nutrient"
+    ],
+    "questions": [
+      {
+        "target": "plant-roots",
+        "text": "What important materials do roots collect?"
+      },
+      {
+        "target": "plant-phloem",
+        "text": "How can sugar get to parts below the ground?"
+      },
+      {
+        "target": "lichens",
+        "text": "How can another fungus work with a partner that makes sugars?"
+      }
+    ],
+    "sources": [
+      "mat-usfs-mycorrhizae",
+      "mat-usfs-fungi"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "soil-organic-matter",
+    "title": "What happens to old leaves in the soil?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A leaf that falls into soil can become food for little animals, fungi and other living things. They break it into smaller parts. Some of those materials stay in the soil in changed forms. Together with pieces of roots and other once-living things, they are part of the soil’s organic matter. This material can help soil hold water and make nutrients available to plants. A fresh leaf and a bit of dark older soil can belong to the same long recycling process.",
+    "aliases": [
+      "soil organic matter",
+      "where dead leaves go",
+      "humus and soil"
+    ],
+    "sections": [],
+    "facts": [
+      "Some organic matter stays mixed into soil much longer than a fresh leaf lasts."
+    ],
+    "terms": [
+      "decomposer",
+      "nutrient",
+      "ecosystem"
+    ],
+    "questions": [
+      {
+        "target": "fungal-decomposers",
+        "text": "How can fungi break down a fallen branch?"
+      },
+      {
+        "target": "plant-roots",
+        "text": "What do roots collect from what surrounds them?"
+      },
+      {
+        "target": "soil-texture",
+        "text": "How do soil’s mineral particles differ from remains of leaves?"
+      }
+    ],
+    "sources": [
+      "mat-nrcs-organic",
+      "mat-nrcs-soil"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "soil-texture",
+    "title": "Why do some soils feel gritty or sticky?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Soil contains mineral pieces of different sizes. Sand has the largest of the three common groups, so it often feels gritty. Silt is finer. Clay pieces are so small that wet clay-rich soil can feel sticky and smooth. Most soils have a mix of these sizes. The mix is called soil texture. It helps affect how fast water can move and how much stays between particles. The texture of a garden patch can differ from soil only a short walk away.",
+    "aliases": [
+      "sand silt clay",
+      "types of soil texture",
+      "loam"
+    ],
+    "sections": [],
+    "facts": [
+      "Soil texture depends on the mix of sand, silt and clay particles."
+    ],
+    "terms": [
+      "mineral",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "soil-organic-matter",
+        "text": "What else can soil contain besides pieces of minerals?"
+      },
+      {
+        "target": "irrigation",
+        "text": "How do people give a growing crop enough water?"
+      },
+      {
+        "target": "plant-roots",
+        "text": "Why does the soil matter to roots even when the leaves look healthy?"
+      }
+    ],
+    "sources": [
+      "mat-nrcs-texture",
+      "mat-nrcs-soil"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mixtures",
+    "title": "What makes something a mixture?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "A bowl with rice and beans holds a mixture. You can add more of either food and still recognize the pieces. Mixtures can be harder to see, too. Salt may spread out in water until both parts look like one clear liquid. The amount of salt can change from one glass to another. With a pure substance like water, molecules of that substance always have the same set of atoms. Some mixtures look even all the way through. Others have parts you can see.",
+    "aliases": [
+      "what is a mixture",
+      "mixtures and pure substances",
+      "examples of mixtures"
+    ],
+    "sections": [],
+    "facts": [
+      "You can change the amount of one ingredient in a mixture."
+    ],
+    "terms": [
+      "mixture",
+      "solution",
+      "compound"
+    ],
+    "questions": [
+      {
+        "target": "dissolving-sugar",
+        "text": "How can a substance stay in a mixture after you stop seeing it?"
+      },
+      {
+        "target": "chemical-compounds",
+        "text": "What is different about a substance with a fixed recipe of atoms?"
+      },
+      {
+        "target": "oil-and-water",
+        "text": "Why do some combined liquids form separate layers?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-matter"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dissolving-sugar",
+    "title": "Where does sugar go when it dissolves?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "When sugar dissolves, it is still there even after you stop seeing the grains. Water separates the sugar molecules from the grain and surrounds them without breaking apart the individual molecules. The tiny sugar molecules spread throughout the water, making an even mixture called a solution. Stirring moves less sugary water toward the grains and carries sugar away from them. If you let the water leave as vapor, some of the dissolved material can collect as solid again. Dissolving sugar is different from changing it into another substance.",
+    "aliases": [
+      "does sugar disappear in water",
+      "solute and solvent",
+      "make a solution"
+    ],
+    "sections": [],
+    "facts": [
+      "Stirring can help sugar dissolve faster."
+    ],
+    "terms": [
+      "dissolve",
+      "solution",
+      "molecule"
+    ],
+    "questions": [
+      {
+        "target": "saturated-solutions",
+        "text": "What happens if you keep adding sugar after the water is full of dissolved sugar?"
+      },
+      {
+        "target": "crystals",
+        "text": "How can dissolved sugar or salt become solid again?"
+      },
+      {
+        "target": "oil-and-water",
+        "text": "Why does oil behave differently in water?"
+      }
+    ],
+    "sources": [
+      "mat-acs-solutions",
+      "mat-openstax-solubles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "saturated-solutions",
+    "title": "Why does extra sugar stay on the bottom?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "At a given temperature, a glass of water can hold only a certain amount of dissolved sugar. When it holds as much as it can, the solution is saturated. Extra sugar can remain as grains at the bottom even after plenty of stirring. Warming water often lets it hold more sugar, though not every substance responds to temperature in the same way. When a concentrated sugar solution cools, it may no longer be able to hold all that sugar in the water.",
+    "aliases": [
+      "saturated mixture",
+      "maximum amount of sugar in water",
+      "solubility"
+    ],
+    "sections": [],
+    "facts": [
+      "A saturated solution can still look clear above any extra solid."
+    ],
+    "terms": [
+      "saturated",
+      "solubility",
+      "solution"
+    ],
+    "questions": [
+      {
+        "target": "dissolving-sugar",
+        "text": "What is happening while a sugar grain gets smaller in water?"
+      },
+      {
+        "target": "crystals",
+        "text": "How can a dissolved substance begin forming solid patterns?"
+      },
+      {
+        "target": "soda-fizz",
+        "text": "What changes how much gas can stay dissolved in water?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-solubles",
+      "mat-acs-dissolve-temp"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chemical-compounds",
+    "title": "How is a compound different from a mixture?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "A compound forms when atoms of different elements join in a fixed pattern or proportion. Water is a compound. Each water molecule contains two hydrogen atoms and one oxygen atom. Mixing extra salt into water does not give a water molecule an extra atom. It makes a mixture with different kinds of particles sharing the same space. Some compounds, such as water, come in separate molecules. Others, such as ordinary table salt, can make repeating patterns with no single molecule to separate out.",
+    "aliases": [
+      "what is a chemical compound",
+      "compound and element",
+      "how hydrogen and oxygen make water"
+    ],
+    "sections": [],
+    "facts": [
+      "In each water molecule, two hydrogen atoms are joined to one oxygen atom."
+    ],
+    "terms": [
+      "compound",
+      "atom",
+      "element",
+      "mixture"
+    ],
+    "questions": [
+      {
+        "target": "elements",
+        "text": "What is special about a material made of a single kind of atom?"
+      },
+      {
+        "target": "mixtures",
+        "text": "How can you change the proportions in a mixture?"
+      },
+      {
+        "target": "chemical-reactions",
+        "text": "What happens to atoms when substances turn into different substances?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-matter"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "crystals",
+    "title": "Why do crystals have neat shapes?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "In a crystal, very small particles fit together in a pattern that repeats. Adding more particles in matching positions can grow that same pattern outward. The resulting solid may have flat faces or sharp edges that reflect its inner arrangement. Some salt grains look like tiny boxes when you see them through a magnifier. A broken crystal may have chipped or uneven edges, but its remaining particles still follow a pattern. Crystals can grow from melted, dissolved or gaseous materials in suitable conditions.",
+    "aliases": [
+      "crystal shapes",
+      "growing crystals",
+      "why salt grains are square"
+    ],
+    "sections": [],
+    "facts": [
+      "Even a crystal too small to study with your eyes has a repeating arrangement inside."
+    ],
+    "terms": [
+      "crystal",
+      "atom",
+      "saturated"
+    ],
+    "questions": [
+      {
+        "target": "saturated-solutions",
+        "text": "How can a liquid mixture end up holding more dissolved material than it can keep?"
+      },
+      {
+        "target": "ice-floats",
+        "text": "How does a regular pattern make ice take up more space?"
+      },
+      {
+        "target": "glass-making",
+        "text": "How is the pattern inside glass different from a crystal?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-crystals",
+      "mat-openstax-solubles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "oil-and-water",
+    "title": "Why don’t oil and water mix evenly?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "In water, the parts of each molecule that pull on nearby molecules help water gather together. Oil molecules do not make the same strong connections with water. If you shake oil and water, some oil breaks into little drops, but the drops can bump into one another and join up again. Many cooking oils also have lower density than water, so their layer ends up on top. Floating and failing to dissolve are different effects. Both can happen in the same glass.",
+    "aliases": [
+      "oil floats on water",
+      "why oil separates",
+      "oil and water droplets"
+    ],
+    "sections": [],
+    "facts": [
+      "Oil and water can look temporarily mixed right after shaking."
+    ],
+    "terms": [
+      "mixture",
+      "emulsion",
+      "density"
+    ],
+    "questions": [
+      {
+        "target": "density",
+        "text": "Why is the layer of many cooking oils above the layer of water?"
+      },
+      {
+        "target": "soap-and-grease",
+        "text": "How can soap help break up a layer of oil?"
+      },
+      {
+        "target": "salad-dressing-emulsion",
+        "text": "How do some ingredients keep oil droplets spread out longer?"
+      }
+    ],
+    "sources": [
+      "mat-acs-oil",
+      "mat-acs-solutions"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "surface-tension-water",
+    "title": "Why do water drops hold together?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "Water molecules tug on other water molecules near them. A molecule deep in water is pulled from many directions. A molecule at the surface has much less water above it, so the surface tends to draw tight. This is called surface tension. It helps make a small drop round rather than spread very far. When the conditions are right, a small insect can stand on top of water without breaking through, with its feet making little dents in the surface.",
+    "aliases": [
+      "water surface tension",
+      "why water beads",
+      "how water bugs walk on water"
+    ],
+    "sections": [],
+    "facts": [
+      "Soap can lower the surface tension of clean water."
+    ],
+    "terms": [
+      "surface tension",
+      "molecule"
+    ],
+    "questions": [
+      {
+        "target": "soap-bubbles",
+        "text": "How does soap let water stretch into a film around air?"
+      },
+      {
+        "target": "soap-and-grease",
+        "text": "How does soap change the way water meets a greasy surface?"
+      },
+      {
+        "target": "plant-xylem",
+        "text": "How does water sticking to itself help a plant move water upward?"
+      }
+    ],
+    "sources": [
+      "mat-acs-tension",
+      "mat-usgs-waterproperties"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "soap-and-grease",
+    "title": "How does soap help water wash away grease?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A greasy surface can make plain water form separate drops. Soap changes how these materials meet. Part of a soap molecule gets along with water, while another part gets along with oil. As the surface is rubbed or stirred, soap helps hold broken-up grease in small groups that the water can carry away. There is more to cleaning than making foam. A soapy mixture can carry away oil even where few bubbles are big enough for you to see.",
+    "aliases": [
+      "why soap cleans",
+      "why can soap remove oil",
+      "how dish soap works"
+    ],
+    "sections": [],
+    "facts": [
+      "Soap can affect both water and oil because different parts of a soap molecule behave differently."
+    ],
+    "terms": [
+      "molecule",
+      "emulsion",
+      "surface tension"
+    ],
+    "questions": [
+      {
+        "target": "oil-and-water",
+        "text": "Why might plain water leave a patch of oil behind?"
+      },
+      {
+        "target": "soap-bubbles",
+        "text": "What happens when a thin layer of soapy water surrounds air?"
+      },
+      {
+        "target": "hard-water",
+        "text": "What can make soap work less easily in some places?"
+      }
+    ],
+    "sources": [
+      "mat-acs-oil",
+      "mat-acs-tension"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "soap-bubbles",
+    "title": "Why can soap make a bubble last?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A bubble forms when air stretches a thin liquid film around itself. Water alone usually cannot keep that delicate film from breaking for very long. Soap makes the film easier to stretch and helps it hold together longer. A floating bubble tends toward a round shape because its film pulls toward the smallest surface it can make around that amount of air. As water drains or evaporates from the film, weak spots can form, and the bubble may pop.",
+    "aliases": [
+      "why bubbles round",
+      "bubble film",
+      "what are soap bubbles made of"
+    ],
+    "sections": [],
+    "facts": [
+      "A bubble contains air surrounded by a thin liquid film."
+    ],
+    "terms": [
+      "surface tension",
+      "molecule"
+    ],
+    "questions": [
+      {
+        "target": "surface-tension-water",
+        "text": "Why does a drop of water try to keep its surface small?"
+      },
+      {
+        "target": "soap-and-grease",
+        "text": "What are the two different jobs parts of a soap molecule can do?"
+      },
+      {
+        "target": "water-cycle",
+        "text": "What can happen to the water in a bubble as time passes?"
+      }
+    ],
+    "sources": [
+      "mat-acs-tension",
+      "mat-usgs-waterproperties"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "salad-dressing-emulsion",
+    "title": "Why do oil-based dressings sometimes separate?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Oil and vinegar can look like a single cloudy liquid after you shake a dressing. The motion breaks the oil into drops and spreads them through the watery vinegar. A mixture like this is called an emulsion. The drops can eventually come together into a layer again. Some foods use an ingredient that sits where the oil and water meet. That can help the drops stay apart longer. Mayonnaise is an example in which ingredients in egg yolk help hold many tiny drops in place.",
+    "aliases": [
+      "why salad dressing separates",
+      "oil vinegar emulsion",
+      "why mayonnaise stays mixed"
+    ],
+    "sections": [],
+    "facts": [
+      "Mayonnaise contains small drops of oil spread through a watery mixture."
+    ],
+    "terms": [
+      "emulsion",
+      "mixture"
+    ],
+    "questions": [
+      {
+        "target": "oil-and-water",
+        "text": "Why do plain water and oil soon form separate layers?"
+      },
+      {
+        "target": "soap-and-grease",
+        "text": "How can a different substance help water carry drops of grease?"
+      },
+      {
+        "target": "mixtures",
+        "text": "What makes a dressing a mixture even if its tiny parts are hard to see?"
+      }
+    ],
+    "sources": [
+      "mat-acs-oil",
+      "mat-openstax-matter"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chemical-reactions",
+    "title": "How can you tell a chemical reaction happened?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "A chemical reaction happens when starting substances change into different substances. Their atoms are arranged in new ways. Perhaps you see a new color, see bubbles or feel a temperature change. Those signs can give a clue, but one sign by itself does not prove what happened. Soda can release bubbles that were already dissolved in it. By contrast, when iron rusts, part of the iron becomes a different substance that has a red-brown color and new properties.",
+    "aliases": [
+      "what is a chemical change",
+      "chemical reaction signs",
+      "atoms rearrange"
+    ],
+    "sections": [],
+    "facts": [
+      "Atoms are rearranged during ordinary reactions rather than made from nothing."
+    ],
+    "terms": [
+      "chemical reaction",
+      "atom",
+      "molecule"
+    ],
+    "questions": [
+      {
+        "target": "baking-soda-gas",
+        "text": "What new gas forms when baking soda reacts with an acid?"
+      },
+      {
+        "target": "soda-fizz",
+        "text": "How can bubbles form without a new substance being made?"
+      },
+      {
+        "target": "rusting-iron",
+        "text": "What slowly forms after bare iron reacts with air and moisture?"
+      }
+    ],
+    "sources": [
+      "mat-acs-reaction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "baking-soda-gas",
+    "title": "Why can baking soda make batter rise?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "Baking soda can react with a food acid in wet batter and release carbon dioxide gas. The gas makes little bubbles that take up room. In an oven, the batter can set around those bubbles, leaving open spaces and making the baked food feel lighter. If the recipe uses a different source of gas, the spaces can look similar even though the gas formed in a different way. Bread made with yeast can hold carbon dioxide, too.",
+    "aliases": [
+      "baking soda in baking",
+      "what baking soda releases",
+      "how quick bread puffs"
+    ],
+    "sections": [],
+    "facts": [
+      "Carbon dioxide is the gas in bubbles made when baking soda reacts with an acid."
+    ],
+    "terms": [
+      "chemical reaction",
+      "carbon dioxide",
+      "gas"
+    ],
+    "questions": [
+      {
+        "target": "chemical-reactions",
+        "text": "How do the starting substances change as they release gas?"
+      },
+      {
+        "target": "yeast-bread",
+        "text": "How does yeast make gas in a different way?"
+      },
+      {
+        "target": "soda-fizz",
+        "text": "How is the gas in a fizzy drink similar?"
+      }
+    ],
+    "sources": [
+      "mat-acs-baking"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "acids-bases-ph",
+    "title": "What do pH numbers tell us?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "pH is a way to describe how acidic or basic a water-based liquid is. Around room temperature, pure water is neutral and has a pH about 7. Lemon juice and vinegar are on the acidic side, with lower numbers. A liquid with a pH above 7 is on the basic side. Scientists can use an instrument or a substance that changes color to help check the pH. Two clear liquids can have quite different pH values.",
+    "aliases": [
+      "pH scale",
+      "acidic and basic",
+      "is water neutral",
+      "compare vinegar and water"
+    ],
+    "sections": [],
+    "facts": [
+      "Near room temperature, pure water has a pH close to 7."
+    ],
+    "terms": [
+      "ph",
+      "solution",
+      "indicator"
+    ],
+    "questions": [
+      {
+        "target": "color-change-indicators",
+        "text": "How can one liquid’s color help reveal whether another is acidic?"
+      },
+      {
+        "target": "baking-soda-gas",
+        "text": "What new gas can form when baking soda meets an acid?"
+      },
+      {
+        "target": "hard-water",
+        "text": "How can dissolved minerals change water even without making it look different?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-ph",
+      "mat-acs-indicator"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "color-change-indicators",
+    "title": "How can a color show whether something is acidic?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "Some coloring substances take on different colors in acidic and basic liquids. We call a substance used this way an indicator. A purple color from red cabbage, for instance, can become pinker in an acidic liquid and take on a different color in a basic one. Acidic and basic conditions change the structure of some of its color molecules. A color comparison can give a useful clue about pH, even if both liquids started out clear.",
+    "aliases": [
+      "pH indicator",
+      "why red cabbage changes color",
+      "acid color change"
+    ],
+    "sections": [],
+    "facts": [
+      "Some indicators can show more than two colors across the pH scale."
+    ],
+    "terms": [
+      "indicator",
+      "ph",
+      "solution"
+    ],
+    "questions": [
+      {
+        "target": "acids-bases-ph",
+        "text": "What do the different pH numbers mean?"
+      },
+      {
+        "target": "apple-browning",
+        "text": "Why is a cut apple’s color change a different chemical effect?"
+      },
+      {
+        "target": "fall-leaf-colors",
+        "text": "How do natural coloring substances make leaves look different in fall?"
+      }
+    ],
+    "sources": [
+      "mat-acs-indicator",
+      "mat-openstax-ph"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hard-water",
+    "title": "Why do some water drops leave white spots?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "As rain or groundwater moves through rocks, it can pick up small amounts of minerals. Water with a lot of dissolved calcium or magnesium is called hard water. You usually cannot see those minerals floating in the water. When a drop dries on a faucet or glass, however, some mineral material can stay behind as a pale spot. The spot is a clue that the water was carrying something besides water molecules. Soap may also behave differently in hard water.",
+    "aliases": [
+      "hard water spots",
+      "minerals in tap water",
+      "calcium deposits"
+    ],
+    "sections": [],
+    "facts": [
+      "Dissolved calcium or magnesium can make it harder for some soaps to make foam."
+    ],
+    "terms": [
+      "mineral",
+      "dissolve",
+      "evaporation"
+    ],
+    "questions": [
+      {
+        "target": "dissolving-sugar",
+        "text": "Where does clear water hold dissolved material?"
+      },
+      {
+        "target": "crystals",
+        "text": "How can dissolved particles form a solid when conditions change?"
+      },
+      {
+        "target": "soap-and-grease",
+        "text": "How does soap help carry grease away when it can work well?"
+      }
+    ],
+    "sources": [
+      "mat-usgs-hardwater"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ice-floats",
+    "title": "Why does ice float on liquid water?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "In liquid water, molecules can move and slip close to one another. When ordinary ice forms, the molecules lock into a regular arrangement with more open space. The amount of water can stay the same while its solid form takes up more room. That makes ice less dense than liquid water. A piece of ice can float with some of itself above the surface and more of itself below. This is one reason pond ice forms at the top.",
+    "aliases": [
+      "why ice floats",
+      "frozen lake water",
+      "why solid water is less dense"
+    ],
+    "sections": [],
+    "facts": [
+      "The same amount of water takes up more space as ordinary ice than as liquid water."
+    ],
+    "terms": [
+      "density",
+      "crystal",
+      "molecule"
+    ],
+    "questions": [
+      {
+        "target": "density",
+        "text": "How do mass and space occupied affect floating?"
+      },
+      {
+        "target": "crystals",
+        "text": "What makes an orderly arrangement in a solid a crystal?"
+      },
+      {
+        "target": "ice-cream-crystals",
+        "text": "Why do ice crystals matter to the feel of a frozen dessert?"
+      }
+    ],
+    "sources": [
+      "mat-usgs-waterproperties",
+      "mat-openstax-crystals"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "soda-fizz",
+    "title": "Why does soda fizz when you open it?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A bottle of soda holds carbon dioxide mixed into the liquid. Inside the closed bottle, the gas above the drink pushes on the liquid. This higher pressure helps the liquid hold more dissolved gas. Opening the bottle lowers that pressure. Gas begins to leave the liquid, forming bubbles that rise and pop. Tiny rough places in a glass can give the bubbles places to start. When enough gas has escaped, the drink tastes flatter even though much of the liquid is still there.",
+    "aliases": [
+      "carbonation",
+      "fizzy drinks",
+      "bubbles in soda and sparkling water"
+    ],
+    "sections": [],
+    "facts": [
+      "Carbon dioxide can remain dissolved in a drink even when you see very few bubbles."
+    ],
+    "terms": [
+      "carbon dioxide",
+      "dissolve",
+      "gas"
+    ],
+    "questions": [
+      {
+        "target": "dissolving-sugar",
+        "text": "How can a solid stay hidden in water too?"
+      },
+      {
+        "target": "baking-soda-gas",
+        "text": "What makes new carbon dioxide rather than releasing some that was already there?"
+      },
+      {
+        "target": "yeast-bread",
+        "text": "What makes gas inside bread dough?"
+      }
+    ],
+    "sources": [
+      "mat-acs-soda",
+      "mat-openstax-solubles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rusting-iron",
+    "title": "Why does an old nail turn rusty?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "Iron can slowly react with oxygen when water is present. Some of the iron becomes new compounds containing iron and oxygen. We see these as red-brown rust. Rust can form rough flakes, leaving more iron underneath open to air and moisture. Salty water often helps the process go faster. Paint and some other coatings can protect an iron object if they keep air and water from touching the metal. A dry object can stay in better shape for much longer.",
+    "aliases": [
+      "how iron rusts",
+      "what is rust",
+      "why water rusts steel"
+    ],
+    "sections": [],
+    "facts": [
+      "A coating that keeps water and air away can help protect iron."
+    ],
+    "terms": [
+      "corrosion",
+      "chemical reaction",
+      "oxygen"
+    ],
+    "questions": [
+      {
+        "target": "chemical-reactions",
+        "text": "What kind of change can make a different-colored substance from iron?"
+      },
+      {
+        "target": "alloys",
+        "text": "How can adding elements improve a metal’s ability to resist damage?"
+      },
+      {
+        "target": "hard-water",
+        "text": "Why is a white water spot a different kind of deposit?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-rust"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "alloys",
+    "title": "Why mix one metal with other elements?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "An alloy contains at least one metal mixed with other elements. The mixture can behave differently from the pure metal. It might hold a shape better under pressure, be easier to work with, or be slower to react with air. Brass combines copper and zinc. Traditional bronze often adds tin to copper, while steel contains iron with some carbon. Different alloys fit different jobs. The metal in a musical instrument can have a different mix from the metal in a bicycle part.",
+    "aliases": [
+      "what is an alloy",
+      "why make alloys",
+      "brass bronze steel"
+    ],
+    "sections": [],
+    "facts": [
+      "Brass commonly combines copper with zinc."
+    ],
+    "terms": [
+      "alloy",
+      "element",
+      "mixture"
+    ],
+    "questions": [
+      {
+        "target": "stainless-steel",
+        "text": "What does chromium do in a kind of steel used for spoons?"
+      },
+      {
+        "target": "rusting-iron",
+        "text": "How can untreated iron change when it sits in a damp place?"
+      },
+      {
+        "target": "glass-making",
+        "text": "How do people change the qualities of another material by changing its ingredients?"
+      }
+    ],
+    "sources": [
+      "mat-rice-alloys",
+      "mat-purdue-materials"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "stainless-steel",
+    "title": "How does stainless steel resist rust?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "Stainless steel has iron mixed with enough of a metal called chromium to make a very thin protective layer on its surface. That layer forms when chromium meets oxygen. It helps keep air and moisture away from the metal underneath. A clean surface can often form a fresh protective layer after a small scratch. A spoon or sink made of stainless steel can stay bright through many washings. Some conditions, such as long contact with salt, can still damage it.",
+    "aliases": [
+      "why stainless steel does not rust easily",
+      "chromium spoon",
+      "why stainless steel shines"
+    ],
+    "sections": [],
+    "facts": [
+      "Stainless steel can still corrode in some conditions."
+    ],
+    "terms": [
+      "alloy",
+      "corrosion",
+      "element"
+    ],
+    "questions": [
+      {
+        "target": "rusting-iron",
+        "text": "How does regular iron react with air and water?"
+      },
+      {
+        "target": "alloys",
+        "text": "Why do people combine a metal with other elements?"
+      },
+      {
+        "target": "glass-making",
+        "text": "How can a new mix of ingredients change how an everyday material behaves?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-rust",
+      "mat-rice-alloys"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "glass-making",
+    "title": "How can sand become glass?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "A lot of familiar glass starts with sand rich in a material called silica. Glassmakers add other ingredients and heat the mix until it can flow. They shape it while it is hot, then cool it until it keeps its shape. The tiny particles inside do not settle into a neat repeating pattern, as they do in a salt crystal. Different ingredients and ways of shaping produce materials for windows, jars and much thinner objects, such as fine glass fibers.",
+    "aliases": [
+      "what is glass made of",
+      "how glass forms",
+      "why glass has no crystal pattern"
+    ],
+    "sections": [],
+    "facts": [
+      "The glass in many bottles starts with silica sand and other ingredients."
+    ],
+    "terms": [
+      "crystal",
+      "mineral"
+    ],
+    "questions": [
+      {
+        "target": "crystals",
+        "text": "What regular pattern is missing in ordinary glass?"
+      },
+      {
+        "target": "ceramic-pottery",
+        "text": "What other hard material can people shape and then heat?"
+      },
+      {
+        "target": "glass-recycling",
+        "text": "What can happen to a glass bottle after recycling?"
+      }
+    ],
+    "sources": [
+      "mat-corning-glass",
+      "mat-usgs-materials"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ceramic-pottery",
+    "title": "How does soft clay become a hard bowl?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "Potters can shape damp clay before it dries, when its small particles can move past one another. Drying takes out water and helps the shape hold. Firing is a later step that heats the dried piece in a special oven called a kiln. The heat changes the material and bonds its particles. The new hard piece is a ceramic. If a potter adds a glaze, that coating can form a thin, glassy surface with its own color and shine.",
+    "aliases": [
+      "fired clay",
+      "pottery kiln",
+      "what are ceramics"
+    ],
+    "sections": [],
+    "facts": [
+      "A kiln is an oven that can reach the heat needed to fire clay."
+    ],
+    "terms": [
+      "ceramic",
+      "solid"
+    ],
+    "questions": [
+      {
+        "target": "glass-making",
+        "text": "How does heating help make a transparent hard material?"
+      },
+      {
+        "target": "soil-texture",
+        "text": "How do clay particles differ from grains of sand?"
+      },
+      {
+        "target": "paper-making",
+        "text": "How can another new material begin as a wet mixture and end as a solid sheet?"
+      }
+    ],
+    "sources": [
+      "mat-us-ceramics",
+      "mat-purdue-materials"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plastic-polymers",
+    "title": "Why can plastics feel so different?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "A lot of the material in plastic is made from very long molecules. Such molecules may form loose chains or a tighter network. Their size, shape and links affect how far they can move and bend. Manufacturers can also add other ingredients. A squeeze bottle needs to bend under your fingers. A toy part might need to keep its shape. Both could be plastic even though one feels soft and the other feels hard, because their ingredients and structures can differ.",
+    "aliases": [
+      "what are plastics made of",
+      "flexible versus hard plastic",
+      "polymer chains"
+    ],
+    "sections": [],
+    "facts": [
+      "Many plastics can soften when warmed and harden again when cooled."
+    ],
+    "terms": [
+      "polymer",
+      "molecule"
+    ],
+    "questions": [
+      {
+        "target": "plastic-resin-codes",
+        "text": "What can a number on a plastic bottle tell you about its material?"
+      },
+      {
+        "target": "textile-fibers",
+        "text": "How can made fibers differ from cotton or wool fibers?"
+      },
+      {
+        "target": "alloys",
+        "text": "What can change when the ingredients of a solid material change?"
+      }
+    ],
+    "sources": [
+      "mat-shi-plastic",
+      "mat-purdue-materials",
+      "mat-ucanr-polymers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plastic-resin-codes",
+    "title": "What does a number on plastic tell you?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "Some containers have a small number surrounded by a three-sided shape. The number identifies a type of plastic material, which can help sorting. It does not by itself tell you where a container can be recycled. A local program might accept a bottle but have no way to handle an object made with some of the same material in another shape. Labels, food left inside, and mixtures of different parts can matter too. Local recycling rules give the most useful answer.",
+    "aliases": [
+      "plastic recycling numbers",
+      "bottle triangle number",
+      "resin identification code"
+    ],
+    "sections": [],
+    "facts": [
+      "The code identifies a general type of plastic resin."
+    ],
+    "terms": [
+      "polymer"
+    ],
+    "questions": [
+      {
+        "target": "plastic-polymers",
+        "text": "Why can two kinds of plastic behave differently when heated?"
+      },
+      {
+        "target": "glass-recycling",
+        "text": "How can sorted glass be used again?"
+      },
+      {
+        "target": "paper-making",
+        "text": "What other material can sometimes be made using old items as a source?"
+      }
+    ],
+    "sources": [
+      "mat-ucanr-polymers",
+      "mat-shi-plastic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "paper-making",
+    "title": "How do tiny fibers become a sheet of paper?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "Many kinds of paper start with tiny wood fibers. A mill separates the fibers and mixes them with water, making a wet mass called pulp. It spreads that pulp onto a moving screen. The water drains away while the fibers stay behind and catch on one another. Rollers press out more water, and the sheet dries. Old paper can sometimes be separated into fibers and used again. Shorter fibers or bits of ink can change how the recycled paper looks and feels.",
+    "aliases": [
+      "how paper is made",
+      "how wood turns into paper",
+      "paper pulp"
+    ],
+    "sections": [],
+    "facts": [
+      "Pressing and drying remove water from a new sheet."
+    ],
+    "terms": [
+      "pulp"
+    ],
+    "questions": [
+      {
+        "target": "textile-fibers",
+        "text": "How can long fibers make fabric instead of paper?"
+      },
+      {
+        "target": "fungal-decomposers",
+        "text": "How can tough material in wood be broken down in a forest?"
+      },
+      {
+        "target": "ceramic-pottery",
+        "text": "What different changes happen when someone makes a hard bowl from wet clay?"
+      }
+    ],
+    "sources": [
+      "mat-oksu-paper"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "textile-fibers",
+    "title": "What are the tiny threads in cloth made from?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A cloth can contain thousands of tiny strands called fibers. Some come from plants, like cotton and flax. Others come from animals, like wool from sheep or silk from certain insects. People can also make fibers from manufactured materials. Twisting many fibers together can make yarn. Weaving or knitting yarn can make a piece of fabric. Two shirts may feel different because of the kinds of fibers they use, the way those fibers were made into yarn, and how the yarn is joined.",
+    "aliases": [
+      "textile fibers",
+      "what clothes are made of",
+      "natural and made fibers"
+    ],
+    "sections": [],
+    "facts": [
+      "A fabric tag can tell you what fibers go into a garment."
+    ],
+    "terms": [
+      "textile fiber",
+      "polymer"
+    ],
+    "questions": [
+      {
+        "target": "cotton-fibers",
+        "text": "Where do cotton fibers grow on a plant?"
+      },
+      {
+        "target": "paper-making",
+        "text": "How can a sheet be made from fibers without weaving them?"
+      },
+      {
+        "target": "plastic-polymers",
+        "text": "What long molecules can go into human-made fibers?"
+      }
+    ],
+    "sources": [
+      "mat-gwu-fibers",
+      "mat-cornell-fibers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cotton-fibers",
+    "title": "How does cotton grow on a plant?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A cotton plant makes a dry fruit often called a boll. Inside that fruit, fine soft hairs grow from the surface of the seeds. When the fruit opens, the hairs spread out and give it a fluffy white look. To make fabric, people separate the fibers from the seeds. Next, the fibers can be gathered and twisted into a yarn. A piece of cotton cloth began with hairs a plant grew around its seeds rather than with strips cut from its leaves.",
+    "aliases": [
+      "cotton plant",
+      "cotton boll",
+      "where cotton fibers come from"
+    ],
+    "sections": [],
+    "facts": [
+      "The puffy fibers grow around and on cotton seeds."
+    ],
+    "terms": [
+      "textile fiber",
+      "seed",
+      "fruit"
+    ],
+    "questions": [
+      {
+        "target": "plant-fruit",
+        "text": "Why can a dry pod count as a fruit from a flowering plant?"
+      },
+      {
+        "target": "seed-travel",
+        "text": "What other plants use soft or fluffy parts around their seeds?"
+      },
+      {
+        "target": "textile-fibers",
+        "text": "How do fibers that grow on a plant become cloth?"
+      }
+    ],
+    "sources": [
+      "mat-gwu-fibers",
+      "mat-cornell-fibers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "carbon-graphite-diamond",
+    "title": "How can graphite and diamond both be carbon?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "A piece of graphite and a diamond can both be made of carbon atoms. In graphite, carbon atoms connect in layers. Layers near the surface can slide and leave gray marks on a page. In diamond, the carbon atoms join in a firm pattern that runs in all directions. That pattern makes diamond hard to scratch. The element can stay the same even when the material’s color, feel and ability to scratch other things change a lot.",
+    "aliases": [
+      "graphite versus diamond",
+      "carbon in pencils",
+      "why pencil lead is graphite"
+    ],
+    "sections": [],
+    "facts": [
+      "Pencil “lead” usually contains graphite mixed with clay instead of lead metal."
+    ],
+    "terms": [
+      "graphite",
+      "element",
+      "atom"
+    ],
+    "questions": [
+      {
+        "target": "elements",
+        "text": "What makes the atoms in graphite and diamond belong to the same element?"
+      },
+      {
+        "target": "crystals",
+        "text": "How can an inner pattern affect a solid’s shape?"
+      },
+      {
+        "target": "alloys",
+        "text": "How can two materials behave differently when their ingredients differ instead of their structure?"
+      }
+    ],
+    "sources": [
+      "mat-carbon-toledo",
+      "mat-purdue-materials"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "neon-signs",
+    "title": "What makes a neon sign glow?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "A real neon tube contains a small amount of neon gas. Electricity gives energy to atoms of that gas. When those atoms release some energy again, the light they give off looks reddish orange. The shape of the curved glass tube can turn that glow into letters or a picture. Other gases and special coatings can give similar signs different colors. A bright green sign may be called a neon sign in everyday speech even if its light does not mainly come from neon gas.",
+    "aliases": [
+      "neon color",
+      "glowing gas signs",
+      "neon gas in a glass tube"
+    ],
+    "sections": [],
+    "facts": [
+      "Some signs called neon signs use different gases to make other colors."
+    ],
+    "terms": [
+      "gas",
+      "atom",
+      "element"
+    ],
+    "questions": [
+      {
+        "target": "elements",
+        "text": "How can a gas such as neon belong to a single element?"
+      },
+      {
+        "target": "glass-making",
+        "text": "How can a manufacturer shape material into a glass tube?"
+      },
+      {
+        "target": "light",
+        "text": "What can make one glowing object look like a different color from another?"
+      }
+    ],
+    "sources": [
+      "mat-acs-neon"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "onion-tears",
+    "title": "Why can an onion make your eyes water?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A knife breaks many onion cells when it slices through their layers. Materials kept apart in an uncut onion can then mix. A few changes happen quickly, producing an onion substance that can travel through the air. If it reaches your eyes, it can irritate them, and your eyes make more tears to clear it away. An onion sitting whole has fewer open cells than a chopped one. That is why cutting the onion makes a bigger difference than simply placing it nearby.",
+    "aliases": [
+      "onion tears",
+      "why cutting onions makes us cry",
+      "onion gas"
+    ],
+    "sections": [],
+    "facts": [
+      "Cutting opens onion cells and lets substances inside meet."
+    ],
+    "terms": [
+      "enzyme",
+      "gas",
+      "cell"
+    ],
+    "questions": [
+      {
+        "target": "flower-bulbs",
+        "text": "Why does an onion have layers even before someone cuts it?"
+      },
+      {
+        "target": "chemical-reactions",
+        "text": "How can cell contents turn into a new substance?"
+      },
+      {
+        "target": "apple-browning",
+        "text": "Why does cutting into some other plants cause a visible change?"
+      }
+    ],
+    "sources": [
+      "mat-loc-onions"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "apple-browning",
+    "title": "Why does a sliced apple turn brown?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A freshly cut apple has new surfaces where the fruit’s cells meet the air. An enzyme in those cells helps oxygen take part in changes that form brown-colored material. The changes can go faster on a damaged surface than inside a whole apple. Lemon juice can slow the browning for a while because it changes conditions at the wet surface. Browning does not turn the apple into toast. Those two changes look a little alike but happen in different ways.",
+    "aliases": [
+      "apple slices brown",
+      "does lemon juice change apple browning",
+      "fruit oxygen"
+    ],
+    "sections": [],
+    "facts": [
+      "Crushing or cutting fruit can bring its cells into contact with more air."
+    ],
+    "terms": [
+      "enzyme",
+      "oxygen",
+      "chemical reaction"
+    ],
+    "questions": [
+      {
+        "target": "onion-tears",
+        "text": "What happens when a knife opens cells in an onion?"
+      },
+      {
+        "target": "color-change-indicators",
+        "text": "How can a change in acidity cause color to change in a different way?"
+      },
+      {
+        "target": "toast-browning",
+        "text": "What other chemical changes make food brown as it heats?"
+      }
+    ],
+    "sources": [
+      "mat-acs-apples"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "yeast-bread",
+    "title": "How does yeast make bread rise?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Bread yeast is a tiny living fungus. When it finds sugars available in dough, it can use them and release carbon dioxide gas. The gas gathers in pockets held by the dough. Over time those pockets grow, lifting the dough so it takes up more space. That is what bakers mean when they say bread is rising. The bread keeps many of the pockets after it bakes, which makes it easier to bite than a solid baked lump of flour and water.",
+    "aliases": [
+      "why bread dough rises",
+      "what does yeast do in bread",
+      "bread bubbles"
+    ],
+    "sections": [],
+    "facts": [
+      "Bakers add yeast to many breads to produce carbon dioxide gas."
+    ],
+    "terms": [
+      "yeast",
+      "fermentation",
+      "carbon dioxide"
+    ],
+    "questions": [
+      {
+        "target": "mushrooms",
+        "text": "What larger part can another kind of fungus grow?"
+      },
+      {
+        "target": "baking-soda-gas",
+        "text": "How can some batters make gas without yeast?"
+      },
+      {
+        "target": "toast-browning",
+        "text": "Why can the outside of the bread change color as it heats?"
+      }
+    ],
+    "sources": [
+      "mat-exploratorium-bread",
+      "mat-king-yeast"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "glass-recycling",
+    "title": "What happens to old glass bottles in recycling?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A glass bottle can sometimes become part of a new bottle. At a recycling plant the old glass may be sorted, cleaned and crushed into small pieces. The glassmaker can add those saved pieces to the ingredients melted for a new batch. Undesired pieces of pottery, a window pane or a baking dish can have different properties from bottle glass. That is why local collection rules can call for certain kinds of glass, even when all the objects look smooth or clear.",
+    "aliases": [
+      "glass recycling process",
+      "cullet",
+      "can bottles be melted again"
+    ],
+    "sections": [],
+    "facts": [
+      "Crushed glass ready to be used as an ingredient is called cullet."
+    ],
+    "terms": [
+      "cullet",
+      "solid"
+    ],
+    "questions": [
+      {
+        "target": "glass-making",
+        "text": "How are melted glass ingredients shaped into new containers?"
+      },
+      {
+        "target": "plastic-resin-codes",
+        "text": "Why does a number on plastic tell you only part of its recycling story?"
+      },
+      {
+        "target": "mixtures",
+        "text": "Why does mixing a different material into the glass supply matter?"
+      }
+    ],
+    "sources": [
+      "mat-epa-recycle",
+      "mat-epa-cullet"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ice-cream-crystals",
+    "title": "What makes ice cream feel smooth instead of icy?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "As ice cream freezes, some of its water forms solid ice crystals. A mixture with many tiny crystals can feel smooth on your tongue. Large crystals are easier to notice as gritty bits. Machines stir the cold mixture as it freezes to help keep crystals small and add air. In a freezer, a carton can warm a little when the door stays open. If some ice melts and freezes again, crystals may grow larger and make the texture feel different.",
+    "aliases": [
+      "why ice cream has crystals",
+      "creamy ice cream",
+      "why frozen dessert gets icy"
+    ],
+    "sections": [],
+    "facts": [
+      "An ice cream machine can stir a mixture while it freezes."
+    ],
+    "terms": [
+      "crystal",
+      "freeze",
+      "mixture"
+    ],
+    "questions": [
+      {
+        "target": "ice-floats",
+        "text": "What is the pattern inside an ordinary ice crystal?"
+      },
+      {
+        "target": "saturated-solutions",
+        "text": "What can happen to dissolved material when the temperature changes?"
+      },
+      {
+        "target": "salad-dressing-emulsion",
+        "text": "What other food has tiny drops of one liquid mixed through another?"
+      }
+    ],
+    "sources": [
+      "mat-acs-cold-cream"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "toast-browning",
+    "title": "Why does toast turn brown when it heats?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "When a bread surface gets hot, some of its sugars react with pieces of proteins. These changes make new substances that can give toast its brown color and warm smell. Chemists call this family of changes the Maillard reaction. It happens on many heated foods, including the crust on a loaf. The inside of a slice often stays soft and pale because it holds more water and does not get as hot as the dry surface during a short time in the toaster.",
+    "aliases": [
+      "bread browns in a toaster",
+      "Maillard reaction",
+      "why toast smells different"
+    ],
+    "sections": [],
+    "facts": [
+      "The Maillard reaction can also change the smell of food."
+    ],
+    "terms": [
+      "chemical reaction"
+    ],
+    "questions": [
+      {
+        "target": "apple-browning",
+        "text": "How does a fruit brown without being toasted?"
+      },
+      {
+        "target": "yeast-bread",
+        "text": "Where do the holes in uncooked bread dough start?"
+      },
+      {
+        "target": "chemical-reactions",
+        "text": "How can cooking form substances that were not in the starting food?"
+      }
+    ],
+    "sources": [
+      "mat-acs-maillard"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "apple-orchards",
+    "title": "Why do orchards grow more than one kind of apple tree?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Many apple trees grow more fruit when their flowers receive pollen from a different, compatible kind of apple tree. An orchard can have several kinds flowering around the same time to provide that pollen. A bee that visits blossoms can pick pollen up at one tree and carry some to another. Later, fruit can form around seeds. An orchard worker also chooses where to grow trees and how far apart to plant them so leaves and flowers have room.",
+    "aliases": [
+      "how apple orchards work",
+      "do apple trees need pollination",
+      "orchard bees"
+    ],
+    "sections": [],
+    "facts": [
+      "Many apple trees produce more reliably with pollen from a compatible kind nearby."
+    ],
+    "terms": [
+      "orchard",
+      "pollination",
+      "graft"
+    ],
+    "questions": [
+      {
+        "target": "pollination",
+        "text": "How can an insect help pollen reach another flower?"
+      },
+      {
+        "target": "fruit-tree-grafting",
+        "text": "Why might the top and bottom of an orchard tree come from different plants?"
+      },
+      {
+        "target": "apple-browning",
+        "text": "Why do apple slices change color after an orchard apple is cut?"
+      }
+    ],
+    "sources": [
+      "mat-umn-apples"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fruit-tree-grafting",
+    "title": "Why do apple growers join pieces of two trees?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A seed from a favorite apple can grow a tree, but the young tree may make apples with different qualities. Growers often attach a piece from a known apple tree to the roots and lower stem of another one. When the two parts grow together, the upper part can make the kind of apple the grower wants. The lower part may help control the tree’s size or handle certain soil conditions. This joining is called grafting.",
+    "aliases": [
+      "what is tree grafting",
+      "why apple trees are grafted",
+      "rootstock apple"
+    ],
+    "sections": [],
+    "facts": [
+      "A graft can join a fruit-making top to roots suited for a particular garden."
+    ],
+    "terms": [
+      "graft",
+      "orchard",
+      "stem",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "apple-orchards",
+        "text": "Why does a fruit orchard often grow more than one type of apple?"
+      },
+      {
+        "target": "plant-stems",
+        "text": "What do the connected stem tissues have to move across the graft?"
+      },
+      {
+        "target": "saving-garden-seeds",
+        "text": "Why may a seed grow into a plant different from its parent?"
+      }
+    ],
+    "sources": [
+      "mat-umn-apples"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "maple-syrup",
+    "title": "How does tree sap become maple syrup?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "In places with suitable weather, maple sap can flow well when nights are cold and days warm in late winter or spring. Sap from a sugar maple is usually clear and contains much more water than sugar. Makers collect it and remove a lot of the water so a smaller amount of sweeter liquid remains. Heating allows water to leave as vapor. Maple syrup is thicker than the sap that came out of the tree because the remaining liquid holds more sugar in each spoonful.",
+    "aliases": [
+      "maple sap into syrup",
+      "why maple syrup comes from trees",
+      "syrup boiling"
+    ],
+    "sections": [],
+    "facts": [
+      "Sugar maples are commonly tapped for sap."
+    ],
+    "terms": [
+      "sap",
+      "evaporation",
+      "dissolve"
+    ],
+    "questions": [
+      {
+        "target": "plant-xylem",
+        "text": "What tissue carries water and dissolved materials through a tree?"
+      },
+      {
+        "target": "dissolving-sugar",
+        "text": "Why can clear sap contain some dissolved sugar?"
+      },
+      {
+        "target": "saturated-solutions",
+        "text": "What happens to sugar as a solution becomes more concentrated?"
+      }
+    ],
+    "sources": [
+      "mat-psu-maple"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rice-paddies",
+    "title": "Why do some rice fields look like ponds?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Some farmers place shallow water over a rice field during part of the growing season. Rice can grow in conditions that slow down some weeds, so standing water can help keep a field from getting crowded. Farmers use banks around sections of land to help hold the water. Rice fields do not always have to look flooded. Some growers use different water schedules or grow rice without a steady layer of water. Their choices depend on the place, the water supply and the type of rice.",
+    "aliases": [
+      "why rice grows in water",
+      "rice paddy",
+      "do all rice fields flood"
+    ],
+    "sections": [],
+    "facts": [
+      "Some rice growers save water by changing when they flood their fields."
+    ],
+    "terms": [
+      "grain",
+      "irrigation"
+    ],
+    "questions": [
+      {
+        "target": "irrigation",
+        "text": "How do people supply crops with water when rain is uneven?"
+      },
+      {
+        "target": "rice-brown-white",
+        "text": "How does rice change after being picked from a field?"
+      },
+      {
+        "target": "field-windbreaks",
+        "text": "What different way can farmers change the conditions around a crop?"
+      }
+    ],
+    "sources": [
+      "mat-ars-rice",
+      "mat-ers-rice"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rice-brown-white",
+    "title": "Why do brown rice and white rice look different?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A rice grain grows inside a hard covering called a hull. A machine takes that outside covering off before the rice is eaten. Brown rice still has layers of bran and other parts around its lighter center. White rice is milled further to remove most of those remaining outer parts. This makes the grain look paler and can change how it feels after cooking. Rice can grow in different shapes and lengths, whether it is later sold as brown or white.",
+    "aliases": [
+      "white rice brown rice difference",
+      "polishing rice",
+      "rice milling"
+    ],
+    "sections": [],
+    "facts": [
+      "Both brown rice and white rice are usually sold without their tough outside hulls."
+    ],
+    "terms": [
+      "grain",
+      "bran"
+    ],
+    "questions": [
+      {
+        "target": "rice-paddies",
+        "text": "How do some farmers grow the crop before it goes to a mill?"
+      },
+      {
+        "target": "whole-grains",
+        "text": "What does a grain need to keep to be called whole?"
+      },
+      {
+        "target": "rolled-oats",
+        "text": "What changes when oat grains go through a different kind of mill?"
+      }
+    ],
+    "sources": [
+      "mat-ers-rice",
+      "mat-usda-grains"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wheat-into-flour",
+    "title": "How do wheat kernels turn into flour?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Wheat plants make dry kernels. A mill breaks the kernels into pieces and can sift the pieces by how big they are. The soft, food-storing middle can become fine white flour. Whole wheat flour includes the outer bran and the small part that could start a new plant as well. Different sorts of wheat have qualities that make their flour useful for different foods. A baker may choose a flour that holds up well for bread and pick a different one for a delicate cake.",
+    "aliases": [
+      "wheat milling flour",
+      "where flour comes from",
+      "flour made from wheat"
+    ],
+    "sections": [],
+    "facts": [
+      "Some mills separate parts of a wheat kernel so they can be used in different products."
+    ],
+    "terms": [
+      "flour",
+      "bran",
+      "grain"
+    ],
+    "questions": [
+      {
+        "target": "whole-grains",
+        "text": "Can a flour still count as a whole grain?"
+      },
+      {
+        "target": "yeast-bread",
+        "text": "What makes gas bubbles in the dough when flour becomes bread?"
+      },
+      {
+        "target": "rice-brown-white",
+        "text": "How can another grain change when it is milled?"
+      }
+    ],
+    "sources": [
+      "mat-usda-grains",
+      "mat-ers-wheat"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rolled-oats",
+    "title": "Why do rolled oats look flat?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "An oat grain starts inside a tough covering that people remove before cooking it. The edible part left behind is a groat. One way to process groats is to cut them into small chunks. Those are steel-cut oats. Another way softens the groats with steam and presses them flat with rollers. Those are rolled oats. Flatter or smaller pieces can take in water faster as they cook, while larger pieces can stay chewy in a bowl for longer.",
+    "aliases": [
+      "how oatmeal is made",
+      "steel-cut versus rolled oats",
+      "what is a groat"
+    ],
+    "sections": [],
+    "facts": [
+      "A whole oat with its hard outside hull removed is called a groat."
+    ],
+    "terms": [
+      "grain",
+      "bran"
+    ],
+    "questions": [
+      {
+        "target": "whole-grains",
+        "text": "Can changing a grain’s shape leave all its main edible parts present?"
+      },
+      {
+        "target": "wheat-into-flour",
+        "text": "How is making a fine flour different from flattening a grain?"
+      },
+      {
+        "target": "rice-brown-white",
+        "text": "What additional changes make a grain look whiter instead of just flatter?"
+      }
+    ],
+    "sources": [
+      "mat-wgc-oats",
+      "mat-usda-grains"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "popcorn-popping",
+    "title": "What makes a kernel of popcorn burst open?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A popcorn kernel has a little water inside, a lot of starch, and a tough outer coat. Heat makes some of its water turn into steam. The steam pushes on the coat until it breaks. The soft starch can then expand very fast. As it cools, the expanded starch stays in the fluffy shape you see in a bowl. A kernel with a damaged coat can leak steam too soon, which helps explain why some kernels stay unpopped.",
+    "aliases": [
+      "why popcorn pops",
+      "what is inside popcorn",
+      "why kernels pop"
+    ],
+    "sections": [],
+    "facts": [
+      "A popcorn kernel has a tough outer coat that can hold steam until it bursts."
+    ],
+    "terms": [
+      "grain",
+      "gas"
+    ],
+    "questions": [
+      {
+        "target": "maize",
+        "text": "Where did people first develop corn as a crop?"
+      },
+      {
+        "target": "soda-fizz",
+        "text": "How does a change in pressure affect a different kind of gas?"
+      },
+      {
+        "target": "yeast-bread",
+        "text": "How can gas make another grain food puff up?"
+      }
+    ],
+    "sources": [
+      "mat-pc-pop",
+      "mat-usda-popcorn"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "composting-scraps",
+    "title": "How do scraps turn into compost?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A compost pile gives little animals and other living things a place to break down dead leaves, plant scraps and similar materials. They use some parts as food. Given enough air and moisture, they gradually make a dark, crumbly mixture called compost. The finished material can be mixed into soil, where it can help roots by improving the soil around them. It takes time for living things to change fresh leaves and scraps into compost with no obvious pieces left.",
+    "aliases": [
+      "how compost works",
+      "is compost soil",
+      "garden compost"
+    ],
+    "sections": [],
+    "facts": [
+      "Compost can help soil keep more water available to plants."
+    ],
+    "terms": [
+      "compost",
+      "decomposer",
+      "nutrient"
+    ],
+    "questions": [
+      {
+        "target": "fungal-decomposers",
+        "text": "Why can some fungi take apart fallen branches?"
+      },
+      {
+        "target": "soil-organic-matter",
+        "text": "What is organic matter doing in a garden bed?"
+      },
+      {
+        "target": "garden-mulch",
+        "text": "How can a covering help the top of soil keep moisture?"
+      }
+    ],
+    "sources": [
+      "mat-epa-compost",
+      "mat-nrcs-organic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "garden-mulch",
+    "title": "Why do gardeners cover soil with mulch?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A layer of straw, leaves or small wood chips can keep sun and wind from touching bare soil directly. This covering is called mulch. It shades the ground, which can slow water loss. It can also make it harder for some weed seedlings to find light. Different mulches behave in different ways, and plant-based materials often break down in time. A piece of mulch is on top of the soil at first, even when some of its smaller parts eventually mix in.",
+    "aliases": [
+      "what mulch does",
+      "garden wood chips soil",
+      "why cover bare soil"
+    ],
+    "sections": [],
+    "facts": [
+      "A covering can block light from reaching many weed seedlings."
+    ],
+    "terms": [
+      "mulch",
+      "evaporation",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "soil-organic-matter",
+        "text": "What may happen when a plant-based mulch breaks down?"
+      },
+      {
+        "target": "cover-crops",
+        "text": "How can a living cover protect a field?"
+      },
+      {
+        "target": "soil-texture",
+        "text": "Why might bare sand feel and drain differently from bare clay?"
+      }
+    ],
+    "sources": [
+      "mat-umn-mulch"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cover-crops",
+    "title": "Why plant a crop that you may not harvest?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A cover crop is grown to do a job for the soil. Its leaves and roots can protect a field when a main crop is out of season. Roots help hold soil in place while the plants grow, and a cover may leave a layer of stems behind after it stops growing. A farmer can choose a crop based on the time available and what the field needs. The plants can matter even if nobody sends their grain or leaves to a store.",
+    "aliases": [
+      "what cover crops do",
+      "plants that cover fields",
+      "winter field cover"
+    ],
+    "sections": [],
+    "facts": [
+      "Some cover crops are grown between seasons for the main crop."
+    ],
+    "terms": [
+      "crop rotation",
+      "erosion",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "crop-rotation",
+        "text": "How can changing which crops grow each season help a field?"
+      },
+      {
+        "target": "garden-mulch",
+        "text": "How does a layer on the soil protect it without growing?"
+      },
+      {
+        "target": "contour-farming",
+        "text": "How can rows slow water on a slope?"
+      }
+    ],
+    "sources": [
+      "mat-umn-cover"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "greenhouse-plants",
+    "title": "How can a greenhouse grow plants when it is cold outside?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Clear parts of a greenhouse let sunlight reach the plants and surfaces inside. The light can warm those surfaces. The walls and roof slow the mixing between the warmer inside air and colder air outdoors. Plants can get a warmer place to grow even if there is snow nearby. A greenhouse can still get too cold at night or too warm in bright sun. Growers can store some daytime warmth, add heat, or open vents when the plants need cooler air.",
+    "aliases": [
+      "why a greenhouse is warmer",
+      "how greenhouses work",
+      "winter growing"
+    ],
+    "sections": [],
+    "facts": [
+      "A greenhouse often has openings that let extra heat escape on warm days."
+    ],
+    "terms": [
+      "climate",
+      "photosynthesis",
+      "energy"
+    ],
+    "questions": [
+      {
+        "target": "photosynthesis",
+        "text": "Why do the plants still need sunlight inside the greenhouse?"
+      },
+      {
+        "target": "plant-transpiration",
+        "text": "What happens to water released from the leaves inside?"
+      },
+      {
+        "target": "hydroponic-growing",
+        "text": "Can plants get the materials they need without garden soil?"
+      }
+    ],
+    "sources": [
+      "mat-umn-greenhouses"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hydroponic-growing",
+    "title": "How can plants grow without soil?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A plant needs water, minerals, light and suitable air, but it may not have to get those supplies from soil. In hydroponics, a grower can send water with dissolved nutrients to the roots. A frame or small container can hold the plant up while roots reach the wet part. Roots also need oxygen, so the system can let some roots meet air or carry oxygen into the water. The plants must still catch enough light to make their own sugars.",
+    "aliases": [
+      "hydroponics",
+      "growing plants in water",
+      "no soil plants"
+    ],
+    "sections": [],
+    "facts": [
+      "Some hydroponic crops rest in a holder while roots reach a water supply."
+    ],
+    "terms": [
+      "nutrient",
+      "solution",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "plant-roots",
+        "text": "What do roots do even when there is no soil around them?"
+      },
+      {
+        "target": "greenhouse-plants",
+        "text": "How can a greenhouse make warm growing conditions?"
+      },
+      {
+        "target": "soil-organic-matter",
+        "text": "What useful jobs does soil normally help carry out in a garden?"
+      }
+    ],
+    "sources": [
+      "mat-umn-hydro"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "field-windbreaks",
+    "title": "Why are there rows of trees along some fields?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A strong wind can carry loose soil off an open field. Rows of trees or shrubs can slow some of the air moving near the ground on the sheltered side. Farm planners call the planted rows a windbreak. They choose where to put the plants and how tall or dense to let them grow. This can reduce wind erosion and protect young crops. The rows may also leave places for birds and other living things to find shelter between the fields.",
+    "aliases": [
+      "field windbreak trees",
+      "shelterbelt",
+      "trees stop wind erosion"
+    ],
+    "sections": [],
+    "facts": [
+      "A planted line of trees or shrubs used to slow wind can be called a windbreak."
+    ],
+    "terms": [
+      "erosion",
+      "crop rotation"
+    ],
+    "questions": [
+      {
+        "target": "cover-crops",
+        "text": "What living cover can protect the soil between seasons?"
+      },
+      {
+        "target": "contour-farming",
+        "text": "How can farmers manage water rolling down a slope?"
+      },
+      {
+        "target": "soil-texture",
+        "text": "Why can the size of soil particles matter when wind moves them?"
+      }
+    ],
+    "sources": [
+      "mat-usda-windbreak"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "contour-farming",
+    "title": "Why do some rows curve around the side of a hill?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Water can run quickly down a field if rows lead straight downhill. Planting across the slope makes the rows follow the curves of the hill at about the same height. This is called contour farming. The rows can interrupt the flow so water moves more slowly and has more chances to soak into the ground. Slower runoff can carry away less soil. Curved rows are one tool a farmer can combine with other ways of keeping the ground covered.",
+    "aliases": [
+      "contour farming",
+      "why plant across a slope",
+      "stop farmland runoff"
+    ],
+    "sections": [],
+    "facts": [
+      "Contour planting follows paths at similar heights across a slope."
+    ],
+    "terms": [
+      "erosion",
+      "irrigation"
+    ],
+    "questions": [
+      {
+        "target": "field-windbreaks",
+        "text": "How do trees help with erosion caused by wind?"
+      },
+      {
+        "target": "cover-crops",
+        "text": "How do roots and a living cover help protect loose soil?"
+      },
+      {
+        "target": "soil-texture",
+        "text": "How does soil’s particle size change the way water moves through it?"
+      }
+    ],
+    "sources": [
+      "mat-usda-contour"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "garden-trellises",
+    "title": "Why do some garden plants need a trellis?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A climbing plant may be good at reaching upward but have a stem too thin to stand high on its own. A frame called a trellis gives the stem or its little climbing parts places to grip. Peas can hang onto a string with curling parts called tendrils. Some beans wrap the stem itself around a support. The roots still feed water to the growing vine. Lifting leaves off the ground can also give the gardener an easier path between plants.",
+    "aliases": [
+      "frame for climbing plants",
+      "crop trellis",
+      "what do tendrils do"
+    ],
+    "sections": [],
+    "facts": [
+      "A trellis supports climbing parts without taking over the work of the plant’s roots."
+    ],
+    "terms": [
+      "trellis",
+      "tendril",
+      "stem"
+    ],
+    "questions": [
+      {
+        "target": "garden-peas",
+        "text": "How can a pea plant hold itself up?"
+      },
+      {
+        "target": "garden-beans",
+        "text": "What is the difference between a pole bean and a bush bean?"
+      },
+      {
+        "target": "plant-stems",
+        "text": "Why can lifting a stem help the plant’s leaves?"
+      }
+    ],
+    "sources": [
+      "mat-umn-trellis",
+      "mat-umn-peas",
+      "mat-umn-beans"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "garden-peas",
+    "title": "What is a pea pod holding?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A pea pod begins as part of a flower. It grows around several seeds, which are the round peas you may see lined up inside. Some varieties have tough pods and are grown mainly for the peas. A snow pea has a thin pod that people often eat while the seeds are still small. A sugar snap pea has a thicker edible pod. Pea plants usually grow well in cooler weather, which is why many gardeners start them before summer’s hottest days.",
+    "aliases": [
+      "why peas form pods",
+      "snow pea pod",
+      "pea tendrils"
+    ],
+    "sections": [],
+    "facts": [
+      "Pea plants can hold on to supports with curling tendrils."
+    ],
+    "terms": [
+      "tendril",
+      "fruit",
+      "seed"
+    ],
+    "questions": [
+      {
+        "target": "flower-parts",
+        "text": "Which part of a blossom can grow into a pod?"
+      },
+      {
+        "target": "garden-beans",
+        "text": "How are pea pods and bean pods alike?"
+      },
+      {
+        "target": "garden-trellises",
+        "text": "What kind of frame gives a climbing pea something to grip?"
+      }
+    ],
+    "sources": [
+      "mat-umn-peas"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "garden-beans",
+    "title": "How can a bean be a pod or a seed on your plate?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A bean plant grows long pods around its seeds. In green beans, people often eat the soft pods along with young seeds. Other varieties can stay on the plant until the seeds are mature and the pods dry. The seeds that came out of those pods may then be sold as dried beans. Bean plants can grow in different shapes. A bush bean stays lower and more compact, while a pole bean can stretch up a support to reach more light.",
+    "aliases": [
+      "green beans and dried beans",
+      "bush and pole beans",
+      "beans as seeds"
+    ],
+    "sections": [],
+    "facts": [
+      "Some bean plants grow as bushes, while others climb."
+    ],
+    "terms": [
+      "legume",
+      "seed",
+      "fruit"
+    ],
+    "questions": [
+      {
+        "target": "garden-peas",
+        "text": "Why are some pea pods eaten whole too?"
+      },
+      {
+        "target": "garden-trellises",
+        "text": "What helps a climbing bean plant reach upward?"
+      },
+      {
+        "target": "peanut-plants",
+        "text": "Where does a different kind of bean relative grow its pods?"
+      }
+    ],
+    "sources": [
+      "mat-umn-beans"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pumpkin-vines",
+    "title": "Where on a pumpkin vine does a pumpkin begin?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A pumpkin vine sends its stems across the ground. It can make flowers that release pollen and other flowers where fruits can start. Below some flowers there is already a small shape that looks like a tiny pumpkin. If pollen reaches that flower and the plant can support a fruit, the shape can swell into a pumpkin. Seeds grow inside as it gets bigger. A bee may visit both kinds of flowers while it is searching for food.",
+    "aliases": [
+      "how pumpkins grow",
+      "small pumpkin below flower",
+      "pumpkin vine"
+    ],
+    "sections": [],
+    "facts": [
+      "A tiny round shape just below some pumpkin flowers is where a fruit can grow."
+    ],
+    "terms": [
+      "flower",
+      "fruit",
+      "pollination"
+    ],
+    "questions": [
+      {
+        "target": "flower-parts",
+        "text": "Which part of a flower can hold future seeds?"
+      },
+      {
+        "target": "plant-fruit",
+        "text": "Why does a pumpkin count as a fruit in plant science?"
+      },
+      {
+        "target": "saving-garden-seeds",
+        "text": "What might a gardener learn from starting a new plant with saved seeds?"
+      }
+    ],
+    "sources": [
+      "mat-umn-pumpkins"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "blueberry-bushes",
+    "title": "Why do blueberry bushes like acidic soil?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Different plants grow best in different kinds of soil. Many blueberries do well in soil that is more acidic than the soil preferred by a lot of other garden crops. The soil’s acidity affects how easily the bush’s fine roots can get some nutrients. A grower may check the soil first instead of assuming that every garden bed will suit blueberries. Good pollination can help fruit grow, but healthy roots still need the right conditions for the whole bush to thrive.",
+    "aliases": [
+      "blueberry soil acidity",
+      "how blueberries grow",
+      "pH for blueberries"
+    ],
+    "sections": [],
+    "facts": [
+      "Blueberry bushes may have trouble taking up certain nutrients when their soil pH is too high."
+    ],
+    "terms": [
+      "ph",
+      "nutrient",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "acids-bases-ph",
+        "text": "What does a lower pH tell a gardener about a watery sample?"
+      },
+      {
+        "target": "plant-roots",
+        "text": "How do roots get what a growing bush needs?"
+      },
+      {
+        "target": "apple-orchards",
+        "text": "Why can another kind of fruit plant near a garden crop sometimes help it make fruit?"
+      }
+    ],
+    "sources": [
+      "mat-umn-blueberries"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "saving-garden-seeds",
+    "title": "Will saved seeds grow into the same kind of plant?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A saved seed can start another plant, but the new plant may not be exactly like the old one. In many kinds of plants, pollen can come from a second plant, and the new seed can carry a mix of traits. If neighboring plants have different traits, a saved seed may grow up with a surprising combination. Gardens can still use carefully chosen seed to keep familiar varieties growing. Saving a seed and growing from a piece of a stem are different ways to start.",
+    "aliases": [
+      "saving seeds from vegetables",
+      "do saved seeds grow true",
+      "hybrid seeds"
+    ],
+    "sections": [],
+    "facts": [
+      "A seed can grow differently from its parent even when it grows well."
+    ],
+    "terms": [
+      "seed",
+      "pollination",
+      "orchard"
+    ],
+    "questions": [
+      {
+        "target": "seed-germination",
+        "text": "What does a seed need before its first root appears?"
+      },
+      {
+        "target": "seed-banks",
+        "text": "Why save lots of different kinds of seeds?"
+      },
+      {
+        "target": "fruit-tree-grafting",
+        "text": "How can people keep traits from a favorite fruit tree by using a branch?"
+      }
+    ],
+    "sources": [
+      "mat-umn-seed-saving"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "peanut-plants",
+    "title": "Why do peanuts grow underground?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A peanut plant makes flowers above ground, but after flowering it grows a slender part that reaches downward. This part is called a peg. It carries the tiny beginning of a pod down into the soil. The pod can grow larger underground and form the peanuts inside. Peanuts belong to the pea and bean family. Most other plants in that family grow their pods where you can see them above the ground, so peanuts make an unusual garden crop.",
+    "aliases": [
+      "how peanuts grow",
+      "peanut flowers above ground",
+      "are peanuts beans"
+    ],
+    "sections": [],
+    "facts": [
+      "A peanut pod has seeds inside even though the plant grows the pod below ground."
+    ],
+    "terms": [
+      "legume",
+      "fruit",
+      "seed"
+    ],
+    "questions": [
+      {
+        "target": "garden-beans",
+        "text": "Where do many other legumes hold their pods?"
+      },
+      {
+        "target": "potato-tubers",
+        "text": "How is a potato underground for a different reason?"
+      },
+      {
+        "target": "plant-fruit",
+        "text": "Why does a shell with seeds inside count as a fruit in plant science?"
+      }
+    ],
+    "sources": [
+      "mat-uga-peanuts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cacao-pods",
+    "title": "What fruit does chocolate start from?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Chocolate begins on a cacao tree, which grows in warm, wet places. Its fruits are thick pods with ridged sides. They can grow on the trunk and branches instead of hanging only from the far ends of twigs. When a ripe pod is opened, it holds seeds surrounded by soft pulp. People call those seeds cacao beans even though cacao is from a different family than garden beans. The seeds can go through several changes before chocolate tastes the way we recognize.",
+    "aliases": [
+      "what is cacao",
+      "cacao pod tree",
+      "are cocoa beans seeds"
+    ],
+    "sections": [],
+    "facts": [
+      "Cacao fruits can grow right from the trunk or a thick branch."
+    ],
+    "terms": [
+      "fruit",
+      "seed",
+      "flower"
+    ],
+    "questions": [
+      {
+        "target": "chocolate-making",
+        "text": "What happens to a cacao seed before it becomes chocolate?"
+      },
+      {
+        "target": "plant-fruit",
+        "text": "What about a cacao pod makes it a fruit?"
+      },
+      {
+        "target": "coffee-cherries",
+        "text": "What other drink starts from a seed held inside a fruit?"
+      }
+    ],
+    "sources": [
+      "mat-kew-cacao"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chocolate-making",
+    "title": "How does a cacao seed become chocolate?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Making chocolate begins with cacao seeds surrounded by pulp. Changes during fermentation help develop the flavors. The seeds are later dried and usually roasted. After the shell is removed, little pieces called nibs can be ground into a paste. The paste contains both cocoa solids and fat called cocoa butter. A chocolate maker can mix in other ingredients and work the mixture until it has the smoothness and flavor they want. The original seed no longer looks like a seed in a bar.",
+    "aliases": [
+      "from cacao to chocolate",
+      "what cocoa nibs are",
+      "chocolate from bean to bar"
+    ],
+    "sections": [],
+    "facts": [
+      "Crushed pieces of roasted cacao seed are called nibs."
+    ],
+    "terms": [
+      "fermentation",
+      "seed",
+      "mixture"
+    ],
+    "questions": [
+      {
+        "target": "cacao-pods",
+        "text": "Where are the chocolate-making seeds found before harvest?"
+      },
+      {
+        "target": "toast-browning",
+        "text": "How can heating change the smells and colors of food?"
+      },
+      {
+        "target": "coffee-cherries",
+        "text": "Which other fruit supplies seeds that people roast?"
+      }
+    ],
+    "sources": [
+      "mat-kew-choc",
+      "mat-kew-cacao"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "coffee-cherries",
+    "title": "Why are coffee beans taken from cherries?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A coffee plant grows small fruits around seeds. People call the ripe fruits coffee cherries because many look rounded and red, like cherries. The “beans” used for coffee are the seeds taken from the fruit. A fruit often holds two of them. The seeds go through steps such as drying and roasting before people grind them. A coffee plant and a cherry tree are different plants, even though people use a name from one to describe the look of the other’s fruit.",
+    "aliases": [
+      "coffee plant fruit",
+      "are coffee beans seeds",
+      "coffee cherry"
+    ],
+    "sections": [],
+    "facts": [
+      "Arabica coffee often has two seeds inside one fruit."
+    ],
+    "terms": [
+      "fruit",
+      "seed",
+      "fermentation"
+    ],
+    "questions": [
+      {
+        "target": "cacao-pods",
+        "text": "What other tropical tree hides useful seeds inside a fruit?"
+      },
+      {
+        "target": "chocolate-making",
+        "text": "What changes can roasting bring out in cacao too?"
+      },
+      {
+        "target": "plant-fruit",
+        "text": "Why can one part be a fruit while its contents are seeds?"
+      }
+    ],
+    "sources": [
+      "mat-kew-coffee"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "seedless-bananas",
+    "title": "How can a banana grow without big seeds?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A wild banana can have hard, noticeable seeds, but the Cavendish bananas sold in many stores usually have no mature seeds. The fruit can grow without the usual process of making seeds. Growers keep those plants going by starting new plants from living pieces that grow near an older plant or by other methods that copy its growth. The new plants make very similar fruit. Tiny dark specks in a store banana are much smaller than the hard seeds in many wild bananas.",
+    "aliases": [
+      "where are banana seeds",
+      "how seedless bananas grow",
+      "banana plant shoots"
+    ],
+    "sections": [],
+    "facts": [
+      "Wild bananas often have seeds much bigger than the tiny specks in a Cavendish banana."
+    ],
+    "terms": [
+      "fruit",
+      "seed",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "plant-fruit",
+        "text": "Why can a banana count as a fruit without mature seeds inside?"
+      },
+      {
+        "target": "strawberry-runners",
+        "text": "What other plant can start more plants without growing new seeds?"
+      },
+      {
+        "target": "saving-garden-seeds",
+        "text": "How can growing a seed change the traits you get?"
+      }
+    ],
+    "sources": [
+      "mat-kew-banana",
+      "mat-ncsu-botany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "vanilla-orchids",
+    "title": "Where does vanilla flavor come from?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Vanilla can come from the fruit of a climbing orchid. People often call the long fruit a vanilla bean, even though it is an orchid pod. Its flower must receive pollen to make that pod, and growers in many places pollinate the flowers by hand. The green pods do not start with the same strong scent as finished vanilla. A process of drying and other changes develops the familiar smell used to flavor foods. Small dark seeds can be seen inside some cured pods.",
+    "aliases": [
+      "vanilla bean grows on orchid",
+      "true vanilla pod",
+      "where vanilla is grown"
+    ],
+    "sections": [],
+    "facts": [
+      "Vanilla pods grow from the flowers of a climbing orchid."
+    ],
+    "terms": [
+      "flower",
+      "pollination",
+      "fruit"
+    ],
+    "questions": [
+      {
+        "target": "flower-parts",
+        "text": "Which flower part can grow into a long fruit?"
+      },
+      {
+        "target": "cacao-pods",
+        "text": "Which other flavor starts with material grown inside a tropical fruit?"
+      },
+      {
+        "target": "pollination",
+        "text": "What has to reach a flower before many plants can begin producing seeds?"
+      }
+    ],
+    "sources": [
+      "mat-kew-vanilla"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cheese-curds",
+    "title": "How does liquid milk become solid cheese?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "In many kinds of cheese making, a change in milk makes its proteins gather to form soft parts called curds. A watery liquid called whey can drain away. The cheese maker can then shape the curds. Choices about what stays inside, how much it is pressed, and whether the cheese is aged help produce cheeses with different textures. A fresh cheese can hold a fair amount of water and feel soft. A cheese that loses more water can become much firmer.",
+    "aliases": [
+      "how cheese is made",
+      "what are curds and whey",
+      "milk into cheese"
+    ],
+    "sections": [],
+    "facts": [
+      "Cheese makers can leave different amounts of water in the curds."
+    ],
+    "terms": [
+      "curd",
+      "whey",
+      "enzyme"
+    ],
+    "questions": [
+      {
+        "target": "yogurt-thickening",
+        "text": "How can milk thicken into yogurt while keeping much of its liquid?"
+      },
+      {
+        "target": "butter-churning",
+        "text": "What part of cream comes together when butter is made?"
+      },
+      {
+        "target": "mixtures",
+        "text": "How can part of milk be separated from the rest of the mixture?"
+      }
+    ],
+    "sources": [
+      "mat-csu-cheese"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "yogurt-thickening",
+    "title": "Why is yogurt thicker than milk?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "In yogurt making, certain helpful bacteria use some of the sugar in milk and produce lactic acid. The acid makes the milk more sour. It also changes how milk proteins fit together, so they can hold water in a soft network. That is why yogurt can stay on a spoon more easily than fresh milk. Some yogurt can release a thin layer of liquid on top if it sits. That layer comes from the mixture giving up a little water.",
+    "aliases": [
+      "how yogurt thickens",
+      "why yogurt tastes sour",
+      "yogurt fermentation"
+    ],
+    "sections": [],
+    "facts": [
+      "Yogurt gets some of its tangy flavor from lactic acid."
+    ],
+    "terms": [
+      "fermentation",
+      "ph",
+      "mixture"
+    ],
+    "questions": [
+      {
+        "target": "cheese-curds",
+        "text": "What happens when curds are separated from watery whey?"
+      },
+      {
+        "target": "acids-bases-ph",
+        "text": "How can an acid change the pH of a watery food?"
+      },
+      {
+        "target": "yeast-bread",
+        "text": "How can a different kind of living thing make gas in a dough?"
+      }
+    ],
+    "sources": [
+      "mat-uf-yogurt"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "butter-churning",
+    "title": "How can cream turn into butter?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Cream contains many small drops of milk fat in a watery liquid. Churning moves the cream around until more of the drops bump together and stick. Eventually, the fat collects in soft pieces. Some watery liquid can drain away. That leaves a material with a much bigger share of milk fat, which is butter. Churning changes the way the parts of cream are arranged. It is different from turning water into ice, because the fat and watery part of the cream end up separated.",
+    "aliases": [
+      "how is butter made",
+      "churn cream butter",
+      "what buttermilk comes from"
+    ],
+    "sections": [],
+    "facts": [
+      "The watery part that can drain away during traditional churning is called buttermilk."
+    ],
+    "terms": [
+      "emulsion",
+      "mixture"
+    ],
+    "questions": [
+      {
+        "target": "salad-dressing-emulsion",
+        "text": "How can very small drops of one liquid stay mixed in another?"
+      },
+      {
+        "target": "cheese-curds",
+        "text": "What different milk ingredients are gathered together in cheese?"
+      },
+      {
+        "target": "ice-cream-crystals",
+        "text": "What else changes the feel of a food made with cream?"
+      }
+    ],
+    "sources": [
+      "mat-ncsu-butter",
+      "mat-clemson-dairy"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "food-pasteurization",
+    "title": "What does pasteurized mean on a milk carton?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Pasteurizing milk means a dairy heats it for a carefully measured time and then cools it. The process reduces harmful germs so the milk is safer to drink. It does not make regular milk keep forever. People usually still store it cold and use it while fresh. Some drinks made from fruit are pasteurized as well. The process uses heat to make a food safer while keeping much of what people expect from the original food, such as the taste and texture.",
+    "aliases": [
+      "pasteurized milk meaning",
+      "why heat milk",
+      "process foods safely"
+    ],
+    "sections": [],
+    "facts": [
+      "After heating for pasteurization, milk is cooled as part of processing."
+    ],
+    "terms": [
+      "mixture"
+    ],
+    "questions": [
+      {
+        "target": "yogurt-thickening",
+        "text": "What do yogurt makers want certain useful bacteria to do later?"
+      },
+      {
+        "target": "drying-fruits",
+        "text": "How is removing water a different way to help foods keep longer?"
+      },
+      {
+        "target": "food-freezing",
+        "text": "How does freezing change the texture of a fruit?"
+      }
+    ],
+    "sources": [
+      "mat-fda-milk",
+      "mat-clemson-dairy"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "drying-fruits",
+    "title": "Why are raisins smaller than grapes?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A grape carries a lot of water inside it. When it is dried into a raisin, much of that water leaves and the skin wrinkles around the smaller fruit. Some of the sugar is still there, but there is less water with it. This can make raisins taste quite sweet in each small bite. Other fruits can also be dried. Drying changes their feel and weight, and it can help them keep longer by taking away water that many little living things need.",
+    "aliases": [
+      "raisins dried grapes",
+      "what drying does to fruit",
+      "fruit dehydration"
+    ],
+    "sections": [],
+    "facts": [
+      "A dried fruit can have a stronger sweet taste in the same-sized bite because it has less water."
+    ],
+    "terms": [
+      "evaporation",
+      "fruit"
+    ],
+    "questions": [
+      {
+        "target": "maple-syrup",
+        "text": "How can removing water from tree sap make it taste sweeter?"
+      },
+      {
+        "target": "food-freezing",
+        "text": "What changes if a food’s water freezes rather than leaves it?"
+      },
+      {
+        "target": "jams-and-jellies",
+        "text": "What makes a fruit spread thick without drying it all the way?"
+      }
+    ],
+    "sources": [
+      "mat-psu-drying"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "food-freezing",
+    "title": "Why does thawed fruit sometimes feel softer?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Inside a piece of fruit, little cells hold water and other materials. When fruit freezes, some of that water becomes ice crystals. Growing ice can damage parts of the cells and the tiny spaces between them. After thawing, juice can leak out more easily and the fruit can feel softer than before it froze. Fast freezing usually leads to smaller crystals, which can cause less damage. A soft thawed berry can still be useful in a food where firmness does not matter much.",
+    "aliases": [
+      "why frozen berries soft after thawing",
+      "food frozen ice crystals",
+      "thawed fruit texture"
+    ],
+    "sections": [],
+    "facts": [
+      "Faster freezing often gives ice crystals less time to grow before the fruit freezes through."
+    ],
+    "terms": [
+      "freeze",
+      "crystal",
+      "cell"
+    ],
+    "questions": [
+      {
+        "target": "ice-floats",
+        "text": "What changes when ordinary water turns to ice?"
+      },
+      {
+        "target": "ice-cream-crystals",
+        "text": "Why are very small ice crystals useful in a frozen dessert?"
+      },
+      {
+        "target": "drying-fruits",
+        "text": "How can another way of storing fruit remove water rather than freeze it?"
+      }
+    ],
+    "sources": [
+      "mat-umn-fruitfreezing"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "jams-and-jellies",
+    "title": "What makes fruit jam thick enough to spread?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "A lot of fruits contain a substance called pectin. Under the right conditions, pectin molecules form a loose network that can hold water. That network gives some fruit spreads a soft, thick texture. Sugar and acid can help certain kinds of pectin form a useful network. Jam often keeps mashed or chopped fruit, while jelly often starts with clear juice. Each can feel thick on a spoon even though much of it is still water.",
+    "aliases": [
+      "jam versus jelly",
+      "why jam gels",
+      "pectin fruit spread"
+    ],
+    "sections": [],
+    "facts": [
+      "Jam often keeps some fruit pieces, while jelly usually begins with strained juice."
+    ],
+    "terms": [
+      "pectin",
+      "fruit",
+      "mixture"
+    ],
+    "questions": [
+      {
+        "target": "drying-fruits",
+        "text": "How does removing much more water change a fruit’s feel?"
+      },
+      {
+        "target": "saturated-solutions",
+        "text": "Why can adding a lot of dissolved sugar change a liquid mixture?"
+      },
+      {
+        "target": "cheese-curds",
+        "text": "What different food thickens when parts of a liquid gather together?"
+      }
+    ],
+    "sources": [
+      "mat-umn-fruitspreads"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "saguaro-cactus",
+    "title": "How does a saguaro cactus save water?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A saguaro has a tall, green stem with folds along its sides. It can store water in that stem when rain is available. As more water enters, the folds unfold some, so the stem can get thicker. Many roots stretch sideways just below the surface, where some rain can quickly reach them. A slow-growing saguaro can live through dry stretches using water already inside. Its sharp spines are different from the wide, thin leaves you might see on a garden plant.",
+    "aliases": [
+      "giant desert cactus",
+      "saguaro storage",
+      "why cactus has pleats"
+    ],
+    "sections": [],
+    "facts": [
+      "Saguaros grow naturally in the Sonoran Desert and nearby areas."
+    ],
+    "terms": [
+      "adaptation",
+      "stem",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "plant-roots",
+        "text": "How can spreading roots help soak up water after a rain?"
+      },
+      {
+        "target": "plant-transpiration",
+        "text": "What is one way water usually leaves a plant?"
+      },
+      {
+        "target": "plant-stems",
+        "text": "What jobs can a green stem do in a cactus that has no broad leaves?"
+      }
+    ],
+    "sources": [
+      "mat-nps-saguaro"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "spinning-maple-seeds",
+    "title": "Why do little maple “helicopters” spin?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Many maples have dry fruits with a thin wing around or beside a pocket holding a seed. When a fruit falls, the wing can make it turn in the air. The turning slows its trip to the ground. A breeze gets more time to push it sideways, so the seed may land farther from the parent tree. Two fruits often start joined in a pair before they separate. The little “helicopter” you find already carries everything enclosed with that seed.",
+    "aliases": [
+      "maple helicopter seeds",
+      "samaras",
+      "spinning maple wings"
+    ],
+    "sections": [],
+    "facts": [
+      "A winged maple fruit is called a samara."
+    ],
+    "terms": [
+      "seed",
+      "fruit",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "target": "seed-travel",
+        "text": "How can wings, hooks or juicy fruits move seeds in different ways?"
+      },
+      {
+        "target": "maple-syrup",
+        "text": "What part of a sugar maple do people collect for syrup?"
+      },
+      {
+        "target": "seed-germination",
+        "text": "How can a seed grow after it settles on the ground?"
+      }
+    ],
+    "sources": [
+      "mat-nps-maple",
+      "mat-ncsu-botany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "white-oak-acorns",
+    "title": "What can grow from a white oak acorn?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A white oak grows acorns, the hard nuts found under the tree. Much of an acorn gives food and protection to its seed while it waits. Some animals eat acorns right away. Squirrels and jays can also carry them to save for later. An acorn that stays hidden in damp ground may send down a root and grow into a young oak. The acorn’s food can help that plant before it has a crown of leaves to catch much light.",
+    "aliases": [
+      "white oak seed",
+      "how oak trees start",
+      "why jays bury acorns"
+    ],
+    "sections": [],
+    "facts": [
+      "White oak acorns usually begin sending out a root soon after they fall if conditions are suitable."
+    ],
+    "terms": [
+      "acorn",
+      "seed",
+      "germinate"
+    ],
+    "questions": [
+      {
+        "target": "seed-travel",
+        "text": "How can animals carry seeds a long way from a tree?"
+      },
+      {
+        "target": "seed-germination",
+        "text": "Which part may begin growing first when a seed sprouts?"
+      },
+      {
+        "target": "spinning-maple-seeds",
+        "text": "How does wind move a seed from a different kind of tree?"
+      }
+    ],
+    "sources": [
+      "mat-usfs-oak"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sunflowers-and-sun",
+    "title": "Do sunflowers turn to follow the Sun?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A young sunflower may face east in the morning and turn westward by late afternoon. One side of its stem grows faster than the other at different times, bending the plant as it grows. The movement follows a daily rhythm. Once the stem grows more slowly and the flower head matures, the head often stays facing east rather than turning all day. Early sunlight can warm the head, giving it a head start when insects begin visiting after sunrise.",
+    "aliases": [
+      "young sunflower tracks sun",
+      "mature sunflower faces east",
+      "sunflower movement"
+    ],
+    "sections": [],
+    "facts": [
+      "Researchers have found that more pollinating insects can visit warmer, east-facing mature sunflower heads."
+    ],
+    "terms": [
+      "flower",
+      "stem",
+      "pollinator"
+    ],
+    "questions": [
+      {
+        "target": "plant-growth-light",
+        "text": "How can uneven growth bend another kind of plant toward light?"
+      },
+      {
+        "target": "pollination",
+        "text": "Why do visits from insects matter to flowers?"
+      },
+      {
+        "target": "plant-stems",
+        "text": "How can a tall stem hold a flower where it gets more light?"
+      }
+    ],
+    "sources": [
+      "mat-ucd-sunflower"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bamboo-plants",
+    "title": "Why is bamboo a grass when it looks like a tree?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Bamboo can grow tall, hard stems that look almost like small tree trunks. It is still in the grass family, along with lawn grass, wheat and rice. Many bamboo stems have hollow places between solid or stronger joints. A bamboo patch can put up shoots from stems that spread below ground. The hard stalks can be useful as building material in some designs. Their strength and size help explain why a big stand of bamboo can look more like woods than a lawn.",
+    "aliases": [
+      "is bamboo a grass",
+      "bamboo wood",
+      "bamboo rhizomes and stems"
+    ],
+    "sections": [],
+    "facts": [
+      "Many bamboo stems have hard rings around places where leaves or branches grow."
+    ],
+    "terms": [
+      "stem",
+      "rhizome"
+    ],
+    "questions": [
+      {
+        "target": "plant-rhizomes",
+        "text": "How can an underground stem start shoots somewhere else?"
+      },
+      {
+        "target": "plant-stems",
+        "text": "Which jobs do a tree trunk and a bamboo stem share?"
+      },
+      {
+        "target": "rice-paddies",
+        "text": "Where do some growers plant another grass, rice?"
+      }
+    ],
+    "sources": [
+      "mat-ubc-bamboo",
+      "mat-kew-bamboo"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lotus-leaf-droplets",
+    "title": "Why do water drops roll off a lotus leaf?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A lotus leaf can look smooth from a distance. Up close, its surface has tiny bumps and a waxy coating. A drop of water touches only a small part of that surface, so it often rests as a round bead rather than spreading out like a puddle. As a drop rolls, it can pick up loose dirt. The shape of the leaf’s surface and the way water pulls on itself both help explain why a lotus leaf can stay cleaner after rain.",
+    "aliases": [
+      "lotus effect",
+      "water repellent lotus leaf",
+      "why lotus stays clean"
+    ],
+    "sections": [],
+    "facts": [
+      "A rolling drop can carry particles of dust away from a lotus leaf."
+    ],
+    "terms": [
+      "surface tension",
+      "adaptation"
+    ],
+    "questions": [
+      {
+        "target": "surface-tension-water",
+        "text": "Why does a little water drop tend to stay round?"
+      },
+      {
+        "target": "plant-leaves",
+        "text": "What are some other jobs a leaf can do?"
+      },
+      {
+        "target": "water-cycle",
+        "text": "Where can the drops go after they leave the leaf?"
+      }
+    ],
+    "sources": [
+      "mat-uw-lotus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "garlic-cloves",
+    "title": "Why does garlic come apart into cloves?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "The round piece of garlic in a kitchen is a bulb. Peel away its dry outer covering and you can see several smaller pieces called cloves. They are held together at the base while the plant grows. Each clove has stored food and can contain a bud for a new garlic plant. If one starts growing, its leaves can rise above ground while another bulb forms below. A garlic clove is one layer-built part of a whole bulb, rather than the seed inside a fruit.",
+    "aliases": [
+      "garlic plant bulb",
+      "is clove a separate bulb",
+      "how garlic grows from cloves"
+    ],
+    "sections": [],
+    "facts": [
+      "Each garlic clove can contain a bud that grows a new plant."
+    ],
+    "terms": [
+      "clove",
+      "bulb",
+      "stem"
+    ],
+    "questions": [
+      {
+        "target": "flower-bulbs",
+        "text": "What kinds of layers store food in an onion or tulip bulb?"
+      },
+      {
+        "target": "potato-tubers",
+        "text": "How is a potato’s storage part different from a garlic bulb?"
+      },
+      {
+        "target": "saving-garden-seeds",
+        "text": "What changes if a grower starts a crop from seeds instead of a clove?"
+      }
+    ],
+    "sources": [
+      "mat-umn-garlic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "carrot-roots",
+    "title": "Which part of a carrot plant do we eat?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "The familiar part of a carrot is a thick main root. It can hold food the plant made earlier in its green leaves. Inside the soil, smaller roots can branch out from the main one as the plant takes in water. The part sold in a store grows below the ground, but you can spot the plant in a garden by its leafy top. If the plant keeps growing instead of being harvested, the stored food can help it make new growth later.",
+    "aliases": [
+      "is carrot a root",
+      "what is a taproot",
+      "why carrots grow underground"
+    ],
+    "sections": [],
+    "facts": [
+      "A carrot has a main taproot while its leafy tops grow above ground."
+    ],
+    "terms": [
+      "plant root",
+      "stem"
+    ],
+    "questions": [
+      {
+        "target": "plant-roots",
+        "text": "What can roots gather as they grow farther into the soil?"
+      },
+      {
+        "target": "potato-tubers",
+        "text": "Why does a potato count as a stem even though it grows underground?"
+      },
+      {
+        "target": "asparagus-spears",
+        "text": "What part of another plant do people harvest while it is still young?"
+      }
+    ],
+    "sources": [
+      "mat-umn-carrots",
+      "mat-osu-plant-outer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "asparagus-spears",
+    "title": "What are the little spears on an asparagus plant?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "An asparagus spear is a young shoot that rises from a long-living part of the plant underground. People pick these shoots while they are still tender. If a shoot is left to grow, it elongates and grows many fine branches. The tall growth can look a little like a fern. It uses sunlight during the growing season and helps supply food for the parts below ground. Later that stored food helps a new crop of shoots start again.",
+    "aliases": [
+      "what part of asparagus do we eat",
+      "how asparagus grows",
+      "shoots and crowns"
+    ],
+    "sections": [],
+    "facts": [
+      "The underground asparagus crown can grow new shoots in more than one year."
+    ],
+    "terms": [
+      "stem",
+      "plant root"
+    ],
+    "questions": [
+      {
+        "target": "plant-stems",
+        "text": "What jobs can a stem carry out as more leaves grow from it?"
+      },
+      {
+        "target": "carrot-roots",
+        "text": "Which common vegetable is a thick root instead of a young stem?"
+      },
+      {
+        "target": "flower-bulbs",
+        "text": "What other plant uses food stored below ground to send up a shoot?"
+      }
+    ],
+    "sources": [
+      "mat-umn-asparagus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "broccoli-buds",
+    "title": "What are all the little bumps on broccoli?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "The green head of broccoli holds a tight group of unopened flower buds. The small bumps you see are those buds gathered on branching stems. People usually pick the head before the buds open. If they are left to grow, the buds can turn into many small yellow flowers, so the head no longer looks the same. The stalk is also a plant stem. A bite of broccoli can include both stems and the parts that would have become open flowers.",
+    "aliases": [
+      "broccoli flower buds",
+      "which part of broccoli do we eat",
+      "broccoli yellow flowers"
+    ],
+    "sections": [],
+    "facts": [
+      "An unpicked broccoli cluster can open into many little yellow flowers."
+    ],
+    "terms": [
+      "flower",
+      "stem",
+      "petal"
+    ],
+    "questions": [
+      {
+        "target": "flower-parts",
+        "text": "What might appear when a bud opens all the way?"
+      },
+      {
+        "target": "cabbage-family-vegetables",
+        "text": "What are some other foods grown from close relatives of broccoli?"
+      },
+      {
+        "target": "asparagus-spears",
+        "text": "Which vegetable is a shoot rather than a group of flower buds?"
+      }
+    ],
+    "sources": [
+      "mat-umn-broccoli"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cabbage-family-vegetables",
+    "title": "How can cabbage and cauliflower be close relatives?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Cabbage and cauliflower look different because growers choose plants for different parts. Many cabbages make a ball of closely packed leaves. Cauliflower growers often want a tight head made from developing flower shoots. Both vegetables are forms of the same plant species, as are broccoli and kale. Over many generations, people saved seeds from plants that grew in useful ways. Similar plant relatives can end up with different shapes when their leaves or shoots grow to different sizes.",
+    "aliases": [
+      "broccoli cabbage cauliflower same species",
+      "cabbage family vegetables",
+      "different parts of brassica"
+    ],
+    "sections": [],
+    "facts": [
+      "Kale, broccoli, cabbage and cauliflower are cultivated forms of Brassica oleracea."
+    ],
+    "terms": [
+      "flower",
+      "stem"
+    ],
+    "questions": [
+      {
+        "target": "broccoli-buds",
+        "text": "What makes the bumps you see when you look closely at a broccoli head?"
+      },
+      {
+        "target": "saving-garden-seeds",
+        "text": "Why can seed choices change what grows in a garden later?"
+      },
+      {
+        "target": "plant-leaves",
+        "text": "What important jobs do large cabbage leaves still have?"
+      }
+    ],
+    "sources": [
+      "mat-umn-cauliflower",
+      "mat-umn-broccoli",
+      "mat-umn-seed-saving"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plant-growth-light",
+    "title": "Why do shoots sometimes bend toward a window?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A young stem beside a window can bend as it grows. The side away from the strongest light can stretch more than the lit side. With one side getting longer, the whole stem curves toward the window. Bending as it grows can put its leaves where they catch more light. Scientists call this response phototropism. Growth can change again if the main source of light moves. The shoot does not turn by moving a joint in the way you turn an elbow.",
+    "aliases": [
+      "phototropism",
+      "why plants lean toward light",
+      "uneven stem growth"
+    ],
+    "sections": [],
+    "facts": [
+      "The same amount of light from different directions can change how a shoot bends."
+    ],
+    "terms": [
+      "phototropism",
+      "stem",
+      "photosynthesis"
+    ],
+    "questions": [
+      {
+        "target": "plant-leaves",
+        "text": "What do green leaves use the light for?"
+      },
+      {
+        "target": "sunflowers-and-sun",
+        "text": "How does young sunflower stem growth help it change direction?"
+      },
+      {
+        "target": "plant-growth-gravity",
+        "text": "How do roots and stems respond to a different signal from their surroundings?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-tropisms"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plant-growth-gravity",
+    "title": "How does a root know which way is down?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A root does not need to see the ground to grow down into it. Certain cells near many root tips can detect the direction of gravity. Signals from those cells affect how much parts of the root grow. If a seed is turned sideways, a new root can soon curve downward. Stems often respond by bending upward. The growth pattern is called gravitropism. It helps a seed get some roots into the ground and some shoots toward open space where leaves can catch light.",
+    "aliases": [
+      "gravitropism",
+      "why roots go down",
+      "why plants grow up"
+    ],
+    "sections": [],
+    "facts": [
+      "Shoots and many roots can respond in opposite directions to gravity."
+    ],
+    "terms": [
+      "gravitropism",
+      "plant root",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "target": "plant-growth-light",
+        "text": "How can light make a shoot bend even while gravity pulls on it?"
+      },
+      {
+        "target": "seed-germination",
+        "text": "What new parts start to grow when a seed sprouts?"
+      },
+      {
+        "target": "plant-roots",
+        "text": "How does growing down give a root a better chance to find water?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-tropisms"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "orchid-flower-shapes",
+    "title": "Why do some orchid flowers have surprising shapes?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Some orchid flowers have a broad part that gives an insect a place to land. Other parts can point into a space the visitor must pass through. An insect may brush against the flower and leave with a packet of pollen stuck to its body. When it visits a second flower of the same kind, the packet can touch the right surface. Different orchids use different shapes, smells or colors to attract visitors, and not every orchid depends on the same kind of animal.",
+    "aliases": [
+      "orchid petal shapes",
+      "orchid pollinator trick",
+      "how orchids give pollen to insects"
+    ],
+    "sections": [],
+    "facts": [
+      "Some orchids stick a packet of pollen onto a visiting insect."
+    ],
+    "terms": [
+      "pollinator",
+      "pollination",
+      "petal"
+    ],
+    "questions": [
+      {
+        "target": "pollination",
+        "text": "What needs to happen to the pollen after it leaves a flower?"
+      },
+      {
+        "target": "vanilla-orchids",
+        "text": "What familiar flavor comes from the fruit of an orchid?"
+      },
+      {
+        "target": "flower-parts",
+        "text": "What parts of a flower make it possible for pollen to leave and arrive?"
+      }
+    ],
+    "sources": [
+      "mat-kew-orchid"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "boiling-water",
+    "title": "Why does water bubble when it boils?",
+    "category": "chemistry",
+    "priority": 2,
+    "answer": "As water heats, more of its molecules can move into a gas. At the boiling point, bubbles of water vapor can grow inside the liquid and reach the surface. Evaporation can happen just at the surface long before a pot boils. Air pressure around the water helps set its boiling point. Higher on a mountain, the pressure is lower, so water generally begins boiling at a lower temperature. Bubbling water can therefore be at different temperatures in different places.",
+    "aliases": [
+      "boiling versus evaporation",
+      "why bubbles in boiling water",
+      "water at higher altitude"
+    ],
+    "sections": [],
+    "facts": [
+      "Water can boil at a lower temperature on a high mountain than near sea level."
+    ],
+    "terms": [
+      "boiling point",
+      "gas",
+      "evaporation"
+    ],
+    "questions": [
+      {
+        "target": "water-cycle",
+        "text": "How can water leave a lake’s surface without boiling?"
+      },
+      {
+        "target": "soda-fizz",
+        "text": "What gas makes many of the bubbles in soda?"
+      },
+      {
+        "target": "ice-floats",
+        "text": "What changes inside water when it becomes a solid rather than a gas?"
+      }
+    ],
+    "sources": [
+      "mat-openstax-boiling"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "road-salt-ice",
+    "title": "Why can salt melt ice on a road?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "Ordinary water can freeze at a certain temperature, but water with dissolved salt in it can stay liquid below that temperature. Salt on an icy road can dissolve in small amounts of liquid water at the surface and form salty water. Under suitable conditions, that helps more ice melt into the liquid mixture. How much it works depends on the temperature and how much liquid is available. Salt can also damage plants or move into waterways, so many road crews use it carefully.",
+    "aliases": [
+      "how rock salt melts ice",
+      "why salt on icy roads",
+      "saltwater freezing point"
+    ],
+    "sections": [],
+    "facts": [
+      "Salt cannot melt road ice well in all temperatures."
+    ],
+    "terms": [
+      "freezing point",
+      "dissolve",
+      "crystal"
+    ],
+    "questions": [
+      {
+        "target": "ice-floats",
+        "text": "What changes as ordinary water becomes icy crystals?"
+      },
+      {
+        "target": "dissolving-sugar",
+        "text": "How can a powder turn invisible in water while staying in the mixture?"
+      },
+      {
+        "target": "ice-cream-crystals",
+        "text": "Why do people care about how water freezes in a dessert?"
+      }
+    ],
+    "sources": [
+      "mat-umn-deice"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cooked-egg-white",
+    "title": "Why does clear egg white turn solid as it cooks?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "An uncooked egg white is a watery mixture with many folded proteins in it. Heat makes some of those proteins unfold and catch on to one another. The connected proteins begin holding the water in a soft solid. The new arrangement also scatters light, which gives a cooked egg white its cloudy or white look. You can see both changes happen as the egg warms. It stops flowing freely as a liquid and begins to keep its own shape.",
+    "aliases": [
+      "egg protein heat",
+      "why egg whites turn white",
+      "why eggs harden"
+    ],
+    "sections": [],
+    "facts": [
+      "Heat can change how parts of egg proteins are arranged."
+    ],
+    "terms": [
+      "molecule",
+      "solid",
+      "mixture"
+    ],
+    "questions": [
+      {
+        "target": "whipped-egg-whites",
+        "text": "How can egg white become fluffy without cooking it at first?"
+      },
+      {
+        "target": "cheese-curds",
+        "text": "What can happen when proteins in milk gather together?"
+      },
+      {
+        "target": "toast-browning",
+        "text": "Why can heat make the surface of a different food change color?"
+      }
+    ],
+    "sources": [
+      "mat-explo-egg"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "whipped-egg-whites",
+    "title": "How can egg white turn into a fluffy foam?",
+    "category": "agriculture-food",
+    "priority": 2,
+    "answer": "Whipping egg white draws air into the liquid and breaks it into many small bubbles. Some of the proteins in the egg white unfold and collect near the bubbles, helping build a thin film that keeps them from popping so fast. The air takes up space, so the egg white can become a tall foam. A baker can use that foam to make a food feel lighter. The bubbles are small, but there can be a great many in one spoonful.",
+    "aliases": [
+      "whisked egg whites",
+      "foam peaks",
+      "meringue bubbles"
+    ],
+    "sections": [],
+    "facts": [
+      "A foam contains a lot of little bubbles mixed into another material."
+    ],
+    "terms": [
+      "mixture",
+      "molecule"
+    ],
+    "questions": [
+      {
+        "target": "cooked-egg-white",
+        "text": "How does heating change egg white proteins?"
+      },
+      {
+        "target": "soap-bubbles",
+        "text": "How does a thin film of liquid hold a pocket of air?"
+      },
+      {
+        "target": "ice-cream-crystals",
+        "text": "Why do ice cream makers stir the mixture as it freezes?"
+      }
+    ],
+    "sources": [
+      "mat-explo-foam"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "plywood-layers",
+    "title": "Why does plywood have layers that face different ways?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A piece of solid wood often splits more easily in the direction its fibers run. In plywood, a panel is made by gluing together thin sheets of wood. The grain of one sheet often runs across the grain of the next one. That can keep the whole panel from having one easy direction to split. It can also help the sheet stay flatter when moisture changes. Looking at a plywood edge may show several thin lines where the different sheets meet.",
+    "aliases": [
+      "what makes plywood strong",
+      "wood veneer cross layers",
+      "layers of wood sheet"
+    ],
+    "sections": [],
+    "facts": [
+      "A thin sheet of wood used as a layer is called veneer."
+    ],
+    "terms": [
+      "veneer"
+    ],
+    "questions": [
+      {
+        "target": "paper-making",
+        "text": "How do wood fibers become a much thinner material?"
+      },
+      {
+        "target": "plastic-polymers",
+        "text": "How does the shape and arrangement of long pieces change a material’s strength?"
+      },
+      {
+        "target": "plant-stems",
+        "text": "What job does wood do when it is still part of a growing tree?"
+      }
+    ],
+    "sources": [
+      "mat-usfs-woodcomposite"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wool-fibers",
+    "title": "Why does a wool sweater help keep you warm?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "Wool comes from the coat of an animal, often a sheep. Its fine fibers often have little bends or waves. When the fibers are made into yarn and fabric, they can trap small spaces filled with air. Air that stays mostly still can slow the movement of heat away from your body. That helps make a wool sweater feel warm when you put it on in cool weather. The fabric does not have to make extra heat of its own to be useful.",
+    "aliases": [
+      "what is wool",
+      "wool fibers trap air",
+      "why wool warm"
+    ],
+    "sections": [],
+    "facts": [
+      "Many wool fibers have a natural bend or wave called crimp."
+    ],
+    "terms": [
+      "textile fiber",
+      "energy"
+    ],
+    "questions": [
+      {
+        "target": "textile-fibers",
+        "text": "What other places can we get fibers to make cloth?"
+      },
+      {
+        "target": "cotton-fibers",
+        "text": "Where do cotton strands grow before someone gathers them?"
+      },
+      {
+        "target": "heat-conduction",
+        "text": "How can a layer of a slow-conducting material help hold warmth?"
+      }
+    ],
+    "sources": [
+      "mat-gwu-fibers",
+      "mat-cornell-fibers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "silk-fibers",
+    "title": "How can a cocoon become a silk thread?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A silkworm spins a long strand around itself before it changes into a moth. Layers of that strand form the cocoon. For a kind of silk used in cloth, people gather cocoons and carefully unwind long threads from them. These can be joined into yarn that is often smooth and shiny. Silk fiber comes from a substance a caterpillar can make inside its body. Cotton fiber grows from a plant, so there are very different ways to get the threads that become fabric.",
+    "aliases": [
+      "where silk comes from",
+      "silk from silkworm cocoons",
+      "silk thread"
+    ],
+    "sections": [],
+    "facts": [
+      "The silkworm that supplies much textile silk is a moth caterpillar."
+    ],
+    "terms": [
+      "textile fiber",
+      "polymer"
+    ],
+    "questions": [
+      {
+        "target": "textile-fibers",
+        "text": "What helps people turn gathered fibers into a fabric?"
+      },
+      {
+        "target": "wool-fibers",
+        "text": "What other animal source gives people textile fibers?"
+      },
+      {
+        "target": "monarch-migration",
+        "text": "Which butterfly journeys south after becoming an adult?"
+      }
+    ],
+    "sources": [
+      "mat-gwu-fibers",
+      "mat-cornell-fibers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "linen-fibers",
+    "title": "What part of a flax plant becomes linen?",
+    "category": "everyday-science",
+    "priority": 2,
+    "answer": "A flax plant grows long groups of tough fibers inside its slender stems. After harvest, people loosen and remove other stem material so they can gather those fibers. The long strands can be twisted into yarn and woven into linen cloth. Linen and cotton both come from plants, but their fibers do not grow in the same place. A cotton plant makes its soft fibers around seeds. Flax fibers run along the stem and help give that stem support while the plant is alive.",
+    "aliases": [
+      "linen made from flax",
+      "plant linen fibers",
+      "where linen comes from"
+    ],
+    "sections": [],
+    "facts": [
+      "Linen fibers grow along the flax stem, not on the outside of a seed."
+    ],
+    "terms": [
+      "textile fiber",
+      "stem"
+    ],
+    "questions": [
+      {
+        "target": "cotton-fibers",
+        "text": "What different part of the cotton plant grows fibers?"
+      },
+      {
+        "target": "textile-fibers",
+        "text": "How can many individual fibers become one piece of cloth?"
+      },
+      {
+        "target": "plant-stems",
+        "text": "Why does a plant need tough material along its stems?"
+      }
+    ],
+    "sources": [
+      "mat-gwu-fibers",
+      "mat-cornell-fibers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

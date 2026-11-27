@@ -1,0 +1,4721 @@
+[
+  {
+    "id": "skeleton",
+    "title": "Why do you need a skeleton?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Your skeleton gives your body shape and holds it up when you stand. It gives muscles something firm to pull on when you run, wave, or chew. Some parts act like a shield. Your skull surrounds your brain, and your ribs curve around your heart and lungs. A skeleton does more than hold you together. Bones store minerals, and soft tissue inside some bones helps make new blood cells.",
+    "aliases": [
+      "human skeleton",
+      "what do bones do",
+      "how many bones do you have"
+    ],
+    "sections": [],
+    "facts": [
+      "A typical adult skeleton has 206 bones."
+    ],
+    "terms": [
+      "skeleton",
+      "cartilage"
+    ],
+    "questions": [
+      {
+        "target": "joints",
+        "text": "Where do bones meet so you can move?"
+      },
+      {
+        "target": "rib-cage",
+        "text": "Which bones protect your lungs?"
+      },
+      {
+        "target": "bone-marrow",
+        "text": "What does the soft material inside some bones do?"
+      }
+    ],
+    "sources": [
+      "bt-skeletal",
+      "bt-skeleton-parts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "living-bones",
+    "title": "Are your bones alive?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "A dried bone in a museum can make it seem as if bones are just hard sticks. Inside you, each bone contains living cells. Blood travels through small channels to bring those cells supplies. The firm outer layer holds up well under pressure. Toward the inside of many bones, thin pieces of bone form a network with gaps between them. Bone cells slowly take away old bone and build fresh bone as you live.",
+    "aliases": [
+      "living bone",
+      "what is inside a bone",
+      "why do bones have blood"
+    ],
+    "sections": [],
+    "facts": [
+      "Some bone has an open pattern that looks a little like a sponge."
+    ],
+    "terms": [
+      "bone marrow",
+      "mineral"
+    ],
+    "questions": [
+      {
+        "target": "skeleton",
+        "text": "What jobs do all the bones do together?"
+      },
+      {
+        "target": "bone-marrow",
+        "text": "Why do some bones have a soft center?"
+      },
+      {
+        "target": "blood-vessels",
+        "text": "How does blood reach living tissue?"
+      }
+    ],
+    "sources": [
+      "bt-bone",
+      "bt-skeletal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bone-marrow",
+    "title": "What does bone marrow do?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Deep inside some bones is soft material called marrow. Red marrow is a place where new blood cells are made. Among them are red blood cells that carry oxygen and white blood cells that help protect the body. It also makes the large cells that shed little pieces called platelets. Those pieces help stop bleeding. Yellow marrow has much more fat. Even though marrow sits inside bone, it has a supply of blood moving through it.",
+    "aliases": [
+      "bone marrow",
+      "soft stuff inside bones",
+      "where are blood cells made"
+    ],
+    "sections": [],
+    "facts": [
+      "The inside of an adult bone can contain red or yellow marrow."
+    ],
+    "terms": [
+      "bone marrow",
+      "red blood cell",
+      "platelet"
+    ],
+    "questions": [
+      {
+        "target": "red-blood-cells",
+        "text": "Why does your blood need red cells?"
+      },
+      {
+        "target": "platelets",
+        "text": "How do platelets help seal a cut?"
+      },
+      {
+        "target": "living-bones",
+        "text": "What makes bone a living part of you?"
+      }
+    ],
+    "sources": [
+      "bt-bone",
+      "bt-blood"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "joints",
+    "title": "How do joints let your body move?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "A joint is a place where bones meet. Many joints let one bone move against the other. A layer of smooth cartilage covers the touching ends in a freely moving joint. Liquid in the joint helps the surfaces slide. Strong strips called ligaments keep the bones from moving too far apart. Different joints allow different moves. Elbows mainly bend and straighten, while the joints in your shoulders let your arms move in many directions.",
+    "aliases": [
+      "joint",
+      "where bones meet",
+      "why can my knee bend"
+    ],
+    "sections": [],
+    "facts": [
+      "Your elbow mainly bends and straightens like a hinge."
+    ],
+    "terms": [
+      "joint",
+      "cartilage",
+      "ligament"
+    ],
+    "questions": [
+      {
+        "target": "skeletal-muscles",
+        "text": "What pulls on the bones at a joint?"
+      },
+      {
+        "target": "shoulder-hip",
+        "text": "Which joints let a bone swing in many directions?"
+      },
+      {
+        "target": "cartilage",
+        "text": "What helps moving bones slide past each other?"
+      }
+    ],
+    "sources": [
+      "bt-joints"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "shoulder-hip",
+    "title": "Why can your shoulder move in so many directions?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "At your shoulder, the rounded top of your upper arm bone fits into a socket. Imagine a ball resting in a shallow cup. A round surface can turn in more directions than a door hinge, so you can lift your arm, sweep it forward, or make a circle. Your hip has the same general shape, but its deeper socket fits tightly around the round top of the thigh bone and helps support your weight.",
+    "aliases": [
+      "ball and socket joint",
+      "shoulder and hip",
+      "how does your shoulder move"
+    ],
+    "sections": [],
+    "facts": [
+      "Your hip and shoulder both have ball-and-socket joints."
+    ],
+    "terms": [
+      "joint"
+    ],
+    "questions": [
+      {
+        "target": "joints",
+        "text": "How do the parts of a moving joint work together?"
+      },
+      {
+        "target": "skeletal-muscles",
+        "text": "What pulls your arm into a new position?"
+      },
+      {
+        "target": "cartilage",
+        "text": "How do bones move without rubbing roughly?"
+      }
+    ],
+    "sources": [
+      "bt-joints"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cartilage",
+    "title": "What is cartilage?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Feel the end of your nose. It can bend a little without flopping. A tough, springy material called cartilage helps give it shape. Your outer ears contain cartilage too. The cartilage on the ends of many bones has a different job. Its surface is smooth, so it helps the bones slide in a moving joint. The ribs also meet cartilage at the front of your chest, which allows some movement as you breathe.",
+    "aliases": [
+      "cartilage",
+      "why is the outside of your ear bendy",
+      "why is nose tip flexible"
+    ],
+    "sections": [],
+    "facts": [
+      "A smooth type of cartilage covers the ends of bones in many moving joints."
+    ],
+    "terms": [
+      "cartilage",
+      "joint"
+    ],
+    "questions": [
+      {
+        "target": "joints",
+        "text": "Why is cartilage useful in a bending knee?"
+      },
+      {
+        "target": "living-bones",
+        "text": "How is a hard bone built?"
+      },
+      {
+        "target": "rib-cage",
+        "text": "Where does cartilage help shape your chest?"
+      }
+    ],
+    "sources": [
+      "bt-skeletal",
+      "bt-joints",
+      "bt-ribs"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "spine",
+    "title": "What does your spine do?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Your spine is a column made mostly of individual bones called vertebrae. Many of them are separated by firm pads that cushion the bones and allow a little movement. When a lot of small moves add up, you can bend your back. Inside the column is a passage that helps protect your spinal cord. Alongside the spine, nerves branch out to carry messages between your brain and many parts of your body.",
+    "aliases": [
+      "spine",
+      "backbone",
+      "vertebra",
+      "why can your back bend"
+    ],
+    "sections": [],
+    "facts": [
+      "The pads between many vertebrae are called discs."
+    ],
+    "terms": [
+      "vertebra",
+      "spinal cord"
+    ],
+    "questions": [
+      {
+        "target": "skeleton",
+        "text": "How does your full skeleton support you?"
+      },
+      {
+        "target": "skull",
+        "text": "Which bones protect the brain the spine connects to?"
+      },
+      {
+        "target": "brain",
+        "text": "Where do messages going down the spinal cord start?"
+      }
+    ],
+    "sources": [
+      "bt-spine"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "skull",
+    "title": "What does your skull protect?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Your skull is made of several bones that fit together. Some form a strong case around your brain. Others shape your face, hold your eyes, or help support your teeth. Most of the skull stays still when you chew. Your lower jaw moves at joints near your ears. In a baby, the bones around the brain have spaces between them. These spaces help the skull grow and close gradually.",
+    "aliases": [
+      "skull",
+      "cranium",
+      "jaw bone",
+      "what bones protect the brain"
+    ],
+    "sections": [],
+    "facts": [
+      "The seams between some bones of the skull are called sutures."
+    ],
+    "terms": [
+      "skull"
+    ],
+    "questions": [
+      {
+        "target": "brain",
+        "text": "What happens inside the brain the skull protects?"
+      },
+      {
+        "target": "spine",
+        "text": "Which column of bones protects the spinal cord?"
+      },
+      {
+        "target": "rib-cage",
+        "text": "What other bones shelter organs?"
+      }
+    ],
+    "sources": [
+      "bt-skull"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rib-cage",
+    "title": "How does your rib cage protect you?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Your ribs curve around your chest like a long set of hoops. At the back they join the spine. Many also connect to the breastbone at the front, either directly or through other pieces of cartilage. The cage helps guard soft parts inside it, including your lungs and heart. It still moves. Some muscles between the ribs lift the chest as you breathe in, helping make more room inside.",
+    "aliases": [
+      "ribs",
+      "rib cage",
+      "why do ribs move"
+    ],
+    "sections": [],
+    "facts": [
+      "Most people have twelve pairs of ribs."
+    ],
+    "terms": [
+      "rib cage",
+      "cartilage"
+    ],
+    "questions": [
+      {
+        "target": "lungs",
+        "text": "Why does making room for your lungs help you breathe?"
+      },
+      {
+        "target": "heart",
+        "text": "What does the heart do inside that cage?"
+      },
+      {
+        "target": "spine",
+        "text": "Where do the ribs connect in your back?"
+      }
+    ],
+    "sources": [
+      "bt-ribs"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "blood",
+    "title": "What is blood made of?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Blood has a liquid part called plasma. It is mostly water and carries things such as dissolved nutrients and waste. Riding in it are several kinds of cells and cell pieces. Red blood cells carry oxygen. Different kinds of white blood cells help the body notice and respond to trouble. Bits called platelets help make plugs when a small blood vessel breaks. Blood has so many red cells that the mixture looks red.",
+    "aliases": [
+      "blood",
+      "blood plasma",
+      "what is in blood"
+    ],
+    "sections": [],
+    "facts": [
+      "Plasma makes up a little over half the volume of typical blood."
+    ],
+    "terms": [
+      "plasma",
+      "red blood cell",
+      "white blood cell",
+      "platelet"
+    ],
+    "questions": [
+      {
+        "target": "heart",
+        "text": "What pushes blood around your body?"
+      },
+      {
+        "target": "red-blood-cells",
+        "text": "Why does blood look red?"
+      },
+      {
+        "target": "white-blood-cells",
+        "text": "Which blood cells help defend your body?"
+      }
+    ],
+    "sources": [
+      "bt-blood",
+      "bt-white-blood"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "red-blood-cells",
+    "title": "How do red blood cells carry oxygen?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "A red blood cell is a flexible, flat disc with thinner spots in its middle. It carries a substance called hemoglobin. When the blood passes through your lungs, oxygen can attach to hemoglobin. Farther along, oxygen can come loose and move from the blood toward cells that need it. Hemoglobin contains iron and gives the red cells their color. The cells can bend as they squeeze through some very narrow blood vessels.",
+    "aliases": [
+      "red blood cells",
+      "hemoglobin",
+      "what gives blood its color"
+    ],
+    "sections": [],
+    "facts": [
+      "A mature human red blood cell usually lasts about four months."
+    ],
+    "terms": [
+      "red blood cell",
+      "hemoglobin",
+      "oxygen"
+    ],
+    "questions": [
+      {
+        "target": "lungs",
+        "text": "Where does a red cell pick up oxygen?"
+      },
+      {
+        "target": "bone-marrow",
+        "text": "Where are fresh blood cells made?"
+      },
+      {
+        "target": "capillaries",
+        "text": "Which tiny tubes bring red cells close to other cells?"
+      }
+    ],
+    "sources": [
+      "bt-red-blood"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "white-blood-cells",
+    "title": "What do white blood cells do?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "White blood cells are part of your body’s defenses. There are several kinds with different jobs. Some can surround and break down tiny invaders or bits of dead cells. Other kinds help the body recognize things it has met before. The cells can travel in blood and can also move into the surrounding tissue. On most days you never notice them, even though they are busy checking what is happening around you.",
+    "aliases": [
+      "white blood cells",
+      "what fights germs in blood",
+      "leukocytes"
+    ],
+    "sections": [],
+    "facts": [
+      "White blood cells can leave the blood and move into nearby tissues."
+    ],
+    "terms": [
+      "white blood cell",
+      "cell"
+    ],
+    "questions": [
+      {
+        "target": "blood",
+        "text": "What else travels through the blood?"
+      },
+      {
+        "target": "bone-marrow",
+        "text": "Where does the body make new blood cells?"
+      },
+      {
+        "target": "skin",
+        "text": "What barrier helps block harmful things before white cells are needed?"
+      }
+    ],
+    "sources": [
+      "bt-white-blood",
+      "bt-blood"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "platelets",
+    "title": "How does your blood plug a cut?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "If a tiny vessel is damaged, its walls can squeeze inward to slow the flow. Small bits of cells called platelets stick to the broken spot and to each other. Their group makes a plug. The blood can also produce a mesh of threads that strengthens the plug. Together these steps form a clot, which keeps more blood from escaping while the vessel and nearby skin begin to repair themselves.",
+    "aliases": [
+      "platelets",
+      "clot",
+      "why does a small cut stop bleeding"
+    ],
+    "sections": [],
+    "facts": [
+      "Platelets are pieces that break off from much larger cells."
+    ],
+    "terms": [
+      "platelet",
+      "clot"
+    ],
+    "questions": [
+      {
+        "target": "blood",
+        "text": "Which liquid carries platelets around the body?"
+      },
+      {
+        "target": "bone-marrow",
+        "text": "Where are the cells that make platelets?"
+      },
+      {
+        "target": "skin",
+        "text": "What other work does skin do to protect you?"
+      }
+    ],
+    "sources": [
+      "bt-white-blood",
+      "bt-clot"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "blood-vessels",
+    "title": "What are arteries and veins?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Blood takes a trip through tubes called blood vessels. An artery carries blood away from the heart. The largest ones have tough walls and can stretch a bit with each beat. A vein carries blood back to the heart. Many veins, especially in arms and legs, have little flaps that help stop blood moving backward. The direction the blood moves makes a vessel an artery or a vein.",
+    "aliases": [
+      "blood vessels",
+      "arteries versus veins",
+      "what are veins for"
+    ],
+    "sections": [],
+    "facts": [
+      "Some veins have flaps that help keep blood from slipping backward."
+    ],
+    "terms": [
+      "blood vessel",
+      "artery",
+      "vein"
+    ],
+    "questions": [
+      {
+        "target": "heart",
+        "text": "What gives blood the push it needs to travel?"
+      },
+      {
+        "target": "capillaries",
+        "text": "What connects the smallest arteries and veins?"
+      },
+      {
+        "target": "lungs",
+        "text": "Which organs receive blood from the heart to trade gases?"
+      }
+    ],
+    "sources": [
+      "bt-vessels"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "capillaries",
+    "title": "How do capillaries deliver oxygen to cells?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "The larger blood vessels branch into tiny tubes called capillaries. Each tube has a very thin wall. That lets oxygen and some other materials leave the blood and reach nearby cells. Some things move the other way. Carbon dioxide can travel from cells into the blood, which later brings it to the lungs. A whole network of tiny capillaries keeps most cells close to a place where these exchanges can take place.",
+    "aliases": [
+      "capillaries",
+      "tiny blood vessels",
+      "how does oxygen leave blood"
+    ],
+    "sections": [],
+    "facts": [
+      "Many capillaries are so narrow that red blood cells go through them one at a time."
+    ],
+    "terms": [
+      "capillary",
+      "oxygen"
+    ],
+    "questions": [
+      {
+        "target": "blood-vessels",
+        "text": "How does blood reach and leave capillaries?"
+      },
+      {
+        "target": "red-blood-cells",
+        "text": "What material carries the oxygen through a capillary?"
+      },
+      {
+        "target": "lungs",
+        "text": "Where does oxygen first get into blood?"
+      }
+    ],
+    "sources": [
+      "bt-vessels",
+      "bt-red-blood"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "skin",
+    "title": "What does your skin do?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Skin forms a cover that helps keep water in your body and keeps many harmful things out. The surface can get scuffed, so new cells push up from below to replace old ones. A deeper layer contains tiny blood vessels, nerves, sweat glands, and the places where hairs begin. Your skin also senses what touches you. It is a living organ, and its jobs include protection, touch, and keeping your body from getting too hot.",
+    "aliases": [
+      "skin",
+      "layers of skin",
+      "is skin an organ"
+    ],
+    "sections": [],
+    "facts": [
+      "The outer layer of your skin continually sheds and replaces cells."
+    ],
+    "terms": [
+      "organ",
+      "skin"
+    ],
+    "questions": [
+      {
+        "target": "touch",
+        "text": "What helps skin tell rough from smooth?"
+      },
+      {
+        "target": "sweating",
+        "text": "How does skin cool your body?"
+      },
+      {
+        "target": "nails",
+        "text": "What hard parts grow from skin near your fingertips?"
+      }
+    ],
+    "sources": [
+      "bt-skin",
+      "bt-skin-roles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sweating",
+    "title": "Why does sweating cool you down?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Your body can make sweat when you get warm. The sweat spreads across your skin. As its water changes into a gas and mixes with the air, the change takes some heat from your skin. This cooling works best when the sweat can evaporate, rather than just roll off you. On a muggy day, the air already carries plenty of water, so sweat often evaporates more slowly and you may stay sweaty longer.",
+    "aliases": [
+      "sweat",
+      "why do we sweat",
+      "how does sweat cool the body"
+    ],
+    "sections": [],
+    "facts": [
+      "Sweat glands send moisture to the skin through tiny openings."
+    ],
+    "terms": [
+      "evaporation",
+      "skin"
+    ],
+    "questions": [
+      {
+        "target": "skin",
+        "text": "Which layers contain sweat glands?"
+      },
+      {
+        "target": "water-cycle",
+        "text": "Where else does liquid water change into a gas?"
+      },
+      {
+        "target": "touch",
+        "text": "How can you sense that something is warm?"
+      }
+    ],
+    "sources": [
+      "bt-skin-roles",
+      "bt-hair-nails"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "nails",
+    "title": "How do your fingernails grow?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Your fingernail grows from a group of cells under the skin near the base of the nail. These cells make new nail material that slowly pushes older nail forward. The part you can trim has hardened with a tough protein called keratin. It has no nerves, which is why clipping just the free edge does not hurt. A nail protects the tender tip of your finger and gives it a firmer edge for picking things up.",
+    "aliases": [
+      "fingernails",
+      "nail growth",
+      "what are nails made of"
+    ],
+    "sections": [],
+    "facts": [
+      "The visible part of a nail grows forward as new material is made near its base."
+    ],
+    "terms": [
+      "keratin"
+    ],
+    "questions": [
+      {
+        "target": "skin",
+        "text": "How does skin also replace its outer surface?"
+      },
+      {
+        "target": "hair-growth",
+        "text": "What other parts of the body are made of tough keratin?"
+      },
+      {
+        "target": "touch",
+        "text": "How do fingertips sense the texture of a small object?"
+      }
+    ],
+    "sources": [
+      "bt-hair-nails"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hair-growth",
+    "title": "Where does hair grow from?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "A hair gets longer from the end hidden inside the skin. That end sits in a small pocket called a follicle. Living cells near the bottom add material. By the time the hair sticks out from your head, it is mainly a strand of hardened protein. There are no nerves in that part, so a haircut does not hurt. Hairs may grow for a time, rest, then fall out as the cycle starts again.",
+    "aliases": [
+      "hair growth",
+      "hair follicle",
+      "why does a haircut not hurt"
+    ],
+    "sections": [],
+    "facts": [
+      "Each growing hair starts in a pocket in skin called a follicle."
+    ],
+    "terms": [
+      "follicle",
+      "keratin"
+    ],
+    "questions": [
+      {
+        "target": "nails",
+        "text": "What other hard part grows from cells near its base?"
+      },
+      {
+        "target": "skin",
+        "text": "What else is found under the surface of skin?"
+      },
+      {
+        "target": "tears",
+        "text": "How do eyelashes and tears help take care of your eyes?"
+      }
+    ],
+    "sources": [
+      "bt-hair-nails"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "liver",
+    "title": "What does your liver do?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Your liver sits mostly on the right side of your belly, beneath the ribs. Blood from much of your digestive system brings it materials from food. The liver can store some supplies, change others into forms the body can use, and help handle waste. It also makes bile, a liquid that helps the small intestine handle fat. Many of these jobs happen at once, all without you having to think about them.",
+    "aliases": [
+      "liver",
+      "why do we have a liver",
+      "what makes bile"
+    ],
+    "sections": [],
+    "facts": [
+      "The liver makes bile, which helps your body use fats from food."
+    ],
+    "terms": [
+      "liver",
+      "bile",
+      "organ"
+    ],
+    "questions": [
+      {
+        "target": "digestion",
+        "text": "Where do nutrients in food enter your body?"
+      },
+      {
+        "target": "gallbladder",
+        "text": "Where can the body store the bile the liver makes?"
+      },
+      {
+        "target": "blood",
+        "text": "How does the body carry nutrients to its organs?"
+      }
+    ],
+    "sources": [
+      "bt-accessory-digestion"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "gallbladder",
+    "title": "What does a gallbladder do?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Your gallbladder is a little pouch tucked under your liver. As the liver makes bile, some of that liquid goes to the pouch and stays there between meals. When you eat, the pouch can squeeze bile through small tubes into the first part of your small intestine. There, bile helps spread fat into smaller droplets. The smaller drops give the body’s digestive juices more surface to work on.",
+    "aliases": [
+      "gallbladder",
+      "where is bile stored",
+      "how does bile reach intestine"
+    ],
+    "sections": [],
+    "facts": [
+      "The gallbladder fits against the underside of the liver."
+    ],
+    "terms": [
+      "gallbladder",
+      "bile"
+    ],
+    "questions": [
+      {
+        "target": "liver",
+        "text": "Which organ makes the bile first?"
+      },
+      {
+        "target": "digestion",
+        "text": "What happens to food in the small intestine?"
+      },
+      {
+        "target": "pancreas",
+        "text": "What other juices help break down food?"
+      }
+    ],
+    "sources": [
+      "bt-accessory-digestion"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pancreas",
+    "title": "Why do you have a pancreas?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "The pancreas is a flat organ behind the stomach. It makes liquids containing helpers called enzymes. The liquid flows to the small intestine, where enzymes split food into smaller bits. The pancreas has a second job too. It releases messages called hormones into your blood. One of them is insulin, which helps many cells take in sugar from the blood. One organ can help with both the food in your gut and what travels in your blood.",
+    "aliases": [
+      "pancreas",
+      "where does insulin come from",
+      "what makes digestive enzymes"
+    ],
+    "sections": [],
+    "facts": [
+      "The pancreas sends digestive juices to the first part of the small intestine."
+    ],
+    "terms": [
+      "pancreas",
+      "enzyme",
+      "hormone"
+    ],
+    "questions": [
+      {
+        "target": "digestion",
+        "text": "What happens after food reaches the small intestine?"
+      },
+      {
+        "target": "gallbladder",
+        "text": "What other liquid goes into the intestine to help digest fats?"
+      },
+      {
+        "target": "thyroid",
+        "text": "What is another gland that makes messages for the blood?"
+      }
+    ],
+    "sources": [
+      "bt-accessory-digestion"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "thyroid",
+    "title": "What does the thyroid do?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "The thyroid is a small gland near the front of your neck. It makes hormones, which are messages that move in your blood. The messages from your thyroid help tune how fast many parts of your body use energy. Thyroid hormones also help with normal growth and development. The gland needs a little of the element iodine to make these messages. It is often drawn with two halves that look like butterfly wings.",
+    "aliases": [
+      "thyroid",
+      "thyroid gland",
+      "where is the thyroid"
+    ],
+    "sections": [],
+    "facts": [
+      "The thyroid lies near the front of the neck and has a butterfly-like shape."
+    ],
+    "terms": [
+      "thyroid",
+      "hormone"
+    ],
+    "questions": [
+      {
+        "target": "pancreas",
+        "text": "Which other organ can send messages through your blood?"
+      },
+      {
+        "target": "pituitary",
+        "text": "What small gland helps tell the thyroid when to work?"
+      },
+      {
+        "target": "energy",
+        "text": "What do people mean when they say something uses energy?"
+      }
+    ],
+    "sources": [
+      "bt-thyroid"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pituitary",
+    "title": "How does your brain talk to hormone glands?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "A tiny gland under your brain is called the pituitary. A nearby part of your brain helps tell it what to release. Several of its messages travel in your blood and tell other glands how much to work. Others help direct growth or help your kidneys manage water. Picture a group of people passing notes. The brain can send a note to the pituitary, which then passes a message to the right place.",
+    "aliases": [
+      "pituitary",
+      "pituitary gland",
+      "hypothalamus"
+    ],
+    "sections": [],
+    "facts": [
+      "The pituitary is roughly the size of a pea."
+    ],
+    "terms": [
+      "pituitary gland",
+      "hormone"
+    ],
+    "questions": [
+      {
+        "target": "brain",
+        "text": "How do brain cells send other kinds of messages?"
+      },
+      {
+        "target": "thyroid",
+        "text": "Which neck gland responds to messages from the pituitary?"
+      },
+      {
+        "target": "kidneys",
+        "text": "What organs adjust how much water your body holds?"
+      }
+    ],
+    "sources": [
+      "bt-pituitary",
+      "bt-thyroid"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "vision",
+    "title": "How do your eyes help you see?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Light from the world enters your eye through a round opening. Clear parts near the front bend the light so it makes a sharp picture on a layer at the back. That layer is the retina. Some of its cells change incoming light into messages. A bundle of nerve fibers carries them toward your brain. Your brain combines messages from both eyes and helps you recognize the shapes, colors, and motions around you.",
+    "aliases": [
+      "vision",
+      "sight",
+      "how eyes see"
+    ],
+    "sections": [],
+    "facts": [
+      "Your retina lines the inside of the back of the eye."
+    ],
+    "terms": [
+      "retina",
+      "pupil",
+      "optic nerve"
+    ],
+    "questions": [
+      {
+        "target": "pupils",
+        "text": "How does the eye let in more or less light?"
+      },
+      {
+        "target": "light",
+        "text": "Where does light entering the eye come from?"
+      },
+      {
+        "target": "brain",
+        "text": "What turns messages from the eye into what you see?"
+      }
+    ],
+    "sources": [
+      "bt-eye"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pupils",
+    "title": "Why do your pupils change size?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Walk from a sunny yard into a dim room and your eyes start to adjust. The small dark opening in each eye is its pupil. A ring around it, the iris, contains muscles that can make the opening wider or narrower. A wider opening lets more light in when it is dark. In brighter light, a narrower opening limits how much enters. The change happens without needing to think about it.",
+    "aliases": [
+      "pupil size",
+      "why do pupils get bigger in the dark",
+      "iris"
+    ],
+    "sections": [],
+    "facts": [
+      "The pupil is an opening. The iris around it is the colored part of the eye."
+    ],
+    "terms": [
+      "pupil",
+      "iris"
+    ],
+    "questions": [
+      {
+        "target": "vision",
+        "text": "What happens to light after it enters the pupil?"
+      },
+      {
+        "target": "light",
+        "text": "What is the light that enters your eye?"
+      },
+      {
+        "target": "tears",
+        "text": "What keeps the front surface of the eye smooth?"
+      }
+    ],
+    "sources": [
+      "bt-eye",
+      "bt-eye-kids"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tears",
+    "title": "Why do your eyes make tears?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Your eyes need a thin coat of liquid for more than crying. Each blink spreads a fresh layer of tears across the eye. That layer keeps the surface moist and helps it stay smooth. Tears can also wash loose dust away. Some drain through small openings in the corners of your eyes and travel down into your nose. When you cry, there may be more tears than those openings can drain, so some run down your cheeks.",
+    "aliases": [
+      "tears",
+      "why do you blink",
+      "why does your nose run when you cry"
+    ],
+    "sections": [],
+    "facts": [
+      "Some tears drain into the nose through tear ducts."
+    ],
+    "terms": [
+      "tear duct",
+      "tear film"
+    ],
+    "questions": [
+      {
+        "target": "vision",
+        "text": "Why do your eyes need a smooth, clear front surface?"
+      },
+      {
+        "target": "pupils",
+        "text": "What part changes the amount of light entering the eye?"
+      },
+      {
+        "target": "hair-growth",
+        "text": "How do tiny hairs around your eyes help protect them?"
+      }
+    ],
+    "sources": [
+      "bt-tears",
+      "bt-vision"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "taste",
+    "title": "How do taste buds tell flavors apart?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "When you take a bite, tiny bits of dissolved food meet taste cells. Groups of such cells form taste buds. Signals from those cells help your brain notice tastes such as sweet, bitter, or sour. Flavor includes more than these signals. The smell of food, its warmth, and how it feels in your mouth matter too. With a stuffy nose you may still taste the sweetness in a piece of fruit but have a harder time telling which fruit it is.",
+    "aliases": [
+      "taste buds",
+      "how does taste work",
+      "why does food taste different with a stuffy nose"
+    ],
+    "sections": [],
+    "facts": [
+      "Sweet, salty, sour, bitter, and savory are five well-known kinds of taste."
+    ],
+    "terms": [
+      "taste bud",
+      "receptor"
+    ],
+    "questions": [
+      {
+        "target": "smell",
+        "text": "How does the nose help you tell foods apart?"
+      },
+      {
+        "target": "digestion",
+        "text": "What happens to food after you taste and swallow it?"
+      },
+      {
+        "target": "touch",
+        "text": "How can mouth feel change what you think of as flavor?"
+      }
+    ],
+    "sources": [
+      "bt-taste",
+      "bt-smell"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "smell",
+    "title": "How do you smell something nearby?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "A bowl of cut oranges can smell fresh from across a table. Some molecules leave the fruit and move through the air. When air flows through your nose, a few reach a small patch of cells high inside it. Those cells can notice certain molecules and send signals to your brain. The brain uses the pattern of signals to recognize a smell. Odors from food can also reach the same spot through the back of your mouth.",
+    "aliases": [
+      "smell",
+      "how nose smells",
+      "what is an odor"
+    ],
+    "sections": [],
+    "facts": [
+      "Air can carry scent molecules from a food you have never touched."
+    ],
+    "terms": [
+      "molecule",
+      "receptor"
+    ],
+    "questions": [
+      {
+        "target": "taste",
+        "text": "What senses work together to make a flavor?"
+      },
+      {
+        "target": "brain",
+        "text": "What makes sense of messages from your nose?"
+      },
+      {
+        "target": "molecules",
+        "text": "How can pieces of matter small enough to go unseen reach your nose?"
+      }
+    ],
+    "sources": [
+      "bt-smell"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "touch",
+    "title": "How do you feel rough and smooth things?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Try brushing a finger over paper, a sweater, or the top of a table. The push on the skin changes as your finger travels over tiny bumps. Special nerve endings pick up these tiny changes. Signals move from the finger toward the brain, which puts them together to help you feel a texture. Your skin also has ways to notice heat, cold, and stronger pressure. These different signals help you feel more than just whether something is touching you.",
+    "aliases": [
+      "touch",
+      "why can fingers feel texture",
+      "how do you feel hot and cold"
+    ],
+    "sections": [],
+    "facts": [
+      "Different kinds of nerve endings help you feel pressure, warmth, cold, or vibration."
+    ],
+    "terms": [
+      "receptor",
+      "signal"
+    ],
+    "questions": [
+      {
+        "target": "skin",
+        "text": "Where are the nerve endings that detect many touches?"
+      },
+      {
+        "target": "braille",
+        "text": "How do readers use touch to tell patterns apart?"
+      },
+      {
+        "target": "brain",
+        "text": "Where do most touch messages go to be understood?"
+      }
+    ],
+    "sources": [
+      "bt-sensory",
+      "bt-skin-roles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "body-balance",
+    "title": "How does your body keep its balance?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Your brain checks several clues to see whether you are upright or tipping. Eyes can tell you how the room is moving in your view. Sensors in muscles and joints report how bent or stretched a body part is. Small parts of the inner ear detect a turn or tilt of your head. Your brain blends these signals and tells your muscles to adjust. That is how you can stay up when the ground is uneven.",
+    "aliases": [
+      "balance",
+      "inner ear balance",
+      "why is it easier to balance with eyes open"
+    ],
+    "sections": [],
+    "facts": [
+      "Tiny canals in your inner ear help sense turns of your head."
+    ],
+    "terms": [
+      "inner ear",
+      "signal"
+    ],
+    "questions": [
+      {
+        "target": "hearing",
+        "text": "What other jobs do parts of the inner ear do?"
+      },
+      {
+        "target": "vision",
+        "text": "How do your eyes tell you the room is moving in your view?"
+      },
+      {
+        "target": "skeletal-muscles",
+        "text": "What makes the small movements that keep you from tipping?"
+      }
+    ],
+    "sources": [
+      "bt-sensory"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "carbohydrates",
+    "title": "What are carbohydrates?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "A potato, a pear, and a piece of bread can all provide carbohydrates. Some carbohydrates are sugars, such as the ones that help make a ripe pear sweet. Others are starches, long chains your body can break into smaller sugars. Cells can use those sugars for energy. Plant foods can also contain fiber, a kind of carbohydrate that passes much farther through your gut without being broken up by your own digestive juices.",
+    "aliases": [
+      "carbohydrates",
+      "what are carbs",
+      "sugar and starch"
+    ],
+    "sections": [],
+    "facts": [
+      "Sugars, starches, and fiber are all kinds of carbohydrates."
+    ],
+    "terms": [
+      "carbohydrate",
+      "starch"
+    ],
+    "questions": [
+      {
+        "target": "fiber",
+        "text": "What kind of carbohydrate is harder for your body to digest?"
+      },
+      {
+        "target": "digestion",
+        "text": "How does your body break food into smaller parts?"
+      },
+      {
+        "target": "food-protein",
+        "text": "What other kind of material in food helps build your body?"
+      }
+    ],
+    "sources": [
+      "bt-nutrition"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "food-protein",
+    "title": "Why does your body need protein?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Protein does many jobs in the body. Some proteins help form muscles. Others act like tiny tools that speed up changes inside you. When you eat foods such as eggs, fish, or beans, your gut breaks much of their protein into smaller parts. Those parts are called amino acids. Cells can join them in different orders to make the proteins they need. Think of the pieces of a train set being used to build a different sort of train.",
+    "aliases": [
+      "protein in food",
+      "what does protein do",
+      "amino acids"
+    ],
+    "sections": [],
+    "facts": [
+      "Beans, eggs, fish, nuts, and other foods can provide protein."
+    ],
+    "terms": [
+      "protein",
+      "amino acid"
+    ],
+    "questions": [
+      {
+        "target": "beans-as-food",
+        "text": "How can beans supply protein without being meat?"
+      },
+      {
+        "target": "digestion",
+        "text": "Where does the body break food protein into smaller pieces?"
+      },
+      {
+        "target": "genes",
+        "text": "Where does a cell get instructions for making its own proteins?"
+      }
+    ],
+    "sources": [
+      "bt-nutrition",
+      "bt-legumes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "food-fats",
+    "title": "What does your body do with fat from food?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Fat is a kind of nutrient found in foods such as nuts, fish, and cooking oils. It can provide energy. Some of the bits made during digestion become building materials for the outside of your cells. Fat can also help the body take in certain vitamins. Different foods contain different kinds of fat. Inside the small intestine, bile and digestive juices work together so the body can take in parts of the fat you ate.",
+    "aliases": [
+      "fats in food",
+      "why do we need fat",
+      "fat and nutrition"
+    ],
+    "sections": [],
+    "facts": [
+      "Some vitamins are easier for your body to take in when fat is present."
+    ],
+    "terms": [
+      "bile",
+      "nutrient"
+    ],
+    "questions": [
+      {
+        "target": "gallbladder",
+        "text": "What helps spread fat into tiny drops during digestion?"
+      },
+      {
+        "target": "vitamins",
+        "text": "Why do some vitamins need fat to be absorbed well?"
+      },
+      {
+        "target": "carbohydrates",
+        "text": "What else in food can give your cells energy?"
+      }
+    ],
+    "sources": [
+      "bt-nutrition",
+      "bt-accessory-digestion"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fiber",
+    "title": "What is fiber in food?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Fiber is material from plants that your body has trouble breaking down with its own digestive juices. You might eat some when you have an apple, oatmeal, or beans. Some kinds of fiber soak up water and become thick. Others can add bulk to what moves through your gut. Tiny living things in your large intestine can also use some kinds. Two foods with the same amount of fiber do not always contain exactly the same kinds of fiber.",
+    "aliases": [
+      "dietary fiber",
+      "what does fiber do",
+      "where is fiber found"
+    ],
+    "sections": [],
+    "facts": [
+      "Whole grains, beans, fruits, and vegetables can provide fiber."
+    ],
+    "terms": [
+      "fiber",
+      "carbohydrate"
+    ],
+    "questions": [
+      {
+        "target": "whole-grains",
+        "text": "Where does much of the fiber in a grain come from?"
+      },
+      {
+        "target": "carbohydrates",
+        "text": "How is fiber related to starch and sugar?"
+      },
+      {
+        "target": "digestion",
+        "text": "Which parts of the body move food along?"
+      }
+    ],
+    "sources": [
+      "bt-fiber",
+      "bt-nutrition"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "whole-grains",
+    "title": "What makes a grain whole?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "A grain kernel has an outer coat, a part that can start a new plant, and a large store of food for that plant. A whole grain keeps all three parts. They can still be present if the grain is rolled flat or ground into flour. To make some kinds of refined flour, the mill takes away much of the outer coat and the part that would grow. This changes which kinds of nutrients and how much fiber stay in the flour.",
+    "aliases": [
+      "whole grains",
+      "grain kernel",
+      "whole grain versus refined grain"
+    ],
+    "sections": [],
+    "facts": [
+      "Whole oats and brown rice are examples of whole grains."
+    ],
+    "terms": [
+      "whole grain",
+      "fiber"
+    ],
+    "questions": [
+      {
+        "target": "maize",
+        "text": "Which crop grows its grains in rows on a cob?"
+      },
+      {
+        "target": "fiber",
+        "text": "Why does the outer part of many grains matter for fiber?"
+      },
+      {
+        "target": "food-labels",
+        "text": "Where can you see information about fiber on a package?"
+      }
+    ],
+    "sources": [
+      "bt-whole-grains",
+      "bt-fiber"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "beans-as-food",
+    "title": "Why are beans useful in meals?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Many of the beans people eat are seeds that grow in pods. Peas and lentils come from related plants. People use them in soups, stews, salads, and spreads. They supply protein along with fiber. That combination makes them different from foods that give you protein without fiber, such as an egg. Dried beans can be kept for later in a suitable dry place and are often cooked before eating. Some kinds also come already cooked in a can.",
+    "aliases": [
+      "beans and nutrition",
+      "legumes",
+      "beans lentils peas"
+    ],
+    "sections": [],
+    "facts": [
+      "Chickpeas, dry peas, and lentils are all foods in the legume family."
+    ],
+    "terms": [
+      "legume",
+      "fiber",
+      "protein"
+    ],
+    "questions": [
+      {
+        "target": "food-protein",
+        "text": "What does your body make from parts of the protein in food?"
+      },
+      {
+        "target": "fiber",
+        "text": "How does fiber behave as it moves through your gut?"
+      },
+      {
+        "target": "seeds",
+        "text": "What is inside a bean that can help a new plant grow?"
+      }
+    ],
+    "sources": [
+      "bt-legumes",
+      "bt-nutrition"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "vitamins",
+    "title": "Why does your body need vitamins?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Vitamins are substances you need in small amounts. Different vitamins help with different jobs. Some are involved when the body builds tissue or changes food into forms it can use. Although vitamins help the body use food, they are not a source of energy like sugar or fat. Foods contain different mixtures of vitamins. Some vitamins dissolve in water, while others dissolve in fat. That difference affects how the body takes them in and keeps them.",
+    "aliases": [
+      "vitamins",
+      "what is a vitamin",
+      "why do you need vitamins"
+    ],
+    "sections": [],
+    "facts": [
+      "The body can take in some vitamins with the help of fat."
+    ],
+    "terms": [
+      "vitamin",
+      "nutrient"
+    ],
+    "questions": [
+      {
+        "target": "vitamin-c",
+        "text": "Which vitamin helps the body build strong tissue?"
+      },
+      {
+        "target": "vitamin-d",
+        "text": "Which vitamin helps your body take in calcium?"
+      },
+      {
+        "target": "food-fats",
+        "text": "How can fat help in taking in some vitamins?"
+      }
+    ],
+    "sources": [
+      "bt-nutrition",
+      "bt-vitamin-c",
+      "bt-vitamin-d"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "vitamin-c",
+    "title": "What does vitamin C do?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Vitamin C helps your body make an important protein for skin and other tissues. It can also help your body take in iron from some plant foods. That is one reason foods with vitamin C can be useful as part of a varied meal. An orange is a familiar example, but it is far from the only source. Other fruits and some vegetables contain vitamin C as well. People need to get it from what they eat or drink.",
+    "aliases": [
+      "vitamin c",
+      "which foods have vitamin c",
+      "what is vitamin c for"
+    ],
+    "sections": [],
+    "facts": [
+      "Bell peppers and oranges are examples of foods that can provide vitamin C."
+    ],
+    "terms": [
+      "vitamin",
+      "iron"
+    ],
+    "questions": [
+      {
+        "target": "vitamins",
+        "text": "How is one vitamin’s job different from another’s?"
+      },
+      {
+        "target": "food-iron",
+        "text": "What job does iron do in red blood cells?"
+      },
+      {
+        "target": "skin",
+        "text": "How does living skin replace worn parts?"
+      }
+    ],
+    "sources": [
+      "bt-vitamin-c"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "vitamin-d",
+    "title": "How does vitamin D help bones?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Vitamin D helps your gut take in calcium from food. Calcium is one of the materials your body uses to build strong bones and teeth. Some foods, such as several kinds of fish, naturally contain vitamin D. It may be added to other foods, and your skin can also make some when sunlight reaches it. Vitamin D and calcium do different jobs. One helps calcium get into the body, and the other becomes part of the hard material in bones.",
+    "aliases": [
+      "vitamin d",
+      "how do bones use vitamin d",
+      "vitamin d and calcium"
+    ],
+    "sections": [],
+    "facts": [
+      "Some foods contain added vitamin D."
+    ],
+    "terms": [
+      "vitamin",
+      "calcium"
+    ],
+    "questions": [
+      {
+        "target": "calcium",
+        "text": "Why do bones and muscles need calcium?"
+      },
+      {
+        "target": "living-bones",
+        "text": "How do living cells within bone stay busy?"
+      },
+      {
+        "target": "food-fats",
+        "text": "How does fat help the body take in some vitamins?"
+      }
+    ],
+    "sources": [
+      "bt-vitamin-d",
+      "bt-calcium"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "calcium",
+    "title": "Why is calcium important for bones?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Calcium is a mineral nutrient. Inside your body, much of it goes into the hard material in bones and teeth. It has other jobs too. A small amount travels through the blood and helps nerves send messages and muscles move. Calcium can come from foods such as yogurt, certain greens, or drinks with calcium added. The amount in a serving can depend on the particular food. Your body uses calcium over time as it maintains living tissue.",
+    "aliases": [
+      "calcium",
+      "calcium in bones",
+      "what does calcium do"
+    ],
+    "sections": [],
+    "facts": [
+      "Most of the calcium in your body is found in your bones and teeth."
+    ],
+    "terms": [
+      "calcium",
+      "mineral"
+    ],
+    "questions": [
+      {
+        "target": "vitamin-d",
+        "text": "What vitamin helps you take calcium in from your food?"
+      },
+      {
+        "target": "skeletal-muscles",
+        "text": "What happens when a muscle receives a signal to pull?"
+      },
+      {
+        "target": "living-bones",
+        "text": "Where do bones keep many of their minerals?"
+      }
+    ],
+    "sources": [
+      "bt-calcium"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "food-iron",
+    "title": "Why does your body need iron?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Iron is a metal that can be part of materials in your body, even though it does not look like a nail or a piece of steel there. Red blood cells use it in hemoglobin, which picks up oxygen as blood flows past the lungs. Iron in food helps supply what the body needs for jobs like this. Foods such as beans, meat, and some cereals with added iron can provide it in different forms.",
+    "aliases": [
+      "iron from food",
+      "dietary iron",
+      "iron and oxygen"
+    ],
+    "sections": [],
+    "facts": [
+      "Iron is part of the oxygen-carrying protein hemoglobin."
+    ],
+    "terms": [
+      "iron",
+      "hemoglobin"
+    ],
+    "questions": [
+      {
+        "target": "red-blood-cells",
+        "text": "How does hemoglobin pick up and release oxygen?"
+      },
+      {
+        "target": "vitamin-c",
+        "text": "What vitamin helps you take in iron from some plant foods?"
+      },
+      {
+        "target": "beans-as-food",
+        "text": "Which pod seeds can provide iron in a meal?"
+      }
+    ],
+    "sources": [
+      "bt-iron",
+      "bt-red-blood"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hydration",
+    "title": "Why does your body need water?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Water is part of your blood and of the cells all through your body. It helps carry materials and helps you stay at a workable temperature. You lose water in sweat, in urine, and from the air you breathe out. What you drink and some of what you eat can replace it. You might notice that you feel thirsty after running around on a warm day. Your body uses more than one clue to keep the amount of water it holds in balance.",
+    "aliases": [
+      "hydration",
+      "why do we drink water",
+      "why do I get thirsty after exercise"
+    ],
+    "sections": [],
+    "facts": [
+      "Water leaves your body in ways you can see, such as sweat, and in the air you breathe out."
+    ],
+    "terms": [
+      "hydration",
+      "urine"
+    ],
+    "questions": [
+      {
+        "target": "sweating",
+        "text": "How can water on your skin carry away heat?"
+      },
+      {
+        "target": "kidneys",
+        "text": "What helps the body decide how much water to keep?"
+      },
+      {
+        "target": "blood",
+        "text": "Which liquid part of blood contains a lot of water?"
+      }
+    ],
+    "sources": [
+      "bt-water"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "food-labels",
+    "title": "What can a food label tell you?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "Foods sold in many packages have a Nutrition Facts label. It lists certain materials in a stated amount of food, such as its fiber, protein, or iron. The list helps you compare foods if you pay attention to how much food the numbers describe. Two packages might use different serving sizes. A separate list of ingredients tells you what went into the food. The label can answer some useful questions even though it cannot tell you whether you will like the food.",
+    "aliases": [
+      "nutrition facts",
+      "read a food label",
+      "what is on nutrition facts panel"
+    ],
+    "sections": [],
+    "facts": [
+      "A Nutrition Facts label usually reports how much fiber one serving contains."
+    ],
+    "terms": [
+      "nutrition label",
+      "nutrient"
+    ],
+    "questions": [
+      {
+        "target": "serving-size",
+        "text": "How does a serving on the label relate to a whole package?"
+      },
+      {
+        "target": "fiber",
+        "text": "What is the fiber listed on a food label?"
+      },
+      {
+        "target": "food-iron",
+        "text": "Why might a label list iron?"
+      }
+    ],
+    "sources": [
+      "bt-food-label"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "serving-size",
+    "title": "What does serving size mean on a package?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "The serving size on a Nutrition Facts label tells you how much food the numbers refer to. It might be a cup, several crackers, or another amount. It is based on how much people often eat at a time, so it is not an order to eat exactly that much. If a pouch contains two servings and you look at the whole pouch, you may have to double numbers that are shown for one serving.",
+    "aliases": [
+      "serving size",
+      "servings per container",
+      "one serving versus whole package"
+    ],
+    "sections": [],
+    "facts": [
+      "One package can hold more than one serving."
+    ],
+    "terms": [
+      "serving size",
+      "nutrition label"
+    ],
+    "questions": [
+      {
+        "target": "food-labels",
+        "text": "Where do you find the amount of each nutrient per serving?"
+      },
+      {
+        "target": "fractions",
+        "text": "How can you describe half a package when a whole package has two servings?"
+      },
+      {
+        "target": "food-protein",
+        "text": "What is the protein that appears among the label’s numbers?"
+      }
+    ],
+    "sources": [
+      "bt-label-serving",
+      "bt-food-label"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sleep",
+    "title": "What does sleep do for you?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "When you sleep, you are less aware of the things around you, but your body and brain keep working. Your brain goes through several kinds of sleep in a repeating pattern. Sleep helps with memory and attention, so it can be harder to concentrate after a night of poor rest. Your body does many ordinary upkeep jobs while you sleep too. How much sleep a person needs changes as they grow, and the hours you are in bed do not always match the hours you are asleep.",
+    "aliases": [
+      "why do we sleep",
+      "what happens when you sleep",
+      "why do kids need sleep"
+    ],
+    "sections": [],
+    "facts": [
+      "Several kinds of sleep repeat during a typical night."
+    ],
+    "terms": [
+      "sleep",
+      "brain"
+    ],
+    "questions": [
+      {
+        "target": "brain",
+        "text": "What does your brain do when you are awake?"
+      },
+      {
+        "target": "body-movement",
+        "text": "How does moving your body help it work well?"
+      },
+      {
+        "target": "vision",
+        "text": "How do your eyes send messages to your brain during the day?"
+      }
+    ],
+    "sources": [
+      "bt-sleep",
+      "bt-sleep-stages"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "body-movement",
+    "title": "How does moving your body help it work well?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "When you move enough to breathe faster, your heart and lungs are moving more oxygen around your body. Over time, regular movement can help them do those jobs well. Moving your body also makes muscles work. Some activities, such as running and hopping, give your bones a reason to keep building strong material. Movement comes in many forms. Playing an active game, walking, and dancing are everyday ways to use your muscles and practice moving with control.",
+    "aliases": [
+      "why move your body",
+      "physical activity",
+      "how does exercise help children"
+    ],
+    "sections": [],
+    "facts": [
+      "Walking, dancing, and many kinds of play can all count as physical activity."
+    ],
+    "terms": [
+      "skeletal muscle",
+      "circulation"
+    ],
+    "questions": [
+      {
+        "target": "heart",
+        "text": "How does your heart move blood to working muscles?"
+      },
+      {
+        "target": "skeleton",
+        "text": "What jobs do your bones do while you move?"
+      },
+      {
+        "target": "sleep",
+        "text": "Why does resting at night also matter?"
+      }
+    ],
+    "sources": [
+      "bt-movement",
+      "bt-skeletal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "handwashing",
+    "title": "What does handwashing wash away?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "A hand can look clean and still have material from things it touched. Some of that material clings to natural oils on the skin. Water alone may run over it without carrying it all away. Soap helps loosen oily material, and rubbing reaches folds and spots such as the skin between your fingers. Rinsing carries away the loosened material. That is why soap, rubbing, and rinsing each have a job in the same wash.",
+    "aliases": [
+      "handwashing",
+      "why wash hands with soap",
+      "why rinse after using soap"
+    ],
+    "sections": [],
+    "facts": [
+      "Soap and rubbing help loosen material before water rinses it away."
+    ],
+    "terms": [
+      "skin"
+    ],
+    "questions": [
+      {
+        "target": "skin",
+        "text": "What is the surface you are cleaning made of?"
+      },
+      {
+        "target": "touch",
+        "text": "Why do your hands feel smooth or rough at different times?"
+      },
+      {
+        "target": "white-blood-cells",
+        "text": "What helps the body guard against some invaders that get inside?"
+      }
+    ],
+    "sources": [
+      "bt-handwash"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tooth-enamel",
+    "title": "What protects the outside of a tooth?",
+    "category": "health-nutrition",
+    "priority": 2,
+    "answer": "The part of a tooth that sticks above your gums wears a hard coat called enamel. It is tough enough to protect the tooth through lots of biting and chewing. Some bacteria in the mouth can make acids when they use sugars and starches. Over time, repeated contact with those acids can take minerals out of enamel. If enough damage adds up, a hole called a cavity can form. Fluoride can help teeth resist this kind of damage.",
+    "aliases": [
+      "tooth enamel",
+      "how does a cavity start",
+      "what does fluoride do for teeth"
+    ],
+    "sections": [],
+    "facts": [
+      "The hard outer coat on the part of a tooth you can see is called enamel."
+    ],
+    "terms": [
+      "enamel",
+      "cavity"
+    ],
+    "questions": [
+      {
+        "target": "skeletal-muscles",
+        "text": "What helps your jaw move while you chew?"
+      },
+      {
+        "target": "digestion",
+        "text": "Why does breaking food into small pieces help digestion?"
+      },
+      {
+        "target": "calcium",
+        "text": "Which mineral is held in large amounts in bones and teeth?"
+      }
+    ],
+    "sources": [
+      "bt-tooth-decay"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dna",
+    "title": "What is DNA?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "Many of your cells hold a long, thin material called DNA. Its smaller parts can be thought of as four kinds of letters. The order of those parts carries information. Some stretches help tell cells how to make materials they need, and some help control when instructions are used. Much of your DNA contains information you inherited from your biological parents. The thread is so fine that you cannot see a single strand just by looking.",
+    "aliases": [
+      "dna",
+      "what is DNA made of",
+      "what carries inherited instructions"
+    ],
+    "sections": [],
+    "facts": [
+      "Your DNA uses four kinds of chemical letters."
+    ],
+    "terms": [
+      "dna",
+      "cell",
+      "gene"
+    ],
+    "questions": [
+      {
+        "target": "genes",
+        "text": "How can a small stretch of DNA help a cell work?"
+      },
+      {
+        "target": "chromosomes",
+        "text": "How can long DNA fit inside a cell?"
+      },
+      {
+        "target": "dna-base-pairs",
+        "text": "How do the two sides of DNA fit together?"
+      }
+    ],
+    "sources": [
+      "bt-dna",
+      "bt-gene"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "body-cells",
+    "title": "What is a cell in your body?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "Your body is built from tiny living units called cells. Most are too small to see without a tool that makes them look bigger. Different cells do different work. A nerve cell can carry a message over a distance, and some muscle cells can shorten when called on to move you. Cells are grouped together into tissues. Several tissues can work together in an organ, which is how small living parts help a body do large jobs.",
+    "aliases": [
+      "body cells",
+      "what are people made of",
+      "are all human cells the same"
+    ],
+    "sections": [],
+    "facts": [
+      "Examples of human cells include nerve cells, skin cells, and muscle cells."
+    ],
+    "terms": [
+      "cell",
+      "organ"
+    ],
+    "questions": [
+      {
+        "target": "cell-membrane",
+        "text": "What keeps the inside of a cell separate from its surroundings?"
+      },
+      {
+        "target": "cell-nucleus",
+        "text": "Where is much of the cell’s DNA kept?"
+      },
+      {
+        "target": "cell-division",
+        "text": "How does your body make many more cells as you grow?"
+      }
+    ],
+    "sources": [
+      "bt-cell"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cell-membrane",
+    "title": "What holds the inside of a cell together?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "The outer surface of a human cell is a very thin layer called its membrane. It separates the watery inside from the area around the cell. It also helps control what goes in and out. Some materials can pass through the thin layer. Others need help getting across. The membrane is more than a bag for holding things. It helps a cell get what it needs while keeping its inside different from the place around it.",
+    "aliases": [
+      "cell membrane",
+      "what is around a cell",
+      "how do substances get into cells"
+    ],
+    "sections": [],
+    "facts": [
+      "The cell membrane can help control which materials pass through it."
+    ],
+    "terms": [
+      "cell membrane",
+      "cell"
+    ],
+    "questions": [
+      {
+        "target": "body-cells",
+        "text": "What jobs can cells do?"
+      },
+      {
+        "target": "cell-nucleus",
+        "text": "What belongs inside many human cells?"
+      },
+      {
+        "target": "capillaries",
+        "text": "How can supplies from blood get close to cells in the body?"
+      }
+    ],
+    "sources": [
+      "bt-cell"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cell-nucleus",
+    "title": "What is the nucleus of a cell?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "Many of the cells in your body have a small part called the nucleus. It has its own border inside the cell. Most of that cell’s DNA is kept there. The cell can use information from DNA when it needs to make materials or get ready to divide. Different kinds of cells use different portions of the information. A cell in your skin can do a different job from one in your muscle even though they hold much of the same DNA.",
+    "aliases": [
+      "cell nucleus",
+      "where is DNA found in cells",
+      "nuclei"
+    ],
+    "sections": [],
+    "facts": [
+      "Most of the DNA in a human body cell is usually in its nucleus."
+    ],
+    "terms": [
+      "nucleus",
+      "dna"
+    ],
+    "questions": [
+      {
+        "target": "dna",
+        "text": "What information does DNA carry?"
+      },
+      {
+        "target": "chromosomes",
+        "text": "How can long pieces of DNA be packed inside?"
+      },
+      {
+        "target": "mitochondria",
+        "text": "What other parts of a cell contain a small share of its DNA?"
+      }
+    ],
+    "sources": [
+      "bt-cell",
+      "bt-dna"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chromosomes",
+    "title": "How do chromosomes help pack DNA?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "DNA is long and thin, and a cell is tiny. To pack DNA into that small space, the cell winds it around proteins and folds it further. A piece of DNA and the proteins that help pack it form a chromosome. Chromosomes are especially easy to tell apart after they tighten up as a cell gets ready to divide. Many of your cells have two sets, with one set inherited from each biological parent.",
+    "aliases": [
+      "chromosome",
+      "how many chromosomes",
+      "how is DNA packed"
+    ],
+    "sections": [],
+    "facts": [
+      "A typical human body cell with a nucleus has 23 pairs of chromosomes."
+    ],
+    "terms": [
+      "chromosome",
+      "dna"
+    ],
+    "questions": [
+      {
+        "target": "dna",
+        "text": "What kind of material is packed in a chromosome?"
+      },
+      {
+        "target": "genes",
+        "text": "What name do scientists give to some stretches of a chromosome?"
+      },
+      {
+        "target": "cell-division",
+        "text": "Why are chromosomes important when a cell divides?"
+      }
+    ],
+    "sources": [
+      "bt-chromosomes",
+      "bt-chromosome-count"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "genes",
+    "title": "What is a gene?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "A gene is a stretch of DNA that carries information a cell can use. Many genes have directions for making a protein, such as one that forms part of a cell or helps it do a job. Some genes help in other ways. A cell does not need to use every gene all the time. A muscle cell and a skin cell can turn to different directions. That can help explain why they do different work even though they both belong to you.",
+    "aliases": [
+      "gene",
+      "how do genes work",
+      "genes and proteins"
+    ],
+    "sections": [],
+    "facts": [
+      "Some genes help a cell make a protein, and some have other jobs."
+    ],
+    "terms": [
+      "gene",
+      "dna",
+      "protein"
+    ],
+    "questions": [
+      {
+        "target": "dna",
+        "text": "What material is a gene made of?"
+      },
+      {
+        "target": "food-protein",
+        "text": "How are proteins in food related to the proteins your cells make?"
+      },
+      {
+        "target": "gene-versions",
+        "text": "Why do people have slightly different versions of some stretches of DNA?"
+      }
+    ],
+    "sources": [
+      "bt-gene",
+      "bt-dna"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "genome",
+    "title": "What is a genome?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "The full collection of inherited instructions in a living thing is its genome. If you think of a gene as one passage in a big set of books, the genome is the full set. Some parts give information for making proteins. Other parts help run and organize the collection. Plants, animals, and other living things each have genomes. Two people have very similar human genomes, though there can be many small differences between their versions.",
+    "aliases": [
+      "genome",
+      "all the DNA of an organism",
+      "whole genome"
+    ],
+    "sections": [],
+    "facts": [
+      "A genome can contain information besides the parts that give instructions for proteins."
+    ],
+    "terms": [
+      "genome",
+      "gene",
+      "dna"
+    ],
+    "questions": [
+      {
+        "target": "chromosomes",
+        "text": "What helps the whole collection fit into a cell?"
+      },
+      {
+        "target": "genes",
+        "text": "How does a gene differ from the whole collection?"
+      },
+      {
+        "target": "gene-versions",
+        "text": "How can small differences in DNA show up in people?"
+      }
+    ],
+    "sources": [
+      "bt-genome",
+      "bt-dna"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "gene-versions",
+    "title": "How can people have different versions of a gene?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "Imagine looking up the same short passage in two copies of a book and finding a letter that is different. A related thing can happen in DNA. At a certain place, one person may carry a slightly different version from another person. Scientists call each version at that place an allele. Some differences can affect a trait, while others have little or no effect you can see. Often, more than one place in the DNA matters for the same trait.",
+    "aliases": [
+      "alleles",
+      "versions of genes",
+      "why is DNA different between people"
+    ],
+    "sections": [],
+    "facts": [
+      "A difference can be as small as one letter in a stretch of DNA."
+    ],
+    "terms": [
+      "allele",
+      "dna",
+      "trait"
+    ],
+    "questions": [
+      {
+        "target": "genes",
+        "text": "What is a gene in the first place?"
+      },
+      {
+        "target": "height-and-genes",
+        "text": "Why do many differences matter together for height?"
+      },
+      {
+        "target": "identical-twins",
+        "text": "How similar is the DNA of identical twins?"
+      }
+    ],
+    "sources": [
+      "bt-variation",
+      "bt-dna"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "traits",
+    "title": "What are traits?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "A trait is something you can notice or measure about a living thing. The color of a flower and a person’s height are examples. Information you inherit can help shape many traits, but what happens as you grow can matter too. A plant with the same inherited directions may grow differently in a sunny place than in a dark one. Your ability to read a particular book also depends on learning, even though your body has traits that help you see or hear.",
+    "aliases": [
+      "traits",
+      "inheritance",
+      "which traits come from your parents"
+    ],
+    "sections": [],
+    "facts": [
+      "A change in a person’s surroundings or experiences can affect some traits."
+    ],
+    "terms": [
+      "trait",
+      "inherit"
+    ],
+    "questions": [
+      {
+        "target": "height-and-genes",
+        "text": "Why is height a trait with more than one influence?"
+      },
+      {
+        "target": "genes",
+        "text": "What inherited pieces of information can affect some traits?"
+      },
+      {
+        "target": "identical-twins",
+        "text": "How can twins with very similar DNA still differ in some ways?"
+      }
+    ],
+    "sources": [
+      "bt-trait",
+      "bt-height"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "height-and-genes",
+    "title": "Do genes decide exactly how tall you will be?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "One gene cannot tell you exactly how tall you will become. Lots of small differences in inherited information can influence how a person grows. Food, health, and other parts of life during childhood can also make a difference. Siblings can inherit different sets of information from the same biological parents and grow to different heights. People also grow at different times. The order of heights among classmates today may look different after everyone has finished growing.",
+    "aliases": [
+      "height and genes",
+      "why are people different heights",
+      "why siblings are different heights"
+    ],
+    "sections": [],
+    "facts": [
+      "Many different places in DNA influence height."
+    ],
+    "terms": [
+      "height",
+      "gene",
+      "trait"
+    ],
+    "questions": [
+      {
+        "target": "gene-versions",
+        "text": "How can different versions of stretches of DNA affect a trait?"
+      },
+      {
+        "target": "skeleton",
+        "text": "What parts of the body grow during childhood?"
+      },
+      {
+        "target": "traits",
+        "text": "What other things besides inherited information can affect a trait?"
+      }
+    ],
+    "sources": [
+      "bt-height",
+      "bt-trait"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cell-division",
+    "title": "How does one cell become two?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "As you grow, the number of cells in your body goes up. One way it happens is that a cell copies its DNA and gets the two matching sets ready to move apart. In a process called mitosis, those sets move into two separate groups. The first cell then splits, leaving two cells with a set of instructions each. The body can use this process to grow and to replace worn cells. Some parts of the body replace cells much faster than others.",
+    "aliases": [
+      "cell division",
+      "mitosis",
+      "how do new body cells form"
+    ],
+    "sections": [],
+    "facts": [
+      "Cells copy their DNA before making two cells in this kind of division."
+    ],
+    "terms": [
+      "mitosis",
+      "chromosome",
+      "cell"
+    ],
+    "questions": [
+      {
+        "target": "chromosomes",
+        "text": "What holds and separates the copies of DNA?"
+      },
+      {
+        "target": "body-cells",
+        "text": "Why are new cells needed in the body?"
+      },
+      {
+        "target": "skin",
+        "text": "Where can fresh cells replace older ones wearing away?"
+      }
+    ],
+    "sources": [
+      "bt-cell-divide",
+      "bt-cell"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "identical-twins",
+    "title": "What makes some twins identical?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "Identical twins come from one fertilized egg that begins developing and divides into two groups of cells. This gives them almost the same DNA from the beginning. They may look a lot alike and can still be different because each grows and has individual experiences. Fraternal twins start from two separate eggs joined separately with sperm, so each begins with a different mixture of family DNA. They are related in the ordinary way full brothers or sisters are, even though they are born around the same time.",
+    "aliases": [
+      "identical twins",
+      "fraternal twins",
+      "why do identical twins look alike"
+    ],
+    "sections": [],
+    "facts": [
+      "Fraternal twins start from two different fertilized eggs."
+    ],
+    "terms": [
+      "identical twin",
+      "trait"
+    ],
+    "questions": [
+      {
+        "target": "traits",
+        "text": "How can surroundings and experience affect traits?"
+      },
+      {
+        "target": "genome",
+        "text": "What full collection of inherited information do twins share almost entirely?"
+      },
+      {
+        "target": "gene-versions",
+        "text": "Why can two siblings born at the same time have different versions of DNA?"
+      }
+    ],
+    "sources": [
+      "bt-twins",
+      "bt-trait"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dna-base-pairs",
+    "title": "Why is DNA compared to a twisted ladder?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "Think of a ladder with two long sides and rungs in between. A DNA molecule has two sides made of repeating parts. Each rung is a pair of smaller pieces. A piece called A pairs with T, and G pairs with C. The whole ladder coils around itself, so it looks twisted. That shape helps explain how one side of DNA can help a cell work out what belongs on the other side.",
+    "aliases": [
+      "dna double helix",
+      "DNA ladder",
+      "base pairs"
+    ],
+    "sections": [],
+    "facts": [
+      "The inside pairs use four kinds of units that scientists call A, T, G, and C."
+    ],
+    "terms": [
+      "base pair",
+      "dna"
+    ],
+    "questions": [
+      {
+        "target": "dna",
+        "text": "What kind of information does the long molecule carry?"
+      },
+      {
+        "target": "genome",
+        "text": "What do you call a whole collection of these instructions?"
+      },
+      {
+        "target": "chromosomes",
+        "text": "How can thin strands fit into a cell?"
+      }
+    ],
+    "sources": [
+      "bt-bases",
+      "bt-dna"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mitochondria",
+    "title": "What are mitochondria?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "In many of your cells are small parts called mitochondria. They help turn energy from food into a form other parts of the cell can use. A muscle cell needs a strong supply when it works, and its mitochondria help provide that supply. The parts are often shown as shapes with folds inside. They even have a little of their own DNA, although most of a person’s DNA is kept elsewhere in cells.",
+    "aliases": [
+      "mitochondria",
+      "what gives cells usable energy",
+      "cell power parts"
+    ],
+    "sections": [],
+    "facts": [
+      "Muscle cells have a need for many supplies of usable energy."
+    ],
+    "terms": [
+      "mitochondrion",
+      "energy"
+    ],
+    "questions": [
+      {
+        "target": "body-cells",
+        "text": "What are the living units that hold mitochondria?"
+      },
+      {
+        "target": "mitochondrial-dna",
+        "text": "What information is kept outside the nucleus?"
+      },
+      {
+        "target": "skeletal-muscles",
+        "text": "Why do moving muscles need a steady supply of energy?"
+      }
+    ],
+    "sources": [
+      "bt-cell",
+      "bt-mitochondrial-dna"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mitochondrial-dna",
+    "title": "Do your cells have DNA outside the nucleus?",
+    "category": "genetics",
+    "priority": 2,
+    "answer": "Most of the DNA in a body cell stays in the nucleus. There is also a small amount in some little cell parts called mitochondria. These parts help the cell make energy available for use. Their DNA carries information used there. The way people usually inherit this smaller set is also different. It is usually passed through the biological mother, while the larger sets of chromosomes in the nucleus usually come from both biological parents.",
+    "aliases": [
+      "mitochondrial dna",
+      "DNA outside the nucleus",
+      "mtDNA"
+    ],
+    "sections": [],
+    "facts": [
+      "Scientists often shorten mitochondrial DNA to mtDNA."
+    ],
+    "terms": [
+      "mitochondrion",
+      "nucleus",
+      "dna"
+    ],
+    "questions": [
+      {
+        "target": "cell-nucleus",
+        "text": "Where do most of the cell’s inherited instructions stay?"
+      },
+      {
+        "target": "mitochondria",
+        "text": "What job do mitochondria do in the cell?"
+      },
+      {
+        "target": "genome",
+        "text": "What name is used for the full set of inherited instructions?"
+      }
+    ],
+    "sources": [
+      "bt-mitochondrial-dna",
+      "bt-cell"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "computer-hardware",
+    "title": "What is computer hardware?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A screen, a keyboard, and the pieces inside a laptop are all hardware. Hardware is the physical part of a computer. Some pieces let you send in information, as when you press a key. Others can show or play a result. The parts deep inside do work such as following instructions or storing an image. Computers come in many shapes, but they need pieces built to carry out jobs their programs ask for.",
+    "aliases": [
+      "computer hardware",
+      "physical parts of a computer",
+      "hardware examples"
+    ],
+    "sections": [],
+    "facts": [
+      "A phone and a desktop computer both contain processors and memory."
+    ],
+    "terms": [
+      "hardware",
+      "processor"
+    ],
+    "questions": [
+      {
+        "target": "computer-software",
+        "text": "What tells these physical parts what to do?"
+      },
+      {
+        "target": "computer-memory",
+        "text": "What part holds the information being worked on right now?"
+      },
+      {
+        "target": "computer-storage",
+        "text": "What parts can keep a file when the power is off?"
+      }
+    ],
+    "sources": [
+      "bt-hardware",
+      "bt-computer-parts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "computer-software",
+    "title": "What is software?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "If you can use one tablet to draw and then play a game, it is because different software runs on the same equipment. Software includes instructions that the computer can follow. A drawing app tells it how to react when you drag a finger, while a music app tells it how to play sound. Other software helps those apps talk to the parts inside. New instructions can change what a computer does without replacing the physical machine.",
+    "aliases": [
+      "computer software",
+      "software vs hardware",
+      "what are computer programs for"
+    ],
+    "sections": [],
+    "facts": [
+      "Programs can turn the same physical device into a drawing tool, a music player, or a game."
+    ],
+    "terms": [
+      "software",
+      "program"
+    ],
+    "questions": [
+      {
+        "target": "computer-hardware",
+        "text": "What is the physical equipment that runs the program?"
+      },
+      {
+        "target": "operating-systems",
+        "text": "What program helps other programs share the machine?"
+      },
+      {
+        "target": "algorithms",
+        "text": "How do clear steps help you describe what a program should do?"
+      }
+    ],
+    "sources": [
+      "bt-computer-parts",
+      "bt-programming"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cpu",
+    "title": "What does a computer processor do?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A processor is a chip that follows many simple instructions very quickly. One instruction might ask it to add two numbers. Another might tell it to compare them or get a piece of information from memory. A long series of such acts can help a game decide whether two shapes touched. Usually more than one part of the machine helps with a large job. The processor leads much of the step-by-step work your programs ask for.",
+    "aliases": [
+      "central processing unit",
+      "cpu",
+      "processor"
+    ],
+    "sections": [],
+    "facts": [
+      "CPU is short for central processing unit."
+    ],
+    "terms": [
+      "processor"
+    ],
+    "questions": [
+      {
+        "target": "computer-memory",
+        "text": "Where does a processor find much of what it is currently using?"
+      },
+      {
+        "target": "computer-software",
+        "text": "Where do the work instructions come from?"
+      },
+      {
+        "target": "binary",
+        "text": "Why are the instructions stored using strings of ones and zeros?"
+      }
+    ],
+    "sources": [
+      "bt-hardware",
+      "bt-computer-parts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "computer-memory",
+    "title": "How does computer memory hold what you are using?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "Think of your desk while you work. You may set out just the books and papers you need right now. A computer has a work area called RAM. It holds instructions and a copy of some information that programs are using. The processor can reach that space quickly. If you turn the computer off, most kinds of RAM forget what they held. Saving moves a lasting copy to a different part of the machine.",
+    "aliases": [
+      "computer memory",
+      "ram",
+      "why does RAM forget",
+      "working computer memory"
+    ],
+    "sections": [],
+    "facts": [
+      "Most ordinary RAM loses its contents when it no longer has power."
+    ],
+    "terms": [
+      "ram",
+      "processor"
+    ],
+    "questions": [
+      {
+        "target": "computer-storage",
+        "text": "Where can you put a file to keep it after turning off the machine?"
+      },
+      {
+        "target": "cpu",
+        "text": "What part asks the working memory for an instruction?"
+      },
+      {
+        "target": "operating-systems",
+        "text": "What helps several apps share the machine’s memory?"
+      }
+    ],
+    "sources": [
+      "bt-hardware",
+      "bt-computer-parts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "computer-storage",
+    "title": "How do computers keep files without power?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A computer keeps some information in devices that are built to remember without power. They can hold drawings, recordings, and programs between uses. A hard drive stores information with magnetism on spinning surfaces. A solid-state drive uses chips instead. When you open a saved drawing, the computer reads the stored information and can place a working copy in faster memory. Changes still need to be saved if you want to find them later.",
+    "aliases": [
+      "computer storage",
+      "hard drive",
+      "solid-state drive",
+      "where are computer files stored"
+    ],
+    "sections": [],
+    "facts": [
+      "Solid-state storage can keep information when the computer is switched off."
+    ],
+    "terms": [
+      "storage",
+      "file"
+    ],
+    "questions": [
+      {
+        "target": "computer-memory",
+        "text": "What is different about memory used for current work?"
+      },
+      {
+        "target": "computer-files",
+        "text": "How do computers organize saved information into named groups?"
+      },
+      {
+        "target": "digital-backups",
+        "text": "Why keep a second copy of something you do not want to lose?"
+      }
+    ],
+    "sources": [
+      "bt-hardware",
+      "bt-computer-parts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "operating-systems",
+    "title": "What is an operating system?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "An operating system is a set of programs that helps a computer run. It can give apps a way to open files, read keys, play sounds, or draw on the screen. It also keeps track of things that more than one app may need, such as the processor and memory. A game can ask the operating system to play a sound instead of having to know how each kind of speaker works.",
+    "aliases": [
+      "operating system",
+      "OS",
+      "what helps apps run on a computer"
+    ],
+    "sections": [],
+    "facts": [
+      "Phones and tablets also use operating systems."
+    ],
+    "terms": [
+      "operating system",
+      "software"
+    ],
+    "questions": [
+      {
+        "target": "computer-software",
+        "text": "What kinds of instructions can run as apps?"
+      },
+      {
+        "target": "computer-memory",
+        "text": "What is the working space that apps need to share?"
+      },
+      {
+        "target": "computer-files",
+        "text": "What does the operating system help store and open?"
+      }
+    ],
+    "sources": [
+      "bt-os",
+      "bt-computer-parts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "computer-files",
+    "title": "What is a file on a computer?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A file is a named group of stored information. A picture file may contain colors in a grid. Another file may hold the words in a story or the measurements from a recording. When you open the file, a program reads it in a way that fits what is in it. Giving the file a useful name helps you find it later. Saving a file and leaving a drawing open for now are different actions.",
+    "aliases": [
+      "computer file",
+      "digital file",
+      "what is saved when I save a drawing"
+    ],
+    "sections": [],
+    "facts": [
+      "A file can hold a picture, a story, a recording, or numbers."
+    ],
+    "terms": [
+      "file",
+      "storage"
+    ],
+    "questions": [
+      {
+        "target": "computer-folders",
+        "text": "How can you keep related files together?"
+      },
+      {
+        "target": "file-extensions",
+        "text": "What can the end of a file name tell you?"
+      },
+      {
+        "target": "computer-storage",
+        "text": "Where does the computer keep a file after it is saved?"
+      }
+    ],
+    "sources": [
+      "bt-files",
+      "bt-computer-parts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "computer-folders",
+    "title": "How do folders help you find files?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "If all of your saved work were in one big pile, it could be hard to find a particular drawing. A folder lets you give a name to a group of files. It can also contain more folders. You might make one folder called School and a folder inside it called Science. The trail of folder names tells the computer and you how to get to a particular saved file. More than one folder can contain an item with the same name.",
+    "aliases": [
+      "file folder",
+      "computer directory",
+      "folders in folders",
+      "file path"
+    ],
+    "sections": [],
+    "facts": [
+      "A folder on a computer is also called a directory."
+    ],
+    "terms": [
+      "folder",
+      "file"
+    ],
+    "questions": [
+      {
+        "target": "computer-files",
+        "text": "What is one of the things that belongs in a folder?"
+      },
+      {
+        "target": "computer-storage",
+        "text": "Where does a computer store the contents you organize?"
+      },
+      {
+        "target": "digital-backups",
+        "text": "How can you keep a copy of a collection of files?"
+      }
+    ],
+    "sources": [
+      "bt-files"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "file-extensions",
+    "title": "Why do some filenames end in .jpg or .txt?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "The end of a filename after a dot often tells you what kind of file it is. For example, .jpg commonly names one kind of picture file, and .txt often names plain text. The ending is called a file extension. Your device may use that clue to choose a program to open it. Changing the ending alone does not rearrange the bits into a new kind of picture. To switch the type, you usually need a program that can read the old one and save the new one.",
+    "aliases": [
+      "filename extensions",
+      "what is a dot extension",
+      "why does a file end in .png"
+    ],
+    "sections": [],
+    "facts": [
+      "A different extension does not by itself change the information inside a file."
+    ],
+    "terms": [
+      "file extension",
+      "file"
+    ],
+    "questions": [
+      {
+        "target": "computer-files",
+        "text": "What information is held inside the named file?"
+      },
+      {
+        "target": "digital-images",
+        "text": "What kind of image might be saved with a picture extension?"
+      },
+      {
+        "target": "computer-software",
+        "text": "What reads or displays the data stored in a file?"
+      }
+    ],
+    "sources": [
+      "bt-files",
+      "bt-image-formats"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "digital-images",
+    "title": "What are pixels in a picture?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "Many pictures on a computer are made of rows and columns of small spots called pixels. One part of the picture can contain darker pixels, while another contains lighter ones. Your eyes see the spots together as a shape or scene. If you zoom in enough, the spots may look like square blocks. Each block shows one saved part of the image, a little like a piece in a mosaic. Other kinds of pictures can describe lines and shapes instead.",
+    "aliases": [
+      "pixels",
+      "digital picture",
+      "why do zoomed images look blocky"
+    ],
+    "sections": [],
+    "facts": [
+      "A drawing that stores every pixel is one kind of bitmap image."
+    ],
+    "terms": [
+      "pixel",
+      "image resolution"
+    ],
+    "questions": [
+      {
+        "target": "image-resolution",
+        "text": "What happens when an image can store more pixels across the same scene?"
+      },
+      {
+        "target": "rgb-colors",
+        "text": "How can one colored picture point store a mixture of three colors?"
+      },
+      {
+        "target": "vector-images",
+        "text": "What other sort of digital picture describes shapes instead of a grid?"
+      }
+    ],
+    "sources": [
+      "bt-pixels",
+      "bt-colouring"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "image-resolution",
+    "title": "What does the resolution of a picture mean?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "One way to describe a digital picture’s resolution is to count how many pixels it has across and down. A larger count can hold smaller details when the picture was captured with those details in it. If you only stretch an old small picture to fill a bigger grid, the new squares do not magically reveal shapes the old file missed. They are guessed from the neighboring colors. That is why a small blurry picture can still be blurry when it fills a screen.",
+    "aliases": [
+      "image resolution",
+      "more pixels",
+      "picture dimensions"
+    ],
+    "sections": [],
+    "facts": [
+      "A picture 200 pixels wide and 100 pixels tall has 20,000 pixel positions."
+    ],
+    "terms": [
+      "image resolution",
+      "pixel"
+    ],
+    "questions": [
+      {
+        "target": "digital-images",
+        "text": "What is each little position in the grid called?"
+      },
+      {
+        "target": "vector-images",
+        "text": "Why can a shape drawing scale without a fixed grid of stored colors?"
+      },
+      {
+        "target": "compression",
+        "text": "How can a large picture file take up less room?"
+      }
+    ],
+    "sources": [
+      "bt-pixels",
+      "bt-colouring"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rgb-colors",
+    "title": "How do screens mix red, green, and blue light?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "Many screens create colors by mixing red, green, and blue light. A little spot on the screen can get a different amount of each color. If the blue part shines brightly and the other parts shine very little, the spot looks blue. Strong red and green light together can look yellow. Amounts of all three can produce pale colors or white. The method mixes light, so the result can differ from mixing red, green, and blue paint.",
+    "aliases": [
+      "rgb",
+      "screen colors",
+      "red green blue pixels"
+    ],
+    "sections": [],
+    "facts": [
+      "RGB stands for red, green, and blue."
+    ],
+    "terms": [
+      "rgb",
+      "pixel",
+      "light"
+    ],
+    "questions": [
+      {
+        "target": "light",
+        "text": "What makes mixtures of colored light possible?"
+      },
+      {
+        "target": "digital-images",
+        "text": "How do colored points fit together to make an image?"
+      },
+      {
+        "target": "vision",
+        "text": "How does your eye take in the light a screen makes?"
+      }
+    ],
+    "sources": [
+      "bt-rgb",
+      "bt-pixels"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "vector-images",
+    "title": "Why can a vector picture grow without getting blocky?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A vector picture can describe a shape by saying where its edges and curves go. A drawing of a blue circle can be saved as the circle’s center, its size, and its color. To make the drawing bigger, a program redraws those shapes at a new size. It does not have to stretch a fixed set of color spots from the original. This works well for a sign or a chart with clean edges. A photograph is usually stored differently.",
+    "aliases": [
+      "vector image",
+      "vector graphics",
+      "SVG image"
+    ],
+    "sections": [],
+    "facts": [
+      "SVG is one way to store a vector image."
+    ],
+    "terms": [
+      "vector image",
+      "pixel"
+    ],
+    "questions": [
+      {
+        "target": "digital-images",
+        "text": "How can another kind of picture store a color at each spot?"
+      },
+      {
+        "target": "image-resolution",
+        "text": "Why can a small grid of pixels look blurry after you enlarge it?"
+      },
+      {
+        "target": "file-extensions",
+        "text": "What filename-ending clue might tell you that a file is a vector image?"
+      }
+    ],
+    "sources": [
+      "bt-svg",
+      "bt-image-formats"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "unicode-text",
+    "title": "How do computers agree which letters to show?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A text program needs a shared way to know which letter or sign a stored number means. Unicode assigns a number to a letter, sign, or other text character. Different computers can use the same numbers to tell what was written. A number can describe the same letter even though different fonts draw it with different shapes. When you move text from one program to another, that agreement helps it say the same thing.",
+    "aliases": [
+      "unicode",
+      "computer text",
+      "emoji codes",
+      "how computers store letters"
+    ],
+    "sections": [],
+    "facts": [
+      "Unicode can represent letters from many languages as well as math signs and emoji."
+    ],
+    "terms": [
+      "unicode",
+      "character",
+      "binary"
+    ],
+    "questions": [
+      {
+        "target": "alphabet",
+        "text": "What is an alphabet, one kind of thing Unicode can describe?"
+      },
+      {
+        "target": "binary",
+        "text": "How can the computer store a number using only ones and zeros?"
+      },
+      {
+        "target": "computer-files",
+        "text": "How can those stored numbers become part of a file?"
+      }
+    ],
+    "sources": [
+      "bt-unicode",
+      "bt-emoji"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "digital-audio",
+    "title": "How can a computer store a sound?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "Sound can make a microphone create a changing electrical signal. To hold a recording, a device can measure that signal again and again at very short steps in time. Each measurement is called a sample. Saving the numbers lets a player build a changing signal later. It sends that signal to a speaker. When the speaker moves air back and forth, you can hear a sound close to the one that was recorded.",
+    "aliases": [
+      "digital audio",
+      "sound sampling",
+      "how a recording stores sound"
+    ],
+    "sections": [],
+    "facts": [
+      "A recording can save many thousands of sample measurements each second."
+    ],
+    "terms": [
+      "sample",
+      "file",
+      "vibration"
+    ],
+    "questions": [
+      {
+        "target": "sound",
+        "text": "What sort of movement starts the sound a microphone records?"
+      },
+      {
+        "target": "binary",
+        "text": "How can each sound measurement be stored as a number?"
+      },
+      {
+        "target": "compression",
+        "text": "Why might a long recording need a smaller file?"
+      }
+    ],
+    "sources": [
+      "bt-audio",
+      "bt-computer-parts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "compression",
+    "title": "What does compressing a computer file do?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "Computer files can take up less room if the information is stored in a shorter form. For example, a long string of twenty red spots might be stored as one note saying to draw twenty in a row. The program has to understand that kind of note when it opens the file. Some real kinds of compression use patterns like repetition. Others can make it even smaller by dropping details that many people will hardly notice.",
+    "aliases": [
+      "digital compression",
+      "compressed file",
+      "why make computer files smaller"
+    ],
+    "sections": [],
+    "facts": [
+      "Some kinds of compression let a program restore every bit in the original file."
+    ],
+    "terms": [
+      "compression",
+      "file"
+    ],
+    "questions": [
+      {
+        "target": "lossy-and-lossless",
+        "text": "When is it possible to get back exactly what you started with?"
+      },
+      {
+        "target": "computer-storage",
+        "text": "Why can smaller files be useful when storage is limited?"
+      },
+      {
+        "target": "digital-images",
+        "text": "Where could a picture contain repeated blocks of color?"
+      }
+    ],
+    "sources": [
+      "bt-compression",
+      "bt-image-formats"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lossy-and-lossless",
+    "title": "What is the difference between lossy and lossless files?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "If you make a story file smaller and later want every letter back, the method must save enough information to rebuild the whole thing. That is lossless compression. Lossy compression can shrink a picture by keeping a close version of part of it and skipping some fine detail. That can be useful if exact detail matters less than file size. You cannot count on the missing detail to come back when the small file opens.",
+    "aliases": [
+      "lossy compression",
+      "lossless compression",
+      "do compressed files lose detail"
+    ],
+    "sections": [],
+    "facts": [
+      "Plain text usually needs to be recovered exactly when a compressed file opens."
+    ],
+    "terms": [
+      "compression",
+      "file"
+    ],
+    "questions": [
+      {
+        "target": "compression",
+        "text": "How can saving repeated patterns make a file smaller?"
+      },
+      {
+        "target": "digital-audio",
+        "text": "What do some formats save about a changing sound?"
+      },
+      {
+        "target": "file-extensions",
+        "text": "What clue might help you tell what sort of picture file you have?"
+      }
+    ],
+    "sources": [
+      "bt-compression",
+      "bt-image-formats"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "computer-networks",
+    "title": "What is a computer network?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A computer network links devices so they can send information to each other. For instance, a computer and a printer can share a link. The computer can send the information needed to make a page on paper. Other networks join many computers that share things with each other. They need a set of agreed ways to send and receive messages, just as people agree when to speak and listen during a conversation.",
+    "aliases": [
+      "computer network",
+      "connected devices",
+      "can computers talk to each other"
+    ],
+    "sections": [],
+    "facts": [
+      "Devices can share information over wires or through radio signals."
+    ],
+    "terms": [
+      "network",
+      "packet"
+    ],
+    "questions": [
+      {
+        "target": "internet",
+        "text": "How do many networks join into the largest network we use?"
+      },
+      {
+        "target": "wifi",
+        "text": "How does a device join a nearby network without a wire?"
+      },
+      {
+        "target": "network-packets",
+        "text": "How can a message move in small groups of data?"
+      }
+    ],
+    "sources": [
+      "bt-internet"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "internet",
+    "title": "What is the internet?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "The internet is a system that links many computer networks. Your device can send information to a nearby network, which has ways to reach others. That lets a message travel to a device far away even though there is no single wire joining the two. Devices use agreed rules to pass information along. Web pages are one thing people send this way. Messages, calls, and some multiplayer games also use the internet.",
+    "aliases": [
+      "internet",
+      "how is the internet connected",
+      "network of networks"
+    ],
+    "sections": [],
+    "facts": [
+      "The internet carries more than web pages. It can also carry messages and game information."
+    ],
+    "terms": [
+      "internet",
+      "network"
+    ],
+    "questions": [
+      {
+        "target": "world-wide-web",
+        "text": "Which collection of pages uses the internet to reach readers?"
+      },
+      {
+        "target": "network-routers",
+        "text": "What sends packets toward the network they need?"
+      },
+      {
+        "target": "wifi",
+        "text": "How can a local wireless connection give a device access to somewhere farther away?"
+      }
+    ],
+    "sources": [
+      "bt-internet",
+      "bt-www"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "world-wide-web",
+    "title": "Is the Web the same as the internet?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "The Web is a huge collection of pages and other things that can get linked together. A browser gets a page from a place that can send it and lets you follow a link to another page. The internet is the bigger network that carries the pieces of pages between computers. Other activities also use the internet. Think of the internet as the routes a letter can travel, and the Web as a collection of notes with pointers between them.",
+    "aliases": [
+      "world wide web",
+      "web versus internet",
+      "what the web is"
+    ],
+    "sections": [],
+    "facts": [
+      "A link in a web page can lead to another page on a different site."
+    ],
+    "terms": [
+      "world wide web",
+      "internet",
+      "link"
+    ],
+    "questions": [
+      {
+        "target": "internet",
+        "text": "What wider network carries the parts of web pages?"
+      },
+      {
+        "target": "web-browsers",
+        "text": "What kinds of programs can show pages from the Web?"
+      },
+      {
+        "target": "web-addresses",
+        "text": "How does a link refer to a particular place on the Web?"
+      }
+    ],
+    "sources": [
+      "bt-www",
+      "bt-web"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "web-browsers",
+    "title": "What does a web browser do?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A browser is a program for opening and showing web pages. It uses the address you give it to ask another computer for material. The reply may include writing, pictures, and instructions for showing those pieces together. The browser lays them out on your screen. When you click a link, it can ask for something else. A search engine can be one site you visit using a browser, rather than the program that displays every site.",
+    "aliases": [
+      "web browser",
+      "browser app",
+      "how do I see a website"
+    ],
+    "sections": [],
+    "facts": [
+      "A browser can fetch materials requested by an address or by a link on a page."
+    ],
+    "terms": [
+      "browser",
+      "web server"
+    ],
+    "questions": [
+      {
+        "target": "web-servers",
+        "text": "Where can a browser get a page from?"
+      },
+      {
+        "target": "web-search",
+        "text": "How is a search engine different from the browser that shows it?"
+      },
+      {
+        "target": "web-addresses",
+        "text": "What address can you give to a browser to ask for a page?"
+      }
+    ],
+    "sources": [
+      "bt-browser",
+      "bt-web"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "web-addresses",
+    "title": "How does a web address tell a browser what to open?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A web address is often called a URL. It can name a site and say which thing you want there. The name of the site helps the browser find where to send its request. Another part can describe a page or file within the site. A piece at the end can point to a spot in a page you are opening. Look at the site name before you follow a link, because the words you see on a button need not be the place it goes.",
+    "aliases": [
+      "url",
+      "web address",
+      "what do parts of a web address mean"
+    ],
+    "sections": [],
+    "facts": [
+      "The piece after a # can point to a spot within a page."
+    ],
+    "terms": [
+      "url",
+      "domain name"
+    ],
+    "questions": [
+      {
+        "target": "web-browsers",
+        "text": "Which program can use the address to ask for materials?"
+      },
+      {
+        "target": "web-servers",
+        "text": "Who answers requests for things at those addresses?"
+      },
+      {
+        "target": "world-wide-web",
+        "text": "How can pages point to each other with these addresses?"
+      }
+    ],
+    "sources": [
+      "bt-url",
+      "bt-web"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wifi",
+    "title": "How does Wi-Fi connect a device without a cable?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "Wi-Fi is one way for a device to join a nearby network. Instead of a cable to the device, it uses radio signals. An access point nearby can send and receive those signals, so you may be able to use a laptop in different parts of a room. Sometimes that little network connects to the internet through other equipment. Sometimes it does not. Seeing the Wi-Fi symbol means there is a wireless connection, rather than a promise that every website will work.",
+    "aliases": [
+      "wi-fi",
+      "wifi",
+      "wireless network",
+      "does wifi mean internet"
+    ],
+    "sections": [],
+    "facts": [
+      "A device can have a Wi-Fi connection to a nearby network that cannot reach the internet."
+    ],
+    "terms": [
+      "wi-fi",
+      "network"
+    ],
+    "questions": [
+      {
+        "target": "computer-networks",
+        "text": "What is the local connection doing even before the internet is involved?"
+      },
+      {
+        "target": "network-routers",
+        "text": "What can pass a small message from one network toward another?"
+      },
+      {
+        "target": "internet",
+        "text": "How does a nearby network reach faraway ones?"
+      }
+    ],
+    "sources": [
+      "bt-wifi",
+      "bt-internet"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "network-packets",
+    "title": "Why do computers send messages in little packets?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A long message can share a busy route more easily if it travels as little pieces called packets. Think of mailing a long story as a series of postcards. A packet carries some of the message and information that helps move it to its destination. Depending on the rules in use, the receiving device can take the pieces and make a complete message. Smaller pieces make it possible for many conversations to share busy routes.",
+    "aliases": [
+      "network packets",
+      "data packets",
+      "why split messages for the internet"
+    ],
+    "sections": [],
+    "facts": [
+      "Packet information can help devices send and put pieces of a message where they belong."
+    ],
+    "terms": [
+      "packet",
+      "network"
+    ],
+    "questions": [
+      {
+        "target": "network-routers",
+        "text": "How do packets get passed between networks?"
+      },
+      {
+        "target": "internet",
+        "text": "What larger system lets packets reach faraway computers?"
+      },
+      {
+        "target": "web-browsers",
+        "text": "How can a browser use those pieces to open something you requested?"
+      }
+    ],
+    "sources": [
+      "bt-internet",
+      "bt-routers-history"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "network-routers",
+    "title": "How does a router pass a message between networks?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A router joins networks and helps information travel between them. When a packet comes in, router equipment looks at where it is headed. It uses that information to send the packet to a useful next place. Many routers could handle the same packet on a long trip. Think of a station that sorts mail toward different towns. The station does not have to take each note all the way across the country by itself.",
+    "aliases": [
+      "router",
+      "what does a router do",
+      "how do packets find their way"
+    ],
+    "sections": [],
+    "facts": [
+      "A box at home can combine a router with a Wi-Fi access point."
+    ],
+    "terms": [
+      "router",
+      "packet",
+      "network"
+    ],
+    "questions": [
+      {
+        "target": "network-packets",
+        "text": "What smaller parts does a router send along?"
+      },
+      {
+        "target": "computer-networks",
+        "text": "Why do smaller local networks need ways to link together?"
+      },
+      {
+        "target": "wifi",
+        "text": "How can a device reach a nearby network without plugging in?"
+      }
+    ],
+    "sources": [
+      "bt-internet",
+      "bt-routers-history"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "web-servers",
+    "title": "What does a web server do?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A web server is equipment and software that can answer a request for web content. Suppose your browser asks for a school’s lunch menu. A server might find a saved menu file and send its contents back. Another kind of request could make a server build a reply from information it holds. Your browser still decides how to show what it receives. Both sides follow shared rules so the request and the reply make sense.",
+    "aliases": [
+      "web server",
+      "where do web pages come from",
+      "server and client"
+    ],
+    "sections": [],
+    "facts": [
+      "A server can send files or can make a new reply to a particular request."
+    ],
+    "terms": [
+      "web server",
+      "browser"
+    ],
+    "questions": [
+      {
+        "target": "web-browsers",
+        "text": "What asks for the page and shows you the reply?"
+      },
+      {
+        "target": "web-addresses",
+        "text": "How does a request tell the server which thing to send?"
+      },
+      {
+        "target": "network-packets",
+        "text": "How can a big reply travel through shared connections?"
+      }
+    ],
+    "sources": [
+      "bt-server",
+      "bt-web"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "web-search",
+    "title": "How does a search engine find pages?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A search engine can find pages ahead of time and build a list of clues about them. That list is often called an index. When you type a question, the program can look through its index quickly. It tries to show pages that seem useful for the words you typed. The list is not a list of everything on the Web, and the first result is not always the best answer. Reading a trustworthy page still matters.",
+    "aliases": [
+      "search engine",
+      "how do online search engines work",
+      "what is a search index"
+    ],
+    "sections": [],
+    "facts": [
+      "A new page may take time to appear in a search list."
+    ],
+    "terms": [
+      "search engine",
+      "index",
+      "browser"
+    ],
+    "questions": [
+      {
+        "target": "web-browsers",
+        "text": "What program opens a result after you choose it?"
+      },
+      {
+        "target": "world-wide-web",
+        "text": "Where do many of the linked pages live?"
+      },
+      {
+        "target": "web-addresses",
+        "text": "What does a result need so the browser can open the page?"
+      }
+    ],
+    "sources": [
+      "bt-web-search",
+      "bt-browser"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "digital-backups",
+    "title": "Why keep a backup copy of a file?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A backup is an extra copy that helps you get a file back if something happens to the one you use. If a drawing is saved in one place and both your computer and the drawing disappear, you have no second copy there. A copy stored somewhere else can protect a drawing or photo from being lost along with that device. Families can decide together what is worth backing up and check that they can read the backup.",
+    "aliases": [
+      "backups",
+      "backup copy",
+      "what if a computer file disappears"
+    ],
+    "sections": [],
+    "facts": [
+      "A backup is useful only if it still contains a copy you can get back."
+    ],
+    "terms": [
+      "backup",
+      "file",
+      "storage"
+    ],
+    "questions": [
+      {
+        "target": "computer-storage",
+        "text": "Where can a computer store a saved copy when it is off?"
+      },
+      {
+        "target": "computer-folders",
+        "text": "How might folders make several copies easier to find?"
+      },
+      {
+        "target": "computer-files",
+        "text": "What belongs in the copy you want to save?"
+      }
+    ],
+    "sources": [
+      "bt-backup",
+      "bt-hardware"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "computer-sensors",
+    "title": "How can a computer notice what is happening around it?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A sensor is a part that notices or measures something. On a robot it could measure how much light is coming from a direction, or notice when a wheel has turned. A computer can read the measurement as information. A program can then tell the robot to turn if it notices a dark line on the floor. The sensor makes the measurement, and the instructions decide what the robot does when that measurement changes.",
+    "aliases": [
+      "computer sensors",
+      "how do sensors work",
+      "how does a device notice movement"
+    ],
+    "sections": [],
+    "facts": [
+      "Sensors can measure things such as light, movement, or pressure."
+    ],
+    "terms": [
+      "sensor",
+      "signal",
+      "program"
+    ],
+    "questions": [
+      {
+        "target": "computer-software",
+        "text": "What decides how to use a measurement from a sensor?"
+      },
+      {
+        "target": "computer-hardware",
+        "text": "What kinds of physical pieces can detect a change?"
+      },
+      {
+        "target": "touch",
+        "text": "How does your own body notice pressure or a bump?"
+      }
+    ],
+    "sources": [
+      "bt-sensors",
+      "bt-computer-parts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "debugging",
+    "title": "How do programmers find and fix bugs?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A bug is a problem in a program. Imagine a score that goes up when the player should lose a point. A programmer can replay the same move and check what happens before and after it. This narrows the search for the instructions causing the change. Fixing the bug means finding that problem, changing what causes it, and trying the move again. A test can also help check that the fix has not broken other parts of the game.",
+    "aliases": [
+      "debugging",
+      "software bug",
+      "why a program makes mistakes"
+    ],
+    "sections": [],
+    "facts": [
+      "A bug can make a program give a wrong answer even when it appears to run normally."
+    ],
+    "terms": [
+      "bug",
+      "debug",
+      "program"
+    ],
+    "questions": [
+      {
+        "target": "algorithms",
+        "text": "How can looking at each step reveal one that does not work?"
+      },
+      {
+        "target": "computer-software",
+        "text": "What instructions can be changed when you fix a program?"
+      },
+      {
+        "target": "program-variables",
+        "text": "What kinds of saved values might you check while tracing an error?"
+      }
+    ],
+    "sources": [
+      "bt-debugging",
+      "bt-programming"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "program-variables",
+    "title": "What does a variable do in a program?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A variable gives a program a name it can use when it needs a particular bit of information. A simple game might have a variable called score. At first the score could be zero. When your player gathers a star, the game could use the old number to work out the new one. Giving the number a name helps the game use it again. Variables can also refer to things other than numbers, such as a player’s name.",
+    "aliases": [
+      "programming variable",
+      "coding variables",
+      "what holds a value in code"
+    ],
+    "sections": [],
+    "facts": [
+      "The number a variable refers to can change as a program runs."
+    ],
+    "terms": [
+      "variable",
+      "program"
+    ],
+    "questions": [
+      {
+        "target": "debugging",
+        "text": "How might you check whether the value of a score is changing correctly?"
+      },
+      {
+        "target": "program-functions",
+        "text": "How can a named bit of code use a value it is given?"
+      },
+      {
+        "target": "algorithms",
+        "text": "Why can a sequence of steps keep track of a running total?"
+      }
+    ],
+    "sources": [
+      "bt-programming"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "program-functions",
+    "title": "Why do programs use functions?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A program can give a name to a group of steps it may use again. One name for that group is a function. A drawing program could have a function that draws a star. Each time the program calls it, the function follows the steps to make one. It could also take a position or color as extra information. Keeping the star-drawing steps in one place makes it easier to change how all the stars look.",
+    "aliases": [
+      "programming functions",
+      "what is a function in code",
+      "named group of steps"
+    ],
+    "sections": [],
+    "facts": [
+      "Several parts of a program can call the same function."
+    ],
+    "terms": [
+      "function",
+      "program",
+      "variable"
+    ],
+    "questions": [
+      {
+        "target": "program-variables",
+        "text": "How can a function receive information that changes?"
+      },
+      {
+        "target": "algorithms",
+        "text": "How can you plan the steps a function has to follow?"
+      },
+      {
+        "target": "debugging",
+        "text": "Why might fixing one function repair several things at once?"
+      }
+    ],
+    "sources": [
+      "bt-programming"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "conditionals",
+    "title": "How can a program make a choice?",
+    "category": "logic",
+    "priority": 2,
+    "answer": "A program can follow different instructions depending on what has happened. A game can ask whether the player has reached the end of a path. If the answer is yes, it can show a sign that says the round is over. If the answer is no, it can keep the path open. The check is called a condition. This lets one program handle more than one situation without needing a separate set of instructions for every possible round.",
+    "aliases": [
+      "if then",
+      "conditional statement",
+      "how code chooses between options"
+    ],
+    "sections": [],
+    "facts": [
+      "A condition has a result the program can treat as true or false."
+    ],
+    "terms": [
+      "conditional",
+      "condition",
+      "program"
+    ],
+    "questions": [
+      {
+        "target": "boolean-logic",
+        "text": "How can a program keep track of yes-or-no questions?"
+      },
+      {
+        "target": "program-loops",
+        "text": "How can a repeating job stop after a choice is made?"
+      },
+      {
+        "target": "program-variables",
+        "text": "Where can a program keep a number it needs to compare?"
+      }
+    ],
+    "sources": [
+      "bt-flow",
+      "bt-programming"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "program-loops",
+    "title": "Why do programs use loops?",
+    "category": "logic",
+    "priority": 2,
+    "answer": "A loop tells a program to go through the same group of steps more than once. An animation might use a loop to move a picture a little, show it, and move it again. One loop could run ten times. Another could keep going until the picture reaches the edge. Deciding when to stop is part of writing the loop. If the stopping test never happens, a program may keep doing the same job again and again.",
+    "aliases": [
+      "programming loop",
+      "repeat in coding",
+      "how do computers repeat steps"
+    ],
+    "sections": [],
+    "facts": [
+      "A loop can repeat a fixed number of times or while a test is true."
+    ],
+    "terms": [
+      "loop",
+      "condition"
+    ],
+    "questions": [
+      {
+        "target": "conditionals",
+        "text": "How does a program ask a true-or-false question?"
+      },
+      {
+        "target": "program-variables",
+        "text": "Where might a program keep the current number of repeats?"
+      },
+      {
+        "target": "program-functions",
+        "text": "How can you put a repeated job into a named group of steps?"
+      }
+    ],
+    "sources": [
+      "bt-flow",
+      "bt-programming"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "boolean-logic",
+    "title": "How does Boolean logic use true and false?",
+    "category": "logic",
+    "priority": 2,
+    "answer": "Some computer questions have two possible answers. A door is open or it is not. A player has a key or does not. Boolean logic lets a program work with true and false answers like these. It can put several answers together to make a longer test. The programmer needs to know exactly what each check means. Even a big choice can often be broken into small questions that a program can answer clearly.",
+    "aliases": [
+      "boolean logic",
+      "true or false in code",
+      "how programs represent yes or no"
+    ],
+    "sections": [],
+    "facts": [
+      "Boolean values can be represented with bits."
+    ],
+    "terms": [
+      "boolean",
+      "condition"
+    ],
+    "questions": [
+      {
+        "target": "logic-and",
+        "text": "How can a program require two checks to be true together?"
+      },
+      {
+        "target": "logic-not",
+        "text": "Which rule flips a true answer to false?"
+      },
+      {
+        "target": "truth-tables",
+        "text": "How can a table show the result of each possible starting choice?"
+      }
+    ],
+    "sources": [
+      "bt-logic",
+      "bt-flow"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "logic-and",
+    "title": "When does an AND rule say yes?",
+    "category": "logic",
+    "priority": 2,
+    "answer": "Imagine a pretend treasure chest that opens only when you have a key and stand on a marked square. You need both parts. Having just the key does not open it, and standing on the square alone does not open it either. A computer can combine the two checks using an AND rule. It gets a true result when both checks are true together. That result can then tell the game to open the chest.",
+    "aliases": [
+      "and logic",
+      "logical and",
+      "two conditions both true"
+    ],
+    "sections": [],
+    "facts": [
+      "The AND result is false if either of its two checks is false."
+    ],
+    "terms": [
+      "boolean",
+      "condition"
+    ],
+    "questions": [
+      {
+        "target": "logic-or",
+        "text": "What rule asks whether at least one check passes?"
+      },
+      {
+        "target": "truth-tables",
+        "text": "How can you test every pair of answers for AND?"
+      },
+      {
+        "target": "conditionals",
+        "text": "How do these results lead to a different action in a program?"
+      }
+    ],
+    "sources": [
+      "bt-logic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "logic-or",
+    "title": "When does an OR rule say yes?",
+    "category": "logic",
+    "priority": 2,
+    "answer": "Suppose a pretend gate opens if you have a round token or a square token. With either token the gate opens. If you have both, it can open too. This is the usual OR rule in computing. A true result means at least one part of the test is true. People sometimes say “or” when they mean you must choose just one thing. In logic, there is a different rule for allowing exactly one.",
+    "aliases": [
+      "or logic",
+      "logical or",
+      "one or both conditions true"
+    ],
+    "sections": [],
+    "facts": [
+      "For the ordinary logic OR rule, both inputs being true also gives a true result."
+    ],
+    "terms": [
+      "boolean",
+      "condition"
+    ],
+    "questions": [
+      {
+        "target": "logic-and",
+        "text": "Which rule needs two things to be true at once?"
+      },
+      {
+        "target": "logic-xor",
+        "text": "What rule treats having both differently?"
+      },
+      {
+        "target": "truth-tables",
+        "text": "How can you list every pair to find out when OR works?"
+      }
+    ],
+    "sources": [
+      "bt-logic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "logic-not",
+    "title": "What does NOT do to a logic value?",
+    "category": "logic",
+    "priority": 2,
+    "answer": "If a light is on, the sentence “the light is not on” is false. If the light is off, that sentence is true. The logic rule NOT flips a true-or-false answer. It is useful when a program needs to check the opposite of a question it can already ask. A game that knows whether its menu is open might also want to know whether the menu is not open, so it can let a player move.",
+    "aliases": [
+      "not logic",
+      "logical not",
+      "negation in programming"
+    ],
+    "sections": [],
+    "facts": [
+      "Applying NOT twice to a true-or-false value gives you back the starting value."
+    ],
+    "terms": [
+      "boolean",
+      "condition"
+    ],
+    "questions": [
+      {
+        "target": "boolean-logic",
+        "text": "Why does a logic value come in just two choices?"
+      },
+      {
+        "target": "logic-and",
+        "text": "How can two checks be joined before a program acts?"
+      },
+      {
+        "target": "truth-tables",
+        "text": "How many rows do you need in a table showing what NOT does?"
+      }
+    ],
+    "sources": [
+      "bt-logic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "logic-xor",
+    "title": "What rule means one or the other, but never both?",
+    "category": "logic",
+    "priority": 2,
+    "answer": "An imaginary sign might light up when only one person presses a button. If neither presses a button, it stays dark. If both press at once, it also stays dark. That rule is called XOR, or exclusive OR. It has only two ways to get a true answer with two buttons. Exactly one of the two buttons must be pressed. This is different from the usual OR rule, where pressing both would also turn the sign on.",
+    "aliases": [
+      "exclusive or",
+      "xor",
+      "one but not both logic"
+    ],
+    "sections": [],
+    "facts": [
+      "XOR is short for exclusive OR."
+    ],
+    "terms": [
+      "boolean",
+      "condition"
+    ],
+    "questions": [
+      {
+        "target": "logic-or",
+        "text": "How does ordinary OR treat two true answers?"
+      },
+      {
+        "target": "logic-and",
+        "text": "Which rule is true when both answers are true?"
+      },
+      {
+        "target": "truth-tables",
+        "text": "How do the two-true rows for OR and XOR differ?"
+      }
+    ],
+    "sources": [
+      "bt-logic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "truth-tables",
+    "title": "What can a truth table show you?",
+    "category": "logic",
+    "priority": 2,
+    "answer": "A truth table is a chart for checking a logic rule. Suppose a sign responds to two buttons. You can make one row for neither button pushed, one for only the first, one for only the second, and one for both. Then write what the sign does in every row. A table helps reveal an answer you might have missed. Programmers and engineers can use it to compare rules before they write a program or build a circuit.",
+    "aliases": [
+      "truth table",
+      "list true false combinations",
+      "logic table"
+    ],
+    "sections": [],
+    "facts": [
+      "A table for two true-or-false inputs has four rows if it lists every possibility."
+    ],
+    "terms": [
+      "truth table",
+      "boolean"
+    ],
+    "questions": [
+      {
+        "target": "logic-and",
+        "text": "Which row is the only true result for AND?"
+      },
+      {
+        "target": "logic-not",
+        "text": "What happens when a rule checks only one true-or-false value?"
+      },
+      {
+        "target": "logic-xor",
+        "text": "What are the two true rows for exactly one button pressed?"
+      }
+    ],
+    "sources": [
+      "bt-logic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sorting",
+    "title": "How can a program put a list in order?",
+    "category": "logic",
+    "priority": 2,
+    "answer": "To order a pile of numbered cards, you could make a short row and slide each new card into its place. If the row says 2, 4, and 8, a new card with 5 goes after 4. A program can follow a similar method. It compares one value with nearby values and keeps the ordered part of its list in order as it grows. Other ways may use fewer comparisons on some lists. The kind of work matters when the list is large.",
+    "aliases": [
+      "sorting algorithm",
+      "put in order",
+      "how does a computer sort numbers"
+    ],
+    "sections": [],
+    "facts": [
+      "Some sorting methods move one item at a time into an already ordered section."
+    ],
+    "terms": [
+      "sorting",
+      "algorithm"
+    ],
+    "questions": [
+      {
+        "target": "binary-search",
+        "text": "Why can an organized list make a search much quicker?"
+      },
+      {
+        "target": "algorithms",
+        "text": "What are the steps that a computer follows called?"
+      },
+      {
+        "target": "program-loops",
+        "text": "How can a program repeat a checking step for the next item?"
+      }
+    ],
+    "sources": [
+      "bt-insertion",
+      "bt-sorting"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "binary-search",
+    "title": "How can a program find something in a sorted list?",
+    "category": "logic",
+    "priority": 2,
+    "answer": "Think of looking for the number 82 in a long row of cards already in order. You can look at the card in the middle. If it is 50, you can skip all the lower cards because 82 must be farther right. Look at the new middle of that remaining part and make the same decision. In a binary search, each step narrows the choices to about half of what came before. You cannot do that safely if the cards are scrambled.",
+    "aliases": [
+      "binary search",
+      "find in sorted list",
+      "how does binary search work"
+    ],
+    "sections": [],
+    "facts": [
+      "Binary search needs a way to tell which side of the current place the wanted item could be on."
+    ],
+    "terms": [
+      "binary search",
+      "algorithm",
+      "sorting"
+    ],
+    "questions": [
+      {
+        "target": "sorting",
+        "text": "What way can make sure numbers are in order first?"
+      },
+      {
+        "target": "conditionals",
+        "text": "What checks tell a program to move left or right?"
+      },
+      {
+        "target": "web-search",
+        "text": "Why do search engines make organized lists of clues ahead of time?"
+      }
+    ],
+    "sources": [
+      "bt-search-algorithms",
+      "bt-sorting"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "digital-personal-info",
+    "title": "What counts as personal information online?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "Personal information includes details that can identify or locate you, such as your full name or where you live. Details that seem small, like the name on a team shirt, can become revealing when someone matches them with other clues. Before putting information in a game chat or an online form, check with a grown-up you trust. You can often take part in an activity without telling everyone private facts about your family or your plans.",
+    "aliases": [
+      "personal information",
+      "what can I share online",
+      "private details on internet"
+    ],
+    "sections": [],
+    "facts": [
+      "Two small clues can reveal something that either clue alone might not reveal."
+    ],
+    "terms": [
+      "personal information",
+      "privacy"
+    ],
+    "questions": [
+      {
+        "target": "sharing-photos",
+        "text": "What details can appear in a photo before you notice them?"
+      },
+      {
+        "target": "online-strangers",
+        "text": "Why be cautious if a player you just met asks personal questions?"
+      },
+      {
+        "target": "app-permissions",
+        "text": "What should you check if an app asks to see your location?"
+      }
+    ],
+    "sources": [
+      "bt-ftc-kids",
+      "bt-fbi-surf"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "digital-privacy",
+    "title": "What does privacy mean when you use a device?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "Privacy is about how much other people can find out about you and who can see the things you share. Some games or apps let grown-ups choose whether a profile is seen by everyone or just by people they approve. Even with a private setting, someone who can see something may still copy it. Think about who needs a piece of information before you share it. A trusted grown-up can help you understand a setting while you are learning to use it.",
+    "aliases": [
+      "online privacy",
+      "private settings",
+      "what does privacy mean"
+    ],
+    "sections": [],
+    "facts": [
+      "Settings may let you limit who can contact you or see a profile."
+    ],
+    "terms": [
+      "privacy",
+      "personal information"
+    ],
+    "questions": [
+      {
+        "target": "digital-personal-info",
+        "text": "Which details can identify a person or place?"
+      },
+      {
+        "target": "sharing-photos",
+        "text": "Why can a shared picture reach people outside your first group?"
+      },
+      {
+        "target": "device-locks",
+        "text": "How can a lock help if someone else picks up your phone?"
+      }
+    ],
+    "sources": [
+      "bt-ftc-kids",
+      "bt-ftc-games"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "app-permissions",
+    "title": "Why does an app ask to use your camera or location?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "An app sometimes asks to use a tool or information on your device. A family video call app may need the camera to show your face. A clock might be able to work without knowing your location. A permission is the choice about whether it can use something. When a request surprises you, you can pause and ask a grown-up you trust. The settings often let you check which permissions apps already have.",
+    "aliases": [
+      "app permissions",
+      "camera permissions",
+      "why does app want my location"
+    ],
+    "sections": [],
+    "facts": [
+      "Some devices let you change an app’s permission after the first choice."
+    ],
+    "terms": [
+      "permission",
+      "privacy"
+    ],
+    "questions": [
+      {
+        "target": "digital-privacy",
+        "text": "How can a setting change who is allowed to see personal details?"
+      },
+      {
+        "target": "computer-sensors",
+        "text": "What kinds of things can a device notice about its surroundings?"
+      },
+      {
+        "target": "sharing-photos",
+        "text": "Why check for identifying clues before sharing an image?"
+      }
+    ],
+    "sources": [
+      "bt-ftc-phone",
+      "bt-ftc-kids"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "extra-login-check",
+    "title": "What is a second check when you sign in?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "Some accounts check more than one kind of proof that the person signing in is allowed. After a password, a service may ask you to approve a message on a device that belongs to you. That helps when a person knows the first secret but does not have the second proof. If someone sends you a message asking you for a sign-in code, do not share it. A trusted grown-up can help you check the request.",
+    "aliases": [
+      "two factor authentication",
+      "multifactor authentication",
+      "why sign in asks for code"
+    ],
+    "sections": [],
+    "facts": [
+      "The extra check can make it harder for someone who knows just the password to enter the account."
+    ],
+    "terms": [
+      "two-factor authentication",
+      "account",
+      "password"
+    ],
+    "questions": [
+      {
+        "target": "passwords",
+        "text": "What is the first secret a sign-in often requests?"
+      },
+      {
+        "target": "password-managers",
+        "text": "What helps a family keep track of different passwords?"
+      },
+      {
+        "target": "phishing",
+        "text": "Why might a fake message ask you to share a sign-in code?"
+      }
+    ],
+    "sources": [
+      "bt-mfa",
+      "bt-ftc-pass"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "password-managers",
+    "title": "How can a password manager help a family?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "It can be hard to remember a different long password for every account. A password manager can keep a protected list. Rather than reusing the same password on many sites, a family can use that list to keep track of separate ones. The list itself needs careful protection. Ask a grown-up before choosing or setting up a password manager, and make a family plan for keeping the things you use to open it safe.",
+    "aliases": [
+      "password manager",
+      "how can I remember all my passwords",
+      "safe password storage"
+    ],
+    "sections": [],
+    "facts": [
+      "A password manager can help make a different password for each account."
+    ],
+    "terms": [
+      "password manager",
+      "account"
+    ],
+    "questions": [
+      {
+        "target": "passwords",
+        "text": "Why do accounts ask you to use a secret in the first place?"
+      },
+      {
+        "target": "extra-login-check",
+        "text": "What can give an account another layer of protection?"
+      },
+      {
+        "target": "device-locks",
+        "text": "How can a device lock help protect services already signed in?"
+      }
+    ],
+    "sources": [
+      "bt-ftc-pass"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "software-updates",
+    "title": "Why does a computer ask to update?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "An update is a newer version of part of a program or device. Sometimes it adds something people can use. Other times it repairs a problem that was there before. Some repairs protect the information on your device, even if you do not see a big change on the screen. In a family, a grown-up can use the device’s own updates or choose automatic updates. Ask before using any update mentioned in a surprising message.",
+    "aliases": [
+      "software update",
+      "why update apps",
+      "why software needs a newer version"
+    ],
+    "sections": [],
+    "facts": [
+      "Some updates repair problems, even when the app looks the same after the change."
+    ],
+    "terms": [
+      "update",
+      "software"
+    ],
+    "questions": [
+      {
+        "target": "operating-systems",
+        "text": "Which programs help other parts of the device work together?"
+      },
+      {
+        "target": "debugging",
+        "text": "What do people do when a program seems to be causing a problem?"
+      },
+      {
+        "target": "phishing",
+        "text": "Why can a fake message about updates be a reason to ask a grown-up?"
+      }
+    ],
+    "sources": [
+      "bt-ftc-device",
+      "bt-ftc-safety"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cyberbullying",
+    "title": "What can you do if someone is mean online?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "If someone keeps sending mean messages or puts up something cruel about you, show a grown-up you trust. You do not have to answer or try to fix it alone. A grown-up can help decide whether to keep a record, block the person, or report what happened using the service. Forwarding a hurtful message to other players can spread the problem. Use the same care if you see someone being mean to another person online.",
+    "aliases": [
+      "cyberbullying",
+      "mean messages online",
+      "report bullying in a game"
+    ],
+    "sections": [],
+    "facts": [
+      "Many games or services have settings for blocking or reporting someone."
+    ],
+    "terms": [
+      "cyberbullying",
+      "privacy"
+    ],
+    "questions": [
+      {
+        "target": "online-strangers",
+        "text": "Who can help when an online conversation feels wrong?"
+      },
+      {
+        "target": "digital-privacy",
+        "text": "What settings might help limit who can contact you?"
+      },
+      {
+        "target": "sharing-photos",
+        "text": "Why can sending a mean picture to someone else make things worse?"
+      }
+    ],
+    "sources": [
+      "bt-cyberbully",
+      "bt-ftc-kids"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "online-strangers",
+    "title": "Why be careful with messages from people you just met online?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "When you meet someone through a game, you may know their character name and how they play. You may know very little about who they are away from the game. If a person wants private information, asks you to move into a secret chat, or tries to get you to meet, stop the conversation and tell a trusted grown-up. You can be friendly while playing a game without sharing details or agreeing to do something away from it.",
+    "aliases": [
+      "online strangers",
+      "game chat strangers",
+      "what if a stranger asks for information"
+    ],
+    "sections": [],
+    "facts": [
+      "People on a service can use names or pictures that are not their own."
+    ],
+    "terms": [
+      "privacy",
+      "personal information"
+    ],
+    "questions": [
+      {
+        "target": "digital-personal-info",
+        "text": "What details can make it easier for someone to find out who you are?"
+      },
+      {
+        "target": "cyberbullying",
+        "text": "Who can help if a person keeps sending hurtful messages?"
+      },
+      {
+        "target": "digital-privacy",
+        "text": "How can a family choose who is allowed to send messages?"
+      }
+    ],
+    "sources": [
+      "bt-ftc-games",
+      "bt-ftc-kids-safe"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "online-ads",
+    "title": "How can you spot an advertisement in a game or video?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "An ad tries to make people interested in a product, game, or service. It can look like a separate sign. It can also fit inside a video or a game so closely that it looks like part of the fun. Look for words such as “paid” or “sponsored,” or notice when someone keeps asking you to try or buy one thing. If you cannot tell why a message is there, ask a grown-up you trust before acting on it.",
+    "aliases": [
+      "ads in games",
+      "paid ads",
+      "how to tell if online video is sponsored"
+    ],
+    "sections": [],
+    "facts": [
+      "An ad can be part of a video or game, instead of appearing on a different screen."
+    ],
+    "terms": [
+      "advertisement"
+    ],
+    "questions": [
+      {
+        "target": "in-game-purchases",
+        "text": "What can happen when an ad leads to extra things for sale?"
+      },
+      {
+        "target": "web-search",
+        "text": "Why do you still need to look at which result you are choosing?"
+      },
+      {
+        "target": "online-strangers",
+        "text": "Why might someone’s aim online matter when they ask you to act?"
+      }
+    ],
+    "sources": [
+      "bt-ftc-ads",
+      "bt-ftc-games"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "in-game-purchases",
+    "title": "Can something in a free game cost real money?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "You can start some games without paying, but they may offer extra colors, characters, or game coins for sale. Some coins are earned by playing. Spending coins someone paid for still uses part of a real purchase. It can be easy to miss how many real dollars are being spent if you have already bought a pile of coins. Ask a grown-up before tapping a purchase button. Family settings can require separate approval before a sale goes through.",
+    "aliases": [
+      "in game purchases",
+      "game coins",
+      "what are in-app purchases"
+    ],
+    "sections": [],
+    "facts": [
+      "A game can be free to start and charge separately for some extras."
+    ],
+    "terms": [
+      "in-app purchase",
+      "currency"
+    ],
+    "questions": [
+      {
+        "target": "online-ads",
+        "text": "How can an ad make a paid extra look like part of the game?"
+      },
+      {
+        "target": "money",
+        "text": "What does it mean when you use real money to pay for something?"
+      },
+      {
+        "target": "digital-privacy",
+        "text": "How can a grown-up help choose the settings on a game account?"
+      }
+    ],
+    "sources": [
+      "bt-ftc-purchases",
+      "bt-ftc-games"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sharing-photos",
+    "title": "What should you notice before sharing a photo?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "A picture may show more than you meant to share. Look at the background. A sign can say where you are, or a shirt can show a school name. Other people in the image might want a say too. Ask them and check with a trusted grown-up before posting. Once a picture gets shared, someone may copy it or send it on to others. Deleting your post does not necessarily remove the copies other people have.",
+    "aliases": [
+      "sharing photos online",
+      "private pictures",
+      "personal details in photos"
+    ],
+    "sections": [],
+    "facts": [
+      "A shared photo can be copied, even if you later remove your first copy from a page."
+    ],
+    "terms": [
+      "personal information",
+      "privacy"
+    ],
+    "questions": [
+      {
+        "target": "digital-personal-info",
+        "text": "What can small clues tell a person about you?"
+      },
+      {
+        "target": "digital-privacy",
+        "text": "Which settings might change how many people can see your photo?"
+      },
+      {
+        "target": "app-permissions",
+        "text": "Why does an app have to ask before using the device’s camera?"
+      }
+    ],
+    "sources": [
+      "bt-ftc-share",
+      "bt-ftc-kids"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "device-locks",
+    "title": "How does locking your device help protect it?",
+    "category": "digital-safety",
+    "priority": 2,
+    "answer": "If you leave a tablet open, a person nearby may be able to read what you were doing or use an app that is already signed in. A device lock puts up a new check before letting someone get back to those things. A family can set a lock that needs a passcode or another way to show it is you. Locking a device when you leave it helps keep a small mistake from opening everything to someone else.",
+    "aliases": [
+      "device lock",
+      "why lock your phone",
+      "screen lock"
+    ],
+    "sections": [],
+    "facts": [
+      "A device can be set to lock when it has been left alone for a time."
+    ],
+    "terms": [
+      "device lock",
+      "password",
+      "privacy"
+    ],
+    "questions": [
+      {
+        "target": "passwords",
+        "text": "Why do many locks use something you have to remember?"
+      },
+      {
+        "target": "digital-privacy",
+        "text": "What personal information could be visible if a device were left open?"
+      },
+      {
+        "target": "extra-login-check",
+        "text": "Why might an account ask for another check even if you have a device lock?"
+      }
+    ],
+    "sources": [
+      "bt-ftc-safety",
+      "bt-ftc-phone"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

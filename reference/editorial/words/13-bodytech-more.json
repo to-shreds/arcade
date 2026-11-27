@@ -1,0 +1,320 @@
+[
+  {
+    "headword": "tissue",
+    "forms": [
+      "tissues"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Body material made of a group of cells and nearby material working together.",
+        "example": "Muscle tissue can pull as it shortens."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-tissues"
+    ]
+  },
+  {
+    "headword": "reflex",
+    "forms": [
+      "reflexes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A quick response the body makes without you having to decide first.",
+        "example": "Pulling away quickly from a sharp point can be a reflex."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-reflexes"
+    ]
+  },
+  {
+    "headword": "pulse",
+    "forms": [
+      "pulses"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A beat you can feel when pressure from the heart moves through an artery.",
+        "example": "A heartbeat starts the pressure change you notice as a pulse."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-pulse"
+    ]
+  },
+  {
+    "headword": "baby tooth",
+    "forms": [
+      "baby teeth"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the first teeth that grow in, most often later replaced with another tooth.",
+        "example": "A baby tooth came loose and moved a little."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-teeth-eruption"
+    ]
+  },
+  {
+    "headword": "permanent tooth",
+    "forms": [
+      "permanent teeth"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tooth in the set most people keep after losing their first teeth.",
+        "example": "My first permanent tooth appeared as my jaw grew."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-teeth-eruption"
+    ]
+  },
+  {
+    "headword": "incisor",
+    "forms": [
+      "incisors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A front tooth with a sharp edge used for cutting into food.",
+        "example": "An incisor cut off a small piece of apple."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-teeth-eruption"
+    ]
+  },
+  {
+    "headword": "molar",
+    "forms": [
+      "molars"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A large tooth farther back in the mouth, used to crush and grind food.",
+        "example": "This molar helps me chew pieces of bread."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-teeth-eruption"
+    ]
+  },
+  {
+    "headword": "rod cell",
+    "forms": [
+      "rod cells"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A cell near the back of the eye that responds well to weak light.",
+        "example": "Rod cells help me see the ground in very dim light."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-vision-biology"
+    ]
+  },
+  {
+    "headword": "cone cell",
+    "forms": [
+      "cone cells"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A cell in the eye that helps you see colors and details in enough light.",
+        "example": "Different cone cells can respond more strongly to different colors of light."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-vision-biology"
+    ]
+  },
+  {
+    "headword": "depth perception",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The ability to notice how far away things are or which objects are nearer than others.",
+        "example": "Depth perception helps me tell which branch is closer."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-depth-vision"
+    ]
+  },
+  {
+    "headword": "cache",
+    "forms": [
+      "caches"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A place that keeps a copy of information so a computer may use it again quickly.",
+        "example": "The browser could read the image from its cache."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-web-caching"
+    ]
+  },
+  {
+    "headword": "alt text",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Words that describe what matters about an image for someone who cannot see it.",
+        "example": "Alt text describes what the button with a picture of a house does."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-alt-text"
+    ]
+  },
+  {
+    "headword": "caption",
+    "forms": [
+      "captions"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Written words that help explain a picture or tell what you would hear in a video.",
+        "example": "A caption told the viewer that a phone was ringing."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-captions"
+    ]
+  },
+  {
+    "headword": "screen reader",
+    "forms": [
+      "screen readers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Software that can turn computer text and controls into spoken words or braille.",
+        "example": "The screen reader spoke the name of the button."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-access-tech"
+    ]
+  },
+  {
+    "headword": "qr code",
+    "forms": [
+      "qr codes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A square pattern of small light and dark areas made to be read as information by a device.",
+        "example": "The QR code held the address of a web page."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-qr"
+    ]
+  },
+  {
+    "headword": "spreadsheet",
+    "forms": [
+      "spreadsheets"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A computer table where you can organize values and use calculations based on them.",
+        "example": "My spreadsheet added all the numbers in the last column."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-spreadsheet"
+    ]
+  },
+  {
+    "headword": "database",
+    "forms": [
+      "databases"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An organized set of information that a program can search and use.",
+        "example": "We searched a database for books written by the same person."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-database"
+    ]
+  },
+  {
+    "headword": "metadata",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Information that describes a file or other piece of information.",
+        "example": "A photo’s metadata can describe when the picture was made."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-metadata"
+    ]
+  }
+]

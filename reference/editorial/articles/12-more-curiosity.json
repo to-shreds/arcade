@@ -1,0 +1,1233 @@
+[
+  {
+    "id": "beatrix-potter",
+    "title": "How did Beatrix Potter put real animals into stories?",
+    "category": "literature",
+    "priority": 2,
+    "answer": "Beatrix Potter watched real animals closely before drawing animals who wore clothes and had adventures in her stories. She kept rabbits and other small animals when she was young. Her most famous rabbit story began as a letter with pictures for a child. The careful details in the plants and animal bodies make her made-up scenes feel more like places a reader could visit. Potter also cared for farms and land in England’s Lake District.",
+    "sections": [],
+    "facts": [
+      "The Tale of Peter Rabbit was first shared in an illustrated letter."
+    ],
+    "terms": [
+      "illustration"
+    ],
+    "aliases": [
+      "Beatrix Potter",
+      "who wrote Peter Rabbit",
+      "why was Peter Rabbit drawn that way"
+    ],
+    "questions": [
+      {
+        "text": "How do characters’ actions tell you what they are like?",
+        "target": "story-characters"
+      },
+      {
+        "text": "What makes fables about animals different from other animal stories?",
+        "target": "fables"
+      },
+      {
+        "text": "How does an artist show the plants and hills in a real place?",
+        "target": "landscape-art"
+      }
+    ],
+    "sources": [
+      "exp2-potter"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lewis-carroll",
+    "title": "Why does Wonderland play with words and rules?",
+    "category": "literature",
+    "priority": 2,
+    "answer": "Lewis Carroll was the pen name of Charles Lutwidge Dodgson, an English writer who also taught mathematics. In Alice’s Adventures in Wonderland, Alice meets characters who give strange answers to ordinary questions. The rules of a game or a conversation can change while she is trying to follow them. Readers may laugh because they recognize how a normal rule works and notice when the story twists it.",
+    "sections": [],
+    "facts": [
+      "Alice’s Adventures in Wonderland includes illustrations by John Tenniel in early editions."
+    ],
+    "terms": [
+      "wordplay"
+    ],
+    "aliases": [
+      "Lewis Carroll",
+      "Alice in Wonderland author",
+      "Wonderland wordplay"
+    ],
+    "questions": [
+      {
+        "text": "How can a fairly ordinary question become a surprise in a story?",
+        "target": "story-plot"
+      },
+      {
+        "text": "Why do rules matter in a logic puzzle?",
+        "target": "sudoku-puzzles"
+      },
+      {
+        "text": "Why do writers sometimes repeat the same beginning sounds in words?",
+        "target": "alliteration"
+      }
+    ],
+    "sources": [
+      "exp2-carroll",
+      "exp2-oxford-carroll"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "brothers-grimm",
+    "title": "Why did the Brothers Grimm collect fairy tales?",
+    "category": "literature",
+    "priority": 2,
+    "answer": "Jacob and Wilhelm Grimm collected stories in German-speaking Europe and printed versions of many of them. Tales people tell aloud can change a little with each storyteller. Publishing a version lets people read that wording long after the teller is gone. Later tellers and publishers changed details again, so two books may have different versions of the same story. The Grimms were also scholars of words and older writing.",
+    "sections": [],
+    "facts": [
+      "The Grimm collection includes versions of stories now known as Little Red Riding Hood and Hansel and Gretel."
+    ],
+    "terms": [
+      "folktale"
+    ],
+    "aliases": [
+      "Grimm fairy tales",
+      "Jacob and Wilhelm Grimm",
+      "who collected Hansel and Gretel"
+    ],
+    "questions": [
+      {
+        "text": "How does a fable use animals to tell a lesson?",
+        "target": "fables"
+      },
+      {
+        "text": "How can a narrator change the way a familiar story feels?",
+        "target": "story-narrators"
+      },
+      {
+        "text": "How does a library catalog help you find books that a library keeps?",
+        "target": "library-of-congress"
+      }
+    ],
+    "sources": [
+      "exp2-grimm"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "aa-milne",
+    "title": "Where did the Winnie-the-Pooh characters come from?",
+    "category": "literature",
+    "priority": 2,
+    "answer": "English writer A. A. Milne wrote about a boy named Christopher Robin and his animal friends. Milne’s son was also named Christopher Robin. Real stuffed animals from the family helped inspire some of the characters, including the bear and the donkey. The toys tell us something about where the stories began. The characters on the page have their own worries, mistakes, and ways of talking, which are the writer’s inventions.",
+    "sections": [],
+    "facts": [
+      "The New York Public Library keeps several of the original stuffed animals in its collection."
+    ],
+    "terms": [
+      "character"
+    ],
+    "aliases": [
+      "A A Milne",
+      "Winnie the Pooh author",
+      "Christopher Robin toys"
+    ],
+    "questions": [
+      {
+        "text": "How can you make an ordinary object into a story character?",
+        "target": "story-characters"
+      },
+      {
+        "text": "What can keeping an old object tell a reader about a book?",
+        "target": "museums"
+      },
+      {
+        "text": "How did a different writer use a real animal in a made-up story?",
+        "target": "beatrix-potter"
+      }
+    ],
+    "sources": [
+      "exp2-milne"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wizard-of-oz-book",
+    "title": "Who wrote The Wonderful Wizard of Oz?",
+    "category": "literature",
+    "priority": 2,
+    "answer": "L. Frank Baum wrote a story about Dorothy, a girl who travels from Kansas to the made-up Land of Oz. Her companions all hope the Wizard can help them. As they travel, their actions show readers what courage and kindness can look like. The book was illustrated by W. W. Denslow. It came out long before the well-known movie, and some details in the book differ from the movie’s version.",
+    "sections": [],
+    "facts": [
+      "The Wonderful Wizard of Oz was first published in 1900."
+    ],
+    "terms": [
+      "setting"
+    ],
+    "aliases": [
+      "L Frank Baum",
+      "Wizard of Oz first book",
+      "Dorothy Oz book"
+    ],
+    "questions": [
+      {
+        "text": "How does changing a story’s setting change what might happen?",
+        "target": "story-setting"
+      },
+      {
+        "text": "How can a character’s actions show a quality they think they lack?",
+        "target": "story-characters"
+      },
+      {
+        "text": "How did another writer send a curious child to an imaginary place?",
+        "target": "lewis-carroll"
+      }
+    ],
+    "sources": [
+      "exp2-baum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "louisa-may-alcott",
+    "title": "What helped Louisa May Alcott write Little Women?",
+    "category": "literature",
+    "priority": 2,
+    "answer": "Louisa May Alcott grew up with sisters in Massachusetts. She used parts of family life as inspiration when she wrote Little Women, the story of four sisters in a fictional family. One chapter can focus on an ordinary disagreement or a plan to help a neighbor. Those moments show the sisters making choices and learning what matters to them. Readers can compare an author’s life with her fiction without expecting every detail to match.",
+    "sections": [],
+    "facts": [
+      "Alcott and her family lived at the house now called the Wayside for part of her youth."
+    ],
+    "terms": [
+      "character"
+    ],
+    "aliases": [
+      "Louisa May Alcott",
+      "Little Women book",
+      "Alcott sisters"
+    ],
+    "questions": [
+      {
+        "text": "How can writers turn what they notice about real people into characters?",
+        "target": "story-characters"
+      },
+      {
+        "text": "Why might a setting feel familiar to the person writing about it?",
+        "target": "story-setting"
+      },
+      {
+        "text": "How do small events build the plot of a book?",
+        "target": "story-plot"
+      }
+    ],
+    "sources": [
+      "exp2-alcott"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "robert-louis-stevenson",
+    "title": "How did a map help start Treasure Island?",
+    "category": "literature",
+    "priority": 2,
+    "answer": "Scottish writer Robert Louis Stevenson made a drawing of an island and used it to imagine a story. In Treasure Island, the map gives characters a reason to travel and a place to search. It also suggests details that can become part of the plot, like a dangerous stretch of shore or a spot someone wants to find first. A map can help a writer keep track of where a character has been and where they might go next.",
+    "sections": [],
+    "facts": [
+      "The novel first appeared as a series of parts before it was published as a book."
+    ],
+    "terms": [
+      "plot",
+      "setting"
+    ],
+    "aliases": [
+      "Robert Louis Stevenson",
+      "Treasure Island map",
+      "pirate adventure novel"
+    ],
+    "questions": [
+      {
+        "text": "What information do mapmakers keep when they draw an area on a flat sheet?",
+        "target": "map-projection"
+      },
+      {
+        "text": "How can a place create a new problem for characters?",
+        "target": "story-setting"
+      },
+      {
+        "text": "How can a story use an object to connect several events?",
+        "target": "story-plot"
+      }
+    ],
+    "sources": [
+      "exp2-stevenson"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "jules-verne",
+    "title": "Why did Jules Verne write about imagined trips?",
+    "category": "literature",
+    "priority": 2,
+    "answer": "French writer Jules Verne told stories about journeys across oceans, around the world, and to places nobody could really visit. In one book travelers ride in an imagined submarine. In another they try to circle the world on a tight schedule. Details about machines and places help the reader picture what happens. A writer can start with real facts and then ask what might happen in a world with a different machine or a surprising trip.",
+    "sections": [],
+    "facts": [
+      "Jules Verne’s books include A Journey to the Centre of the Earth."
+    ],
+    "terms": [
+      "fiction"
+    ],
+    "aliases": [
+      "Jules Verne",
+      "Twenty Thousand Leagues Under the Seas",
+      "Around the World in Eighty Days author"
+    ],
+    "questions": [
+      {
+        "text": "How can an author make a place sound real even when the story is made up?",
+        "target": "story-setting"
+      },
+      {
+        "text": "How do moving plates shape the real Earth?",
+        "target": "tectonic-plates"
+      },
+      {
+        "text": "How can a traveler use the position of a place on a globe?",
+        "target": "longitude"
+      }
+    ],
+    "sources": [
+      "exp2-verne"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "langston-hughes",
+    "title": "How did Langston Hughes bring music into poetry?",
+    "category": "literature",
+    "priority": 2,
+    "answer": "Langston Hughes wrote poetry, plays, and stories about Black life in the United States. He listened to the sounds of blues and jazz and used some of their rhythms and patterns in poems. Reading a Hughes poem aloud can help you hear when words speed up, slow down, or repeat. He was among the writers of the Harlem Renaissance, when artists made and shared new work in and around Harlem.",
+    "sections": [],
+    "facts": [
+      "Hughes published a collection titled The Weary Blues in the 1920s."
+    ],
+    "terms": [
+      "rhythm"
+    ],
+    "aliases": [
+      "Langston Hughes",
+      "poems with blues and jazz",
+      "Harlem Renaissance poet"
+    ],
+    "questions": [
+      {
+        "text": "How does silence count as part of a piece’s rhythm?",
+        "target": "musical-rhythm"
+      },
+      {
+        "text": "How can a poem be shaped without a steady rhyme pattern?",
+        "target": "free-verse"
+      },
+      {
+        "text": "How does a jazz singer use their voice like an instrument?",
+        "target": "ella-fitzgerald"
+      }
+    ],
+    "sources": [
+      "exp2-hughes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "eb-white",
+    "title": "How did E. B. White make a farm story feel real?",
+    "category": "literature",
+    "priority": 2,
+    "answer": "E. B. White wrote Charlotte’s Web, a story about a pig, a spider, and a girl. Some of its animals speak and plan like people, yet they also do things that real animals do. A spider’s work on a web, a barn’s everyday sounds, and the way humans care for animals help ground the story. White wrote essays as well as stories for young readers.",
+    "sections": [],
+    "facts": [
+      "E. B. White also wrote the children’s books Stuart Little and The Trumpet of the Swan."
+    ],
+    "terms": [
+      "character"
+    ],
+    "aliases": [
+      "E B White",
+      "Charlotte’s Web author",
+      "Stuart Little author"
+    ],
+    "questions": [
+      {
+        "text": "How can an animal character have both real and made-up traits?",
+        "target": "story-characters"
+      },
+      {
+        "text": "What changes when a writer gives people’s feelings to animals or objects?",
+        "target": "personification"
+      },
+      {
+        "text": "How did Beatrix Potter use details from animals she watched?",
+        "target": "beatrix-potter"
+      }
+    ],
+    "sources": [
+      "exp2-white",
+      "exp2-cornell-white-stories"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mozart-music",
+    "title": "What did Mozart make with music?",
+    "category": "music",
+    "priority": 2,
+    "answer": "Wolfgang Amadeus Mozart was a composer from Salzburg, in what is now Austria. He began making and playing music when he was very young and traveled with his family to perform. He later wrote for many combinations of musicians. An opera uses music to tell a story onstage, while a concerto gives a featured player a part to play with a larger group. Mozart wrote in both of these forms, as well as many others.",
+    "sections": [],
+    "facts": [
+      "Mozart wrote an early stage work called Apollo and Hyacinth as a child."
+    ],
+    "terms": [
+      "composer",
+      "opera"
+    ],
+    "aliases": [
+      "Wolfgang Amadeus Mozart",
+      "Mozart opera",
+      "what did Mozart write"
+    ],
+    "questions": [
+      {
+        "text": "What can a script tell an actor to do onstage?",
+        "target": "play-scripts"
+      },
+      {
+        "text": "How can several kinds of instruments play a piece together?",
+        "target": "orchestra"
+      },
+      {
+        "text": "How can one line of music stand out from the rest?",
+        "target": "melody-harmony"
+      }
+    ],
+    "sources": [
+      "exp2-mozart"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "louis-armstrong",
+    "title": "Why is Louis Armstrong remembered in jazz?",
+    "category": "music",
+    "priority": 2,
+    "answer": "Louis Armstrong grew up in New Orleans and became a celebrated jazz trumpeter and singer. He could take a tune listeners recognized and change the way some notes fell on the beat. Instead of playing only the same version each time, a jazz musician may invent part of the music while performing. Armstrong’s solos and recordings helped people hear what one featured player could do inside a band.",
+    "sections": [],
+    "facts": [
+      "One of Armstrong’s nicknames was Satchmo."
+    ],
+    "terms": [
+      "improvisation"
+    ],
+    "aliases": [
+      "Louis Armstrong trumpet",
+      "Louis Armstrong jazz",
+      "Satchmo"
+    ],
+    "questions": [
+      {
+        "text": "How does a trumpet player start a note with a buzz?",
+        "target": "trumpet-sound"
+      },
+      {
+        "text": "How do lower notes change the feel of a tune?",
+        "target": "melody-harmony"
+      },
+      {
+        "text": "How does Ella Fitzgerald change the notes in a singing performance?",
+        "target": "ella-fitzgerald"
+      }
+    ],
+    "sources": [
+      "exp2-armstrong"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ella-fitzgerald",
+    "title": "How did Ella Fitzgerald use her voice like an instrument?",
+    "category": "music",
+    "priority": 2,
+    "answer": "Ella Fitzgerald was a jazz singer known for the care she took with pitch and rhythm. At times she sang syllables without ordinary words, choosing sounds such as short pulses or long notes. This kind of singing is called scat. It can work like a trumpet or piano solo, where the performer makes musical choices as they go. Fitzgerald could sing familiar tunes in ways that made listeners hear new details.",
+    "sections": [],
+    "facts": [
+      "Ella Fitzgerald was known as the First Lady of Song."
+    ],
+    "terms": [
+      "improvisation",
+      "scat singing"
+    ],
+    "aliases": [
+      "Ella Fitzgerald",
+      "scat singing",
+      "jazz voice"
+    ],
+    "questions": [
+      {
+        "text": "How do ordinary spoken syllables break a word into parts?",
+        "target": "syllables"
+      },
+      {
+        "text": "How can several notes and silences fit inside one beat?",
+        "target": "musical-rhythm"
+      },
+      {
+        "text": "How did Louis Armstrong change a familiar tune during a solo?",
+        "target": "louis-armstrong"
+      }
+    ],
+    "sources": [
+      "exp2-fitzgerald"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "duke-ellington",
+    "title": "How did Duke Ellington write for his band?",
+    "category": "music",
+    "priority": 2,
+    "answer": "Duke Ellington led a jazz orchestra and wrote music it could play. He knew the different voices of the people in his band, so a part for one player could sound different from a part for another on the same kind of instrument. Ellington also worked with other composers, including Billy Strayhorn. A band’s sound comes from what musicians write, how each performer plays, and how the players listen to one another.",
+    "sections": [],
+    "facts": [
+      "Billy Strayhorn wrote Take the “A” Train, which became a famous tune played by Ellington’s orchestra."
+    ],
+    "terms": [
+      "composer",
+      "harmony"
+    ],
+    "aliases": [
+      "Duke Ellington",
+      "Duke Ellington jazz orchestra",
+      "who led Ellington’s band"
+    ],
+    "questions": [
+      {
+        "text": "How do instruments in an orchestra divide into families?",
+        "target": "orchestra"
+      },
+      {
+        "text": "What does harmony add to a tune?",
+        "target": "melody-harmony"
+      },
+      {
+        "text": "How did Louis Armstrong help shape the sound of a band through solos?",
+        "target": "louis-armstrong"
+      }
+    ],
+    "sources": [
+      "exp2-ellington"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mona-lisa",
+    "title": "Why does the Mona Lisa’s face look so softly shaded?",
+    "category": "visual-arts",
+    "priority": 2,
+    "answer": "Leonardo da Vinci painted the Mona Lisa as a portrait. Around the eyes and mouth, the changes from light to dark are very gentle. Hard edges would give the face a more sharply drawn look. Farther back, a landscape of rocks and water seems to stretch beyond the person in the chair. Looking from the face to the landscape lets you see two different uses of soft detail in the same painting.",
+    "sections": [],
+    "facts": [
+      "The Louvre in Paris keeps the Mona Lisa."
+    ],
+    "terms": [
+      "portrait",
+      "shading"
+    ],
+    "aliases": [
+      "Mona Lisa",
+      "Leonardo da Vinci portrait",
+      "why edges of Mona Lisa look soft"
+    ],
+    "questions": [
+      {
+        "text": "What makes a painting of a person a portrait?",
+        "target": "portraits"
+      },
+      {
+        "text": "How do light and shade make a flat face seem rounded?",
+        "target": "drawing-light-shade"
+      },
+      {
+        "text": "What can a painter do to make distant hills look far away?",
+        "target": "landscape-art"
+      }
+    ],
+    "sources": [
+      "exp2-leonardo"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "van-gogh-sunflowers",
+    "title": "Why did Van Gogh paint several sunflower pictures?",
+    "category": "visual-arts",
+    "priority": 2,
+    "answer": "Vincent van Gogh made several paintings of sunflowers in jars and vases. Some use lots of yellow, yet the light and dark yellows still let you pick out the petals, flower heads, and background. The flowers can look lively or dried out depending on which bloom you look at. Comparing two versions helps you see how an artist can change the balance of colors without choosing a completely different subject.",
+    "sections": [],
+    "facts": [
+      "Some of Van Gogh’s sunflower paintings were made while he lived in Arles, in southern France."
+    ],
+    "terms": [
+      "still life",
+      "value"
+    ],
+    "aliases": [
+      "Van Gogh Sunflowers",
+      "Vincent van Gogh yellow paintings",
+      "paintings of flowers in vases"
+    ],
+    "questions": [
+      {
+        "text": "How does a still life turn ordinary objects into a subject?",
+        "target": "still-life-art"
+      },
+      {
+        "text": "What does the value of a color tell us?",
+        "target": "drawing-light-shade"
+      },
+      {
+        "text": "How does an artist make color out of small patches instead of long marks?",
+        "target": "alma-thomas"
+      }
+    ],
+    "sources": [
+      "exp2-vincent"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "frida-kahlo",
+    "title": "What did Frida Kahlo put into her self-portraits?",
+    "category": "visual-arts",
+    "priority": 2,
+    "answer": "Frida Kahlo was a Mexican painter who often used herself as the person in a picture. She chose clothes, plants, objects, and settings that help tell the viewer something about her life and the ideas that mattered to her. A painter can see their own appearance in a mirror, but a self-portrait can also include details that a mirror would not show. That is one way an artist can tell a story without using a sentence.",
+    "sections": [],
+    "facts": [
+      "Kahlo’s family home in Mexico City is now a museum often called the Blue House."
+    ],
+    "terms": [
+      "portrait"
+    ],
+    "aliases": [
+      "Frida Kahlo",
+      "Mexican painter self portraits",
+      "Frida Kahlo museum"
+    ],
+    "questions": [
+      {
+        "text": "Why might an artist choose a certain background for a portrait?",
+        "target": "portraits"
+      },
+      {
+        "text": "How can a painting show a feeling without showing exactly what happened?",
+        "target": "abstract-art"
+      },
+      {
+        "text": "What can a museum keep that helps visitors learn about an artist?",
+        "target": "museums"
+      }
+    ],
+    "sources": [
+      "exp2-kahlo"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hokusai-great-wave",
+    "title": "Why does Hokusai’s Great Wave look so large?",
+    "category": "visual-arts",
+    "priority": 2,
+    "answer": "In Hokusai’s print of a great wave off Kanagawa, the dark blue wave curls over boats close to the front of the picture. Japan’s Mount Fuji looks tiny in the background, although a mountain is much bigger than a wave. Those sizes make sense because the boats and breaking wave are shown much nearer to the viewer. The picture was printed from carved blocks, so artists could make more than one copy.",
+    "sections": [],
+    "facts": [
+      "Hokusai’s print is often called The Great Wave."
+    ],
+    "terms": [
+      "printmaking",
+      "foreground"
+    ],
+    "aliases": [
+      "Great Wave off Kanagawa",
+      "Hokusai woodcut",
+      "Hokusai Mount Fuji print"
+    ],
+    "questions": [
+      {
+        "text": "How do woodcut artists put ink onto paper?",
+        "target": "woodcut-printing"
+      },
+      {
+        "text": "What makes something look far away in a picture?",
+        "target": "drawing-perspective"
+      },
+      {
+        "text": "How can wind and the movement of water make waves break?",
+        "target": "ocean-waves"
+      }
+    ],
+    "sources": [
+      "exp2-hokusai"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "georgia-okeeffe",
+    "title": "How did Georgia O’Keeffe make small things feel huge?",
+    "category": "visual-arts",
+    "priority": 2,
+    "answer": "Georgia O’Keeffe painted flowers, hills, bones, buildings, and other things she looked at closely. In some flower paintings, a small petal fills a large part of the picture. A viewer can study shapes and curves that might usually go unnoticed while passing a flower outside. She also painted scenes from the southwestern United States, where dry hills and wide skies gave her other shapes and colors to look at.",
+    "sections": [],
+    "facts": [
+      "Georgia O’Keeffe spent many years living and working in New Mexico."
+    ],
+    "terms": [
+      "form"
+    ],
+    "aliases": [
+      "Georgia O’Keeffe",
+      "O Keeffe flower paintings",
+      "giant flower painting"
+    ],
+    "questions": [
+      {
+        "text": "How does choosing the foreground change what stands out in a landscape?",
+        "target": "landscape-art"
+      },
+      {
+        "text": "How can soft shading show how a petal curves?",
+        "target": "drawing-light-shade"
+      },
+      {
+        "text": "Why do some paintings use lines and color instead of showing every detail?",
+        "target": "abstract-art"
+      }
+    ],
+    "sources": [
+      "exp2-okeeffe"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "faith-ringgold",
+    "title": "How can a quilt tell a story?",
+    "category": "visual-arts",
+    "priority": 2,
+    "answer": "Artist Faith Ringgold made artworks that brought pictures, words, and fabric together. A story quilt can have a picture in the middle and written pieces around it, with patterned cloth framing what you read and see. You might notice a neighborhood or a person in the image, then read about a moment in that person’s life. Ringgold used cloth as a real part of the storytelling, including its colors, texture, and borders.",
+    "sections": [],
+    "facts": [
+      "Faith Ringgold’s picture book Tar Beach grew out of her story-quilt work."
+    ],
+    "terms": [
+      "textile"
+    ],
+    "aliases": [
+      "Faith Ringgold",
+      "story quilt",
+      "Tar Beach artist"
+    ],
+    "questions": [
+      {
+        "text": "How can a comic tell a story through written words and pictures?",
+        "target": "comics-and-panels"
+      },
+      {
+        "text": "How do crossed threads make cloth?",
+        "target": "art-textiles"
+      },
+      {
+        "text": "How did Jacob Lawrence use sets of pictures to tell a larger story?",
+        "target": "jacob-lawrence"
+      }
+    ],
+    "sources": [
+      "exp2-ringgold"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "jacob-lawrence",
+    "title": "Why did Jacob Lawrence tell one history in many paintings?",
+    "category": "visual-arts",
+    "priority": 2,
+    "answer": "Jacob Lawrence painted a series about the movement of many Black Americans from the South to other regions of the United States. One picture can show a train station, another a room, another a group waiting for work. Each painting gives one small part of a longer story. A visitor can use the pictures and their captions to think about the different reasons people moved and what they hoped to find.",
+    "sections": [],
+    "facts": [
+      "The Migration Series has sixty panels."
+    ],
+    "terms": [
+      "panel"
+    ],
+    "aliases": [
+      "Jacob Lawrence",
+      "Migration Series",
+      "Great Migration paintings"
+    ],
+    "questions": [
+      {
+        "text": "How do several panels make a longer story in a comic?",
+        "target": "comics-and-panels"
+      },
+      {
+        "text": "Why might one ordinary room show something important about a larger event?",
+        "target": "story-setting"
+      },
+      {
+        "text": "How do places such as museums keep and display a large set of artworks?",
+        "target": "museums"
+      }
+    ],
+    "sources": [
+      "exp2-lawrence"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "alma-thomas",
+    "title": "How did Alma Thomas make pictures out of patches of color?",
+    "category": "visual-arts",
+    "priority": 2,
+    "answer": "Alma Thomas painted groups of bright marks that can look as if they are moving in rows, rings, or streams. Small spaces between the marks let quieter colors show. She could change the feeling of a picture by changing the order of the colors or the direction the marks seemed to move. Some of her paintings drew ideas from gardens, light, and space without trying to copy a view exactly.",
+    "sections": [],
+    "facts": [
+      "Alma Thomas taught art in Washington, D.C., before devoting more time to her painting."
+    ],
+    "terms": [
+      "abstract",
+      "pattern"
+    ],
+    "aliases": [
+      "Alma Thomas",
+      "Alma Thomas color patterns",
+      "abstract dots painting"
+    ],
+    "questions": [
+      {
+        "text": "How can repeated spaces and colors make a picture feel like a pattern?",
+        "target": "repeating-patterns"
+      },
+      {
+        "text": "How can shapes be inspired by an object without looking just like it?",
+        "target": "abstract-art"
+      },
+      {
+        "text": "How can a mosaic build color from many small pieces?",
+        "target": "mosaic-art"
+      }
+    ],
+    "sources": [
+      "exp2-thomas"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "escher-patterns",
+    "title": "How did M. C. Escher make shapes fit together?",
+    "category": "visual-arts",
+    "priority": 2,
+    "answer": "M. C. Escher made prints in which groups of shapes fit together like tiles. He could turn an ordinary outline into something that looks like a fish or another animal and still have the edges fit its neighbors. In some pictures the shapes get smaller and smaller near the edge. The change in size can make a flat design feel as if it goes on farther than the paper does.",
+    "sections": [],
+    "facts": [
+      "An arrangement like this can cover a surface without leaving gaps."
+    ],
+    "terms": [
+      "tessellation"
+    ],
+    "aliases": [
+      "M C Escher",
+      "Escher tessellation",
+      "Circle Limit prints"
+    ],
+    "questions": [
+      {
+        "text": "What shapes can cover a flat surface again and again?",
+        "target": "tessellations"
+      },
+      {
+        "text": "How can a repeating rule predict what a pattern will look like farther along?",
+        "target": "repeating-patterns"
+      },
+      {
+        "text": "How do artists make a print from a carved block?",
+        "target": "woodcut-printing"
+      }
+    ],
+    "sources": [
+      "exp2-escher"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tessellations",
+    "title": "Which shapes can tile a floor without leaving gaps?",
+    "category": "math",
+    "priority": 2,
+    "answer": "A tessellation covers a flat surface with shapes that fit just up to one another, without gaps or overlaps. Squares can do it because four square corners meet exactly around one point. Equilateral triangles can do it too. Circles lined up in rows leave curved gaps between them, so circles alone cannot cover a floor without overlap. Tile designs can also use several different shapes together.",
+    "sections": [],
+    "facts": [
+      "Three regular hexagons can meet at a point and fill the space around it."
+    ],
+    "terms": [
+      "tessellation",
+      "polygon"
+    ],
+    "aliases": [
+      "tiling patterns",
+      "tessellation",
+      "no gaps no overlaps shapes"
+    ],
+    "questions": [
+      {
+        "text": "What makes a square’s corners fit together?",
+        "target": "classifying-angles"
+      },
+      {
+        "text": "How do the inside angles of a triangle add up?",
+        "target": "triangles"
+      },
+      {
+        "text": "How can an artist make tile shapes look like creatures?",
+        "target": "escher-patterns"
+      }
+    ],
+    "sources": [
+      "exp2-escher"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "polygons",
+    "title": "What makes a flat shape a polygon?",
+    "category": "math",
+    "priority": 2,
+    "answer": "A polygon is a closed flat shape made by joining straight sides end to end. A triangle is a polygon with three sides. A rectangle has four sides. A circle is flat and closed, but its edge curves, so it is not a polygon. The inside angles and the lengths can change a lot while the shape keeps the same number of sides. That is why two different-looking shapes can still be the same kind of polygon.",
+    "sections": [],
+    "facts": [
+      "An octagon has eight sides, whether or not all those sides are the same length."
+    ],
+    "terms": [
+      "polygon"
+    ],
+    "aliases": [
+      "what is a polygon",
+      "shapes with straight sides",
+      "polygons examples"
+    ],
+    "questions": [
+      {
+        "text": "How do you tell if a shape with four sides is a square?",
+        "target": "squares-rectangles"
+      },
+      {
+        "text": "Why is a circle different from a shape with many sides?",
+        "target": "circle-parts"
+      },
+      {
+        "text": "How can you measure the edge around a polygon?",
+        "target": "perimeter-length"
+      }
+    ],
+    "sources": [
+      "exp2-math-shapes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rectangular-solids",
+    "title": "How do the faces of a box fit together?",
+    "category": "math",
+    "priority": 2,
+    "answer": "A rectangular box has six flat faces. Each face meets its neighbor along an edge, and three edges come together at a corner. A corner of a solid shape is called a vertex. Opposite faces on the box match in size. On a cube, all six faces match and each one is a square. On many other boxes, a top face and a side face have different shapes or sizes.",
+    "sections": [],
+    "facts": [
+      "A rectangular box and a cube each have twelve edges and eight vertices."
+    ],
+    "terms": [
+      "face",
+      "edge",
+      "vertex"
+    ],
+    "aliases": [
+      "rectangular prism",
+      "how many faces and edges in a box",
+      "cube and box shapes"
+    ],
+    "questions": [
+      {
+        "text": "How do you measure the amount of room inside the box?",
+        "target": "volume-measurement"
+      },
+      {
+        "text": "What shape is each flat face of a cube?",
+        "target": "squares-rectangles"
+      },
+      {
+        "text": "How can you count square units on the bottom face?",
+        "target": "area"
+      }
+    ],
+    "sources": [
+      "exp2-math-shapes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cylinders",
+    "title": "What makes a can shaped like a cylinder?",
+    "category": "math",
+    "priority": 2,
+    "answer": "A straight circular cylinder has two matching round ends and a curved surface between them. A typical soup can is close to that shape. If you could unroll its side wall onto a table, it would look like a rectangle. One side of that rectangle would be as long as the distance around the round end. The other would measure how tall the can is.",
+    "sections": [],
+    "facts": [
+      "A cylinder like a soup can has two flat circular faces."
+    ],
+    "terms": [
+      "cylinder"
+    ],
+    "aliases": [
+      "what is a cylinder",
+      "round straight sided solid",
+      "shape of a can"
+    ],
+    "questions": [
+      {
+        "text": "How do you find the distance around a circle?",
+        "target": "circumference"
+      },
+      {
+        "text": "How can you compare this can with a box with six flat faces?",
+        "target": "rectangular-solids"
+      },
+      {
+        "text": "What kind of solid has a round base but narrows to a point?",
+        "target": "cones"
+      }
+    ],
+    "sources": [
+      "exp2-math-shapes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cones",
+    "title": "Why is an ice cream cone shaped like a cone?",
+    "category": "math",
+    "priority": 2,
+    "answer": "A round cone has a circular base and a surface that gets narrower until it reaches a point. An empty ice cream cone is like the hollow side of that solid shape. A can has two circular ends that stay the same size. A cone’s cross sections parallel to its base get smaller and smaller as you move toward the tip. You can see that difference by comparing water levels inside a cone and inside a straight-sided can.",
+    "sections": [],
+    "facts": [
+      "The single tip of a cone is called its apex or vertex."
+    ],
+    "terms": [
+      "cone"
+    ],
+    "aliases": [
+      "what is a cone",
+      "round shape with a point",
+      "ice cream cone geometry"
+    ],
+    "questions": [
+      {
+        "text": "Which shape has two circular ends of the same size?",
+        "target": "cylinders"
+      },
+      {
+        "text": "How do you measure the flat circular base from its center?",
+        "target": "circle-parts"
+      },
+      {
+        "text": "What tells you how much can fit inside any container?",
+        "target": "volume-measurement"
+      }
+    ],
+    "sources": [
+      "exp2-math-shapes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "spheres",
+    "title": "How is a sphere different from a circle?",
+    "category": "math",
+    "priority": 2,
+    "answer": "A circle is flat, like the outline you draw around the bottom of a cup. A sphere is round in every direction, like a smooth ball. The points on a perfect sphere’s surface are all the same distance from its center. If you could slice an orange right through its middle and look at the cut, the outline would be close to a circle. A slice closer to its skin would be smaller.",
+    "sections": [],
+    "facts": [
+      "A perfect sphere has no flat faces, straight edges, or corners."
+    ],
+    "terms": [
+      "sphere",
+      "radius"
+    ],
+    "aliases": [
+      "ball versus circle",
+      "what is a sphere",
+      "three dimensional round shape"
+    ],
+    "questions": [
+      {
+        "text": "What is a radius in a flat circle?",
+        "target": "circle-parts"
+      },
+      {
+        "text": "What kind of solid has flat circle ends?",
+        "target": "cylinders"
+      },
+      {
+        "text": "Why does the lit part of the Moon change across the month?",
+        "target": "moon-phases"
+      }
+    ],
+    "sources": [
+      "exp2-math-shapes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "analog-clocks",
+    "title": "How do you read the hands on a clock?",
+    "category": "math",
+    "priority": 2,
+    "answer": "On many clocks, the short hand shows the hour and the long hand shows the minutes. When the long hand points at the twelve, it is at the start of an hour. Each number farther around counts another five minutes. If the minute hand is at the six, half an hour has passed. The hour hand also moves slowly during that half hour, so it will sit between two numbers.",
+    "sections": [],
+    "facts": [
+      "At 3:30 the minute hand points to six. The hour hand is halfway between three and four."
+    ],
+    "terms": [
+      "analog clock"
+    ],
+    "aliases": [
+      "analog clock",
+      "minute and hour hand",
+      "how to tell time from clock hands"
+    ],
+    "questions": [
+      {
+        "text": "How can you find how many minutes passed between two times?",
+        "target": "elapsed-time"
+      },
+      {
+        "text": "How much of a circle does the minute hand turn in half an hour?",
+        "target": "classifying-angles"
+      },
+      {
+        "text": "Why do groups of five minutes make useful multiples?",
+        "target": "multiples"
+      }
+    ],
+    "sources": [
+      "exp2-math-measure"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "elapsed-time",
+    "title": "How can you tell how much time has passed?",
+    "category": "math",
+    "priority": 2,
+    "answer": "Elapsed time is how long something lasts from start to finish. Suppose you begin reading at 2:45 and stop at 3:20. Count fifteen minutes from 2:45 to 3:00. Then count the twenty minutes from 3:00 to 3:20. Add those two jumps to find that you read for thirty-five minutes. Splitting the time at a full hour can be easier than comparing the two clock numbers directly.",
+    "sections": [],
+    "facts": [
+      "An hour lasts sixty minutes, so moving forward thirty minutes also moves forward half an hour."
+    ],
+    "terms": [
+      "elapsed time"
+    ],
+    "aliases": [
+      "elapsed time",
+      "difference between clock times",
+      "how long between two times"
+    ],
+    "questions": [
+      {
+        "text": "How do you read the minute hand of a clock?",
+        "target": "analog-clocks"
+      },
+      {
+        "text": "What does one half mean as a fraction?",
+        "target": "fractions"
+      },
+      {
+        "text": "How does a number line show that one point comes before another?",
+        "target": "negative-numbers"
+      }
+    ],
+    "sources": [
+      "exp2-math-measure"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dot-plots",
+    "title": "How can stacks of dots show measurements?",
+    "category": "math",
+    "priority": 2,
+    "answer": "A dot plot can show measurements along a marked number line. Place one dot above the right number for each measurement. If two leaves are both four centimeters long, put two dots in a stack above four. The tallest stack shows a length that appeared a lot in your collection. A dot alone farther down the line might come from a much longer leaf. You can still see which measurements appeared and how often.",
+    "sections": [],
+    "facts": [
+      "One dot usually represents one observation in this kind of plot."
+    ],
+    "terms": [
+      "dot plot",
+      "data"
+    ],
+    "aliases": [
+      "dot plot",
+      "line plot data",
+      "how to read dot plots"
+    ],
+    "questions": [
+      {
+        "text": "How does a bar graph compare named groups instead?",
+        "target": "bar-graphs"
+      },
+      {
+        "text": "How can you find the middle measurement in a sorted list?",
+        "target": "median-number"
+      },
+      {
+        "text": "How many centimeters make up a meter?",
+        "target": "metric-units"
+      }
+    ],
+    "sources": [
+      "exp2-math-chart"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

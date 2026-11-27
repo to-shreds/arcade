@@ -1,0 +1,1001 @@
+[
+  {
+    "id": "mat-osu-plant-outer",
+    "title": "Vegetative plant parts",
+    "url": "https://extension.oregonstate.edu/catalog/em-9904-vegetative-plant-parts",
+    "publisher": "Oregon State University Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Functions and forms of stems, leaves, roots and buds, including modified stems."
+  },
+  {
+    "id": "mat-osu-plant-inner",
+    "title": "Internal plant parts",
+    "url": "https://extension.oregonstate.edu/catalog/em-9898-internal-plant-parts",
+    "publisher": "Oregon State University Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Water movement, plant conducting tissues, stomata and leaf structure."
+  },
+  {
+    "id": "mat-ncsu-botany",
+    "title": "Chapter 3: Botany",
+    "url": "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany",
+    "publisher": "North Carolina State University Cooperative Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Vegetative and reproductive plant structures, seed and fruit anatomy, growth responses and modification of stems."
+  },
+  {
+    "id": "mat-usgs-transpiration",
+    "title": "Evapotranspiration and the Water Cycle",
+    "url": "https://www.usgs.gov/water-science-school/science/evapotranspiration-and-water-cycle?page=1&qt-=",
+    "publisher": "U.S. Geological Survey",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Water movement from the soil into roots and release as vapor at leaves."
+  },
+  {
+    "id": "mat-umn-bulbs",
+    "title": "Planting bulbs, tubers and rhizomes",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/planting-bulbs-tubers-and-rhizomes",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Bulbs, tubers and rhizomes store energy and have different structures."
+  },
+  {
+    "id": "mat-umn-fall",
+    "title": "Colors and clues of fall",
+    "url": "https://extension.umn.edu/colors-and-clues-of-fall",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Seasonal changes in leaves and the colors made by common pigments."
+  },
+  {
+    "id": "mat-openstax-bryophytes",
+    "title": "25.3 Bryophytes",
+    "url": "https://openstax.org/books/biology-2e/pages/25-3-bryophytes",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Structural details, habitats, rhizoids and spores of mosses and their relatives."
+  },
+  {
+    "id": "mat-openstax-ferns",
+    "title": "25.4 Seedless Vascular Plants",
+    "url": "https://openstax.org/books/biology-2e/pages/25-4-seedless-vascular-plants",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Fern leaves, spore-bearing structures and life cycles."
+  },
+  {
+    "id": "mat-openstax-seeds",
+    "title": "26.1 Evolution of Seed Plants",
+    "url": "https://openstax.org/books/biology-2e/pages/26-1-evolution-of-seed-plants",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Cones, naked seeds and enclosed seeds among seed plants."
+  },
+  {
+    "id": "mat-nps-redwoods",
+    "title": "Giant Sequoias and Coast Redwoods",
+    "url": "https://www.nps.gov/seki/learn/nature/sequoiasandredwoods.htm",
+    "publisher": "National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Contrasting size, distribution, cones and habitat of North American redwoods and giant sequoias."
+  },
+  {
+    "id": "mat-kew-carnivory",
+    "title": "Carnivorous plants explained",
+    "url": "https://www.kew.org/read-and-watch/carnivorous-plants",
+    "publisher": "Royal Botanic Gardens, Kew",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Nutrient-poor habitat, common trap types and digestive food sources of carnivorous plants."
+  },
+  {
+    "id": "mat-kew-flytrap",
+    "title": "Venus flytrap",
+    "url": "https://www.kew.org/plants/venus-flytrap",
+    "publisher": "Royal Botanic Gardens, Kew",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Habitat, native range, trap hairs and rapid trap closure."
+  },
+  {
+    "id": "mat-kew-pitcher",
+    "title": "Purple pitcher plant",
+    "url": "https://www.kew.org/plants/purple-pitcher-plant",
+    "publisher": "Royal Botanic Gardens, Kew",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Hollow leaves, prey and adaptation to bog habitat."
+  },
+  {
+    "id": "mat-usfs-pollinators",
+    "title": "What Is Pollination and Who Does It?",
+    "url": "https://www.fs.usda.gov/wildflowers/pollinators/documents/simpletruthbrochure.pdf",
+    "publisher": "USDA Forest Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Flower parts, pollination and different pollen carriers."
+  },
+  {
+    "id": "mat-usfs-fungi",
+    "title": "Field guide to common macrofungi in eastern forests and their ecosystem functions",
+    "url": "https://research.fs.usda.gov/treesearch/38089",
+    "publisher": "USDA Forest Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Forest fungi, visible fruiting bodies, spores, decomposition and root partnerships."
+  },
+  {
+    "id": "mat-usfs-decay",
+    "title": "A review of the role of fungi in wood decay of forest ecosystems",
+    "url": "https://research.fs.usda.gov/treesearch/54715",
+    "publisher": "USDA Forest Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Fungal roles in dead wood, nutrient cycling and differences among decay types."
+  },
+  {
+    "id": "mat-usfs-lichens",
+    "title": "National Atlas of Epiphytic Lichens in Forested Habitats of the United States",
+    "url": "https://www.fs.usda.gov/sites/default/files/fs_media/fs_document/Lichen-Atlas.pdf",
+    "publisher": "USDA Forest Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Lichen partners, growth surfaces and usefulness in forest monitoring."
+  },
+  {
+    "id": "mat-usfs-mycorrhizae",
+    "title": "Mycorrhizae",
+    "url": "https://research.fs.usda.gov/treesearch/9995",
+    "publisher": "USDA Forest Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Fungal partnership on roots, nutrient and water uptake, and plant carbon."
+  },
+  {
+    "id": "mat-nrcs-soil",
+    "title": "What is Soil?",
+    "url": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/what-is-soil",
+    "publisher": "USDA Natural Resources Conservation Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Soil ingredients, living organisms, and formation from parent material."
+  },
+  {
+    "id": "mat-nrcs-texture",
+    "title": "Soil Texture Calculator",
+    "url": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-texture-calculator",
+    "publisher": "USDA Natural Resources Conservation Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Sand, silt and clay percentages determine soil texture."
+  },
+  {
+    "id": "mat-nrcs-organic",
+    "title": "Soil Health: Organic Matter",
+    "url": "https://www.nrcs.usda.gov/sites/default/files/2022-10/Soil%20Organic%20Matter.pdf",
+    "publisher": "USDA Natural Resources Conservation Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Decomposition, soil organic matter, roots and nutrient cycles."
+  },
+  {
+    "id": "mat-umn-cover",
+    "title": "Getting started with cover crops",
+    "url": "https://extension.umn.edu/agriculture/crop-production/cover-crops/getting-started-with-cover-crops",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Keeping soil covered, benefits and timing of cover crops."
+  },
+  {
+    "id": "mat-umn-hydro",
+    "title": "Small-scale hydroponics",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/small-scale-hydroponics",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Growing without soil, nutrient solutions, roots, water and support."
+  },
+  {
+    "id": "mat-acs-tension",
+    "title": "Lesson 5.2: Surface Tension",
+    "url": "https://www.acs.org/middleschoolchemistry/lessonplans/chapter5/lesson2.html",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Water molecules, surface tension and reduced surface tension from detergent."
+  },
+  {
+    "id": "mat-acs-solutions",
+    "title": "Chapter 5: The Water Molecule and Dissolving",
+    "url": "https://www.acs.org/middleschoolchemistry/lessonplans/chapter5.html",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Dissolving, solution formation, temperature and molecular polarity."
+  },
+  {
+    "id": "mat-acs-dissolve-temp",
+    "title": "Lesson 5.9: Temperature Changes in Dissolving",
+    "url": "https://www.acs.org/middleschoolchemistry/lessonplans/chapter5/lesson9.html",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Energy changes during dissolving and contrasts between different solutes."
+  },
+  {
+    "id": "mat-acs-cold-cream",
+    "title": "The Secret Science of Ice Cream",
+    "url": "https://www.acs.org/education/whatischemistry/adventures-in-chemistry/secret-science-stuff/ice-cream.html",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Effect of salt on freezing temperature and importance of keeping ice crystals small."
+  },
+  {
+    "id": "mat-acs-soda",
+    "title": "The Secret Science of Soda Pop",
+    "url": "https://www.acs.org/education/whatischemistry/adventures-in-chemistry/secret-science-stuff/soda-pop.html",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Dissolved carbon dioxide, pressure and bubbling in fizzy drinks."
+  },
+  {
+    "id": "mat-usda-grains",
+    "title": "Food Buying Guide: Grains",
+    "url": "https://foodbuyingguide.fns.usda.gov/FoodComponents/ResourceGrains",
+    "publisher": "USDA Food and Nutrition Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Whole and refined grains and edible examples."
+  },
+  {
+    "id": "mat-usda-popcorn",
+    "title": "Popcorn: A Healthy, Whole Grain Snack",
+    "url": "https://www.ars.usda.gov/plains-area/gfnd/gfhnrc/docs/news-articles/2021/popcorn-a-healthy-whole-grain-snack/",
+    "publisher": "USDA Agricultural Research Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Popcorn as a whole grain and food."
+  },
+  {
+    "id": "mat-psu-maple",
+    "title": "Maple Syrup Production",
+    "url": "https://extension.psu.edu/forests-and-wildlife/forest-products/maple-syrup",
+    "publisher": "Penn State Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Seasonal sap flow, sap collection and concentration by evaporation."
+  },
+  {
+    "id": "mat-usgs-materials",
+    "title": "Minerals and Uses Activity",
+    "url": "https://www.usgs.gov/programs/mineral-resources-program/minerals-and-uses-activity",
+    "publisher": "U.S. Geological Survey",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Mineral resources as raw materials in common objects, including glass and metal products."
+  },
+  {
+    "id": "mat-openstax-matter",
+    "title": "1.2 Phases and Classification of Matter",
+    "url": "https://openstax.org/books/chemistry-2e/pages/1-2-phases-and-classification-of-matter",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Pure substances, compounds, mixtures, states, and how substances can be separated."
+  },
+  {
+    "id": "mat-openstax-solubles",
+    "title": "11.3 Solubility",
+    "url": "https://openstax.org/books/chemistry-2e/pages/11-3-solubility",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Solubility, saturated solutions, effects of temperature and pressure, and gases dissolving in water."
+  },
+  {
+    "id": "mat-openstax-crystals",
+    "title": "10.6 Lattice Structures in Crystalline Solids",
+    "url": "https://openstax.org/books/chemistry-2e/pages/10-6-lattice-structures-in-crystalline-solids",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Regular crystal patterns and ordinary table salt as an ionic crystal."
+  },
+  {
+    "id": "mat-openstax-ph",
+    "title": "14.2 pH and pOH",
+    "url": "https://openstax.org/books/chemistry-2e/pages/14-2-ph-and-poh",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "pH scale and familiar acids and bases, neutral water around room temperature."
+  },
+  {
+    "id": "mat-openstax-rust",
+    "title": "17.6 Corrosion",
+    "url": "https://openstax.org/books/chemistry-2e/pages/17-6-corrosion",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Rust, corrosion, moisture, dissolved salts and protective coatings."
+  },
+  {
+    "id": "mat-acs-oil",
+    "title": "Can Liquids Dissolve in Water?",
+    "url": "https://www.acs.org/content/dam/acsorg/msc/downloads/chapter-5/lesson-7/ch5-l7-lesson-plan.pdf",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Dissolving among different liquids, oil-water separation, detergents and water."
+  },
+  {
+    "id": "mat-acs-reaction",
+    "title": "Lesson 6.1: What is a Chemical Reaction?",
+    "url": "https://www.acs.org/middleschoolchemistry/lessonplans/chapter6/lesson1.html",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Reactants, products, conservation of atoms and evidence of change."
+  },
+  {
+    "id": "mat-acs-baking",
+    "title": "Lesson 6.2: Controlling the Amount of Products in a Chemical Reaction",
+    "url": "https://www.acs.org/middleschoolchemistry/lessonplans/chapter6/lesson2.html",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Baking soda and food acids react to release carbon dioxide, water and dissolved material."
+  },
+  {
+    "id": "mat-acs-indicator",
+    "title": "Lesson 6.8: pH and Color Change",
+    "url": "https://www.acs.org/middleschoolchemistry/lessonplans/chapter6/lesson8.html",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Acid-base indicator colors and changes in solution."
+  },
+  {
+    "id": "mat-usgs-hardwater",
+    "title": "Hardness of Water",
+    "url": "https://www.usgs.gov/water-science-school/science/hardness-water",
+    "publisher": "U.S. Geological Survey",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Dissolved calcium and magnesium, effects on soap, and whitening deposits."
+  },
+  {
+    "id": "mat-usgs-waterproperties",
+    "title": "Properties of Water",
+    "url": "https://www.usgs.gov/special-topics/water-science-school/properties-water",
+    "publisher": "U.S. Geological Survey",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Water’s dissolving ability, surface tension and density of ice and liquid water."
+  },
+  {
+    "id": "mat-corning-glass",
+    "title": "How Glass Is Made",
+    "url": "https://www.corning.com/worldwide/en/innovation/materials-science/glass/how-glass-made.html",
+    "publisher": "Corning",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Sand and other ingredients for glass, melting, shaping and noncrystalline structure."
+  },
+  {
+    "id": "mat-us-ceramics",
+    "title": "What Are Ceramics?",
+    "url": "https://ceramics.org/about/what-are-ceramics/",
+    "publisher": "American Ceramic Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Clay pottery, fired ceramics and uses of glass and ceramic materials."
+  },
+  {
+    "id": "mat-rice-alloys",
+    "title": "Metals and Alloys",
+    "url": "https://chemart.rice.edu/Metals_%26_Alloys.html",
+    "publisher": "Rice University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Steel, bronze, brass, other alloys and how mixtures change material properties."
+  },
+  {
+    "id": "mat-purdue-materials",
+    "title": "Materials Science",
+    "url": "https://chemed.chem.purdue.edu/genchem/topicreview/bp/materials/material1.html",
+    "publisher": "Purdue University",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Metals, ceramics, polymers and differences in material structures and properties."
+  },
+  {
+    "id": "mat-shi-plastic",
+    "title": "History and Future of Plastics",
+    "url": "https://www.sciencehistory.org/education/classroom-activities/role-playing-games/case-of-plastics/history-and-future-of-plastics/",
+    "publisher": "Science History Institute",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Polymers, their history and limits of plastics recycling."
+  },
+  {
+    "id": "mat-ucanr-polymers",
+    "title": "Sustainable Polymers, Grades 3 through 5",
+    "url": "https://ucanr.edu/sites/default/files/2025-06/Sustainable%20Polymers%20-%20Gr3-5%20Curriculum.pdf",
+    "publisher": "University of California Agriculture and Natural Resources",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Polymer properties and coded plastic resins."
+  },
+  {
+    "id": "mat-oksu-paper",
+    "title": "Basics of Paper Manufacturing",
+    "url": "https://extension.okstate.edu/fact-sheets/basics-of-paper-manufacturing",
+    "publisher": "Oklahoma State University Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Wood fibers, pulping, draining, pressing and drying paper."
+  },
+  {
+    "id": "mat-gwu-fibers",
+    "title": "Fiber",
+    "url": "https://museum.gwu.edu/fiber",
+    "publisher": "The George Washington University Museum and The Textile Museum",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Cotton, linen, wool, silk and made fibers, and yarn in textiles."
+  },
+  {
+    "id": "mat-cornell-fibers",
+    "title": "Natural Fibers",
+    "url": "https://exhibits.library.cornell.edu/social-fabric-land-labor-and-the-world-the-textile-industry-created/feature/natural-fibers",
+    "publisher": "Cornell University Library",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Common sources of cotton, flax, wool and silk fibers."
+  },
+  {
+    "id": "mat-carbon-toledo",
+    "title": "Carbon",
+    "url": "https://www.utoledo.edu/nsm/ic/elements/carbon.html",
+    "publisher": "University of Toledo",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Carbon in graphite, diamond, other forms and living matter."
+  },
+  {
+    "id": "mat-acs-neon",
+    "title": "Neon",
+    "url": "https://www.acs.org/molecule-of-the-week/archive/n/neon.html",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Neon as a noble gas and the red-orange glow in illuminated tubes."
+  },
+  {
+    "id": "mat-loc-onions",
+    "title": "Why does chopping an onion make you cry?",
+    "url": "https://www.loc.gov/everyday-mysteries/categories/food-and-nutrition/item/why-does-chopping-an-onion-make-you-cry/",
+    "publisher": "Library of Congress",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Cell damage, airborne onion compound, and tearing."
+  },
+  {
+    "id": "mat-acs-apples",
+    "title": "A is for Apple",
+    "url": "https://www.acs.org/education/whatischemistry/adventures-in-chemistry/science-abc/apples-with-appeal.html",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Oxygen contact and browning in sliced fruit, and the effect of lemon juice."
+  },
+  {
+    "id": "mat-acs-maillard",
+    "title": "Maillard: The Most Delicious Chemical Reaction In The World",
+    "url": "https://www.acs.org/pressroom/reactions/library/maillard-the-most-delicious-chemical-reaction-in-the-world.html/1000",
+    "publisher": "American Chemical Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Sugars and amino acids form new colors, odors and flavors when heated."
+  },
+  {
+    "id": "mat-umn-fruitspreads",
+    "title": "Preserving food at home: Fruit spreads",
+    "url": "https://extension.umn.edu/food/preparing/cooking-at-home/food-preservation/fruit-spreads",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Differences among jam, jelly and preserves, and pectin as a gelling agent."
+  },
+  {
+    "id": "mat-exploratorium-bread",
+    "title": "Science of Bread: Yeast and Air",
+    "url": "https://annex.exploratorium.edu/cooking/bread/activity-yeast.html",
+    "publisher": "Exploratorium",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Baking yeast uses sugar and releases carbon dioxide."
+  },
+  {
+    "id": "mat-king-yeast",
+    "title": "Yeast",
+    "url": "https://www.kingarthurbaking.com/pro/reference/yeast",
+    "publisher": "King Arthur Baking",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Baking yeast, fermentation and gas bubbles during bread rising."
+  },
+  {
+    "id": "mat-epa-recycle",
+    "title": "How Do I Recycle Common Recyclables?",
+    "url": "https://www.epa.gov/recycle/how-do-i-recycle-common-recyclables",
+    "publisher": "U.S. Environmental Protection Agency",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Glass packaging and how local acceptance and sorting affect recycling."
+  },
+  {
+    "id": "mat-epa-cullet",
+    "title": "AP-42, Chapter 11.15: Glass Manufacturing",
+    "url": "https://www.epa.gov/sites/default/files/2020-10/documents/c11s15.pdf",
+    "publisher": "U.S. Environmental Protection Agency",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Glass melting process, uses of crushed recycled glass and typical furnace ingredients."
+  },
+  {
+    "id": "mat-umn-apples",
+    "title": "Growing apples in the home garden",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-apples",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Apple tree grafting, pollination, fruit choices and rootstocks."
+  },
+  {
+    "id": "mat-ers-rice",
+    "title": "Rice Sector at a Glance",
+    "url": "https://www.ers.usda.gov/topics/crops/rice/rice-sector-at-a-glance",
+    "publisher": "USDA Economic Research Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Rice classes, growing regions, white and brown milling, and foods."
+  },
+  {
+    "id": "mat-ars-rice",
+    "title": "Preparing U.S. Rice for a Parched Future",
+    "url": "https://www.ars.usda.gov/news-events/news/research-news/2020/preparing-us-rice-for-a-parched-future/",
+    "publisher": "USDA Agricultural Research Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Flooded rice fields, water use, weeds and alternate soil and water practices."
+  },
+  {
+    "id": "mat-wgc-oats",
+    "title": "Types of Oats",
+    "url": "https://wholegrainscouncil.org/whole-grains-101/easy-ways-enjoy-whole-grains/grain-month-calendar/oats-%E2%80%93-january-grain-month/types",
+    "publisher": "Oldways Whole Grains Council",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Oat groats, chopped steel-cut oats and steamed flattened rolled oats."
+  },
+  {
+    "id": "mat-ers-wheat",
+    "title": "Characteristics and Production Costs of U.S. Wheat Farms",
+    "url": "https://ers.usda.gov/sites/default/files/_laserfiche/publications/47154/28497_sb974-5_1_.pdf",
+    "publisher": "USDA Economic Research Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Major U.S. wheat types and end uses of kernels."
+  },
+  {
+    "id": "mat-pc-pop",
+    "title": "What Makes Popcorn Pop",
+    "url": "https://www.popcorn.org/All-About-Popcorn/What-Makes-Popcorn-Pop",
+    "publisher": "The Popcorn Board",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Sealed hull, expanding steam and starch in a heated kernel."
+  },
+  {
+    "id": "mat-epa-compost",
+    "title": "Composting at Home",
+    "url": "https://www.epa.gov/recycle/composting-home",
+    "publisher": "U.S. Environmental Protection Agency",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Aerobic breakdown of scraps and leaves and the uses of finished compost."
+  },
+  {
+    "id": "mat-umn-mulch",
+    "title": "Mulching for soil and garden health",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/mulching-for-soil-and-garden-health",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Mulch as a soil cover and how it changes water loss and weeds."
+  },
+  {
+    "id": "mat-umn-greenhouses",
+    "title": "Deep winter greenhouses",
+    "url": "https://extension.umn.edu/agriculture/farm-operations-and-systems/small-farms/deep-winter-greenhouses",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Sunlight, heat storage, cold weather growing and greenhouse structure."
+  },
+  {
+    "id": "mat-usda-windbreak",
+    "title": "Field Windbreak",
+    "url": "https://www.nrcs.usda.gov/conservation-basics/land/forests/agroforestry-systems/field-windbreak",
+    "publisher": "USDA Natural Resources Conservation Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Rows of trees or shrubs that slow wind, protect fields and reduce erosion."
+  },
+  {
+    "id": "mat-usda-contour",
+    "title": "Contour Farming Conservation Practice Standard",
+    "url": "https://www.nrcs.usda.gov/resources/guides-and-instructions/contour-farming-ac-330-conservation-practice-standard",
+    "publisher": "USDA Natural Resources Conservation Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Following elevation across slopes, managing runoff, and erosion reduction."
+  },
+  {
+    "id": "mat-umn-trellis",
+    "title": "Trellises and cages to support garden vegetables",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/trellises-and-cages",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Plant supports and growth habits of different climbing and upright crops."
+  },
+  {
+    "id": "mat-umn-pumpkins",
+    "title": "Growing pumpkins and winter squash in home gardens",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/pumpkins-and-winter-squash",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Squash vines, fruit, separate flowers and pollination."
+  },
+  {
+    "id": "mat-umn-beans",
+    "title": "Growing beans in home gardens",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-beans",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Seed and pod growth, eating whole pods versus mature seeds and pole versus bush beans."
+  },
+  {
+    "id": "mat-umn-peas",
+    "title": "Growing peas in home gardens",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-peas",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Peas and their cool-season growth, pod types, tendrils and harvest."
+  },
+  {
+    "id": "mat-umn-blueberries",
+    "title": "Growing blueberries in the home garden",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-blueberries-in-the-home-garden",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Blueberry shrubs, fruit quality, pollination and acidic soil requirements."
+  },
+  {
+    "id": "mat-umn-seed-saving",
+    "title": "Saving vegetable seeds",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/saving-vegetable-seeds",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Seed selection, pollination, hybrid offspring and whole-plant growth."
+  },
+  {
+    "id": "mat-uga-peanuts",
+    "title": "Historical Presenting Peanuts",
+    "url": "https://extension.uga.edu/content/dam/extension/programs-and-services/school-gardens/documents/5-Historical-Presenting-Peanuts.pdf",
+    "publisher": "University of Georgia Cooperative Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Growth of flowers above ground and peanuts underground on pegs."
+  },
+  {
+    "id": "mat-kew-cacao",
+    "title": "Cacao: The fruit behind your chocolate bar",
+    "url": "https://www.kew.org/read-and-watch/chocolate-cacao-kew-gardens",
+    "publisher": "Royal Botanic Gardens, Kew",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Cacao pod growth, seeds and origin as a chocolate ingredient."
+  },
+  {
+    "id": "mat-kew-choc",
+    "title": "From bean to bar: How to make chocolate",
+    "url": "https://www.kew.org/read-and-watch/kew-gardens-cacao-how-to-make-chocolate",
+    "publisher": "Royal Botanic Gardens, Kew",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Harvesting, fermentation, roasting, nibs and cocoa solids or butter."
+  },
+  {
+    "id": "mat-kew-coffee",
+    "title": "Arabica coffee",
+    "url": "https://www.kew.org/plants/arabica-coffee",
+    "publisher": "Royal Botanic Gardens, Kew",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Coffee species and its fruit, seeds, cultivation and roasting."
+  },
+  {
+    "id": "mat-kew-banana",
+    "title": "Cavendish banana",
+    "url": "https://www.kew.org/plants/cavendish-banana",
+    "publisher": "Royal Botanic Gardens, Kew",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Commercial seedless banana, edible fruits and plant growth."
+  },
+  {
+    "id": "mat-csu-cheese",
+    "title": "Cheese",
+    "url": "https://www.chhs.colostate.edu/fsi/food-articles/animal-products/cheese/",
+    "publisher": "Colorado State University Food Source Information",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Milk separation into curd and whey, process variation and aging."
+  },
+  {
+    "id": "mat-uf-yogurt",
+    "title": "Fermented Foods: Yogurt",
+    "url": "https://ask.ifas.ufl.edu/publication/FS468",
+    "publisher": "University of Florida IFAS Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Yogurt fermentation, lactose, proteins and thickening."
+  },
+  {
+    "id": "mat-clemson-dairy",
+    "title": "Safe Handling of Milk & Dairy Products",
+    "url": "https://hgic.clemson.edu/factsheet/safe-handling-of-milk-dairy-products/",
+    "publisher": "Clemson Cooperative Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Differences among cream, milk, butter and other dairy products."
+  },
+  {
+    "id": "mat-ncsu-butter",
+    "title": "Homemade Butter",
+    "url": "https://edgecombe.ces.ncsu.edu/wp-content/uploads/2020/04/Homemade-Butter.pdf",
+    "publisher": "North Carolina Cooperative Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Close association of cream fat and churning, separating butter and buttermilk."
+  },
+  {
+    "id": "mat-fda-milk",
+    "title": "Dairy Product Manufacturers",
+    "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/inspection-guides/dairy-product-manufacturers-495",
+    "publisher": "U.S. Food and Drug Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Milk pasteurization and other dairy processes."
+  },
+  {
+    "id": "mat-psu-drying",
+    "title": "Drying Fruits and Vegetables",
+    "url": "https://extension.psu.edu/drying-fruits-and-vegetables",
+    "publisher": "Penn State Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Moisture loss, changes in fruit and keeping dried foods."
+  },
+  {
+    "id": "mat-umn-fruitfreezing",
+    "title": "How to freeze fruit safely",
+    "url": "https://extension.umn.edu/food/preparing/cooking-at-home/food-preservation/freezing/freezing-fruit",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Faster freezing, ice crystals, temperature and texture."
+  },
+  {
+    "id": "mat-kew-vanilla",
+    "title": "Vanilla",
+    "url": "https://www.kew.org/plants/vanilla",
+    "publisher": "Royal Botanic Gardens, Kew",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Vanilla orchid, fruit pods, pollination and curing."
+  },
+  {
+    "id": "mat-nps-saguaro",
+    "title": "Saguaro Cactus: Sentinel of the Southwest",
+    "url": "https://www.nps.gov/articles/saguaro-cactus-facts.htm",
+    "publisher": "National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Saguaro range, water storage, spines, roots and slow formation of arms."
+  },
+  {
+    "id": "mat-nps-maple",
+    "title": "Sugar Maple",
+    "url": "https://www.nps.gov/miss/learn/nature/sugarmaple.htm",
+    "publisher": "National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Winged fruit and other features of sugar maples."
+  },
+  {
+    "id": "mat-usfs-oak",
+    "title": "Quercus alba, white oak",
+    "url": "https://research.fs.usda.gov/feis/species-reviews/quealb",
+    "publisher": "USDA Forest Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "White oak habitat, acorns, animal food, germination and dispersal."
+  },
+  {
+    "id": "mat-ucd-sunflower",
+    "title": "Sunflowers Move by the Clock",
+    "url": "https://www.ucdavis.edu/news/sunflowers-move-clock",
+    "publisher": "University of California, Davis",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Movement in young sunflowers, unequal stem growth and east-facing mature heads."
+  },
+  {
+    "id": "mat-ubc-bamboo",
+    "title": "Bamboos",
+    "url": "https://botanicalgarden.ubc.ca/our-collections/bamboos/",
+    "publisher": "University of British Columbia Botanical Garden",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Bamboo in the grass family, growth forms, stems and rhizome habits."
+  },
+  {
+    "id": "mat-kew-bamboo",
+    "title": "Giant bamboo",
+    "url": "https://www.kew.org/plants/giant-bamboo",
+    "publisher": "Royal Botanic Gardens, Kew",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Giant bamboo form, stems and plant uses."
+  },
+  {
+    "id": "mat-uw-lotus",
+    "title": "Nanosurfaces Activity",
+    "url": "https://education.mrsec.wisc.edu/nanosurfaces-activity/",
+    "publisher": "University of Wisconsin–Madison MRSEC Education Group",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Water-repellent waxy rough lotus surfaces and droplets carrying dirt away."
+  },
+  {
+    "id": "mat-umn-garlic",
+    "title": "Growing garlic in home gardens",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-garlic",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Bulbs, cloves and new plant growth."
+  },
+  {
+    "id": "mat-umn-carrots",
+    "title": "Growing carrots and parsnips in home gardens",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-carrots-and-parsnips",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Edible carrot roots and the growth form of carrots."
+  },
+  {
+    "id": "mat-umn-asparagus",
+    "title": "Growing asparagus in home gardens",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-asparagus",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Young spears, permanent underground crowns, fern-like shoots and nutrient storage."
+  },
+  {
+    "id": "mat-umn-broccoli",
+    "title": "Growing broccoli in home gardens",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-broccoli",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Edible unopened flower clusters and development of buds."
+  },
+  {
+    "id": "mat-umn-cauliflower",
+    "title": "Growing cauliflower in home gardens",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-cauliflower",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Tightly packed cauliflower heads and its relation to other cabbage family vegetables."
+  },
+  {
+    "id": "mat-openstax-tropisms",
+    "title": "30.6 Plant Sensory Systems and Responses",
+    "url": "https://openstax.org/books/biology/pages/30-6-plant-sensory-systems-and-responses",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Directed plant growth toward or away from light, gravity or touch."
+  },
+  {
+    "id": "mat-kew-orchid",
+    "title": "Sneaky orchids and their pollination tricks",
+    "url": "https://www.kew.org/read-and-watch/orchid-pollination-tricks",
+    "publisher": "Royal Botanic Gardens, Kew",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "How some orchids attract and guide pollinators and transfer pollen."
+  },
+  {
+    "id": "mat-openstax-boiling",
+    "title": "10.3 Phase Transitions",
+    "url": "https://openstax.org/books/chemistry-2e/pages/10-3-phase-transitions",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Boiling, vapor pressure, evaporation and how boiling temperature depends on pressure."
+  },
+  {
+    "id": "mat-umn-deice",
+    "title": "Winter Salt Guide: What is Salt and How Does it Work?",
+    "url": "https://mnltap.umn.edu/guides/smartwintersalt/homeowners/whatissalt",
+    "publisher": "University of Minnesota Center for Transportation Studies",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Saltwater freezing temperatures, deicing limits and environmental effects."
+  },
+  {
+    "id": "mat-explo-egg",
+    "title": "Science of Eggs: How to Hard Cook an Egg",
+    "url": "https://dev-annex.exploratorium.edu/cooking/eggs/explore-text.html",
+    "publisher": "Exploratorium",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Heat unfolding egg proteins and making whites set."
+  },
+  {
+    "id": "mat-explo-foam",
+    "title": "Science of Cooking: Eggs",
+    "url": "https://annex.exploratorium.edu/cooking/eggs/pavlova-pop.html",
+    "publisher": "Exploratorium",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Protein behavior and trapped air in whipped egg whites."
+  },
+  {
+    "id": "mat-usfs-woodcomposite",
+    "title": "Wood-based composite materials",
+    "url": "https://research.fs.usda.gov/treesearch/62258",
+    "publisher": "USDA Forest Service Forest Products Laboratory",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose.",
+    "scope": "Veneers, layer directions, plywood and other wood panels."
+  }
+]

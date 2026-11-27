@@ -1,0 +1,925 @@
+[
+  {
+    "id": "batteries",
+    "title": "Where does a battery get its energy?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A battery contains materials that can react with each other. You can connect the two ends into a circuit so the reaction helps move electrons around the outside path. Inside the battery, other charged particles move through a material called an electrolyte. Together, the two movements let it supply electrical energy. A battery can only keep doing this while enough of its stored chemical energy remains. Recharging some batteries changes the materials back toward their earlier state.",
+    "aliases": [
+      "battery power",
+      "how do batteries work",
+      "chemical battery"
+    ],
+    "sections": [],
+    "facts": [
+      "The ends of many batteries are marked with plus and minus signs."
+    ],
+    "terms": [
+      "battery",
+      "electrolyte",
+      "electron"
+    ],
+    "questions": [
+      {
+        "text": "Why does a lamp need a path between both battery ends?",
+        "target": "electric-circuits"
+      },
+      {
+        "text": "Where can a large battery help move a vehicle?",
+        "target": "electric-vehicles"
+      },
+      {
+        "text": "What other device stores electrical energy for a short burst?",
+        "target": "capacitors"
+      }
+    ],
+    "sources": [
+      "mach-more-battery"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "series-circuits",
+    "title": "What happens when lights share one path?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "In a series circuit, the electric current has one path to follow. Imagine a wire from a small battery to a lamp, then to another lamp, then back to the battery. Current runs through both lamps in turn. If one connection opens, it breaks the only path and both lamps go out. A switch put anywhere along that path can turn both lamps off together. A lamp needs a closed path before it can shine.",
+    "aliases": [
+      "series circuit",
+      "bulbs one electric path"
+    ],
+    "sections": [],
+    "facts": [
+      "The same amount of current flows through each part of a single series path."
+    ],
+    "terms": [
+      "series circuit",
+      "current"
+    ],
+    "questions": [
+      {
+        "text": "How could one lamp go out without stopping the other?",
+        "target": "parallel-circuits"
+      },
+      {
+        "text": "How does a battery power the simplest closed loop?",
+        "target": "electric-circuits"
+      },
+      {
+        "text": "What makes electric charges move along the outside path?",
+        "target": "batteries"
+      }
+    ],
+    "sources": [
+      "mach-more-circuits"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "parallel-circuits",
+    "title": "How can two lights work separately on one battery?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "Imagine two lamps connected so each has its own path between the battery’s ends. Electricity can travel in both branches of this parallel circuit. If one branch is opened by a switch, the other still has a complete path, so its lamp can stay lit. Most homes use the same general idea for many devices. Turning off your bedroom lamp need not stop the light across the hallway. A circuit can also use both series and parallel ideas in different places.",
+    "aliases": [
+      "parallel circuit",
+      "two branches electric current"
+    ],
+    "sections": [],
+    "facts": [
+      "Branches connected between the same pair of points have the same voltage across them."
+    ],
+    "terms": [
+      "parallel circuit",
+      "voltage"
+    ],
+    "questions": [
+      {
+        "text": "What happens to two lamps that share only one path?",
+        "target": "series-circuits"
+      },
+      {
+        "text": "How does part of a house’s wiring turn off automatically?",
+        "target": "circuit-breakers"
+      },
+      {
+        "text": "How does power reach all the different branches in a town?",
+        "target": "electricity-grid"
+      }
+    ],
+    "sources": [
+      "mach-more-circuits"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "static-electricity",
+    "title": "Why can a rubbed balloon stick to a wall?",
+    "category": "physics",
+    "priority": 2,
+    "answer": "Rub a balloon against some fabrics and a few electrons can move from one surface to the other. That leaves one surface with extra negative charge and the other with less. Bringing the balloon close to a wall can shift charges in the wall slightly. The opposite charges are then a little closer to the balloon than the similar charges are. The pull of the closer charges can be strong enough to hold the balloon up for a while.",
+    "aliases": [
+      "static balloon",
+      "static cling",
+      "static electricity"
+    ],
+    "sections": [],
+    "facts": [
+      "“Static” describes charge that has collected on a surface instead of flowing steadily in a circuit."
+    ],
+    "terms": [
+      "static electricity",
+      "electron",
+      "charge"
+    ],
+    "questions": [
+      {
+        "text": "What can happen when a very large amount of charge builds up in clouds?",
+        "target": "lightning"
+      },
+      {
+        "text": "How is steadily moving charge different from a balloon’s charge?",
+        "target": "electric-circuits"
+      },
+      {
+        "text": "What else can moving electricity produce?",
+        "target": "electromagnets"
+      }
+    ],
+    "sources": [
+      "mach-more-static"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "electromagnets",
+    "title": "How an electromagnet turns magnetism on and off",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "When current runs through a wire, it makes a magnetic field around it. Winding the wire into a coil lets the fields of many loops work together. A piece of iron inside the coil can make that effect stronger. Some cranes use a large electromagnet to lift a load containing iron or steel. They can stop its electric current to let the load go. Electric motors and other machines use coils in different ways to make controlled movement.",
+    "aliases": [
+      "electromagnet wire coil",
+      "magnetic crane"
+    ],
+    "sections": [],
+    "facts": [
+      "Magnetism made by the coil depends on current flowing in the wire."
+    ],
+    "terms": [
+      "electromagnet",
+      "magnetic field"
+    ],
+    "questions": [
+      {
+        "text": "How do ordinary magnets push and pull even without an electric supply?",
+        "target": "magnets"
+      },
+      {
+        "text": "How can a changing magnetic field make a second circuit work?",
+        "target": "transformers"
+      },
+      {
+        "text": "How can a set of magnetic pushes make a wheel turn?",
+        "target": "electric-motors"
+      }
+    ],
+    "sources": [
+      "mach-more-electromagnets"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "transformers",
+    "title": "Why electricity changes voltage along the way",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A transformer normally has two coils of wire arranged around a shared piece of magnetic material. Current changing direction in the first coil makes its magnetic field change too. That changing field makes a voltage across the second coil. The number of loops in each coil helps set how much the voltage changes. Power companies use higher voltages for carrying power far along wires and then reduce it near the places that need to use the electricity.",
+    "aliases": [
+      "electricity transformer",
+      "high and low voltage transformer"
+    ],
+    "sections": [],
+    "facts": [
+      "A simple transformer needs a changing current to keep producing an effect in the second coil."
+    ],
+    "terms": [
+      "transformer",
+      "voltage"
+    ],
+    "questions": [
+      {
+        "text": "Where does a city change voltage as power moves between sets of lines?",
+        "target": "electricity-grid"
+      },
+      {
+        "text": "What kind of field can a coil make when current flows?",
+        "target": "electromagnets"
+      },
+      {
+        "text": "What different machine changes motion into electrical energy?",
+        "target": "electric-generators"
+      }
+    ],
+    "sources": [
+      "mach-more-transformers",
+      "mach-grid"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "circuit-breakers",
+    "title": "Why some electrical problems turn the power off",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A wire can heat up if more electric current passes through it than it was made to carry. A protective device called a circuit breaker can open the wire’s path automatically. Current then stops flowing along that path, cutting power to the parts it supplies. A fuse serves a similar purpose but uses a small piece of metal that melts to break the path. In either case, opening the circuit helps keep the wiring from overheating.",
+    "aliases": [
+      "circuit breaker",
+      "breaker trips",
+      "fuse protects wires"
+    ],
+    "sections": [],
+    "facts": [
+      "A circuit breaker and a light switch both open a circuit, but the breaker can do it automatically when there is a problem."
+    ],
+    "terms": [
+      "circuit breaker",
+      "current"
+    ],
+    "questions": [
+      {
+        "text": "Why can lights elsewhere still work when one branch turns off?",
+        "target": "parallel-circuits"
+      },
+      {
+        "text": "Why does cutting a tiny gap stop the current?",
+        "target": "electric-circuits"
+      },
+      {
+        "text": "What happens to energy after it makes one part of a wire warm?",
+        "target": "heat-conduction"
+      }
+    ],
+    "sources": [
+      "mach-more-breakers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "leds",
+    "title": "How a tiny LED makes light",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "An LED is a small electronic part made from special solid materials. When electric current goes through it in the intended direction, charges inside can give some of their energy away as light. Different materials can produce different colors. A white LED lamp can use a coating that changes some of the light’s color so the mix looks white. Light from an LED does not depend on heating a wire until it glows.",
+    "aliases": [
+      "light emitting diode",
+      "how does an LED work"
+    ],
+    "sections": [],
+    "facts": [
+      "An LED still warms up a bit, even though much of the useful energy can come out as visible light."
+    ],
+    "terms": [
+      "led",
+      "electron"
+    ],
+    "questions": [
+      {
+        "text": "How can several colors of light combine on a screen?",
+        "target": "rgb-colors"
+      },
+      {
+        "text": "How can one device do nearly the reverse and turn light into electric energy?",
+        "target": "solar-panels"
+      },
+      {
+        "text": "What uses electricity specifically to make something hot instead of lighting a room?",
+        "target": "electric-toasters"
+      }
+    ],
+    "sources": [
+      "mach-more-led",
+      "mach-more-led-semiconductor"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "electric-toasters",
+    "title": "Why electric toaster wires glow",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Inside a toaster, electric current travels through narrow heating elements. The elements resist the motion of charge, so some of the electrical energy becomes warmth in the metal. They can get hot enough to give off light and send heat toward both sides of the bread. As the outside of the bread warms, it becomes drier and browns. In a pop-up toaster, a spring can lift the bread when the heating time is over.",
+    "aliases": [
+      "toaster heating element",
+      "how does a pop up toaster heat bread"
+    ],
+    "sections": [],
+    "facts": [
+      "The first electric toasters often toasted only one side at a time."
+    ],
+    "terms": [
+      "heat",
+      "radiation"
+    ],
+    "questions": [
+      {
+        "text": "How can warmth reach the bread without the element touching it?",
+        "target": "heat-radiation"
+      },
+      {
+        "text": "What happens as the browned surface conducts warmth toward the middle?",
+        "target": "heat-conduction"
+      },
+      {
+        "text": "How can a small electrical part make light without getting nearly as hot?",
+        "target": "leds"
+      }
+    ],
+    "sources": [
+      "mach-more-toaster",
+      "mach-more-resistor"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "induction-cooktops",
+    "title": "How a stovetop can heat the pan directly",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "Under the surface of an induction cooktop is a coil of wire. A changing current in the coil makes a changing magnetic field. In a suitable metal pan above it, that changing field can produce currents in the metal. The pan’s resistance turns some of the energy into heat inside the pan. It then warms food by touching it. The cooktop’s top can still become hot because the hot pan rests on it.",
+    "aliases": [
+      "induction cooking",
+      "magnetic cooktop heat"
+    ],
+    "sections": [],
+    "facts": [
+      "An induction cooktop depends on both the changing magnetic field and a pan made with suitable material."
+    ],
+    "terms": [
+      "magnetic field",
+      "conduction"
+    ],
+    "questions": [
+      {
+        "text": "How can one coil create an electrical effect in a second place?",
+        "target": "transformers"
+      },
+      {
+        "text": "What makes another heating device warm up its own metal elements?",
+        "target": "electric-toasters"
+      },
+      {
+        "text": "How does water in a pan carry warmth as it moves?",
+        "target": "heat-convection"
+      }
+    ],
+    "sources": [
+      "mach-more-induction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "capacitors",
+    "title": "How a capacitor holds a burst of energy",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A capacitor can hold energy by keeping opposite charges apart. Many capacitors have two pieces of metal separated by a very thin layer that does not let charge pass easily. An electric circuit can move charge so one side has more electrons and the other has fewer. If a circuit later gives the charges a path to come back together, the capacitor can supply energy for a short time. Some camera flashes use this quick release.",
+    "aliases": [
+      "capacitor",
+      "what is a capacitor",
+      "stores electric charge"
+    ],
+    "sections": [],
+    "facts": [
+      "A capacitor and a battery both store energy, but a capacitor need not use the same sort of chemical reaction."
+    ],
+    "terms": [
+      "capacitor",
+      "electron"
+    ],
+    "questions": [
+      {
+        "text": "How does a battery use a different way to store energy?",
+        "target": "batteries"
+      },
+      {
+        "text": "How else can extra charges gather on one surface?",
+        "target": "static-electricity"
+      },
+      {
+        "text": "What can an electronic part do with a burst of electric current?",
+        "target": "leds"
+      }
+    ],
+    "sources": [
+      "mach-more-capacitor"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "quartz-clocks",
+    "title": "How quartz helps a clock count seconds",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "A quartz clock contains a little piece of a mineral that can vibrate. An electronic circuit gives the quartz small pushes so it vibrates at a regular rate. The clock counts those vibrations and turns each set into a step of time. That step can update a display or tell a tiny motor to move hands. Older mechanical clocks can count swings of a much bigger part. The quartz clock uses a much smaller movement.",
+    "aliases": [
+      "quartz watch",
+      "how quartz clocks keep time"
+    ],
+    "sections": [],
+    "facts": [
+      "A common watch crystal vibrates more than thirty thousand times in one second."
+    ],
+    "terms": [
+      "quartz",
+      "vibration"
+    ],
+    "questions": [
+      {
+        "text": "What movement does a pendulum clock count?",
+        "target": "pendulums"
+      },
+      {
+        "text": "How can measuring many quick changes each second help record a sound?",
+        "target": "digital-audio"
+      },
+      {
+        "text": "What turns the hands of some battery-powered clocks?",
+        "target": "electric-motors"
+      }
+    ],
+    "sources": [
+      "mach-more-clocks"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "airplane-flaps",
+    "title": "Why airplanes change the shape of their wings",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "If you look out at a plane’s wing near landing, parts along the back may slide out or tilt down. These parts are called flaps. They change the size or shape of the wing so it can make more lift while moving more slowly. Flaps can also add drag, which helps a plane slow down. On flights that are cruising quickly, the flaps usually move back into the wing so the air can flow past more easily.",
+    "aliases": [
+      "airplane flaps",
+      "why do wings change before landing"
+    ],
+    "sections": [],
+    "facts": [
+      "Some wings also have movable parts on the front edge that help with slow flight."
+    ],
+    "terms": [
+      "lift",
+      "drag"
+    ],
+    "questions": [
+      {
+        "text": "How does an ordinary wing hold up a plane?",
+        "target": "flight-lift"
+      },
+      {
+        "text": "Which other movable surfaces help turn or tilt a plane?",
+        "target": "airplane-steering"
+      },
+      {
+        "text": "How do marks on the ground help people identify a runway?",
+        "target": "runway-markings"
+      }
+    ],
+    "sources": [
+      "mach-more-flaps"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "airplane-steering",
+    "title": "How do airplane wings and tails steer?",
+    "category": "vehicles",
+    "priority": 2,
+    "answer": "An airplane can point its nose up or down, turn it left or right, or tip one wing lower than the other. Moving parts push on flowing air to help make these turns. A pair of parts near the wing tips, called ailerons, help tip the airplane. A small moving surface on the tail helps raise or lower the nose. The rudder on the upright part of the tail helps swing the nose from side to side.",
+    "aliases": [
+      "airplane yaw pitch roll",
+      "ailerons rudder elevator flight"
+    ],
+    "sections": [],
+    "facts": [
+      "Tipping a wing, lifting the nose and swinging the nose are called roll, pitch and yaw."
+    ],
+    "terms": [
+      "aileron",
+      "rudder"
+    ],
+    "questions": [
+      {
+        "text": "What different parts help the plane keep making lift at lower speeds?",
+        "target": "airplane-flaps"
+      },
+      {
+        "text": "How can the air push back on a moving surface?",
+        "target": "flight-lift"
+      },
+      {
+        "text": "How does a helicopter change its direction by moving its rotor blades?",
+        "target": "helicopters"
+      }
+    ],
+    "sources": [
+      "mach-more-axes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "air-traffic-control",
+    "title": "Why airports have traffic control towers",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Many airports have tall towers where controllers can look out at the runways and paths between gates. They talk with pilots and help keep aircraft apart while airplanes land, take off or move on the ground. Other controllers watch displays and coordinate flights farther from an airport. Bad weather may mean only a few planes can use a runway at once. In that case, the controllers and the people planning traffic can change when planes arrive.",
+    "aliases": [
+      "airport tower",
+      "what do air traffic controllers do"
+    ],
+    "sections": [],
+    "facts": [
+      "Keeping aircraft apart is one of the controller’s most important jobs."
+    ],
+    "terms": [
+      "signal"
+    ],
+    "questions": [
+      {
+        "text": "What signs help identify the place where a plane is meant to land?",
+        "target": "runway-markings"
+      },
+      {
+        "text": "How can a plane get ready to fly more slowly near a runway?",
+        "target": "airplane-flaps"
+      },
+      {
+        "text": "How do railways also keep moving vehicles apart?",
+        "target": "railway-signals"
+      }
+    ],
+    "sources": [
+      "mach-more-air-traffic",
+      "mach-more-air-towers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "runway-markings",
+    "title": "What do the big numbers at the end of a runway mean?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A runway is a strip where an aircraft can take off and land. Large numbers at the ends usually describe the direction a plane faces as it goes along the strip. In the United States, the numbers usually come from the direction measured with a magnetic compass, rounded and shortened. The other end points nearly the opposite way. White lines down the middle can mark the center, and other markings can show where a landing area begins.",
+    "aliases": [
+      "airport runway numbers",
+      "why do runways have white markings"
+    ],
+    "sections": [],
+    "facts": [
+      "At airports with several parallel runways, letters sometimes tell apart strips that have nearly the same direction."
+    ],
+    "terms": [
+      "magnetic field"
+    ],
+    "questions": [
+      {
+        "text": "Why can a compass and a map show slightly different north directions?",
+        "target": "magnetic-compasses"
+      },
+      {
+        "text": "Who helps different planes use the same runways without crossing paths?",
+        "target": "air-traffic-control"
+      },
+      {
+        "text": "What happens to the wings when a plane is getting ready to land?",
+        "target": "airplane-flaps"
+      }
+    ],
+    "sources": [
+      "mach-more-runways"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "traffic-light-sensors",
+    "title": "How a traffic light can detect a waiting car",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "Some traffic lights follow a schedule, while others can change when a vehicle is waiting. One kind of detector uses wire arranged in a loop under the road. Electricity in the loop produces a magnetic field, and a large metal vehicle above it changes the electrical behavior a little. The detector sends a message to the traffic signal’s controller. A signal can also detect vehicles using a camera or equipment that sends radio waves.",
+    "aliases": [
+      "traffic signal sensor",
+      "wire loop under road",
+      "how traffic lights know cars are waiting"
+    ],
+    "sections": [],
+    "facts": [
+      "A detector can tell a signal that a car is in a lane without needing to know who is driving."
+    ],
+    "terms": [
+      "magnetic field",
+      "sensor"
+    ],
+    "questions": [
+      {
+        "text": "What can electric current do in a loop of wire?",
+        "target": "electromagnets"
+      },
+      {
+        "text": "How can a different road design guide traffic without signals?",
+        "target": "roundabouts"
+      },
+      {
+        "text": "How can a measurement become a message to a computer?",
+        "target": "computer-sensors"
+      }
+    ],
+    "sources": [
+      "mach-more-traffic-lights"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "roundabouts",
+    "title": "Why build a circle where roads meet?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A modern roundabout sends traffic around a small island so paths join in the same direction. The road bends as it leads toward the center, which helps drivers slow before entering the circle. Drivers can then move off along the road they need. Where an ordinary crossing allows several paths to cut across one another, a roundabout has fewer places where moving vehicles meet at right angles. The island’s shape helps guide cars, buses and trucks along useful paths.",
+    "aliases": [
+      "roundabout road design",
+      "why traffic circles slow cars"
+    ],
+    "sections": [],
+    "facts": [
+      "A roundabout is shaped to make drivers travel more slowly where paths join."
+    ],
+    "terms": [
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "What other kind of road crossing uses signals that can detect vehicles?",
+        "target": "traffic-light-sensors"
+      },
+      {
+        "text": "Why are very fast vehicles better separated from roads and other paths?",
+        "target": "high-speed-rail"
+      },
+      {
+        "text": "What lets tires grip a curved road?",
+        "target": "friction"
+      }
+    ],
+    "sources": [
+      "mach-more-roundabouts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "storm-drains",
+    "title": "Where does rain on a street go?",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "After rain falls on a street, much of it cannot soak through the hard surface. Water runs along slopes and gutters to an opening or grate. Some drains send this water through pipes to a pond, stream or river. The rain can carry soil, trash or oil it picked up along the way. Unlike the water that leaves a sink, stormwater in many places goes through different pipes. Some older systems share pipes for both.",
+    "aliases": [
+      "storm drain",
+      "rain into street grate",
+      "stormwater pipes"
+    ],
+    "sections": [],
+    "facts": [
+      "Moving rainwater from hard surfaces is called runoff."
+    ],
+    "terms": [
+      "runoff",
+      "sediment"
+    ],
+    "questions": [
+      {
+        "text": "How can a planted dip slow water on its way toward a drain?",
+        "target": "rain-gardens"
+      },
+      {
+        "text": "What happens to used water from a building’s sinks?",
+        "target": "wastewater-treatment"
+      },
+      {
+        "text": "Where does water go once it reaches a river?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "mach-more-stormwater"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rain-gardens",
+    "title": "Why some gardens are planted lower than the ground",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "A rain garden looks like a shallow hollow planted with things that can handle occasional wet soil. Water rushing off a roof, road or path can spread out and slow down in the hollow. The slower water has more time to soak through the soil, where some loose bits and other materials can be removed. After the garden drains, the plants can keep growing. Rain gardens can reduce the stream of water reaching a storm drain.",
+    "aliases": [
+      "rain garden",
+      "planting to catch stormwater",
+      "garden runoff"
+    ],
+    "sections": [],
+    "facts": [
+      "A rain garden holds water for a short time, rather than staying full all year."
+    ],
+    "terms": [
+      "runoff",
+      "filter"
+    ],
+    "questions": [
+      {
+        "text": "Where might fast runoff go from a street with no rain garden?",
+        "target": "storm-drains"
+      },
+      {
+        "text": "What can happen to water after it soaks into soil?",
+        "target": "water-cycle"
+      },
+      {
+        "text": "Why can faster moving water pick up more loose soil?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "mach-more-rain-gardens"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "railway-signals",
+    "title": "How railway signals help keep trains apart",
+    "category": "infrastructure",
+    "priority": 2,
+    "answer": "One way to manage a railway is to divide it into sections called blocks. Equipment can tell a signaling system whether a train is in a block. Signals then help the next driver or automatic controls know whether the route ahead is available. This matters because a heavy train needs a long distance to stop, so relying only on seeing another train could leave too little time. Railways use several ways to detect trains and share information.",
+    "aliases": [
+      "train signals",
+      "railway blocks",
+      "how trains know track is clear"
+    ],
+    "sections": [],
+    "facts": [
+      "Some signal systems use equipment in the tracks to tell whether a train is present."
+    ],
+    "terms": [
+      "signal"
+    ],
+    "questions": [
+      {
+        "text": "What physical parts let trains take different paths?",
+        "target": "rail-switches"
+      },
+      {
+        "text": "Why is separation important on a city line with frequent trains?",
+        "target": "subway-trains"
+      },
+      {
+        "text": "How is separation also important for planes near airports?",
+        "target": "air-traffic-control"
+      }
+    ],
+    "sources": [
+      "mach-more-train-signals"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "three-d-printing",
+    "title": "How can a printer build an object you can pick up?",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "A 3D printer can turn a computer model into a solid object. Its program pictures the model as many very thin horizontal layers. One type of printer pushes out soft plastic to draw each layer. As the plastic cools or hardens, the next layer can join to it. Other printers build layers from powder or liquid. The object grows layer by layer, unlike a part made by carving away the material around its outline.",
+    "aliases": [
+      "3d printing",
+      "additive manufacturing layer by layer"
+    ],
+    "sections": [],
+    "facts": [
+      "Making a shape by adding layers is called additive manufacturing."
+    ],
+    "terms": [
+      "program"
+    ],
+    "questions": [
+      {
+        "text": "How can a file describe an object with shapes and curves?",
+        "target": "vector-images"
+      },
+      {
+        "text": "What limits the small details a flat grid of pixels can hold?",
+        "target": "image-resolution"
+      },
+      {
+        "text": "How can turning parts help move a machine tool along a path?",
+        "target": "gears"
+      }
+    ],
+    "sources": [
+      "mach-more-printing"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "automatic-doors",
+    "title": "How a door knows someone is coming",
+    "category": "engineering",
+    "priority": 2,
+    "answer": "An automatic door often uses a sensor to look for movement near the entrance. Some sensors send out radio waves and notice a change when those waves bounce off a moving person. A controller then tells a motor to slide the door open. A second kind of sensing can look for someone still in the doorway, so movement alone does not decide whether it closes. The motor moves the door back when the opening is clear.",
+    "aliases": [
+      "automatic sliding doors",
+      "door motion sensor"
+    ],
+    "sections": [],
+    "facts": [
+      "Sensors can have separate jobs when they detect movement and when they look for a person remaining in a space."
+    ],
+    "terms": [
+      "sensor",
+      "motor"
+    ],
+    "questions": [
+      {
+        "text": "What does a sensor measure before the program chooses what to do?",
+        "target": "computer-sensors"
+      },
+      {
+        "text": "How does the door get power to slide aside?",
+        "target": "electric-motors"
+      },
+      {
+        "text": "How are radio waves related to the light we can see?",
+        "target": "light-spectrum"
+      }
+    ],
+    "sources": [
+      "mach-more-doors"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "barcodes",
+    "title": "What do the stripes on a barcode say?",
+    "category": "inventions",
+    "priority": 2,
+    "answer": "A striped barcode uses dark bars and light gaps of different widths to represent numbers. A scanner can shine light on the stripes and measure the pattern that comes back. The equipment turns that pattern into a number with a known meaning. At a store, the number often identifies the type and size of product so a computer can look up its name or its price. Bottles of the same kind can share the same number.",
+    "aliases": [
+      "barcode scanner",
+      "how store bar codes work",
+      "UPC code"
+    ],
+    "sections": [],
+    "facts": [
+      "A store’s own computer normally looks up the price. The stripes do not need to spell out a dollar amount."
+    ],
+    "terms": [
+      "barcode",
+      "signal"
+    ],
+    "questions": [
+      {
+        "text": "How can a picture turn patterns of light and dark into stored information?",
+        "target": "digital-images"
+      },
+      {
+        "text": "How can a small number of different symbols represent many numbers?",
+        "target": "binary"
+      },
+      {
+        "text": "What changes how much light comes back from a surface?",
+        "target": "mirrors"
+      }
+    ],
+    "sources": [
+      "mach-more-barcodes",
+      "mach-more-bar-pattern"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

@@ -1,0 +1,648 @@
+[
+  {
+    "headword": "dynasty",
+    "forms": [
+      "dynasties"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A line of rulers from the same family, or the stretch of time when that family rules.",
+        "example": "The Tang dynasty ruled China for almost three hundred years."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-china"
+    ]
+  },
+  {
+    "headword": "empire",
+    "forms": [
+      "empires"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A number of lands or peoples governed from one main center of power.",
+        "example": "The empire grew as it took control of nearby cities."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-persia"
+    ]
+  },
+  {
+    "headword": "caravan",
+    "forms": [
+      "caravans"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A group of travelers who make part of a trip together, often carrying goods.",
+        "example": "The caravan carried salt across the desert."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-mali-caravans"
+    ]
+  },
+  {
+    "headword": "ziggurat",
+    "forms": [
+      "ziggurats"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tall building with wide steps or layers, built in some ancient cities of the Middle East.",
+        "example": "The ziggurat at Ur rose high above many other buildings."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-ur"
+    ]
+  },
+  {
+    "headword": "oracle bone",
+    "forms": [
+      "oracle bones"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An animal bone or turtle shell used to ask questions about the future in ancient China.",
+        "example": "A writer cut signs into an oracle bone."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-china"
+    ]
+  },
+  {
+    "headword": "terracotta",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Baked clay, often orange or reddish brown, used for pots, tiles, and figures.",
+        "example": "The artist shaped a terracotta figure from soft clay."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-qin"
+    ]
+  },
+  {
+    "headword": "stele",
+    "forms": [
+      "steles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An upright carved slab or pillar, often put up to remember a person or event.",
+        "example": "The carved stele stood near an old grave."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-aksum"
+    ]
+  },
+  {
+    "headword": "pilgrimage",
+    "forms": [
+      "pilgrimages"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A journey to a place that is special to a person’s religion or beliefs.",
+        "example": "Mansa Musa’s pilgrimage took him across North Africa."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-mali"
+    ]
+  },
+  {
+    "headword": "terrace",
+    "forms": [
+      "terraces"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A flat, level area cut into a slope or built above the ground.",
+        "example": "The builders made a broad terrace for the palace."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-persepolis"
+    ]
+  },
+  {
+    "headword": "glyph",
+    "forms": [
+      "glyphs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A carved, drawn, or printed sign that represents something, such as a sound, word, or number.",
+        "example": "The Maya writer used a glyph for a day in the calendar."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-maya-writing"
+    ]
+  },
+  {
+    "headword": "city-state",
+    "forms": [
+      "city-states"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A city and the land around it that have their own government.",
+        "example": "Tikal was a Maya city-state."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-americas"
+    ]
+  },
+  {
+    "headword": "chinampa",
+    "forms": [
+      "chinampas"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A raised garden made from mud, plants, and other materials in shallow water, with canals around it.",
+        "example": "The farmer reached her chinampa by boat."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-chinampa"
+    ]
+  },
+  {
+    "headword": "quipu",
+    "forms": [
+      "quipus",
+      "khipu",
+      "khipus"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A set of cords with knots that people in the Andes used to keep information.",
+        "example": "The quipu held a record of quantities."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-quipu"
+    ]
+  },
+  {
+    "headword": "amphitheater",
+    "forms": [
+      "amphitheaters",
+      "amphitheatre",
+      "amphitheatres"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A large round or oval performance space with rows of seats around an open middle.",
+        "example": "The crowd filled the seats in the amphitheater."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-colosseum"
+    ]
+  },
+  {
+    "headword": "longship",
+    "forms": [
+      "longships"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A long, narrow boat that people used in the Viking Age, with a sail and places for oars.",
+        "example": "The crew rowed the longship away from the shore."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-longship"
+    ]
+  },
+  {
+    "headword": "arch",
+    "forms": [
+      "arches"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A curved structure that spans an opening and helps hold up what is above it.",
+        "example": "The stone arch carried the weight of the wall over the doorway."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-roman"
+    ]
+  },
+  {
+    "headword": "canal",
+    "forms": [
+      "canals"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A waterway made by people to carry boats or to move water.",
+        "example": "A small boat traveled along a canal between gardens."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-angkor"
+    ]
+  },
+  {
+    "headword": "dome",
+    "forms": [
+      "domes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A round roof or ceiling that curves upward like part of a ball.",
+        "example": "Sunlight streamed in through windows under the dome."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-byzantium"
+    ]
+  },
+  {
+    "headword": "colony",
+    "forms": [
+      "colonies"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A place controlled by another country, often after people from that country settle there.",
+        "example": "Massachusetts was once a British colony."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-revolution"
+    ]
+  },
+  {
+    "headword": "ratify",
+    "forms": [
+      "ratifies",
+      "ratified",
+      "ratifying"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "verb",
+        "definition": "To approve a written agreement by following its official rules.",
+        "example": "Several states had to ratify the new Constitution."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-convention"
+    ]
+  },
+  {
+    "headword": "abolish",
+    "forms": [
+      "abolishes",
+      "abolished",
+      "abolishing"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "verb",
+        "definition": "To officially put an end to a rule or practice.",
+        "example": "The Thirteenth Amendment said the country must abolish slavery."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-amendments"
+    ]
+  },
+  {
+    "headword": "segregation",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Forced separation of groups of people, such as rules that keep children of different races in separate schools.",
+        "example": "Families went to court to challenge segregation in public schools."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-brown"
+    ]
+  },
+  {
+    "headword": "boycott",
+    "forms": [
+      "boycotts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An organized refusal to buy, use, or take part in something in order to protest.",
+        "example": "The boycott lasted more than a year as residents refused to ride the buses."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-bus"
+    ]
+  },
+  {
+    "headword": "immigrant",
+    "forms": [
+      "immigrants"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A person who comes to live in another country.",
+        "example": "The museum keeps records of immigrants who sailed into New York Harbor."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-ellis"
+    ]
+  },
+  {
+    "headword": "proclamation",
+    "forms": [
+      "proclamations"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An official statement meant to be heard or read by the public.",
+        "example": "The president issued a proclamation to announce the decision."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-emancipation"
+    ]
+  },
+  {
+    "headword": "bill",
+    "forms": [
+      "bills"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A plan for a new law, written so lawmakers can talk about it and vote on it.",
+        "example": "The state lawmakers discussed a bill about public libraries."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-bill"
+    ]
+  },
+  {
+    "headword": "ballot",
+    "forms": [
+      "ballots"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A paper or another tool that lists choices for an election and lets a voter mark a choice.",
+        "example": "Ana watched her mother fill in a ballot at the voting place."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-elections"
+    ]
+  },
+  {
+    "headword": "jury",
+    "forms": [
+      "juries"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A group chosen to hear information and make a decision in a court case.",
+        "example": "The jury listened to the witnesses before making its decision."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-jury"
+    ]
+  },
+  {
+    "headword": "verdict",
+    "forms": [
+      "verdicts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The decision a jury or judge gives at the end of a trial.",
+        "example": "The judge read the verdict aloud after everyone returned."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-jury"
+    ]
+  },
+  {
+    "headword": "naturalization",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A legal process through which someone becomes a citizen of a country after birth.",
+        "example": "At the end of naturalization, the new citizens took an oath."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-citizenship"
+    ]
+  },
+  {
+    "headword": "syllabary",
+    "forms": [
+      "syllabaries"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A group of written signs. Each sign generally stands for one spoken syllable rather than a single sound.",
+        "example": "Sequoyah made a syllabary for writing Cherokee."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-cherokee-writing"
+    ]
+  },
+  {
+    "headword": "loanword",
+    "forms": [
+      "loanwords"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A word that people speaking one language take from another language and start using.",
+        "example": "A word may become a loanword when cooks teach other people the name of a dish."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-jp"
+    ]
+  },
+  {
+    "headword": "calligraphy",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Lettering written with care as a form of art.",
+        "example": "The invitation was decorated with blue calligraphy."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-arabic"
+    ]
+  },
+  {
+    "headword": "flying buttress",
+    "forms": [
+      "flying buttresses"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An outer arch that carries a push from the upper part of a building out to a strong support on the ground.",
+        "example": "A flying buttress supported the wall beside a tall window."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-gothic"
+    ]
+  },
+  {
+    "headword": "pagoda",
+    "forms": [
+      "pagodas"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tower with one or more levels and specially shaped roofs, found in parts of Asia and often connected with Buddhism.",
+        "example": "The garden path led past a stone pagoda."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-pagoda"
+    ]
+  },
+  {
+    "headword": "adobe",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Earth mixed with water and sometimes plant material, then formed into bricks or walls and allowed to dry.",
+        "example": "The thick adobe walls blocked the heat in the afternoon."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-adobe"
+    ]
+  }
+]

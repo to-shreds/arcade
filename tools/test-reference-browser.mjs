@@ -224,14 +224,26 @@ try {
     await control(frame.getByRole('dialog'), 'Close').click();
     await control(frame, 'Which planet makes the quickest trip around the Sun?').click();
     await ready(frame);
+    await lookup(frame, 'flying buttress definition');
+    const buttressTitle = 'Why does a flying buttress look like a bridge beside a wall?';
+    await frame.getByRole('button', { name: /^Why does a flying buttress look like a bridge beside a wall/ }).click();
+    await title(frame, buttressTitle).waitFor();
+    await control(frame, 'Define flying buttress').click();
+    const definition = frame.getByRole('dialog');
+    await definition.getByRole('heading', { name: 'flying buttress', exact: true }).waitFor();
+    await definition.locator('.definition-senses li').first().waitFor();
+    await control(definition, 'Close').click();
     await frame.getByRole('link', { name: 'Dictionary', exact: true }).click();
     await title(frame, 'Browse A–Z').waitFor();
     await lookup(frame, 'bat');
     await title(frame, 'bat').waitFor();
+    await lookup(frame, 'character');
+    await title(frame, 'character').waitFor();
+    assert.equal(await frame.locator('.definition-senses li').count(), 2);
     await frame.getByRole('link', { name: 'Back to Arcade', exact: true }).click();
     await offline.locator('#shellGameFrame').waitFor({ state: 'detached' });
     await offlineContext.close();
-    console.log('PASS reference PWA: verified offline install, network cut, both activities, article links, shared definitions and Arcade Home');
+    console.log('PASS reference PWA: verified offline install, network cut, new and existing articles, shared definitions and Arcade Home');
   }
 } finally {
   await browser?.close();

@@ -1,0 +1,599 @@
+[
+  {
+    "id": "swahili-coast-trade",
+    "title": "How did towns of the Swahili coast trade across the ocean?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "For centuries, merchants from towns along the eastern coast of Africa traded across the Indian Ocean. Sailors learned when winds were likely to carry boats toward Africa or away from it. Coastal traders sent some goods inland and received others, such as gold, from networks farther into Africa. Ships also brought goods such as pottery made across the ocean. Finds in coastal houses give clues about these trips. They show that the towns were part of a much wider trade network.",
+    "aliases": [
+      "swahili coast trading towns",
+      "east africa indian ocean trade",
+      "swahili coast seasonal winds"
+    ],
+    "sections": [],
+    "facts": [
+      "Many trading towns along the coast were connected by the use of the Swahili language."
+    ],
+    "terms": [
+      "trade",
+      "monsoon"
+    ],
+    "questions": [
+      {
+        "text": "What can the ruins of one Swahili trading town tell us?",
+        "target": "kilwa-kisiwani"
+      },
+      {
+        "text": "Who led Chinese fleets to several Indian Ocean ports?",
+        "target": "zheng-he-voyages"
+      },
+      {
+        "text": "How did another African trading center link the inland and the sea?",
+        "target": "aksum"
+      }
+    ],
+    "sources": [
+      "history-swahili-trade",
+      "history-swahili-buildings"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "kilwa-kisiwani",
+    "title": "What do old buildings on an island in Tanzania reveal about trade?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Kilwa Kisiwani was a Swahili town on an island just off what is now Tanzania. Its people built homes, places of worship, and a palace using stone, including rock formed by coral. Among the ruins, archaeologists found pieces of pottery that had traveled from places far across the Indian Ocean. The pottery helps trace trade routes that no longer have the same stopovers. Looking at both the buildings and the small objects gives clues about how Kilwa became a busy and wealthy port.",
+    "aliases": [
+      "kilwa kisiwani ruins",
+      "tanzania swahili trading city",
+      "coral stone town kilwa"
+    ],
+    "sections": [],
+    "facts": [
+      "The ruins of another nearby Swahili town are on Songo Mnara."
+    ],
+    "terms": [
+      "archaeologist",
+      "coral"
+    ],
+    "questions": [
+      {
+        "text": "How did Kilwa fit into long-distance sea trade?",
+        "target": "swahili-coast-trade"
+      },
+      {
+        "text": "Where is this island on a map of modern Tanzania?",
+        "target": "tanzania"
+      },
+      {
+        "text": "How can other African ruins show evidence of trade?",
+        "target": "great-zimbabwe"
+      }
+    ],
+    "sources": [
+      "history-swahili-trade",
+      "history-swahili-buildings"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "zheng-he-voyages",
+    "title": "Where did Zheng He’s fleets travel?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "In the early 1400s, the rulers of Ming China sent fleets of ships across the Indian Ocean. A leader named Zheng He commanded several of these journeys. The ships stopped in ports in Southeast Asia, along India, and as far away as eastern Africa. Members of the fleets met rulers and carried gifts and goods. Rather than sailing into an empty sea, they traveled along routes where many groups already traded. The journeys show how far people and goods could move by ship.",
+    "aliases": [
+      "zheng he seven voyages",
+      "ming china treasure fleets",
+      "where did zheng he sail"
+    ],
+    "sections": [],
+    "facts": [
+      "Zheng He is usually credited with leading seven voyages between 1405 and 1433."
+    ],
+    "terms": [
+      "dynasty",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "What were traders in eastern African ports doing at the time?",
+        "target": "swahili-coast-trade"
+      },
+      {
+        "text": "How did long-distance trade also happen across land?",
+        "target": "silk-roads"
+      },
+      {
+        "text": "Where is the country that sent the fleets?",
+        "target": "china"
+      }
+    ],
+    "sources": [
+      "history-ming-voyages",
+      "history-swahili-trade"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "industrial-revolution",
+    "title": "Why did more people begin working in factories?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "For a long time, people could spin thread or weave cloth in homes and small workshops. In Britain, larger machines made it possible to gather several parts of this work in one place. Water or steam could power machines in a mill, and many workers could work under the same roof. Cloth could be made more quickly, but workers had to keep to the machines’ pace and often worked long days. Changes like these also helped industrial cities grow.",
+    "aliases": [
+      "what was industrial revolution",
+      "why did factories grow",
+      "how textile mills changed work"
+    ],
+    "sections": [],
+    "facts": [
+      "Cotton mills helped Manchester grow into a large industrial city."
+    ],
+    "terms": [
+      "energy",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "What building changes later let people fit more workplaces into a city block?",
+        "target": "early-skyscrapers"
+      },
+      {
+        "text": "How did expanding railroads change the way heavy goods moved?",
+        "target": "transcontinental-railroad"
+      },
+      {
+        "text": "How did Japan change factories and transport in a later period?",
+        "target": "meiji-restoration"
+      }
+    ],
+    "sources": [
+      "history-factory-textiles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "haitian-revolution",
+    "title": "How did Haiti become an independent country?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "France once ruled a colony in the western part of the island of Hispaniola, where many people were enslaved on plantations. In 1791, enslaved people began a large uprising. Fighting lasted for years and included groups with different goals. Toussaint Louverture helped lead forces that had fought to end slavery. After further conflict, Haitian leaders declared independence in 1804. The new country’s beginning showed that people who had lived through slavery could win freedom and build a state of their own.",
+    "aliases": [
+      "what was haitian revolution",
+      "haiti independence 1804",
+      "toussaint louverture revolution"
+    ],
+    "sections": [],
+    "facts": [
+      "Toussaint Louverture died before Haiti declared independence."
+    ],
+    "terms": [
+      "colony",
+      "abolish"
+    ],
+    "questions": [
+      {
+        "text": "What part of Hispaniola does Haiti cover today?",
+        "target": "haiti"
+      },
+      {
+        "text": "How had an earlier group of colonies broken away from Britain?",
+        "target": "american-revolution"
+      },
+      {
+        "text": "How did slavery end under the United States Constitution later in the century?",
+        "target": "thirteenth-amendment"
+      }
+    ],
+    "sources": [
+      "history-haiti-revolution",
+      "history-haiti-leader"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "meiji-restoration",
+    "title": "What changed for Japan during the Meiji Restoration?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "In 1868, Japan’s government changed after centuries during which military rulers called shoguns had held much of its power. A new government ruled in the name of the emperor, whose reign was called Meiji. Leaders changed the way regions were governed and studied ways of building schools, railways, and industry. People in different walks of life had to learn how to work with new rules and opportunities. Change was uneven, and many older ways of living continued alongside new ones.",
+    "aliases": [
+      "what was meiji restoration",
+      "japan 1868 end of shogunate",
+      "what changed during meiji period"
+    ],
+    "sections": [],
+    "facts": [
+      "The city formerly called Edo became known as Tokyo near the start of the Meiji period."
+    ],
+    "terms": [
+      "capital",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "Where did this change of government happen?",
+        "target": "japan"
+      },
+      {
+        "text": "How had new machines changed work in Britain earlier?",
+        "target": "industrial-revolution"
+      },
+      {
+        "text": "What writing traditions continued in Japan?",
+        "target": "japanese-writing"
+      }
+    ],
+    "sources": [
+      "history-meiji-restoration"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "suez-canal-history",
+    "title": "Why did people dig a canal across part of Egypt?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "The Suez Canal links the Mediterranean Sea with the Red Sea through Egypt. A ship traveling between parts of Europe and Asia can use it rather than going all the way around southern Africa. Workers had to cut a long channel across fairly low desert land and through some lakes. The canal opened to shipping in 1869. Many ships that once made the longer trip around Africa could then follow a shorter route through Egypt.",
+    "aliases": [
+      "suez canal history",
+      "why was suez canal built",
+      "when did suez canal open"
+    ],
+    "sections": [],
+    "facts": [
+      "The Suez Canal has no locks because ships move along a channel at sea level."
+    ],
+    "terms": [
+      "canal",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "Where is the canal in relation to Egypt’s coasts?",
+        "target": "egypt"
+      },
+      {
+        "text": "What other canal changed travel between oceans?",
+        "target": "panama-canal-history"
+      },
+      {
+        "text": "Why do some canals need devices to move boats up or down?",
+        "target": "erie-canal"
+      }
+    ],
+    "sources": [
+      "history-suez-canal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "panama-canal-history",
+    "title": "How did the Panama Canal change ocean travel?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Before the Panama Canal opened, ships traveling between the Atlantic and Pacific sides of the Americas often had to sail far around South America. Workers in Panama dug through hills, built dams, and made locks to raise ships to a lake and lower them again. The canal opened to traffic in 1914. The United States managed it for decades before agreements set a date for Panama to take over. Panama began managing the whole canal at the end of 1999.",
+    "aliases": [
+      "panama canal history 1914",
+      "why was panama canal built",
+      "when did panama take over canal"
+    ],
+    "sections": [],
+    "facts": [
+      "The official opening was marked by a passage of the ship Ancon in August 1914."
+    ],
+    "terms": [
+      "canal",
+      "treaty"
+    ],
+    "questions": [
+      {
+        "text": "What does a map show about the narrow land crossed by the canal?",
+        "target": "panama"
+      },
+      {
+        "text": "What canal across Egypt made a different sea route shorter?",
+        "target": "suez-canal-history"
+      },
+      {
+        "text": "How can locks raise and lower boats?",
+        "target": "erie-canal"
+      }
+    ],
+    "sources": [
+      "history-panama-open",
+      "history-panama-transfer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "first-world-war-armistice",
+    "title": "What happened on November 11, 1918?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "By late 1918, the First World War had gone on for more than four years. Representatives of Germany and the countries fighting it agreed to an armistice, a promise to stop fighting under specific terms. It took effect at eleven in the morning on November 11 on the Western Front. The agreement came before the final peace treaties. Many places still observe the date today to remember people affected by the war and later wars.",
+    "aliases": [
+      "world war one armistice",
+      "why november 11 1918 matters",
+      "what happened on armistice day"
+    ],
+    "sections": [],
+    "facts": [
+      "The agreement was signed in a railway carriage in France."
+    ],
+    "terms": [
+      "armistice",
+      "treaty"
+    ],
+    "questions": [
+      {
+        "text": "What did some leaders set up after the war to try to prevent another?",
+        "target": "league-of-nations"
+      },
+      {
+        "text": "What worldwide organization grew from a later war?",
+        "target": "founding-united-nations"
+      },
+      {
+        "text": "Where can original documents about historic agreements be kept?",
+        "target": "national-archives"
+      }
+    ],
+    "sources": [
+      "history-western-armistice",
+      "history-armistice-date"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "league-of-nations",
+    "title": "Why did countries create the League of Nations?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "After the First World War, leaders wanted countries to have a place to talk through disagreements before turning to fighting. The League of Nations began in 1920, with its center in Geneva, Switzerland. Countries sent representatives to meetings and tried to cooperate on difficult problems. Some important countries did not join or left over time. The League could not stop the Second World War. Its work and problems helped leaders think about how to build another organization after that war.",
+    "aliases": [
+      "what was league of nations",
+      "geneva after world war one",
+      "why did league of nations fail"
+    ],
+    "sections": [],
+    "facts": [
+      "The United States never joined the League, even though a US president had helped propose it."
+    ],
+    "terms": [
+      "treaty",
+      "representative"
+    ],
+    "questions": [
+      {
+        "text": "What stopped the fighting just before leaders made new plans?",
+        "target": "first-world-war-armistice"
+      },
+      {
+        "text": "What new organization followed the League?",
+        "target": "founding-united-nations"
+      },
+      {
+        "text": "Where did the League have its main offices?",
+        "target": "switzerland"
+      }
+    ],
+    "sources": [
+      "history-league",
+      "history-league-context"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "founding-united-nations",
+    "title": "Why did countries form the United Nations?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Near the end of the Second World War, delegates from many countries came to San Francisco. They wrote a charter for an organization called the United Nations. They wanted countries to talk about conflicts, work together on problems, and support equal rights. Member countries can still disagree, so meetings and rules do not make every problem easy to solve. The United Nations gives countries a shared place to discuss some problems affecting more than one country.",
+    "aliases": [
+      "why was united nations founded",
+      "what is un charter",
+      "san francisco un conference 1945"
+    ],
+    "sections": [],
+    "facts": [
+      "The United Nations Charter went into effect on October 24, 1945."
+    ],
+    "terms": [
+      "charter",
+      "representative"
+    ],
+    "questions": [
+      {
+        "text": "Which earlier organization tried to bring countries together?",
+        "target": "league-of-nations"
+      },
+      {
+        "text": "What ideas about rights did the new organization later put into a declaration?",
+        "target": "universal-declaration-human-rights"
+      },
+      {
+        "text": "How can two different official documents lay out rules to follow?",
+        "target": "us-constitution"
+      }
+    ],
+    "sources": [
+      "history-un",
+      "history-un-conference"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "universal-declaration-human-rights",
+    "title": "What does the Universal Declaration of Human Rights say?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "In 1948, representatives at the United Nations agreed on a statement about basic rights that people everywhere should have. It describes freedoms and protections that belong to people because they are human. The statement includes ideas about safety, fair treatment, education, and the ability to share beliefs. It sets out goals and principles rather than a set of rules enforced by one world government. Later laws and treaties have drawn on it in different ways.",
+    "aliases": [
+      "universal declaration human rights 1948",
+      "what is udhr for kids",
+      "what rights united nations declaration"
+    ],
+    "sections": [],
+    "facts": [
+      "The declaration says that all people are born free and equal in dignity and rights."
+    ],
+    "terms": [
+      "right",
+      "treaty"
+    ],
+    "questions": [
+      {
+        "text": "Which organization adopted the declaration?",
+        "target": "founding-united-nations"
+      },
+      {
+        "text": "How does a country’s own constitution protect certain rights?",
+        "target": "us-bill-of-rights"
+      },
+      {
+        "text": "How did laws in one country deny rights on the basis of race?",
+        "target": "apartheid-south-africa"
+      }
+    ],
+    "sources": [
+      "history-udhr",
+      "history-un"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "berlin-wall",
+    "title": "Why was Berlin once divided by a wall?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "After the Second World War, Germany and the city of Berlin were split into areas controlled by different governments. In 1961, East German leaders built a barrier through and around West Berlin to stop people from leaving across the city’s border. The wall split streets and made it hard for neighbors and families to visit. In 1989 crowds gathered at border crossings after officials announced a change, and guards began letting people through. Germany reunited the following year.",
+    "aliases": [
+      "berlin wall history",
+      "why did berlin wall fall 1989",
+      "east west berlin split"
+    ],
+    "sections": [],
+    "facts": [
+      "The border crossings opened on the night of November 9, 1989."
+    ],
+    "terms": [
+      "boundary",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Where is Berlin on a map of Germany today?",
+        "target": "germany"
+      },
+      {
+        "text": "Why did rulers build different kinds of long walls in another place?",
+        "target": "great-wall-china"
+      },
+      {
+        "text": "What kinds of freedoms are named in the international declaration?",
+        "target": "universal-declaration-human-rights"
+      }
+    ],
+    "sources": [
+      "history-berlin-wall"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "apartheid-south-africa",
+    "title": "What was apartheid in South Africa?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Apartheid was a system of laws in South Africa that separated people by race. It gave white people most political power and put limits on where many other people could live, travel, study, or work. South Africans opposed the system in many ways, and people in other countries added pressure. Over time, leaders agreed to end the laws and hold an election open to adult citizens of all races. That election in 1994 marked a big change.",
+    "aliases": [
+      "what was apartheid",
+      "why did south africa end apartheid",
+      "apartheid laws for kids"
+    ],
+    "sections": [],
+    "facts": [
+      "Laws enforcing apartheid were strengthened after the National Party came to power in 1948."
+    ],
+    "terms": [
+      "apartheid",
+      "segregation"
+    ],
+    "questions": [
+      {
+        "text": "Who worked to end the system and became president in 1994?",
+        "target": "nelson-mandela"
+      },
+      {
+        "text": "Where is the country where this happened?",
+        "target": "south-africa"
+      },
+      {
+        "text": "What do officials do so eligible voters can cast and count ballots?",
+        "target": "how-elections-work"
+      }
+    ],
+    "sources": [
+      "history-apartheid",
+      "history-sa-elections"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "nelson-mandela",
+    "title": "How did Nelson Mandela help change South Africa?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Nelson Mandela helped organize against apartheid, the system that denied many people equal rights in South Africa. He spent many years in prison. After his release, he took part in talks about ending apartheid and preparing a new election. In 1994, South Africa held its first fully democratic national election. Citizens of all races could vote, and Mandela became president. Many people did this work alongside him, and changing the law did not quickly solve every problem they faced.",
+    "aliases": [
+      "who was nelson mandela",
+      "mandela president 1994",
+      "what did mandela do"
+    ],
+    "sections": [],
+    "facts": [
+      "Nelson Mandela spent about 27 years in prison before his release in 1990."
+    ],
+    "terms": [
+      "apartheid",
+      "suffrage"
+    ],
+    "questions": [
+      {
+        "text": "What laws and practices did Mandela oppose?",
+        "target": "apartheid-south-africa"
+      },
+      {
+        "text": "Where did he live and serve as president?",
+        "target": "south-africa"
+      },
+      {
+        "text": "What shared ideas about equal treatment were written down by international representatives?",
+        "target": "universal-declaration-human-rights"
+      }
+    ],
+    "sources": [
+      "history-mandela",
+      "history-apartheid",
+      "history-sa-elections"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]
