@@ -1,0 +1,145 @@
+[hidden] { display: none !important; }
+
+html, body { height: auto; min-height: 100%; overflow: visible; }
+body.arcade-shell { min-height: 100svh; }
+
+.lab {
+  width: min(100%, 820px);
+  margin: auto;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  display: grid;
+  gap: .75rem;
+}
+.arcade-top { grid-template-columns: 1fr auto 1fr; }
+.arcade-title { font-size: clamp(24px, 6.5vw, 38px); }
+.difficulty { justify-self: end; display: grid; gap: .2rem; font-size: .82rem; }
+select {
+  min-height: 36px;
+  font: inherit;
+  color: inherit;
+  border: 1px solid var(--arcade-line);
+  border-radius: .55rem;
+  padding-inline: .3rem;
+  background: var(--arcade-panel);
+}
+.lessons { display: flex; gap: .35rem; flex-wrap: wrap; }
+.lessons button { padding-inline: .65rem; min-height: 38px; }
+.lessons button[aria-current] { border-color: var(--arcade-cyan); color: var(--arcade-cyan); }
+.lesson-done { color: var(--arcade-green); }
+.exercise { padding: clamp(12px, 3vw, 24px); display: grid; gap: .65rem; }
+.lesson-header h2, .reset-dialog h2 { margin: 0; }
+.lesson-header p, .reset-dialog p { margin: .4rem 0 0; line-height: 1.45; color: var(--arcade-muted); }
+.controls, footer { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; }
+footer { justify-content: space-between; color: var(--arcade-muted); }
+#feedback { color: var(--arcade-gold); min-height: 1.5em; margin: 0; font-weight: 750; line-height: 1.45; }
+:where(a, button, select, [tabindex]):focus-visible { outline: 3px solid var(--arcade-gold); outline-offset: 3px; }
+.playfield, .trace-area, .desktop, .wheel-box {
+  border-radius: 1rem;
+  border: 1px solid var(--arcade-line);
+  background: #0b142c;
+  min-width: 0;
+}
+.playfield {
+  position: relative;
+  height: clamp(190px, 40svh, 320px);
+  background-image: radial-gradient(#334577 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.target {
+  position: absolute;
+  translate: -50% -50%;
+  border: 2px solid #07556c;
+  border-radius: 50%;
+  background: #76edff;
+  color: #082a38;
+  font: 800 14px/1 system-ui;
+  padding: 0;
+  cursor: crosshair;
+  touch-action: manipulation;
+  box-shadow: 0 0 0 2px #b5f5ff;
+}
+.target:hover { background: #b8f7ff; }
+.target.move { background: var(--arcade-gold); box-shadow: 0 0 0 2px #ffe99c; }
+.small-control { margin-top: .7rem; display: flex; align-items: center; gap: .5rem; }
+.small-control input { width: 22px; height: 22px; accent-color: var(--arcade-cyan); }
+.sort-board, .station { display: grid; gap: .75rem; }
+.sort-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; }
+.card, .folder-drop, .practice-pad, .desktop-item, .finish-wheel {
+  color: white;
+  border: 1px solid var(--arcade-line);
+  background: var(--arcade-panel-2);
+  border-radius: .85rem;
+  font: 750 1rem/1.2 system-ui;
+  cursor: pointer;
+  min-height: 48px;
+  padding: .6rem .4rem;
+}
+.card { touch-action: none; user-select: none; cursor: grab; }
+.card[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--arcade-cyan); }
+.card:disabled { cursor: default; color: var(--arcade-green); }
+.card.dragging { opacity: .55; cursor: grabbing; }
+.folder-drop { min-height: 74px; border: 2px dashed #678ec7; }
+.folder-drop.hover { background: #30497e; border-color: var(--arcade-cyan); }
+.drag-ghost {
+  position: fixed;
+  left: 0;
+  top: 0;
+  translate: -50% -50%;
+  z-index: 2;
+  pointer-events: none;
+  min-width: 76px;
+  box-shadow: 0 5px 14px #000a;
+}
+.trace-area { display: block; width: 100%; height: clamp(166px, 38svh, 290px); touch-action: none; }
+.trace-area:hover { cursor: crosshair; }
+.trace-route { stroke: #718bc8; fill: none; stroke-width: 3; stroke-dasharray: 5 3; }
+.trace-ink { stroke: var(--arcade-green); fill: none; stroke-width: 4; }
+.trace-dot { fill: var(--arcade-cyan); stroke: #0b142c; stroke-width: 2; }
+.trace-dot.current { fill: var(--arcade-gold); }
+.trace-dot.done { fill: var(--arcade-green); }
+.practice-pad {
+  width: min(100%, 380px);
+  min-height: clamp(88px, 25svh, 150px);
+  font-size: clamp(1.1rem, 4vw, 1.45rem);
+  overflow-wrap: anywhere;
+  touch-action: manipulation;
+  user-select: none;
+}
+.station { justify-items: start; }
+.practice-pad.holding { background: var(--arcade-cyan); color: #081124; }
+.wheel-box {
+  height: clamp(136px, 38svh, 242px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #7fa1ef #172244;
+  padding: 14px;
+  scroll-padding: 8px;
+}
+.wheel-box p {
+  border-inline-start: 6px solid #729fff;
+  background: #203059;
+  margin: 0 0 10px;
+  min-height: 70px;
+  display: grid;
+  align-content: center;
+  padding-inline: 12px;
+}
+.finish-wheel { margin-bottom: .25rem; background: #265443; min-width: 118px; }
+.desktop { padding: .7rem; }
+.desktop-items { display: flex; flex-wrap: wrap; align-items: start; gap: .6rem; }
+.desktop p { color: var(--arcade-muted); margin: .4rem 0 .7rem; }
+.desktop-item { min-width: 92px; touch-action: manipulation; }
+.reset-dialog {
+  max-width: min(420px, calc(100% - 24px));
+  color: white;
+  background: var(--arcade-panel);
+  padding: 1rem;
+}
+.reset-dialog .controls { margin-top: 1rem; }
+.reset-dialog::backdrop { background: #080b18de; }
+@media (max-width: 370px) {
+  .lessons { gap: .25rem; }
+  .lessons button { padding-inline: .48rem; font-size: .8rem; }
+  .sort-row { grid-template-columns: 1fr 1fr; }
+}

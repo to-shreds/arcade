@@ -1,0 +1,14 @@
+{
+  "title": "Mouse Lab",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "order": 415,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["learning", "reaction"],
+  "tags": ["mouse", "touch", "keyboard", "offline"],
+  "orientation": "any"
+}
