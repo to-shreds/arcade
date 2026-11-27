@@ -13,6 +13,8 @@ and [supported .NET versions on Windows](https://learn.microsoft.com/en-us/dotne
 1. Extract the whole ZIP into a folder you can access from your ordinary
    Windows account. Open `Arcade.exe` from that folder. The package includes
    its .NET runtime. Keep the accompanying files next to the executable.
+   The `licenses` folder includes the runtime and WebView2 SDK notices.
+   [.NET license information for Windows](https://github.com/dotnet/core/blob/main/license-information-windows.md).
 2. If Arcade reports a missing WebView2 Runtime, a grown-up can install the
    Microsoft Edge WebView2 Evergreen Runtime. Microsoft also offers an x64
    offline installer. [Microsoft WebView2 download](https://developer.microsoft.com/en-us/microsoft-edge/webview2/).

@@ -40,6 +40,26 @@ files = [
     if file.is_file() and file.suffix.lower() != ".pdb"
 ]
 files.append(("README.md", wrapper / "README.md"))
+assets = json.loads((wrapper / "Arcade.Windows" / "obj" / "project.assets.json").read_text(encoding="utf-8"))
+packages = {key.partition("/")[0].lower(): key.rsplit("/", 1)[-1] for key in assets["libraries"]}
+runtime = json.loads((publish / "Arcade.runtimeconfig.json").read_text(encoding="utf-8"))
+for framework in runtime["runtimeOptions"]["includedFrameworks"]:
+    packages[framework["name"].lower() + ".runtime.win-x64"] = framework["version"]
+notices = {
+    "microsoft.netcore.app.runtime.win-x64": {
+        "LICENSE.TXT": "dotnet-runtime-license.txt", "THIRD-PARTY-NOTICES.TXT": "dotnet-runtime-notices.txt"
+    },
+    "microsoft.windowsdesktop.app.runtime.win-x64": {"LICENSE": "dotnet-desktop-license.txt"},
+    "microsoft.web.webview2": {"LICENSE.txt": "webview2-license.txt", "NOTICE.txt": "webview2-notices.txt"},
+}
+for package_id, documents in notices.items():
+    version = packages[package_id]
+    for document, filename in documents.items():
+        candidates = [Path(folder) / package_id / version / document for folder in assets["packageFolders"]]
+        source = next((file for file in candidates if file.is_file()), None)
+        if source is None:
+            raise SystemExit(f"Missing redistribution notice from {package_id} {version}: {document}")
+        files.append((f"licenses/{filename}", source))
 files.sort()
 names = {name for name, _ in files}
 if len(names) != len(files) or any(
