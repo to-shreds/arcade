@@ -8,6 +8,26 @@ folder with its entry page, icon, and `game.json` metadata. `catalog.json`
 powers the central menu, and the generated offline manifest describes the
 complete web release.
 
+## Release 2.14.0 preview
+
+**Encyclopedia** and **Dictionary** share an offline reference collection for
+ages 8–9. The first reviewed collection contains 127 articles, 271 headwords,
+382 follow-up questions, and 13 quizzes. Search accepts questions, terms, and
+many common spelling errors. Browse by topic or letter, look up a word
+without leaving an article, and save favorites and words on the device.
+Read-aloud requires a suitable device voice. This pilot is the start of the
+larger collection described in the [work specification](docs/WORK-HANDOFF-ENCYCLOPEDIA-WINDOWS.md).
+
+**Mouse Lab** teaches clicks, holding, dragging, drawing, scrolling and
+simulated desktop tasks. It includes touch and keyboard alternatives and
+saves lesson progress locally. Minesweeper supports right-click flagging.
+See the [mouse audit](docs/arcade-mouse-audit.md) for tested paths and gaps.
+
+The [Windows preview](windows-wrapper/README.md) packages vetted offline
+activities and puts parent settings and password-protected Exit in a native
+toolbar. Its package and policy checks were built from source. Windows
+desktop acceptance is tracked separately in the handoff.
+
 ## Release 2.13.6
 
 **Tank Tactics** now makes every weapon launch along a visible gravity-driven

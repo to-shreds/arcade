@@ -1401,6 +1401,82 @@
       "orientation": "any",
       "folder": "comic-reader",
       "launchPath": "comic-reader/index.html"
+    },
+    {
+      "title": "Mouse Lab",
+      "entry": "index.html",
+      "icon": "icon.svg",
+      "order": 415,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "learning",
+        "reaction"
+      ],
+      "tags": [
+        "mouse",
+        "touch",
+        "keyboard",
+        "offline"
+      ],
+      "orientation": "any",
+      "folder": "mouse-lab",
+      "launchPath": "mouse-lab/index.html"
+    },
+    {
+      "title": "Encyclopedia",
+      "entry": "index.html",
+      "icon": "icon.svg",
+      "order": 420,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "reading",
+        "learning"
+      ],
+      "tags": [
+        "reference",
+        "science",
+        "history",
+        "offline",
+        "mouse",
+        "touch"
+      ],
+      "orientation": "any",
+      "folder": "encyclopedia",
+      "launchPath": "encyclopedia/index.html"
+    },
+    {
+      "title": "Dictionary",
+      "entry": "index.html",
+      "icon": "icon.svg",
+      "order": 421,
+      "enabled": true,
+      "type": "activity",
+      "multiplayer": false,
+      "playersMin": 1,
+      "playersMax": 1,
+      "categories": [
+        "reading",
+        "learning"
+      ],
+      "tags": [
+        "reference",
+        "words",
+        "spelling",
+        "offline",
+        "mouse",
+        "touch"
+      ],
+      "orientation": "any",
+      "folder": "dictionary",
+      "launchPath": "dictionary/index.html"
     }
   ],
   "categories": [

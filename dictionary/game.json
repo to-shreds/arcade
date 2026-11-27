@@ -1,0 +1,14 @@
+{
+  "title": "Dictionary",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "order": 421,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["reading", "learning"],
+  "tags": ["reference", "words", "spelling", "offline", "mouse", "touch"],
+  "orientation": "any"
+}

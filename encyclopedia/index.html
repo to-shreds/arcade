@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101b35">
+  <title>Encyclopedia | Arcade</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../arcade-ui.css">
+  <link rel="stylesheet" href="../dictionary/reference.css">
+</head>
+<body class="reference-app">
+  <header class="reference-header">
+    <div class="reference-header-inner">
+      <a href="../index.html" class="reference-home reference-control arcade-home-link" aria-label="Back to Arcade" title="Back to Arcade"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10 12 3l9 7v9a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></svg><span>Arcade</span></a>
+      <button type="button" class="reference-brand" id="reference-start"><img src="icon.svg" width="34" height="34" alt="">Encyclopedia</button>
+      <a href="../dictionary/index.html" class="reference-control reference-sibling" data-reference-sibling="dictionary">Dictionary</a>
+    </div>
+  </header>
+  <main class="reference-main" id="reference-main">
+    <form class="reference-search" id="reference-search" role="search">
+      <label for="reference-query">What are you curious about?</label>
+      <div class="reference-search-row">
+        <input id="reference-query" type="search" maxlength="160" placeholder="Ask a question or type a topic" autocomplete="off" disabled>
+        <button type="submit" class="reference-control reference-primary" disabled>Search</button>
+      </div>
+    </form>
+    <nav class="reference-nav" aria-label="Explore Encyclopedia">
+      <button type="button" class="reference-control" id="reference-back" disabled aria-label="Go back">← Back</button>
+      <button type="button" class="reference-control reference-forward" id="reference-forward" disabled aria-label="Go forward">→</button>
+      <button type="button" class="reference-control" id="reference-browse">Topics</button>
+      <button type="button" class="reference-control" id="reference-surprise">Surprise me</button>
+      <button type="button" class="reference-control" id="reference-saved">My library</button>
+      <button type="button" class="reference-control" id="reference-lookup">Look up a word</button>
+    </nav>
+    <div id="reference-view" class="reference-view" aria-busy="true"><p class="reference-note" role="status">Opening the encyclopedia…</p></div>
+  </main>
+  <dialog id="reference-definition" class="reference-dialog" aria-labelledby="definition-title">
+    <header class="reference-dialog-header">
+      <h2 id="definition-title">Look up a word</h2>
+      <button type="button" class="reference-control" id="definition-close">Close</button>
+    </header>
+    <div id="definition-body" class="reference-dialog-body"></div>
+  </dialog>
+  <script src="../arcade-save.js" defer></script>
+  <script src="../arcade-speech.js" defer></script>
+  <script type="module" src="encyclopedia.mjs"></script>
+</body>
+</html>

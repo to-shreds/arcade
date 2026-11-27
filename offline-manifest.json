@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.13.6+20261116.1",
-  "generatedAt": "2026-11-16T21:59:24.510Z",
-  "fileCount": 439,
-  "totalBytes": 24845655,
+  "version": "2.14.0+20261127.1",
+  "generatedAt": "2026-11-27T20:32:57.076Z",
+  "fileCount": 508,
+  "totalBytes": 25357086,
   "files": [
     {
       "path": "adventure/game.json",
@@ -47,8 +47,8 @@
     },
     {
       "path": "arcade-speech.js",
-      "bytes": 7609,
-      "sha256": "9d449a26b6d795126d5e1cc41f0b2e7736ff4a4de57454c4c9bf3b837b256225"
+      "bytes": 7824,
+      "sha256": "d4f79fa19e5c4783729a6ac03a7658612f4aa64b830ba3adbe3d18fa2fe27d4c"
     },
     {
       "path": "arcade-ui.css",
@@ -162,8 +162,8 @@
     },
     {
       "path": "catalog.json",
-      "bytes": 30462,
-      "sha256": "9a77044b666abfe7fa1867d12f59f03aef81ab835b5edab7596b9e4dbc336328"
+      "bytes": 32067,
+      "sha256": "f6d89b1bcbb37504d8f63644fdaf1c7a48e878e5e3f84b2fbea341f3eb57d0b1"
     },
     {
       "path": "chat-room/game.json",
@@ -311,6 +311,41 @@
       "sha256": "1592466203da3b5231d8ae27cfad78d823b3a911f20706af485414ec1bd022c1"
     },
     {
+      "path": "dictionary/definition.mjs",
+      "bytes": 7021,
+      "sha256": "185c61b0bcf9f2147db62f6d0e63d4dc0b3eaf836baf6b79eea2c0dd3edeef77"
+    },
+    {
+      "path": "dictionary/dictionary.mjs",
+      "bytes": 7469,
+      "sha256": "2391ff17b0c298800a1c2bb92c2336eb96c936122cc384df240a98f4c3fb0870"
+    },
+    {
+      "path": "dictionary/game.json",
+      "bytes": 334,
+      "sha256": "e4d4704649b912f9c2f9e1d96f1f6f558aa6d8298718c0bc7d83a5a09f611329"
+    },
+    {
+      "path": "dictionary/icon.svg",
+      "bytes": 657,
+      "sha256": "21f949dbc28c0b0c64f851c553a2f281f0de952ec166801cfb2a0b864ca91d6e"
+    },
+    {
+      "path": "dictionary/index.html",
+      "bytes": 2570,
+      "sha256": "05ca1ad0193908d3b4315080266a93a097bf9e5b7d75e0f42733a01a67971e34"
+    },
+    {
+      "path": "dictionary/reference.css",
+      "bytes": 10828,
+      "sha256": "2ab6cf4336934332cb465086bbed7e0f3a4ee23ae76e9512fdfb614b1b8c5e23"
+    },
+    {
+      "path": "dictionary/ui.mjs",
+      "bytes": 11060,
+      "sha256": "a43d56084f76e67edde9854dc01d4ebe54274c520043fa76ff203e9e6e4984fe"
+    },
+    {
       "path": "dots/game.json",
       "bytes": 407,
       "sha256": "fabf63f2aa88b6843222b14f9f56ae971b1b4d1923179e72cd00db28fdac91ba"
@@ -324,6 +359,26 @@
       "path": "dots/index.html",
       "bytes": 240145,
       "sha256": "b168f5c2fc9c6cf270c9c29e75113b73b3fb6cae4483e5e3653b517110dbff1a"
+    },
+    {
+      "path": "encyclopedia/encyclopedia.mjs",
+      "bytes": 11058,
+      "sha256": "6245102caab4e30b629fa42f71928e87b807ef9008074271b544978efc6a51ed"
+    },
+    {
+      "path": "encyclopedia/game.json",
+      "bytes": 337,
+      "sha256": "f7b4ce8e6be2613c0d658f17136d069c873b3b27806e18573ebac0f145d2ca15"
+    },
+    {
+      "path": "encyclopedia/icon.svg",
+      "bytes": 776,
+      "sha256": "3f599e36087cf6e73d20e1e0ad92bf03123a8b5e7c1d0ef1742abad271f8e806"
+    },
+    {
+      "path": "encyclopedia/index.html",
+      "bytes": 3045,
+      "sha256": "97e8bbfba92cccfe3fd668e0e395ce080eb3f5083abd8fc2585627b1dc3b533b"
     },
     {
       "path": "firefighter-frenzy/game.json",
@@ -388,7 +443,7 @@
     {
       "path": "index.html",
       "bytes": 15879,
-      "sha256": "911551c152f4ff4d7a96894387b020da1bf8fcd327e6e21bb80d40026728cab0"
+      "sha256": "e2bda95649e2716b40aa26293cee7e44133ecc5ec148a1d43ce10ce25fd5a01b"
     },
     {
       "path": "insultinator/game.json",
@@ -537,8 +592,8 @@
     },
     {
       "path": "minesweeper/index.html",
-      "bytes": 57767,
-      "sha256": "e663c5cac01e5a6946624e4ef8cf2170181a2e49791b7969200c9f9c9ef4ebfd"
+      "bytes": 57902,
+      "sha256": "8cd54c277b9ad74b553e316e6abd9169310eb282cea31b02e2a70eecb87b7586"
     },
     {
       "path": "mini-golf/game.json",
@@ -619,6 +674,31 @@
       "path": "monster-forge/style.css",
       "bytes": 16293,
       "sha256": "9138781bf84d5b917e1ef0a6c34acfea0dfdde6f216a72172a69a20809bb1f38"
+    },
+    {
+      "path": "mouse-lab/app.js",
+      "bytes": 22690,
+      "sha256": "cfdff0883cf13261df503eb7bfc3a7fe20cb47ca0cb11e4b8eea0c290564d38d"
+    },
+    {
+      "path": "mouse-lab/game.json",
+      "bytes": 312,
+      "sha256": "4eb9645bc689e1a3446407445784daad5b34c9ae076e4cefdef1b384f8dbd3de"
+    },
+    {
+      "path": "mouse-lab/icon.svg",
+      "bytes": 546,
+      "sha256": "5d1a335f5b08271c1970afa3a021d35f53ec7e1d0bf03e3e06c9587560bc582b"
+    },
+    {
+      "path": "mouse-lab/index.html",
+      "bytes": 2229,
+      "sha256": "e135388495da9a6f03d33dbd32bd7345d300aef556d6413a81a10910a7d8ceb8"
+    },
+    {
+      "path": "mouse-lab/style.css",
+      "bytes": 5412,
+      "sha256": "ba5ab056e8e0ec968bbbb1e43016f6045b3d94fec5af8e92fe5affe4d72bf628"
     },
     {
       "path": "multiplayer/arcade-multiplayer.js",
@@ -1636,6 +1716,271 @@
       "sha256": "18da3059162d331b8130a791d3383483b87d0feb99d7a81b5c9e0dcc124b93c1"
     },
     {
+      "path": "reference/library.mjs",
+      "bytes": 4431,
+      "sha256": "07017c664ac6b6ed8de27a78c590f301575097e840286d618b4e086eb02e40d7"
+    },
+    {
+      "path": "reference/packs/articles.json",
+      "bytes": 107327,
+      "sha256": "57e01d66febe52eb92bcb8c916eeefb1d43725d40b873745c8018814fada96e5"
+    },
+    {
+      "path": "reference/packs/articles/agriculture-food-1.json",
+      "bytes": 4688,
+      "sha256": "a2b6bf627b831b4410b5e7d1eacfc5b04e08eef77ec5558058e2e4e93ae8d35c"
+    },
+    {
+      "path": "reference/packs/articles/ancient-history-1.json",
+      "bytes": 6024,
+      "sha256": "5b0397edd9c5690dab41bd3d69c88ce5003da00d7602b247bab676d577fd4903"
+    },
+    {
+      "path": "reference/packs/articles/animals-1.json",
+      "bytes": 2130,
+      "sha256": "8c519baf752c798f3468ad5cdd657cdf260df62fcf381bf7368b5723b0696fae"
+    },
+    {
+      "path": "reference/packs/articles/astronomy-1.json",
+      "bytes": 17455,
+      "sha256": "80798811eb47632edb8b2c098d6c0195496fce123da210a500ca46746dafcd70"
+    },
+    {
+      "path": "reference/packs/articles/chemistry-1.json",
+      "bytes": 5218,
+      "sha256": "8b7183c741ec8bc6bb578f1ba99e8c98da5d4ac450dfef832c9d64801be0b647"
+    },
+    {
+      "path": "reference/packs/articles/computing-1.json",
+      "bytes": 2321,
+      "sha256": "12c3cb9e6fe973c4d9f846f82af02c44e20a82a524bc220e8b627dbc7a5296dd"
+    },
+    {
+      "path": "reference/packs/articles/countries-1.json",
+      "bytes": 9704,
+      "sha256": "38afe8f03d0e8ccc7cfa9fd6a6c48bac46095fa52b216ff1ac373a0765f6c886"
+    },
+    {
+      "path": "reference/packs/articles/digital-safety-1.json",
+      "bytes": 2010,
+      "sha256": "21308242f31523d892e87bbf1f3368e5a6ac071d44a3cb2f5da6ff2d3919f9bd"
+    },
+    {
+      "path": "reference/packs/articles/earth-science-1.json",
+      "bytes": 6054,
+      "sha256": "21fe2d5840c81754ebd8a79bbd1d81788457ebaf94c236167c6f4cb42150d018"
+    },
+    {
+      "path": "reference/packs/articles/economics-1.json",
+      "bytes": 2843,
+      "sha256": "74acc6e8d100246b43a460892da4395fb8fb46ac5380184e34b1a5ab79241fa2"
+    },
+    {
+      "path": "reference/packs/articles/engineering-1.json",
+      "bytes": 2179,
+      "sha256": "89a9c94af901ccc3d2d046f72549c392f7d438e180bdf1d9412455839e27b165"
+    },
+    {
+      "path": "reference/packs/articles/government-civics-1.json",
+      "bytes": 6829,
+      "sha256": "bfa075f46f3dd318415790f169cfaf4bc2fe0d5d4ae018017dbab0b8eb65a8fb"
+    },
+    {
+      "path": "reference/packs/articles/human-body-1.json",
+      "bytes": 8341,
+      "sha256": "763803f4f5c35fec5cbd81bc238edba140e23dea866294f92fd625905ac731af"
+    },
+    {
+      "path": "reference/packs/articles/language-writing-1.json",
+      "bytes": 8708,
+      "sha256": "61f48f633fdc4d1c1d8526995e64ab38cf620cde734c7ffa64615c7a8053343c"
+    },
+    {
+      "path": "reference/packs/articles/libraries-museums-1.json",
+      "bytes": 3343,
+      "sha256": "fe741dab8258c136e779869f1f36e2367aee5a422187c177384b4ea5ca72f9fe"
+    },
+    {
+      "path": "reference/packs/articles/maps-geography-1.json",
+      "bytes": 6187,
+      "sha256": "bfcfc0636eabcb7e39a992e5f5aae5c68214158f00c93c81884dbf8eeb8d0c53"
+    },
+    {
+      "path": "reference/packs/articles/math-1.json",
+      "bytes": 3353,
+      "sha256": "26c38f481e46cddea5bbdfa1e275abbda1700baa99e8199c06027d350a021d53"
+    },
+    {
+      "path": "reference/packs/articles/music-1.json",
+      "bytes": 3090,
+      "sha256": "155e29946594b1e96338410e28c72d327c80832989e215b468755d5be0fd7a61"
+    },
+    {
+      "path": "reference/packs/articles/oceans-1.json",
+      "bytes": 4153,
+      "sha256": "d7f8f0588475ac8073b30ed47b81bbe83180ad81eafe8e0b69d01d62a4543139"
+    },
+    {
+      "path": "reference/packs/articles/paleontology-1.json",
+      "bytes": 5571,
+      "sha256": "89bccc536b7ae9535aace05ff1aee4f810fbd79adc36b18aed66e5dcf626bf49"
+    },
+    {
+      "path": "reference/packs/articles/physics-1.json",
+      "bytes": 5917,
+      "sha256": "5643c83532f0b620cadbffaceead89bfb7d0871fcb86a872dec654ab30e712ce"
+    },
+    {
+      "path": "reference/packs/articles/plants-1.json",
+      "bytes": 2971,
+      "sha256": "4a66c6e284a48a6597af2c027a5f60918037f1ad64ef93053022f5258abfb910"
+    },
+    {
+      "path": "reference/packs/articles/sports-1.json",
+      "bytes": 5550,
+      "sha256": "de5bfb7a1daf94a55d9e816a1cb13e94fd315937dda42e8d8ef73a6dd4edb427"
+    },
+    {
+      "path": "reference/packs/articles/us-history-1.json",
+      "bytes": 3863,
+      "sha256": "9602ef269685f4edd6f95cb2b82ca1ef8ab4cc05ee197d8138b32b628e9e48c6"
+    },
+    {
+      "path": "reference/packs/articles/visual-arts-1.json",
+      "bytes": 2133,
+      "sha256": "ab818a35a179a62d11d42900cfc5c87919c9b25e0ccebb051c4d013c3ab4bb6c"
+    },
+    {
+      "path": "reference/packs/articles/weather-and-climate-1.json",
+      "bytes": 7399,
+      "sha256": "4e8d38112087bfe09b28d88fe48433f5475a25d5c3f1cdaef45cfb9a36c5fa41"
+    },
+    {
+      "path": "reference/packs/catalog.json",
+      "bytes": 1237,
+      "sha256": "2d8367d35fa6100d0e44632c0393816143126be188c51ef62d79d63f5aa6dc2b"
+    },
+    {
+      "path": "reference/packs/words.json",
+      "bytes": 71708,
+      "sha256": "76050e1c85f10c4ae7d305909e4d95de732507162fdf3780aa4fb4f2bbe5a871"
+    },
+    {
+      "path": "reference/packs/words/a-1.json",
+      "bytes": 5499,
+      "sha256": "f5e4c2897967c8f5ddd40d33d50f891b1aec90565a4b833406d7fb19c36cc186"
+    },
+    {
+      "path": "reference/packs/words/b-1.json",
+      "bytes": 3815,
+      "sha256": "84e1833cfe5bd77c66324f554e10b2bd774c40ce927bd7fd7742ba57c67b1da4"
+    },
+    {
+      "path": "reference/packs/words/c-1.json",
+      "bytes": 10579,
+      "sha256": "87dbb13272ada67fa4f0cf9302fc91a9118bb223f57e717ffd3d66c0e922969c"
+    },
+    {
+      "path": "reference/packs/words/d-1.json",
+      "bytes": 4663,
+      "sha256": "bb061488b8d06e40f8c19f5dd13a7c2bd99139ac132c131d6952743bb350c060"
+    },
+    {
+      "path": "reference/packs/words/e-1.json",
+      "bytes": 5440,
+      "sha256": "59ef5ca286688460e45528721e6c86b845b7e1e6cf744224f5acf03ee563f227"
+    },
+    {
+      "path": "reference/packs/words/f-1.json",
+      "bytes": 5333,
+      "sha256": "76858088d8f16be95827396f2f6d939894e70a9062836f17531372a42c24541c"
+    },
+    {
+      "path": "reference/packs/words/g-1.json",
+      "bytes": 2738,
+      "sha256": "c5480529daaf47a214269938bff54218a9d9a7e5b8ed6c53aa5b535a71a44288"
+    },
+    {
+      "path": "reference/packs/words/h-1.json",
+      "bytes": 3023,
+      "sha256": "c873615a74f16d88a656f0ec56f5a06d66e91ca4449200dacd98c59e96ea2f9f"
+    },
+    {
+      "path": "reference/packs/words/i-1.json",
+      "bytes": 1196,
+      "sha256": "88d0c2df42b923d7bf6a35833bd319ace928af440421bd8332e6e9a492a55f2e"
+    },
+    {
+      "path": "reference/packs/words/k-1.json",
+      "bytes": 1547,
+      "sha256": "08749ac987079b4c723d49b4152db5cddf73fe65dc8ecf16d9102c246e6ec973"
+    },
+    {
+      "path": "reference/packs/words/l-1.json",
+      "bytes": 5335,
+      "sha256": "a87f20a7b46d9b8d692848ed6bdc8e36858cb2a7e290a8cb272e95f866b8dfa7"
+    },
+    {
+      "path": "reference/packs/words/m-1.json",
+      "bytes": 3633,
+      "sha256": "252d49934701d6d2c65b1da15b314b8a8616ee86cb0c4f2c789c503a4f48dfd5"
+    },
+    {
+      "path": "reference/packs/words/n-1.json",
+      "bytes": 1806,
+      "sha256": "8478dc9472c86ac4cb7c80fd1f5ae91df5ad2281a500ff1bc7e30fe473df2333"
+    },
+    {
+      "path": "reference/packs/words/o-1.json",
+      "bytes": 2028,
+      "sha256": "e2a7cb36330bd4294307e0550db671613ae8c49105f06d29575bd7d6e17f709d"
+    },
+    {
+      "path": "reference/packs/words/other-1.json",
+      "bytes": 1182,
+      "sha256": "2715a98183f2ac4445980f3f4ff3861ef936da146f983eb52140fe43d466ab9b"
+    },
+    {
+      "path": "reference/packs/words/p-1.json",
+      "bytes": 7460,
+      "sha256": "193e6c59577324d0d1b1c5ef25c420504551fa2daa1eaa2611fcab5006157711"
+    },
+    {
+      "path": "reference/packs/words/r-1.json",
+      "bytes": 5402,
+      "sha256": "7c124ad301b2f441204eac32910dc45f1a9beee2f15c4981df69c178f05d798c"
+    },
+    {
+      "path": "reference/packs/words/s-1.json",
+      "bytes": 11592,
+      "sha256": "b05af4391605b83f2bae4a4a2eb648ac5b077a45bf097666c76e69a7bde41286"
+    },
+    {
+      "path": "reference/packs/words/t-1.json",
+      "bytes": 5031,
+      "sha256": "99d613156c880486250519489699d664c22ea92174499d567d416dc2c749db8c"
+    },
+    {
+      "path": "reference/packs/words/u-1.json",
+      "bytes": 1109,
+      "sha256": "c8521607a6b82b98a63c7965875e8836ee212dbbd19b4d3055b3f7e694d92a19"
+    },
+    {
+      "path": "reference/packs/words/v-1.json",
+      "bytes": 1838,
+      "sha256": "9370fb23d4027dd7299455bfb5490197f597eb7dca8bc78cfaaaf7f5a9064668"
+    },
+    {
+      "path": "reference/packs/words/w-1.json",
+      "bytes": 4609,
+      "sha256": "135dda69e5b0ec4fdd8b1f88e776c251d695299c995f613b810f400e19deb4ea"
+    },
+    {
+      "path": "reference/search.mjs",
+      "bytes": 5544,
+      "sha256": "42456f8bb3d1cca279a5baabc84184ee1daadb8aa6db894c0f97b005b15a21fb"
+    },
+    {
       "path": "regex-lab/engine.js",
       "bytes": 14444,
       "sha256": "3b778609e60e72a19670dba903e6fdda2b656b1c48e40e5ad9147bcc6d31c2e5"
@@ -1817,8 +2162,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 29049,
-      "sha256": "8514357237415092f9b8c087867feb92e4fedb8c4f807482836d6903a050d419"
+      "bytes": 29042,
+      "sha256": "964b93e928e1291a06d97d03307ed1822e92f6dbdb3ada94cdb03523cd2813ac"
     },
     {
       "path": "tanks/battle-view.css",

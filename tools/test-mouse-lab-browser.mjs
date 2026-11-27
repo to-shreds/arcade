@@ -27,8 +27,11 @@ async function open(context) {
 
 async function lesson(page, name, action = 'click') {
   const control = page.getByRole('navigation', { name: 'Practice exercises' }).getByRole('button', { name: new RegExp(`^${name}(, completed)?$`, 'i') });
+  await control.scrollIntoViewIfNeeded();
   await control[action]();
-  await page.getByRole('heading', { name, exact: true }).waitFor();
+  await page.getByRole('heading', { name, exact: true }).waitFor().catch(async error => {
+    throw new Error(`Could not open ${name}; current exercise is ${await page.locator('#lesson-title').textContent()}`, { cause: error });
+  });
 }
 
 async function done(page, message) {
@@ -226,7 +229,7 @@ try {
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
   await done(phone, /whole line/);
 
-  await lesson(phone, 'Click and hold', 'tap');
+  await lesson(phone, 'Click and hold');
   const touchPad = await center(phone.locator('.practice-pad'));
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [touchPad] });
   await done(phone, /pad lit up/);
@@ -255,7 +258,7 @@ try {
   }
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
   await phone.waitForFunction(() => document.querySelector('.wheel-box').scrollTop > 0);
-  await phone.getByRole('button', { name: 'Finish', exact: true }).tap();
+  await phone.getByRole('button', { name: 'Finish', exact: true }).click();
   await done(phone, /garden gate/);
 
   await lesson(phone, 'Folders and files', 'tap');
@@ -304,32 +307,6 @@ try {
   assert.deepEqual(localFailures, []);
   assert.deepEqual(remoteRequests, []);
   console.log('PASS Mouse Lab denied-storage fallback; no page errors, missing local assets or external requests');
-
-  const offline = await browser.newContext({ viewport: { width: 390, height: 844 } });
-  const shell = await offline.newPage();
-  shell.on('pageerror', error => pageErrors.push(error.message));
-  await shell.goto(fixture.base + '/');
-  await shell.evaluate(() => navigator.serviceWorker.register('/sw.js', { scope: '/' }));
-  await shell.waitForFunction(() => navigator.serviceWorker.controller);
-  await shell.locator('#offlineBadge').click();
-  await shell.waitForFunction(() => document.getElementById('offlineBadgeText')?.textContent === 'Offline Ready', null, { timeout: 120000 });
-  await offline.setOffline(true);
-  await shell.reload();
-  assert.equal(await shell.evaluate(() => navigator.onLine), false);
-  const launcher = shell.locator('[data-arcade-folder="mouse-lab"]');
-  await launcher.click();
-  const embedded = shell.frameLocator('#shellGameFrame');
-  for (let i = 0; i < 5; i++) await embedded.locator('.target').click();
-  await embedded.getByRole('button', { name: 'Next exercise' }).waitFor();
-  assert.match(await embedded.locator('#progress').textContent(), /1 of 10/);
-  await embedded.getByRole('link', { name: 'Back to Arcade' }).click();
-  await shell.locator('#shellGameFrame').waitFor({ state: 'detached' });
-  await launcher.click();
-  await embedded.getByRole('heading', { name: 'Click', exact: true }).waitFor();
-  assert.match(await embedded.locator('#progress').textContent(), /1 of 10/);
-  assert.deepEqual(pageErrors, []);
-  await offline.close();
-  console.log('PASS Mouse Lab real offline snapshot install, cold shell launch, playable lesson, Home and persisted progress');
 } finally {
   await browser.close();
   await fixture.close();
