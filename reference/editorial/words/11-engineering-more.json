@@ -1,0 +1,269 @@
+[
+  {
+    "headword": "battery",
+    "forms": [
+      "batteries"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A device that uses stored chemical energy to push electric charge around a circuit.",
+        "example": "A battery lets the flashlight work without plugging it into a wall."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-battery"
+    ]
+  },
+  {
+    "headword": "electrolyte",
+    "forms": [
+      "electrolytes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A substance that lets charged particles move through it, such as the substance between the ends of a battery.",
+        "example": "Moving particles inside the electrolyte help the battery work."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-battery"
+    ]
+  },
+  {
+    "headword": "series circuit",
+    "forms": [
+      "series circuits"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An electric circuit with its parts arranged along one path for current.",
+        "example": "The lamps in a series circuit both go out if one place in the path breaks."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-circuits"
+    ]
+  },
+  {
+    "headword": "parallel circuit",
+    "forms": [
+      "parallel circuits"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An electric circuit that gives current more than one path to follow.",
+        "example": "One lamp in a parallel circuit can be off while another keeps shining."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-circuits"
+    ]
+  },
+  {
+    "headword": "static electricity",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Electric charge that has collected somewhere rather than flowing steadily through a path.",
+        "example": "Static electricity made the balloon pull toward the wall."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-static"
+    ]
+  },
+  {
+    "headword": "electromagnet",
+    "forms": [
+      "electromagnets"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A magnet that gets its magnetic field from flowing electricity.",
+        "example": "The crane’s electromagnet could let go of metal when its power was switched off."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-electromagnets"
+    ]
+  },
+  {
+    "headword": "transformer",
+    "forms": [
+      "transformers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A device that uses a changing magnetic field between coils of wire to change electric voltage.",
+        "example": "The transformer lowers the voltage for use in the building."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-transformers"
+    ]
+  },
+  {
+    "headword": "circuit breaker",
+    "forms": [
+      "circuit breakers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A device that opens part of a circuit automatically when more current flows than it is made to carry.",
+        "example": "When too much current flowed, the circuit breaker opened the path."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-breakers"
+    ]
+  },
+  {
+    "headword": "led",
+    "forms": [
+      "leds",
+      "light-emitting diode",
+      "light-emitting diodes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small electronic part that gives off light when electricity flows through it in the proper direction.",
+        "example": "A green LED lights up when the speaker is charged."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-led",
+      "mach-more-led-semiconductor"
+    ]
+  },
+  {
+    "headword": "capacitor",
+    "forms": [
+      "capacitors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A device that stores energy by keeping opposite electric charges apart.",
+        "example": "A camera flash can take a quick burst of energy from a capacitor."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-capacitor"
+    ]
+  },
+  {
+    "headword": "quartz",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A hard mineral. A piece cut to the right shape can vibrate at a regular rate in a clock.",
+        "example": "The watch has a quartz crystal to help it count time."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-clocks"
+    ]
+  },
+  {
+    "headword": "aileron",
+    "forms": [
+      "ailerons"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A movable part near the outer end of an airplane wing that helps tip the plane to one side.",
+        "example": "Moving the ailerons changes how much each wing lifts."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-axes"
+    ]
+  },
+  {
+    "headword": "rudder",
+    "forms": [
+      "rudders"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A movable part that helps turn the nose of a boat or an aircraft from side to side.",
+        "example": "The rudder can swing one way or the other at the back of the plane’s tail."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-axes"
+    ]
+  },
+  {
+    "headword": "runoff",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Water that flows off land or buildings instead of staying where it fell or soaking into the ground.",
+        "example": "Runoff followed the edge of the road into a drain."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-stormwater"
+    ]
+  },
+  {
+    "headword": "barcode",
+    "forms": [
+      "barcodes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A machine-readable pattern that stands for numbers or other information.",
+        "example": "The shop scanner read the barcode on a juice bottle."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-more-barcodes"
+    ]
+  }
+]

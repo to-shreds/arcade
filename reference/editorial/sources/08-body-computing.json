@@ -1,0 +1,884 @@
+[
+  {
+    "id": "bt-skeletal",
+    "title": "The Functions of the Skeletal System",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/6-1-the-functions-of-the-skeletal-system",
+    "scope": "Skeletal support, movement, protection, mineral storage and blood-cell formation.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-bone",
+    "title": "Bone Structure",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/6-3-bone-structure",
+    "scope": "Compact and spongy bone, bone channels, blood supply and marrow spaces.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-skeleton-parts",
+    "title": "Divisions of the Skeletal System",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/7-1-divisions-of-the-skeletal-system",
+    "scope": "Axial and appendicular bones and typical adult bone count.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-spine",
+    "title": "The Vertebral Column",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/7-3-the-vertebral-column",
+    "scope": "Vertebrae, spinal curves, discs, pads and the protected spinal cord.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ribs",
+    "title": "The Thoracic Cage",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/7-4-the-thoracic-cage",
+    "scope": "Typical rib pairs, sternum, protection and chest movement.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-skull",
+    "title": "The Skull",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/7-2-the-skull",
+    "scope": "Cranium, mandible, sutures and developmental soft spots.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-joints",
+    "title": "Chapter 9 Review: Joints",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/9-chapter-review",
+    "scope": "Joint types, ligaments, cartilage, synovial liquid and range of motion.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-blood",
+    "title": "An Overview of Blood",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-1-an-overview-of-blood",
+    "scope": "Blood components, plasma, transport and protection.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-red-blood",
+    "title": "Erythrocytes",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes",
+    "scope": "Red blood cell shape, hemoglobin, oxygen and mature cell lifespan.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-white-blood",
+    "title": "Leukocytes and Platelets",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-4-leukocytes-and-platelets",
+    "scope": "White blood cell roles and platelets as cell fragments.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-clot",
+    "title": "Hemostasis",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis",
+    "scope": "Vessel contraction, platelet plugs and clotting.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-vessels",
+    "title": "Structure and Function of Blood Vessels",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/20-1-structure-and-function-of-blood-vessels",
+    "scope": "Direction of flow, vessel structure, capillary exchange and vein valves.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-skin",
+    "title": "Layers of the Skin",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/5-1-layers-of-the-skin",
+    "scope": "Layers, keratin, pigment and barrier.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-skin-roles",
+    "title": "Functions of the Integumentary System",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/5-3-functions-of-the-integumentary-system",
+    "scope": "Skin barrier, touch, sweat and body temperature.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-hair-nails",
+    "title": "Accessory Structures of the Skin",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/5-2-accessory-structures-of-the-skin",
+    "scope": "Hair, follicles, nail growth and sweat gland functions.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-accessory-digestion",
+    "title": "Accessory Organs in Digestion",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder",
+    "scope": "Bile, the pancreas, liver nutrient processing and gallbladder storage.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-thyroid",
+    "title": "The Thyroid Gland",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland",
+    "scope": "Thyroid location, hormones, iodine, growth and energy use.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-pituitary",
+    "title": "The Pituitary Gland and Hypothalamus",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-3-the-pituitary-gland-and-hypothalamus",
+    "scope": "Gland and brain communication, growth and body water balance.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-sensory",
+    "title": "Sensory Perception",
+    "publisher": "OpenStax, Rice University",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/14-1-sensory-perception",
+    "scope": "Touch, temperature, proprioception and the inner ear.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-eye",
+    "title": "How the Eyes Work",
+    "publisher": "National Eye Institute, NIH",
+    "url": "https://www.nei.nih.gov/eye-health-information/healthy-vision/how-eyes-work",
+    "scope": "Pupil and iris, focusing, retina, optic nerve and brain.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-eye-kids",
+    "title": "About the Eye",
+    "publisher": "National Eye Institute, NIH",
+    "url": "https://www.nei.nih.gov/eye-health-information/healthy-vision/nei-for-kids/about-eye",
+    "scope": "Eye structures, pupil, cornea, rods and cones.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-tears",
+    "title": "How Tears Work",
+    "publisher": "National Eye Institute, NIH",
+    "url": "https://www.nei.nih.gov/eye-health-information/healthy-vision/how-eyes-work/how-tears-work",
+    "scope": "Tear film, layers, blinking, tear drainage and protection.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-taste",
+    "title": "Taste Disorders",
+    "publisher": "National Institute on Deafness and Other Communication Disorders, NIH",
+    "url": "https://www.nidcd.nih.gov/health/taste-disorders",
+    "scope": "How taste signals and other senses join to make flavor.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-smell",
+    "title": "Smell Disorders",
+    "publisher": "National Institute on Deafness and Other Communication Disorders, NIH",
+    "url": "https://www.nidcd.nih.gov/health/smell-disorders",
+    "scope": "Odor molecules and sensory cells, smell and flavor.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-vision",
+    "title": "Your Eyes’ Natural Defenses",
+    "publisher": "National Eye Institute, NIH",
+    "url": "https://www.nei.nih.gov/eye-health-information/healthy-vision/nei-for-kids/your-eyes-natural-defenses",
+    "scope": "Blinking, tears, brows, lashes and keeping eyes moist.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-tooth-decay",
+    "title": "Tooth Decay",
+    "publisher": "National Institute of Dental and Craniofacial Research, NIH",
+    "url": "https://www.nidcr.nih.gov/health-info/tooth-decay",
+    "scope": "Tooth enamel, acids, cavities, fluoride and prevention principles.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-nutrition",
+    "title": "Definitions of Health Terms: Nutrition",
+    "publisher": "MedlinePlus, National Library of Medicine",
+    "url": "https://www.medlineplus.gov/healthdefinitions/nutritiondefinitions.html",
+    "scope": "Common nutrient classes, food terms and how the body uses them.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-fiber",
+    "title": "Dietary Fiber",
+    "publisher": "MedlinePlus, National Library of Medicine",
+    "url": "https://www.medlineplus.gov/dietaryfiber.html",
+    "scope": "Plant foods, different types of fiber and digestive roles.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-whole-grains",
+    "title": "Diet-boosting foods",
+    "publisher": "MedlinePlus Medical Encyclopedia",
+    "url": "https://www.medlineplus.gov/ency/patientinstructions/000810.htm",
+    "scope": "Whole grains contain the entire kernel and provide fiber and nutrients.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-legumes",
+    "title": "Healthy food trends: beans and legumes",
+    "publisher": "MedlinePlus Medical Encyclopedia",
+    "url": "https://medlineplus.gov/ency/patientinstructions/000726.htm",
+    "scope": "Beans and related foods as sources of plant protein, fiber and other nutrients.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-vitamin-d",
+    "title": "Vitamin D Fact Sheet for Consumers",
+    "publisher": "NIH Office of Dietary Supplements",
+    "url": "https://ods.od.nih.gov/factsheets/VitaminD-Consumer/",
+    "scope": "Vitamin D functions, sources and the role of calcium.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-calcium",
+    "title": "Calcium Fact Sheet for Consumers",
+    "publisher": "NIH Office of Dietary Supplements",
+    "url": "https://ods.od.nih.gov/factsheets/Calcium-Consumer/",
+    "scope": "Calcium in bones and teeth, nerves and muscles, and food sources.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-iron",
+    "title": "Iron Fact Sheet for Consumers",
+    "publisher": "NIH Office of Dietary Supplements",
+    "url": "https://ods.od.nih.gov/factsheets/iron-consumer/",
+    "scope": "Iron in hemoglobin, oxygen delivery and foods.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-vitamin-c",
+    "title": "Vitamin C Fact Sheet for Consumers",
+    "publisher": "NIH Office of Dietary Supplements",
+    "url": "https://ods.od.nih.gov/factsheets/VitaminC-consumer/",
+    "scope": "Roles in tissue, iron intake, and examples of foods that provide vitamin C.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-water",
+    "title": "About Water and Healthier Drinks",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/healthy-weight-growth/water-healthy-drinks/",
+    "scope": "How water supports normal temperature and body function.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-food-label",
+    "title": "How to Understand and Use the Nutrition Facts Label",
+    "publisher": "U.S. Food and Drug Administration",
+    "url": "https://www.fda.gov/food/nutrition-facts-label/how-understand-and-use-nutrition-facts-label",
+    "scope": "Nutrient amounts per serving, serving size and reading a label.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-label-serving",
+    "title": "Serving Size on the Nutrition Facts Label",
+    "publisher": "U.S. Food and Drug Administration",
+    "url": "https://www.fda.gov/food/nutrition-facts-label/serving-size-nutrition-facts-label",
+    "scope": "Serving sizes reflect typical quantities, and label amounts usually apply to one serving.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-sleep",
+    "title": "About Sleep",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/sleep/about/index.html",
+    "scope": "Sleep and attention, memory, mood and physical well-being.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-movement",
+    "title": "Health Benefits of Physical Activity for Children",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/physical-activity-basics/health-benefits/children.html",
+    "scope": "Activity supports heart, lungs, muscles, bones and attention.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-handwash",
+    "title": "Hand Hygiene Frequently Asked Questions",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/clean-hands/faq/",
+    "scope": "How water, soap, friction and rinsing remove material from hands.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-dna",
+    "title": "What is DNA?",
+    "publisher": "MedlinePlus Genetics, National Library of Medicine",
+    "url": "https://medlineplus.gov/genetics/understanding/basics/dna/",
+    "scope": "DNA as inherited information. Molecule, pairing and location in cells.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-cell",
+    "title": "What is a cell?",
+    "publisher": "MedlinePlus Genetics, National Library of Medicine",
+    "url": "https://medlineplus.gov/genetics/understanding/basics/cell/",
+    "scope": "Cell roles, outer membrane, nucleus and mitochondria.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-gene",
+    "title": "What is a gene?",
+    "publisher": "MedlinePlus Genetics, National Library of Medicine",
+    "url": "https://medlineplus.gov/genetics/understanding/basics/gene/",
+    "scope": "Genes as sections of DNA, some with instructions for making proteins.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-chromosomes",
+    "title": "What is a chromosome?",
+    "publisher": "MedlinePlus Genetics, National Library of Medicine",
+    "url": "https://medlineplus.gov/genetics/understanding/basics/chromosome/",
+    "scope": "Packing DNA into chromosomes with help from proteins.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-chromosome-count",
+    "title": "How many chromosomes do people have?",
+    "publisher": "MedlinePlus Genetics, National Library of Medicine",
+    "url": "https://medlineplus.gov/genetics/understanding/basics/howmanychromosomes/",
+    "scope": "Typical number of human chromosomes and pairs.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-variation",
+    "title": "Allele",
+    "publisher": "National Human Genome Research Institute, NIH",
+    "url": "https://www.genome.gov/genetics-glossary/Allele",
+    "scope": "Sequence alternatives at the same genomic location.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-trait",
+    "title": "Phenotype",
+    "publisher": "National Human Genome Research Institute, NIH",
+    "url": "https://www.genome.gov/genetics-glossary/Phenotype",
+    "scope": "Observable traits shaped by inherited information and environment.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-height",
+    "title": "Is height determined by genetics?",
+    "publisher": "MedlinePlus Genetics, National Library of Medicine",
+    "url": "https://medlineplus.gov/genetics/understanding/traits/height/",
+    "scope": "Inherited differences, development and experiences affect height.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-cell-divide",
+    "title": "How do cells divide?",
+    "publisher": "MedlinePlus Genetics, National Library of Medicine",
+    "url": "https://medlineplus.gov/genetics/understanding/howgeneswork/cellsdivide/",
+    "scope": "Copying DNA and separation into cells during growth and repair.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-genome",
+    "title": "Genome",
+    "publisher": "National Human Genome Research Institute, NIH",
+    "url": "https://www.genome.gov/genetics-glossary/Genome",
+    "scope": "The full collection of genetic information of an organism.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-twins",
+    "title": "Is the probability of having twins determined by genetics?",
+    "publisher": "MedlinePlus Genetics, National Library of Medicine",
+    "url": "https://medlineplus.gov/genetics/understanding/traits/twins/",
+    "scope": "The different beginnings of identical and fraternal twins.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-bases",
+    "title": "Base Pair",
+    "publisher": "National Human Genome Research Institute, NIH",
+    "url": "https://www.genome.gov/genetics-glossary/Base-Pair",
+    "scope": "Complementary DNA pairs and ladder-like structure.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-mitochondrial-dna",
+    "title": "Mitochondrial DNA",
+    "publisher": "National Human Genome Research Institute, NIH",
+    "url": "https://www.genome.gov/genetics-glossary/Mitochondrial-DNA",
+    "scope": "DNA in mitochondria and typical passing through the biological mother.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-hardware",
+    "title": "Computer Hardware",
+    "publisher": "Stanford University CS101",
+    "url": "https://web.stanford.edu/class/cs101/hardware-1.html",
+    "scope": "Physical computer parts, processors, RAM, persistent storage and communication.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-computer-parts",
+    "title": "How Computers Work",
+    "publisher": "Harvard University CS50",
+    "url": "https://cs50.harvard.edu/ap/curriculum/technology/references/how_computers_work.pdf",
+    "scope": "Hardware, software, CPU, RAM, stored files, peripherals and operating systems.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-os",
+    "title": "Operating Systems",
+    "publisher": "NC State University",
+    "url": "https://e115.engr.ncsu.edu/operating-systems/",
+    "scope": "Operating systems manage parts, applications and resources.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-files",
+    "title": "File Basics",
+    "publisher": "University of Central Florida",
+    "url": "https://www.cs.ucf.edu/~pappas/teaching/cop3402/fal2026/file-basics.html",
+    "scope": "Files, directories, data, file names and hierarchical paths.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-image-formats",
+    "title": "Image File Type and Format Guide",
+    "publisher": "MDN Web Docs, Mozilla",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types",
+    "scope": "Image extensions and common raster, vector, lossy and lossless formats.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-svg",
+    "title": "SVG: Scalable Vector Graphics",
+    "publisher": "MDN Web Docs, Mozilla",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/SVG",
+    "scope": "Drawing with shapes, lines and paths and scaling a vector image.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-pixels",
+    "title": "Image-1: Introduction to Digital Images",
+    "publisher": "Stanford University CS101",
+    "url": "https://web.stanford.edu/class/cs101/image-1-introduction.html",
+    "scope": "Image grids, pixel locations and red, green and blue component values.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-rgb",
+    "title": "RGB Everywhere",
+    "publisher": "Stanford University CS101",
+    "url": "https://web.stanford.edu/class/cs101/image-1b-RGB-everywhere.html",
+    "scope": "Images and screens using mixtures of red, green and blue light.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-colouring",
+    "title": "Image Representation",
+    "publisher": "Classic CS Unplugged, University of Canterbury",
+    "url": "https://classic.csunplugged.org/activities/image-representation/",
+    "scope": "Representing bitmapped images as coded sequences.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-compression",
+    "title": "Text Compression",
+    "publisher": "Classic CS Unplugged, University of Canterbury",
+    "url": "https://classic.csunplugged.org/activities/text-compression/",
+    "scope": "Representing recurring patterns with fewer symbols and restoring exact text.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-unicode",
+    "title": "What is Unicode?",
+    "publisher": "Unicode Consortium",
+    "url": "https://unicode.org/standard/WhatIsUnicode.html",
+    "scope": "The shared set of codes for characters across languages and devices.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-emoji",
+    "title": "About Emoji",
+    "publisher": "Unicode Consortium",
+    "url": "https://home.unicode.org/emoji/about-emoji/",
+    "scope": "Emoji representation, common characters and related conventions.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-audio",
+    "title": "Digital Audio",
+    "publisher": "University of California, Irvine",
+    "url": "https://music.arts.uci.edu/dobrian/digitalaudio.htm",
+    "scope": "Measuring sound signals over time, sample rate and digital sound reconstruction.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-internet",
+    "title": "How Does the Internet Work?",
+    "publisher": "MDN Web Docs, Mozilla",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/How_does_the_Internet_work",
+    "scope": "Networks of networks, routers, packets and device communication.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-web",
+    "title": "How the Web Works",
+    "publisher": "MDN Web Docs, Mozilla",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works",
+    "scope": "Browsers, servers, DNS, requests and page resources.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-www",
+    "title": "World Wide Web",
+    "publisher": "MDN Web Docs, Mozilla",
+    "url": "https://developer.mozilla.org/en-US/docs/Glossary/World_Wide_Web",
+    "scope": "The internet, linked pages, browsers and the Web.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-url",
+    "title": "What is a URL?",
+    "publisher": "MDN Web Docs, Mozilla",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+    "scope": "Parts of a web address, names, paths and fragments.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-browser",
+    "title": "Browsing the Web",
+    "publisher": "MDN Web Docs, Mozilla",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Browsing_the_web",
+    "scope": "What browsers and search engines do and how they differ.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-server",
+    "title": "What is a Web Server?",
+    "publisher": "MDN Web Docs, Mozilla",
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_web_server",
+    "scope": "The role of servers and software in answering requests for web content.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-wifi",
+    "title": "Wi-Fi / RF Spectrum Use Guidelines",
+    "publisher": "Cornell University Information Technologies",
+    "url": "https://it.cornell.edu/wifi/wi-fi-rf-spectrum-use-guidelines-cornell-university",
+    "scope": "Radio signals, channels and local Wi-Fi network use.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-routers-history",
+    "title": "Networking and the Web",
+    "publisher": "Computer History Museum",
+    "url": "https://www.computerhistory.org/timeline/networking-the-web/",
+    "scope": "Packets and the spread of computer networking and the Web.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-web-search",
+    "title": "In-Depth Guide to How Google Search Works",
+    "publisher": "Google Search Central",
+    "url": "https://developers.google.com/search/docs/fundamentals/how-search-works",
+    "scope": "An example of finding pages, indexing them and returning search results.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-backup",
+    "title": "Back It Up: Don’t Lose Your Digital Life",
+    "publisher": "U.S. Federal Trade Commission",
+    "url": "https://consumer.ftc.gov/media/79923",
+    "scope": "Keeping a copy of important digital material for recovery.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-programming",
+    "title": "Intro to Programming",
+    "publisher": "University of Wisconsin–Madison",
+    "url": "https://sts.doit.wisc.edu/manuals/intro-to-programming/",
+    "scope": "Programs, variables, functions and ways to control what steps are followed.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-sensors",
+    "title": "Programming with Robots, Chapter 4",
+    "publisher": "New York University Department of Mechanical and Aerospace Engineering",
+    "url": "https://mechatronics.engineering.nyu.edu/pdf/programming-with-robots.pdf",
+    "scope": "Programs use sensor measurements to influence a robot’s movement.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-debugging",
+    "title": "Introduction to Programming, Chapter 1",
+    "publisher": "Princeton University Computer Science",
+    "url": "https://www.cs.princeton.edu/introcs/home/chapter1.pdf",
+    "scope": "Program construction, mistakes, following instructions and testing.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-flow",
+    "title": "Conditionals and Loops",
+    "publisher": "Princeton University Computer Science",
+    "url": "https://introcs.cs.princeton.edu/python/13flow/index.php",
+    "scope": "Tests, choices, repeated steps and loop control.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-logic",
+    "title": "Combinational Logic",
+    "publisher": "University of San Francisco Computer Science",
+    "url": "https://cs315-f25.cs.usfca.edu/lectures/09-cs315-2025-10-16-combinational-logic/",
+    "scope": "AND, OR, NOT, XOR and tables showing true/false results.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-sorting",
+    "title": "Sorting and Searching",
+    "publisher": "Princeton University Computer Science",
+    "url": "https://introcs.cs.princeton.edu/java/42sort/",
+    "scope": "Sorting orders, searching in an ordered list and binary search.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-insertion",
+    "title": "Sorting Algorithms",
+    "publisher": "Cornell University Computer Science",
+    "url": "https://courses.cs.cornell.edu/courses/cs2110/2026fa/lectures/lec07/",
+    "scope": "Insertion sort and comparing different ways to arrange values.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-search-algorithms",
+    "title": "Searching Algorithms",
+    "publisher": "CS Unplugged, University of Canterbury",
+    "url": "https://www.csunplugged.org/en/topics/searching-algorithms/",
+    "scope": "Linear and binary searching with everyday illustrations.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ftc-kids",
+    "title": "Heads Up: Stop. Think. Connect.",
+    "publisher": "U.S. Federal Trade Commission",
+    "url": "https://consumer.ftc.gov/articles/heads-up",
+    "scope": "Online safety, thinking before sharing, privacy and talking to a trusted adult.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-fbi-surf",
+    "title": "Safe Online Surfing Internet Challenge",
+    "publisher": "Federal Bureau of Investigation",
+    "url": "https://www.fbi.gov/how-we-can-help-you/outreach/safe-online-surfing-sos-program",
+    "scope": "Protecting children’s personal information, safe communication and reporting.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ftc-phone",
+    "title": "Three Ways to Protect the Personal Info on Your Phone",
+    "publisher": "U.S. Federal Trade Commission",
+    "url": "https://consumer.ftc.gov/consumer-alerts/2024/08/three-ways-protect-personal-info-your-phone",
+    "scope": "Protecting phone privacy, being careful with apps and controlling access.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ftc-safety",
+    "title": "Five Ways to Keep Scammers and Hackers Away",
+    "publisher": "U.S. Federal Trade Commission",
+    "url": "https://consumer.ftc.gov/consumer-alerts/2024/08/five-ways-keep-scammers-hackers-away",
+    "scope": "Account protections, updating devices and locking when away.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ftc-device",
+    "title": "Help Kids Protect Their Devices",
+    "publisher": "U.S. Federal Trade Commission",
+    "url": "https://consumer.ftc.gov/consumer-alerts/2025/11/help-kids-protect-their-devices",
+    "scope": "Keeping software updated and family controls for device purchases.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-mfa",
+    "title": "Stay Safer with Multifactor Authentication",
+    "publisher": "Cybersecurity and Infrastructure Security Agency",
+    "url": "https://www.cisa.gov/sites/default/files/2024-09/Secure-Our-World-MFA-Tip-Sheet.pdf",
+    "scope": "An additional kind of check for login and not sharing authentication information.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ftc-pass",
+    "title": "Creating Strong Passwords and Other Ways to Protect Your Accounts",
+    "publisher": "U.S. Federal Trade Commission",
+    "url": "https://consumer.ftc.gov/articles/creating-strong-passwords-and-other-ways-protect-your-accounts",
+    "scope": "Distinct passwords, password managers, and two-factor authentication.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-cyberbully",
+    "title": "Report Cyberbullying",
+    "publisher": "StopBullying.gov, U.S. Department of Health and Human Services",
+    "url": "https://www.stopbullying.gov/cyberbullying/how-to-report",
+    "scope": "Do not respond or forward, keep evidence with an adult, block and report.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ftc-games",
+    "title": "Kids and Video Games",
+    "publisher": "U.S. Federal Trade Commission",
+    "url": "https://consumer.ftc.gov/articles/kids-and-video-games",
+    "scope": "Private game settings, communicating with strangers, ads and purchases.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ftc-ads",
+    "title": "Blurred Ads and Kids and Teens: What to Know",
+    "publisher": "U.S. Federal Trade Commission",
+    "url": "https://consumer.ftc.gov/consumer-alerts/2023/09/blurred-ads-kids-teens-what-know",
+    "scope": "How ads can be mixed into games, videos or other material.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ftc-purchases",
+    "title": "What to Know About Kids and Video Games, Ads, and Unexpected Payments",
+    "publisher": "U.S. Federal Trade Commission",
+    "url": "https://consumer.ftc.gov/consumer-alerts/2025/04/what-know-about-kids-video-games-ads-unexpected-payments",
+    "scope": "In-game purchases, real costs and family purchase controls.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ftc-share",
+    "title": "Share with Care",
+    "publisher": "U.S. Federal Trade Commission",
+    "url": "https://consumer.ftc.gov/media/79866",
+    "scope": "Thinking before sharing and recognizing that copies can spread.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-ftc-kids-safe",
+    "title": "Stay Safe Online: Kids and Teens",
+    "publisher": "Federal Bureau of Investigation",
+    "url": "https://www.fbi.gov/how-we-can-help-you/online-safety/stay-safe-online-kids-and-teens/",
+    "scope": "Keeping private information private, reporting unsafe requests and reaching a trusted adult.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  },
+  {
+    "id": "bt-sleep-stages",
+    "title": "How Sleep Works: Sleep Phases and Stages",
+    "publisher": "National Heart, Lung, and Blood Institute, NIH",
+    "url": "https://www.nhlbi.nih.gov/health/sleep/stages-of-sleep",
+    "scope": "Different kinds of sleep and repeated cycles across a night.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts checked against this reference. All article and dictionary wording is original."
+  }
+]

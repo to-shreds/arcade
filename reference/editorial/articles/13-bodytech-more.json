@@ -1,0 +1,686 @@
+[
+  {
+    "id": "body-tissues",
+    "title": "How do groups of cells do bigger jobs?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "A single cell can send a message, move, or carry a supply, but a large body needs many cells working in groups. A group of organized cells and the material around them forms a tissue. Muscle tissue can pull together to make a large move. Another kind of tissue makes a cover, like the layer that lines the inside of your mouth. Several different tissues can join to make an organ with more than one job.",
+    "aliases": [
+      "tissue in your body",
+      "how cells make tissues",
+      "difference between tissue and organ"
+    ],
+    "sections": [],
+    "facts": [
+      "Several kinds of tissue can work together inside a single organ."
+    ],
+    "terms": [
+      "tissue",
+      "organ",
+      "cell"
+    ],
+    "questions": [
+      {
+        "target": "body-cells",
+        "text": "What are the little living units that tissues contain?"
+      },
+      {
+        "target": "skin",
+        "text": "What are some jobs done by the tissues in your skin?"
+      },
+      {
+        "target": "heart",
+        "text": "How can an organ use muscle tissue to do a job?"
+      }
+    ],
+    "sources": [
+      "bt-tissues",
+      "bt-cell"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "body-reflexes",
+    "title": "Why can your body react before you decide?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Pulling your hand away from a hot surface can happen before you have time to plan to move. Nerves on the skin send a message inward. Along some routes, a message can pass through the spinal cord and turn on muscles right away. Other messages reach the brain too, so you notice what happened. A quick automatic response like this is called a reflex. Your body does not need to work out a longer plan for every quick change around it.",
+    "aliases": [
+      "reflexes",
+      "withdrawal reflex",
+      "why pull away before thinking"
+    ],
+    "sections": [],
+    "facts": [
+      "Some reflexes pass through the spinal cord before a person is aware of the event."
+    ],
+    "terms": [
+      "reflex",
+      "neuron"
+    ],
+    "questions": [
+      {
+        "target": "brain",
+        "text": "How does the brain use messages to help control motion?"
+      },
+      {
+        "target": "touch",
+        "text": "What helps the body notice what touches your skin?"
+      },
+      {
+        "target": "spine",
+        "text": "Where is the spinal cord protected?"
+      }
+    ],
+    "sources": [
+      "bt-reflexes",
+      "bt-sensory"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pulse",
+    "title": "What causes the pulse you can feel?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Every time your heart sends blood out, the push makes a small wave of pressure travel through your arteries. You may notice that push as a beat in a place where an artery passes close to your skin, such as near your wrist. The wave goes along the tubes, a little like a squeeze making a bump travel along a full hose. Your heartbeat starts the wave, though the pulse you feel may be far from the heart.",
+    "aliases": [
+      "pulse",
+      "heart pulse",
+      "why can I feel my heartbeat in my wrist"
+    ],
+    "sections": [],
+    "facts": [
+      "A pulse is easier to feel where an artery runs close to the surface of the skin."
+    ],
+    "terms": [
+      "pulse",
+      "artery"
+    ],
+    "questions": [
+      {
+        "target": "heart",
+        "text": "What starts the wave that you feel in an artery?"
+      },
+      {
+        "target": "blood-vessels",
+        "text": "How does an artery differ from a vein?"
+      },
+      {
+        "target": "body-movement",
+        "text": "Why might the heart work harder when muscles are active?"
+      }
+    ],
+    "sources": [
+      "bt-pulse",
+      "bt-vessels"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "baby-teeth",
+    "title": "Why do children lose their first teeth?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "A child’s first set of teeth fits into a small jaw. As the jaw grows, many of these teeth have to make room for a later set. The root that held a first tooth gradually becomes smaller. When little of it is left to hold the tooth, the part above the gums can wobble and eventually come out. A permanent tooth may have been growing under it. Not every new tooth takes the place of an old one. Some come in at the back.",
+    "aliases": [
+      "baby teeth",
+      "milk teeth",
+      "when permanent teeth come in"
+    ],
+    "sections": [],
+    "facts": [
+      "People usually get 20 baby teeth."
+    ],
+    "terms": [
+      "baby tooth",
+      "permanent tooth"
+    ],
+    "questions": [
+      {
+        "target": "tooth-types",
+        "text": "Why are some of your teeth shaped like small cutters and others like grinders?"
+      },
+      {
+        "target": "tooth-enamel",
+        "text": "What covers the part of a tooth above your gums?"
+      },
+      {
+        "target": "skull",
+        "text": "What bones support your teeth?"
+      }
+    ],
+    "sources": [
+      "bt-teeth-eruption",
+      "bt-loose-tooth",
+      "bt-more-tooth-roots"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tooth-types",
+    "title": "Why do your teeth have different shapes?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "When you bite an apple, a flat tooth near the front can cut off a thin piece. The pointier teeth beside the front ones can help hold or tear what you bite. Farther back, broad teeth can crush and grind food as your jaw closes. These shapes do similar jobs to different kitchen tools, though all the teeth work together. Chewing also mixes small pieces with saliva, which helps them move on toward the rest of digestion.",
+    "aliases": [
+      "kinds of teeth",
+      "incisors canines molars",
+      "cutting grinding teeth"
+    ],
+    "sections": [],
+    "facts": [
+      "Wide grinding teeth sit toward the back of your mouth."
+    ],
+    "terms": [
+      "incisor",
+      "molar"
+    ],
+    "questions": [
+      {
+        "target": "digestion",
+        "text": "Why is chewing one of the first parts of digestion?"
+      },
+      {
+        "target": "baby-teeth",
+        "text": "What happens to your teeth as your mouth grows?"
+      },
+      {
+        "target": "tooth-enamel",
+        "text": "What protects the outside of all these shapes when you chew?"
+      }
+    ],
+    "sources": [
+      "bt-teeth-eruption",
+      "bt-tooth-decay"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dim-light-vision",
+    "title": "Why is it hard to see colors in the dark?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Look at colorful things in a bright room and then in the same room after it gets dim. You may still make out shapes after a while, but colors are harder to notice. Small parts of the retina called rod cells are good at detecting weak light. Cone cells help tell colors apart when there is enough light to use them well. In very dim light, rod cells do much more of the work, so fine details and colors can be harder to see.",
+    "aliases": [
+      "night vision",
+      "night colors",
+      "rods and cones in low light"
+    ],
+    "sections": [],
+    "facts": [
+      "Rod cells can help you see in light too dim for strong color vision."
+    ],
+    "terms": [
+      "rod cell",
+      "cone cell",
+      "retina"
+    ],
+    "questions": [
+      {
+        "target": "color-vision",
+        "text": "What do cone cells help you notice in brighter light?"
+      },
+      {
+        "target": "pupils",
+        "text": "How does your eye let in more light in a dim room?"
+      },
+      {
+        "target": "vision",
+        "text": "How do cells at the back of an eye send information?"
+      }
+    ],
+    "sources": [
+      "bt-vision-biology",
+      "bt-eye-kids"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "color-vision",
+    "title": "How can your eyes tell colors apart?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Many people have three kinds of cone cell near the back of each eye. Each kind reacts most strongly to a different range of light. When you look at an object, more than one kind can respond. Your brain can use that mix to help tell a red marker from a green leaf. People can differ in the way their eyes or brain use these signals. The colors one person can tell apart may be hard for someone else to distinguish.",
+    "aliases": [
+      "vision colors",
+      "color vision",
+      "cone cells see color"
+    ],
+    "sections": [],
+    "facts": [
+      "The three common types of cone cell respond to overlapping ranges of light."
+    ],
+    "terms": [
+      "cone cell",
+      "retina",
+      "light"
+    ],
+    "questions": [
+      {
+        "target": "rgb-colors",
+        "text": "How can three kinds of light make a screen look like it has many colors?"
+      },
+      {
+        "target": "dim-light-vision",
+        "text": "Why are colors harder to see at night?"
+      },
+      {
+        "target": "light",
+        "text": "What can give the light that reaches your eyes different colors?"
+      }
+    ],
+    "sources": [
+      "bt-vision-biology",
+      "bt-eye-kids"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "depth-perception",
+    "title": "How can you tell which things are farther away?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "Hold two fingers up with one a little in front of the other. Look with one eye and then with the other. Their positions may seem to change against the wall because each eye sees from a different spot. Your brain can use that difference to judge which object is closer. It has other clues too. A nearby object may hide part of a farther one, and two things you know are the same size may look smaller at different distances.",
+    "aliases": [
+      "depth perception",
+      "two eyes distance",
+      "how do eyes judge distance"
+    ],
+    "sections": [],
+    "facts": [
+      "Distance can be estimated from several different kinds of clues."
+    ],
+    "terms": [
+      "depth perception",
+      "signal"
+    ],
+    "questions": [
+      {
+        "target": "vision",
+        "text": "What turns light from an object into signals the brain can use?"
+      },
+      {
+        "target": "body-balance",
+        "text": "Where else does your brain combine more than one kind of clue?"
+      },
+      {
+        "target": "brain",
+        "text": "What organ makes sense of messages traveling from both eyes?"
+      }
+    ],
+    "sources": [
+      "bt-depth-vision",
+      "bt-eye"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "goosebumps",
+    "title": "What makes little bumps rise on your skin?",
+    "category": "human-body",
+    "priority": 2,
+    "answer": "You might see rows of little bumps on your arm in the cold, or while listening to exciting music. Each bump can happen when a tiny muscle tugs at a hair near its base. The hair can rise a little, and the skin around it can bunch up. In animals with a thick coat, standing hairs can trap more air. For a person’s short arm hairs the change is often easiest to notice as small raised spots.",
+    "aliases": [
+      "goosebumps",
+      "why hair stands up",
+      "piloerection"
+    ],
+    "sections": [],
+    "facts": [
+      "Small muscles attached to hairs make goosebumps rise."
+    ],
+    "terms": [
+      "skin",
+      "follicle"
+    ],
+    "questions": [
+      {
+        "target": "hair-growth",
+        "text": "What part of skin holds the base of an individual hair?"
+      },
+      {
+        "target": "sweating",
+        "text": "How does the skin help with the opposite problem of getting too warm?"
+      },
+      {
+        "target": "body-reflexes",
+        "text": "What other actions can happen before you decide to do them?"
+      }
+    ],
+    "sources": [
+      "bt-hair-nails",
+      "bt-skin-roles",
+      "bt-more-goosebumps"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "web-caches",
+    "title": "Why might a web page load faster the second time?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "The first time a browser shows a page, it may ask for the text, pictures, and other parts separately. It can keep copies of some of those parts in a space called a cache. If you return later and the copies are still useful, it can read them again instead of asking for everything to travel over the network. Sometimes it must check for a newer copy. Keeping a reusable copy can make a return visit to the same page faster.",
+    "aliases": [
+      "web cache",
+      "cache in browser",
+      "why does a website open faster next time"
+    ],
+    "sections": [],
+    "facts": [
+      "A cache can be temporary and may need to check for a newer version."
+    ],
+    "terms": [
+      "cache",
+      "browser",
+      "web server"
+    ],
+    "questions": [
+      {
+        "target": "web-browsers",
+        "text": "What does a browser do with the parts it gets from a site?"
+      },
+      {
+        "target": "web-servers",
+        "text": "What can send a fresh copy instead of using a stored one?"
+      },
+      {
+        "target": "digital-backups",
+        "text": "Why is keeping an extra copy for recovery a different job?"
+      }
+    ],
+    "sources": [
+      "bt-web-caching",
+      "bt-web"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "picture-alt-text",
+    "title": "Why would an online picture have a text description?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A page can give a picture a short description called alt text. A screen reader can speak those words so someone can understand the part the picture plays even when they cannot see it. The useful words may depend on the rest of the page. If a picture is a button, saying what the button does is often more helpful than naming its colors. A picture of a changing graph might need its most important message explained in words.",
+    "aliases": [
+      "alt text",
+      "image description",
+      "why do sites have picture descriptions"
+    ],
+    "sections": [],
+    "facts": [
+      "Good text for a picture depends on what the picture is doing on that page."
+    ],
+    "terms": [
+      "alt text",
+      "screen reader"
+    ],
+    "questions": [
+      {
+        "target": "screen-readers",
+        "text": "How can a program read the description of an image aloud?"
+      },
+      {
+        "target": "video-captions",
+        "text": "How can words also help when it is hard to hear a video?"
+      },
+      {
+        "target": "digital-images",
+        "text": "What does a regular picture file store to show the image itself?"
+      }
+    ],
+    "sources": [
+      "bt-alt-text",
+      "bt-access-tech"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "video-captions",
+    "title": "What do captions do in a video?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "Captions put words on a video near the time of the sound they explain. They can tell you what someone says and can also note important sounds. For instance, they may tell you when someone knocks at a door just before a character turns around. Captions are useful for people who cannot hear the sound or are in a place where they cannot turn it up. Reading a caption can let you follow the moment the sound happens.",
+    "aliases": [
+      "closed captions",
+      "video captions",
+      "why are words on the video screen"
+    ],
+    "sections": [],
+    "facts": [
+      "Captions can label an important sound even when nobody is speaking."
+    ],
+    "terms": [
+      "caption"
+    ],
+    "questions": [
+      {
+        "target": "picture-alt-text",
+        "text": "How can text describe a part of a page you see rather than hear?"
+      },
+      {
+        "target": "digital-audio",
+        "text": "What does a recording keep about the sound itself?"
+      },
+      {
+        "target": "screen-readers",
+        "text": "How can a device turn written words into sound?"
+      }
+    ],
+    "sources": [
+      "bt-captions",
+      "bt-access-tech"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "qr-codes",
+    "title": "What does a QR code do?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A QR code is a kind of barcode with light and dark areas set out in a square. A camera and an app can look at the pattern and turn it into information. Some QR codes store a web address so you do not have to type it, while others store short pieces of text. The code is just a way of recording the information. It cannot promise that the page it points to is the one you expected.",
+    "aliases": [
+      "QR code",
+      "square barcode",
+      "why do square codes have patterns"
+    ],
+    "sections": [],
+    "facts": [
+      "A QR code can store a web address, but a code can contain other kinds of information too."
+    ],
+    "terms": [
+      "qr code",
+      "barcode"
+    ],
+    "questions": [
+      {
+        "target": "barcodes",
+        "text": "How does a scanner use a row of marks on a package?"
+      },
+      {
+        "target": "web-addresses",
+        "text": "What is the kind of address a QR code can send to a browser?"
+      },
+      {
+        "target": "digital-personal-info",
+        "text": "Why pause before entering your details on an unfamiliar page?"
+      }
+    ],
+    "sources": [
+      "bt-qr",
+      "bt-barcodes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "spreadsheet",
+    "title": "Why do people organize information in a spreadsheet?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A spreadsheet is a table of little spaces arranged in rows and columns. One column could name each fruit your class counts, and another could hold how many you saw. Each small space can keep its own number, name, or calculation. A grid lets you compare like things in neighboring rows or add a group of numbers together. If the class counts more apples, changing their number in one place can help a spreadsheet update a total elsewhere.",
+    "aliases": [
+      "spreadsheet",
+      "rows and columns in a spreadsheet",
+      "why put numbers in a table"
+    ],
+    "sections": [],
+    "facts": [
+      "Squares in a spreadsheet are often named using a column letter and a row number."
+    ],
+    "terms": [
+      "spreadsheet"
+    ],
+    "questions": [
+      {
+        "target": "algorithms",
+        "text": "What general name describes the steps that can tell a computer to add a group of cells?"
+      },
+      {
+        "target": "database",
+        "text": "What other tool helps keep and search large sets of records?"
+      },
+      {
+        "target": "sorting",
+        "text": "How can you arrange the rows in an order that helps you find something?"
+      }
+    ],
+    "sources": [
+      "bt-spreadsheet",
+      "bt-database"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "database",
+    "title": "How does a database help find a record?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A database is an organized store of information that a program can look through. A class library’s database might store one record for every book. The record could include a title and who wrote it. A question like “Which books were written by this person?” asks the database to look for records with a certain name. Keeping the same kinds of details together helps a program return a useful list without reading a shelf of book covers.",
+    "aliases": [
+      "computer database",
+      "what is a record in a table",
+      "query an organized set"
+    ],
+    "sections": [],
+    "facts": [
+      "A library catalog is one way people search a stored collection of records."
+    ],
+    "terms": [
+      "database",
+      "index"
+    ],
+    "questions": [
+      {
+        "target": "spreadsheet",
+        "text": "How can a grid help people organize some smaller collections?"
+      },
+      {
+        "target": "web-search",
+        "text": "Why do a search engine’s records let it find pages quickly?"
+      },
+      {
+        "target": "barcodes",
+        "text": "Why might a store link a scanned number to a saved record?"
+      }
+    ],
+    "sources": [
+      "bt-database",
+      "bt-web-search"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "screen-readers",
+    "title": "How can a computer read a screen aloud?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A screen reader is software that tells a person about what is on a screen. It can speak the words in a menu or say the name of the button a person might press next. It can also send text to a device that forms raised braille dots. A web page is easier for a screen reader to explain when it has clear headings, named buttons, and useful descriptions for pictures. A screen reader need not speak every part at once.",
+    "aliases": [
+      "screen reader",
+      "computer reads text",
+      "braille display internet"
+    ],
+    "sections": [],
+    "facts": [
+      "Some screen readers send words to a device that makes raised braille dots."
+    ],
+    "terms": [
+      "screen reader",
+      "alt text"
+    ],
+    "questions": [
+      {
+        "target": "braille",
+        "text": "How do people use raised dots to read words?"
+      },
+      {
+        "target": "picture-alt-text",
+        "text": "Why should a helpful page give meaningful pictures a description?"
+      },
+      {
+        "target": "web-browsers",
+        "text": "What assembles the online material that can be read?"
+      }
+    ],
+    "sources": [
+      "bt-access-tech",
+      "bt-alt-text"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "file-metadata",
+    "title": "What extra information can a file keep about itself?",
+    "category": "computing",
+    "priority": 2,
+    "answer": "A digital file can include details about the information it holds. A picture could keep a description of its size or the date it was made. Those details are called metadata. A library or a computer can use these clues to find particular material without looking at every picture first. One file may have different details from the next. When you send a photo to someone else, the material that travels may include details besides the picture you can see on the screen.",
+    "aliases": [
+      "file metadata",
+      "photo details",
+      "what information is stored with a file"
+    ],
+    "sections": [],
+    "facts": [
+      "A file’s properties may describe its type or when it was last changed."
+    ],
+    "terms": [
+      "metadata",
+      "file"
+    ],
+    "questions": [
+      {
+        "target": "computer-files",
+        "text": "What is the main information inside a named file?"
+      },
+      {
+        "target": "digital-images",
+        "text": "What information makes up the actual picture you see?"
+      },
+      {
+        "target": "sharing-photos",
+        "text": "What kinds of extra clues can matter when you send a photo?"
+      }
+    ],
+    "sources": [
+      "bt-metadata",
+      "bt-files"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

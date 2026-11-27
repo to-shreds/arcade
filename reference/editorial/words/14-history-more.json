@@ -1,0 +1,54 @@
+[
+  {
+    "headword": "armistice",
+    "forms": [
+      "armistices"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An agreement by people or countries fighting a war to stop the fighting.",
+        "example": "The armistice took effect later on the same morning."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-armistice-date"
+    ]
+  },
+  {
+    "headword": "apartheid",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A system of laws that separated people by race in South Africa and gave most political power to white people.",
+        "example": "People in South Africa and around the world organized against apartheid."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-apartheid"
+    ]
+  },
+  {
+    "headword": "charter",
+    "forms": [
+      "charters"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An official document that sets out what a group is for and how it will work.",
+        "example": "Representatives signed a charter for their new organization."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "history-un"
+    ]
+  }
+]

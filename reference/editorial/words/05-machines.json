@@ -1,0 +1,1106 @@
+[
+  {
+    "headword": "geyser",
+    "forms": [
+      "geysers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A hot spring that sometimes shoots water and steam out of the ground.",
+        "example": "A geyser sent a burst of hot water up into the air."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "methane",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A gas that contains carbon and hydrogen. In cold places such as Titan it can form liquid lakes.",
+        "example": "Scientists found lakes of liquid methane on Titan."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-titan"
+    ]
+  },
+  {
+    "headword": "infrared light",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A kind of light that human eyes cannot see. Warm things often give off infrared light.",
+        "example": "Webb can collect infrared light from a cloud of dust."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-webb"
+    ]
+  },
+  {
+    "headword": "flyby",
+    "forms": [
+      "flybys"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A trip that takes a spacecraft close past an object so it can observe it.",
+        "example": "Voyager 2 took pictures during a flyby of Neptune."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-voyager"
+    ]
+  },
+  {
+    "headword": "microgravity",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A condition in which objects act as if there is very little gravity pulling them against their surroundings.",
+        "example": "In microgravity, an astronaut can let go of a pencil and watch it float."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-microgravity"
+    ]
+  },
+  {
+    "headword": "exoplanet",
+    "forms": [
+      "exoplanets"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A planet outside our solar system.",
+        "example": "Astronomers detected an exoplanet by watching its star become a little dimmer."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-exoplanet"
+    ]
+  },
+  {
+    "headword": "pressurized",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "adjective",
+        "definition": "Kept at a set air or fluid pressure, often higher than the pressure outside.",
+        "example": "The inside of a space suit is pressurized so the astronaut’s body can function."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-spacesuit"
+    ]
+  },
+  {
+    "headword": "ocean",
+    "forms": [
+      "oceans"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A huge connected body of salt water. Earth’s ocean is often divided into five named oceans.",
+        "example": "Waves moved across the ocean during the storm."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "magnetic field",
+    "forms": [
+      "magnetic fields"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The area in which a magnet or moving electric charge can exert a magnetic force.",
+        "example": "A compass needle responds to Earth’s magnetic field."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-ganymede"
+    ]
+  },
+  {
+    "headword": "mass",
+    "forms": [
+      "masses"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A measure of how much matter something contains or how hard it is to change its motion.",
+        "example": "A full wagon has more mass than the same empty wagon."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "crater",
+    "forms": [
+      "craters"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A round hollow, often made where something struck a surface or around the opening of a volcano.",
+        "example": "The large crater on the Moon has high sides."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-callisto"
+    ]
+  },
+  {
+    "headword": "water vapor",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Water in its gas form.",
+        "example": "Water vapor in the warm air turned into little drops on the window."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "nitrogen",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A gas that makes up most of Earth’s air and is found in many living things.",
+        "example": "The air we breathe contains nitrogen as well as oxygen."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-titan"
+    ]
+  },
+  {
+    "headword": "geologist",
+    "forms": [
+      "geologists"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A scientist who studies rocks and what they show about a world’s past.",
+        "example": "The geologist used marks inside the rock to tell how it had formed."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "light-year",
+    "forms": [
+      "light-years"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The distance light can travel in one year, about 9.5 trillion kilometers.",
+        "example": "The next star is more than four light-years from the Sun."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-light-year"
+    ]
+  },
+  {
+    "headword": "event horizon",
+    "forms": [
+      "event horizons"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The boundary around a black hole beyond which nothing can escape to the outside.",
+        "example": "Light that passes inside the event horizon cannot come back out."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-black-holes"
+    ]
+  },
+  {
+    "headword": "refraction",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The bending of a wave as it enters something where it moves at a different speed.",
+        "example": "Refraction can make a straw look bent near the surface of a glass of water."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-optics"
+    ]
+  },
+  {
+    "headword": "reflection",
+    "forms": [
+      "reflections"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The way light or sound bounces off a surface.",
+        "example": "I saw my reflection in the still water."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-optics"
+    ]
+  },
+  {
+    "headword": "fiber optic",
+    "forms": [
+      "fiber optics"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A thin thread of glass or plastic that carries light along it.",
+        "example": "A small pulse of light can travel a long way inside a fiber optic."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-optics"
+    ]
+  },
+  {
+    "headword": "conduction",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The movement of heat or electricity through something, such as through a metal spoon.",
+        "example": "The spoon handle warmed by conduction after the bowl of the spoon touched the soup."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-conduction"
+    ]
+  },
+  {
+    "headword": "convection",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The way a gas or liquid carries heat as it moves from place to place.",
+        "example": "Convection carried warmer water toward the top of the pot."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-conduction"
+    ]
+  },
+  {
+    "headword": "radiation",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Energy sent out in waves or particles. Light is a kind of radiation.",
+        "example": "Radiation from the Sun can travel through empty space."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-radiation"
+    ]
+  },
+  {
+    "headword": "turbine",
+    "forms": [
+      "turbines"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A wheel with blades that spins when flowing water, air or steam pushes on it.",
+        "example": "Moving water turned a turbine inside the dam."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-hydroelectric"
+    ]
+  },
+  {
+    "headword": "generator",
+    "forms": [
+      "generators"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A machine that makes electricity, often by spinning wires or magnets.",
+        "example": "The wind turbine turned a generator that sent electricity to homes."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-wind-electric"
+    ]
+  },
+  {
+    "headword": "photovoltaic cell",
+    "forms": [
+      "photovoltaic cells"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A device that turns energy from light straight into electricity.",
+        "example": "Many small photovoltaic cells can make up one solar panel."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-solar-electric"
+    ]
+  },
+  {
+    "headword": "geothermal energy",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Energy supplied by heat from inside Earth.",
+        "example": "Warm water brought up from underground can supply geothermal energy."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-geothermal"
+    ]
+  },
+  {
+    "headword": "sonar",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way to find objects or measure distance using sound, often under water.",
+        "example": "The crew used sonar to make a map of the seafloor."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-sonar"
+    ]
+  },
+  {
+    "headword": "electron",
+    "forms": [
+      "electrons"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tiny part of matter with a negative electric charge. Electrons are found around the centers of atoms.",
+        "example": "Electrons can move through the copper wire in a circuit."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-solar-electric"
+    ]
+  },
+  {
+    "headword": "states of matter",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The main physical forms matter can take, including solid, liquid and gas.",
+        "example": "Ice, liquid water and water vapor are three states of matter."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "echo",
+    "forms": [
+      "echoes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A sound that returns after bouncing off a surface.",
+        "example": "I heard an echo when I called across the valley."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-sonar"
+    ]
+  },
+  {
+    "headword": "reservoir",
+    "forms": [
+      "reservoirs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A place where water is collected and stored, often behind a dam.",
+        "example": "The reservoir held rainwater for the dry months."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-dams"
+    ]
+  },
+  {
+    "headword": "voltage",
+    "forms": [
+      "voltages"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A measure of the difference in electric energy per unit of charge between two places. It can help drive electric current.",
+        "example": "The small battery has a lower voltage than the source of power for a house."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-grid"
+    ]
+  },
+  {
+    "headword": "motor",
+    "forms": [
+      "motors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A machine that makes a part move using power from electricity, fuel or another source.",
+        "example": "An electric motor turned the fan’s blades."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-motor"
+    ]
+  },
+  {
+    "headword": "thrust",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A push that moves a vehicle forward or in a chosen direction.",
+        "example": "Thrust from the propeller helped push the airplane forward."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-propellers"
+    ]
+  },
+  {
+    "headword": "lift",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A force, often from moving air, that acts across the direction of motion and can hold an aircraft up.",
+        "example": "The glider’s wings made enough lift to stay in the air."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-wing"
+    ]
+  },
+  {
+    "headword": "drag",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A force from a fluid such as air or water that opposes movement through it.",
+        "example": "Drag made it harder to ride my bike into the wind."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-flight"
+    ]
+  },
+  {
+    "headword": "buoyancy",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The upward push that a liquid or gas gives to something in it.",
+        "example": "The buoyancy of the water helped hold the boat up."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-floating"
+    ]
+  },
+  {
+    "headword": "ballast tank",
+    "forms": [
+      "ballast tanks"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tank that can hold water or air to change how a boat or submarine floats.",
+        "example": "Water entered the ballast tank as the submarine went deeper."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-floating"
+    ]
+  },
+  {
+    "headword": "piston",
+    "forms": [
+      "pistons"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A part that fits closely inside a tube and moves back and forth when a liquid or gas pushes on it.",
+        "example": "Steam pushed the piston, which helped move a train’s wheels."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-steam"
+    ]
+  },
+  {
+    "headword": "rotor",
+    "forms": [
+      "rotors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A machine part that spins, such as the blades on top of a helicopter.",
+        "example": "The helicopter’s rotor pushed air downward."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-helicopter"
+    ]
+  },
+  {
+    "headword": "sediment",
+    "forms": [
+      "sediments"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Small pieces of sand, clay or other material that settle after moving through water or air.",
+        "example": "A layer of sediment gathered at the bottom of the pond."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-wastewater"
+    ]
+  },
+  {
+    "headword": "friction",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A force that acts between touching surfaces to resist sliding, or that can stop them from starting to slide.",
+        "example": "Friction between the tires and the road helped the bicycle turn."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-friction"
+    ]
+  },
+  {
+    "headword": "sprocket",
+    "forms": [
+      "sprockets"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A wheel with teeth that fit into openings in a chain.",
+        "example": "The pedals turn a sprocket that pulls the bicycle chain."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-cycling-gears"
+    ]
+  },
+  {
+    "headword": "gear",
+    "forms": [
+      "gears"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A toothed wheel that moves another toothed part and can change speed, force or direction.",
+        "example": "The small gear turned quickly when the big wheel drove it."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-gears"
+    ]
+  },
+  {
+    "headword": "ball bearing",
+    "forms": [
+      "ball bearings"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Small hard balls and the rings that guide them, allowing parts of a machine to roll past each other smoothly.",
+        "example": "The wheel used a ball bearing to turn around its axle."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-bearings"
+    ]
+  },
+  {
+    "headword": "wedge",
+    "forms": [
+      "wedges"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A piece with a narrow edge that can push things apart or hold something in place.",
+        "example": "A rubber wedge held the door open."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-simple-machines"
+    ]
+  },
+  {
+    "headword": "axle",
+    "forms": [
+      "axles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A rod on which a wheel turns or that turns with a wheel.",
+        "example": "The wheels of the toy truck spun around a metal axle."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-simple-machines"
+    ]
+  },
+  {
+    "headword": "hydraulics",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The use of a liquid under pressure to move things or apply a force.",
+        "example": "A lift in the garage uses hydraulics to raise a car."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-hydraulics"
+    ]
+  },
+  {
+    "headword": "counterweight",
+    "forms": [
+      "counterweights"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A weight used to balance another weight or make it easier to move around.",
+        "example": "A counterweight balances much of the weight of the elevator car."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-elevators"
+    ]
+  },
+  {
+    "headword": "pendulum",
+    "forms": [
+      "pendulums"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An object hung so that it can swing to and fro.",
+        "example": "The clock’s pendulum swung back and forth."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-pendulum"
+    ]
+  },
+  {
+    "headword": "center of mass",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The point that describes where an object’s mass is balanced. It may fall in an empty space within the object.",
+        "example": "The center of mass of the ring was in the middle of its open space."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-stability"
+    ]
+  },
+  {
+    "headword": "magnetic declination",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The angle between the direction a compass points locally and the direction to Earth’s geographic north pole.",
+        "example": "A map showed the magnetic declination for the area so we could compare the needle with true north."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-compass"
+    ]
+  },
+  {
+    "headword": "synchronous rotation",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Spinning once for every trip around a neighboring body, so one side stays facing that body.",
+        "example": "The Moon’s synchronous rotation keeps nearly the same side facing Earth."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-moon-rotation"
+    ]
+  },
+  {
+    "headword": "meteor",
+    "forms": [
+      "meteors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A streak of light made when a small object speeds through a planet’s atmosphere.",
+        "example": "We saw a bright meteor streak across the night sky."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-meteors"
+    ]
+  },
+  {
+    "headword": "meteorite",
+    "forms": [
+      "meteorites"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A piece of rock or metal from space that reaches the ground after traveling through an atmosphere.",
+        "example": "The museum showed a meteorite that landed in a farmer’s field."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-meteors"
+    ]
+  },
+  {
+    "headword": "solar wind",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A flow of tiny charged particles that keeps blowing outward from the Sun.",
+        "example": "The solar wind carries pieces of the Sun’s outer atmosphere out into space."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-sun"
+    ]
+  },
+  {
+    "headword": "aurora",
+    "forms": [
+      "auroras"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A glow in a planet’s upper atmosphere caused by particles giving energy to a gas there.",
+        "example": "An aurora looked like a green curtain over the dark hills."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-auroras"
+    ]
+  },
+  {
+    "headword": "nebula",
+    "forms": [
+      "nebulae",
+      "nebulas"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An enormous cloud of gas, dust or both in space.",
+        "example": "Young stars were forming inside the cloudy nebula."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-nebulae"
+    ]
+  },
+  {
+    "headword": "white dwarf",
+    "forms": [
+      "white dwarfs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The hot, compact center left behind after a star like the Sun loses its outside layers.",
+        "example": "A white dwarf can glow for a very long time after a star stops using its fuel."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-star-types"
+    ]
+  },
+  {
+    "headword": "neutron star",
+    "forms": [
+      "neutron stars"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A very dense object left when the center of some massive stars collapses.",
+        "example": "A spinning neutron star can send a beam that appears to flash from Earth."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-star-types"
+    ]
+  },
+  {
+    "headword": "supernova",
+    "forms": [
+      "supernovae",
+      "supernovas"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A huge explosion of a star or of certain remains of a star.",
+        "example": "The supernova grew bright enough for astronomers to see from very far away."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-supernovae"
+    ]
+  },
+  {
+    "headword": "solstice",
+    "forms": [
+      "solstices"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Either of the two moments each year when a hemisphere tilts farthest toward or away from the Sun.",
+        "example": "Near the June solstice, summer days are longest in places north of the equator."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-solstices"
+    ]
+  },
+  {
+    "headword": "equinox",
+    "forms": [
+      "equinoxes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Either of the two moments each year when Earth’s poles are tilted neither toward nor away from the Sun.",
+        "example": "Around the equinox, day and night at many places are almost the same length."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-solstices"
+    ]
+  },
+  {
+    "headword": "hydrogen",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The lightest chemical element, made of atoms whose centers have one proton. It is found in water and in stars.",
+        "example": "In the center of the Sun, hydrogen helps supply the star’s energy."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-sun"
+    ]
+  },
+  {
+    "headword": "heat",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Energy that moves from a warmer object or place to a cooler one because of that difference in temperature.",
+        "example": "Heat moved from the hot soup into the metal spoon."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "mach-conduction"
+    ]
+  }
+]

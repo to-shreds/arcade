@@ -1,0 +1,4578 @@
+[
+  {
+    "id": "ancient-mesopotamia",
+    "title": "Why did cities grow between the Tigris and Euphrates?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Mesopotamia was a region around the Tigris and Euphrates rivers. In its drier southern lands, people dug channels to bring river water to their fields. Farming could support people who did other work, such as potters, builders, and traders. Some settlements grew into cities. Mud from the plains could be shaped into bricks and dried, so people built with a material they could find close to home. The region included many different peoples and governments over thousands of years.",
+    "aliases": [
+      "what was mesopotamia",
+      "land between two rivers",
+      "where were the tigris and euphrates cities"
+    ],
+    "sections": [],
+    "facts": [
+      "Much of ancient Mesopotamia lies in present-day Iraq."
+    ],
+    "terms": [
+      "irrigation",
+      "civilization"
+    ],
+    "questions": [
+      {
+        "text": "What made Uruk a city?",
+        "target": "uruk"
+      },
+      {
+        "text": "How did Mesopotamian writers keep records in clay?",
+        "target": "cuneiform"
+      },
+      {
+        "text": "What happened when Babylon became a capital?",
+        "target": "babylon"
+      }
+    ],
+    "sources": [
+      "history-mesopotamia",
+      "history-uruk"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "uruk",
+    "title": "What made Uruk one of the earliest cities?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Uruk grew in southern Mesopotamia more than five thousand years ago. Thousands of people could live near one another there. Large mud-brick buildings took more work to plan and build than a single family could handle. People who grew food worked alongside people who made pots, traded, or kept accounts. Some of the oldest tablets found at Uruk count goods. Details such as those help archaeologists see a city working, even though they cannot hear what people said in its streets.",
+    "aliases": [
+      "uruk first city",
+      "ancient uruk",
+      "first city sumer"
+    ],
+    "sections": [],
+    "facts": [
+      "Uruk covered a much larger area than most nearby settlements around 3200 BCE."
+    ],
+    "terms": [
+      "archaeologist",
+      "account"
+    ],
+    "questions": [
+      {
+        "text": "How did river water support cities like Uruk?",
+        "target": "ancient-mesopotamia"
+      },
+      {
+        "text": "What kind of writing grew from early clay records?",
+        "target": "cuneiform"
+      },
+      {
+        "text": "What did another southern Mesopotamian city build high above the plain?",
+        "target": "city-of-ur"
+      }
+    ],
+    "sources": [
+      "history-uruk"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "city-of-ur",
+    "title": "What was the city of Ur?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Ur was a large city in southern Mesopotamia. One of its best-known buildings was a ziggurat with stepped levels that rose above the flat ground. Three stairways rose toward the entrance on the front. The surviving outer brickwork helps archaeologists study how older builders made a huge structure from layers of material. Graves and everyday objects at Ur offer other clues about life there. A tall building tells us about organized labor, while a small object can tell us about someone’s work or habits.",
+    "aliases": [
+      "ur ancient city",
+      "ziggurat of ur",
+      "what is ur mesopotamia"
+    ],
+    "sections": [],
+    "facts": [
+      "A ruler named Ur-Nammu began the great ziggurat at Ur about four thousand years ago."
+    ],
+    "terms": [
+      "ziggurat",
+      "archaeologist"
+    ],
+    "questions": [
+      {
+        "text": "What kinds of work did people do in the city of Uruk?",
+        "target": "uruk"
+      },
+      {
+        "text": "How does the shape of an Egyptian pyramid compare with a ziggurat?",
+        "target": "great-pyramid"
+      },
+      {
+        "text": "What kinds of materials did Mesopotamian builders have nearby?",
+        "target": "ancient-mesopotamia"
+      }
+    ],
+    "sources": [
+      "history-ur",
+      "history-mesopotamia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "babylon",
+    "title": "How did Babylon become a great ancient city?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Babylon stood on the Euphrates River in what is now Iraq. It was a center of power more than once. Under the Neo-Babylonian rulers, it had tall city walls and a grand road for ceremonies. One entrance called the Ishtar Gate was decorated with pictures of animals in glazed brick. The walls directed people entering the city, while the gate showed what its builders could do. Ruins and objects give us a clearer picture of Babylon than legends alone.",
+    "aliases": [
+      "ancient babylon",
+      "what was babylon",
+      "what was the ishtar gate"
+    ],
+    "sections": [],
+    "facts": [
+      "Babylon was the capital of the Neo-Babylonian Empire from 626 to 539 BCE."
+    ],
+    "terms": [
+      "empire",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "How did an earlier Babylonian king make his laws visible?",
+        "target": "hammurabi-laws"
+      },
+      {
+        "text": "What made the river plains a good place to grow food?",
+        "target": "ancient-mesopotamia"
+      },
+      {
+        "text": "What empire took Babylon in 539 BCE?",
+        "target": "achaemenid-persia"
+      }
+    ],
+    "sources": [
+      "history-babylon",
+      "history-persia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hammurabi-laws",
+    "title": "Why were Hammurabi’s laws carved in stone?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Hammurabi was a king of Babylon who had rulings carved into a tall dark stone almost four thousand years ago. The small wedge marks give examples of disputes and punishments. Some deal with such problems as an injury or a building that falls. The rules sometimes treated people differently depending on their place in society. At the top, an image shows Hammurabi before a god linked with justice. The tall carving made a statement about the king’s duty to rule.",
+    "aliases": [
+      "code of hammurabi",
+      "ancient babylon laws",
+      "who was hammurabi"
+    ],
+    "sections": [],
+    "facts": [
+      "The writing on the stone is in cuneiform, and the monument is kept at the Louvre."
+    ],
+    "terms": [
+      "stele",
+      "inscription"
+    ],
+    "questions": [
+      {
+        "text": "How did writers make wedge-shaped signs?",
+        "target": "cuneiform"
+      },
+      {
+        "text": "Where did King Hammurabi rule?",
+        "target": "babylon"
+      },
+      {
+        "text": "How does a written constitution set rules for a government?",
+        "target": "us-constitution"
+      }
+    ],
+    "sources": [
+      "history-hammurabi"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "achaemenid-persia",
+    "title": "How did the ancient Persian Empire govern faraway lands?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "The Achaemenid kings ruled an empire that stretched from Egypt and western Asia toward the Indus region. A king could not visit every town to decide what should happen there. Officials governed regions and answered to the king. The empire included people with many languages and local customs. Carvings from Persepolis show groups bringing objects from different lands. These pictures show how the rulers wanted people to see the empire, not everything that daily life there was like.",
+    "aliases": [
+      "achaemenid empire",
+      "ancient persia",
+      "cyrus and darius persian empire"
+    ],
+    "sections": [],
+    "facts": [
+      "Cyrus the Great founded the Achaemenid Empire in the sixth century BCE."
+    ],
+    "terms": [
+      "empire",
+      "inscription"
+    ],
+    "questions": [
+      {
+        "text": "What do the terraces and carved stairs at Persepolis show?",
+        "target": "persepolis"
+      },
+      {
+        "text": "What important city became part of Persia?",
+        "target": "babylon"
+      },
+      {
+        "text": "How could long journeys connect faraway regions after ancient empires changed?",
+        "target": "silk-roads"
+      }
+    ],
+    "sources": [
+      "history-persia",
+      "history-persepolis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "persepolis",
+    "title": "What was Persepolis built to show?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Persepolis was a royal center in ancient Persia. Its builders made a huge level platform along a mountainside. They raised stone columns above it and decorated stairs with lines of carved figures. The figures carry items or wear clothes that mark different places. Visitors once climbed real stairs beside the carved people climbing in orderly rows. The setting, size, and art helped show the power of the Persian kings and the many lands they claimed as part of their empire.",
+    "aliases": [
+      "persian palace persepolis",
+      "what are the ruins at persepolis",
+      "persepolis architecture"
+    ],
+    "sections": [],
+    "facts": [
+      "King Darius I began constructing Persepolis late in the sixth century BCE."
+    ],
+    "terms": [
+      "terrace",
+      "empire"
+    ],
+    "questions": [
+      {
+        "text": "How large was the realm of the people who built Persepolis?",
+        "target": "achaemenid-persia"
+      },
+      {
+        "text": "How did Egyptian builders turn stone into a monument for a ruler?",
+        "target": "great-pyramid"
+      },
+      {
+        "text": "How did a Chinese emperor use rows of figures in his tomb?",
+        "target": "terracotta-army"
+      }
+    ],
+    "sources": [
+      "history-persepolis",
+      "history-persia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "carthage",
+    "title": "How did Carthage become a sea power?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Carthage began as a settlement founded by Phoenician seafarers on the North African shore, near modern Tunis. A harbor close to routes across the Mediterranean made it a useful place to trade. From Carthage, ships could connect towns on both the African and European sides of the sea. As Carthage grew, it became powerful in its own right and fought Rome. Rome destroyed the older city in 146 BCE, then later built a Roman city at the same site.",
+    "aliases": [
+      "ancient carthage",
+      "who founded carthage",
+      "what happened to carthage"
+    ],
+    "sections": [],
+    "facts": [
+      "The remains of Carthage are in present-day Tunisia."
+    ],
+    "terms": [
+      "trade",
+      "peninsula"
+    ],
+    "questions": [
+      {
+        "text": "How did Rome keep distant parts of its growing territory connected?",
+        "target": "roman-roads"
+      },
+      {
+        "text": "How did an inland African center reach wider trading networks?",
+        "target": "aksum"
+      },
+      {
+        "text": "How did traders carry goods when a route had to cross land?",
+        "target": "silk-roads"
+      }
+    ],
+    "sources": [
+      "history-carthage"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "indus-civilization",
+    "title": "What do city streets tell us about the Indus civilization?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "The Indus civilization grew in South Asia thousands of years ago. Today archaeologists study cities such as Mohenjo-daro and Harappa to learn how people there lived. At Mohenjo-daro, some streets followed long straight lines, and many buildings used bricks. Covered drains carried water away from some homes and streets. Small carved seals show pictures of animals and lines of signs. Archaeologists can describe these objects and streets, but there is no agreed reading of the signs yet.",
+    "aliases": [
+      "harappan civilization",
+      "ancient indus valley",
+      "what were indus cities like"
+    ],
+    "sections": [],
+    "facts": [
+      "Sites belonging to the Indus civilization lie in parts of present-day Pakistan and India."
+    ],
+    "terms": [
+      "civilization",
+      "archaeologist"
+    ],
+    "questions": [
+      {
+        "text": "What can you see in the ruins of an Indus city?",
+        "target": "mohenjo-daro"
+      },
+      {
+        "text": "What are the tiny Indus objects with animal pictures?",
+        "target": "indus-seals"
+      },
+      {
+        "text": "How is undeciphered Indus writing different from cuneiform for researchers today?",
+        "target": "cuneiform"
+      }
+    ],
+    "sources": [
+      "history-indus",
+      "history-indus-seals"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mohenjo-daro",
+    "title": "How did people build the city of Mohenjo-daro?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Mohenjo-daro was an ancient city in the Indus region of what is now Pakistan. Builders arranged many houses along streets and lanes. They used bricks made from clay, and some homes had washing spaces linked to drains. One large public building contains a basin that archaeologists call the Great Bath. Because the city’s signs have not been read with agreement, we do not know what people called the building or exactly how they used it.",
+    "aliases": [
+      "moenjodaro",
+      "great bath indus valley",
+      "mohenjo daro city"
+    ],
+    "sections": [],
+    "facts": [
+      "The ruins of Mohenjo-daro are near the Indus River."
+    ],
+    "terms": [
+      "archaeologist",
+      "evidence"
+    ],
+    "questions": [
+      {
+        "text": "Where did other cities of the same civilization grow?",
+        "target": "indus-civilization"
+      },
+      {
+        "text": "How did Roman builders bring fresh water into a city?",
+        "target": "roman-aqueducts"
+      },
+      {
+        "text": "Why are the signs on seals hard for us to read?",
+        "target": "indus-seals"
+      }
+    ],
+    "sources": [
+      "history-indus",
+      "history-indus-seals"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "indus-seals",
+    "title": "What were Indus seals?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "Archaeologists have found small carved seals at ancient Indus sites. A seal has a design that can be pressed into soft material, leaving a mark. Many Indus seals show an animal and a short row of signs. The cuts are small enough that a careful craftsperson had to plan each design. Researchers have suggested different uses for the seals, including marking goods. Since there is no agreed way to read the signs, we still cannot say what most marks meant.",
+    "aliases": [
+      "indus script",
+      "harappa seals",
+      "what do indus signs say"
+    ],
+    "sections": [],
+    "facts": [
+      "Many known Indus seals were carved from a soft stone called steatite."
+    ],
+    "terms": [
+      "inscription",
+      "archaeologist"
+    ],
+    "questions": [
+      {
+        "text": "Where were these seals found?",
+        "target": "indus-civilization"
+      },
+      {
+        "text": "What gave researchers a way to read Egyptian signs?",
+        "target": "rosetta-stone"
+      },
+      {
+        "text": "What did early Chinese writers carve into bones?",
+        "target": "oracle-bones"
+      }
+    ],
+    "sources": [
+      "history-indus-seals",
+      "history-indus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "shang-china",
+    "title": "How do we know about the Shang dynasty?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "The Shang dynasty ruled parts of northern China more than three thousand years ago. Its craftspeople made large bronze containers with carefully shaped patterns. Archaeologists also found animal bones and turtle shells with writing carved on them. Some record questions that rulers asked about the weather or harvests. Old stories about the Shang were written down much later. The objects are especially useful because people made and used them at the time those rulers lived.",
+    "aliases": [
+      "shang dynasty",
+      "ancient shang artifacts",
+      "old chinese bronze vessels"
+    ],
+    "sections": [],
+    "facts": [
+      "Carved Shang bones and shells preserve some of the earliest known Chinese writing."
+    ],
+    "terms": [
+      "dynasty",
+      "oracle bone"
+    ],
+    "questions": [
+      {
+        "text": "How did Shang writers record questions on bones and shells?",
+        "target": "oracle-bones"
+      },
+      {
+        "text": "How did the Qin rulers later bring different states under one government?",
+        "target": "qin-china"
+      },
+      {
+        "text": "What is another early writing system archaeologists study?",
+        "target": "cuneiform"
+      }
+    ],
+    "sources": [
+      "history-china"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "oracle-bones",
+    "title": "What were oracle bones used for?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "During the Shang dynasty, people at the royal court asked questions about what might happen. A question could be about rain, crops, or a trip. They heated prepared animal bones or turtle shells until cracks appeared, then read the cracks for signs of an answer. Writers sometimes carved the question on the surface along with a date or result. Today the writing gives researchers a record of what people worried about and what signs they used to write Chinese.",
+    "aliases": [
+      "ancient chinese oracle bones",
+      "why did shamans heat bones",
+      "shang writing bones"
+    ],
+    "sections": [],
+    "facts": [
+      "People made oracle bones from pieces such as cattle shoulder blades and turtle shells."
+    ],
+    "terms": [
+      "oracle bone",
+      "dynasty"
+    ],
+    "questions": [
+      {
+        "text": "What else have archaeologists found from Shang China?",
+        "target": "shang-china"
+      },
+      {
+        "text": "How did Egyptian writers record a language using signs?",
+        "target": "hieroglyphs"
+      },
+      {
+        "text": "What happens when researchers cannot yet read an ancient set of signs?",
+        "target": "indus-seals"
+      }
+    ],
+    "sources": [
+      "history-china"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "qin-china",
+    "title": "How did the Qin form one Chinese empire?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Before the Qin empire, several powerful states competed for land in China. The Qin ruler defeated the others and called himself the First Emperor in 221 BCE. His officials put common rules for writing and measures in use across the empire. Having the same kinds of measures helped officials compare goods from different places. The Qin dynasty ended soon after the First Emperor’s lifetime, but later rulers kept the idea of governing wide regions from one center.",
+    "aliases": [
+      "qin dynasty china unification",
+      "who was the first emperor of china",
+      "qin shi huang"
+    ],
+    "sections": [],
+    "facts": [
+      "The name Qin is usually said like “chin” in English."
+    ],
+    "terms": [
+      "dynasty",
+      "empire"
+    ],
+    "questions": [
+      {
+        "text": "What did the First Emperor place near his burial site?",
+        "target": "terracotta-army"
+      },
+      {
+        "text": "What happened to early frontier walls under the Qin?",
+        "target": "great-wall-china"
+      },
+      {
+        "text": "Which long dynasty followed the Qin?",
+        "target": "han-china"
+      }
+    ],
+    "sources": [
+      "history-china",
+      "history-qin",
+      "history-wall"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "terracotta-army",
+    "title": "Why are there clay soldiers near an emperor’s tomb?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "The First Emperor of Qin had a huge burial site built near what is now Xi’an. People shaped and fired clay figures of soldiers, horses, and other members of his court. Rows of these figures stood in pits outside the mound holding his tomb. Many figures are close to life-size. Their different hair, faces, and armor help visitors imagine an army made up of individual people. Workers digging a well found pieces of the figures in 1974.",
+    "aliases": [
+      "terracotta warriors",
+      "china clay soldiers",
+      "who built terracotta army"
+    ],
+    "sections": [],
+    "facts": [
+      "Archaeologists have found thousands of clay figures at the burial complex, along with other objects."
+    ],
+    "terms": [
+      "terracotta",
+      "archaeologist"
+    ],
+    "questions": [
+      {
+        "text": "Who was the ruler buried with the clay figures?",
+        "target": "qin-china"
+      },
+      {
+        "text": "How did an Egyptian ruler plan a different kind of giant tomb?",
+        "target": "great-pyramid"
+      },
+      {
+        "text": "What can rows of carved people at a Persian palace show?",
+        "target": "persepolis"
+      }
+    ],
+    "sources": [
+      "history-qin"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "great-wall-china",
+    "title": "Why did people build the Great Wall of China?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Rulers in different periods built walls, gates, and towers along parts of China’s northern frontier. Walls could slow a raid and guide people toward guarded crossings. The first Qin emperor joined some earlier defenses, but builders changed and extended walls over many centuries. Some well-known brick and stone stretches were built under the Ming. Other sections used packed earth. Looking at the Great Wall today is like looking at many building projects from different times in one landscape.",
+    "aliases": [
+      "great wall of china",
+      "why was great wall built",
+      "ming dynasty wall"
+    ],
+    "sections": [],
+    "facts": [
+      "The Great Wall includes branches and separate sections built in different places and periods."
+    ],
+    "terms": [
+      "boundary",
+      "dynasty"
+    ],
+    "questions": [
+      {
+        "text": "Which emperor linked earlier defenses after unifying states?",
+        "target": "qin-china"
+      },
+      {
+        "text": "Why would travelers need to pass through guarded routes on a long journey?",
+        "target": "silk-roads"
+      },
+      {
+        "text": "What was built to guard the Qin emperor’s tomb?",
+        "target": "terracotta-army"
+      }
+    ],
+    "sources": [
+      "history-wall",
+      "history-qin"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "han-china",
+    "title": "What changed in China during the Han dynasty?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "The Han dynasty ruled for about four hundred years, with an interruption, after the Qin. Government officers kept written records and helped run provinces far from the main cities. Some rulers sent envoys west, and contacts with Central Asia grew. People in different regions exchanged goods such as silk and horses. The historian Sima Qian wrote a wide account of earlier rulers and events. Later readers could use works like his to learn how people thought about the past.",
+    "aliases": [
+      "han dynasty china",
+      "china dynasty after qin",
+      "sima qian han"
+    ],
+    "sections": [],
+    "facts": [
+      "The Han began in the late third century BCE and ended in 220 CE."
+    ],
+    "terms": [
+      "dynasty",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "How had the Qin brought different states under one ruler?",
+        "target": "qin-china"
+      },
+      {
+        "text": "What kinds of people and goods traveled along routes to the west?",
+        "target": "silk-roads"
+      },
+      {
+        "text": "What kinds of records tell us about a much earlier dynasty?",
+        "target": "shang-china"
+      }
+    ],
+    "sources": [
+      "history-china",
+      "history-silk"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "silk-roads",
+    "title": "Why do people call many routes the Silk Roads?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "The Silk Roads were linked routes between parts of Asia and places farther west. Travelers could choose different roads depending on the season, water, or who controlled a pass. A merchant often took a load only as far as the next town or market. Another person might carry it on from there. Silk was one famous trade good, but travelers also brought new ideas, stories, foods, and ways of making things. Exchange could continue even when particular routes became hard to use.",
+    "aliases": [
+      "what was the silk road",
+      "silk roads trade routes",
+      "how did silk travel"
+    ],
+    "sections": [],
+    "facts": [
+      "Some of the routes crossed deserts and high mountains, where travelers needed stopping places with water."
+    ],
+    "terms": [
+      "caravan",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "What helped open connections from Han China toward Central Asia?",
+        "target": "han-china"
+      },
+      {
+        "text": "What was it like at a capital near the eastern end of many routes?",
+        "target": "tang-china"
+      },
+      {
+        "text": "How did other caravans carry goods across the Sahara?",
+        "target": "mali-empire"
+      }
+    ],
+    "sources": [
+      "history-silk",
+      "history-china"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tang-china",
+    "title": "Why did travelers come to the Tang capital?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "During the Tang dynasty, Chang’an was a large capital with ordered streets and busy markets. Officials, traders, and travelers arrived from far apart places. Some foreign goods entered the city through trade routes across Asia. Artists pictured traveling musicians, horses, and merchants in objects that survive today. Goods moved outward too. Looking at the different people and things shown in Tang art helps us see a city where cultures kept meeting as people traded and traveled.",
+    "aliases": [
+      "tang dynasty china",
+      "what was chang an like",
+      "ancient xian tang capital"
+    ],
+    "sections": [],
+    "facts": [
+      "Chang’an stood near modern Xi’an, a city in central China."
+    ],
+    "terms": [
+      "dynasty",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which routes carried travelers and goods toward Chang’an?",
+        "target": "silk-roads"
+      },
+      {
+        "text": "What kinds of work grew in cities under the Song dynasty?",
+        "target": "song-china"
+      },
+      {
+        "text": "What older discovery was made near the same modern city?",
+        "target": "terracotta-army"
+      }
+    ],
+    "sources": [
+      "history-tang",
+      "history-silk",
+      "history-qin"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "song-china",
+    "title": "How did cities change in Song China?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "During the Song dynasty, people in Chinese cities bought goods from shops and markets and read books printed in growing numbers. Printing with carved blocks let a maker produce many pages from the same design. Shops, workshops, and travel also helped new ways of doing jobs reach more people. Meanwhile painters studied details such as trees and streams, or made pictures of busy city life. Art and records from the period show how closely merchants, craftspeople, and city families depended on one another.",
+    "aliases": [
+      "song dynasty china",
+      "song china inventions",
+      "song era printing and markets"
+    ],
+    "sections": [],
+    "facts": [
+      "Northern Song rulers governed from Kaifeng before the dynasty’s court moved south."
+    ],
+    "terms": [
+      "dynasty",
+      "printmaking"
+    ],
+    "questions": [
+      {
+        "text": "How can the same carved block make several prints?",
+        "target": "woodcut-printing"
+      },
+      {
+        "text": "What was life like in an earlier Chinese capital?",
+        "target": "tang-china"
+      },
+      {
+        "text": "Which empire later ruled all of China?",
+        "target": "mongol-empire"
+      }
+    ],
+    "sources": [
+      "history-song",
+      "history-china"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mongol-empire",
+    "title": "How did the Mongol Empire connect distant places?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Chinggis Khan united many groups on the grasslands of Inner Asia early in the thirteenth century. He and the rulers who followed him took control of lands far beyond those grasslands. For many communities the fighting brought harm. Under Mongol rule, some roads also carried more diplomats, craftspeople, travelers, and merchants moving among regions. As the empire grew, different branches of the ruling family governed different parts of it. One branch founded the Yuan dynasty in China.",
+    "aliases": [
+      "genghis khan mongol empire",
+      "who were mongols",
+      "what was yuan dynasty"
+    ],
+    "sections": [],
+    "facts": [
+      "Chinggis Khan and Genghis Khan are different spellings of the same title."
+    ],
+    "terms": [
+      "empire",
+      "dynasty"
+    ],
+    "questions": [
+      {
+        "text": "How were the overland routes connected before and after the Mongols?",
+        "target": "silk-roads"
+      },
+      {
+        "text": "What dynasty came before the Yuan in southern China?",
+        "target": "song-china"
+      },
+      {
+        "text": "How had an earlier wide empire governed many regions?",
+        "target": "achaemenid-persia"
+      }
+    ],
+    "sources": [
+      "history-mongol",
+      "history-china"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "kingdom-of-kush",
+    "title": "What was the Kingdom of Kush?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Kush was a kingdom farther up the Nile from Egypt, in what is now Sudan. People there built towns, temples, and burial places. At times Kush and Egypt traded, and at other times their rulers fought for land. Kushite kings even ruled Egypt for a period. Later, Meroë became an important Kushite center. Its small, steep pyramids and decorated chapels show how builders used ideas from the Nile region and made buildings with their own shapes and details.",
+    "aliases": [
+      "ancient nubia kush",
+      "who were kushites",
+      "pyramids in sudan"
+    ],
+    "sections": [],
+    "facts": [
+      "The Nile runs through lands that once belonged to both the Kingdom of Kush and ancient Egypt."
+    ],
+    "terms": [
+      "pharaoh",
+      "civilization"
+    ],
+    "questions": [
+      {
+        "text": "How did people farther down the Nile depend on the river?",
+        "target": "ancient-egypt"
+      },
+      {
+        "text": "How do the large Egyptian pyramids compare with Kushite graves?",
+        "target": "great-pyramid"
+      },
+      {
+        "text": "What was another powerful center in northeastern Africa?",
+        "target": "aksum"
+      }
+    ],
+    "sources": [
+      "history-meroe"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "aksum",
+    "title": "How did Aksum become a powerful trading kingdom?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Aksum was a center of an ancient kingdom in what is now northern Ethiopia. Its routes linked highland towns with ports and the wider trade of the Red Sea. Merchants could carry goods across warm lowlands and over the water toward Arabia and the Mediterranean world. Aksumite rulers made coins and raised tall carved stone monuments. Some monuments still stand where they were set up, so archaeologists can study what their size and position tell us about the people who built them.",
+    "aliases": [
+      "aksum ethiopia ancient kingdom",
+      "what was axum",
+      "aksumite stelae"
+    ],
+    "sections": [],
+    "facts": [
+      "Some carved monuments at Aksum look like tall buildings with several floors."
+    ],
+    "terms": [
+      "stele",
+      "currency"
+    ],
+    "questions": [
+      {
+        "text": "Where did another African kingdom grow along the Nile?",
+        "target": "kingdom-of-kush"
+      },
+      {
+        "text": "How did a North African harbor city benefit from trade by sea?",
+        "target": "carthage"
+      },
+      {
+        "text": "What other stone buildings reveal old African trade links?",
+        "target": "great-zimbabwe"
+      }
+    ],
+    "sources": [
+      "history-aksum",
+      "history-aksum-trade"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mali-empire",
+    "title": "How did trade help the Mali Empire grow?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "The Mali Empire grew in West Africa along routes that linked regions with very different useful goods. Gold came from parts of West Africa, and salt could be brought from mines in the Sahara. Caravans carried loads between markets, and rulers gained power by protecting trade and collecting part of its value. Towns could grow as schools, religious buildings, and markets drew people in. Stories and written records make Mali especially well known during the rule of Mansa Musa.",
+    "aliases": [
+      "ancient mali empire",
+      "gold and salt trade west africa",
+      "why was mali rich"
+    ],
+    "sections": [],
+    "facts": [
+      "Mali grew into a major regional power from the thirteenth century onward."
+    ],
+    "terms": [
+      "empire",
+      "caravan"
+    ],
+    "questions": [
+      {
+        "text": "Why did people far outside Mali hear about its ruler?",
+        "target": "mansa-musa"
+      },
+      {
+        "text": "How could a town become a center for books and learning?",
+        "target": "timbuktu"
+      },
+      {
+        "text": "What trade routes also linked places across deserts and mountains?",
+        "target": "silk-roads"
+      }
+    ],
+    "sources": [
+      "history-mali",
+      "history-mali-caravans",
+      "history-timbuktu"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mansa-musa",
+    "title": "Why did Mansa Musa travel across Africa?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Mansa Musa was a ruler of the Mali Empire. In the 1300s he went on pilgrimage to Mecca, a city important to Muslims. His group crossed the Sahara and spent time in Cairo. Stories about the visit describe how gifts and spending revealed the wealth of Mali to people far from the empire. Accounts of the trip traveled far, and a mapmaker in Europe later pictured Mansa Musa holding gold.",
+    "aliases": [
+      "who was mansa musa",
+      "mali emperor pilgrimage",
+      "mansa musa mecca"
+    ],
+    "sections": [],
+    "facts": [
+      "The Catalan Atlas, a map made in the late 1300s, shows Mansa Musa holding a piece of gold."
+    ],
+    "terms": [
+      "pilgrimage",
+      "empire"
+    ],
+    "questions": [
+      {
+        "text": "Where did some of Mali’s wealth come from?",
+        "target": "mali-empire"
+      },
+      {
+        "text": "What drew scholars to a town near the desert routes?",
+        "target": "timbuktu"
+      },
+      {
+        "text": "How can a map show where far-apart places are?",
+        "target": "latitude"
+      }
+    ],
+    "sources": [
+      "history-mali",
+      "history-mali-caravans"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "timbuktu",
+    "title": "Why did Timbuktu become a center for books?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Timbuktu grew near a point where desert travelers could connect with routes into West Africa. Markets brought people to the town, and scholars came to teach and study. Students might work with lessons about law, faith, language, or other subjects. People copied books by hand and kept them in family or school collections. Timbuktu is especially known for its mosques and earthen buildings. They are part of a living city, where people still care for buildings and older writings.",
+    "aliases": [
+      "timbuktu manuscripts",
+      "timbuktu center of learning",
+      "timbuktu old books"
+    ],
+    "sections": [],
+    "facts": [
+      "Timbuktu is in present-day Mali, south of the Sahara Desert."
+    ],
+    "terms": [
+      "library",
+      "archive"
+    ],
+    "questions": [
+      {
+        "text": "How did the Mali Empire grow around trade routes?",
+        "target": "mali-empire"
+      },
+      {
+        "text": "Which ruler’s journey made Mali widely known?",
+        "target": "mansa-musa"
+      },
+      {
+        "text": "How does a large modern library make knowledge easier to find?",
+        "target": "library-of-congress"
+      }
+    ],
+    "sources": [
+      "history-timbuktu",
+      "history-mali-caravans"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "great-zimbabwe",
+    "title": "What do the stone walls at Great Zimbabwe tell us?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Great Zimbabwe was an important city in southern Africa several centuries ago. Skilled builders stacked carefully fitted stone in thick walls. Curved passages and spaces inside the walls show how they shaped pathways and rooms without a simple square plan. Archaeologists also found goods made far away. Those finds show that the city took part in trade networks reaching beyond southern Africa. The standing walls and the small objects together tell a richer story than either alone.",
+    "aliases": [
+      "great zimbabwe stone ruins",
+      "who built great zimbabwe",
+      "great enclosure"
+    ],
+    "sections": [],
+    "facts": [
+      "The large stone enclosure was built without mortar holding the blocks together."
+    ],
+    "terms": [
+      "archaeologist",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "How do coins and stone monuments tell the story of Aksum?",
+        "target": "aksum"
+      },
+      {
+        "text": "What other African center gathered wealth through trade?",
+        "target": "mali-empire"
+      },
+      {
+        "text": "Why might people build a stone structure that is bigger than everyday houses?",
+        "target": "persepolis"
+      }
+    ],
+    "sources": [
+      "history-zimbabwe"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "maya-civilization",
+    "title": "How did the ancient Maya organize their cities?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Ancient Maya people built cities across parts of what are now Mexico and Central America. Each city and the lands around it could have its own ruler. Rulers built temples and palaces around open spaces and had writers record dates and events. Neighboring cities might trade or form friendships, then compete or fight at other times. Cities changed as people moved, and some lost their importance. Maya people, languages, and traditions are still part of life in the region today.",
+    "aliases": [
+      "ancient maya civilization",
+      "who were the maya",
+      "did the maya disappear"
+    ],
+    "sections": [],
+    "facts": [
+      "Tikal was among the large ancient Maya cities."
+    ],
+    "terms": [
+      "city-state",
+      "civilization"
+    ],
+    "questions": [
+      {
+        "text": "What was built in the city of Tikal?",
+        "target": "tikal"
+      },
+      {
+        "text": "How did the Maya put words and dates on stone?",
+        "target": "maya-writing"
+      },
+      {
+        "text": "How did people track different cycles of days?",
+        "target": "maya-calendar"
+      }
+    ],
+    "sources": [
+      "history-americas",
+      "history-tikal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "maya-writing",
+    "title": "How did Maya writers put sounds and words into pictures?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "Ancient Maya writing used signs called glyphs. A glyph might stand for a whole word, or it might stand for a sound like the beginning of a word. Different signs can fit into one block. Imagine solving a tiny puzzle in which the writer left clues about both the word and how to pronounce it. Maya artists wrote on stone, pottery, and in books. Some records describe when important events happened and who took part in them.",
+    "aliases": [
+      "maya hieroglyphs",
+      "how did maya writing work",
+      "maya glyph blocks"
+    ],
+    "sections": [],
+    "facts": [
+      "Maya writing combined whole-word signs and signs for syllables."
+    ],
+    "terms": [
+      "glyph",
+      "syllable"
+    ],
+    "questions": [
+      {
+        "text": "How could a writer give the date of an event?",
+        "target": "maya-calendar"
+      },
+      {
+        "text": "How did Egyptian picture-like signs also stand for sounds?",
+        "target": "hieroglyphs"
+      },
+      {
+        "text": "What ancient signs are still waiting for a widely accepted reading?",
+        "target": "indus-seals"
+      }
+    ],
+    "sources": [
+      "history-maya-writing",
+      "history-americas"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "maya-calendar",
+    "title": "Why did Maya people use more than one calendar?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Maya people kept track of several cycles of time. One calendar counted 365 days. Another repeated after 260 days and was important for religious life. A day could have a place in both cycles at once, a little like having both a weekday and a date on your calendar. A separate system called the Long Count recorded dates over much longer times. Multiple systems let people record familiar cycles and also describe events far back in time.",
+    "aliases": [
+      "maya calendar long count",
+      "haab and tzolkin",
+      "why did the maya have more than one calendar"
+    ],
+    "sections": [],
+    "facts": [
+      "The same pairing of dates in the 260-day and 365-day cycles returns after about 52 of the longer years."
+    ],
+    "terms": [
+      "glyph",
+      "notation"
+    ],
+    "questions": [
+      {
+        "text": "How were the signs for dates written?",
+        "target": "maya-writing"
+      },
+      {
+        "text": "What kinds of communities used these calendars?",
+        "target": "maya-civilization"
+      },
+      {
+        "text": "Why do many calendars count a year of about 365 days?",
+        "target": "seasons"
+      }
+    ],
+    "sources": [
+      "history-maya-calendar",
+      "history-maya-writing"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chichen-itza",
+    "title": "What can the buildings at Chichén Itzá tell us?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Chichén Itzá was a major city in the northern Yucatán region, in what is now Mexico. Builders raised a stepped temple often called El Castillo. They also made a large court where a ball game could be played. Other buildings had columns, carved animals, and signs. Some parts look like buildings elsewhere in the region, while others show ideas connected with places farther away. The buildings let us compare where people met, what they built, and which ideas they shared.",
+    "aliases": [
+      "chichen itza",
+      "kukulkan temple maya pyramid",
+      "what is el castillo in mexico"
+    ],
+    "sections": [],
+    "facts": [
+      "A natural water-filled opening called the Sacred Cenote lies near the main buildings."
+    ],
+    "terms": [
+      "archaeologist",
+      "city-state"
+    ],
+    "questions": [
+      {
+        "text": "What kinds of communities built Maya cities?",
+        "target": "maya-civilization"
+      },
+      {
+        "text": "How do the temples and squares at Tikal compare?",
+        "target": "tikal"
+      },
+      {
+        "text": "How did an Egyptian pyramid serve a different purpose?",
+        "target": "great-pyramid"
+      }
+    ],
+    "sources": [
+      "history-chichen"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tikal",
+    "title": "What did people build at Tikal?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Tikal was a large Maya city within the forest of what is now northern Guatemala. Its builders set steep temples and other large buildings around open squares. Stone stairs climbed above the trees. Away from the biggest buildings, people also built homes and worked the land. Centuries later, forest covered parts of the city. Archaeologists use buildings, pieces of pottery, and carved records to study Tikal as a place where people lived as well as a place where leaders held ceremonies.",
+    "aliases": [
+      "ancient tikal",
+      "maya temples in guatemala",
+      "tikal ruins"
+    ],
+    "sections": [],
+    "facts": [
+      "Tikal National Park now protects both the ancient site and part of the surrounding forest."
+    ],
+    "terms": [
+      "city-state",
+      "archaeologist"
+    ],
+    "questions": [
+      {
+        "text": "How did Maya cities fit into the wider region?",
+        "target": "maya-civilization"
+      },
+      {
+        "text": "What kinds of marks recorded Maya events?",
+        "target": "maya-writing"
+      },
+      {
+        "text": "What different buildings survive at another Maya city?",
+        "target": "chichen-itza"
+      }
+    ],
+    "sources": [
+      "history-tikal",
+      "history-americas"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tenochtitlan",
+    "title": "How did a city grow on a lake?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Tenochtitlan was the Aztec capital. It grew on islands and shallow land in a lake where Mexico City stands today. Roads built above the water connected it with the shore. Canoes could carry people and loads along canals. The nearby market at Tlatelolco brought many kinds of goods and people together. Water made travel possible as well as difficult, so people used roads, canals, and gardens in different ways. The city fell to Spanish forces and their Indigenous allies in 1521.",
+    "aliases": [
+      "aztec capital",
+      "tenochtitlan city on a lake",
+      "where was lake texcoco city"
+    ],
+    "sections": [],
+    "facts": [
+      "The main Aztec temple area is called the Templo Mayor."
+    ],
+    "terms": [
+      "capital",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "How could people grow food among canals and shallow water?",
+        "target": "chinampas"
+      },
+      {
+        "text": "How were Maya cities organized in a different part of the region?",
+        "target": "maya-civilization"
+      },
+      {
+        "text": "Where is Mexico City today?",
+        "target": "mexico"
+      }
+    ],
+    "sources": [
+      "history-teno",
+      "history-chinampa"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chinampas",
+    "title": "How can you build a garden in shallow water?",
+    "category": "agriculture-food",
+    "priority": 1,
+    "answer": "In the lakes near the old Aztec capital, farmers made raised beds called chinampas. Mud and plant material helped build up long plots with canals between them. Trees along the edge could help keep the beds in place. Farmers reached the plots by boat, and water nearby helped them grow crops. Chinampas look like islands from the canals, but the beds are built up from the bottom rather than floating. People still care for some of these gardens in Mexico City.",
+    "aliases": [
+      "floating gardens aztecs",
+      "how were chinampas built",
+      "xochimilco gardens"
+    ],
+    "sections": [],
+    "facts": [
+      "Xochimilco has working chinampas as well as canals."
+    ],
+    "terms": [
+      "chinampa",
+      "irrigation"
+    ],
+    "questions": [
+      {
+        "text": "What city used canals, roads, and gardens together?",
+        "target": "tenochtitlan"
+      },
+      {
+        "text": "Why was maize an important crop in early American farming?",
+        "target": "maize"
+      },
+      {
+        "text": "What other ways can farmers get water to crops?",
+        "target": "irrigation"
+      }
+    ],
+    "sources": [
+      "history-chinampa",
+      "history-teno"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "inca-empire",
+    "title": "How did the Inca rule across the Andes?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "The Inca Empire stretched along the Andes of western South America before Spanish conquest. Its rulers governed from Cusco and linked many communities with roads. Travelers crossed steep valleys, mountain slopes, and drier regions. Workers built stairs, walls, and bridges that fit different places. Storehouses along routes held goods for people working or traveling on behalf of the empire. The roads could help people move, but the growing empire also expected communities it ruled to provide work and supplies.",
+    "aliases": [
+      "inca civilization",
+      "inka empire andes",
+      "how did the incas rule"
+    ],
+    "sections": [],
+    "facts": [
+      "The empire included places in several of today’s South American countries."
+    ],
+    "terms": [
+      "empire",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "How did the Inca build routes over such difficult land?",
+        "target": "inka-road"
+      },
+      {
+        "text": "How could people record the amount they had stored?",
+        "target": "quipus"
+      },
+      {
+        "text": "What did people build on one Inca mountaintop?",
+        "target": "machu-picchu"
+      }
+    ],
+    "sources": [
+      "history-inka",
+      "history-machu"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "inka-road",
+    "title": "How could people travel the Inca road without modern machines?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "The Inca connected many existing routes and built new roads through western South America. Builders used stone steps or walls where a path climbed a slope. At some deep river crossings, bridges made from woven fibers gave travelers a way across. Runners could carry a message from one stopping point to the next, and llamas could carry loads. The network mattered because its builders found different ways to fit a road to mountains, valleys, and dry places.",
+    "aliases": [
+      "great inka road",
+      "inca roads bridges messengers",
+      "what is qhapaq nan"
+    ],
+    "sections": [],
+    "facts": [
+      "Some communities still maintain traditional bridges along former Inca routes."
+    ],
+    "terms": [
+      "trade",
+      "empire"
+    ],
+    "questions": [
+      {
+        "text": "Why did the Inca need routes connecting many lands?",
+        "target": "inca-empire"
+      },
+      {
+        "text": "How did an empire far away also use roads to connect regions?",
+        "target": "roman-roads"
+      },
+      {
+        "text": "How did Inca builders shape the ground at a mountain site?",
+        "target": "machu-picchu"
+      }
+    ],
+    "sources": [
+      "history-inka"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "quipus",
+    "title": "How could knots record numbers?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "People in the Andes kept records using sets of cords called quipus. A main cord might hold many hanging cords. People could make different knots and put them at different heights. On some quipus, a knot’s position showed whether it counted ones, tens, or hundreds. Color and the way cords were grouped could add more information. Researchers can read numbers on many surviving quipus, but they are still learning what other features meant and how a trained reader used them.",
+    "aliases": [
+      "inca knot writing",
+      "quipu record keeping",
+      "how did khipu work"
+    ],
+    "sections": [],
+    "facts": [
+      "Some quipus have hundreds of cords, while others have far fewer."
+    ],
+    "terms": [
+      "quipu",
+      "notation"
+    ],
+    "questions": [
+      {
+        "text": "What kinds of supplies and work might an empire need to count?",
+        "target": "inca-empire"
+      },
+      {
+        "text": "How did a different culture make records with signs?",
+        "target": "maya-writing"
+      },
+      {
+        "text": "How can where a sign appears change the number it means?",
+        "target": "binary"
+      }
+    ],
+    "sources": [
+      "history-quipu",
+      "history-inka"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "machu-picchu",
+    "title": "How did Inca builders use a steep mountain ridge?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Machu Picchu is an Inca site high in the Andes of present-day Peru. Its builders made terraces to create level strips of land on steep slopes. Stairs connected buildings and paths at different heights. Carefully fitted stones form many of the walls. Water could follow channels rather than simply running wherever the rain took it. From far away, the buildings seem to match the outline of the ridge. Builders worked with the mountain’s shape as they made space to live and work.",
+    "aliases": [
+      "machu picchu architecture",
+      "inca mountain ruins",
+      "machu picchu farming terraces"
+    ],
+    "sections": [],
+    "facts": [
+      "Machu Picchu was built during the height of the Inca Empire in the fifteenth century."
+    ],
+    "terms": [
+      "terrace",
+      "archaeologist"
+    ],
+    "questions": [
+      {
+        "text": "What large empire included this mountain site?",
+        "target": "inca-empire"
+      },
+      {
+        "text": "How did people travel through the mountains?",
+        "target": "inka-road"
+      },
+      {
+        "text": "What other builders fitted stones together to make tall walls?",
+        "target": "great-zimbabwe"
+      }
+    ],
+    "sources": [
+      "history-machu",
+      "history-inka"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cahokia",
+    "title": "What was the city at Cahokia Mounds like?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Cahokia was a large Indigenous city near the Mississippi River, in what is now Illinois. Its people carried loads of soil to make raised mounds. Open spaces between some mounds gave people room to meet. Around these spaces were homes and areas for work. From the top of the largest mound, you could see far beyond the main plaza. Archaeologists study changes in the layout to learn how the city grew and how different spaces may have been used.",
+    "aliases": [
+      "cahokia mounds",
+      "ancient city near st louis",
+      "monks mound mississippian culture"
+    ],
+    "sections": [],
+    "facts": [
+      "Monks Mound is the biggest surviving mound at Cahokia."
+    ],
+    "terms": [
+      "archaeologist",
+      "civilization"
+    ],
+    "questions": [
+      {
+        "text": "How did other Indigenous builders make use of a different kind of land?",
+        "target": "mesa-verde"
+      },
+      {
+        "text": "How did a Maya city also use open plazas around tall buildings?",
+        "target": "tikal"
+      },
+      {
+        "text": "What crop helped support farming communities in the Americas?",
+        "target": "maize"
+      }
+    ],
+    "sources": [
+      "history-cahokia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mesa-verde",
+    "title": "How did people build homes inside cliffs at Mesa Verde?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Ancestral Pueblo people farmed and lived in the Mesa Verde region of what is now Colorado. Some later homes were tucked under wide shelves in sandstone cliffs. Builders set stone walls behind the cliff edge, where parts of the rock made a natural roof. They found ways to reach different rooms with paths and ladders. People lived in several kinds of homes in the region, and the cliff dwellings came late in a much longer period of community life.",
+    "aliases": [
+      "mesa verde national park history",
+      "ancestral pueblo cliff dwellings",
+      "who built cliff palace"
+    ],
+    "sections": [],
+    "facts": [
+      "Cliff Palace is one of the largest surviving cliff dwellings at Mesa Verde."
+    ],
+    "terms": [
+      "archaeologist",
+      "civilization"
+    ],
+    "questions": [
+      {
+        "text": "How did Indigenous builders use soil to reshape another site?",
+        "target": "cahokia"
+      },
+      {
+        "text": "How did people in the Andes also build around steep ground?",
+        "target": "machu-picchu"
+      },
+      {
+        "text": "How can rock wear away to make a natural shelter?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "history-mesa",
+      "history-cliff"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "minoan-crete",
+    "title": "Who built the large palaces of ancient Crete?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "The people we call Minoans lived on Crete thousands of years ago. They built large groups of rooms around open courts at places such as Knossos. The buildings held spaces for storage and work, so they were more than homes for wealthy people. Craftspeople painted walls and made objects that could be traded across the sea. Some of their writing survives. Archaeologists compare the buildings and objects to understand a society that left few written texts most people can read today.",
+    "aliases": [
+      "what was minoan civilization",
+      "knossos palace crete",
+      "minoan crete island"
+    ],
+    "sections": [],
+    "facts": [
+      "The name “Minoan” comes from Minos, a king in Greek stories."
+    ],
+    "terms": [
+      "civilization",
+      "archaeologist"
+    ],
+    "questions": [
+      {
+        "text": "Who built fortified centers on the nearby Greek mainland?",
+        "target": "mycenaean-greece"
+      },
+      {
+        "text": "What did later Greek communities build and trade?",
+        "target": "ancient-greece"
+      },
+      {
+        "text": "What other ruins show rooms and squares used for different jobs?",
+        "target": "tikal"
+      }
+    ],
+    "sources": [
+      "history-minoan",
+      "history-greek-timeline"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mycenaean-greece",
+    "title": "What do the walls of Mycenae tell us?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Mycenae was a wealthy center on the Greek mainland in the late Bronze Age. Builders used very large stones in its walls. Above the main gate, a carving shows two lionlike animals standing on either side of a column. The settlement had a palace and important graves. Records at several Mycenaean sites used marks called Linear B, an early way to write Greek. The walls and writing help us learn about leaders who lived centuries before the best-known Greek city-states.",
+    "aliases": [
+      "mycenaean civilization",
+      "lion gate mycenae",
+      "linear b ancient greece"
+    ],
+    "sections": [],
+    "facts": [
+      "A similar fortified site called Tiryns is near Mycenae."
+    ],
+    "terms": [
+      "archaeologist",
+      "inscription"
+    ],
+    "questions": [
+      {
+        "text": "What kinds of buildings came earlier on the island of Crete?",
+        "target": "minoan-crete"
+      },
+      {
+        "text": "How did cities in later Greece govern themselves?",
+        "target": "ancient-greece"
+      },
+      {
+        "text": "What other signs have been kept on ancient objects?",
+        "target": "indus-seals"
+      }
+    ],
+    "sources": [
+      "history-mycenae",
+      "history-greek-timeline"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "roman-republic",
+    "title": "How did Rome govern itself before its emperors?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "For several centuries Rome called itself a republic. Instead of having one king with the job for life, Rome used elected officials with shorter terms. Two officials called consuls usually held the top job at the same time. The Senate had great influence, and different groups of citizens voted in assemblies. Women, enslaved people, and many other people who lived under Roman rule did not have those voting rights. After years of conflict, Augustus gained power and Rome entered the age of emperors.",
+    "aliases": [
+      "roman republic senate consuls",
+      "how did the roman republic work",
+      "rome before emperors"
+    ],
+    "sections": [],
+    "facts": [
+      "The Roman Senate continued to meet even after emperors began to rule."
+    ],
+    "terms": [
+      "republic",
+      "representative"
+    ],
+    "questions": [
+      {
+        "text": "What changed after Augustus gained power in Rome?",
+        "target": "roman-empire"
+      },
+      {
+        "text": "How does a modern elected legislature work?",
+        "target": "us-congress"
+      },
+      {
+        "text": "How did some ancient Greek cities give citizens a vote?",
+        "target": "ancient-greece"
+      }
+    ],
+    "sources": [
+      "history-roman-republic",
+      "history-roman"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "roman-empire",
+    "title": "How did Rome govern lands far beyond Italy?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Augustus gained control of Rome and its lands more than two thousand years ago. Rome’s empire stretched across large parts of Europe, western Asia, and northern Africa. Governors and other officials helped run provinces. Roads and ports made it easier to send messages, goods, and officials between places. People spoke many languages and kept different local customs. Some cities copied Roman building styles, while each region’s older traditions continued to shape daily life. The empire changed over the centuries as its rulers and borders changed.",
+    "aliases": [
+      "ancient roman empire",
+      "who was augustus",
+      "what lands did ancient rome rule"
+    ],
+    "sections": [],
+    "facts": [
+      "Augustus is usually counted as Rome’s first emperor."
+    ],
+    "terms": [
+      "empire",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "How had Rome been governed before Augustus?",
+        "target": "roman-republic"
+      },
+      {
+        "text": "How did Rome build roads across different land?",
+        "target": "roman-roads"
+      },
+      {
+        "text": "Why did a later Roman emperor build up a new capital far to the east?",
+        "target": "constantinople"
+      }
+    ],
+    "sources": [
+      "history-roman",
+      "history-byzantium"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pompeii",
+    "title": "Why can people still see streets and houses at Pompeii?",
+    "category": "ancient-history",
+    "priority": 1,
+    "answer": "Pompeii was a town near Mount Vesuvius in what is now Italy. In 79 CE the volcano erupted, and ash and other material covered the town. The buried rooms, walls, and streets stayed hidden for centuries. By uncovering them, researchers found buildings and everyday objects that might otherwise have been lost. A shop counter or a painted wall can give a clue about how people worked or spent their time. Archaeologists still take care when uncovering and protecting the fragile remains.",
+    "aliases": [
+      "pompeii volcano buried city",
+      "mount vesuvius and pompeii",
+      "why is pompeii preserved"
+    ],
+    "sections": [],
+    "facts": [
+      "Vesuvius also buried the nearby town of Herculaneum."
+    ],
+    "terms": [
+      "archaeologist",
+      "volcano"
+    ],
+    "questions": [
+      {
+        "text": "What happens when a volcano erupts?",
+        "target": "volcanoes"
+      },
+      {
+        "text": "What empire included Pompeii in 79 CE?",
+        "target": "roman-empire"
+      },
+      {
+        "text": "How can a museum care for objects from the past?",
+        "target": "museums"
+      }
+    ],
+    "sources": [
+      "history-pompeii"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "colosseum",
+    "title": "How did builders fit a huge crowd into the Colosseum?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Rome’s Colosseum was an oval arena with rows of seats rising around the central floor. Visitors entered through many ground-level openings. Stairways and paths led up to seating areas, making it possible for people to reach different parts of the building. Arches helped support the upper levels. Ancient Romans went there for public shows, including contests. The building changed after the Roman Empire’s ancient shows ended, and people later used some of the spaces under the seats for other things.",
+    "aliases": [
+      "roman colosseum amphitheater",
+      "why did colosseum have arches",
+      "what was colosseum used for"
+    ],
+    "sections": [],
+    "facts": [
+      "The Colosseum is also known as the Flavian Amphitheater."
+    ],
+    "terms": [
+      "amphitheater",
+      "arch"
+    ],
+    "questions": [
+      {
+        "text": "Which empire built the Colosseum?",
+        "target": "roman-empire"
+      },
+      {
+        "text": "Where else did Roman builders use rows of arches?",
+        "target": "roman-aqueducts"
+      },
+      {
+        "text": "What is another kind of space built for public contests?",
+        "target": "chichen-itza"
+      }
+    ],
+    "sources": [
+      "history-colosseum",
+      "history-roman"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "khmer-angkor",
+    "title": "How did water shape the city of Angkor?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Angkor grew in a part of Southeast Asia where rain changes greatly between seasons. Khmer builders made channels and wide places that could hold water. They also set roads and temples within this large network. Archaeologists study old water routes to learn how farms and neighborhoods fit together, although experts still discuss just how different parts worked. Angkor covered much more land than the temples most visitors see. Its waterways and remains of settlement show what it took to support a large community.",
+    "aliases": [
+      "khmer empire angkor water",
+      "why did angkor build reservoirs",
+      "ancient cambodia angkor"
+    ],
+    "sections": [],
+    "facts": [
+      "Angkor was home to a series of Khmer capitals in what is now Cambodia."
+    ],
+    "terms": [
+      "canal",
+      "irrigation"
+    ],
+    "questions": [
+      {
+        "text": "What is one of the best-known buildings in this large area?",
+        "target": "angkor-wat"
+      },
+      {
+        "text": "How did another early city manage and move water?",
+        "target": "mohenjo-daro"
+      },
+      {
+        "text": "Why might a farmer need to guide water into fields?",
+        "target": "irrigation"
+      }
+    ],
+    "sources": [
+      "history-angkor",
+      "history-angkor-art"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "angkor-wat",
+    "title": "What makes the design of Angkor Wat unusual?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Angkor Wat is a large Khmer temple in Cambodia. A wide water-filled moat surrounds its grounds. From the main path, visitors can see stone towers rising above several levels of covered walkways. Long carvings on the walls tell stories in pictures. Its builders once dedicated it as a Hindu temple, and it later became a Buddhist place of worship. The temple is part of a much bigger historic landscape that includes roads, water systems, and remains of other buildings.",
+    "aliases": [
+      "what is angkor wat",
+      "khmer temple cambodia",
+      "who built angkor wat"
+    ],
+    "sections": [],
+    "facts": [
+      "Angkor Wat was built in the twelfth century under King Suryavarman II."
+    ],
+    "terms": [
+      "archaeologist",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Where does Angkor Wat fit into the wider Khmer city?",
+        "target": "khmer-angkor"
+      },
+      {
+        "text": "How did another important historic building change use over time?",
+        "target": "hagia-sophia"
+      },
+      {
+        "text": "How could walls and stairways carry stories in carved figures?",
+        "target": "persepolis"
+      }
+    ],
+    "sources": [
+      "history-angkor",
+      "history-angkor-art"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "constantinople",
+    "title": "Why did Constantinople become an important city?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Constantinople stood beside the Bosporus, a narrow waterway connecting larger seas between Europe and Asia. That position brought ships and trade near the city. The Roman emperor Constantine made it an imperial capital in the fourth century. Even after Roman rule in western Europe changed, emperors continued to govern from Constantinople. Historians often call their state the Byzantine Empire. The city’s location helped it stay important under later rulers too, and it is now known as Istanbul.",
+    "aliases": [
+      "byzantine empire constantinople",
+      "why was constantinople important",
+      "what was istanbul called"
+    ],
+    "sections": [],
+    "facts": [
+      "The Ottoman Empire captured Constantinople in 1453."
+    ],
+    "terms": [
+      "capital",
+      "empire"
+    ],
+    "questions": [
+      {
+        "text": "What earlier empire did Constantine rule?",
+        "target": "roman-empire"
+      },
+      {
+        "text": "What building still shows the skills of Byzantine builders?",
+        "target": "hagia-sophia"
+      },
+      {
+        "text": "What other city became powerful near Mediterranean sea routes?",
+        "target": "carthage"
+      }
+    ],
+    "sources": [
+      "history-byzantium",
+      "history-istanbul"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hagia-sophia",
+    "title": "How does Hagia Sophia hold up its great dome?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Hagia Sophia is a historic building in Istanbul. Its builders had to fit a curved dome above a room with a square central space. Four broad arches and curved sections between them helped form a round base above the square. Visitors can see a ring of windows under the dome. The building opened as a church in the sixth century, then later served as a mosque and a museum. It is used as a mosque today.",
+    "aliases": [
+      "hagia sophia architecture",
+      "what is ayasofya",
+      "who built hagia sophia dome"
+    ],
+    "sections": [],
+    "facts": [
+      "The present building dates from the rule of the Byzantine emperor Justinian, although parts were repaired or rebuilt later."
+    ],
+    "terms": [
+      "dome",
+      "arch"
+    ],
+    "questions": [
+      {
+        "text": "Why did Byzantine emperors build in Constantinople?",
+        "target": "constantinople"
+      },
+      {
+        "text": "How did Roman builders use arches in a very different building?",
+        "target": "colosseum"
+      },
+      {
+        "text": "How did another historic place of worship change over time?",
+        "target": "angkor-wat"
+      }
+    ],
+    "sources": [
+      "history-istanbul",
+      "history-byzantium"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "viking-age",
+    "title": "What did people do during the Viking Age?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "During the Viking Age, people from parts of northern Europe traveled far by boat. Some raided towns, and others came to trade or settle. The same person or group might do different things on different trips. Many people stayed near home, where they farmed, cooked, repaired tools, and raised families. The things archaeologists find can show an ordinary day as well as an unusual journey. Coins and tools from different lands are clues that distant places were connected.",
+    "aliases": [
+      "who were the vikings",
+      "what was viking age",
+      "what did norse people do"
+    ],
+    "sections": [],
+    "facts": [
+      "The Viking Age is often dated from the late 700s to the middle or late 1000s in Europe."
+    ],
+    "terms": [
+      "trade",
+      "archaeologist"
+    ],
+    "questions": [
+      {
+        "text": "What made some Viking ships quick and useful near coasts?",
+        "target": "viking-longships"
+      },
+      {
+        "text": "How do we know Norse travelers reached North America?",
+        "target": "lanse-aux-meadows"
+      },
+      {
+        "text": "What are some ways people made trade journeys across land instead?",
+        "target": "silk-roads"
+      }
+    ],
+    "sources": [
+      "history-vikings",
+      "history-meadows"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "viking-longships",
+    "title": "How could Viking longships travel by sail or by oar?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "Some Viking Age sailors used long, narrow boats moved by a sail or by oars. A crew could row if the wind did not help, and it could use the sail for longer trips in a favorable wind. The shallow hull let certain boats work close to land and enter smaller waterways. Other ships had wider bodies for carrying heavier goods. Archaeologists can study pieces of surviving ships to see how the wood and fittings once held the boat together.",
+    "aliases": [
+      "viking longship design",
+      "why did viking ships use oars",
+      "norse boats"
+    ],
+    "sections": [],
+    "facts": [
+      "One small longship preserved in Denmark had room for a crew to row along both sides."
+    ],
+    "terms": [
+      "longship",
+      "archaeologist"
+    ],
+    "questions": [
+      {
+        "text": "What kinds of trips did people make in the Viking Age?",
+        "target": "viking-age"
+      },
+      {
+        "text": "Where is one place Norse travelers stopped across the Atlantic?",
+        "target": "lanse-aux-meadows"
+      },
+      {
+        "text": "How did another older community use sea routes for trade?",
+        "target": "carthage"
+      }
+    ],
+    "sources": [
+      "history-longship",
+      "history-vikings"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lanse-aux-meadows",
+    "title": "What shows that Norse travelers reached North America?",
+    "category": "world-history",
+    "priority": 1,
+    "answer": "At L’Anse aux Meadows on Newfoundland, archaeologists found traces of buildings and objects made by Norse travelers. Turf once covered parts of the structures, helping people live in a windy coastal place. Pieces from iron work and other activities show that visitors did jobs there as well as sleeping. This happened around a thousand years ago. Indigenous people already knew and used the region. The site gives us evidence of one early Atlantic crossing that we can study in detail.",
+    "aliases": [
+      "lanse aux meadows vikings canada",
+      "norse in newfoundland",
+      "did vikings reach north america"
+    ],
+    "sections": [],
+    "facts": [
+      "The site is on the northern tip of Newfoundland’s Great Northern Peninsula."
+    ],
+    "terms": [
+      "archaeologist",
+      "peninsula"
+    ],
+    "questions": [
+      {
+        "text": "What could Norse boatbuilders do to suit different journeys?",
+        "target": "viking-longships"
+      },
+      {
+        "text": "Why did people from northern Europe travel far from home?",
+        "target": "viking-age"
+      },
+      {
+        "text": "Where is Newfoundland within Canada?",
+        "target": "canada"
+      }
+    ],
+    "sources": [
+      "history-meadows"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "american-revolution",
+    "title": "How did thirteen colonies become a new country?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "The thirteen British colonies on the Atlantic coast included people who disagreed about who should make laws and collect taxes. Protest turned into fighting in 1775. In 1776, colonial leaders announced that the colonies were forming independent states. Their forces fought Britain, and France later helped them. Some people in the colonies supported Britain, and other communities faced choices and losses of their own. A peace treaty in 1783 recognized the United States as an independent country.",
+    "aliases": [
+      "american revolutionary war",
+      "how did the united states become independent",
+      "what was the american revolution"
+    ],
+    "sections": [],
+    "facts": [
+      "The fighting lasted for several years after the Declaration of Independence."
+    ],
+    "terms": [
+      "colony",
+      "treaty"
+    ],
+    "questions": [
+      {
+        "text": "How did some colonists protest before the fighting began?",
+        "target": "boston-tea-party"
+      },
+      {
+        "text": "Where did some of the first fighting happen?",
+        "target": "lexington-concord"
+      },
+      {
+        "text": "What did the colonies’ declaration announce?",
+        "target": "declaration-of-independence"
+      }
+    ],
+    "sources": [
+      "history-revolution"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "boston-tea-party",
+    "title": "Why did protesters dump tea into Boston Harbor?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "In 1773, Britain gave one company new ways to sell tea in its American colonies. A tax on the tea still applied. Some colonists thought buying it would mean accepting Parliament’s right to tax them without a voice there. In Boston, protesters boarded ships and threw chests of tea into the harbor. British leaders responded with laws that placed new restrictions on Massachusetts and closed the port to most trade for a time. The protest and response deepened the conflict.",
+    "aliases": [
+      "boston tea party 1773",
+      "who threw tea into boston harbor",
+      "why was the tea act opposed"
+    ],
+    "sections": [],
+    "facts": [
+      "The Boston Tea Party happened the night of December 16, 1773."
+    ],
+    "terms": [
+      "colony",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "How did disagreements over British rule lead to the Revolution?",
+        "target": "american-revolution"
+      },
+      {
+        "text": "Where did colonists and British soldiers fight two years later?",
+        "target": "lexington-concord"
+      },
+      {
+        "text": "How do elected representatives take part in making laws today?",
+        "target": "us-congress"
+      }
+    ],
+    "sources": [
+      "history-tea"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lexington-concord",
+    "title": "What happened at Lexington and Concord?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "On April 19, 1775, British soldiers marched from Boston toward Concord to seize supplies the colonists had stored. Local people spread the warning. In Lexington, colonists and soldiers faced one another, and shots were fired. Nobody can say for sure who fired the first shot. Fighting also broke out at Concord’s North Bridge. More colonists joined as British soldiers returned to Boston. These encounters turned a tense political dispute into open fighting in Massachusetts.",
+    "aliases": [
+      "lexington and concord 1775",
+      "battles of lexington and concord",
+      "where revolution began"
+    ],
+    "sections": [],
+    "facts": [
+      "The North Bridge site is part of Minute Man National Historical Park."
+    ],
+    "terms": [
+      "colony",
+      "evidence"
+    ],
+    "questions": [
+      {
+        "text": "How did the fighting grow beyond Massachusetts?",
+        "target": "american-revolution"
+      },
+      {
+        "text": "What protests had already increased tension near Boston?",
+        "target": "boston-tea-party"
+      },
+      {
+        "text": "Who led the army organized by the colonies later in 1775?",
+        "target": "george-washington"
+      }
+    ],
+    "sources": [
+      "history-lex",
+      "history-revolution"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "george-washington",
+    "title": "What did George Washington do before and after independence?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "George Washington was chosen to lead the Continental Army during the American Revolution. After the war, he led meetings at the Philadelphia convention that produced the United States Constitution. In 1789 he became the first president under the new Constitution. Many decisions about what a president does were still being worked out. When he left after two terms, another president could take office. Washington also held people in slavery on his Virginia estate, part of a wider contradiction in the new nation.",
+    "aliases": [
+      "who was george washington",
+      "washington first president",
+      "continental army leader"
+    ],
+    "sections": [],
+    "facts": [
+      "George Washington served as president from 1789 to 1797."
+    ],
+    "terms": [
+      "constitution",
+      "representative"
+    ],
+    "questions": [
+      {
+        "text": "What brought the Continental Army into being?",
+        "target": "american-revolution"
+      },
+      {
+        "text": "What did the Philadelphia meeting write?",
+        "target": "constitutional-convention"
+      },
+      {
+        "text": "Which branch includes the president today?",
+        "target": "us-government-branches"
+      }
+    ],
+    "sources": [
+      "history-washington",
+      "history-convention"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "abigail-adams",
+    "title": "What did Abigail Adams ask lawmakers to remember?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Abigail Adams wrote letters to her husband John while he worked with other leaders of the American Revolution. In March 1776 she expected new rules to be written and asked him to consider women’s rights in those rules. The letter lets us hear one person pointing out that demands for freedom could mean different things to different people. She had no vote at the meetings. Letters like hers survived, giving readers a record beyond speeches made by officials.",
+    "aliases": [
+      "abigail adams remember the ladies",
+      "who was abigail adams",
+      "letter about women in 1776"
+    ],
+    "sections": [],
+    "facts": [
+      "Abigail wrote the letter before the colonies declared independence."
+    ],
+    "terms": [
+      "right",
+      "archive"
+    ],
+    "questions": [
+      {
+        "text": "What did leaders announce later in 1776?",
+        "target": "declaration-of-independence"
+      },
+      {
+        "text": "How did a later meeting put women’s demands into a public statement?",
+        "target": "seneca-falls"
+      },
+      {
+        "text": "Which amendment addressed voting rights and sex?",
+        "target": "nineteenth-amendment"
+      }
+    ],
+    "sources": [
+      "history-adams",
+      "history-revolution"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "benjamin-franklin",
+    "title": "How did Benjamin Franklin help people share books and ideas?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Benjamin Franklin worked as a printer in Philadelphia before he became a famous public figure. Printing helped him share news and ideas with readers. He and a group of other people agreed to put money together to buy books for a library. Members could use more books together than they could each buy alone. Franklin later helped work on the Declaration of Independence and the United States Constitution. Finding practical ways for people to cooperate was one part of his long career.",
+    "aliases": [
+      "ben franklin printer and library",
+      "who was benjamin franklin",
+      "franklin library company of philadelphia"
+    ],
+    "sections": [],
+    "facts": [
+      "The Library Company of Philadelphia began in 1731."
+    ],
+    "terms": [
+      "library",
+      "constitution"
+    ],
+    "questions": [
+      {
+        "text": "How did another large library begin to share research materials?",
+        "target": "library-of-congress"
+      },
+      {
+        "text": "How could printers make repeated copies from one design?",
+        "target": "woodcut-printing"
+      },
+      {
+        "text": "What did Franklin help work on near the end of his life?",
+        "target": "constitutional-convention"
+      }
+    ],
+    "sources": [
+      "history-franklin",
+      "history-franklib"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "constitutional-convention",
+    "title": "Why did delegates meet in Philadelphia in 1787?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "After independence, the United States had a national government with limited power. Representatives met in Philadelphia in 1787 to consider changes. The delegates disagreed about how power should be split and how states would be represented. They also made compromises that protected slavery. The meeting produced an entirely new Constitution. The document proposed three branches of government and rules for approval by the states. Writing the plan at the convention was only one step toward putting it into use.",
+    "aliases": [
+      "philadelphia convention 1787",
+      "why was the constitution written",
+      "what was constitutional convention"
+    ],
+    "sections": [],
+    "facts": [
+      "Representatives from twelve of the thirteen states attended the convention."
+    ],
+    "terms": [
+      "constitution",
+      "ratify"
+    ],
+    "questions": [
+      {
+        "text": "What does the finished Constitution do?",
+        "target": "us-constitution"
+      },
+      {
+        "text": "How did writers try to persuade readers to approve it?",
+        "target": "federalist-papers"
+      },
+      {
+        "text": "What responsibilities were put in three different branches?",
+        "target": "us-government-branches"
+      }
+    ],
+    "sources": [
+      "history-convention"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "federalist-papers",
+    "title": "Why were the Federalist Papers written?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "After delegates proposed the Constitution in 1787, the states had to decide whether to approve it. Alexander Hamilton, James Madison, and John Jay wrote essays to persuade people to support the plan. They published them under one name, Publius. The essays explained why the writers wanted a stronger national government and how they expected its powers to be limited. Other writers disagreed. These arguments let us read some of the discussion that happened between writing the Constitution and putting it into use.",
+    "aliases": [
+      "federalist papers publius",
+      "who wrote federalist papers",
+      "why did hamilton madison and jay write essays"
+    ],
+    "sections": [],
+    "facts": [
+      "The collection includes eighty-five essays."
+    ],
+    "terms": [
+      "ratify",
+      "federalism"
+    ],
+    "questions": [
+      {
+        "text": "Where was the proposed Constitution written?",
+        "target": "constitutional-convention"
+      },
+      {
+        "text": "What does the Constitution itself say?",
+        "target": "us-constitution"
+      },
+      {
+        "text": "What changes were later added to protect certain rights?",
+        "target": "us-bill-of-rights"
+      }
+    ],
+    "sources": [
+      "history-federalist",
+      "history-convention"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "louisiana-purchase",
+    "title": "What was the Louisiana Purchase?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "In 1803, the United States bought France’s claim to a large stretch of land west of the Mississippi River. American leaders wanted a reliable place to send goods through New Orleans, a busy port near the river’s mouth. The French offered a much larger deal. It made the area claimed by the United States nearly twice as large. Many Indigenous nations already lived there and had their own governments. A treaty between the United States and France did not mean those nations had agreed to give up their land.",
+    "aliases": [
+      "louisiana purchase france 1803",
+      "what did jefferson buy from france",
+      "15 million louisiana purchase"
+    ],
+    "sections": [],
+    "facts": [
+      "The Louisiana Purchase cost the United States about fifteen million dollars at the time."
+    ],
+    "terms": [
+      "treaty",
+      "boundary"
+    ],
+    "questions": [
+      {
+        "text": "How did an expedition record lands and rivers after the purchase?",
+        "target": "lewis-clark-expedition"
+      },
+      {
+        "text": "What happened when later governments forced some Indigenous people to leave their homes?",
+        "target": "trail-of-tears"
+      },
+      {
+        "text": "Which parts of the modern United States lie around the Mississippi?",
+        "target": "united-states"
+      }
+    ],
+    "sources": [
+      "history-purchase",
+      "history-removal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lewis-clark-expedition",
+    "title": "What did the Lewis and Clark expedition set out to learn?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Meriwether Lewis and William Clark led a group west in 1804. They traveled through country known to many Indigenous nations and kept notes about rivers, plants, animals, and people they met. They followed the Missouri River for part of the journey, crossed the mountains, and reached the Pacific Ocean. The travelers depended on directions, trade, and local knowledge. Journals from the journey record what members of the group saw, even though those accounts cannot represent everyone’s experience of the trip.",
+    "aliases": [
+      "lewis and clark corps of discovery",
+      "who explored louisiana purchase",
+      "what was lewis and clark expedition"
+    ],
+    "sections": [],
+    "facts": [
+      "The expedition returned to St. Louis in 1806, about two years after setting out."
+    ],
+    "terms": [
+      "archive",
+      "evidence"
+    ],
+    "questions": [
+      {
+        "text": "How did Sacagawea help the travelers communicate?",
+        "target": "sacagawea"
+      },
+      {
+        "text": "What agreement came shortly before the expedition?",
+        "target": "louisiana-purchase"
+      },
+      {
+        "text": "How can travelers record their position on a map?",
+        "target": "latitude"
+      }
+    ],
+    "sources": [
+      "history-lewis",
+      "history-sacagawea"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sacagawea",
+    "title": "How did Sacagawea help the Lewis and Clark expedition?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Sacagawea traveled with the group led by Lewis and Clark while carrying her young child. She could speak languages that helped the explorers communicate. When the party needed horses to cross the mountains, it met a Shoshone group led by her brother. Her language skills helped with that meeting. She also helped in other ways on the long journey, though the expedition’s journals record only a small share of her life. Tribal histories preserve different details about her story.",
+    "aliases": [
+      "who was sacagawea",
+      "sacajawea helped lewis and clark",
+      "shoshone interpreter expedition"
+    ],
+    "sections": [],
+    "facts": [
+      "Written sources spell Sacagawea’s name in several different ways."
+    ],
+    "terms": [
+      "trade",
+      "archive"
+    ],
+    "questions": [
+      {
+        "text": "What kind of journey did the group make?",
+        "target": "lewis-clark-expedition"
+      },
+      {
+        "text": "Why was the United States interested in the lands to the west?",
+        "target": "louisiana-purchase"
+      },
+      {
+        "text": "How can people communicate in a language unfamiliar to others nearby?",
+        "target": "american-sign-language"
+      }
+    ],
+    "sources": [
+      "history-sacagawea",
+      "history-lewis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "trail-of-tears",
+    "title": "Why is Cherokee removal remembered as the Trail of Tears?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "In the late 1830s, the United States government forced most Cherokee people in the southeastern United States to leave their homes. Soldiers gathered families, and groups traveled to lands far to the west. They took different routes by road and river. Cold, illness, and shortages harmed many travelers, and people died on the journeys and in camps. The name Trail of Tears helps people remember what happened, and Cherokee communities still tell the stories of families who were made to leave.",
+    "aliases": [
+      "cherokee forced removal",
+      "why trail of tears",
+      "indian removal 1838"
+    ],
+    "sections": [],
+    "facts": [
+      "A national historic trail follows several of the removal routes."
+    ],
+    "terms": [
+      "treaty",
+      "boundary"
+    ],
+    "questions": [
+      {
+        "text": "Why did growing United States land claims affect Indigenous nations?",
+        "target": "louisiana-purchase"
+      },
+      {
+        "text": "How can records help families and researchers study past government decisions?",
+        "target": "national-archives"
+      },
+      {
+        "text": "How did groups who had little political power later press for more rights?",
+        "target": "nineteenth-amendment"
+      }
+    ],
+    "sources": [
+      "history-removal",
+      "history-purchase"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "transcontinental-railroad",
+    "title": "How did workers connect rail lines across the United States?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "In the 1860s, the Central Pacific built tracks east from California while the Union Pacific built west from the middle of the country. Workers cut paths, moved earth, laid rails, and carried heavy equipment across mountains and plains. Many Chinese workers helped build the line from the west. The two companies joined their tracks in Utah in 1869. Long rail trips became easier, but building and expanding the rail network also brought changes and losses to Indigenous communities along the routes.",
+    "aliases": [
+      "first transcontinental railroad",
+      "who built transcontinental railroad",
+      "golden spike 1869"
+    ],
+    "sections": [],
+    "facts": [
+      "The joining ceremony took place at Promontory Summit in Utah."
+    ],
+    "terms": [
+      "trade",
+      "continent"
+    ],
+    "questions": [
+      {
+        "text": "How had a canal earlier made it easier to move goods far away?",
+        "target": "erie-canal"
+      },
+      {
+        "text": "How did a much earlier network change travel between distant places?",
+        "target": "roman-roads"
+      },
+      {
+        "text": "How did United States land claims grow before the railroad?",
+        "target": "louisiana-purchase"
+      }
+    ],
+    "sources": [
+      "history-railroad",
+      "history-golden-spike"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "erie-canal",
+    "title": "How did the Erie Canal move boats across New York?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Before railroads reached many places, the Erie Canal let boats carry goods between the Hudson River and Lake Erie. Crews dug long channels and built gates that could close off a section. Workers filled or emptied the section to lift or lower a boat between different water levels. Such a section is called a lock. The canal made heavy loads easier and cheaper to move between the Great Lakes and the Atlantic coast, and towns along its route gained new trade.",
+    "aliases": [
+      "what was the erie canal",
+      "how did the erie canal work",
+      "erie canal locks 1825"
+    ],
+    "sections": [],
+    "facts": [
+      "The Erie Canal opened in 1825."
+    ],
+    "terms": [
+      "canal",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "What changed when early rail networks stretched farther?",
+        "target": "transcontinental-railroad"
+      },
+      {
+        "text": "How did another group of builders manage water over a distance?",
+        "target": "roman-aqueducts"
+      },
+      {
+        "text": "What is another reason people dig channels for water?",
+        "target": "irrigation"
+      }
+    ],
+    "sources": [
+      "history-erie"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "underground-railroad",
+    "title": "What was the Underground Railroad?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "The Underground Railroad was a loose network of people, routes, and hiding places that helped enslaved people seeking freedom. Some people left on their own and received help along the way. Others knew someone who could offer a night’s shelter, information, food, or a ride. Freedom seekers made difficult choices about where to go and whom to trust. Journeys followed different routes and could go to Canada, Mexico, cities, or other communities. Its name compares the network to a railroad.",
+    "aliases": [
+      "what was underground railroad",
+      "was underground railroad a train",
+      "routes out of slavery"
+    ],
+    "sections": [],
+    "facts": [
+      "Freedom seekers shaped and led many escapes with little or no help from an organized network."
+    ],
+    "terms": [
+      "right",
+      "boundary"
+    ],
+    "questions": [
+      {
+        "text": "Who returned to help others reach freedom after escaping herself?",
+        "target": "harriet-tubman"
+      },
+      {
+        "text": "How did a man who escaped slavery write about what he had experienced?",
+        "target": "frederick-douglass"
+      },
+      {
+        "text": "What changed the Constitution’s rules about slavery?",
+        "target": "thirteenth-amendment"
+      }
+    ],
+    "sources": [
+      "history-underground"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "harriet-tubman",
+    "title": "How did Harriet Tubman help people reach freedom?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Harriet Tubman escaped slavery in Maryland. She then returned many times to help family members and other people escape, using connections along the Underground Railroad. The trips could be dangerous, and she had to decide when to move and when to wait. She led dozens of people to freedom. During the Civil War she also helped the United States Army. Later, she used her experience and public voice to support equal rights, including women’s right to vote.",
+    "aliases": [
+      "who was harriet tubman",
+      "harriet tubman underground railroad",
+      "what did harriet tubman do"
+    ],
+    "sections": [],
+    "facts": [
+      "Tubman made about thirteen trips back to Maryland to guide freedom seekers."
+    ],
+    "terms": [
+      "right",
+      "suffrage"
+    ],
+    "questions": [
+      {
+        "text": "How did people help those seeking freedom?",
+        "target": "underground-railroad"
+      },
+      {
+        "text": "What was happening during the years Tubman helped the Army?",
+        "target": "us-civil-war"
+      },
+      {
+        "text": "How did a later amendment address women’s voting rights?",
+        "target": "nineteenth-amendment"
+      }
+    ],
+    "sources": [
+      "history-tubman",
+      "history-underground"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "frederick-douglass",
+    "title": "How did Frederick Douglass use speeches and writing to change minds?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Frederick Douglass escaped slavery and became a writer and public speaker. He described his own experiences so readers could understand how slavery harmed people and took away their choices. He also published a newspaper called The North Star. Newspapers and meetings let him reach people who had never heard him speak in person. He kept arguing for equality after slavery ended, because a constitutional change alone could not make neighbors or leaders treat people fairly.",
+    "aliases": [
+      "who was frederick douglass",
+      "north star newspaper",
+      "abolitionist frederick douglass"
+    ],
+    "sections": [],
+    "facts": [
+      "Douglass published the first of his autobiographies in 1845."
+    ],
+    "terms": [
+      "abolish",
+      "right"
+    ],
+    "questions": [
+      {
+        "text": "What kinds of choices did people face when seeking freedom?",
+        "target": "underground-railroad"
+      },
+      {
+        "text": "When did a constitutional amendment abolish slavery?",
+        "target": "thirteenth-amendment"
+      },
+      {
+        "text": "How did a later journalist use facts to challenge injustice?",
+        "target": "ida-b-wells"
+      }
+    ],
+    "sources": [
+      "history-douglass",
+      "history-reconstruction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "us-civil-war",
+    "title": "Why did the United States fight a Civil War?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "In 1861, a group of Southern states tried to leave the United States and formed the Confederacy. Their leaders wanted to protect slavery, a system that kept people forced to work as property. The United States government refused to accept the breakaway. Fighting began and lasted four years. During the war, ending slavery became a stated aim of the United States government. When the Confederacy surrendered, the country faced the work of rebuilding and of protecting the rights of people who had been enslaved.",
+    "aliases": [
+      "what caused us civil war",
+      "union and confederacy war",
+      "american civil war slavery"
+    ],
+    "sections": [],
+    "facts": [
+      "Most fighting ended in 1865."
+    ],
+    "terms": [
+      "right",
+      "abolish"
+    ],
+    "questions": [
+      {
+        "text": "What did Lincoln’s wartime order say about freedom?",
+        "target": "emancipation-proclamation"
+      },
+      {
+        "text": "What did Lincoln say while dedicating a cemetery during the war?",
+        "target": "gettysburg-address"
+      },
+      {
+        "text": "What difficult changes came after the war?",
+        "target": "reconstruction-era"
+      }
+    ],
+    "sources": [
+      "history-civil-war",
+      "history-emancipation",
+      "history-reconstruction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "gettysburg-address",
+    "title": "Why did Lincoln give a short speech at Gettysburg?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "In November 1863, people gathered in Gettysburg, Pennsylvania, to open a cemetery for soldiers who had fought there. After a long speech by another speaker, President Abraham Lincoln spoke briefly. He asked listeners to remember why the country had been founded and to continue the work of keeping a government chosen by its people. His speech linked the sacrifices of the war to the promise of equality. It is still studied for saying so much in only a few paragraphs.",
+    "aliases": [
+      "what was gettysburg address",
+      "why did lincoln speak at gettysburg",
+      "abraham lincoln cemetery speech"
+    ],
+    "sections": [],
+    "facts": [
+      "The speech came a few months after the Battle of Gettysburg."
+    ],
+    "terms": [
+      "right",
+      "republic"
+    ],
+    "questions": [
+      {
+        "text": "Why was there a major battle at Gettysburg?",
+        "target": "us-civil-war"
+      },
+      {
+        "text": "Which founding statement did Lincoln’s speech draw on?",
+        "target": "declaration-of-independence"
+      },
+      {
+        "text": "What other major action did Lincoln take in 1863?",
+        "target": "emancipation-proclamation"
+      }
+    ],
+    "sources": [
+      "history-gettysburg",
+      "history-civil-war",
+      "history-revolution"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "emancipation-proclamation",
+    "title": "What did the Emancipation Proclamation do?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "President Abraham Lincoln issued the Emancipation Proclamation on January 1, 1863, during the Civil War. It declared enslaved people free in places it listed as still in rebellion against the United States. It did not immediately free all enslaved people everywhere. Freedom in many places still depended on the United States Army gaining control. The order also allowed Black men to enter United States military service. The Thirteenth Amendment later ended slavery under the Constitution, with a narrow exception in the text.",
+    "aliases": [
+      "what did emancipation proclamation do",
+      "lincoln january 1863 freedom order",
+      "did emancipation proclamation end all slavery"
+    ],
+    "sections": [],
+    "facts": [
+      "The official document listed which states or parts of states it applied to."
+    ],
+    "terms": [
+      "proclamation",
+      "abolish"
+    ],
+    "questions": [
+      {
+        "text": "Why did Lincoln act during a war?",
+        "target": "us-civil-war"
+      },
+      {
+        "text": "What change reached across the whole country later?",
+        "target": "thirteenth-amendment"
+      },
+      {
+        "text": "How did a woman who had escaped slavery help others during the same era?",
+        "target": "harriet-tubman"
+      }
+    ],
+    "sources": [
+      "history-emancipation",
+      "history-amendments"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "reconstruction-era",
+    "title": "What did the United States try to rebuild after the Civil War?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Reconstruction was the period when the United States tried to reunite after the Civil War and decide how freedom would work in daily life. New constitutional amendments ended slavery, defined citizenship, and addressed racial barriers to voting. Black families built schools, searched for relatives, voted where allowed, and took part in public office. Many white leaders and groups resisted these changes. After federal protection weakened, state and local rules took away rights people had fought to use.",
+    "aliases": [
+      "what was reconstruction after civil war",
+      "why is reconstruction important",
+      "reconstruction era freed people"
+    ],
+    "sections": [],
+    "facts": [
+      "The era is commonly dated from 1865 through 1877."
+    ],
+    "terms": [
+      "amendment",
+      "right"
+    ],
+    "questions": [
+      {
+        "text": "What did one amendment say about citizenship and equal protection?",
+        "target": "fourteenth-amendment"
+      },
+      {
+        "text": "Which amendment addressed racial barriers to voting?",
+        "target": "fifteenth-amendment"
+      },
+      {
+        "text": "Why did later lawmakers pass a stronger voting law?",
+        "target": "voting-rights-act"
+      }
+    ],
+    "sources": [
+      "history-reconstruction",
+      "history-amendments"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "thirteenth-amendment",
+    "title": "How did the Thirteenth Amendment change the Constitution?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "The Thirteenth Amendment ended slavery and forced labor across the United States, except as punishment after conviction for a crime. States approved it in 1865, when the Civil War was ending. It was broader than the earlier Emancipation Proclamation, which applied to certain areas still in rebellion. Ending slavery did not settle all questions about citizenship, voting, or fair treatment. Two later amendments during Reconstruction addressed other parts of those problems.",
+    "aliases": [
+      "13th amendment",
+      "which amendment abolished slavery",
+      "how did the constitution end slavery"
+    ],
+    "sections": [],
+    "facts": [
+      "The amendment gives Congress power to enforce it by passing laws."
+    ],
+    "terms": [
+      "amendment",
+      "abolish"
+    ],
+    "questions": [
+      {
+        "text": "Why did Lincoln’s earlier order have more limited reach?",
+        "target": "emancipation-proclamation"
+      },
+      {
+        "text": "How did a later amendment address citizenship?",
+        "target": "fourteenth-amendment"
+      },
+      {
+        "text": "How did freed families and communities begin to use new rights?",
+        "target": "reconstruction-era"
+      }
+    ],
+    "sources": [
+      "history-amendments",
+      "history-reconstruction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fourteenth-amendment",
+    "title": "What does the Fourteenth Amendment say about citizenship?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "The Fourteenth Amendment says that people born or naturalized in the United States and under its authority are citizens. It also says states cannot take away certain rights without proper legal steps or deny anyone the equal protection of the laws. States approved it in 1868, when the country was dealing with the effects of slavery and the Civil War. The wording about fairness later mattered in court cases well beyond those first years.",
+    "aliases": [
+      "14th amendment",
+      "what is equal protection clause",
+      "fourteenth amendment citizenship"
+    ],
+    "sections": [],
+    "facts": [
+      "The Supreme Court used the amendment’s equal protection rule in Brown v. Board of Education."
+    ],
+    "terms": [
+      "amendment",
+      "right"
+    ],
+    "questions": [
+      {
+        "text": "What was happening when the Fourteenth Amendment was approved?",
+        "target": "reconstruction-era"
+      },
+      {
+        "text": "What other amendment addressed people being blocked from voting?",
+        "target": "fifteenth-amendment"
+      },
+      {
+        "text": "How did the rule of equal protection matter for schools?",
+        "target": "brown-v-board"
+      }
+    ],
+    "sources": [
+      "history-amendments",
+      "history-brown",
+      "history-reconstruction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fifteenth-amendment",
+    "title": "What voting rule did the Fifteenth Amendment add?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "The Fifteenth Amendment says the United States and states cannot deny or reduce voting rights on account of race, color, or having been enslaved. States approved it in 1870. In practice, many officials later used unfair tests, intimidation, and other barriers to stop Black citizens from voting. The amendment did not remove rules that kept most women from voting in many places. Later amendments and laws made other changes to protect access to the ballot.",
+    "aliases": [
+      "15th amendment voting rights",
+      "what did fifteenth amendment do",
+      "which amendment protected black male voting"
+    ],
+    "sections": [],
+    "facts": [
+      "The amendment also says Congress can pass laws to enforce it."
+    ],
+    "terms": [
+      "amendment",
+      "suffrage"
+    ],
+    "questions": [
+      {
+        "text": "What later law targeted unfair voting barriers?",
+        "target": "voting-rights-act"
+      },
+      {
+        "text": "Which amendment addressed voting rights and sex?",
+        "target": "nineteenth-amendment"
+      },
+      {
+        "text": "What was changing in the country when the Fifteenth Amendment was added?",
+        "target": "reconstruction-era"
+      }
+    ],
+    "sources": [
+      "history-amendments",
+      "history-voting-rights",
+      "history-reconstruction"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ellis-island",
+    "title": "What happened when travelers arrived at Ellis Island?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Ellis Island was a large United States immigration station in New York Harbor. Some travelers arriving by ship went there to have their papers checked and answer questions. Doctors also looked for health problems that could affect whether a person was allowed to enter under the rules of the time. Families might wait together or be separated during checks. Millions went through the station before it closed. Their arrival records help some families find out how their relatives came to the United States.",
+    "aliases": [
+      "ellis island immigrant station",
+      "what happened at ellis island",
+      "immigrant inspection new york harbor"
+    ],
+    "sections": [],
+    "facts": [
+      "The main immigration station opened in 1892."
+    ],
+    "terms": [
+      "immigrant",
+      "archive"
+    ],
+    "questions": [
+      {
+        "text": "Where are government records kept for later research?",
+        "target": "national-archives"
+      },
+      {
+        "text": "What kind of country were these travelers arriving in?",
+        "target": "united-states"
+      },
+      {
+        "text": "How does the government learn how many people live in different places?",
+        "target": "us-census"
+      }
+    ],
+    "sources": [
+      "history-ellis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "seneca-falls",
+    "title": "What did people ask for at the Seneca Falls convention?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "In 1848 a group gathered in Seneca Falls, New York, to talk about women’s rights. Organizers used language from the Declaration of Independence in a new statement. They argued that women should have more rights in public life and under the law. The request for the right to vote drew disagreement, even among some people at the meeting. The convention mattered because it gave public form to demands that people continued to argue for over many decades.",
+    "aliases": [
+      "seneca falls convention 1848",
+      "what was declaration of sentiments",
+      "first women rights convention"
+    ],
+    "sections": [],
+    "facts": [
+      "Elizabeth Cady Stanton and Lucretia Mott were among the convention’s organizers."
+    ],
+    "terms": [
+      "suffrage",
+      "right"
+    ],
+    "questions": [
+      {
+        "text": "What earlier letter argued that lawmakers should consider women?",
+        "target": "abigail-adams"
+      },
+      {
+        "text": "Which older statement inspired the convention’s language?",
+        "target": "declaration-of-independence"
+      },
+      {
+        "text": "What changed in the Constitution after decades of work?",
+        "target": "nineteenth-amendment"
+      }
+    ],
+    "sources": [
+      "history-seneca",
+      "history-adams"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ida-b-wells",
+    "title": "How did Ida B. Wells use facts to fight injustice?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Ida B. Wells was a teacher and journalist. She investigated racist violence at a time when many newspapers gave reasons for attacks without checking them. She collected evidence that challenged what those papers said, then spoke and published what she had found. Wells also pressed for women’s voting rights. Her work could put her in danger, but it showed why asking careful questions and checking facts matter. Readers could use her research to challenge a story they had heard many times.",
+    "aliases": [
+      "who was ida b wells",
+      "ida b wells barnett journalist",
+      "ida wells voting rights"
+    ],
+    "sections": [],
+    "facts": [
+      "Ida B. Wells helped organize a voting-rights club for Black women in Chicago."
+    ],
+    "terms": [
+      "evidence",
+      "suffrage"
+    ],
+    "questions": [
+      {
+        "text": "How did an earlier journalist use a newspaper to argue for equal rights?",
+        "target": "frederick-douglass"
+      },
+      {
+        "text": "What change came after many organizers pressed for voting rights?",
+        "target": "nineteenth-amendment"
+      },
+      {
+        "text": "What did a later federal law do to address discrimination?",
+        "target": "civil-rights-act-1964"
+      }
+    ],
+    "sources": [
+      "history-wells",
+      "history-civil-rights"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rosa-parks",
+    "title": "Why was Rosa Parks’s bus ride important?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Rosa Parks had worked for civil rights for years before she was arrested in Montgomery, Alabama, in 1955. On a city bus, a driver told her to give up her seat under rules that separated riders by race. She stayed seated. Local organizers then called for Black residents to stop taking the buses. People made different ways to get to work and school, and a court case challenged the rules. The bus ride mattered because many people were ready to act together.",
+    "aliases": [
+      "who was rosa parks",
+      "rosa parks bus seat",
+      "was rosa parks already an activist"
+    ],
+    "sections": [],
+    "facts": [
+      "Rosa Parks was arrested on December 1, 1955."
+    ],
+    "terms": [
+      "segregation",
+      "boycott"
+    ],
+    "questions": [
+      {
+        "text": "How did people use a boycott to challenge bus rules?",
+        "target": "montgomery-bus-boycott"
+      },
+      {
+        "text": "What case had already challenged separate public schools?",
+        "target": "brown-v-board"
+      },
+      {
+        "text": "What did a later law do to protect access to many public places?",
+        "target": "civil-rights-act-1964"
+      }
+    ],
+    "sources": [
+      "history-parks",
+      "history-bus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "montgomery-bus-boycott",
+    "title": "How did people keep a bus boycott going for more than a year?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "Black residents of Montgomery, Alabama, organized a boycott of the city buses in 1955 after Rosa Parks’s arrest. Many people walked, shared rides, or used carpools to keep going to work and school. Organizers gave rides, passed messages, and held meetings. The boycott lasted more than a year. Meanwhile, a court case brought by several Black women challenged the rules for buses. The boycott ended after a court ruling against bus segregation took effect.",
+    "aliases": [
+      "montgomery bus boycott 381 days",
+      "how did montgomery bus protest work",
+      "who did the montgomery bus boycott"
+    ],
+    "sections": [],
+    "facts": [
+      "The boycott started in December 1955 and ended in December 1956."
+    ],
+    "terms": [
+      "boycott",
+      "segregation"
+    ],
+    "questions": [
+      {
+        "text": "What bus arrest helped prompt the protest?",
+        "target": "rosa-parks"
+      },
+      {
+        "text": "How did a court ruling affect segregation in another setting?",
+        "target": "brown-v-board"
+      },
+      {
+        "text": "What national law later addressed discrimination in public places?",
+        "target": "civil-rights-act-1964"
+      }
+    ],
+    "sources": [
+      "history-bus",
+      "history-parks"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "brown-v-board",
+    "title": "Why did the Supreme Court rule against separate public schools?",
+    "category": "us-history",
+    "priority": 1,
+    "answer": "In several places, families challenged rules that sent Black and white children to separate public schools. The Supreme Court considered the cases together under the name Brown v. Board of Education. In 1954 it ruled that separating students by race in public schools broke the Constitution’s promise of equal protection. Changing schools took much more than one decision. Some places resisted, while children, families, teachers, and others kept working to make the ruling change real classrooms.",
+    "aliases": [
+      "brown vs board of education",
+      "what ended school segregation",
+      "supreme court school segregation 1954"
+    ],
+    "sections": [],
+    "facts": [
+      "The case was decided unanimously by the Supreme Court."
+    ],
+    "terms": [
+      "segregation",
+      "right"
+    ],
+    "questions": [
+      {
+        "text": "What part of the Constitution did the Court apply?",
+        "target": "fourteenth-amendment"
+      },
+      {
+        "text": "How did people challenge segregation in buses?",
+        "target": "montgomery-bus-boycott"
+      },
+      {
+        "text": "What protections did Congress later put into a national law?",
+        "target": "civil-rights-act-1964"
+      }
+    ],
+    "sources": [
+      "history-brown",
+      "history-amendments",
+      "history-civil-rights"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "civil-rights-act-1964",
+    "title": "What did the Civil Rights Act of 1964 change?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "People fighting unfair treatment in the United States had organized, protested, and gone to court for years. In 1964 Congress passed a law to ban certain kinds of discrimination. For example, many hotels and restaurants could no longer refuse people because of race. The law also addressed unequal treatment in many workplaces and gave the federal government ways to enforce protections. The Civil Rights Act was part of a wider effort to make public life open to more people.",
+    "aliases": [
+      "civil rights act 1964",
+      "what did civil rights act do",
+      "1964 law ending segregation public places"
+    ],
+    "sections": [],
+    "facts": [
+      "President Lyndon B. Johnson signed the Civil Rights Act into law in July 1964."
+    ],
+    "terms": [
+      "right",
+      "segregation"
+    ],
+    "questions": [
+      {
+        "text": "How did people organize to challenge unfair rules before this law?",
+        "target": "montgomery-bus-boycott"
+      },
+      {
+        "text": "What earlier court ruling dealt with separate schools?",
+        "target": "brown-v-board"
+      },
+      {
+        "text": "What issue did Congress address in a major law in 1965?",
+        "target": "voting-rights-act"
+      }
+    ],
+    "sources": [
+      "history-civil-rights",
+      "history-brown"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "voting-rights-act",
+    "title": "What barriers did the Voting Rights Act of 1965 address?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "Even after the Constitution banned certain racial barriers to voting, officials in many places found ways to keep Black citizens from registering. Some required unfair tests or used confusing paperwork. People organized, marched, and called attention to those barriers. In 1965 Congress passed the Voting Rights Act. It blocked practices such as those tests in covered places and gave the national government tools to help enforce voting rights. The law mattered because rights on paper are hard to use when officials can stop people at the door.",
+    "aliases": [
+      "voting rights act 1965",
+      "what did voting rights act change",
+      "literacy tests voting history"
+    ],
+    "sections": [],
+    "facts": [
+      "The Civil Rights Act and Voting Rights Act were signed in successive years."
+    ],
+    "terms": [
+      "suffrage",
+      "federalism"
+    ],
+    "questions": [
+      {
+        "text": "What had the Constitution already said about voting and race?",
+        "target": "fifteenth-amendment"
+      },
+      {
+        "text": "What protections came from another major law the year before?",
+        "target": "civil-rights-act-1964"
+      },
+      {
+        "text": "What different voting barrier did that amendment address?",
+        "target": "nineteenth-amendment"
+      }
+    ],
+    "sources": [
+      "history-voting-rights",
+      "history-amendments",
+      "history-civil-rights"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "how-a-bill-becomes-law",
+    "title": "How can an idea become a federal law?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "A member of Congress can put an idea into a written proposal called a bill. A small group in the House or Senate can study it, hear from people, and suggest changes. For an ordinary bill to pass, both chambers must agree to the same words. The bill then typically goes to the president. A president can sign it or veto it, and other outcomes depend on timing and what Congress does. Many bills never pass all of these steps.",
+    "aliases": [
+      "how a bill becomes a law",
+      "what happens to a bill in congress",
+      "steps federal law"
+    ],
+    "sections": [],
+    "facts": [
+      "Two different versions of a bill must be worked into the same final text before it can go to the president."
+    ],
+    "terms": [
+      "bill",
+      "veto"
+    ],
+    "questions": [
+      {
+        "text": "Why does Congress have two chambers?",
+        "target": "us-congress"
+      },
+      {
+        "text": "What can Congress do after a veto?",
+        "target": "presidential-veto"
+      },
+      {
+        "text": "How does making two branches work together affect laws?",
+        "target": "checks-and-balances"
+      }
+    ],
+    "sources": [
+      "history-bill",
+      "history-veto"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "presidential-veto",
+    "title": "What happens when the president vetoes a bill?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "If a president disagrees with a bill passed by Congress, the president can send it back with objections. That is called a veto. The bill normally will not become law at that point. But Congress can vote again. If two-thirds of the members voting in each chamber support overriding the veto, the bill can become law anyway. The rule means a president can make it harder for a bill to pass, while a large enough group of lawmakers can still pass it.",
+    "aliases": [
+      "president veto meaning",
+      "can congress override president veto",
+      "why two thirds veto"
+    ],
+    "sections": [],
+    "facts": [
+      "A successful veto override needs enough votes in both the House and Senate."
+    ],
+    "terms": [
+      "veto",
+      "bill"
+    ],
+    "questions": [
+      {
+        "text": "Which steps happen before a bill can be vetoed?",
+        "target": "how-a-bill-becomes-law"
+      },
+      {
+        "text": "Which two chambers could vote to override a veto?",
+        "target": "us-congress"
+      },
+      {
+        "text": "Why can more than one branch affect the outcome of a bill?",
+        "target": "checks-and-balances"
+      }
+    ],
+    "sources": [
+      "history-veto",
+      "history-bill"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "checks-and-balances",
+    "title": "Why do different parts of the US government check one another?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "The Constitution gives different kinds of work to Congress, the president, and the courts. It also gives one branch ways to limit or review actions taken by another. The president can veto a bill Congress passed. Congress can override a veto with enough votes. Federal courts can decide in cases whether a law fits the Constitution. These rules are called checks and balances. They can slow down a decision and make different parts of government explain or reconsider what they are doing.",
+    "aliases": [
+      "what are checks and balances",
+      "how do branches check each other",
+      "checks balances usa example"
+    ],
+    "sections": [],
+    "facts": [
+      "The Senate votes on whether to confirm many people nominated by the president, including nominees for federal judges."
+    ],
+    "terms": [
+      "constitution",
+      "veto"
+    ],
+    "questions": [
+      {
+        "text": "What is the main job of each branch?",
+        "target": "us-government-branches"
+      },
+      {
+        "text": "What does it take for Congress to override a veto?",
+        "target": "presidential-veto"
+      },
+      {
+        "text": "What kinds of decisions can reach the highest court?",
+        "target": "us-supreme-court"
+      }
+    ],
+    "sources": [
+      "history-convention",
+      "history-court-system",
+      "history-veto"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "us-supreme-court",
+    "title": "What does the United States Supreme Court do?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "The Supreme Court is the highest court in the federal court system. It reviews selected cases that raise important questions about federal law or the Constitution. Lawyers explain the issues and judges discuss and decide the case. The Court often writes an opinion spelling out why it reached a decision. Those opinions can guide how lower courts decide similar cases. Most trials, witnesses, and juries are found in other courts, long before a case might reach the Supreme Court.",
+    "aliases": [
+      "what does supreme court do",
+      "highest court united states",
+      "why supreme court writes opinions"
+    ],
+    "sections": [],
+    "facts": [
+      "The judges of the Supreme Court are called justices."
+    ],
+    "terms": [
+      "constitution",
+      "jury"
+    ],
+    "questions": [
+      {
+        "text": "What does a jury do when a case goes to a trial?",
+        "target": "court-juries"
+      },
+      {
+        "text": "What did the Supreme Court say in a famous school case?",
+        "target": "brown-v-board"
+      },
+      {
+        "text": "How can decisions by courts affect rules made by lawmakers?",
+        "target": "checks-and-balances"
+      }
+    ],
+    "sources": [
+      "history-supreme-court",
+      "history-court-system"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "electoral-college",
+    "title": "What is the Electoral College?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "When people vote for president of the United States, their votes help decide which group of electors their state will pick. Those electors cast formal votes for president and vice president later. States have different numbers of electors based on their representation in Congress, and the District of Columbia also has electors. In most states the winning candidate gets all of that state’s electoral votes. A candidate needs more than half of the electoral votes to win in the usual process.",
+    "aliases": [
+      "how does electoral college work",
+      "what is an electoral vote",
+      "why vote for electors president"
+    ],
+    "sections": [],
+    "facts": [
+      "The Electoral College has 538 elector positions under the present allocation."
+    ],
+    "terms": [
+      "ballot",
+      "representative"
+    ],
+    "questions": [
+      {
+        "text": "What does an election office do with ballots voters turn in?",
+        "target": "how-elections-work"
+      },
+      {
+        "text": "Where do the numbers of representatives and senators come from?",
+        "target": "us-congress"
+      },
+      {
+        "text": "Where did delegates draft the broad rules for choosing a president?",
+        "target": "constitutional-convention"
+      }
+    ],
+    "sources": [
+      "history-electoral-college",
+      "history-convention"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "court-juries",
+    "title": "What does a jury do in a trial?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "A trial jury is a small group of people chosen to hear testimony and look at evidence in a court case. The judge tells them what legal rules to use. In a typical jury trial, the group discusses the facts and gives a decision called a verdict. Some trial juries decide whether a person has been proved guilty of a crime. Others settle disputes between people or organizations. Courts can also decide many cases without a jury.",
+    "aliases": [
+      "what does a jury do",
+      "what is a jury verdict",
+      "why courts use jurors"
+    ],
+    "sections": [],
+    "facts": [
+      "In the federal system, a grand jury asks a different question from a trial jury, about whether a criminal charge can go forward."
+    ],
+    "terms": [
+      "jury",
+      "verdict"
+    ],
+    "questions": [
+      {
+        "text": "What does the highest court review after other courts handle cases?",
+        "target": "us-supreme-court"
+      },
+      {
+        "text": "Which set of amendments gives protections in some court cases?",
+        "target": "us-bill-of-rights"
+      },
+      {
+        "text": "Why do courts have a role separate from lawmakers?",
+        "target": "checks-and-balances"
+      }
+    ],
+    "sources": [
+      "history-jury",
+      "history-court-system"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-local-government",
+    "title": "What do state and local governments do?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "In the United States, states make many rules for people and organizations within their state. Cities, towns, and counties may handle work that affects smaller places, such as collecting trash or taking care of local streets. The exact work depends on the state and the community. A school board, city council, or county office might decide different things. In many places voters choose some of these local officials. Other people are hired or appointed to do work for the community.",
+    "aliases": [
+      "what is local government",
+      "city county state differences",
+      "how does state government differ from city government"
+    ],
+    "sections": [],
+    "facts": [
+      "Depending on where you live, local elections can include city, county, or school offices."
+    ],
+    "terms": [
+      "federalism",
+      "representative"
+    ],
+    "questions": [
+      {
+        "text": "Why can power be shared at more than one level?",
+        "target": "us-federalism"
+      },
+      {
+        "text": "How do some towns make decisions at a public meeting?",
+        "target": "town-meeting"
+      },
+      {
+        "text": "How does a local office run an election?",
+        "target": "how-elections-work"
+      }
+    ],
+    "sources": [
+      "history-local-elections",
+      "history-town-meeting"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "town-meeting",
+    "title": "What can a town decide at a town meeting?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "In some towns, a town meeting makes certain local decisions. People might talk about how much the town should spend or whether a town rule needs to change. An open meeting can let registered town voters vote for themselves. Other towns elect representatives who do the voting at the meeting. A moderator helps the meeting follow its rules while people speak and vote. The meeting’s work depends on state law and how the town is organized.",
+    "aliases": [
+      "town meeting massachusetts",
+      "what is open town meeting",
+      "representative town meeting"
+    ],
+    "sections": [],
+    "facts": [
+      "Massachusetts has towns with both open and representative town meetings."
+    ],
+    "terms": [
+      "representative",
+      "legislature"
+    ],
+    "questions": [
+      {
+        "text": "How do towns fit alongside cities, counties and states?",
+        "target": "state-local-government"
+      },
+      {
+        "text": "What happens when citizens vote for representatives?",
+        "target": "how-elections-work"
+      },
+      {
+        "text": "How does a legislature make rules at the national level?",
+        "target": "us-congress"
+      }
+    ],
+    "sources": [
+      "history-town-meeting"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "how-elections-work",
+    "title": "What happens to ballots in an election?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "Officials set up an election so eligible voters can choose among candidates or answer questions on a ballot. Depending on where they live, people might vote at a voting place or return a ballot by mail. After people have voted, election workers count valid ballots and check records. They may compare totals, review ballots whose choices are unclear, and perform other required checks. Officials announce and confirm results after following the rules for that election, which can differ by state.",
+    "aliases": [
+      "how elections work",
+      "how are votes counted",
+      "what happens to a ballot"
+    ],
+    "sections": [],
+    "facts": [
+      "In the United States, many elections are run by local officials under state rules."
+    ],
+    "terms": [
+      "ballot",
+      "representative"
+    ],
+    "questions": [
+      {
+        "text": "What part of government often carries out elections?",
+        "target": "state-local-government"
+      },
+      {
+        "text": "What extra step occurs in an election for United States president?",
+        "target": "electoral-college"
+      },
+      {
+        "text": "Why are some national rules about access to voting important?",
+        "target": "voting-rights-act"
+      }
+    ],
+    "sources": [
+      "history-elections",
+      "history-local-elections"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "naturalization",
+    "title": "What does it mean to become a citizen by naturalization?",
+    "category": "government-civics",
+    "priority": 1,
+    "answer": "A citizen is someone recognized as a member of a country under its laws. Some people are citizens at birth. A person who becomes a citizen after birth can sometimes do so through a legal process called naturalization. In the United States the process can include an application, an interview, and an oath at a ceremony. Different rules can apply to people with different histories. New citizens can take part in civic life and may vote if they meet the voting rules.",
+    "aliases": [
+      "what is naturalization",
+      "how can someone become a citizen after birth",
+      "naturalization ceremony for kids"
+    ],
+    "sections": [],
+    "facts": [
+      "Naturalization and citizenship at birth are different ways a person can become a citizen."
+    ],
+    "terms": [
+      "naturalization",
+      "immigrant"
+    ],
+    "questions": [
+      {
+        "text": "What does the Constitution say about citizenship?",
+        "target": "fourteenth-amendment"
+      },
+      {
+        "text": "How were some immigrants processed at one historic station?",
+        "target": "ellis-island"
+      },
+      {
+        "text": "What does an election office do when people vote?",
+        "target": "how-elections-work"
+      }
+    ],
+    "sources": [
+      "history-citizenship",
+      "history-amendments"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "language-families",
+    "title": "How can two different languages be related?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "Languages can change a little as people pass them on. Groups sometimes move apart and use language in different ways, generation after generation. After a long time, the groups may speak languages that no longer sound much alike. Linguists compare patterns in older words and sounds to look for shared beginnings. English, German, and Spanish are different languages in a large family called Indo-European. Comparing a whole pattern is more helpful than finding just one word that happens to sound alike.",
+    "aliases": [
+      "language family common ancestor",
+      "how are languages related",
+      "what is indo european language family"
+    ],
+    "sections": [],
+    "facts": [
+      "Two languages can be related even when someone who speaks one cannot understand the other."
+    ],
+    "terms": [
+      "dialect",
+      "compare"
+    ],
+    "questions": [
+      {
+        "text": "How can people use different varieties of the same language?",
+        "target": "language-dialects"
+      },
+      {
+        "text": "How can you break spoken words into smaller parts to compare them?",
+        "target": "syllables"
+      },
+      {
+        "text": "How did Chinese characters come to be used in Japanese writing?",
+        "target": "japanese-writing"
+      }
+    ],
+    "sources": [
+      "history-families"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "language-dialects",
+    "title": "Why do people use the same language in different ways?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "A dialect is a form of a language used by a group of people. Their words, pronunciation, or ways of putting words together can differ from another group’s. One person might say “soda” where another says “pop.” People learn features from family, friends, books, and the places they spend time. A dialect has patterns its speakers learn, even when those patterns differ from the way a textbook speaks. Groups can share some features and differ in others.",
+    "aliases": [
+      "what is a dialect",
+      "why do people say words differently",
+      "dialect vs accent"
+    ],
+    "sections": [],
+    "facts": [
+      "An accent describes pronunciation. A dialect can also differ in words or grammar."
+    ],
+    "terms": [
+      "dialect",
+      "compare"
+    ],
+    "questions": [
+      {
+        "text": "How can languages change far enough apart that they become different languages?",
+        "target": "language-families"
+      },
+      {
+        "text": "How can someone write down the difference in pronunciation?",
+        "target": "phonetic-alphabet"
+      },
+      {
+        "text": "Why can one pronunciation fit more than one word?",
+        "target": "homophones"
+      }
+    ],
+    "sources": [
+      "history-dialect",
+      "history-families"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "word-parts",
+    "title": "How can a prefix or suffix change a word?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "Some words have parts that help you guess the meaning. The beginning part in “rewrite” is re-, which often means again. The last part of “helpful” is -ful, which helps show that something gives or has help. English uses many parts that cannot stand alone as words. Looking for a familiar part may help you understand a new word, but the whole word often has a more specific meaning. Check how it is used in the sentence.",
+    "aliases": [
+      "prefix and suffix",
+      "what are root words",
+      "how do word parts change meaning"
+    ],
+    "sections": [],
+    "facts": [
+      "A prefix comes at the beginning of a word or stem. A suffix comes at the end."
+    ],
+    "terms": [
+      "prefix",
+      "suffix"
+    ],
+    "questions": [
+      {
+        "text": "What happens when each part can be a word on its own?",
+        "target": "compound-words"
+      },
+      {
+        "text": "How are meaningful word parts different from beats in speech?",
+        "target": "syllables"
+      },
+      {
+        "text": "When might a whole expression mean more than its parts suggest?",
+        "target": "idioms"
+      }
+    ],
+    "sources": [
+      "history-morphology",
+      "history-compounds"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "homophones",
+    "title": "Why do some words sound alike but mean different things?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "Think of “pair” and “pear.” In many English accents, both words sound the same. One refers to two things and the other to a fruit. We can use the rest of the sentence to tell which word someone means. Spelling can help when we read, although some homophones are spelled alike too. Whether a pair counts as homophones can depend on the speaker’s accent. A sound difference in one place might disappear in another.",
+    "aliases": [
+      "what are homophones",
+      "pear and pair sound same",
+      "words with same sound different meanings"
+    ],
+    "sections": [],
+    "facts": [
+      "“Sea” and “see” are another familiar pair of homophones in English."
+    ],
+    "terms": [
+      "homophone",
+      "dialect"
+    ],
+    "questions": [
+      {
+        "text": "How can pronunciation change from one group to another?",
+        "target": "language-dialects"
+      },
+      {
+        "text": "How can people write a sound separately from its usual spelling?",
+        "target": "phonetic-alphabet"
+      },
+      {
+        "text": "What other clues can help people read unfamiliar words?",
+        "target": "word-parts"
+      }
+    ],
+    "sources": [
+      "history-homophones",
+      "history-dialect"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "idioms",
+    "title": "Why does an idiom mean more than its words say?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "An idiom is an expression people know as a group of words. Its usual meaning can be different from what the words would describe on their own. If someone jokes that pigs can fly, the speaker probably thinks something is very unlikely. In another sentence, that same idea could be a story about a pig with wings. The surrounding words help us figure out which meaning makes sense. Idioms can change over time or be familiar to some groups and new to others.",
+    "aliases": [
+      "what is an idiom",
+      "why when pigs fly is an idiom",
+      "idiom meaning examples"
+    ],
+    "sections": [],
+    "facts": [
+      "The expression about flying pigs has several forms in different places."
+    ],
+    "terms": [
+      "idiom",
+      "dialect"
+    ],
+    "questions": [
+      {
+        "text": "When do parts of a word help explain what the word means?",
+        "target": "word-parts"
+      },
+      {
+        "text": "How can a whole sentence help show which word someone means?",
+        "target": "homophones"
+      },
+      {
+        "text": "Why might an expression be familiar in one region and new in another?",
+        "target": "language-dialects"
+      }
+    ],
+    "sources": [
+      "history-idiom",
+      "history-dialect"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "compound-words",
+    "title": "What happens when two words become one idea?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "A compound combines two words to name one thing or idea. A “snowman” is a figure made of snow, and a “notebook” is a book for notes. You can often use what you know about the parts to guess the meaning. Still, you have to notice how the whole compound is used. A dragonfly is an insect, so the word does not mean a little dragon. Compounds may be written together, with a hyphen, or with a space between their parts.",
+    "aliases": [
+      "what is a compound word",
+      "two words that make a new word",
+      "compound word notebook"
+    ],
+    "sections": [],
+    "facts": [
+      "“Backpack” is a compound made from “back” and “pack.”"
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How are compounds different from a word built with a prefix?",
+        "target": "word-parts"
+      },
+      {
+        "text": "Why can a word made of two parts have more than two syllables?",
+        "target": "syllables"
+      },
+      {
+        "text": "What happens when the pieces of an expression do not tell you its meaning?",
+        "target": "idioms"
+      }
+    ],
+    "sources": [
+      "history-compounds"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cherokee-syllabary",
+    "title": "How did Sequoyah make a way to write Cherokee?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "Sequoyah developed signs to write the Cherokee language. Most of the signs let a reader recognize a spoken syllable at a time. Instead of learning a different mark for every word, people could learn a group of signs and use them together to write many words. Some signs look like English letters, but that does not mean they have the same sounds. The Cherokee Nation teaches the system today and uses it in materials for Cherokee language learners.",
+    "aliases": [
+      "sequoyah cherokee writing",
+      "what is the cherokee syllabary",
+      "why are cherokee signs not an alphabet"
+    ],
+    "sections": [],
+    "facts": [
+      "Sequoyah finished developing the Cherokee syllabary in 1821."
+    ],
+    "terms": [
+      "syllabary",
+      "syllable"
+    ],
+    "questions": [
+      {
+        "text": "How can you hear the beats in a spoken word?",
+        "target": "syllables"
+      },
+      {
+        "text": "Where else are signs for groups of sounds used?",
+        "target": "japanese-writing"
+      },
+      {
+        "text": "How is an alphabet another way to represent spoken sounds?",
+        "target": "alphabet"
+      }
+    ],
+    "sources": [
+      "history-cherokee-writing",
+      "history-cherokee-era"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "korean-hangul",
+    "title": "Why do Korean letters fit together in blocks?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "Hangul is a way to write Korean. It has letters for sounds, but people arrange the letters in square-like groups. Each group represents a syllable, a small beat of speech. A syllable block can contain letters side by side and one below them. Grouping the letters helps a reader see how sounds fit together within the syllable. King Sejong helped introduce the writing system centuries ago so more people could learn a way of writing Korean.",
+    "aliases": [
+      "how does hangul work",
+      "korean alphabet syllable blocks",
+      "who introduced hangul"
+    ],
+    "sections": [],
+    "facts": [
+      "A book explaining the new writing system was published in 1446."
+    ],
+    "terms": [
+      "alphabet",
+      "syllable"
+    ],
+    "questions": [
+      {
+        "text": "How does Cherokee use individual signs for syllables?",
+        "target": "cherokee-syllabary"
+      },
+      {
+        "text": "What groups of signs appear together in Japanese writing?",
+        "target": "japanese-writing"
+      },
+      {
+        "text": "How can you hear syllables without looking at written letters?",
+        "target": "syllables"
+      }
+    ],
+    "sources": [
+      "history-hangul"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "japanese-writing",
+    "title": "Why do Japanese readers learn three kinds of signs?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "A sentence in Japanese can use three sets of signs. Kanji are characters that often help show the meaning of a word. Hiragana commonly marks particles, parts added to words, or words written without kanji. Katakana can show many words borrowed from outside Japan, or draw attention to a sound or name. Hiragana and katakana both represent short units of spoken Japanese. Learning how a sentence combines the three sets can help a reader see what belongs together.",
+    "aliases": [
+      "hiragana katakana kanji difference",
+      "japanese writing systems",
+      "why does japanese use three alphabets"
+    ],
+    "sections": [],
+    "facts": [
+      "Kanji originally reached Japan from China."
+    ],
+    "terms": [
+      "syllabary",
+      "loanword"
+    ],
+    "questions": [
+      {
+        "text": "How does Korean form groups of letters for syllables?",
+        "target": "korean-hangul"
+      },
+      {
+        "text": "Where else do signs represent units of spoken language?",
+        "target": "cherokee-syllabary"
+      },
+      {
+        "text": "How could Maya writers use more than one kind of sign?",
+        "target": "maya-writing"
+      }
+    ],
+    "sources": [
+      "history-jp"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "arabic-script",
+    "title": "How do Arabic letters change shape in a word?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "Arabic writing usually runs from right to left. Many letters join their neighbors, so a letter may look somewhat different at the beginning, middle, or end of a word. A few letters do not join to the next one in that direction. Dots help tell letters with similar shapes apart. Texts for learners may add marks for short vowels, while many familiar texts leave those marks out. The shared shapes still have patterns that readers learn to recognize.",
+    "aliases": [
+      "how do arabic letters connect",
+      "why arabic goes right to left",
+      "different forms in arabic script"
+    ],
+    "sections": [],
+    "facts": [
+      "Artists have developed many styles of Arabic calligraphy."
+    ],
+    "terms": [
+      "calligraphy",
+      "alphabet"
+    ],
+    "questions": [
+      {
+        "text": "What jobs do the letters of an alphabet do?",
+        "target": "alphabet"
+      },
+      {
+        "text": "How do Korean letters join into a different kind of group?",
+        "target": "korean-hangul"
+      },
+      {
+        "text": "How did an older writing system use the position and shape of signs?",
+        "target": "hieroglyphs"
+      }
+    ],
+    "sources": [
+      "history-arabic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "phonetic-alphabet",
+    "title": "Why do linguists write sounds with the IPA?",
+    "category": "language-writing",
+    "priority": 1,
+    "answer": "A word’s ordinary spelling does not always tell you how it sounds. In English, the letters “sh” work together in “ship” to spell one sound. The International Phonetic Alphabet has a separate sign for that sound. Linguists use such signs to describe speech, compare pronunciations, and write down sounds a reader might never have heard. A dictionary can use the signs to show how a word is said. Different pronunciations of one written word can get different descriptions.",
+    "aliases": [
+      "international phonetic alphabet ipa",
+      "how do linguists write sounds",
+      "why dictionaries use ipa"
+    ],
+    "sections": [],
+    "facts": [
+      "The IPA chart groups sounds partly by how and where we make them in the mouth or throat."
+    ],
+    "terms": [
+      "alphabet",
+      "dialect"
+    ],
+    "questions": [
+      {
+        "text": "Which words can have the same sounds even with different spelling?",
+        "target": "homophones"
+      },
+      {
+        "text": "Why can two groups of speakers pronounce the same word differently?",
+        "target": "language-dialects"
+      },
+      {
+        "text": "What do listeners notice when they hear words with several beats?",
+        "target": "syllables"
+      }
+    ],
+    "sources": [
+      "history-ipa"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "papermaking-history",
+    "title": "How did people turn plant material into paper?",
+    "category": "inventions",
+    "priority": 1,
+    "answer": "To make many kinds of paper, people separate plant material into tiny strands, mix them with water, and lift a thin layer on a screen. As the water drains, the strands stay in a mat. Pressing and drying make the mat into a sheet. People in China used paper early in its history, and workshops improved ways of making it over time. The idea of making light sheets from wet strands gave writers another choice besides heavier surfaces such as stone or clay.",
+    "aliases": [
+      "how was paper invented",
+      "early chinese papermaking",
+      "history of paper"
+    ],
+    "sections": [],
+    "facts": [
+      "Archaeological finds show that some paper existed in China before the official Cai Lun reported improvements in 105 CE."
+    ],
+    "terms": [
+      "inscription",
+      "write"
+    ],
+    "questions": [
+      {
+        "text": "How did scribes use clay before paper was widely available?",
+        "target": "cuneiform"
+      },
+      {
+        "text": "How did printers later make many copies on paper?",
+        "target": "movable-type"
+      },
+      {
+        "text": "What is one way a carved block can leave a picture on a page?",
+        "target": "woodcut-printing"
+      }
+    ],
+    "sources": [
+      "history-paper",
+      "history-china"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "movable-type",
+    "title": "How can a printer use the same letters in different books?",
+    "category": "inventions",
+    "priority": 1,
+    "answer": "Movable type uses small pieces with letters or other signs on their faces. A printer sets the pieces in a frame to make lines of writing, puts ink on them, and presses them against paper. After making enough copies, the printer can take the pieces apart and arrange them to make another page. In Europe, Gutenberg’s workshop used a system like this in the 1400s. People in East Asia had made books with movable type earlier.",
+    "aliases": [
+      "what is movable type",
+      "how did gutenberg printing press work",
+      "who made books before gutenberg"
+    ],
+    "sections": [],
+    "facts": [
+      "The Gutenberg Bible was printed in Europe around 1455."
+    ],
+    "terms": [
+      "printmaking",
+      "alphabet"
+    ],
+    "questions": [
+      {
+        "text": "How did people make the sheets on which printers printed?",
+        "target": "papermaking-history"
+      },
+      {
+        "text": "How is printing a whole design from one block different?",
+        "target": "woodcut-printing"
+      },
+      {
+        "text": "How did books and printing affect life in Song cities?",
+        "target": "song-china"
+      }
+    ],
+    "sources": [
+      "history-type",
+      "history-song"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "gothic-cathedrals",
+    "title": "How could Gothic builders make room for tall windows?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Medieval Gothic builders used pointed arches, ribs along ceilings, and strong supports outside some high walls. Together, these features helped carry the weight of the stone and reduce some of the pressure on parts of the wall. Builders could put large windows in more places. Pieces of colored glass let sunlight make different patterns during the day. The outside supports and inside stone ribs are still easy to see in many Gothic churches and cathedrals today.",
+    "aliases": [
+      "gothic cathedral architecture",
+      "why gothic cathedrals have big windows",
+      "gothic pointed arches"
+    ],
+    "sections": [],
+    "facts": [
+      "Gothic builders often used stone supports called flying buttresses outside tall buildings."
+    ],
+    "terms": [
+      "arch",
+      "flying buttress"
+    ],
+    "questions": [
+      {
+        "text": "How does an outside arch help a tall wall stand?",
+        "target": "flying-buttresses"
+      },
+      {
+        "text": "How did other builders support a large round roof?",
+        "target": "hagia-sophia"
+      },
+      {
+        "text": "Why can sunlight change what you see in a window made of colored glass?",
+        "target": "light"
+      }
+    ],
+    "sources": [
+      "history-gothic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "flying-buttresses",
+    "title": "Why does a flying buttress look like a bridge beside a wall?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "A tall stone ceiling can push sideways on its walls as well as down. A flying buttress carries some of that sideways push away from the upper wall across an open space to a strong stone support. From a distance it looks like a short bridge to nowhere, but its job is to help hold the building steady. Often the space beneath it leaves room for paths or windows, while the broad support sends the forces down into the ground.",
+    "aliases": [
+      "flying buttress definition",
+      "how do flying buttresses work",
+      "gothic stone supports outside"
+    ],
+    "sections": [],
+    "facts": [
+      "A flying buttress connects an upper wall to a support farther away from the wall."
+    ],
+    "terms": [
+      "flying buttress",
+      "force"
+    ],
+    "questions": [
+      {
+        "text": "Why did Gothic builders use these supports near tall windows?",
+        "target": "gothic-cathedrals"
+      },
+      {
+        "text": "How did other arches help builders make a tall arena?",
+        "target": "colosseum"
+      },
+      {
+        "text": "What supports can help a round dome cross a large room?",
+        "target": "hagia-sophia"
+      }
+    ],
+    "sources": [
+      "history-gothic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "early-skyscrapers",
+    "title": "How did older cities start to build skyscrapers?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "In a building with heavy stone walls, the walls near the ground can become very thick as more floors are added. Builders in the late 1800s began giving tall buildings strong frames made of metal. A frame could carry more of the weight directly to the ground. That helped leave more room for windows and indoor space. Elevators also made it practical for people to reach many upper floors. Together these changes let cities fit more working space onto a piece of land.",
+    "aliases": [
+      "why could skyscrapers be built",
+      "early chicago skyscrapers",
+      "metal frame tall buildings"
+    ],
+    "sections": [],
+    "facts": [
+      "Chicago’s Home Insurance Building was an influential early tall building that opened in the 1880s."
+    ],
+    "terms": [
+      "force",
+      "sturdy"
+    ],
+    "questions": [
+      {
+        "text": "How had builders found room for tall windows using stone supports?",
+        "target": "gothic-cathedrals"
+      },
+      {
+        "text": "What did architects use before metal frames to help carry a sideways push?",
+        "target": "flying-buttresses"
+      },
+      {
+        "text": "Why must any tall building send its weight safely to the ground?",
+        "target": "gravity"
+      }
+    ],
+    "sources": [
+      "history-skyscrapers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "petra",
+    "title": "Why did builders carve buildings into cliffs at Petra?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Petra was a trading city of the Nabataeans in what is now Jordan. Tall sandstone cliffs surrounded it. In some places, builders carved fronts and rooms directly into the rock instead of setting blocks on top of one another. Traders reached the city along routes connecting lands across dry country. To make it possible to live there, people collected and carried water in carefully built channels and storage places. The rock buildings and waterways give different clues about the same city.",
+    "aliases": [
+      "petra jordan rock city",
+      "who built petra",
+      "why is petra carved in rock"
+    ],
+    "sections": [],
+    "facts": [
+      "A narrow passage between high rock walls leads into Petra."
+    ],
+    "terms": [
+      "archaeologist",
+      "canal"
+    ],
+    "questions": [
+      {
+        "text": "How did builders in a different land use natural cliffs as shelter?",
+        "target": "mesa-verde"
+      },
+      {
+        "text": "What other ancient trading center left tall stone monuments?",
+        "target": "aksum"
+      },
+      {
+        "text": "Why do people on long land routes need reliable places to stop?",
+        "target": "silk-roads"
+      }
+    ],
+    "sources": [
+      "history-petra"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "taj-mahal",
+    "title": "Why was the Taj Mahal built?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "The Mughal ruler Shah Jahan had the Taj Mahal built in Agra, India, to honor his wife Mumtaz Mahal after she died. It includes a tomb, gardens, waterways, and several other structures. The large white marble building sits at one end of the garden. Its dome stands above walls decorated with stone patterns and writing. A long pool can reflect the building along a central line. These choices help visitors see how the parts of the design fit together.",
+    "aliases": [
+      "taj mahal who built it",
+      "why is taj mahal a tomb",
+      "taj mahal architecture india"
+    ],
+    "sections": [],
+    "facts": [
+      "The Taj Mahal was built in the 1600s in Agra."
+    ],
+    "terms": [
+      "dome",
+      "calligraphy"
+    ],
+    "questions": [
+      {
+        "text": "Where is Agra’s country on the map?",
+        "target": "india"
+      },
+      {
+        "text": "How did builders support the dome of another famous building?",
+        "target": "hagia-sophia"
+      },
+      {
+        "text": "Why did ancient Egyptian rulers have grand tombs built?",
+        "target": "great-pyramid"
+      }
+    ],
+    "sources": [
+      "history-taj"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "adobe-architecture",
+    "title": "How can dry earth become a wall?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "Builders can mix earth with water and shape it into adobe bricks. The bricks dry in the air and sun before people place them in a wall. A thick wall can slow the movement of heat into a room, which can be useful in a place that is hot in the day. Builders protect the outside with roof edges or layers they can repair because too much water can soften the earth again. Adobe traditions continue in many places.",
+    "aliases": [
+      "adobe brick construction",
+      "how do mud brick houses work",
+      "what is adobe building material"
+    ],
+    "sections": [],
+    "facts": [
+      "Dry adobe bricks can be protected with a layer of earth-based plaster."
+    ],
+    "terms": [
+      "adobe",
+      "evaporation"
+    ],
+    "questions": [
+      {
+        "text": "How did some Indigenous builders choose stone and natural shelter instead?",
+        "target": "mesa-verde"
+      },
+      {
+        "text": "Which river communities also made buildings from earth?",
+        "target": "ancient-mesopotamia"
+      },
+      {
+        "text": "What happens to water when it evaporates into the air?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "history-adobe",
+      "history-mesopotamia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pagodas",
+    "title": "Why do some Buddhist towers have stacked roofs?",
+    "category": "architecture",
+    "priority": 1,
+    "answer": "A pagoda is a tower found in parts of Asia. In many examples, each level has a wide roof or ledge that makes the tower look like a stack. Pagodas can be made of stone, wood, or brick, and the shape changes from place to place. Many were built in connection with Buddhism. A pagoda may mark a special place or hold objects important to worship. Some are mostly solid inside, even if the outside looks as if it has rooms on every level.",
+    "aliases": [
+      "what is a pagoda",
+      "buddhist tower roofs",
+      "why are pagodas tiered"
+    ],
+    "sections": [],
+    "facts": [
+      "Sculptures of small pagodas can help historians study building shapes that changed over time."
+    ],
+    "terms": [
+      "pagoda",
+      "civilization"
+    ],
+    "questions": [
+      {
+        "text": "How did builders use towers in another Asian place of worship?",
+        "target": "angkor-wat"
+      },
+      {
+        "text": "What different meaning did a stepped shape have in ancient Egypt?",
+        "target": "great-pyramid"
+      },
+      {
+        "text": "How can the shape and height of a building show what people valued?",
+        "target": "persepolis"
+      }
+    ],
+    "sources": [
+      "history-pagoda",
+      "history-angkor"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

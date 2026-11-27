@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090d1e">
+  <title>Mouse Lab · Arcade</title>
+  <link rel="stylesheet" href="../arcade-ui.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="../arcade-save.js" defer></script>
+  <script src="app.js" type="module"></script>
+</head>
+<body class="arcade-shell">
+  <main class="lab">
+    <header class="arcade-top">
+      <a class="arcade-btn arcade-home arcade-home-link" href="../index.html" aria-label="Back to Arcade">Arcade</a>
+      <h1 class="arcade-title">Mouse Lab</h1>
+      <label class="difficulty">Difficulty
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="steady">Steady</option>
+          <option value="challenge">Challenge</option>
+        </select>
+      </label>
+    </header>
+    <nav class="lessons" aria-label="Practice exercises" id="lessons"></nav>
+    <section class="arcade-panel exercise" aria-labelledby="lesson-title">
+      <div class="lesson-header">
+        <h2 id="lesson-title" tabindex="-1"></h2>
+        <p id="instructions"></p>
+      </div>
+      <div id="stage"></div>
+      <p id="feedback" role="status" aria-atomic="true"></p>
+      <div class="controls">
+        <button type="button" class="arcade-btn" id="repeat">Try again</button>
+        <button type="button" class="arcade-btn primary" id="next" hidden>Next exercise</button>
+      </div>
+    </section>
+    <footer>
+      <span id="progress"></span>
+      <button type="button" class="arcade-btn" id="reset">Reset progress</button>
+    </footer>
+    <dialog class="arcade-panel reset-dialog" id="reset-dialog" aria-labelledby="reset-title">
+      <form method="dialog">
+        <h2 id="reset-title">Reset Mouse Lab progress?</h2>
+        <p>You can start all the exercises again.</p>
+        <div class="controls">
+          <button type="submit" class="arcade-btn" value="cancel" autofocus>Cancel</button>
+          <button type="submit" class="arcade-btn danger" value="reset">Reset progress</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+</body>
+</html>

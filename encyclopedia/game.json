@@ -1,0 +1,14 @@
+{
+  "title": "Encyclopedia",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "order": 420,
+  "enabled": true,
+  "type": "activity",
+  "multiplayer": false,
+  "playersMin": 1,
+  "playersMax": 1,
+  "categories": ["reading", "learning"],
+  "tags": ["reference", "science", "history", "offline", "mouse", "touch"],
+  "orientation": "any"
+}

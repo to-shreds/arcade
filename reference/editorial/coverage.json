@@ -1,0 +1,261 @@
+{
+  "inventory": {
+    "articles": 1006,
+    "headwords": 780,
+    "senses": 917,
+    "questions": 3019,
+    "quizzes": 13
+  },
+  "approved": {
+    "articles": 1006,
+    "headwords": 780,
+    "senses": 917,
+    "questions": 3019,
+    "quizzes": 13
+  },
+  "taxonomy": {
+    "astronomy": {
+      "label": "Astronomy",
+      "articles": 47,
+      "approved": 47
+    },
+    "space-exploration": {
+      "label": "Space exploration",
+      "articles": 15,
+      "approved": 15
+    },
+    "earth-science": {
+      "label": "Earth science",
+      "articles": 28,
+      "approved": 28
+    },
+    "weather-and-climate": {
+      "label": "Weather & climate",
+      "articles": 22,
+      "approved": 22
+    },
+    "oceans": {
+      "label": "Oceans",
+      "articles": 36,
+      "approved": 36
+    },
+    "physics": {
+      "label": "Physics",
+      "articles": 24,
+      "approved": 24
+    },
+    "chemistry": {
+      "label": "Chemistry",
+      "articles": 26,
+      "approved": 26
+    },
+    "animals": {
+      "label": "Animals",
+      "articles": 22,
+      "approved": 22
+    },
+    "plants": {
+      "label": "Plants",
+      "articles": 35,
+      "approved": 35
+    },
+    "paleontology": {
+      "label": "Fossils & evolution",
+      "articles": 27,
+      "approved": 27
+    },
+    "ecosystems": {
+      "label": "Ecosystems",
+      "articles": 0,
+      "approved": 0
+    },
+    "fungi-microbes": {
+      "label": "Fungi & microbes",
+      "articles": 5,
+      "approved": 5
+    },
+    "conservation": {
+      "label": "Conservation",
+      "articles": 8,
+      "approved": 8
+    },
+    "human-body": {
+      "label": "Human body",
+      "articles": 47,
+      "approved": 47
+    },
+    "health-nutrition": {
+      "label": "Health & nutrition",
+      "articles": 18,
+      "approved": 18
+    },
+    "genetics": {
+      "label": "Genetics",
+      "articles": 15,
+      "approved": 15
+    },
+    "math": {
+      "label": "Math",
+      "articles": 41,
+      "approved": 41
+    },
+    "logic": {
+      "label": "Logic & patterns",
+      "articles": 12,
+      "approved": 12
+    },
+    "computing": {
+      "label": "Computing",
+      "articles": 42,
+      "approved": 42
+    },
+    "digital-safety": {
+      "label": "Digital safety",
+      "articles": 14,
+      "approved": 14
+    },
+    "engineering": {
+      "label": "Engineering",
+      "articles": 34,
+      "approved": 34
+    },
+    "vehicles": {
+      "label": "Vehicles & transportation",
+      "articles": 11,
+      "approved": 11
+    },
+    "infrastructure": {
+      "label": "Infrastructure",
+      "articles": 21,
+      "approved": 21
+    },
+    "maps-geography": {
+      "label": "Maps & geography",
+      "articles": 13,
+      "approved": 13
+    },
+    "countries": {
+      "label": "Countries",
+      "articles": 116,
+      "approved": 116
+    },
+    "landmarks": {
+      "label": "Landmarks",
+      "articles": 6,
+      "approved": 6
+    },
+    "ancient-history": {
+      "label": "Ancient history",
+      "articles": 29,
+      "approved": 29
+    },
+    "world-history": {
+      "label": "World history",
+      "articles": 26,
+      "approved": 26
+    },
+    "us-history": {
+      "label": "U.S. history",
+      "articles": 31,
+      "approved": 31
+    },
+    "government-civics": {
+      "label": "Government & civics",
+      "articles": 23,
+      "approved": 23
+    },
+    "language-writing": {
+      "label": "Language & writing",
+      "articles": 22,
+      "approved": 22
+    },
+    "visual-arts": {
+      "label": "Visual arts",
+      "articles": 23,
+      "approved": 23
+    },
+    "music": {
+      "label": "Music",
+      "articles": 23,
+      "approved": 23
+    },
+    "literature": {
+      "label": "Literature",
+      "articles": 24,
+      "approved": 24
+    },
+    "architecture": {
+      "label": "Architecture",
+      "articles": 17,
+      "approved": 17
+    },
+    "sports": {
+      "label": "Sports",
+      "articles": 14,
+      "approved": 14
+    },
+    "games": {
+      "label": "Games",
+      "articles": 9,
+      "approved": 9
+    },
+    "agriculture-food": {
+      "label": "Agriculture & food",
+      "articles": 53,
+      "approved": 53
+    },
+    "economics": {
+      "label": "Economics",
+      "articles": 3,
+      "approved": 3
+    },
+    "libraries-museums": {
+      "label": "Libraries & museums",
+      "articles": 3,
+      "approved": 3
+    },
+    "inventions": {
+      "label": "Inventions & occupations",
+      "articles": 6,
+      "approved": 6
+    },
+    "everyday-science": {
+      "label": "Everyday science",
+      "articles": 15,
+      "approved": 15
+    }
+  },
+  "sourceCount": 1063,
+  "termGaps": [],
+  "safetyFlags": [
+    "ancient-greece",
+    "berlin-wall",
+    "birds-and-dinosaurs",
+    "constitutional-convention",
+    "crop-rotation",
+    "declaration-of-independence",
+    "dinosaur-extinction",
+    "emancipation-proclamation",
+    "first-world-war-armistice",
+    "founding-united-nations",
+    "fourteenth-amendment",
+    "frederick-douglass",
+    "george-washington",
+    "gettysburg-address",
+    "haitian-revolution",
+    "hammurabi-laws",
+    "harriet-tubman",
+    "league-of-nations",
+    "reconstruction-era",
+    "taj-mahal",
+    "thirteenth-amendment",
+    "trail-of-tears",
+    "us-bill-of-rights",
+    "us-civil-war",
+    "word abolish",
+    "word armistice",
+    "word pilgrimage"
+  ],
+  "readingLengthWarnings": [],
+  "ambiguousForms": []
+}

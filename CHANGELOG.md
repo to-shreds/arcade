@@ -1,3 +1,22 @@
+# 2.14.1 preview
+
+- Added 879 independently reviewed Encyclopedia articles and 2,637 related
+  questions. The full offline collection has 1,006 articles in 41 subjects.
+- Added 509 dictionary headwords used by the expanded collection. The shared
+  lexicon now has 780 headwords and 917 senses.
+- Verified search, reading, linked definitions and corrupted-update recovery
+  using the expanded offline files.
+
+# 2.14.0 preview
+
+- Added offline Encyclopedia and Dictionary with a shared search index,
+  127 reviewed articles, 271 headwords, 405 senses, 382 questions and 13
+  quizzes. Added inline definitions, saved collections and local narration.
+- Added Mouse Lab with ten mouse exercises and alternatives for touch and
+  keyboard. Fixed Minesweeper right-click flagging and canceled input.
+- Added a Windows x64 WebView2 wrapper preview with native parent settings
+  and password-protected Exit.
+
 # 2.13.6
 
 - All 12 energy (beam-family) weapons now fire visible gravity-affected arcing projectiles instead of instantaneous straight rays. Their ranges still affect arc launch speed, and the impacts keep distinctive damage, sparks, and excavation. Cutting Ray now carves its trench only after the projectile lands.

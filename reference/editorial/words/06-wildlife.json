@@ -1,0 +1,698 @@
+[
+  {
+    "headword": "aquifer",
+    "forms": [
+      "aquifers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A layer of material under the ground that holds water and lets enough move through to supply a well or spring.",
+        "example": "The well reached an aquifer with water between grains of sand."
+      }
+    ],
+    "sources": [
+      "wildearth-groundwater-aquifers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "bacterium",
+    "forms": [
+      "bacteria"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tiny living thing made of one cell. Some help other living things, while others can cause illness.",
+        "example": "One kind of bacterium makes food using chemicals near a deep-sea vent."
+      }
+    ],
+    "sources": [
+      "wildsea-chemosynthesis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "baleen",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Long strips in some whales’ mouths that work like a strainer to catch tiny food.",
+        "example": "The blue whale used its baleen to hold krill while water flowed back out."
+      }
+    ],
+    "sources": [
+      "noaaf-blue-whale"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "bioluminescence",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Light made by a living thing using a process inside its body.",
+        "example": "A deep-sea fish can use bioluminescence to shine in the dark."
+      }
+    ],
+    "sources": [
+      "wildsea-bioluminescence"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "blubber",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A thick layer of fat under the skin that helps keep some ocean mammals warm.",
+        "example": "A seal has blubber between its skin and muscles."
+      }
+    ],
+    "sources": [
+      "noaaf-northern-elephant-seal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "brackish",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "adjective",
+        "definition": "A little salty, as water can be where a river mixes with the sea.",
+        "example": "The marsh creek held brackish water when the tide came in."
+      }
+    ],
+    "sources": [
+      "wildsea-estuaries"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "burrow",
+    "forms": [
+      "burrows"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An underground passage or home made or used by an animal.",
+        "example": "The meerkat ran into its burrow when another meerkat called."
+      }
+    ],
+    "sources": [
+      "nzoo-meerkat"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "calving",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The breaking away of ice from the edge of a glacier to form floating pieces.",
+        "example": "Calving formed several new icebergs at the front of the glacier."
+      }
+    ],
+    "sources": [
+      "wildsky-icebergs"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "camouflage",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Color, shape, or pattern that makes a living thing hard to see in a place.",
+        "example": "The octopus used its skin color as camouflage against the rocks."
+      }
+    ],
+    "sources": [
+      "wildsea-giant-pacific-octopus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "carapace",
+    "forms": [
+      "carapaces"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A hard covering over all or part of an animal’s back.",
+        "example": "The loggerhead’s top shell, called a carapace, is reddish brown."
+      }
+    ],
+    "sources": [
+      "noaaf-loggerhead-turtle"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "chemosynthesis",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Making food using energy from chemicals instead of energy from sunlight.",
+        "example": "Some bacteria at ocean vents use chemosynthesis."
+      }
+    ],
+    "sources": [
+      "wildsea-chemosynthesis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "dew point",
+    "forms": [
+      "dew points"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The temperature to which air must cool before water vapor begins to turn into drops, if the amount of water in the air stays the same.",
+        "example": "The grass cooled to the dew point and tiny drops formed."
+      }
+    ],
+    "sources": [
+      "wildsky-dew"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "dorsal fin",
+    "forms": [
+      "dorsal fins"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A fin that rises from the back of a swimming animal.",
+        "example": "The orca’s dorsal fin showed above the water."
+      }
+    ],
+    "sources": [
+      "noaaf-killer-whale"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "flipper",
+    "forms": [
+      "flippers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A flat limb that helps an animal swim or steer.",
+        "example": "The sea lion pulled itself forward with its front flippers."
+      }
+    ],
+    "sources": [
+      "nzoo-california-sea-lion"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "fluke",
+    "forms": [
+      "flukes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the broad sections of a whale’s two-part tail.",
+        "example": "White marks showed on the humpback whale’s flukes."
+      }
+    ],
+    "sources": [
+      "noaaf-humpback-whale"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "food web",
+    "forms": [
+      "food webs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A picture or idea showing who eats whom among many living things in one place.",
+        "example": "Kelp, sea urchins, and sea otters are connected in a food web."
+      }
+    ],
+    "sources": [
+      "wildsea-sea-otter"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "groundwater",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Water found below the surface in gaps in soil and rock.",
+        "example": "Some of the rain soaked down and became groundwater."
+      }
+    ],
+    "sources": [
+      "wildearth-groundwater-aquifers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "herbivore",
+    "forms": [
+      "herbivores"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An animal that eats mainly or only plants.",
+        "example": "Triceratops had a beak and teeth to feed as a herbivore."
+      }
+    ],
+    "sources": [
+      "wildfossil-triceratops"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "hydrothermal vent",
+    "forms": [
+      "hydrothermal vents"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A place on the sea floor where hot water from below comes out through an opening.",
+        "example": "A hydrothermal vent released fluid carrying bits of minerals."
+      }
+    ],
+    "sources": [
+      "wildsea-hydrothermal-vents"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "igneous rock",
+    "forms": [
+      "igneous rocks"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Rock made when melted material cools and becomes solid.",
+        "example": "Obsidian is an igneous rock that can have a glassy surface."
+      }
+    ],
+    "sources": [
+      "wildearth-igneous-rock"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "jet stream",
+    "forms": [
+      "jet streams"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A narrow band of fast-moving air high in the sky.",
+        "example": "The plane flew with the jet stream and arrived sooner."
+      }
+    ],
+    "sources": [
+      "wildsky-jet-stream"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "kelp",
+    "forms": [
+      "kelps"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A kind of large brown seaweed.",
+        "example": "Fish hid under the long kelp blades."
+      }
+    ],
+    "sources": [
+      "wildsea-kelp-forest"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "krill",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Small swimming animals with bodies shaped a little like tiny shrimp.",
+        "example": "A whale took in a mouthful of water full of krill."
+      }
+    ],
+    "sources": [
+      "noaaf-blue-whale"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "mammal",
+    "forms": [
+      "mammals"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A kind of animal whose mothers feed their young milk. Mammals have hair at least at some stage in life.",
+        "example": "Dolphins and bears are both mammals."
+      }
+    ],
+    "sources": [
+      "noaaf-common-bottlenose-dolphin"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "metamorphic rock",
+    "forms": [
+      "metamorphic rocks"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Rock changed from an older rock by heat, pressure, or other changes inside Earth, without melting completely.",
+        "example": "Marble is a metamorphic rock that can form from limestone."
+      }
+    ],
+    "sources": [
+      "wildearth-metamorphic-rock"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "moraine",
+    "forms": [
+      "moraines"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A ridge or pile of loose material carried and left by a glacier.",
+        "example": "The rocky moraine showed where the glacier once reached."
+      }
+    ],
+    "sources": [
+      "wildearth-moraines"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "photic zone",
+    "forms": [
+      "photic zones"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The upper part of an ocean or lake where enough sunlight can reach for many living things to use it to make food.",
+        "example": "Plants in the photic zone can catch sunlight under water."
+      }
+    ],
+    "sources": [
+      "wildsea-ocean-zones"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "phytoplankton",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Mostly tiny drifting living things that can make food using sunlight.",
+        "example": "The phytoplankton used light near the sea surface."
+      }
+    ],
+    "sources": [
+      "wildsea-plankton"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "plankton",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Living things that are carried by water currents instead of mostly swimming on their own.",
+        "example": "A manta ray strained plankton from the seawater."
+      }
+    ],
+    "sources": [
+      "wildsea-plankton"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "predator",
+    "forms": [
+      "predators"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An animal that catches and eats other animals.",
+        "example": "The cheetah is a predator that can run fast for a short time."
+      }
+    ],
+    "sources": [
+      "nzoo-cheetah"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "quill",
+    "forms": [
+      "quills"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the stiff, pointed hairs of an animal such as a porcupine.",
+        "example": "The loose quill had a very sharp tip."
+      }
+    ],
+    "sources": [
+      "nzoo-north-american-porcupine"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "sauropod",
+    "forms": [
+      "sauropods"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of a group of dinosaurs with long necks and tails that walked on four legs and ate plants.",
+        "example": "Brachiosaurus was a sauropod with especially long front legs."
+      }
+    ],
+    "sources": [
+      "wildfossil-brachiosaurus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "seagrass",
+    "forms": [
+      "seagrasses"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A flowering plant that grows under the sea with roots and long leaves.",
+        "example": "The green turtle bit off a piece of seagrass in shallow water."
+      }
+    ],
+    "sources": [
+      "wildsea-seagrass-meadow"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "sedimentary rock",
+    "forms": [
+      "sedimentary rocks"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Rock made from settled grains or from other material that collects in a layer and hardens.",
+        "example": "Grains of sand held together can form a sedimentary rock called sandstone."
+      }
+    ],
+    "sources": [
+      "wildearth-sedimentary-rock"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "stalactite",
+    "forms": [
+      "stalactites"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A mineral formation that grows downward from the roof of a cave as water leaves material behind.",
+        "example": "A drop hung for a moment at the tip of a stalactite."
+      }
+    ],
+    "sources": [
+      "wildearth-cave-formations"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "stalagmite",
+    "forms": [
+      "stalagmites"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A mineral formation that grows upward from a cave floor as water drops leave material behind.",
+        "example": "The rounded stalagmite grew where drops hit the same spot."
+      }
+    ],
+    "sources": [
+      "wildearth-cave-formations"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "trace fossil",
+    "forms": [
+      "trace fossils"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A preserved sign of what a living thing did long ago, such as a track or burrow.",
+        "example": "The track in the rock is a trace fossil of a dinosaur walking."
+      }
+    ],
+    "sources": [
+      "wildfossil-trace-fossils"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "tusk",
+    "forms": [
+      "tusks"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A long tooth that sticks out past an animal’s mouth.",
+        "example": "A narwhal’s tusk is a long tooth that sticks out from its upper jaw."
+      }
+    ],
+    "sources": [
+      "noaaf-narwhal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "weather front",
+    "forms": [
+      "weather fronts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A boundary where masses of air with different temperatures meet.",
+        "example": "Clouds formed where warm air rose at a weather front."
+      }
+    ],
+    "sources": [
+      "wildsky-weather-fronts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "air pressure",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "How hard the air pushes on something. It usually gets lower as you go higher above sea level.",
+        "example": "A barometer shows whether the air pressure is rising or falling."
+      }
+    ],
+    "sources": [
+      "wildsky-air-pressure"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

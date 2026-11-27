@@ -1,0 +1,227 @@
+[
+  {
+    "id": "nih-heart-anatomy",
+    "title": "What the Heart Looks Like",
+    "url": "https://www.nhlbi.nih.gov/health/heart/anatomy",
+    "publisher": "NHLBI",
+    "scope": "Four chambers and valves.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-heart-beats",
+    "title": "How the Heart Beats",
+    "url": "https://www.nhlbi.nih.gov/health/heart/heart-beats",
+    "publisher": "NHLBI",
+    "scope": "Electrical control of timing and muscle contraction.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-heart-flow",
+    "title": "How Blood Flows through the Heart",
+    "url": "https://www.nhlbi.nih.gov/health/heart/blood-flow",
+    "publisher": "NHLBI",
+    "scope": "Right and left heart, lungs and body circulation.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-lungs",
+    "title": "How the Lungs Work",
+    "url": "https://www.nhlbi.nih.gov/health/lungs",
+    "publisher": "NHLBI",
+    "scope": "Oxygen and carbon dioxide exchange.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-respiratory",
+    "title": "The Respiratory System",
+    "url": "https://www.nhlbi.nih.gov/health/lungs/respiratory-system",
+    "publisher": "NHLBI",
+    "scope": "Airways and sacs, lung sizes and connection to circulation.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-breath-control",
+    "title": "How Your Body Controls Breathing",
+    "url": "https://www.nhlbi.nih.gov/health/lungs/body-controls-breathing",
+    "publisher": "NHLBI",
+    "scope": "Muscles, brain, and movement of the diaphragm.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-digestion",
+    "title": "Your Digestive System & How It Works",
+    "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works",
+    "publisher": "NIDDK",
+    "scope": "Organs in order, enzymes and juices, nutrient and water absorption, and peristalsis.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-kidneys",
+    "title": "Your Kidneys & How They Work",
+    "url": "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work",
+    "publisher": "NIDDK",
+    "scope": "Nephron, kidney filtering and return of useful substances, and movement of urine.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-brain",
+    "title": "Know Your Brain",
+    "url": "https://www.ninds.nih.gov/sites/default/files/2025-05/know-your-brain-brian-basics.pdf",
+    "publisher": "NINDS",
+    "scope": "Brain regions and function, neural communication and nervous system.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-hearing",
+    "title": "How Do We Hear?",
+    "url": "https://www.nidcd.nih.gov/health/how-do-we-hear",
+    "publisher": "NIDCD",
+    "scope": "Sound movement through outer, middle and inner ear, pitch and signals to brain.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-muscles",
+    "title": "Review: Introduction to the Muscular System",
+    "url": "https://www.training.seer.cancer.gov/anatomy/muscular/review.html",
+    "publisher": "National Cancer Institute SEER Training",
+    "scope": "Muscle contraction moves bone and tendon attachments.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nih-arm",
+    "title": "Muscles of the Pectoral Girdle and Upper Limbs",
+    "url": "https://openstax.org/books/anatomy-and-physiology/pages/11-5-muscles-of-the-pectoral-girdle-and-upper-limbs",
+    "publisher": "OpenStax",
+    "scope": "Muscles that bend and straighten the elbow.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "math-fractions",
+    "title": "Grade 3 Number and Operations Fractions 3.NF.A.1",
+    "url": "https://www.thecorestandards.org/Math/Content/3/NF/A/1/",
+    "publisher": "Common Core State Standards Initiative",
+    "scope": "Equal parts and number of unit pieces.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "math-fractions-line",
+    "title": "Unit 3 Lesson 8",
+    "url": "https://cms-assets.illustrativemathematics.org/kdyhgwng439gs7awjprel84blq8z",
+    "publisher": "Illustrative Mathematics",
+    "scope": "Fractions greater than one whole and number line reasoning.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "math-fractions-equivalent",
+    "title": "Grade 3 Number and Operations Fractions 3.NF.A.3.A",
+    "url": "https://www.thecorestandards.org/Math/Content/3/NF/A/3/a/",
+    "publisher": "Common Core State Standards Initiative",
+    "scope": "Equivalent fractions shown as equal size or same number-line position.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "math-area",
+    "title": "Grade 3 Area Standard 3.MD.C.7.C",
+    "url": "https://www.thecorestandards.org/Math/Content/3/MD/C/7/c/",
+    "publisher": "Common Core State Standards Initiative",
+    "scope": "Tiling, multiplication and rectangular area.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "math-perimeter",
+    "title": "Grade 3 Perimeter Standard 3.MD.D.8",
+    "url": "https://www.thecorestandards.org/Math/Content/3/MD/D/8/",
+    "publisher": "Common Core State Standards Initiative",
+    "scope": "Length around polygons and comparison with area.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "csu-binary",
+    "title": "Binary Numbers",
+    "url": "https://classic.csunplugged.org/activities/binary-numbers/",
+    "publisher": "University of Canterbury CS Unplugged",
+    "scope": "Binary place values, bits, bytes and representation of information.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "csu-searching",
+    "title": "Searching Algorithms",
+    "url": "https://classic.csunplugged.org/activities/searching-algorithms/",
+    "publisher": "University of Canterbury CS Unplugged",
+    "scope": "Linear search and searching ordered data by dividing the range.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "ftc-phishing",
+    "title": "How To Recognize and Avoid Phishing Scams",
+    "url": "https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams",
+    "publisher": "Federal Trade Commission",
+    "scope": "Look-alike messages, unexpected attachments and links, and recognizing phishing.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "ftc-passwords",
+    "title": "Creating Strong Passwords and Other Ways To Protect Your Accounts",
+    "url": "https://consumer.ftc.gov/articles/creating-strong-passwords-and-other-ways-protect-your-accounts",
+    "publisher": "Federal Trade Commission",
+    "scope": "Long, difficult-to-guess, unique passwords and password managers.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "te-simple-machines",
+    "title": "Simple Machines",
+    "url": "https://www.teachengineering.org/popular-topics/simple-machines",
+    "publisher": "TeachEngineering",
+    "scope": "Levers, pulleys and changes in size or direction of applied force.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "te-levers",
+    "title": "Simple Machines: Lever",
+    "url": "https://www.teachengineering.org/content/cub_/lessons/cub_simple/cub_simple_lesson03_presentation_new.pdf",
+    "publisher": "TeachEngineering",
+    "scope": "Fulcrum, load and force placement.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "te-pulleys",
+    "title": "Simple Machines: Pulley Visual Aids",
+    "url": "https://www.teachengineering.org/content/cub_/lessons/cub_simple/cub_simple_lesson05_activity1_visual_aids_new.pdf",
+    "publisher": "TeachEngineering",
+    "scope": "Fixed and movable pulley arrangements and rope routing.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "nist-byte",
+    "title": "Byte",
+    "url": "https://csrc.nist.gov/glossary/term/byte",
+    "publisher": "National Institute of Standards and Technology",
+    "scope": "The standard modern byte as eight bits.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  }
+]

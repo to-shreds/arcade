@@ -1,0 +1,74 @@
+name: Arcade Windows wrapper
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'windows-wrapper/**'
+      - '.github/workflows/test-arcade-windows.yml'
+      - 'offline-manifest.json'
+  push:
+    branches: ['work/arcade-reference-windows', 'main']
+    paths:
+      - 'windows-wrapper/**'
+      - '.github/workflows/test-arcade-windows.yml'
+      - 'offline-manifest.json'
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-2025
+    timeout-minutes: 15
+    steps:
+      - name: Preserve the repository's hashed runtime bytes
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.404'
+      - name: Prepare verified local snapshot
+        run: |
+          node windows-wrapper/prepare-snapshot.mjs
+          python windows-wrapper/zip-snapshot.py
+      - name: Exercise child policy and parent password storage
+        run: dotnet run --project windows-wrapper/Arcade.Windows.Tests -c Release -- windows-wrapper/out/child-snapshot.zip
+      - name: Build Windows wrapper and package it
+        run: |
+          dotnet restore windows-wrapper/Arcade.Windows --locked-mode
+          dotnet publish windows-wrapper/Arcade.Windows -c Release --no-restore -o windows-wrapper/out/Arcade-Windows-x64
+          dotnet run --project windows-wrapper/Arcade.Windows.Tests -c Release -- windows-wrapper/out/child-snapshot.zip windows-wrapper/out/Arcade-Windows-x64/Arcade.dll
+          python windows-wrapper/package-windows.py --source-commit $env:GITHUB_SHA
+      - name: Ensure the runner has Microsoft WebView2
+        run: |
+          $id = '{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}'
+          $paths = @("HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\$id",
+                     "HKCU:\Software\Microsoft\EdgeUpdate\Clients\$id")
+          $runtime = $paths | ForEach-Object { Get-ItemPropertyValue -LiteralPath $_ -Name pv -ErrorAction SilentlyContinue } |
+            Where-Object { $_ -and $_ -ne '0.0.0.0' }
+          if (!$runtime) {
+            $setup = Join-Path $env:RUNNER_TEMP MicrosoftEdgeWebview2Setup.exe
+            Invoke-WebRequest 'https://go.microsoft.com/fwlink/p/?LinkId=2124703' -OutFile $setup
+            $signature = Get-AuthenticodeSignature $setup
+            if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notlike '*O=Microsoft Corporation*') {
+              throw 'WebView2 setup signature is invalid.'
+            }
+            $install = Start-Process $setup -ArgumentList '/silent', '/install' -Wait -PassThru
+            if ($install.ExitCode -ne 0) { throw "WebView2 setup exited with $($install.ExitCode)." }
+          }
+      - name: Exercise native WebView2
+        run: |
+          dotnet restore windows-wrapper/Arcade.Windows.Smoke --locked-mode
+          dotnet run --project windows-wrapper/Arcade.Windows.Smoke -c Release --no-restore -- windows-wrapper/out/child-snapshot.zip
+      - name: Retain Windows preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: Arcade-Windows-x64-preview
+          path: windows-wrapper/out/Arcade-Windows-x64-preview.*

@@ -1,0 +1,1664 @@
+[
+  {
+    "headword": "place value",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The amount a digit stands for because of where it sits in a number.",
+        "example": "The place value of the 4 in 47 is forty."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "digit",
+    "forms": [
+      "digits"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the symbols used to write a number, such as 0, 1, or 2.",
+        "example": "The number 73 has two digits."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "rounding",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Changing a number to a nearby, simpler number, such as the closest ten.",
+        "example": "Rounding 48 to the nearest ten gives 50."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "array",
+    "forms": [
+      "arrays"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A group arranged in rows and columns or another orderly pattern.",
+        "example": "An array of three rows with four seeds in each row has twelve seeds."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "factor",
+    "forms": [
+      "factors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A number that multiplies by another number to make a given number.",
+        "example": "Six is a factor of twelve because six times two is twelve."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "remainder",
+    "forms": [
+      "remainders"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The amount left over after you make as many equal groups as you can.",
+        "example": "After dividing eleven pencils into two equal groups of five, the remainder is one."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "even number",
+    "forms": [
+      "even numbers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A whole number that can be put into pairs with none left over.",
+        "example": "Eight is an even number because it makes four pairs."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "odd number",
+    "forms": [
+      "odd numbers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A whole number that leaves one item without a partner when you put the items into pairs.",
+        "example": "Nine is an odd number because one item is left after you make four pairs."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "multiple",
+    "forms": [
+      "multiples"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A number made by multiplying a given number by a whole number.",
+        "example": "Twelve is a multiple of three."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "prime number",
+    "forms": [
+      "prime numbers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A whole number greater than one with exactly two positive factors, one and itself.",
+        "example": "Seven is a prime number since only one and seven divide it evenly."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "decimal point",
+    "forms": [
+      "decimal points"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The dot that separates the ones place from the smaller places in a number.",
+        "example": "In 2.5, the decimal point comes before the five."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "percent",
+    "forms": [
+      "percents"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way to show an amount out of one hundred.",
+        "example": "Twenty-five percent of a hundred squares is twenty-five squares."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "negative number",
+    "forms": [
+      "negative numbers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A number less than zero.",
+        "example": "A temperature of minus five degrees is written with a negative number."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "volume",
+    "forms": [
+      "volumes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The amount of space something takes up, or the amount a container can hold.",
+        "example": "We measured the volume of the tank in liters."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "cubic unit",
+    "forms": [
+      "cubic units"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The space taken up by a cube whose edges are all one unit long.",
+        "example": "If one cube holds one cubic unit of space, three cubes hold three cubic units."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "angle",
+    "forms": [
+      "angles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The amount of turn or opening between two lines or directions that meet.",
+        "example": "The pages of the book made a wider angle when I opened it farther."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "right angle",
+    "forms": [
+      "right angles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An angle that makes a square corner and measures ninety degrees.",
+        "example": "The sides of a sheet of paper meet at a right angle."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "degree",
+    "forms": [
+      "degrees"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A unit used to measure an angle or a temperature.",
+        "example": "A full turn is 360 degrees."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "radius",
+    "forms": [
+      "radii",
+      "radiuses"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The distance from the middle of a circle to its edge, or a line showing that distance.",
+        "example": "A circle with a radius of three centimeters measures six centimeters straight across."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "diameter",
+    "forms": [
+      "diameters"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A straight line passing through the center of a circle from one edge to the other, or the length of that line.",
+        "example": "We measured the diameter of the plate by holding a ruler across its center."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "circumference",
+    "forms": [
+      "circumferences"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The distance around a circle.",
+        "example": "We used string to measure the circumference of a jar lid."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "pi",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The number you get when you divide the distance around a circle by the distance across its middle. It is about 3.14.",
+        "example": "We used pi to estimate how far it was around a round table."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "symmetry",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A balance that lets one part of a shape match another part when you fold, turn, or move it in a certain way.",
+        "example": "The two sides of a paper heart can show symmetry."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "pattern",
+    "forms": [
+      "patterns"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An arrangement that repeats or changes in a way you can describe.",
+        "example": "The beads followed a red, blue, yellow pattern."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "input",
+    "forms": [
+      "inputs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A number, fact, or signal you give to a rule, device, or system.",
+        "example": "In a number machine that adds two, an input of three gives five."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "output",
+    "forms": [
+      "outputs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A number, fact, or signal that comes out after a rule or device does its work.",
+        "example": "When the machine doubled four, the output was eight."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "parentheses",
+    "forms": [
+      "parenthesis"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Curved marks that enclose part of a sentence or calculation, like these marks around an example (2 + 3).",
+        "example": "The parentheses tell us to do that addition first."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "coordinate",
+    "forms": [
+      "coordinates"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the numbers that describes the position of a point on a map or grid.",
+        "example": "The first coordinate in (5, 2) tells how far right to go."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "ordered pair",
+    "forms": [
+      "ordered pairs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Two numbers written in a set order, often used to name a spot on a grid.",
+        "example": "The ordered pair (2, 4) gives the sideways move first and the upward move second."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "bar graph",
+    "forms": [
+      "bar graphs",
+      "bar chart",
+      "bar charts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A drawing that uses bars of different lengths to compare amounts.",
+        "example": "The longest bar in our bar graph showed the class’s most popular fruit."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "data",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Information such as measurements, counts, or answers gathered to help you learn about something.",
+        "example": "We collected data on how much rain fell each day."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "mean",
+    "forms": [
+      "means"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An average found by adding numbers and dividing the total by how many numbers you added.",
+        "example": "The mean of three, six, and nine is six."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "median",
+    "forms": [
+      "medians"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The middle value in an ordered list, or the value halfway between the two middle numbers when there are two.",
+        "example": "After sorting two, five, and twelve, the median is five."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "probability",
+    "forms": [
+      "probabilities"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A number telling how likely an event is to happen.",
+        "example": "The probability of heads on a fair coin is one half."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "metric system",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A system of measurements with units such as the meter, liter, and gram, related by powers of ten.",
+        "example": "In the metric system, a meter is one hundred centimeters."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "pigment",
+    "forms": [
+      "pigments"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A material that gives paint or another substance its color.",
+        "example": "A blue pigment gives the paint its blue color."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "wash",
+    "forms": [
+      "washes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A thin layer of watery paint spread over a large area.",
+        "example": "We painted the sky with a pale blue wash."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "collage",
+    "forms": [
+      "collages"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An artwork made by attaching pieces of paper, cloth, or other material to a surface.",
+        "example": "The class made a collage out of old maps and scraps of paper."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "sculpture",
+    "forms": [
+      "sculptures"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Art that takes up space in three directions or rises out from a surface.",
+        "example": "We walked around the sculpture to look at it from behind."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "form",
+    "forms": [
+      "forms"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The shape of something, especially its shape in three dimensions.",
+        "example": "The clay took the form of a bird."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "still life",
+    "forms": [
+      "still lifes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A picture or artwork showing objects such as fruit, cups, flowers, or books.",
+        "example": "Our still life showed three apples and a glass bowl."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "foreground",
+    "forms": [
+      "foregrounds"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The part of a picture that seems closest to the viewer.",
+        "example": "Tall grass filled the foreground of the landscape."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "background",
+    "forms": [
+      "backgrounds"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The part of a view or picture that seems farthest behind the main things in it.",
+        "example": "The artist painted snowy mountains in the background."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "perspective",
+    "forms": [
+      "perspectives"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A way to show depth and how far away things seem on a flat surface.",
+        "example": "Drawing the road edges closer together gave the picture perspective."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "vanishing point",
+    "forms": [
+      "vanishing points"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A point in a drawing where lines heading into the distance seem to meet.",
+        "example": "The artist drew the hall’s edges toward one vanishing point."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "shading",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Marks or color that show the lighter and darker parts of a drawing.",
+        "example": "A little shading helped the drawn ball look round."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "value",
+    "forms": [
+      "values"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "How light or dark a color looks in a work of art.",
+        "example": "The pale blue and the dark blue had different values."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "abstract",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "adjective",
+        "definition": "Made with shapes, lines, or colors without showing things exactly as they look in real life.",
+        "example": "The abstract picture used circles and dark lines to suggest a storm."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "color",
+    "forms": [
+      "colors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The way light makes something look red, blue, green, or another shade.",
+        "example": "Yellow was the brightest color in the mural."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "pottery",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Things made from clay that has been shaped and hardened with heat.",
+        "example": "The museum displayed pottery with birds painted on it."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "kiln",
+    "forms": [
+      "kilns"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An oven that gets very hot, used for heating clay pots and other materials.",
+        "example": "A grown-up put the dry clay bowls into the kiln."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "glaze",
+    "forms": [
+      "glazes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A coating that can become glassy when heated on pottery.",
+        "example": "The glaze gave the bowl a smooth blue surface."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "tessera",
+    "forms": [
+      "tesserae"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small piece used to build a mosaic.",
+        "example": "The red tessera helped fill the rim of the flower."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "weaving",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Making cloth or another flat material by crossing threads or strips over and under one another.",
+        "example": "The weaving made a pattern of blue and yellow rows."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "warp",
+    "forms": [
+      "warps"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The lengthwise threads that stay stretched on a loom while other threads cross them.",
+        "example": "The weaver pulled the warp tight before starting."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "weft",
+    "forms": [
+      "wefts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The thread or threads that pass across the stretched threads in weaving.",
+        "example": "Each stretch of weft added a row."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "loom",
+    "forms": [
+      "looms"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tool or frame that holds threads steady for weaving.",
+        "example": "A weaver stretched white threads across the loom."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "animation",
+    "forms": [
+      "animations"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Making pictures or objects seem to move by showing a series of slightly different images in order.",
+        "example": "Her animation showed a toy elephant walking across the desk."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "frame",
+    "forms": [
+      "frames"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One picture in a series that makes a film or animation.",
+        "example": "We moved the toy a little before taking the next frame."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "panel",
+    "forms": [
+      "panels"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the areas in a comic, often a box containing a picture or words.",
+        "example": "The next panel showed what was inside the box."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "dialogue",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Words spoken back and forth between people or characters.",
+        "example": "Actors practiced the dialogue from the first page."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "setting",
+    "forms": [
+      "settings"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The time and place where a story happens.",
+        "example": "The setting of the story was a snowy town many years ago."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "character",
+    "forms": [
+      "characters"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A person, animal, or other being who takes part in a story.",
+        "example": "A curious fox was the main character."
+      },
+      {
+        "partOfSpeech": "noun",
+        "definition": "One letter, number, symbol, or other mark in a line of text.",
+        "example": "The last character in the line is an exclamation mark."
+      }
+    ],
+    "revision": 1,
+    "review": "approved",
+    "sources": [
+      "bt-unicode"
+    ]
+  },
+  {
+    "headword": "plot",
+    "forms": [
+      "plots"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The events of a story and the ways they fit together.",
+        "example": "The missing key was important to the plot of the mystery."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "narrator",
+    "forms": [
+      "narrators"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The voice or person that tells a story.",
+        "example": "In this book, the narrator is the family’s dog."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "point of view",
+    "forms": [
+      "points of view"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The position or part of an experience from which someone sees or tells what happens.",
+        "example": "The same race sounded different from the runner’s point of view."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "script",
+    "forms": [
+      "scripts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The written words and directions for a play, movie, or other performance.",
+        "example": "The script told the actor when to cross the stage."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "fable",
+    "forms": [
+      "fables"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A short story, often about animals that act like people, that suggests a lesson.",
+        "example": "We read a fable about a lion and a mouse."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "moral",
+    "forms": [
+      "morals"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The lesson that a story asks you to think about.",
+        "example": "The moral of the story was that a small friend can still help."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "simile",
+    "forms": [
+      "similes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A comparison that uses a word like “as” or “like” to connect different things.",
+        "example": "“As quiet as falling snow” is a simile."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "metaphor",
+    "forms": [
+      "metaphors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A comparison that talks about one thing as though it were something else.",
+        "example": "Calling the moon a silver coin is a metaphor."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "personification",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Writing that gives an animal, object, or idea human actions or feelings.",
+        "example": "“The wind whispered” uses personification."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "alliteration",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Repeating the same starting sound in nearby words.",
+        "example": "“Busy bees buzzed” uses alliteration."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "rhyme",
+    "forms": [
+      "rhymes",
+      "rhymed",
+      "rhyming"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A match or close match between sounds at the ends of words.",
+        "example": "Bat and hat make a rhyme."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "free verse",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Poetry that can use flexible line lengths without a required pattern of beats or rhymes.",
+        "example": "His free verse poem paused after the words “wet leaves.”"
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "stanza",
+    "forms": [
+      "stanzas"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A group of lines in a poem, often separated from other lines by an empty space.",
+        "example": "The poem had two stanzas of four lines each."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "haiku",
+    "forms": [
+      "haikus"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A short kind of poem that began in Japan and often notices a brief moment in nature.",
+        "example": "Her haiku described a cold drop of rain on a fence."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "tempo",
+    "forms": [
+      "tempos"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The speed of the beat in music.",
+        "example": "The dancers took quicker steps when the tempo got faster."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "beat",
+    "forms": [
+      "beats"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A regular pulse you can often tap along with in music.",
+        "example": "We marched to the beat of the drum."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "dynamics",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "How loud or soft sounds are in music and how the loudness changes.",
+        "example": "The conductor asked the group to watch the dynamics in the last part."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "crescendo",
+    "forms": [
+      "crescendos"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A gradual increase in loudness in music.",
+        "example": "A slow crescendo took the tune from quiet to loud."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "melody",
+    "forms": [
+      "melodies"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The line of notes that makes the main tune of a piece of music.",
+        "example": "I hummed the melody of the last song."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "harmony",
+    "forms": [
+      "harmonies"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Two or more notes sounding together, or the way groups of notes fit with a tune.",
+        "example": "The second singer added harmony below the tune."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "chord",
+    "forms": [
+      "chords"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A group of different notes played or heard together as one musical unit.",
+        "example": "I pressed three keys at once to play a chord."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "bow",
+    "forms": [
+      "bows"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A long tool strung with hair or another fiber, drawn across strings to play a violin or a related instrument.",
+        "example": "The violinist drew the bow across the lowest string."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "fret",
+    "forms": [
+      "frets"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the thin bars across the neck of a guitar or similar instrument, used to guide where a string stops vibrating.",
+        "example": "She pressed the string just behind the third fret."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "woodwind",
+    "forms": [
+      "woodwinds"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A wind instrument that starts its sound with air blowing across an edge or with one or two vibrating reeds.",
+        "example": "The flute is a woodwind even when made of metal."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "reed",
+    "forms": [
+      "reeds"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A thin piece of cane or another material that moves rapidly to start sound in some instruments.",
+        "example": "The reed on the clarinet moved when the player blew."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "brass instrument",
+    "forms": [
+      "brass instruments"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An instrument played by buzzing into a mouthpiece, such as a trumpet or trombone.",
+        "example": "A trumpet player makes a brass instrument sound by buzzing their lips."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "timpani",
+    "forms": [
+      "timpano"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A set of large bowl-shaped drums that can be tuned to specific notes.",
+        "example": "The player heard the timpani enter near the end."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "resonator",
+    "forms": [
+      "resonators"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A part that vibrates along with a sound and can make it stronger. In a hollow resonator the air inside can vibrate, too.",
+        "example": "The tube below a bar can act as a resonator."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "checkmate",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "In chess, a position in which the king is under attack and no legal move can make it safe.",
+        "example": "The game ended in checkmate."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "diagonal",
+    "forms": [
+      "diagonally"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "adjective",
+        "definition": "Going at a slant, like a line from one corner of a square to the opposite corner.",
+        "example": "The checker made a diagonal move."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "territory",
+    "forms": [
+      "territories"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An area that someone controls or tries to keep.",
+        "example": "In Go, black surrounded territory along one side of the board."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "mancala",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A family of games in which players move small counters one at a time among pits on a board.",
+        "example": "We learned a kind of mancala using seeds."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "domino",
+    "forms": [
+      "dominoes",
+      "dominos"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small playing tile usually marked into two halves, each with a number of dots.",
+        "example": "I matched a domino with five dots at the end of the row."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "pip",
+    "forms": [
+      "pips"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small dot or mark showing a number on a domino, die, or card.",
+        "example": "The face of the die had one pip in the middle."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "grid",
+    "forms": [
+      "grids"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A pattern of lines that makes rows and columns.",
+        "example": "I marked a small X in the second row of the grid."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "triangle",
+    "forms": [
+      "triangles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A flat shape with three straight sides and three corners.",
+        "example": "We cut a triangle from the corner of the paper."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "parallelogram",
+    "forms": [
+      "parallelograms"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A four-sided flat shape with two pairs of parallel sides. In each pair the sides run in the same direction and stay the same distance apart.",
+        "example": "One piece in the puzzle was a slanted parallelogram."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "jigsaw puzzle",
+    "forms": [
+      "jigsaw puzzles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A puzzle made of pieces whose edges fit together, usually forming a picture when all the pieces are in place.",
+        "example": "We found the corner pieces of the jigsaw puzzle first."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "rally",
+    "forms": [
+      "rallies"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A series of returns that keep a ball or shuttle in play during one point.",
+        "example": "They sent the ball over the net six times during the rally."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "inning",
+    "forms": [
+      "innings"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One part of a baseball game in which each team has a turn to bat.",
+        "example": "Both teams scored in the third inning."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "base",
+    "forms": [
+      "bases"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One of the places a runner tries to reach safely in a game such as baseball.",
+        "example": "The runner reached first base just before the ball got there."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "wicket",
+    "forms": [
+      "wickets"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "In cricket, three upright sticks with two small pieces on top, or an event in which a batter is out.",
+        "example": "The bowler sent the ball past the batter and into the wicket."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "crease",
+    "forms": [
+      "creases"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A marked line on a cricket pitch used to show a position or boundary in play.",
+        "example": "The batter ran past the crease before the ball reached the wicket."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "puck",
+    "forms": [
+      "pucks"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A small flat disk moved with sticks in ice hockey.",
+        "example": "The puck slid across the ice to the other player."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "shuttlecock",
+    "forms": [
+      "shuttlecocks",
+      "shuttle",
+      "shuttles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The light object hit over a net in badminton, shaped with a rounded base and a wide skirt.",
+        "example": "The shuttlecock slowed and dropped near the net."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "stroke",
+    "forms": [
+      "strokes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A repeated movement or set of movements used in an activity such as swimming or rowing.",
+        "example": "The swimmer practiced the breaststroke kick as part of a new stroke."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "baton",
+    "forms": [
+      "batons"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A short stick carried and passed in a relay, or a short stick a conductor uses to guide musicians.",
+        "example": "The runner took the baton without slowing down."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "relay",
+    "forms": [
+      "relays"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A race in which teammates each complete part of the course.",
+        "example": "We took turns running one lap each in the relay."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "velodrome",
+    "forms": [
+      "velodromes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An oval track made for bicycle racing.",
+        "example": "The cyclists leaned into a bend at the velodrome."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

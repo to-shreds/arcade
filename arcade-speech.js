@@ -99,8 +99,10 @@
         utterance.volume = 1;
         utterance.lang = 'en-US';
         var voices = typeof request.engine.getVoices === 'function' ? request.engine.getVoices() : [];
+        if (request.options.localOnly) voices = voices.filter(function (entry) { return entry.localService === true; });
         var voice = voices.find(function (entry) { return /^en[-_]US$/i.test(entry.lang); }) ||
           voices.find(function (entry) { return /^en(?:[-_]|$)/i.test(entry.lang); });
+        if (request.options.localOnly && !voice) return finish(request, 'voice-unavailable');
         if (voice) utterance.voice = voice;
         // Retain a strong reference while speaking. Chromium can lose event callbacks otherwise.
         request.utterance = utterance;

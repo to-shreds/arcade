@@ -1,0 +1,596 @@
+[
+  {
+    "id": "exp-openstax-whole",
+    "title": "Prealgebra 2e, Chapter 1 key concepts",
+    "publisher": "OpenStax",
+    "scope": "Place value, whole-number arithmetic, rounding and order of operations",
+    "url": "https://openstax.org/books/prealgebra-2e/pages/1-key-concepts",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-openstax-integers",
+    "title": "Prealgebra 2e, Chapter 2 key concepts",
+    "publisher": "OpenStax",
+    "scope": "Factors, multiples, divisibility and primes",
+    "url": "https://openstax.org/books/prealgebra-2e/pages/2-key-concepts",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-openstax-negative",
+    "title": "Prealgebra 2e, Chapter 3 key concepts",
+    "publisher": "OpenStax",
+    "scope": "Negative integers and number-line order",
+    "url": "https://openstax.org/books/prealgebra-2e/pages/3-key-concepts",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-openstax-decimals",
+    "title": "Prealgebra 2e, Chapter 5 key concepts",
+    "publisher": "OpenStax",
+    "scope": "Decimal place value and fractions",
+    "url": "https://openstax.org/books/prealgebra-2e/pages/5-key-concepts",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-openstax-percent",
+    "title": "Prealgebra 2e, Chapter 6 key concepts",
+    "publisher": "OpenStax",
+    "scope": "Percent as parts per hundred",
+    "url": "https://openstax.org/books/prealgebra-2e/pages/6-key-concepts",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-openstax-geometry",
+    "title": "Prealgebra 2e, Chapter 9 key concepts",
+    "publisher": "OpenStax",
+    "scope": "Rectangles, perimeter, area and volume",
+    "url": "https://openstax.org/books/prealgebra-2e/pages/9-key-concepts",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-openstax-angles",
+    "title": "Properties of angles and triangles",
+    "publisher": "OpenStax",
+    "scope": "Angle and triangle classifications and interior measures",
+    "url": "https://openstax.org/books/prealgebra-2e/pages/9-3-use-properties-of-angles-triangles-and-the-pythagorean-theorem",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-openstax-circles",
+    "title": "Geometry applications for circles",
+    "publisher": "OpenStax",
+    "scope": "Circles, radii, diameters, circumference and pi",
+    "url": "https://openstax.org/books/prealgebra-2e/pages/9-5-solve-geometry-applications-circles-and-irregular-figures",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-openstax-probability",
+    "title": "Averages and probability",
+    "publisher": "OpenStax",
+    "scope": "Mean and probability for equally likely outcomes",
+    "url": "https://openstax.org/books/prealgebra-2e/pages/5-5-averages-and-probability",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-commoncore-protractor",
+    "title": "Grade 4 standard for measuring angles",
+    "publisher": "Common Core State Standards Initiative",
+    "scope": "Measuring whole-number degrees using a protractor",
+    "url": "https://www.thecorestandards.org/Math/Content/4/MD/C/6/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-illustrative-symmetry",
+    "title": "Symmetry in figures",
+    "publisher": "Illustrative Mathematics",
+    "scope": "Checking for matching folds and lines of symmetry",
+    "url": "https://cms-assets.illustrativemathematics.org/mioabozmp0t1g3ep5f71mae1r9ja",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-commoncore-patterns",
+    "title": "Grade 4 standard for patterns",
+    "publisher": "Common Core State Standards Initiative",
+    "scope": "Using and identifying pattern-generating rules",
+    "url": "https://www.thecorestandards.org/Math/Content/4/OA/C/5/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-commoncore-coordinates",
+    "title": "Grade 5 geometry standards",
+    "publisher": "Common Core State Standards Initiative",
+    "scope": "Axes, origin and ordered pairs in the first quadrant",
+    "url": "https://www.thecorestandards.org/Math/Content/5/G/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-commoncore-graphs",
+    "title": "Grade 3 standard for bar graphs",
+    "publisher": "Common Core State Standards Initiative",
+    "scope": "Reading and drawing scaled bar graphs",
+    "url": "https://www.thecorestandards.org/Math/Content/3/MD/B/3/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-math-median",
+    "title": "Measures of the center of the data",
+    "publisher": "OpenStax",
+    "scope": "Median as center of an ordered list and arithmetic mean",
+    "url": "https://openstax.org/books/introductory-statistics/pages/2-5-measures-of-the-center-of-the-data",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-nist-metric",
+    "title": "General tables of units of measurement",
+    "publisher": "National Institute of Standards and Technology",
+    "scope": "Metric length relationships",
+    "url": "https://www.nist.gov/system/files/documents/2024/01/14/NIST%20HB%2044%202024%20Appendix%20C%20General%20Tables%20of%20Units%20of%20Measurement.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-museum-watercolor",
+    "title": "Drawing materials and techniques: Watercolor",
+    "publisher": "Metropolitan Museum of Art",
+    "scope": "Water-based painting, transparent color and white paper",
+    "url": "https://www.metmuseum.org/fr/perspectives/materials-and-techniques-drawing-watercolor",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-moma-terms",
+    "title": "Glossary of art terms",
+    "publisher": "Museum of Modern Art",
+    "scope": "Collage and abstract art",
+    "url": "https://www.moma.org/momaorg/shared/flattened_pages/moma_learning/glossary/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-getty-elements",
+    "title": "Vocabulary for describing an artwork",
+    "publisher": "J. Paul Getty Museum",
+    "scope": "Art elements, form, value, color and space",
+    "url": "https://www.getty.edu/education/k-12-learning/describe-listen-draw/vocabulary-for-describing-an-artwork/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-getty-sculpture",
+    "title": "Working with sculpture",
+    "publisher": "J. Paul Getty Museum",
+    "scope": "Three-dimensional art and techniques",
+    "url": "https://www.getty.edu/education/for_teachers/curricula/sculpture/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-nga-still-life",
+    "title": "Make your own still life",
+    "publisher": "National Gallery of Art",
+    "scope": "Arranging everyday objects for a still life",
+    "url": "https://www.nga.gov/educational-resources/fruit-still-life-robert-seldon-duncanson",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-nga-landscape",
+    "title": "The inquiring eye: American painting",
+    "publisher": "National Gallery of Art",
+    "scope": "Foreground and background in landscape paintings",
+    "url": "https://www.nga.gov/sites/default/files/migrate_images/content/dam/ngaweb/education/learning-resources/teaching-packets/pdfs/american-paintings-tp.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-nga-perspective",
+    "title": "The inquiring eye: European Renaissance art",
+    "publisher": "National Gallery of Art",
+    "scope": "Linear perspective and receding lines",
+    "url": "https://www.nga.gov/sites/default/files/migrate_images/content/dam/ngaweb/education/learning-resources/teaching-packets/pdfs/european-renaissance-art-tp2.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-met-ceramics",
+    "title": "Greek art education resource",
+    "publisher": "Metropolitan Museum of Art",
+    "scope": "Pottery, wheel shaping, firing and finishes",
+    "url": "https://www.metmuseum.org/-/media/files/learn/for-educators/publications-for-educators/greek.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-met-tesserae",
+    "title": "Mosaic tesserae",
+    "publisher": "Metropolitan Museum of Art",
+    "scope": "Small glass and stone mosaic tiles",
+    "url": "https://www.metmuseum.org/art/collection/search/708072",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-met-tapestry",
+    "title": "How medieval and Renaissance tapestries were made",
+    "publisher": "Metropolitan Museum of Art",
+    "scope": "Looms, warp and weft",
+    "url": "https://www.metmuseum.org/it/essays/how-medieval-and-renaissance-tapestries-were-made",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-academy-animation",
+    "title": "Animated feature film category rules",
+    "publisher": "Academy of Motion Picture Arts and Sciences",
+    "scope": "Frame-by-frame and stop-motion techniques",
+    "url": "https://www.oscars.org/sites/oscars/files/93aa_anim_feature.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-loc-comics",
+    "title": "Comic books and graphic novels",
+    "publisher": "Library of Congress",
+    "scope": "Visual storytelling by sequential art",
+    "url": "https://www.loc.gov/aba/publications/FreeCSM/F565.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-ncte-story",
+    "title": "Exploring setting and other story elements",
+    "publisher": "National Council of Teachers of English",
+    "scope": "Setting, character, point of view and plot",
+    "url": "https://www.readwritethink.org/classroom-resources/lesson-plans/exploring-setting-constructing-character",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-kennedy-script",
+    "title": "Playwright discovery resource guide",
+    "publisher": "John F. Kennedy Center for the Performing Arts",
+    "scope": "Dialogue, stage directions and scripts",
+    "url": "https://www.kennedy-center.org/globalassets/education/opportunities-for-artists/competitions--commissions/vsa-playwright-discovery/vsa-playwright-discovery-resource-guide.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-loc-aesop",
+    "title": "About Aesop for Children",
+    "publisher": "Library of Congress",
+    "scope": "Aesop’s fables and lessons",
+    "url": "https://www.loc.gov/static/collections/childrens-book-selections/articles-and-essays/aesop/about.html",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-poetry-simile",
+    "title": "Simile",
+    "publisher": "Poetry Foundation",
+    "scope": "Similes as comparisons, including like and as",
+    "url": "https://www.poetryfoundation.org/education/glossary/Simile",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-poets-glossary",
+    "title": "Glossary of poetic terms",
+    "publisher": "Academy of American Poets",
+    "scope": "Metaphor, personification, alliteration, rhyme, free verse and haiku",
+    "url": "https://poets.org/glossary",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-carnegie-rhythm",
+    "title": "Musical Explorers teacher guide",
+    "publisher": "Carnegie Hall",
+    "scope": "Pulse, rhythm and tempo",
+    "url": "https://www.carnegiehall.org/uploadedFiles/Resources_and_Components/PDF/WMI/11-12%20MusicalExplorers_TeacherGuide.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-music-theory-dynamics",
+    "title": "Other aspects of notation",
+    "publisher": "Open Music Theory",
+    "scope": "Dynamics and tempo notation",
+    "url": "https://viva.pressbooks.pub/openmusictheory/chapter/other-aspects-of-notation/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-music-theory-harmony",
+    "title": "Intervals",
+    "publisher": "Open Music Theory",
+    "scope": "Spaced melody notes and simultaneous harmonic notes",
+    "url": "https://viva.pressbooks.pub/openmusictheorycopy/chapter/intervals/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-yamaha-piano",
+    "title": "The piano’s sound-producing mechanism",
+    "publisher": "Yamaha Musical Instrument Guide",
+    "scope": "Hammer, strings, soundboard and vibration",
+    "url": "https://www.yamaha.com/en/musical_instrument_guide/piano/mechanism/mechanism002.html",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-yamaha-guitar",
+    "title": "The structure of the classical guitar",
+    "publisher": "Yamaha Musical Instrument Guide",
+    "scope": "Strings, frets and soundboard",
+    "url": "https://www.yamaha.com/en/musical_instrument_guide/classical_guitar/mechanism/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-violin",
+    "title": "violin instrument guide",
+    "publisher": "Philharmonia",
+    "scope": "Instrument parts, sound production and playing technique",
+    "url": "https://philharmonia.co.uk/resources/instruments/violin/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-cello",
+    "title": "cello instrument guide",
+    "publisher": "Philharmonia",
+    "scope": "Instrument parts, sound production and playing technique",
+    "url": "https://philharmonia.co.uk/resources/instruments/cello/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-bass",
+    "title": "double bass instrument guide",
+    "publisher": "Philharmonia",
+    "scope": "Instrument parts, sound production and playing technique",
+    "url": "https://philharmonia.co.uk/resources/instruments/double-bass/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-flute",
+    "title": "flute instrument guide",
+    "publisher": "Philharmonia",
+    "scope": "Instrument parts, sound production and playing technique",
+    "url": "https://philharmonia.co.uk/resources/instruments/flute/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-clarinet",
+    "title": "clarinet instrument guide",
+    "publisher": "Philharmonia",
+    "scope": "Instrument parts, sound production and playing technique",
+    "url": "https://philharmonia.co.uk/resources/instruments/clarinet/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-oboe",
+    "title": "oboe instrument guide",
+    "publisher": "Philharmonia",
+    "scope": "Instrument parts, sound production and playing technique",
+    "url": "https://philharmonia.co.uk/resources/instruments/oboe/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-trumpet",
+    "title": "trumpet instrument guide",
+    "publisher": "Philharmonia",
+    "scope": "Instrument parts, sound production and playing technique",
+    "url": "https://philharmonia.co.uk/resources/instruments/trumpet/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-trombone",
+    "title": "trombone instrument guide",
+    "publisher": "Philharmonia",
+    "scope": "Instrument parts, sound production and playing technique",
+    "url": "https://philharmonia.co.uk/resources/instruments/trombone/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-timpani",
+    "title": "timpani instrument guide",
+    "publisher": "Philharmonia",
+    "scope": "Instrument parts, sound production and playing technique",
+    "url": "https://philharmonia.co.uk/resources/instruments/timpani/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-harp",
+    "title": "harp instrument guide",
+    "publisher": "Philharmonia",
+    "scope": "Instrument parts, sound production and playing technique",
+    "url": "https://philharmonia.co.uk/resources/instruments/harp/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-philharmonia-xylophone",
+    "title": "Concert xylophone owner’s manual",
+    "publisher": "Yamaha",
+    "scope": "Wooden bars ordered by pitch and resonator tubes",
+    "url": "https://data.yamaha.com/files/download/other_assets/4/332754/YX500_R1_j_e_web.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-fide-chess",
+    "title": "FIDE laws of chess",
+    "publisher": "International Chess Federation",
+    "scope": "Legal moves, knight movement, checkmate and stalemate",
+    "url": "https://handbook.fide.com/chapter/E012023",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-wcdf-rules",
+    "title": "Rules of English draughts",
+    "publisher": "World Checkers/Draughts Federation",
+    "scope": "Moves, capture and crowning",
+    "url": "https://wcdf.net/rules/rules_of_checkers_english.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-aga-go",
+    "title": "American Go Association Rules, Short Version",
+    "publisher": "British Go Association, hosting the American Go Association rules",
+    "scope": "Board size, placing stones, orthogonal liberties, capture and enclosing territory",
+    "url": "https://www.britgo.org/rules/agashort.html",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-smithsonian-mancala",
+    "title": "Zanzibar bao gameboard",
+    "publisher": "Smithsonian National Museum of African Art",
+    "scope": "Pits, seeds and the mancala game family",
+    "url": "https://africa.si.edu/collection/object/nmafa_97-10-1",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-smithsonian-dominoes",
+    "title": "Double Twelve Express Dominoes",
+    "publisher": "Smithsonian National Museum of American History",
+    "scope": "Marked domino tiles and matching gameplay",
+    "url": "https://americanhistory.si.edu/collections/object/nmah_694253",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-wpf-sudoku",
+    "title": "World Sudoku Championship classic puzzle rules",
+    "publisher": "World Puzzle Federation",
+    "scope": "Classic nine-by-nine Sudoku constraints",
+    "url": "https://gp.worldpuzzle.org/sites/default/files/Puzzles/2024/2024_SudokuPO_puzzle2_Classic.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-smithsonian-tangram",
+    "title": "Tangram puzzle set",
+    "publisher": "Smithsonian National Museum of American History",
+    "scope": "Seven-piece tangram puzzles",
+    "url": "https://www.americanhistory.si.edu/collections/object/nmah_694581",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-museum-jigsaw",
+    "title": "Jigsaw puzzle, National Toy Hall of Fame",
+    "publisher": "The Strong National Museum of Play",
+    "scope": "Jigsaw puzzle pieces and early wooden map puzzles",
+    "url": "https://www.museumofplay.org/toys/jigsaw-puzzle/",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-itf-tennis",
+    "title": "Rules of tennis",
+    "publisher": "International Tennis Federation",
+    "scope": "Service and rally, legal returns and bounces",
+    "url": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-mlb-rules",
+    "title": "Baseball rules glossary",
+    "publisher": "Major League Baseball",
+    "scope": "Bases, outs and innings",
+    "url": "https://www.mlb.com/glossary/rules",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-mcc-laws",
+    "title": "About the Laws of Cricket",
+    "publisher": "Marylebone Cricket Club",
+    "scope": "Laws defining pitches, runs, wickets and boundaries",
+    "url": "https://www.lords.org/mcc/about-the-laws-of-cricket",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-nhl-rules",
+    "title": "Official NHL rules",
+    "publisher": "National Hockey League",
+    "scope": "Pucks, goals and the rules of play",
+    "url": "https://media.nhl.com/site/asset/public/ext/2025-26/2025-26Rules.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-bwf-laws",
+    "title": "Laws of badminton",
+    "publisher": "Badminton World Federation",
+    "scope": "Shuttles, service and returns",
+    "url": "https://system.bwfbadminton.com/documents/folder_1_81/Statutes/CHAPTER-4---RULES-OF-THE-GAME/SECTION%204.1-%20Laws%20of%20Badminton.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-ittf-laws",
+    "title": "Laws of table tennis",
+    "publisher": "International Table Tennis Federation",
+    "scope": "Service, return and scoring",
+    "url": "https://db.ittf.com/sites/default/files/public/2022-02/ITTF_HB_2022_tc_v1_0.pdf",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-world-aquatics",
+    "title": "Swimming rules",
+    "publisher": "World Aquatics",
+    "scope": "Competitive swimming strokes and freestyle",
+    "url": "https://www.worldaquatics.com/swimming/rules",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-world-athletics-relay",
+    "title": "4 × 100 metres relay",
+    "publisher": "World Athletics",
+    "scope": "Relay legs and exchange zones",
+    "url": "https://worldathletics.org/disciplines/relay-event/4x100-metres-relay",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  },
+  {
+    "id": "exp-uci-track",
+    "title": "What is track cycling?",
+    "publisher": "Union Cycliste Internationale",
+    "scope": "Banked races, track measurements and disciplines",
+    "url": "https://www.uci.org/article/what-is-track-cycling/6yFQsdYGiuw1bIWiLS6Hxq",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose."
+  }
+]

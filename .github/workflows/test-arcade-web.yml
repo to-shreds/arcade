@@ -67,10 +67,24 @@ jobs:
           node tools/test-android-wrapper.mjs
           node tools/test-offline-runtime.mjs
 
+      - name: Validate the approved reference collection and search index
+        run: |
+          node tools/build-reference.mjs --check
+          node --test reference/search.test.mjs
+          node tools/test-reference-corpus.mjs
+
       - name: Install Chromium browser checks
         run: |
           npm ci
           npx playwright install --with-deps chromium
+
+      - name: Verify the reference activities and Mouse Lab
+        run: |
+          node tools/test-reference-browser.mjs
+          node tools/test-reference-offline-update.mjs
+          node tools/test-mouse-lab-browser.mjs
+          node tools/test-mouse-lab-offline.mjs
+          node tools/test-mouse-compat-browser.mjs
 
       - name: Verify Arcade exits, clock geometry and young kid Trivia
         run: npm run test:arcade-fixes

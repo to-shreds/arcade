@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101b35">
+  <title>Dictionary | Arcade</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../arcade-ui.css">
+  <link rel="stylesheet" href="reference.css">
+</head>
+<body class="reference-app">
+  <header class="reference-header">
+    <div class="reference-header-inner">
+      <a href="../index.html" class="reference-home reference-control arcade-home-link" aria-label="Back to Arcade" title="Back to Arcade"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10 12 3l9 7v9a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></svg><span>Arcade</span></a>
+      <button type="button" class="reference-brand" id="reference-start"><img src="icon.svg" width="34" height="34" alt="">Dictionary</button>
+      <a href="../encyclopedia/index.html" class="reference-control reference-sibling" data-reference-sibling="encyclopedia">Encyclopedia</a>
+    </div>
+  </header>
+  <main class="reference-main" id="reference-main">
+    <form class="reference-search" id="reference-search" role="search">
+      <label for="reference-query">Which word do you want to look up?</label>
+      <div class="reference-search-row">
+        <input id="reference-query" type="search" maxlength="100" placeholder="Type a word or phrase" autocomplete="off" disabled spellcheck="false" aria-controls="word-completions">
+        <button type="submit" class="reference-control reference-primary" disabled>Look up</button>
+      </div>
+      <div id="word-completions" class="word-completions" hidden></div>
+    </form>
+    <nav class="reference-nav" aria-label="Explore Dictionary">
+      <button type="button" class="reference-control" id="reference-back" disabled aria-label="Go back">← Back</button>
+      <button type="button" class="reference-control reference-forward" id="reference-forward" disabled aria-label="Go forward">→</button>
+      <button type="button" class="reference-control" id="reference-browse">A–Z</button>
+      <button type="button" class="reference-control" id="reference-saved">My words</button>
+    </nav>
+    <div id="reference-view" class="reference-view" aria-busy="true"><p class="reference-note" role="status">Opening the dictionary…</p></div>
+  </main>
+  <script src="../arcade-save.js" defer></script>
+  <script src="../arcade-speech.js" defer></script>
+  <script type="module" src="dictionary.mjs"></script>
+</body>
+</html>

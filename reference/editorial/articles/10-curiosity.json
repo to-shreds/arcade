@@ -1,0 +1,3533 @@
+[
+  {
+    "id": "place-value",
+    "title": "Why does a digit’s place matter?",
+    "category": "math",
+    "priority": 1,
+    "answer": "In 342, the 3 means three hundreds, the 4 means four tens, and the 2 means two ones. The same digit can be worth a different amount in another place. In 432, the 3 means three tens. You can build these numbers with bundles of sticks. A hundred bundle holds ten bundles of ten, and a ten bundle holds ten single sticks. You can swap ten loose sticks for one ten bundle.",
+    "sections": [],
+    "facts": [
+      "In our number system, each place is worth ten times the place immediately to its right."
+    ],
+    "terms": [
+      "place value",
+      "digit"
+    ],
+    "aliases": [
+      "place value",
+      "ones tens hundreds",
+      "what does the 3 mean in 342"
+    ],
+    "questions": [
+      {
+        "text": "Why does the zero in 305 matter?",
+        "target": "zero"
+      },
+      {
+        "text": "How can we write a number between 0 and 1?",
+        "target": "decimal-numbers"
+      },
+      {
+        "text": "What if each place were worth only twice the previous place?",
+        "target": "binary"
+      }
+    ],
+    "sources": [
+      "exp-openstax-whole"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "zero",
+    "title": "What does zero do in a number?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Zero can tell you that there is none of something. An empty basket has zero apples. It also helps show where other digits belong. In 205, the zero shows that there are no tens between the two hundreds and the five ones. If you leave out the zero, 25 means two tens and five ones. Zero is on the number line too, between negative and positive numbers.",
+    "sections": [],
+    "facts": [
+      "Adding zero leaves a number the same."
+    ],
+    "terms": [
+      "place value",
+      "digit"
+    ],
+    "aliases": [
+      "why do we need zero",
+      "what is zero",
+      "zero as a placeholder"
+    ],
+    "questions": [
+      {
+        "text": "Why is a digit worth more in one place than another?",
+        "target": "place-value"
+      },
+      {
+        "text": "What numbers are less than zero?",
+        "target": "negative-numbers"
+      },
+      {
+        "text": "How can rounding put zeros in some places?",
+        "target": "rounding-numbers"
+      }
+    ],
+    "sources": [
+      "exp-openstax-whole"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rounding-numbers",
+    "title": "How do you round a number?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Rounding replaces a number with a nearby number that is easier to say or use. To round 47 to the nearest ten, look at 40 and 50. It is seven away from 40 and three away from 50, so 47 rounds to 50. A number exactly halfway between two tens needs an agreed rule. In the usual school rule for whole numbers, 45 rounds up to 50. This rule helps everyone report the same rounded answer.",
+    "sections": [],
+    "facts": [
+      "Rounding 47 to the nearest ten and nearest hundred gives different answers."
+    ],
+    "terms": [
+      "rounding",
+      "place value"
+    ],
+    "aliases": [
+      "nearest ten",
+      "rounding to the nearest hundred",
+      "about how many"
+    ],
+    "questions": [
+      {
+        "text": "How do you decide which number should go in the tens place?",
+        "target": "place-value"
+      },
+      {
+        "text": "How can rounding help you make an estimate?",
+        "target": "estimation"
+      },
+      {
+        "text": "How can you compare two numbers below 1?",
+        "target": "decimal-numbers"
+      }
+    ],
+    "sources": [
+      "exp-openstax-whole"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "estimation",
+    "title": "How can you estimate an answer?",
+    "category": "math",
+    "priority": 1,
+    "answer": "An estimate is a sensible guess based on what you know. Suppose you are adding 29 stickers, 42 stickers, and 38 stickers. They are close to 30, 40, and 40, so you can guess there are about 110. That tells you whether you need a small envelope or a bigger box. If you must give every student the same number of stickers, you can count the exact total before sharing.",
+    "sections": [],
+    "facts": [
+      "An estimate can help you spot an answer far from the right size."
+    ],
+    "terms": [
+      "rounding"
+    ],
+    "aliases": [
+      "estimate",
+      "mental math estimate",
+      "rough answer"
+    ],
+    "questions": [
+      {
+        "text": "How can you pick the nearest ten?",
+        "target": "rounding-numbers"
+      },
+      {
+        "text": "How can a picture help show more information at once?",
+        "target": "bar-graphs"
+      },
+      {
+        "text": "How can equal groups make the total easier to count?",
+        "target": "multiplication-arrays"
+      }
+    ],
+    "sources": [
+      "exp-openstax-whole"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "multiplication-arrays",
+    "title": "How do rows help you multiply?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Imagine setting out three rows of four buttons. Each row has the same number, so you can count by fours or multiply three by four. There are twelve buttons. Turn the arrangement sideways and you see four rows of three. There are still twelve. A neat arrangement in equal rows and columns is called an array. Arrays let you see that switching the two numbers in a multiplication gives the same total.",
+    "sections": [],
+    "facts": [
+      "Three groups of four and four groups of three each total twelve."
+    ],
+    "terms": [
+      "array",
+      "factor"
+    ],
+    "aliases": [
+      "what is a multiplication array",
+      "equal groups",
+      "rows and columns"
+    ],
+    "questions": [
+      {
+        "text": "How can rows of square tiles measure space?",
+        "target": "area"
+      },
+      {
+        "text": "How can you turn twelve objects into equally sized groups?",
+        "target": "division-remainders"
+      },
+      {
+        "text": "Which pairs of whole numbers multiply to make twelve?",
+        "target": "factors"
+      }
+    ],
+    "sources": [
+      "exp-openstax-whole"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "division-remainders",
+    "title": "What is left over after division?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Think of giving seventeen markers to four people. Give each person one, then repeat as long as everyone can get another. Each person gets four markers, and one marker is left. The marker left over is the remainder. What you do with it depends on the question. For markers you can leave one in the box. If you are sharing a cake, you could cut the piece you have left into smaller pieces.",
+    "sections": [],
+    "facts": [
+      "In whole-number division, the remainder must be smaller than the number you divide by."
+    ],
+    "terms": [
+      "remainder"
+    ],
+    "aliases": [
+      "what is a remainder",
+      "sharing equally",
+      "division with leftovers"
+    ],
+    "questions": [
+      {
+        "text": "How do equal rows help you check the answer to a division problem?",
+        "target": "multiplication-arrays"
+      },
+      {
+        "text": "How do you name the pieces when you split the leftover?",
+        "target": "fractions"
+      },
+      {
+        "text": "What kinds of numbers can be divided by two with none left over?",
+        "target": "even-odd"
+      }
+    ],
+    "sources": [
+      "exp-openstax-whole"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "even-odd",
+    "title": "What makes a number even or odd?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Put your socks into pairs. If each sock gets a partner, the number of socks is even. If one sock is left without a partner, the number is odd. Fourteen is even and fifteen is odd. Zero is even, because it leaves no sock without a partner. When you look at a whole number written in our usual digits, the last digit tells you whether you can put it into pairs.",
+    "sections": [],
+    "facts": [
+      "A whole number ending in 0, 2, 4, 6, or 8 is even."
+    ],
+    "terms": [
+      "even number",
+      "odd number"
+    ],
+    "aliases": [
+      "which numbers are even",
+      "odd and even",
+      "pairing numbers"
+    ],
+    "questions": [
+      {
+        "text": "What does it mean to have one left over after sharing?",
+        "target": "division-remainders"
+      },
+      {
+        "text": "Why does the last digit show how many single items there are?",
+        "target": "place-value"
+      },
+      {
+        "text": "Which numbers have exactly two positive factors?",
+        "target": "prime-numbers"
+      }
+    ],
+    "sources": [
+      "exp-openstax-integers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "factors",
+    "title": "What are factors?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Two numbers that multiply to make a whole number are a pair of factors of that number. For twelve, picture rows of buttons. You can make one row of twelve, two rows of six, or three rows of four. These are three different factor pairs for twelve. Arrange the same buttons in five equal rows and some will be left over, so five is not a factor of twelve.",
+    "sections": [],
+    "facts": [
+      "The positive factors of twelve are 1, 2, 3, 4, 6, and 12."
+    ],
+    "terms": [
+      "factor",
+      "array"
+    ],
+    "aliases": [
+      "factors of twelve",
+      "factor pairs",
+      "what multiplies to a number"
+    ],
+    "questions": [
+      {
+        "text": "How does an array make the pairs easy to see?",
+        "target": "multiplication-arrays"
+      },
+      {
+        "text": "What if a number has only one pair of positive factors?",
+        "target": "prime-numbers"
+      },
+      {
+        "text": "What are the numbers you get by skip-counting?",
+        "target": "multiples"
+      }
+    ],
+    "sources": [
+      "exp-openstax-integers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "multiples",
+    "title": "What are multiples?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Count by threes, starting at three. You get 3, 6, 9, 12, and so on. Each of these numbers is a multiple of three because it holds a whole number of groups of three. Zero is also a multiple of three, since it holds zero groups. When you look at a list of multiples of four, some numbers will appear on both lists. Twelve is on both, so it is a common multiple.",
+    "sections": [],
+    "facts": [
+      "Every positive whole number is a multiple of one."
+    ],
+    "terms": [
+      "multiple",
+      "factor"
+    ],
+    "aliases": [
+      "multiples of three",
+      "skip counting",
+      "what is a multiple"
+    ],
+    "questions": [
+      {
+        "text": "How are factors and multiples connected?",
+        "target": "factors"
+      },
+      {
+        "text": "Why can the multiples of two all be sorted into pairs?",
+        "target": "even-odd"
+      },
+      {
+        "text": "How does a repeating pattern help you decide what comes next?",
+        "target": "repeating-patterns"
+      }
+    ],
+    "sources": [
+      "exp-openstax-integers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "prime-numbers",
+    "title": "What is a prime number?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Try arranging seven counters in a rectangle with no gaps. You can make one row of seven or seven rows of one, but you cannot make equal rows with both sides greater than one. Seven is prime because its only positive factors are one and seven. Six can make two rows of three, so it is not prime. One is not prime either, since it has just one positive factor.",
+    "sections": [],
+    "facts": [
+      "Two is the only even prime number."
+    ],
+    "terms": [
+      "prime number",
+      "factor"
+    ],
+    "aliases": [
+      "is one prime",
+      "prime and composite numbers",
+      "prime numbers for kids"
+    ],
+    "questions": [
+      {
+        "text": "How do you find the pairs of factors of twelve?",
+        "target": "factors"
+      },
+      {
+        "text": "What happens if you try to pair an odd number of counters?",
+        "target": "even-odd"
+      },
+      {
+        "text": "Why is fourteen a multiple of both two and seven?",
+        "target": "multiples"
+      }
+    ],
+    "sources": [
+      "exp-openstax-integers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "decimal-numbers",
+    "title": "What does the decimal point show?",
+    "category": "math",
+    "priority": 1,
+    "answer": "In 4.36, the decimal point sits between the ones place and the parts smaller than one. The 4 stands for four ones. The 3 just after the point stands for three tenths, and the 6 farther right stands for six hundredths. Imagine a dollar split into a hundred pennies. Four dollars and thirty-six pennies can be written as $4.36. The decimal point stays after the whole dollars.",
+    "sections": [],
+    "facts": [
+      "Writing 0.5 or 0.50 gives the same number."
+    ],
+    "terms": [
+      "decimal point",
+      "fraction",
+      "place value"
+    ],
+    "aliases": [
+      "decimals",
+      "tenths and hundredths",
+      "decimal point"
+    ],
+    "questions": [
+      {
+        "text": "How can you name three tenths without a decimal point?",
+        "target": "fractions"
+      },
+      {
+        "text": "Where do equal fractions sit on a number line?",
+        "target": "equivalent-fractions"
+      },
+      {
+        "text": "What does half of an amount look like as a percent?",
+        "target": "percentages"
+      }
+    ],
+    "sources": [
+      "exp-openstax-decimals"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "percentages",
+    "title": "What does percent mean?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Percent means out of a hundred. Imagine a square marked with a hundred little boxes. If you shade fifty boxes, you shaded 50 percent. That is the same amount as one half of the big square. A hundred percent covers the whole square, and zero percent covers none of it. You can use percent to compare parts of groups even when the groups have different sizes.",
+    "sections": [],
+    "facts": [
+      "A quarter is 25 percent because 25 is one fourth of 100."
+    ],
+    "terms": [
+      "percent",
+      "fraction"
+    ],
+    "aliases": [
+      "what is a percent",
+      "what does the percent sign mean",
+      "50 percent"
+    ],
+    "questions": [
+      {
+        "text": "Why are one half and two fourths equal?",
+        "target": "equivalent-fractions"
+      },
+      {
+        "text": "How can you write half using a decimal point?",
+        "target": "decimal-numbers"
+      },
+      {
+        "text": "What fraction of fair coin flips do you expect to be heads over many tries?",
+        "target": "probability"
+      }
+    ],
+    "sources": [
+      "exp-openstax-percent"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "negative-numbers",
+    "title": "What are numbers below zero?",
+    "category": "math",
+    "priority": 1,
+    "answer": "You can picture numbers on a line, with zero near the middle. Positive numbers are to the right, and negative numbers are to the left. The number minus three is three steps left of zero. Numbers below zero are handy for things like temperatures on a cold night. A thermometer at minus six degrees reads colder than one at minus two degrees, even though six by itself is larger than two.",
+    "sections": [],
+    "facts": [
+      "Moving right along a number line gives you larger numbers."
+    ],
+    "terms": [
+      "negative number",
+      "number line"
+    ],
+    "aliases": [
+      "negative numbers",
+      "what does a minus sign before a number mean",
+      "below zero"
+    ],
+    "questions": [
+      {
+        "text": "Why do we need a zero on a number line?",
+        "target": "zero"
+      },
+      {
+        "text": "How can we show a point sideways and up on a grid?",
+        "target": "coordinate-grids"
+      },
+      {
+        "text": "Where can you place a number like one half?",
+        "target": "equivalent-fractions"
+      }
+    ],
+    "sources": [
+      "exp-openstax-negative"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "perimeter-length",
+    "title": "How do you measure around a shape?",
+    "category": "math",
+    "priority": 1,
+    "answer": "The perimeter is the distance all the way around a flat shape. Picture a rectangular garden that is six steps long and four steps wide. Walk around its edge, and you go six steps, then four, then six, then four. That makes twenty steps. Measuring the space inside the garden would tell you its area. Perimeter tells you how much fencing might go around it.",
+    "sections": [],
+    "facts": [
+      "If all four sides are five meters long, the perimeter is twenty meters."
+    ],
+    "terms": [
+      "perimeter",
+      "rectangle"
+    ],
+    "aliases": [
+      "what is perimeter",
+      "how far around a garden",
+      "perimeter of a rectangle"
+    ],
+    "questions": [
+      {
+        "text": "How do you measure the inside of the same garden?",
+        "target": "area"
+      },
+      {
+        "text": "How do you measure around a circle?",
+        "target": "circumference"
+      },
+      {
+        "text": "What kind of shape has four equal straight sides and four right angles?",
+        "target": "squares-rectangles"
+      }
+    ],
+    "sources": [
+      "exp-openstax-geometry"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "volume-measurement",
+    "title": "How do you measure the space inside a box?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Volume tells you how much three-dimensional space something takes up. Imagine fitting small cubes into a rectangular box. One layer of three rows of four cubes holds twelve cubes. If two layers fit, the box holds twenty-four cubes. Using a cube of a known size, such as one cubic centimeter, gives you a way to describe the amount of space. Bigger cubes would give a smaller count.",
+    "sections": [],
+    "facts": [
+      "The space in a rectangular box can be found by multiplying its inside length, width, and height, using the same unit."
+    ],
+    "terms": [
+      "volume",
+      "cubic unit"
+    ],
+    "aliases": [
+      "what is volume",
+      "how many cubes fit",
+      "volume of a box"
+    ],
+    "questions": [
+      {
+        "text": "How can you count the squares in the bottom layer?",
+        "target": "area"
+      },
+      {
+        "text": "How do equal rows help count the cubes in one layer?",
+        "target": "multiplication-arrays"
+      },
+      {
+        "text": "Why can two boxes the same size weigh different amounts?",
+        "target": "density"
+      }
+    ],
+    "sources": [
+      "exp-openstax-geometry"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "classifying-angles",
+    "title": "What makes an angle wide or narrow?",
+    "category": "math",
+    "priority": 1,
+    "answer": "An angle shows how far one direction turns from another. Open a book a little. The covers make a narrow angle, smaller than a square corner. Open it until one cover points straight up while the other lies flat. That is a right angle. Open it farther and the angle becomes wider. The amount of turn can change even if both parts of the book are the same size.",
+    "sections": [],
+    "facts": [
+      "A right angle measures 90 degrees."
+    ],
+    "terms": [
+      "angle",
+      "right angle"
+    ],
+    "aliases": [
+      "types of angles",
+      "acute right obtuse",
+      "how big is an angle"
+    ],
+    "questions": [
+      {
+        "text": "How do the angles inside a triangle fit together?",
+        "target": "triangles"
+      },
+      {
+        "text": "How do right angles help define a rectangle?",
+        "target": "squares-rectangles"
+      },
+      {
+        "text": "What tool can you use to measure a turn?",
+        "target": "protractors"
+      }
+    ],
+    "sources": [
+      "exp-openstax-angles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "protractors",
+    "title": "How does a protractor measure a turn?",
+    "category": "math",
+    "priority": 1,
+    "answer": "A protractor is a tool with numbers marked around part of a circle. Put its center on the point where the two sides of an angle meet, and line its zero mark up with one side. Follow the other side to see which number it reaches. If the tool has two rows of numbers, choose the row that begins at the zero you lined up. A narrow angle should give a number below ninety.",
+    "sections": [],
+    "facts": [
+      "A half-circle protractor measures turns from zero to 180 degrees."
+    ],
+    "terms": [
+      "angle",
+      "degree"
+    ],
+    "aliases": [
+      "how to use a protractor",
+      "measure angles in degrees"
+    ],
+    "questions": [
+      {
+        "text": "What makes an angle a right angle?",
+        "target": "classifying-angles"
+      },
+      {
+        "text": "How many degrees do the angles in a flat triangle have altogether?",
+        "target": "triangles"
+      },
+      {
+        "text": "Why is the line across the middle of a circle special?",
+        "target": "circle-parts"
+      }
+    ],
+    "sources": [
+      "exp-commoncore-protractor",
+      "exp-openstax-angles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "triangles",
+    "title": "How are triangles different from one another?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Every triangle has three straight sides and three corners. Some triangles have three equal sides. Others have just two equal sides, or all three sides have different lengths. You can also group triangles by their corners. A right triangle has one square corner, like the corner of a sheet of paper. Each way of sorting helps you describe the same shape in a different way.",
+    "sections": [],
+    "facts": [
+      "The three inside angles of any flat triangle add up to 180 degrees."
+    ],
+    "terms": [
+      "angle",
+      "triangle"
+    ],
+    "aliases": [
+      "kinds of triangles",
+      "equilateral isosceles scalene",
+      "three sided shape"
+    ],
+    "questions": [
+      {
+        "text": "How can you tell whether a corner is a right angle?",
+        "target": "classifying-angles"
+      },
+      {
+        "text": "Which shapes have four square corners?",
+        "target": "squares-rectangles"
+      },
+      {
+        "text": "How can a triangle have two matching halves?",
+        "target": "line-symmetry"
+      }
+    ],
+    "sources": [
+      "exp-openstax-angles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "squares-rectangles",
+    "title": "Is every square a rectangle?",
+    "category": "math",
+    "priority": 1,
+    "answer": "To be a rectangle, a flat shape must have four straight sides and four right angles. A square has all of those things. It has an extra property too: all four sides have the same length. A long postcard is usually a rectangle with two long sides and two short sides, so it is not a square. You can think of a square as one special kind of rectangle.",
+    "sections": [],
+    "facts": [
+      "A square has four sides of the same length, and every corner is a right angle."
+    ],
+    "terms": [
+      "rectangle",
+      "right angle"
+    ],
+    "aliases": [
+      "are squares rectangles",
+      "difference between a square and rectangle"
+    ],
+    "questions": [
+      {
+        "text": "How can you tell that a corner makes a right angle?",
+        "target": "classifying-angles"
+      },
+      {
+        "text": "How can you find the distance around a square?",
+        "target": "perimeter-length"
+      },
+      {
+        "text": "How many matching folds can a square have?",
+        "target": "line-symmetry"
+      }
+    ],
+    "sources": [
+      "exp-openstax-geometry"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "circle-parts",
+    "title": "What are the radius and diameter of a circle?",
+    "category": "math",
+    "priority": 1,
+    "answer": "A circle is made of points all the same distance from a center. Draw a straight line from the center to the edge. That line is a radius. Extend that line back through the center until it reaches the opposite edge. The full line across is a diameter, twice as long as the radius. The distance around the curved edge has a different name: circumference.",
+    "sections": [],
+    "facts": [
+      "If the radius is three centimeters, the diameter is six centimeters."
+    ],
+    "terms": [
+      "radius",
+      "diameter",
+      "circumference"
+    ],
+    "aliases": [
+      "parts of a circle",
+      "radius versus diameter",
+      "where is the center"
+    ],
+    "questions": [
+      {
+        "text": "How can you measure the distance around a round shape?",
+        "target": "circumference"
+      },
+      {
+        "text": "What distance would you measure around a rectangle?",
+        "target": "perimeter-length"
+      },
+      {
+        "text": "Where can you fold a circle to make two halves match?",
+        "target": "line-symmetry"
+      }
+    ],
+    "sources": [
+      "exp-openstax-circles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "circumference",
+    "title": "How far is it around a circle?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Wrap a thread once around the outside of a flat round lid and measure the thread. That gives its circumference. Now measure straight across the lid through the center to find its diameter. The thread is a little longer than three diameters. For every exact circle, the ratio of those lengths is the same. Mathematicians call that number pi, often rounded to 3.14.",
+    "sections": [],
+    "facts": [
+      "A circle with twice the diameter also has twice the circumference."
+    ],
+    "terms": [
+      "circumference",
+      "diameter",
+      "pi"
+    ],
+    "aliases": [
+      "what is circumference",
+      "what is pi",
+      "perimeter of a circle"
+    ],
+    "questions": [
+      {
+        "text": "Which measurement goes straight through the center?",
+        "target": "circle-parts"
+      },
+      {
+        "text": "What is the distance around a shape with straight sides?",
+        "target": "perimeter-length"
+      },
+      {
+        "text": "Why can a number like 3.14 be used as a rough value?",
+        "target": "rounding-numbers"
+      }
+    ],
+    "sources": [
+      "exp-openstax-circles"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "line-symmetry",
+    "title": "What makes two halves match?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Draw a heart, then imagine folding it down the middle. If every part of one half lands on the same part of the other half, the fold is a line of symmetry. A shape can have more than one matching fold. A square matches across a fold through the middle from side to side, and also across a fold joining opposite corners. Some shapes have no matching fold at all.",
+    "sections": [],
+    "facts": [
+      "A circle can be folded along any straight line that passes through its center to make matching halves.",
+      "A square has four lines of symmetry."
+    ],
+    "terms": [
+      "symmetry"
+    ],
+    "aliases": [
+      "line symmetry",
+      "symmetrical shapes",
+      "folding a shape in half"
+    ],
+    "questions": [
+      {
+        "text": "What makes a square different from other rectangles?",
+        "target": "squares-rectangles"
+      },
+      {
+        "text": "Where is the center of a circle?",
+        "target": "circle-parts"
+      },
+      {
+        "text": "How can a set of tiles repeat across a floor?",
+        "target": "repeating-patterns"
+      }
+    ],
+    "sources": [
+      "exp-illustrative-symmetry"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "repeating-patterns",
+    "title": "How can you predict the next part of a pattern?",
+    "category": "logic",
+    "priority": 1,
+    "answer": "Read these colors aloud: red, blue, blue, red, blue, blue. The smallest block that keeps repeating is red, blue, blue. If that rule continues, the next color is red. Seeing only a few colors does not always tell you the rule for sure. Another person might be following a different rule that begins the same way. Looking for a repeating block gives you a guess you can check against more of the pattern.",
+    "sections": [],
+    "facts": [
+      "A pattern can repeat sounds, moves, shapes, or numbers."
+    ],
+    "terms": [
+      "pattern"
+    ],
+    "aliases": [
+      "what comes next in a pattern",
+      "repeat unit",
+      "repeating shapes"
+    ],
+    "questions": [
+      {
+        "text": "How does repeating a count help find multiples?",
+        "target": "multiples"
+      },
+      {
+        "text": "How can beats repeat in music?",
+        "target": "musical-rhythm"
+      },
+      {
+        "text": "What kind of rule can make a pattern from a single number?",
+        "target": "input-output-rules"
+      }
+    ],
+    "sources": [
+      "exp-commoncore-patterns"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "input-output-rules",
+    "title": "How does a number machine work?",
+    "category": "logic",
+    "priority": 1,
+    "answer": "A number machine is a way to picture a rule. Put in a number, follow the same rule each time, and see what number comes out. If the rule is to add three, an input of two gives an output of five, and an input of four gives seven. A two-step rule could first double the input and then add one. In that rule the order matters.",
+    "sections": [],
+    "facts": [
+      "The rule add three gives an output of three when the input is zero."
+    ],
+    "terms": [
+      "input",
+      "output"
+    ],
+    "aliases": [
+      "function machine",
+      "input and output",
+      "what rule changes a number"
+    ],
+    "questions": [
+      {
+        "text": "What happens when the same rule makes a repeating or growing pattern?",
+        "target": "repeating-patterns"
+      },
+      {
+        "text": "How do computers follow a list of rules?",
+        "target": "algorithms"
+      },
+      {
+        "text": "Why does doing multiplication before addition sometimes change the answer?",
+        "target": "order-of-operations"
+      }
+    ],
+    "sources": [
+      "exp-commoncore-patterns"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "order-of-operations",
+    "title": "Which part of a calculation comes first?",
+    "category": "math",
+    "priority": 1,
+    "answer": "If you see 2 + 3 × 4, you might think to add first. In the usual order of operations, multiplication comes before addition, so three times four is twelve and the total is fourteen. Put parentheses around 2 + 3 and the instructions change. Do what is inside the parentheses first, then multiply five by four, to get twenty. The symbols let everyone read the calculation the same way.",
+    "sections": [],
+    "facts": [
+      "Multiplication and division have the same rank. When they appear together at that rank, work from left to right."
+    ],
+    "terms": [
+      "parentheses"
+    ],
+    "aliases": [
+      "order of operations",
+      "what do parentheses do in math",
+      "why is 2 plus 3 times 4 different"
+    ],
+    "questions": [
+      {
+        "text": "How does the order of two steps affect a number machine?",
+        "target": "input-output-rules"
+      },
+      {
+        "text": "How can a row of items show a multiplication step?",
+        "target": "multiplication-arrays"
+      },
+      {
+        "text": "How can you check a long calculation with a rough guess?",
+        "target": "estimation"
+      }
+    ],
+    "sources": [
+      "exp-openstax-whole"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "coordinate-grids",
+    "title": "How do you find one point on a grid?",
+    "category": "math",
+    "priority": 1,
+    "answer": "On a simple grid, start where the two number lines meet. The first number in an ordered pair tells you where to go sideways. The second tells you where to go up or down. For the point (3, 2), go three steps right and two steps up. Negative numbers take you left or down instead. Switching the order changes the point. That is why the numbers always go in the same order.",
+    "sections": [],
+    "facts": [
+      "On a first-quadrant grid, the starting point is (0, 0), called the origin."
+    ],
+    "terms": [
+      "coordinate",
+      "ordered pair"
+    ],
+    "aliases": [
+      "coordinate plane",
+      "how do x and y work",
+      "ordered pair"
+    ],
+    "questions": [
+      {
+        "text": "How can a pair of measurements locate a place on Earth?",
+        "target": "latitude"
+      },
+      {
+        "text": "What numbers can show positions to the left of zero?",
+        "target": "negative-numbers"
+      },
+      {
+        "text": "How do bars on a graph use a marked scale?",
+        "target": "bar-graphs"
+      }
+    ],
+    "sources": [
+      "exp-commoncore-coordinates"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bar-graphs",
+    "title": "How do bars show data?",
+    "category": "math",
+    "priority": 1,
+    "answer": "A bar graph uses bars to show how much is in each group. Imagine surveying a class about favorite fruit. A bar for apples can reach six, a bar for bananas might reach four, and one for grapes eight. Read the group labels and check the numbered scale before comparing the bars. One mark on a scale might stand for one vote, two votes, or another amount.",
+    "sections": [],
+    "facts": [
+      "Bars in one graph use a shared scale, so their lengths can be compared."
+    ],
+    "terms": [
+      "bar graph",
+      "data"
+    ],
+    "aliases": [
+      "what is a bar graph",
+      "bar chart",
+      "read a graph"
+    ],
+    "questions": [
+      {
+        "text": "How can a group of numbers have one typical value?",
+        "target": "mean-average"
+      },
+      {
+        "text": "How can you read a point from two number lines?",
+        "target": "coordinate-grids"
+      },
+      {
+        "text": "Why do useful estimates sometimes give a rough count?",
+        "target": "estimation"
+      }
+    ],
+    "sources": [
+      "exp-commoncore-graphs"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mean-average",
+    "title": "What does the mean tell you?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Imagine three friends have two, four, and twelve marbles. Altogether they have eighteen. If they share those eighteen marbles equally, each gets six. Six is the mean of the three original numbers. It helps tell you how much each person would have if the total were shared evenly, even when the real amounts are very different. The mean can fall between numbers in your list.",
+    "sections": [],
+    "facts": [
+      "To find the mean, add the values and divide by how many values there are."
+    ],
+    "terms": [
+      "mean",
+      "data"
+    ],
+    "aliases": [
+      "how to find the average",
+      "what is the mean",
+      "average amount"
+    ],
+    "questions": [
+      {
+        "text": "How do you find the middle value in a sorted list?",
+        "target": "median-number"
+      },
+      {
+        "text": "How can bars compare several different amounts?",
+        "target": "bar-graphs"
+      },
+      {
+        "text": "Why does sharing a whole number sometimes leave something over?",
+        "target": "division-remainders"
+      }
+    ],
+    "sources": [
+      "exp-openstax-probability"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "median-number",
+    "title": "How do you find the median?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Put the numbers 2, 6, 7, 10, and 50 in order from smallest to largest. The number in the middle is seven. That is the median. Changing 50 to an even larger number would leave the middle number right where it is. When there are two middle numbers, find the amount halfway between those two. That is the median of the whole list. Ordering the numbers first is what makes the comparison work.",
+    "sections": [],
+    "facts": [
+      "The median of 2, 4, 8, and 12 is 6, halfway between 4 and 8."
+    ],
+    "terms": [
+      "median",
+      "data"
+    ],
+    "aliases": [
+      "middle number",
+      "median vs mean",
+      "what is median"
+    ],
+    "questions": [
+      {
+        "text": "How is the mean affected by a very large number?",
+        "target": "mean-average"
+      },
+      {
+        "text": "How does putting values in bars help compare them?",
+        "target": "bar-graphs"
+      },
+      {
+        "text": "When does an estimate make more sense than an exact count?",
+        "target": "estimation"
+      }
+    ],
+    "sources": [
+      "exp-math-median"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "probability",
+    "title": "How likely is something to happen?",
+    "category": "math",
+    "priority": 1,
+    "answer": "Probability tells how likely an event is. A fair coin has two equally likely sides, so the chance it lands heads is one half. That does not say what will happen on the next toss. You might get heads three times in a row. Over many tosses, the share of heads often comes closer to one half. A different game with more possible results might have very different chances.",
+    "sections": [],
+    "facts": [
+      "In a game with equally likely outcomes, a probability of zero means impossible and a probability of one means certain."
+    ],
+    "terms": [
+      "probability",
+      "fraction"
+    ],
+    "aliases": [
+      "what is probability",
+      "chance",
+      "coin flip odds"
+    ],
+    "questions": [
+      {
+        "text": "How do you write one half as a percent?",
+        "target": "percentages"
+      },
+      {
+        "text": "Why are one half and two fourths the same chance?",
+        "target": "equivalent-fractions"
+      },
+      {
+        "text": "What can a repeated sequence tell you about the next item?",
+        "target": "repeating-patterns"
+      }
+    ],
+    "sources": [
+      "exp-openstax-probability"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "metric-units",
+    "title": "How do meters, centimeters, and kilometers fit together?",
+    "category": "math",
+    "priority": 1,
+    "answer": "A meter is a unit of length. A centimeter is one hundredth of a meter, so a meter stick has a hundred centimeters along it. A kilometer is a thousand meters, a useful unit for a trip across town. These units belong to the metric system. Their sizes are related by tens, hundreds, or thousands, so you can switch between units by working with powers of ten.",
+    "sections": [],
+    "facts": [
+      "A centimeter is the length of ten millimeters."
+    ],
+    "terms": [
+      "metric system",
+      "place value"
+    ],
+    "aliases": [
+      "metric system",
+      "length metric units",
+      "how many centimeters in a meter"
+    ],
+    "questions": [
+      {
+        "text": "Why does moving a digit one place change its value by ten?",
+        "target": "place-value"
+      },
+      {
+        "text": "How can smaller units help write part of a meter?",
+        "target": "decimal-numbers"
+      },
+      {
+        "text": "How can cubes a centimeter wide measure a box?",
+        "target": "volume-measurement"
+      }
+    ],
+    "sources": [
+      "exp-nist-metric"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "watercolor-painting",
+    "title": "How do watercolors make light colors?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "With watercolors, a brush carries small bits of color mixed with water. A thin layer lets light reach the white paper and bounce back, so the paper helps the color look bright or pale. Artists can brush water over a large area before adding color to make it spread softly. When one layer dries, they can paint over it to build a stronger color or add sharp lines.",
+    "sections": [],
+    "facts": [
+      "A thin layer of watercolor spread across an area is called a wash."
+    ],
+    "terms": [
+      "pigment",
+      "wash"
+    ],
+    "aliases": [
+      "watercolor",
+      "why watercolor is transparent",
+      "watercolor wash"
+    ],
+    "questions": [
+      {
+        "text": "How can different shades make a flat shape seem round?",
+        "target": "drawing-light-shade"
+      },
+      {
+        "text": "Why do colors in the background of a landscape look softer?",
+        "target": "landscape-art"
+      },
+      {
+        "text": "How can putting color on a block create many copies of a picture?",
+        "target": "woodcut-printing"
+      }
+    ],
+    "sources": [
+      "exp-museum-watercolor"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "collage-art",
+    "title": "What makes a picture a collage?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "A collage is made by arranging pieces of material on a surface and attaching them. The pieces might be colored paper, scraps of cloth, photographs, or something else. A strip from an old map could become a roadway in a new picture, even though it once showed a river. Artists decide how edges overlap and where to leave empty space. Those choices can make separate pieces look like they belong together.",
+    "sections": [],
+    "facts": [
+      "A collage can use pieces with different textures, thicknesses, and colors."
+    ],
+    "terms": [
+      "collage"
+    ],
+    "aliases": [
+      "paper collage",
+      "how does collage work",
+      "what is collage"
+    ],
+    "questions": [
+      {
+        "text": "How can small stone or glass pieces build a picture?",
+        "target": "mosaic-art"
+      },
+      {
+        "text": "How does a landscape artist decide what belongs at the front?",
+        "target": "landscape-art"
+      },
+      {
+        "text": "How can different colors and lines make a pattern without showing a real object?",
+        "target": "abstract-art"
+      }
+    ],
+    "sources": [
+      "exp-moma-terms"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sculpture-shapes",
+    "title": "How is a sculpture different from a drawing?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "A sculpture takes up space that you can measure in three directions: height, width, and depth. You might walk around a statue and see different details on each side. A sculptor can carve away parts of a block, add pieces of clay, or join materials together. Some sculptures have a flat back and rise from a wall or a plaque, so you usually look at them from one side.",
+    "sections": [],
+    "facts": [
+      "Carving removes material, and modeling can add or reshape material."
+    ],
+    "terms": [
+      "sculpture",
+      "form"
+    ],
+    "aliases": [
+      "what is a sculpture",
+      "three dimensional art",
+      "sculpting"
+    ],
+    "questions": [
+      {
+        "text": "How does wet clay become a hard bowl?",
+        "target": "clay-pottery"
+      },
+      {
+        "text": "How can a flat drawing make an object seem solid?",
+        "target": "drawing-light-shade"
+      },
+      {
+        "text": "How can several pieces of material combine into one flat work?",
+        "target": "collage-art"
+      }
+    ],
+    "sources": [
+      "exp-getty-sculpture"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "still-life-art",
+    "title": "What is a still life in art?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "A still life is an artwork about objects such as a bowl, a book, flowers, or fruit. An artist can put the objects close to one another so their shapes overlap, or spread them out so we notice each one. Moving the light to one side can make the shadows longer and change which details stand out. Even the same cup can look different when you move your chair and draw it from a new place.",
+    "sections": [],
+    "facts": [
+      "Artists can show ordinary objects in a still life, including cups, food, and tools."
+    ],
+    "terms": [
+      "still life"
+    ],
+    "aliases": [
+      "still life painting",
+      "painting everyday objects",
+      "fruit in a bowl picture"
+    ],
+    "questions": [
+      {
+        "text": "What makes a portrait different from an artwork about objects?",
+        "target": "portraits"
+      },
+      {
+        "text": "How can shading show the curved side of a cup?",
+        "target": "drawing-light-shade"
+      },
+      {
+        "text": "How does a picture show a place instead of a small group of objects?",
+        "target": "landscape-art"
+      }
+    ],
+    "sources": [
+      "exp-nga-still-life"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "landscape-art",
+    "title": "What is a landscape painting?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "A landscape artwork shows a view of a place. It might show hills, a river, fields, or a busy town. The part that seems nearest is the foreground, and the part that seems farthest is the background. An artist can use large, clear shapes close to us and smaller, softer ones farther away. The view can feel wide and deep even if the paper is small and flat.",
+    "sections": [],
+    "facts": [
+      "Changing where the horizon sits can change how much sky or ground you see."
+    ],
+    "terms": [
+      "foreground",
+      "background"
+    ],
+    "aliases": [
+      "landscape art",
+      "foreground and background",
+      "drawing a view"
+    ],
+    "questions": [
+      {
+        "text": "Why do lines that are far away seem to meet?",
+        "target": "drawing-perspective"
+      },
+      {
+        "text": "How can a portrait use its background to tell us about a person?",
+        "target": "portraits"
+      },
+      {
+        "text": "How can pale color suggest distance?",
+        "target": "watercolor-painting"
+      }
+    ],
+    "sources": [
+      "exp-nga-landscape"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "drawing-perspective",
+    "title": "Why do distant objects look smaller in pictures?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "Stand at one end of a long hallway. The walls get closer together in your view as they get farther away. You know the hallway stays the same width. Drawing its edges so they slant toward a point makes a picture feel like the real view. Artists call this kind of drawing linear perspective. The point where drawn lines appear to meet is called a vanishing point.",
+    "sections": [],
+    "facts": [
+      "Lines that seem to meet in a picture may be parallel in the real world."
+    ],
+    "terms": [
+      "perspective",
+      "vanishing point"
+    ],
+    "aliases": [
+      "drawing in perspective",
+      "what is a vanishing point",
+      "why do railroad tracks look like they meet"
+    ],
+    "questions": [
+      {
+        "text": "What part of a landscape seems nearest to the viewer?",
+        "target": "landscape-art"
+      },
+      {
+        "text": "What is another way to draw an object so it seems three-dimensional?",
+        "target": "drawing-light-shade"
+      },
+      {
+        "text": "What measurements locate one point on a flat grid?",
+        "target": "coordinate-grids"
+      }
+    ],
+    "sources": [
+      "exp-nga-perspective"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "drawing-light-shade",
+    "title": "How can shading make a picture look solid?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "A ball under a lamp has a bright part facing the lamp and a darker part turned away from it. An artist can draw those changes in lightness inside a flat circle so it looks like a ball. The change from light to dark is often gradual on a rounded surface. The ball may also leave a darker shape on the table behind it, where it blocks some light.",
+    "sections": [],
+    "facts": [
+      "Artists use the word value to talk about how light or dark a part of a picture is."
+    ],
+    "terms": [
+      "shading",
+      "value"
+    ],
+    "aliases": [
+      "shading in drawing",
+      "why draw shadows",
+      "how to make a circle look like a ball"
+    ],
+    "questions": [
+      {
+        "text": "How can different colors show lighter and darker areas?",
+        "target": "watercolor-painting"
+      },
+      {
+        "text": "Why can a sculpture cast a real shadow?",
+        "target": "sculpture-shapes"
+      },
+      {
+        "text": "What is light and where does it come from?",
+        "target": "light"
+      }
+    ],
+    "sources": [
+      "exp-getty-elements"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "abstract-art",
+    "title": "Why doesn’t some art look like real things?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "Some artists start with a real object and change its shapes, colors, or details. A bicycle might become a few circles and slanting lines. Other artists make patterns and marks without choosing a real object to show. Both can be kinds of abstract art. Look for colors that seem to push forward, shapes that repeat, and changes in the speed or direction of lines. You can notice those choices even without naming an object.",
+    "sections": [],
+    "facts": [
+      "An abstract artwork can show motion or a feeling through color, shape, or line."
+    ],
+    "terms": [
+      "abstract",
+      "color"
+    ],
+    "aliases": [
+      "abstract painting",
+      "what is abstract art",
+      "nonrepresentational art"
+    ],
+    "questions": [
+      {
+        "text": "How can an artist repeat the same group of shapes?",
+        "target": "repeating-patterns"
+      },
+      {
+        "text": "How can cut shapes become an artwork?",
+        "target": "collage-art"
+      },
+      {
+        "text": "Why can two people notice different things in a picture of a place?",
+        "target": "landscape-art"
+      }
+    ],
+    "sources": [
+      "exp-moma-terms"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "clay-pottery",
+    "title": "How does soft clay become a hard pot?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "Wet clay can be pressed, rolled, or shaped as a wheel turns. A potter lets the finished shape dry before putting it into a special oven called a kiln. The heat changes the clay so it becomes hard and keeps its shape. A potter can add a coating called a glaze and heat the pot again. Some glazes melt into a smooth, glassy layer as they are fired.",
+    "sections": [],
+    "facts": [
+      "Many clay pots are shaped by hand, without a wheel."
+    ],
+    "terms": [
+      "pottery",
+      "kiln",
+      "glaze"
+    ],
+    "aliases": [
+      "pottery wheel",
+      "what is a kiln",
+      "clay bowl making"
+    ],
+    "questions": [
+      {
+        "text": "How does a sculptor build up a shape out of soft material?",
+        "target": "sculpture-shapes"
+      },
+      {
+        "text": "How can little pieces of tile make one picture?",
+        "target": "mosaic-art"
+      },
+      {
+        "text": "What is another change that can happen when material is heated?",
+        "target": "states-of-matter"
+      }
+    ],
+    "sources": [
+      "exp-met-ceramics"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mosaic-art",
+    "title": "How can small pieces make a big picture?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "Mosaics use small pieces of glass, stone, or another material arranged into a picture or pattern. Each piece can cover just a little bit of the final surface. From far away the pieces may look like a single picture. From close up you can see each piece, the gaps, and how colors were grouped. A mosaic artist can turn pieces to follow the curves of a face, flower, or animal.",
+    "sections": [],
+    "facts": [
+      "A small piece used to make a mosaic is called a tessera."
+    ],
+    "terms": [
+      "mosaic",
+      "tessera"
+    ],
+    "aliases": [
+      "mosaic art",
+      "tile mosaic",
+      "what is a tessera"
+    ],
+    "questions": [
+      {
+        "text": "How can paper pieces combine into a larger image?",
+        "target": "collage-art"
+      },
+      {
+        "text": "What patterns can fill a flat surface?",
+        "target": "repeating-patterns"
+      },
+      {
+        "text": "How do artists use light and dark colors to show round shapes?",
+        "target": "drawing-light-shade"
+      }
+    ],
+    "sources": [
+      "exp-met-tesserae"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "art-textiles",
+    "title": "How does weaving turn threads into cloth?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "A weaver stretches one set of threads in order. Those threads are the warp. Another thread, the weft, passes across them, going over some and under others. Each trip adds one row. The crossing threads hold one another in place. A loom helps keep the warp threads tight and makes room for the weft to pass through. Changing the colors or which threads go above others can make patterns.",
+    "sections": [],
+    "facts": [
+      "The warp and weft run in different directions across a woven cloth."
+    ],
+    "terms": [
+      "weaving",
+      "warp",
+      "weft",
+      "loom"
+    ],
+    "aliases": [
+      "warp weft",
+      "woven cloth",
+      "how a loom works"
+    ],
+    "questions": [
+      {
+        "text": "How can changing two colors make a repeating rule?",
+        "target": "repeating-patterns"
+      },
+      {
+        "text": "How can squares of cloth or paper become one picture?",
+        "target": "collage-art"
+      },
+      {
+        "text": "How can the material an artist uses change how a work feels?",
+        "target": "sculpture-shapes"
+      }
+    ],
+    "sources": [
+      "exp-met-tapestry"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "stop-motion",
+    "title": "How does stop-motion make objects look alive?",
+    "category": "visual-arts",
+    "priority": 1,
+    "answer": "Set a toy on a table, take a picture, and move it a tiny bit. Take another picture and repeat. Play the pictures quickly in order and the toy can look like it is moving by itself. Stop-motion animation uses lots of photographs made this way. Small changes between photos make the movement look smoother. Bumping the camera by accident can make the whole scene seem to jump.",
+    "sections": [],
+    "facts": [
+      "One still picture in an animation is called a frame."
+    ],
+    "terms": [
+      "animation",
+      "frame"
+    ],
+    "aliases": [
+      "stop motion animation",
+      "frames in animation",
+      "how does a clay movie move"
+    ],
+    "questions": [
+      {
+        "text": "How can pictures in a row tell a story?",
+        "target": "comics-and-panels"
+      },
+      {
+        "text": "How can you plan a sequence with repeated steps?",
+        "target": "algorithms"
+      },
+      {
+        "text": "How can clay be shaped into a figure?",
+        "target": "sculpture-shapes"
+      }
+    ],
+    "sources": [
+      "exp-academy-animation"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "comics-and-panels",
+    "title": "How do comic panels tell a story?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "A comic tells a story with pictures and sometimes words. Pictures can sit in separate boxes called panels. One panel might show someone reaching for a door, and the next might show what they find after opening it. Your mind supplies the movement between the pictures. Speech balloons can show what people say, while a caption can tell when or where the scene happens.",
+    "sections": [],
+    "facts": [
+      "A comic can tell a story without any written words."
+    ],
+    "terms": [
+      "panel",
+      "dialogue"
+    ],
+    "aliases": [
+      "comics",
+      "graphic novels",
+      "speech bubbles in comics"
+    ],
+    "questions": [
+      {
+        "text": "How does an animation show movement between pictures?",
+        "target": "stop-motion"
+      },
+      {
+        "text": "What does the place in a story tell its reader?",
+        "target": "story-setting"
+      },
+      {
+        "text": "How can a line someone says tell us about their character?",
+        "target": "story-characters"
+      }
+    ],
+    "sources": [
+      "exp-loc-comics"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "story-setting",
+    "title": "Why does a story’s setting matter?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "The setting is where and when a story happens. Finding a key in an empty school just after closing feels different from finding one in a sunny park at noon. The place and time can change what the characters notice, what they are able to do, and how the reader feels. A story might name the place directly or give you clues like a train timetable, falling snow, or the sound of a night insect.",
+    "sections": [],
+    "facts": [
+      "A story can move to a different setting partway through."
+    ],
+    "terms": [
+      "setting"
+    ],
+    "aliases": [
+      "setting in a story",
+      "when and where",
+      "what is story setting"
+    ],
+    "questions": [
+      {
+        "text": "How do the events of a story make a plot?",
+        "target": "story-plot"
+      },
+      {
+        "text": "Why does the storyteller change what we can find out?",
+        "target": "story-narrators"
+      },
+      {
+        "text": "How can a landscape show what a place feels like?",
+        "target": "landscape-art"
+      }
+    ],
+    "sources": [
+      "exp-ncte-story"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "story-characters",
+    "title": "How do you get to know a story character?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "A character is a person, animal, or other being who takes part in a story. You can learn about one by watching what they do, hearing what they say, and noticing what other characters think about them. A child in a story might say they are brave, but their choices tell you more. They may also change as the story gives them new problems to solve.",
+    "sections": [],
+    "facts": [
+      "An author can show a character’s feelings through actions and words without naming those feelings."
+    ],
+    "terms": [
+      "character",
+      "dialogue"
+    ],
+    "aliases": [
+      "characters in fiction",
+      "character traits",
+      "why characters change"
+    ],
+    "questions": [
+      {
+        "text": "Whose thoughts might a narrator tell us?",
+        "target": "story-narrators"
+      },
+      {
+        "text": "What happens when a character faces a new problem?",
+        "target": "story-plot"
+      },
+      {
+        "text": "Why do some fables use talking animals as characters?",
+        "target": "fables"
+      }
+    ],
+    "sources": [
+      "exp-ncte-story"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "story-plot",
+    "title": "How do a story’s events make a plot?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "A plot is the set of events that make up a story and the ways they fit together. Imagine someone loses a lunchbox, checks the classroom, follows a clue, and finds it on the soccer field. Each part grows from what happened before it. Writers can build interest by making a plan fail, adding a surprise, or letting readers learn one important fact before the character learns it.",
+    "sections": [],
+    "facts": [
+      "Writers sometimes tell events out of time order. A flashback can show something that happened earlier."
+    ],
+    "terms": [
+      "plot"
+    ],
+    "aliases": [
+      "plot in a story",
+      "what happens next in a story",
+      "beginning middle and end"
+    ],
+    "questions": [
+      {
+        "text": "How can the place create a problem the character must solve?",
+        "target": "story-setting"
+      },
+      {
+        "text": "What can the reader learn when the narrator is part of the action?",
+        "target": "story-narrators"
+      },
+      {
+        "text": "How can a comic show the events without explaining every moment?",
+        "target": "comics-and-panels"
+      }
+    ],
+    "sources": [
+      "exp-ncte-story"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "story-narrators",
+    "title": "Who tells a story?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "The narrator is the voice that tells the story. A storyteller who says “I opened the door” can tell you what it felt like to be there. A narrator who says “Sam opened the door” tells the story from outside Sam’s voice. Some narrators tell you what only one person thinks. Others let you see what several people know. Changing the narrator can turn a surprise for one person into something you see coming.",
+    "sections": [],
+    "facts": [
+      "A narrator might know things that the characters in the story do not know."
+    ],
+    "terms": [
+      "narrator",
+      "point of view"
+    ],
+    "aliases": [
+      "first person and third person",
+      "what is a narrator",
+      "point of view"
+    ],
+    "questions": [
+      {
+        "text": "How do you learn what a character is like?",
+        "target": "story-characters"
+      },
+      {
+        "text": "How does a writer fit surprising events into a plot?",
+        "target": "story-plot"
+      },
+      {
+        "text": "Why might a play tell its story mainly through what people say and do?",
+        "target": "play-scripts"
+      }
+    ],
+    "sources": [
+      "exp-ncte-story"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "play-scripts",
+    "title": "How does a script tell actors what to do?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "A play script gives actors the words to speak and clues about what to do onstage. It may put each character’s name before their lines. A note called a stage direction might say that someone moves to the window, picks up a letter, or waits silently. Another person watching the play hears the spoken words and sees the movements. They usually do not hear someone read the stage directions aloud.",
+    "sections": [],
+    "facts": [
+      "Actors can play the same script in different ways by speaking or moving differently."
+    ],
+    "terms": [
+      "dialogue",
+      "script"
+    ],
+    "aliases": [
+      "play script",
+      "stage directions",
+      "what is dialogue in a play"
+    ],
+    "questions": [
+      {
+        "text": "How does a comic show who says each line?",
+        "target": "comics-and-panels"
+      },
+      {
+        "text": "What can a person’s words tell you about them?",
+        "target": "story-characters"
+      },
+      {
+        "text": "How does a narrator tell a story on the page?",
+        "target": "story-narrators"
+      }
+    ],
+    "sources": [
+      "exp-kennedy-script"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fables",
+    "title": "Why do fables often use talking animals?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "A fable is a short story that suggests a lesson. A small mouse in an old fable helps a much larger lion, showing that size does not decide who can be helpful. Animals in fables can talk, make plans, and behave like people. Their different sizes or habits make the problem easy to picture. A fable can leave you to work out its lesson, or state it plainly at the end.",
+    "sections": [],
+    "facts": [
+      "A fable’s lesson is often called its moral."
+    ],
+    "terms": [
+      "fable",
+      "moral"
+    ],
+    "aliases": [
+      "Aesop",
+      "what is a fable",
+      "stories with a moral"
+    ],
+    "questions": [
+      {
+        "text": "How do writers use a made-up character to show an idea?",
+        "target": "story-characters"
+      },
+      {
+        "text": "What makes a statement a comparison using the word like?",
+        "target": "similes"
+      },
+      {
+        "text": "How do a few simple events create the plot of a story?",
+        "target": "story-plot"
+      }
+    ],
+    "sources": [
+      "exp-loc-aesop"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "similes",
+    "title": "What is a simile?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "A simile puts two unlike things side by side using a word such as “like” or “as.” If you write that a puddle is “as smooth as a mirror,” you help the reader see the water reflecting things around it. The puddle is still water. A good comparison makes one detail clearer. Saying the puddle is “like lunch” might confuse a reader unless the rest of the story explains the connection.",
+    "sections": [],
+    "facts": [
+      "In “the cat crept like a shadow,” the comparison suggests quiet movement."
+    ],
+    "terms": [
+      "simile"
+    ],
+    "aliases": [
+      "comparison using like or as",
+      "simile examples",
+      "simile vs metaphor"
+    ],
+    "questions": [
+      {
+        "text": "How can a comparison work without the word like?",
+        "target": "metaphors"
+      },
+      {
+        "text": "How can a writer make an object sound as if it were a person?",
+        "target": "personification"
+      },
+      {
+        "text": "How can a colorful detail make a place easier to picture?",
+        "target": "story-setting"
+      }
+    ],
+    "sources": [
+      "exp-poetry-simile"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "metaphors",
+    "title": "What is a metaphor?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "In a metaphor, an author talks about one thing as though it were something else. If someone writes “the moon was a silver coin,” they are comparing the moon’s look with a coin, not describing what the moon is made of. Readers use clues to decide which qualities connect the two things. The comparison can make a sentence do more work than just saying the moon looked round and bright.",
+    "sections": [],
+    "facts": [
+      "A metaphor can compare a feeling or idea as well as a thing you can see."
+    ],
+    "terms": [
+      "metaphor"
+    ],
+    "aliases": [
+      "metaphor examples",
+      "difference between metaphor and simile",
+      "figurative language"
+    ],
+    "questions": [
+      {
+        "text": "How does a simile tell you directly that it is making a comparison?",
+        "target": "similes"
+      },
+      {
+        "text": "What happens when the metaphor gives something human behavior?",
+        "target": "personification"
+      },
+      {
+        "text": "Why can the Moon appear to change shape?",
+        "target": "moon-phases"
+      }
+    ],
+    "sources": [
+      "exp-poets-glossary"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "personification",
+    "title": "Why do writers give objects feelings?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "Personification gives a human action or feeling to something that is not human. The sentence “the sun peeked through the clouds” makes sunlight seem to act like a shy person looking around a corner. The sun does not have eyes. A writer may use that kind of language to make a scene feel playful, calm, or uneasy. It can turn a plain description into something you can imagine right away.",
+    "sections": [],
+    "facts": [
+      "A poem can give a tree human actions, such as waving or whispering."
+    ],
+    "terms": [
+      "personification"
+    ],
+    "aliases": [
+      "personification examples",
+      "when objects act like people",
+      "making things human in a poem"
+    ],
+    "questions": [
+      {
+        "text": "How do similes make a comparison without saying one thing is another?",
+        "target": "similes"
+      },
+      {
+        "text": "How can giving animals human words help tell a short lesson?",
+        "target": "fables"
+      },
+      {
+        "text": "What are clouds really made of?",
+        "target": "clouds"
+      }
+    ],
+    "sources": [
+      "exp-poets-glossary"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "alliteration",
+    "title": "Why repeat the first sound of words?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "When nearby words begin with the same sound, the effect is called alliteration. Say “soft snow slipped past” and listen to the repeated s sound. Sound matters more than spelling. The words city and sand begin with the same sound even though they start with different letters. A writer may repeat a sound to draw your ear to a line or make a phrase easier to remember.",
+    "sections": [],
+    "facts": [
+      "The words cat and city do not alliterate with each other, even though they start with the same letter."
+    ],
+    "terms": [
+      "alliteration"
+    ],
+    "aliases": [
+      "alliteration",
+      "repeated starting sounds",
+      "tongue twisters"
+    ],
+    "questions": [
+      {
+        "text": "How can words match at the end instead?",
+        "target": "rhyming-words"
+      },
+      {
+        "text": "How can one word break into several beats when you say it?",
+        "target": "syllables"
+      },
+      {
+        "text": "How can a repeated sound also be part of music?",
+        "target": "musical-rhythm"
+      }
+    ],
+    "sources": [
+      "exp-poets-glossary"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rhyming-words",
+    "title": "Why do some words rhyme?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "The words light and kite rhyme because their stressed vowel and the sounds after it match. The spelling can be different, as it is in blue and through. Poems and songs may repeat rhymes in a pattern, such as ending the second and fourth lines with matching sounds. Readers can often hear what kind of word might come next. A poem can use rhyme, but it does not have to.",
+    "sections": [],
+    "facts": [
+      "People with different accents can disagree about whether two words rhyme."
+    ],
+    "terms": [
+      "rhyme"
+    ],
+    "aliases": [
+      "rhyme",
+      "words that sound alike at the end",
+      "poem rhyme"
+    ],
+    "questions": [
+      {
+        "text": "What if a poem has line breaks without a regular rhyme pattern?",
+        "target": "free-verse"
+      },
+      {
+        "text": "Why might a writer repeat a word’s first sound?",
+        "target": "alliteration"
+      },
+      {
+        "text": "What gives a line of spoken words its beats?",
+        "target": "syllables"
+      }
+    ],
+    "sources": [
+      "exp-poets-glossary"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "free-verse",
+    "title": "Can a poem have no rhyme scheme?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "A free verse poem does not have to follow a fixed rhyme pattern or a set number of beats per line. The writer can still plan where each line ends, how sounds repeat, and which words call for a pause. Try reading two versions of the same short poem with the line breaks in different places. You may notice different words even though the poem says exactly the same thing.",
+    "sections": [],
+    "facts": [
+      "Line breaks and groups of lines can give a free verse poem a shape on the page."
+    ],
+    "terms": [
+      "free verse",
+      "stanza"
+    ],
+    "aliases": [
+      "free verse",
+      "poems that do not rhyme",
+      "what is free verse"
+    ],
+    "questions": [
+      {
+        "text": "How can rhyme make a different sort of poem easier to hear?",
+        "target": "rhyming-words"
+      },
+      {
+        "text": "Why might a poet use the same first sound in several words?",
+        "target": "alliteration"
+      },
+      {
+        "text": "How can a writer describe a puddle by comparing it with a mirror?",
+        "target": "similes"
+      }
+    ],
+    "sources": [
+      "exp-poets-glossary"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "haiku-poems",
+    "title": "What is a haiku?",
+    "category": "literature",
+    "priority": 1,
+    "answer": "A haiku is a very short poem that began in Japan. It often makes you notice a small moment in nature. A writer might put the sound of a crow beside the sight of an empty branch and let the two details work together. Many English-language classrooms try three lines of five, seven, and five syllables. Traditional Japanese haiku counts Japanese sound units, so poems in English may use other short patterns.",
+    "sections": [],
+    "facts": [
+      "You can write a haiku without using rhyming words."
+    ],
+    "terms": [
+      "haiku",
+      "syllable"
+    ],
+    "aliases": [
+      "haiku",
+      "five seven five poem",
+      "Japanese haiku"
+    ],
+    "questions": [
+      {
+        "text": "How do you count the syllables in a spoken word?",
+        "target": "syllables"
+      },
+      {
+        "text": "How can a poem work without ending in rhyme?",
+        "target": "free-verse"
+      },
+      {
+        "text": "What happens when someone writes about the wind as if it could speak?",
+        "target": "personification"
+      }
+    ],
+    "sources": [
+      "exp-poets-glossary"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "music-tempo",
+    "title": "What tells a musician how fast to play?",
+    "category": "music",
+    "priority": 1,
+    "answer": "Tempo is the speed of the beat in music. Imagine walking with a steady drum tap. Fast taps make you take more steps in the same amount of time. Slow taps give you more time between steps. A musician may follow a printed word that says how fast to play, or a number that gives beats per minute. A piece can change tempo while it is being played, which can make it feel as if it is gathering speed or settling down.",
+    "sections": [],
+    "facts": [
+      "Sixty beats per minute gives one beat every second."
+    ],
+    "terms": [
+      "tempo",
+      "beat"
+    ],
+    "aliases": [
+      "tempo",
+      "beats per minute",
+      "how fast a song goes"
+    ],
+    "questions": [
+      {
+        "text": "How is the pattern of notes different from the speed of the beat?",
+        "target": "musical-rhythm"
+      },
+      {
+        "text": "How can a written note tell you how long to hold a sound?",
+        "target": "written-music"
+      },
+      {
+        "text": "What tells a musician to play more quietly?",
+        "target": "music-dynamics"
+      }
+    ],
+    "sources": [
+      "exp-carnegie-rhythm"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "music-dynamics",
+    "title": "How do musicians know how loudly to play?",
+    "category": "music",
+    "priority": 1,
+    "answer": "Dynamics tell musicians how loud or soft their music should sound. A group may begin so softly that you can barely hear it, then grow louder until the whole room seems full. That gradual increase is a crescendo. Written music often shows letters such as p for soft or f for loud. A player may make one short note stand out without making the entire song louder.",
+    "sections": [],
+    "facts": [
+      "Musical dynamics are different from tempo, which describes the speed of the beat."
+    ],
+    "terms": [
+      "dynamics",
+      "crescendo"
+    ],
+    "aliases": [
+      "musical dynamics",
+      "piano and forte in music",
+      "what is a crescendo"
+    ],
+    "questions": [
+      {
+        "text": "What tells a drummer how fast to play?",
+        "target": "music-tempo"
+      },
+      {
+        "text": "What is making the sound inside a piano?",
+        "target": "piano-sound"
+      },
+      {
+        "text": "Why can sound seem louder when you are closer to it?",
+        "target": "sound"
+      }
+    ],
+    "sources": [
+      "exp-music-theory-dynamics"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "melody-harmony",
+    "title": "What’s the difference between melody and harmony?",
+    "category": "music",
+    "priority": 1,
+    "answer": "The melody is the line of notes you might hum when you remember a song. Harmony comes from notes sounding together or from the way groups of notes change underneath that tune. Imagine one student singing a tune while another holds lower notes that fit with it. You can still follow the tune, but the extra notes change how it feels. A piece can have more than one melody that fits together.",
+    "sections": [],
+    "facts": [
+      "A chord is a group of notes heard as a unit."
+    ],
+    "terms": [
+      "melody",
+      "harmony",
+      "chord"
+    ],
+    "aliases": [
+      "what is a melody",
+      "harmony in a song",
+      "how do notes go together"
+    ],
+    "questions": [
+      {
+        "text": "How do you write separate parts for several musicians?",
+        "target": "written-music"
+      },
+      {
+        "text": "What are the groups of instruments that can play those different parts?",
+        "target": "orchestra"
+      },
+      {
+        "text": "How does a piano let you play several notes together?",
+        "target": "piano-sound"
+      }
+    ],
+    "sources": [
+      "exp-music-theory-harmony"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "piano-sound",
+    "title": "What happens inside a piano when you press a key?",
+    "category": "music",
+    "priority": 1,
+    "answer": "Press a key on an acoustic piano and it moves a small hammer hidden inside. The hammer strikes one or more strings tuned for that note and quickly pulls away. The strings vibrate, and a wooden soundboard helps spread the sound through the air. A padded part usually lands against the strings again when you let go of the key. A pedal can keep many of those pads raised so sounds last longer.",
+    "sections": [],
+    "facts": [
+      "An acoustic piano uses strings even though the player touches keys."
+    ],
+    "terms": [
+      "vibration"
+    ],
+    "aliases": [
+      "how piano works",
+      "piano hammers",
+      "piano strings"
+    ],
+    "questions": [
+      {
+        "text": "How does a violin player make a string sound without a hammer?",
+        "target": "violin-sound"
+      },
+      {
+        "text": "Why does a string make a higher or lower sound?",
+        "target": "guitar-sound"
+      },
+      {
+        "text": "How do notes written together become chords?",
+        "target": "melody-harmony"
+      }
+    ],
+    "sources": [
+      "exp-yamaha-piano"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "violin-sound",
+    "title": "How does a violin make a sound?",
+    "category": "music",
+    "priority": 1,
+    "answer": "A violin player draws a bow across a string to make it vibrate. A small wooden bridge carries some of that motion into the body of the violin, which helps send sound into the room. The player can press a string down with a finger to shorten the part that vibrates. A shorter part usually makes a higher note. A violin can also sound when the player plucks a string.",
+    "sections": [],
+    "facts": [
+      "A regular violin has four strings."
+    ],
+    "terms": [
+      "vibration",
+      "bow"
+    ],
+    "aliases": [
+      "why a violin needs a bow",
+      "how to play violin",
+      "violin strings"
+    ],
+    "questions": [
+      {
+        "text": "How can another string instrument produce lower notes?",
+        "target": "cello-sound"
+      },
+      {
+        "text": "What is different about making a note on a guitar?",
+        "target": "guitar-sound"
+      },
+      {
+        "text": "How can a piano hammer start a vibration?",
+        "target": "piano-sound"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-violin"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cello-sound",
+    "title": "Why does a cello sound lower than a violin?",
+    "category": "music",
+    "priority": 1,
+    "answer": "A cello has long strings and a large wooden body. Its strings are tuned to make lower notes than the strings of a violin, and the body helps those sounds reach the air. A person usually plays a cello seated, with the instrument standing between their knees and an endpin resting on the floor. Like a violin player, they can bow or pluck the strings and press them to change the notes.",
+    "sections": [],
+    "facts": [
+      "The cello can play across a wide range of notes, including notes much higher than its lowest string."
+    ],
+    "terms": [
+      "vibration",
+      "pitch"
+    ],
+    "aliases": [
+      "cello music",
+      "how do cellos play",
+      "why cellos sound deep"
+    ],
+    "questions": [
+      {
+        "text": "How does a violin string change pitch?",
+        "target": "violin-sound"
+      },
+      {
+        "text": "What lets a double bass play notes even lower than a cello?",
+        "target": "double-bass-sound"
+      },
+      {
+        "text": "What groups of instruments play together in an orchestra?",
+        "target": "orchestra"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-cello"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "double-bass-sound",
+    "title": "Why is a double bass so big?",
+    "category": "music",
+    "priority": 1,
+    "answer": "The double bass is the largest of the string instruments usually found in an orchestra. Its long, thick strings can move back and forth slowly enough to give it very low notes. In an orchestra, players can move a bow across the strings. In jazz and other kinds of music, they often pluck the strings with their fingers. The bass can help a group feel the beat and hear changes in harmony.",
+    "sections": [],
+    "facts": [
+      "A double bass player generally stands or sits on a high stool beside the instrument."
+    ],
+    "terms": [
+      "pitch",
+      "vibration"
+    ],
+    "aliases": [
+      "what is a double bass",
+      "upright bass",
+      "largest common orchestra string instrument"
+    ],
+    "questions": [
+      {
+        "text": "How do cellists hold their instruments?",
+        "target": "cello-sound"
+      },
+      {
+        "text": "How can a lower note support a melody?",
+        "target": "melody-harmony"
+      },
+      {
+        "text": "What makes the different groups of an orchestra sound different?",
+        "target": "orchestra"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-bass"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "guitar-sound",
+    "title": "How does a guitar change notes?",
+    "category": "music",
+    "priority": 1,
+    "answer": "A guitar string makes a sound when you pluck it and it vibrates. On an acoustic guitar, those vibrations move into the body, which helps spread the sound. The small bars across the long neck are called frets. Press a string just behind a fret and the part that can vibrate gets shorter. Shortening the string raises the pitch, so two presses on the same string can make different notes.",
+    "sections": [],
+    "facts": [
+      "Guitar strings can also change pitch when a tuner changes how tight they are."
+    ],
+    "terms": [
+      "fret",
+      "pitch"
+    ],
+    "aliases": [
+      "guitar frets",
+      "how guitar strings work",
+      "plucking strings"
+    ],
+    "questions": [
+      {
+        "text": "How does a violin player change the string length without frets?",
+        "target": "violin-sound"
+      },
+      {
+        "text": "Why do longer strings help a double bass sound low?",
+        "target": "double-bass-sound"
+      },
+      {
+        "text": "Why can several strings together sound like a chord?",
+        "target": "melody-harmony"
+      }
+    ],
+    "sources": [
+      "exp-yamaha-guitar"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "flute-sound",
+    "title": "How does a flute make a sound without a reed?",
+    "category": "music",
+    "priority": 1,
+    "answer": "A flute player blows a thin stream of air across an opening near one end. The air meets a sharp edge and sets the air inside the instrument moving back and forth. When the player opens or closes holes with keys, the air inside acts as if it has a different length. That helps change the note. A modern flute is commonly made of metal, but it belongs to the woodwind family.",
+    "sections": [],
+    "facts": [
+      "Most orchestra flutes are held sideways to play."
+    ],
+    "terms": [
+      "woodwind",
+      "pitch"
+    ],
+    "aliases": [
+      "flute sound",
+      "how to blow flute",
+      "flute woodwind"
+    ],
+    "questions": [
+      {
+        "text": "How does a clarinet start sound using a moving reed?",
+        "target": "clarinet-sound"
+      },
+      {
+        "text": "How does a trumpet use the player’s lips instead?",
+        "target": "trumpet-sound"
+      },
+      {
+        "text": "Which other instruments play in an orchestra’s woodwind group?",
+        "target": "orchestra"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-flute"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "clarinet-sound",
+    "title": "Why does a clarinet need a reed?",
+    "category": "music",
+    "priority": 1,
+    "answer": "On a clarinet, a thin strip called a reed sits against a mouthpiece. When a player blows, the reed flexes quickly and sets the air in the tube vibrating. Fingers and keys open and close holes to help change the note. A player can also change how they blow to play notes in different parts of the instrument’s range. The same clarinet can sound quite soft or strong.",
+    "sections": [],
+    "facts": [
+      "A clarinet uses one reed at its mouthpiece."
+    ],
+    "terms": [
+      "reed",
+      "woodwind"
+    ],
+    "aliases": [
+      "clarinet mouthpiece",
+      "what is a single reed",
+      "how does clarinet make sound"
+    ],
+    "questions": [
+      {
+        "text": "Which woodwind uses two reeds against each other?",
+        "target": "oboe-sound"
+      },
+      {
+        "text": "How does a flute make sound with ordinary moving air?",
+        "target": "flute-sound"
+      },
+      {
+        "text": "What makes a sound a wave?",
+        "target": "sound"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-clarinet"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "oboe-sound",
+    "title": "Why does an oboe use two reeds?",
+    "category": "music",
+    "priority": 1,
+    "answer": "An oboe player blows between two very thin pieces of cane. They are tied together near the base and can move quickly against one another at the tip. That movement helps create a vibration in the long tube. The player uses keys and fingers to cover or uncover holes to change notes. An oboe’s sound can stand out even when its part is fairly quiet.",
+    "sections": [],
+    "facts": [
+      "A double reed makes an oboe’s sound different from a clarinet’s single reed."
+    ],
+    "terms": [
+      "reed",
+      "woodwind"
+    ],
+    "aliases": [
+      "oboe reed",
+      "double reed instrument",
+      "how oboe works"
+    ],
+    "questions": [
+      {
+        "text": "Which other instrument makes sound with just one thin reed?",
+        "target": "clarinet-sound"
+      },
+      {
+        "text": "How can a conductor help an orchestra enter at the same time?",
+        "target": "orchestra"
+      },
+      {
+        "text": "How does a flute start the air moving without a reed?",
+        "target": "flute-sound"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-oboe"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "trumpet-sound",
+    "title": "How does a trumpet make different notes?",
+    "category": "music",
+    "priority": 1,
+    "answer": "A trumpet player presses their lips to a small mouthpiece and blows so the lips buzz. The air inside the trumpet moves with the buzz. Press a valve and the air has to travel through an extra bend in the tubing. A longer route can help make a lower note. The player can also shape their lips and blowing to get different notes with the same valve positions.",
+    "sections": [],
+    "facts": [
+      "Most orchestra trumpets have three valves."
+    ],
+    "terms": [
+      "valve",
+      "brass instrument"
+    ],
+    "aliases": [
+      "how trumpet valves work",
+      "what makes trumpets sound",
+      "brass instrument buzz"
+    ],
+    "questions": [
+      {
+        "text": "How does a trombone make its air path longer without valves?",
+        "target": "trombone-slide"
+      },
+      {
+        "text": "Which instrument starts a sound with a strip of cane?",
+        "target": "clarinet-sound"
+      },
+      {
+        "text": "What does pitch mean when you hear a sound?",
+        "target": "sound"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-trumpet"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "trombone-slide",
+    "title": "Why does a trombone have a slide?",
+    "category": "music",
+    "priority": 1,
+    "answer": "A trombone player starts a sound by buzzing their lips into the mouthpiece. The slide is made of tubes that can move into or out of other tubes. Push it outward and the air path grows longer, which can make the note lower. Move the slide smoothly while keeping the sound going and some notes can glide between pitches. Players also use their lips and breath to choose notes.",
+    "sections": [],
+    "facts": [
+      "Some trombones use valves, but the hand slide is typical in modern orchestras."
+    ],
+    "terms": [
+      "brass instrument",
+      "pitch"
+    ],
+    "aliases": [
+      "how trombone works",
+      "why a trombone slide moves",
+      "brass slides"
+    ],
+    "questions": [
+      {
+        "text": "How does a trumpet add more tubing in another way?",
+        "target": "trumpet-sound"
+      },
+      {
+        "text": "How can a guitarist make a note higher by shortening a string?",
+        "target": "guitar-sound"
+      },
+      {
+        "text": "How does a large drum tune to a note?",
+        "target": "timpani-drums"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-trombone"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "timpani-drums",
+    "title": "How can a big drum be tuned to a note?",
+    "category": "music",
+    "priority": 1,
+    "answer": "Timpani are bowl-shaped drums with skins or plastic heads stretched across their tops. Strike the drum with a soft-headed stick, and its stretched surface makes a clear note. Some timpani have a foot pedal that makes the head tighter or looser as the player moves it. Tightening the head raises the pitch. An orchestra often has several timpani so a player can use different notes in one piece.",
+    "sections": [],
+    "facts": [
+      "One of these drums is called a timpano, and several are called timpani."
+    ],
+    "terms": [
+      "timpani",
+      "pitch"
+    ],
+    "aliases": [
+      "what are timpani",
+      "kettledrums",
+      "drum pitch pedals"
+    ],
+    "questions": [
+      {
+        "text": "How does a tightly stretched guitar string change pitch?",
+        "target": "guitar-sound"
+      },
+      {
+        "text": "How can a player make a tune by striking a set of bars?",
+        "target": "xylophone-bars"
+      },
+      {
+        "text": "How can a conductor bring a drum in at the right moment?",
+        "target": "orchestra"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-timpani"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "xylophone-bars",
+    "title": "Why do xylophones have bars of different sizes?",
+    "category": "music",
+    "priority": 1,
+    "answer": "A xylophone has bars that ring out when a player taps them with mallets. The bars are often wooden, and differences in their lengths and shapes help give them different pitches. Some xylophones have tubes underneath the bars. The air inside the tubes can vibrate along with the bars, making the notes stronger. A player can make a tune by hitting several bars in order, just as a singer can sing several notes in order.",
+    "sections": [],
+    "facts": [
+      "Shorter bars often play higher notes than longer ones on the same instrument."
+    ],
+    "terms": [
+      "resonator",
+      "pitch"
+    ],
+    "aliases": [
+      "how xylophone works",
+      "wooden bars instrument",
+      "why are xylophone bars different lengths"
+    ],
+    "questions": [
+      {
+        "text": "How can a big drum change pitch without changing its size?",
+        "target": "timpani-drums"
+      },
+      {
+        "text": "Which instrument hits strings with little hammers?",
+        "target": "piano-sound"
+      },
+      {
+        "text": "How does a set of notes become a melody?",
+        "target": "melody-harmony"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-xylophone"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "harp-strings",
+    "title": "Why does a harp have so many strings?",
+    "category": "music",
+    "priority": 1,
+    "answer": "A harp player plucks separate strings to make different notes. Short strings usually make higher sounds than long ones, and strings can also differ in thickness and tightness. A concert harp has foot pedals that can change how some strings are tuned, so the player can use more notes without adding another set of strings. Harpists can make several notes sound together or sweep a hand over many strings quickly.",
+    "sections": [],
+    "facts": [
+      "A concert harp usually has seven pedals, one for each letter name of the musical notes."
+    ],
+    "terms": [
+      "pitch",
+      "vibration"
+    ],
+    "aliases": [
+      "how harp works",
+      "what are harp pedals",
+      "why are harp strings different lengths"
+    ],
+    "questions": [
+      {
+        "text": "How do frets let a guitar get several notes from one string?",
+        "target": "guitar-sound"
+      },
+      {
+        "text": "Why do piano keys also produce many different pitches?",
+        "target": "piano-sound"
+      },
+      {
+        "text": "What happens when notes from several strings sound together?",
+        "target": "melody-harmony"
+      }
+    ],
+    "sources": [
+      "exp-philharmonia-harp"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chess-checkmate",
+    "title": "What does checkmate mean in chess?",
+    "category": "games",
+    "priority": 1,
+    "answer": "In chess, a king is in check when one of the other player’s pieces attacks the square it is on. The player has to answer the threat. They might move the king to a safe square, capture the threatening piece, or place another piece between them. When none of those choices can make the king safe, it is checkmate. The game ends before anyone actually takes the king off the board.",
+    "sections": [],
+    "facts": [
+      "If the player has no legal move and the king is safe from check, the game is a draw called stalemate."
+    ],
+    "terms": [
+      "checkmate"
+    ],
+    "aliases": [
+      "checkmate",
+      "how does a chess game end",
+      "difference between check and checkmate"
+    ],
+    "questions": [
+      {
+        "text": "Why can a knight threaten a king even if another piece is in front of it?",
+        "target": "chess-knight"
+      },
+      {
+        "text": "What makes a checker that has crossed the board different?",
+        "target": "checkers-rules"
+      },
+      {
+        "text": "How does a puzzle use a rule to decide where a piece can go?",
+        "target": "sudoku-puzzles"
+      }
+    ],
+    "sources": [
+      "exp-fide-chess"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chess-knight",
+    "title": "Why does a chess knight move in an L?",
+    "category": "games",
+    "priority": 1,
+    "answer": "The knight in chess looks like a horse’s head. Its move ends two squares away in one direction and one square to the side. That makes the shape of the letter L when you count the squares. Pieces in between do not stop the move, so a knight can move over them. It cannot end on a square with one of its own team’s pieces. Near a corner it has fewer places to go.",
+    "sections": [],
+    "facts": [
+      "A knight’s move always takes it from a light square to a dark one or from a dark square to a light one."
+    ],
+    "terms": [
+      "knight"
+    ],
+    "aliases": [
+      "knight in chess",
+      "how does a knight move",
+      "can a knight jump"
+    ],
+    "questions": [
+      {
+        "text": "What happens if a king has no answer to a knight’s attack?",
+        "target": "chess-checkmate"
+      },
+      {
+        "text": "How can two numbers tell where a piece sits on a grid?",
+        "target": "coordinate-grids"
+      },
+      {
+        "text": "How does a checker jump a piece in a different way?",
+        "target": "checkers-rules"
+      }
+    ],
+    "sources": [
+      "exp-fide-chess"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "checkers-rules",
+    "title": "What changes when a checker becomes a king?",
+    "category": "games",
+    "priority": 1,
+    "answer": "In English draughts, often called checkers, each player starts with pieces on the dark squares of a board. An ordinary piece moves one square diagonally forward to an empty space. It can capture an opposing piece by jumping diagonally forward over it to the empty square just beyond. When a piece reaches the farthest row on the other side, it becomes a king. From then on, it can move and capture diagonally forward or backward.",
+    "sections": [],
+    "facts": [
+      "If a capture is available in standard English draughts, the player must make a capture."
+    ],
+    "terms": [
+      "diagonal"
+    ],
+    "aliases": [
+      "checkers",
+      "English draughts",
+      "king a checker",
+      "how do pieces move in checkers"
+    ],
+    "questions": [
+      {
+        "text": "How does a knight jump without capturing the pieces it passes?",
+        "target": "chess-knight"
+      },
+      {
+        "text": "How does Go use groups of pieces on another kind of board?",
+        "target": "go-stones"
+      },
+      {
+        "text": "How can you name the direction of a move on a grid?",
+        "target": "coordinate-grids"
+      }
+    ],
+    "sources": [
+      "exp-wcdf-rules"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "go-stones",
+    "title": "How do stones surround space in Go?",
+    "category": "games",
+    "priority": 1,
+    "answer": "Go is a board game in which two players take turns putting black and white stones where lines cross. Once a stone is placed, it stays there unless it is captured. A stone or connected group needs empty points next to it, along the lines. If the other player occupies the last of those neighboring empty points, they take the group off the board. Players also use lines of their stones to surround open space.",
+    "sections": [],
+    "facts": [
+      "The usual full-sized Go board has nineteen lines in each direction. Beginners often use smaller boards."
+    ],
+    "terms": [
+      "territory"
+    ],
+    "aliases": [
+      "Go board game",
+      "how do you play Go",
+      "what are liberties in Go"
+    ],
+    "questions": [
+      {
+        "text": "How does a checker capture a piece differently?",
+        "target": "checkers-rules"
+      },
+      {
+        "text": "What can a coordinate tell you about a point where two lines cross?",
+        "target": "coordinate-grids"
+      },
+      {
+        "text": "How does another game use counting to move pieces among pockets?",
+        "target": "mancala-games"
+      }
+    ],
+    "sources": [
+      "exp-aga-go"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mancala-games",
+    "title": "Why do mancala games use rows of pits?",
+    "category": "games",
+    "priority": 1,
+    "answer": "Mancala is a family of board games that use small pieces and rows of hollow places. In many versions you pick up all the pieces from a pit, then put them down one at a time in later pits as you go around the board. This move is sometimes called sowing. Where the last piece lands can matter a lot. It may give another turn, allow a capture, or simply end the move, depending on the rules.",
+    "sections": [],
+    "facts": [
+      "People can play games in this family with seeds, shells, stones, or other counters."
+    ],
+    "terms": [
+      "mancala"
+    ],
+    "aliases": [
+      "mancala",
+      "seed game with holes",
+      "what is sowing in mancala"
+    ],
+    "questions": [
+      {
+        "text": "How can rows help you count all the items on a board?",
+        "target": "multiplication-arrays"
+      },
+      {
+        "text": "How can you describe where a move begins and ends?",
+        "target": "coordinate-grids"
+      },
+      {
+        "text": "How do domino players decide which end of a chain can accept a tile?",
+        "target": "dominoes-matching"
+      }
+    ],
+    "sources": [
+      "exp-smithsonian-mancala"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dominoes-matching",
+    "title": "How do dominoes fit into a chain?",
+    "category": "games",
+    "priority": 1,
+    "answer": "A domino is a tile marked into two halves. Each half can have dots or be blank. In a familiar matching game, players take turns adding a tile to an open end of the row. The number of dots on the touching ends must match. A tile showing three on each half is a double three. Other domino games use the same tiles with different rules for building or scoring.",
+    "sections": [],
+    "facts": [
+      "The blank end of a domino has zero dots."
+    ],
+    "terms": [
+      "domino",
+      "pip"
+    ],
+    "aliases": [
+      "dominoes",
+      "matching dots dominoes",
+      "what is a double domino"
+    ],
+    "questions": [
+      {
+        "text": "How do you know how many items a zero stands for?",
+        "target": "zero"
+      },
+      {
+        "text": "How can counts and position guide a mancala move?",
+        "target": "mancala-games"
+      },
+      {
+        "text": "How does a shape’s edge help you place a tangram piece?",
+        "target": "tangram-puzzles"
+      }
+    ],
+    "sources": [
+      "exp-smithsonian-dominoes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sudoku-puzzles",
+    "title": "Do you need to add numbers to solve Sudoku?",
+    "category": "games",
+    "priority": 1,
+    "answer": "A common Sudoku puzzle has nine rows, nine columns, and nine little squares containing nine spaces each. Put the digits one through nine into the empty spaces so each digit appears once in every row, column, and little square. You do not have to do sums. Instead, look for places where some digits cannot go because they already appear nearby. Sometimes all those limits leave just one choice.",
+    "sections": [],
+    "facts": [
+      "You could play the same kind of puzzle with nine different symbols instead of digits."
+    ],
+    "terms": [
+      "digit",
+      "grid"
+    ],
+    "aliases": [
+      "sudoku rules",
+      "nine by nine number puzzle",
+      "how does sudoku work"
+    ],
+    "questions": [
+      {
+        "text": "What is a digit, and what does it stand for in an ordinary number?",
+        "target": "place-value"
+      },
+      {
+        "text": "How can two numbers locate a square in a grid?",
+        "target": "coordinate-grids"
+      },
+      {
+        "text": "How does a jigsaw puzzle eliminate pieces that cannot go in a spot?",
+        "target": "jigsaw-puzzles"
+      }
+    ],
+    "sources": [
+      "exp-wpf-sudoku"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tangram-puzzles",
+    "title": "What can seven tangram pieces make?",
+    "category": "games",
+    "priority": 1,
+    "answer": "A tangram is a set of seven flat pieces that can be arranged into a square. Moving the pieces apart gives you shapes to build new pictures. Many puzzles show only an outline of a bird, boat, or person. You have to fill the outline without gaps or overlapping pieces. A large triangle that looks wrong at first may fit if you turn it around or use two smaller triangles elsewhere.",
+    "sections": [],
+    "facts": [
+      "A traditional tangram has five triangles, one square, and one parallelogram."
+    ],
+    "terms": [
+      "triangle",
+      "parallelogram"
+    ],
+    "aliases": [
+      "tangram",
+      "seven pieces puzzle",
+      "Chinese shape puzzle"
+    ],
+    "questions": [
+      {
+        "text": "How can you tell two triangle shapes apart?",
+        "target": "triangles"
+      },
+      {
+        "text": "What makes a square different from another rectangle?",
+        "target": "squares-rectangles"
+      },
+      {
+        "text": "How do jigsaw puzzles give a different kind of clue about what fits?",
+        "target": "jigsaw-puzzles"
+      }
+    ],
+    "sources": [
+      "exp-smithsonian-tangram"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "jigsaw-puzzles",
+    "title": "Why do jigsaws have edge pieces?",
+    "category": "games",
+    "priority": 1,
+    "answer": "In a rectangular jigsaw, the pieces at the outside have at least one straight edge. That makes them easier to sort before you look for a place for each one. Pieces in the middle can give you clues by their shapes, their colors, and the parts of the picture they show. Matching a piece by color alone may fool you, so also check how well its edge fits.",
+    "sections": [],
+    "facts": [
+      "Some early jigsaw puzzles were made by mounting maps on boards and cutting out the areas to make pieces."
+    ],
+    "terms": [
+      "jigsaw puzzle"
+    ],
+    "aliases": [
+      "jigsaw pieces",
+      "how to solve a jigsaw",
+      "history of jigsaw puzzles"
+    ],
+    "questions": [
+      {
+        "text": "How do a tangram’s pieces make many different pictures?",
+        "target": "tangram-puzzles"
+      },
+      {
+        "text": "How can a puzzle rule tell you which choice is impossible?",
+        "target": "sudoku-puzzles"
+      },
+      {
+        "text": "How can you picture the flat edges of a rectangle?",
+        "target": "squares-rectangles"
+      }
+    ],
+    "sources": [
+      "exp-museum-jigsaw"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tennis-rally",
+    "title": "How does a tennis rally work?",
+    "category": "sports",
+    "priority": 1,
+    "answer": "A tennis point starts with a serve. The player hits the ball toward the correct service box across the net. After a good serve, the two sides can hit the ball back and forth. A player can let it bounce once before returning it, or hit it in the air after the return of serve. The rally ends when one side fails to send a legal ball back.",
+    "sections": [],
+    "facts": [
+      "Hitting the ball in the air before it bounces is a volley."
+    ],
+    "terms": [
+      "rally",
+      "volley"
+    ],
+    "aliases": [
+      "how tennis works",
+      "tennis serve and rally",
+      "what is a rally in tennis"
+    ],
+    "questions": [
+      {
+        "text": "How does badminton keep a shuttle moving without any bounce?",
+        "target": "badminton-shuttle"
+      },
+      {
+        "text": "How do table tennis players use their tabletop?",
+        "target": "table-tennis-play"
+      },
+      {
+        "text": "How do volleyball players pass the ball before sending it over the net?",
+        "target": "volleyball"
+      }
+    ],
+    "sources": [
+      "exp-itf-tennis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "baseball-innings",
+    "title": "What happens in an inning of baseball?",
+    "category": "sports",
+    "priority": 1,
+    "answer": "In baseball, one team tries to score while the other plays in the field. A batter can send the ball into play and then try to reach first base. Runners advance from base to base, and reaching home safely can score a run. The fielding team tries to get three outs. Then the teams swap jobs for the other half of the inning, so both have a chance to bat.",
+    "sections": [],
+    "facts": [
+      "Most Major League Baseball games are scheduled for nine innings. Some games end sooner or go longer under the rules."
+    ],
+    "terms": [
+      "inning",
+      "base"
+    ],
+    "aliases": [
+      "baseball for kids",
+      "what is an inning",
+      "what are baseball bases"
+    ],
+    "questions": [
+      {
+        "text": "How does cricket use two wickets and runs between them?",
+        "target": "cricket-runs"
+      },
+      {
+        "text": "How does a relay team hand off a baton instead of a ball?",
+        "target": "relay-batons"
+      },
+      {
+        "text": "How can you organize different scores in a graph?",
+        "target": "bar-graphs"
+      }
+    ],
+    "sources": [
+      "exp-mlb-rules"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cricket-runs",
+    "title": "How does a team score runs in cricket?",
+    "category": "sports",
+    "priority": 1,
+    "answer": "Cricket has two ends of a long strip called the pitch. A batter stands near each end. A bowler from the other team sends the ball toward one batter. If the batters run to the other ends and reach their safe ground, they can score a run. They can run back again if there is time. A ball that reaches the edge of the field can also earn runs without all that running.",
+    "sections": [],
+    "facts": [
+      "At each end of the pitch is a set of three upright sticks called stumps. Together with the small pieces on top they form a wicket."
+    ],
+    "terms": [
+      "wicket",
+      "crease"
+    ],
+    "aliases": [
+      "cricket rules for kids",
+      "cricket bat and wickets",
+      "running in cricket"
+    ],
+    "questions": [
+      {
+        "text": "How is scoring a run in baseball different?",
+        "target": "baseball-innings"
+      },
+      {
+        "text": "How do players hit the ball into a different kind of court in tennis?",
+        "target": "tennis-rally"
+      },
+      {
+        "text": "What other sports ask players to run a fixed distance with a teammate?",
+        "target": "relay-batons"
+      }
+    ],
+    "sources": [
+      "exp-mcc-laws"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hockey-on-ice",
+    "title": "Why do hockey players use a puck?",
+    "category": "sports",
+    "priority": 1,
+    "answer": "Ice hockey players use curved sticks to move a flat rubber puck across the ice. Its flat face lets it slide, which helps players send it along the surface toward a teammate. Each side tries to put the puck in the other side’s net. Players push with the edges of their skates to speed up, slow down, and turn quickly. A goalkeeper guards each net.",
+    "sections": [],
+    "facts": [
+      "The whole puck must cross the goal line between the posts and under the crossbar for a goal, subject to the rules."
+    ],
+    "terms": [
+      "puck"
+    ],
+    "aliases": [
+      "ice hockey",
+      "hockey puck",
+      "how does ice hockey work"
+    ],
+    "questions": [
+      {
+        "text": "How does a soccer goalkeeper guard a goal on grass?",
+        "target": "soccer"
+      },
+      {
+        "text": "What do athletes pass in a relay race?",
+        "target": "relay-batons"
+      },
+      {
+        "text": "What makes a badminton shuttle move differently from a puck?",
+        "target": "badminton-shuttle"
+      }
+    ],
+    "sources": [
+      "exp-nhl-rules"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "badminton-shuttle",
+    "title": "Why does a badminton shuttle slow down so fast?",
+    "category": "sports",
+    "priority": 1,
+    "answer": "A badminton shuttle has a rounded base and a wide skirt made from feathers or a shaped material. A racket strikes the base. Air pushes against the wide skirt, helping turn the shuttle so the base goes in front and slowing it quickly after a hard hit. Players hit it back and forth over a net. They must return it before it touches the floor of their court.",
+    "sections": [],
+    "facts": [
+      "A badminton shuttle can be made with real feathers or a synthetic skirt."
+    ],
+    "terms": [
+      "shuttlecock"
+    ],
+    "aliases": [
+      "badminton",
+      "what is a shuttlecock",
+      "why does a shuttlecock fly cork first"
+    ],
+    "questions": [
+      {
+        "text": "How can a tennis player return a ball after it bounces?",
+        "target": "tennis-rally"
+      },
+      {
+        "text": "How does a volleyball team keep the ball off the floor?",
+        "target": "volleyball"
+      },
+      {
+        "text": "What spins a ball around on a table tennis table?",
+        "target": "table-tennis-play"
+      }
+    ],
+    "sources": [
+      "exp-bwf-laws"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "table-tennis-play",
+    "title": "How does table tennis use the table in a rally?",
+    "category": "sports",
+    "priority": 1,
+    "answer": "A table tennis point starts when a player tosses a ball and strikes it so it bounces on their half of the table and then the other player’s half. After the serve, returns go directly toward the far side. Rubbing the ball with the bat as it is hit can give the ball spin. That spin can affect how the ball moves and how it bounces on the table.",
+    "sections": [],
+    "facts": [
+      "A standard game is played to eleven points, and a player must win by at least two."
+    ],
+    "terms": [
+      "rally"
+    ],
+    "aliases": [
+      "table tennis",
+      "ping pong rules",
+      "how does a table tennis serve work"
+    ],
+    "questions": [
+      {
+        "text": "How does serving in tennis use a different kind of court?",
+        "target": "tennis-rally"
+      },
+      {
+        "text": "Why can a shuttle lose its speed before it touches the floor?",
+        "target": "badminton-shuttle"
+      },
+      {
+        "text": "Why can a team hit the ball several times before returning it in volleyball?",
+        "target": "volleyball"
+      }
+    ],
+    "sources": [
+      "exp-ittf-laws"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "swimming-strokes",
+    "title": "Why are there different swimming strokes?",
+    "category": "sports",
+    "priority": 1,
+    "answer": "In swimming, a stroke is a pattern of arm and leg movements that moves a swimmer through water. In front crawl, the arms take turns reaching and pulling. In backstroke events, the swimmer usually faces upward. In breaststroke, the arms move together and the legs make a kick that pulls in and sweeps out. Butterfly combines arms that swing through the air together with an up-and-down motion through the body and legs.",
+    "sections": [],
+    "facts": [
+      "In an individual freestyle race, the rules allow a choice of stroke, and most racers use front crawl."
+    ],
+    "terms": [
+      "stroke"
+    ],
+    "aliases": [
+      "swimming styles",
+      "freestyle backstroke breaststroke butterfly",
+      "how swimmers move"
+    ],
+    "questions": [
+      {
+        "text": "How do muscles pull your bones so your arms can move?",
+        "target": "skeletal-muscles"
+      },
+      {
+        "text": "How do you measure how much space a swimming pool holds?",
+        "target": "volume-measurement"
+      },
+      {
+        "text": "How do teammates take turns in another kind of race?",
+        "target": "relay-batons"
+      }
+    ],
+    "sources": [
+      "exp-world-aquatics"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "relay-batons",
+    "title": "How does a relay team pass a baton at speed?",
+    "category": "sports",
+    "priority": 1,
+    "answer": "In a track relay, each runner races part of the distance and hands a short baton to the next member of the team. The next runner may start moving before the baton arrives so both runners are going quickly during the handoff. The baton has to change hands within a marked stretch of track. Teams practice where to stand, when to start, and how to hold out a hand.",
+    "sections": [],
+    "facts": [
+      "Four runners each cover a leg of the 4 × 100 meter relay."
+    ],
+    "terms": [
+      "baton",
+      "relay"
+    ],
+    "aliases": [
+      "relay race",
+      "track baton handoff",
+      "what is a baton in sport"
+    ],
+    "questions": [
+      {
+        "text": "How do you measure a sporting distance using meters?",
+        "target": "metric-units"
+      },
+      {
+        "text": "How do teammates make a pass in a different way in volleyball?",
+        "target": "volleyball"
+      },
+      {
+        "text": "Why do cyclists ride on a track that leans inward at the curves?",
+        "target": "velodrome-cycling"
+      }
+    ],
+    "sources": [
+      "exp-world-athletics-relay"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "velodrome-cycling",
+    "title": "Why does a track cycling course tilt at the sides?",
+    "category": "sports",
+    "priority": 1,
+    "answer": "A velodrome is a closed oval track used for bicycle racing. The track is higher near the outside edges of the bends. The slope, called banking, makes part of the track’s upward push point inward. That helps racers follow the bend at high speed. The curve also means riders must choose when to speed up and where to pass. Different track cycling events ask riders to use speed, timing, and teamwork in different ways.",
+    "sections": [],
+    "facts": [
+      "Many top-level velodromes are 250 meters around, measured along the track’s marked measuring line."
+    ],
+    "terms": [
+      "velodrome"
+    ],
+    "aliases": [
+      "velodrome",
+      "track cycling banking",
+      "why is a cycling track slanted"
+    ],
+    "questions": [
+      {
+        "text": "How can you measure a lap on one of these tracks in meters?",
+        "target": "metric-units"
+      },
+      {
+        "text": "What is the distance all the way around a circle called?",
+        "target": "circumference"
+      },
+      {
+        "text": "Why is timing important in a team running relay?",
+        "target": "relay-batons"
+      }
+    ],
+    "sources": [
+      "exp-uci-track"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

@@ -1,0 +1,292 @@
+[
+  {
+    "headword": "illustration",
+    "forms": [
+      "illustrations"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A drawing or picture that shows something from a story or helps explain a subject.",
+        "example": "The illustration showed what Peter Rabbit saw in the garden."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "wordplay",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Using words or word sounds in a surprising way to make an effect or a joke.",
+        "example": "The riddle depended on wordplay about two things called a jam."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "folktale",
+    "forms": [
+      "folktales"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A traditional story people pass from one teller to another over time.",
+        "example": "My aunt learned that folktale from her grandmother."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "fiction",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Stories about imagined characters or events, even when some details come from real life.",
+        "example": "We read a story about a talking spider in the fiction section."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "composer",
+    "forms": [
+      "composers"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A person who creates a piece of music.",
+        "example": "The composer wrote a different part for each instrument."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "opera",
+    "forms": [
+      "operas"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A story performed onstage mainly through singing and music.",
+        "example": "We could read the opera’s story before the singers came onstage."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "improvisation",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Making up part of a performance as you do it.",
+        "example": "The trumpet player used improvisation to change the end of the tune."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "scat singing",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Singing made-up sounds or syllables in place of words, often in jazz.",
+        "example": "The quick scat singing sounded almost like a trumpet solo."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "textile",
+    "forms": [
+      "textiles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A material made by weaving, knitting, or otherwise joining threads or fibers.",
+        "example": "The textile had a rough surface and bright blue stripes."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "tessellation",
+    "forms": [
+      "tessellations"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An arrangement of shapes that can cover a flat surface without gaps or overlaps.",
+        "example": "Rows of matching square tiles made a tessellation."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "polygon",
+    "forms": [
+      "polygons"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A closed flat shape made by joining straight sides.",
+        "example": "A rectangle and a triangle are both polygons."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "face",
+    "forms": [
+      "faces"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "One flat surface of a solid shape.",
+        "example": "We counted all six faces of the box."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "edge",
+    "forms": [
+      "edges"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A line where two faces of a solid shape meet, or the outside of a flat shape.",
+        "example": "I ran my finger along one edge of the cube."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "vertex",
+    "forms": [
+      "vertices"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A point where sides or edges meet, like the corner of a triangle or box.",
+        "example": "Each vertex of the box touches three edges."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "cylinder",
+    "forms": [
+      "cylinders"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A shape with two matching flat ends that are parallel, like the round ends of a can, joined by a side surface.",
+        "example": "The rolled-up poster formed a hollow cylinder."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "cone",
+    "forms": [
+      "cones"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A solid shape with a round or other closed base and sides that narrow to a single point.",
+        "example": "The paper party hat looked like a cone."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "sphere",
+    "forms": [
+      "spheres"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A round three-dimensional shape with every point on its surface the same distance from its center.",
+        "example": "The ball was almost a perfect sphere."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "analog clock",
+    "forms": [
+      "analog clocks"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A clock that shows the time with hands that move around a face.",
+        "example": "The short hand of the analog clock was between three and four."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "elapsed time",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "How much time goes by between the start and end of an activity or event.",
+        "example": "The elapsed time between our two stops was forty minutes."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "dot plot",
+    "forms": [
+      "dot plots"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A graph that shows data by placing dots over the matching marks on a number line.",
+        "example": "Our dot plot had two dots over nine because two leaves were that length."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

@@ -1,0 +1,4781 @@
+[
+  {
+    "id": "united-kingdom",
+    "title": "United Kingdom",
+    "category": "countries",
+    "priority": 1,
+    "answer": "The United Kingdom brings four parts together: England, Scotland, Wales, and Northern Ireland. The first three share the island called Great Britain. Northern Ireland is across the Irish Sea on a different island, which it shares with the Republic of Ireland. London, on the River Thames, is the United Kingdom’s capital. Traveling north or west from some of the flatter parts of England brings you into much hillier country.",
+    "aliases": [
+      "London country",
+      "what is the UK",
+      "Great Britain versus United Kingdom"
+    ],
+    "sections": [],
+    "facts": [
+      "The United Kingdom’s only land border is between Northern Ireland and the Republic of Ireland."
+    ],
+    "terms": [
+      "capital",
+      "boundary"
+    ],
+    "questions": [
+      {
+        "text": "Which country shares the island of Ireland with Northern Ireland?",
+        "target": "ireland"
+      },
+      {
+        "text": "Which country is across the English Channel?",
+        "target": "france"
+      },
+      {
+        "text": "Why can the same islands look different on two maps?",
+        "target": "map-projection"
+      }
+    ],
+    "sources": [
+      "geo-factbook-united-kingdom"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ireland",
+    "title": "Ireland",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Ireland can mean an island in the Atlantic or the country that covers most of it. The country’s capital, Dublin, is on the east coast. A broad plain fills much of the middle of the island, with hills and mountains scattered around the edges. The River Shannon drains much of the middle and flows to the Atlantic. The island’s damp, mild weather helps grasses grow, which is one reason green fields are such a familiar sight there.",
+    "aliases": [
+      "Dublin country",
+      "Republic of Ireland",
+      "where is the River Shannon"
+    ],
+    "sections": [],
+    "facts": [
+      "Irish and English are official languages of the country."
+    ],
+    "terms": [
+      "capital",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Which country includes Northern Ireland?",
+        "target": "united-kingdom"
+      },
+      {
+        "text": "Which other island country lies in the North Atlantic?",
+        "target": "iceland"
+      },
+      {
+        "text": "How does water that falls as rain get back to the ocean?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-ireland"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "portugal",
+    "title": "Portugal",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Portugal looks mostly west toward the Atlantic Ocean. On land it borders Spain, and together the two countries cover most of the Iberian Peninsula. Lisbon, Portugal’s capital, sits where the Tagus River spreads out before reaching the sea. The Portuguese islands of Madeira and the Azores are farther out in the Atlantic. Many travelers first picture the sunny coast, but northern Portugal also has hills and cooler, wetter country.",
+    "aliases": [
+      "Lisbon country",
+      "where are Madeira and the Azores",
+      "Portugal Iberian Peninsula"
+    ],
+    "sections": [],
+    "facts": [
+      "Both the Azores and Madeira are groups of islands separated from mainland Portugal by ocean."
+    ],
+    "terms": [
+      "peninsula",
+      "archipelago",
+      "estuary"
+    ],
+    "questions": [
+      {
+        "text": "Which country shares Portugal’s land border?",
+        "target": "spain"
+      },
+      {
+        "text": "Which large country in South America speaks Portuguese?",
+        "target": "brazil"
+      },
+      {
+        "text": "Why does the sea rise and fall beside Lisbon?",
+        "target": "tides"
+      }
+    ],
+    "sources": [
+      "geo-factbook-portugal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "spain",
+    "title": "Spain",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Find the part of Europe that sticks down between the Atlantic Ocean and the Mediterranean Sea. Spain fills most of it, and Madrid, the capital, sits well inland. The central part of the country is high and broad, so living in inland Spain can feel very different from living beside the sea. The Pyrenees rise near France. Spain also includes the Canary Islands in the Atlantic and the Balearic Islands in the Mediterranean.",
+    "aliases": [
+      "Madrid country",
+      "where is Spain",
+      "Balearic Canary Islands Spain"
+    ],
+    "sections": [],
+    "facts": [
+      "Portugal and Spain share the Iberian Peninsula."
+    ],
+    "terms": [
+      "peninsula",
+      "climate",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country is home to Lisbon?",
+        "target": "portugal"
+      },
+      {
+        "text": "Which country is beyond the Pyrenees from Spain?",
+        "target": "france"
+      },
+      {
+        "text": "How could latitude help compare Spain with its Canary Islands?",
+        "target": "latitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-spain"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "germany",
+    "title": "Germany",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Germany stretches from low country on the North Sea and Baltic Sea to mountains near the Alps. Its capital, Berlin, is in the northeast. In western Germany the Rhine passes settlements, farmland, and busy ports. Rivers like the Rhine let boats carry large loads far inland, even when a town is nowhere near the ocean. Germany shares land borders with nine countries, so a trip in many different directions can take you to a neighboring nation.",
+    "aliases": [
+      "Berlin country",
+      "Germany Rhine and Danube",
+      "what country is Berlin in"
+    ],
+    "sections": [],
+    "facts": [
+      "The Danube begins in Germany and runs east across Europe."
+    ],
+    "terms": [
+      "capital",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "Which country does the Rhine cross before reaching the North Sea?",
+        "target": "netherlands"
+      },
+      {
+        "text": "Which neighbor shares part of the Alps with Germany?",
+        "target": "austria"
+      },
+      {
+        "text": "Which neighbor lies directly north of Germany?",
+        "target": "denmark"
+      }
+    ],
+    "sources": [
+      "geo-factbook-germany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "netherlands",
+    "title": "Netherlands",
+    "category": "countries",
+    "priority": 1,
+    "answer": "The Netherlands lies on the North Sea, where several European rivers reach the coast. Much of the ground is low and flat. Long banks keep water away from some towns and fields, and pumps move extra water out of land that would otherwise stay too wet. Amsterdam is the capital, while the national government meets in The Hague. In maps and conversations you may hear Holland, which is a name for two provinces within the Netherlands.",
+    "aliases": [
+      "Amsterdam country",
+      "what is the difference between Holland and the Netherlands",
+      "where is The Hague"
+    ],
+    "sections": [],
+    "facts": [
+      "The Rhine, Meuse, and Scheldt reach the North Sea in the region around the Netherlands."
+    ],
+    "terms": [
+      "capital",
+      "delta",
+      "province"
+    ],
+    "questions": [
+      {
+        "text": "Which upstream neighbor shares the Rhine?",
+        "target": "germany"
+      },
+      {
+        "text": "Which country lies directly south of the Netherlands?",
+        "target": "belgium"
+      },
+      {
+        "text": "Why do coastal towns see the sea level rise and fall each day?",
+        "target": "tides"
+      }
+    ],
+    "sources": [
+      "geo-factbook-netherlands"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "belgium",
+    "title": "Belgium",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Belgium sits between France, the Netherlands, Germany, Luxembourg, and the North Sea. Flat land near the coast gives way to higher, wooded country in the southeast. Brussels is the capital and a meeting place for European Union leaders and officials. Dutch, French, and German are official languages. Which one you hear most depends on where you are: much of northern Belgium uses Dutch, while French is widespread in the south.",
+    "aliases": [
+      "Brussels country",
+      "Belgium languages",
+      "what country is Brussels in"
+    ],
+    "sections": [],
+    "facts": [
+      "The upland region in southeastern Belgium is called the Ardennes."
+    ],
+    "terms": [
+      "capital",
+      "boundary"
+    ],
+    "questions": [
+      {
+        "text": "Which neighbor borders Belgium on the north?",
+        "target": "netherlands"
+      },
+      {
+        "text": "Which smaller neighbor lies between Belgium, Germany, and France?",
+        "target": "luxembourg"
+      },
+      {
+        "text": "Which larger neighbor also uses French?",
+        "target": "france"
+      }
+    ],
+    "sources": [
+      "geo-factbook-belgium"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "luxembourg",
+    "title": "Luxembourg",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Luxembourg fits between Belgium, France, and Germany. The country and its capital city share the name Luxembourg. In the north you can find part of the Ardennes, an upland area with wooded hills and river valleys. The Moselle River makes up part of the border with Germany to the east. A student in Luxembourg may hear and use more than one language during a school day, and multilingual signs are common.",
+    "aliases": [
+      "Luxembourg City country",
+      "where is Luxembourg",
+      "Luxembourg Moselle"
+    ],
+    "sections": [],
+    "facts": [
+      "Luxembourg has no seacoast."
+    ],
+    "terms": [
+      "capital",
+      "boundary",
+      "landlocked"
+    ],
+    "questions": [
+      {
+        "text": "Which larger neighbor also includes the Ardennes?",
+        "target": "belgium"
+      },
+      {
+        "text": "Which country is across the Moselle on part of Luxembourg’s eastern border?",
+        "target": "germany"
+      },
+      {
+        "text": "How can you describe a location east of Luxembourg without naming any countries?",
+        "target": "longitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-luxembourg"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "switzerland",
+    "title": "Switzerland",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Switzerland sits among mountains and lakes in central Europe. The Alps cover much of the south, and many towns sit on the flatter land farther north and west. Bern is the federal city, the place where the national government meets. The Rhine starts in the Swiss Alps and eventually reaches the North Sea. A river that reaches the sea can start far from it: Switzerland itself has no coast.",
+    "aliases": [
+      "Bern country",
+      "where is Switzerland",
+      "Swiss Alps country"
+    ],
+    "sections": [],
+    "facts": [
+      "Switzerland recognizes German, French, Italian, and Romansh as national languages."
+    ],
+    "terms": [
+      "landlocked",
+      "watershed"
+    ],
+    "questions": [
+      {
+        "text": "Which country to the east shares the Alps?",
+        "target": "austria"
+      },
+      {
+        "text": "Which country borders Switzerland across the Alps to the south?",
+        "target": "italy"
+      },
+      {
+        "text": "Which country farther downstream also contains part of the Rhine?",
+        "target": "germany"
+      }
+    ],
+    "sources": [
+      "geo-factbook-switzerland"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "austria",
+    "title": "Austria",
+    "category": "countries",
+    "priority": 1,
+    "answer": "If you cross Austria from west to east, the tall ridges of the Alps give way to lower land around Vienna, the capital. The Danube flows through Vienna and continues toward the Black Sea, passing through or beside several countries. Mountains affect how people travel. A route along a river valley can make for a gentler journey than climbing across every ridge. Austria has many mountains and no coast of its own.",
+    "aliases": [
+      "Vienna country",
+      "where is Austria",
+      "Austria Danube Alps"
+    ],
+    "sections": [],
+    "facts": [
+      "Vienna sits in the eastern part of Austria."
+    ],
+    "terms": [
+      "capital",
+      "landlocked"
+    ],
+    "questions": [
+      {
+        "text": "Which country west of Austria is also crossed by the Alps?",
+        "target": "switzerland"
+      },
+      {
+        "text": "Which downstream country contains another capital on the Danube?",
+        "target": "hungary"
+      },
+      {
+        "text": "Where does the Danube begin its long trip?",
+        "target": "germany"
+      }
+    ],
+    "sources": [
+      "geo-factbook-austria"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "italy",
+    "title": "Italy",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Italy reaches into the Mediterranean on a peninsula often compared with a boot. The Alps curve across the north, and the Apennine Mountains follow much of the length of the peninsula. Rome, Italy’s capital, is near the middle of the western side. Sicily and Sardinia are large Italian islands. The shape of the country gives it long stretches of coast, while the mountains make travel between some nearby places harder than a flat map suggests.",
+    "aliases": [
+      "Rome country",
+      "boot shaped country",
+      "Sicily and Sardinia Italy"
+    ],
+    "sections": [],
+    "facts": [
+      "Mount Etna is an active volcano on Sicily."
+    ],
+    "terms": [
+      "peninsula",
+      "volcano"
+    ],
+    "questions": [
+      {
+        "text": "Which smaller island country is south of Sicily?",
+        "target": "malta"
+      },
+      {
+        "text": "Which northern neighbor shares part of the Alps?",
+        "target": "austria"
+      },
+      {
+        "text": "What happens when an active volcano erupts?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-italy"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "malta",
+    "title": "Malta",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Malta is a small country made up of islands in the Mediterranean Sea, south of Sicily. The two largest islands are Malta and Gozo. Valletta, the capital, sits on a narrow ridge between two harbors. On a map it is easy to see why ships could find shelter beside the city. Malta’s rocky ground and limited fresh water also make the sea important in a very different way from how it is for a country with many rivers.",
+    "aliases": [
+      "Valletta country",
+      "Malta Gozo islands",
+      "where is Malta"
+    ],
+    "sections": [],
+    "facts": [
+      "Maltese and English are official languages."
+    ],
+    "terms": [
+      "archipelago",
+      "capital",
+      "harbor"
+    ],
+    "questions": [
+      {
+        "text": "Which country includes Sicily, the island north of Malta?",
+        "target": "italy"
+      },
+      {
+        "text": "Which other Mediterranean country has many islands?",
+        "target": "greece"
+      },
+      {
+        "text": "What changes the water level at a harbor?",
+        "target": "tides"
+      }
+    ],
+    "sources": [
+      "geo-factbook-malta",
+      "geo-unesco-valletta"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "greece",
+    "title": "Greece",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Greece lies at the southern end of the Balkan Peninsula, and its land reaches far into the sea through islands and smaller peninsulas. Athens, the capital, is on the mainland near the coast. Crete lies much farther south than Athens. Greece’s islands are separated by water, and steep hills and mountains break up much of the mainland, so boats and roads both matter when people travel from place to place.",
+    "aliases": [
+      "Athens country",
+      "Greece islands Crete",
+      "where is Greece"
+    ],
+    "sections": [],
+    "facts": [
+      "Mount Olympus is the highest mountain in Greece."
+    ],
+    "terms": [
+      "peninsula",
+      "archipelago"
+    ],
+    "questions": [
+      {
+        "text": "How did the geography of Greece shape the cities of ancient Greece?",
+        "target": "ancient-greece"
+      },
+      {
+        "text": "Which country lies directly north of Greece?",
+        "target": "bulgaria"
+      },
+      {
+        "text": "Which other country reaches into the Mediterranean on a large peninsula?",
+        "target": "italy"
+      }
+    ],
+    "sources": [
+      "geo-factbook-greece"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "denmark",
+    "title": "Denmark",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Denmark connects with mainland Europe through the Jutland Peninsula, which borders Germany. Much of the rest of the country is on islands. Copenhagen, the capital, lies mostly on the island of Zealand, near Sweden across a narrow stretch of water. This is a country where bridges and ferries can bring together towns that are close on a map but separated by the sea. Much of Denmark’s land is low and gently rolling.",
+    "aliases": [
+      "Copenhagen country",
+      "where is Denmark",
+      "Jutland and Zealand"
+    ],
+    "sections": [],
+    "facts": [
+      "Mainland Denmark has one land neighbor, Germany."
+    ],
+    "terms": [
+      "peninsula",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country is across the water from Copenhagen?",
+        "target": "sweden"
+      },
+      {
+        "text": "Which country shares a border with mainland Denmark?",
+        "target": "germany"
+      },
+      {
+        "text": "Which nearby country has much higher mountains and deep inlets?",
+        "target": "norway"
+      }
+    ],
+    "sources": [
+      "geo-factbook-denmark"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "norway",
+    "title": "Norway",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Norway is a long, narrow country on the west side of the Scandinavian Peninsula. In many places the sea reaches inland between high rocky slopes. These long inlets are called fjords. Ice once moved through the valleys and carved them deeper, and seawater later filled them. Oslo, the capital, is in the south. Far in the north, some places get weeks in summer when the Sun never sets.",
+    "aliases": [
+      "Oslo country",
+      "country with fjords",
+      "Norway midnight sun"
+    ],
+    "sections": [],
+    "facts": [
+      "Norway lies west of Sweden, and it also borders Finland and Russia."
+    ],
+    "terms": [
+      "peninsula",
+      "glacier",
+      "fjord"
+    ],
+    "questions": [
+      {
+        "text": "Which country shares most of Norway’s long eastern boundary?",
+        "target": "sweden"
+      },
+      {
+        "text": "How can summer near the North Pole bring sunlight at midnight?",
+        "target": "seasons"
+      },
+      {
+        "text": "Which other northern country has land shaped by glaciers?",
+        "target": "iceland"
+      }
+    ],
+    "sources": [
+      "geo-factbook-norway"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sweden",
+    "title": "Sweden",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Sweden fills much of the eastern side of the Scandinavian Peninsula. It borders Norway, and some of Sweden’s highest land is close to that border. Rivers and lakes break up the land farther east, and islands are scattered along parts of the coast. Stockholm, the capital, stands partly on islands where Lake Mälaren meets the sea. Waterways help explain why a boat can sometimes be as useful as a road there.",
+    "aliases": [
+      "Stockholm country",
+      "where is Sweden",
+      "Sweden Baltic Sea"
+    ],
+    "sections": [],
+    "facts": [
+      "Gotland is a Swedish island in the Baltic Sea."
+    ],
+    "terms": [
+      "peninsula",
+      "archipelago",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country takes up the western side of the Scandinavian Peninsula?",
+        "target": "norway"
+      },
+      {
+        "text": "Which neighbor is on the other side of the Gulf of Bothnia?",
+        "target": "finland"
+      },
+      {
+        "text": "Which low-lying country lies just across the water from southern Sweden?",
+        "target": "denmark"
+      }
+    ],
+    "sources": [
+      "geo-factbook-sweden"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "finland",
+    "title": "Finland",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Finland has thousands of lakes, many among forests in the southern and central parts of the country. In the last ice age, moving ice scoured the ground. After the ice retreated, water filled many of the low spots. Helsinki, the capital, is on the southern coast, while Finland stretches far north beyond the Arctic Circle. A long drive north can take you from a busy Baltic port to a place where the summer Sun stays up all night.",
+    "aliases": [
+      "Helsinki country",
+      "why does Finland have lakes",
+      "Finland Arctic Circle"
+    ],
+    "sections": [],
+    "facts": [
+      "Finnish and Swedish are Finland’s official national languages."
+    ],
+    "terms": [
+      "glacier",
+      "latitude"
+    ],
+    "questions": [
+      {
+        "text": "Which country lies on the other side of some of Finland’s western waters?",
+        "target": "sweden"
+      },
+      {
+        "text": "Which country has a capital south of Helsinki across the Gulf of Finland?",
+        "target": "estonia"
+      },
+      {
+        "text": "Why do summer days get so long in the far north?",
+        "target": "seasons"
+      }
+    ],
+    "sources": [
+      "geo-factbook-finland"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "iceland",
+    "title": "Iceland",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Iceland is an island in the North Atlantic where very old ice and new volcanic rock can be found in the same country. Glaciers cover stretches of the interior, while heat close to the surface warms water underground. Reykjavík, the capital, lies near the southwest coast. Iceland sits on a long ridge in the Atlantic where two pieces of Earth’s outer shell pull apart, and the movement helps make it volcanically active.",
+    "aliases": [
+      "Reykjavik country",
+      "where is Iceland",
+      "Iceland ice and volcanoes"
+    ],
+    "sections": [],
+    "facts": [
+      "Vatnajökull is a large ice cap in southeastern Iceland."
+    ],
+    "terms": [
+      "glacier",
+      "tectonic plate",
+      "volcano"
+    ],
+    "questions": [
+      {
+        "text": "How can two pieces of Earth’s shell move away from one another?",
+        "target": "tectonic-plates"
+      },
+      {
+        "text": "Which other country has a North Atlantic coast shaped by glaciers?",
+        "target": "norway"
+      },
+      {
+        "text": "How does melted rock build a volcano?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-iceland"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "poland",
+    "title": "Poland",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Much of Poland is broad and low, with the Baltic Sea to the north and mountain ranges rising near its southern borders. Warsaw, the capital, stands beside the Vistula River. The river starts in the south and eventually runs to the Baltic. Following it on a map shows how a river can link mountains, farming areas, and a capital city before opening out near the sea.",
+    "aliases": [
+      "Warsaw country",
+      "where is Poland",
+      "Poland Vistula river"
+    ],
+    "sections": [],
+    "facts": [
+      "Poland and Slovakia share some of the high Tatra Mountains."
+    ],
+    "terms": [
+      "capital",
+      "watershed"
+    ],
+    "questions": [
+      {
+        "text": "Which country shares the Tatra Mountains with Poland?",
+        "target": "slovakia"
+      },
+      {
+        "text": "Which large neighbor is west of Poland?",
+        "target": "germany"
+      },
+      {
+        "text": "How can a river change the land it passes through?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "geo-factbook-poland"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "czechia",
+    "title": "Czechia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Czechia, also called the Czech Republic, sits in central Europe and has no coast. It contains the historic regions of Bohemia and Moravia and part of Silesia. Prague, the capital, grew along the Vltava River. The Vltava joins the Elbe, which flows onward through Germany to the sea. People and goods can travel across a country’s borders along a river, even when the country where the journey starts is far from any ocean.",
+    "aliases": [
+      "Prague country",
+      "Czech Republic",
+      "where is Czechia"
+    ],
+    "sections": [],
+    "facts": [
+      "Czechia and Slovakia were once parts of one country, Czechoslovakia."
+    ],
+    "terms": [
+      "landlocked",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which other country used to be part of Czechoslovakia?",
+        "target": "slovakia"
+      },
+      {
+        "text": "Which country does the Elbe flow through after leaving Czechia?",
+        "target": "germany"
+      },
+      {
+        "text": "Which landlocked country is directly south of Czechia?",
+        "target": "austria"
+      }
+    ],
+    "sources": [
+      "geo-factbook-czechia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "slovakia",
+    "title": "Slovakia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Slovakia lies in central Europe, much of it in the Carpathian Mountains. The Tatras along the Polish border have some especially high peaks. The landscape gets lower toward the Danube in the southwest. Bratislava, the capital, stands on the Danube near Austria and Hungary. A traveler standing in Bratislava can be close to several countries at once, even though Slovakia has no coast.",
+    "aliases": [
+      "Bratislava country",
+      "where is Slovakia",
+      "Slovakia Tatras"
+    ],
+    "sections": [],
+    "facts": [
+      "Slovakia and Czechia became separate countries in 1993."
+    ],
+    "terms": [
+      "landlocked",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country once formed Czechoslovakia with Slovakia?",
+        "target": "czechia"
+      },
+      {
+        "text": "Which country does Slovakia share the Tatras with?",
+        "target": "poland"
+      },
+      {
+        "text": "Which country contains Budapest farther down the Danube?",
+        "target": "hungary"
+      }
+    ],
+    "sources": [
+      "geo-factbook-slovakia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hungary",
+    "title": "Hungary",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Most of Hungary is in a low basin surrounded by higher land in central Europe. The Danube divides Budapest, the capital, into parts that grew separately and are now connected by bridges. On a map of western Hungary, long Lake Balaton is easy to pick out. Flat land across much of the country has room for large fields, while hills and smaller mountains rise in some other parts.",
+    "aliases": [
+      "Budapest country",
+      "Hungary Lake Balaton",
+      "where is Hungary"
+    ],
+    "sections": [],
+    "facts": [
+      "Hungary has no ocean coast, but the Danube connects it with other countries."
+    ],
+    "terms": [
+      "capital",
+      "landlocked",
+      "basin"
+    ],
+    "questions": [
+      {
+        "text": "Which upstream country has Vienna on the Danube?",
+        "target": "austria"
+      },
+      {
+        "text": "Which country contains part of the Danube’s delta?",
+        "target": "romania"
+      },
+      {
+        "text": "Which country contains Bratislava, another Danube capital?",
+        "target": "slovakia"
+      }
+    ],
+    "sources": [
+      "geo-factbook-hungary"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "slovenia",
+    "title": "Slovenia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Slovenia sits where parts of the Alps, the plains of central Europe, and the coast of the Adriatic come close together. Ljubljana, the capital, is inland. In some parts of Slovenia, rainwater slowly dissolves certain rocks and leaves caves and openings underneath. In hills like these, a stream can even disappear below the ground and flow through a cave before coming back to the surface.",
+    "aliases": [
+      "Ljubljana country",
+      "where is Slovenia",
+      "Slovenia caves"
+    ],
+    "sections": [],
+    "facts": [
+      "Slovenia has a short coast on the Adriatic Sea between Italy and Croatia."
+    ],
+    "terms": [
+      "limestone",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which southern neighbor has a much longer Adriatic coast?",
+        "target": "croatia"
+      },
+      {
+        "text": "Which western neighbor also reaches the Adriatic?",
+        "target": "italy"
+      },
+      {
+        "text": "How does moving water change the shape of land?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "geo-factbook-slovenia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "croatia",
+    "title": "Croatia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Croatia curves around part of the Adriatic Sea. On the coast, many islands lie just offshore and some long ones run roughly the same direction as the shore. The capital, Zagreb, is inland in the north, among a different landscape of hills, valleys, and flatter country. Croatia’s shape leaves some places near the sea quite far from Zagreb, so looking at a map helps explain why the country feels different from one end to the other.",
+    "aliases": [
+      "Zagreb country",
+      "Croatia Adriatic islands",
+      "where is Croatia"
+    ],
+    "sections": [],
+    "facts": [
+      "Italy is across the Adriatic from Croatia."
+    ],
+    "terms": [
+      "archipelago",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country north of Croatia also touches the Adriatic?",
+        "target": "slovenia"
+      },
+      {
+        "text": "Which country is on the other side of that sea?",
+        "target": "italy"
+      },
+      {
+        "text": "Which other country has a long coast broken into islands and inlets?",
+        "target": "greece"
+      }
+    ],
+    "sources": [
+      "geo-factbook-croatia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "romania",
+    "title": "Romania",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Romania stretches from the curve of the Carpathian Mountains to the Black Sea. Its capital, Bucharest, lies on lower land south of the mountains. Near the sea the Danube spreads into channels around wet islands and reeds. This low, watery area is a delta. Water and mud that started far upriver can reach the delta, and the channels carry the river out into the Black Sea.",
+    "aliases": [
+      "Bucharest country",
+      "Romania Danube Delta",
+      "where is Romania"
+    ],
+    "sections": [],
+    "facts": [
+      "Romania and Bulgaria share a long stretch of border along the Danube."
+    ],
+    "terms": [
+      "delta",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country is across the Danube from Romania?",
+        "target": "bulgaria"
+      },
+      {
+        "text": "Which country has a capital farther up the Danube?",
+        "target": "hungary"
+      },
+      {
+        "text": "Where can water go after a river empties into the sea?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-romania"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bulgaria",
+    "title": "Bulgaria",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Bulgaria lies in southeastern Europe, with the Black Sea on the east side and part of the Danube along the north. The Balkan Mountains cross the middle of the country from west to east. Sofia, the capital, lies in the west, in a broad valley with mountains nearby. Travel south and you reach Greece or Türkiye, while traveling north in many parts of Bulgaria takes you to the Danube and across it to Romania.",
+    "aliases": [
+      "Sofia country",
+      "where is Bulgaria",
+      "Bulgaria Balkan Mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "Musala, in the Rila Mountains, is Bulgaria’s highest peak."
+    ],
+    "terms": [
+      "capital",
+      "boundary"
+    ],
+    "questions": [
+      {
+        "text": "Which country lies north of Bulgaria across much of the Danube?",
+        "target": "romania"
+      },
+      {
+        "text": "Which neighbor to the south reaches the Aegean Sea?",
+        "target": "greece"
+      },
+      {
+        "text": "How does longitude tell you whether the Black Sea lies to the east or west?",
+        "target": "longitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-bulgaria"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "estonia",
+    "title": "Estonia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Estonia is the northernmost of the three countries often grouped as the Baltic states. Tallinn, the capital, stands on the Gulf of Finland. Helsinki is across the water to the north. Much of Estonia is low, with forests, wet bogs, and a coast broken into islands. On the eastern side Lake Peipus is shared with Russia. A traveler can cross the country from a sea port to a large freshwater lake.",
+    "aliases": [
+      "Tallinn country",
+      "where is Estonia",
+      "Estonia Baltic states"
+    ],
+    "sections": [],
+    "facts": [
+      "Saaremaa is an island off the western coast of Estonia."
+    ],
+    "terms": [
+      "capital",
+      "bog"
+    ],
+    "questions": [
+      {
+        "text": "Which country is directly across the gulf from Tallinn?",
+        "target": "finland"
+      },
+      {
+        "text": "Which Baltic state borders Estonia to the south?",
+        "target": "latvia"
+      },
+      {
+        "text": "How can you tell which Baltic state lies farthest north?",
+        "target": "latitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-estonia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "latvia",
+    "title": "Latvia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Latvia sits between Estonia and Lithuania on the eastern side of the Baltic Sea. Riga, the capital, stands near the mouth of the Daugava River on the Gulf of Riga. The river begins far to the east, crosses Latvia, and then becomes part of a wide stretch of water open to the Baltic. Much of Latvia is low country, with forests and rivers and a coast along both the gulf and the open sea.",
+    "aliases": [
+      "Riga country",
+      "where is Latvia",
+      "Daugava River Latvia"
+    ],
+    "sections": [],
+    "facts": [
+      "The western shore of Latvia faces the open Baltic Sea."
+    ],
+    "terms": [
+      "capital",
+      "estuary"
+    ],
+    "questions": [
+      {
+        "text": "Which Baltic state is north of Latvia?",
+        "target": "estonia"
+      },
+      {
+        "text": "Which Baltic state is south of Latvia?",
+        "target": "lithuania"
+      },
+      {
+        "text": "What makes water rise and fall where a river reaches the sea?",
+        "target": "tides"
+      }
+    ],
+    "sources": [
+      "geo-factbook-latvia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lithuania",
+    "title": "Lithuania",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Lithuania is the southernmost of the three Baltic states. Vilnius, the capital, is inland near the southeastern part of the country. Near the coast, the Curonian Spit forms a skinny strip of sand with the Baltic Sea on one side and a shallow lagoon on the other. Wind moves dry sand on those narrow shores into dunes. Farther inland, the country has lakes, forests, and gently rolling farmland.",
+    "aliases": [
+      "Vilnius country",
+      "where is Lithuania",
+      "Curonian Spit where"
+    ],
+    "sections": [],
+    "facts": [
+      "Lithuania shares part of the Curonian Spit with the Russian region of Kaliningrad."
+    ],
+    "terms": [
+      "capital",
+      "lagoon",
+      "dune"
+    ],
+    "questions": [
+      {
+        "text": "Which Baltic state lies directly north of Lithuania?",
+        "target": "latvia"
+      },
+      {
+        "text": "Which country just southwest of Lithuania has Warsaw as its capital?",
+        "target": "poland"
+      },
+      {
+        "text": "How can wind help move enough sand to change a coast?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "geo-factbook-lithuania"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "argentina",
+    "title": "Argentina",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Argentina runs down the eastern side of the Andes for much of southern South America. Near Buenos Aires, the capital, the land opens into grassy plains called the Pampas. Farther south is Patagonia, with wide, windy spaces and mountains and ice nearer the Andes. Argentina’s long shape helps explain the big differences between the warmer forests in the north and the cold landscapes near the continent’s southern tip.",
+    "aliases": [
+      "Buenos Aires country",
+      "Argentina Pampas and Patagonia",
+      "where is Argentina"
+    ],
+    "sections": [],
+    "facts": [
+      "Aconcagua, in Argentina, is the highest peak in the Andes."
+    ],
+    "terms": [
+      "prairie",
+      "glacier",
+      "latitude"
+    ],
+    "questions": [
+      {
+        "text": "Which country forms a long strip on the other side of the southern Andes?",
+        "target": "chile"
+      },
+      {
+        "text": "Which smaller country shares the broad Río de la Plata with Argentina?",
+        "target": "uruguay"
+      },
+      {
+        "text": "How does latitude help explain Argentina’s different temperatures?",
+        "target": "latitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-argentina"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chile",
+    "title": "Chile",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Chile is a remarkably long and narrow country between the Andes and the Pacific Ocean. Its northern Atacama Desert is so dry that some places rarely see rain. Near Santiago, the capital, cooler wet winters and drier summers help shape a very different landscape. Farther south, glaciers and narrow arms of the sea break up the coast. A map of Chile can look like a ribbon beside a high wall.",
+    "aliases": [
+      "Santiago country",
+      "where is Chile Atacama",
+      "narrow South American country"
+    ],
+    "sections": [],
+    "facts": [
+      "Chile’s long western coast faces the Pacific Ocean."
+    ],
+    "terms": [
+      "glacier",
+      "fjord",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Which country lies just east of Chile across the Andes?",
+        "target": "argentina"
+      },
+      {
+        "text": "Which country borders Chile to the north?",
+        "target": "peru"
+      },
+      {
+        "text": "Where can fresh water come from in a country with such a dry coast?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-chile"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "uruguay",
+    "title": "Uruguay",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Uruguay lies between Brazil and Argentina, on the side of South America that faces the Atlantic Ocean. Much of it is made up of gently rolling plains and low hills. The capital, Montevideo, overlooks the broad Río de la Plata. Fresh water from inland rivers mixes with salty ocean water in this wide opening. Inland, cattle and sheep can graze across a landscape that is far flatter than the Andes.",
+    "aliases": [
+      "Montevideo country",
+      "where is Uruguay",
+      "Uruguay Río de la Plata"
+    ],
+    "sections": [],
+    "facts": [
+      "The Uruguay River forms much of the country’s border with Argentina."
+    ],
+    "terms": [
+      "estuary",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country shares the Río de la Plata with Uruguay?",
+        "target": "argentina"
+      },
+      {
+        "text": "Which large country borders Uruguay on the north?",
+        "target": "brazil"
+      },
+      {
+        "text": "How can ocean tides affect water far inside an estuary?",
+        "target": "tides"
+      }
+    ],
+    "sources": [
+      "geo-factbook-uruguay"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "paraguay",
+    "title": "Paraguay",
+    "category": "countries",
+    "priority": 1,
+    "answer": "The Paraguay River runs down through the country that shares its name. To the west lies part of the Gran Chaco, a broad landscape where many places are dry and hot. To the east, rolling country gets more rain and holds many of the country’s farms and towns. Asunción, the capital, stands beside the river. Paraguay has no sea coast, but rivers connect it to countries farther downstream.",
+    "aliases": [
+      "Asuncion country",
+      "where is Paraguay",
+      "Paraguay Gran Chaco"
+    ],
+    "sections": [],
+    "facts": [
+      "Paraguay borders Argentina, Bolivia, and Brazil."
+    ],
+    "terms": [
+      "landlocked",
+      "watershed"
+    ],
+    "questions": [
+      {
+        "text": "Which other country west of Brazil has no coastline?",
+        "target": "bolivia"
+      },
+      {
+        "text": "Which country lies downstream from Paraguay?",
+        "target": "argentina"
+      },
+      {
+        "text": "Which larger country borders Paraguay to the east?",
+        "target": "brazil"
+      }
+    ],
+    "sources": [
+      "geo-factbook-paraguay"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bolivia",
+    "title": "Bolivia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Bolivia’s landscapes include high mountains, a wide plateau called the Altiplano, and low land toward the Amazon basin. In the west, the country shares Lake Titicaca with Peru. Two cities have capital roles: Sucre is the constitutional capital, and La Paz is where the national government’s executive and legislature work. A trip from the lowlands up into the Andes can make the air and temperature feel suddenly different.",
+    "aliases": [
+      "Sucre and La Paz capital",
+      "where is Bolivia",
+      "Bolivia Salar de Uyuni"
+    ],
+    "sections": [],
+    "facts": [
+      "Bolivia’s Salar de Uyuni is an enormous salt flat that can look like a mirror when a layer of water covers it."
+    ],
+    "terms": [
+      "plateau",
+      "basin",
+      "landlocked"
+    ],
+    "questions": [
+      {
+        "text": "Which country shares Lake Titicaca with Bolivia?",
+        "target": "peru"
+      },
+      {
+        "text": "Which country southeast of Bolivia is also landlocked?",
+        "target": "paraguay"
+      },
+      {
+        "text": "Why is there less air above you high in the Andes?",
+        "target": "altitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-bolivia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "peru",
+    "title": "Peru",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Peru runs along the Pacific coast of South America. Lima, the capital, is along the dry coastal strip. Farther inland, the Andes rise sharply, and on the eastern side of those high mountains, water flows toward the Amazon. That is why Peru can contain dry coast, cold mountain slopes, and tropical forest at the same time. Looking only at the coastline would leave out two very different parts of Peru.",
+    "aliases": [
+      "Lima country",
+      "where is Peru",
+      "Peru coast Andes rainforest"
+    ],
+    "sections": [],
+    "facts": [
+      "Lake Titicaca lies partly in Peru and partly in Bolivia."
+    ],
+    "terms": [
+      "watershed",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country shares a high lake with Peru?",
+        "target": "bolivia"
+      },
+      {
+        "text": "Which smaller coastal country borders Peru on the northwest?",
+        "target": "ecuador"
+      },
+      {
+        "text": "How does rainfall high in the Andes become water in streams and rivers?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-peru"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ecuador",
+    "title": "Ecuador",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Ecuador takes its name from the equator, the imaginary line that crosses the country. Quito, the capital, sits high in the Andes, where the elevation keeps conditions cooler than people might expect near that line. Ecuador also includes warm lowlands, part of the Amazon basin, and the Galápagos Islands in the Pacific. To visit all these landscapes, you would travel a long way east and west as well as up and down.",
+    "aliases": [
+      "Quito country",
+      "what country are Galapagos Islands in",
+      "which country is named for the equator"
+    ],
+    "sections": [],
+    "facts": [
+      "The Galápagos are islands of volcanic origin off the coast of Ecuador."
+    ],
+    "terms": [
+      "equator",
+      "archipelago",
+      "basin"
+    ],
+    "questions": [
+      {
+        "text": "What does the line that gave Ecuador its name represent?",
+        "target": "equator"
+      },
+      {
+        "text": "Which country borders Ecuador to the north?",
+        "target": "colombia"
+      },
+      {
+        "text": "How can eruptions build new land in the ocean?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-ecuador"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "colombia",
+    "title": "Colombia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Colombia is in the northwest corner of South America. It is the continent’s only country with coasts on both the Pacific Ocean and the Caribbean Sea. Its capital, Bogotá, sits high in the Andes, and the mountains divide into several chains as they approach the coast. Rivers between the mountains reach into the lowlands, where the climate and landscape can be quite different from those around the capital.",
+    "aliases": [
+      "Bogota country",
+      "Colombia Pacific Caribbean coast",
+      "where is Colombia"
+    ],
+    "sections": [],
+    "facts": [
+      "Colombia shares a land border with Panama, where Central America meets South America."
+    ],
+    "terms": [
+      "capital",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Which country connects Colombia with Central America?",
+        "target": "panama"
+      },
+      {
+        "text": "Which Andean country is just southwest of Colombia?",
+        "target": "ecuador"
+      },
+      {
+        "text": "How do geographers divide the land around Colombia and Panama?",
+        "target": "continents"
+      }
+    ],
+    "sources": [
+      "geo-factbook-colombia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "venezuela",
+    "title": "Venezuela",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Venezuela has a Caribbean coast, a big river basin inland, and striking flat-topped mountains in the southeast. In parts of the interior, the Orinoco River flows past wide grassy plains called the Llanos. Farther south and east, some cliffs drop far enough that a waterfall can break into mist before the water reaches the bottom. The capital, Caracas, sits among mountains near the Caribbean coast.",
+    "aliases": [
+      "Caracas country",
+      "where is Venezuela",
+      "Venezuela Orinoco Llanos"
+    ],
+    "sections": [],
+    "facts": [
+      "The water of the Orinoco River reaches the Atlantic through a delta."
+    ],
+    "terms": [
+      "delta",
+      "basin",
+      "plateau"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country is upstream on some of the Orinoco’s tributaries?",
+        "target": "colombia"
+      },
+      {
+        "text": "Which country east of Venezuela also reaches the Atlantic?",
+        "target": "guyana"
+      },
+      {
+        "text": "How can moving water change the rocks near a waterfall?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "geo-factbook-venezuela"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "guyana",
+    "title": "Guyana",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Guyana lies on the Atlantic side of northern South America, east of Venezuela and west of Suriname. Much of its population lives on the narrow coastal plain, where Georgetown, the capital, stands near the mouth of the Demerara River. Inland, rivers cross forests and rise toward highland country. Guyana is part of South America, and it has strong links with Caribbean countries, including sharing English as an official language with many of them.",
+    "aliases": [
+      "Georgetown country",
+      "where is Guyana",
+      "English in South America"
+    ],
+    "sections": [],
+    "facts": [
+      "Kaieteur Falls lies along the Potaro River inland."
+    ],
+    "terms": [
+      "highland",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country is immediately east of Guyana?",
+        "target": "suriname"
+      },
+      {
+        "text": "Which country is on Guyana’s western side?",
+        "target": "venezuela"
+      },
+      {
+        "text": "What changes water levels where a river meets the Atlantic?",
+        "target": "tides"
+      }
+    ],
+    "sources": [
+      "geo-factbook-guyana"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "suriname",
+    "title": "Suriname",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Suriname faces the Atlantic Ocean on the north side of South America. The capital, Paramaribo, is near the coast on the Suriname River. Much of the land farther inland is forested, and rivers are an important way of reaching places there. Dutch is the official language, and people also speak several other languages. On a world map, Suriname and the Netherlands look far apart, while the languages show a historical connection.",
+    "aliases": [
+      "Paramaribo country",
+      "where is Suriname",
+      "which country in South America speaks Dutch"
+    ],
+    "sections": [],
+    "facts": [
+      "Suriname borders Guyana, Brazil, and French Guiana."
+    ],
+    "terms": [
+      "capital",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "Which European country shares an official language with Suriname?",
+        "target": "netherlands"
+      },
+      {
+        "text": "Which Atlantic country is west of Suriname?",
+        "target": "guyana"
+      },
+      {
+        "text": "Which country is south of Suriname?",
+        "target": "brazil"
+      }
+    ],
+    "sources": [
+      "geo-factbook-suriname"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "panama",
+    "title": "Panama",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Panama is a narrow country between the Caribbean Sea and the Pacific Ocean. Its shape makes it part of the land bridge connecting Central and South America. People built the Panama Canal across that land so ships could pass between the two bodies of water without sailing around the whole continent. Panama City, the country’s capital, is near the Pacific end. The country has hills and forest as well as the famous shipping route.",
+    "aliases": [
+      "Panama City capital",
+      "where is Panama Canal",
+      "country connecting Central and South America"
+    ],
+    "sections": [],
+    "facts": [
+      "Panama has land borders with Costa Rica and Colombia."
+    ],
+    "terms": [
+      "isthmus",
+      "trade",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country borders Panama on the South American end?",
+        "target": "colombia"
+      },
+      {
+        "text": "Which neighbor also touches both the Caribbean and the Pacific?",
+        "target": "costa-rica"
+      },
+      {
+        "text": "Why do some maps make the long ocean route around South America look different?",
+        "target": "map-projection"
+      }
+    ],
+    "sources": [
+      "geo-factbook-panama"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "costa-rica",
+    "title": "Costa Rica",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Costa Rica runs between the Pacific Ocean and the Caribbean Sea in Central America. Mountains and volcanoes rise through the middle, and San José, the capital, is in the central part of the country. A trip from one side to the other can pass beaches, wet forests, and much cooler heights. Changes in height and rain help make room for many different kinds of plants and animals within a small area.",
+    "aliases": [
+      "San Jose Costa Rica capital",
+      "where is Costa Rica",
+      "Costa Rica mountains and rain forest"
+    ],
+    "sections": [],
+    "facts": [
+      "Costa Rica borders Nicaragua to the north and Panama to the southeast."
+    ],
+    "terms": [
+      "volcano",
+      "climate",
+      "ecosystem"
+    ],
+    "questions": [
+      {
+        "text": "Which neighbor has a large freshwater lake close to Costa Rica?",
+        "target": "nicaragua"
+      },
+      {
+        "text": "Which narrower neighbor contains the canal between two seas?",
+        "target": "panama"
+      },
+      {
+        "text": "How can wet forest and beach support different living things?",
+        "target": "ecosystems"
+      }
+    ],
+    "sources": [
+      "geo-factbook-costa-rica"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "nicaragua",
+    "title": "Nicaragua",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Nicaragua’s west side has volcanoes and two large lakes close to the Pacific coast. Managua, the capital, is beside the smaller Lake Managua. Lake Nicaragua lies farther southeast and is much larger. On the other side of the country, rivers head through flatter land toward the Caribbean. A single country can therefore have separate groups of rivers whose water eventually reaches opposite sides of Central America.",
+    "aliases": [
+      "Managua country",
+      "where is Lake Nicaragua",
+      "Nicaragua Pacific Caribbean"
+    ],
+    "sections": [],
+    "facts": [
+      "The San Juan River carries water from Lake Nicaragua toward the Caribbean Sea."
+    ],
+    "terms": [
+      "watershed",
+      "volcano"
+    ],
+    "questions": [
+      {
+        "text": "Which country borders Nicaragua to the south?",
+        "target": "costa-rica"
+      },
+      {
+        "text": "Which country borders Nicaragua to the north?",
+        "target": "honduras"
+      },
+      {
+        "text": "Where does water in Nicaragua’s lakes and rivers come from?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-nicaragua"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "honduras",
+    "title": "Honduras",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Honduras has a long coast on the Caribbean Sea and a much shorter coast beside the Gulf of Fonseca, which opens to the Pacific. Mountains take up much of the land between the two sides. Tegucigalpa, the capital, is in the hilly south-central area. The Bay Islands lie off the northern shore, separated from the mainland by Caribbean waters, so part of a trip there has to cross the sea.",
+    "aliases": [
+      "Tegucigalpa country",
+      "where is Honduras",
+      "Bay Islands country"
+    ],
+    "sections": [],
+    "facts": [
+      "Honduras has a land border with Guatemala, El Salvador, and Nicaragua."
+    ],
+    "terms": [
+      "archipelago",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country has a Pacific coast but no Caribbean coast?",
+        "target": "el-salvador"
+      },
+      {
+        "text": "Which neighbor is west of Honduras?",
+        "target": "guatemala"
+      },
+      {
+        "text": "Which neighbor is southeast of Honduras?",
+        "target": "nicaragua"
+      }
+    ],
+    "sources": [
+      "geo-factbook-honduras"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "el-salvador",
+    "title": "El Salvador",
+    "category": "countries",
+    "priority": 1,
+    "answer": "El Salvador lies on the Pacific side of Central America. Unlike many of its neighbors, it has no Caribbean coast. San Salvador, the capital, stands inland near a volcano. Mountains and valleys cover much of the country, and a lower strip of land runs beside the ocean. In a small area like this, a traveler can go from flat, warm coast to high volcanic slopes without traveling hundreds of miles.",
+    "aliases": [
+      "San Salvador country",
+      "which Central American country has no Caribbean coast",
+      "where is El Salvador"
+    ],
+    "sections": [],
+    "facts": [
+      "El Salvador shares land borders with Guatemala and Honduras."
+    ],
+    "terms": [
+      "volcano",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which neighbor reaches the Caribbean as well as the Pacific?",
+        "target": "honduras"
+      },
+      {
+        "text": "Which other neighboring country also contains active volcanoes?",
+        "target": "guatemala"
+      },
+      {
+        "text": "How can a volcano change the land around it?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-el-salvador"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "guatemala",
+    "title": "Guatemala",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Guatemala reaches south from Mexico into Central America. It has low forested country in the north and a chain of mountains and volcanoes closer to the Pacific. Guatemala City, the capital, lies inland in the highlands. The country also reaches a small piece of Caribbean coast in the east. Changes in height give the country both warm lowlands and cooler areas where many of its towns and cities grew.",
+    "aliases": [
+      "Guatemala City capital",
+      "where is Guatemala",
+      "Guatemala volcano Tajumulco"
+    ],
+    "sections": [],
+    "facts": [
+      "The country’s high peaks include the volcano Tajumulco."
+    ],
+    "terms": [
+      "highland",
+      "volcano"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country faces the Caribbean to Guatemala’s east?",
+        "target": "belize"
+      },
+      {
+        "text": "Which smaller neighbor also has mountains near the Pacific?",
+        "target": "el-salvador"
+      },
+      {
+        "text": "Which larger country is north of Guatemala?",
+        "target": "mexico"
+      }
+    ],
+    "sources": [
+      "geo-factbook-guatemala"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "belize",
+    "title": "Belize",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Belize faces the Caribbean Sea on the eastern side of Central America. A long coral reef lies offshore, with small islands, shallow water, and much deeper sea not far apart. On land, there are low plains near the shore and the Maya Mountains farther inland. Belmopan, the capital, is inland. It has a different setting from Belize City, the larger former capital, which is right on the coast.",
+    "aliases": [
+      "Belmopan country",
+      "where is Belize",
+      "Belize barrier reef country"
+    ],
+    "sections": [],
+    "facts": [
+      "English is the official language of Belize."
+    ],
+    "terms": [
+      "coral",
+      "capital",
+      "boundary"
+    ],
+    "questions": [
+      {
+        "text": "Which neighbor is directly west and south of Belize?",
+        "target": "guatemala"
+      },
+      {
+        "text": "How do tiny animals create a reef big enough to see on a map?",
+        "target": "coral-reefs"
+      },
+      {
+        "text": "Which larger country shares Belize’s northern border?",
+        "target": "mexico"
+      }
+    ],
+    "sources": [
+      "geo-factbook-belize"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cuba",
+    "title": "Cuba",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Cuba is an island country at the northern edge of the Caribbean. The largest island stretches far from west to east, and many smaller islands and reefs lie nearby. Havana, the capital, faces north across the water toward Florida. Much of Cuba is relatively low, but mountains rise in the southeast. Because the island sits between several large bodies of water, its coast has been important to people sailing between them.",
+    "aliases": [
+      "Havana country",
+      "where is Cuba",
+      "Cuba island country"
+    ],
+    "sections": [],
+    "facts": [
+      "The highest part of Cuba is in the Sierra Maestra mountains."
+    ],
+    "terms": [
+      "archipelago",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which island country lies south of Cuba across the Caribbean?",
+        "target": "jamaica"
+      },
+      {
+        "text": "Which island chain stretches north of Cuba?",
+        "target": "bahamas"
+      },
+      {
+        "text": "How do large rotating storms form in nearby warm waters?",
+        "target": "hurricanes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-cuba"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "jamaica",
+    "title": "Jamaica",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Jamaica is an island in the Caribbean Sea south of Cuba. Its capital, Kingston, is on the southeast coast beside a large natural harbor. Behind it the Blue Mountains rise sharply, and other parts of the island have hills of limestone, caves, and streams. The shift from sunny coast to higher and cooler ground helps explain why the island can have more than one kind of landscape within a short distance.",
+    "aliases": [
+      "Kingston Jamaica capital",
+      "where is Jamaica",
+      "Jamaica Blue Mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "Blue Mountain Peak is the highest point in Jamaica."
+    ],
+    "terms": [
+      "harbor",
+      "limestone",
+      "highland"
+    ],
+    "questions": [
+      {
+        "text": "Which large island country is directly north of Jamaica?",
+        "target": "cuba"
+      },
+      {
+        "text": "Which country lies to the east on part of Hispaniola?",
+        "target": "haiti"
+      },
+      {
+        "text": "How does an ocean storm grow before it reaches Jamaica?",
+        "target": "hurricanes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-jamaica"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "haiti",
+    "title": "Haiti",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Haiti covers the western part of Hispaniola, an island it shares with the Dominican Republic. Its capital, Port-au-Prince, sits beside a sheltered bay on the western side. Much of the country is mountainous, with valleys and plains between the ranges. Hispaniola also lies near the edges of large moving pieces of Earth’s outer shell. When those pieces suddenly slip past each other, they can shake the ground across both countries.",
+    "aliases": [
+      "Port-au-Prince country",
+      "Hispaniola west country",
+      "where is Haiti"
+    ],
+    "sections": [],
+    "facts": [
+      "Haitian Creole and French are official languages in Haiti."
+    ],
+    "terms": [
+      "capital",
+      "tectonic plate"
+    ],
+    "questions": [
+      {
+        "text": "Which country covers the eastern part of the same island?",
+        "target": "dominican-republic"
+      },
+      {
+        "text": "What happens underground when an earthquake begins?",
+        "target": "earthquakes"
+      },
+      {
+        "text": "Which other island country lies west of Haiti?",
+        "target": "jamaica"
+      }
+    ],
+    "sources": [
+      "geo-factbook-haiti"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dominican-republic",
+    "title": "Dominican Republic",
+    "category": "countries",
+    "priority": 1,
+    "answer": "The Dominican Republic covers the eastern part of Hispaniola, sharing that island with Haiti. Its capital, Santo Domingo, is on the Caribbean coast, on the south side of the island. Mountain ranges rise inland and leave room for valleys and farmland between them. A country bordered by warm sea can still have chilly places high in the mountains, where the air and ground are much farther above sea level.",
+    "aliases": [
+      "Santo Domingo country",
+      "Hispaniola east country",
+      "where is the Dominican Republic"
+    ],
+    "sections": [],
+    "facts": [
+      "Pico Duarte is the highest peak on Hispaniola."
+    ],
+    "terms": [
+      "capital",
+      "highland",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Which neighbor covers western Hispaniola?",
+        "target": "haiti"
+      },
+      {
+        "text": "Which island chain lies north of Hispaniola?",
+        "target": "bahamas"
+      },
+      {
+        "text": "How does the air change at high elevations?",
+        "target": "altitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-dominican-republic"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bahamas",
+    "title": "The Bahamas",
+    "category": "countries",
+    "priority": 1,
+    "answer": "The Bahamas are a chain of islands and low sandy islets in the Atlantic near Florida and Cuba. Many sit on underwater banks where the sea is shallow and can look pale blue from above. Nassau, the capital, is on the island of New Providence. Only some of the islands are settled. With broad stretches of shallow water between them, boats have long mattered for moving people and supplies.",
+    "aliases": [
+      "Nassau country",
+      "where are the Bahamas",
+      "Bahamas New Providence"
+    ],
+    "sections": [],
+    "facts": [
+      "The Bahamas stretch from near Florida to waters north of Hispaniola."
+    ],
+    "terms": [
+      "archipelago",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which large island country lies south of much of the Bahamas?",
+        "target": "cuba"
+      },
+      {
+        "text": "Which country on Hispaniola lies near the southern end of the island chain?",
+        "target": "dominican-republic"
+      },
+      {
+        "text": "How can living coral help shape shallow seas?",
+        "target": "coral-reefs"
+      }
+    ],
+    "sources": [
+      "geo-factbook-bahamas"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "trinidad-and-tobago",
+    "title": "Trinidad and Tobago",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Trinidad and Tobago are two main islands at the southern end of the Caribbean. Trinidad, the larger island, lies just off Venezuela, across a narrow stretch of water. Port of Spain, the capital, is on Trinidad beside the Gulf of Paria. Tobago lies northeast of Trinidad. The islands have coast, higher hills, and protected bays, so a short journey by boat can take you between quite different landscapes.",
+    "aliases": [
+      "Port of Spain country",
+      "where is Trinidad and Tobago",
+      "southern Caribbean island nation"
+    ],
+    "sections": [],
+    "facts": [
+      "The islands are close to the mainland of South America."
+    ],
+    "terms": [
+      "strait",
+      "archipelago",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which mainland country lies across the narrow water from Trinidad?",
+        "target": "venezuela"
+      },
+      {
+        "text": "Which English-speaking country lies farther southeast on the mainland?",
+        "target": "guyana"
+      },
+      {
+        "text": "Why do the sea level and currents change in narrow passages?",
+        "target": "tides"
+      }
+    ],
+    "sources": [
+      "geo-factbook-trinidad-and-tobago"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "china",
+    "title": "China",
+    "category": "countries",
+    "priority": 1,
+    "answer": "China covers a large part of eastern Asia. Its land generally steps down from high plateaus and mountains in the west to broad lowlands and a long coast in the east. The Yangtze flows from high country to the sea near Shanghai, carrying water across much of China. Beijing, the capital, is farther north. China’s large size makes room for many landscapes, from some of the world’s highest mountains to warm coastal country.",
+    "aliases": [
+      "Beijing country",
+      "China Yangtze River",
+      "where is China"
+    ],
+    "sections": [],
+    "facts": [
+      "The Gobi Desert crosses part of China and Mongolia."
+    ],
+    "terms": [
+      "plateau",
+      "watershed",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Which country shares part of the Gobi Desert with China?",
+        "target": "mongolia"
+      },
+      {
+        "text": "Which neighboring country shares Mount Everest with China?",
+        "target": "nepal"
+      },
+      {
+        "text": "How does water return to the ocean after falling on mountains?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-china"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mongolia",
+    "title": "Mongolia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Mongolia sits in inland Asia between Russia and China. The Gobi Desert takes up part of the south, while wide grasslands spread across much of the country. Mountains rise in the west and north. Ulaanbaatar, the capital, stands in a valley in the north-central part of Mongolia, where winters can be very cold. Some families move their livestock between pastures through the year, while many others live in towns and cities.",
+    "aliases": [
+      "Ulaanbaatar country",
+      "where is Mongolia",
+      "Mongolia Gobi Desert"
+    ],
+    "sections": [],
+    "facts": [
+      "Mongolia has only two land neighbors and no sea coast."
+    ],
+    "terms": [
+      "landlocked",
+      "climate",
+      "prairie"
+    ],
+    "questions": [
+      {
+        "text": "Which southern neighbor also contains part of the Gobi Desert?",
+        "target": "china"
+      },
+      {
+        "text": "What other large landlocked country lies farther west in Asia?",
+        "target": "kazakhstan"
+      },
+      {
+        "text": "How does the changing angle of sunlight affect Mongolia’s seasons?",
+        "target": "seasons"
+      }
+    ],
+    "sources": [
+      "geo-factbook-mongolia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "north-korea",
+    "title": "North Korea",
+    "category": "countries",
+    "priority": 1,
+    "answer": "North Korea occupies the northern part of the Korean Peninsula. Much of its land is hilly or mountainous, and broad lowlands are more common toward the west. Pyongyang, the capital, lies on the Taedong River in the west. The peninsula touches the sea on both sides, but toward the north the country has land borders with China and Russia. South Korea shares the southern end of the peninsula.",
+    "aliases": [
+      "Pyongyang country",
+      "where is North Korea",
+      "northern Korean peninsula"
+    ],
+    "sections": [],
+    "facts": [
+      "The Yalu River runs along a large part of North Korea’s border with China."
+    ],
+    "terms": [
+      "peninsula",
+      "boundary",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country occupies the southern part of the same peninsula?",
+        "target": "south-korea"
+      },
+      {
+        "text": "Which larger country borders North Korea along part of the Yalu River?",
+        "target": "china"
+      },
+      {
+        "text": "Which neighboring country is made up of islands farther east?",
+        "target": "japan"
+      }
+    ],
+    "sources": [
+      "geo-factbook-north-korea"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "south-korea",
+    "title": "South Korea",
+    "category": "countries",
+    "priority": 1,
+    "answer": "South Korea occupies the southern part of the Korean Peninsula. Hills and mountains cover much of the land, with broader areas of flatter ground in the west and south. Seoul, the capital, is in the northwest and grew around the Han River. The long coastline includes many islands, especially toward the south and west. Jeju, a volcanic island to the south, is one of the largest of these islands.",
+    "aliases": [
+      "Seoul country",
+      "where is South Korea",
+      "South Korea Jeju island"
+    ],
+    "sections": [],
+    "facts": [
+      "The only country that shares a land border with South Korea is North Korea."
+    ],
+    "terms": [
+      "peninsula",
+      "archipelago",
+      "volcano"
+    ],
+    "questions": [
+      {
+        "text": "Which country occupies the rest of the Korean Peninsula?",
+        "target": "north-korea"
+      },
+      {
+        "text": "Which country lies across the sea to the east and southeast?",
+        "target": "japan"
+      },
+      {
+        "text": "How can a volcano build up an island like Jeju?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-south-korea"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "nepal",
+    "title": "Nepal",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Nepal follows the southern slopes of the Himalayas between India and China. Along its southern side the ground is much lower and flatter. From there a trip north can climb through hills and valleys toward some of the tallest mountains on Earth. Kathmandu, the capital, sits in a valley in the middle hills. Mount Everest stands on Nepal’s border with China, far higher than any of Nepal’s towns.",
+    "aliases": [
+      "Kathmandu country",
+      "which country shares Mount Everest",
+      "Nepal Himalayas"
+    ],
+    "sections": [],
+    "facts": [
+      "Mount Everest rises more than 8,800 meters above sea level."
+    ],
+    "terms": [
+      "highland",
+      "landlocked",
+      "boundary"
+    ],
+    "questions": [
+      {
+        "text": "Which country is on the other side of the summit of Everest?",
+        "target": "china"
+      },
+      {
+        "text": "Which other nearby country sits in the eastern Himalayas?",
+        "target": "bhutan"
+      },
+      {
+        "text": "Why is there less oxygen in each breath high on Everest?",
+        "target": "altitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-nepal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bhutan",
+    "title": "Bhutan",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Bhutan lies in the eastern Himalayas between India and China. Along the south, lower hills rise above the plains of India. Farther north, high ridges and peaks can stay covered with snow. Thimphu, the capital, is in a river valley in western Bhutan. Roads that look short on a map may have to bend around ridges, so a trip across Bhutan can take longer than the distance suggests.",
+    "aliases": [
+      "Thimphu country",
+      "where is Bhutan",
+      "Bhutan Himalayas"
+    ],
+    "sections": [],
+    "facts": [
+      "Bhutan has no sea coast and has a land border with only two countries."
+    ],
+    "terms": [
+      "landlocked",
+      "highland",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which other Himalayan country also lies between China and India?",
+        "target": "nepal"
+      },
+      {
+        "text": "Which country borders Bhutan to the south?",
+        "target": "india"
+      },
+      {
+        "text": "What does a flat map leave out about a steep mountain road?",
+        "target": "map-projection"
+      }
+    ],
+    "sources": [
+      "geo-factbook-bhutan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bangladesh",
+    "title": "Bangladesh",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Much of Bangladesh sits on the low land where several large Asian rivers meet and flow into the Bay of Bengal. Water and silt from far away in the Himalayas can reach the fields and channels of this delta. Dhaka, the capital, is in the central part of the country. Near the coast, salt water and fresh water mix in channels among the trees of the Sundarbans.",
+    "aliases": [
+      "Dhaka country",
+      "where is Bangladesh",
+      "Bangladesh Ganges delta"
+    ],
+    "sections": [],
+    "facts": [
+      "The Sundarbans mangrove forest extends into both Bangladesh and India."
+    ],
+    "terms": [
+      "delta",
+      "estuary",
+      "tributary"
+    ],
+    "questions": [
+      {
+        "text": "Which country shares the Sundarbans with Bangladesh?",
+        "target": "india"
+      },
+      {
+        "text": "Which Himalayan country is both higher and far inland from the delta?",
+        "target": "nepal"
+      },
+      {
+        "text": "How do rivers pick up and carry the mud that builds a delta?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "geo-factbook-bangladesh"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pakistan",
+    "title": "Pakistan",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Pakistan stretches from some of the world’s highest mountains in the north to the Arabian Sea in the south. The Indus River runs down through the country and brings water to many fields. Much of the land near the river is drier than the fields might look, so farmers use channels and other ways to get water to their crops. Islamabad, the capital, sits farther north near the foothills.",
+    "aliases": [
+      "Islamabad country",
+      "where is Pakistan",
+      "Pakistan Indus River"
+    ],
+    "sections": [],
+    "facts": [
+      "K2 rises where China meets mountain land governed by Pakistan. It is the second-highest mountain in the world."
+    ],
+    "terms": [
+      "irrigation",
+      "watershed",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country lies east of Pakistan?",
+        "target": "india"
+      },
+      {
+        "text": "Which country shares the summit of K2 with Pakistan?",
+        "target": "china"
+      },
+      {
+        "text": "Which other South Asian country has a large river plain?",
+        "target": "bangladesh"
+      }
+    ],
+    "sources": [
+      "geo-factbook-pakistan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sri-lanka",
+    "title": "Sri Lanka",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Sri Lanka is a large island just south of India in the Indian Ocean. Low coastal areas surround higher country in the middle of the island. Tea is grown in some of the cooler hills, while rainfall and temperature vary from place to place. Sri Jayawardenepura Kotte houses the country’s parliament near Colombo, a large port city. On a map, a narrow passage of water separates Sri Lanka from India.",
+    "aliases": [
+      "Sri Jayawardenepura Kotte country",
+      "Sri Lanka capital parliament",
+      "where is Sri Lanka"
+    ],
+    "sections": [],
+    "facts": [
+      "A strip of shallow water called the Palk Strait lies between India and Sri Lanka."
+    ],
+    "terms": [
+      "strait",
+      "harbor",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Which mainland country is across the Palk Strait?",
+        "target": "india"
+      },
+      {
+        "text": "Which island country lies across the Indian Ocean to the southwest?",
+        "target": "maldives"
+      },
+      {
+        "text": "Why do water and currents move in a narrow strait?",
+        "target": "tides"
+      }
+    ],
+    "sources": [
+      "geo-factbook-sri-lanka"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "maldives",
+    "title": "Maldives",
+    "category": "countries",
+    "priority": 1,
+    "answer": "The Maldives are small, low islands in the Indian Ocean southwest of India and Sri Lanka. Many are part of rings of coral and sand around shallow water called atolls. The capital, Malé, is on one of the islands. As you travel across the country you cross water many times, and boats link settlements that may sit on pieces of land much smaller than a city neighborhood.",
+    "aliases": [
+      "Male country capital",
+      "where are the Maldives",
+      "Maldives low coral islands"
+    ],
+    "sections": [],
+    "facts": [
+      "The Maldives lie on both sides of the equator."
+    ],
+    "terms": [
+      "lagoon",
+      "coral",
+      "equator"
+    ],
+    "questions": [
+      {
+        "text": "Which larger island lies northeast of the Maldives?",
+        "target": "sri-lanka"
+      },
+      {
+        "text": "How can colonies of coral slowly build a reef?",
+        "target": "coral-reefs"
+      },
+      {
+        "text": "Why can water near a low island rise and fall each day?",
+        "target": "tides"
+      }
+    ],
+    "sources": [
+      "geo-factbook-maldives"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "thailand",
+    "title": "Thailand",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Thailand stands in mainland Southeast Asia and extends south down part of the Malay Peninsula. Its capital, Bangkok, grew beside the Chao Phraya River, whose low plain contains fields and many settlements. The north is higher and hillier, and the southern peninsula has coasts on both sides. Because the low river plain and the mountains are close, water that falls in northern hills can eventually reach the sea through Bangkok.",
+    "aliases": [
+      "Bangkok country",
+      "where is Thailand",
+      "Thailand river Bangkok"
+    ],
+    "sections": [],
+    "facts": [
+      "Thailand has access to both the Gulf of Thailand and the Andaman Sea."
+    ],
+    "terms": [
+      "peninsula",
+      "watershed",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which neighbor lies to the east and southeast of Thailand?",
+        "target": "cambodia"
+      },
+      {
+        "text": "Which country shares the Malay Peninsula farther south?",
+        "target": "malaysia"
+      },
+      {
+        "text": "How does rain from hills arrive at a river mouth?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-thailand"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "vietnam",
+    "title": "Vietnam",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Vietnam follows the eastern coast of mainland Southeast Asia. Its shape is long and narrow in the middle and broader at both ends, where large rivers reach the sea. Hanoi, the capital, lies near the Red River in the north. In the south, many channels of the Mekong spread across flat ground before meeting the sea. The coast makes fishing and shipping important in many parts of the country.",
+    "aliases": [
+      "Hanoi country",
+      "where is Vietnam",
+      "Vietnam Mekong Delta"
+    ],
+    "sections": [],
+    "facts": [
+      "The Mekong Delta is far from Hanoi at the opposite end of much of Vietnam’s coastline."
+    ],
+    "terms": [
+      "delta",
+      "watershed",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country does the Mekong flow through just upstream from Vietnam?",
+        "target": "cambodia"
+      },
+      {
+        "text": "Which landlocked country shares a long border with Vietnam?",
+        "target": "laos"
+      },
+      {
+        "text": "Which large country lies north of Vietnam?",
+        "target": "china"
+      }
+    ],
+    "sources": [
+      "geo-factbook-vietnam"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "laos",
+    "title": "Laos",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Laos is the only country in mainland Southeast Asia without a coast. Much of it is mountainous, but many settlements lie close to river valleys. Vientiane, the capital, stands beside the Mekong River, which forms a long part of the border with Thailand. The river continues through Cambodia and Vietnam to the sea. Laos may lack a sea port, but it still sits along a water route to the ocean.",
+    "aliases": [
+      "Vientiane country",
+      "landlocked Southeast Asian country",
+      "where is Laos"
+    ],
+    "sections": [],
+    "facts": [
+      "Laos shares land borders with five countries."
+    ],
+    "terms": [
+      "landlocked",
+      "watershed",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country lies across part of the Mekong from Laos?",
+        "target": "thailand"
+      },
+      {
+        "text": "Which country lies east of Laos and reaches the sea?",
+        "target": "vietnam"
+      },
+      {
+        "text": "Which downstream neighbor also depends on the Mekong?",
+        "target": "cambodia"
+      }
+    ],
+    "sources": [
+      "geo-factbook-laos"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cambodia",
+    "title": "Cambodia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Cambodia includes a broad low plain linked to the Mekong River. Its capital, Phnom Penh, grew near rivers that meet close together. One of those rivers connects to Tonlé Sap, a lake that expands in the rainy season. When the Mekong is high enough, water moves toward the lake instead of away from it. Fish and farmers use land and water that change with the seasons in this unusual river system.",
+    "aliases": [
+      "Phnom Penh country",
+      "where is Tonle Sap",
+      "where is Cambodia"
+    ],
+    "sections": [],
+    "facts": [
+      "Cambodia has a coastline on the Gulf of Thailand."
+    ],
+    "terms": [
+      "monsoon",
+      "watershed",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country lies downstream from Cambodia at the Mekong Delta?",
+        "target": "vietnam"
+      },
+      {
+        "text": "Which inland Mekong country is upstream from Cambodia?",
+        "target": "laos"
+      },
+      {
+        "text": "Which western neighbor shares access to the Gulf of Thailand?",
+        "target": "thailand"
+      }
+    ],
+    "sources": [
+      "geo-factbook-cambodia",
+      "geo-mrc-tonle-sap"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "myanmar",
+    "title": "Myanmar",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Myanmar, also called Burma, runs from high mountains in the north to the coast of the Indian Ocean. The Ayeyarwady River flows south through much of the country, passing wide farming areas and spreading into a delta near the coast. Nay Pyi Taw is the administrative capital, farther inland than Yangon, a large city near the delta. The river gives lowland towns a connection through a country with many mountain ranges.",
+    "aliases": [
+      "Nay Pyi Taw country",
+      "Burma Myanmar",
+      "Ayeyarwady River country"
+    ],
+    "sections": [],
+    "facts": [
+      "Myanmar shares land borders with India, Bangladesh, China, Laos, and Thailand."
+    ],
+    "terms": [
+      "delta",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which western neighbor also has a major river delta?",
+        "target": "bangladesh"
+      },
+      {
+        "text": "Which neighbor shares part of the long southern peninsula?",
+        "target": "thailand"
+      },
+      {
+        "text": "Which large country is north and east of Myanmar?",
+        "target": "china"
+      }
+    ],
+    "sources": [
+      "geo-factbook-myanmar"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "malaysia",
+    "title": "Malaysia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Malaysia has two main parts with a sea between them. One sits at the southern end of the Malay Peninsula, where Kuala Lumpur is the capital. The other is on the island of Borneo, which Malaysia shares with Indonesia and Brunei. Forested mountains rise in parts of Borneo. Because the two main parts are separated by the South China Sea, a trip from one to the other must cross water or fly over it.",
+    "aliases": [
+      "Kuala Lumpur country",
+      "Malaysia Borneo and peninsula",
+      "where is Malaysia"
+    ],
+    "sections": [],
+    "facts": [
+      "Putrajaya is Malaysia’s federal administrative center, distinct from the capital Kuala Lumpur."
+    ],
+    "terms": [
+      "peninsula",
+      "capital",
+      "boundary"
+    ],
+    "questions": [
+      {
+        "text": "Which nation covers much of Borneo south of eastern Malaysia?",
+        "target": "indonesia"
+      },
+      {
+        "text": "Which small country shares part of the north coast of Borneo?",
+        "target": "brunei"
+      },
+      {
+        "text": "Which small country lies just beyond the tip of the Malay Peninsula?",
+        "target": "singapore"
+      }
+    ],
+    "sources": [
+      "geo-factbook-malaysia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "singapore",
+    "title": "Singapore",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Singapore is a country built around a city on an island just off the tip of the Malay Peninsula. More small islands are part of it as well. Ships passing between the Pacific and Indian Oceans can sail by Singapore through narrow channels between larger land areas. This location helps explain why its harbor is important. Bridges and causeways connect the main island to Malaysia, just to the north.",
+    "aliases": [
+      "Singapore city-state",
+      "where is Singapore",
+      "Singapore shipping strait"
+    ],
+    "sections": [],
+    "facts": [
+      "Singapore lies close to the equator."
+    ],
+    "terms": [
+      "strait",
+      "harbor",
+      "equator"
+    ],
+    "questions": [
+      {
+        "text": "Which country lies to the north across the causeway?",
+        "target": "malaysia"
+      },
+      {
+        "text": "Which island country lies across the water to the south?",
+        "target": "indonesia"
+      },
+      {
+        "text": "How does latitude tell you that Singapore is near the equator?",
+        "target": "latitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-singapore"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "philippines",
+    "title": "Philippines",
+    "category": "countries",
+    "priority": 1,
+    "answer": "The Philippines is a large group of islands in the western Pacific Ocean. Many maps group the islands into Luzon in the north, the Visayas in the middle, and Mindanao in the south. Manila, the capital, is on Luzon. The country lies near the edges of large moving plates of rock and contains many mountains and active volcanoes. People traveling between some towns must cross water even when those towns look close on the map.",
+    "aliases": [
+      "Manila country",
+      "Philippines Luzon Visayas Mindanao",
+      "where are the Philippines"
+    ],
+    "sections": [],
+    "facts": [
+      "People live on many Philippine islands, while others are very small or have no permanent settlements."
+    ],
+    "terms": [
+      "archipelago",
+      "tectonic plate"
+    ],
+    "questions": [
+      {
+        "text": "Which other large island country lies farther south?",
+        "target": "indonesia"
+      },
+      {
+        "text": "Which island country to the north also has active volcanoes?",
+        "target": "japan"
+      },
+      {
+        "text": "Why can the same type of tropical storm have another name in the western Pacific?",
+        "target": "hurricanes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-philippines"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "indonesia",
+    "title": "Indonesia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Indonesia spreads along the equator on thousands of islands. Java contains Jakarta, one of the country’s largest cities and a major port. Sumatra, which lies farther west, and the steep islands farther east can look very different from Java. In parts of Indonesia, the edges of big pieces of Earth’s crust meet. That is why the country has many volcanoes and why its islands sometimes experience strong earthquakes.",
+    "aliases": [
+      "where is Indonesia",
+      "country with Java and Sumatra",
+      "Jakarta which country"
+    ],
+    "sections": [],
+    "facts": [
+      "Indonesia shares the large island of Borneo with Malaysia and Brunei."
+    ],
+    "terms": [
+      "archipelago",
+      "equator",
+      "tectonic plate"
+    ],
+    "questions": [
+      {
+        "text": "Which other country shares the island of Borneo?",
+        "target": "malaysia"
+      },
+      {
+        "text": "Which large group of volcanic islands lies north of Indonesia?",
+        "target": "philippines"
+      },
+      {
+        "text": "How does melted rock from eruptions change land on islands?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-indonesia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "brunei",
+    "title": "Brunei",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Brunei is a small country on the north coast of the island of Borneo. Its capital, Bandar Seri Begawan, stands beside the Brunei River near the coast. Malaysia is Brunei’s only land neighbor, and part of Malaysia separates Brunei’s two pieces of land. Rain falls through much of the year, supporting forest inland. A world map makes the two pieces look close together even though they are separated.",
+    "aliases": [
+      "Bandar Seri Begawan country",
+      "where is Brunei",
+      "Brunei island of Borneo"
+    ],
+    "sections": [],
+    "facts": [
+      "Brunei’s coast faces the South China Sea."
+    ],
+    "terms": [
+      "boundary",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country separates the two parts of Brunei?",
+        "target": "malaysia"
+      },
+      {
+        "text": "Which country covers much of southern Borneo?",
+        "target": "indonesia"
+      },
+      {
+        "text": "How does rainfall affect the plants that can grow in a place?",
+        "target": "climate"
+      }
+    ],
+    "sources": [
+      "geo-factbook-brunei"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "timor-leste",
+    "title": "Timor-Leste",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Timor-Leste occupies the eastern half of the island of Timor and a smaller area on the western half surrounded on land by Indonesia. Dili, the capital, sits on the north coast with hills close behind it. Mountains run across much of the island. Farther south lies the Timor Sea, and beyond that is Australia. Looking at both the land boundaries and the sea helps make sense of the country’s two separated areas.",
+    "aliases": [
+      "Dili country",
+      "East Timor",
+      "where is Timor-Leste"
+    ],
+    "sections": [],
+    "facts": [
+      "Timor-Leste also includes small islands beyond the main island of Timor."
+    ],
+    "terms": [
+      "boundary",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country shares the island of Timor?",
+        "target": "indonesia"
+      },
+      {
+        "text": "Which large country is across the Timor Sea?",
+        "target": "australia"
+      },
+      {
+        "text": "Which kinds of map show borders and land shapes clearly?",
+        "target": "map-projection"
+      }
+    ],
+    "sources": [
+      "geo-factbook-timor-leste"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "kazakhstan",
+    "title": "Kazakhstan",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Kazakhstan is a very large inland country with grasslands stretching across much of the north and desert and dry hills farther south. High mountains rise toward the southeast. Astana, the capital, is on a river in the northern part of the country. Kazakhstan reaches the Caspian Sea, a huge inland body of water. Even though it has a Caspian shore, it is landlocked because that water has no natural outlet to the ocean.",
+    "aliases": [
+      "Astana country",
+      "largest landlocked country",
+      "Kazakhstan Caspian Sea"
+    ],
+    "sections": [],
+    "facts": [
+      "Kazakhstan shares long land borders with Russia and China."
+    ],
+    "terms": [
+      "landlocked",
+      "prairie",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country lies to the south of Kazakhstan?",
+        "target": "uzbekistan"
+      },
+      {
+        "text": "Which mountain country touches Kazakhstan at its southern edge?",
+        "target": "kyrgyzstan"
+      },
+      {
+        "text": "Which large landlocked country lies farther east?",
+        "target": "mongolia"
+      }
+    ],
+    "sources": [
+      "geo-factbook-kazakhstan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "kyrgyzstan",
+    "title": "Kyrgyzstan",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Mountains cover much of Kyrgyzstan, a landlocked country in Central Asia. Many belong to the Tian Shan range. Between them lie valleys where many people live, including the broader valley around Bishkek, the capital. In the east, Lake Issyk-Kul lies in a wide opening between high ridges. The same mountain range can collect snow high on its slopes and supply water to streams people use far below.",
+    "aliases": [
+      "Bishkek country",
+      "where is Kyrgyzstan",
+      "Lake Issyk Kul country"
+    ],
+    "sections": [],
+    "facts": [
+      "Kyrgyzstan borders Kazakhstan, Uzbekistan, Tajikistan, and China."
+    ],
+    "terms": [
+      "landlocked",
+      "basin",
+      "highland"
+    ],
+    "questions": [
+      {
+        "text": "Which country directly north of Kyrgyzstan has broad grasslands?",
+        "target": "kazakhstan"
+      },
+      {
+        "text": "Which neighbor to the south also has tall mountain ranges?",
+        "target": "tajikistan"
+      },
+      {
+        "text": "How does mountain snow eventually feed streams and lakes?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-kyrgyzstan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "uzbekistan",
+    "title": "Uzbekistan",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Uzbekistan lies in Central Asia among deserts and river valleys. Tashkent, the capital, is in the east near higher ground. The Amu Darya River runs toward the shrinking Aral Sea through dry country. Towns once grew along trading roads through the region, where travelers depended on finding water and supplies between long dry stretches. The same river water can support people far away from the mountains where it began.",
+    "aliases": [
+      "Tashkent country",
+      "where is Uzbekistan",
+      "Uzbekistan Aral Sea"
+    ],
+    "sections": [],
+    "facts": [
+      "Every country that borders Uzbekistan is also landlocked."
+    ],
+    "terms": [
+      "landlocked",
+      "oasis",
+      "trade"
+    ],
+    "questions": [
+      {
+        "text": "Which other dry country shares part of the Amu Darya’s course?",
+        "target": "turkmenistan"
+      },
+      {
+        "text": "Which northern neighbor also includes part of the Aral Sea basin?",
+        "target": "kazakhstan"
+      },
+      {
+        "text": "Why do people change what grows in fields from one year to the next?",
+        "target": "crop-rotation"
+      }
+    ],
+    "sources": [
+      "geo-factbook-uzbekistan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tajikistan",
+    "title": "Tajikistan",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Tajikistan has much more mountain land than flat country. In the east, the Pamirs rise very high and hold glaciers that feed rivers. Dushanbe, the capital, lies in the western part of Tajikistan where it is easier to travel and build than in the highest peaks. Mountain water flowing west eventually reaches much drier land. That links people in low valleys with snow and ice hundreds of miles upstream.",
+    "aliases": [
+      "Dushanbe country",
+      "where is Tajikistan",
+      "Tajikistan Pamir mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "The Panj River marks a long stretch of the border with Afghanistan."
+    ],
+    "terms": [
+      "glacier",
+      "highland",
+      "watershed"
+    ],
+    "questions": [
+      {
+        "text": "Which neighbor to the north contains the Tian Shan mountains?",
+        "target": "kyrgyzstan"
+      },
+      {
+        "text": "Which lower country west of Tajikistan depends on rivers crossing dry land?",
+        "target": "uzbekistan"
+      },
+      {
+        "text": "How does water trapped in a mountain glacier reach a river?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-tajikistan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "turkmenistan",
+    "title": "Turkmenistan",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Much of Turkmenistan is covered by the Karakum Desert. The country reaches the Caspian Sea to the west and has mountains along part of its southern edge. Ashgabat, the capital, lies close to those mountains. In dry country, people can live and grow crops around natural sources of water or along canals. A bright green strip on a satellite image may show a place where water is reaching the ground.",
+    "aliases": [
+      "Ashgabat country",
+      "where is Turkmenistan",
+      "Karakum Desert country"
+    ],
+    "sections": [],
+    "facts": [
+      "The Amu Darya runs near Turkmenistan’s border with Uzbekistan."
+    ],
+    "terms": [
+      "oasis",
+      "irrigation",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country shares the Amu Darya area?",
+        "target": "uzbekistan"
+      },
+      {
+        "text": "Which larger country also has a shore on the Caspian Sea?",
+        "target": "kazakhstan"
+      },
+      {
+        "text": "Why does water disappear especially quickly from hot dry ground?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-turkmenistan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "morocco",
+    "title": "Morocco",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Morocco is in northwestern Africa. The Atlantic Ocean meets the country on the west, and the Mediterranean meets it on the north. Between them, a narrow strait separates Morocco from Spain. The Atlas Mountains cross much of the country, leaving wetter coastal areas on one side and drier country toward the Sahara on the other. Rabat, the capital, sits on the Atlantic coast near the mouth of a river.",
+    "aliases": [
+      "Rabat country",
+      "Africa across Gibraltar from Spain",
+      "Morocco Atlas Mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "The Strait of Gibraltar separates Morocco from the Iberian Peninsula."
+    ],
+    "terms": [
+      "strait",
+      "climate",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country is across the Strait of Gibraltar?",
+        "target": "spain"
+      },
+      {
+        "text": "Which country east of Morocco also reaches from the Mediterranean toward the Sahara?",
+        "target": "algeria"
+      },
+      {
+        "text": "How could a map show how far north Rabat is?",
+        "target": "latitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-morocco"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "algeria",
+    "title": "Algeria",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Algeria is the largest country in Africa by land area. Algiers, the capital, lies on its Mediterranean coast in the far north. Hills and mountains separate parts of that greener northern strip from the vast Sahara farther south. Most towns and farms are concentrated closer to the coast. A map of where people live in Algeria can therefore look quite different from a map of the whole country’s shape.",
+    "aliases": [
+      "Algiers country",
+      "largest African country by land area",
+      "Algeria Sahara"
+    ],
+    "sections": [],
+    "facts": [
+      "The Sahara covers much of southern Algeria."
+    ],
+    "terms": [
+      "climate",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country at the western end of North Africa also has Atlas Mountains?",
+        "target": "morocco"
+      },
+      {
+        "text": "Which smaller Mediterranean country is east of northern Algeria?",
+        "target": "tunisia"
+      },
+      {
+        "text": "Which country lies near the eastern edge of the Sahara?",
+        "target": "egypt"
+      }
+    ],
+    "sources": [
+      "geo-factbook-algeria"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tunisia",
+    "title": "Tunisia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Tunisia is a small country on the Mediterranean coast of North Africa. It stretches from hills and greener land in the north to salt lakes, dry plains, and parts of the Sahara in the south. Tunis, the capital, is near the coast where the sea narrows toward Sicily. The land supports farms in some areas while other parts get too little rain for most crops without extra water.",
+    "aliases": [
+      "Tunis country",
+      "where is Tunisia",
+      "Tunisia Mediterranean Sahara"
+    ],
+    "sections": [],
+    "facts": [
+      "Tunisia borders Algeria to the west and Libya to the east."
+    ],
+    "terms": [
+      "climate",
+      "irrigation"
+    ],
+    "questions": [
+      {
+        "text": "Which larger country shares Tunisia’s western border?",
+        "target": "algeria"
+      },
+      {
+        "text": "Which country includes Sicily across the Mediterranean from Tunisia?",
+        "target": "italy"
+      },
+      {
+        "text": "What does climate tell us about the difference between northern and southern Tunisia?",
+        "target": "climate"
+      }
+    ],
+    "sources": [
+      "geo-factbook-tunisia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ethiopia",
+    "title": "Ethiopia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Ethiopia is a landlocked country in eastern Africa. Much of its central and northern land forms a broad highland split by deep valleys. Addis Ababa, the capital, stands high on that land. Water from Lake Tana in northwestern Ethiopia feeds the Blue Nile, which later joins another branch of the Nile in Sudan. This is one way water that falls on the Ethiopian highlands can eventually reach the Mediterranean far away.",
+    "aliases": [
+      "Addis Ababa country",
+      "where is Ethiopia",
+      "Lake Tana Blue Nile"
+    ],
+    "sections": [],
+    "facts": [
+      "The East African Rift cuts through Ethiopia."
+    ],
+    "terms": [
+      "highland",
+      "landlocked",
+      "watershed"
+    ],
+    "questions": [
+      {
+        "text": "Which neighbor farther south also lies along Africa’s great rift valleys?",
+        "target": "kenya"
+      },
+      {
+        "text": "Which country is where the Blue Nile and White Nile meet?",
+        "target": "sudan"
+      },
+      {
+        "text": "Which country does the Nile reach before the Mediterranean?",
+        "target": "egypt"
+      }
+    ],
+    "sources": [
+      "geo-factbook-ethiopia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sudan",
+    "title": "Sudan",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Sudan lies in northeastern Africa, south of Egypt and partly along the Red Sea. The Blue Nile and White Nile meet at Khartoum, the capital. North of their meeting point, the Nile crosses dry desert on its way to Egypt. Farther south, open plains and grasslands are more common. From above, the contrast between green land beside the river and dry land farther away is especially easy to see.",
+    "aliases": [
+      "Khartoum country",
+      "where do Blue Nile and White Nile meet",
+      "where is Sudan"
+    ],
+    "sections": [],
+    "facts": [
+      "Sudan and South Sudan became separate countries in 2011."
+    ],
+    "terms": [
+      "watershed",
+      "irrigation",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Where does the Blue Nile carry much of its water from?",
+        "target": "ethiopia"
+      },
+      {
+        "text": "Which country gets the Nile downstream from Sudan?",
+        "target": "egypt"
+      },
+      {
+        "text": "Which country immediately south of Sudan once formed part of it?",
+        "target": "south-sudan"
+      }
+    ],
+    "sources": [
+      "geo-factbook-sudan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "south-sudan",
+    "title": "South Sudan",
+    "category": "countries",
+    "priority": 1,
+    "answer": "South Sudan sits inland in eastern Africa. The White Nile crosses the country from south to north and spreads through the Sudd, a vast wetland. Water can cover broad flat areas there instead of staying in one channel. Juba, the capital, is beside the river farther south. Because the river is so important to the country’s landscape, following it on a map is a good way to understand both the wetlands and nearby towns.",
+    "aliases": [
+      "Juba country",
+      "where is South Sudan",
+      "Sudd wetland country"
+    ],
+    "sections": [],
+    "facts": [
+      "South Sudan became independent in 2011."
+    ],
+    "terms": [
+      "landlocked",
+      "watershed",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which neighbor receives the White Nile downstream?",
+        "target": "sudan"
+      },
+      {
+        "text": "Which country upstream contains part of Lake Victoria?",
+        "target": "uganda"
+      },
+      {
+        "text": "Why might some water in a large wetland return to the air?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-south-sudan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "uganda",
+    "title": "Uganda",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Uganda is an inland country in eastern Africa. Part of Lake Victoria touches its southern side, and Kampala, the capital, is not far from the lake. Water leaves Lake Victoria through a river in Uganda that becomes part of the White Nile’s route north. Farther west, mountains and lakes line parts of the country. Uganda has no coast on the ocean, but lakes and rivers make water a major part of its map.",
+    "aliases": [
+      "Kampala country",
+      "where is Uganda",
+      "which country starts Victoria Nile"
+    ],
+    "sections": [],
+    "facts": [
+      "Uganda shares Lake Victoria with Kenya and Tanzania."
+    ],
+    "terms": [
+      "landlocked",
+      "watershed"
+    ],
+    "questions": [
+      {
+        "text": "Which other country shares Lake Victoria with Uganda?",
+        "target": "kenya"
+      },
+      {
+        "text": "Which neighbor lies across much of the lake to the south?",
+        "target": "tanzania"
+      },
+      {
+        "text": "Which country receives the part of the Nile that flows north out of Uganda?",
+        "target": "south-sudan"
+      }
+    ],
+    "sources": [
+      "geo-factbook-uganda"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tanzania",
+    "title": "Tanzania",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Tanzania stretches inland from the Indian Ocean across high country, lakes, and wide grasslands. Mount Kilimanjaro rises near the Kenyan border. The islands of Zanzibar are off the coast, while Dodoma, the national capital, sits well inland. Some of the country’s borders follow large lakes, including parts of Lake Victoria and Lake Tanganyika. The coast, islands, high mountains, and inland lakes each give a different picture of Tanzania.",
+    "aliases": [
+      "Dodoma country",
+      "country with Zanzibar and Kilimanjaro",
+      "where is Tanzania"
+    ],
+    "sections": [],
+    "facts": [
+      "Tanzania shares a border with eight countries."
+    ],
+    "terms": [
+      "archipelago",
+      "highland",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country is just north of Mount Kilimanjaro?",
+        "target": "kenya"
+      },
+      {
+        "text": "Which country shares Lake Victoria to the north?",
+        "target": "uganda"
+      },
+      {
+        "text": "Which neighboring country contains much of the shore of Lake Malawi?",
+        "target": "malawi"
+      }
+    ],
+    "sources": [
+      "geo-factbook-tanzania"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "malawi",
+    "title": "Malawi",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Malawi is a narrow inland country in southeastern Africa. Lake Malawi follows much of its eastern side, and some shores rise quickly into hills and higher land. Lilongwe, the capital, is on land farther west. The lake is enormously important in a country that has no coast on the ocean. Birds and people can travel along the water, while rivers connect it to other places.",
+    "aliases": [
+      "Lilongwe country",
+      "where is Malawi",
+      "Lake Malawi countries"
+    ],
+    "sections": [],
+    "facts": [
+      "Lake Malawi also touches Mozambique and Tanzania."
+    ],
+    "terms": [
+      "landlocked",
+      "watershed",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country borders the northern end of the lake?",
+        "target": "tanzania"
+      },
+      {
+        "text": "Which country borders part of the lake and also reaches the Indian Ocean?",
+        "target": "mozambique"
+      },
+      {
+        "text": "How can a lake stay full while a river carries water out of it?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-malawi"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mozambique",
+    "title": "Mozambique",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Mozambique has a long coast on the Indian Ocean. The Zambezi River reaches the coast across the middle of the country, carrying water from far inland. Much farther south, Maputo, the capital, stands on a broad bay. Plains near the coast give way to higher land inland. Across the water east of the country lies Madagascar, separated from the mainland by the Mozambique Channel.",
+    "aliases": [
+      "Maputo country",
+      "where is Mozambique",
+      "Zambezi River mouth country"
+    ],
+    "sections": [],
+    "facts": [
+      "Mozambique borders Tanzania to the north and South Africa to the south."
+    ],
+    "terms": [
+      "harbor",
+      "delta",
+      "strait"
+    ],
+    "questions": [
+      {
+        "text": "Which island country lies across the Mozambique Channel?",
+        "target": "madagascar"
+      },
+      {
+        "text": "Which larger neighbor continues the coastline northward?",
+        "target": "tanzania"
+      },
+      {
+        "text": "Which landlocked country lies farther upstream on the Zambezi?",
+        "target": "zambia"
+      }
+    ],
+    "sources": [
+      "geo-factbook-mozambique"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "zambia",
+    "title": "Zambia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Zambia is a landlocked country in southern Africa, mostly on a raised plateau. Lusaka, the capital, lies in the south-central part of the country. The Zambezi River forms part of the southern border, where water plunges over Victoria Falls. The river continues past several other countries toward the Indian Ocean. Zambia may not have a coast, but its rivers show how high inland places are connected to the sea.",
+    "aliases": [
+      "Lusaka country",
+      "where is Zambia",
+      "Zambia Zambezi"
+    ],
+    "sections": [],
+    "facts": [
+      "Zambia and Zimbabwe meet along part of the Zambezi River."
+    ],
+    "terms": [
+      "landlocked",
+      "plateau",
+      "watershed"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country shares part of the Zambezi and its great waterfall?",
+        "target": "zimbabwe"
+      },
+      {
+        "text": "Which country does the Zambezi cross before reaching the Indian Ocean?",
+        "target": "mozambique"
+      },
+      {
+        "text": "Where does the water that flows through a river begin?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-zambia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "zimbabwe",
+    "title": "Zimbabwe",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Zimbabwe is an inland country on a high area of southern Africa between the Zambezi and Limpopo rivers. Harare, the capital, sits on higher ground inland. On the northwest boundary, the Zambezi drops over Victoria Falls and then runs through a narrow gorge. Parts of the country are lower and warmer near the major rivers. Height and moving water both matter for understanding the shapes and climates on its map.",
+    "aliases": [
+      "Harare country",
+      "where is Zimbabwe",
+      "Zimbabwe Victoria Falls"
+    ],
+    "sections": [],
+    "facts": [
+      "Zimbabwe borders Botswana, Mozambique, South Africa, and Zambia."
+    ],
+    "terms": [
+      "plateau",
+      "watershed",
+      "landlocked"
+    ],
+    "questions": [
+      {
+        "text": "Which country on the other side of the Zambezi shares Victoria Falls?",
+        "target": "zambia"
+      },
+      {
+        "text": "Which drier inland neighbor lies to the west?",
+        "target": "botswana"
+      },
+      {
+        "text": "Which country borders Zimbabwe to the south?",
+        "target": "south-africa"
+      }
+    ],
+    "sources": [
+      "geo-factbook-zimbabwe"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "botswana",
+    "title": "Botswana",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Botswana is a mostly flat country in southern Africa with no sea coast. The Kalahari drylands cover much of it, but the northwest holds the Okavango Delta, where a river spreads across low ground instead of flowing into an ocean. Water there can fill channels and marshes among much drier land. Gaborone, the capital, is in the southeast close to the South African border.",
+    "aliases": [
+      "Gaborone country",
+      "where is Botswana",
+      "Okavango Delta country"
+    ],
+    "sections": [],
+    "facts": [
+      "The Okavango Delta is an inland delta rather than a river mouth at the sea."
+    ],
+    "terms": [
+      "landlocked",
+      "delta",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which dry country lies west of Botswana and has an Atlantic coast?",
+        "target": "namibia"
+      },
+      {
+        "text": "Which country lies south of Botswana?",
+        "target": "south-africa"
+      },
+      {
+        "text": "What can happen to water in a delta without an outlet to the ocean?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-botswana"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "namibia",
+    "title": "Namibia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Namibia lies on the Atlantic coast of southwestern Africa. Near the sea, the Namib Desert contains stretches of gravel and huge sand dunes. The land rises inland toward plateaus and mountains. Windhoek, the capital, sits well away from the coast in higher country. A place like the Namib shows why being next to an ocean does not automatically mean a place will get much rain.",
+    "aliases": [
+      "Windhoek country",
+      "where is Namibia",
+      "Namib Desert country"
+    ],
+    "sections": [],
+    "facts": [
+      "Part of the Orange River marks Namibia’s southern boundary with South Africa."
+    ],
+    "terms": [
+      "dune",
+      "plateau",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country to the east has no ocean coast?",
+        "target": "botswana"
+      },
+      {
+        "text": "Which country shares the Orange River border?",
+        "target": "south-africa"
+      },
+      {
+        "text": "Why do two places near the same ocean have different amounts of rain?",
+        "target": "climate"
+      }
+    ],
+    "sources": [
+      "geo-factbook-namibia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "south-africa",
+    "title": "South Africa",
+    "category": "countries",
+    "priority": 1,
+    "answer": "South Africa occupies the southern edge of Africa, with shores on both the Atlantic and Indian oceans. Much of the inside lies high above the coast, and the land drops steeply on the way to the sea in many places. The national government uses Pretoria, Cape Town, and Bloemfontein for different jobs. South Africa completely surrounds the smaller country of Lesotho, an unusual shape you can spot on a map.",
+    "aliases": [
+      "South Africa three capitals",
+      "where is South Africa",
+      "what country surrounds Lesotho"
+    ],
+    "sections": [],
+    "facts": [
+      "The Orange River flows west toward the Atlantic."
+    ],
+    "terms": [
+      "plateau",
+      "boundary",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which country is completely surrounded by South Africa?",
+        "target": "lesotho"
+      },
+      {
+        "text": "Which dry country continues South Africa’s Atlantic coast northward?",
+        "target": "namibia"
+      },
+      {
+        "text": "How does the southern end of Africa appear on a world map?",
+        "target": "continents"
+      }
+    ],
+    "sources": [
+      "geo-factbook-south-africa"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lesotho",
+    "title": "Lesotho",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Lesotho is a country entirely surrounded by South Africa. It is unusually high: even the lowest places are more than a kilometer above sea level. Maseru, the capital, sits near the western border, lower than the rugged mountains farther east. Snow can fall in those mountains in southern winter. Rivers that rise in the highlands carry water down into the lower country and give Lesotho links with its much larger neighbor.",
+    "aliases": [
+      "Maseru country",
+      "which country is enclosed by South Africa",
+      "Lesotho high elevation"
+    ],
+    "sections": [],
+    "facts": [
+      "Lesotho’s only land neighbor is South Africa."
+    ],
+    "terms": [
+      "landlocked",
+      "highland",
+      "boundary"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country surrounds Lesotho?",
+        "target": "south-africa"
+      },
+      {
+        "text": "How does a place’s height change the air people breathe?",
+        "target": "altitude"
+      },
+      {
+        "text": "Why do the southern and northern halves of Earth have winter at different times?",
+        "target": "seasons"
+      }
+    ],
+    "sources": [
+      "geo-factbook-lesotho"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "madagascar",
+    "title": "Madagascar",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Madagascar is a large island off the southeast coast of Africa. Its high center contains Antananarivo, the capital. Moist winds reach forests on parts of the east side, while parts of the south and west are much drier. The island was separated from other land for a very long time. Many of its plants and animals, including its native lemurs, evolved on the island without the same neighbors they would have had on the mainland.",
+    "aliases": [
+      "Antananarivo country",
+      "where is Madagascar",
+      "island where lemurs are native"
+    ],
+    "sections": [],
+    "facts": [
+      "The Mozambique Channel separates Madagascar from mainland Africa."
+    ],
+    "terms": [
+      "strait",
+      "evolution",
+      "ecosystem"
+    ],
+    "questions": [
+      {
+        "text": "Which country lies across the Mozambique Channel?",
+        "target": "mozambique"
+      },
+      {
+        "text": "How can animals on an island change over many generations?",
+        "target": "evolution"
+      },
+      {
+        "text": "Why might wet forest and dry country make homes for different species?",
+        "target": "ecosystems"
+      }
+    ],
+    "sources": [
+      "geo-factbook-madagascar"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "nigeria",
+    "title": "Nigeria",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Nigeria reaches inland from the Gulf of Guinea in western Africa. The Niger and Benue rivers meet near the center, then flow south to a broad delta. Lagos, a major city, is near the coast. Abuja, the capital, is farther inland. The south is generally wetter than the far north. Rivers, road routes, and cities connect very different landscapes, from wet coastal land to drier plains.",
+    "aliases": [
+      "Abuja country",
+      "Nigeria Niger River delta",
+      "where is Nigeria"
+    ],
+    "sections": [],
+    "facts": [
+      "Nigeria and Niger are separate countries that share a long land border."
+    ],
+    "terms": [
+      "delta",
+      "capital",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Which country north of Nigeria has a similar name?",
+        "target": "niger"
+      },
+      {
+        "text": "Which country farther west also reaches the Gulf of Guinea?",
+        "target": "ghana"
+      },
+      {
+        "text": "How does water carried by Nigeria’s rivers return to the ocean?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-nigeria"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "niger",
+    "title": "Niger",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Niger is a landlocked country in western Africa immediately north of Nigeria. A large share of its land lies in the Sahara, and dry country stretches far across the map. Niamey, the capital, is in the southwest on the Niger River. The river passes through only part of the country, but in a dry climate a corridor with water can give people and farms conditions very different from the land farther away.",
+    "aliases": [
+      "Niamey country",
+      "Niger versus Nigeria",
+      "where is Niger"
+    ],
+    "sections": [],
+    "facts": [
+      "The names Niger and Nigeria refer to different countries."
+    ],
+    "terms": [
+      "landlocked",
+      "climate",
+      "irrigation"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country also shares the Niger River but has a coast?",
+        "target": "nigeria"
+      },
+      {
+        "text": "Which other inland country contains part of the Niger’s course?",
+        "target": "mali"
+      },
+      {
+        "text": "Why does less rain make it harder to grow crops without a nearby river?",
+        "target": "climate"
+      }
+    ],
+    "sources": [
+      "geo-factbook-niger"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mali",
+    "title": "Mali",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Mali is a large inland country in western Africa with a desert north and generally wetter land toward the south. Bamako, the capital, stands beside the Niger River. Farther along its route inside Mali, the river spreads across low, flat areas that flood seasonally, even though the ocean is far away. The changing spread of water helps shape where people fish, farm, and graze livestock.",
+    "aliases": [
+      "Bamako country",
+      "where is Mali",
+      "Mali inland Niger delta"
+    ],
+    "sections": [],
+    "facts": [
+      "The Niger River bends through Mali before flowing east into Niger."
+    ],
+    "terms": [
+      "delta",
+      "landlocked",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Which country receives the Niger River downstream from Mali?",
+        "target": "niger"
+      },
+      {
+        "text": "Which western neighbor has a coast?",
+        "target": "senegal"
+      },
+      {
+        "text": "How does seasonal rain change how much water a river carries?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-mali"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "senegal",
+    "title": "Senegal",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Senegal lies on the Atlantic at the far western side of Africa. Dakar, the capital, stands on a peninsula poking into the ocean. The Senegal River follows part of the northern boundary. Farther south, a different river is surrounded by The Gambia, a long narrow country with its own small coast. A map of both countries helps show how water can shape the outline of land boundaries as well as coastlines.",
+    "aliases": [
+      "Dakar country",
+      "country that almost surrounds Gambia",
+      "where is Senegal"
+    ],
+    "sections": [],
+    "facts": [
+      "Senegal surrounds The Gambia on three sides."
+    ],
+    "terms": [
+      "peninsula",
+      "boundary",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which narrow country reaches inland along a river through part of Senegal?",
+        "target": "gambia"
+      },
+      {
+        "text": "Which landlocked country borders Senegal on the east?",
+        "target": "mali"
+      },
+      {
+        "text": "How can you locate Dakar between the equator and North Pole?",
+        "target": "latitude"
+      }
+    ],
+    "sources": [
+      "geo-factbook-senegal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "gambia",
+    "title": "The Gambia",
+    "category": "countries",
+    "priority": 1,
+    "answer": "The Gambia is a long, narrow country in western Africa, with the Gambia River running through most of it. Senegal surrounds the land borders, and at its western end the river reaches the Atlantic Ocean. Banjul, the capital, lies near the river mouth. In many places it is easier to picture the country by following the river on a map than by trying to recognize its outline alone.",
+    "aliases": [
+      "Banjul country",
+      "where is Gambia",
+      "narrow country inside Senegal"
+    ],
+    "sections": [],
+    "facts": [
+      "The Gambia’s long shape follows the course of a river rather than a mountain range."
+    ],
+    "terms": [
+      "estuary",
+      "boundary",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which neighboring country surrounds The Gambia’s land borders?",
+        "target": "senegal"
+      },
+      {
+        "text": "Which other west African country has a capital on the Atlantic coast?",
+        "target": "ghana"
+      },
+      {
+        "text": "How do rivers change the shape of the banks and land around them?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "geo-factbook-gambia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ghana",
+    "title": "Ghana",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Ghana faces the Gulf of Guinea in western Africa. Accra, the capital, lies beside the sea, and the land stretches inland to drier plains in the north. Lake Volta takes up a broad part of the east. It formed when a dam held back water in the Volta River system. The country’s coast has ports, while hundreds of miles of rivers and roads connect settlements inland.",
+    "aliases": [
+      "Accra country",
+      "where is Ghana",
+      "Lake Volta country"
+    ],
+    "sections": [],
+    "facts": [
+      "Lake Volta has several long branches that follow valleys flooded behind the dam."
+    ],
+    "terms": [
+      "watershed",
+      "climate",
+      "harbor"
+    ],
+    "questions": [
+      {
+        "text": "Which country farther east also faces the Gulf of Guinea?",
+        "target": "nigeria"
+      },
+      {
+        "text": "Which country farther west has a capital on a peninsula?",
+        "target": "senegal"
+      },
+      {
+        "text": "How does rain become water in the rivers that fill a reservoir?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-factbook-ghana"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "new-zealand",
+    "title": "New Zealand",
+    "category": "countries",
+    "priority": 1,
+    "answer": "New Zealand lies in the southwestern Pacific Ocean and includes two main islands. A narrow passage called Cook Strait separates them. Wellington, the capital, is at the southern end of the North Island. The Southern Alps rise on the South Island, and there are active volcanoes in the North Island. Mountain weather can change quickly over a short distance, even though the surrounding ocean helps give many coastal places generally mild temperatures.",
+    "aliases": [
+      "Wellington country",
+      "where is New Zealand",
+      "Cook Strait between what islands"
+    ],
+    "sections": [],
+    "facts": [
+      "Aoraki or Mount Cook is New Zealand’s highest peak."
+    ],
+    "terms": [
+      "strait",
+      "archipelago",
+      "volcano"
+    ],
+    "questions": [
+      {
+        "text": "Which much larger country lies across the Tasman Sea from New Zealand?",
+        "target": "australia"
+      },
+      {
+        "text": "Which island country lies farther north in the Pacific?",
+        "target": "fiji"
+      },
+      {
+        "text": "How do eruptions change islands along moving plate boundaries?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-new-zealand"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fiji",
+    "title": "Fiji",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Fiji is a group of islands in the South Pacific. The two largest, Viti Levu and Vanua Levu, have hills and valleys, while many smaller islands sit close to coral reefs. Suva, the capital, is on Viti Levu. A traveler can cross rugged land by road and then have to take a boat for what looks like a short distance on the map, because the country’s settlements are spread across separate islands.",
+    "aliases": [
+      "Suva country",
+      "where is Fiji",
+      "Fiji Viti Levu"
+    ],
+    "sections": [],
+    "facts": [
+      "Fiji’s islands are mostly south of the equator."
+    ],
+    "terms": [
+      "archipelago",
+      "coral",
+      "equator"
+    ],
+    "questions": [
+      {
+        "text": "Which larger Pacific island country lies farther south?",
+        "target": "new-zealand"
+      },
+      {
+        "text": "Which island country lies east and somewhat north of Fiji?",
+        "target": "samoa"
+      },
+      {
+        "text": "How did many of the reefs near Fiji grow?",
+        "target": "coral-reefs"
+      }
+    ],
+    "sources": [
+      "geo-factbook-fiji"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "samoa",
+    "title": "Samoa",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Samoa is an island country in the central South Pacific. Its two largest islands, Upolu and Savaiʻi, rose from volcanic activity. Forested hills stand inland, and many settlements are by the shore. Apia, the capital, is on Upolu. Farther east are the islands of American Samoa, a different political area. The similar names describe neighbors, and looking for Apia or Pago Pago on a map helps tell them apart.",
+    "aliases": [
+      "Apia country",
+      "where is Samoa",
+      "Samoa and American Samoa difference"
+    ],
+    "sections": [],
+    "facts": [
+      "Savaiʻi is the larger of Samoa’s two main islands by area."
+    ],
+    "terms": [
+      "archipelago",
+      "volcano",
+      "capital"
+    ],
+    "questions": [
+      {
+        "text": "Which other South Pacific island country lies to the west and south?",
+        "target": "fiji"
+      },
+      {
+        "text": "Which South Pacific island country lies farther south?",
+        "target": "tonga"
+      },
+      {
+        "text": "How do volcanoes build land out of the sea?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "geo-factbook-samoa"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tonga",
+    "title": "Tonga",
+    "category": "countries",
+    "priority": 1,
+    "answer": "Tonga is an island kingdom that stretches north and south through part of the South Pacific. Some islands are low and made mostly of rock built up by coral. Others are volcanic and have much higher land. Nukuʻalofa, the capital, is on Tongatapu, the main island in the southern group. The country’s shape is easy to miss on a globe: its many islands occupy only small spots in a much larger stretch of ocean.",
+    "aliases": [
+      "Nukualofa country",
+      "where is Tonga",
+      "Tonga island kingdom"
+    ],
+    "sections": [],
+    "facts": [
+      "Tongatapu’s name is also the name of one of Tonga’s island groups."
+    ],
+    "terms": [
+      "archipelago",
+      "coral",
+      "volcano"
+    ],
+    "questions": [
+      {
+        "text": "Which Polynesian island country lies farther north?",
+        "target": "samoa"
+      },
+      {
+        "text": "Which island group lies west of Tonga?",
+        "target": "fiji"
+      },
+      {
+        "text": "How do coral animals help form hard structures in shallow water?",
+        "target": "coral-reefs"
+      }
+    ],
+    "sources": [
+      "geo-factbook-tonga"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "altitude",
+    "title": "Altitude",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Altitude describes how high something is compared with a chosen level. Maps often measure land height from sea level. Planes can also report how high they are above the ground directly below them, which is a different number. Higher in the air, there is less air pressing down, so the air is thinner. A breath at the top of a tall mountain contains less oxygen than a breath of the same size beside the sea.",
+    "aliases": [
+      "what is altitude",
+      "why is air thinner high up",
+      "height above sea level"
+    ],
+    "sections": [],
+    "facts": [
+      "Two airplanes at the same height above sea level can be different heights above the ground below them."
+    ],
+    "terms": [
+      "atmosphere",
+      "oxygen"
+    ],
+    "questions": [
+      {
+        "text": "Which country shares the peak of Mount Everest with China?",
+        "target": "nepal"
+      },
+      {
+        "text": "Which African mountain rises high enough for snow or ice near the equator?",
+        "target": "kilimanjaro"
+      },
+      {
+        "text": "What gives you the pull you feel as weight?",
+        "target": "gravity"
+      }
+    ],
+    "sources": [
+      "geo-nps-altitude"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "andes-mountains",
+    "title": "Andes Mountains",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The Andes run like a high spine along the western side of South America. Far below the coast, a large piece of the ocean floor slides beneath the edge of the continent. That movement helps lift and squeeze rock, and it also helps feed eruptions in parts of the range. Hills, wide valleys, icy peaks, and even parts of great deserts belong to this long chain, so crossing it can take you through several climates.",
+    "aliases": [
+      "where are the Andes Mountains",
+      "South America west coast mountains",
+      "how did the Andes form"
+    ],
+    "sections": [],
+    "facts": [
+      "The Andes are the longest mountain range on land.",
+      "Many rivers that start in the Andes flow east toward the Atlantic."
+    ],
+    "terms": [
+      "tectonic plate",
+      "climate",
+      "watershed"
+    ],
+    "questions": [
+      {
+        "text": "Which tall mountain range in Asia formed when two pieces of continent pushed into each other?",
+        "target": "himalayas"
+      },
+      {
+        "text": "Where does some of the water from the eastern Andes flow?",
+        "target": "amazon-river"
+      },
+      {
+        "text": "What makes the rocky pieces of Earth’s outer shell move relative to each other?",
+        "target": "tectonic-plates"
+      }
+    ],
+    "sources": [
+      "geo-scdnr-andes",
+      "geo-nasa-amazon"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "himalayas",
+    "title": "Himalayas",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The Himalayas stretch across southern Asia and contain many of Earth’s highest mountains. They started growing when the land carrying India pushed into the land to the north. The two pieces of land were so thick that rock bent, broke, and piled up instead of simply vanishing below the surface. The land is still moving, so the range is still changing. Streams from its slopes join rivers that flow into several countries.",
+    "aliases": [
+      "how did the Himalayas form",
+      "Asian mountains with Mount Everest",
+      "why are the Himalayas tall"
+    ],
+    "sections": [],
+    "facts": [
+      "Mount Everest is the tallest peak in the Himalayas.",
+      "Earthquakes can occur where plates keep moving and the rock gets stuck."
+    ],
+    "terms": [
+      "tectonic plate",
+      "highland",
+      "altitude"
+    ],
+    "questions": [
+      {
+        "text": "Which country on the south side of the Himalayas shares Mount Everest with China?",
+        "target": "nepal"
+      },
+      {
+        "text": "What causes the shaking when rock slips along a break?",
+        "target": "earthquakes"
+      },
+      {
+        "text": "How did the Andes grow along the west edge of South America?",
+        "target": "andes-mountains"
+      }
+    ],
+    "sources": [
+      "geo-usgs-himalayas",
+      "geo-factbook-nepal"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sahara",
+    "title": "Sahara Desert",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The Sahara is a huge dry region that stretches across northern Africa from the Atlantic side toward the Red Sea. Its landscape includes flat rocky areas, mountains, patches of dunes, and places where water helps people and plants survive. A patch of dunes can move as wind piles sand on one side and lets it fall on the other. Much of the desert is so dry that plants grow far apart.",
+    "aliases": [
+      "largest hot desert in the world",
+      "where is the Sahara Desert",
+      "what is the Sahara like"
+    ],
+    "sections": [],
+    "facts": [
+      "The Sahara is the largest hot desert on Earth.",
+      "A desert is defined by how dry it is, so deserts can also be cold."
+    ],
+    "terms": [
+      "climate",
+      "dune",
+      "oasis"
+    ],
+    "questions": [
+      {
+        "text": "Which North African country contains a large stretch of the Sahara south of its coast?",
+        "target": "algeria"
+      },
+      {
+        "text": "Which large river crosses the dry eastern part of the Sahara?",
+        "target": "nile-river"
+      },
+      {
+        "text": "How do wind and water carry rock and sand from one place to another?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "geo-bbc-sahara",
+      "geo-natgeo-nile",
+      "geo-bas-antarctica"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "amazon-river",
+    "title": "Amazon River",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The Amazon begins with streams in the Andes and grows as more rivers join it on the way east. Rain falling across a wide part of South America feeds its huge river system. In wetter times of year, water can spread beyond the river’s banks into parts of the forest. Where the Amazon reaches the Atlantic, it sends enough fresh water into the ocean to affect conditions well beyond the river’s mouth.",
+    "aliases": [
+      "where does the Amazon begin",
+      "Amazon River source and mouth",
+      "which river carries the most water"
+    ],
+    "sections": [],
+    "facts": [
+      "The Amazon carries more water to the ocean than any other river on Earth."
+    ],
+    "terms": [
+      "watershed",
+      "tributary",
+      "water cycle"
+    ],
+    "questions": [
+      {
+        "text": "Which mountains supply the Amazon with water near the start of its journey?",
+        "target": "andes-mountains"
+      },
+      {
+        "text": "Which country contains the Amazon’s wide mouth?",
+        "target": "brazil"
+      },
+      {
+        "text": "How does water in rivers make its way back into the air?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "geo-nasa-amazon"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "nile-river",
+    "title": "Nile River",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The Nile flows north through northeastern Africa to the Mediterranean. The Blue Nile carries water from Ethiopia, and the White Nile brings water from areas farther south. The two meet at Khartoum in Sudan. Downstream, the river crosses some very dry country. Near the sea, branches spread across a delta built in part from mud the river carried. That mud can make good soil for farmers.",
+    "aliases": [
+      "where does the Nile flow",
+      "Blue Nile and White Nile",
+      "Nile River source and mouth"
+    ],
+    "sections": [],
+    "facts": [
+      "The Nile reaches the Mediterranean on Egypt’s coast.",
+      "The Nile flows north even though many people picture rivers as flowing south on a map."
+    ],
+    "terms": [
+      "delta",
+      "irrigation",
+      "tributary"
+    ],
+    "questions": [
+      {
+        "text": "Which country carries the Blue Nile from the Ethiopian highlands?",
+        "target": "ethiopia"
+      },
+      {
+        "text": "In which country does the Nile form a delta at the Mediterranean?",
+        "target": "egypt"
+      },
+      {
+        "text": "Which South American river carries even more water into the ocean?",
+        "target": "amazon-river"
+      }
+    ],
+    "sources": [
+      "geo-natgeo-nile",
+      "geo-nasa-amazon",
+      "geo-factbook-sudan"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "galapagos-islands",
+    "title": "Galápagos Islands",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "The Galápagos Islands lie far west of Ecuador’s mainland in the Pacific. Eruptions built the islands from the seafloor, so they were separated from the continent from the start. Plants and animals arrived over water in different ways, and their descendants changed over many generations. Some became different from living things elsewhere. Charles Darwin’s visit helped him think about how animals on separate islands can develop different shapes and habits.",
+    "aliases": [
+      "what makes the Galapagos Islands special",
+      "Galapagos where",
+      "Darwin islands Ecuador"
+    ],
+    "sections": [],
+    "facts": [
+      "Giant tortoises and land iguanas live on the islands.",
+      "Ocean currents from different directions meet around the Galápagos."
+    ],
+    "terms": [
+      "archipelago",
+      "volcano",
+      "evolution",
+      "current"
+    ],
+    "questions": [
+      {
+        "text": "Which country includes the Galápagos Islands?",
+        "target": "ecuador"
+      },
+      {
+        "text": "How can animals change over many generations?",
+        "target": "evolution"
+      },
+      {
+        "text": "How can eruptions build new land on the seafloor?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "geo-unesco-galapagos"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lake-baikal",
+    "title": "Lake Baikal",
+    "category": "landmarks",
+    "priority": 2,
+    "answer": "Lake Baikal in Siberia is the deepest lake in the world. Looking at the thin shape it makes on a map gives little hint of how much water is below the surface. The deep opening formed as large areas of rock moved apart. Baikal has fresh water and is home to some animals that live nowhere else, including a seal that spends its life far from any ocean.",
+    "aliases": [
+      "deepest lake in the world",
+      "where is Baikal",
+      "Baikal freshwater seal"
+    ],
+    "sections": [],
+    "facts": [
+      "At its deepest, Lake Baikal is roughly a mile deep.",
+      "Lake Baikal contains a huge share of the fresh water found in the world’s lakes."
+    ],
+    "terms": [
+      "basin",
+      "tectonic plate",
+      "ecosystem"
+    ],
+    "questions": [
+      {
+        "text": "How can moving pieces of Earth’s surface open up a valley?",
+        "target": "tectonic-plates"
+      },
+      {
+        "text": "Which distant group of islands also has animals found nowhere else?",
+        "target": "galapagos-islands"
+      },
+      {
+        "text": "How can different living things and their surroundings affect each other in a lake?",
+        "target": "ecosystems"
+      }
+    ],
+    "sources": [
+      "geo-unesco-baikal",
+      "geo-nasa-baikal-rift"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "grand-canyon",
+    "title": "Grand Canyon",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "The Grand Canyon is a huge cut through rock in northern Arizona. Far below its rim, the Colorado River has been lifting and carrying away pieces of rock for millions of years. Rain and rockslides help widen the sides as the river keeps cutting. The canyon walls show stripes of different rocks. Some rock near the bottom is much older than the canyon itself, because it was already there when the river began cutting down.",
+    "aliases": [
+      "what made the Grand Canyon",
+      "where is the Grand Canyon",
+      "Colorado River canyon Arizona"
+    ],
+    "sections": [],
+    "facts": [
+      "Parts of the canyon are over a mile deep.",
+      "Some rocks seen near the bottom formed more than a billion years ago."
+    ],
+    "terms": [
+      "erosion",
+      "rock",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "How can a stream move tiny grains and larger pieces of rock?",
+        "target": "erosion"
+      },
+      {
+        "text": "What are some different ways layers of rock can form?",
+        "target": "rocks"
+      },
+      {
+        "text": "Which large waterfall flows into a narrow gorge in southern Africa?",
+        "target": "victoria-falls"
+      }
+    ],
+    "sources": [
+      "geo-nps-grand-canyon"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "antarctic-ice-sheet",
+    "title": "Antarctic Ice Sheet",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Most of Antarctica is covered by a layer of ice thick enough to hide mountains and valleys beneath it. It formed as falling snow piled up over a very long time, squashing the air out of older layers and turning them into ice. The ice moves slowly toward the edges under its own weight. This sheet sits on land, while much of the ice around it floats on the ocean.",
+    "aliases": [
+      "why does Antarctica have so much ice",
+      "Antarctica land ice versus sea ice",
+      "what is under Antarctic ice"
+    ],
+    "sections": [],
+    "facts": [
+      "In its thickest places the Antarctic Ice Sheet is more than four kilometers thick.",
+      "Most of the Antarctic continent could not be seen from the air without seeing through ice."
+    ],
+    "terms": [
+      "glacier",
+      "continent",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Why do places near the poles have months when the Sun stays close to the horizon?",
+        "target": "seasons"
+      },
+      {
+        "text": "How does the world map divide land into continents including Antarctica?",
+        "target": "continents"
+      },
+      {
+        "text": "Which northern island country also has large areas covered by moving ice?",
+        "target": "iceland"
+      }
+    ],
+    "sources": [
+      "geo-bas-antarctica"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "caribbean-sea",
+    "title": "Caribbean Sea",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The Caribbean Sea is a warm part of the Atlantic between Central America, northern South America, and a chain of islands. Cuba, Jamaica, and Hispaniola sit near its northern side. Near its eastern edge, smaller islands form a curved line with openings where water moves between the Caribbean and the wider Atlantic. The sea has deep parts, shallow reefs, and busy routes used by ships traveling between its islands and coasts.",
+    "aliases": [
+      "where is the Caribbean Sea",
+      "Caribbean Sea map",
+      "what countries and islands border the Caribbean"
+    ],
+    "sections": [],
+    "facts": [
+      "The Panama Canal links the Caribbean side of the Americas with the Pacific Ocean."
+    ],
+    "terms": [
+      "archipelago",
+      "current",
+      "coral"
+    ],
+    "questions": [
+      {
+        "text": "Which country contains the canal that lets ships pass to the Pacific?",
+        "target": "panama"
+      },
+      {
+        "text": "Which Central American country has a large reef offshore in the Caribbean?",
+        "target": "belize"
+      },
+      {
+        "text": "Why can tropical storms grow when the ocean is warm?",
+        "target": "hurricanes"
+      }
+    ],
+    "sources": [
+      "geo-nga-caribbean",
+      "geo-factbook-panama"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "victoria-falls",
+    "title": "Victoria Falls",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "The Zambezi River spreads wide at the border of Zambia and Zimbabwe, then suddenly pours into a deep, narrow crack in the rock. The water hits with enough force to throw fine drops high above the cliffs. Wind blows this mist onto nearby land, watering plants even when rain has not fallen there. The volume of water changes with the season, so the falls do not always look exactly the same.",
+    "aliases": [
+      "Victoria Falls where is it",
+      "Mosi-oa-Tunya",
+      "waterfall between Zambia and Zimbabwe"
+    ],
+    "sections": [],
+    "facts": [
+      "Mosi-oa-Tunya is one of the local names for the falls, often translated as “the smoke that thunders.”"
+    ],
+    "terms": [
+      "erosion",
+      "force",
+      "watershed"
+    ],
+    "questions": [
+      {
+        "text": "Which country is on the north side of Victoria Falls?",
+        "target": "zambia"
+      },
+      {
+        "text": "Which country is on the south side of Victoria Falls?",
+        "target": "zimbabwe"
+      },
+      {
+        "text": "How did the Colorado River cut through rock to form another deep gorge?",
+        "target": "grand-canyon"
+      }
+    ],
+    "sources": [
+      "geo-unesco-victoria-falls"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "kilimanjaro",
+    "title": "Mount Kilimanjaro",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "Mount Kilimanjaro rises from the plains of northern Tanzania to the highest point in Africa. It is made of several volcanoes joined together. A climber passes through different environments, from wooded mountain slopes into cold, mostly bare country near the top. That change happens in a surprisingly short distance because the trail climbs so high. Near the equator the lowlands can be warm while the summit is cold enough for ice.",
+    "aliases": [
+      "highest mountain in Africa",
+      "where is Kilimanjaro",
+      "why is Mount Kilimanjaro cold"
+    ],
+    "sections": [],
+    "facts": [
+      "Kilimanjaro’s highest point is nearly 5,900 meters above sea level."
+    ],
+    "terms": [
+      "altitude",
+      "volcano",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "Which country contains Mount Kilimanjaro?",
+        "target": "tanzania"
+      },
+      {
+        "text": "Why is the air thinner near the top of Kilimanjaro?",
+        "target": "altitude"
+      },
+      {
+        "text": "What does it mean for a mountain to be built by eruptions?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "geo-unesco-kilimanjaro"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "great-barrier-reef",
+    "title": "Great Barrier Reef",
+    "category": "landmarks",
+    "priority": 1,
+    "answer": "The Great Barrier Reef lies off Australia’s northeastern coast. It is made of thousands of separate reefs rather than one long unbroken wall. Small coral animals build hard skeletons, and over time new generations grow onto the old structures. The reefs leave hiding places and feeding spots for many animals. On a map some parts of the system meet open ocean, while others protect shallower stretches of sea closer to the shore.",
+    "aliases": [
+      "largest reef system in the world",
+      "where is the Great Barrier Reef",
+      "Great Barrier Reef Australia coral"
+    ],
+    "sections": [],
+    "facts": [
+      "The Great Barrier Reef runs for about 2,300 kilometers along the northeastern side of Australia."
+    ],
+    "terms": [
+      "coral",
+      "ecosystem",
+      "species"
+    ],
+    "questions": [
+      {
+        "text": "Which country is beside this giant reef system?",
+        "target": "australia"
+      },
+      {
+        "text": "How can tiny coral animals build large hard structures?",
+        "target": "coral-reefs"
+      },
+      {
+        "text": "Which country has a large coral reef on the western edge of the Caribbean?",
+        "target": "belize"
+      }
+    ],
+    "sources": [
+      "geo-reef-authority"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

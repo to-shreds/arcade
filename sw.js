@@ -1,4 +1,4 @@
-const WORKER_VERSION = '2026-11-16-tanks-arcs-slow-scores-v1';
+const WORKER_VERSION = '2026-11-27-reference-collection-v2';
 const SNAPSHOT_PREFIX = 'family-arcade-snapshot-';
 const META_CACHE = 'family-arcade-snapshot-meta';
 const ACTIVE_KEY = new URL('__arcade_active_snapshot__', self.registration.scope).href;

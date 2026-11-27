@@ -1,0 +1,269 @@
+[
+  {
+    "headword": "province",
+    "forms": [
+      "provinces"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A large area within a country that has a name and its own local government in many places.",
+        "example": "Ontario is a province in Canada."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "landlocked",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "adjective",
+        "definition": "Surrounded by land with no coast on the open ocean.",
+        "example": "Switzerland is landlocked, so a ship from the ocean has to use a river to reach it."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "harbor",
+    "forms": [
+      "harbors"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An area of deep enough water where boats can stay with some shelter from wind and waves.",
+        "example": "The ferry waited in the harbor while the weather improved."
+      },
+      {
+        "partOfSpeech": "verb",
+        "definition": "To give someone or something a place to stay or hide.",
+        "example": "The old barn harbored several owls."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "fjord",
+    "forms": [
+      "fjords"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A long, narrow arm of the sea between steep slopes, formed when seawater filled a valley carved by ice.",
+        "example": "A boat sailed up a fjord between the steep mountains."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "basin",
+    "forms": [
+      "basins"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A broad low area or the whole area where water drains toward the same place.",
+        "example": "Rain in the river basin eventually reaches the same river."
+      },
+      {
+        "partOfSpeech": "noun",
+        "definition": "A wide bowl or a sink that can hold water.",
+        "example": "We filled the basin with warm water to wash the mud from our hands."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "limestone",
+    "forms": [
+      "limestones"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A kind of rock made mostly of calcium carbonate, the material in many shells and corals.",
+        "example": "Water slowly made a cave in the limestone."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "bog",
+    "forms": [
+      "bogs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An area of land that stays very wet, where partly decayed plants build up in the ground.",
+        "example": "Some kinds of moss can grow in a bog."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "lagoon",
+    "forms": [
+      "lagoons"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A shallow body of water separated from a larger body of water by a strip of land or a reef.",
+        "example": "The narrow sandbar protected the lagoon from the ocean waves."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "dune",
+    "forms": [
+      "dunes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A hill or ridge of sand pushed together by wind or water.",
+        "example": "Beach grass helped keep sand from blowing away from the dune."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "strait",
+    "forms": [
+      "straits"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A narrow stretch of water that connects two larger bodies of water.",
+        "example": "The ship crossed the strait between the two islands."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "plateau",
+    "forms": [
+      "plateaus",
+      "plateaux"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A wide area of fairly flat land that stands higher than much of the land around it.",
+        "example": "From the edge of the plateau we looked down into the valley."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "isthmus",
+    "forms": [
+      "isthmuses"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A narrow strip of land that joins two larger areas of land, with water on both sides.",
+        "example": "The Isthmus of Panama connects the land of Central and South America."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "monsoon",
+    "forms": [
+      "monsoons"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A wind pattern that changes direction with the seasons and often brings a rainy season.",
+        "example": "The summer monsoon brought heavy rain to the fields."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "oasis",
+    "forms": [
+      "oases"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A place in a desert where water can reach the surface and plants can grow.",
+        "example": "Palm trees grew beside the water at the oasis."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "tributary",
+    "forms": [
+      "tributaries"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A stream or river that flows into another stream or river.",
+        "example": "The creek is a tributary of the larger river downstream."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "highland",
+    "forms": [
+      "highlands"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An area of land that stands high above the country around it.",
+        "example": "The days in the highlands were cooler than at the coast."
+      }
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "altitude",
+    "forms": [
+      "altitudes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The height of a place or object compared with sea level or another starting level.",
+        "example": "The airplane reached a higher altitude as it climbed above the clouds."
+      }
+    ],
+    "sources": [
+      "geo-nps-altitude"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]
