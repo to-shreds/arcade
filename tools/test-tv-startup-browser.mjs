@@ -104,10 +104,16 @@ try{
       await page.locator('#player-quality').click();
       assert.equal(await page.locator('#quality-dialog').evaluate(dialog=>dialog.parentElement.id),'player','The quality dialog belongs inside the fullscreen element');
       await inside(page,'#quality-dialog');await inside(page,'#quality-apply');
-      await page.locator('#quality').selectOption('1080p');await page.locator('#quality-apply').click();await decoded(page);
+      await page.locator('#quality').selectOption('1080p');await page.locator('#quality-apply').click();
+      // The short fixture may finish before the test gets to read currentTime.
+      const started = await page.waitForFunction(previous => __tvStartupEvents.find(event =>
+        event.type === 'playing' && event.src && event.src !== previous), first, {timeout: 5000});
+      const resumed = await started.jsonValue();
+      await started.dispose();
+      assert(resumed.time >= .23 && resumed.time < 1.1,
+        'The new source starts near the prior position: ' + JSON.stringify(resumed));
+      await decoded(page);
       assert.equal(await element.evaluate(video=>video===document.getElementById('video')),true,'Quality change retains the video element');
-      await page.waitForFunction(()=>!document.getElementById('video').seeking);
-      const resumed=await page.locator('#video').evaluate(video=>video.currentTime);assert(resumed>=.23&&resumed<1.1,'Quality change resumes near the existing position: '+resumed+' '+JSON.stringify(await page.evaluate(()=>__tvStartupEvents)));
       assert.equal(calls(state,'/api/discover/prepare').at(-1).data.source,'high');assert.notEqual(await page.locator('#video').getAttribute('src'),first);
       assert.match(await page.locator('#playing-quality').textContent(),/1080p preferred/);assert.equal(count(state,'/api/discover/lookup'),1);
       await page.locator('#player-back').click();await page.locator('#play').click();await decoded(page);
