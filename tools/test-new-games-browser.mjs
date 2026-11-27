@@ -7,7 +7,7 @@ import {mkdir,readdir,writeFile,readFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {isDeepStrictEqual} from 'node:util';
-import {chromium,browserLaunchOptions} from './browser-runtime.mjs';
+import {browserTransportIsOffline,chromium,browserLaunchOptions} from './browser-runtime.mjs';
 import {startStaticFixture} from './static-fixture.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
@@ -273,7 +273,9 @@ try{
     const context=await browser.newContext({viewport:{width:1024,height:768},hasTouch:true});contexts.add(context);const page=await context.newPage();page.on('pageerror',error=>errors.push({game:'train-pwa',message:error.message}));
     await page.goto(base+'/');await page.waitForFunction(()=>!!window.ArcadeShell);await page.evaluate(()=>navigator.serviceWorker.register('/sw.js',{scope:'/'}));await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:30000});
     await page.locator('#offlineBadge').click();await page.waitForFunction(()=>document.getElementById('offlineBadgeText')?.textContent==='Offline Ready',null,{timeout:120000});
-    await context.setOffline(true);await page.goto(base+'/train-trouble/index.html');await page.waitForFunction(()=>!!window.TrainTrouble);assert.equal(await page.evaluate(()=>navigator.onLine),false,'The browser network is actually offline');
+    assert.equal(await browserTransportIsOffline(page),false,'the server responds before disconnecting');
+    await context.setOffline(true);await page.goto(base+'/train-trouble/index.html');await page.waitForFunction(()=>!!window.TrainTrouble);
+    assert.equal(await browserTransportIsOffline(page),true,'a real uncached request cannot reach the server');
     await page.locator('#campaignBtn').click();await page.locator('#job-3').click();const E=await import('../train-trouble/engine.mjs'),level=E.createLevel(3,1),rail=E.createState(level);rail.trains[0].node='j0';rail.trains[1].node='j1';E.setSwitch(level,rail,'j0','j1');E.setSwitch(level,rail,'j1','j0');E.sendTrain(level,rail,'t1');E.sendTrain(level,rail,'t2');for(let n=0;n<120&&rail.status!=='crashed';n++)E.step(level,rail,.1);assert.equal(rail.crash.kind,'head-on');
     await page.evaluate(rail=>{const saved=TrainTrouble.capture();if(!TrainTrouble.restore({...saved,rail,clipPosition:0,crashDismissed:false}))throw Error('Cached Train could not restore a real collision');},rail);
     await page.waitForFunction(()=>{const v=document.getElementById('crashVideo');return v.readyState>=2&&v.videoWidth>0&&v.currentTime>.1;},null,{timeout:18000});

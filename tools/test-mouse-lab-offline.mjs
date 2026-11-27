@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { chromium, browserLaunchOptions } from './browser-runtime.mjs';
+import { browserTransportIsOffline, chromium, browserLaunchOptions } from './browser-runtime.mjs';
 import { startStaticFixture } from './static-fixture.mjs';
 
 const fixture = await startStaticFixture();
@@ -16,9 +16,10 @@ try {
   await shell.waitForFunction(() => navigator.serviceWorker.controller);
   await shell.locator('#offlineBadge').click();
   await shell.waitForFunction(() => document.getElementById('offlineBadgeText')?.textContent === 'Offline Ready', null, { timeout: 120000 });
+  assert.equal(await browserTransportIsOffline(shell), false, 'the server responds before disconnecting');
   await offline.setOffline(true);
   await shell.reload();
-  assert.equal(await shell.evaluate(() => navigator.onLine), false);
+  assert.equal(await browserTransportIsOffline(shell), true, 'a real uncached request cannot reach the server');
   const launcher = shell.locator('[data-arcade-folder="mouse-lab"]');
   await launcher.click();
   const embedded = shell.frameLocator('#shellGameFrame');
