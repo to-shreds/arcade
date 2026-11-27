@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {mkdir, readFile, readdir, writeFile, rm} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
-import {join, relative} from 'node:path';
+import {join, relative, sep} from 'node:path';
 import {buildPostings, normalize, spelling} from '../reference/search.mjs';
 
 const root = fileURLToPath(new URL('../reference/', import.meta.url));
@@ -202,7 +202,7 @@ if (check) {
   for (const [name, bytes] of outputs) assert.equal(await readFile(join(root, name), 'utf8'), bytes, `Rebuild stale ${name}`);
   const existing = (await readdir(join(root, 'packs'), {recursive: true, withFileTypes: true}))
     .filter(item => item.isFile() && item.name.endsWith('.json'))
-    .map(item => relative(root, join(item.parentPath, item.name))).sort(alpha);
+    .map(item => relative(root, join(item.parentPath, item.name)).split(sep).join('/')).sort(alpha);
   assert.deepEqual(existing, [...outputs.keys()].filter(name => name.startsWith('packs/')).sort(alpha), 'Stale reference shards');
 } else {
   for (const sub of ['articles', 'words']) await rm(join(root, 'packs', sub), {recursive: true, force: true});
