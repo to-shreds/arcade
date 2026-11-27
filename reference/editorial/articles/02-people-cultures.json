@@ -1,0 +1,569 @@
+[
+  {
+    "id":"latitude","title":"What is latitude?","category":"maps-geography","priority":1,
+    "answer":"Latitude tells you how far north or south a place is from Earth’s equator. Imagine putting a belt around the middle of a globe. That belt marks zero degrees of latitude. A place north of the belt has a north latitude, and a place south of it has a south latitude. Lines of equal latitude run around the globe like rings, getting smaller near the poles. Many places share one latitude. To find a single point, you also need its longitude.",
+    "aliases":["north south coordinates","what do latitude lines measure"],
+    "sections":[{"heading":"Try a globe","text":"Pick a point on the globe and trace sideways along its latitude line. You may pass through several countries without ever moving north or south."}],
+    "facts":["The North Pole is at 90 degrees north latitude.","The equator is at zero degrees latitude."],
+    "terms":["latitude","longitude","equator"],
+    "questions":[{"text":"What does the other number in a pair of coordinates tell you?","target":"longitude"},{"text":"What divides Earth into a north half and a south half?","target":"equator"},{"text":"Why are parallel lines drawn differently on different world maps?","target":"map-projection"}],
+    "sources":["natgeo-map-coordinate"],"revision":1,"review":"approved",
+    "quiz":{"question":"Which number tells you how far north a place is?","options":["Its latitude","Its longitude","Its map scale"],"answer":0,"explanation":"Latitude measures position north or south of the equator."}
+  },
+  {
+    "id":"longitude","title":"What is longitude?","category":"maps-geography","priority":1,
+    "answer":"Longitude tells you how far east or west a place is from the line chosen as zero longitude. This starting line is called the prime meridian. Longitude lines meet at the North and South poles. Picture the seams between slices of an orange going from its top to its bottom. If you only know a place’s longitude, it could be anywhere along one line. Put longitude together with latitude to give an address that works even in the middle of an ocean.",
+    "aliases":["east west coordinates","prime meridian","what do longitude lines measure"],
+    "sections":[{"heading":"A shared starting line","text":"People once used several different starting lines on their maps. In 1884, an international meeting chose the line used at the Greenwich observatory in London as the common reference."}],
+    "facts":["Longitude is measured in degrees.","Longitude lines meet at both poles."],
+    "terms":["longitude","latitude"],
+    "questions":[{"text":"What tells you whether a place lies north or south?","target":"latitude"},{"text":"What does the zero line for latitude circle?","target":"equator"},{"text":"How do mapmakers fit a globe’s lines onto flat paper?","target":"map-projection"}],
+    "sources":["natgeo-map-coordinate","royal-parks-meridian"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"equator","title":"Where is the equator?","category":"maps-geography","priority":1,
+    "answer":"The equator is an imaginary circle around Earth halfway between the North Pole and the South Pole. It divides Earth into the Northern Hemisphere and Southern Hemisphere. A hemisphere is half of a ball, so you can picture cutting a globe into two pieces along that line. The equator is the starting place for measuring latitude. If you crossed it by boat or on a road, you would normally need a map or a sign to know when you had passed from one side to the other.",
+    "aliases":["middle of the earth map line","what divides northern and southern hemispheres"],
+    "sections":[],
+    "facts":["The equator is at zero degrees latitude.","The equator crosses water as well as land."],
+    "terms":["equator","hemisphere","latitude"],
+    "questions":[{"text":"Which East African country has land on both sides of the equator?","target":"kenya"},{"text":"Which South American country’s Amazon region crosses the equator?","target":"brazil"},{"text":"How do we describe places north and south of that circle?","target":"latitude"}],
+    "sources":["natgeo-map-coordinate","natgeo-country-kenya","natgeo-country-brazil"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"map-projection","title":"Why do flat maps stretch Earth?","category":"maps-geography","priority":1,
+    "answer":"The surface of Earth curves, but paper is flat. Any way of drawing that curved surface on a flat page changes something about the places on it. One map might show the sizes of countries clearly but bend or stretch their shapes. Another map might help someone follow a steady direction at sea but make land near the poles look much bigger than it is. A map projection is a method for making that flat picture. Mapmakers choose one that works for the task at hand.",
+    "aliases":["map projection","why do world maps look different","why does Greenland look so big"],
+    "sections":[{"heading":"Compare two views","text":"Find a place near the top of a Mercator world map and compare its size on a globe. This kind of map stretches areas near the poles much more than it stretches areas near the equator."}],
+    "facts":["A globe keeps the curved shape of Earth.","An equal-area projection is designed to keep area comparisons accurate."],
+    "terms":["projection","equator","scale"],
+    "questions":[{"text":"Which line circles the middle of the globe?","target":"equator"},{"text":"What measuring lines come together at both poles?","target":"longitude"},{"text":"What are the huge land areas on a world map called?","target":"continents"}],
+    "sources":["usgs-map-projection"],"revision":1,"review":"approved",
+    "quiz":{"question":"Why can two world maps show the same country at different relative sizes?","options":["One map changed the country’s borders overnight","Earth’s poles swap places","Flattening a globe can stretch areas"],"answer":2,"explanation":"Different projections handle the curve differently. Some preserve area comparisons, while others stretch certain places."}
+  },
+  {
+    "id":"continents","title":"What are the continents?","category":"maps-geography","priority":1,
+    "answer":"Continents are Earth’s biggest regions of land. A common way to name them uses seven: Africa, Antarctica, Asia, Australia, Europe, North America, and South America. The list is a way people organize the map. Europe and Asia, for example, share one large stretch of land. Some maps group the two together as Eurasia. Continents are much larger than most countries. Africa holds many countries, while a common school map uses the name Australia for both a country and the smallest continent.",
+    "aliases":["seven continents","how many continents","is a continent a country"],
+    "sections":[],
+    "facts":["Antarctica surrounds the South Pole.","Africa, Asia, Europe, North America, and South America each include many countries."],
+    "terms":["continent","boundary"],
+    "questions":[{"text":"What is the country of Australia like?","target":"australia"},{"text":"Which large country covers much of North America?","target":"canada"},{"text":"Why are continents stretched on some types of maps?","target":"map-projection"}],
+    "sources":["natgeo-map-policy","natgeo-country-australia"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"canada","title":"Canada","category":"countries","priority":1,
+    "answer":"Canada covers a large part of North America, from the Atlantic Ocean in the east to the Pacific Ocean in the west and the Arctic Ocean to the north. A trip across it can take you through rocky mountains, broad plains, forests, and lakes. Its capital, Ottawa, is in the eastern part of the country, near the border between Ontario and Quebec. English and French are the two official languages of Canada’s federal government. Canada shares a land border with the United States.",
+    "aliases":["where is Canada","what is the capital of Canada","Ottawa country"],
+    "sections":[],
+    "facts":["Canada uses the Canadian dollar.","The Rocky Mountains extend into western Canada."],
+    "terms":["capital","continent","currency"],
+    "questions":[{"text":"Which country shares Canada’s southern land border?","target":"united-states"},{"text":"What are the big land regions used on a world map?","target":"continents"},{"text":"Which country in Europe also uses French in government?","target":"france"}],
+    "sources":["natgeo-country-canada","canada-discover-regions"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"united-states","title":"United States","category":"countries","priority":1,
+    "answer":"The United States of America lies in North America and includes 50 states. Most form one connected group between Canada and Mexico. Alaska sits northwest of that group, with part of Canada between them. Hawaii is a group of islands in the Pacific Ocean. The national capital is Washington, D.C., which is a district rather than a state. The country’s landscapes include the Appalachian Mountains in the east, the Rocky Mountains in the west, and the Mississippi River between them.",
+    "aliases":["USA","where is United States","where is Washington DC","how many states are in America"],
+    "sections":[],
+    "facts":["The United States uses the U.S. dollar.","Alaska and Hawaii are two of the 50 states."],
+    "terms":["capital","continent","archipelago","boundary"],
+    "questions":[{"text":"What is the country just north of the 48 connected states?","target":"canada"},{"text":"Which country borders the same group of states to the south?","target":"mexico"},{"text":"In which country is Tokyo the national capital?","target":"japan"}],
+    "sources":["natgeo-country-united-states","usagov-state-governments","canada-discover-regions","world-bank-mexico-geography"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"mexico","title":"Mexico","category":"countries","priority":1,
+    "answer":"Mexico is in North America, just south of the United States. The Pacific Ocean is on one side and the Gulf of Mexico is on the other. The country’s land changes a great deal as you travel. Parts of the north are dry, some central areas have tall mountains, and rain forests grow in warmer parts of the south. Mexico City, the country’s capital, is inland. You can hear mariachi, a kind of Mexican music often played by groups, at some celebrations.",
+    "aliases":["where is Mexico","what is the capital of Mexico","Mexico City country"],
+    "sections":[],
+    "facts":["The Mexican peso is Mexico’s currency.","Part of the border with the United States follows the Rio Grande."],
+    "terms":["continent","capital","currency","boundary"],
+    "questions":[{"text":"Which country lies immediately north of Mexico?","target":"united-states"},{"text":"Where in South America is a different famous rain forest found?","target":"brazil"},{"text":"What names do maps use for Earth’s largest land regions?","target":"continents"}],
+    "sources":["natgeo-country-mexico","world-bank-mexico-geography"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"brazil","title":"Brazil","category":"countries","priority":1,
+    "answer":"Brazil is the largest country in South America by area. Its eastern edge is along the Atlantic Ocean. The Amazon River crosses the north, where a large part of the Amazon rain forest grows. Elsewhere Brazil has landscapes such as mountains and long stretches of coast. The capital is Brasília, a city inland, and Portuguese is the official language. If you look at a map of Brazil and look only for forest, you will miss the large cities and other kinds of land people call home.",
+    "aliases":["where is Brazil","which country is biggest in South America","what is the capital of Brazil","Brasilia"],
+    "sections":[],
+    "facts":["Brazil’s currency is the real.","The Amazon River reaches the Atlantic Ocean along Brazil’s coast."],
+    "terms":["continent","capital","currency"],
+    "questions":[{"text":"What imaginary line crosses northern Brazil?","target":"equator"},{"text":"Which other country in the Americas has rain forests as well as big cities?","target":"mexico"},{"text":"How can a map affect the size you think a country is?","target":"map-projection"}],
+    "sources":["natgeo-country-brazil","brazil-territory"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"egypt","title":"Egypt","category":"countries","priority":1,
+    "answer":"Egypt is a country mostly in northeastern Africa. Much of its land is desert, while fields and cities lie along the Nile River. The river flows north into the Mediterranean Sea. Near the coast it splits into branches across a wide, low area called a delta. Cairo is the capital. Close to it are the stone pyramids and the Great Sphinx at Giza, built thousands of years ago. Egypt today is home to millions of people, as well as to these remains from the past.",
+    "aliases":["where is Egypt","what is the capital of Egypt","Nile delta Cairo"],
+    "sections":[],
+    "facts":["Arabic is Egypt’s official language.","Egypt uses the Egyptian pound."],
+    "terms":["continent","capital","delta","currency"],
+    "questions":[{"text":"Which other African country has a capital called Nairobi?","target":"kenya"},{"text":"How can you tell whether one city is farther north than another?","target":"latitude"},{"text":"How does a world map sort large regions of land?","target":"continents"}],
+    "sources":["natgeo-country-egypt","nasa-egypt-nile","nasa-nightscape-cairo"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"india","title":"India","category":"countries","priority":1,
+    "answer":"India is a country in southern Asia. The Himalayas rise along its north, and a large part of the country reaches south into the Indian Ocean region. Between those places you can find river plains, high land, and busy cities. The national capital is New Delhi. Many languages are used in India, so you may hear different words for the same thing when traveling from one area to another. The Ganges is one of India’s major rivers.",
+    "aliases":["where is India","what is the capital of India","New Delhi country"],
+    "sections":[],
+    "facts":["The Indian rupee is the currency.","The Himalayas rise in northern India and extend into other countries."],
+    "terms":["continent","capital","currency"],
+    "questions":[{"text":"Which other Asian country lies on a chain of islands?","target":"japan"},{"text":"Which country has land along the Indian Ocean in East Africa?","target":"kenya"},{"text":"Which map measurement tells how far north India lies?","target":"latitude"}],
+    "sources":["natgeo-country-india","india-physical-features"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"japan","title":"Japan","category":"countries","priority":1,
+    "answer":"Japan is a chain of islands off the eastern side of Asia. A group of islands is called an archipelago. Honshu is the largest island and the one with Tokyo, the capital. The other three main islands are Hokkaido, Shikoku, and Kyushu. Mountains cover much of the country, so many towns and cities grew on flatter land near the coasts. Mount Fuji, a volcano on Honshu, is Japan’s highest mountain.",
+    "aliases":["where is Japan","what is the capital of Japan","what country is Tokyo in","four main islands of Japan"],
+    "sections":[],
+    "facts":["Japan uses the yen.","Japan includes many smaller islands as well as four main islands."],
+    "terms":["archipelago","capital","currency"],
+    "questions":[{"text":"Which other large country lies in Asia and has the Himalayas in its north?","target":"india"},{"text":"What is another country where much of the land is surrounded by sea?","target":"australia"},{"text":"What word describes the huge map region Japan belongs to?","target":"continents"}],
+    "sources":["natgeo-country-japan","web-japan-geography"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"australia","title":"Australia","category":"countries","priority":1,
+    "answer":"Australia is a country in the Southern Hemisphere. Much of the middle is dry. Many people live in cities nearer the coast, including Sydney. The capital is Canberra, inland from the east coast. Beyond the northeast coast lies the Great Barrier Reef, where corals have built places for other sea life to live. Australia’s animals include kangaroos and koalas, mammals whose young develop in a pouch. Tasmania, an island south of the mainland, is part of Australia too.",
+    "aliases":["where is Australia","what is the capital of Australia","what country has Canberra","great barrier reef country"],
+    "sections":[],
+    "facts":["Australia uses the Australian dollar.","Canberra and Sydney are different cities."],
+    "terms":["hemisphere","capital","currency"],
+    "questions":[{"text":"Where is the line Australia lies south of?","target":"equator"},{"text":"Why is Australia sometimes named twice on a geography chart?","target":"continents"},{"text":"What Asian country is made up of many islands?","target":"japan"}],
+    "sources":["natgeo-country-australia","australia-dfat-geography"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"kenya","title":"Kenya","category":"countries","priority":1,
+    "answer":"Kenya is in East Africa, and the equator runs across it. Its eastern coast meets the Indian Ocean. Farther inland are grasslands, hills, and high mountains. Nairobi is the capital. People use many languages in Kenya, including English and Swahili, its two official languages. Some places have been set aside as parks or reserves where animals such as elephants can live. Many people live in towns or cities and have daily lives very different from a trip through a wildlife park.",
+    "aliases":["where is Kenya","what is the capital of Kenya","Nairobi country"],
+    "sections":[],
+    "facts":["Kenya uses the Kenyan shilling.","Mount Kenya is close to the equator."],
+    "terms":["equator","continent","capital","currency"],
+    "questions":[{"text":"What does it mean to live near zero degrees latitude?","target":"equator"},{"text":"Which northern African country has Cairo as its capital?","target":"egypt"},{"text":"Which South American country also has land on both sides of the equator?","target":"brazil"}],
+    "sources":["natgeo-country-kenya","unesco-mount-kenya","kenya-embassy-geography"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"france","title":"France","category":"countries","priority":1,
+    "answer":"Most of France’s land is in western Europe. Paris, its capital, grew along the Seine River. The city is home to the Eiffel Tower and the Arc de Triomphe. The Alps rise to the east and the Pyrenees run along part of the country’s border with Spain. France also includes places far from Europe, such as French Guiana in South America. French is the country’s official language. If you have seen a price in euros, you have seen the kind of money used in Paris.",
+    "aliases":["where is France","what is the capital of France","where is Paris","Eiffel Tower country"],
+    "sections":[],
+    "facts":["The Seine flows through Paris.","Paris is in the European part of France."],
+    "terms":["capital","boundary","currency"],
+    "questions":[{"text":"In which North American country is French also an official language?","target":"canada"},{"text":"Which South American country borders French Guiana?","target":"brazil"},{"text":"Why can an area on a globe look stretched on paper?","target":"map-projection"}],
+    "sources":["natgeo-country-france","france-guiana-insee","france-tourism-geography","france-tourism-paris"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"ancient-egypt","title":"How did people live in ancient Egypt?","category":"ancient-history","priority":1,
+    "answer":"In ancient Egypt, much of daily life followed the Nile River. Flooding once left rich mud across nearby fields. People farmed that land and carried water to their crops in channels. They caught fish and used river plants to make a writing material called papyrus. Villages and cities depended on the work of farmers, builders, craft workers, and people who could read and write. Over thousands of years, Egyptian rulers and beliefs changed, so a family in one period could live differently from a family many centuries later.",
+    "aliases":["ancient Egyptians","life in ancient Egypt","why was the Nile important to ancient Egypt"],
+    "sections":[{"heading":"How we know","text":"Pictures in tombs show some jobs and tools. Surviving objects and written records give other clues. Some people left far more evidence than others."}],
+    "facts":["The Nile supplied water and useful plants.","Papyrus can mean the river plant or a material made from it."],
+    "terms":["irrigation","civilization","pharaoh","archaeologist"],
+    "questions":[{"text":"Why did an Egyptian king order a giant pyramid built?","target":"great-pyramid"},{"text":"What kinds of signs are carved on ancient Egyptian walls?","target":"hieroglyphs"},{"text":"What does the Nile Delta look like in modern Egypt?","target":"egypt"}],
+    "sources":["british-museum-ancient-egypt","nasa-egypt-nile"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"great-pyramid","title":"Why was the Great Pyramid built?","category":"ancient-history","priority":1,
+    "answer":"The Great Pyramid at Giza was built as a tomb for Khufu, a ruler of ancient Egypt. It rises from a broad, square base and has four sides that slope toward the top. Inside are stone passages and chambers. The pyramid is the largest of three famous pyramids at Giza. It stands near other structures that belonged to a royal burial site, including smaller pyramids and tombs. Egyptologists, people who study ancient Egypt, still ask exactly how builders moved and lifted all that stone.",
+    "aliases":["great pyramid of Giza","who built the Great Pyramid","Khufu tomb","Egyptian pyramids"],
+    "sections":[],
+    "facts":["Khufu was also known as Cheops in Greek.","The Great Pyramid is more than 4,000 years old."],
+    "terms":["pharaoh","archaeologist"],
+    "questions":[{"text":"What did the Nile make possible for ancient Egyptian builders and farmers?","target":"ancient-egypt"},{"text":"What signs can help experts read ancient Egyptian records?","target":"hieroglyphs"},{"text":"Which modern city is close to Giza?","target":"egypt"}],
+    "sources":["egypt-monuments-pyramid","british-museum-ancient-egypt","egypt-monuments-giza","egypt-monuments-khufu"],"revision":2,"review":"approved"
+  },
+  {
+    "id":"hieroglyphs","title":"How do Egyptian hieroglyphs work?","category":"language-writing","priority":1,
+    "answer":"Ancient Egyptian hieroglyphs are signs used to write the Egyptian language. Some are easy to recognize as pictures, such as an owl or an eye. Their job still depends on where they appear in the writing. One sign can stand for a sound. Another can stand for a whole word. Some give a reader a clue about what kind of word appears nearby. A reader therefore needs to know the writing system to understand a line of signs, just as reading English takes more than recognizing a letter’s shape.",
+    "aliases":["Egyptian picture writing","what are hieroglyphics","can pictures represent sounds"],
+    "sections":[],
+    "facts":["In Egyptian hieroglyphs, an owl sign can represent the sound m.","Hieroglyphs appear in carved and painted inscriptions."],
+    "terms":["hieroglyph","inscription","alphabet"],
+    "questions":[{"text":"How did one stone help people work out what the signs meant?","target":"rosetta-stone"},{"text":"What were ancient Egyptian people’s towns and farms like?","target":"ancient-egypt"},{"text":"How did another ancient writing system use marks in clay?","target":"cuneiform"}],
+    "sources":["british-museum-hieroglyphs","met-egypt-writing-educators","met-egypt-bestiary"],"revision":2,"review":"approved"
+  },
+  {
+    "id":"rosetta-stone","title":"How did the Rosetta Stone help people read hieroglyphs?","category":"language-writing","priority":1,
+    "answer":"The Rosetta Stone has the same announcement carved in three kinds of writing. One is in Greek, which scholars could already read. The other two use ancient Egyptian scripts, called hieroglyphs and Demotic. Comparing the parts gave scholars clues to the Egyptian signs. A royal name, for example, could help them make a guess about which signs represented its sounds. The stone is only part of a larger slab. Much of its upper section is missing, so there were gaps to work around.",
+    "aliases":["what is the Rosetta Stone","how did people crack hieroglyphics","three writings Rosetta Stone"],
+    "sections":[{"heading":"A long puzzle","text":"In 1822, Jean-François Champollion announced a breakthrough in reading hieroglyphs. He built on work by several scholars, including Thomas Young."}],
+    "facts":["The announcement was made in 196 BCE.","The stone uses three scripts to write two languages."],
+    "terms":["hieroglyph","inscription"],
+    "questions":[{"text":"How can a picture of an owl help spell a word?","target":"hieroglyphs"},{"text":"Why did many Egyptian settlements grow near the Nile?","target":"ancient-egypt"},{"text":"How were early Mesopotamian records written?","target":"cuneiform"}],
+    "sources":["british-museum-hieroglyphs","british-museum-rosetta-decree"],"revision":2,"review":"approved",
+    "quiz":{"question":"Why was the Greek part useful to early readers of the Rosetta Stone?","options":["It described how to make paper","They could already read Greek","It showed a map of Egypt"],"answer":1,"explanation":"Scholars used the message they could read in Greek to look for patterns in the Egyptian writing."}
+  },
+  {
+    "id":"cuneiform","title":"Why did people press signs into clay?","category":"language-writing","priority":1,
+    "answer":"In ancient Mesopotamia, people used clay tablets as writing surfaces. A writer used a tool called a stylus to press small wedge shapes into soft clay. Groups of wedges formed signs in a system called cuneiform. Keeping track of food and other goods was one early use. People also wrote letters, stories, and math on tablets. A clay tablet could dry and become hard, allowing some messages to last for thousands of years. The marks often survive even when part of the tablet breaks.",
+    "aliases":["cuneiform writing","Sumerian clay tablets","what is wedge writing"],
+    "sections":[],
+    "facts":["The earliest clay records used picture-like signs before wedge-shaped signs became common.","Ancient writers used cuneiform to record several languages, including Sumerian and Akkadian."],
+    "terms":["inscription","civilization","archaeologist"],
+    "questions":[{"text":"What did another ancient writing system do with picture signs?","target":"hieroglyphs"},{"text":"How did people work out the meaning of Egyptian signs?","target":"rosetta-stone"},{"text":"Where can researchers find old records today?","target":"national-archives"}],
+    "sources":["british-museum-mesopotamia","met-origins-of-writing"],"revision":2,"review":"approved"
+  },
+  {
+    "id":"ancient-greece","title":"What was ancient Greece?","category":"ancient-history","priority":1,
+    "answer":"Ancient Greece included many communities around the sea. Some cities and the area around each city formed a separate government. We call these places city-states. Athens and Sparta were two powerful examples. Many communities shared parts of their language and religion, and athletes traveled to meet at festivals. They could also disagree and fight wars. Objects such as painted pots and buildings with carved stone can show how people worked, played sports, and honored their gods.",
+    "aliases":["ancient Greeks","Greek city states","Athens and Sparta"],
+    "sections":[],
+    "facts":["Athens and Sparta had separate governments.","Ancient Greeks gathered for games at Olympia."],
+    "terms":["civilization","archaeologist"],
+    "questions":[{"text":"What happened at the ancient games at Olympia?","target":"ancient-olympics"},{"text":"How did other communities around the Mediterranean keep water flowing into cities?","target":"roman-aqueducts"},{"text":"What was life like along another ancient center of settlement, the Nile?","target":"ancient-egypt"}],
+    "sources":["met-classical-greece","unesco-olympia","met-ancient-olympics"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"ancient-olympics","title":"What happened at the ancient Olympic Games?","category":"sports","priority":1,
+    "answer":"The ancient Olympic Games were held at Olympia in Greece as part of a festival honoring the god Zeus. Athletes competed in events such as running, wrestling, and chariot racing. The games took place every four years. The athletes who could enter were limited by rules that would seem unfair today. For example, the regular events were for male competitors, though a woman who owned the horses and chariot that won a race could receive the prize. You can still see places at Olympia where people gathered and competed.",
+    "aliases":["first olympics","what sports did ancient Olympians play","Olympia games Greece"],
+    "sections":[{"heading":"Finding the field","text":"Modern visitors can see the remains of the stadium at Olympia. Nearby are ruins of temples where worshippers once gathered."}],
+    "facts":["The earliest recorded games are usually dated to 776 BCE.","Ancient Greek pottery shows how some sports looked."],
+    "terms":["archaeologist","civilization"],
+    "questions":[{"text":"Who came from places such as Athens and Sparta?","target":"ancient-greece"},{"text":"What records can help people learn about a different place and time?","target":"national-archives"},{"text":"What roads linked Roman cities long before there were cars?","target":"roman-roads"}],
+    "sources":["unesco-olympia","met-ancient-olympics","getty-ancient-olympics"],"revision":2,"review":"approved"
+  },
+  {
+    "id":"roman-roads","title":"Why did ancient Romans build so many roads?","category":"ancient-history","priority":1,
+    "answer":"Roads tied ancient Rome to places across its growing territory. A good road made it easier to move travelers, soldiers, animals, and goods over land. One well-known example is the Appian Way, which started at Rome and was later extended to the port city of Brindisi. Parts were paved with stone. A road also needed structures such as bridges and places to get through steep land. Some sections of ancient roads remain visible today, giving us a look at how people traveled long before cars.",
+    "aliases":["Appian Way","Via Appia","ancient Rome roads","old Roman roads"],
+    "sections":[],
+    "facts":["Construction of the Appian Way began in 312 BCE.","The Appian Way connected Rome to the southeast of what is now Italy."],
+    "terms":["civilization","trade"],
+    "questions":[{"text":"How did Roman builders move water across valleys?","target":"roman-aqueducts"},{"text":"What communities held sporting festivals in the ancient Mediterranean?","target":"ancient-greece"},{"text":"Why might a flat map change the way distances look?","target":"map-projection"}],
+    "sources":["unesco-appian-way"],"revision":2,"review":"approved"
+  },
+  {
+    "id":"roman-aqueducts","title":"How did Roman aqueducts carry water?","category":"ancient-history","priority":1,
+    "answer":"A Roman aqueduct carried water from a source, such as a spring, toward a place people needed it. Builders gave the water channel a gentle downhill slope so gravity kept the water moving. When the channel reached a valley, a bridge could hold it high enough to keep that slope. The stone arches you see in some pictures are supports. The water flowed in a channel near the top. Other parts of a long journey might run through a tunnel or along the ground.",
+    "aliases":["Roman water bridges","Pont du Gard","why did Romans build arches for water"],
+    "sections":[{"heading":"A bridge that carried water","text":"The Pont du Gard, in present-day France, carried an aqueduct across the Gardon River. The full aqueduct ran roughly 50 kilometers, or 31 miles."}],
+    "facts":["An aqueduct can include a bridge, a tunnel, or a covered channel.","The Pont du Gard supplied water to the ancient Roman city now called Nîmes."],
+    "terms":["aqueduct","irrigation"],
+    "questions":[{"text":"What did Romans build to move people and goods across land?","target":"roman-roads"},{"text":"How did people in ancient Egypt get water to their fields?","target":"ancient-egypt"},{"text":"What is the modern country that includes the Pont du Gard?","target":"france"}],
+    "sources":["unesco-pont-du-gard","pont-du-gard-history"],"revision":2,"review":"approved",
+    "quiz":{"question":"Why did a Roman aqueduct need a gentle slope?","options":["So water would flow downhill","To measure a country’s size","So it could hold more stone statues"],"answer":0,"explanation":"Gravity pulled the water along the slowly descending channel."}
+  },
+  {
+    "id":"declaration-of-independence","title":"What did the Declaration of Independence say?","category":"us-history","priority":1,
+    "answer":"In 1776, the Continental Congress approved a document saying that 13 British colonies in North America were separating from Great Britain. The Declaration of Independence explained why they were taking that step and described rights they said people should have. The war with Britain was already underway. The ideas in the document went farther than what the new country put into practice at the time. For example, slavery continued even after the leaders said that people were equal.",
+    "aliases":["what happened on July 4 1776","Declaration of Independence","why is Fourth of July celebrated"],
+    "sections":[{"heading":"Two dates","text":"Congress adopted the text on July 4, 1776. Delegates began signing the large copy now at the National Archives on August 2. Some signed later."}],
+    "facts":["The document announced independence before the Revolutionary War ended.","The Declaration is preserved at the National Archives."],
+    "terms":["archive","representative"],
+    "questions":[{"text":"What later document gave the new federal government its basic rules?","target":"us-constitution"},{"text":"Where can we find the large signed copy today?","target":"national-archives"},{"text":"How did a later amendment change whose voting rights were protected?","target":"nineteenth-amendment"}],
+    "sources":["archives-us-declaration","archives-declaration-history","archives-thirteenth-amendment"],"revision":2,"review":"approved"
+  },
+  {
+    "id":"us-constitution","title":"What is the U.S. Constitution?","category":"government-civics","priority":1,
+    "answer":"The U.S. Constitution sets the basic rules for the United States government. It says what the different branches of the federal government may do and sets limits on their power. Delegates met in Philadelphia in 1787 to write it. Afterward, states held meetings to decide whether to approve it. The Constitution can be changed by adding amendments. A person trying to understand the rules today needs to look at the original document and the amendments together.",
+    "aliases":["what was written in 1787","constitution for kids","what are America’s basic government rules"],
+    "sections":[],
+    "facts":["The U.S. Constitution was signed in Philadelphia in 1787.","Article V describes how the Constitution can be amended."],
+    "terms":["constitution","amendment","federalism"],
+    "questions":[{"text":"What are the three jobs the Constitution divides among branches?","target":"us-government-branches"},{"text":"Which ten amendments were added first?","target":"us-bill-of-rights"},{"text":"How is power shared between the national government and states?","target":"us-federalism"}],
+    "sources":["archives-us-constitution","archives-us-constitution-transcript"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"us-government-branches","title":"What are the three branches of the U.S. government?","category":"government-civics","priority":1,
+    "answer":"The United States divides federal government work among three branches. The legislative branch, Congress, makes federal laws. The executive branch, led by the president, carries out those laws. The judicial branch includes the federal courts, which decide cases and interpret laws. Each branch has some ways to check the power of another. A president can reject a bill passed by Congress, for example, but Congress can still pass it if enough lawmakers in both parts vote to override that decision.",
+    "aliases":["three branches of government","legislative executive judicial","checks and balances"],
+    "sections":[],
+    "facts":["Congress is part of the legislative branch.","The Supreme Court is part of the judicial branch."],
+    "terms":["legislature","veto","constitution"],
+    "questions":[{"text":"Why does Congress have a House and a Senate?","target":"us-congress"},{"text":"What document divides up these responsibilities?","target":"us-constitution"},{"text":"How does federalism divide a different kind of power?","target":"us-federalism"}],
+    "sources":["usagov-branches","archives-us-constitution-transcript"],"revision":1,"review":"approved",
+    "quiz":{"question":"Which branch includes the federal courts?","options":["Legislative","Executive","Judicial"],"answer":2,"explanation":"The judicial branch includes the Supreme Court and other federal courts."}
+  },
+  {
+    "id":"us-congress","title":"What is the U.S. Congress?","category":"government-civics","priority":1,
+    "answer":"Congress is the part of the United States government that makes federal laws. It has two parts, called the House of Representatives and the Senate. Every state has two senators. States with more people usually have more seats in the House than states with fewer people. Members in both parts study problems, talk about ideas for laws, and vote. To send a bill to the president, the House and Senate generally must agree to the same words in it.",
+    "aliases":["house vs senate","what does Congress do","how many senators per state"],
+    "sections":[],
+    "facts":["The Senate gives each state two seats.","House seats are redistributed among states using results of the census."],
+    "terms":["legislature","representative","census"],
+    "questions":[{"text":"How do we count people to help decide how many House seats each state gets?","target":"us-census"},{"text":"Which branch signs or vetoes bills that Congress passes?","target":"us-government-branches"},{"text":"Where are the basic rules for Congress written?","target":"us-constitution"}],
+    "sources":["us-house-explained","archives-us-constitution-transcript","census-why"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"us-bill-of-rights","title":"What is the U.S. Bill of Rights?","category":"government-civics","priority":1,
+    "answer":"The Bill of Rights is the name for the first ten amendments to the U.S. Constitution. An amendment adds to or changes a rule in the Constitution. The First Amendment protects freedoms that include religion, speech, and the right to gather peacefully. Other amendments set rules about searches and how people are treated in court. These protections put limits on government power. People sometimes disagree about how the words apply to a new situation, so courts may have to decide what the protections require.",
+    "aliases":["first ten amendments","what is First Amendment","Bill of Rights freedoms"],
+    "sections":[],
+    "facts":["The first ten amendments were approved by enough states to take effect in 1791.","Congress originally proposed twelve amendments in this group."],
+    "terms":["constitution","amendment"],
+    "questions":[{"text":"Why is the Bill of Rights part of a larger document?","target":"us-constitution"},{"text":"Which branch interprets laws and decides cases?","target":"us-government-branches"},{"text":"What did an amendment added in 1920 change?","target":"nineteenth-amendment"}],
+    "sources":["archives-us-bill-of-rights","usagov-branches"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"nineteenth-amendment","title":"How did the Nineteenth Amendment change voting?","category":"us-history","priority":1,
+    "answer":"The Nineteenth Amendment says that a U.S. citizen’s right to vote cannot be denied because of their sex. In the years before 1920, some states already allowed women to vote in some or all elections, while others did not. After years of organizing and debate, enough states approved the amendment in 1920 for it to take effect across the country. People still faced other unfair barriers to voting. For instance, officials in some states continued to use racist rules and practices to turn Black citizens away.",
+    "aliases":["when did American women get the right to vote","Women’s suffrage","19th Amendment"],
+    "sections":[{"heading":"A word for the right to vote","text":"Suffrage means the right to vote in political elections. People who worked for women’s suffrage organized meetings, wrote to leaders, and marched."}],
+    "facts":["Tennessee was the state whose approval in 1920 brought the amendment to the number required.","An amendment is an official change or addition to the Constitution."],
+    "terms":["amendment","suffrage","constitution"],
+    "questions":[{"text":"What document did the amendment change?","target":"us-constitution"},{"text":"Where can a researcher find the original amendment?","target":"national-archives"},{"text":"What other rights are protected by amendments?","target":"us-bill-of-rights"}],
+    "sources":["archives-19th-amendment","nps-suffrage"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"us-federalism","title":"What does federalism mean in the United States?","category":"government-civics","priority":1,
+    "answer":"Federalism means that governing power is divided between the national government and the states. The U.S. Constitution gives the national government powers such as making rules for trade across state borders. States have their own governments and make many of the rules people use close to home. For example, they issue driver’s licenses. Some responsibilities overlap, and both levels can collect taxes. The Constitution sets rules that help people decide which level of government may act when there is a disagreement.",
+    "aliases":["federal vs state government","division of powers federalism","what does federalism mean"],
+    "sections":[],
+    "facts":["The Tenth Amendment deals with powers reserved to the states or to the people.","National and state governments each have their own lawmakers."],
+    "terms":["federalism","constitution","amendment","trade"],
+    "questions":[{"text":"Which document sets the rules for sharing government power?","target":"us-constitution"},{"text":"Which group makes federal laws that apply across state lines?","target":"us-congress"},{"text":"How is dividing power between state and federal governments different from dividing the federal government’s work?","target":"us-government-branches"}],
+    "sources":["crs-federalism","archives-us-constitution-transcript","archives-us-bill-of-rights"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"us-census","title":"Why does the United States take a census?","category":"government-civics","priority":1,
+    "answer":"A census counts the people who live in a place. The United States takes a census of the whole country once every ten years. One reason is to figure out how to divide seats in the House of Representatives among the states. Population changes can make a state gain or lose seats after a census. Census numbers also help communities plan. If many more children live in an area than before, for example, planners can use population information while thinking about schools and other services.",
+    "aliases":["what is the census","why does the census happen every ten years","counting the United States population"],
+    "sections":[],
+    "facts":["The first U.S. census took place in 1790.","The 50 states’ population counts are used to divide House seats."],
+    "terms":["census","representative"],
+    "questions":[{"text":"How do House seats differ from Senate seats?","target":"us-congress"},{"text":"Which document calls for a recurring population count?","target":"us-constitution"},{"text":"How can old government records help researchers?","target":"national-archives"}],
+    "sources":["census-why","archives-us-constitution-transcript","census-first-count"],"revision":2,"review":"approved"
+  },
+  {
+    "id":"national-archives","title":"What does the U.S. National Archives keep?","category":"libraries-museums","priority":1,
+    "answer":"The U.S. National Archives takes care of records made by the national government that have lasting value. Some are famous, such as the signed Declaration of Independence. Other records help people learn about their families or communities. They can look at old census records, maps, and photographs. An archive keeps evidence of what happened. Archivists organize these records so people can find them, and they protect fragile pieces from damage so future readers can study them too.",
+    "aliases":["where are original US documents kept","what is an archive","what does an archivist do"],
+    "sections":[],
+    "facts":["Government records can be pictures, recordings, maps, or digital files as well as pages of text.","The National Archives keeps the original signed U.S. Constitution."],
+    "terms":["archive","census","constitution"],
+    "questions":[{"text":"What happened in 1776 that left a famous signed record?","target":"declaration-of-independence"},{"text":"How is a census made and what is it for?","target":"us-census"},{"text":"What other founding document is kept at the National Archives?","target":"us-constitution"}],
+    "sources":["archives-whats-an-archive","archives-us-constitution","archives-us-declaration"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"braille","title":"How do people read braille?","category":"language-writing","priority":1,
+    "answer":"Braille uses patterns of raised dots. A reader feels them with their fingertips. In six-dot braille, each space, called a cell, has room for six dots arranged in two columns. Which dots stick up tells the reader what the pattern means. Braille can represent letters, numbers, and other signs. In some versions, one pattern can stand for a whole word or a group of letters to save space. People use braille to read books, label things, and find their way around buildings.",
+    "aliases":["reading with your fingers","how do blind people read raised dots","Louis Braille"],
+    "sections":[{"heading":"Who invented it?","text":"Louis Braille developed the system as a young student in France. Before braille, some blind students learned to feel the shapes of raised print letters."}],
+    "facts":["A standard braille cell has room for six dots.","Braille is a way of writing and reading a language."],
+    "terms":["braille","alphabet"],
+    "questions":[{"text":"What is an example of a language people can see instead of hear?","target":"american-sign-language"},{"text":"How do the familiar letters in a printed book work?","target":"alphabet"},{"text":"What other ways can a library help people read?","target":"library-of-congress"}],
+    "sources":["loc-about-braille","loc-louis-braille"],"revision":1,"review":"approved",
+    "quiz":{"question":"What part of a braille pattern can a reader feel?","options":["A tiny speaker","Raised dots","A small painted picture"],"answer":1,"explanation":"The positions of raised dots tell the reader which pattern they are touching."}
+  },
+  {
+    "id":"american-sign-language","title":"How does American Sign Language work?","category":"language-writing","priority":1,
+    "answer":"American Sign Language, or ASL, is a language that people can see. Signers use their hands, faces, and bodies to express ideas. A change in where or how a sign moves can matter, much as a change in sound can matter in a spoken language. ASL has its own grammar, the patterns people use to put ideas together. Some signs may look a little like what they mean, but people need to learn the language to understand a conversation.",
+    "aliases":["how do people talk with their hands","what is ASL","do all countries have the same sign language"],
+    "sections":[{"heading":"Many sign languages","text":"ASL is used by many people in the United States and parts of Canada. British Sign Language is different, even though many hearing people in both places speak English."}],
+    "facts":["ASL is a natural language with rules of its own.","Signers can use their face and body to help express a question or idea."],
+    "terms":["alphabet","dialect"],
+    "questions":[{"text":"How do people use touch to read words?","target":"braille"},{"text":"What is an alphabet and what does each of its signs stand for?","target":"alphabet"},{"text":"Which country shares a border with the United States and has ASL users?","target":"canada"}],
+    "sources":["nidcd-asl","sdhhns-sign-language"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"alphabet","title":"What is an alphabet?","category":"language-writing","priority":1,
+    "answer":"An alphabet is a set of letters used to write a language. In an alphabet, letters or groups of letters stand for sounds. This gives a writer a way to spell many words with a small set of signs. English uses 26 letters. The spelling does not always tell you which sound to make. In the word ship, for instance, s and h together stand for one sound. Other writing systems organize signs differently, and languages using the same alphabet can give its letters different jobs.",
+    "aliases":["why do we have an alphabet","what is an abc","letters and sounds"],
+    "sections":[],
+    "facts":["English uses a form of the Latin alphabet.","A letter is a written mark. A sound is something you can say or hear."],
+    "terms":["alphabet","syllable"],
+    "questions":[{"text":"How can you hear the larger sound parts in a word?","target":"syllables"},{"text":"What were some other jobs an ancient picture sign could do?","target":"hieroglyphs"},{"text":"How can a reader feel letters and numbers without looking at them?","target":"braille"}],
+    "sources":["british-museum-hieroglyphs","ufli-syllables","unicode-basic-latin"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"syllables","title":"How can you count syllables in a word?","category":"language-writing","priority":1,
+    "answer":"A syllable is one sound part of a spoken word. Say rainbow slowly and listen for two parts, rain and bow. If you clap once on each part, you clap twice. Frog has one syllable and dinosaur has three. A syllable usually has a vowel sound that you can hear, such as the long a sound in rain. Counting letters on the page will not tell you how many syllables you said. A word like cake has four letters but just one syllable.",
+    "aliases":["count syllables","how many syllables","clap word parts"],
+    "sections":[],
+    "facts":["A spoken word can have one syllable or several syllables.","Different accents can change the number of syllables a speaker says in some words."],
+    "terms":["syllable","dialect","alphabet"],
+    "questions":[{"text":"How does an alphabet show the sounds in a word?","target":"alphabet"},{"text":"How are long and short sounds arranged in music?","target":"musical-rhythm"},{"text":"What does a language use when its words are signed rather than spoken?","target":"american-sign-language"}],
+    "sources":["ufli-syllables"],"revision":1,"review":"approved",
+    "quiz":{"question":"How many syllables do you hear in robot?","options":["One","Two","Three"],"answer":1,"explanation":"Say ro and bot separately. The word has two spoken parts."}
+  },
+  {
+    "id":"portraits","title":"What can a portrait tell us?","category":"visual-arts","priority":1,
+    "answer":"A portrait is an artwork about a person or group of people. It could be a painting, a photograph, a drawing, or a sculpture. An artist can show more than a face. A runner holding a worn pair of shoes might suggest years of practice. A picture of someone at their kitchen table might tell a different story about the same person than a picture on a stage. Looking at choices such as the pose, clothes, and setting can help you see what the artist wanted you to notice.",
+    "aliases":["what is a portrait","what is portraiture","why are objects in paintings of people"],
+    "sections":[],
+    "facts":["The person shown in a portrait is sometimes called the subject or sitter.","When an artist makes a portrait of themself, it is called a self-portrait."],
+    "terms":["portrait","museum"],
+    "questions":[{"text":"How can an artist make multiple copies of a picture by printing?","target":"woodcut-printing"},{"text":"Why does a museum keep artwork even when nobody can see it on display?","target":"museums"},{"text":"How can a photo be a clue about people who lived long ago?","target":"national-archives"}],
+    "sources":["smithsonian-portraiture"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"woodcut-printing","title":"How does a woodcut make a picture?","category":"visual-arts","priority":1,
+    "answer":"To make a woodcut, an artist carves away the parts of a flat block that should stay blank on the picture. The raised parts that are left get covered with ink. Press paper against them and the ink moves to the paper. You can see the same idea in a stamp, where only the raised parts make a mark. One carved block can print several pictures. The print faces the opposite way from the block, so a letter on the block must be reversed to read correctly on paper.",
+    "aliases":["how does relief printmaking work","how are woodcuts made","woodblock print"],
+    "sections":[],
+    "facts":["A woodcut is a kind of relief printing.","Artists can print with different blocks to add different colors."],
+    "terms":["printmaking","portrait"],
+    "questions":[{"text":"What could a print of a person tell us about that person?","target":"portraits"},{"text":"What other method uses a tool and a solid surface to leave marks?","target":"cuneiform"},{"text":"Who looks after a print that is hundreds of years old?","target":"museums"}],
+    "sources":["met-woodcut"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"museums","title":"What goes on behind the scenes in a museum?","category":"libraries-museums","priority":1,
+    "answer":"A museum collects and cares for objects that can teach people something. A museum might hold paintings, historic clothing, fossils, or dried plants. Only part of a big collection fits in the rooms visitors can walk through. Staff also measure, photograph, label, and store objects so they can be found and studied later. A conservator helps protect fragile things. If a piece of cloth can fade in bright light, for example, a museum may show it only under dim light for part of the year.",
+    "aliases":["what do museums do","what is a collection","what is a conservator"],
+    "sections":[],
+    "facts":["The objects a museum has gathered and cares for form its collection.","Researchers can study some objects that are kept in storage."],
+    "terms":["museum","archive","portrait"],
+    "questions":[{"text":"What clues can a painted or photographed portrait give a visitor?","target":"portraits"},{"text":"What kinds of historic records are kept by the National Archives?","target":"national-archives"},{"text":"What tools do people use to find information in a large library?","target":"library-of-congress"}],
+    "sources":["nps-museum-handbook","smithsonian-portraiture"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"library-of-congress","title":"What is the Library of Congress?","category":"libraries-museums","priority":1,
+    "answer":"The Library of Congress is a research library in Washington, D.C. It helps people in Congress find information they need and also makes materials available to the public. Books are only part of what it keeps. Its collections include maps, photographs, sound recordings, and music. A catalog helps people look up what the library has and where to find it. The library also runs a service that makes books available in forms such as braille and audio for eligible readers.",
+    "aliases":["what does Library of Congress do","what does the national library keep","Congress library Washington"],
+    "sections":[],
+    "facts":["The Library of Congress began in 1800.","Some library materials can be viewed online away from Washington, D.C."],
+    "terms":["library","braille","archive"],
+    "questions":[{"text":"What does an archive keep that is different from a library’s books?","target":"national-archives"},{"text":"What is a way to read by touching raised marks?","target":"braille"},{"text":"Which government body does the Library of Congress serve?","target":"us-congress"}],
+    "sources":["loc-about","loc-about-braille"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"orchestra","title":"How do orchestra musicians play together?","category":"music","priority":1,
+    "answer":"An orchestra is a group of musicians who play different instruments together. A typical orchestra includes strings, woodwinds, brass, and percussion. The groups may play different parts at the same time. To line up their sounds, musicians follow written music and listen to each other. Many orchestras have a conductor who uses gestures to show when to start, how fast to play, or when to get quieter. The same group can make a tiny sound or fill a large room with music.",
+    "aliases":["what is an orchestra","why does an orchestra need a conductor","instrument families in an orchestra"],
+    "sections":[],
+    "facts":["Violins and cellos belong to the string family.","Trumpets belong to the brass family."],
+    "terms":["orchestra","rhythm","notation","rehearsal"],
+    "questions":[{"text":"What marks tell musicians which sound to play?","target":"written-music"},{"text":"What is the difference between the beat and the rhythm?","target":"musical-rhythm"},{"text":"Where can researchers find old recordings and music?","target":"library-of-congress"}],
+    "sources":["carnegie-hall-orchestra"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"musical-rhythm","title":"Is rhythm the same as the beat?","category":"music","priority":1,
+    "answer":"The beat is the steady pulse you can tap along to in much music. Rhythm is the pattern made by sounds and silences as time goes by. Try tapping slowly and evenly with one hand while a partner says “I can run.” Your partner can bunch the syllables together or stretch them across more than one tap. In an orchestra or a band, one person can play quick sounds while another plays slow ones, and both can still fit into the same beat.",
+    "aliases":["rhythm versus beat","what is rhythm","what is a beat in music"],
+    "sections":[],
+    "facts":["A pause can be part of a rhythm.","A rhythm can put several short sounds in the time of one beat."],
+    "terms":["rhythm","syllable","notation"],
+    "questions":[{"text":"How can you write down the time a sound lasts?","target":"written-music"},{"text":"How does a large group keep its different parts together?","target":"orchestra"},{"text":"What little sound parts can you clap along with in speech?","target":"syllables"}],
+    "sources":["open-music-theory-rhythm","carnegie-hall-rhythm"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"written-music","title":"How do written notes tell us what to play?","category":"music","priority":1,
+    "answer":"Written music gives performers a set of marks to follow. In a familiar kind of musical notation, notes sit on or between five lines called a staff. Moving a note higher on the staff usually shows that it should sound higher. The note’s shape can tell how long the player should hold it. A rest marks time when that player should be silent. People can learn and share many kinds of music by ear too. Written music is one way to keep a record that others can follow.",
+    "aliases":["how do you read sheet music","what is a music staff","what does a music note mean"],
+    "sections":[],
+    "facts":["A musical staff has five lines in common Western staff notation.","A rest can show a short silence or a long one."],
+    "terms":["notation","rhythm","orchestra"],
+    "questions":[{"text":"What pattern can a mix of short sounds and long sounds make?","target":"musical-rhythm"},{"text":"Why might different musicians in one group read different parts?","target":"orchestra"},{"text":"How does an alphabet use marks to preserve different kinds of sounds?","target":"alphabet"}],
+    "sources":["open-music-theory-pitch","open-music-theory-rhythm"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"basketball","title":"How did basketball begin?","category":"sports","priority":1,
+    "answer":"James Naismith invented basketball in Springfield, Massachusetts, in 1891. He was looking for a game people could play indoors in winter. The first players tried to toss a ball into peach baskets mounted above the floor. At first, the ball had to be taken back out of a basket after a score. The game changed over time. Players in modern basketball can bounce the ball to move with it, and the ball drops straight through an open net when a shot goes in.",
+    "aliases":["who invented basketball","why basketball peach baskets","where was basketball invented"],
+    "sections":[],
+    "facts":["Naismith wrote 13 original rules.","In a standard game, each side has five players on the court at once."],
+    "terms":["dribble"],
+    "questions":[{"text":"What other indoor ball game was invented in western Massachusetts?","target":"volleyball"},{"text":"How do players score when the goal sits on the ground instead?","target":"soccer"},{"text":"Where did athletes in ancient Greece meet to compete?","target":"ancient-olympics"}],
+    "sources":["springfield-basketball","fiba-basketball-rules","fiba-basketball-dribbling"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"volleyball","title":"What are volleyball players trying to do?","category":"sports","priority":1,
+    "answer":"Volleyball teams send a ball over a net and try to land it in the other team’s court. They can also score when the other team makes a mistake, such as hitting the ball out. In indoor volleyball, a team usually has as many as three touches to return the ball. Players often use one touch to receive it, a second to set it up in the air, and a third to strike it over the net. Players try to keep the ball moving without catching it.",
+    "aliases":["how do you play volleyball","volleyball three hits","where was volleyball invented"],
+    "sections":[{"heading":"An indoor beginning","text":"William G. Morgan invented volleyball in Holyoke, Massachusetts, in 1895. He first called it Mintonette."}],
+    "facts":["In standard indoor volleyball, six players on each team are on the court at a time.","A touch while blocking at the net does not count as one of the team’s three hits in indoor volleyball."],
+    "terms":["volley"],
+    "questions":[{"text":"What previous indoor game used baskets instead of a net dividing the court?","target":"basketball"},{"text":"What happens when a ball crosses the goal line in soccer?","target":"soccer"},{"text":"What earlier sports festival still inspires some competitions today?","target":"ancient-olympics"}],
+    "sources":["fivb-history","fivb-rules"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"soccer","title":"How do you score in soccer?","category":"sports","priority":1,
+    "answer":"In soccer, two teams try to get the ball into the other team’s goal. A goal counts when the whole ball goes over the goal line between the posts and under the crossbar, as long as the scoring team has not broken a rule. Players usually move the ball with their feet, but may also play it with other parts of their body, such as their head. The goalkeeper can use their hands in their own penalty area, subject to rules other players do not have.",
+    "aliases":["what is football outside America","soccer goals and goalkeeper","what is soccer"],
+    "sections":[],
+    "facts":["Many countries call the game football.","A full team in the usual outdoor game has eleven players, including the goalkeeper."],
+    "terms":["dribble"],
+    "questions":[{"text":"Which team game normally uses a hoop as its goal?","target":"basketball"},{"text":"How does a team score across a net in volleyball?","target":"volleyball"},{"text":"What is a South American country where soccer is popular?","target":"brazil"}],
+    "sources":["ifab-players","ifab-outcome","ifab-fouls","natgeo-country-brazil"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"modern-olympics","title":"How did the modern Olympic Games begin?","category":"sports","priority":1,
+    "answer":"The first modern Olympic Games opened in Athens, Greece, in 1896. Organizers drew inspiration from games held long before at Olympia. The modern event brought athletes from different countries together to compete. It has changed a great deal since then. There are now summer and winter editions, along with sports that were not in the first modern program. The city that welcomes the athletes can change from one edition to another, so the games are often held far from Greece.",
+    "aliases":["when did the modern Olympics begin","first modern Olympic Games","Athens Olympics 1896"],
+    "sections":[],
+    "facts":["The International Olympic Committee was founded in 1894.","The first modern Winter Olympic Games were held in Chamonix, France, in 1924."],
+    "terms":[],
+    "questions":[{"text":"How did sports at Olympia differ from modern events?","target":"ancient-olympics"},{"text":"Which old indoor sport uses a high basket and became an Olympic sport?","target":"basketball"},{"text":"Where did the first Winter Olympic Games take place?","target":"france"}],
+    "sources":["ioc-history","met-ancient-olympics"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"maize","title":"Where did corn come from?","category":"agriculture-food","priority":1,
+    "answer":"Corn, also called maize, grew into a farm crop from a wild plant called teosinte. This change began thousands of years ago in what is now Mexico. People saved seeds from plants they wanted to grow again. Over many generations, the plants changed a great deal, including the size and shape of the part that holds the kernels. Farmers in different regions grew many kinds of maize. Today, an ear of maize can look very different depending on which variety it is.",
+    "aliases":["where did maize come from","what is teosinte","how did people first grow corn"],
+    "sections":[{"heading":"Tiny clues","text":"Researchers in Mexico found tiny traces of maize on ancient tools. Even when a whole cob has disappeared, those traces can help scientists find when people were using the crop."}],
+    "facts":["Maize was grown in the Americas long before it reached Europe.","Evidence from one site in Mexico suggests maize was present there by about 8,700 years ago."],
+    "terms":["seed bank","archaeologist"],
+    "questions":[{"text":"Where is the present-day country in which maize first became a crop?","target":"mexico"},{"text":"Why might a farmer grow different kinds of plants in the same field over time?","target":"crop-rotation"},{"text":"Where are varieties kept so future farmers can still grow them?","target":"seed-banks"}],
+    "sources":["pnas-maize-evidence","nmai-maize"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"crop-rotation","title":"Why do farmers change crops in a field?","category":"agriculture-food","priority":1,
+    "answer":"Crop rotation means planning to grow different crops in the same place at different times. If a disease can easily spread among one kind of plant, growing an unrelated plant in that field for a while can leave the disease with fewer plants to infect. Different crops can also give the soil different kinds of roots and cover. The plan depends on the land. For example, a gardener growing beans after tomatoes is using a different rotation from a big farm alternating corn and soybeans.",
+    "aliases":["what is crop rotation","why do farmers plant different crops every year","rotating crops"],
+    "sections":[],
+    "facts":["A crop rotation has a planned order that uses more than one kind of crop.","Rotation can help manage some plant diseases."],
+    "terms":["crop rotation","irrigation"],
+    "questions":[{"text":"Where did one major crop in modern rotations come from?","target":"maize"},{"text":"How do farmers supply water during a dry spell?","target":"irrigation"},{"text":"Where can researchers preserve seeds of several varieties?","target":"seed-banks"}],
+    "sources":["usda-nrcs-rotation","umn-rotation"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"seed-banks","title":"Why do people save seeds in seed banks?","category":"agriculture-food","priority":1,
+    "answer":"A seed bank stores seeds so people can grow their plants again in the future. It may hold many varieties of one crop. Some varieties have useful differences, such as growing better in a dry place. For many crops, keeping seeds dry and cold helps them stay alive for a long time. Staff test seeds to see which ones still sprout. When a supply gets too low, the seed bank can arrange to grow plants and gather fresh seeds.",
+    "aliases":["why are seeds stored","what is a seed vault","Svalbard seed vault"],
+    "sections":[{"heading":"An extra copy","text":"The Svalbard Global Seed Vault in Norway keeps backup seed collections that belong to institutions around the world."}],
+    "facts":["Seeds can look almost the same while growing into different varieties.","The Svalbard vault is a backup for seed collections kept elsewhere."],
+    "terms":["seed bank","crop rotation"],
+    "questions":[{"text":"How did saving seeds over time help create corn as we know it?","target":"maize"},{"text":"Why do farmers choose different crops from one season to the next?","target":"crop-rotation"},{"text":"How does another kind of institution preserve things for later study?","target":"museums"}],
+    "sources":["usda-ars-seeds","crop-trust-svalbard"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"irrigation","title":"How do farmers water crops when it does not rain?","category":"agriculture-food","priority":1,
+    "answer":"Irrigation means bringing water to a place where plants need it. A farm may get water from a river, a well, or a place where water has been stored. Sprinklers send water through the air. Other systems let water move along channels, or drip it near each plant’s roots. How much water a farmer uses depends on the soil, crop, weather, and other conditions. Irrigation can help crops grow when the ground is dry, but the water still has to come from a supply that can meet the farm’s needs.",
+    "aliases":["what is irrigation","what is drip irrigation","how do farms water crops"],
+    "sections":[],
+    "facts":["Drip irrigation releases water slowly near plants.","Irrigation water can come from below ground or from an above-ground source."],
+    "terms":["irrigation","crop rotation"],
+    "questions":[{"text":"How did people in ancient Egypt use river water to grow food?","target":"ancient-egypt"},{"text":"How did Roman aqueducts use gravity to move water?","target":"roman-aqueducts"},{"text":"Why might a farmer change which crop grows in a field?","target":"crop-rotation"}],
+    "sources":["usgs-irrigation"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"money","title":"Why do people use money?","category":"economics","priority":1,
+    "answer":"Money makes it easier to buy and sell things. Imagine you make a hat and want a book. If the person with the book does not want a hat, you can sell your hat to someone else and use the money for the book. A common money unit also gives people a way to compare costs. A book priced at ten dollars costs twice as much as one priced at five dollars. People can also save money and use it for something later.",
+    "aliases":["what is money for","why do we need money","functions of money"],
+    "sections":[],
+    "facts":["Coins and paper bills are examples of money people can hold.","Merchants can list prices in a shared money unit such as dollars."],
+    "terms":["currency","trade","barter"],
+    "questions":[{"text":"How could people make a trade without using any money?","target":"barter"},{"text":"What does a shared money unit look like in part of Europe?","target":"euro"},{"text":"Which neighbor of the United States uses the peso?","target":"mexico"}],
+    "sources":["philadelphia-fed-money"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"barter","title":"How does barter work?","category":"economics","priority":1,
+    "answer":"Barter means trading something directly for something else. You might trade a comic you have already read for a book a friend has finished. The two of you would each have something the other wants. But what if your friend has the book and wants a pencil instead? You would have to find a pencil or work out another trade. That is one reason people find it easier to trade many different things when everyone uses the same kind of money.",
+    "aliases":["what is barter","trading without money","trade goods for goods"],
+    "sections":[],
+    "facts":["People can offer to do a job as part of a barter trade.","A barter offer only works when everyone involved accepts the exchange."],
+    "terms":["barter","currency","trade"],
+    "questions":[{"text":"How can money help when two people want different things?","target":"money"},{"text":"What did ancient Romans build that helped goods travel farther?","target":"roman-roads"},{"text":"What is a kind of money used by people in several countries?","target":"euro"}],
+    "sources":["philadelphia-fed-money"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"euro","title":"What is a euro?","category":"economics","priority":1,
+    "answer":"The euro is a kind of money used in many European countries, including France. A euro is divided into 100 cents. If you travel between countries that use the euro, you can compare prices and spend euro coins in either place. Take a close look at a euro coin. One side has a design used in common, while the other side can have a design chosen by the country that issued the coin. Different designs can still have the same value.",
+    "aliases":["what money does France use","what is euro currency","why are euro coins different"],
+    "sections":[],
+    "facts":["Each euro is worth 100 euro cents.","The symbol for the euro is €."],
+    "terms":["currency","trade"],
+    "questions":[{"text":"Where is France, one of the countries that uses the euro?","target":"france"},{"text":"What jobs does a shared kind of money do?","target":"money"},{"text":"How do people agree on a trade without money?","target":"barter"}],
+    "sources":["ecb-our-money","ecb-euro-coins"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"yellowstone","title":"Why was Yellowstone made a national park?","category":"us-history","priority":1,
+    "answer":"Yellowstone became a national park in 1872. An important reason was that people wanted to keep its geysers, hot springs, and other unusual natural features protected and open to visitors. A geyser can send a burst of steam and water up from the ground. One famous geyser, Old Faithful, has drawn visitors for many years. Yellowstone also includes rivers, forests, and habitat for wildlife. Most of the park is in Wyoming, with parts in Montana and Idaho.",
+    "aliases":["first national park","where is Old Faithful","why is Yellowstone protected"],
+    "sections":[{"heading":"How to look","text":"At Yellowstone’s hot areas, visitors stay on boardwalks and other marked paths. Even ground that looks solid can be hot and unsafe."}],
+    "facts":["Yellowstone opened as the first U.S. national park.","It was set aside by a law passed by Congress and signed in 1872."],
+    "terms":[],
+    "questions":[{"text":"What is the branch of government that passed the law creating Yellowstone?","target":"us-congress"},{"text":"What is another country that sets land aside for parks and wildlife?","target":"kenya"},{"text":"How does a museum care for something for future visitors?","target":"museums"}],
+    "sources":["nps-yellowstone","nps-yellowstone-plan","nps-old-faithful"],"revision":1,"review":"approved"
+  }
+]

@@ -20,24 +20,32 @@ function stem(token) {
 }
 
 export function keywords(text) {
-  return [...new Set(normalize(text).split(' ').filter(token => token && !QUESTION_WORDS.has(token)).map(stem))];
+  return [...new Set(searchTokens(text).map(stem))];
 }
 
+function searchTokens(text) {
+  return normalize(text).split(' ').filter(token => token && !QUESTION_WORDS.has(token));
+}
 function editsWithin(first, second, limit) {
   if (Math.abs(first.length - second.length) > limit) return false;
-  let older = [];
-  let previous = Array.from({length: second.length + 1}, (_, i) => i);
+  const outside = limit + 1;
+  let older = new Uint8Array(second.length + 1);
+  let row = new Uint8Array(second.length + 1);
+  let previous = Uint8Array.from({length: second.length + 1}, (_, i) => Math.min(i, outside));
   for (let i = 1; i <= first.length; i++) {
-    const row = [i];
-    for (let j = 1; j <= second.length; j++) {
+    // Cells farther from the diagonal already need too many insertions or deletions.
+    const start = Math.max(1, i - limit);
+    const end = Math.min(second.length, i + limit);
+    row[start - 1] = start === 1 ? i : outside;
+    if (end < second.length) row[end + 1] = outside;
+    for (let j = start; j <= end; j++) {
       row[j] = Math.min(row[j - 1] + 1, previous[j] + 1,
         previous[j - 1] + Number(first[i - 1] !== second[j - 1]));
       if (i > 1 && j > 1 && first[i - 1] === second[j - 2] && first[i - 2] === second[j - 1]) {
         row[j] = Math.min(row[j], older[j - 2] + 1);
       }
     }
-    older = previous;
-    previous = row;
+    [older, previous, row] = [previous, row, older];
   }
   return previous[second.length] <= limit;
 }
@@ -52,7 +60,8 @@ export function buildPostings(records) {
       if (!phrases.has(phrase)) phrases.set(phrase, new Map());
       const exact = phrases.get(phrase);
       exact.set(offset, Math.max(exact.get(offset) ?? 0, index === 0 ? 25 : 20));
-      for (const word of keywords(text)) {
+      const words = new Set(searchTokens(text).flatMap(token => [token, stem(token)]));
+      for (const word of words) {
         if (!postings.has(word)) postings.set(word, new Map());
         const entries = postings.get(word);
         entries.set(offset, Math.max(entries.get(offset) ?? 0, index === 0 ? 6 : 4));
@@ -80,8 +89,12 @@ export function createSearch(index) {
       return seen;
     };
     const exact = add(Object.hasOwn(index.phrases, phrase) ? index.phrases[phrase] : null, 1);
+    let processed = 0;
     for (const token of tokens) {
-      if (token.length > 32) continue;
+      if (token.length > 32) {
+        scores.clear();
+        break;
+      }
       const candidates = add(Object.hasOwn(index.postings, token) ? index.postings[token] : null, 1);
       if (token.length >= 2) {
         vocabulary ??= Object.keys(index.postings);
@@ -94,19 +107,23 @@ export function createSearch(index) {
           }
         }
       }
+      if (processed) {
+        for (const id of scores.keys()) if (!candidates.has(id)) scores.delete(id);
+      }
       for (const [id, value] of candidates) {
-        const score = scores.get(id) ?? {sum: 0, matches: 0, exact: false};
+        if (processed && !scores.has(id)) continue;
+        const score = scores.get(id) ?? {sum: 0};
         score.sum += value;
-        score.matches++;
         scores.set(id, score);
       }
+      if (!scores.size) break;
+      processed++;
     }
     for (const [id, value] of exact) {
-      const score = scores.get(id) ?? {sum: 0, matches: 0};
-      scores.set(id, {...score, sum: score.sum + value, exact: true});
+      const score = scores.get(id) ?? {sum: 0};
+      scores.set(id, {sum: score.sum + value});
     }
-    return [...scores].filter(([, score]) => score.exact || score.matches === tokens.length)
-      .sort(([a, x], [b, y]) => y.sum - x.sum || a - b)
+    return [...scores].sort(([a, x], [b, y]) => y.sum - x.sum || a - b)
       .slice(0, limit).map(([id]) => id);
   };
 }

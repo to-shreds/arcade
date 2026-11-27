@@ -55,7 +55,7 @@ test('dictionary lookup and article reader load only the selected local shards',
     'catalog.json': {counts: {articles: 1, headwords: 1}},
     'articles.json': {cards: [card], index: buildPostings([{label: 'Bat', aliases: ['flying mammal']}])},
     'articles/animals-1.json': {entries: [{...card, answer: 'A mammal that can fly.'}]},
-    'words.json': {cards: [wordCard], exact: {mouse: 0, mice: 0}, index: buildPostings([{label: 'mouse', aliases: ['mice']}])},
+    'words.json': {cards: [wordCard], exact: {mouse: 0, mice: 0}, index: buildPostings([{label: 'mouse', aliases: ['mice', 'mousing']}])},
     'words/m-1.json': {entries: [word]}
   };
   const library = createReferenceLibrary({fetcher: async url => {
@@ -74,6 +74,7 @@ test('dictionary lookup and article reader load only the selected local shards',
   assert.equal(await library.getArticle('tiger'), null);
   assert.deepEqual(await library.findWord('Mice.'), word);
   assert.deepEqual(await library.searchWords('mous'), [wordCard]);
+  assert.deepEqual(await library.searchWords('mousng'), [wordCard]);
   assert.deepEqual(await library.listWords('m'), [wordCard]);
   assert.deepEqual(paths, ['catalog.json', 'catalog.json', 'articles.json', 'articles/animals-1.json',
     'words.json', 'words/m-1.json']);

@@ -1,0 +1,240 @@
+{
+  "inventory": {
+    "articles": 127,
+    "headwords": 271,
+    "senses": 405,
+    "questions": 382,
+    "quizzes": 13
+  },
+  "approved": {
+    "articles": 127,
+    "headwords": 271,
+    "senses": 405,
+    "questions": 382,
+    "quizzes": 13
+  },
+  "taxonomy": {
+    "astronomy": {
+      "label": "Astronomy",
+      "articles": 17,
+      "approved": 17
+    },
+    "space-exploration": {
+      "label": "Space exploration",
+      "articles": 0,
+      "approved": 0
+    },
+    "earth-science": {
+      "label": "Earth science",
+      "articles": 6,
+      "approved": 6
+    },
+    "weather-and-climate": {
+      "label": "Weather & climate",
+      "articles": 7,
+      "approved": 7
+    },
+    "oceans": {
+      "label": "Oceans",
+      "articles": 4,
+      "approved": 4
+    },
+    "physics": {
+      "label": "Physics",
+      "articles": 6,
+      "approved": 6
+    },
+    "chemistry": {
+      "label": "Chemistry",
+      "articles": 5,
+      "approved": 5
+    },
+    "animals": {
+      "label": "Animals",
+      "articles": 2,
+      "approved": 2
+    },
+    "plants": {
+      "label": "Plants",
+      "articles": 3,
+      "approved": 3
+    },
+    "paleontology": {
+      "label": "Fossils & evolution",
+      "articles": 5,
+      "approved": 5
+    },
+    "ecosystems": {
+      "label": "Ecosystems",
+      "articles": 0,
+      "approved": 0
+    },
+    "fungi-microbes": {
+      "label": "Fungi & microbes",
+      "articles": 0,
+      "approved": 0
+    },
+    "conservation": {
+      "label": "Conservation",
+      "articles": 0,
+      "approved": 0
+    },
+    "human-body": {
+      "label": "Human body",
+      "articles": 7,
+      "approved": 7
+    },
+    "health-nutrition": {
+      "label": "Health & nutrition",
+      "articles": 0,
+      "approved": 0
+    },
+    "genetics": {
+      "label": "Genetics",
+      "articles": 0,
+      "approved": 0
+    },
+    "math": {
+      "label": "Math",
+      "articles": 3,
+      "approved": 3
+    },
+    "logic": {
+      "label": "Logic & patterns",
+      "articles": 0,
+      "approved": 0
+    },
+    "computing": {
+      "label": "Computing",
+      "articles": 2,
+      "approved": 2
+    },
+    "digital-safety": {
+      "label": "Digital safety",
+      "articles": 2,
+      "approved": 2
+    },
+    "engineering": {
+      "label": "Engineering",
+      "articles": 2,
+      "approved": 2
+    },
+    "vehicles": {
+      "label": "Vehicles & transportation",
+      "articles": 0,
+      "approved": 0
+    },
+    "infrastructure": {
+      "label": "Infrastructure",
+      "articles": 0,
+      "approved": 0
+    },
+    "maps-geography": {
+      "label": "Maps & geography",
+      "articles": 5,
+      "approved": 5
+    },
+    "countries": {
+      "label": "Countries",
+      "articles": 10,
+      "approved": 10
+    },
+    "landmarks": {
+      "label": "Landmarks",
+      "articles": 0,
+      "approved": 0
+    },
+    "ancient-history": {
+      "label": "Ancient history",
+      "articles": 5,
+      "approved": 5
+    },
+    "world-history": {
+      "label": "World history",
+      "articles": 0,
+      "approved": 0
+    },
+    "us-history": {
+      "label": "U.S. history",
+      "articles": 3,
+      "approved": 3
+    },
+    "government-civics": {
+      "label": "Government & civics",
+      "articles": 6,
+      "approved": 6
+    },
+    "language-writing": {
+      "label": "Language & writing",
+      "articles": 7,
+      "approved": 7
+    },
+    "visual-arts": {
+      "label": "Visual arts",
+      "articles": 2,
+      "approved": 2
+    },
+    "music": {
+      "label": "Music",
+      "articles": 3,
+      "approved": 3
+    },
+    "literature": {
+      "label": "Literature",
+      "articles": 0,
+      "approved": 0
+    },
+    "architecture": {
+      "label": "Architecture",
+      "articles": 0,
+      "approved": 0
+    },
+    "sports": {
+      "label": "Sports",
+      "articles": 5,
+      "approved": 5
+    },
+    "games": {
+      "label": "Games",
+      "articles": 0,
+      "approved": 0
+    },
+    "agriculture-food": {
+      "label": "Agriculture & food",
+      "articles": 4,
+      "approved": 4
+    },
+    "economics": {
+      "label": "Economics",
+      "articles": 3,
+      "approved": 3
+    },
+    "libraries-museums": {
+      "label": "Libraries & museums",
+      "articles": 3,
+      "approved": 3
+    },
+    "inventions": {
+      "label": "Inventions & occupations",
+      "articles": 0,
+      "approved": 0
+    },
+    "everyday-science": {
+      "label": "Everyday science",
+      "articles": 0,
+      "approved": 0
+    }
+  },
+  "sourceCount": 244,
+  "termGaps": [],
+  "safetyFlags": [
+    "ancient-greece",
+    "birds-and-dinosaurs",
+    "crop-rotation",
+    "declaration-of-independence",
+    "dinosaur-extinction",
+    "us-bill-of-rights"
+  ],
+  "readingLengthWarnings": [],
+  "ambiguousForms": []
+}

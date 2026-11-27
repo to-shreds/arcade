@@ -1,6 +1,6 @@
 import {createSearch, isProtectiveQuery, normalize, spelling} from './search.mjs';
 
-const packBase = new URL('./packs/', import.meta.url);
+const packBase = new URL('./packs/catalog.json', import.meta.url);
 const safeId = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const bounded = (value, fallback, maximum) => Number.isInteger(value) ? Math.min(maximum, Math.max(0, value)) : fallback;
 export {isProtectiveQuery};

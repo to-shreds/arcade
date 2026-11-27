@@ -1,0 +1,164 @@
+[
+  {
+    "id":"heart","title":"How does your heart move blood?","category":"human-body","priority":1,
+    "answer":"Put a hand over your chest and you may feel your heart beating. Each beat is a squeeze from a muscle about the size of your fist. The right side sends blood to your lungs to pick up oxygen. The left side sends that blood out to the rest of your body. Each side has a room where blood arrives and another room that pushes blood out. Small flaps called valves open and close so the blood keeps moving in the right direction.",
+    "aliases":["heart","why does my heart beat","blood circulation","heart chambers","what pumps blood"],
+    "sections":[{"heading":"Two trips, one pump","text":"Blood returning from the body takes a short trip through the lungs, then comes back to the heart for the trip around the body."}],
+    "facts":["The heart has four chambers.","An electrical signal helps time each beat."],
+    "terms":["oxygen","valve","chamber","circulation"],
+    "questions":[{"text":"Where does blood pick up oxygen?","target":"lungs"},{"text":"What takes some waste and extra water out of blood?","target":"kidneys"},{"text":"What sends signals to move other muscles?","target":"brain"}],
+    "sources":["nih-heart-anatomy","nih-heart-beats","nih-heart-flow"],"revision":1,"review":"approved",
+    "quiz":{"question":"Where does the right side of your heart send blood next?","options":["The lungs","The feet","The stomach"],"answer":0,"explanation":"The right side sends blood to the lungs, where the blood can pick up oxygen."}
+  },
+  {
+    "id":"lungs","title":"How do lungs get oxygen into your body?","category":"human-body","priority":1,
+    "answer":"When you breathe in, air travels down your windpipe and through branches that get smaller and smaller inside your lungs. At the ends of many branches are clusters of tiny air sacs. Oxygen from the air passes through the thin walls of those sacs and into the blood. A gas called carbon dioxide moves the other way, from blood into the sacs. When you breathe out, some of that carbon dioxide leaves your body. Your heart keeps sending blood past the sacs so it can pick up oxygen.",
+    "aliases":["lungs","how do we breathe","where does oxygen go","breathing","why do we need air"],
+    "sections":[{"heading":"The muscle underneath","text":"A broad muscle called the diaphragm moves down when it tightens, making more room in your chest so air flows into the lungs."}],
+    "facts":["The tiny air sacs are called alveoli.","The left lung is a little smaller than the right, leaving room for the heart."],
+    "terms":["alveolus","oxygen","carbon dioxide","diaphragm","windpipe"],
+    "questions":[{"text":"How does oxygen-rich blood travel around the body?","target":"heart"},{"text":"What material does your digestive system put into blood?","target":"digestion"},{"text":"What part of the body controls how fast we breathe?","target":"brain"}],
+    "sources":["nih-lungs","nih-respiratory","nih-breath-control","nih-brain"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"digestion","title":"Where does food go after you swallow it?","category":"human-body","priority":1,
+    "answer":"Digestion begins before you swallow. Your teeth break up food, and saliva starts breaking down some of it. After you swallow, muscles squeeze food down a tube to your stomach. There it gets churned together with digestive juices. The mixture then moves into your small intestine. There, more juices break food into tiny pieces your body can use, and most nutrients pass out through the intestine wall. Your large intestine takes up water from what is left, and some of the leftovers eventually leave your body as poop.",
+    "aliases":["digestion","how does the stomach work","what happens to food","why do we poop","digestive system"],
+    "sections":[{"heading":"Food moves even when you lie down","text":"Muscles in the wall of the food tube squeeze in waves. This helps push swallowed food along, even when gravity is not pulling it straight down."}],
+    "facts":["The food tube is called the esophagus.","Most nutrients are absorbed in the small intestine."],
+    "terms":["digestion","saliva","stomach","intestine","nutrient","esophagus"],
+    "questions":[{"text":"How do nutrients travel after they enter the blood?","target":"heart"},{"text":"How does your body get rid of some wastes through urine?","target":"kidneys"},{"text":"What other body system takes in something we need to live?","target":"lungs"}],
+    "sources":["nih-digestion"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"kidneys","title":"What do your kidneys do?","category":"human-body","priority":1,
+    "answer":"Your kidneys help keep the right mix of water, salts, and other materials in your blood. Inside each kidney, tiny filters take some water and small materials out of blood. The kidneys then send much of the water and useful materials back. Extra water and some waste leave the kidneys as urine. Thin tubes carry urine to the bladder, where it stays until you pee. These filters work all day, even when you are sleeping or thinking about something else.",
+    "aliases":["kidneys","how do kidneys filter blood","where does pee come from","what makes urine","kidney"],
+    "sections":[{"heading":"A filter plus a return trip","text":"A nephron is one of the kidney’s tiny working units. It includes a filter and a tube that gives the body a chance to take back useful material."}],
+    "facts":["Most people have two kidneys.","A healthy kidney has about a million nephrons."],
+    "terms":["kidney","urine","bladder","filter","nephron"],
+    "questions":[{"text":"What keeps blood moving to the kidneys and back?","target":"heart"},{"text":"Which digestive organ takes up water from leftover food?","target":"digestion"},{"text":"Where does the body get rid of a waste gas?","target":"lungs"}],
+    "sources":["nih-kidneys"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"brain","title":"How does your brain send messages?","category":"human-body","priority":1,
+    "answer":"Reaching for a pencil starts with messages traveling between nerve cells. A nerve cell is called a neuron. Electrical signals travel along a neuron, and chemical messengers can pass information across tiny gaps to other cells. Signals from your eyes help your brain work out where the pencil is. Signals from your brain and spinal cord help tell your arm and hand muscles how to move. Neurons also take part in things such as remembering a story or hearing a friend say your name.",
+    "aliases":["brain","what are neurons","how do nerves work","nervous system","how does brain control movement"],
+    "sections":[{"heading":"Parts have different jobs","text":"Areas near the back of your brain help make sense of what you see. Other areas help plan movement, process sound, or remember what happened."}],
+    "facts":["The spinal cord carries many messages between the brain and body.","Your brain does jobs you do not have to think about, including helping control your breathing."],
+    "terms":["neuron","signal","spinal cord"],
+    "questions":[{"text":"What happens after a sound reaches your ear?","target":"hearing"},{"text":"How does your body pull on bones to move your hand?","target":"skeletal-muscles"},{"text":"What happens when the brain tells breathing muscles to move?","target":"lungs"}],
+    "sources":["nih-brain","nih-breath-control"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"hearing","title":"How do your ears hear?","category":"human-body","priority":1,
+    "answer":"A sound sends vibrations through the air. When those vibrations reach your ear, they make a thin part called the eardrum move. Three tiny bones carry the movement farther into the ear. It makes waves in liquid inside the cochlea, a spiral-shaped part of the inner ear. Tiny hair cells respond to this motion and help turn it into signals. A nerve carries those signals to your brain. Your brain makes sense of them as sounds, such as a dog barking or a bell ringing.",
+    "aliases":["hearing","why can we hear","how ears work","what is an eardrum","how do ears hear sound"],
+    "sections":[{"heading":"Different pitches","text":"Different parts of the cochlea respond especially well to different pitches, from a deep drum to a high whistle."}],
+    "facts":["The three tiny bones are in the middle ear.","The cochlea is filled with fluid."],
+    "terms":["eardrum","cochlea","pitch","signal","vibration"],
+    "questions":[{"text":"How do nerve cells carry the messages your ear starts?","target":"brain"},{"text":"How does air movement become a sound wave?","target":"sound"},{"text":"How does a bat use returning sounds to find its way?","target":"bats"}],
+    "sources":["nih-hearing"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"skeletal-muscles","title":"How do muscles move your bones?","category":"human-body","priority":1,
+    "answer":"When you bend your elbow, muscles near your upper arm put a pull on your bones. Strong strips called tendons attach many muscles to bones. A muscle can shorten and pull, a bit like someone tugging a rope. It cannot push the bone back the other way. To straighten your elbow, a muscle toward the back of your upper arm can pull in another direction. Muscles throughout your body work together to help you stand upright, pick things up, and move without toppling over.",
+    "aliases":["muscles","tendon","how do arms move","how do muscles pull bones","why do muscles work in pairs"],
+    "sections":[],
+    "facts":["The biceps helps bend the elbow.","The triceps helps straighten the elbow."],
+    "terms":["skeletal muscle","tendon","biceps","triceps"],
+    "questions":[{"text":"Where do the signals for a planned movement come from?","target":"brain"},{"text":"Why is the heart’s squeeze important?","target":"heart"},{"text":"How can a bar that turns about a point make a task easier?","target":"levers"}],
+    "sources":["nih-muscles","nih-arm"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"fractions","title":"What does a fraction tell you?","category":"math","priority":1,
+    "answer":"A fraction can tell you how much of a whole you have. Cut a sandwich into four equal parts. One part is one fourth, written 1/4. The bottom number, 4, tells how many equal parts make the whole. The top number, 1, tells how many of those parts you are counting. With three parts, you have 3/4. Fractions can also describe amounts bigger than one whole. Five fourths of a sandwich means a whole sandwich and one extra fourth, if the sandwiches are the same size.",
+    "aliases":["fraction","numerator denominator","what is one fourth","how do fractions work","why do fractions have two numbers"],
+    "sections":[{"heading":"Keep the whole the same","text":"A half of a large sheet of paper may be bigger than a half of a small sheet. The fractions match, while the sheet sizes differ."}],
+    "facts":["The top number is the numerator.","The bottom number is the denominator."],
+    "terms":["fraction","numerator","denominator"],
+    "questions":[{"text":"How can two fractions with different numbers be equal?","target":"equivalent-fractions"},{"text":"How can square tiles help measure the amount of a surface?","target":"area"},{"text":"Why does the place of a digit matter in a number?","target":"binary"}],
+    "sources":["math-fractions","math-fractions-line"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"equivalent-fractions","title":"How can 1/2 and 2/4 be equal?","category":"math","priority":1,
+    "answer":"Draw two strips of the same length. Divide one into two equal parts and shade one part. Divide the other into four equal parts and shade two parts. Both strips are shaded to exactly the same point. That is why 1/2 and 2/4 are equivalent fractions. They describe the same amount using parts of different sizes. On a number line, these two fractions also land at the same spot, halfway between 0 and 1.",
+    "aliases":["equivalent fractions","same value fractions","why is two fourths one half","is half the same as two quarters"],
+    "sections":[],
+    "facts":["3/6 and 1/2 name the same number.","When both the top and bottom numbers are multiplied by 2, the fraction keeps its value."],
+    "terms":["equivalent","fraction","number line"],
+    "questions":[{"text":"What do the top and bottom numbers in a fraction mean?","target":"fractions"},{"text":"How does grouping squares into rows make them easier to count?","target":"area"},{"text":"What’s a set of steps we could use to compare drawings?","target":"algorithms"}],
+    "sources":["math-fractions-equivalent"],"revision":1,"review":"approved",
+    "quiz":{"question":"Which fraction lands at the same spot as 1/2?","options":["1/4","2/3","3/6"],"answer":2,"explanation":"Three out of six equal pieces cover half the whole."}
+  },
+  {
+    "id":"area","title":"How do you measure area?","category":"math","priority":1,
+    "answer":"Area tells how much flat space a shape covers. Picture a rectangle made of square tiles that all have the same size. If it has three rows with four tiles in each row, it covers twelve square units. You can count each tile or multiply three by four. This works when the squares fill the shape with no gaps or overlaps. Area measures the inside of a shape. If you instead measured all the way around its edge, you would be finding its perimeter.",
+    "aliases":["area","how do you find area of a rectangle","perimeter vs area","square units","area compared with perimeter"],
+    "sections":[],
+    "facts":["A square centimeter is the area of a square one centimeter on each side.","A 3-by-4 rectangle covers 12 square units."],
+    "terms":["area","perimeter","rectangle"],
+    "questions":[{"text":"How can you describe just part of a rectangle’s area?","target":"fractions"},{"text":"How can shading two equally sized rectangles show equal fractions?","target":"equivalent-fractions"},{"text":"Why can two flat maps make a country look like two different sizes?","target":"map-projection"}],
+    "sources":["math-area","math-perimeter"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"binary","title":"Why do computers use 0s and 1s?","category":"computing","priority":1,
+    "answer":"A computer can store a tiny piece of information in one of two states. We give those states the names 0 and 1. One such choice is called a bit. Put bits together and you can make patterns. A set of agreed rules can tell a computer which pattern stands for a letter, a number, or a color. Binary numbers use only 0 and 1. Their places count in ones, twos, fours, eights, and so on, each place worth twice as much as the one to its right.",
+    "aliases":["binary","bits","how computers store data","why computers use zeros and ones","0 and 1 in computers"],
+    "sections":[{"heading":"Read 101 in binary","text":"Start at the right. There is one 1, no 2s, and one 4. Add them together and you get 5."}],
+    "facts":["One byte is eight bits.","Three bits can make eight different patterns."],
+    "terms":["binary","bit","byte"],
+    "questions":[{"text":"What decides how a computer works with these patterns?","target":"algorithms"},{"text":"How can electricity travel through a path that opens and closes?","target":"electric-circuits"},{"text":"What is another way numbers can show amounts?","target":"fractions"}],
+    "sources":["csu-binary","nist-byte"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"algorithms","title":"What is an algorithm?","category":"computing","priority":1,
+    "answer":"An algorithm is a set of steps for solving a problem or doing a job. Imagine looking for your name in a list that is sorted from A to Z. One plan is to start at the top and read each name in order. Another is to start near the middle and decide which half to keep looking in. Both can find your name, but the second plan can save time on a long sorted list. Computers can follow algorithms when each step is clear enough for them to carry it out.",
+    "aliases":["algorithm","how do computers find words","what are instructions in coding","how can you search a sorted list"],
+    "sections":[{"heading":"A useful rule can have a condition","text":"If the name at the middle comes before yours, look in the later half. If it comes after yours, look in the earlier half."}],
+    "facts":["An algorithm can be followed by a person as well as by a computer.","Fast ways of looking through a sorted list depend on the list being in order."],
+    "terms":["algorithm","condition"],
+    "questions":[{"text":"How does a computer represent information while it works?","target":"binary"},{"text":"How can one short set of steps help you count a rectangle’s tiles?","target":"area"},{"text":"What clues should a person check before following a message’s instructions?","target":"phishing"}],
+    "sources":["csu-searching"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"phishing","title":"What is phishing?","category":"digital-safety","priority":1,
+    "answer":"Phishing is a trick where someone makes a message look trustworthy to get you to give them something or do something. They might ask for a password, send a link that leads to a fake sign-in page, or try to get you to open a file. Some messages pretend to be from a familiar game or website. If a message surprises you or asks you to rush, stop before you tap anything. Show it to a trusted grown-up who can help check where it came from.",
+    "aliases":["phishing","fake email","is this sign in link safe","someone online asks me for my password","how to spot a suspicious message"],
+    "sections":[],
+    "facts":["A message can have a familiar logo and still be fake.","An unexpected request for a password is a reason to pause and ask for help."],
+    "terms":["phishing","password","link"],
+    "questions":[{"text":"What does a password help protect?","target":"passwords"},{"text":"How do programs follow instructions?","target":"algorithms"},{"text":"How can a computer store the letters in a message?","target":"binary"}],
+    "sources":["ftc-phishing"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"passwords","title":"Why do you need a password?","category":"digital-safety","priority":1,
+    "answer":"A password is a secret you enter to help show you are allowed to sign in to an account. If someone else learns it, they may be able to sign in as you. A long password that is hard to guess helps protect the account. Using a different one on each account helps too. Then learning one password does not give someone the same secret for all your accounts. If you are setting up an account, a trusted grown-up can help you choose a password and a safe way to keep it.",
+    "aliases":["password","why use passwords","what is a strong password","should I share my password"],
+    "sections":[],
+    "facts":["A familiar pet name by itself can be easy to guess.","A password manager can remember different passwords with help from its owner."],
+    "terms":["password","account","password manager"],
+    "questions":[{"text":"What kind of message might try to steal a password?","target":"phishing"},{"text":"What rules help a computer store typed letters?","target":"binary"},{"text":"What is the name for a set of clear computer instructions?","target":"algorithms"}],
+    "sources":["ftc-passwords"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"levers","title":"How does a lever make a job easier?","category":"engineering","priority":1,
+    "answer":"A lever is a stiff piece that turns around a fixed point. A seesaw is a lever, and the support under its middle is the turning point, called a fulcrum. If you push down on one end, the other end goes up. Moving the turning point closer to the thing you want to lift can make the lift take less force. In return, the end you push has to move farther than the object rises. The same trade can help a crowbar lift a heavy lid.",
+    "aliases":["lever","fulcrum","how does a seesaw work","what makes lifting easier","simple machine lever"],
+    "sections":[{"heading":"Try it with a ruler","text":"Balance a ruler across a large eraser. Put a second eraser on one end and push gently on the other. Try moving the support toward the eraser you are lifting."}],
+    "facts":["A fulcrum is the point about which a lever turns.","A playground seesaw is a lever."],
+    "terms":["lever","fulcrum","force"],
+    "questions":[{"text":"What pulls the object you are trying to lift toward the ground?","target":"gravity"},{"text":"How can a rope over a wheel change which way you pull?","target":"pulleys"},{"text":"How do tendons pull on the bones in your arm?","target":"skeletal-muscles"}],
+    "sources":["te-simple-machines","te-levers"],"revision":1,"review":"approved"
+  },
+  {
+    "id":"pulleys","title":"How does a pulley help lift something?","category":"engineering","priority":1,
+    "answer":"A pulley is a wheel with a groove that guides a rope or cable. Hang one pulley from a support, run a rope over it, and tie a load to one end. You can pull down on the other end to make the load rise. That single fixed pulley changes the direction of your pull. Using more pulleys in a different arrangement can also make a big load easier to lift. The trade is that you have to pull a longer stretch of rope to raise the load the same distance.",
+    "aliases":["pulley","how does a crane lift","why does a pulley help","simple machine pulley","how can pulling down lift something"],
+    "sections":[],
+    "facts":["A fixed pulley can change the direction of a pull.","Some cranes use groups of pulleys to lift heavy loads."],
+    "terms":["pulley","force","load"],
+    "questions":[{"text":"What other simple machine trades a longer movement for a smaller push?","target":"levers"},{"text":"Why does a raised load fall if nothing holds it up?","target":"gravity"},{"text":"How do muscles and tendons create a pull inside your arm?","target":"skeletal-muscles"}],
+    "sources":["te-simple-machines","te-pulleys"],"revision":1,"review":"approved"
+  }
+]

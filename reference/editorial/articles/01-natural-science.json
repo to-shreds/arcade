@@ -1,0 +1,2408 @@
+[
+  {
+    "id": "solar-system",
+    "title": "Our solar system",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "The solar system is our Sun and everything held in orbit by its gravity. That includes eight planets, their moons, dwarf planets, and smaller objects such as asteroids and comets. Starting closest to the Sun, the planets are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. The first four have rocky ground. The four beyond them are much bigger and have deep layers of gas. Earth travels around the Sun once a year. Each of the other planets has its own path and takes a different amount of time to make the trip.",
+    "aliases": [
+      "What are the eight planets in order?",
+      "What is in our solar system?",
+      "How many planets go around the Sun?"
+    ],
+    "sections": [
+      {
+        "heading": "One star among many",
+        "text": "The solar system is part of the Milky Way. Other stars in our galaxy have planets of their own."
+      }
+    ],
+    "facts": [
+      "There is one star in our solar system: the Sun.",
+      "Neptune is the farthest of the eight planets from the Sun."
+    ],
+    "terms": [
+      "solar system",
+      "gravity",
+      "planet",
+      "star"
+    ],
+    "questions": [
+      {
+        "text": "What powers the star at the center of our solar system?",
+        "target": "sun"
+      },
+      {
+        "text": "Which planet makes the quickest trip around the Sun?",
+        "target": "mercury"
+      },
+      {
+        "text": "Why is Pluto in a different group from the eight planets?",
+        "target": "pluto"
+      },
+      {
+        "text": "What is the Milky Way?",
+        "target": "galaxies"
+      }
+    ],
+    "sources": [
+      "nasa-solar-system",
+      "nasa-planets"
+    ],
+    "revision": 1,
+    "review": "approved",
+    "quiz": {
+      "question": "Which planet comes right after Earth if you travel away from the Sun?",
+      "options": [
+        "Saturn",
+        "Venus",
+        "Mars"
+      ],
+      "answer": 2,
+      "explanation": "Earth is third from the Sun. Mars is fourth."
+    }
+  },
+  {
+    "id": "sun",
+    "title": "The Sun, our nearest star",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "The Sun is a star close enough to warm our planet and light up the daytime sky. Other stars can look like tiny dots because they are so far away. Deep inside the Sun, small pieces of atoms join to make larger ones. This process, called nuclear fusion, gives off energy. Some of that energy reaches us as light. The Sun is huge compared with Earth. Its gravity keeps Earth and the other planets moving around it instead of drifting off into space.",
+    "aliases": [
+      "Why does the Sun shine?",
+      "Is the Sun a star?",
+      "Where does sunlight come from?"
+    ],
+    "sections": [],
+    "facts": [
+      "Sunlight takes about eight minutes to reach Earth.",
+      "Hydrogen and helium make up most of the Sun."
+    ],
+    "terms": [
+      "star",
+      "atom",
+      "energy",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "text": "What objects travel around the Sun?",
+        "target": "solar-system"
+      },
+      {
+        "text": "Why does the Moon sometimes get in the way of sunlight?",
+        "target": "solar-eclipses"
+      },
+      {
+        "text": "Where is the Sun in the bigger universe?",
+        "target": "galaxies"
+      }
+    ],
+    "sources": [
+      "nasa-sun",
+      "nasa-solar-system"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mercury",
+    "title": "Mercury, the closest planet to the Sun",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "Mercury is the smallest planet in our solar system and the closest one to the Sun. Its rocky ground is covered in round dents called craters. These formed when space rocks struck the surface. Mercury goes around the Sun in just 88 Earth days, so it has the shortest year of any planet. It spins slowly, though, and daytime on a patch of ground can last a very long time. With hardly any gas around the planet to hold heat, the ground can get very hot in sunlight and very cold in darkness.",
+    "aliases": [
+      "Which planet is closest to the Sun?",
+      "How long is a year on Mercury?",
+      "What is the smallest planet?"
+    ],
+    "sections": [],
+    "facts": [
+      "Mercury has no moons.",
+      "Mercury’s surface has craters like the Moon’s."
+    ],
+    "terms": [
+      "orbit",
+      "planet",
+      "rotation"
+    ],
+    "questions": [
+      {
+        "text": "Why is Venus even hotter than Mercury?",
+        "target": "venus"
+      },
+      {
+        "text": "Where do some of the rocks that leave craters come from?",
+        "target": "asteroids"
+      },
+      {
+        "text": "How does the Sun heat a planet?",
+        "target": "sun"
+      }
+    ],
+    "sources": [
+      "nasa-mercury",
+      "nasa-sun"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "venus",
+    "title": "Venus, the hottest planet",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "Venus is the second planet from the Sun, almost the same size as Earth. Its air is mostly a gas called carbon dioxide. This thick layer slows the loss of heat to space, so Venus has a hotter surface than Mercury, even though Mercury is closer to the Sun. Venus is wrapped in clouds that hide its ground from ordinary cameras. It shines brightly in our sky because those clouds reflect sunlight. Venus can appear near the horizon before sunrise or after sunset, depending on where it is in its trip around the Sun.",
+    "aliases": [
+      "Why is Venus so hot?",
+      "What is the hottest planet?",
+      "What is the evening star?"
+    ],
+    "sections": [],
+    "facts": [
+      "Venus spins in the opposite direction from Earth.",
+      "Venus has no moons."
+    ],
+    "terms": [
+      "atmosphere",
+      "gas",
+      "orbit"
+    ],
+    "questions": [
+      {
+        "text": "What is it like on the planet closer to the Sun?",
+        "target": "mercury"
+      },
+      {
+        "text": "How is Earth different from Venus?",
+        "target": "earth"
+      },
+      {
+        "text": "What lights both Venus and Earth?",
+        "target": "sun"
+      }
+    ],
+    "sources": [
+      "nasa-venus",
+      "nasa-planets"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "earth",
+    "title": "Earth, our home planet",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "Earth is the third planet from the Sun and the only place where we know life exists. Most of its surface is covered by water. A layer of gases called the atmosphere surrounds the planet. We breathe part of that mixture. Earth spins about once a day. When your part of Earth faces the Sun, it is daytime. When it faces away from the Sun, it is night. At the same time Earth travels around the Sun, completing one trip in about a year.",
+    "aliases": [
+      "What is special about Earth?",
+      "Why do we have day and night?",
+      "What planet do we live on?"
+    ],
+    "sections": [],
+    "facts": [
+      "Earth has one Moon.",
+      "Earth’s air is mostly nitrogen and oxygen."
+    ],
+    "terms": [
+      "planet",
+      "atmosphere",
+      "orbit",
+      "rotation"
+    ],
+    "questions": [
+      {
+        "text": "Why is July summer in some places and winter in others?",
+        "target": "seasons"
+      },
+      {
+        "text": "Why does Earth’s Moon seem to change shape?",
+        "target": "moon-phases"
+      },
+      {
+        "text": "What have scientists found about water on Mars?",
+        "target": "mars"
+      }
+    ],
+    "sources": [
+      "nasa-earth"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mars",
+    "title": "Mars, the red planet",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "Mars looks red from far away because its dust and rocks contain a kind of iron that has rusted. Up close, the ground can also look brown, tan, or gold. Mars is the fourth planet from the Sun. It has thin air, cold ground, two small moons, and a volcano named Olympus Mons. Robots sent from Earth have found signs that rivers and lakes existed there long ago. They study the rocks and soil to find out what Mars used to be like.",
+    "aliases": [
+      "Why is Mars red?",
+      "Was there water on Mars?",
+      "What are the moons of Mars?"
+    ],
+    "sections": [],
+    "facts": [
+      "The two Martian moons are Phobos and Deimos.",
+      "Mars is about half as wide as Earth."
+    ],
+    "terms": [
+      "atmosphere",
+      "moon",
+      "mineral"
+    ],
+    "questions": [
+      {
+        "text": "How does Mars compare with our own planet?",
+        "target": "earth"
+      },
+      {
+        "text": "Is rusty dust the same thing as Jupiter’s red spot?",
+        "target": "jupiter"
+      },
+      {
+        "text": "How can melted rock build a mountain?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "nasa-mars",
+      "nasa-solar-system"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "jupiter",
+    "title": "Jupiter, the biggest planet",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "Jupiter is the fifth planet from the Sun and the biggest in our solar system. It is about eleven times as wide as Earth. It has cloud bands that wrap around it and a huge storm called the Great Red Spot. Jupiter is called a gas giant because most of it is hydrogen and helium. You could not land on solid ground like Earth’s surface there. Jupiter also has moons of its own. With a small telescope, you can often see four of its largest moons as little points of light.",
+    "aliases": [
+      "What is the biggest planet?",
+      "What is Jupiter’s Great Red Spot?",
+      "Why is Jupiter a gas giant?"
+    ],
+    "sections": [],
+    "facts": [
+      "Jupiter has faint rings.",
+      "The Great Red Spot is a storm."
+    ],
+    "terms": [
+      "planet",
+      "gas",
+      "moon"
+    ],
+    "questions": [
+      {
+        "text": "Which other gas giant has easy-to-see rings?",
+        "target": "saturn"
+      },
+      {
+        "text": "What is different about a star made mostly of the same gases?",
+        "target": "sun"
+      },
+      {
+        "text": "What gives a rocky planet like Mars its red color?",
+        "target": "mars"
+      }
+    ],
+    "sources": [
+      "nasa-jupiter",
+      "nasa-planets"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "saturn",
+    "title": "Saturn and its rings",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "Saturn is the sixth planet from the Sun. The wide rings around it are made of countless pieces of ice and rock. Some pieces are as small as specks of dust. The pieces look like smooth bands from a distance, but each piece moves around Saturn on its own path. There are gaps between some bands. Saturn itself is a big planet made mainly of the gases hydrogen and helium. Just like Jupiter, Saturn has no rocky surface where you could stand.",
+    "aliases": [
+      "What are Saturn’s rings made of?",
+      "Which planet has rings?",
+      "What is the sixth planet?"
+    ],
+    "sections": [],
+    "facts": [
+      "Saturn takes about 29 Earth years to go around the Sun.",
+      "The main rings are very thin compared with their width."
+    ],
+    "terms": [
+      "orbit",
+      "planet",
+      "gas"
+    ],
+    "questions": [
+      {
+        "text": "What makes Jupiter another gas giant?",
+        "target": "jupiter"
+      },
+      {
+        "text": "How can a planet spin on its side?",
+        "target": "uranus"
+      },
+      {
+        "text": "What keeps one object moving around another?",
+        "target": "gravity"
+      }
+    ],
+    "sources": [
+      "nasa-saturn",
+      "nasa-planets"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "uranus",
+    "title": "Uranus, the planet on its side",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "Uranus is the seventh planet from the Sun. If Earth’s spin looks a bit like a tilted spinning top, the spin of Uranus looks more like that of a rolling wheel. Its axis, the line about which it turns, points almost sideways compared with most planets. That gives Uranus very long seasons as it travels around the Sun. Like Neptune, Uranus is called an ice giant. Deep inside it are materials that form familiar kinds of ice in colder places, even though they are very hot and squashed together inside the planet.",
+    "aliases": [
+      "What planet spins on its side?",
+      "Why are Uranus’s seasons unusual?",
+      "What is the seventh planet?"
+    ],
+    "sections": [],
+    "facts": [
+      "A year on Uranus lasts about 84 Earth years.",
+      "Uranus has rings, though they are much fainter than Saturn’s."
+    ],
+    "terms": [
+      "axis",
+      "orbit",
+      "rotation"
+    ],
+    "questions": [
+      {
+        "text": "How does Earth’s smaller tilt cause seasons?",
+        "target": "seasons"
+      },
+      {
+        "text": "Which other planet is an ice giant?",
+        "target": "neptune"
+      },
+      {
+        "text": "Why can we see Saturn’s rings more easily?",
+        "target": "saturn"
+      }
+    ],
+    "sources": [
+      "nasa-uranus",
+      "nasa-saturn"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "neptune",
+    "title": "Neptune, the farthest planet",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "Neptune is the eighth planet from the Sun, so a trip around the Sun takes about 165 Earth years. It is cold at the tops of its clouds, and powerful winds sweep across them. Neptune is an ice giant like Uranus. The name describes what it is made of, including large amounts of materials such as water and methane. It does not have a hard, icy ground to skate on. Astronomers found Neptune after working out that the pull of another planet could explain small changes in the path of Uranus.",
+    "aliases": [
+      "What is the farthest planet?",
+      "How was Neptune found?",
+      "What is the eighth planet?"
+    ],
+    "sections": [],
+    "facts": [
+      "Triton is Neptune’s largest moon.",
+      "Neptune goes around the Sun more slowly than Earth does."
+    ],
+    "terms": [
+      "orbit",
+      "gravity",
+      "moon"
+    ],
+    "questions": [
+      {
+        "text": "What other ice giant tipped astronomers off about Neptune?",
+        "target": "uranus"
+      },
+      {
+        "text": "What tiny world usually travels farther out than Neptune?",
+        "target": "pluto"
+      },
+      {
+        "text": "How does gravity affect the path of something in space?",
+        "target": "gravity"
+      }
+    ],
+    "sources": [
+      "nasa-neptune"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pluto",
+    "title": "Why Pluto is a dwarf planet",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "Pluto is a small world of rock and ice that goes around the Sun. It is round like a planet, but its gravity does not control its path’s neighborhood. Pluto shares that area with many other objects, and Neptune’s pull helps shape Pluto’s path. That is one difference between a dwarf planet and one of the eight planets. Pluto also has moons of its own. In 2015 a spacecraft called New Horizons flew past Pluto and showed us its mountains, plains, and a huge bright area shaped a little like a heart.",
+    "aliases": [
+      "Is Pluto still a planet?",
+      "Why is Pluto not a planet?",
+      "Which dwarf planet has a heart shape?"
+    ],
+    "sections": [],
+    "facts": [
+      "Pluto takes about 248 Earth years to orbit the Sun.",
+      "Pluto’s biggest moon is Charon."
+    ],
+    "terms": [
+      "dwarf planet",
+      "gravity",
+      "orbit"
+    ],
+    "questions": [
+      {
+        "text": "Which of the eight planets is Pluto’s near neighbor?",
+        "target": "neptune"
+      },
+      {
+        "text": "What other icy objects travel around the Sun?",
+        "target": "comets"
+      },
+      {
+        "text": "How do all eight planets fit into the solar system?",
+        "target": "solar-system"
+      }
+    ],
+    "sources": [
+      "nasa-pluto",
+      "nasa-planets",
+      "nasa-pluto-resonance"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "moon-phases",
+    "title": "Why the Moon changes shape in the sky",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "The Moon is always round, even when it looks like a thin slice. Usually, sunlight lights up one half of the Moon. As the Moon travels around Earth, we see different amounts of that bright half. A full moon shows almost all of it. A new moon happens when the lit half mostly faces away from us. The changing views are called the Moon’s phases. They repeat about every month. Earth’s shadow causes a lunar eclipse, which is a separate event from the usual phases.",
+    "aliases": [
+      "Why does the Moon change shape?",
+      "What causes moon phases?",
+      "Why is there a crescent moon?"
+    ],
+    "sections": [
+      {
+        "heading": "Where to see a full moon",
+        "text": "Around full moon, the Moon rises roughly when the Sun sets. They look nearly opposite each other in the sky."
+      }
+    ],
+    "facts": [
+      "We can sometimes see the Moon in daylight.",
+      "The shape we see depends on where Earth, the Moon, and the Sun are."
+    ],
+    "terms": [
+      "moon",
+      "orbit",
+      "eclipse"
+    ],
+    "questions": [
+      {
+        "text": "Why does the Moon sometimes block the Sun?",
+        "target": "solar-eclipses"
+      },
+      {
+        "text": "How does the Moon help raise the ocean?",
+        "target": "tides"
+      },
+      {
+        "text": "Where does the light on the Moon come from?",
+        "target": "sun"
+      }
+    ],
+    "sources": [
+      "nasa-moon-phases",
+      "nasa-sun"
+    ],
+    "revision": 1,
+    "review": "approved",
+    "quiz": {
+      "question": "What usually makes the Moon look like a crescent?",
+      "options": [
+        "It becomes thinner.",
+        "We see only a small part of its sunlit half.",
+        "Clouds always cover the rest."
+      ],
+      "answer": 1,
+      "explanation": "The Moon stays round. Our view of its sunlit half changes as it moves around Earth."
+    }
+  },
+  {
+    "id": "solar-eclipses",
+    "title": "How a solar eclipse works",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "A solar eclipse happens when the Moon crosses in front of the Sun as seen from part of Earth. The Moon’s shadow falls on a patch of Earth. People in the darkest part of the shadow can have a total eclipse, when the Moon appears to cover the Sun’s bright face for a short time. People nearby may see a partial eclipse, in which only a piece of the Sun is hidden. The Moon’s path is tilted, so it usually passes a little above or below the Sun in our sky at new moon.",
+    "aliases": [
+      "What is a solar eclipse?",
+      "Why does the Sun disappear?",
+      "Why is there no eclipse every month?"
+    ],
+    "sections": [],
+    "facts": [
+      "A partial eclipse and a total eclipse can happen in different places during the same event.",
+      "Never use ordinary sunglasses to look at the Sun during an eclipse. Ask a grown-up to help you use safe solar viewing glasses or an indirect viewer."
+    ],
+    "terms": [
+      "eclipse",
+      "moon",
+      "orbit"
+    ],
+    "questions": [
+      {
+        "text": "What does new moon mean the rest of the time?",
+        "target": "moon-phases"
+      },
+      {
+        "text": "What is the object giving off the light?",
+        "target": "sun"
+      },
+      {
+        "text": "Why is the ground usually dark at night?",
+        "target": "earth"
+      }
+    ],
+    "sources": [
+      "nasa-eclipses",
+      "nasa-eclipse-safety",
+      "nasa-moon-phases"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "asteroids",
+    "title": "Asteroids, the rocks between planets",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "An asteroid is a rocky or metal-rich object that moves around the Sun. Many asteroids are found between Mars and Jupiter, in a wide area called the asteroid belt. It is mostly empty space. Asteroids have many shapes and sizes. Some look like loose piles of rocks held together by gravity. The dents on some planets and moons show that space rocks can hit other worlds. A small piece that happens to glow on its way through Earth’s atmosphere is making a meteor, the flash we call a shooting star.",
+    "aliases": [
+      "What is an asteroid?",
+      "Where is the asteroid belt?",
+      "Is a shooting star really a star?"
+    ],
+    "sections": [],
+    "facts": [
+      "Most known asteroids orbit the Sun in the main asteroid belt.",
+      "Jupiter and Mars sit on opposite sides of the main asteroid belt."
+    ],
+    "terms": [
+      "asteroid",
+      "gravity",
+      "atmosphere"
+    ],
+    "questions": [
+      {
+        "text": "What makes a comet different from many asteroids?",
+        "target": "comets"
+      },
+      {
+        "text": "Which small rocky planet has lots of craters?",
+        "target": "mercury"
+      },
+      {
+        "text": "Which giant planet is on the outer side of the asteroid belt?",
+        "target": "jupiter"
+      }
+    ],
+    "sources": [
+      "nasa-asteroids",
+      "nasa-meteors"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "comets",
+    "title": "Why comets grow tails",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "A comet is a small body of ice, dust, and rock that travels around the Sun. When a comet comes into warmer parts of the solar system, some of its ice changes straight into gas. The gas and dust spill into space and form a fuzzy cloud. Light from the Sun and a stream of particles from the Sun push material away, forming tails. A comet’s tails can point away from the Sun even when the comet itself is heading away from the Sun too.",
+    "aliases": [
+      "What is a comet?",
+      "What makes a comet’s tail?",
+      "Why do comet tails point away from the Sun?"
+    ],
+    "sections": [],
+    "facts": [
+      "The solid center of a comet is called its nucleus.",
+      "Comets may have separate tails of gas and dust."
+    ],
+    "terms": [
+      "comet",
+      "orbit",
+      "gas"
+    ],
+    "questions": [
+      {
+        "text": "What do asteroids contain instead of lots of ice?",
+        "target": "asteroids"
+      },
+      {
+        "text": "What provides the energy that warms a comet?",
+        "target": "sun"
+      },
+      {
+        "text": "What other icy world lives in the outer solar system?",
+        "target": "pluto"
+      }
+    ],
+    "sources": [
+      "nasa-comets"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "galaxies",
+    "title": "Galaxies and the Milky Way",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "A galaxy is an enormous group of stars, gas, and dust held together by gravity. Some galaxies have swirling arms, others look like smooth blobs, and some have no neat shape. We live inside a galaxy called the Milky Way. Our Sun is just one of its many stars. In a really dark place, you may see a pale band across the night sky. It is what part of the Milky Way looks like from inside it, with the light from many distant stars blending together.",
+    "aliases": [
+      "What is a galaxy?",
+      "What is the Milky Way?",
+      "Is the solar system a galaxy?"
+    ],
+    "sections": [],
+    "facts": [
+      "The Milky Way is a spiral galaxy.",
+      "Light from some galaxies takes billions of years to reach us."
+    ],
+    "terms": [
+      "galaxy",
+      "star",
+      "gravity",
+      "light"
+    ],
+    "questions": [
+      {
+        "text": "Which star is nearest to us?",
+        "target": "sun"
+      },
+      {
+        "text": "Which much smaller neighborhood is Earth in?",
+        "target": "solar-system"
+      },
+      {
+        "text": "What pulls stars and other matter together?",
+        "target": "gravity"
+      }
+    ],
+    "sources": [
+      "nasa-galaxies",
+      "nasa-solar-system"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "seasons",
+    "title": "Why Earth has seasons",
+    "category": "astronomy",
+    "priority": 1,
+    "answer": "Earth has seasons because the line it spins around is tilted. During part of the year, the northern half leans toward the Sun. Sunlight reaches it more directly, and the days are longer, so it has summer. The southern half gets less direct sunlight and shorter days, so it has winter. About six months later, the halves switch roles. That is why you might wear a thick coat in Boston in January while people in Sydney, Australia, are in the middle of summer.",
+    "aliases": [
+      "Why is it hot in summer?",
+      "Are we closer to the Sun in summer?",
+      "Why are the seasons opposite in Australia?"
+    ],
+    "sections": [],
+    "facts": [
+      "The tilt of Earth’s axis is about 23 degrees.",
+      "Earth’s North and South Poles each have long stretches of daylight or darkness."
+    ],
+    "terms": [
+      "axis",
+      "hemisphere",
+      "orbit"
+    ],
+    "questions": [
+      {
+        "text": "What motion gives Earth its days and nights?",
+        "target": "earth"
+      },
+      {
+        "text": "How are seasons different on a planet that spins sideways?",
+        "target": "uranus"
+      },
+      {
+        "text": "How is climate different from one hot or cold day?",
+        "target": "climate"
+      }
+    ],
+    "sources": [
+      "nasa-earth",
+      "nasa-uranus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "gravity",
+    "title": "Gravity, the pull between objects",
+    "category": "physics",
+    "priority": 1,
+    "answer": "Gravity is a pull between objects that have mass. A ball falls to the floor because Earth pulls it down. The ball pulls back on Earth too, but the ball is so small compared with Earth that you cannot notice the effect. Gravity also helps keep planets in their paths around the Sun. A moving planet would travel away in a straight line without the Sun’s pull. The pull keeps bending the planet’s path, so it curves around the Sun instead.",
+    "aliases": [
+      "Why do things fall down?",
+      "What keeps the planets in orbit?",
+      "How does gravity work?"
+    ],
+    "sections": [],
+    "facts": [
+      "Gravity gives you weight.",
+      "The Moon’s gravity helps cause Earth’s ocean tides."
+    ],
+    "terms": [
+      "gravity",
+      "orbit",
+      "planet"
+    ],
+    "questions": [
+      {
+        "text": "How does gravity gather stars into a galaxy?",
+        "target": "galaxies"
+      },
+      {
+        "text": "How can the Moon’s pull help lift water at the beach?",
+        "target": "tides"
+      },
+      {
+        "text": "What travels around the Sun in our neighborhood?",
+        "target": "solar-system"
+      }
+    ],
+    "sources": [
+      "nasa-gravity",
+      "nasa-solar-system",
+      "noaa-tides"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "water-cycle",
+    "title": "The water cycle",
+    "category": "weather-and-climate",
+    "priority": 1,
+    "answer": "The same water can be in the ocean one day and in a cloud another day. Some water at the ocean’s surface changes into a gas and mixes with the air. This is evaporation. As moist air cools, some of that gas turns back into tiny drops, forming clouds. When drops or ice crystals grow big enough, they can fall as rain or snow. Water may then soak into the ground, flow down a river, or stay frozen in ice for a long time. The water cycle follows all these paths, and has no single starting point.",
+    "aliases": [
+      "Where does rainwater go?",
+      "How does water get from the sea to the clouds?",
+      "What is the water cycle?"
+    ],
+    "sections": [],
+    "facts": [
+      "Sunlight supplies much of the energy for evaporation.",
+      "Some water that falls on land returns to the ocean in rivers."
+    ],
+    "terms": [
+      "water cycle",
+      "evaporation",
+      "condensation",
+      "precipitation"
+    ],
+    "questions": [
+      {
+        "text": "Why does cooling air form a cloud?",
+        "target": "clouds"
+      },
+      {
+        "text": "What happens when water changes from a liquid into a gas?",
+        "target": "states-of-matter"
+      },
+      {
+        "text": "How can flowing water carve a valley?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "usgs-water-cycle"
+    ],
+    "revision": 1,
+    "review": "approved",
+    "quiz": {
+      "question": "What is it called when liquid water becomes water vapor?",
+      "options": [
+        "Freezing",
+        "Precipitation",
+        "Evaporation"
+      ],
+      "answer": 2,
+      "explanation": "Evaporation happens when some molecules escape from liquid water into the air as a gas."
+    }
+  },
+  {
+    "id": "clouds",
+    "title": "How clouds form",
+    "category": "weather-and-climate",
+    "priority": 1,
+    "answer": "A cloud is a group of very small water drops, ice crystals, or both. Air can carry water as an invisible gas called water vapor. When moist air rises and cools enough, some of the vapor can turn into tiny drops. They often form around very small specks floating in the air. At colder temperatures, ice crystals can form too. A cloud becomes visible because these drops and crystals scatter sunlight. Some clouds form right at ground level. We call those clouds fog.",
+    "aliases": [
+      "What are clouds made of?",
+      "How do clouds form?",
+      "Is fog a cloud?"
+    ],
+    "sections": [],
+    "facts": [
+      "Water vapor itself is invisible.",
+      "You can have a cloud without rain reaching the ground."
+    ],
+    "terms": [
+      "condensation",
+      "gas",
+      "light",
+      "precipitation"
+    ],
+    "questions": [
+      {
+        "text": "Where did the water in that cloud come from?",
+        "target": "water-cycle"
+      },
+      {
+        "text": "How can a storm cloud make lightning?",
+        "target": "lightning"
+      },
+      {
+        "text": "How does the warm ocean feed a hurricane’s clouds?",
+        "target": "hurricanes"
+      }
+    ],
+    "sources": [
+      "noaa-clouds",
+      "usgs-water-cycle"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "lightning",
+    "title": "What makes lightning and thunder",
+    "category": "weather-and-climate",
+    "priority": 1,
+    "answer": "Inside a storm cloud, bits of ice can bump into each other and help separate electric charges. As the charges build up, electricity can suddenly move through the air. That flash is lightning. It can happen inside a cloud, between clouds, or between a cloud and the ground. Lightning heats the air along its path very fast. The air swells outward, sending out a sound wave that we hear as thunder. We usually see the flash first because light reaches us much faster than sound.",
+    "aliases": [
+      "Why is there lightning?",
+      "What makes thunder?",
+      "Why do we hear thunder after lightning?"
+    ],
+    "sections": [],
+    "facts": [
+      "You can see distant lightning even when you cannot hear its thunder.",
+      "Lightning flashes can happen without touching the ground."
+    ],
+    "terms": [
+      "light",
+      "sound",
+      "wave",
+      "energy"
+    ],
+    "questions": [
+      {
+        "text": "How do sound waves move through air?",
+        "target": "sound"
+      },
+      {
+        "text": "How does water get into a storm cloud?",
+        "target": "clouds"
+      },
+      {
+        "text": "How is electricity made to flow through an everyday lamp?",
+        "target": "electric-circuits"
+      }
+    ],
+    "sources": [
+      "noaa-lightning"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tornadoes",
+    "title": "What a tornado is",
+    "category": "weather-and-climate",
+    "priority": 1,
+    "answer": "A tornado is a fast-spinning column of air that reaches from a storm to the ground. Tornadoes sometimes grow from large thunderstorms that are already turning. Not all of those storms make tornadoes, and scientists are still working out why some do. You may see a funnel when tiny water drops form inside the spinning air. Dust and leaves can show where it touches down. A swirling funnel that stays above the ground is different from a tornado, even if the two look alike from far away.",
+    "aliases": [
+      "How do tornadoes form?",
+      "What is a tornado funnel?",
+      "Why do tornadoes spin?"
+    ],
+    "sections": [],
+    "facts": [
+      "A tornado can touch the ground even if its visible funnel does not seem to reach all the way down.",
+      "A tornado is much smaller than a hurricane."
+    ],
+    "terms": [
+      "rotation",
+      "condensation",
+      "weather"
+    ],
+    "questions": [
+      {
+        "text": "How is a hurricane different from a tornado?",
+        "target": "hurricanes"
+      },
+      {
+        "text": "Why do storm clouds make thunder?",
+        "target": "lightning"
+      },
+      {
+        "text": "How do tiny drops make a cloud visible?",
+        "target": "clouds"
+      }
+    ],
+    "sources": [
+      "noaa-tornadoes",
+      "noaa-hurricanes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hurricanes",
+    "title": "How hurricanes get their strength",
+    "category": "weather-and-climate",
+    "priority": 1,
+    "answer": "A hurricane is a large spinning storm that grows over warm ocean water. Warm, moist air rises from the sea. As it cools, water in the air forms clouds and gives off heat. That heat helps fuel more rising air and thunderstorms. The storm can pull in more moist air and keep growing. In a strong hurricane, the clouds may spin around a calmer center called the eye. A hurricane usually weakens after moving over land or much cooler water because it loses its supply of warm, moist ocean air.",
+    "aliases": [
+      "How do hurricanes form?",
+      "What is the eye of a hurricane?",
+      "Why do hurricanes weaken over land?"
+    ],
+    "sections": [],
+    "facts": [
+      "A hurricane has steady winds of at least 74 miles per hour.",
+      "Some regions call the same kind of storm a typhoon."
+    ],
+    "terms": [
+      "weather",
+      "condensation",
+      "energy"
+    ],
+    "questions": [
+      {
+        "text": "Where does the moisture above the warm ocean come from?",
+        "target": "water-cycle"
+      },
+      {
+        "text": "How is a tornado different from a hurricane?",
+        "target": "tornadoes"
+      },
+      {
+        "text": "What is the difference between a storm and a place’s climate?",
+        "target": "climate"
+      }
+    ],
+    "sources": [
+      "noaa-hurricanes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "climate",
+    "title": "Weather and climate are different",
+    "category": "weather-and-climate",
+    "priority": 1,
+    "answer": "Weather is what the air outside is like now or over a short stretch of time. It might be windy this morning and sunny this afternoon. Climate is the usual pattern of weather in a place over many years. If a place often has hot summers and little rain, those are parts of its climate. A cool or rainy day can still happen there. Scientists use records from many seasons and many years to work out what is common and whether those patterns are changing.",
+    "aliases": [
+      "What is climate?",
+      "What is the difference between climate and weather?",
+      "Does a cold day change the climate?"
+    ],
+    "sections": [],
+    "facts": [
+      "Weather can change within a few minutes.",
+      "Scientists often use a 30-year period to describe a place’s usual weather."
+    ],
+    "terms": [
+      "climate",
+      "weather"
+    ],
+    "questions": [
+      {
+        "text": "What causes Earth’s repeating pattern of seasons?",
+        "target": "seasons"
+      },
+      {
+        "text": "How can ocean water carry heat from one region to another?",
+        "target": "ocean-currents"
+      },
+      {
+        "text": "What makes a single weather event like a hurricane?",
+        "target": "hurricanes"
+      }
+    ],
+    "sources": [
+      "noaa-climate",
+      "noaa-current-climate"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tectonic-plates",
+    "title": "Earth’s moving plates",
+    "category": "earth-science",
+    "priority": 1,
+    "answer": "Earth’s stiff outer shell is broken into huge pieces called tectonic plates. They fit together a little like puzzle pieces, but they move very slowly. In some places, two plates pull apart and new ocean floor forms between them. In other places, one plate moves under another. Elsewhere, plates slide past each other. These motions help build mountains, make some volcanoes, and cause many earthquakes. The plates move over hot rock that is mostly solid. It can slowly change shape under pressure.",
+    "aliases": [
+      "What are tectonic plates?",
+      "Why do continents move?",
+      "Do Earth’s plates float on lava?"
+    ],
+    "sections": [],
+    "facts": [
+      "A tectonic plate can hold both a continent and ocean floor.",
+      "Some plates move only a few inches in a year."
+    ],
+    "terms": [
+      "tectonic plate",
+      "rock",
+      "earthquake",
+      "volcano"
+    ],
+    "questions": [
+      {
+        "text": "What happens when stuck rock suddenly slips?",
+        "target": "earthquakes"
+      },
+      {
+        "text": "How can a volcano build up over many eruptions?",
+        "target": "volcanoes"
+      },
+      {
+        "text": "What kinds of rock make up Earth’s outer shell?",
+        "target": "rocks"
+      }
+    ],
+    "sources": [
+      "usgs-plate-tectonics",
+      "amnh-plates-mantle"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "earthquakes",
+    "title": "Why the ground shakes in an earthquake",
+    "category": "earth-science",
+    "priority": 1,
+    "answer": "An earthquake can start when rocks on each side of a break in Earth’s crust get stuck. The break is called a fault. Motion deep in Earth keeps pushing or pulling on the rocks. If they suddenly slip, the energy that built up spreads away as waves. When the waves reach the surface, the ground shakes. The shaking may be strong near the fault and weaker farther away. Scientists use instruments to record the waves and learn where the earthquake began.",
+    "aliases": [
+      "What causes an earthquake?",
+      "Why does Earth shake?",
+      "What is a fault in rocks?"
+    ],
+    "sections": [],
+    "facts": [
+      "The shaking comes from waves moving through Earth.",
+      "Many earthquakes happen near the edges of tectonic plates."
+    ],
+    "terms": [
+      "earthquake",
+      "tectonic plate",
+      "wave",
+      "energy"
+    ],
+    "questions": [
+      {
+        "text": "What slowly moves the rock on either side of many faults?",
+        "target": "tectonic-plates"
+      },
+      {
+        "text": "What can happen when an undersea earthquake lifts the sea floor?",
+        "target": "ocean-waves"
+      },
+      {
+        "text": "How are sound waves another way that shaking moves outward?",
+        "target": "sound"
+      }
+    ],
+    "sources": [
+      "usgs-earthquakes",
+      "usgs-seismographs",
+      "usgs-plate-tectonics",
+      "noaa-ocean-waves"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "volcanoes",
+    "title": "Why volcanoes erupt",
+    "category": "earth-science",
+    "priority": 1,
+    "answer": "A volcano has an opening where hot melted rock can reach Earth’s surface. The melted rock is called magma while it is below ground and lava once it comes out. Gas trapped in magma can help push it upward. Some eruptions send out streams of lava. Others blast out clouds of broken rock and tiny pieces called ash. As lava cools, it hardens into rock. After many eruptions, lava and ash can build a whole mountain or add new land to an island.",
+    "aliases": [
+      "Why does a volcano erupt?",
+      "What is the difference between magma and lava?",
+      "How does a volcanic island form?",
+      "what causes a volcano"
+    ],
+    "sections": [],
+    "facts": [
+      "Volcanic ash is made of tiny pieces of hard material.",
+      "A volcano can make new land when lava cools and hardens."
+    ],
+    "terms": [
+      "volcano",
+      "magma",
+      "lava",
+      "rock"
+    ],
+    "questions": [
+      {
+        "text": "Where do Earth’s moving plates meet?",
+        "target": "tectonic-plates"
+      },
+      {
+        "text": "What kind of rock forms when melted rock cools?",
+        "target": "rocks"
+      },
+      {
+        "text": "Which planet has a huge volcano called Olympus Mons?",
+        "target": "mars"
+      }
+    ],
+    "sources": [
+      "usgs-volcanoes",
+      "usgs-eruption"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rocks",
+    "title": "How the three main kinds of rock form",
+    "category": "earth-science",
+    "priority": 1,
+    "answer": "Scientists group rocks by the way they formed. Igneous rock forms when melted rock cools and hardens. Sedimentary rock can form when layers of sand, mud, or other bits get pressed and stuck together over time. Metamorphic rock forms when heat or pressure changes rock that is already there, without melting it all. The same bit of material can go through more than one of these changes over a long time. For example, a rock can wear down into sand, and the sand can become part of a new rock.",
+    "aliases": [
+      "What are the three types of rock?",
+      "What is the rock cycle?",
+      "How is a rock made?"
+    ],
+    "sections": [],
+    "facts": [
+      "Sandstone is a kind of sedimentary rock.",
+      "Some igneous rocks form underground and others form at the surface."
+    ],
+    "terms": [
+      "rock",
+      "mineral",
+      "lava",
+      "erosion"
+    ],
+    "questions": [
+      {
+        "text": "What is the difference between a rock and a mineral?",
+        "target": "minerals"
+      },
+      {
+        "text": "How can old rock turn into sand and move elsewhere?",
+        "target": "erosion"
+      },
+      {
+        "text": "How can an ancient shell get trapped in layers of rock?",
+        "target": "fossils"
+      }
+    ],
+    "sources": [
+      "nps-rock-types",
+      "usgs-igneous",
+      "usgs-rock-mineral"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "minerals",
+    "title": "What minerals are",
+    "category": "earth-science",
+    "priority": 1,
+    "answer": "A mineral is a solid that forms in nature and has a certain kind of material and pattern inside it. Quartz is one mineral. The grains you see in a piece of granite can be different minerals, including quartz and feldspar. A single rock can hold several minerals mixed together. To tell minerals apart, people look at things like how hard they are. Some are soft enough to scratch with a fingernail. Others can leave a scratch on a piece of glass.",
+    "aliases": [
+      "What is a mineral?",
+      "Are rock and mineral the same?",
+      "How do you identify minerals?"
+    ],
+    "sections": [],
+    "facts": [
+      "Granite can contain quartz, feldspar, and mica.",
+      "Table salt can come from a mineral called halite."
+    ],
+    "terms": [
+      "mineral",
+      "rock",
+      "solid"
+    ],
+    "questions": [
+      {
+        "text": "How do rocks made of minerals change over time?",
+        "target": "rocks"
+      },
+      {
+        "text": "What are the tiny pieces that make up the materials around us?",
+        "target": "atoms"
+      },
+      {
+        "text": "How does hot melted rock turn into solid material?",
+        "target": "volcanoes"
+      }
+    ],
+    "sources": [
+      "usgs-rock-mineral",
+      "nps-minerals",
+      "nps-hardness"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "erosion",
+    "title": "How erosion carries rock and soil away",
+    "category": "earth-science",
+    "priority": 1,
+    "answer": "Erosion happens when water, wind, ice, or gravity moves soil and bits of rock. Rain can wash dirt from a path into a ditch. A river can carry sand across a whole valley. A glacier can drag bits of stone as it slides. Weathering is a different part of the story: it breaks rock down in place, as when water in a crack freezes and pushes the crack wider. Erosion moves those pieces somewhere else. Where the moving water slows down, sand and mud may settle and build up in a new place.",
+    "aliases": [
+      "What is erosion?",
+      "What is the difference between erosion and weathering?",
+      "How do rivers move rocks?"
+    ],
+    "sections": [],
+    "facts": [
+      "Running water can carry sediment downhill.",
+      "Moving ice and wind can cause erosion too."
+    ],
+    "terms": [
+      "erosion",
+      "glacier",
+      "rock",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "text": "How can layers of sand become a solid rock?",
+        "target": "rocks"
+      },
+      {
+        "text": "Where does rain go after it hits the land?",
+        "target": "water-cycle"
+      },
+      {
+        "text": "How can waves move sand at a beach?",
+        "target": "ocean-waves"
+      }
+    ],
+    "sources": [
+      "nps-erosion",
+      "nps-weathering",
+      "usgs-water-cycle"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tides",
+    "title": "Why the ocean has tides",
+    "category": "oceans",
+    "priority": 1,
+    "answer": "If you leave a stick on the beach, later waves might reach it even though the wind has not changed. The water level rises and falls as part of the tide. The Moon’s pull on Earth and the ocean is a major cause, and the Sun’s pull matters too. The water does not go up and down by the same amount on every shore. The shape of the coast and depth of the water make a difference. Many places have two high tides and two low tides in about a day.",
+    "aliases": [
+      "Why do tides happen?",
+      "Why does the sea level change at the beach?",
+      "How does the Moon cause tides?"
+    ],
+    "sections": [],
+    "facts": [
+      "High tide and low tide are different water levels.",
+      "A tide can also make water flow sideways through a narrow channel."
+    ],
+    "terms": [
+      "tide",
+      "gravity",
+      "moon",
+      "current"
+    ],
+    "questions": [
+      {
+        "text": "What is gravity, and how can the Moon pull on Earth?",
+        "target": "gravity"
+      },
+      {
+        "text": "How are shore waves different from the tide?",
+        "target": "ocean-waves"
+      },
+      {
+        "text": "What else besides tides can make ocean water flow?",
+        "target": "ocean-currents"
+      }
+    ],
+    "sources": [
+      "noaa-tides",
+      "noaa-currents"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ocean-currents",
+    "title": "What makes ocean currents flow",
+    "category": "oceans",
+    "priority": 1,
+    "answer": "An ocean current is water moving from one place to another. In shallow areas near the coast, the tide can make water flow into a bay and later flow out. Farther from land, winds can drive large streams of water near the surface. Cold or salty water is usually denser than warmer or fresher water. That difference also helps move water around, including deep below the ocean’s surface. These currents can carry heat between regions, so they help shape weather and climate on land.",
+    "aliases": [
+      "What is an ocean current?",
+      "How does water move in the ocean?",
+      "Why does cold ocean water sink?"
+    ],
+    "sections": [],
+    "facts": [
+      "Winds, tides, and differences in water density all drive ocean currents.",
+      "The Gulf Stream carries warm water in the Atlantic Ocean."
+    ],
+    "terms": [
+      "current",
+      "tide",
+      "density",
+      "climate"
+    ],
+    "questions": [
+      {
+        "text": "What makes the ocean rise and fall at the shore?",
+        "target": "tides"
+      },
+      {
+        "text": "Why can two blocks of the same size have different densities?",
+        "target": "density"
+      },
+      {
+        "text": "How is a wave different from a flowing current?",
+        "target": "ocean-waves"
+      }
+    ],
+    "sources": [
+      "noaa-currents",
+      "noaa-current-climate"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ocean-waves",
+    "title": "Why there are waves in the ocean",
+    "category": "oceans",
+    "priority": 1,
+    "answer": "Many ocean waves begin when wind pushes on the water’s surface. The pushes add energy. That energy can travel a long way as a wave, even when much of the water just moves around its own small area. Near a beach, waves slow down as the water gets shallower. Their tops can tip forward and break, making the white water you see at the shore. A different kind of wave, called a tsunami, can start when the ocean is suddenly disturbed, such as when an earthquake moves the sea floor.",
+    "aliases": [
+      "What causes ocean waves?",
+      "Why do waves break at the beach?",
+      "How can a tsunami start?"
+    ],
+    "sections": [],
+    "facts": [
+      "Wind waves can travel far from the place where the wind made them.",
+      "Where waves break, they can stir up and move sand."
+    ],
+    "terms": [
+      "wave",
+      "energy",
+      "earthquake",
+      "erosion"
+    ],
+    "questions": [
+      {
+        "text": "What causes the slower rise and fall of the shore water level?",
+        "target": "tides"
+      },
+      {
+        "text": "How can an earthquake move solid ground under the water?",
+        "target": "earthquakes"
+      },
+      {
+        "text": "Where does sand go when it is carried away?",
+        "target": "erosion"
+      }
+    ],
+    "sources": [
+      "noaa-ocean-waves",
+      "nps-erosion"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "coral-reefs",
+    "title": "How tiny animals build coral reefs",
+    "category": "oceans",
+    "priority": 1,
+    "answer": "A coral reef can look like a pile of rocks or plants, but it is built by small animals called coral polyps. Many kinds live in groups. The kinds that build reefs make hard cups around themselves. Old cups stay behind and new ones can grow on top, so a reef gets larger over time. Many reef corals also have tiny algae living inside them. The algae use sunlight to make food, and the coral gets some of that food. The reef’s holes and branches give fish and other animals places to live.",
+    "aliases": [
+      "Is coral an animal or a plant?",
+      "What is a coral reef?",
+      "How do coral polyps make reefs?"
+    ],
+    "sections": [],
+    "facts": [
+      "A coral reef can shelter many different living things.",
+      "Heat stress can cause coral to lose its partner algae and turn pale."
+    ],
+    "terms": [
+      "coral",
+      "ecosystem",
+      "photosynthesis"
+    ],
+    "questions": [
+      {
+        "text": "How do algae and plants use sunlight to make food?",
+        "target": "photosynthesis"
+      },
+      {
+        "text": "How does ocean movement affect where warmth goes?",
+        "target": "ocean-currents"
+      },
+      {
+        "text": "Why is a coral reef more than a group of animals?",
+        "target": "ecosystems"
+      }
+    ],
+    "sources": [
+      "noaa-coral",
+      "noaa-coral-bleaching"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "atoms",
+    "title": "Atoms, the tiny pieces of matter",
+    "category": "chemistry",
+    "priority": 1,
+    "answer": "Air, water, rocks, and your own body are made of pieces called atoms. They are far too small to see with your eyes. An atom has a tiny center called a nucleus and electrons around it. The center holds particles called protons. The number of protons tells us what kind of atom it is. A hydrogen atom has one proton, and an oxygen atom has eight. Atoms can join together to make molecules. Different ways of joining a few kinds of atoms can give us materials with very different jobs.",
+    "aliases": [
+      "What is an atom?",
+      "What are atoms made of?",
+      "What are the tiny bits of matter?"
+    ],
+    "sections": [],
+    "facts": [
+      "Electrons are much lighter than protons.",
+      "Most kinds of atoms also have neutrons in the nucleus."
+    ],
+    "terms": [
+      "atom",
+      "element",
+      "molecule"
+    ],
+    "questions": [
+      {
+        "text": "What do atoms make when they join together?",
+        "target": "molecules"
+      },
+      {
+        "text": "What makes a kind of atom an element?",
+        "target": "elements"
+      },
+      {
+        "text": "How can very tiny particles affect the shape of a solid?",
+        "target": "states-of-matter"
+      }
+    ],
+    "sources": [
+      "acs-atomic-particles",
+      "acs-molecules"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "molecules",
+    "title": "How atoms join to make molecules",
+    "category": "chemistry",
+    "priority": 1,
+    "answer": "A molecule is a group of atoms joined together. One water molecule has two hydrogen atoms and one oxygen atom. Every water molecule has that same set of atoms, whether it is in a raindrop or a block of ice. Atoms of the same kind can join together too. The oxygen we breathe in has molecules made of two oxygen atoms. A molecule’s size, shape, and kinds of atoms help decide what it does. Some have just a few atoms, and others have thousands.",
+    "aliases": [
+      "What is a molecule?",
+      "What does H2O mean?",
+      "What is a water molecule made of?"
+    ],
+    "sections": [],
+    "facts": [
+      "H₂O is a short way to write what is in a water molecule.",
+      "Some molecules have just two atoms."
+    ],
+    "terms": [
+      "molecule",
+      "atom",
+      "element"
+    ],
+    "questions": [
+      {
+        "text": "What is inside a single atom?",
+        "target": "atoms"
+      },
+      {
+        "text": "How can the same water molecules make a solid, liquid, or gas?",
+        "target": "states-of-matter"
+      },
+      {
+        "text": "How does water travel from the ocean into the air?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "acs-molecules",
+      "acs-matter"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "elements",
+    "title": "What makes something a chemical element",
+    "category": "chemistry",
+    "priority": 1,
+    "answer": "A chemical element is a kind of substance made of atoms that all have the same number of protons. Every gold atom has 79 protons, so a very pure piece of gold has atoms of just one element. A drop of pure water is different. Its molecules have atoms of two elements, hydrogen and oxygen, linked together. Scientists can arrange the elements in a chart called the periodic table. Two letters or one letter usually stand for each element on that chart. O stands for oxygen, and Au stands for gold.",
+    "aliases": [
+      "What is an element?",
+      "What is the periodic table?",
+      "What do O and Au stand for?",
+      "what is an element in chemistry"
+    ],
+    "sections": [],
+    "facts": [
+      "Carbon atoms all have six protons.",
+      "Iron is an element, but rust contains iron joined to other elements."
+    ],
+    "terms": [
+      "element",
+      "atom",
+      "molecule"
+    ],
+    "questions": [
+      {
+        "text": "Where in an atom are its protons?",
+        "target": "atoms"
+      },
+      {
+        "text": "How do atoms of different elements join together?",
+        "target": "molecules"
+      },
+      {
+        "text": "Where can we see what happens when iron in rocks rusts?",
+        "target": "mars"
+      }
+    ],
+    "sources": [
+      "acs-atomic-particles",
+      "nist-periodic-table",
+      "nasa-mars"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "states-of-matter",
+    "title": "Solids, liquids, and gases",
+    "category": "chemistry",
+    "priority": 1,
+    "answer": "An ice cube, a puddle, and invisible water vapor are all made of water, but they act differently. In ice, the molecules stay in a pattern and jiggle around their spots. Ice is a solid and keeps its shape. In liquid water, the molecules slide past each other, so the water can flow and take the shape of its cup. In water vapor, the molecules can spread far apart. That is what makes it a gas. Adding or taking away heat can change water from one form to another.",
+    "aliases": [
+      "What are the states of matter?",
+      "Why can ice turn to water?",
+      "Is water vapor a gas?"
+    ],
+    "sections": [],
+    "facts": [
+      "Melting changes solid ice into liquid water.",
+      "The same water molecules are still there when ice melts."
+    ],
+    "terms": [
+      "solid",
+      "liquid",
+      "gas",
+      "molecule"
+    ],
+    "questions": [
+      {
+        "text": "What are the pieces that move around in water?",
+        "target": "molecules"
+      },
+      {
+        "text": "Why does water turn into drops inside a cloud?",
+        "target": "clouds"
+      },
+      {
+        "text": "Why does solid ice usually float in liquid water?",
+        "target": "density"
+      }
+    ],
+    "sources": [
+      "acs-matter",
+      "acs-freezing"
+    ],
+    "revision": 1,
+    "review": "approved",
+    "quiz": {
+      "question": "Which state of water takes the shape of the bottom of a cup and can be poured?",
+      "options": [
+        "Ice",
+        "Liquid water",
+        "Water vapor"
+      ],
+      "answer": 1,
+      "explanation": "Liquid water flows while its molecules stay close together."
+    }
+  },
+  {
+    "id": "density",
+    "title": "Density and why some things float",
+    "category": "chemistry",
+    "priority": 1,
+    "answer": "If you have two blocks the same size, one may feel much heavier. More matter is packed into that block’s space, so it is denser. A piece of wood often floats in water because the wood is less dense than the water. A big steel ship can float too. Its hollow shape gives it a lot of space without filling all that space with steel. The ship as a whole, with its air-filled spaces, has a lower average density than the water it pushes aside.",
+    "aliases": [
+      "What is density?",
+      "Why can a steel ship float?",
+      "Why do some things sink?"
+    ],
+    "sections": [],
+    "facts": [
+      "Ice is less dense than liquid water, so it floats.",
+      "Salt water is denser than fresh water at the same temperature."
+    ],
+    "terms": [
+      "density",
+      "solid",
+      "liquid",
+      "gas"
+    ],
+    "questions": [
+      {
+        "text": "How do denser and lighter water help move the ocean?",
+        "target": "ocean-currents"
+      },
+      {
+        "text": "How are ice and liquid water different even though both are water?",
+        "target": "states-of-matter"
+      },
+      {
+        "text": "How do mineral grains affect what a rock is like?",
+        "target": "minerals"
+      }
+    ],
+    "sources": [
+      "acs-density",
+      "acs-density-sinking",
+      "acs-freezing",
+      "noaa-currents"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "energy",
+    "title": "What energy can do",
+    "category": "physics",
+    "priority": 1,
+    "answer": "Energy lets things move or change. A rolling ball has energy because it is moving. A ball you hold above the ground can give up stored energy if you drop it. Energy can also go from one object to another or change form. In a lamp, electrical energy becomes light and heat. A plant uses some of the Sun’s light energy to make sugars. Energy does not come from nothing. When a moving ball slows down and stops, energy has moved into its surroundings, for example as heat or sound.",
+    "aliases": [
+      "What is energy?",
+      "What are forms of energy?",
+      "How can energy change form?"
+    ],
+    "sections": [],
+    "facts": [
+      "Energy of motion is called kinetic energy.",
+      "Light can carry energy, and moving objects also have energy."
+    ],
+    "terms": [
+      "energy",
+      "light",
+      "sound",
+      "gravity"
+    ],
+    "questions": [
+      {
+        "text": "What can give a falling ball more speed?",
+        "target": "gravity"
+      },
+      {
+        "text": "How does a plant catch energy from sunlight?",
+        "target": "photosynthesis"
+      },
+      {
+        "text": "How does energy reach a light bulb in a flashlight?",
+        "target": "electric-circuits"
+      }
+    ],
+    "sources": [
+      "eia-energy-forms",
+      "eia-energy-laws",
+      "asu-photosynthesis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "light",
+    "title": "Light and the colors we see",
+    "category": "physics",
+    "priority": 1,
+    "answer": "Light brings energy from one place to another. The Sun gives off light. So does a light bulb. Most objects around you do not give off their own visible light. You can see a blue notebook because light hits it, and some of the light that bounces back reaches your eyes. The color you see depends on which light reaches you. White light can be a mixture of colors. A glass prism can spread white light out so that you can see the colors separately.",
+    "aliases": [
+      "What is light?",
+      "Why do we see colors?",
+      "How can a prism split white light?"
+    ],
+    "sections": [],
+    "facts": [
+      "Light can travel through empty space.",
+      "Visible light is the part of a much wider family of waves that our eyes can detect."
+    ],
+    "terms": [
+      "light",
+      "wave",
+      "energy"
+    ],
+    "questions": [
+      {
+        "text": "How can drops of rain separate colors in sunlight?",
+        "target": "rainbows"
+      },
+      {
+        "text": "How does the Sun make its own light?",
+        "target": "sun"
+      },
+      {
+        "text": "Can sound cross empty space the way light can?",
+        "target": "sound"
+      }
+    ],
+    "sources": [
+      "nasa-visible-light",
+      "nasa-em-spectrum",
+      "smithsonian-color"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rainbows",
+    "title": "How rainbows form",
+    "category": "weather-and-climate",
+    "priority": 1,
+    "answer": "A rainbow can appear when sunlight shines into water drops in the air. The light bends on its way into a drop, bounces off the inside, and bends again as it leaves. The different colors bend by different amounts. Light reaching your eyes from some drops looks red, while light from drops at other angles looks blue or violet. Together these views make a colored arc. You can often find a rainbow by looking toward the rain when the Sun is behind you.",
+    "aliases": [
+      "Where do rainbows come from?",
+      "How does rain make a rainbow?",
+      "Why does a rainbow have colors?"
+    ],
+    "sections": [],
+    "facts": [
+      "A rainbow can be circular, although the ground often blocks the lower part from view.",
+      "A rainbow may appear in spray, even when it is not raining."
+    ],
+    "terms": [
+      "light",
+      "wave"
+    ],
+    "questions": [
+      {
+        "text": "How can white light contain many colors?",
+        "target": "light"
+      },
+      {
+        "text": "Where do the drops in rain and clouds come from?",
+        "target": "water-cycle"
+      },
+      {
+        "text": "How does light help us see the bright part of the Moon?",
+        "target": "moon-phases"
+      }
+    ],
+    "sources": [
+      "nws-rainbow",
+      "nasa-visible-light"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sound",
+    "title": "How sound moves through the air",
+    "category": "physics",
+    "priority": 1,
+    "answer": "Sound starts with something moving back and forth. When you pluck a guitar string, it shakes the air nearby. The air pushes on the air next to it, and the pattern spreads outward as a wave. When the wave reaches your ear, it can make your eardrum move. Faster back-and-forth motion can make a higher note. Sound can travel through water and solid objects too. It cannot cross totally empty space because there is no material there to carry the shaking.",
+    "aliases": [
+      "How does sound travel?",
+      "Why does a guitar string make noise?",
+      "Can you hear sound in space?"
+    ],
+    "sections": [],
+    "facts": [
+      "An echo is sound that has bounced back to you.",
+      "A vibration is motion that repeats back and forth."
+    ],
+    "terms": [
+      "sound",
+      "vibration",
+      "wave"
+    ],
+    "questions": [
+      {
+        "text": "How do bats use bounced sound to find insects?",
+        "target": "bats"
+      },
+      {
+        "text": "Why do you see lightning before you hear thunder?",
+        "target": "lightning"
+      },
+      {
+        "text": "What can travel across empty space from the Sun?",
+        "target": "light"
+      }
+    ],
+    "sources": [
+      "nasa-sound",
+      "nasa-em-spectrum",
+      "nps-echolocation"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "electric-circuits",
+    "title": "How an electric circuit makes a light work",
+    "category": "physics",
+    "priority": 1,
+    "answer": "An electric circuit gives electric charges a path to move along. In a simple flashlight, the battery, bulb, and wires can make a loop. With the switch on, the loop is closed and electric current can flow. The bulb changes some of the electrical energy into light. The switch opens a little gap when you turn it off, and the current stops flowing. A metal wire is a useful part of a circuit because charges move through many metals much more easily than they move through plastic.",
+    "aliases": [
+      "What is an electric circuit?",
+      "Why does a switch turn off a light?",
+      "How does a flashlight work?"
+    ],
+    "sections": [],
+    "facts": [
+      "Materials that let electric charges move easily are called conductors.",
+      "Plastic can help keep current inside the metal wires it covers."
+    ],
+    "terms": [
+      "circuit",
+      "current",
+      "conductor",
+      "energy"
+    ],
+    "questions": [
+      {
+        "text": "What are the forms energy can change into?",
+        "target": "energy"
+      },
+      {
+        "text": "How can an electric current create a magnetic field?",
+        "target": "magnets"
+      },
+      {
+        "text": "What happens when electric charge moves through air in a storm?",
+        "target": "lightning"
+      }
+    ],
+    "sources": [
+      "eia-circuits",
+      "eia-electricity"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "magnets",
+    "title": "How magnets pull and push",
+    "category": "physics",
+    "priority": 1,
+    "answer": "A magnet can pull some materials toward it without touching them. Iron is one example. A magnet has a north end and a south end, called poles. Put the north end of one magnet near the south end of another, and they pull together. Put two north ends near each other, and they push apart. The space around a magnet where it can push or pull has a magnetic field. Electric current can make a magnetic field too. That is one link between electricity and magnets.",
+    "aliases": [
+      "How do magnets work?",
+      "Why do magnets push apart?",
+      "Do magnets stick to all metals?"
+    ],
+    "sections": [],
+    "facts": [
+      "A magnet does not pull every metal strongly.",
+      "A compass needle turns to line up with Earth’s magnetic field."
+    ],
+    "terms": [
+      "magnet",
+      "current",
+      "circuit"
+    ],
+    "questions": [
+      {
+        "text": "How does current move through a closed loop?",
+        "target": "electric-circuits"
+      },
+      {
+        "text": "What is another pull that acts without objects touching?",
+        "target": "gravity"
+      },
+      {
+        "text": "How are materials like iron named and grouped?",
+        "target": "elements"
+      }
+    ],
+    "sources": [
+      "nasa-magnets",
+      "doe-electromagnetic-force",
+      "nasa-earth"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "photosynthesis",
+    "title": "How plants make their own food",
+    "category": "plants",
+    "priority": 1,
+    "answer": "A green plant uses sunlight, water, and a gas called carbon dioxide to make sugar. This is photosynthesis. In many plants most of the work happens in the leaves. A green material called chlorophyll helps catch energy from light. With that energy, the plant makes sugars it can use to grow or store for later. During this process the plant also gives off oxygen. The water usually comes from the soil, and the carbon dioxide enters the plant from the air.",
+    "aliases": [
+      "What is photosynthesis?",
+      "Why do plants need sunlight?",
+      "How do plants make food?"
+    ],
+    "sections": [],
+    "facts": [
+      "Chlorophyll helps give many leaves their green color.",
+      "Many algae use light to make sugars too."
+    ],
+    "terms": [
+      "photosynthesis",
+      "chlorophyll",
+      "energy",
+      "gas"
+    ],
+    "questions": [
+      {
+        "text": "How do tiny algae help a reef coral get food?",
+        "target": "coral-reefs"
+      },
+      {
+        "text": "What happens to the Sun’s energy when a plant makes sugar?",
+        "target": "energy"
+      },
+      {
+        "text": "How can a young plant start growing before it has leaves?",
+        "target": "seeds"
+      }
+    ],
+    "sources": [
+      "asu-photosynthesis",
+      "noaa-coral"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "pollination",
+    "title": "How pollen travels from flower to flower",
+    "category": "plants",
+    "priority": 1,
+    "answer": "Flowers can make tiny grains called pollen. For many flowers to make seeds, pollen must reach a part of a flower that can receive it. Moving pollen there is called pollination. A bee that visits a flower for food can pick up pollen on its body. On the next flower, some grains can rub off. Some plants use wind to move pollen instead. Plants often need a match between the kind of pollen and the kind of flower, so pollen landing anywhere is only one step in making seeds.",
+    "aliases": [
+      "What is pollination?",
+      "Why do bees visit flowers?",
+      "How do bees help plants make seeds?"
+    ],
+    "sections": [],
+    "facts": [
+      "Wind can carry pollen from some kinds of plants.",
+      "Bees are not the only animals that can carry pollen."
+    ],
+    "terms": [
+      "pollination",
+      "pollen",
+      "seed"
+    ],
+    "questions": [
+      {
+        "text": "What can grow after a flower makes a seed?",
+        "target": "seeds"
+      },
+      {
+        "text": "Can a bat visit flowers and carry pollen?",
+        "target": "bats"
+      },
+      {
+        "text": "How does the plant get the energy it needs to grow flowers?",
+        "target": "photosynthesis"
+      }
+    ],
+    "sources": [
+      "usfs-pollination",
+      "nps-bat-diets"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "seeds",
+    "title": "How seeds start new plants",
+    "category": "plants",
+    "priority": 1,
+    "answer": "A seed holds the beginnings of a new plant. A coat helps protect the tiny plant inside. Many seeds also hold food that the young plant can use before it has leaves. With the right conditions, a seed can start to grow. Some seeds are carried by the wind. Others hitch a ride on an animal’s fur or travel inside a fruit that an animal eats. When a seed ends up far from its parent, the new plant may get more light or space to grow.",
+    "aliases": [
+      "What is inside a seed?",
+      "How does a seed grow?",
+      "How do seeds travel?"
+    ],
+    "sections": [],
+    "facts": [
+      "Some seeds can travel by water.",
+      "Germination is the beginning of a seed’s growth."
+    ],
+    "terms": [
+      "seed",
+      "photosynthesis",
+      "pollen"
+    ],
+    "questions": [
+      {
+        "text": "How can pollen help a flowering plant make seeds?",
+        "target": "pollination"
+      },
+      {
+        "text": "How does a young plant feed itself once its leaves grow?",
+        "target": "photosynthesis"
+      },
+      {
+        "text": "How does rainwater get into the ground around roots?",
+        "target": "water-cycle"
+      }
+    ],
+    "sources": [
+      "nybg-seed-spread",
+      "ufl-seeds"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ecosystems",
+    "title": "What makes an ecosystem",
+    "category": "animals",
+    "priority": 1,
+    "answer": "An ecosystem includes living things in a place, the parts of the place that are not alive, and the ways they affect one another. Think of a pond. Sunlight reaches plants and algae in the water. Tiny animals feed on algae, and bigger animals may eat those tiny animals. Bacteria and fungi can break down dead material, making some parts of it available for life to use again. The amount of light, warmth, and water can change which living things do well there. A reef, forest, or puddle can each be an ecosystem.",
+    "aliases": [
+      "What is an ecosystem?",
+      "What is a food web?",
+      "How do living things in a pond depend on each other?"
+    ],
+    "sections": [],
+    "facts": [
+      "A food web shows more than one path through which living things get food.",
+      "Light and water are parts of an ecosystem even though they are not alive."
+    ],
+    "terms": [
+      "ecosystem",
+      "photosynthesis",
+      "energy"
+    ],
+    "questions": [
+      {
+        "text": "How do animals and algae help make a reef ecosystem?",
+        "target": "coral-reefs"
+      },
+      {
+        "text": "Where does the sugar in plants and algae come from?",
+        "target": "photosynthesis"
+      },
+      {
+        "text": "How can changes in a place affect the traits of living things over generations?",
+        "target": "evolution"
+      }
+    ],
+    "sources": [
+      "noaa-ecosystem",
+      "noaa-food-webs",
+      "asu-photosynthesis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bats",
+    "title": "Bats and how they find their way",
+    "category": "animals",
+    "priority": 1,
+    "answer": "Bats are mammals and can fly by flapping their wings. Their wings are made of thin skin stretched over long fingers. Many kinds of bats fly in the dark and use sound to find their way. A bat makes a call and listens for the sound to bounce back. The echo may tell the bat where a moth or a branch is. This is called echolocation. Bats can also see. Many eat insects, but some kinds eat fruit or drink nectar from flowers.",
+    "aliases": [
+      "What is a bat?",
+      "Are bats blind?",
+      "How do bats use echolocation?"
+    ],
+    "sections": [],
+    "facts": [
+      "Bats are the only mammals that can fly by flapping their wings.",
+      "Some bats can carry pollen between flowers."
+    ],
+    "terms": [
+      "bat",
+      "echolocation",
+      "vibration",
+      "pollination"
+    ],
+    "questions": [
+      {
+        "text": "How can a sound wave bounce off something and come back?",
+        "target": "sound"
+      },
+      {
+        "text": "How do animals help flowers make seeds?",
+        "target": "pollination"
+      },
+      {
+        "text": "How can a change that helps an animal spread through a group over time?",
+        "target": "evolution"
+      }
+    ],
+    "sources": [
+      "nps-echolocation",
+      "nps-bat-fly",
+      "nps-bat-diets"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "fossils",
+    "title": "What fossils tell us",
+    "category": "paleontology",
+    "priority": 1,
+    "answer": "A fossil is something from long-ago life that lasts into the present. It might be part of a shell or a tooth, or a mark left by a leaf or a walking animal. Fossils can form when sand or mud quickly covers a body or a mark and protects it. Over time, the layers may harden into rock. A footprint can show how an animal walked, even if no bones of that animal were found nearby. Scientists look at fossils and the rocks around them to learn about life long before people kept records.",
+    "aliases": [
+      "What is a fossil?",
+      "How do fossils form?",
+      "Can a footprint be a fossil?"
+    ],
+    "sections": [],
+    "facts": [
+      "Bones and shells are often better preserved than soft body parts.",
+      "A dinosaur track can be a fossil even though it is not a piece of the dinosaur."
+    ],
+    "terms": [
+      "fossil",
+      "rock",
+      "species"
+    ],
+    "questions": [
+      {
+        "text": "How do mud and sand become layers of rock?",
+        "target": "rocks"
+      },
+      {
+        "text": "What can a huge tooth tell us about Tyrannosaurus rex?",
+        "target": "tyrannosaurus-rex"
+      },
+      {
+        "text": "How do fossils help show that living things change over time?",
+        "target": "evolution"
+      }
+    ],
+    "sources": [
+      "amnh-paleontology",
+      "amnh-fossilization",
+      "amnh-dinosaur-facts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "evolution",
+    "title": "How living things change over generations",
+    "category": "paleontology",
+    "priority": 1,
+    "answer": "Living things often have small differences from others of the same kind. Suppose some beetles have a color that makes it harder for birds to spot them. If young beetles can inherit that color and beetles with it tend to have more young, the helpful color may become more common in later generations. That is one way evolution can happen. Evolution is change in a group over generations. It does not mean one beetle changes its kind while it grows up. Changes can build up in a group over a long time.",
+    "aliases": [
+      "What is evolution?",
+      "What is natural selection?",
+      "Why do a species’ traits change?"
+    ],
+    "sections": [
+      {
+        "heading": "What is an adaptation?",
+        "text": "An adaptation is a feature that helps living things survive or have young in the place where they live. A feature that helps in one place might make less difference somewhere else."
+      }
+    ],
+    "facts": [
+      "Natural selection is one way evolution can happen.",
+      "Fossils are some of the evidence scientists use to study evolution."
+    ],
+    "terms": [
+      "evolution",
+      "adaptation",
+      "species",
+      "fossil"
+    ],
+    "questions": [
+      {
+        "text": "How do fossils preserve clues about past living things?",
+        "target": "fossils"
+      },
+      {
+        "text": "Which dinosaur relatives are still alive outside your window?",
+        "target": "birds-and-dinosaurs"
+      },
+      {
+        "text": "What parts of an ecosystem affect how well a living thing does?",
+        "target": "ecosystems"
+      }
+    ],
+    "sources": [
+      "amnh-evolution",
+      "amnh-paleontology"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tyrannosaurus-rex",
+    "title": "Tyrannosaurus rex",
+    "category": "paleontology",
+    "priority": 1,
+    "answer": "Tyrannosaurus rex was a large dinosaur that walked on two back legs. Some adults reached about 40 feet long. A long tail helped balance the weight of the big head and body. Its thick teeth and strong jaws could crush bone, which helps scientists work out what it could eat. The two short arms each ended in two clawed fingers. Its fossils come from western North America. T. rex lived near the end of the time when large dinosaurs walked the land.",
+    "aliases": [
+      "What was a T. rex?",
+      "Why did Tyrannosaurus have huge teeth?",
+      "How big was T. rex?"
+    ],
+    "sections": [],
+    "facts": [
+      "T. rex means ‘tyrant lizard king.’",
+      "Tyrannosaurus rex lived toward the end of the Cretaceous Period."
+    ],
+    "terms": [
+      "fossil",
+      "species",
+      "adaptation"
+    ],
+    "questions": [
+      {
+        "text": "How can fossils keep the shape of teeth and footprints?",
+        "target": "fossils"
+      },
+      {
+        "text": "How do we know that birds belong to the dinosaur family?",
+        "target": "birds-and-dinosaurs"
+      },
+      {
+        "text": "What happened at the end of the time when T. rex lived?",
+        "target": "dinosaur-extinction"
+      }
+    ],
+    "sources": [
+      "amnh-trex",
+      "amnh-trex-questions"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "birds-and-dinosaurs",
+    "title": "Why birds are living dinosaurs",
+    "category": "paleontology",
+    "priority": 1,
+    "answer": "Birds belong to one branch of the dinosaur family. Their early relatives were small, two-legged dinosaurs that lived long before people. Scientists see clues to that family link in fossils. Some dinosaurs that were not birds had feathers. Some also had bones or feet that share details with those of early birds. This does not mean a chicken came directly from Tyrannosaurus rex. Birds and T. rex are more like distant cousins, and their family branches go back to an older group of meat-eating dinosaurs.",
+    "aliases": [
+      "Are birds dinosaurs?",
+      "Did dinosaurs have feathers?",
+      "Are chickens related to T. rex?"
+    ],
+    "sections": [],
+    "facts": [
+      "Some dinosaur feathers existed before birds could fly.",
+      "The bird branch survived after the other dinosaur branches died out."
+    ],
+    "terms": [
+      "evolution",
+      "fossil",
+      "species"
+    ],
+    "questions": [
+      {
+        "text": "How do fossils help us tell which animals are related?",
+        "target": "fossils"
+      },
+      {
+        "text": "What was Tyrannosaurus rex like?",
+        "target": "tyrannosaurus-rex"
+      },
+      {
+        "text": "Which event ended the time of most dinosaurs?",
+        "target": "dinosaur-extinction"
+      }
+    ],
+    "sources": [
+      "amnh-birds-dinosaurs",
+      "amnh-paleontology",
+      "amnh-dinosaur-facts"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dinosaur-extinction",
+    "title": "What happened to most dinosaurs",
+    "category": "paleontology",
+    "priority": 1,
+    "answer": "About 66 million years ago, most kinds of dinosaurs disappeared. Scientists have strong evidence that a huge asteroid hit Earth at about that time. The impact left a wide crater near what is now the Yucatán Peninsula in Mexico. Dust and other material from the crash spread through the air and reduced the sunlight that reached the ground. That made it harder for plants to grow and broke up the food supply of many animals. Some living things survived, including ancestors of the birds we see today.",
+    "aliases": [
+      "Why did the dinosaurs die out?",
+      "What asteroid killed the dinosaurs?",
+      "Did every dinosaur go extinct?"
+    ],
+    "sections": [],
+    "facts": [
+      "A thin layer of rock in many places contains signs of the impact.",
+      "All dinosaurs outside the bird branch died out."
+    ],
+    "terms": [
+      "fossil",
+      "asteroid",
+      "species",
+      "ecosystem"
+    ],
+    "questions": [
+      {
+        "text": "What are asteroids made of, and where do most known ones travel?",
+        "target": "asteroids"
+      },
+      {
+        "text": "Why can we still say that birds are dinosaurs?",
+        "target": "birds-and-dinosaurs"
+      },
+      {
+        "text": "Why do plants need light to make food?",
+        "target": "photosynthesis"
+      }
+    ],
+    "sources": [
+      "nsf-impact",
+      "amnh-extinction",
+      "amnh-birds-dinosaurs"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

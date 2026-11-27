@@ -1,0 +1,857 @@
+[
+  {
+    "id": "natgeo-map-coordinate",
+    "title": "MapMaker: Latitude and Longitude",
+    "url": "https://education.nationalgeographic.org/resource/mapmaker-latitude-longitude/",
+    "publisher": "National Geographic",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Latitude, longitude, equator, hemispheres, coordinate use, and adoption of the Greenwich prime meridian."
+  },
+  {
+    "id": "usgs-map-projection",
+    "title": "How are different map projections used?",
+    "url": "https://www.usgs.gov/faqs/how-are-different-map-projections-used",
+    "publisher": "U.S. Geological Survey",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Different tradeoffs of flat maps; Mercator and equal-area projection examples."
+  },
+  {
+    "id": "natgeo-map-policy",
+    "title": "National Geographic Map Policy",
+    "url": "https://www.nationalgeographic.org/national-geographic-map-policy",
+    "publisher": "National Geographic Society",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Names and definitions of seven continents in National Geographic's map conventions."
+  },
+  {
+    "id": "natgeo-country-canada",
+    "title": "Canada",
+    "url": "https://kids.nationalgeographic.com/geography/countries/article/canada",
+    "publisher": "National Geographic Kids",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Canada's geography, government languages, capital, currency, and Rocky Mountains. Population totals from this source are not reused."
+  },
+  {
+    "id": "natgeo-country-united-states",
+    "title": "United States",
+    "url": "https://kids.nationalgeographic.com/geography/countries/article/united-states",
+    "publisher": "National Geographic Kids",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "United States country profile, capital, currency, mountains, rivers, and states. Population, size rank, and official-language details from this source are not reused."
+  },
+  {
+    "id": "natgeo-country-mexico",
+    "title": "Mexico",
+    "url": "https://kids.nationalgeographic.com/geography/countries/article/mexico",
+    "publisher": "National Geographic Kids",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Mexico's capital, mountains, deserts, rain forests, river, currency, and mariachi."
+  },
+  {
+    "id": "natgeo-country-brazil",
+    "title": "Brazil",
+    "url": "https://kids.nationalgeographic.com/geography/countries/article/brazil",
+    "publisher": "National Geographic Kids",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Brazil's continental area rank, borders, continent, capital, official language, Amazon River, landscapes, and currency."
+  },
+  {
+    "id": "natgeo-country-egypt",
+    "title": "Egypt",
+    "url": "https://kids.nationalgeographic.com/geography/countries/article/egypt",
+    "publisher": "National Geographic Kids",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Egypt's capital, language, currency, Nile, desert setting, and ancient monuments at Giza."
+  },
+  {
+    "id": "natgeo-country-india",
+    "title": "India",
+    "url": "https://kids.nationalgeographic.com/geography/countries/article/india",
+    "publisher": "National Geographic Kids",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "India's capital, languages, geography, mountains, rivers, and currency."
+  },
+  {
+    "id": "natgeo-country-japan",
+    "title": "Japan",
+    "url": "https://kids.nationalgeographic.com/geography/countries/article/japan",
+    "publisher": "National Geographic Kids",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Japan's capital, geographical setting, and currency."
+  },
+  {
+    "id": "natgeo-country-australia",
+    "title": "Australia",
+    "url": "https://kids.nationalgeographic.com/geography/countries/article/australia",
+    "publisher": "National Geographic Kids",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Australia's capital, continental name, Great Barrier Reef, currency, and examples of marsupials."
+  },
+  {
+    "id": "natgeo-country-kenya",
+    "title": "Kenya",
+    "url": "https://kids.nationalgeographic.com/geography/countries/article/kenya",
+    "publisher": "National Geographic Kids",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Kenya's capital, official languages, currency, geography, wildlife, and protected areas."
+  },
+  {
+    "id": "natgeo-country-france",
+    "title": "France",
+    "url": "https://kids.nationalgeographic.com/geography/countries/article/france",
+    "publisher": "National Geographic Kids",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "European France's capital, rivers, mountain ranges, language, currency, and Paris landmarks."
+  },
+  {
+    "id": "nasa-egypt-nile",
+    "title": "Foggy Nile",
+    "url": "https://science.nasa.gov/earth/earth-observatory/foggy-nile-152302/",
+    "publisher": "NASA Earth Observatory",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Appearance and location of the fertile Nile Delta and its relation to the Egyptian desert and Mediterranean Sea."
+  },
+  {
+    "id": "web-japan-geography",
+    "title": "Geography and Climate",
+    "url": "https://web-japan.org/factsheet/en/pdf/e01_geography.pdf",
+    "publisher": "Web Japan, Ministry of Foreign Affairs of Japan",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Japan's island chain, four main islands, mountains, settlement patterns, and Mount Fuji."
+  },
+  {
+    "id": "australia-dfat-geography",
+    "title": "Our Indo-Pacific Community: Country Fact Files",
+    "url": "https://www.dfat.gov.au/sites/default/files/our-indo-pacific-community-3-4-country-fact-files.pdf",
+    "publisher": "Australian Department of Foreign Affairs and Trade",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Australia's geography and population distribution, Canberra, mainland and Tasmania."
+  },
+  {
+    "id": "unesco-mount-kenya",
+    "title": "Decision 37 COM 8B.9: Mount Kenya National Park/Natural Forest",
+    "url": "https://whc.unesco.org/en/decisions/5125",
+    "publisher": "UNESCO World Heritage Centre",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Mount Kenya's position near the equator."
+  },
+  {
+    "id": "france-guiana-insee",
+    "title": "Territoire guyanais",
+    "url": "https://www.insee.fr/fr/statistiques/1292080",
+    "publisher": "Institut national de la statistique et des études économiques",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "French Guiana's location in South America between Suriname and Brazil."
+  },
+  {
+    "id": "british-museum-ancient-egypt",
+    "title": "Life in ancient Egypt: Visit Resource",
+    "url": "https://www.britishmuseum.org/sites/default/files/2025-08/Life_in_ancient_Egypt_Visit_Resource.pdf",
+    "publisher": "The British Museum",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Ancient Egyptian agriculture, Nile, papyrus, fishing, daily roles, settlement and evidence."
+  },
+  {
+    "id": "egypt-monuments-pyramid",
+    "title": "The Great Pyramid",
+    "url": "https://egymonuments.gov.eg/monuments/the-great-pyramid/",
+    "publisher": "Egyptian Ministry of Tourism and Antiquities",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Giza, Khufu, construction date, royal burial setting, scale and chambers."
+  },
+  {
+    "id": "british-museum-hieroglyphs",
+    "title": "Hieroglyphs: unlocking ancient Egypt",
+    "url": "https://www.britishmuseum.org/sites/default/files/2022-10/Hieroglyphs_unlocking_ancient_Egypt_large_print_guide_The_British_Museum.pdf",
+    "publisher": "The British Museum",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Egyptian hieroglyph signs, sounds and roles; construction, script, dates and scholarly decoding of the Rosetta Stone."
+  },
+  {
+    "id": "british-museum-mesopotamia",
+    "title": "Mesopotamia: Teacher Notes",
+    "url": "https://www.britishmuseum.org/sites/default/files/2019-09/Visit_Mesopotamia_KS2b.pdf",
+    "publisher": "The British Museum",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Cuneiform script, wedge marks, materials, languages and examples of written records."
+  },
+  {
+    "id": "met-classical-greece",
+    "title": "The Art of Classical Greece (ca. 480–323 B.C.)",
+    "url": "https://www.metmuseum.org/essays/the-art-of-classical-greece-ca-480-323-b-c",
+    "publisher": "The Metropolitan Museum of Art",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Greek city-state politics, alliances and rivalries, surviving decorative arts and architecture."
+  },
+  {
+    "id": "unesco-olympia",
+    "title": "Archaeological Site of Olympia",
+    "url": "https://whc.unesco.org/en/list/517/",
+    "publisher": "UNESCO World Heritage Centre",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Ancient Olympic festivals, site remains, four-year schedule, and earliest recorded games."
+  },
+  {
+    "id": "met-ancient-olympics",
+    "title": "The Ancient Olympics and Other Athletic Games",
+    "url": "https://www.metmuseum.org/perspectives/ancient-greek-olympic-games",
+    "publisher": "The Metropolitan Museum of Art",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Ancient Olympic events, religion, men's participation, women chariot owners and pottery records."
+  },
+  {
+    "id": "unesco-appian-way",
+    "title": "Via Appia. Regina Viarum",
+    "url": "https://whc.unesco.org/en/list/1708/",
+    "publisher": "UNESCO World Heritage Centre",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Appian Way start date, Rome-to-Brindisi route, travel and trade, paving and associated engineering."
+  },
+  {
+    "id": "unesco-pont-du-gard",
+    "title": "Pont du Gard (Roman Aqueduct)",
+    "url": "https://whc.unesco.org/en/list/344/",
+    "publisher": "UNESCO World Heritage Centre",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Roman aqueduct engineering, length, water source, route and purpose of the bridge over the Gardon."
+  },
+  {
+    "id": "archives-us-declaration",
+    "title": "Declaration of Independence",
+    "url": "https://www.archives.gov/historical-docs/declaration",
+    "publisher": "U.S. National Archives",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Declaration's adoption, signing, revolutionary context, stated principles and original signed record."
+  },
+  {
+    "id": "archives-us-constitution",
+    "title": "Constitution of the United States (1787)",
+    "url": "https://www.archives.gov/milestone-documents/constitution",
+    "publisher": "U.S. National Archives",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Constitutional Convention, signing, approval and preservation of the original."
+  },
+  {
+    "id": "archives-us-constitution-transcript",
+    "title": "The Constitution of the United States: A Transcription",
+    "url": "https://www.archives.gov/founding-docs/constitution-transcript",
+    "publisher": "U.S. National Archives",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Constitution's allocation of federal powers, three branches, census, House and Senate, veto and amendment rules."
+  },
+  {
+    "id": "usagov-branches",
+    "title": "Branches of the U.S. government",
+    "url": "https://www.usa.gov/branches-of-government",
+    "publisher": "U.S. General Services Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Distinct federal branches, examples of checks and balances, and roles of Congress, President and courts."
+  },
+  {
+    "id": "us-house-explained",
+    "title": "The House Explained",
+    "url": "https://www.house.gov/the-house-explained",
+    "publisher": "U.S. House of Representatives",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Congressional chambers, lawmaking, state representation and division of House seats."
+  },
+  {
+    "id": "archives-us-bill-of-rights",
+    "title": "The Bill of Rights: A Transcription",
+    "url": "https://www.archives.gov/founding-docs/bill-of-rights-transcript",
+    "publisher": "U.S. National Archives",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Twelve proposed amendments, ten ratified in 1791, wording and rights of the Bill of Rights."
+  },
+  {
+    "id": "archives-19th-amendment",
+    "title": "19th Amendment to the U.S. Constitution: Women's Right to Vote (1920)",
+    "url": "https://www.archives.gov/milestone-documents/19th-amendment",
+    "publisher": "U.S. National Archives",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Amendment text, date, ratification process and suffrage organizing."
+  },
+  {
+    "id": "nps-suffrage",
+    "title": "Did Women Earn the Right to Vote on August 18, 1920?",
+    "url": "https://home.nps.gov/articles/000/did-women-earn-the-right-to-vote-on-august-18-1920.htm",
+    "publisher": "U.S. National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "State-level variation before 1920 and continuing racist barriers to exercising voting rights after ratification."
+  },
+  {
+    "id": "crs-federalism",
+    "title": "Federalism-Based Limitations on Congressional Power: An Overview",
+    "url": "https://www.congress.gov/crs_external_products/R/PDF/R45323/R45323.3.pdf",
+    "publisher": "Congressional Research Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "U.S. division of governing authority between federal and state governments and the Tenth Amendment."
+  },
+  {
+    "id": "census-why",
+    "title": "Why We Conduct the Decennial Census of Population and Housing",
+    "url": "https://www.census.gov/programs-surveys/decennial-census/about/why.html",
+    "publisher": "U.S. Census Bureau",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Census timing, first census, population counting, seat apportionment and practical use of population data."
+  },
+  {
+    "id": "archives-whats-an-archive",
+    "title": "What's an Archives?",
+    "url": "https://www.archives.gov/about/info/whats-an-archives.html",
+    "publisher": "U.S. National Archives",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Archives mission, retained records, research value, and formats."
+  },
+  {
+    "id": "royal-parks-meridian",
+    "title": "The Meridian Line",
+    "url": "https://www.royalparks.org.uk/visit/parks/greenwich-park/meridian-line",
+    "publisher": "The Royal Parks",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Greenwich Observatory meridian and its selection as an international reference in 1884."
+  },
+  {
+    "id": "france-tourism-geography",
+    "title": "Geography and climate",
+    "url": "https://www.france.fr/en/article/geography-and-climate/",
+    "publisher": "Atout France",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Mainland France's physical geography, including the Alps and Pyrenees."
+  },
+  {
+    "id": "france-tourism-paris",
+    "title": "Paris",
+    "url": "https://www.france.fr/en/destination/paris/",
+    "publisher": "Atout France",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Seine and Paris landmarks, including the Arc de Triomphe and Eiffel Tower."
+  },
+  {
+    "id": "usagov-state-governments",
+    "title": "State governments",
+    "url": "https://www.usa.gov/state-governments",
+    "publisher": "U.S. General Services Administration",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "U.S. list of states including Alaska and Hawaii, and the additional District of Columbia and territories."
+  },
+  {
+    "id": "india-physical-features",
+    "title": "Physical Features",
+    "url": "https://www.india.gov.in/explore-india/facts-of-india/physical-background/physical-features",
+    "publisher": "National Portal of India",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "India's northern Himalayas, plains, river names, plateaus and coastal geography."
+  },
+  {
+    "id": "kenya-embassy-geography",
+    "title": "About Kenya: Geography",
+    "url": "https://kenyaembassydc.org/aboutkenyageography/",
+    "publisher": "Embassy of the Republic of Kenya, Washington, D.C.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Kenya's equatorial location, Indian Ocean coast, physical geography and capital."
+  },
+  {
+    "id": "brazil-territory",
+    "title": "Brazil's First Biennial Transparency Report: Characterization of Brazil’s Territory",
+    "url": "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/sirene/publicacoes/relatorios-bienais-de-transparencia-btrs/BRA_BTR1_2024_ENG.pdf",
+    "publisher": "Brazilian Ministry of Science, Technology and Innovation",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Brazil's Atlantic shoreline, Amazon River basin, varied landscapes, and border with French Guiana."
+  },
+  {
+    "id": "world-bank-mexico-geography",
+    "title": "Climate Risk Country Profile: Mexico",
+    "url": "https://climateknowledgeportal.worldbank.org/sites/default/files/country-profiles/15634-WB_Mexico%20Country%20Profile-WEB%20%282%29.pdf",
+    "publisher": "World Bank",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Mexico's Pacific and Gulf of Mexico coasts, highlands, rain forests, and U.S. border along the Rio Grande."
+  },
+  {
+    "id": "canada-discover-regions",
+    "title": "Discover Canada: Canada’s Regions",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/discover-canada/read-online/canadas-regions.html",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Canada's ocean boundaries, regions, Rocky Mountains, land border, and Ottawa near Ontario–Quebec boundary."
+  },
+  {
+    "id": "nasa-nightscape-cairo",
+    "title": "Cairo’s Colorful Nightscape",
+    "url": "https://science.nasa.gov/earth/earth-observatory/cairos-colorful-nightscape-153803/",
+    "publisher": "NASA Earth Observatory",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Cairo's location and Nile River's northward course into the Mediterranean through a broad, farmed delta."
+  },
+  {
+    "id": "loc-about-braille",
+    "title": "About Braille",
+    "url": "https://www.loc.gov/nls/services-and-resources/informational-publications/about-braille/",
+    "publisher": "National Library Service for the Blind and Print Disabled, Library of Congress",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Louis Braille, six-dot cells, reading by touch, letters and contractions."
+  },
+  {
+    "id": "loc-louis-braille",
+    "title": "Louis Braille (1809–1852)",
+    "url": "https://www.loc.gov/nls/new-materials/book-lists/louis-braille-1809-1852/",
+    "publisher": "National Library Service for the Blind and Print Disabled, Library of Congress",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Raised print letters before braille, Louis Braille's schooling and later braille contractions."
+  },
+  {
+    "id": "nidcd-asl",
+    "title": "American Sign Language",
+    "url": "https://www.nidcd.nih.gov/health/american-sign-language",
+    "publisher": "National Institute on Deafness and Other Communication Disorders",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "ASL grammar and language status, facial and hand movements, and the separate existence of British Sign Language."
+  },
+  {
+    "id": "unicode-basic-latin",
+    "title": "C0 Controls and Basic Latin",
+    "url": "https://www.unicode.org/charts/PDF/U0000.pdf",
+    "publisher": "Unicode Consortium",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "The 26 uppercase and 26 corresponding lowercase Basic Latin letters used in English."
+  },
+  {
+    "id": "ufli-syllables",
+    "title": "Teaching Big Words",
+    "url": "https://ufli.education.ufl.edu/wp-content/uploads/2022/01/Teaching-Big-Words.pdf",
+    "publisher": "University of Florida Literacy Institute",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Syllables as units of speech, their relation to vowel sounds and letters, and how to hear parts of words."
+  },
+  {
+    "id": "smithsonian-portraiture",
+    "title": "Introduction to Portraiture",
+    "url": "https://npg.si.edu/sites/default/files/gac_introduction_to_portraiture.pdf",
+    "publisher": "National Portrait Gallery, Smithsonian Institution",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Portraits and self-portraits, their different media, sitters, and what the artist's choices reveal."
+  },
+  {
+    "id": "met-woodcut",
+    "title": "Woodcut",
+    "url": "https://www.metmuseum.org/perspectives/materials-and-techniques-printmaking-woodcut",
+    "publisher": "The Metropolitan Museum of Art",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Relief printing, carving woodblocks, inking raised surfaces, transferring the reversed image, and using multiple colors."
+  },
+  {
+    "id": "nps-museum-handbook",
+    "title": "Museum Handbook Quick Reference",
+    "url": "https://www.nps.gov/museum/publications/museum%20handbook%20with%20quick%20reference.pdf",
+    "publisher": "U.S. National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Object collections, curator and conservator roles, cataloging, storage, displays, research, and light damage."
+  },
+  {
+    "id": "loc-about",
+    "title": "About the Library of Congress",
+    "url": "https://www.loc.gov/about/",
+    "publisher": "Library of Congress",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Congressional research role, founding, collections, catalog, digital access and accessible reading services."
+  },
+  {
+    "id": "carnegie-hall-orchestra",
+    "title": "Link Up: The Orchestra Sings, Teacher Guide",
+    "url": "https://www.carnegiehall.org/uploadedFiles/Resources_and_Components/PDF/WMI/1314_LU_OrchestraSings_TG.pdf",
+    "publisher": "Carnegie Hall Weill Music Institute",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Orchestra instrument families, examples, ensemble and conductor roles."
+  },
+  {
+    "id": "carnegie-hall-rhythm",
+    "title": "Rhythm: Long and Short Patterns",
+    "url": "https://www.carnegiehall.org/uploadedFiles/Resources_and_Components/PDF/WMI/K%20Teacher%20Worksheet_Long%20and%20Short%20Patterns.pdf",
+    "publisher": "Carnegie Hall Weill Music Institute",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Contrast between steady beat and long or short sounds in rhythm."
+  },
+  {
+    "id": "open-music-theory-pitch",
+    "title": "Pitch and Pitch Class",
+    "url": "https://viva.pressbooks.pub/openmusictheory/chapter/pitch-and-pitch-class/",
+    "publisher": "Open Music Theory and VIVA Open Publishing",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Writing pitches using lines and spaces of a staff; higher locations for higher pitches."
+  },
+  {
+    "id": "open-music-theory-rhythm",
+    "title": "Rhythmic values",
+    "url": "https://openmusictheory.github.io/rhythmicValues.html",
+    "publisher": "Open Music Theory",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Relative note durations, rest notation, and rhythm as a combination of different lengths in time."
+  },
+  {
+    "id": "springfield-basketball",
+    "title": "Where Basketball was Invented: The History of Basketball",
+    "url": "https://springfield.edu/about/birthplace-of-basketball",
+    "publisher": "Springfield College",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "James Naismith, Springfield, 1891, indoor game, peach baskets and thirteen rules."
+  },
+  {
+    "id": "fiba-basketball-rules",
+    "title": "2024 Official Basketball Rules",
+    "url": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2024-official-basketball-rules-and-basketball-equipment.pdf",
+    "publisher": "International Basketball Federation",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Players on the court, dribbling and scoring in standard basketball; basic rules stable across this cited edition."
+  },
+  {
+    "id": "fivb-history",
+    "title": "Volleyball: History",
+    "url": "https://www.fivb.com/volleyball/the-game/history/",
+    "publisher": "International Volleyball Federation",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "William G. Morgan, Holyoke, 1895, the name Mintonette and indoor origins."
+  },
+  {
+    "id": "fivb-rules",
+    "title": "Official Volleyball Rules 2025–2028",
+    "url": "https://www.fivb.com/wp-content/uploads/2025/01/FIVB-Volleyball_Rules2025_2028-EN-v05.pdf",
+    "publisher": "International Volleyball Federation",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Purpose of play, points, player count, ball contacts, and blocking exception in indoor volleyball."
+  },
+  {
+    "id": "ifab-players",
+    "title": "Law 3: The Players",
+    "url": "https://www.theifab.com/laws/2025-26/the-players/",
+    "publisher": "International Football Association Board",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Outdoor soccer's basic team size and goalkeeper requirement; 2025–26 edition."
+  },
+  {
+    "id": "ifab-outcome",
+    "title": "Law 10: The Outcome of a Match",
+    "url": "https://www.theifab.com/laws/2025-26/determining-the-outcome-of-a-match/",
+    "publisher": "International Football Association Board",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Conditions for scoring when the whole ball crosses the goal line; 2025–26 edition."
+  },
+  {
+    "id": "ifab-fouls",
+    "title": "Law 12: Fouls and Misconduct",
+    "url": "https://www.theifab.com/laws/2025-26/fouls-and-misconduct/",
+    "publisher": "International Football Association Board",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Restrictions governing intentional hand contact, including the goalkeeper's own penalty area; 2025–26 edition."
+  },
+  {
+    "id": "ioc-history",
+    "title": "History of the IOC",
+    "url": "https://www.olympics.com/ioc/history",
+    "publisher": "International Olympic Committee",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "IOC founding, first modern games in Athens in 1896 and the start of the Winter Olympic Games."
+  },
+  {
+    "id": "pnas-maize-evidence",
+    "title": "Starch grain and phytolith evidence for early ninth millennium B.P. maize from the Central Balsas River Valley, Mexico",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2664021/",
+    "publisher": "Proceedings of the National Academy of Sciences",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Maize ancestry, early cultivation in present-day Mexico, and archaeological traces on tools indicating maize by about 8,700 years ago."
+  },
+  {
+    "id": "nmai-maize",
+    "title": "Mexica Chicomecoatl",
+    "url": "https://americanindian.si.edu/exhibitions/infinityofnations/meso-carib/008143.html",
+    "publisher": "National Museum of the American Indian, Smithsonian Institution",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Importance of maize cultivation in Central Mexico, including distinctions among ears and varieties."
+  },
+  {
+    "id": "usda-nrcs-rotation",
+    "title": "Conservation Practice Standard: Conservation Crop Rotation (Code 328)",
+    "url": "https://www.nrcs.usda.gov/publications/nhcp-notice-179/328-cps-conservation-crop-rotation-2026.pdf",
+    "publisher": "U.S. Department of Agriculture Natural Resources Conservation Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Planned crop sequence, soil coverage, crop health, and purposes of crop rotation."
+  },
+  {
+    "id": "umn-rotation",
+    "title": "Preventing plant diseases in the garden",
+    "url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/yard-and-garden-problems/preventing-plant-diseases-in-the-garden",
+    "publisher": "University of Minnesota Extension",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "How switching to other plant families can help prevent certain plant diseases."
+  },
+  {
+    "id": "usda-ars-seeds",
+    "title": "Seeds: National Center for Genetic Resources Preservation",
+    "url": "https://www.ars.usda.gov/ARSUserFiles/30123005/142772-Seed-Broc-PROOF-4.pdf",
+    "publisher": "U.S. Department of Agriculture Agricultural Research Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Seed preservation, drying, cold storage, seed sampling, testing and preserving genetically diverse crop material."
+  },
+  {
+    "id": "crop-trust-svalbard",
+    "title": "Svalbard Global Seed Vault",
+    "url": "https://www.croptrust.org/what-we-do/programs/svalbard-global-seed-vault/",
+    "publisher": "Crop Trust",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Location, backup role, ownership of deposited seeds, and crop diversity."
+  },
+  {
+    "id": "usgs-irrigation",
+    "title": "Irrigation Water Use",
+    "url": "https://www.usgs.gov/mission-areas/water-resources/science/irrigation-water-use",
+    "publisher": "U.S. Geological Survey",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Purpose, sources, and common methods of irrigation."
+  },
+  {
+    "id": "philadelphia-fed-money",
+    "title": "Why Money?",
+    "url": "https://www.frbatlanta.org/-/media/documents/education/classroom-economist/what-is-money/LessonPlan.pdf",
+    "publisher": "Federal Reserve Bank of Philadelphia",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Barter, using currency for exchange and price comparison, and storing spending power."
+  },
+  {
+    "id": "ecb-our-money",
+    "title": "Our money",
+    "url": "https://www.ecb.europa.eu/euro/intro/html/index.en.html",
+    "publisher": "European Central Bank",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Euro as common currency for participating countries, including France, and the euro symbol."
+  },
+  {
+    "id": "ecb-euro-coins",
+    "title": "Coins",
+    "url": "https://www.ecb.europa.eu/euro/coins/html/index.en.html",
+    "publisher": "European Central Bank",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Cent and euro denominations, common and national sides of euro coins, and shared use across participating countries."
+  },
+  {
+    "id": "nps-yellowstone",
+    "title": "Yellowstone National Park",
+    "url": "https://www.nps.gov/yell/index.htm",
+    "publisher": "U.S. National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Dates, geography, wildlife and Yellowstone's hot-water features."
+  },
+  {
+    "id": "nps-yellowstone-plan",
+    "title": "Foundation Document: Yellowstone National Park",
+    "url": "https://www.nps.gov/yell/learn/management/upload/yell_fd_final.pdf",
+    "publisher": "U.S. National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Park origins in federal law, founding statute's purpose, geology, wildlife, and Wyoming, Montana, Idaho boundaries."
+  },
+  {
+    "id": "nps-old-faithful",
+    "title": "Old Faithful",
+    "url": "https://www.nps.gov/yell/planyourvisit/exploreoldfaithful.htm",
+    "publisher": "U.S. National Park Service",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Old Faithful and historic interest in geysers leading to park's creation; staying on paths and boardwalks."
+  },
+  {
+    "id": "egypt-monuments-giza",
+    "title": "Giza Plateau",
+    "url": "https://egymonuments.gov.eg/archaeological-sites/giza-plateau/",
+    "publisher": "Egyptian Ministry of Tourism and Antiquities",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "The Great Pyramid is the largest of the three main Giza pyramids, and smaller pyramids and other tombs surround them."
+  },
+  {
+    "id": "egypt-monuments-khufu",
+    "title": "Khufu Statue",
+    "url": "https://egymonuments.gov.eg/en/collections/khufu-statue-2/",
+    "publisher": "Egyptian Ministry of Tourism and Antiquities",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "King Khufu was known as Cheops to the ancient Greeks."
+  },
+  {
+    "id": "met-egypt-writing-educators",
+    "title": "The Art of Ancient Egypt: A Resource for Educators",
+    "url": "https://resources.metmuseum.org/resources/metpublications/pdf/The_Art_of_Ancient_Egypt_A_Resource_for_Educators.pdf",
+    "publisher": "The Metropolitan Museum of Art",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Pages 47–48 explain picture signs that represent sounds or words and signs used as clues to meaning."
+  },
+  {
+    "id": "met-egypt-bestiary",
+    "title": "An Egyptian Bestiary",
+    "url": "https://resources.metmuseum.org/resources/metpublications/pdf/An_Egyptian_Bestiary_The_Metropolitan_Museum_of_Art_Bulletin_v_52_no_4_Spring_1995.pdf",
+    "publisher": "The Metropolitan Museum of Art",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "The barn owl entry gives the owl sign’s use for the sound m."
+  },
+  {
+    "id": "british-museum-rosetta-decree",
+    "title": "Hieroglyphs: unlocking ancient Egypt, large print guide",
+    "url": "https://www.britishmuseum.org/sites/default/files/2022-10/Hieroglyphs_unlocking_ancient_Egypt_large_print_guide_The_British_Museum_2.pdf",
+    "publisher": "The British Museum",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Page 43 gives the same decree in the three scripts, the date 196 BCE, and the clues supplied by personal names."
+  },
+  {
+    "id": "met-origins-of-writing",
+    "title": "The Origins of Writing",
+    "url": "https://www.metmuseum.org/essays/the-origins-of-writing",
+    "publisher": "The Metropolitan Museum of Art",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Origins of writing in southern Mesopotamia, the shift to wedge-shaped signs, and uncertainty about the language of the earliest tablets."
+  },
+  {
+    "id": "getty-ancient-olympics",
+    "title": "The Getty Villa Guide to the Ancient Olympics",
+    "url": "https://www.getty.edu/news/the-getty-villa-guide-to-the-ancient-olympics/",
+    "publisher": "J. Paul Getty Trust",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Games at Olympia, examples of events, and the exception for women who owned successful chariot teams."
+  },
+  {
+    "id": "pont-du-gard-history",
+    "title": "40 centuries of history",
+    "url": "https://pontdugard.fr/en/discover/history",
+    "publisher": "Site du Pont du Gard",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "The aqueduct’s spring, route, gravity-driven flow, shallow slope, and approximately 50-kilometer length."
+  },
+  {
+    "id": "archives-declaration-history",
+    "title": "The Declaration of Independence: A History",
+    "url": "https://www.archives.gov/founding-docs/declaration-history",
+    "publisher": "U.S. National Archives",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "War before the Declaration, Congress’s adoption on July 4, New York’s approval on July 9, and signing on August 2."
+  },
+  {
+    "id": "archives-thirteenth-amendment",
+    "title": "13th Amendment to the U.S. Constitution: Abolition of Slavery (1865)",
+    "url": "https://www.archives.gov/milestone-documents/13th-amendment",
+    "publisher": "U.S. National Archives",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Slavery persisted after independence and was abolished by constitutional amendment in 1865, subject to the amendment’s exception."
+  },
+  {
+    "id": "census-first-count",
+    "title": "March 2026: 1836 Battle of the Alamo",
+    "url": "https://www.census.gov/about/history/stories/monthly/2026/march-2026.html",
+    "publisher": "U.S. Census Bureau",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "The Census History sidebar documents the first U.S. census in 1790."
+  },
+  {
+    "id": "sdhhns-sign-language",
+    "title": "Sign Language",
+    "url": "https://sdhhns.org/sign-language/",
+    "publisher": "Society of Deaf and Hard of Hearing Nova Scotians",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Use of ASL in Canada, especially in English-speaking regions, and the presence of multiple sign languages."
+  },
+  {
+    "id": "fiba-basketball-dribbling",
+    "title": "The FIBA Official Basketball Rules Changes (October 2026)",
+    "url": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2026-rule-changes-v1-1-en.pdf",
+    "publisher": "International Basketball Federation",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only; original prose.",
+    "scope": "Article 24 recognizes dribbling as a way to move the ball in current basketball."
+  }
+]
