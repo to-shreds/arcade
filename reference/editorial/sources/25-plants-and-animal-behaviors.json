@@ -1,0 +1,866 @@
+[
+  {
+    "id": "plant25-acer-saccharum",
+    "title": "Acer saccharum",
+    "url": "https://plants.ces.ncsu.edu/plants/acer-saccharum/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Sugar maple leaf shape, rounded gaps, and coloring.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-acer-rubrum",
+    "title": "Acer rubrum",
+    "url": "https://plants.ces.ncsu.edu/plants/acer-rubrum/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Leaf edges, early red flowers, fall color, and native range.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-betula-papyrifera",
+    "title": "Betula papyrifera",
+    "url": "https://plants.ces.ncsu.edu/plants/betula-papyrifera/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Peeling white bark, inner bark color, and common name.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-betula-nigra",
+    "title": "Betula nigra",
+    "url": "https://plants.ces.ncsu.edu/plants/betula-nigra/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Peeling bark, changes with age, and moist habitat.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-pinus-strobus",
+    "title": "Pinus strobus",
+    "url": "https://plants.ces.ncsu.edu/plants/pinus-strobus/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Needles in fives, long cones, and evergreen foliage.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-pinus-taeda",
+    "title": "Pinus taeda",
+    "url": "https://plants.ces.ncsu.edu/plants/pinus-taeda/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Open fields, southeastern range, needle count, and changing crown.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-taxodium-distichum",
+    "title": "Taxodium distichum",
+    "url": "https://plants.ces.ncsu.edu/plants/taxodium-distichum/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Needle loss, cones, wet habitat, and root knees.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-populus-tremuloides",
+    "title": "Populus tremuloides",
+    "url": "https://plants.ces.ncsu.edu/plants/populus-tremuloides/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Flattened leaf stems, trembling, autumn color, and poplar relationship.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-fagus-grandifolia",
+    "title": "Fagus grandifolia",
+    "url": "https://plants.ces.ncsu.edu/plants/fagus-grandifolia/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Smooth bark, leaves held into winter, bristly fruit, and triangular nuts.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-carya-ovata",
+    "title": "Carya ovata",
+    "url": "https://plants.ces.ncsu.edu/plants/carya-ovata/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Bark with loose strips, compound leaves, and ripening nut husks.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-juglans-nigra",
+    "title": "Juglans nigra",
+    "url": "https://plants.ces.ncsu.edu/plants/juglans-nigra/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Fruit and shell layers, staining husk, and compound leaf shape.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-platanus-occidentalis",
+    "title": "Platanus occidentalis",
+    "url": "https://plants.ces.ncsu.edu/plants/platanus-occidentalis/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Patchy peeling bark and round fruit clusters.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-tsuga-canadensis",
+    "title": "Tsuga canadensis",
+    "url": "https://plants.ces.ncsu.edu/plants/tsuga-canadensis/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Shady growth, flattened needles, and small hanging cones.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-juniperus-virginiana",
+    "title": "Juniperus virginiana",
+    "url": "https://plants.ces.ncsu.edu/plants/juniperus-virginiana/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Fleshy cones, scale leaves, and dispersal by birds.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-liriodendron-tulipifera",
+    "title": "Liriodendron tulipifera",
+    "url": "https://plants.ces.ncsu.edu/plants/liriodendron-tulipifera/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Tulip-like blooms, leaf shape, and magnolia family.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-picea-glauca",
+    "title": "Picea glauca",
+    "url": "https://plants.ces.ncsu.edu/plants/picea-glauca/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "White spruce range, cone position, scales, and dropping.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-quercus-virginiana",
+    "title": "Quercus virginiana",
+    "url": "https://plants.ces.ncsu.edu/plants/quercus-virginiana/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Leaf replacement, spreading branches, coastal range, and acorns.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-magnolia-grandiflora",
+    "title": "Magnolia grandiflora",
+    "url": "https://plants.ces.ncsu.edu/plants/magnolia-grandiflora/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Leaf surface, broad evergreen leaves, white flowers, and red seeds.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-cornus-florida",
+    "title": "Cornus florida",
+    "url": "https://plants.ces.ncsu.edu/plants/cornus-florida/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Showy bracts, flower clusters, and later red fruits.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-cercis-canadensis",
+    "title": "Cercis canadensis",
+    "url": "https://plants.ces.ncsu.edu/plants/cercis-canadensis/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Early bloom, flowers on branches, heart leaves, and pods.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-ginkgo-biloba",
+    "title": "Ginkgo biloba",
+    "url": "https://plants.ces.ncsu.edu/plants/ginkgo-biloba/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Fan-shaped leaves, forked veins, yellow foliage, and lack of flowers.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-populus-deltoides",
+    "title": "Populus deltoides",
+    "url": "https://plants.ces.ncsu.edu/plants/populus-deltoides/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Cottony seed hairs, wind dispersal, and riverside habitat.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-salix-nigra",
+    "title": "Salix nigra",
+    "url": "https://plants.ces.ncsu.edu/plants/salix-nigra/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Wet habitat, willow seed hairs, narrow leaves, and native range.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-salix-babylonica",
+    "title": "Salix babylonica",
+    "url": "https://plants.ces.ncsu.edu/plants/salix-babylonica/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Drooping branches, narrow leaves, origin, and wet sites.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-ilex-opaca",
+    "title": "Ilex opaca",
+    "url": "https://plants.ces.ncsu.edu/plants/ilex-opaca/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Evergreen foliage, leaf teeth, red fruits, and bird use.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-tsuga-heterophylla",
+    "title": "Tsuga heterophylla",
+    "url": "https://plants.ces.ncsu.edu/plants/tsuga-heterophylla/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Uneven flat needles, drooping tip, small cones, shade, and state symbol.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-abies-balsamea",
+    "title": "Abies balsamea",
+    "url": "https://plants.ces.ncsu.edu/plants/abies-balsamea/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Upright cones, disintegration, needle stripes, and range.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-pseudotsuga-menziesii",
+    "title": "Pseudotsuga menziesii",
+    "url": "https://plants.ces.ncsu.edu/plants/pseudotsuga-menziesii/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Three-pointed cone bracts and geographical varieties.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-picea-mariana",
+    "title": "Picea mariana",
+    "url": "https://plants.ces.ncsu.edu/plants/picea-mariana/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Bogs and peatlands, narrow crown, slow growth, and persistent cones.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-asclepias-syriaca",
+    "title": "Asclepias syriaca",
+    "url": "https://plants.ces.ncsu.edu/plants/asclepias-syriaca/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Dry seed pods, seed hairs, flower clusters, and monarch host use.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-asclepias-tuberosa",
+    "title": "Asclepias tuberosa",
+    "url": "https://plants.ces.ncsu.edu/plants/asclepias-tuberosa/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Orange clusters, butterfly and bee visitors, host use, and clear sap.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-echinacea-purpurea",
+    "title": "Echinacea purpurea",
+    "url": "https://plants.ces.ncsu.edu/plants/echinacea-purpurea/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Disk and ray flowers, pointed center, and bird seed use.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-rudbeckia-hirta",
+    "title": "Rudbeckia hirta",
+    "url": "https://plants.ces.ncsu.edu/plants/rudbeckia-hirta/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Dark disk flowers, yellow rays, hairy stems, and bloom habitat.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-solidago-canadensis",
+    "title": "Solidago canadensis",
+    "url": "https://plants.ces.ncsu.edu/plants/solidago-canadensis/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Branching groups of yellow heads, late bloom, and underground spread.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-symphyotrichum-novae-angliae",
+    "title": "Symphyotrichum novae angliae",
+    "url": "https://plants.ces.ncsu.edu/plants/symphyotrichum-novae-angliae/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Ray and disk flowers, late bloom, habitats, and origin.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-taraxacum-officinale",
+    "title": "Taraxacum officinale",
+    "url": "https://plants.ces.ncsu.edu/plants/taraxacum-officinale/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Flower head, pappus, wind dispersal, and basal leaves.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-viola-sororia",
+    "title": "Viola sororia",
+    "url": "https://plants.ces.ncsu.edu/plants/viola-sororia/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Heart-shaped leaves, flower colors, and closed flowers.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-trifolium-pratense",
+    "title": "Trifolium pratense",
+    "url": "https://plants.ces.ncsu.edu/plants/trifolium-pratense/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Flower head structure, leaflets, coloring, and pollinators.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-trifolium-repens",
+    "title": "Trifolium repens",
+    "url": "https://plants.ces.ncsu.edu/plants/trifolium-repens/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Ground-running stems, rooting joints, white flower heads, and leaflets.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-adiantum-pedatum",
+    "title": "Adiantum pedatum",
+    "url": "https://plants.ces.ncsu.edu/plants/adiantum-pedatum/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Fan-shaped leaflets, dark stems, and spores.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-lemna-minor",
+    "title": "Lemna minor",
+    "url": "https://plants.ces.ncsu.edu/plants/lemna-minor/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Floating plant parts, root, budding, and still waters.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-impatiens-capensis",
+    "title": "Impatiens capensis",
+    "url": "https://plants.ces.ncsu.edu/plants/impatiens-capensis/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Spotted orange flowers, springing ripe capsules, and damp habitat.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-sassafras-albidum",
+    "title": "Sassafras albidum",
+    "url": "https://plants.ces.ncsu.edu/plants/sassafras-albidum/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Three leaf outlines on one tree and autumn colors.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-arisaema-triphyllum",
+    "title": "Arisaema triphyllum",
+    "url": "https://plants.ces.ncsu.edu/plants/arisaema-triphyllum/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Hood, spike with small flowers, fruit clusters, and leaves.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-symplocarpus-foetidus",
+    "title": "Symplocarpus foetidus",
+    "url": "https://plants.ces.ncsu.edu/plants/symplocarpus-foetidus/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Heat release, melting snow, early flower visitors, and habitat.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-skunk-heat",
+    "title": "What can we learn from skunk cabbage?",
+    "url": "https://www.bbg.org/article/what_can_we_learn_from_the_skunk_cabbage",
+    "publisher": "Brooklyn Botanic Garden",
+    "accessed": "2026-11-27",
+    "scope": "Heat production around the flower cluster.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-trillium-grandiflorum",
+    "title": "Trillium grandiflorum",
+    "url": "https://plants.ces.ncsu.edu/plants/trillium-grandiflorum/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Three petals, spring bloom, seed appendages, and ant movement.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-trillium-ant",
+    "title": "White trillium",
+    "url": "https://cornellbotanicgardens.org/plant/white-trillium",
+    "publisher": "Cornell Botanic Gardens",
+    "accessed": "2026-11-27",
+    "scope": "Ants disperse white trillium seeds; Trillium seed appendages and ant dispersal.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-hamamelis-virginiana",
+    "title": "Hamamelis virginiana",
+    "url": "https://plants.ces.ncsu.edu/plants/hamamelis-virginiana/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Drying fruit and seed discharge, and autumn flowers.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-arctium-minus",
+    "title": "Arctium minus",
+    "url": "https://plants.ces.ncsu.edu/plants/arctium-minus/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Hooked flower heads, attached dry fruits, and transport on fur.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-chicory",
+    "title": "Common chicory",
+    "url": "https://mdc.mo.gov/discover-nature/field-guide/common-chicory",
+    "publisher": "Missouri Department of Conservation",
+    "accessed": "2026-11-27",
+    "scope": "Blue heads, branching stems, and daily opening and closing.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-parthenocissus-quinquefolia",
+    "title": "Parthenocissus quinquefolia",
+    "url": "https://plants.ces.ncsu.edu/plants/parthenocissus-quinquefolia/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Adhesive pads, climbing, five leaflets, and ground growth.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-parthenocissus-tricuspidata",
+    "title": "Parthenocissus tricuspidata",
+    "url": "https://plants.ces.ncsu.edu/plants/parthenocissus-tricuspidata/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Adhesive discs, mature leaves, grape relationship, and fall colors.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-campsis-radicans",
+    "title": "Campsis radicans",
+    "url": "https://plants.ces.ncsu.edu/plants/campsis-radicans/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Aerial rootlets, climbing support, tubular flowers, and hummingbirds.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-ceanothus-americanus",
+    "title": "Ceanothus americanus",
+    "url": "https://plants.ces.ncsu.edu/plants/ceanothus-americanus/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Shrub habitat, native range, white flower clusters, and wildlife use.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-liatris-spicata",
+    "title": "Liatris spicata",
+    "url": "https://plants.ces.ncsu.edu/plants/liatris-spicata/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Top-to-bottom bloom, purple spikes, moist sites, and aster family.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-aquilegia-canadensis",
+    "title": "Aquilegia canadensis",
+    "url": "https://plants.ces.ncsu.edu/plants/aquilegia-canadensis/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Red and yellow hanging flowers, spurs, and hummingbird visitors.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-passiflora-incarnata",
+    "title": "Passiflora incarnata",
+    "url": "https://plants.ces.ncsu.edu/plants/passiflora-incarnata/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Flower filaments and central parts, climbing, and fruit shape.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-muenchhusia-moscheutos",
+    "title": "Muenchhusia moscheutos",
+    "url": "https://plants.ces.ncsu.edu/plants/muenchhusia-moscheutos/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Large flowers, dark eye, projecting center, and creek-edge habitat.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-iris-versicolor",
+    "title": "Iris versicolor",
+    "url": "https://plants.ces.ncsu.edu/plants/iris-versicolor/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Upright and falling flower parts, swordlike leaves, and wet habitat.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-sanguinaria-canadensis",
+    "title": "Sanguinaria canadensis",
+    "url": "https://plants.ces.ncsu.edu/plants/sanguinaria-canadensis/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Folded leaf and flower, red-orange sap, and ant-dispersed seeds.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-dicentra-cucullaria",
+    "title": "Dicentra cucullaria",
+    "url": "https://plants.ces.ncsu.edu/plants/dicentra-cucullaria/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Pantaloon-shaped blooms, nectar spurs, seasonal dieback, and seed dispersal.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-erythronium-americanum",
+    "title": "Erythronium americanum",
+    "url": "https://plants.ces.ncsu.edu/plants/erythronium-americanum/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Mottled leaves, growth stages, early bloom, and seasonal dieback.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-fragaria-virginiana",
+    "title": "Fragaria virginiana",
+    "url": "https://plants.ces.ncsu.edu/plants/fragaria-virginiana/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Surface fruits, flower base, growing form, and runners.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-daucus-carota",
+    "title": "Daucus carota",
+    "url": "https://plants.ces.ncsu.edu/plants/daucus-carota/",
+    "publisher": "NC State Extension Gardener Plant Toolbox",
+    "accessed": "2026-11-27",
+    "scope": "Cluster shape, inward stalks, carrot relationship, and naturalization.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-tamarack",
+    "title": "Tamarack species review",
+    "url": "https://research.fs.usda.gov/feis/species-reviews/larlar",
+    "publisher": "USDA Forest Service",
+    "accessed": "2026-11-27",
+    "scope": "Needle groups, autumn color, annual shedding, and peatland range.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-water-lily",
+    "title": "American white water lily",
+    "url": "https://plant-directory.ifas.ufl.edu/plant-directory/nymphaea-odorata/",
+    "publisher": "University of Florida IFAS",
+    "accessed": "2026-11-27",
+    "scope": "Roots and stems in mud, floating notched leaves, stalks, and white blooms.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-botany",
+    "title": "Botany",
+    "url": "https://content.ces.ncsu.edu/extension-gardener-handbook/3-botany",
+    "publisher": "NC State Extension",
+    "accessed": "2026-11-27",
+    "scope": "Comparing wind-carried pappus and hooked fruits as dispersal mechanisms; Petiole, internal transport, leaf attachment, and stalkless leaves.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-leaf-id",
+    "title": "Plant identification: Examining leaves",
+    "url": "https://landscapeplants.oregonstate.edu/plant-identification-examining-leaves",
+    "publisher": "Oregon State University",
+    "accessed": "2026-11-27",
+    "scope": "Compound and simple leaves, stalks, leaflets, and axillary buds; Leaf shape, margin, arrangement and compound clues; Lobes, leaflet separation, and leaf outline clues.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-leaf-science",
+    "title": "Leaves",
+    "url": "https://open.lib.umn.edu/horticulture/chapter/3-1-leaves/",
+    "publisher": "University of Minnesota",
+    "accessed": "2026-11-27",
+    "scope": "Leaf attachments as a way to compare visible movement; Veins, support, parallel and branching patterns, and transport.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-spring-flowers",
+    "title": "Spring ephemerals",
+    "url": "https://gardens.duke.edu/garden-talk/spring-ephemerals/",
+    "publisher": "Sarah P. Duke Gardens",
+    "accessed": "2026-11-27",
+    "scope": "Spring sunlight before leaf-out and seasonal dieback.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-seed-hitchhikers",
+    "title": "A hitchhiker guide",
+    "url": "https://www.naturalsciences.org/hitchhiker-guide",
+    "publisher": "North Carolina Museum of Natural Sciences",
+    "accessed": "2026-11-27",
+    "scope": "Windy parachutes and clinging structures as seed dispersal examples.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-flower-clocks",
+    "title": "Circadian beds",
+    "url": "https://www.botanic.cam.ac.uk/learning/trails/plant-rhythms/circadian-beds/",
+    "publisher": "Cambridge University Botanic Garden",
+    "accessed": "2026-11-27",
+    "scope": "Differences in flower opening and closing, and daily rhythms.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-nuthatch",
+    "title": "White-breasted nuthatches",
+    "url": "https://www.massaudubon.org/nature-wildlife/birds/white-breasted-nuthatches",
+    "publisher": "Mass Audubon",
+    "accessed": "2026-11-27",
+    "scope": "Headfirst climbing, looking in bark, wedging food, and food storage.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-brown-creeper",
+    "title": "Brown creeper",
+    "url": "https://www.audubon.org/field-guide/bird/brown-creeper",
+    "publisher": "National Audubon Society",
+    "accessed": "2026-11-27",
+    "scope": "Upward climbs, flight between tree bases, tail support, and diet.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-killdeer",
+    "title": "Killdeer",
+    "url": "https://stateofthebirds.nhaudubon.org/bird_database/killdeer/",
+    "publisher": "New Hampshire Audubon",
+    "accessed": "2026-11-27",
+    "scope": "Ground nest setting; Open ground nest, egg camouflage, and injury-feigning behavior.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-goldfinch",
+    "title": "American goldfinch",
+    "url": "https://www.audubon.org/field-guide/bird/american-goldfinch",
+    "publisher": "National Audubon Society",
+    "accessed": "2026-11-27",
+    "scope": "Plant seeds, seedhead feeding, and nest fibers.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-chimney-swift",
+    "title": "Chimney swift",
+    "url": "https://myfwc.com/wildlifehabitats/profiles/birds/chimney-swift/",
+    "publisher": "Florida Fish and Wildlife Conservation Commission",
+    "accessed": "2026-11-27",
+    "scope": "Vertical clinging, stiff tail, twig nest, and airborne food.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-barn-swallow",
+    "title": "Barn swallow residence description",
+    "url": "https://www.canada.ca/en/environment-climate-change/services/species-risk-public-registry/residence-descriptions/barn-swallow.html",
+    "publisher": "Environment and Climate Change Canada",
+    "accessed": "2026-11-27",
+    "scope": "Mud pellets, open cups, sheltered nest supports, and tail shape.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-house-wren",
+    "title": "Northern house wren",
+    "url": "https://stateofthebirds.nhaudubon.org/bird_database/house-wren/",
+    "publisher": "New Hampshire Audubon",
+    "accessed": "2026-11-27",
+    "scope": "Cavity choice, twig platform, soft lining, and additional sites; Cavity nest setting.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-titmouse",
+    "title": "Tufted titmouse",
+    "url": "https://www.audubon.org/field-guide/bird/tufted-titmouse",
+    "publisher": "National Audubon Society",
+    "accessed": "2026-11-27",
+    "scope": "Seed handling, caching, diet, and crest.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-kingfisher",
+    "title": "Belted kingfisher",
+    "url": "https://www.audubon.org/field-guide/bird/belted-kingfisher",
+    "publisher": "National Audubon Society",
+    "accessed": "2026-11-27",
+    "scope": "Bank excavation, nesting chamber, perches, and fishing; Burrow nest setting.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-kestrel",
+    "title": "American kestrel",
+    "url": "https://www.audubon.org/field-guide/bird/american-kestrel",
+    "publisher": "National Audubon Society",
+    "accessed": "2026-11-27",
+    "scope": "Open-country hunting, perching, hovering, and nesting.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-loon",
+    "title": "Common loon resource brief",
+    "url": "https://www.nps.gov/articles/common-loon-brief.htm",
+    "publisher": "National Park Service",
+    "accessed": "2026-11-27",
+    "scope": "Rear-set feet, diving, water takeoff, and waterside nesting.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-oriole",
+    "title": "How orioles build those incredible hanging nests",
+    "url": "https://www.audubon.org/magazine/how-orioles-build-those-incredible-hanging-nests",
+    "publisher": "National Audubon Society",
+    "accessed": "2026-11-27",
+    "scope": "Fiber weaving, pendant shape, branch attachment, and lining; Hanging nest setting.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-peregrine",
+    "title": "Peregrine falcon",
+    "url": "https://www.audubon.org/field-guide/bird/peregrine-falcon",
+    "publisher": "National Audubon Society",
+    "accessed": "2026-11-27",
+    "scope": "Steep hunting dive and cliff or building ledges.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-redwing",
+    "title": "Red-winged blackbirds",
+    "url": "https://www.massaudubon.org/nature-wildlife/birds/red-winged-blackbirds",
+    "publisher": "Mass Audubon",
+    "accessed": "2026-11-27",
+    "scope": "Shoulder display, male and female appearance, habitat and nests.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-mockingbird",
+    "title": "Northern mockingbird",
+    "url": "https://mdc.mo.gov/discover-nature/field-guide/northern-mockingbird",
+    "publisher": "Missouri Department of Conservation",
+    "accessed": "2026-11-27",
+    "scope": "Sound imitation, repetitions, and identification marks.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-river-otter",
+    "title": "North American river otter",
+    "url": "https://nationalzoo.si.edu/animals/north-american-river-otter",
+    "publisher": "Smithsonian National Zoo",
+    "accessed": "2026-11-27",
+    "scope": "Sensitive whiskers, closing nostrils, webbed feet, tail, and fur.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-box-turtle",
+    "title": "Eastern box turtle",
+    "url": "https://nationalzoo.si.edu/animals/eastern-box-turtle",
+    "publisher": "Smithsonian National Zoo",
+    "accessed": "2026-11-27",
+    "scope": "Hinged lower shell, closing behavior, and terrestrial habits.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-cuttlefish",
+    "title": "Common cuttlefish",
+    "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/common-cuttlefish",
+    "publisher": "Monterey Bay Aquarium",
+    "accessed": "2026-11-27",
+    "scope": "Chromatophores, fast pattern changes, and camouflage.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-bird-nests",
+    "title": "How nest designs protect eggs and baby birds",
+    "url": "https://academy.allaboutbirds.org/understand-how-nest-designs-protect-baby-birds/",
+    "publisher": "Cornell Lab of Ornithology",
+    "accessed": "2026-11-27",
+    "scope": "Contrasting nest placement and materials for the named birds.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-bark-wildlife",
+    "title": "Brown creeper",
+    "url": "https://www.audubon.org/field-guide/bird/brown-creeper",
+    "publisher": "National Audubon Society",
+    "accessed": "2026-11-27",
+    "scope": "Bark as shelter, bark foragers, and tree microhabitats.",
+    "reuse": "Facts consulted for this entry. Explanations and examples are original. No source images or source passages reused."
+  },
+  {
+    "id": "plant25-maple-leaf-comparison",
+    "title": "Red or Sugar Maple? How do you tell the difference?",
+    "url": "https://extension.unh.edu/blog/2024/11/red-or-sugar-maple-how-do-you-tell-difference",
+    "publisher": "University of New Hampshire Extension",
+    "accessed": "2026-11-27",
+    "scope": "Rounded gaps in sugar maple leaves compared with the narrower gaps and toothed edges of red maple.",
+    "reuse": "Facts checked for original text. No source images or passages reused."
+  },
+  {
+    "id": "plant25-witch-hazel-drying",
+    "title": "American witch hazel",
+    "url": "https://sbs.wsu.edu/ownbeyherbarium/2026/10/07/american-witch-hazel-hamamelis-virginiana/",
+    "publisher": "Washington State University, Marion Ownbey Herbarium",
+    "accessed": "2026-11-27",
+    "scope": "Hard fruit capsules dry and launch seeds as their inner parts contract.",
+    "reuse": "Facts checked for original text. No source images or passages reused."
+  },
+  {
+    "id": "plant25-pigment-sacs",
+    "title": "How octopuses and squids change color",
+    "url": "https://ocean.si.edu/ocean-life/invertebrates/how-octopuses-and-squids-change-color",
+    "publisher": "Smithsonian Ocean",
+    "accessed": "2026-11-27",
+    "scope": "Muscles can stretch closed pigment sacs so their colors are more visible.",
+    "reuse": "Facts checked for original text. No source images or passages reused."
+  }
+]

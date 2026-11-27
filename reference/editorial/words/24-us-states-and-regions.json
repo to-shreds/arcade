@@ -1,0 +1,181 @@
+[
+  {
+    "headword": "barrier island",
+    "forms": [
+      "barrier islands"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A long island near a coast that can shelter the water and land behind it from some ocean waves.",
+        "example": "A sandy barrier island lay between the open ocean and the quiet sound."
+      }
+    ],
+    "sources": [
+      "usgeo-outer-noaa"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "coastal plain",
+    "forms": [
+      "coastal plains"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A broad area of low, often fairly flat land beside an ocean or another large body of water.",
+        "example": "The river flowed slowly across the coastal plain before reaching the sea."
+      }
+    ],
+    "sources": [
+      "usgeo-physio",
+      "usgeo-gulf"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "continental divide",
+    "forms": [
+      "continental divides"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A line of higher ground that separates river systems draining to different oceans or major basins.",
+        "example": "Rain falling on different sides of a continental divide can end up far apart."
+      }
+    ],
+    "sources": [
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "drainage basin",
+    "forms": [
+      "drainage basins"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "All the land where water runs toward the same river, lake or other low place.",
+        "example": "The streams in the same drainage basin eventually reached one river."
+      }
+    ],
+    "sources": [
+      "usgeo-great-basin"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "federal district",
+    "forms": [
+      "federal districts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An area set apart from the surrounding states for the government of a whole country.",
+        "example": "Washington, D.C., is the federal district at the seat of the U.S. government."
+      }
+    ],
+    "sources": [
+      "usgeo-dc"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "glacial drift",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Loose rock and soil that a glacier or its meltwater leaves behind.",
+        "example": "Glacial drift covered some of the rock that the ice once crossed."
+      }
+    ],
+    "sources": [
+      "usgeo-driftless-map"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "river mouth",
+    "forms": [
+      "river mouths"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The place where a river flows into a lake, sea or another body of water.",
+        "example": "The wide bay began near the river mouth."
+      }
+    ],
+    "sources": [
+      "usgeo-chesapeake"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "river valley",
+    "forms": [
+      "river valleys"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "Low land shaped in part by a river, often between hills or higher land.",
+        "example": "Hills rose on both sides of the wide river valley."
+      }
+    ],
+    "sources": [
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "sand dune",
+    "forms": [
+      "sand dunes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A hill or ridge of loose sand built up by wind.",
+        "example": "Grass grew along the side of the sand dune above the beach."
+      }
+    ],
+    "sources": [
+      "usgeo-indiana-dunes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "volcanic hot spot",
+    "forms": [
+      "volcanic hot spots"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A place deep below Earth’s surface that can supply molten rock to build volcanoes.",
+        "example": "As a plate moved across a volcanic hot spot, a line of volcanoes formed."
+      }
+    ],
+    "sources": [
+      "usgeo-hawaii"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

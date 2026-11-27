@@ -67,7 +67,13 @@ for (const [query, target] of [
   ['Add fractions with different denominators', 'math-add-unlike-fractions'],
   ['what is a call number', 'library-call-numbers'],
   ['how do organ pipes have different lengths', 'pipe-organ-pipes'],
-  ['why does a grey squirrel bury acorns', 'eastern-gray-squirrel']
+  ['why does a grey squirrel bury acorns', 'eastern-gray-squirrel'],
+  ['first moon buggy', 'apollo-fifteen'],
+  ['first human in space', 'vostok-one'],
+  ['how did Cassini find plumes on Enceladus', 'cassini-saturn-mission'],
+  ['what did Curiosity discover about the lake on Mars', 'curiosity-rover'],
+  ['what is the capital of Idaho', 'state-idaho'],
+  ['what is the capital of Massachusetts', 'state-massachusetts']
 ]) {
   assert.ok((await library.searchArticles(query)).some(hit => hit.id === target), query);
 }

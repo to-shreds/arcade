@@ -1,4 +1,21 @@
-# Arcade reference expansion, 2.14.3 (2026-11-27)
+# Arcade reference expansion, 2.14.4 (2026-11-27)
+
+The approved catalog now contains **1,681 articles, 4,544 headwords, 6,611 senses and 5,046 follow-up links**. This release adds 322 articles, 1,513 headwords and 967 links. Articles cover every U.S. state, regional geography, plants and animals, community jobs, space missions, and inventions. The content was authored directly in Work and read by separate reviewers. [Verification](docs/arcade-stress-test-2.14.4.md) and [ProjectStatus](https://github.com/to-shreds/ProjectStatus/blob/main/projects/arcade/STATUS.md).
+
+## Verified content and platform behavior
+
+- Editable batches 24–31 live in `reference/editorial/`. The ledger has 1,865 source anchors and no drafts, missing terms, broken links, ambiguous lookup forms or length alerts. All 50 state capitals match the Census Bureau table and the title and question routes were checked.
+- The verified runtime manifest is `2.14.4+20261127.1`, with 553 files and 30,588,391 bytes. All 68 runtime changes are reference packs. The deterministic build, 5,030 alias tests, all approved entries, 11 catalog scenarios, 55 Home routes and Android wrapper source passed. Chromium completed a fresh offline launch and corrupted-update recovery. No earlier dictionary lookup keys disappeared.
+- The previous comprehensive CI run passed its reference checks and failed on a late TV clock read after a synthetic clip had finished. The separate test-only change checks the new source's start event. All 12 TV scenarios and a forced-delay reproduction passed with the correction.
+- The existing Android app reads the hosted catalog and updates offline content through **Arcade Settings → Manage Games → Refresh Online**. Physical device acceptance is still open. The standalone Windows preview remains 2.14.1. Preserve game saves, standard Home routing, multiplayer, and child-mode restrictions.
+
+## Next unfinished inventory
+
+The approved 4,000-article and 10,000-headword milestone needs **2,319 articles and 5,456 headwords**. The interim 2,000 and 5,000 checkpoint needs 319 articles and 456 headwords. Expand distinctive parks and landmarks, named wildlife and fossils, underserved countries, everyday public infrastructure and hands-on math. Continue common-word coverage, unique question routes, source checks and independent editorial review. Compare the exact word index with the last published release, then run the real reader offline and verify the public package. [Editorial workflow](reference/editorial/README.md).
+
+---
+
+# Prior Arcade reference release, 2.14.3 (2026-11-27)
 
 The approved corpus has **1,359 articles across 42 subjects**, **3,031 unique headwords**, **4,681 senses**, and **4,079 follow-up questions**. Release 2.14.3 adds 135 articles, 863 headwords and 405 links. Across releases 2.14.2 and 2.14.3 the additions are **353 articles, 2,251 headwords, and 1,060 links**. The target currently approved is **4,000 articles and 10,000 headwords**, with verified interim releases published to the normal web and Android Arcade. See [ProjectStatus](https://github.com/to-shreds/ProjectStatus/blob/main/projects/arcade/STATUS.md) for the latest deployment and artifact hashes.
 

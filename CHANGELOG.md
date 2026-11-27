@@ -1,3 +1,10 @@
+# 2.14.4
+
+- Added 322 articles, including a profile for every U.S. state, and expanded
+  coverage of plants, space missions, community jobs, and inventions.
+- Added 1,513 dictionary headwords. The shared reference collection now has
+  1,681 articles, 4,544 headwords, and 5,046 follow-up questions.
+
 # 2.14.3
 
 - Added 135 Encyclopedia articles on familiar wildlife, how buildings work,

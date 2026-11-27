@@ -1,16 +1,16 @@
 {
   "inventory": {
-    "articles": 1359,
-    "headwords": 3031,
-    "senses": 4681,
-    "questions": 4079,
+    "articles": 1681,
+    "headwords": 4544,
+    "senses": 6611,
+    "questions": 5046,
     "quizzes": 13
   },
   "approved": {
-    "articles": 1359,
-    "headwords": 3031,
-    "senses": 4681,
-    "questions": 4079,
+    "articles": 1681,
+    "headwords": 4544,
+    "senses": 6611,
+    "questions": 5046,
     "quizzes": 13
   },
   "taxonomy": {
@@ -21,8 +21,8 @@
     },
     "space-exploration": {
       "label": "Space exploration",
-      "articles": 15,
-      "approved": 15
+      "articles": 57,
+      "approved": 57
     },
     "earth-science": {
       "label": "Earth science",
@@ -36,8 +36,8 @@
     },
     "oceans": {
       "label": "Oceans",
-      "articles": 36,
-      "approved": 36
+      "articles": 37,
+      "approved": 37
     },
     "physics": {
       "label": "Physics",
@@ -51,13 +51,13 @@
     },
     "animals": {
       "label": "Animals",
-      "articles": 75,
-      "approved": 75
+      "articles": 94,
+      "approved": 94
     },
     "plants": {
       "label": "Plants",
-      "articles": 37,
-      "approved": 37
+      "articles": 107,
+      "approved": 107
     },
     "paleontology": {
       "label": "Fossils & evolution",
@@ -66,8 +66,8 @@
     },
     "ecosystems": {
       "label": "Ecosystems",
-      "articles": 44,
-      "approved": 44
+      "articles": 49,
+      "approved": 49
     },
     "fungi-microbes": {
       "label": "Fungi & microbes",
@@ -106,8 +106,8 @@
     },
     "computing": {
       "label": "Computing",
-      "articles": 45,
-      "approved": 45
+      "articles": 52,
+      "approved": 52
     },
     "digital-safety": {
       "label": "Digital safety",
@@ -121,18 +121,18 @@
     },
     "vehicles": {
       "label": "Vehicles & transportation",
-      "articles": 21,
-      "approved": 21
+      "articles": 22,
+      "approved": 22
     },
     "infrastructure": {
       "label": "Infrastructure",
-      "articles": 32,
-      "approved": 32
+      "articles": 58,
+      "approved": 58
     },
     "maps-geography": {
       "label": "Maps & geography",
-      "articles": 31,
-      "approved": 31
+      "articles": 112,
+      "approved": 112
     },
     "countries": {
       "label": "Countries",
@@ -141,8 +141,8 @@
     },
     "landmarks": {
       "label": "Landmarks",
-      "articles": 28,
-      "approved": 28
+      "articles": 33,
+      "approved": 33
     },
     "ancient-history": {
       "label": "Ancient history",
@@ -161,8 +161,8 @@
     },
     "government-civics": {
       "label": "Government & civics",
-      "articles": 26,
-      "approved": 26
+      "articles": 27,
+      "approved": 27
     },
     "language-writing": {
       "label": "Language & writing",
@@ -171,8 +171,8 @@
     },
     "visual-arts": {
       "label": "Visual arts",
-      "articles": 23,
-      "approved": 23
+      "articles": 24,
+      "approved": 24
     },
     "music": {
       "label": "Music",
@@ -206,8 +206,8 @@
     },
     "economics": {
       "label": "Economics",
-      "articles": 16,
-      "approved": 16
+      "articles": 25,
+      "approved": 25
     },
     "libraries-museums": {
       "label": "Libraries & museums",
@@ -216,16 +216,16 @@
     },
     "inventions": {
       "label": "Inventions & occupations",
-      "articles": 20,
-      "approved": 20
+      "articles": 73,
+      "approved": 73
     },
     "everyday-science": {
       "label": "Everyday science",
-      "articles": 34,
-      "approved": 34
+      "articles": 35,
+      "approved": 35
     }
   },
-  "sourceCount": 1487,
+  "sourceCount": 1865,
   "termGaps": [],
   "safetyFlags": [
     "ancient-greece",
@@ -254,6 +254,7 @@
     "us-civil-war",
     "word abolish",
     "word armistice",
+    "word belief",
     "word bite",
     "word bruise",
     "word dinosaur",
@@ -261,9 +262,11 @@
     "word glow",
     "word grief",
     "word injury",
+    "word mourn",
     "word orphan",
     "word pilgrimage",
     "word scrape",
+    "word setback",
     "word treat",
     "word twin"
   ],

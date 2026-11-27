@@ -1,0 +1,947 @@
+[
+  {
+    "id": "usgeo-capitals",
+    "title": "County Locations of State Capital Cities, Appendix C",
+    "url": "https://www2.census.gov/govs/pubs/cffr/cffr83.pdf",
+    "publisher": "United States Census Bureau",
+    "scope": "State capital city names, checked against individual state profiles.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-state-map",
+    "title": "United States Census Bureau Maps",
+    "url": "https://data.census.gov/map?mode=thematic&q=United+States",
+    "publisher": "United States Census Bureau",
+    "scope": "State boundaries, coast and neighboring states, the District of Columbia.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-physio",
+    "title": "Physiographic Regions and Provinces of the Conterminous United States",
+    "url": "https://pubs.usgs.gov/gip/70039236/report.pdf",
+    "publisher": "United States Geological Survey",
+    "scope": "Regional maps, state locations and sections on the Appalachians, Ozarks, Great Plains, Cordillera and coastal plains.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-new-england",
+    "title": "Geography Program Glossary",
+    "url": "https://www.census.gov/programs-surveys/geography/about/glossary.html",
+    "publisher": "United States Census Bureau",
+    "scope": "New England division and its six member states.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-snake",
+    "title": "The Snake River Plain: A Tale of Two Basins",
+    "url": "https://www.usgs.gov/observatories/yvo/news/snake-river-plain-a-tale-two-basins",
+    "publisher": "United States Geological Survey",
+    "scope": "Snake River route across Idaho and confluence with the Columbia in Washington.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-indiana-dunes",
+    "title": "Indiana Dunes National Park",
+    "url": "https://www.nps.gov/indu/index.htm",
+    "publisher": "National Park Service",
+    "scope": "Indiana’s Lake Michigan shore, dunes and wind and wave action.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-loess",
+    "title": "Turin Loess Hills State Preserve",
+    "url": "https://www.iowadnr.gov/places-go/state-preserves/turin-loess-hills-state-preserve",
+    "publisher": "Iowa Department of Natural Resources",
+    "scope": "Missouri River valley as source of silt and western Iowa Loess Hills landforms.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-flint",
+    "title": "Tallgrass Prairie National Preserve Quick Facts",
+    "url": "https://www.nps.gov/articles/000/tallgrass-prairie-national-preserve-quick-facts.htm",
+    "publisher": "National Park Service",
+    "scope": "Shallow rocky soils, chert, exposed layers and preservation of prairie in the Flint Hills.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-flint-preserve",
+    "title": "Prairies and Grasslands",
+    "url": "https://www.nps.gov/tapr/learn/nature/prairies-and-grasslands.htm",
+    "publisher": "National Park Service",
+    "scope": "Tallgrass prairie remnant, grazing, fire and vegetation.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-msdelta",
+    "title": "Mississippi River Birdfoot Delta UVVR",
+    "url": "https://www.usgs.gov/media/images/mississippi-river-birdfoot-delta-uvvr",
+    "publisher": "United States Geological Survey",
+    "scope": "Louisiana’s bird-foot area, river sediment supply and changes to marshland.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-msinland",
+    "title": "Recharge Zones in the Mississippi–Yazoo Alluvial Plain",
+    "url": "https://www.mdeq.ms.gov/geology/work-areas/publications-and-map-sales/categories/maps-and-charts/recharge-zones-in-the-mississippi-yazoo-alluvial-plain-50433/",
+    "publisher": "Mississippi Department of Environmental Quality",
+    "scope": "Identifies the inland Mississippi Delta as the Mississippi–Yazoo Alluvial Plain.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-sound",
+    "title": "United States Coast Pilot 2, Chapter 8",
+    "url": "https://nauticalcharts.noaa.gov/publications/coast-pilot/files/cp2/CPB2_WEB.pdf",
+    "publisher": "National Oceanic and Atmospheric Administration",
+    "scope": "Long Island Sound between the mainland and Long Island, its shores and eastern opening.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-sound-estuary",
+    "title": "Supplemental Environmental Impact Statement for Eastern Long Island Sound",
+    "url": "https://www.epa.gov/sites/default/files/2016-04/documents/supplemental_environmental_impact_statement_for_the_designation_of_dredged_material_disposal_sites_in_eastern_long_island_sound.pdf",
+    "publisher": "United States Environmental Protection Agency",
+    "scope": "Mixing fresh river water and seawater, circulation and salinity.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-hawaii",
+    "title": "Geology of the Hawaiian Islands",
+    "url": "https://www.usgs.gov/publications/geology-hawaiian-islands",
+    "publisher": "United States Geological Survey",
+    "scope": "Pacific Plate direction, age patterns and volcano-built Hawaiian islands.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-undersea-hawaii",
+    "title": "Kamaʻehuakanaloa",
+    "url": "https://www.usgs.gov/volcanoes/kama%E2%80%98ehuakanaloa",
+    "publisher": "United States Geological Survey",
+    "scope": "Submarine volcano south of the Big Island, former name and active state.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-glacier",
+    "title": "Glacier National Park Basic Information",
+    "url": "https://www.nps.gov/glac/planyourvisit/basicinfo.htm",
+    "publisher": "National Park Service",
+    "scope": "Northwestern Montana and northern Rocky Mountain setting.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-sandhills",
+    "title": "Ecoregions of Nebraska and Kansas",
+    "url": "https://store.usgs.gov/assets/MOD/StoreFiles/Ecoregion/21635_ne_ks_back.pdf",
+    "publisher": "United States Geological Survey",
+    "scope": "Nebraska Sandhills dune types, origin, high water table and prairie grasses.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-great-basin",
+    "title": "The Great Basin",
+    "url": "https://www.nps.gov/grba/planyourvisit/the-great-basin.htm",
+    "publisher": "National Park Service",
+    "scope": "Inland surface drainage and the difference between the Great Basin and the broader Basin and Range landscape.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-theodore",
+    "title": "Geologic Activity at Theodore Roosevelt National Park",
+    "url": "https://www.nps.gov/thro/learn/nature/geologicactivity.htm",
+    "publisher": "National Park Service",
+    "scope": "North Dakota badlands, erosion and the Little Missouri River.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-smoky",
+    "title": "Great Smoky Mountains National Park",
+    "url": "https://www.nps.gov/grsm/index.htm",
+    "publisher": "National Park Service",
+    "scope": "Park location on the border of Tennessee and North Carolina.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-smoky-haze",
+    "title": "Where Mountains Breathe",
+    "url": "https://www.nps.gov/articles/000/where-mountains-breathe.htm",
+    "publisher": "National Park Service",
+    "scope": "Plant emissions and light scattering in the natural blue haze, plus moisture and forest conditions.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-badlands",
+    "title": "Nature at Badlands National Park",
+    "url": "https://www.nps.gov/badl/learn/nature/index.htm",
+    "publisher": "National Park Service",
+    "scope": "South Dakota’s eroded rock shapes, grassland surroundings, and fossils uncovered by erosion.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-rio",
+    "title": "Southwest River Environments",
+    "url": "https://home.nps.gov/articles/southwest-river-environments.htm",
+    "publisher": "National Park Service",
+    "scope": "Rio Grande source in Colorado, path through New Mexico, boundary with Texas and Gulf outlet, plus Spanish names.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-tx-colorado",
+    "title": "An Analysis of Texas Waterways: Colorado River",
+    "url": "https://tpwd.texas.gov/publications/pwdpubs/pwd_rp_t3200-1047/15_c_tx_colorado.phtml",
+    "publisher": "Texas Parks and Wildlife Department",
+    "scope": "The Texas Colorado River’s route from West Texas through Austin.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-salt-lake",
+    "title": "Great Salt Lake, Utah",
+    "url": "https://eros.usgs.gov/earthshots/great-salt-lake-utah",
+    "publisher": "United States Geological Survey",
+    "scope": "The lake’s location and lack of an outlet to the ocean.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-puget",
+    "title": "Puget Sound and Coastal Geology",
+    "url": "https://dnr.wa.gov/puget-sound-and-coastal-geology",
+    "publisher": "Washington State Department of Natural Resources",
+    "scope": "Ice sculpting Puget Sound, loose rock deposits and southern reach near Olympia.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-new-river",
+    "title": "Geology of New River Gorge",
+    "url": "https://www.nps.gov/neri/learn/nature/geology.htm",
+    "publisher": "National Park Service",
+    "scope": "River erosion, the deep gorge and exposed rock layers in southern West Virginia.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-driftless",
+    "title": "Groundwater Sources in Wisconsin",
+    "url": "https://dnr.wisconsin.gov/sites/default/files/topic/DrinkingWater/Publications/DG068.pdf",
+    "publisher": "Wisconsin Department of Natural Resources",
+    "scope": "Southwestern Wisconsin’s geographic distinction from surrounding glaciated land.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-driftless-map",
+    "title": "Governor Dodge State Park Geology",
+    "url": "https://dnr.wisconsin.gov/topic/parks/govdodge/geology",
+    "publisher": "Wisconsin Department of Natural Resources",
+    "scope": "Part of the multistate Driftless Area, loose material moved by ice, and deep valleys.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-yellowstone",
+    "title": "Ask a Ranger: Yellowstone National Park",
+    "url": "https://www.nps.gov/yell/learn/kidsyouth/ask-a-ranger.htm",
+    "publisher": "National Park Service",
+    "scope": "Yellowstone’s location in Wyoming, Montana and Idaho.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-black-hills",
+    "title": "Black Hills Physical Description",
+    "url": "https://npgallery.nps.gov/NRHP/GetAsset/NRHP/64000799_text",
+    "publisher": "National Park Service",
+    "scope": "Black Hills as a separate uplifted group surrounded by the plains of South Dakota and Wyoming; exposed central rocks.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-adirondacks",
+    "title": "Hurricane Mountain Primitive Area Unit Management Plan",
+    "url": "https://extapps.dec.ny.gov/docs/lands_forests_pdf/hmpaump.pdf",
+    "publisher": "New York State Department of Environmental Conservation",
+    "scope": "Adirondack dome, rock ages and the High Peaks area.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-adirondack-park",
+    "title": "About the Adirondack Park",
+    "url": "https://apa.ny.gov/about/park.html",
+    "publisher": "New York State Adirondack Park Agency",
+    "scope": "Park boundary, public and private land, settlements, mountains and waters.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-river",
+    "title": "Mississippi River Facts",
+    "url": "https://home.nps.gov/miss/riverfacts.htm",
+    "publisher": "National Park Service",
+    "scope": "Mississippi River headwaters, cities and path to the Gulf.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-itasca",
+    "title": "Mississippi River at Lake Itasca, MN",
+    "url": "https://waterdata.usgs.gov/monitoring-location/USGS-05200010/",
+    "publisher": "United States Geological Survey",
+    "scope": "Minnesota river site at Lake Itasca in the Mississippi Headwaters subbasin.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-acadia",
+    "title": "Nature at Acadia National Park",
+    "url": "https://www.nps.gov/acad/learn/nature/index.htm",
+    "publisher": "National Park Service",
+    "scope": "Maine park shoreline, islands, rocky headlands and forest and shore habitats.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-acadia-schoodic",
+    "title": "Schoodic Peninsula at Acadia National Park",
+    "url": "https://www.nps.gov/acad/planyourvisit/schoodic.htm",
+    "publisher": "National Park Service",
+    "scope": "The park’s mainland section and rocky granite headlands.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-acadia-ice",
+    "title": "Natural Features and Ecosystems at Acadia National Park",
+    "url": "https://www.nps.gov/acad/learn/nature/naturalfeaturesandecosystems.htm",
+    "publisher": "National Park Service",
+    "scope": "Ice-shaped mountains and lakes, granite and headlands of Acadia.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-chesapeake",
+    "title": "Chesapeake Bay Program Primer",
+    "url": "https://www.chesapeakebay.net/files/documents/cbcp_primer_31may18-reduced.pdf",
+    "publisher": "Chesapeake Bay Program",
+    "scope": "Watershed, Susquehanna and Atlantic connection, and estuary context.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-cape",
+    "title": "Geologic Activity at Cape Cod National Seashore",
+    "url": "https://home.nps.gov/caco/learn/nature/geologicactivity.htm",
+    "publisher": "National Park Service",
+    "scope": "Glacial material, sand and gravel, subsequent shoreline erosion and movement of sediment.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-outer",
+    "title": "United States Coast Pilot 4, Chapter 4",
+    "url": "https://nauticalcharts.noaa.gov/publications/coast-pilot/files/cp4/CPB4_C04_WEB.pdf",
+    "publisher": "National Oceanic and Atmospheric Administration",
+    "scope": "Location, islands and sounds of the Outer Banks in Virginia and North Carolina.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-outer-noaa",
+    "title": "What is a barrier island?",
+    "url": "https://oceanservice.noaa.gov/facts/barrier-islands.html",
+    "publisher": "National Ocean Service",
+    "scope": "Barrier islands, sediment movement, shore protection and the Outer Banks example.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-keys",
+    "title": "Florida Keys National Marine Sanctuary",
+    "url": "https://floridakeys.noaa.gov/",
+    "publisher": "National Oceanic and Atmospheric Administration",
+    "scope": "Coral reefs and other underwater habitats along the island chain.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-key-geology",
+    "title": "Water Resources of Southeastern Florida, Geomorphology",
+    "url": "https://pubs.usgs.gov/wsp/wsp1255/pdf/wrsf_geomorphology.pdf",
+    "publisher": "United States Geological Survey",
+    "scope": "Low and gently curved island chain, ancient limestone reefs and banks.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-ozarks",
+    "title": "Ozark National Scenic Riverways",
+    "url": "https://www.nps.gov/ozar/index.htm",
+    "publisher": "National Park Service",
+    "scope": "The Missouri Ozarks, Current and Jacks Fork rivers, springs and caves.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-yosemite",
+    "title": "Yosemite National Park: A Sense of Place",
+    "url": "https://www.nps.gov/yose/learn/management/upload/senseofplace.pdf",
+    "publisher": "National Park Service",
+    "scope": "Sierra uplift, Yosemite Valley, and earlier glacial carving.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-great-plains",
+    "title": "Central Grasslands Conservation",
+    "url": "https://www.fws.gov/program/central-grasslands-conservation",
+    "publisher": "United States Fish and Wildlife Service",
+    "scope": "Long north–south extent of North American central native grasslands and surviving prairie habitat.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-pinelands",
+    "title": "New Jersey Pinelands National Reserve",
+    "url": "https://www.nps.gov/places/new-jersey-pinelands-national-reserve.htm",
+    "publisher": "National Park Service",
+    "scope": "Pinelands location in the outer coastal plain, sandy soil and protected habitats.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-pinelands-nj",
+    "title": "Pinelands Fire Facts",
+    "url": "https://www.nj.gov/pinelands/infor/educational/curriculum/pinecur/pff.htm",
+    "publisher": "New Jersey Pinelands Commission",
+    "scope": "Sandy soils low in nutrients and adaptations of pitch pine.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-cascades",
+    "title": "Geology of Mount St. Helens National Volcanic Monument",
+    "url": "https://www.usgs.gov/geology-and-ecology-of-national-parks/geology-mount-st-helens-national-volcanic-monument",
+    "publisher": "United States Geological Survey",
+    "scope": "The Cascade Range and its subduction-zone volcanism; the 1980 eruption.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-blue-ridge",
+    "title": "Blue Ridge Province",
+    "url": "https://home.nps.gov/articles/blueridgeprovince.htm",
+    "publisher": "National Park Service",
+    "scope": "Location, mountain ranges, peaks and geology of the Blue Ridge.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-gulf",
+    "title": "Regional Aquifer-System Analysis: Atlantic and Gulf Coastal Plain",
+    "url": "https://pubs.usgs.gov/wsp/2242/report.pdf",
+    "publisher": "United States Geological Survey",
+    "scope": "Extent of the combined Atlantic and Gulf Coastal Plain and its layers of sediment.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-dc",
+    "title": "District of Columbia Frequently Asked Questions",
+    "url": "https://statehood.dc.gov/page/faq",
+    "publisher": "Government of the District of Columbia",
+    "scope": "D.C.’s current federal district status and seat of the United States government.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-chesapeake-noaa",
+    "title": "Where is the largest estuary in the United States?",
+    "url": "https://oceanservice.noaa.gov/facts/chesapeake.html",
+    "publisher": "National Ocean Service",
+    "scope": "Largest United States estuary, tributaries and animal habitats.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-alabama",
+    "title": "Alabama Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/alabama",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-alaska",
+    "title": "Alaska Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/alaska",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-arizona",
+    "title": "Arizona Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/arizona",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-arkansas",
+    "title": "Arkansas Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/arkansas",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-california",
+    "title": "California Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/california",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-colorado",
+    "title": "Colorado Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/colorado",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-connecticut",
+    "title": "Connecticut Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/connecticut",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-delaware",
+    "title": "Delaware Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/delaware",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-florida",
+    "title": "Florida Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/florida",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-georgia",
+    "title": "Georgia Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/georgia",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-hawaii",
+    "title": "Hawaii Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/hawaii-1",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-idaho",
+    "title": "Idaho Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/idaho",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-illinois",
+    "title": "Illinois Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/illinois",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-indiana",
+    "title": "Indiana Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/indiana",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-iowa",
+    "title": "Iowa Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/iowa",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-kansas",
+    "title": "Kansas Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/kansas",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-kentucky",
+    "title": "Kentucky Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/kentucky",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-louisiana",
+    "title": "Louisiana Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/louisiana",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-maine",
+    "title": "Maine Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/maine",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-maryland",
+    "title": "Maryland Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/maryland",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-massachusetts",
+    "title": "Massachusetts Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/massachusetts",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-michigan",
+    "title": "Michigan Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/michigan",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-minnesota",
+    "title": "Minnesota Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/minnesota",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-mississippi",
+    "title": "Mississippi Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/mississippi",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-missouri",
+    "title": "Missouri Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/missouri",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-montana",
+    "title": "Montana Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/montana",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-nebraska",
+    "title": "Nebraska Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/nebraska",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-nevada",
+    "title": "Nevada Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/nevada",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-new-hampshire",
+    "title": "New Hampshire Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/new-hampshire",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-new-jersey",
+    "title": "New Jersey Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/new-jersey",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-new-mexico",
+    "title": "New Mexico Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/new-mexico",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-new-york",
+    "title": "New York Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/new-york",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-north-carolina",
+    "title": "North Carolina Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/north-carolina",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-north-dakota",
+    "title": "North Dakota Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/north-dakota",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-ohio",
+    "title": "Ohio Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/ohio",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-oklahoma",
+    "title": "Oklahoma Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/oklahoma",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-oregon",
+    "title": "Oregon Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/oregon",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-pennsylvania",
+    "title": "Pennsylvania Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/pennsylvania",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-rhode-island",
+    "title": "Rhode Island Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/rhode-island",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-south-carolina",
+    "title": "South Carolina Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/south-carolina",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-south-dakota",
+    "title": "South Dakota Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/south-dakota",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-tennessee",
+    "title": "Tennessee Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/tennessee",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-texas",
+    "title": "Texas Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/texas",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-utah",
+    "title": "Utah Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/utah",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-vermont",
+    "title": "Vermont Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/vermont",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-virginia",
+    "title": "Virginia Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/virginia",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-washington",
+    "title": "Washington Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/washington",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-west-virginia",
+    "title": "West Virginia Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/west-virginia",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-wisconsin",
+    "title": "Wisconsin Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/wisconsin",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-wyoming",
+    "title": "Wyoming Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/wyoming",
+    "publisher": "National Geographic Kids",
+    "scope": "Cross-check for state capital, statehood, selected geography and landmarks, as applicable. No population figures reused.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  },
+  {
+    "id": "usgeo-natgeo-dc",
+    "title": "Washington, D.C. Pictures and Facts",
+    "url": "https://kids.nationalgeographic.com/geography/states/article/washington-dc",
+    "publisher": "National Geographic Kids",
+    "scope": "District of Columbia location along the Potomac and meaning of D.C.",
+    "accessed": "2026-11-27",
+    "reuse": "Facts only. Original prose."
+  }
+]

@@ -261,6 +261,12 @@ try {
     await title(frame, 'How does a call number show where a library book goes?').waitFor();
     await control(frame, 'Define call number').click();
     await title(frame.getByRole('dialog'), 'call number').waitFor();
+    await control(frame.getByRole('dialog'), 'Close').click();
+    await lookup(frame, 'first moon buggy');
+    await frame.getByRole('button', { name: /^Why did Apollo 15 take a car to the Moon/ }).click();
+    await title(frame, 'Why did Apollo 15 take a car to the Moon?').waitFor();
+    await control(frame, 'Define lunar rover').click();
+    await title(frame.getByRole('dialog'), 'lunar rover').waitFor();
     await offlineContext.close();
     console.log('PASS reference PWA: verified offline install, network cut, new and existing articles, shared definitions and Arcade Home');
   }

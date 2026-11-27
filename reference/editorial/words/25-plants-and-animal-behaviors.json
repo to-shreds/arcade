@@ -1,0 +1,509 @@
+[
+  {
+    "headword": "aboveground root",
+    "forms": [
+      "aboveground roots"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A root that grows from a stem or other plant part above the soil.",
+        "example": "A trumpet vine uses aboveground roots to hold itself against rough bark."
+      }
+    ],
+    "sources": [
+      "plant25-campsis-radicans"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "ant seed dispersal",
+    "forms": [
+      "ant-dispersed seed",
+      "ant-dispersed seeds"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The movement of plant seeds from one place to another by ants.",
+        "example": "Ant seed dispersal can move trillium seeds away from the parent plant."
+      }
+    ],
+    "sources": [
+      "plant25-trillium-ant"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "climbing tendril",
+    "forms": [
+      "climbing tendrils"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A thin part of a plant that reaches for a nearby support or clings to it as the plant grows.",
+        "example": "A Virginia creeper can stick to a wall with a pad on the end of a climbing tendril."
+      }
+    ],
+    "sources": [
+      "plant25-parthenocissus-quinquefolia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "compound leaf",
+    "forms": [
+      "compound leaves"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A whole leaf made up of several smaller blades called leaflets on one shared stalk.",
+        "example": "A white clover's compound leaf usually has three leaflets."
+      }
+    ],
+    "sources": [
+      "plant25-leaf-id"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "cone-bearing tree",
+    "forms": [
+      "cone-bearing trees"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tree that makes cones, which may hold seeds or produce pollen.",
+        "example": "An eastern white pine is a cone-bearing tree."
+      }
+    ],
+    "sources": [
+      "plant25-pinus-strobus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "cypress knee",
+    "forms": [
+      "cypress knees"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A woody bump that grows upward from the roots of some cypress trees, especially around wet ground.",
+        "example": "Several cypress knees stood above the mud around the tree."
+      }
+    ],
+    "sources": [
+      "plant25-taxodium-distichum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "fern frond",
+    "forms": [
+      "fern fronds"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A leaf of a fern, often divided into many smaller parts.",
+        "example": "A single fern frond can look like a row of small leaves."
+      }
+    ],
+    "sources": [
+      "plant25-adiantum-pedatum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "floating leaf",
+    "forms": [
+      "floating leaves"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A leaf that rests on the surface of the water.",
+        "example": "A white water lily holds a floating leaf on a stalk connected to the plant below."
+      }
+    ],
+    "sources": [
+      "plant25-water-lily"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "floral bract",
+    "forms": [
+      "floral bracts"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A leaf or leaf-like part near a flower that may look different from an ordinary leaf.",
+        "example": "A dogwood's bright floral bracts surround its much smaller flowers."
+      }
+    ],
+    "sources": [
+      "plant25-cornus-florida"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "flower head",
+    "forms": [
+      "flower heads"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A close group of many tiny flowers that may look like one larger flower.",
+        "example": "The dandelion's yellow flower head contains many little flowers."
+      }
+    ],
+    "sources": [
+      "plant25-taraxacum-officinale"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "umbel",
+    "forms": [
+      "umbels"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A group of flowers with stalks that spread from near one spot, like ribs of an umbrella.",
+        "example": "The small flower stalks in Queen Anne's lace make an umbel."
+      }
+    ],
+    "sources": [
+      "plant25-daucus-carota"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "ground nest",
+    "forms": [
+      "ground nests"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A nest built on or in a shallow spot in the ground.",
+        "example": "A killdeer may use stones or plant pieces around its ground nest."
+      }
+    ],
+    "sources": [
+      "plant25-killdeer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "hanging nest",
+    "forms": [
+      "hanging nests"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A nest attached above itself to something like twigs so its bottom hangs free.",
+        "example": "A Baltimore oriole weaves a hanging nest that looks like a small bag."
+      }
+    ],
+    "sources": [
+      "plant25-oriole"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "hooked bur",
+    "forms": [
+      "hooked burs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A plant part carrying seeds or small fruits that clings to things with tiny hooks.",
+        "example": "The hooked bur caught in the fuzzy cloth."
+      }
+    ],
+    "sources": [
+      "plant25-arctium-minus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "leaf lobe",
+    "forms": [
+      "leaf lobes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A rounded or pointed part that sticks out along the edge of a leaf but stays joined to the rest of the blade.",
+        "example": "A lobe on a sassafras leaf can look like a thumb."
+      }
+    ],
+    "sources": [
+      "plant25-leaf-id"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "leaf rosette",
+    "forms": [
+      "leaf rosettes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A group of leaves spreading outward from one low point on a plant.",
+        "example": "A dandelion's leaf rosette can spread flat on the ground."
+      }
+    ],
+    "sources": [
+      "plant25-taraxacum-officinale"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "leaf stem",
+    "forms": [
+      "leaf stems",
+      "leaf stalk",
+      "leaf stalks",
+      "petiole",
+      "petioles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The little stalk that joins most leaf blades to the rest of a plant.",
+        "example": "A leaf stem can carry water to a leaf as well as hold it in place."
+      }
+    ],
+    "sources": [
+      "plant25-botany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "nectar spur",
+    "forms": [
+      "nectar spurs"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A narrow part of a flower that can hold sweet nectar at its tip or along its inside.",
+        "example": "A hummingbird can reach into a columbine's nectar spur."
+      }
+    ],
+    "sources": [
+      "plant25-aquilegia-canadensis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "needle bundle",
+    "forms": [
+      "needle bundles"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A group of needle-shaped leaves that grow together from a single point.",
+        "example": "An eastern white pine usually grows five needles in each needle bundle."
+      }
+    ],
+    "sources": [
+      "plant25-pinus-strobus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "nest cup",
+    "forms": [
+      "nest cups"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The hollow, rounded part of a nest where the eggs or young can sit.",
+        "example": "A barn swallow uses mud to shape its nest cup."
+      }
+    ],
+    "sources": [
+      "plant25-barn-swallow"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "outer bark",
+    "forms": [],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "The exposed layers on the outside of a woody stem or trunk.",
+        "example": "Thin parts of a paper birch's outer bark sometimes curl back."
+      }
+    ],
+    "sources": [
+      "plant25-betula-papyrifera"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "rooting runner",
+    "forms": [
+      "rooting runners"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A stem that grows along the ground and can make new roots at some places it touches.",
+        "example": "A white clover makes rooting runners that can start new growth along the soil."
+      }
+    ],
+    "sources": [
+      "plant25-trifolium-repens"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "seed parachute",
+    "forms": [
+      "seed parachutes"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A tuft of hairs that slows the fall of a seed or a fruit and helps the wind carry it.",
+        "example": "A dandelion's seed parachute can drift out of sight on a breeze."
+      }
+    ],
+    "sources": [
+      "plant25-taraxacum-officinale"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "seed pod",
+    "forms": [
+      "seed pods"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A dry fruit that holds seeds and often opens along one or more edges when ripe.",
+        "example": "A ripe milkweed seed pod opens to show seeds with white hairs."
+      }
+    ],
+    "sources": [
+      "plant25-asclepias-syriaca"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "shell hinge",
+    "forms": [
+      "shell hinges"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A joint in the shell of some turtles that lets part of the shell lift or close.",
+        "example": "The box turtle used its shell hinge as it tucked its head away."
+      }
+    ],
+    "sources": [
+      "plant25-box-turtle"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "simple leaf",
+    "forms": [
+      "simple leaves"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A leaf with one blade rather than separate leaflets.",
+        "example": "A sugar maple has a simple leaf even though the blade has deep cuts along its edge."
+      }
+    ],
+    "sources": [
+      "plant25-leaf-id"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "spring ephemeral",
+    "forms": [
+      "spring ephemerals"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "A plant with visible leaves or flowers for a short time in early spring, then a long rest below ground.",
+        "example": "A trout lily is a spring ephemeral that blooms before tall trees put out leaves."
+      }
+    ],
+    "sources": [
+      "plant25-spring-flowers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "headword": "tree cavity",
+    "forms": [
+      "tree cavities"
+    ],
+    "senses": [
+      {
+        "partOfSpeech": "noun",
+        "definition": "An opening inside the trunk or a branch of a tree.",
+        "example": "A house wren can take small sticks into a tree cavity for a nest."
+      }
+    ],
+    "sources": [
+      "plant25-house-wren"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

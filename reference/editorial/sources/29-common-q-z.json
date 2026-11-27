@@ -1,0 +1,227 @@
+[
+  {
+    "id": "lex-2144-qz-quart",
+    "title": "NIST Handbook 133 Appendix E, General Tables of Units of Measurement",
+    "url": "https://www.nist.gov/document/00-20-h133-apdxefinal-17pdf",
+    "publisher": "National Institute of Standards and Technology",
+    "accessed": "2026-11-27",
+    "scope": "U.S. liquid volume, pints and quarts per gallon.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-quail",
+    "title": "California Quail Identification",
+    "url": "https://www.allaboutbirds.org/guide/California_Quail/id",
+    "publisher": "Cornell Lab of Ornithology",
+    "accessed": "2026-11-27",
+    "scope": "Example of a plump quail that spends much of its time on the ground.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-raven",
+    "title": "Common Raven Identification",
+    "url": "https://www.allaboutbirds.org/guide/Common_Raven/id",
+    "publisher": "Cornell Lab of Ornithology",
+    "accessed": "2026-11-27",
+    "scope": "Common Raven coloration, size and croaking call.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-robin",
+    "title": "American Robin Identification",
+    "url": "https://www.allaboutbirds.org/guide/american_robin/id",
+    "publisher": "Cornell Lab of Ornithology",
+    "accessed": "2026-11-27",
+    "scope": "American Robin coloration and behavior on lawns.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-rodent",
+    "title": "About Rodents, Feeding",
+    "url": "https://qrius.si.edu/taxonomy/term/12141",
+    "publisher": "Smithsonian Institution",
+    "accessed": "2026-11-27",
+    "scope": "Growing front teeth in rodents.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-rocket",
+    "title": "How Do We Launch Things Into Space?",
+    "url": "https://spaceplace.nasa.gov/launching-into-space/en/",
+    "publisher": "NASA Space Place",
+    "accessed": "2026-11-27",
+    "scope": "Motion opposite the flow of exhaust.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-rover",
+    "title": "Spacecraft Classification",
+    "url": "https://science.nasa.gov/learn/basics-of-space-flight/chapter9-1/",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-27",
+    "scope": "Spacecraft types, including vehicles that travel over a planetary surface.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-spacewalk",
+    "title": "What Is a Spacewalk?",
+    "url": "https://www.nasa.gov/learning-resources/for-kids-and-students/what-is-a-spacewalk-grades-k-4/",
+    "publisher": "NASA",
+    "accessed": "2026-11-27",
+    "scope": "Astronaut activity outside a spacecraft in space.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-seismometer",
+    "title": "Seismometers, seismographs, seismograms",
+    "url": "https://www.usgs.gov/faqs/seismometers-seismographs-seismograms-whats-difference-how-do-they-work",
+    "publisher": "U.S. Geological Survey",
+    "accessed": "2026-11-27",
+    "scope": "Instruments that detect and record ground motions.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-seaweed",
+    "title": "What is seaweed?",
+    "url": "https://oceanservice.noaa.gov/facts/seaweed.html",
+    "publisher": "NOAA National Ocean Service",
+    "accessed": "2026-11-27",
+    "scope": "Common name and marine habitat.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-sleet",
+    "title": "Sleet",
+    "url": "https://forecast.weather.gov/glossary.php?word=sleet",
+    "publisher": "NOAA National Weather Service",
+    "accessed": "2026-11-27",
+    "scope": "U.S. weather usage of sleet and ice pellet descriptions.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-shortstop",
+    "title": "Shortstop",
+    "url": "https://www.mlb.com/glossary/positions/shortstop",
+    "publisher": "Major League Baseball",
+    "accessed": "2026-11-27",
+    "scope": "Location of the baseball shortstop on the field.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-skunk",
+    "title": "Striped Skunk",
+    "url": "https://nationalzoo.si.edu/animals/striped-skunk",
+    "publisher": "Smithsonian National Zoo",
+    "accessed": "2026-11-27",
+    "scope": "Distinctive defensive odor of the striped skunk.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-sparrow",
+    "title": "Clay-colored Sparrow Identification",
+    "url": "https://www.allaboutbirds.org/guide/clay-colored_sparrow/id",
+    "publisher": "Cornell Lab of Ornithology",
+    "accessed": "2026-11-27",
+    "scope": "An example of a small, short-billed sparrow.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-squirrel",
+    "title": "Mammals of the Shasta-Trinity",
+    "url": "https://www.fs.usda.gov/media/134377",
+    "publisher": "U.S. Forest Service",
+    "accessed": "2026-11-27",
+    "scope": "Examples of tree and ground squirrels, with their appearance and behavior.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-tentacle",
+    "title": "Deep-sea Giant Squid",
+    "url": "https://ocean.si.edu/ocean-life/invertebrates/deep-sea-giant-squid",
+    "publisher": "Smithsonian Ocean",
+    "accessed": "2026-11-27",
+    "scope": "Squid as an example of an animal with tentacles.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-trapezoid",
+    "title": "Shape: Trapezoid",
+    "url": "https://elementarymath.edc.org/resources/shape-trapezoid/",
+    "publisher": "Education Development Center",
+    "accessed": "2026-11-27",
+    "scope": "Inclusive and exclusive definitions of trapezoids used in education.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-trout",
+    "title": "Bull Trout Fact Sheet",
+    "url": "https://www.fws.gov/sites/default/files/documents/2024-04/1238.pdf",
+    "publisher": "U.S. Fish and Wildlife Service",
+    "accessed": "2026-11-27",
+    "scope": "Examples of trout in the salmon family and associated cool-water habitat.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-vanilla",
+    "title": "The Vanilla Orchid",
+    "url": "https://gardens.si.edu/exhibitions/connective-power-of-orchids/section-4-orchid-innovation-the-vanilla-orchid/",
+    "publisher": "Smithsonian Gardens",
+    "accessed": "2026-11-27",
+    "scope": "Natural vanilla flavor in orchid pods.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-viola",
+    "title": "Viola",
+    "url": "https://www.dallassymphony.org/community-education/dso-kids/listen-watch/instruments/viola/",
+    "publisher": "Dallas Symphony Orchestra",
+    "accessed": "2026-11-27",
+    "scope": "Comparison of the viola and violin in size and pitch.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-waltz",
+    "title": "Nineteenth Century Social Dance",
+    "url": "https://www.loc.gov/collections/dance-instruction-manuals-from-1490-to-1920/articles-and-essays/western-social-dance-an-overview-of-the-collection/nineteenth-century-social-dance/",
+    "publisher": "Library of Congress",
+    "accessed": "2026-11-27",
+    "scope": "Waltz music and its triple meter.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-weathering",
+    "title": "Weathering",
+    "url": "https://www.nps.gov/subjects/erosion/weathering.htm",
+    "publisher": "U.S. National Park Service",
+    "accessed": "2026-11-27",
+    "scope": "Rock breakdown and physical and chemical causes of weathering.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-woodpecker",
+    "title": "Hairy Woodpecker Identification",
+    "url": "https://www.allaboutbirds.org/guide/hairy_woodpecker/id",
+    "publisher": "Cornell Lab of Ornithology",
+    "accessed": "2026-11-27",
+    "scope": "Chisel-like woodpecker bill.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-x-axis",
+    "title": "Prealgebra Chapter 11 Key Terms",
+    "url": "https://openstax.org/books/prealgebra/pages/11-key-terms",
+    "publisher": "OpenStax",
+    "accessed": "2026-11-27",
+    "scope": "Rectangular coordinate axes, points and ordered pairs.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  },
+  {
+    "id": "lex-2144-qz-yak",
+    "title": "Animal Genetic Resources Information Bulletin 12",
+    "url": "https://www.fao.org/4/v3130t/v3130t00.pdf",
+    "publisher": "Food and Agriculture Organization",
+    "accessed": "2026-11-27",
+    "scope": "The long-haired domestic yak of high-elevation Central Asia.",
+    "reuse": "Fact verification only. Definitions and examples are original."
+  }
+]

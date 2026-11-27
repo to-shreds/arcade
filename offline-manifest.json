@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "2.14.3+20261127.1",
-  "generatedAt": "2026-11-27T22:53:19.298Z",
-  "fileCount": 541,
-  "totalBytes": 29180891,
+  "version": "2.14.4+20261127.1",
+  "generatedAt": "2026-11-27T23:55:11.456Z",
+  "fileCount": 553,
+  "totalBytes": 30588391,
   "files": [
     {
       "path": "adventure/game.json",
@@ -1722,8 +1722,8 @@
     },
     {
       "path": "reference/packs/articles.json",
-      "bytes": 1122700,
-      "sha256": "7db73fe6ebcaee8290ef6e5f786093f6017a01dd7bd565d5e218f796bd5d6078"
+      "bytes": 1399664,
+      "sha256": "6759bae44897c81aec564fbb59e5166e94e2c1541f8784c770ccdef02fdfd258"
     },
     {
       "path": "reference/packs/articles/agriculture-food-1.json",
@@ -1737,8 +1737,8 @@
     },
     {
       "path": "reference/packs/articles/animals-1.json",
-      "bytes": 68874,
-      "sha256": "f37044f6e0f66d570190639fb2b48d7008dcdf67f8108951fc3b6995fb193a0f"
+      "bytes": 86036,
+      "sha256": "12e2ac66a5c81ef990aeeb061ea880bd041c210fdb6e29a4ce9d5a88259c9dc3"
     },
     {
       "path": "reference/packs/articles/architecture-1.json",
@@ -1757,8 +1757,8 @@
     },
     {
       "path": "reference/packs/articles/computing-1.json",
-      "bytes": 42951,
-      "sha256": "88bb6947be03798eae7182cae18bb0791644054606df057a80d27bea98334e07"
+      "bytes": 49622,
+      "sha256": "db5de9a540f38ec00a018bc5bc304c779a752854d2617173b65b82f54f9fd0cc"
     },
     {
       "path": "reference/packs/articles/conservation-1.json",
@@ -1782,13 +1782,13 @@
     },
     {
       "path": "reference/packs/articles/economics-1.json",
-      "bytes": 14880,
-      "sha256": "e42923ad900471bc08ee899d766069b1c0d32d16b5d6b92da0c0b7ffda2fd71d"
+      "bytes": 23634,
+      "sha256": "d237d6e420005f78588a9f128f1607176f376f0721a15bb80e6d791b0291a8e9"
     },
     {
       "path": "reference/packs/articles/ecosystems-1.json",
-      "bytes": 39912,
-      "sha256": "b9f3f2dce940a492a7236e500898f6612950cec944f9868c55b774ebf0b5a228"
+      "bytes": 44704,
+      "sha256": "cda62bb770ac69ca5489e678861840f76ad973245e66df95ae31015c476764b9"
     },
     {
       "path": "reference/packs/articles/engineering-1.json",
@@ -1797,8 +1797,8 @@
     },
     {
       "path": "reference/packs/articles/everyday-science-1.json",
-      "bytes": 31594,
-      "sha256": "1a1377f96f1b070037af2dfe0a2cb4607f0cfaf1aaaa1b727b95c2dbdd8793c4"
+      "bytes": 32527,
+      "sha256": "3c6026d1b12bd2ed5db0758b66e1297822f74ed4d5a10f4313a30bca53a9c307"
     },
     {
       "path": "reference/packs/articles/fungi-microbes-1.json",
@@ -1817,8 +1817,8 @@
     },
     {
       "path": "reference/packs/articles/government-civics-1.json",
-      "bytes": 27552,
-      "sha256": "044a16f06eb7136ab0adfd5969a2afd12a2b88a8349fc6416f5dcf433bf9991f"
+      "bytes": 28548,
+      "sha256": "0a4816328929a347afbda59749204db8a8eeaf848f864d123ce18b352c04a033"
     },
     {
       "path": "reference/packs/articles/health-nutrition-1.json",
@@ -1832,18 +1832,18 @@
     },
     {
       "path": "reference/packs/articles/infrastructure-1.json",
-      "bytes": 30175,
-      "sha256": "f3b85b17de3cb20a80517f2fe08f00f406c032402ed870aa6884fe156a2ac136"
+      "bytes": 55603,
+      "sha256": "e530dedaa6a484c3aea44686b13b55d1795c4cf5418f742b1b5247491328f91e"
     },
     {
       "path": "reference/packs/articles/inventions-1.json",
-      "bytes": 18193,
-      "sha256": "0014d9fa7ef24e7bce260ebfb47a83817c91938f9491a1f7665d49a0c8e93196"
+      "bytes": 68509,
+      "sha256": "896915f1509a1e30753df8a74b3f34964470b03fd9287c1c5217993904591bfc"
     },
     {
       "path": "reference/packs/articles/landmarks-1.json",
-      "bytes": 25518,
-      "sha256": "ee8e1a49ff7e09730b4abcf5bb6c30922b17ec8d4595b749671bb8bd79750d13"
+      "bytes": 30245,
+      "sha256": "46bc2470ca89bdf24b0f0c1fd5a9b3ed2ae252beccfb1043c5a281874767a316"
     },
     {
       "path": "reference/packs/articles/language-writing-1.json",
@@ -1867,8 +1867,8 @@
     },
     {
       "path": "reference/packs/articles/maps-geography-1.json",
-      "bytes": 29737,
-      "sha256": "43fbd854bdcf9916d7de4f45bf6945e5b62e914bc863126d0a2f1c52c92f4da7"
+      "bytes": 105255,
+      "sha256": "d4e85e90ae478a7f835ad47552ef6e6da3ce94aa9f677a05ce751c0c723c9fde"
     },
     {
       "path": "reference/packs/articles/math-1.json",
@@ -1882,8 +1882,8 @@
     },
     {
       "path": "reference/packs/articles/oceans-1.json",
-      "bytes": 36013,
-      "sha256": "c5bb84ac74e84cd893e5dd80778c873dcd234ede012bac7a08e66f811e26e5dc"
+      "bytes": 36963,
+      "sha256": "65ea238e8e7dfee8a5fb211adea285c2c855d5d08184a086eb6de7d4854fb172"
     },
     {
       "path": "reference/packs/articles/paleontology-1.json",
@@ -1897,13 +1897,13 @@
     },
     {
       "path": "reference/packs/articles/plants-1.json",
-      "bytes": 34936,
-      "sha256": "0d6d14ca76fea915055be9f34f9a81f42417bbbe14eb0b4c7613681e61dbbe66"
+      "bytes": 98860,
+      "sha256": "af24a3ae98495fa11d616437dca0b5bfe58f463471c9345f1fb7646cd2a57ffe"
     },
     {
       "path": "reference/packs/articles/space-exploration-1.json",
-      "bytes": 14709,
-      "sha256": "cc77511125afce4ac050c5aec2f3b632c07627bc00c77283b184d36e53e6681f"
+      "bytes": 53274,
+      "sha256": "8a493e15402f660f88608a261181d97f8a4924944fe40aabd162fe203d1cb827"
     },
     {
       "path": "reference/packs/articles/sports-1.json",
@@ -1917,13 +1917,13 @@
     },
     {
       "path": "reference/packs/articles/vehicles-1.json",
-      "bytes": 19564,
-      "sha256": "4985541460ee06adfdae39fa0a208b0d0d28a79e2ded318b856e803ed6b137f7"
+      "bytes": 20554,
+      "sha256": "9798dbf111f25080a13866ce079f4c1601248e469ce407a6314f25f5803a3c4c"
     },
     {
       "path": "reference/packs/articles/visual-arts-1.json",
-      "bytes": 21422,
-      "sha256": "b7001e7cce72a030aab06fe2f1e116ebbde55a931dddf794d671515ef4e8547b"
+      "bytes": 22295,
+      "sha256": "7202546b4312bb3d74252329f51bd2856adba4d420111fa94d32bc5f4ad16367"
     },
     {
       "path": "reference/packs/articles/weather-and-climate-1.json",
@@ -1938,122 +1938,157 @@
     {
       "path": "reference/packs/catalog.json",
       "bytes": 1981,
-      "sha256": "911cc575daed361963f441044998edce6d8d5d14788e8a272431d7d1ede9614b"
+      "sha256": "a139f3d1db23c8fa2e492e385f1f42293cf22a2937cdb81302457a3b6dc199fb"
     },
     {
       "path": "reference/packs/words.json",
-      "bytes": 809694,
-      "sha256": "a27afb2a306bddbc7b724a20218cdd5e4ec42873eb4010d43542e60073066019"
+      "bytes": 1189231,
+      "sha256": "1b536dce1cddb4c1a9939472aca16fbb430e1ec078b8ea693bfd75cc9f5d3513"
     },
     {
       "path": "reference/packs/words/a-1.json",
-      "bytes": 39801,
-      "sha256": "370ea47e425ffeb2d3250aefdee7d206602520fc7044f0be59ed9ada3cd23e74"
+      "bytes": 39703,
+      "sha256": "fb92b16c77b6d749fa2bd7716a9cfd486101577e2c005fff8d56e7b925e4fe85"
     },
     {
       "path": "reference/packs/words/a-2.json",
-      "bytes": 17077,
-      "sha256": "eddc8cd64d8ebd2a4150816daa85bf2e804c6b51094df94568653c5b4af270cf"
+      "bytes": 37752,
+      "sha256": "15cff05d0bf1b6e03571b09dcda57ac2a7c719a2901c675fc03ac1f7b58be7e3"
+    },
+    {
+      "path": "reference/packs/words/a-3.json",
+      "bytes": 8393,
+      "sha256": "291362aa4ddfd4bdf2fc5a790415521ca6aabe915acbd34d177ac435325dfdb4"
     },
     {
       "path": "reference/packs/words/b-1.json",
-      "bytes": 42580,
-      "sha256": "3a37947872c714b718de2a60f1917e140ba690e6be4b57e19f56676f3db925c3"
+      "bytes": 39775,
+      "sha256": "78d7604e6ab8ab94037697822234bb2e4d0d56753702e19a669bea585f0fb8b5"
     },
     {
       "path": "reference/packs/words/b-2.json",
-      "bytes": 18173,
-      "sha256": "407c8273a375236a2c22c429a65600d59e09aac07f48447869a3819ced14240f"
+      "bytes": 41627,
+      "sha256": "972859bb168c63e378260da6680e7c724ed3138c509574bb5c2b8291d65a24d8"
+    },
+    {
+      "path": "reference/packs/words/b-3.json",
+      "bytes": 6620,
+      "sha256": "30b9c1e138521c62a5c89e8c4974b6c618eb97b145cb9052f4443db42f48fb52"
     },
     {
       "path": "reference/packs/words/c-1.json",
-      "bytes": 42602,
-      "sha256": "1a52d972fc3fc2d89d26f94703b282db727eaa7498fbe8cf9b1a6f4142f4c6cc"
+      "bytes": 41355,
+      "sha256": "4a19a6dc711f0e87c4fe8d07c230c38bf4dac2cafcfc97fcc287db57f7129d61"
     },
     {
       "path": "reference/packs/words/c-2.json",
-      "bytes": 27360,
-      "sha256": "5fec56ff43a306a3527000517e40e279e7e89feb4251b9174bb61061962b5ca7"
+      "bytes": 42701,
+      "sha256": "eb8cbd4a46dfd76aec86a9eeec7be61d9f9b3e2aa7d23fa9fb58350b4b1b4072"
+    },
+    {
+      "path": "reference/packs/words/c-3.json",
+      "bytes": 7174,
+      "sha256": "353e3c2b1167edd9f360b42da03debcc81391f045cb653c900ba69ddb664916b"
     },
     {
       "path": "reference/packs/words/d-1.json",
-      "bytes": 41816,
-      "sha256": "226067a0f159417fa9a64e4490c3ea20f220037b1ea8093f2dbf7fdd52069c72"
+      "bytes": 41167,
+      "sha256": "e364932543c4c3aef4eee869cf55ef8b5236784ac9b2d6f145ceb042605ad757"
     },
     {
       "path": "reference/packs/words/d-2.json",
-      "bytes": 6428,
-      "sha256": "b335829fdd91412bcf62d45fc62ee7a86298e7196e2fb665d1f5f6d273e1d7e1"
+      "bytes": 27919,
+      "sha256": "641561a8412cec96faacafb8d69d74decae5b393563582a897062caa25cea666"
     },
     {
       "path": "reference/packs/words/e-1.json",
-      "bytes": 34546,
-      "sha256": "7fb28f40f9b064b90701e6ce18915f83c53af2ccf81c597d0758f9f70128ee49"
+      "bytes": 39812,
+      "sha256": "b1308685dead21908cad67ae30d365025c855301dacba3b639633d5f828da67c"
+    },
+    {
+      "path": "reference/packs/words/e-2.json",
+      "bytes": 16116,
+      "sha256": "9d1c2e71427874131aac193dda700feef417a2c6c1e089d8a2ade44f1553a948"
     },
     {
       "path": "reference/packs/words/f-1.json",
-      "bytes": 45868,
-      "sha256": "fdf6baa2bf3c046c4b1881a85be7887db2b632d7d6511b723f8ce77730ab9e4b"
+      "bytes": 45855,
+      "sha256": "f3efdd001e2ee07d3f82c1c8049189b94318fc2785e71dee5c017f62dff7282b"
     },
     {
       "path": "reference/packs/words/f-2.json",
-      "bytes": 6377,
-      "sha256": "209e8dab5ff1928cb5742233a0cec3f2f2461d1938362d064d1d69578ecc12a9"
+      "bytes": 25804,
+      "sha256": "6452b69736ea62349e8796ff4eb7981be7970653302304babd2e799b92c2bd82"
     },
     {
       "path": "reference/packs/words/g-1.json",
-      "bytes": 37812,
-      "sha256": "3e6f926813c708d3e62ae018b774ecedcb5bb5fb3dca1500f822377cf3d8753f"
+      "bytes": 38437,
+      "sha256": "848d88b906ac27efb6e3ee1b5e52937c80f5b7227a8b672576e4255bebcd5522"
+    },
+    {
+      "path": "reference/packs/words/g-2.json",
+      "bytes": 20271,
+      "sha256": "4e8d3e52ba77cdae16bae8b5d778d636017be05262286b5192e082222eaa4c0c"
     },
     {
       "path": "reference/packs/words/h-1.json",
-      "bytes": 36423,
-      "sha256": "9a5b586fbc3fb99881457efbac06afab18fc1707571a963ba7306eccf8cd9f1f"
+      "bytes": 38422,
+      "sha256": "6d84adfce631291534ed9985e815edf6b79ea8fe42456d809505cfed884f0d56"
+    },
+    {
+      "path": "reference/packs/words/h-2.json",
+      "bytes": 24385,
+      "sha256": "3181452c2866cfb1a6565212c77304eba78f545a33c61c039c5651217dc27490"
     },
     {
       "path": "reference/packs/words/i-1.json",
-      "bytes": 28120,
-      "sha256": "5365be7ce3e95fc00843e1bfc0490de7344e4853fad343f7d43f2aa4f9a1a3b6"
+      "bytes": 37330,
+      "sha256": "4aaba98ef950486670e1823ae63967682a5a3d68c56f30078a89d2626cb4dfa0"
+    },
+    {
+      "path": "reference/packs/words/i-2.json",
+      "bytes": 8354,
+      "sha256": "6e7dcc5d3161797f52ed648933f50a18f1560149a0ab5143e1de79a2ff0c649f"
     },
     {
       "path": "reference/packs/words/j-1.json",
-      "bytes": 13013,
-      "sha256": "1473ff2a1910f97d67cbced79faf6eaf884592a846be65ccd872a65a0fee4aa5"
+      "bytes": 23436,
+      "sha256": "23a57519cfdfb96cdfd34e60c3a9c82339d24d9e275bf43e0991dd12fa872cf2"
     },
     {
       "path": "reference/packs/words/k-1.json",
-      "bytes": 11037,
-      "sha256": "466baf972d178998c9241b4ee45e85ec281c0b1c81d8e9639ed7924086d54586"
+      "bytes": 18106,
+      "sha256": "a508947379c922b8116842a308c607fc3194493abe5c8a69079e77fc775c1710"
     },
     {
       "path": "reference/packs/words/l-1.json",
-      "bytes": 43839,
-      "sha256": "619da57cf87cfe9bbfddf56861f3a1d09b5c1bedfed68e3c817cb65512156969"
+      "bytes": 42474,
+      "sha256": "7be9f1a469589c8d171dbc6d64f0665fc40e0df753065863cdce13c3292c2a8c"
     },
     {
       "path": "reference/packs/words/l-2.json",
-      "bytes": 266,
-      "sha256": "b7962813eeec13cf21bb93bfa51356792d9f319a999407e5d6ba2ced1025201d"
+      "bytes": 21568,
+      "sha256": "99c7457d1fdcc9e2c832b26d64ff1a3793947cc5a8fad43ac81ae588bb7fc3d7"
     },
     {
       "path": "reference/packs/words/m-1.json",
-      "bytes": 41167,
-      "sha256": "24e6fe487e16c9951f309005ee37146e81a7ecacbbee7db8005567a626eb3f2b"
+      "bytes": 40596,
+      "sha256": "bec20e595583eb199bd8a2afff2a1fa8d56750e2ed4cdf63c8335cbe80a1d689"
     },
     {
       "path": "reference/packs/words/m-2.json",
-      "bytes": 3443,
-      "sha256": "2d0bc704e02f74b4ea6b0c15fc91ce4ace486886fc9a91b49050eb8f1fb3833f"
+      "bytes": 27751,
+      "sha256": "d4baea93035caa7e8fc818415d3141f9123e44d95b7de434850dedef5e5e1832"
     },
     {
       "path": "reference/packs/words/n-1.json",
-      "bytes": 22081,
-      "sha256": "2edaf9d3a9b74126d687728f75eae9443a80a38bf764a8a95d7bd72bf325c8c5"
+      "bytes": 28111,
+      "sha256": "271d8f13627dfb43116cecd43e96e7614f3453fc0ee8eb9b517fbe298af86682"
     },
     {
       "path": "reference/packs/words/o-1.json",
-      "bytes": 22497,
-      "sha256": "bd034208980637a44fc29aa245b44fed808962527fe590be59905a849ee56d07"
+      "bytes": 32419,
+      "sha256": "c87201b699394ee3f257c455c802e74be20d5f745e1b42868a8884a8e7c0e5a3"
     },
     {
       "path": "reference/packs/words/other-1.json",
@@ -2062,83 +2097,108 @@
     },
     {
       "path": "reference/packs/words/p-1.json",
-      "bytes": 42650,
-      "sha256": "66213333a25468f973ab7f8f6be5f4546afd4eec778e036250ee662e90980034"
+      "bytes": 41200,
+      "sha256": "348452677b9de157386006171270101f1d6f4b85f0cb92c998719752136ddb1d"
     },
     {
       "path": "reference/packs/words/p-2.json",
-      "bytes": 25552,
-      "sha256": "c721700e1df54a5b96aee84688093f1a2743c695f69716061cbfa60d3f7548a6"
+      "bytes": 40992,
+      "sha256": "fe9e60d9ce31f08d721477c03c55ec7cd88337c016032f70aa78544243d796ea"
+    },
+    {
+      "path": "reference/packs/words/p-3.json",
+      "bytes": 11583,
+      "sha256": "3841fa5b019e101a1d8cbdfdcd6af64a315dc0e1d7528cdc525083de8d6604d8"
     },
     {
       "path": "reference/packs/words/q-1.json",
-      "bytes": 9388,
-      "sha256": "43fd02e1d0d7a52cd330f82c9d996f940501504b5cdd0e2597cd2fd725993113"
+      "bytes": 15136,
+      "sha256": "7d7cee23195e647e348a9b163f2cac8fd9bbe7b5ef39731cd0baa9a1a1f54cf7"
     },
     {
       "path": "reference/packs/words/r-1.json",
-      "bytes": 44145,
-      "sha256": "5a6937fc1931a048aa376d7f01609c77553a53b33094486eb7ac1237ec9dedaa"
+      "bytes": 42501,
+      "sha256": "9f9c453eab959c2b7d44f4e6d4048bbd37e767a8041838906766583a71ae2e0f"
     },
     {
       "path": "reference/packs/words/r-2.json",
-      "bytes": 24484,
-      "sha256": "dbd845786eb245131b1c614515ca8970b217ba50b534acb49b302fcee801a819"
+      "bytes": 41354,
+      "sha256": "13a7599d1bce3edbc44ebeb09ad9b8591fa9e42f3b5a405e3cbe069bc8f18814"
+    },
+    {
+      "path": "reference/packs/words/r-3.json",
+      "bytes": 21511,
+      "sha256": "d039050b3613cd4adb3a6fd62787e3a07bfb5b555e4f11fce4e853df139e313e"
     },
     {
       "path": "reference/packs/words/s-1.json",
-      "bytes": 46085,
-      "sha256": "4458ffd31dfc4ca53d04215dd2ca981d6a1436bbf455fe0a38b3e3be53a77763"
+      "bytes": 41617,
+      "sha256": "299d14939ebef610ff63fa5d7746e51cc248df047a51b2c30951846349f71136"
     },
     {
       "path": "reference/packs/words/s-2.json",
-      "bytes": 46573,
-      "sha256": "78eedf8ec8b71d399527042d86ec73bb0b2dea75e63f570e05681a1960c2d6bf"
+      "bytes": 45278,
+      "sha256": "7f4d5be295b208eac8c1c0a881176934f4f4e7f29f9195d05495615384352ab2"
     },
     {
       "path": "reference/packs/words/s-3.json",
-      "bytes": 40852,
-      "sha256": "3a0a61e30fe718bd00ac242490119034e5cc7e211cb719b46d93e19b0b6dbe39"
+      "bytes": 43891,
+      "sha256": "29af5f89e206b8275a1443bd1e89214a20607e9f5a4000c0b47246f9049d3be1"
+    },
+    {
+      "path": "reference/packs/words/s-4.json",
+      "bytes": 47954,
+      "sha256": "038809f85215f424e2ad84aff51467cf26e0896dfba53a865ecbd609d7e31e42"
+    },
+    {
+      "path": "reference/packs/words/s-5.json",
+      "bytes": 3668,
+      "sha256": "b6b81db8a3a4fc5865990a41ac3d22d7264fcaa6269cfff3271274f5cfdfe915"
     },
     {
       "path": "reference/packs/words/t-1.json",
-      "bytes": 47820,
-      "sha256": "6034b35ba1c1f0380e23729b17a4de6ae1c3b11f94dcb91c7d85cb0232330752"
+      "bytes": 44840,
+      "sha256": "f93b4a1e371c87ace8c68e46a3ce6868c3332ebd901113ffe2c52373ae4878a9"
     },
     {
       "path": "reference/packs/words/t-2.json",
-      "bytes": 23195,
-      "sha256": "93a607ac223c4a2098b62d961650a69ebcab9976dd1043dcb36699b58ad699a8"
+      "bytes": 42836,
+      "sha256": "72ecd1b724c72949cfe55edcf75591dfee8a31c8f22e3c3a0a9cc06fe1a14205"
     },
     {
       "path": "reference/packs/words/u-1.json",
-      "bytes": 12068,
-      "sha256": "684bad38520e6b56068972ce40b7e664fdb3ed7cbd6af829574effb1f41469f3"
+      "bytes": 22257,
+      "sha256": "073fc29fd7e0237f8c9732f13408a762c9aebf16b5028b93acaf50e344bf95a1"
     },
     {
       "path": "reference/packs/words/v-1.json",
-      "bytes": 16587,
-      "sha256": "18ed1e03fbf1c2b0434e6d8b8b16f9a6972ef5f51582edee286b009cc82d1b1d"
+      "bytes": 24646,
+      "sha256": "a8c1483d8be862c2ce0cc2d4fd5fa115070a641fb87786201366d3f629c48069"
     },
     {
       "path": "reference/packs/words/w-1.json",
-      "bytes": 38701,
-      "sha256": "d31f92bc072affa492ce79b2c595a5043da6bbcf80d0ddbc327d37861f322dcd"
+      "bytes": 41716,
+      "sha256": "f565246d8f0a2ac2d327981ff042d0963d1ad694d8f72214efd3468ec194aff6"
+    },
+    {
+      "path": "reference/packs/words/w-2.json",
+      "bytes": 9727,
+      "sha256": "7a46a88754217e8777fd31d3e526209af263e6efa6006f75a8cc7e433e37c389"
     },
     {
       "path": "reference/packs/words/x-1.json",
-      "bytes": 1017,
-      "sha256": "8c721dc6cb9494b521513dfe12d39581e2322c92c77677a9bbd1d8d27c609bee"
+      "bytes": 1332,
+      "sha256": "5462e91f026800f23a8b3155570b9305f5e1b81ad1984575355db6cf2b48f286"
     },
     {
       "path": "reference/packs/words/y-1.json",
-      "bytes": 5309,
-      "sha256": "2b8eafeae2ec54e9bac88ad193f53cc2237565374cd63157e614ab9566382894"
+      "bytes": 7802,
+      "sha256": "725462535ad257b46057dd610ab247ffb83c29980348f9abdd26106ba5039114"
     },
     {
       "path": "reference/packs/words/z-1.json",
-      "bytes": 3603,
-      "sha256": "d01239e0677be2706038764c1b8b93d5240ab191546d27a6306ab06424b6371b"
+      "bytes": 5481,
+      "sha256": "3f189cceae7b09ddd780a4f059997616172d35f928e207996401ec982430c74d"
     },
     {
       "path": "reference/search.mjs",

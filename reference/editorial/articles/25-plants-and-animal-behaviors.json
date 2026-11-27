@@ -1,0 +1,3615 @@
+[
+  {
+    "id": "sugar-maple",
+    "title": "How can you tell a sugar maple by the gaps in its leaves?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A sugar maple leaf can look like a wide open hand with several pointed lobes. Follow the gap beside a leaf lobe toward the middle. On a sugar maple, that gap often ends with a round curve instead of a sharp corner. The edges usually lack the many fine teeth you find on a red maple. In autumn the leaves can turn yellow, orange, or red, so the shape is often a better clue than the color.",
+    "aliases": [
+      "sugar maple tree",
+      "sugar maple leaf rounded gaps",
+      "sugar maple leaf shape"
+    ],
+    "sections": [],
+    "facts": [
+      "Sugar maple leaves often have five main lobes, with the lowest two noticeably smaller."
+    ],
+    "terms": [
+      "leaf lobe"
+    ],
+    "questions": [
+      {
+        "text": "How can I tell a red maple by its leaves?",
+        "target": "red-maple"
+      },
+      {
+        "text": "How can sap from a sugar maple become syrup?",
+        "target": "maple-syrup"
+      },
+      {
+        "text": "Why can maple leaves turn bright colors in fall?",
+        "target": "fall-leaf-colors"
+      }
+    ],
+    "sources": [
+      "plant25-acer-saccharum",
+      "plant25-maple-leaf-comparison"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "red-maple",
+    "title": "Does a red maple have red leaves all year?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A red maple grows green leaves for much of the year. You might spot tiny red flowers in early spring, often well before the leaves spread out. During summer, look along the edges of its leaves. They have little points like the teeth of a saw. In fall, the leaves can turn red, orange, or yellow. That means the name gives you a good clue, but one green leaf in July does not rule out a red maple.",
+    "aliases": [
+      "red maple tree",
+      "swamp maple",
+      "red maple leaves"
+    ],
+    "sections": [],
+    "facts": [
+      "Red maples are native to much of eastern North America."
+    ],
+    "terms": [
+      "leaf lobe"
+    ],
+    "questions": [
+      {
+        "text": "What does a sugar maple leaf look like?",
+        "target": "sugar-maple"
+      },
+      {
+        "text": "How can a leaf be green in summer and red in fall?",
+        "target": "fall-leaf-colors"
+      },
+      {
+        "text": "What makes a maple seed spin when it drops?",
+        "target": "spinning-maple-seeds"
+      }
+    ],
+    "sources": [
+      "plant25-acer-rubrum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "paper-birch",
+    "title": "Why does paper birch bark look like paper?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Long sheets curl out from the trunks of many older paper birches. Those thin sheets are part of the outer bark. They can look like scraps of white paper, while patches underneath may be orange or brown. Younger branches often have bark that looks darker and smoother. You can study the layers without pulling them off a tree. A loose piece on the ground can show the dark marks and the different colors on its two sides.",
+    "aliases": [
+      "paper birch tree",
+      "white birch peeling bark",
+      "canoe birch"
+    ],
+    "sections": [],
+    "facts": [
+      "Paper birch is also called canoe birch."
+    ],
+    "terms": [
+      "outer bark"
+    ],
+    "questions": [
+      {
+        "text": "Which birch has shaggy reddish or tan bark?",
+        "target": "river-birch"
+      },
+      {
+        "text": "Which other tree has pale bark that comes off in patches?",
+        "target": "american-sycamore"
+      },
+      {
+        "text": "Which tree has strips of thick bark that turn up at the ends?",
+        "target": "shagbark-hickory"
+      }
+    ],
+    "sources": [
+      "plant25-betula-papyrifera"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "river-birch",
+    "title": "Why does a river birch look shaggy all year?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A young river birch trunk can look as though someone dressed it in curl after curl of thin brown paper. Some of the outer bark peels, but parts of the curls stay attached for a while. They often show several shades of tan, pink, or reddish brown. You may find the tree near streams or other moist ground. Even after its leaves fall, the bark can help you recognize it from far away.",
+    "aliases": [
+      "river birch tree",
+      "river birch bark",
+      "birch by a river"
+    ],
+    "sections": [],
+    "facts": [
+      "Older river birch trunks can develop darker, rougher bark."
+    ],
+    "terms": [
+      "outer bark"
+    ],
+    "questions": [
+      {
+        "text": "Which birch is known for white papery bark?",
+        "target": "paper-birch"
+      },
+      {
+        "text": "Can a strip of trees and other plants help a stream?",
+        "target": "streamside-buffers"
+      },
+      {
+        "text": "What makes a shagbark hickory look scruffy?",
+        "target": "shagbark-hickory"
+      }
+    ],
+    "sources": [
+      "plant25-betula-nigra"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "eastern-white-pine",
+    "title": "Can you recognize a white pine by counting needles?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Pine needles are leaves. On an eastern white pine, you can find five fine needles coming out together from the same spot. They form a small needle bundle, so it helps to look at the bases instead of counting every green line on a twig. Other kinds of pine often have fewer needles in each bundle. White pines also grow long, narrow seed cones. The needles stay on through winter, although an individual needle does not stay on forever.",
+    "aliases": [
+      "eastern white pine tree",
+      "white pine five needles",
+      "soft pine"
+    ],
+    "sections": [],
+    "facts": [
+      "The needles can look bluish green."
+    ],
+    "terms": [
+      "needle bundle"
+    ],
+    "questions": [
+      {
+        "text": "Which pine usually has three long needles in each bundle?",
+        "target": "loblolly-pine"
+      },
+      {
+        "text": "What do pine cones do for a tree?",
+        "target": "pine-cones"
+      },
+      {
+        "text": "How can a tree keep green leaves through winter?",
+        "target": "evergreen-leaves"
+      }
+    ],
+    "sources": [
+      "plant25-pinus-strobus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "loblolly-pine",
+    "title": "Which pine grows in old fields in the southeastern U.S.?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A loblolly pine can grow in sunny places where farm fields or other open ground used to be. Seeds from nearby trees can find enough light there to start new trees. Look along the branches for a needle bundle with three long needles. The lower branches often disappear as the tree grows taller. A group of old loblollies can have tall bare trunks with most of the green parts high above your head.",
+    "aliases": [
+      "loblolly pine tree",
+      "loblolly needles",
+      "oldfield pine"
+    ],
+    "sections": [],
+    "facts": [
+      "Loblolly pine is native to the southeastern United States."
+    ],
+    "terms": [
+      "needle bundle"
+    ],
+    "questions": [
+      {
+        "text": "How many needles usually grow together on a white pine?",
+        "target": "eastern-white-pine"
+      },
+      {
+        "text": "How can trees eventually grow in an old field?",
+        "target": "forest-succession"
+      },
+      {
+        "text": "Where do pine seeds form?",
+        "target": "pine-cones"
+      }
+    ],
+    "sources": [
+      "plant25-pinus-taeda"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bald-cypress",
+    "title": "Why does a bald cypress lose its needles in winter?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A bald cypress can look like an evergreen during summer. In autumn, its soft green leaves turn rusty and drop, so the branches look bare in winter. Even though it sheds its leaves, it still makes cones. Bald cypresses often grow in swamps and beside rivers. Sometimes you can see woody humps that rise above the water or soil near the trunk. These humps, called cypress knees, grow from the tree's roots.",
+    "aliases": [
+      "bald cypress tree",
+      "cypress knees",
+      "swamp cypress"
+    ],
+    "sections": [],
+    "facts": [
+      "Bald cypress loses its needles even though it is a conifer."
+    ],
+    "terms": [
+      "cone-bearing tree",
+      "cypress knee"
+    ],
+    "questions": [
+      {
+        "text": "Why can some trees grow in standing water or wet soil?",
+        "target": "forested-swamps"
+      },
+      {
+        "text": "How do many other cone-bearing trees stay green in winter?",
+        "target": "evergreen-leaves"
+      },
+      {
+        "text": "What jobs do the underground parts of a tree do?",
+        "target": "plant-roots"
+      }
+    ],
+    "sources": [
+      "plant25-taxodium-distichum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "quaking-aspen",
+    "title": "Why do aspen leaves shake in a small breeze?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Hold a sheet of paper by one edge and it can wobble in a breeze. The roundish leaves of a quaking aspen wobble especially easily because each sits on a leaf stem that is flattened from side to side. Even a small breeze can twist the stem and shake the leaf. The moving leaves may flash green and pale when the light hits them from different angles. In fall, many aspen leaves turn yellow.",
+    "aliases": [
+      "quaking aspen tree",
+      "aspen leaf tremble",
+      "aspen leaf stem"
+    ],
+    "sections": [],
+    "facts": [
+      "A quaking aspen is a kind of poplar."
+    ],
+    "terms": [
+      "leaf stem"
+    ],
+    "questions": [
+      {
+        "text": "What does a leaf stem do besides hold up a leaf?",
+        "target": "leaf-stems"
+      },
+      {
+        "text": "Why do aspen leaves turn yellow in fall?",
+        "target": "fall-leaf-colors"
+      },
+      {
+        "text": "Which kind of poplar sends soft white fluff into the air?",
+        "target": "eastern-cottonwood"
+      }
+    ],
+    "sources": [
+      "plant25-populus-tremuloides"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "american-beech",
+    "title": "Why is an American beech easy to spot in winter?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "In a winter forest, an American beech may still have a few pale brown leaves on its branches. Many young beeches hold on to some dry leaves well after other trees are bare. Look at the trunk too. The bark usually stays smooth and gray even on a big tree. In the fall, a bristly fruit on a beech can open to show small, hard nuts that have three sides.",
+    "aliases": [
+      "American beech tree",
+      "beech smooth bark",
+      "beech winter leaves"
+    ],
+    "sections": [],
+    "facts": [
+      "American beeches can grow in some shade."
+    ],
+    "terms": [
+      "outer bark"
+    ],
+    "questions": [
+      {
+        "text": "What do many other trees in a leafy forest do in autumn?",
+        "target": "deciduous-forests"
+      },
+      {
+        "text": "Which nut tree has rough hanging strips instead of smooth bark?",
+        "target": "shagbark-hickory"
+      },
+      {
+        "text": "How can a dry plant part with nuts inside count as a fruit?",
+        "target": "plant-fruit"
+      }
+    ],
+    "sources": [
+      "plant25-fagus-grandifolia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "shagbark-hickory",
+    "title": "What makes a shagbark hickory look scruffy?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Look at an older shagbark hickory trunk and you may see thick strips of gray outer bark peeling away from it. The ends of the strips often stick out, while parts of the strips remain attached. The trunk can look like it is covered in loose boards. In summer, each compound leaf has several smaller pieces. It also makes nuts that grow inside thick husks, which split as the nuts ripen.",
+    "aliases": [
+      "shagbark hickory tree",
+      "hickory peeling bark",
+      "hickory nuts"
+    ],
+    "sections": [],
+    "facts": [
+      "Young shagbark hickories have smoother bark than old ones."
+    ],
+    "terms": [
+      "compound leaf",
+      "outer bark"
+    ],
+    "questions": [
+      {
+        "text": "How is thin birch bark different from thick hickory bark?",
+        "target": "paper-birch"
+      },
+      {
+        "text": "When do several small pieces together count as one leaf?",
+        "target": "compound-leaves"
+      },
+      {
+        "text": "What does a black walnut look like before its husk comes off?",
+        "target": "black-walnut-tree"
+      }
+    ],
+    "sources": [
+      "plant25-carya-ovata"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "black-walnut-tree",
+    "title": "What is a black walnut hiding inside its green husk?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "The round green things on a black walnut branch may look a little like small balls. Each one holds a very hard shell around a seed. The green cover is called a husk. As the fruit ages, the husk gets softer and can turn dark. It contains a strong stain that can color hands and clothes. Long leaves on the same tree look like rows of small leaves, but the pieces belong to one big compound leaf.",
+    "aliases": [
+      "black walnut tree",
+      "black walnut husk",
+      "walnut fruit"
+    ],
+    "sections": [],
+    "facts": [
+      "The combined outer husk and hard shell protect the seed as it grows."
+    ],
+    "terms": [
+      "compound leaf"
+    ],
+    "questions": [
+      {
+        "text": "Which nut tree has bark that hangs in long strips?",
+        "target": "shagbark-hickory"
+      },
+      {
+        "text": "How can I tell a whole walnut leaf from one of its pieces?",
+        "target": "compound-leaves"
+      },
+      {
+        "text": "Why might a squirrel carry a nut away instead of eating it now?",
+        "target": "eastern-gray-squirrel"
+      }
+    ],
+    "sources": [
+      "plant25-juglans-nigra"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "american-sycamore",
+    "title": "Why does a sycamore trunk look like a patchwork?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Look high on the trunk of an American sycamore. You may see light gray, tan, and creamy white patches on the same tree. Parts of its older outer bark flake away, showing smoother, lighter bark below. On many older trees, the bark near the bottom stays darker and rougher. You might also see round fruit balls on stalks. Some can hang from bare branches long after the leaves fall.",
+    "aliases": [
+      "American sycamore tree",
+      "sycamore camouflage bark",
+      "buttonball tree"
+    ],
+    "sections": [],
+    "facts": [
+      "The name buttonball tree comes from the round seed clusters."
+    ],
+    "terms": [
+      "outer bark"
+    ],
+    "questions": [
+      {
+        "text": "Which tree can shed its bark in thin sheets instead?",
+        "target": "paper-birch"
+      },
+      {
+        "text": "Which other big riverside tree sends fluff from its seeds?",
+        "target": "eastern-cottonwood"
+      },
+      {
+        "text": "How can a breeze carry a seed away from its tree?",
+        "target": "seed-travel"
+      }
+    ],
+    "sources": [
+      "plant25-platanus-occidentalis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "eastern-hemlock",
+    "title": "Why does an eastern hemlock cast deep shade?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "An eastern hemlock has layers of branches with lots of small green needles. In a group of hemlocks, the branches can let very little sunlight reach the ground. Only certain plants grow well in that shade. Look closely at a twig and you may see needles that lie flatter than the pointed needles of many other cone-bearing trees. Small seed cones hang from the branches, often close to the twig tips.",
+    "aliases": [
+      "eastern hemlock tree",
+      "hemlock forest shade",
+      "hemlock tiny cones"
+    ],
+    "sections": [],
+    "facts": [
+      "Young hemlocks can grow even where light is limited."
+    ],
+    "terms": [
+      "cone-bearing tree",
+      "forest canopy"
+    ],
+    "questions": [
+      {
+        "text": "How do plants survive under a shady canopy?",
+        "target": "forest-understory"
+      },
+      {
+        "text": "How do western hemlock needles look along a twig?",
+        "target": "western-hemlock"
+      },
+      {
+        "text": "How do evergreen trees stay green in winter?",
+        "target": "evergreen-leaves"
+      }
+    ],
+    "sources": [
+      "plant25-tsuga-canadensis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "eastern-redcedar",
+    "title": "Are the blue things on an eastern redcedar berries?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "At first, the little blue balls on some eastern redcedar branches might look like berries. They are actually seed cones. Their soft scales grow together instead of opening out into a shape like a typical dry pine cone. Birds can eat the cones and carry the seeds to new places. If you look closely at an older twig, you may notice that the tiny green leaves overlap like roof shingles rather than looking like long pine needles.",
+    "aliases": [
+      "eastern redcedar tree",
+      "juniper blue berry",
+      "red cedar cone"
+    ],
+    "sections": [],
+    "facts": [
+      "Despite its name, eastern redcedar is a kind of juniper."
+    ],
+    "terms": [
+      "cone-bearing tree"
+    ],
+    "questions": [
+      {
+        "text": "How does a dry pine cone release its seeds?",
+        "target": "pine-cones"
+      },
+      {
+        "text": "How can an animal carry away a seed?",
+        "target": "seed-travel"
+      },
+      {
+        "text": "What shape are the needles on a white pine?",
+        "target": "eastern-white-pine"
+      }
+    ],
+    "sources": [
+      "plant25-juniperus-virginiana"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tuliptree",
+    "title": "Why is a tuliptree named after a flower?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A tuliptree grows tall enough that flowers on its top branches can be hard to see from the ground. Look for cup-shaped blooms with greenish yellow and orange parts. They look a little like tulips, though they grow on a tree. The leaves are unusual too. The end of each wide leaf looks as if a small piece was clipped out, leaving a flat or dipped top instead of a single point.",
+    "aliases": [
+      "tulip tree",
+      "yellow poplar",
+      "tulip poplar leaf"
+    ],
+    "sections": [],
+    "facts": [
+      "A tuliptree is a relative of magnolias."
+    ],
+    "terms": [
+      "leaf lobe"
+    ],
+    "questions": [
+      {
+        "text": "What clues are found in a magnolia's leaves and flowers?",
+        "target": "southern-magnolia"
+      },
+      {
+        "text": "What is often tucked inside the cup of a flower?",
+        "target": "flower-parts"
+      },
+      {
+        "text": "Where are many of a tall tree's sunniest branches?",
+        "target": "forest-canopy"
+      }
+    ],
+    "sources": [
+      "plant25-liriodendron-tulipifera"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "white-spruce",
+    "title": "How do white spruce cones hang on the tree?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A white spruce carries its seed cones below the branches like small hanging decorations. They are narrow and have thin scales. A mature cone can come off the tree as a whole piece. Check a balsam fir and you may see its younger cones held up instead of hanging down. The difference is useful because several kinds of northern trees have similar green needles when you see them from far away.",
+    "aliases": [
+      "white spruce tree",
+      "white spruce hanging cones",
+      "Canada spruce"
+    ],
+    "sections": [],
+    "facts": [
+      "White spruce is an evergreen of northern North America."
+    ],
+    "terms": [
+      "cone-bearing tree"
+    ],
+    "questions": [
+      {
+        "text": "What happens to the cones that stand up on a balsam fir?",
+        "target": "balsam-fir"
+      },
+      {
+        "text": "How can scales hide or release seeds?",
+        "target": "pine-cones"
+      },
+      {
+        "text": "Which kinds of trees cover many northern forests?",
+        "target": "boreal-forests"
+      }
+    ],
+    "sources": [
+      "plant25-picea-glauca"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "southern-live-oak",
+    "title": "Does a live oak ever drop its leaves?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A southern live oak keeps green leaves during winter when it grows in a warm enough place. Still, it sheds older leaves around the time new ones are growing. That is one reason an oak can look green for much of the year even when loose leaves are on the ground. A big tree often spreads broad, low branches that make a wide patch of shade. This oak grows near the Atlantic and Gulf coasts in the southeastern United States.",
+    "aliases": [
+      "southern live oak tree",
+      "evergreen oak",
+      "live oak branches"
+    ],
+    "sections": [],
+    "facts": [
+      "A southern live oak makes acorns, just as many other oaks do."
+    ],
+    "terms": [
+      "forest canopy"
+    ],
+    "questions": [
+      {
+        "text": "How can a new oak start inside an acorn?",
+        "target": "white-oak-acorns"
+      },
+      {
+        "text": "Do all leaves on an evergreen last for years?",
+        "target": "evergreen-leaves"
+      },
+      {
+        "text": "What happens to a sunny spot when a broad tree shades it?",
+        "target": "street-tree-shade"
+      }
+    ],
+    "sources": [
+      "plant25-quercus-virginiana"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "southern-magnolia",
+    "title": "What can the underside of a magnolia leaf show?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A southern magnolia often has thick leaves that look shiny and dark green from above. Many have a fuzzy brown patch across the underneath side. If you find a fallen leaf, try turning it over to compare the surfaces. Some trees have less fuzz than others. In warm months, the branches may carry big white flowers. Later a bumpy, cone-shaped fruit can open and expose bright red seeds.",
+    "aliases": [
+      "southern magnolia tree",
+      "magnolia brown leaf underside",
+      "magnolia leaves"
+    ],
+    "sections": [],
+    "facts": [
+      "Southern magnolia is a leafy evergreen and can keep leaves through the winter."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Which magnolia relative has a tulip-shaped flower?",
+        "target": "tuliptree"
+      },
+      {
+        "text": "How can a tree with broad leaves stay green in winter?",
+        "target": "evergreen-leaves"
+      },
+      {
+        "text": "How can a firm, bumpy plant part count as a fruit?",
+        "target": "plant-fruit"
+      }
+    ],
+    "sources": [
+      "plant25-magnolia-grandiflora"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "flowering-dogwood",
+    "title": "Are the big white parts on a dogwood really petals?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "The four big white or pink parts of a flowering dogwood look like petals from far away. In fact, each is a special leaf called a floral bract. They surround a cluster of much smaller flowers. Look toward the middle to see where the actual flowers sit. The big bright bracts help make that cluster visible. Later in the year, the tree can have small red fruits where some of the tiny flowers once grew.",
+    "aliases": [
+      "flowering dogwood tree",
+      "dogwood bracts",
+      "dogwood white flowers"
+    ],
+    "sections": [],
+    "facts": [
+      "Birds can eat the ripe fruits of flowering dogwood."
+    ],
+    "terms": [
+      "floral bract"
+    ],
+    "questions": [
+      {
+        "text": "What is a petal on an ordinary flower?",
+        "target": "flower-parts"
+      },
+      {
+        "text": "How can part of a flower become a fruit?",
+        "target": "plant-fruit"
+      },
+      {
+        "text": "What can an eastern redbud bloom look like before its leaves appear?",
+        "target": "eastern-redbud"
+      }
+    ],
+    "sources": [
+      "plant25-cornus-florida"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "eastern-redbud",
+    "title": "Why can redbud branches turn pink before spring leaves open?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "An eastern redbud can look like a bare tree covered with tiny pink beads near the start of spring. Those are flowers opening along the branches before the leaves spread. Some flowers grow straight from older parts of the tree. Later, the wide leaves look rather like small green hearts. Some flowers also turn into long, thin seed pods. You can sometimes see the old pods on the branches in winter.",
+    "aliases": [
+      "eastern redbud",
+      "redbud pink flowers",
+      "redbud heart leaves"
+    ],
+    "sections": [],
+    "facts": [
+      "Eastern redbuds belong to the same large plant family as peas."
+    ],
+    "terms": [
+      "seed pod"
+    ],
+    "questions": [
+      {
+        "text": "Where are the tiny flowers on a showy dogwood?",
+        "target": "flowering-dogwood"
+      },
+      {
+        "text": "How can a fruit form after a flower is pollinated?",
+        "target": "plant-fruit"
+      },
+      {
+        "text": "Why do many small woodland flowers open early too?",
+        "target": "spring-woodland-flowers"
+      }
+    ],
+    "sources": [
+      "plant25-cercis-canadensis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ginkgo-tree",
+    "title": "What shape is a ginkgo leaf?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A ginkgo leaf spreads out like a little fan on a long handle. Lines of tiny tubes start near the handle and fork again and again as they reach the wide edge. Some leaves have a dip in the middle of that edge, while others have almost no dip. The leaves can all turn a bright yellow before dropping. Ginkgo is also called a maidenhair tree because its leaves remind people of the small fans on maidenhair ferns.",
+    "aliases": [
+      "ginkgo tree",
+      "ginkgo fan leaves",
+      "maidenhair tree"
+    ],
+    "sections": [],
+    "facts": [
+      "A ginkgo tree makes seeds but does not make flowers."
+    ],
+    "terms": [
+      "leaf vein",
+      "leaf stem"
+    ],
+    "questions": [
+      {
+        "text": "Why do some maidenhair fern leaves look like small fans?",
+        "target": "northern-maidenhair-fern"
+      },
+      {
+        "text": "Where do yellow fall colors come from?",
+        "target": "fall-leaf-colors"
+      },
+      {
+        "text": "What do the lines on the surface of a leaf carry?",
+        "target": "leaves-as-vein-maps"
+      }
+    ],
+    "sources": [
+      "plant25-ginkgo-biloba"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "eastern-cottonwood",
+    "title": "Why does the air look snowy near a cottonwood in summer?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "When seed pods on an eastern cottonwood open, fine white hairs can catch the breeze. Each tiny seed is carried along with some of those hairs. When a lot of seeds float away at once, the air may look full of white flakes. A seed has a better chance of starting when it lands on moist ground with plenty of light. Cottonwoods often grow beside rivers where floods can leave fresh, bare soil.",
+    "aliases": [
+      "eastern cottonwood tree",
+      "cottonwood white fluff",
+      "cottonwood seeds"
+    ],
+    "sections": [],
+    "facts": [
+      "Some cottonwoods produce seed pods, while others produce pollen."
+    ],
+    "terms": [
+      "seed pod"
+    ],
+    "questions": [
+      {
+        "text": "What are other ways seeds find a new place?",
+        "target": "seed-travel"
+      },
+      {
+        "text": "Why does a different kind of poplar shake its leaves?",
+        "target": "quaking-aspen"
+      },
+      {
+        "text": "Where can river water leave new soil as it spreads out?",
+        "target": "floodplains"
+      }
+    ],
+    "sources": [
+      "plant25-populus-deltoides"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "black-willow",
+    "title": "Why do black willows often grow beside water?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A black willow can grow on wet ground along rivers, lakes, and other low places. Like many willows, it makes very small seeds with light hairs that help them float away. A bare patch of damp ground gives a seed a good place to start. The tree is also useful to notice by its thin, pointed leaves. Its leaves do not look much like the broad green leaves of many other riverside trees.",
+    "aliases": [
+      "black willow tree",
+      "willow near water",
+      "willow narrow leaves"
+    ],
+    "sections": [],
+    "facts": [
+      "Black willow is native to much of the eastern United States."
+    ],
+    "terms": [
+      "seed pod"
+    ],
+    "questions": [
+      {
+        "text": "Which other riverside tree sends seeds off with white fluff?",
+        "target": "eastern-cottonwood"
+      },
+      {
+        "text": "How can trees by a stream change the water's edge?",
+        "target": "streamside-buffers"
+      },
+      {
+        "text": "What makes a weeping willow look different?",
+        "target": "weeping-willow"
+      }
+    ],
+    "sources": [
+      "plant25-salix-nigra"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "weeping-willow",
+    "title": "Why does a weeping willow look like a curtain?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Each of a weeping willow's long branches can have many thin side twigs that bend toward the ground. The twigs and their narrow leaves make a loose curtain below the crown. Some hang so low that they nearly touch the grass or water. Weeping willows are often seen near ponds, where the tips of the branches move in the breeze and their reflections can look like more branches growing down into the water.",
+    "aliases": [
+      "weeping willow tree",
+      "willow branches hang down",
+      "weeping tree"
+    ],
+    "sections": [],
+    "facts": [
+      "This kind of willow came from China."
+    ],
+    "terms": [
+      "forest canopy"
+    ],
+    "questions": [
+      {
+        "text": "Which native willow often grows by an eastern river?",
+        "target": "black-willow"
+      },
+      {
+        "text": "What do people mean by the leafy crown of a tree?",
+        "target": "forest-canopy"
+      },
+      {
+        "text": "How can a reflection make an object look as if it continues below a surface?",
+        "target": "mirrors"
+      }
+    ],
+    "sources": [
+      "plant25-salix-babylonica"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "american-holly",
+    "title": "Why can American holly stay green in winter?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "An American holly keeps its tough, waxy leaves through cold weather instead of dropping them all in autumn. The leaves often have pointed teeth along the edge. Some trees also carry bright red fruits that stand out against their green foliage. These fruits grow on trees with seed-making flowers. A bird may carry seeds to new ground after eating the fruit, where the seeds have a chance to grow.",
+    "aliases": [
+      "American holly tree",
+      "holly red berries",
+      "holly winter leaves"
+    ],
+    "sections": [],
+    "facts": [
+      "American holly is native to parts of eastern and central North America."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Which kind of oak holds green leaves into winter?",
+        "target": "southern-live-oak"
+      },
+      {
+        "text": "How can a bird move plant seeds?",
+        "target": "seed-travel"
+      },
+      {
+        "text": "How do leaves help a plant when there is enough light?",
+        "target": "plant-leaves"
+      }
+    ],
+    "sources": [
+      "plant25-ilex-opaca"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "western-hemlock",
+    "title": "Why do western hemlock twigs look so fine and feathery?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Western hemlock twigs carry small, flat needles of different lengths. The mix gives the foliage a fine texture, especially at twig tips where you can see light between the needles. Farther down the branch, you may find little cones. Watch the highest point of a young tree from a distance. Instead of pointing stiffly at the sky, the tip can nod over to one side. Western hemlock can grow in shady forests along the Pacific side of North America.",
+    "aliases": [
+      "western hemlock tree",
+      "Pacific hemlock",
+      "hemlock needles different lengths"
+    ],
+    "sections": [],
+    "facts": [
+      "Western hemlock is Washington's state tree."
+    ],
+    "terms": [
+      "cone-bearing tree"
+    ],
+    "questions": [
+      {
+        "text": "What kind of shade can form beneath eastern hemlock?",
+        "target": "eastern-hemlock"
+      },
+      {
+        "text": "Can a forest with many wet needle trees be a rain forest?",
+        "target": "temperate-rainforests"
+      },
+      {
+        "text": "Which cone-bearing tree has needles with pale lines underneath?",
+        "target": "balsam-fir"
+      }
+    ],
+    "sources": [
+      "plant25-tsuga-heterophylla"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "balsam-fir",
+    "title": "What happens to an upright balsam fir cone when its seeds ripen?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Many cone-bearing trees hang their seed cones below branches. Balsam fir cones sit above the branches. When a ripe fir cone releases its seeds, its scales can break apart while it is still standing there. That is why you may find the main stalk still attached instead of finding a complete fir cone on the ground. Check the needles of a nearby twig too. The underside has two pale stripes.",
+    "aliases": [
+      "balsam fir tree",
+      "fir upright cones",
+      "balsam needles white lines"
+    ],
+    "sections": [],
+    "facts": [
+      "Balsam fir is an evergreen native to eastern North America."
+    ],
+    "terms": [
+      "cone-bearing tree"
+    ],
+    "questions": [
+      {
+        "text": "Which northern tree holds cones that hang down?",
+        "target": "white-spruce"
+      },
+      {
+        "text": "What parts of a cone protect its seeds?",
+        "target": "pine-cones"
+      },
+      {
+        "text": "What does a forest of many firs and spruces look like?",
+        "target": "boreal-forests"
+      }
+    ],
+    "sources": [
+      "plant25-abies-balsamea"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "douglas-fir",
+    "title": "What sticks out between the scales of a Douglas-fir cone?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A Douglas-fir cone has thin parts sticking out between its overlapping scales. Each of these parts has three points. The middle one is long and thin, so it can look a bit like a tiny tail between two feet. The shape is an easy clue if you find a fallen cone. Douglas-firs grow in western North America, and coastal trees and trees in the Rocky Mountains can look different from each other.",
+    "aliases": [
+      "Douglas fir tree",
+      "Douglas fir cone tails",
+      "three point cone parts"
+    ],
+    "sections": [],
+    "facts": [
+      "Douglas-fir is not a member of the same genus as balsam fir."
+    ],
+    "terms": [
+      "cone-bearing tree"
+    ],
+    "questions": [
+      {
+        "text": "Where do balsam fir cones point while they grow?",
+        "target": "balsam-fir"
+      },
+      {
+        "text": "What protects the seeds between the pieces of a cone?",
+        "target": "pine-cones"
+      },
+      {
+        "text": "What makes a rain forest cool and wet instead of hot?",
+        "target": "temperate-rainforests"
+      }
+    ],
+    "sources": [
+      "plant25-pseudotsuga-menziesii"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "black-spruce",
+    "title": "How can a black spruce grow in a bog?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "In many northern bogs and other cold wetlands, a skinny black spruce may grow upward where its roots can find a place among the wet peat and moss. It often grows slowly in these conditions. A large tree might have a narrow crown, with short branches and little cones clustered high up. Black spruce also lives in places that are not bogs. Looking at both the tree and what grows around it gives you a fuller picture.",
+    "aliases": [
+      "black spruce tree",
+      "bog spruce",
+      "black spruce cones"
+    ],
+    "sections": [],
+    "facts": [
+      "Black spruce can hold some of its seed cones for several years."
+    ],
+    "terms": [
+      "cone-bearing tree"
+    ],
+    "questions": [
+      {
+        "text": "How can piles of old plant material build up in a bog?",
+        "target": "peat-bogs"
+      },
+      {
+        "text": "What do the dangling cones of a white spruce look like?",
+        "target": "white-spruce"
+      },
+      {
+        "text": "Why do northern forests have so many cone-bearing trees?",
+        "target": "boreal-forests"
+      }
+    ],
+    "sources": [
+      "plant25-picea-mariana"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "common-milkweed",
+    "title": "What floats away when a milkweed pod opens?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A common milkweed pod is firm and green when it is young. As it dries, the pod can split along one side. Inside are rows of flat seeds. Each seed is attached to a tuft of fine, silky threads. The threads can spread in the air like a tiny parachute and carry the seed away from the old plant. Before pods develop, the plant makes round groups of small fragrant flowers.",
+    "aliases": [
+      "common milkweed seeds",
+      "milkweed pod fluff",
+      "monarch milkweed"
+    ],
+    "sections": [],
+    "facts": [
+      "Monarch caterpillars can feed on milkweed leaves."
+    ],
+    "terms": [
+      "seed pod"
+    ],
+    "questions": [
+      {
+        "text": "What are other ways plants move their seeds away?",
+        "target": "seed-travel"
+      },
+      {
+        "text": "Why do many monarch butterflies travel south in fall?",
+        "target": "monarch-migration"
+      },
+      {
+        "text": "Which other milkweed has orange flower clusters?",
+        "target": "butterfly-weed"
+      }
+    ],
+    "sources": [
+      "plant25-asclepias-syriaca"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "butterfly-weed",
+    "title": "Which orange wildflower is also a milkweed?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A patch of butterfly weed can look like little orange umbrellas standing over the grass. Each umbrella is a cluster of small flowers. Butterflies and bees can visit to drink nectar. Even though its flowers are a different color from common milkweed's, this plant is also a milkweed. Monarch caterpillars can eat its leaves. Butterfly weed often grows in sunny fields and dry, open places. Its young shoots can come back from the roots in another year.",
+    "aliases": [
+      "butterfly weed",
+      "orange milkweed",
+      "butterfly milkweed"
+    ],
+    "sections": [],
+    "facts": [
+      "Unlike many milkweeds, butterfly weed usually has clear sap."
+    ],
+    "terms": [
+      "sap",
+      "nectar"
+    ],
+    "questions": [
+      {
+        "text": "What does a common milkweed pod look like inside?",
+        "target": "common-milkweed"
+      },
+      {
+        "text": "How can a flower visitor move pollen?",
+        "target": "pollination"
+      },
+      {
+        "text": "How can a garden feed insects at more than one time of year?",
+        "target": "pollinator-gardens"
+      }
+    ],
+    "sources": [
+      "plant25-asclepias-tuberosa"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "purple-coneflower",
+    "title": "What is the prickly middle of a coneflower made of?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A purple coneflower seems to have a big ring of petals around one spiky middle. The middle is actually made of lots of tiny flowers packed close together. Their pointed parts can make the center look prickly. The purple shapes around the edge are parts of other flowers in the same flower head. Later the head dries, but the tiny center flowers can leave seeds behind. Birds sometimes visit these dry heads.",
+    "aliases": [
+      "purple coneflower",
+      "echinacea flower",
+      "spiny cone flower"
+    ],
+    "sections": [],
+    "facts": [
+      "Purple coneflowers belong to the same plant family as daisies."
+    ],
+    "terms": [
+      "flower head"
+    ],
+    "questions": [
+      {
+        "text": "Which yellow flower also has a center made of tiny flowers?",
+        "target": "black-eyed-susan"
+      },
+      {
+        "text": "Why do goldfinches come looking for seeds?",
+        "target": "american-goldfinch"
+      },
+      {
+        "text": "What parts can I find in a bigger, single flower?",
+        "target": "flower-parts"
+      }
+    ],
+    "sources": [
+      "plant25-echinacea-purpurea"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "black-eyed-susan",
+    "title": "What is inside a black-eyed Susan's dark eye?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "The dark center on a black-eyed Susan looks like one round button, but a close look can show many little flowers. The tiny ones make up a raised disk. Yellow petal-like parts spread out around the edge, making the whole flower head easy to notice. The stems and leaves often feel rough because they have short hairs. This plant can grow in open places and may bloom for part of summer and fall.",
+    "aliases": [
+      "black eyed susan flower",
+      "Rudbeckia hirta",
+      "black eyed Susan middle"
+    ],
+    "sections": [],
+    "facts": [
+      "The name hirta refers to the plant's hairy surfaces."
+    ],
+    "terms": [
+      "flower head"
+    ],
+    "questions": [
+      {
+        "text": "How does another plant build a whole head out of small flowers?",
+        "target": "purple-coneflower"
+      },
+      {
+        "text": "What can happen when an insect visits those flowers?",
+        "target": "pollination"
+      },
+      {
+        "text": "What other plants can grow in a sunny open prairie?",
+        "target": "tallgrass-prairies"
+      }
+    ],
+    "sources": [
+      "plant25-rudbeckia-hirta"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "canada-goldenrod",
+    "title": "Why is a goldenrod branch covered with tiny yellow flowers?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "What looks like one long yellow flower on Canada goldenrod is a branching spray of many small flower heads. An insect can walk or fly from one head to the next instead of hunting for each flower far away. Goldenrod often blooms late in the growing season. In an old field, its bright sprays can stand above the grasses when many earlier flowers have already gone to seed.",
+    "aliases": [
+      "Canada goldenrod",
+      "yellow goldenrod flower",
+      "goldenrod insects"
+    ],
+    "sections": [],
+    "facts": [
+      "Canada goldenrod can spread underground and come up as a group of stems."
+    ],
+    "terms": [
+      "flower head"
+    ],
+    "questions": [
+      {
+        "text": "Which purple flower also opens late in the year?",
+        "target": "new-england-aster"
+      },
+      {
+        "text": "Why are flowers that bloom late useful in a garden?",
+        "target": "pollinator-gardens"
+      },
+      {
+        "text": "How can new stems grow from underground parts?",
+        "target": "plant-rhizomes"
+      }
+    ],
+    "sources": [
+      "plant25-solidago-canadensis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "new-england-aster",
+    "title": "Why does an aster flower look like a little purple sun?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Many New England asters have purple strips sticking out like sun rays around a yellow or orange middle. Up close, each flower head has many tiny flowers instead of just one. The purple parts help the plant stand out. The flowers in the middle can give visiting insects a place to land and feed. New England asters often bloom late, alongside other fall flowers in open, fairly moist places.",
+    "aliases": [
+      "New England aster",
+      "purple fall aster",
+      "aster orange center"
+    ],
+    "sections": [],
+    "facts": [
+      "New England asters are native to much of central and eastern North America."
+    ],
+    "terms": [
+      "flower head"
+    ],
+    "questions": [
+      {
+        "text": "What different shape does a goldenrod's group of tiny flowers make?",
+        "target": "canada-goldenrod"
+      },
+      {
+        "text": "How can an insect carry pollen after it lands?",
+        "target": "pollination"
+      },
+      {
+        "text": "What makes a coneflower's center stand up higher?",
+        "target": "purple-coneflower"
+      }
+    ],
+    "sources": [
+      "plant25-symphyotrichum-novae-angliae"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "common-dandelion",
+    "title": "How does a dandelion pull off its parachute trick?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "The yellow head on a common dandelion is made from many small flowers. Later it can become a white ball filled with what look like tiny parachutes. Each seed parachute is attached to one small dry fruit holding a seed. When a breeze pulls one free, the hairs help it stay in the air longer as it drifts away. A second clue is low to the ground. The plant often has a ring of toothed leaves around its base.",
+    "aliases": [
+      "dandelion puffball",
+      "dandelion seed parachute",
+      "dandelion wind seeds"
+    ],
+    "sections": [],
+    "facts": [
+      "The ring of leaves is called a leaf rosette."
+    ],
+    "terms": [
+      "leaf rosette",
+      "seed parachute"
+    ],
+    "questions": [
+      {
+        "text": "Why do some seed hairs work in a breeze while burs stick to fur?",
+        "target": "dandelion-and-seed-carrying"
+      },
+      {
+        "text": "Which plant sends seeds out of a pod on silky threads?",
+        "target": "common-milkweed"
+      },
+      {
+        "text": "What does a seed need once it lands in a new place?",
+        "target": "seeds"
+      }
+    ],
+    "sources": [
+      "plant25-taraxacum-officinale"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "common-blue-violet",
+    "title": "What can you spot on a common blue violet before it flowers?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "In a lawn or at a shady woodland edge, you may see small leaves with a dip at the wide end and a point at the narrow end. That outline looks like a green heart. On a common blue violet, the leaves rise from near the ground, each on its own leaf stem. In spring, the plant often makes blue-violet flowers. Some plants have pale flowers instead. The outline of the leaf is a clue even when no petals are showing.",
+    "aliases": [
+      "common blue violet",
+      "blue violet heart leaves",
+      "wild violet leaves"
+    ],
+    "sections": [],
+    "facts": [
+      "Some common blue violets also make small closed flowers that can produce seed."
+    ],
+    "terms": [
+      "leaf stem"
+    ],
+    "questions": [
+      {
+        "text": "How does a leaf attach to the main shoot of a plant?",
+        "target": "leaf-stems"
+      },
+      {
+        "text": "Why do many low flowers bloom in spring?",
+        "target": "spring-woodland-flowers"
+      },
+      {
+        "text": "Which tree has heart-shaped leaves too?",
+        "target": "eastern-redbud"
+      }
+    ],
+    "sources": [
+      "plant25-viola-sororia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "red-clover",
+    "title": "Is a red clover head one big flower or many small ones?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A red clover's pink ball looks like one flower until you look closely. It is a flower head made of small flowers, each shaped a little like a pea flower. A bee can visit several during one stop on the plant. Look at the leaves too. The parts that look like three leaves are three leaflets on a shared stem, together making one compound leaf. Each may show a pale mark shaped a little like an arrow.",
+    "aliases": [
+      "red clover",
+      "clover pink flower ball",
+      "red clover three leaves"
+    ],
+    "sections": [],
+    "facts": [
+      "Red clover flowers usually look pink or purplish rather than bright red."
+    ],
+    "terms": [
+      "flower head",
+      "compound leaf"
+    ],
+    "questions": [
+      {
+        "text": "Which clover spreads low along the ground?",
+        "target": "white-clover"
+      },
+      {
+        "text": "What makes several leaflets part of one leaf?",
+        "target": "compound-leaves"
+      },
+      {
+        "text": "How can bumblebees reach pollen in some other flowers?",
+        "target": "bumblebee-pollen-buzz"
+      }
+    ],
+    "sources": [
+      "plant25-trifolium-pratense"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "white-clover",
+    "title": "How does white clover creep across a lawn?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A stem of white clover can lie flat on top of the soil. As it grows longer, roots can form where parts of the stem touch the ground. New leaves and flower stalks rise at points along it. A stem that spreads this way is a rooting runner. The flower heads can be white or slightly pink, while the low green leaves often have three leaflets. You may see pale bands on the little green leaflets.",
+    "aliases": [
+      "white clover",
+      "white clover creeping stems",
+      "lawn clover three leaflets"
+    ],
+    "sections": [],
+    "facts": [
+      "The creeping stem above the ground is called a stolon."
+    ],
+    "terms": [
+      "compound leaf",
+      "rooting runner"
+    ],
+    "questions": [
+      {
+        "text": "Which plant also spreads by making new roots on long runners?",
+        "target": "strawberry-runners"
+      },
+      {
+        "text": "Which kind of clover usually has a pink flower head?",
+        "target": "red-clover"
+      },
+      {
+        "text": "How can three green parts all belong to one leaf?",
+        "target": "compound-leaves"
+      }
+    ],
+    "sources": [
+      "plant25-trifolium-repens"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "northern-maidenhair-fern",
+    "title": "Why do maidenhair fern leaves look like little fans?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A northern maidenhair fern lifts its greenery on thin dark stems. Look from above and you may see the stems spread sideways instead of sitting in one straight line. Along them are many small flat pieces that can look like open fans. These pieces are parts of a fern leaf, which is called a fern frond. A maidenhair fern does not make flowers. It grows little groups of spores on the edges of some of those fans.",
+    "aliases": [
+      "northern maidenhair fern",
+      "maidenhair fern dark stems",
+      "fan fern"
+    ],
+    "sections": [],
+    "facts": [
+      "A spore is tiny, much smaller than an acorn or bean seed."
+    ],
+    "terms": [
+      "fern frond"
+    ],
+    "questions": [
+      {
+        "text": "Where do other kinds of fern carry their spores?",
+        "target": "ferns"
+      },
+      {
+        "text": "Which tree also has leaves shaped like fans?",
+        "target": "ginkgo-tree"
+      },
+      {
+        "text": "How can we tell whether small parts belong to one leaf?",
+        "target": "compound-leaves"
+      }
+    ],
+    "sources": [
+      "plant25-adiantum-pedatum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "common-duckweed",
+    "title": "What are the green specks floating on a quiet pond?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "In a quiet pond, a thin green mat might break apart into tiny pieces as water moves. If it is common duckweed, each little green piece belongs to a small floating plant. Look from close enough to see its slender root hanging in the water. A new green piece can grow from the edge and break away. Given enough light and space, many plants can cover part of the water almost like paint.",
+    "aliases": [
+      "common duckweed",
+      "tiny floating pond plants",
+      "pond duckweed green carpet"
+    ],
+    "sections": [],
+    "facts": [
+      "Each small floating plant usually has one root pointing down."
+    ],
+    "terms": [
+      "floating leaf"
+    ],
+    "questions": [
+      {
+        "text": "Which pond plant has much larger flat leaves?",
+        "target": "white-water-lily"
+      },
+      {
+        "text": "Why are so many kinds of plant found near a pond's edge?",
+        "target": "pond-edge-zones"
+      },
+      {
+        "text": "What different jobs can plant roots do?",
+        "target": "plant-roots"
+      }
+    ],
+    "sources": [
+      "plant25-lemna-minor"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "spotted-jewelweed",
+    "title": "Why do ripe jewelweed pods pop open?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A spotted jewelweed makes orange flowers with darker spots. Later, it grows narrow green seed pods. In a ripe pod the pieces of the wall are ready to curl up. When one lets go, the wall comes apart quickly and sends seeds away from the plant. That movement gave jewelweed a second name, touch-me-not. The pods on a nearby plant may still be young enough to stay tightly shut.",
+    "aliases": [
+      "jewelweed touch me not",
+      "orange jewelweed popping pod",
+      "spotted jewelweed seeds"
+    ],
+    "sections": [],
+    "facts": [
+      "Some jewelweed grows in damp places near a stream or forest edge."
+    ],
+    "terms": [
+      "seed pod"
+    ],
+    "questions": [
+      {
+        "text": "Which shrub can send seeds flying from hard little cases?",
+        "target": "common-witch-hazel"
+      },
+      {
+        "text": "How can seeds travel without help from wind or animals?",
+        "target": "seed-travel"
+      },
+      {
+        "text": "What other kinds of plant can grow by a stream?",
+        "target": "streamside-buffers"
+      }
+    ],
+    "sources": [
+      "plant25-impatiens-capensis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sassafras-tree",
+    "title": "How can one sassafras tree have three leaf shapes?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "On a single sassafras tree you might find a plain oval leaf, one shaped like a mitten, and one shaped like a mitten with two thumbs. They really can all belong to the same tree. Each part that looks like a thumb is a leaf lobe. It is a broad piece of the leaf edge. You can find them on some leaves and not on others. Looking at several leaves gives a better clue than picking just one shape.",
+    "aliases": [
+      "sassafras tree",
+      "sassafras mitten leaf",
+      "three shapes on one tree"
+    ],
+    "sections": [],
+    "facts": [
+      "Many sassafras leaves turn yellow, orange, or red in autumn."
+    ],
+    "terms": [
+      "leaf lobe"
+    ],
+    "questions": [
+      {
+        "text": "What counts as a lobe rather than a separate leaflet?",
+        "target": "leaf-lobes"
+      },
+      {
+        "text": "How is a divided leaf different from a leaf made from separate leaflets?",
+        "target": "compound-leaves"
+      },
+      {
+        "text": "Why might those leaves change color in autumn?",
+        "target": "fall-leaf-colors"
+      }
+    ],
+    "sources": [
+      "plant25-sassafras-albidum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "jack-in-the-pulpit",
+    "title": "What is hidden underneath a jack-in-the-pulpit's green hood?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A jack-in-the-pulpit grows a green or striped hood that curls over a narrow standing spike. The hood is a large leaf-like part, a kind of floral bract. Look lower on the spike and the actual flowers are tiny and close together. The hood surrounds them like the roof of a little booth. After flowering, some plants grow a tight cluster of red fruits instead. This plant often grows in moist woods and shady places.",
+    "aliases": [
+      "jack in the pulpit",
+      "hooded woodland flower",
+      "Arisaema triphyllum"
+    ],
+    "sections": [],
+    "facts": [
+      "Each large leaf is usually divided into three leaflets."
+    ],
+    "terms": [
+      "floral bract",
+      "compound leaf"
+    ],
+    "questions": [
+      {
+        "text": "Which tree also has showy parts around much smaller flowers?",
+        "target": "flowering-dogwood"
+      },
+      {
+        "text": "How can new fruit grow from parts of a flower?",
+        "target": "plant-fruit"
+      },
+      {
+        "text": "How can the three parts on a stem be parts of one leaf?",
+        "target": "compound-leaves"
+      }
+    ],
+    "sources": [
+      "plant25-arisaema-triphyllum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "eastern-skunk-cabbage",
+    "title": "How can a skunk cabbage flower warm up on a cold day?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A skunk cabbage can open its hooded flower cluster while snow is still on the ground. The cluster uses stored sugars and gives off heat as the plant uses them. It can become warm enough to melt a small space in the snow. The flowers also release an odor that some early flies notice. Later the plant grows broad green leaves. It often lives on wet ground near streams and in swamps.",
+    "aliases": [
+      "eastern skunk cabbage",
+      "skunk cabbage melts snow",
+      "warm spring flower"
+    ],
+    "sections": [],
+    "facts": [
+      "The odor is one reason the plant is called skunk cabbage."
+    ],
+    "terms": [
+      "flower head"
+    ],
+    "questions": [
+      {
+        "text": "Why do some flowers open before tree leaves appear?",
+        "target": "spring-woodland-flowers"
+      },
+      {
+        "text": "What other plants can live on wet ground?",
+        "target": "forested-swamps"
+      },
+      {
+        "text": "How can a fly bring pollen to a flower?",
+        "target": "pollination"
+      }
+    ],
+    "sources": [
+      "plant25-symplocarpus-foetidus",
+      "plant25-skunk-heat"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "great-white-trillium",
+    "title": "What do ants carry away from a white trillium?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A great white trillium often has one broad white flower above three green leaf-like parts. The flower has three petals, and old white petals sometimes turn pink. When seeds ripen, an ant can find a small food-rich piece attached to one. The ant may carry away the whole seed to reach that food. After the food part is removed, the seed can still be left somewhere new.",
+    "aliases": [
+      "great white trillium",
+      "trillium seeds ants",
+      "white trillium three leaves"
+    ],
+    "sections": [],
+    "facts": [
+      "Trillium flowers commonly open early in spring woodland."
+    ],
+    "terms": [
+      "ant seed dispersal"
+    ],
+    "questions": [
+      {
+        "text": "Why would an ant carry a seed instead of eating the whole thing?",
+        "target": "ant-carried-seeds"
+      },
+      {
+        "text": "What is the advantage of opening before the trees get leafy?",
+        "target": "spring-woodland-flowers"
+      },
+      {
+        "text": "Which parts of a flower are petals?",
+        "target": "flower-parts"
+      }
+    ],
+    "sources": [
+      "plant25-trillium-grandiflorum",
+      "plant25-trillium-ant"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "common-witch-hazel",
+    "title": "How does witch hazel shoot some of its seeds away?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "On common witch hazel, a ripe seed case can dry and bend out of shape. The squeezing sides can suddenly force a seed out, a little like a wet soap bar slipping from a tight hand. The seed may land away from the parent shrub instead of dropping beside it. The same plant also makes yellow flowers with narrow, twisted petals. Many appear in fall, after most other woodland shrubs have finished blooming.",
+    "aliases": [
+      "common witch hazel",
+      "witch hazel exploding seed",
+      "witch hazel fall flowers"
+    ],
+    "sections": [],
+    "facts": [
+      "It is possible to see flowers and older seed cases on the same plant."
+    ],
+    "terms": [
+      "seed pod"
+    ],
+    "questions": [
+      {
+        "text": "Which orange-flowered plant also throws seeds from a ripe pod?",
+        "target": "spotted-jewelweed"
+      },
+      {
+        "text": "What other ways move seeds away from their parents?",
+        "target": "seed-travel"
+      },
+      {
+        "text": "Which small plant also makes flowers late in the year?",
+        "target": "new-england-aster"
+      }
+    ],
+    "sources": [
+      "plant25-hamamelis-virginiana",
+      "plant25-witch-hazel-drying"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "common-burdock",
+    "title": "Why do burdock burs follow you home on your socks?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A dry burdock head has lots of tiny curved tips on its outside. Those tips can catch threads in a sock or grab hairs in an animal's coat. A whole head may come off the plant and travel far from the spot where it grew. The part that sticks is a cluster around a group of dry fruits. Each fruit can carry a seed. A head with hooks is called a hooked bur.",
+    "aliases": [
+      "common burdock",
+      "burdock burs on clothes",
+      "stick tight burr"
+    ],
+    "sections": [],
+    "facts": [
+      "The hooks grip much better than a smooth, round seed would."
+    ],
+    "terms": [
+      "hooked bur"
+    ],
+    "questions": [
+      {
+        "text": "How is traveling on fur different from flying on hairs?",
+        "target": "dandelion-and-seed-carrying"
+      },
+      {
+        "text": "How do tiny hooks help two strips of a fastener stick?",
+        "target": "hook-and-loop-fasteners"
+      },
+      {
+        "text": "What are other ways plant seeds travel?",
+        "target": "seed-travel"
+      }
+    ],
+    "sources": [
+      "plant25-arctium-minus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "common-chicory",
+    "title": "Where do the blue chicory flowers go in the afternoon?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "You can see bright blue chicory flowers on some roadsides in the morning. A flower head may close later in the day, so the same plant can look much plainer in the afternoon. Look along its stiff, branching stems. The blue heads do not grow as one big bunch at the top. You can often see a few set apart at different places along the stems.",
+    "aliases": [
+      "common chicory",
+      "blue roadside flower",
+      "chicory flowers close afternoon"
+    ],
+    "sections": [],
+    "facts": [
+      "Each blue head is made of many strap-shaped tiny flowers."
+    ],
+    "terms": [
+      "flower head"
+    ],
+    "questions": [
+      {
+        "text": "Which low lawn plant also makes a flower head from many smaller parts?",
+        "target": "common-dandelion"
+      },
+      {
+        "text": "Why are some flowers open in the morning and others later?",
+        "target": "flower-opening-times"
+      },
+      {
+        "text": "What does the yellow center of an aster contain?",
+        "target": "new-england-aster"
+      }
+    ],
+    "sources": [
+      "plant25-chicory"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "virginia-creeper",
+    "title": "How can Virginia creeper climb a flat wall?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A Virginia creeper grows short curling arms. Each is a climbing tendril. The ends can form little sticky pads where they touch a wall or another solid surface. The pads hold while the stem grows farther upward. You can often spot the vine's leaves even without seeing the pads. Each compound leaf usually has five leaflets spreading out from one point, a little like fingers from a palm.",
+    "aliases": [
+      "Virginia creeper vine",
+      "five leaf vine",
+      "vine sticky disks"
+    ],
+    "sections": [],
+    "facts": [
+      "Virginia creeper can also trail along the ground."
+    ],
+    "terms": [
+      "climbing tendril",
+      "compound leaf"
+    ],
+    "questions": [
+      {
+        "text": "Which vine with similar pads often has three pointed leaf lobes?",
+        "target": "boston-ivy"
+      },
+      {
+        "text": "How do five small parts make up one leaf?",
+        "target": "compound-leaves"
+      },
+      {
+        "text": "Which vine clings with small roots instead of pads?",
+        "target": "trumpet-vine-climbing"
+      }
+    ],
+    "sources": [
+      "plant25-parthenocissus-quinquefolia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "boston-ivy",
+    "title": "What holds Boston ivy to a brick wall?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Look for little pads at the ends of the thin branches coming from a Boston ivy climbing tendril. The pads can stick to rough surfaces. They help the vine hold itself high enough to reach more light. A young leaf can look different from an older one, but many mature leaves have three pointed parts. The leaves can turn deep red before dropping in autumn, leaving stems and some pads behind.",
+    "aliases": [
+      "Boston ivy wall",
+      "Boston ivy adhesive discs",
+      "Boston ivy three point leaf"
+    ],
+    "sections": [],
+    "facts": [
+      "Boston ivy is a relative of grapes, not a true ivy."
+    ],
+    "terms": [
+      "climbing tendril",
+      "leaf lobe"
+    ],
+    "questions": [
+      {
+        "text": "Which climbing grape relative usually has five leaflets?",
+        "target": "virginia-creeper"
+      },
+      {
+        "text": "What other plant uses roots to hold onto objects?",
+        "target": "trumpet-vine-climbing"
+      },
+      {
+        "text": "What changes can make ivy leaves turn red?",
+        "target": "fall-leaf-colors"
+      }
+    ],
+    "sources": [
+      "plant25-parthenocissus-tricuspidata"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "trumpet-vine-climbing",
+    "title": "How does a trumpet vine hang on while it climbs?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A trumpet vine can hold onto rough bark or another solid surface with little roots growing out of the stem. The small roots reach into rough spots and help support the vine as it grows. They are not the same as the large underground roots that supply much of its water. The plant often has long orange or red flowers. Their narrow bases can hold nectar that a hummingbird can reach.",
+    "aliases": [
+      "trumpet vine rootlets",
+      "trumpet creeper climbing",
+      "hummingbird orange trumpet flower"
+    ],
+    "sections": [],
+    "facts": [
+      "Each small aboveground root helps hold the vine in place."
+    ],
+    "terms": [
+      "aboveground root",
+      "nectar"
+    ],
+    "questions": [
+      {
+        "text": "Which vine grips a surface with sticky pads at the ends of tendrils?",
+        "target": "virginia-creeper"
+      },
+      {
+        "text": "How can a hummingbird hang in the air in front of a flower?",
+        "target": "ruby-throated-hummingbird"
+      },
+      {
+        "text": "What jobs do ordinary underground roots do?",
+        "target": "plant-roots"
+      }
+    ],
+    "sources": [
+      "plant25-campsis-radicans"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "new-jersey-tea-shrub",
+    "title": "What lives around the flower clusters on a New Jersey tea shrub?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "New Jersey tea is a small native shrub that can grow along a forest edge or in an open meadow. In early summer, the ends of many branches carry bunches of tiny white flowers. Bees and other insects can stop to drink nectar at them. The leaves can also be eaten by caterpillars of some butterflies. Look from a short distance and one shrub can seem like a little neighborhood with visitors working in several parts.",
+    "aliases": [
+      "New Jersey tea plant",
+      "New Jersey tea shrub",
+      "white flower meadow shrub"
+    ],
+    "sections": [],
+    "facts": [
+      "The shrub grows in central and eastern North America."
+    ],
+    "terms": [
+      "nectar"
+    ],
+    "questions": [
+      {
+        "text": "How can an area provide flowers for different visitors?",
+        "target": "pollinator-gardens"
+      },
+      {
+        "text": "What other plant has many little flower heads packed together?",
+        "target": "canada-goldenrod"
+      },
+      {
+        "text": "What makes a forest edge different from a place deep in the woods?",
+        "target": "forest-edges"
+      }
+    ],
+    "sources": [
+      "plant25-ceanothus-americanus"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dense-blazing-star",
+    "title": "Why can the top of a blazing star flower stalk bloom first?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A dense blazing star carries rows of small purple flower heads along a straight tall stem. In many plants, the heads at the top start to open earlier than the ones below. For a time, the stem can have open fuzzy flowers high up and tight buds lower down. It gives visiting insects different parts of the stem to check over time. You may find this plant growing in a moist open meadow.",
+    "aliases": [
+      "dense blazing star",
+      "Liatris blooms top down",
+      "marsh blazing star flowers"
+    ],
+    "sections": [],
+    "facts": [
+      "Blazing stars are related to asters and other members of the daisy family."
+    ],
+    "terms": [
+      "flower head"
+    ],
+    "questions": [
+      {
+        "text": "What does another North American aster's flower head look like?",
+        "target": "new-england-aster"
+      },
+      {
+        "text": "Why might flowers be open at different times?",
+        "target": "flower-opening-times"
+      },
+      {
+        "text": "What kinds of grasses and flowers live in wet open sites?",
+        "target": "freshwater-marshes"
+      }
+    ],
+    "sources": [
+      "plant25-liatris-spicata"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wild-columbine",
+    "title": "Why does a wild columbine flower have five long spurs?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "An eastern red columbine has hanging red and yellow flowers. On the outside, five narrow tubes reach back from the petals like little fingers. Each tube, called a nectar spur, has nectar deep inside. A hummingbird can reach the nectar with its narrow bill and tongue. A visiting animal may brush against a flower's pollen-carrying parts while going after the sweet liquid. Columbines often open in spring along woodland edges or rocky places.",
+    "aliases": [
+      "wild columbine",
+      "red columbine nectar spur",
+      "columbine hummingbird"
+    ],
+    "sections": [],
+    "facts": [
+      "The flowers usually hang downward from their stalks."
+    ],
+    "terms": [
+      "nectar spur"
+    ],
+    "questions": [
+      {
+        "text": "How does a hummingbird stay in one spot while it feeds?",
+        "target": "ruby-throated-hummingbird"
+      },
+      {
+        "text": "What other flower lets hummingbirds reach nectar down a long tube?",
+        "target": "trumpet-vine-climbing"
+      },
+      {
+        "text": "How can reaching for nectar move pollen to another flower?",
+        "target": "pollination"
+      }
+    ],
+    "sources": [
+      "plant25-aquilegia-canadensis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "purple-passionflower",
+    "title": "What makes a purple passionflower look like a clock face?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A purple passionflower can look as if somebody placed a ring of thin threads on top of a wide flower. The threads spread out from the middle over the outer parts, making rings of purple and white. The upright parts in the middle are involved in making and receiving pollen. The plant is a vine, and it can hang onto a nearby support with curling tendrils. Some flowers are followed by round or egg-shaped fruits.",
+    "aliases": [
+      "purple passionflower",
+      "maypop vine",
+      "passionflower threads"
+    ],
+    "sections": [],
+    "facts": [
+      "Another common name for this species is maypop."
+    ],
+    "terms": [
+      "climbing tendril"
+    ],
+    "questions": [
+      {
+        "text": "Which parts of a flower can make or receive pollen?",
+        "target": "flower-parts"
+      },
+      {
+        "text": "How does a different vine climb with tendrils?",
+        "target": "virginia-creeper"
+      },
+      {
+        "text": "How does a fruit start to grow after flowering?",
+        "target": "plant-fruit"
+      }
+    ],
+    "sources": [
+      "plant25-passiflora-incarnata"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "swamp-rose-mallow",
+    "title": "Which wetland plant can have a flower as wide as a dinner plate?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A swamp rose mallow can have flowers several inches across. The petals may be pale with a dark red center, or pink with darker marks. Look toward the middle and you will often see a long piece projecting out from the flower. Many of the little parts that make pollen are arranged around it. Although the flowers look like tropical hibiscus, the plant grows naturally in parts of eastern North America, often on wet ground.",
+    "aliases": [
+      "swamp rose mallow",
+      "hardy hibiscus",
+      "wetland hibiscus flower"
+    ],
+    "sections": [],
+    "facts": [
+      "Old flowers may leave a dry seed pod behind."
+    ],
+    "terms": [
+      "seed pod"
+    ],
+    "questions": [
+      {
+        "text": "Which other tall flower grows near wet places?",
+        "target": "northern-blue-flag"
+      },
+      {
+        "text": "What else might grow near a mallow in a marsh?",
+        "target": "freshwater-marshes"
+      },
+      {
+        "text": "What is the name for a part that makes pollen?",
+        "target": "flower-parts"
+      }
+    ],
+    "sources": [
+      "plant25-muenchhusia-moscheutos"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "northern-blue-flag",
+    "title": "Why do some parts of a blue flag iris point up and others droop?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A northern blue flag iris often grows at the wet edge of a pond or marsh. When the flower opens, it has three smaller parts pointing upward and three broader parts that tip outward or downward. Some of the broader parts show white, yellow, or dark purple marks near their bases. Below the flower are long flat leaves shaped a bit like swords. They spread upward from the base in a tight fan.",
+    "aliases": [
+      "northern blue flag iris",
+      "blue flag iris petals",
+      "wetland iris"
+    ],
+    "sections": [],
+    "facts": [
+      "The plant also spreads from thick stems under the ground."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Which other big flower can grow near a wetland?",
+        "target": "swamp-rose-mallow"
+      },
+      {
+        "text": "How can an underground stem send up leaves in a new place?",
+        "target": "plant-rhizomes"
+      },
+      {
+        "text": "What kinds of parts can show up around a flower's middle?",
+        "target": "flower-parts"
+      }
+    ],
+    "sources": [
+      "plant25-iris-versicolor"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "bloodroot-wildflower",
+    "title": "How does a bloodroot flower rise from the woods in spring?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A bloodroot flower can begin rising from the ground tucked inside the sides of a folded leaf. The leaf partly wraps around the young flower. When it opens out, the flower often shows a ring of broad white petals and a yellow middle. This happens in the spring, while the light can still reach the woodland floor. The name bloodroot comes from red-orange liquid inside parts of the plant.",
+    "aliases": [
+      "bloodroot spring flower",
+      "bloodroot folded leaf",
+      "woodland bloodroot"
+    ],
+    "sections": [],
+    "facts": [
+      "Ants can carry its seeds away, just as they do for some other spring plants."
+    ],
+    "terms": [
+      "ant seed dispersal"
+    ],
+    "questions": [
+      {
+        "text": "Why do so many woodland flowers bloom before the trees are leafy?",
+        "target": "spring-woodland-flowers"
+      },
+      {
+        "text": "How can an ant move a seed away from the plant?",
+        "target": "ant-carried-seeds"
+      },
+      {
+        "text": "What does a trout lily still have underground after its leaves are gone?",
+        "target": "yellow-trout-lily"
+      }
+    ],
+    "sources": [
+      "plant25-sanguinaria-canadensis"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dutchmans-breeches",
+    "title": "Which little spring flower looks like upside-down pants?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A row of white Dutchman's breeches flowers may look like tiny pants hung by their waists. Two pointed parts stick upward from each hanging flower. These spurs hold nectar. The leaves are divided into many narrow pieces and sit lower than the curved flower stem. In the spring woods, the plant can be easy to see for a short time. After blooming, its aboveground growth can disappear by summer.",
+    "aliases": [
+      "Dutchman's breeches wildflower",
+      "upside down pants flower",
+      "woodland pantaloon flower"
+    ],
+    "sections": [],
+    "facts": [
+      "Ants help spread the plant’s seeds."
+    ],
+    "terms": [
+      "nectar spur",
+      "ant seed dispersal"
+    ],
+    "questions": [
+      {
+        "text": "Which spring flower also has nectar tucked away in spurs?",
+        "target": "wild-columbine"
+      },
+      {
+        "text": "Why does more sunlight reach the ground in spring?",
+        "target": "spring-woodland-flowers"
+      },
+      {
+        "text": "What can lead an ant to carry an entire seed somewhere new?",
+        "target": "ant-carried-seeds"
+      }
+    ],
+    "sources": [
+      "plant25-dicentra-cucullaria"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "yellow-trout-lily",
+    "title": "Why is a woodland flower named after a fish?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A yellow trout lily often has green leaves with uneven brown spots. The pattern can remind people of a trout's markings. A younger plant may make just one leaf and no flower. A flowering plant puts up two leaves and a bent stalk with a yellow bloom. It grows while spring light can reach the forest floor. Later its leaves die back, and much of the plant stays hidden underground until the next year.",
+    "aliases": [
+      "yellow trout lily",
+      "trout lily spotted leaves",
+      "trout lily one leaf"
+    ],
+    "sections": [],
+    "facts": [
+      "Some yellow trout lilies grow in large groups on the forest floor."
+    ],
+    "terms": [
+      "leaf vein"
+    ],
+    "questions": [
+      {
+        "text": "Why do other flowers take advantage of bare branches in spring?",
+        "target": "spring-woodland-flowers"
+      },
+      {
+        "text": "Why are spots and marks useful clues when comparing plants?",
+        "target": "leaf-pattern-clues"
+      },
+      {
+        "text": "Which other spring flower can open before nearby trees are leafy?",
+        "target": "bloodroot-wildflower"
+      }
+    ],
+    "sources": [
+      "plant25-erythronium-americanum"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "wild-strawberry-fruit",
+    "title": "Are the little dots on a wild strawberry really seeds?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "The dots on the outside of a wild strawberry look like seeds. Each dot is actually a small dry fruit with a seed inside. The soft red part underneath them grows from the base of the flower where its parts were attached. Plenty of fruits look different because they develop in other ways. Close to the ground, a wild strawberry plant can also send out a rooting runner to make new plants at points along their stems.",
+    "aliases": [
+      "wild strawberry seeds outside",
+      "wild strawberry fruit",
+      "strawberry dots"
+    ],
+    "sections": [],
+    "facts": [
+      "The surface fruits give a strawberry its bumpy texture."
+    ],
+    "terms": [
+      "rooting runner"
+    ],
+    "questions": [
+      {
+        "text": "How can one strawberry plant send out stems that make new plants?",
+        "target": "strawberry-runners"
+      },
+      {
+        "text": "How does a tomato form its fruit in a different way?",
+        "target": "plant-fruit"
+      },
+      {
+        "text": "What does a new plant need to begin growing from a seed?",
+        "target": "seeds"
+      }
+    ],
+    "sources": [
+      "plant25-fragaria-virginiana"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "queen-annes-lace",
+    "title": "What makes a Queen Anne's lace flower head look like lace?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A head of Queen Anne's lace can look flat from the side and lacy when you look down at it. Many little white flowers sit on groups of stalks that spread like the ribs of an umbrella. After flowering, these stalks may bend inward to make a cup that people compare with a bird's nest. The plant is a wild carrot relative, but looking like a carrot is never enough to tell whether a wild plant can be eaten.",
+    "aliases": [
+      "Queen Anne's lace flower",
+      "wild carrot flower head",
+      "lace flower white umbrella"
+    ],
+    "sections": [],
+    "facts": [
+      "An umbrella-shaped group of flower stalks is called an umbel."
+    ],
+    "terms": [
+      "umbel"
+    ],
+    "questions": [
+      {
+        "text": "What can I find in one flower when it is not packed in a group?",
+        "target": "flower-parts"
+      },
+      {
+        "text": "How does a clover arrange small flowers in a different shape?",
+        "target": "white-clover"
+      },
+      {
+        "text": "What can happen when a plant spreads far from its original range?",
+        "target": "invasive-species"
+      }
+    ],
+    "sources": [
+      "plant25-daucus-carota"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tamarack-tree",
+    "title": "Which northern tree drops whole bunches of soft needles?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "For part of summer, a tamarack twig carries lots of soft needles in little bunches. If you look at a new shoot, you can also see single needles along it. In autumn, the green needles turn gold before dropping. In winter the branches can look bare except for little cones. This is different from a nearby black spruce, which keeps green needles. Tamarack grows in much of northern North America, including many peatlands.",
+    "aliases": [
+      "tamarack tree",
+      "American larch needles",
+      "yellow larch in fall"
+    ],
+    "sections": [],
+    "facts": [
+      "Tamarack is also called American larch."
+    ],
+    "terms": [
+      "needle bundle",
+      "cone-bearing tree"
+    ],
+    "questions": [
+      {
+        "text": "Which tree in a northern bog keeps its needles through winter?",
+        "target": "black-spruce"
+      },
+      {
+        "text": "Which other tree makes cones but sheds its needles?",
+        "target": "bald-cypress"
+      },
+      {
+        "text": "How does wet, partly decayed plant material build up in a bog?",
+        "target": "peat-bogs"
+      }
+    ],
+    "sources": [
+      "plant25-tamarack"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "white-water-lily",
+    "title": "How can a water lily keep its leaves flat on a pond?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A white water lily grows long flexible stalks from thick stems in the mud. The stalks stretch upward until the roundish leaves spread out on the water. Light reaches the leaf surfaces there, even while the roots stay far below. Each floating leaf often has a slit from its edge partway toward the middle, like a pie with a wedge cut out. Big white flowers can float near the leaves.",
+    "aliases": [
+      "white water lily",
+      "floating lily pads",
+      "water lily long stems"
+    ],
+    "sections": [],
+    "facts": [
+      "The plant can stay attached to the pond bottom while its leaves rest on top."
+    ],
+    "terms": [
+      "floating leaf"
+    ],
+    "questions": [
+      {
+        "text": "Which plant floats without its roots reaching the mud?",
+        "target": "common-duckweed"
+      },
+      {
+        "text": "Why are many water plants easier to find in shallow water?",
+        "target": "pond-edge-zones"
+      },
+      {
+        "text": "What does a thick stem do below the surface?",
+        "target": "plant-rhizomes"
+      }
+    ],
+    "sources": [
+      "plant25-water-lily"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "leaf-stems",
+    "title": "What does a leaf stem do besides hold up a leaf?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A leaf stem joins the wide part of many leaves to a plant's main stem. Botanists call this leaf stalk a petiole. Inside are tiny tubes that connect with the tubes in the main stem and the leaf. Water can move toward the leaf, and sugars can leave it for other parts of the plant. The stalk also holds the flat part of the leaf where it may get enough light.",
+    "aliases": [
+      "leaf stem petiole",
+      "stem that holds a leaf",
+      "what is a petiole"
+    ],
+    "sections": [],
+    "facts": [
+      "Not every leaf has a stalk. Some attach right against the main stem."
+    ],
+    "terms": [
+      "leaf stem"
+    ],
+    "questions": [
+      {
+        "text": "How does water get from roots up to leaves?",
+        "target": "plant-xylem"
+      },
+      {
+        "text": "How can a single leaf stalk support several leaflets?",
+        "target": "compound-leaves"
+      },
+      {
+        "text": "Why can a flattened leaf stalk make an aspen leaf move?",
+        "target": "quaking-aspen"
+      }
+    ],
+    "sources": [
+      "plant25-botany"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "compound-leaves",
+    "title": "How can five little green parts still count as one leaf?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "On some plants, a compound leaf is divided into a group of smaller pieces called leaflets. Try following the pieces of a Virginia creeper leaf down toward its stem. Five leaflets often join at one place. A single stalk runs from there to the vine. Look for a small bud at the base of the whole leaf where it meets the main stem. The tiny leaflets do not have those buds at their own bases.",
+    "aliases": [
+      "compound leaf",
+      "leaflet or leaf",
+      "how to tell a compound leaf"
+    ],
+    "sections": [],
+    "facts": [
+      "A leaf with one undivided blade is called a simple leaf, even if the edges have deep cuts."
+    ],
+    "terms": [
+      "compound leaf",
+      "simple leaf"
+    ],
+    "questions": [
+      {
+        "text": "Which climbing plant usually has five leaflets?",
+        "target": "virginia-creeper"
+      },
+      {
+        "text": "Can a leaf with cuts around the edge still be one flat blade?",
+        "target": "leaf-lobes"
+      },
+      {
+        "text": "What is the little stalk that joins a leaf to a stem?",
+        "target": "leaf-stems"
+      }
+    ],
+    "sources": [
+      "plant25-leaf-id"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "leaf-lobes",
+    "title": "What makes a leaf lobe different from a leaflet?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A leaf lobe is an outward piece along the edge of a leaf that is still connected to the leaf blade. Run your eyes around a fallen maple leaf. You can see the big pointed parts on the edge, but the green tissue still joins them. A leaflet is usually separate from the other leaflets, even though they share one leaf stalk. Some leaves have deep cuts that make the difference tricky at first.",
+    "aliases": [
+      "lobed leaf",
+      "leaf lobes vs leaflets",
+      "maple leaf cuts"
+    ],
+    "sections": [],
+    "facts": [
+      "A mitten-shaped sassafras leaf has a round lobe like a thumb."
+    ],
+    "terms": [
+      "leaf lobe",
+      "compound leaf"
+    ],
+    "questions": [
+      {
+        "text": "Can a single tree have leaves with different numbers of lobes?",
+        "target": "sassafras-tree"
+      },
+      {
+        "text": "How do I tell one compound leaf from a set of small leaves?",
+        "target": "compound-leaves"
+      },
+      {
+        "text": "What clues are on the edge of a red maple leaf?",
+        "target": "red-maple"
+      }
+    ],
+    "sources": [
+      "plant25-leaf-id"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "leaves-as-vein-maps",
+    "title": "Where do the lines in a leaf go?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "A leaf can look like a tiny road map if you hold it where light shines through. The big lines are veins, with finer lines leading away from them. Tiny tubes within the veins move water and other materials through the leaf. Veins also help support the thin green surface. A grass leaf often has long veins running in almost the same direction. In many broad leaves, the small veins branch into a web.",
+    "aliases": [
+      "leaf veins",
+      "plant leaf veins",
+      "lines in a leaf"
+    ],
+    "sections": [],
+    "facts": [
+      "Many leaves have one broad leaf vein running down the middle."
+    ],
+    "terms": [
+      "leaf vein"
+    ],
+    "questions": [
+      {
+        "text": "What shape do the branching veins make on a ginkgo leaf?",
+        "target": "ginkgo-tree"
+      },
+      {
+        "text": "How can water reach the veins in a very high leaf?",
+        "target": "plant-xylem"
+      },
+      {
+        "text": "How does sugar get out of a leaf and travel to a root?",
+        "target": "plant-phloem"
+      }
+    ],
+    "sources": [
+      "plant25-leaf-science"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "leaf-pattern-clues",
+    "title": "Can two plants with the same leaf color be told apart?",
+    "category": "plants",
+    "priority": 2,
+    "answer": "Green leaves can look alike from across a path. Take a closer look and compare the edges and shapes. One leaf may have little teeth, another may have big curved lobes, and a third may have a smooth edge. Look at whether several smaller sections have separate gaps between them or are joined into one flat blade. It's helpful to notice how the leaf joins the plant too, because color and size can change as leaves get older.",
+    "aliases": [
+      "leaf identification clues",
+      "look at leaves",
+      "compare leaf edges"
+    ],
+    "sections": [],
+    "facts": [
+      "People who identify plants often use several clues together."
+    ],
+    "terms": [
+      "leaf lobe",
+      "compound leaf"
+    ],
+    "questions": [
+      {
+        "text": "How can a lobe make a shape like the thumb of a mitten?",
+        "target": "leaf-lobes"
+      },
+      {
+        "text": "What is a reliable clue for finding the beginning of one leaf?",
+        "target": "compound-leaves"
+      },
+      {
+        "text": "How could one breeze help you compare two tree leaves?",
+        "target": "aspens-observation"
+      }
+    ],
+    "sources": [
+      "plant25-leaf-id"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "aspens-observation",
+    "title": "How can you compare the way two kinds of leaves move?",
+    "category": "ecosystems",
+    "priority": 2,
+    "answer": "Stand somewhere safe on a path and watch two kinds of tree while the breeze is blowing. One tree's leaves may flicker while the other tree's whole branch sways. Watch where each leaf joins the twig. Look for a long, thin stalk, a flat stalk, or a leaf that attaches directly. Keep track of more than one leaf on each tree. A single leaf could be still because it is tucked in a sheltered spot.",
+    "aliases": [
+      "watch leaves in wind",
+      "observe leaves on a walk",
+      "tree leaf movement"
+    ],
+    "sections": [],
+    "facts": [
+      "You can record an observation by drawing what moved and where it moved."
+    ],
+    "terms": [
+      "leaf stem"
+    ],
+    "questions": [
+      {
+        "text": "Why does a quaking aspen leaf move so readily?",
+        "target": "quaking-aspen"
+      },
+      {
+        "text": "What joins a leaf blade to the plant?",
+        "target": "leaf-stems"
+      },
+      {
+        "text": "Which other details can help me compare leaves?",
+        "target": "leaf-pattern-clues"
+      }
+    ],
+    "sources": [
+      "plant25-leaf-science"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "spring-woodland-flowers",
+    "title": "Why can a woodland wildflower do well before the trees have leaves?",
+    "category": "ecosystems",
+    "priority": 2,
+    "answer": "The ground in a leafy forest can get a lot of sunlight in early spring. Most of the tall branches haven't made their new leaves yet. Some little woodland plants use that bright time to make leaves and flowers while there's enough light. When the tree leaves spread out overhead, the forest floor becomes shady. Some early flowers then lose the parts growing above the ground and keep living in roots or underground stems.",
+    "aliases": [
+      "spring ephemerals",
+      "early woodland flowers",
+      "forest wildflowers before trees leaf out"
+    ],
+    "sections": [],
+    "facts": [
+      "A short-season flower like this may be called a spring ephemeral."
+    ],
+    "terms": [
+      "forest canopy",
+      "spring ephemeral"
+    ],
+    "questions": [
+      {
+        "text": "What happens to a yellow trout lily later in the year?",
+        "target": "yellow-trout-lily"
+      },
+      {
+        "text": "Where does most of the light land once the tall tree leaves spread out?",
+        "target": "forest-canopy"
+      },
+      {
+        "text": "How can a stem stay alive below the ground?",
+        "target": "plant-rhizomes"
+      }
+    ],
+    "sources": [
+      "plant25-spring-flowers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ant-carried-seeds",
+    "title": "Why would an ant carry away a seed it cannot eat?",
+    "category": "ecosystems",
+    "priority": 2,
+    "answer": "Some seeds carry a little soft part on the outside that is rich in food. An ant can find that part and carry the seed away, sometimes to its nest. Once the ant has eaten the soft piece, the harder seed can be left behind. If there's enough water, warmth, and space where it lands, it may start growing there. The ant gets food and the plant gets a chance to reach new ground.",
+    "aliases": [
+      "ant seed dispersal",
+      "ants carry seeds",
+      "how ant helps woodland flowers"
+    ],
+    "sections": [],
+    "facts": [
+      "Trilliums are one group of forest plants whose seeds can travel with ants."
+    ],
+    "terms": [
+      "ant seed dispersal"
+    ],
+    "questions": [
+      {
+        "text": "What seeds might an ant move away from a wide white spring flower?",
+        "target": "great-white-trillium"
+      },
+      {
+        "text": "Which other woodland flower gets some help from ants?",
+        "target": "bloodroot-wildflower"
+      },
+      {
+        "text": "How can a seed travel without an animal carrying it?",
+        "target": "seed-travel"
+      }
+    ],
+    "sources": [
+      "plant25-trillium-ant"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "dandelion-and-seed-carrying",
+    "title": "What can you learn from comparing a seed parachute with a bur?",
+    "category": "ecosystems",
+    "priority": 2,
+    "answer": "Imagine two plants ready to send their seeds away. A dandelion makes a light seed parachute of hairs that spread in the air. The air can lift a small fruit with a seed inside even if no animal walks by. A burdock has a heavier hooked bur. Its hooks can travel on fur, but need something to brush past and catch them. Look at a photo or fallen piece of each. Draw the shape that makes it good at reaching a new place, then explain what has to happen for it to move.",
+    "aliases": [
+      "compare bur and seed parachute",
+      "seed dispersal by wind and fur",
+      "how to compare wild seeds"
+    ],
+    "sections": [],
+    "facts": [
+      "One plant structure works with moving air, and the other works by gripping a surface."
+    ],
+    "terms": [
+      "seed parachute",
+      "hooked bur"
+    ],
+    "questions": [
+      {
+        "text": "What is attached to the dandelion's white hairs?",
+        "target": "common-dandelion"
+      },
+      {
+        "text": "What part makes a bur cling to a sock?",
+        "target": "common-burdock"
+      },
+      {
+        "text": "What other ways can seeds leave a parent plant?",
+        "target": "seed-travel"
+      }
+    ],
+    "sources": [
+      "plant25-botany",
+      "plant25-seed-hitchhikers"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "flower-opening-times",
+    "title": "Are flowers open at the same time every day?",
+    "category": "ecosystems",
+    "priority": 2,
+    "answer": "If you watch the same clump of flowers twice in a day, you may see it open at one visit and closed at the other. Some kinds respond to changes in light and temperature, and some keep a daily rhythm of their own. A bright chicory head may be visible early in the day, while a flower visited by nighttime animals may open much later. A cloudy or unusually cool day can shift the times you see.",
+    "aliases": [
+      "flower opening time",
+      "flowers close afternoon",
+      "flowers as a clock"
+    ],
+    "sections": [],
+    "facts": [
+      "To compare flowers fairly, check on the same plants more than once."
+    ],
+    "terms": [
+      "flower head"
+    ],
+    "questions": [
+      {
+        "text": "Which blue roadside flower is often easier to see near morning?",
+        "target": "common-chicory"
+      },
+      {
+        "text": "Which kinds of visitors can reach flowers that open at night?",
+        "target": "night-pollinators"
+      },
+      {
+        "text": "What can a visitor do while the flowers are open?",
+        "target": "pollination"
+      }
+    ],
+    "sources": [
+      "plant25-flower-clocks"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "white-breasted-nuthatch",
+    "title": "How does a nuthatch look for food going down a tree?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A white-breasted nuthatch can grip the rough surface of a tree and head straight down with its beak first. The bird stops to check gaps in the bark for food. Going down can give it a different view of the cracks than a bird climbing up would have. You may also see a nuthatch push a seed into a snug gap, then hammer it with its beak instead of dropping it.",
+    "aliases": [
+      "white breasted nuthatch",
+      "nuthatch upside down tree",
+      "bird walks headfirst"
+    ],
+    "sections": [],
+    "facts": [
+      "White-breasted nuthatches can store some food for later."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Which small bird often goes upward along a trunk instead?",
+        "target": "brown-creeper"
+      },
+      {
+        "text": "What does a woodpecker look for when it checks bark?",
+        "target": "downy-woodpecker"
+      },
+      {
+        "text": "How does a chickadee save food for later?",
+        "target": "black-capped-chickadee"
+      }
+    ],
+    "sources": [
+      "plant25-nuthatch"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "brown-creeper",
+    "title": "Why does a brown creeper start near the bottom of a tree?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A brown creeper can land low on a tree and make its way up, checking cracks with its thin curved beak. Its toes grip the bark, and its stiff tail can press against the trunk like part of a tripod. After reaching partway up or near the top, the bird may fly down to start low on another trunk. The brown marks on its back are easy to miss against rough bark.",
+    "aliases": [
+      "brown creeper bird",
+      "bird climbs tree upward",
+      "brown creeper tail"
+    ],
+    "sections": [],
+    "facts": [
+      "The bird finds small animals such as insects and spiders in the bark."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Which bird can go down a tree headfirst as it checks for food?",
+        "target": "white-breasted-nuthatch"
+      },
+      {
+        "text": "How does another tree-climbing bird use its beak?",
+        "target": "downy-woodpecker"
+      },
+      {
+        "text": "Why can cracks in bark be places for small animals to live?",
+        "target": "tree-bark-insects"
+      }
+    ],
+    "sources": [
+      "plant25-brown-creeper"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "killdeer",
+    "title": "Why would a killdeer act as if its wing were hurt?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A killdeer often lays its eggs in a shallow ground nest instead of high in a tree. If a possible danger comes close, one parent may move away from the eggs with a wing drooping. The bird can make itself easy to notice, drawing attention away from the nest. As it gets farther from the eggs, it can take off normally. This behavior is one way a parent can protect a nest.",
+    "aliases": [
+      "killdeer broken wing display",
+      "killdeer eggs ground",
+      "killdeer nest trick"
+    ],
+    "sections": [],
+    "facts": [
+      "Killdeer eggs have markings that can blend in with pebbly ground."
+    ],
+    "terms": [
+      "ground nest"
+    ],
+    "questions": [
+      {
+        "text": "Why do some birds put nests in holes instead of out in the open?",
+        "target": "nest-places"
+      },
+      {
+        "text": "Where does a different ground-feeding bird go at night?",
+        "target": "wild-turkey"
+      },
+      {
+        "text": "How might an animal find small prey it cannot see at first?",
+        "target": "red-fox"
+      }
+    ],
+    "sources": [
+      "plant25-killdeer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "american-goldfinch",
+    "title": "Why might a goldfinch visit a flower that is already dry?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "An American goldfinch often comes to dry flower heads to reach the seeds left behind. A bird may hang on close to the head and pull out seeds with its short pointed beak. Plants such as thistles, asters, and sunflowers can give it many little pieces of food. During a nesting season, some goldfinches also use soft plant fibers in their nests. A flower can still have a job for a bird after its petals are gone.",
+    "aliases": [
+      "American goldfinch seeds",
+      "goldfinch dries flowers",
+      "yellow seed eating bird"
+    ],
+    "sections": [],
+    "facts": [
+      "Goldfinches feed mainly on seeds."
+    ],
+    "terms": [
+      "flower head"
+    ],
+    "questions": [
+      {
+        "text": "How does a coneflower head hold seeds where its smaller flowers were?",
+        "target": "purple-coneflower"
+      },
+      {
+        "text": "What are other ways birds hold their nests in place?",
+        "target": "nest-places"
+      },
+      {
+        "text": "How can a differently shaped bird beak help open a seed?",
+        "target": "northern-cardinal"
+      }
+    ],
+    "sources": [
+      "plant25-goldfinch"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chimney-swift",
+    "title": "Why does a chimney swift cling upright instead of sitting on a branch?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A chimney swift's short feet can grip rough walls and other steep surfaces. The ends of its stiff tail feathers help brace its body. Those features are useful on the inside of a chimney or hollow tree, but the bird does not sit on a twig the way most songbirds do. A pair may make a shallow nest from little sticks, fastened against an upright surface. The birds spend much of the day flying after small insects.",
+    "aliases": [
+      "chimney swift tail",
+      "chimney swift chimney nest",
+      "bird clings to brick"
+    ],
+    "sections": [],
+    "facts": [
+      "A swift can use its own sticky saliva to join nest twigs together."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Why can a hollow space be a good place for some bird nests?",
+        "target": "nest-places"
+      },
+      {
+        "text": "Which flying insect hunter makes a nest from wet earth?",
+        "target": "barn-swallow"
+      },
+      {
+        "text": "Which woodland bird also leans on its tail as it climbs?",
+        "target": "brown-creeper"
+      }
+    ],
+    "sources": [
+      "plant25-chimney-swift"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "barn-swallow",
+    "title": "How can a barn swallow build a nest from drops of mud?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A barn swallow can pick up little lumps of damp earth and carry them to a sheltered nesting spot. It adds the mud bit by bit against a steady surface until it forms an open nest cup. Bits of grass can be mixed in to help hold the pieces together. A roof or bridge above it can keep heavy rain off the new nest. Once the cup dries, the birds put softer material inside.",
+    "aliases": [
+      "barn swallow mud nest",
+      "swallow builds with mud",
+      "forked tail barn swallow"
+    ],
+    "sections": [],
+    "facts": [
+      "Barn swallows often have deeply forked tails."
+    ],
+    "terms": [
+      "nest cup"
+    ],
+    "questions": [
+      {
+        "text": "What different material does a chimney swift use to fasten a nest to a wall?",
+        "target": "chimney-swift"
+      },
+      {
+        "text": "How can a bird make a bag that hangs from twigs?",
+        "target": "baltimore-oriole"
+      },
+      {
+        "text": "Why do different birds choose different places to nest?",
+        "target": "nest-places"
+      }
+    ],
+    "sources": [
+      "plant25-barn-swallow"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "northern-house-wren",
+    "title": "Why does a house wren carry sticks into a tiny hole?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A northern house wren can make its nest inside a tree cavity or nest box. It carries many small sticks through the entrance. The sticks form a rough base, and softer material can line the cup that holds the eggs. The nest is mostly hidden, but you may see the bird fly to the opening with another twig in its beak. It can take a lot of trips to build a nest inside a space that looked empty.",
+    "aliases": [
+      "northern house wren nest",
+      "house wren sticks",
+      "cavity nesting wren"
+    ],
+    "sections": [],
+    "facts": [
+      "Male house wrens may put sticks in more than one possible nest site."
+    ],
+    "terms": [
+      "tree cavity"
+    ],
+    "questions": [
+      {
+        "text": "What are the differences between an open cup nest and a nest in a hole?",
+        "target": "nest-places"
+      },
+      {
+        "text": "How does a duckling leave its nest in a tree?",
+        "target": "wood-duck"
+      },
+      {
+        "text": "Which bird attaches a nest to thin twigs at the outside of a branch?",
+        "target": "baltimore-oriole"
+      }
+    ],
+    "sources": [
+      "plant25-house-wren"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tufted-titmouse",
+    "title": "How can a tufted titmouse use one foot to help open a seed?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "At a feeder, a tufted titmouse may take one seed and fly away rather than open it where it finds it. On a branch it can use a foot to pin the seed down. Then its beak can tap or pry at the shell without the seed rolling away. Sometimes the bird carries a seed off and hides it in a food cache. Look for the small gray crest sticking up on its head.",
+    "aliases": [
+      "tufted titmouse seed cracking",
+      "bird holds seed in feet",
+      "gray crested titmouse"
+    ],
+    "sections": [],
+    "facts": [
+      "Tufted titmice also eat insects and other small foods."
+    ],
+    "terms": [
+      "food cache"
+    ],
+    "questions": [
+      {
+        "text": "What does a nuthatch use instead of a foot to steady a seed?",
+        "target": "white-breasted-nuthatch"
+      },
+      {
+        "text": "How can hiding food help a bird later?",
+        "target": "black-capped-chickadee"
+      },
+      {
+        "text": "Why do many other seed-eating birds have a thick bill?",
+        "target": "northern-cardinal"
+      }
+    ],
+    "sources": [
+      "plant25-titmouse"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "belted-kingfisher",
+    "title": "What bird digs a nesting tunnel into a dirt bank?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A belted kingfisher can make a nesting tunnel in a steep bank of sand or soil. The bird can dig into the bank and move loosened grains out as the tunnel gets deeper. The eggs lie in a wider chamber at the back. You may see the same kingfisher on a branch near the water, sitting still until it spots a fish and plunges down. Its nest site and hunting site can be quite close.",
+    "aliases": [
+      "belted kingfisher bank nest",
+      "kingfisher digs tunnel",
+      "bird nest by water burrow"
+    ],
+    "sections": [],
+    "facts": [
+      "A kingfisher can also stop and hover briefly above water before diving."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does an osprey hold a fish caught from above?",
+        "target": "osprey-fishing"
+      },
+      {
+        "text": "What are other kinds of openings birds use for nests?",
+        "target": "nest-places"
+      },
+      {
+        "text": "How does a heron wait before catching a fish?",
+        "target": "great-blue-heron"
+      }
+    ],
+    "sources": [
+      "plant25-kingfisher"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "american-kestrel",
+    "title": "Why does an American kestrel hang in the air over a field?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "An American kestrel is a small falcon that can look over grass from a wire or other high perch. It can also face into the wind and move its wings so it stays near one spot while looking down. That gives it time to watch the ground for a mouse or a large insect moving through the grass. If it spots food, the kestrel can drop quickly toward it.",
+    "aliases": [
+      "American kestrel hover",
+      "kestrel hunting open field",
+      "small hovering falcon"
+    ],
+    "sections": [],
+    "facts": [
+      "American kestrels can nest inside a tree cavity or another sheltered opening."
+    ],
+    "terms": [
+      "tree cavity"
+    ],
+    "questions": [
+      {
+        "text": "How does another falcon use a steep dive?",
+        "target": "peregrine-falcon"
+      },
+      {
+        "text": "Why does a hummingbird hover beside a flower?",
+        "target": "ruby-throated-hummingbird"
+      },
+      {
+        "text": "Why are many grasslands clear enough to see across?",
+        "target": "temperate-grasslands"
+      }
+    ],
+    "sources": [
+      "plant25-kestrel"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "common-loon",
+    "title": "Why does a loon run across the water to take off?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A common loon has powerful feet set far back on its body. That helps it push through the water when it dives to catch fish. The same shape makes it awkward on land. When a loon wants to take off from a lake, you may see it paddle rapidly along the surface while beating its wings. It needs a stretch of open water to gather enough speed for flight.",
+    "aliases": [
+      "common loon running water",
+      "loon takeoff",
+      "diving loon feet"
+    ],
+    "sections": [],
+    "facts": [
+      "Loons make nests near the water's edge where they can get in and out more easily."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does moving air help hold wings up?",
+        "target": "flight-lift"
+      },
+      {
+        "text": "How does a different water bird get from a tree nest to a pond?",
+        "target": "wood-duck"
+      },
+      {
+        "text": "Which bird can catch a fish by diving from the air?",
+        "target": "osprey-fishing"
+      }
+    ],
+    "sources": [
+      "plant25-loon"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "baltimore-oriole",
+    "title": "How does a Baltimore oriole hang its nest from thin branches?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A Baltimore oriole makes a hanging nest that can look like a small cloth bag. The female works narrow strands around twigs and around other strands. She adds more until the walls form a pouch below the points that hold it. The eggs and young can sit inside, while the outside can move when the twigs sway. A lining of softer material covers the woven structure near the bottom.",
+    "aliases": [
+      "Baltimore oriole hanging nest",
+      "woven oriole nest",
+      "bird nest hangs from twigs"
+    ],
+    "sections": [],
+    "facts": [
+      "The nest often hangs near the tip of a branch."
+    ],
+    "terms": [
+      "hanging nest"
+    ],
+    "questions": [
+      {
+        "text": "How does a swallow build a cup from mud rather than weaving fibers?",
+        "target": "barn-swallow"
+      },
+      {
+        "text": "How does a house wren make a nest inside a hole?",
+        "target": "northern-house-wren"
+      },
+      {
+        "text": "What kinds of support hold nests for different birds?",
+        "target": "nest-places"
+      }
+    ],
+    "sources": [
+      "plant25-oriole"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "peregrine-falcon",
+    "title": "What does a peregrine falcon do before a fast dive?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A peregrine falcon can gain height before diving at a bird below. It then tips into a steep drop and can bring its wings closer to its body. That shape helps it pick up speed on the way down. This steep hunting dive is called a stoop. Peregrines often nest on high ledges. In some cities, the ledge of a tall building can serve a similar purpose to a cliff.",
+    "aliases": [
+      "peregrine falcon dive",
+      "falcon stoop",
+      "fast diving bird"
+    ],
+    "sections": [],
+    "facts": [
+      "A peregrine is especially fast in a dive, not because it always flies that fast."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "Which smaller falcon can hover over an open field?",
+        "target": "american-kestrel"
+      },
+      {
+        "text": "What changes when a wing moves through air?",
+        "target": "flight-lift"
+      },
+      {
+        "text": "Why can some birds use buildings instead of cliffs or trees?",
+        "target": "nest-places"
+      }
+    ],
+    "sources": [
+      "plant25-peregrine"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "red-winged-blackbird",
+    "title": "What is a red-winged blackbird showing from a marsh stem?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A male red-winged blackbird may perch on a tall marsh stem, sing, and spread the red and yellow patches on his shoulders. From a distance those colors can make him easier for other birds to notice. He can also cover much of the patch when he holds his wings differently. Females often look streaked brown instead. Their colors and the marsh grasses can make them harder to see around the nest.",
+    "aliases": [
+      "red winged blackbird shoulder patches",
+      "marsh blackbird displaying",
+      "water birds red shoulder"
+    ],
+    "sections": [],
+    "facts": [
+      "Red-winged blackbirds often place nests low among marsh plants."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "What kinds of plants make perches above a shallow marsh?",
+        "target": "freshwater-marshes"
+      },
+      {
+        "text": "How can a tiny bright shape be seen on a tall plant?",
+        "target": "canada-goldenrod"
+      },
+      {
+        "text": "How do birds find places to hide or hold their nests?",
+        "target": "nest-places"
+      }
+    ],
+    "sources": [
+      "plant25-redwing"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "northern-mockingbird",
+    "title": "How can a mockingbird sound like more than one kind of bird?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A northern mockingbird can learn parts of other sounds and fit them into its own song. It may repeat one short sound several times, then switch to a different one. If you hear what seems like several kinds of bird from a single high branch, watch that branch to see whether one bird makes all the sounds. A mockingbird with a long gray tail and flashes of white in its wings can be easier to recognize once you see it.",
+    "aliases": [
+      "northern mockingbird copying birds",
+      "mockingbird mimic",
+      "bird that imitates songs"
+    ],
+    "sections": [],
+    "facts": [
+      "A copied sound can be only a short part of a longer performance."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How do your ears tell high notes from low ones?",
+        "target": "sound-pitch"
+      },
+      {
+        "text": "How can you tell which branch a sound is coming from?",
+        "target": "finding-sound-direction"
+      },
+      {
+        "text": "How can a sound travel from a high branch to your ears?",
+        "target": "sound"
+      }
+    ],
+    "sources": [
+      "plant25-mockingbird"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "north-american-river-otter",
+    "title": "How can a river otter look for food in the dark water?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "A North American river otter can feel changes in the water with long whiskers around its mouth. A fish or another small animal moving nearby can make ripples that the whiskers help detect. The otter also has webbed feet and a long strong tail for moving through water. It can close its nostrils as it dives. River otters can also travel out of the water across shorelines between places to feed.",
+    "aliases": [
+      "North American river otter whiskers",
+      "river otter swimming",
+      "river otter hunt underwater"
+    ],
+    "sections": [],
+    "facts": [
+      "A thick coat helps keep a river otter warm in cold water."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does an otter that lives along a coast affect a kelp forest?",
+        "target": "sea-otter"
+      },
+      {
+        "text": "Why are some fish more common in cool streams?",
+        "target": "brook-trout"
+      },
+      {
+        "text": "What can trees or shrubs change about a river's edge?",
+        "target": "streamside-buffers"
+      }
+    ],
+    "sources": [
+      "plant25-river-otter"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "eastern-box-turtle",
+    "title": "How does a box turtle shut the opening in its shell?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "An eastern box turtle can draw its head, tail, and feet into its shell when danger is close. Underneath the turtle is a movable joint called a shell hinge. The turtle can raise sections of the lower shell to close the gaps, a little like moving the lid shut on a small box. It then has less soft body exposed. This works differently from a snapping turtle's smaller lower shell.",
+    "aliases": [
+      "eastern box turtle hinge",
+      "shell closes box turtle",
+      "box turtle on land"
+    ],
+    "sections": [],
+    "facts": [
+      "Eastern box turtles spend much of their time on land."
+    ],
+    "terms": [
+      "shell hinge"
+    ],
+    "questions": [
+      {
+        "text": "Why can't a snapping turtle close up in the same way?",
+        "target": "common-snapping-turtle"
+      },
+      {
+        "text": "Where does a painted turtle go to warm up in the sun?",
+        "target": "painted-turtle"
+      },
+      {
+        "text": "What job does a door hinge have that is similar to this turtle's shell hinge?",
+        "target": "door-hinge-pins"
+      }
+    ],
+    "sources": [
+      "plant25-box-turtle"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "common-cuttlefish",
+    "title": "How can a cuttlefish change the pattern on its skin?",
+    "category": "oceans",
+    "priority": 2,
+    "answer": "A common cuttlefish can make patches on its skin appear larger or smaller in a moment. Tiny muscles can stretch little sacs containing colored material. A stretched sac is still closed, but its color covers more skin. When sacs stretch in different places, the pattern changes. A cuttlefish near rocks or sand can use the changes to be less easy to notice. It may also produce patterns during encounters with other cuttlefish.",
+    "aliases": [
+      "common cuttlefish camouflage",
+      "cuttlefish color changing",
+      "marine animal changes skin"
+    ],
+    "sections": [],
+    "facts": [
+      "The tiny color sacs are part of what makes the skin shift so quickly."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How can an octopus use its soft body to find a hiding place?",
+        "target": "giant-pacific-octopus"
+      },
+      {
+        "text": "How can grains of sand move and pile up?",
+        "target": "sand-dunes"
+      },
+      {
+        "text": "How can an animal use cracks in rocks to stay out of sight?",
+        "target": "shore-crab-shelters"
+      }
+    ],
+    "sources": [
+      "plant25-cuttlefish",
+      "plant25-pigment-sacs"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "nest-places",
+    "title": "Why do birds build nests in so many different places?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "Bird nests can sit on the ground, rest in the fork of a tree, or hang like a little bag. A tree cavity can hide a nest, while a hard bank near a river can give another bird room to dig a tunnel. The place has to hold the eggs and young as wind, rain, or animals move around it. Different birds find places that suit the materials they can carry and the way they can reach the nest.",
+    "aliases": [
+      "where birds build nests",
+      "ground nest vs tree nest",
+      "ways birds make nests"
+    ],
+    "sections": [],
+    "facts": [
+      "Watching an adult from a distance can show you where it takes building material."
+    ],
+    "terms": [
+      "tree cavity",
+      "ground nest",
+      "hanging nest"
+    ],
+    "questions": [
+      {
+        "text": "Which little bird carries sticks into a tree hole?",
+        "target": "northern-house-wren"
+      },
+      {
+        "text": "Which bird hangs a woven nest from thin twigs?",
+        "target": "baltimore-oriole"
+      },
+      {
+        "text": "Which bird digs a long tunnel in a bank?",
+        "target": "belted-kingfisher"
+      }
+    ],
+    "sources": [
+      "plant25-bird-nests",
+      "plant25-house-wren",
+      "plant25-kingfisher",
+      "plant25-oriole",
+      "plant25-killdeer"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "tree-bark-insects",
+    "title": "How can a crack in a tree trunk be a tiny hiding place?",
+    "category": "animals",
+    "priority": 2,
+    "answer": "From a distance, an older tree trunk looks mostly solid. Close up, it may have thin cracks, bumps, and little roof-like pieces of bark. Some small animals can fit in the narrow spaces. The tree can also have dead spots where insects have left tunnels in the wood. A bird that looks closely from one crack to the next may find food hidden from an animal watching from farther away.",
+    "aliases": [
+      "insects hiding under bark",
+      "tree bark food for birds",
+      "tiny bark habitat"
+    ],
+    "sections": [],
+    "facts": [
+      "You can see ordinary bark hiding places without lifting bark off a live tree."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "text": "How does a brown creeper search for food in bark cracks?",
+        "target": "brown-creeper"
+      },
+      {
+        "text": "What other places for animals can form in a dead trunk?",
+        "target": "standing-dead-trees"
+      },
+      {
+        "text": "How can a woodpecker reach food on a tree?",
+        "target": "downy-woodpecker"
+      }
+    ],
+    "sources": [
+      "plant25-bark-wildlife"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]

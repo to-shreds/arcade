@@ -1,0 +1,3486 @@
+[
+  {
+    "id": "state-alabama",
+    "title": "Alabama",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Follow Alabama from north to south and the land changes from ridges and valleys to a wide stretch of lower ground. Part of the Appalachian Mountains reaches into the northeast. Near the opposite end of the state, rivers empty into Mobile Bay, which opens toward the Gulf Coast. Montgomery, the state capital, sits inland on the Alabama River. That inland location is different from Mobile’s, where boats can travel between a bay and the open Gulf.",
+    "aliases": [
+      "alabama state",
+      "what is the capital of alabama",
+      "montgomery state capital",
+      "appalachian mountains",
+      "alabama river",
+      "mobile bay"
+    ],
+    "sections": [],
+    "facts": [
+      "Alabama joined the United States in 1819."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "appalachian-mountains",
+        "text": "How far south do the Appalachian Mountains reach?"
+      },
+      {
+        "target": "state-mississippi",
+        "text": "What is the state just west of Alabama like?"
+      },
+      {
+        "target": "montgomery-bus-boycott",
+        "text": "How did people in Montgomery change who could sit where on a bus?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-alabama",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-alaska",
+    "title": "Alaska",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "On a map, Alaska reaches far to the northwest of the other states. It shares a land border with Canada and has shores on both Arctic and Pacific waters. The Alaska Range has high peaks where snow can last through summer, while the southeast contains forested islands and long, narrow waterways. Juneau, the capital, is in that southeastern part. Alaska is the largest U.S. state by area, so the views and weather can change a lot across the state.",
+    "aliases": [
+      "alaska state",
+      "what is the capital of alaska",
+      "juneau state capital",
+      "alaska range",
+      "arctic and pacific",
+      "juneau"
+    ],
+    "sections": [],
+    "facts": [
+      "Alaska became the 49th state in 1959."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "canada",
+        "text": "What country connects to Alaska by land?"
+      },
+      {
+        "target": "glaciers",
+        "text": "How does a mountain glacier form and move?"
+      },
+      {
+        "target": "arctic-tundra",
+        "text": "What can grow where the ground stays cold?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-alaska",
+      "usgeo-state-map",
+      "usgeo-capitals"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-arizona",
+    "title": "Arizona",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "There is more than one kind of dry landscape in Arizona. The Grand Canyon cuts through a high area of rock in the north, where some winters bring snow. Farther south, Phoenix lies in the Sonoran Desert. It can be hot there even when the high country feels cool. The Colorado River has spent a long time carving rock in Arizona. Looking at the canyon walls is one way to see that the land is built from many layers.",
+    "aliases": [
+      "arizona state",
+      "what is the capital of arizona",
+      "phoenix state capital",
+      "grand canyon",
+      "phoenix arizona",
+      "sonoran desert"
+    ],
+    "sections": [],
+    "facts": [
+      "Phoenix is the state capital, while the Grand Canyon lies much farther north."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "grand-canyon",
+        "text": "How did the Colorado River carve the Grand Canyon?"
+      },
+      {
+        "target": "colorado-plateau",
+        "text": "What large region holds the Grand Canyon?"
+      },
+      {
+        "target": "state-utah",
+        "text": "What can you find in the rock country north of Arizona?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-arizona",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-arkansas",
+    "title": "Arkansas",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Travel from the northwest of Arkansas toward the east and the terrain changes. The Ozarks have hills, valleys and clear streams. The land nearer the Mississippi River is generally flatter. Arkansas also has another set of ridges to the south of the Ozarks, the Ouachita Mountains. Little Rock, the state capital, sits on the Arkansas River. The river links mountain country and the plains as it passes through the state on its way toward the Mississippi.",
+    "aliases": [
+      "arkansas state",
+      "what is the capital of arkansas",
+      "little rock state capital",
+      "ozarks",
+      "ouachita mountains",
+      "arkansas river"
+    ],
+    "sections": [],
+    "facts": [
+      "The Mississippi River forms much of Arkansas’s eastern boundary."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "ozark-plateaus",
+        "text": "Where are the Ozarks and what are their hills like?"
+      },
+      {
+        "target": "mississippi-river",
+        "text": "Where does the Mississippi go after passing Arkansas?"
+      },
+      {
+        "target": "state-tennessee",
+        "text": "What landscapes lie in Tennessee on the other side of the Mississippi?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-arkansas",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-california",
+    "title": "California",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "California stretches along much of the country’s Pacific shore, but some of its most striking places are far inland. The Central Valley sits between mountain areas and has large stretches of farmland. To its east rise the Sierra Nevada mountains. Snow and ice helped shape parts of that range, including Yosemite Valley. Farther southeast, the land also includes deserts. Sacramento, the state capital, is in the northern part of the Central Valley.",
+    "aliases": [
+      "california state",
+      "what is the capital of california",
+      "sacramento state capital",
+      "central valley",
+      "pacific coast",
+      "yosemite"
+    ],
+    "sections": [],
+    "facts": [
+      "The Pacific Ocean is on California’s west side."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "sierra-nevada",
+        "text": "How did ice help shape the Sierra Nevada?"
+      },
+      {
+        "target": "yosemite-valley",
+        "text": "Why does Yosemite have a wide floor and steep walls?"
+      },
+      {
+        "target": "state-nevada",
+        "text": "How does the land change east of California?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-california",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-colorado",
+    "title": "Colorado",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "In eastern Colorado, broad plains run toward the Rocky Mountains. At their foot stand Denver, the capital, and several other cities. Farther west, high mountains can hold snow even when the plains are dry. Creeks that start among those peaks do not all go toward the same ocean. A boundary known as the Continental Divide separates land that drains in different directions. To see that idea, picture drops falling on opposite sides of a roof.",
+    "aliases": [
+      "colorado state",
+      "what is the capital of colorado",
+      "denver state capital",
+      "rocky mountains",
+      "continental divide",
+      "denver"
+    ],
+    "sections": [],
+    "facts": [
+      "Colorado joined the United States in 1876."
+    ],
+    "terms": [
+      "continental divide"
+    ],
+    "questions": [
+      {
+        "target": "drainage-divides",
+        "text": "Where does water go on the two sides of the Rocky Mountain divide?"
+      },
+      {
+        "target": "great-plains",
+        "text": "How do the plains change as they near the Rocky Mountains?"
+      },
+      {
+        "target": "state-utah",
+        "text": "What landscape lies immediately west of Colorado?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-colorado",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-connecticut",
+    "title": "Connecticut",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Connecticut is a small New England state on the north side of Long Island Sound. That body of water separates much of its coast from Long Island. The Connecticut River enters from the north, flows by Hartford, and reaches the sound near the state’s southeastern coast. Hartford is the capital. A traveler following the river can see how a waterway ties inland towns to a coast with salt water and tides.",
+    "aliases": [
+      "connecticut state",
+      "what is the capital of connecticut",
+      "hartford state capital",
+      "hartford",
+      "long island sound",
+      "connecticut river"
+    ],
+    "sections": [],
+    "facts": [
+      "The Connecticut River flows through several New England states before it reaches the ocean."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "long-island-sound",
+        "text": "What lies between Long Island and the Connecticut coast?"
+      },
+      {
+        "target": "new-england",
+        "text": "Which other states are part of New England?"
+      },
+      {
+        "target": "state-massachusetts",
+        "text": "What is the state just north of Connecticut like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-connecticut",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-sound"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-delaware",
+    "title": "Delaware",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "On the map, Delaware is tucked along the eastern side of the Delmarva Peninsula. This long stretch of land is shared by parts of Delaware, Maryland and Virginia. The Delaware River and its bay lie on the other side of much of the state from Maryland. Along the coast are low sandy shores and flat wetlands. Dover, the capital, is inland from the bay. Because Delaware is small, those different pieces fit into a short drive.",
+    "aliases": [
+      "delaware state",
+      "what is the capital of delaware",
+      "dover state capital",
+      "dover",
+      "delmarva",
+      "delaware bay"
+    ],
+    "sections": [],
+    "facts": [
+      "Delaware was the first state to approve the United States Constitution, in 1787."
+    ],
+    "terms": [
+      "peninsula"
+    ],
+    "questions": [
+      {
+        "target": "peninsulas",
+        "text": "What makes the Delmarva Peninsula a peninsula?"
+      },
+      {
+        "target": "state-maryland",
+        "text": "Which neighbor shares the Delmarva Peninsula with Delaware?"
+      },
+      {
+        "target": "atlantic-coastal-plain",
+        "text": "Why is much of the land by Delaware’s shore so low?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-delaware",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-florida",
+    "title": "Florida",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Most of Florida lies on a peninsula that reaches south from the rest of the United States. Its western side faces the Gulf and its eastern side faces the Atlantic Ocean. In the far south, water moves slowly through the marshes of the Everglades. Then the Florida Keys trail out into the sea in a long line. The capital, Tallahassee, is far north of those islands, near the part of Florida that extends west along the Gulf Coast.",
+    "aliases": [
+      "florida state",
+      "what is the capital of florida",
+      "tallahassee state capital",
+      "tallahassee",
+      "everglades",
+      "florida keys"
+    ],
+    "sections": [],
+    "facts": [
+      "The long, narrow extension of northern Florida is often called the Panhandle."
+    ],
+    "terms": [
+      "peninsula"
+    ],
+    "questions": [
+      {
+        "target": "everglades-national-park",
+        "text": "Why are the Everglades called a river of grass?"
+      },
+      {
+        "target": "florida-keys",
+        "text": "What lies beyond the southern tip of Florida?"
+      },
+      {
+        "target": "peninsulas",
+        "text": "How can you tell Florida is a peninsula?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-florida",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-keys"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-georgia",
+    "title": "Georgia",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Georgia’s land rises from low coastal plains in the southeast to mountains in the north. The state capital, Atlanta, sits between those ends in a hilly stretch of land called the Piedmont. The Atlantic coast includes marshes and long islands close to the shore. The Savannah River marks much of the line between Georgia and South Carolina. Two parts of Georgia can look quite different because the mountain country and the sea are far apart.",
+    "aliases": [
+      "georgia state",
+      "what is the capital of georgia",
+      "atlanta state capital",
+      "atlanta",
+      "atlantic coast",
+      "savannah river"
+    ],
+    "sections": [],
+    "facts": [
+      "The city of Savannah sits near the mouth of the Savannah River."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "atlantic-coastal-plain",
+        "text": "How does Georgia’s coastal plain differ from its hills?"
+      },
+      {
+        "target": "state-south-carolina",
+        "text": "What is the state across the Savannah River like?"
+      },
+      {
+        "target": "barrier-islands",
+        "text": "Why are there long islands just off some southern shores?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-georgia",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-hawaii",
+    "title": "Hawaii",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Hawaii is a state made of islands in the middle of the Pacific Ocean. The islands began as volcanoes that rose from the ocean floor. Honolulu, the capital, is on Oʻahu. The island named Hawaiʻi is often called the Big Island so it is easier to tell it apart from the whole state. Volcanoes on that island can still change the land, while waves and streams slowly wear down the shores and valleys of older islands.",
+    "aliases": [
+      "hawaii state",
+      "what is the capital of hawaii",
+      "honolulu state capital",
+      "honolulu",
+      "oahu",
+      "big island"
+    ],
+    "sections": [],
+    "facts": [
+      "Both the state and its largest island share the name Hawaii, usually spelled Hawaiʻi in the Hawaiian language."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "hawaiian-island-chain",
+        "text": "Where is the Hawaiian volcano that is still hidden below the water?"
+      },
+      {
+        "target": "archipelagos",
+        "text": "What do we call a group of islands?"
+      },
+      {
+        "target": "volcanic-hot-spots",
+        "text": "How can a hot spot build a volcano far from a plate boundary?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-hawaii",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-hawaii"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-idaho",
+    "title": "Idaho",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Much of Idaho is mountain country, but a wide curve of lower land runs across the south. This is the Snake River Plain. The river and nearby towns can be followed across southern Idaho on a map. Boise, the capital, stands along the Boise River near the northern side of the western plain. The wide, open country there is different from the forests and steep slopes farther north. Idaho also touches Canada at its narrow northern tip.",
+    "aliases": [
+      "idaho state",
+      "what is the capital of idaho",
+      "boise state capital",
+      "boise",
+      "snake river plain",
+      "rocky mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "The Snake River passes through Idaho and joins the Columbia River farther west."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "columbia-plateau",
+        "text": "How did lava shape some of the land around the Columbia and Snake rivers?"
+      },
+      {
+        "target": "state-montana",
+        "text": "What does the mountain country east of Idaho look like?"
+      },
+      {
+        "target": "state-washington",
+        "text": "Where does the Snake River meet the Columbia?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-idaho",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-snake"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-illinois",
+    "title": "Illinois",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Illinois has water on several edges. Chicago stands on Lake Michigan in the northeast. The Mississippi River runs along the western border, and the Ohio River reaches the state’s southern tip. Between the edges lie broad areas of gently rolling farmland. Springfield, the capital, is inland. Looking from Chicago toward Springfield helps explain why people have very different pictures in mind when they hear the name Illinois, from a city lakeshore to a wide farm field.",
+    "aliases": [
+      "illinois state",
+      "what is the capital of illinois",
+      "springfield state capital",
+      "springfield",
+      "chicago",
+      "lake michigan"
+    ],
+    "sections": [],
+    "facts": [
+      "The Ohio and Mississippi rivers meet near Cairo at the southern tip of Illinois."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "great-lakes-overview",
+        "text": "Which lake is Chicago beside?"
+      },
+      {
+        "target": "mississippi-river",
+        "text": "Where does the river along western Illinois go?"
+      },
+      {
+        "target": "state-iowa",
+        "text": "What is the state across part of that river like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-illinois",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-indiana",
+    "title": "Indiana",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Indiana touches Lake Michigan at its northwest corner, where sand dunes rise above the beach. The capital, Indianapolis, lies near the middle of the state, away from that lakeshore. Across central Indiana much of the land rolls gently. Farther south, rivers cut through hillier areas, and the Ohio River bends along much of the state’s southern edge. Visiting north and south would give two different views of what people often picture as one flat stretch of farmland.",
+    "aliases": [
+      "indiana state",
+      "what is the capital of indiana",
+      "indianapolis state capital",
+      "indianapolis",
+      "indiana dunes",
+      "ohio river"
+    ],
+    "sections": [],
+    "facts": [
+      "Indiana Dunes National Park protects part of the state’s Lake Michigan shore."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "indiana-dunes",
+        "text": "How does wind build hills of sand beside a lake?"
+      },
+      {
+        "target": "state-kentucky",
+        "text": "Which state lies across much of Indiana’s southern river boundary?"
+      },
+      {
+        "target": "great-lakes-overview",
+        "text": "How does Lake Michigan fit among the Great Lakes?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-indiana",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-indiana-dunes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-iowa",
+    "title": "Iowa",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Iowa sits between two major rivers, the Mississippi on the east and the Missouri along much of its western edge. Much of the land between them is gently rolling and is used to grow crops. Des Moines, the capital, is named for one of the state’s inland rivers. Along the western side, steep hills rise near the Missouri River valley. Much of the material in those hills was carried there by wind long ago.",
+    "aliases": [
+      "iowa state",
+      "what is the capital of iowa",
+      "des moines state capital",
+      "des moines",
+      "iowa mississippi river boundary",
+      "loess hills in iowa"
+    ],
+    "sections": [],
+    "facts": [
+      "The Mississippi River separates Iowa from Illinois and Wisconsin."
+    ],
+    "terms": [
+      "river valley"
+    ],
+    "questions": [
+      {
+        "target": "loess-hills",
+        "text": "How did wind bring material to hills along the Missouri River?"
+      },
+      {
+        "target": "mississippi-river",
+        "text": "How does the Mississippi connect Iowa to other places?"
+      },
+      {
+        "target": "state-nebraska",
+        "text": "What is the state across much of Iowa’s western river boundary like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-iowa",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-loess"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-kansas",
+    "title": "Kansas",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The land rises gradually from eastern Kansas toward the west. Near Topeka, the capital, rivers wind through hilly areas. Farther west, long open views across the high plains make roads look as if they reach straight into the sky. In the middle of eastern Kansas are the Flint Hills, where much of the ground is too rocky for easy plowing. There are still places there where tall prairie grasses can grow.",
+    "aliases": [
+      "kansas state",
+      "what is the capital of kansas",
+      "topeka state capital",
+      "topeka",
+      "flint hills",
+      "high plains"
+    ],
+    "sections": [],
+    "facts": [
+      "Kansas lies in the central United States between Nebraska and Oklahoma."
+    ],
+    "terms": [
+      "prairie"
+    ],
+    "questions": [
+      {
+        "target": "flint-hills",
+        "text": "Why is so much tallgrass prairie left in the Flint Hills?"
+      },
+      {
+        "target": "great-plains",
+        "text": "How far does the broader Great Plains region reach?"
+      },
+      {
+        "target": "state-nebraska",
+        "text": "How does the landscape continue north of Kansas?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-kansas",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-flint"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-kentucky",
+    "title": "Kentucky",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Kentucky has Appalachian hills in the east, gently rolling country around its middle and flatter river country in parts of the west. In the center, the Bluegrass region includes the state capital, Frankfort. In south-central Kentucky, water has dissolved some of the rock underground to make caves. Mammoth Cave is part of that hidden world. On the north, the Ohio River curves around Kentucky and separates it from several other states.",
+    "aliases": [
+      "kentucky state",
+      "what is the capital of kentucky",
+      "frankfort state capital",
+      "frankfort",
+      "bluegrass",
+      "mammoth cave"
+    ],
+    "sections": [],
+    "facts": [
+      "Kentucky became a state in 1792."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "mammoth-cave",
+        "text": "What opened so many passages underneath part of Kentucky?"
+      },
+      {
+        "target": "appalachian-mountains",
+        "text": "Which long eastern mountain chain reaches into Kentucky?"
+      },
+      {
+        "target": "state-indiana",
+        "text": "How does the Ohio River connect Kentucky and Indiana?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-kentucky",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-louisiana",
+    "title": "Louisiana",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The Mississippi River curves through southern Louisiana toward the Gulf. Its wide valley and low marshes look very different from the hills in parts of the north. Over a long time the river dropped sand and mud near the coast, helping shape the land low beside the water. Baton Rouge, the capital, is upstream from New Orleans. Both cities sit near important bends of the same river at different points on its path to the sea.",
+    "aliases": [
+      "louisiana state",
+      "what is the capital of louisiana",
+      "baton rouge state capital",
+      "baton rouge",
+      "new orleans",
+      "delta"
+    ],
+    "sections": [],
+    "facts": [
+      "The Mississippi finishes its long trip through the United States in Louisiana."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "mississippi-river",
+        "text": "Where does the river begin before arriving in Louisiana?"
+      },
+      {
+        "target": "mississippi-river-delta",
+        "text": "How does the river leave land behind when it reaches the coast?"
+      },
+      {
+        "target": "state-mississippi",
+        "text": "Which state shares part of the lower river with Louisiana?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-louisiana",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-msdelta"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-maine",
+    "title": "Maine",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Maine is at the northeastern end of New England. Inland, forests cover a large part of the state and Mount Katahdin rises above nearby lakes and wooded valleys. On the Atlantic side, bays, islands and rocky points make the coastline twist and turn on a map. Augusta, the capital, is on the Kennebec River, away from the open coast. Acadia National Park includes stretches where waves reach the base of rocky, wooded land.",
+    "aliases": [
+      "maine state",
+      "what is the capital of maine",
+      "augusta state capital",
+      "augusta",
+      "katahdin",
+      "acadia"
+    ],
+    "sections": [],
+    "facts": [
+      "Maine is the only U.S. state that borders just one other state, New Hampshire."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "acadia-coastline",
+        "text": "Where can you see Maine’s rocky headlands in a national park?"
+      },
+      {
+        "target": "new-england",
+        "text": "Which other New England states lie south of Maine?"
+      },
+      {
+        "target": "state-new-hampshire",
+        "text": "What is Maine’s only U.S. state neighbor like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-maine",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-acadia"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-maryland",
+    "title": "Maryland",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The Chesapeake Bay almost splits Maryland into separate pieces on a map. The Eastern Shore lies between the bay and the Atlantic coast. Annapolis, the capital, is on the west side of the bay near the mouth of the Severn River. If you keep traveling west, you can leave the low shore behind and reach the mountains. That makes Maryland a place where both wide water views and wooded mountain slopes are part of one state.",
+    "aliases": [
+      "maryland state",
+      "what is the capital of maryland",
+      "annapolis state capital",
+      "annapolis",
+      "eastern shore",
+      "chesapeake bay"
+    ],
+    "sections": [],
+    "facts": [
+      "Fresh river water and salty sea water mix in Chesapeake Bay."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "chesapeake-bay",
+        "text": "How do fresh and salty water meet in Chesapeake Bay?"
+      },
+      {
+        "target": "appalachian-mountains",
+        "text": "What big chain includes mountains in western Maryland?"
+      },
+      {
+        "target": "state-delaware",
+        "text": "What is Maryland’s neighbor on the Delmarva Peninsula like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-maryland",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-chesapeake"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-massachusetts",
+    "title": "Massachusetts",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Massachusetts has an Atlantic coast in the east and rolling hills and mountains in the west. Boston, the capital, grew around a harbor. Southeast of Boston, Cape Cod curves out into the water like a bent arm. The Connecticut River crosses the western part of the state and cuts a wider, lower valley between uplands. The wide valley, sandy cape and busy harbor are three very different places on a map of one state.",
+    "aliases": [
+      "massachusetts state",
+      "what is the capital of massachusetts",
+      "boston state capital",
+      "boston",
+      "cape cod massachusetts",
+      "connecticut river valley"
+    ],
+    "sections": [],
+    "facts": [
+      "Boston Harbor was the setting of the Boston Tea Party in 1773."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "cape-cod",
+        "text": "How did Cape Cod get its long, sandy shape?"
+      },
+      {
+        "target": "boston-tea-party",
+        "text": "What happened in Boston Harbor during the protest?"
+      },
+      {
+        "target": "new-england",
+        "text": "What group of states includes Massachusetts?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-massachusetts",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-cape"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-michigan",
+    "title": "Michigan",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Michigan has two big sections of land, called the Upper and Lower peninsulas. The Lower Peninsula is famous for looking a little like a mitten on a map. By road, the Mackinac Bridge carries travelers between the two parts. Lakes surround so much of Michigan that water looks almost as important as land on a map of it. Lansing, the capital, lies inland in the Lower Peninsula.",
+    "aliases": [
+      "michigan state",
+      "what is the capital of michigan",
+      "lansing state capital",
+      "lansing",
+      "upper peninsula",
+      "mackinac bridge"
+    ],
+    "sections": [],
+    "facts": [
+      "Michigan touches four Great Lakes, all except Lake Ontario."
+    ],
+    "terms": [
+      "peninsula"
+    ],
+    "questions": [
+      {
+        "target": "great-lakes-overview",
+        "text": "What are the names of all five Great Lakes?"
+      },
+      {
+        "target": "peninsulas",
+        "text": "What makes both large parts of Michigan peninsulas?"
+      },
+      {
+        "target": "state-wisconsin",
+        "text": "Which state shares a land border with the Upper Peninsula?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-michigan",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-minnesota",
+    "title": "Minnesota",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Minnesota has forests and many lakes in the north, more farmland toward the south and west, and a part of Lake Superior on its northeastern edge. The Mississippi River begins at Lake Itasca and winds across the state before turning south. Farther down that river sits Saint Paul, the capital, next to Minneapolis. Those cities are often called the Twin Cities. They are much farther downstream than the quiet outlet where the Mississippi starts.",
+    "aliases": [
+      "minnesota state",
+      "what is the capital of minnesota",
+      "saint paul state capital",
+      "saint paul",
+      "st paul",
+      "lake itasca"
+    ],
+    "sections": [],
+    "facts": [
+      "You can find both the start of the Mississippi and a shore of Lake Superior in Minnesota."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "mississippi-river",
+        "text": "Where does the Mississippi travel after it leaves northern Minnesota?"
+      },
+      {
+        "target": "great-lakes-overview",
+        "text": "How large is Superior compared with the other Great Lakes?"
+      },
+      {
+        "target": "state-wisconsin",
+        "text": "What is the state just east of Minnesota like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-minnesota",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-itasca"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-mississippi",
+    "title": "Mississippi",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Mississippi reaches from the lower Mississippi River valley to the Gulf Coast. The western side includes low, flat land by the river. The center and east have some rolling higher country, and sandy shores and marshes appear near the Gulf. Jackson is the capital. In the state, a region often called the Mississippi Delta is inland in the northwest. It is different from the river’s mouth and coastal delta in Louisiana.",
+    "aliases": [
+      "mississippi state",
+      "what is the capital of mississippi",
+      "jackson state capital",
+      "jackson",
+      "lower mississippi valley",
+      "gulf coast"
+    ],
+    "sections": [],
+    "facts": [
+      "The Mississippi River forms much of the state’s western edge."
+    ],
+    "terms": [
+      "river valley",
+      "delta"
+    ],
+    "questions": [
+      {
+        "target": "mississippi-river",
+        "text": "What long trip takes the river to Mississippi?"
+      },
+      {
+        "target": "mississippi-river-delta",
+        "text": "Where is the river’s coastal delta?"
+      },
+      {
+        "target": "state-alabama",
+        "text": "What is Mississippi’s eastern neighbor like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-mississippi",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-msdelta",
+      "usgeo-msinland"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-missouri",
+    "title": "Missouri",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "The Missouri River crosses the state from west to east and joins the Mississippi near St. Louis. Jefferson City, the capital, stands by the Missouri River near the center of the state. To the south, the Ozarks have rounded hills and valleys with streams and springs. Farther north, the land is often lower and more gently rolling. Missouri’s two main rivers help explain where several of its larger towns grew.",
+    "aliases": [
+      "missouri state",
+      "what is the capital of missouri",
+      "jefferson city state capital",
+      "jefferson city",
+      "ozarks",
+      "missouri river"
+    ],
+    "sections": [],
+    "facts": [
+      "Missouri is the name of both a state and a river that crosses it."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "ozark-plateaus",
+        "text": "Why are the Ozarks hillier than nearby plains?"
+      },
+      {
+        "target": "mississippi-river",
+        "text": "Which rivers flow into the Mississippi?"
+      },
+      {
+        "target": "state-kansas",
+        "text": "Which state lies just west of Missouri?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-missouri",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-montana",
+    "title": "Montana",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Montana has steep mountains in its west and broad, more open plains toward its east. Helena, the state capital, sits in the western part of the state. The plains are part of a much larger region that stretches across the center of North America. Montana’s northern edge touches Canada, and the northern Rocky Mountains continue across that line. So the straight border on the map does not mark a sudden change in the landscape.",
+    "aliases": [
+      "montana state",
+      "what is the capital of montana",
+      "helena state capital",
+      "helena",
+      "glacier national park",
+      "rocky mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "Glacier National Park protects mountain country in northwestern Montana."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "great-plains",
+        "text": "Where do the open plains in eastern Montana continue?"
+      },
+      {
+        "target": "canada",
+        "text": "What country lies north of Montana?"
+      },
+      {
+        "target": "state-idaho",
+        "text": "What is the mountain state across much of Montana’s western edge like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-montana",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-glacier"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-nebraska",
+    "title": "Nebraska",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Nebraska stretches west from the Missouri River into the Great Plains. Lincoln, its capital, is near the eastern end. A traveler going west can pass wide farmland, the long path of the Platte River and an area of grass-covered dunes called the Sandhills. Those hills can look green instead of sandy because grasses grow on top of the sand. The western end of Nebraska is higher than much of the east.",
+    "aliases": [
+      "nebraska state",
+      "what is the capital of nebraska",
+      "lincoln state capital",
+      "lincoln",
+      "sandhills",
+      "platte river"
+    ],
+    "sections": [],
+    "facts": [
+      "The Platte River flows east across Nebraska and joins the Missouri River."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "nebraska-sandhills",
+        "text": "Why don’t the Nebraska Sandhills look like a bare desert?"
+      },
+      {
+        "target": "great-plains",
+        "text": "How does Nebraska fit into the wider Great Plains?"
+      },
+      {
+        "target": "state-iowa",
+        "text": "Which state is across the Missouri River from eastern Nebraska?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-nebraska",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-sandhills"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-nevada",
+    "title": "Nevada",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Nevada has many mountain ranges with long, lower valleys between them. Much of the state is in the Great Basin, where rain and snowmelt collect inland instead of flowing to the sea. The state capital, Carson City, is in western Nevada near the Sierra Nevada. Las Vegas is far to the south in a different desert setting. Both sit in a dry state, but there is a long trip between them.",
+    "aliases": [
+      "nevada state",
+      "what is the capital of nevada",
+      "carson city state capital",
+      "carson city",
+      "great basin",
+      "las vegas"
+    ],
+    "sections": [],
+    "facts": [
+      "On a map Nevada has a long diagonal line where much of its border with California runs."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "great-basin",
+        "text": "Why does so much water in Nevada stay away from the sea?"
+      },
+      {
+        "target": "sierra-nevada",
+        "text": "What mountains are near Nevada’s western edge?"
+      },
+      {
+        "target": "state-california",
+        "text": "What lies west of Nevada’s diagonal border?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-nevada",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-great-basin"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-new-hampshire",
+    "title": "New Hampshire",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "New Hampshire includes high mountains, lake country, wooded river valleys and a short Atlantic coast. The White Mountains lie well north of the capital, Concord, and include Mount Washington. Much of the western edge follows the Connecticut River, with Vermont on the other side. Near the southeast corner, the state reaches the sea. The mountains can get much colder weather than the coast, even though both are in one small state.",
+    "aliases": [
+      "new hampshire state",
+      "what is the capital of new hampshire",
+      "concord state capital",
+      "concord",
+      "mount washington",
+      "white mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "Mount Washington is the highest peak in New Hampshire."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "new-england",
+        "text": "What other states are in the same region as New Hampshire?"
+      },
+      {
+        "target": "state-vermont",
+        "text": "What is the state on the other side of the Connecticut River like?"
+      },
+      {
+        "target": "state-maine",
+        "text": "What kinds of shores does the state to the east have?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-new-hampshire",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-new-jersey",
+    "title": "New Jersey",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "New Jersey lies between the Delaware River and the Atlantic Ocean. Trenton, the capital, is on the river across from Pennsylvania. Parts of northern New Jersey are close to New York City, but farther south the landscape can be much more open. The Pinelands have forests, sandy soil and wetlands. On the Atlantic side, long sandy islands shelter some quieter waters from the open sea.",
+    "aliases": [
+      "new jersey state",
+      "what is the capital of new jersey",
+      "trenton state capital",
+      "trenton",
+      "pinelands",
+      "jersey shore"
+    ],
+    "sections": [],
+    "facts": [
+      "The Delaware River forms much of New Jersey’s western border."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "new-jersey-pinelands",
+        "text": "How do pine trees grow in the sandy Pinelands?"
+      },
+      {
+        "target": "barrier-islands",
+        "text": "What lies behind the long islands on New Jersey’s coast?"
+      },
+      {
+        "target": "state-pennsylvania",
+        "text": "What is the state across the Delaware River from Trenton like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-new-jersey",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-pinelands"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-new-mexico",
+    "title": "New Mexico",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "New Mexico stretches from mountains in the north to dry plains and valleys farther south. Santa Fe, the state capital, sits high above sea level in the northern part of the state. The Rio Grande flows south past Albuquerque. Farther south, White Sands looks like a field of snow from a distance, although its dunes are made of a mineral called gypsum. The high ground helps explain why some parts of New Mexico can be cool even on a clear day.",
+    "aliases": [
+      "new mexico state",
+      "what is the capital of new mexico",
+      "santa fe state capital",
+      "santa fe",
+      "white sands",
+      "rio grande"
+    ],
+    "sections": [],
+    "facts": [
+      "New Mexico shares part of its southern border with Mexico."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "white-sands-dunes",
+        "text": "Why are the dunes at White Sands so white?"
+      },
+      {
+        "target": "altitude",
+        "text": "What does it mean for a place to stand high above sea level?"
+      },
+      {
+        "target": "state-arizona",
+        "text": "What is the state just west of New Mexico like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-new-mexico",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-new-york",
+    "title": "New York",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "New York City sits at the southern end of the state, where the Hudson River reaches tidal waters and a busy harbor. Far upriver, Albany is the state capital. A traveler going north can reach the Adirondack Mountains. To the west, the state touches two Great Lakes and reaches Niagara Falls. Looking at all those places together shows why New York State has many kinds of landscapes far beyond its best-known city.",
+    "aliases": [
+      "new york state",
+      "what is the capital of new york",
+      "albany state capital",
+      "albany",
+      "adirondacks",
+      "hudson river"
+    ],
+    "sections": [],
+    "facts": [
+      "New York touches Lake Erie and Lake Ontario."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "adirondack-mountains",
+        "text": "What can you find north of Albany in the Adirondacks?"
+      },
+      {
+        "target": "great-lakes-overview",
+        "text": "Which of the Great Lakes meet New York State?"
+      },
+      {
+        "target": "erie-canal",
+        "text": "Why did builders dig a water route across New York?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-new-york",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-north-carolina",
+    "title": "North Carolina",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "North Carolina runs from the mountains in the west to the Atlantic in the east. Between them are rolling hills where Raleigh, the capital, is located. At the coast, the Outer Banks are long sandy islands separated from much of the mainland by wide, protected waters. In the opposite direction, the Great Smoky Mountains straddle the state line with Tennessee. That long distance from mountains to sea gives people many different kinds of places to explore.",
+    "aliases": [
+      "north carolina state",
+      "what is the capital of north carolina",
+      "raleigh state capital",
+      "raleigh",
+      "outer banks",
+      "smoky mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "The Outer Banks lie seaward of large bodies of water called sounds."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "outer-banks",
+        "text": "Why do the Outer Banks form long, narrow islands?"
+      },
+      {
+        "target": "great-smoky-mountains",
+        "text": "Why does the mountain country shared with Tennessee look smoky from a distance?"
+      },
+      {
+        "target": "state-tennessee",
+        "text": "What does North Carolina’s western neighbor look like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-north-carolina",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-outer",
+      "usgeo-smoky"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-north-dakota",
+    "title": "North Dakota",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "North Dakota lies in the northern Great Plains. The Missouri River flows past Bismarck, the state capital. In the west, the Little Missouri River and smaller streams have cut steep-sided valleys into layers of rock, making part of the badlands. Much farther east, the broad Red River valley is much flatter. Those two areas show how different the plains can look across one state. The northern border meets Canada.",
+    "aliases": [
+      "north dakota state",
+      "what is the capital of north dakota",
+      "bismarck state capital",
+      "bismarck",
+      "badlands",
+      "red river valley"
+    ],
+    "sections": [],
+    "facts": [
+      "North Dakota’s neighbor to the south is South Dakota."
+    ],
+    "terms": [
+      "river valley"
+    ],
+    "questions": [
+      {
+        "target": "great-plains",
+        "text": "Where do the broad plains reach beyond North Dakota?"
+      },
+      {
+        "target": "badlands-landforms",
+        "text": "Why do some plains hold bunches of steep ravines?"
+      },
+      {
+        "target": "state-south-dakota",
+        "text": "What does the state just south of North Dakota look like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-north-dakota",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-theodore"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-ohio",
+    "title": "Ohio",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Ohio has a Great Lake on one side and a large river on another. To the north, cities such as Cleveland grew beside Lake Erie. The Ohio River curves along much of the south and east. Columbus, the capital, is inland near the middle of the state. Parts of western Ohio have broad, fairly flat land. The southeastern hills belong to the western side of the long Appalachian region.",
+    "aliases": [
+      "ohio state",
+      "what is the capital of ohio",
+      "columbus state capital",
+      "columbus",
+      "lake erie",
+      "ohio river"
+    ],
+    "sections": [],
+    "facts": [
+      "Lake Erie separates part of northern Ohio from Canada, with an international border in the lake."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "great-lakes-overview",
+        "text": "Where is Lake Erie among the Great Lakes?"
+      },
+      {
+        "target": "appalachian-mountains",
+        "text": "What long area of mountains and plateaus reaches toward southeastern Ohio?"
+      },
+      {
+        "target": "state-west-virginia",
+        "text": "Which neighbor lies across much of Ohio’s southeastern river boundary?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-ohio",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-oklahoma",
+    "title": "Oklahoma",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Oklahoma spreads from flatter, drier land in the west to hills and forests toward its east. A long strip called the Panhandle reaches out at the northwest. Oklahoma City, the capital, sits much closer to the center. Two rivers also help with orientation. The Arkansas River passes through the northeast, and the Red River makes most of the southern boundary with Texas. Looking at both rivers shows the state has several different water routes.",
+    "aliases": [
+      "oklahoma state",
+      "what is the capital of oklahoma",
+      "oklahoma city state capital",
+      "oklahoma city",
+      "panhandle",
+      "red river"
+    ],
+    "sections": [],
+    "facts": [
+      "Oklahoma’s Panhandle touches New Mexico at its western end."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "great-plains",
+        "text": "What larger plains region reaches into western Oklahoma?"
+      },
+      {
+        "target": "state-texas",
+        "text": "What lies across the Red River from Oklahoma?"
+      },
+      {
+        "target": "state-new-mexico",
+        "text": "What land lies west of Oklahoma’s Panhandle?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-oklahoma",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-oregon",
+    "title": "Oregon",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Oregon’s Pacific coast has cliffs, beaches and forested headlands. Inland from the coast are valleys, including the Willamette Valley where Salem, the capital, is located. The Cascade Range rises farther east. Near its southern part in Oregon, Crater Lake fills a large hollow left by a volcano. Beyond the Cascades, parts of eastern Oregon are much drier and more open than the green country on the west side.",
+    "aliases": [
+      "oregon state",
+      "what is the capital of oregon",
+      "salem state capital",
+      "salem",
+      "willamette valley",
+      "crater lake"
+    ],
+    "sections": [],
+    "facts": [
+      "The Columbia River forms much of the border between Oregon and Washington."
+    ],
+    "terms": [
+      "volcano"
+    ],
+    "questions": [
+      {
+        "target": "cascade-range",
+        "text": "Why do so many volcanoes rise in the Cascade Range?"
+      },
+      {
+        "target": "crater-lake-oregon",
+        "text": "How did a volcano help form Crater Lake?"
+      },
+      {
+        "target": "state-washington",
+        "text": "What lies across the Columbia River from much of northern Oregon?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-oregon",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-cascades"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-pennsylvania",
+    "title": "Pennsylvania",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Pennsylvania’s middle has long ridges with valleys between them, part of the Appalachian region. Harrisburg, the capital, stands on the Susquehanna River in that part of the state. Farther east, Philadelphia lies along the Delaware River. To the west, three rivers meet at Pittsburgh: the Allegheny and Monongahela join to form the Ohio. Those separate river routes help explain why towns grew in different places as people traveled and moved goods.",
+    "aliases": [
+      "pennsylvania state",
+      "what is the capital of pennsylvania",
+      "harrisburg state capital",
+      "harrisburg",
+      "philadelphia",
+      "pittsburgh"
+    ],
+    "sections": [],
+    "facts": [
+      "A short part of Pennsylvania touches Lake Erie in the northwest."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "appalachian-mountains",
+        "text": "Why are so many long mountain ridges found in the eastern United States?"
+      },
+      {
+        "target": "chesapeake-bay",
+        "text": "Where does the Susquehanna River go after passing Pennsylvania?"
+      },
+      {
+        "target": "constitutional-convention",
+        "text": "What important meeting took place in Philadelphia in 1787?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-pennsylvania",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-chesapeake"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-rhode-island",
+    "title": "Rhode Island",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Rhode Island is the smallest U.S. state by area. The ocean makes it look complicated on a map anyway. Narragansett Bay reaches far inland, with several islands in it. Providence, the capital, is near the head of the bay. Some parts of the state are on the mainland, while others are on islands. That is why the name can be confusing if you expect the whole state to be a single island.",
+    "aliases": [
+      "rhode island state",
+      "what is the capital of rhode island",
+      "providence state capital",
+      "providence",
+      "narragansett bay",
+      "smallest state"
+    ],
+    "sections": [],
+    "facts": [
+      "The Atlantic Ocean lies south of Rhode Island."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "new-england",
+        "text": "Which other states share the same New England region?"
+      },
+      {
+        "target": "state-connecticut",
+        "text": "What lies west of Rhode Island?"
+      },
+      {
+        "target": "archipelagos",
+        "text": "What is the name for several islands grouped together?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-rhode-island",
+      "usgeo-state-map",
+      "usgeo-capitals"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-south-carolina",
+    "title": "South Carolina",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "South Carolina slopes from higher land in the northwest toward the Atlantic Ocean. Columbia, the capital, lies inland where rivers pass between the hilly country and lower plains. Near the coast, a broad area called the Lowcountry has salt marshes, tidal streams and islands. Charleston is on a harbor there. The rise from marshes toward wooded hills can be gradual, so a map of rivers and land height helps show the change.",
+    "aliases": [
+      "south carolina state",
+      "what is the capital of south carolina",
+      "columbia state capital",
+      "columbia",
+      "charleston",
+      "lowcountry"
+    ],
+    "sections": [],
+    "facts": [
+      "Part of South Carolina reaches the Blue Ridge Mountains in its far northwest."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "atlantic-coastal-plain",
+        "text": "What broad area includes South Carolina’s Lowcountry?"
+      },
+      {
+        "target": "blue-ridge-mountains",
+        "text": "What mountain country touches the far northwest of the state?"
+      },
+      {
+        "target": "state-georgia",
+        "text": "What is the state across much of the Savannah River like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-south-carolina",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-south-dakota",
+    "title": "South Dakota",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Eastern South Dakota has open country shaped in part by past glaciers. The Missouri River passes the capital, Pierre, and divides much of the state into eastern and western parts. In the west, the Black Hills rise above the surrounding plains. Nearby badlands have sharply cut hills and gullies where rock layers are easy to see. They look quite different from each other even though both are in the western part of the same state.",
+    "aliases": [
+      "south dakota state",
+      "what is the capital of south dakota",
+      "pierre state capital",
+      "pierre",
+      "black hills",
+      "badlands"
+    ],
+    "sections": [],
+    "facts": [
+      "The Missouri River flows through both North Dakota and South Dakota."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "badlands-landforms",
+        "text": "Why can you see bands of different colors in the badlands?"
+      },
+      {
+        "target": "black-hills",
+        "text": "Why do the Black Hills stand out from the surrounding plains?"
+      },
+      {
+        "target": "state-north-dakota",
+        "text": "What land lies just north of South Dakota?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-south-dakota",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-badlands"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-tennessee",
+    "title": "Tennessee",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Tennessee is long from west to east. The Mississippi River runs beside its western end near Memphis, but the eastern end rises into the Appalachian Mountains. Nashville, the capital, is in the middle part of the state on the Cumberland River. Near the far eastern edge, the Great Smoky Mountains rise along the North Carolina border. A drive across Tennessee goes through many landscapes without needing to go far north or south.",
+    "aliases": [
+      "tennessee state",
+      "what is the capital of tennessee",
+      "nashville state capital",
+      "nashville",
+      "memphis",
+      "smoky mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "Tennessee touches eight other states."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "great-smoky-mountains",
+        "text": "Where do Tennessee and North Carolina share mountain country?"
+      },
+      {
+        "target": "mississippi-river",
+        "text": "What passes Memphis on its way toward the Gulf?"
+      },
+      {
+        "target": "state-kentucky",
+        "text": "What is the state just north of much of Tennessee like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-tennessee",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-smoky"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-texas",
+    "title": "Texas",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Texas stretches from low shores on the Gulf to high, dry country in the west. Austin, the state capital, is in central Texas along a river called the Colorado. That river is separate from the Colorado River that carved the Grand Canyon. The Rio Grande forms much of the boundary with Mexico and turns around a large bend in far western Texas. These different rivers and their valleys help divide Texas into very different-looking parts.",
+    "aliases": [
+      "texas state",
+      "what is the capital of texas",
+      "austin state capital",
+      "austin",
+      "rio grande",
+      "big bend"
+    ],
+    "sections": [],
+    "facts": [
+      "Texas has the largest area of any U.S. state apart from Alaska."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "rio-grande",
+        "text": "Where does the Rio Grande begin before reaching Texas?"
+      },
+      {
+        "target": "state-new-mexico",
+        "text": "Which state shares part of the Rio Grande above Texas?"
+      },
+      {
+        "target": "gulf-coastal-plain",
+        "text": "What kind of land is found along much of the Texas shore?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-texas",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-rio",
+      "usgeo-tx-colorado"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-utah",
+    "title": "Utah",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Utah has several very different kinds of land. On the west are dry valleys and separate mountain ranges. In the north, mountains rise above the Great Salt Lake, near Salt Lake City, the capital. Southern and eastern Utah contain much of the Colorado Plateau, where rock layers show in canyons and natural arches. The divide between these regions is part of what makes Utah’s landscape change quickly on a long drive.",
+    "aliases": [
+      "utah state",
+      "what is the capital of utah",
+      "salt lake city state capital",
+      "salt lake city",
+      "great salt lake",
+      "canyons"
+    ],
+    "sections": [],
+    "facts": [
+      "The Great Salt Lake has no river outlet to the ocean."
+    ],
+    "terms": [
+      "plateau"
+    ],
+    "questions": [
+      {
+        "target": "great-basin",
+        "text": "Why does water in some western valleys stay inland?"
+      },
+      {
+        "target": "arches-national-park",
+        "text": "How did so many natural arches form in Utah?"
+      },
+      {
+        "target": "colorado-plateau",
+        "text": "What wider rock country stretches across much of southern Utah?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-utah",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-great-basin",
+      "usgeo-salt-lake"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-vermont",
+    "title": "Vermont",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Vermont takes its name from words meaning green mountain. The Green Mountains run roughly north to south through the state. To their west, several towns sit near the broad water of Lake Champlain, with New York on the other side. To their east, the Connecticut River marks much of the edge beside New Hampshire. Montpelier, the capital, is inland among hills and valleys rather than on either of those outer edges.",
+    "aliases": [
+      "vermont state",
+      "what is the capital of vermont",
+      "montpelier state capital",
+      "montpelier",
+      "green mountains",
+      "lake champlain"
+    ],
+    "sections": [],
+    "facts": [
+      "This New England state touches Canada at the north."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "new-england",
+        "text": "What other states make up the New England region?"
+      },
+      {
+        "target": "state-new-hampshire",
+        "text": "What mountain state lies across the Connecticut River?"
+      },
+      {
+        "target": "state-new-york",
+        "text": "What state lies across much of Lake Champlain?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-vermont",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-virginia",
+    "title": "Virginia",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Virginia reaches from the Atlantic and Chesapeake Bay in the east to Appalachian ridges in the west. Richmond, the capital, sits on the James River where the river passes from higher ground onto the lower coastal plain. West of Richmond, gentle hills lead toward the Blue Ridge Mountains. Near the southeastern shore, several rivers and bays give ships routes between inland water and the Atlantic Ocean.",
+    "aliases": [
+      "virginia state",
+      "what is the capital of virginia",
+      "richmond state capital",
+      "richmond",
+      "james river",
+      "blue ridge"
+    ],
+    "sections": [],
+    "facts": [
+      "The James River flows past Richmond toward Chesapeake Bay."
+    ],
+    "terms": [
+      "coastal plain"
+    ],
+    "questions": [
+      {
+        "target": "chesapeake-bay",
+        "text": "Where does the James River meet saltier ocean water?"
+      },
+      {
+        "target": "blue-ridge-mountains",
+        "text": "What high country lies west of Virginia’s hills?"
+      },
+      {
+        "target": "state-west-virginia",
+        "text": "What mountain country lies beyond Virginia’s western border?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-virginia",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-chesapeake"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-washington",
+    "title": "Washington",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Washington State sits in the northwest of the United States, with the Pacific Ocean to the west and Canada to the north. Olympia, the capital, is at the southern end of Puget Sound, a large inlet connected to sea water. The Cascade Range runs across the state from north to south. East of the mountains are wide, often drier areas. The Snake River joins the Columbia in the southeastern part of the state.",
+    "aliases": [
+      "washington state",
+      "what is the capital of washington",
+      "olympia state capital",
+      "olympia",
+      "puget sound in washington",
+      "cascade range in washington",
+      "state of washington"
+    ],
+    "sections": [],
+    "facts": [
+      "Washington State and Washington, D.C., are on opposite sides of the country."
+    ],
+    "terms": [
+      "inlet"
+    ],
+    "questions": [
+      {
+        "target": "puget-sound",
+        "text": "How did such a long inlet form near Olympia?"
+      },
+      {
+        "target": "cascade-range",
+        "text": "What mountains separate wetter and drier parts of Washington?"
+      },
+      {
+        "target": "state-oregon",
+        "text": "What lies across the Columbia River from much of southern Washington?"
+      },
+      {
+        "target": "washington-dc",
+        "text": "Where is the country’s capital compared with Washington State?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-washington",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-snake",
+      "usgeo-puget"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-west-virginia",
+    "title": "West Virginia",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "West Virginia sits within the Appalachian region. Its mountains, high plateaus and deep river valleys give it a very uneven landscape. Charleston, the state capital, stands where the Elk River meets the Kanawha. Farther southeast, the New River runs through a deep, wooded gorge. Along much of the northwest, the Ohio River divides West Virginia from Ohio. On a flat map its borders can look puzzling, but some follow the twists of watercourses.",
+    "aliases": [
+      "west virginia state",
+      "what is the capital of west virginia",
+      "charleston state capital",
+      "charleston west virginia",
+      "new river gorge",
+      "appalachia"
+    ],
+    "sections": [],
+    "facts": [
+      "West Virginia became a separate state in 1863."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "appalachian-mountains",
+        "text": "What larger region includes West Virginia’s hills and high plateaus?"
+      },
+      {
+        "target": "new-river-gorge",
+        "text": "Why is the New River far below the land around it?"
+      },
+      {
+        "target": "state-ohio",
+        "text": "What state lies across much of the Ohio River from West Virginia?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-west-virginia",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-new-river"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-wisconsin",
+    "title": "Wisconsin",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Wisconsin reaches two Great Lakes, Michigan on the east and Superior on the north. Madison, the capital, is farther inland and sits between lakes. The Mississippi River forms part of the western border. In the southwest, a region with steep hills and valleys escaped the ice that covered much of the surrounding land during recent ice ages. That makes the landscape there look very different from many flatter areas to the east.",
+    "aliases": [
+      "wisconsin state",
+      "what is the capital of wisconsin",
+      "madison state capital",
+      "madison",
+      "driftless area",
+      "lake michigan"
+    ],
+    "sections": [],
+    "facts": [
+      "Madison is between Lake Mendota and Lake Monona."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "great-lakes-overview",
+        "text": "Which five lakes are in the Great Lakes group?"
+      },
+      {
+        "target": "driftless-area",
+        "text": "Why did one part of Wisconsin keep its steep valleys?"
+      },
+      {
+        "target": "state-minnesota",
+        "text": "What is the state across part of the Mississippi like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-wisconsin",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-driftless"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "state-wyoming",
+    "title": "Wyoming",
+    "category": "maps-geography",
+    "priority": 1,
+    "answer": "Wyoming has Rocky Mountain ranges, broad open basins and plains that continue eastward. Cheyenne, the capital, sits near the southeastern corner where much of that open country begins. In the northwest, some of the land belongs to Yellowstone National Park. There heat underground helps create hot springs and geysers. The snow and water that fall in Wyoming can flow into very different rivers depending on which side of the mountains they land on.",
+    "aliases": [
+      "wyoming state",
+      "what is the capital of wyoming",
+      "cheyenne state capital",
+      "cheyenne",
+      "yellowstone",
+      "rocky mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "Yellowstone extends into Montana and Idaho, though much of the park is in Wyoming."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "yellowstone",
+        "text": "Why did people protect Yellowstone as a national park?"
+      },
+      {
+        "target": "drainage-divides",
+        "text": "What separates rivers that flow in different directions?"
+      },
+      {
+        "target": "state-montana",
+        "text": "What is the state north of Wyoming like?"
+      }
+    ],
+    "sources": [
+      "usgeo-natgeo-wyoming",
+      "usgeo-state-map",
+      "usgeo-capitals",
+      "usgeo-physio",
+      "usgeo-yellowstone"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "appalachian-mountains",
+    "title": "Where do the Appalachian Mountains run?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Appalachian Mountains form a long, old group of mountain ranges in eastern North America. Their ridges, valleys and high plateaus reach from eastern Canada into the southern United States. More than one range belongs to this group, including the Blue Ridge. Movements in Earth’s rocky outer layer helped raise and fold parts of the land long ago. Over time streams and weather wore those mountains down and helped make rounded tops and long valleys.",
+    "aliases": [
+      "where are the appalachians",
+      "what are the appalachian mountains",
+      "appalachian mountains map"
+    ],
+    "sections": [],
+    "facts": [
+      "Many Appalachian ridges run in the same general direction even when valleys separate them."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "blue-ridge-mountains",
+        "text": "Which part of the Appalachians stretches across Virginia and North Carolina?"
+      },
+      {
+        "target": "state-west-virginia",
+        "text": "What does the Appalachian country look like in West Virginia?"
+      },
+      {
+        "target": "erosion",
+        "text": "How do wind and water carry away rock and soil?"
+      }
+    ],
+    "sources": [
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "colorado-plateau",
+    "title": "Why does the Colorado Plateau have so many canyons?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Colorado Plateau is a broad area of high land shared by parts of Utah, Colorado, Arizona and New Mexico. Many of its rocks have layers that are still easy to see. The land rose, and rivers cut downward into it over a long time. In some places, the rivers made canyons deep enough to show many layers at once. Elsewhere, erosion left smaller shapes behind, including cliffs, towers and natural arches.",
+    "aliases": [
+      "colorado plateau states",
+      "what is the colorado plateau",
+      "high desert canyons"
+    ],
+    "sections": [],
+    "facts": [
+      "The Grand Canyon is one of the best-known canyons in this high region."
+    ],
+    "terms": [
+      "plateau"
+    ],
+    "questions": [
+      {
+        "target": "grand-canyon",
+        "text": "Which river carved the Grand Canyon?"
+      },
+      {
+        "target": "arches-national-park",
+        "text": "How did holes open in the rock in part of Utah?"
+      },
+      {
+        "target": "plateaus",
+        "text": "What separates a plateau from a mountain peak?"
+      }
+    ],
+    "sources": [
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "ozark-plateaus",
+    "title": "What makes the Ozarks hillier than nearby plains?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Ozarks spread across parts of Missouri, Arkansas, Oklahoma and nearby Kansas. In much of the region, the land is high enough for streams to cut downward and leave steep valleys between the hills. Water can also seep into cracks in some rock, including limestone. That moving water helps form caves and can appear again in springs. The Current and Jacks Fork rivers in Missouri pass through country where springs feed cold, clear water into the streams.",
+    "aliases": [
+      "where are the ozarks",
+      "ozark mountains geography",
+      "ozark rivers and springs"
+    ],
+    "sections": [],
+    "facts": [
+      "The Ozarks have plateaus as well as steep-sided valleys."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-arkansas",
+        "text": "Where are the Ozarks in Arkansas?"
+      },
+      {
+        "target": "springs",
+        "text": "How can water underground come out of the ground naturally?"
+      },
+      {
+        "target": "plateaus",
+        "text": "How can streams carve valleys into a high area of land?"
+      }
+    ],
+    "sources": [
+      "usgeo-physio",
+      "usgeo-ozarks"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mississippi-river",
+    "title": "Where does the Mississippi River begin and end?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Mississippi River begins where water flows out of Lake Itasca in northern Minnesota. It is small at first, but it gathers water from many other streams and rivers on its way south. Among the rivers that flow into it are the Missouri and the Ohio. The Mississippi passes cities such as Saint Paul, St. Louis, Memphis and New Orleans. After reaching southern Louisiana, it spreads into separate channels and meets the Gulf.",
+    "aliases": [
+      "mississippi river source and mouth",
+      "mississippi river route",
+      "where is lake itasca",
+      "mississippi river"
+    ],
+    "sections": [],
+    "facts": [
+      "Some states use part of the river’s twisting course as a border."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-minnesota",
+        "text": "Where in Minnesota does the Mississippi start?"
+      },
+      {
+        "target": "mississippi-river-delta",
+        "text": "What happens where the Mississippi empties into the sea?"
+      },
+      {
+        "target": "tributary-streams",
+        "text": "Why do small streams join larger rivers?"
+      }
+    ],
+    "sources": [
+      "usgeo-river",
+      "usgeo-itasca",
+      "usgeo-msdelta"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "sierra-nevada",
+    "title": "What shaped the Sierra Nevada mountains?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Sierra Nevada is a long mountain range mainly in eastern California, along the western side of Nevada. Large bodies of rock, including granite, make up many of its high slopes. Movement in Earth’s rocky outer layer helped lift the range. Later, glaciers scraped away rock and widened some valleys. You can see the result at Yosemite, where a broad valley lies below steep rock walls. Streams and weather still wear down the range today.",
+    "aliases": [
+      "where is sierra nevada range",
+      "are the sierras in california",
+      "sierra nevada granite and glaciers"
+    ],
+    "sections": [],
+    "facts": [
+      "Mount Whitney is one of the range’s tallest landmarks and the highest mountain in the 48 connected U.S. states."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "yosemite-valley",
+        "text": "What helped give Yosemite Valley its steep walls?"
+      },
+      {
+        "target": "glaciers",
+        "text": "How can a slow-moving glacier scrape rock?"
+      },
+      {
+        "target": "state-california",
+        "text": "What other landscapes are west of the Sierra Nevada?"
+      }
+    ],
+    "sources": [
+      "usgeo-physio",
+      "usgeo-yosemite"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "great-plains",
+    "title": "Are the Great Plains completely flat?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Great Plains are a broad, open region east of the Rocky Mountains that runs through parts of the central United States and into Canada. In some places the horizon seems almost flat, but in others the land rolls, rises or breaks into river valleys. The land generally gets higher toward the Rockies. Grasses grew across large areas, and people now use parts of the plains for crops or grazing animals. Some stretches still have native grassland.",
+    "aliases": [
+      "where are the great plains",
+      "are the plains flat",
+      "grasslands east of the rocky mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "The high plains near the mountains can be far above sea level even when they look flat."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "flint-hills",
+        "text": "Where can tall prairie grass still grow in Kansas?"
+      },
+      {
+        "target": "state-nebraska",
+        "text": "What landforms can you see on Nebraska’s plains?"
+      },
+      {
+        "target": "badlands-landforms",
+        "text": "How can steep ravines cut into an open plain?"
+      }
+    ],
+    "sources": [
+      "usgeo-physio",
+      "usgeo-great-plains"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "long-island-sound",
+    "title": "What lies between Connecticut and Long Island?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "Long Island Sound is an arm of water between the north shore of Long Island and the mainland coasts of Connecticut and part of New York. At its eastern end, water can move between the sound and the Atlantic Ocean. Rivers bring in fresh water, while tides bring in salt water from the sea. The two kinds of water mix. Bays, marshes and river mouths around the sound give fish and birds several kinds of places to live.",
+    "aliases": [
+      "what is long island sound",
+      "salt water between long island and connecticut",
+      "long island sound estuary"
+    ],
+    "sections": [],
+    "facts": [
+      "Long Island Sound is an estuary, a coastal area where fresh river water and salty ocean water mix."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-connecticut",
+        "text": "Which state runs along much of the north side of the sound?"
+      },
+      {
+        "target": "estuaries",
+        "text": "What can happen when river water meets salt water?"
+      },
+      {
+        "target": "chesapeake-bay",
+        "text": "What other large estuary lies farther south?"
+      }
+    ],
+    "sources": [
+      "usgeo-sound",
+      "usgeo-sound-estuary"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "new-england",
+    "title": "Which six states make up New England?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "New England is a region in the far northeastern United States. It includes Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island and Vermont. A lot changes within those six states. Five have a seacoast, while Vermont is inland beside Lake Champlain. Mountains reach across parts of northern New England. Farther south there are busy ports and much lower land. The region’s name helps group its states, but one scene does not show what all of them are like.",
+    "aliases": [
+      "which states are in new england",
+      "six new england states",
+      "new england united states"
+    ],
+    "sections": [],
+    "facts": [
+      "New England includes both the United States’ smallest state, Rhode Island, and Maine, the largest state in the region by area."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-vermont",
+        "text": "Which New England state has no ocean shore?"
+      },
+      {
+        "target": "state-maine",
+        "text": "What kinds of land and water shape the region’s far northeast?"
+      },
+      {
+        "target": "state-rhode-island",
+        "text": "Why is Rhode Island not one single island?"
+      }
+    ],
+    "sources": [
+      "usgeo-new-england",
+      "usgeo-physio",
+      "usgeo-state-map"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "atlantic-coastal-plain",
+    "title": "Why is so much of the Atlantic Coastal Plain low?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "In much of the eastern United States, there is a wide strip of low land before the Atlantic Ocean. It is called the Atlantic Coastal Plain. Sand, mud and other loose material built up as rivers, ocean water and wind moved them. Today some parts have flat fields. Other parts have marshes, slow rivers and sandy shores. The ground often gets higher and hillier as you move inland toward the Piedmont. The change can be slow enough to miss on a short walk.",
+    "aliases": [
+      "where is atlantic coastal plain",
+      "why is the eastern shoreline low",
+      "coastal plain sand and mud"
+    ],
+    "sections": [],
+    "facts": [
+      "A coastal plain and its underwater edge can both contain many layers of sand and mud."
+    ],
+    "terms": [
+      "coastal plain"
+    ],
+    "questions": [
+      {
+        "target": "state-south-carolina",
+        "text": "What does South Carolina’s low coastal country look like?"
+      },
+      {
+        "target": "blue-ridge-mountains",
+        "text": "What higher country lies farther inland?"
+      },
+      {
+        "target": "salt-marsh",
+        "text": "Why does water keep rising and falling in a coastal marsh?"
+      }
+    ],
+    "sources": [
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "florida-keys",
+    "title": "Why do the Florida Keys form a curved chain?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Florida Keys are a line of low islands that curves away from the southern end of Florida. Many of the islands are made of limestone left by sea life long ago. The former shapes of reefs and sandy banks helped decide where islands appeared when the water was lower. There are now channels between the islands, so the land appears as a curved string of pieces on a map. Living coral reefs grow offshore on the Atlantic side.",
+    "aliases": [
+      "where are florida keys",
+      "why are keys curved",
+      "what is a key island"
+    ],
+    "sections": [],
+    "facts": [
+      "A key is a low island, and there are many keys in the Florida chain."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-florida",
+        "text": "Where are the Keys compared with the rest of Florida?"
+      },
+      {
+        "target": "coral-reefs",
+        "text": "How do tiny living animals help build a reef?"
+      },
+      {
+        "target": "archipelagos",
+        "text": "What do we call a group of islands like the Florida Keys?"
+      }
+    ],
+    "sources": [
+      "usgeo-keys",
+      "usgeo-key-geology"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "hawaiian-island-chain",
+    "title": "Where is Hawaii’s hidden undersea volcano?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "South of the Big Island of Hawaiʻi, an active volcano called Kamaʻehuakanaloa rises from the bottom of the Pacific. Its top is still far below the water. It is part of the same volcanic chain as Hawaiʻi, Maui, Oʻahu and Kauaʻi. Many volcanoes in that chain become older as you travel northwest. The hidden volcano is near its younger southeastern end, where a volcanic hot spot can feed molten rock from deep underground. It shows that some mountains in the Hawaiian chain never appear above the waves.",
+    "aliases": [
+      "underwater volcano hawaii",
+      "where is kamaehuakanaloa",
+      "loihi seamount hawaii"
+    ],
+    "sections": [],
+    "facts": [
+      "Kamaʻehuakanaloa was once called Lōʻihi Seamount."
+    ],
+    "terms": [
+      "volcanic hot spot",
+      "volcano"
+    ],
+    "questions": [
+      {
+        "target": "state-hawaii",
+        "text": "On which island is Hawaii’s capital?"
+      },
+      {
+        "target": "volcanic-hot-spots",
+        "text": "How does a hot spot help form a line of volcanoes?"
+      },
+      {
+        "target": "archipelagos",
+        "text": "What do we call a group of islands above the water?"
+      }
+    ],
+    "sources": [
+      "usgeo-hawaii",
+      "usgeo-undersea-hawaii"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "columbia-plateau",
+    "title": "How did moving lava help build the Columbia Plateau?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "Parts of the inland Pacific Northwest sit on huge layers of dark rock called basalt. Long ago runny lava spread across a large area and cooled. Many separate flows made a thick pile of rock. Later, streams cut deep paths through parts of the rock. The Columbia River crosses the region. When you see dark bands on the side of a valley, you may be seeing the edges of different sheets of cooled lava.",
+    "aliases": [
+      "columbia plateau lava",
+      "columbia river basalt layers",
+      "how was columbia plateau formed"
+    ],
+    "sections": [],
+    "facts": [
+      "The Columbia Plateau’s layers formed across a wide area, far beyond a single volcano cone."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-washington",
+        "text": "What wide areas lie east of Washington’s Cascade Mountains?"
+      },
+      {
+        "target": "igneous-rock",
+        "text": "What kind of rock can form when runny lava cools?"
+      },
+      {
+        "target": "erosion",
+        "text": "How can rivers remove pieces of rock over time?"
+      }
+    ],
+    "sources": [
+      "usgeo-physio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "indiana-dunes",
+    "title": "How did sand dunes grow beside Lake Michigan?",
+    "category": "landmarks",
+    "priority": 2,
+    "answer": "Waves move sand along the Indiana shore of Lake Michigan. When sand dries on the beach, wind can pick up the loose grains and carry them farther inland. A log, a patch of plants or a small bump can make the wind drop some grains. A pile can grow into a sand dune as more grains arrive. At Indiana Dunes National Park, that process helped shape a long shore with beaches, high dunes and several kinds of plant habitat.",
+    "aliases": [
+      "indiana dunes lake michigan",
+      "why indiana has dunes",
+      "indiana dunes wind and waves"
+    ],
+    "sections": [],
+    "facts": [
+      "Some dunes have plants on their slopes, and others show large patches of bare sand."
+    ],
+    "terms": [
+      "sand dune"
+    ],
+    "questions": [
+      {
+        "target": "state-indiana",
+        "text": "What part of Indiana touches Lake Michigan?"
+      },
+      {
+        "target": "sand-dunes",
+        "text": "How can moving air build a hill of loose sand?"
+      },
+      {
+        "target": "great-lakes-overview",
+        "text": "Where does Lake Michigan fit in the group of Great Lakes?"
+      }
+    ],
+    "sources": [
+      "usgeo-indiana-dunes"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "loess-hills",
+    "title": "How did wind help build Iowa’s Loess Hills?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "Along the Missouri River valley in western Iowa stand hills built of very small grains of soil called loess. During cold periods, water from melting ice carried fine bits of rock into wide river valleys. When mud on the floodplain dried, wind could lift those tiny grains and move them. The dust settled on higher land, slowly making very thick banks. Streams later cut through those banks and helped carve the steep shapes visible today.",
+    "aliases": [
+      "iowa loess hills wind",
+      "where are loess hills",
+      "what is loess made of"
+    ],
+    "sections": [],
+    "facts": [
+      "Much of the dust that built these hills came from the flat valley near the Missouri River."
+    ],
+    "terms": [
+      "river valley"
+    ],
+    "questions": [
+      {
+        "target": "state-iowa",
+        "text": "Where in Iowa are the Loess Hills?"
+      },
+      {
+        "target": "glaciers",
+        "text": "How can moving ice scrape the ground and carry rock?"
+      },
+      {
+        "target": "floodplains",
+        "text": "What is the flat land beside a river called?"
+      }
+    ],
+    "sources": [
+      "usgeo-loess"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "flint-hills",
+    "title": "Why is there so much tall grass left in the Flint Hills?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Flint Hills of Kansas have thin soil and many hard bits of rock near the surface. Their slopes are difficult to plow. As people turned much other prairie into fields, large stretches of this rocky land were used for animals to graze instead. That helped leave room for prairie plants that already grew there. Some grasses get very tall by late summer. Periodic fire also helps keep young trees from taking over many areas.",
+    "aliases": [
+      "why flint hills prairie survived",
+      "kansas flint hills",
+      "flint hills rock and grass"
+    ],
+    "sections": [],
+    "facts": [
+      "A hard rock called chert, sometimes called flint, helped give the Flint Hills their name."
+    ],
+    "terms": [
+      "prairie"
+    ],
+    "questions": [
+      {
+        "target": "state-kansas",
+        "text": "Where are the Flint Hills in Kansas?"
+      },
+      {
+        "target": "tallgrass-prairies",
+        "text": "How can native prairie grasses grow so tall?"
+      },
+      {
+        "target": "prairie-fires",
+        "text": "How do prairie grasses survive after a fire?"
+      }
+    ],
+    "sources": [
+      "usgeo-flint",
+      "usgeo-flint-preserve"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "mississippi-river-delta",
+    "title": "How did the Mississippi build land near the Gulf?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "As the Mississippi River slows near the Gulf Coast, some of the sand and mud in the water settles out. Over time these deposits can build low new land between the channels. In southern Louisiana, some channels reach out into the Gulf like toes on a bird’s foot. That gives part of the coastal delta its nickname. Waves, storms, sea level and changes people make to the river can affect when land grows or washes away.",
+    "aliases": [
+      "why mississippi delta looks like bird foot",
+      "louisiana river delta",
+      "how delta forms at river mouth"
+    ],
+    "sections": [],
+    "facts": [
+      "The Louisiana coastal delta is different from the inland region also called the Mississippi Delta."
+    ],
+    "terms": [
+      "delta"
+    ],
+    "questions": [
+      {
+        "target": "mississippi-river",
+        "text": "How does water reach Louisiana from the river’s start in Minnesota?"
+      },
+      {
+        "target": "state-louisiana",
+        "text": "What major cities sit upstream of the river’s mouth?"
+      },
+      {
+        "target": "state-mississippi",
+        "text": "Where is the inland region that is also called the Mississippi Delta?"
+      }
+    ],
+    "sources": [
+      "usgeo-msdelta",
+      "usgeo-msinland"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "acadia-coastline",
+    "title": "Why does Acadia have rocky headlands and bays?",
+    "category": "landmarks",
+    "priority": 2,
+    "answer": "Acadia National Park protects parts of Maine’s coast, including areas on Mount Desert Island and the Schoodic Peninsula. A headland is a piece of land that sticks out into the sea. Here many headlands are made of hard rock such as granite. Between them are bays and lower parts of shore where waves can carry sand or bits of broken rock. Ice also shaped the land long ago. Today waves still wear away the shore a little at a time.",
+    "aliases": [
+      "rocky coast acadia",
+      "where is acadia national park",
+      "schoodic peninsula coastline"
+    ],
+    "sections": [],
+    "facts": [
+      "The Schoodic Peninsula is the part of Acadia on the mainland."
+    ],
+    "terms": [
+      "peninsula"
+    ],
+    "questions": [
+      {
+        "target": "state-maine",
+        "text": "What other kinds of land can you find in Maine?"
+      },
+      {
+        "target": "glaciers",
+        "text": "How does ice change rock as it moves across the land?"
+      },
+      {
+        "target": "ocean-waves",
+        "text": "How do waves reach Acadia’s rocky shore?"
+      }
+    ],
+    "sources": [
+      "usgeo-acadia",
+      "usgeo-acadia-schoodic",
+      "usgeo-acadia-ice"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "chesapeake-bay",
+    "title": "How do fresh and salty water meet in Chesapeake Bay?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "Chesapeake Bay reaches inland from the Atlantic Ocean between land in Maryland and Virginia. Rivers bring fresh water into the bay. The mouth of a river, or river mouth, is where it reaches the bay. The large Susquehanna River enters near the northern end. Ocean water adds salt nearer the bay’s mouth. These waters mix, but some parts are less salty than others. That provides several kinds of habitat for plants and animals, from river mouths to the wider, saltier bay.",
+    "aliases": [
+      "chesapeake bay salty or fresh",
+      "largest us estuary",
+      "where is chesapeake bay"
+    ],
+    "sections": [],
+    "facts": [
+      "Chesapeake Bay is the largest estuary in the United States."
+    ],
+    "terms": [
+      "river mouth"
+    ],
+    "questions": [
+      {
+        "target": "state-maryland",
+        "text": "How does the bay split Maryland into different-looking pieces?"
+      },
+      {
+        "target": "estuaries",
+        "text": "What do we call a coastal place where fresh and salt water mix?"
+      },
+      {
+        "target": "long-island-sound",
+        "text": "Where can you find another large estuary north of the Chesapeake?"
+      }
+    ],
+    "sources": [
+      "usgeo-chesapeake",
+      "usgeo-chesapeake-noaa"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cape-cod",
+    "title": "How did Cape Cod get its long, sandy shape?",
+    "category": "landmarks",
+    "priority": 2,
+    "answer": "Cape Cod curves out from Massachusetts between Cape Cod Bay and the Atlantic Ocean. Huge sheets of ice once reached this part of North America. As the ice melted, it left behind piles and layers of sand, gravel and other loose material. The sea then worked on that material. Waves and currents wore down some spots and pushed sand into others. Those changes helped give the cape its curved outline, and parts of the shoreline are still changing.",
+    "aliases": [
+      "cape cod shape for kids",
+      "why does cape cod curve",
+      "how was cape cod formed",
+      "cape cod"
+    ],
+    "sections": [],
+    "facts": [
+      "Cape Cod National Seashore protects beaches and other parts of the cape’s changing coast."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-massachusetts",
+        "text": "Where does Cape Cod lie in Massachusetts?"
+      },
+      {
+        "target": "ocean-waves",
+        "text": "How can waves move across the ocean and reach a coast?"
+      },
+      {
+        "target": "glaciers",
+        "text": "How do large masses of ice change the land around them?"
+      }
+    ],
+    "sources": [
+      "usgeo-cape"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "nebraska-sandhills",
+    "title": "Why don’t the Nebraska Sandhills look like a bare desert?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "Many hills in central and western Nebraska are made of sand that wind piled up. From a distance, much of this country looks green or brown instead of pale and bare. Grasses cover many of the dunes. Their roots help hold sand, and their stems slow wind close to the ground. Some low areas between the hills hold lakes and marshes. The sand and living plants together give the Sandhills their rolling shape and soft-looking cover.",
+    "aliases": [
+      "nebraska sandhills grass",
+      "how did nebraska sand hills form",
+      "nebraska dunes and lakes"
+    ],
+    "sections": [],
+    "facts": [
+      "Many dunes here hold grassland on their slopes, although some patches of sand still show."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-nebraska",
+        "text": "Where are the Sandhills in Nebraska?"
+      },
+      {
+        "target": "sand-dunes",
+        "text": "How does wind build a dune from loose grains?"
+      },
+      {
+        "target": "great-plains",
+        "text": "What larger region contains Nebraska’s grasslands?"
+      }
+    ],
+    "sources": [
+      "usgeo-sandhills"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "great-basin",
+    "title": "Why does water in the Great Basin stay inland?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "In the Great Basin, mountain ridges and higher ground surround many valleys. Water that reaches a valley may flow into a small lake or dry lake bed. It may then disappear into the ground or into the air as water vapor. It does not reach the sea in a river. Each drainage basin is the land that sends water to one of these lower places. This region covers much of Nevada and parts of surrounding states. This water rule helps show where the Great Basin is, even if there is no painted line on the ground.",
+    "aliases": [
+      "great basin no ocean outlet",
+      "where is the great basin",
+      "why does great salt lake have no outlet"
+    ],
+    "sections": [],
+    "facts": [
+      "The Great Salt Lake in Utah collects water from rivers and has no river outlet to the sea."
+    ],
+    "terms": [
+      "drainage basin"
+    ],
+    "questions": [
+      {
+        "target": "state-nevada",
+        "text": "What does a map of Nevada’s mountains and valleys look like?"
+      },
+      {
+        "target": "state-utah",
+        "text": "What other landscapes can you find beside the Great Salt Lake?"
+      },
+      {
+        "target": "drainage-divides",
+        "text": "How can a ridge separate water that goes in different directions?"
+      }
+    ],
+    "sources": [
+      "usgeo-great-basin",
+      "usgeo-salt-lake"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "new-jersey-pinelands",
+    "title": "How do pine trees grow in the sandy Pinelands?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Pinelands lie on southern New Jersey’s low coastal plain. Much of their soil is sandy, so water drains through it more easily than it does through sticky clay. Pitch pines and some other plants can grow well there even though this kind of soil holds little food for many plants. The land is not dry everywhere. Places where water is close to the surface can stay wet and support different plants and animals.",
+    "aliases": [
+      "pine barrens new jersey",
+      "pinelands sandy soil",
+      "pitch pine new jersey"
+    ],
+    "sections": [],
+    "facts": [
+      "The larger Pine Barrens landscape includes both pine woods and wetlands."
+    ],
+    "terms": [
+      "coastal plain"
+    ],
+    "questions": [
+      {
+        "target": "state-new-jersey",
+        "text": "Which part of New Jersey holds the Pinelands?"
+      },
+      {
+        "target": "atlantic-coastal-plain",
+        "text": "Why do so many parts of the coastal plain have sandy ground?"
+      },
+      {
+        "target": "freshwater-wetlands",
+        "text": "What makes some land stay wet long enough to become a wetland?"
+      }
+    ],
+    "sources": [
+      "usgeo-pinelands",
+      "usgeo-pinelands-nj"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "adirondack-mountains",
+    "title": "What can you find in New York’s Adirondack Mountains?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Adirondack Mountains are in the northern part of New York State. On a map the high land looks like a wide raised patch rather than one very long line of peaks. Much of its rock is ancient. High peaks, wooded slopes, lakes and wetlands are all part of the region today. The Adirondack Park includes both land cared for by the state and land owned by other people, so there are towns within its broad boundary.",
+    "aliases": [
+      "adirondack mountains new york",
+      "what is adirondack park",
+      "where are the adirondacks"
+    ],
+    "sections": [],
+    "facts": [
+      "The High Peaks area includes some of the tallest mountains in New York."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-new-york",
+        "text": "What other kinds of land or water are in New York State?"
+      },
+      {
+        "target": "topographic-maps",
+        "text": "How can a flat map show the Adirondacks’ high peaks?"
+      },
+      {
+        "target": "state-vermont",
+        "text": "What is the state across Lake Champlain like?"
+      }
+    ],
+    "sources": [
+      "usgeo-physio",
+      "usgeo-adirondacks",
+      "usgeo-adirondack-park"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "outer-banks",
+    "title": "Why do the Outer Banks form long, narrow islands?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Outer Banks are a series of low islands off North Carolina and a small part of Virginia. Waves and currents move sand along the coast. Some of that sand piles up in long strips that nearly follow the mainland shore. A barrier island sits between the open sea and quieter waters and can take much of the push from ocean waves. A storm may open a new gap or move sand, so an island’s shape can change.",
+    "aliases": [
+      "north carolina outer banks why long",
+      "what are outer banks",
+      "outer banks sounds and islands"
+    ],
+    "sections": [],
+    "facts": [
+      "Behind many of the islands lie partly sheltered waters called sounds."
+    ],
+    "terms": [
+      "barrier island"
+    ],
+    "questions": [
+      {
+        "target": "state-north-carolina",
+        "text": "How far does North Carolina stretch from the coast to the mountains?"
+      },
+      {
+        "target": "barrier-islands",
+        "text": "How does a long island help shelter the coast behind it?"
+      },
+      {
+        "target": "sand-dunes",
+        "text": "How does wind move dry sand on beaches and dunes?"
+      }
+    ],
+    "sources": [
+      "usgeo-outer",
+      "usgeo-outer-noaa"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "great-smoky-mountains",
+    "title": "Why do the Great Smoky Mountains look smoky?",
+    "category": "landmarks",
+    "priority": 2,
+    "answer": "On the border of North Carolina and Tennessee, high ridges in the Great Smoky Mountains often fade into bluish layers in the distance. Moist air can cool and make tiny water drops that hang in the air as fog. Plants also release natural substances that help form tiny particles in the air. Those drops and particles can scatter light and soften the view of faraway slopes. You can see that effect even when there is no fire.",
+    "aliases": [
+      "why great smoky mountains look smoky",
+      "smoky mountains blue haze",
+      "nc tn smoky mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "Great Smoky Mountains National Park covers land on both sides of the Tennessee–North Carolina border."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-tennessee",
+        "text": "Where are the Smokies in Tennessee?"
+      },
+      {
+        "target": "state-north-carolina",
+        "text": "Where are the Smokies compared with North Carolina’s coast?"
+      },
+      {
+        "target": "ground-fog",
+        "text": "How can cooling air make fog close to the ground?"
+      }
+    ],
+    "sources": [
+      "usgeo-smoky",
+      "usgeo-smoky-haze"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "badlands-landforms",
+    "title": "Why do some plains hold bunches of steep ravines?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "In places called badlands, rain and streams have cut many small, steep valleys into soft layers of rock or dirt. Rain may be rare at times, but a shower can run off quickly where few plants cover the ground. The water cuts channels and carries loose grains away. Some layers wear away faster than others, giving the hills sharp edges. Examples in both North Dakota and South Dakota show bands of different colors from different layers.",
+    "aliases": [
+      "what are badlands",
+      "why badlands have stripes",
+      "badlands north and south dakota"
+    ],
+    "sections": [],
+    "facts": [
+      "Some rocks in these landscapes hold fossils, which erosion can uncover."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-north-dakota",
+        "text": "Where can you see badlands in North Dakota?"
+      },
+      {
+        "target": "state-south-dakota",
+        "text": "How do the badlands and Black Hills fit into South Dakota?"
+      },
+      {
+        "target": "erosion",
+        "text": "How can water take loose rock and dirt from one place to another?"
+      }
+    ],
+    "sources": [
+      "usgeo-theodore",
+      "usgeo-badlands"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "cascade-range",
+    "title": "Why do volcanoes rise along the Cascade Range?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Cascade Range runs through the Pacific Northwest and into Canada. Some of its tall peaks, such as Mount Rainier and Mount St. Helens, are volcanoes. Off the coast, a smaller piece of Earth’s rocky outer layer is sliding slowly under North America. Deep underground, that movement helps some rock melt. Some melted rock rises and can feed a volcano. Over time, separate volcanoes have grown along more than one part of the mountain range.",
+    "aliases": [
+      "cascade range volcanoes",
+      "why are cascades volcanic",
+      "where is cascade range"
+    ],
+    "sections": [],
+    "facts": [
+      "Mount St. Helens changed shape during a large eruption in 1980."
+    ],
+    "terms": [
+      "volcano"
+    ],
+    "questions": [
+      {
+        "target": "state-washington",
+        "text": "What does Washington look like on the two sides of the Cascades?"
+      },
+      {
+        "target": "crater-lake-oregon",
+        "text": "What can a volcano leave behind after a large eruption?"
+      },
+      {
+        "target": "tectonic-plates",
+        "text": "How do pieces of Earth’s outer layer move?"
+      }
+    ],
+    "sources": [
+      "usgeo-cascades"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "blue-ridge-mountains",
+    "title": "Which part of the Appalachians is called the Blue Ridge?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Blue Ridge is one part of the longer Appalachian system in the eastern United States. Its mountains run across states including Virginia and North Carolina, and reach into nearby states. Many ridges have rounded, wooded tops. Between them, streams flow down through low gaps and valleys. On a clear day, far ridges may look bluish because light travels through a great deal of air before it reaches your eyes. The nearest slopes often look greener and sharper.",
+    "aliases": [
+      "what is blue ridge",
+      "blue ridge appalachian mountains",
+      "virginia north carolina mountains"
+    ],
+    "sections": [],
+    "facts": [
+      "The Blue Ridge contains some of the highest mountains in the eastern United States."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "appalachian-mountains",
+        "text": "Where does the longer chain containing the Blue Ridge go?"
+      },
+      {
+        "target": "state-virginia",
+        "text": "How do the Blue Ridge and coastal plain fit into Virginia?"
+      },
+      {
+        "target": "great-smoky-mountains",
+        "text": "Why do nearby mountains often look smoky?"
+      }
+    ],
+    "sources": [
+      "usgeo-physio",
+      "usgeo-blue-ridge"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "black-hills",
+    "title": "Why do the Black Hills stand out from the surrounding plains?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Black Hills rise like an island of hills and low mountains above the plains of western South Dakota and eastern Wyoming. Long ago, rock was pushed upward. Weather and streams wore away some of the rocks that once covered the higher ground. In places the older rock below is now visible. Many slopes grow dark green pine trees, so the hills can look almost black from far away against the lighter plains.",
+    "aliases": [
+      "black hills why black",
+      "where are black hills",
+      "black hills geology kids"
+    ],
+    "sections": [],
+    "facts": [
+      "Though most of the Black Hills are in South Dakota, some extend into Wyoming."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-south-dakota",
+        "text": "Where are the Black Hills in South Dakota?"
+      },
+      {
+        "target": "state-wyoming",
+        "text": "What else is found in the state that meets the western side of the hills?"
+      },
+      {
+        "target": "great-plains",
+        "text": "How can mountains and ravines break up the flat-looking plains?"
+      }
+    ],
+    "sources": [
+      "usgeo-black-hills"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "rio-grande",
+    "title": "Where does the Rio Grande go after leaving the mountains?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "The Rio Grande begins in the Rocky Mountains of southern Colorado. It flows into New Mexico, passing places such as Albuquerque. Farther downstream, part of the river forms the border between Texas and Mexico. It bends around the Texas area known as Big Bend on its way toward the Gulf Coast. Like other long rivers, its water and speed can change with snow, rain and the amount of water people use along the way.",
+    "aliases": [
+      "rio grande source and mouth",
+      "where does rio grande flow",
+      "rio bravo del norte"
+    ],
+    "sections": [],
+    "facts": [
+      "The river is also called the Río Bravo or Río Bravo del Norte in Mexico."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-colorado",
+        "text": "What land makes up Colorado near the river’s headwaters?"
+      },
+      {
+        "target": "state-new-mexico",
+        "text": "What does the Rio Grande pass in New Mexico?"
+      },
+      {
+        "target": "state-texas",
+        "text": "How do different rivers divide the landscape in Texas?"
+      }
+    ],
+    "sources": [
+      "usgeo-rio"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "gulf-coastal-plain",
+    "title": "What kind of land stretches along the Gulf Coast?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "Along much of the Gulf Coast of the United States, low land reaches inland from the shore. It is part of a coastal plain built from sand, mud and other material carried and dropped by water over long periods. Some parts have forests or farms. Near the coast, where the land is almost level, slow rivers, bays and marshes are common. Farther inland, the plain gradually meets higher ground. Its width and exact edge vary from place to place.",
+    "aliases": [
+      "gulf coastal plain geography",
+      "why is gulf coast flat",
+      "low land along the gulf coast"
+    ],
+    "sections": [],
+    "facts": [
+      "The low land along the Gulf is part of a larger coastal plain that continues along much of the Atlantic coast."
+    ],
+    "terms": [
+      "coastal plain"
+    ],
+    "questions": [
+      {
+        "target": "state-louisiana",
+        "text": "Why is so much of southern Louisiana low and wet?"
+      },
+      {
+        "target": "mississippi-river-delta",
+        "text": "How can a river build land where it reaches the coast?"
+      },
+      {
+        "target": "atlantic-coastal-plain",
+        "text": "What is the low plain like along the Atlantic coast?"
+      }
+    ],
+    "sources": [
+      "usgeo-physio",
+      "usgeo-gulf"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "puget-sound",
+    "title": "How did such a long inlet form in Washington?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "Puget Sound is a long network of inlets in western Washington, connected to seawater from the Pacific Ocean. During a recent ice age, a large sheet of ice moved through the area. It scraped rock, scooped some valleys deeper and left loose material behind. When the ice melted back, seawater could fill some of the low places. The sound now has many arms and bays. Olympia lies near the southern end of the network.",
+    "aliases": [
+      "puget sound glaciers",
+      "what is puget sound",
+      "where is puget sound"
+    ],
+    "sections": [],
+    "facts": [
+      "The hills and shorelines around Puget Sound still show traces of the ice that passed through."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-washington",
+        "text": "Where is Washington’s capital compared with Puget Sound?"
+      },
+      {
+        "target": "glaciers",
+        "text": "How can a moving glacier wear away rock?"
+      },
+      {
+        "target": "long-island-sound",
+        "text": "Where is another sound where fresh and salty water mix?"
+      }
+    ],
+    "sources": [
+      "usgeo-puget"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "new-river-gorge",
+    "title": "Why is the New River far below the land around it?",
+    "category": "landmarks",
+    "priority": 2,
+    "answer": "In southern West Virginia, the New River winds far below hills and high land. Over a very long time the river carried loose pieces of rock away and slowly cut down through deeper layers. Smaller streams cut channels of their own as they joined it. The result is a deep, narrow valley with steep sides, called a gorge. Today you can look across wooded slopes at a river that is still moving rock and sand downstream.",
+    "aliases": [
+      "where is new river gorge",
+      "new river gorge how formed",
+      "west virginia gorge geology"
+    ],
+    "sections": [],
+    "facts": [
+      "The New River Gorge exposes layers of rock that would be hidden if the river had not cut the valley."
+    ],
+    "terms": [],
+    "questions": [
+      {
+        "target": "state-west-virginia",
+        "text": "What other kinds of land make West Virginia uneven?"
+      },
+      {
+        "target": "river-canyons",
+        "text": "How can a river cut a deep valley through rock?"
+      },
+      {
+        "target": "tributary-streams",
+        "text": "Why do smaller streams flow into larger rivers?"
+      }
+    ],
+    "sources": [
+      "usgeo-new-river"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "driftless-area",
+    "title": "Why did one part of Wisconsin keep its steep valleys?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "Much of Wisconsin was covered by moving ice during recent ice ages. Part of the southwest was mostly outside those ice sheets. There, rivers had a long time to cut valleys between high ridges without recent glaciers passing over them and spreading layers of loose rock. This land is called the Driftless Area, after the loose material called glacial drift that ice or its meltwater can leave behind. The wider region also reaches into neighboring states.",
+    "aliases": [
+      "what is driftless area",
+      "why was driftless area not covered by glaciers",
+      "wisconsin steep valleys"
+    ],
+    "sections": [],
+    "facts": [
+      "The Driftless Area can have steep valleys close to much flatter land that was shaped by ice."
+    ],
+    "terms": [
+      "glacial drift"
+    ],
+    "questions": [
+      {
+        "target": "state-wisconsin",
+        "text": "Where is the Driftless Area in Wisconsin?"
+      },
+      {
+        "target": "glaciers",
+        "text": "What do glaciers do to rock and loose soil as they move?"
+      },
+      {
+        "target": "river-canyons",
+        "text": "How does flowing water cut down through layers of rock?"
+      }
+    ],
+    "sources": [
+      "usgeo-driftless",
+      "usgeo-driftless-map"
+    ],
+    "revision": 1,
+    "review": "approved"
+  },
+  {
+    "id": "washington-dc",
+    "title": "Why is Washington, D.C., different from a state?",
+    "category": "maps-geography",
+    "priority": 2,
+    "answer": "Washington, D.C., is the capital of the United States and a place where people live and work. It is a federal district, an area set apart for the country’s government. The letters D.C. stand for District of Columbia. The city sits along the Potomac River, next to Maryland and across water from Virginia. This is far from Washington State, which is in the Pacific Northwest. The two places share a name but have very different locations on a map.",
+    "aliases": [
+      "what is washington dc",
+      "washington dc is not a state",
+      "district of columbia",
+      "where is the usa capital",
+      "what is the united states capital",
+      "capital of the usa"
+    ],
+    "sections": [],
+    "facts": [
+      "The United States has 50 states, and Washington, D.C., counts as a district rather than one of the 50."
+    ],
+    "terms": [
+      "federal district"
+    ],
+    "questions": [
+      {
+        "target": "united-states",
+        "text": "What kinds of land does the United States include?"
+      },
+      {
+        "target": "state-washington",
+        "text": "Where is Washington State, the other place with that name?"
+      },
+      {
+        "target": "state-maryland",
+        "text": "Which state lies next to Washington, D.C.?"
+      }
+    ],
+    "sources": [
+      "usgeo-dc",
+      "usgeo-natgeo-dc",
+      "usgeo-state-map"
+    ],
+    "revision": 1,
+    "review": "approved"
+  }
+]
